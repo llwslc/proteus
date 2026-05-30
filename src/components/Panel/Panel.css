@@ -1,31 +1,22 @@
 /* NOVA · Panel — HUD frame with corner brackets */
 
+/* Sharp HUD frame (no chamfer) so the four corner brackets are never
+   clipped. The brackets ARE the sci-fi corner treatment here. */
 .nova-panel {
-  --nova-cut: 12px;
   position: relative;
-  background: var(--nova-line, rgba(45, 226, 255, 0.22));
-  clip-path: var(--nova-clip);
-  isolation: isolate;
-}
-/* Inner surface inset 1px → parent reads as a hairline frame. */
-.nova-panel::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
-  clip-path: var(--nova-clip);
+  border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
   background:
     radial-gradient(120% 80% at 50% -10%, rgba(45, 226, 255, 0.06), transparent 60%),
     linear-gradient(160deg, rgba(12, 24, 38, 0.92), rgba(7, 14, 24, 0.94));
+  isolation: isolate;
 }
 
 /* Optional moving scan sweep */
 .nova-panel--scan::after {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: 0;
   z-index: 0;
-  clip-path: var(--nova-clip);
   background: linear-gradient(180deg, transparent 0%, rgba(45, 226, 255, 0.07) 50%, transparent 51%);
   background-size: 100% 220%;
   pointer-events: none;

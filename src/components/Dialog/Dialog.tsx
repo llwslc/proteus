@@ -60,14 +60,30 @@ export function Dialog({
   );
 }
 
-/** Styled close button for use inside a Dialog footer. */
-export interface DialogCloseProps
-  extends ComponentPropsWithoutRef<typeof BaseDialog.Close> {}
+/** Styled close button for use inside a Dialog footer.
+   Self-contained (does not wrap <Button>) so its chamfer/fill never
+   collide with another component's classes. */
+export type DialogCloseVariant = "ghost" | "primary" | "secondary" | "danger";
 
-export function DialogClose({ className, ...props }: DialogCloseProps) {
+export interface DialogCloseProps
+  extends ComponentPropsWithoutRef<typeof BaseDialog.Close> {
+  variant?: DialogCloseVariant;
+}
+
+export function DialogClose({
+  variant = "ghost",
+  className,
+  ...props
+}: DialogCloseProps) {
   return (
     <BaseDialog.Close
-      className={["nova-dialog__close-btn", className].filter(Boolean).join(" ")}
+      className={[
+        "nova-dialog__btn",
+        `nova-dialog__btn--${variant}`,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       {...props}
     />
   );

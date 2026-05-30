@@ -7,18 +7,30 @@
   width: 100%;
 }
 
+/* Frame technique: outer = border colour, inset fill = surface, both
+   clipped to the same chamfer → a complete border around the cut corner
+   (a border+clip-path combo leaves the diagonal edge unstroked). */
 .nova-accordion__item {
   position: relative;
-  background: var(--nova-surface, rgba(13, 27, 45, 0.72));
-  border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
   clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
-  transition: border-color var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-accordion__item::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+  background: var(--nova-surface, rgba(13, 27, 45, 0.72));
 }
 .nova-accordion__item:hover {
-  border-color: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 
 .nova-accordion__header {
+  position: relative;
+  z-index: 1;
   margin: 0;
 }
 .nova-accordion__trigger {
@@ -77,6 +89,8 @@
 
 /* Collapse animation via Base UI's --accordion-panel-height var. */
 .nova-accordion__panel {
+  position: relative;
+  z-index: 1;
   height: var(--accordion-panel-height);
   overflow: hidden;
   transition: height var(--nova-dur-slow, 0.45s) var(--nova-ease);

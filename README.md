@@ -14,7 +14,7 @@ npm run build    # type-check + production build
 
 ## What's inside
 
-20 controls, **each in its own folder** under `src/components/<Name>/`
+21 controls, **each in its own folder** under `src/components/<Name>/`
 (`<Name>.tsx` + `<Name>.css` + `index.ts`):
 
 | Input | Feedback | Overlay | Display |
@@ -22,7 +22,7 @@ npm run build    # type-check + production build
 | Button | Progress | Tooltip | Avatar |
 | Switch | Meter | Dialog | Badge |
 | Checkbox | Tabs | Toast | Separator |
-| Radio Group | Accordion | | Panel (HUD frame) |
+| Radio Group | Accordion | Drawer | Panel (HUD frame) |
 | Toggle Group | | | |
 | Slider | | | |
 | Number Field | | | |

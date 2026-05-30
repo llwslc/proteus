@@ -125,16 +125,18 @@
   color: var(--nova-primary, #2de2ff);
 }
 .nova-btn--ghost::before {
-  background: rgba(45, 226, 255, 0.05);
+  /* Dark, opaque interior so the cyan frame reads as a crisp 1px outline
+     instead of bleeding through a near-transparent fill. */
+  background: rgba(7, 15, 25, 0.92);
 }
 .nova-btn--ghost::after {
-  opacity: 0.3;
+  opacity: 0.25;
 }
 .nova-btn--ghost:hover {
   color: #eafdff;
 }
 .nova-btn--ghost:hover::before {
-  background: rgba(45, 226, 255, 0.16);
+  background: rgba(16, 44, 60, 0.95);
 }
 
 /* ---- Sizes ---- */

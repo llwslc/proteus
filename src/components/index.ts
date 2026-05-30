@@ -48,7 +48,14 @@ export { Tooltip } from "./Tooltip";
 export type { TooltipProps } from "./Tooltip";
 
 export { Dialog, DialogClose } from "./Dialog";
-export type { DialogProps, DialogCloseProps } from "./Dialog";
+export type {
+  DialogProps,
+  DialogCloseProps,
+  DialogCloseVariant,
+} from "./Dialog";
+
+export { Drawer } from "./Drawer";
+export type { DrawerProps, DrawerSide } from "./Drawer";
 
 export { ToastProvider, useToast } from "./Toast";
 export type { ToastProviderProps, ToastTone } from "./Toast";

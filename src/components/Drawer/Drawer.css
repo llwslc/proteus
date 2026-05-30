@@ -1,0 +1,189 @@
+/* NOVA · Drawer — edge-anchored HUD panel (built on Base UI Dialog) */
+
+.nova-drawer__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  background: rgba(2, 6, 12, 0.62);
+  backdrop-filter: blur(3px) saturate(1.1);
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-drawer__backdrop[data-starting-style],
+.nova-drawer__backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.nova-drawer {
+  position: fixed;
+  z-index: 1401;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 26px 22px;
+  background:
+    radial-gradient(120% 50% at 100% 0%, rgba(45, 226, 255, 0.08), transparent 55%),
+    linear-gradient(160deg, rgba(11, 22, 36, 0.98), rgba(7, 14, 24, 0.99));
+  color: var(--nova-text, #d7ecff);
+  transition:
+    transform var(--nova-dur-slow, 0.45s) var(--nova-ease-out, ease),
+    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease);
+}
+
+/* Glowing inner edge accent */
+.nova-drawer__edge {
+  position: absolute;
+  z-index: 2;
+  background: var(--nova-primary, #2de2ff);
+  box-shadow: 0 0 14px var(--nova-primary, #2de2ff);
+}
+
+/* ---- Sides ---- */
+.nova-drawer--right,
+.nova-drawer--left {
+  top: 0;
+  height: 100%;
+  width: min(420px, 92vw);
+}
+.nova-drawer--right {
+  right: 0;
+  border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.55);
+}
+.nova-drawer--left {
+  left: 0;
+  border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.55);
+}
+.nova-drawer--top,
+.nova-drawer--bottom {
+  left: 0;
+  width: 100%;
+  height: min(60vh, 460px);
+}
+.nova-drawer--top {
+  top: 0;
+  border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+.nova-drawer--bottom {
+  bottom: 0;
+  border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* Edge accent placement per side */
+.nova-drawer--right .nova-drawer__edge {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--nova-primary, #2de2ff), transparent);
+}
+.nova-drawer--left .nova-drawer__edge {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--nova-primary, #2de2ff), transparent);
+}
+.nova-drawer--top .nova-drawer__edge {
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--nova-primary, #2de2ff), transparent);
+}
+.nova-drawer--bottom .nova-drawer__edge {
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--nova-primary, #2de2ff), transparent);
+}
+
+/* ---- Slide-in transitions ---- */
+.nova-drawer--right[data-starting-style],
+.nova-drawer--right[data-ending-style] {
+  transform: translateX(100%);
+}
+.nova-drawer--left[data-starting-style],
+.nova-drawer--left[data-ending-style] {
+  transform: translateX(-100%);
+}
+.nova-drawer--top[data-starting-style],
+.nova-drawer--top[data-ending-style] {
+  transform: translateY(-100%);
+}
+.nova-drawer--bottom[data-starting-style],
+.nova-drawer--bottom[data-ending-style] {
+  transform: translateY(100%);
+}
+
+/* ---- Content ---- */
+.nova-drawer__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 36px 6px 0;
+  font-family: var(--nova-font-display, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nova-primary, #2de2ff);
+  text-shadow: var(--nova-glow-text, 0 0 8px rgba(45, 226, 255, 0.55));
+}
+.nova-drawer__title-tick {
+  width: 8px;
+  height: 16px;
+  background: var(--nova-primary, #2de2ff);
+  box-shadow: 0 0 8px var(--nova-primary, #2de2ff);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+}
+.nova-drawer__desc {
+  margin: 0 0 16px;
+  color: var(--nova-text-dim, #7793b0);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.nova-drawer__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.nova-drawer__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
+}
+
+.nova-drawer__x {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
+  background: rgba(45, 226, 255, 0.05);
+  color: var(--nova-text-dim, #7793b0);
+  cursor: pointer;
+  font-size: 15px;
+  clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+  transition:
+    color var(--nova-dur, 0.22s) var(--nova-ease),
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    border-color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-drawer__x:hover {
+  color: var(--nova-danger, #ff4d5e);
+  border-color: var(--nova-danger, #ff4d5e);
+  background: rgba(255, 77, 94, 0.12);
+}

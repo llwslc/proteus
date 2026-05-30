@@ -7,6 +7,7 @@ import {
   Checkbox,
   Dialog,
   DialogClose,
+  Drawer,
   Field,
   Input,
   Meter,
@@ -59,6 +60,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
     items: [
       ["tooltip", "Tooltip", "TIP"],
       ["dialog", "Dialog", "DLG"],
+      ["drawer", "Drawer", "DRW"],
       ["toast", "Toast", "TST"],
     ],
   },
@@ -289,7 +291,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 20 Controls
+              <BoltIcon /> Component System · 21 Controls
             </div>
             <h1>
               A <b>sci-fi</b> interface kit
@@ -304,7 +306,7 @@ function Demo() {
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
-                <b>20</b>
+                <b>21</b>
                 <span>Controls</span>
               </div>
               <div className="nova-hero__stat">
@@ -530,9 +532,7 @@ function Demo() {
                   footer={
                     <>
                       <DialogClose>Cancel</DialogClose>
-                      <DialogClose
-                        render={<Button variant="secondary">Engage</Button>}
-                      />
+                      <DialogClose variant="secondary">Engage</DialogClose>
                     </>
                   }
                 >
@@ -541,6 +541,29 @@ function Demo() {
                     cryo-stations.
                   </p>
                 </Dialog>
+              </Panel>
+            </div>
+
+            {/* Drawer */}
+            <div className="nova-section" id="drawer">
+              <Panel title="Drawer" meta="DRW">
+                <Drawer
+                  side="right"
+                  trigger={<Button variant="ghost">Open Console</Button>}
+                  title="Systems Config"
+                  description="An edge-anchored panel sliding in from the right — a Base UI Dialog positioned at the screen edge."
+                  footer={<DialogClose variant="secondary">Apply</DialogClose>}
+                >
+                  <div className="demo-spread">
+                    <span className="demo-tag">Auto-Pilot</span>
+                    <Switch defaultChecked />
+                  </div>
+                  <div className="demo-spread">
+                    <span className="demo-tag">Stealth Mode</span>
+                    <Switch />
+                  </div>
+                  <Slider label="Sensor Gain" defaultValue={72} />
+                </Drawer>
               </Panel>
             </div>
 
@@ -601,8 +624,8 @@ function Demo() {
             <div className="nova-section" id="panel">
               <Panel title="Panel" meta="PNL" scan>
                 <p style={{ marginTop: 0, color: "var(--nova-text-dim)" }}>
-                  The HUD frame wrapping every section: chamfered border, corner
-                  brackets, and an optional scan sweep.
+                  The HUD frame wrapping every section: a sharp neon border,
+                  four corner brackets, and an optional scan sweep.
                 </p>
                 <Panel title="Nested Frame" meta="SUB">
                   <span className="demo-tag">Composable to any depth</span>

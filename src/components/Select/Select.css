@@ -95,7 +95,6 @@
 }
 
 .nova-select__item {
-  --nova-cut: 4px;
   position: relative;
   z-index: 1;
   display: flex;
@@ -107,7 +106,6 @@
   font-size: 14px;
   user-select: none;
   outline: none;
-  clip-path: var(--nova-clip);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     color var(--nova-dur, 0.22s) var(--nova-ease);
