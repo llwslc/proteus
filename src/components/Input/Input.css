@@ -45,8 +45,8 @@
   color: var(--nova-text-mute, #46617e);
 }
 .nova-input-wrap:focus-within .nova-input {
-  /* Stay dark + opaque on focus so the bright frame behind never shows
-     through — otherwise the typed text sits on cyan and is unreadable. */
+  /* On focus the frame turns bright cyan, so the fill stays dark + opaque
+     to keep the typed text legible. */
   background: #0a1a29;
 }
 .nova-input--has-icon {

@@ -52,9 +52,8 @@
     box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
 }
 
-/* Checked — the kit's standard "cyan fill + dark foreground" active language
-   (same as the checkbox check / toggle text / button label): a cyan→deep-cyan
-   fill with a DARK thumb that pops on it. No one-off cyan→dark gradient. */
+/* Checked — cyan fill + dark thumb: the kit's active language (like the dark
+   check on a cyan checkbox), keeping the thumb high-contrast on the fill. */
 .nova-switch[data-checked] .nova-switch__track {
   background: var(--nova-primary, #2de2ff);
   filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.6));

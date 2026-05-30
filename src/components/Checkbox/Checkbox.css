@@ -86,8 +86,7 @@
   line-height: 1;
 }
 
-/* Disabled — dim the WHOLE field (box + label) and set the not-allowed cursor
-   on the whole row, so it reads as disabled at a glance (not only on click). */
+/* Disabled — dim the whole row (box + label) + not-allowed cursor. */
 .nova-checkbox-field:has(.nova-checkbox[data-disabled]) {
   opacity: 0.4;
   cursor: not-allowed;

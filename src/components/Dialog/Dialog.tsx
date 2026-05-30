@@ -63,9 +63,8 @@ export function Dialog({
 }
 
 /** Close button for a Dialog/Drawer footer — reuses the NOVA `Button` so the
-   footer actions match the rest of the kit. We deliberately route `className`
-   onto the Button (not onto Base UI's Close), because `render` merges
-   classNames and stacking a second full button style would collide. */
+   footer actions match the kit. Base UI's `render` merges classNames, so
+   `className` is applied to the Button, not to Close. */
 export type DialogCloseVariant = ButtonVariant;
 
 export interface DialogCloseProps

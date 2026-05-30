@@ -71,8 +71,7 @@
   opacity: 0.5;
 }
 
-/* Disabled — dim the WHOLE row (control + label) + not-allowed cursor, so it
-   reads as disabled at a glance, not only when clicked. */
+/* Disabled — dim the whole row (control + label) + not-allowed cursor. */
 .nova-radio:has(.nova-radio__control[data-disabled]) {
   opacity: 0.4;
   cursor: not-allowed;

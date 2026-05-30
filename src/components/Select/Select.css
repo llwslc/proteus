@@ -112,7 +112,7 @@
     background var(--nova-dur, 0.22s) var(--nova-ease),
     color var(--nova-dur, 0.22s) var(--nova-ease);
 }
-/* Full-height glowing left edge (fades in on highlight) — not a centered stub. */
+/* Full-height glowing left edge, fades in on highlight. */
 .nova-select__item::after {
   content: "";
   position: absolute;

@@ -14,17 +14,17 @@ npm run build    # type-check + production build
 
 ## What's inside
 
-21 controls, **each in its own folder** under `src/components/<Name>/`
+24 controls, **each in its own folder** under `src/components/<Name>/`
 (`<Name>.tsx` + `<Name>.css` + `index.ts`):
 
 | Input | Feedback | Overlay | Display |
 | --- | --- | --- | --- |
 | Button | Progress | Tooltip | Avatar |
-| Switch | Meter | Dialog | Badge |
-| Checkbox | Tabs | Toast | Separator |
-| Radio Group | Accordion | Drawer | Panel (HUD frame) |
-| Toggle Group | | | |
-| Slider | | | |
+| Switch | Meter | Popover | Badge |
+| Checkbox | Tabs | Dialog | Separator |
+| Radio Group | Accordion | Alert Dialog | Panel (HUD frame) |
+| Toggle Group | Collapsible | Drawer | |
+| Slider | | Toast | |
 | Number Field | | | |
 | Text Field / Field | | | |
 | Select | | | |
