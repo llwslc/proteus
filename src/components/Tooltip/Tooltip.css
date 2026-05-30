@@ -38,33 +38,99 @@
   line-height: 1.5;
 }
 
-/* Arrow: a 45deg-rotated square. Only the two OUTER edges carry the border;
-   the fill matches the surface EXACTLY, so the half that overlaps the panel
-   is invisible and the border seam it covers opens cleanly into the point. */
+/* Arrow: classic two-triangle. A fill-coloured triangle (::after) sits ~1.5px
+   over a slightly larger border-coloured triangle (::before). The border one
+   shows as the two outer edges; the fill one covers the popup's border seam.
+   Flush-positioned (base at the popup edge), so it's deterministic. */
 .nova-tooltip__arrow {
-  width: 11px;
-  height: 11px;
+  --arrow-fill: #08121c;
+  --arrow-border: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   z-index: 2;
-  background: #08121c;
-  transform: rotate(45deg);
 }
+.nova-tooltip__arrow::before,
+.nova-tooltip__arrow::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+/* data-side="top": popup above the trigger; arrow at the bottom, points down */
 .nova-tooltip__arrow[data-side="top"] {
-  bottom: -3px;
-  border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  bottom: -8px;
+  width: 16px;
+  height: 8px;
 }
+.nova-tooltip__arrow[data-side="top"]::before {
+  top: 0;
+  left: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--arrow-border);
+}
+.nova-tooltip__arrow[data-side="top"]::after {
+  top: -1.5px;
+  left: 1.5px;
+  border-left: 6.5px solid transparent;
+  border-right: 6.5px solid transparent;
+  border-top: 6.5px solid var(--arrow-fill);
+}
+/* data-side="bottom": popup below the trigger; arrow at the top, points up */
 .nova-tooltip__arrow[data-side="bottom"] {
-  top: -3px;
-  border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  top: -8px;
+  width: 16px;
+  height: 8px;
 }
+.nova-tooltip__arrow[data-side="bottom"]::before {
+  bottom: 0;
+  left: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--arrow-border);
+}
+.nova-tooltip__arrow[data-side="bottom"]::after {
+  bottom: -1.5px;
+  left: 1.5px;
+  border-left: 6.5px solid transparent;
+  border-right: 6.5px solid transparent;
+  border-bottom: 6.5px solid var(--arrow-fill);
+}
+/* data-side="left": popup left of the trigger; arrow at the right, points right */
 .nova-tooltip__arrow[data-side="left"] {
-  right: -3px;
-  border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  right: -8px;
+  width: 8px;
+  height: 16px;
 }
+.nova-tooltip__arrow[data-side="left"]::before {
+  top: 0;
+  left: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid var(--arrow-border);
+}
+.nova-tooltip__arrow[data-side="left"]::after {
+  top: 1.5px;
+  left: -1.5px;
+  border-top: 6.5px solid transparent;
+  border-bottom: 6.5px solid transparent;
+  border-left: 6.5px solid var(--arrow-fill);
+}
+/* data-side="right": popup right of the trigger; arrow at the left, points left */
 .nova-tooltip__arrow[data-side="right"] {
-  left: -3px;
-  border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  left: -8px;
+  width: 8px;
+  height: 16px;
+}
+.nova-tooltip__arrow[data-side="right"]::before {
+  top: 0;
+  right: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--arrow-border);
+}
+.nova-tooltip__arrow[data-side="right"]::after {
+  top: 1.5px;
+  right: -1.5px;
+  border-top: 6.5px solid transparent;
+  border-bottom: 6.5px solid transparent;
+  border-right: 6.5px solid var(--arrow-fill);
 }

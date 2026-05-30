@@ -38,15 +38,6 @@
   transform: translateX(28px);
 }
 
-.nova-toast__accent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--nova-toast-accent), transparent 70%);
-  box-shadow: 0 0 8px var(--nova-toast-accent);
-}
 .nova-toast__main {
   flex: 1;
   min-width: 0;
