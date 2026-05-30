@@ -15,7 +15,6 @@
   font-size: 12px;
   letter-spacing: 0.04em;
   line-height: 1.5;
-  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
   box-shadow:
     0 6px 18px rgba(0, 0, 0, 0.55),
     0 0 14px rgba(45, 226, 255, 0.2);
@@ -28,4 +27,36 @@
 .nova-tooltip__popup[data-ending-style] {
   opacity: 0;
   transform: scale(0.94);
+}
+
+/* Arrow: a rotated square whose two OUTER edges carry the border and whose
+   opaque fill covers the popup border it overlaps — so the border opens
+   seamlessly into the point. (Base UI centres it along the edge; we add the
+   perpendicular offset + rotation per side.) */
+.nova-tooltip__arrow {
+  width: 10px;
+  height: 10px;
+  z-index: 1;
+  background: #08121c;
+  transform: rotate(45deg);
+}
+.nova-tooltip__arrow[data-side="top"] {
+  bottom: -5px;
+  border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}
+.nova-tooltip__arrow[data-side="bottom"] {
+  top: -5px;
+  border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}
+.nova-tooltip__arrow[data-side="left"] {
+  right: -5px;
+  border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  border-right: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}
+.nova-tooltip__arrow[data-side="right"] {
+  left: -5px;
+  border-bottom: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }

@@ -30,6 +30,7 @@ export function Tooltip({
             sideOffset={sideOffset}
           >
             <BaseTooltip.Popup className="nova-tooltip__popup">
+              <BaseTooltip.Arrow className="nova-tooltip__arrow" />
               {content}
             </BaseTooltip.Popup>
           </BaseTooltip.Positioner>
