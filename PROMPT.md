@@ -65,5 +65,9 @@ src/
 8. **扫描线挂 `html::before`,别挂 `<body>`** —— 否则和 `body::before` 太空背景是同一个伪元素,会把背景辉光静默覆盖掉。
 9. 构建脚本 `tsc --noEmit && vite build`(`moduleResolution: bundler` + `allowImportingTsExtensions` 需要 `noEmit`)。
 
+**E. 状态与布局**
+10. **禁用态 dim 整行,不只 dim 控件** —— 只把小方块/圆点调淡、label 还亮着,会让人以为能点(点了才发现不行)。用 `.field:has([data-disabled])` 把禁用态传到整个 label wrapper:整行 `opacity ~0.4` + `cursor: not-allowed`。
+11. **inline-flex 分段控件(ToggleGroup)加 `width: fit-content`** —— 否则作为 flex/grid 子项会被 blockify 后 `align-items: stretch` 拉成满宽,右边留一大片空白。
+
 ## 演示页
 顶部 HUD 栏(NOVA logo + 实时时钟 + 状态徽章)→ 左侧 sticky 索引(列出全部控件、点击锚点平滑跳转)→ Hero(标题 + 数据条 + 旋转准星占用右侧负空间)→ 响应式两栏 Panel 网格逐个展示控件 → 根部包 `ToastProvider`。整页挂动态网格 / 扫描线 / 噪点氛围层。

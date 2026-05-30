@@ -85,3 +85,13 @@
 .nova-checkbox-field__label {
   line-height: 1;
 }
+
+/* Disabled — dim the WHOLE field (box + label) and set the not-allowed cursor
+   on the whole row, so it reads as disabled at a glance (not only on click). */
+.nova-checkbox-field:has(.nova-checkbox[data-disabled]) {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.nova-checkbox-field:has(.nova-checkbox[data-disabled]) .nova-checkbox[data-disabled] {
+  opacity: 1;
+}

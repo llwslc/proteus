@@ -4,6 +4,10 @@
   --nova-cut: 7px;
   position: relative;
   display: inline-flex;
+  /* Size to the segments. Without this it gets blockified + stretched to full
+     width when used as a flex/grid item, leaving blank space on the right. */
+  width: fit-content;
+  max-width: 100%;
   padding: 3px;
   gap: 3px;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
