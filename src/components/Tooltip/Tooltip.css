@@ -29,15 +29,3 @@
   opacity: 0;
   transform: scale(0.94);
 }
-
-/* HUD accent tick along the top edge (replaces the arrow). */
-.nova-tooltip__popup::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 9px;
-  width: 26px;
-  height: 2px;
-  background: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 7px var(--nova-primary, #2de2ff);
-}
