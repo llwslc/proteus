@@ -1,7 +1,7 @@
 /* NOVA · Switch — sliding HUD toggle */
 
 .nova-switch {
-  --nova-cut: 5px;
+  --nova-cut: 9px;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -37,7 +37,7 @@
 
 /* Thumb */
 .nova-switch__thumb {
-  --nova-cut: 3px;
+  --nova-cut: 7px;
   position: relative;
   z-index: 1;
   width: 18px;

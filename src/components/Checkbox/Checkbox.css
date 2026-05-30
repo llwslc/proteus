@@ -1,7 +1,7 @@
 /* NOVA · Checkbox — chamfered box with animated check/indeterminate */
 
 .nova-checkbox {
-  --nova-cut: 4px;
+  --nova-cut: 9px;
   position: relative;
   display: inline-grid;
   place-items: center;
