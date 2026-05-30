@@ -140,7 +140,7 @@
 }
 
 .nova-combobox__item {
-  --nova-cut: 4px;
+  --nova-cut: 7px;
   position: relative;
   display: flex;
   align-items: center;

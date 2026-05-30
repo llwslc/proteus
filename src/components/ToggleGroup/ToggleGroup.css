@@ -20,14 +20,6 @@
 
 .nova-toggle {
   --nova-cut: 7px;
-  --nova-clip: polygon(
-    var(--nova-cut) 0,
-    100% 0,
-    100% calc(100% - var(--nova-cut)),
-    calc(100% - var(--nova-cut)) 100%,
-    0 100%,
-    0 var(--nova-cut)
-  );
   position: relative;
   z-index: 1;
   display: inline-flex;

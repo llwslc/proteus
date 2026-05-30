@@ -64,8 +64,13 @@
   --nova-gap: 10px;
 }
 
-/* Chamfered-corner clip used across panels, buttons, popups. */
-:root {
+/* Chamfered-corner clip. Declared on every element (not only :root) so its
+   var(--nova-cut) re-resolves against each element's OWN --nova-cut — a local
+   `--nova-cut` override then actually changes that element's clip. On :root
+   alone it bakes once at 9px and inherits already-resolved (override no-ops). */
+*,
+*::before,
+*::after {
   --nova-clip: polygon(
     var(--nova-cut) 0,
     100% 0,

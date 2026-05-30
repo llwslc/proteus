@@ -33,7 +33,7 @@
 }
 
 .nova-menu__item {
-  --nova-cut: 4px;
+  --nova-cut: 7px;
   position: relative;
   z-index: 1;
   display: flex;
