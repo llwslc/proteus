@@ -1,15 +1,6 @@
 /* NOVA · ToggleGroup — segmented HUD selector */
 
 .nova-togglegroup {
-  --nova-cut: 8px;
-  --nova-clip: polygon(
-    var(--nova-cut) 0,
-    100% 0,
-    100% calc(100% - var(--nova-cut)),
-    calc(100% - var(--nova-cut)) 100%,
-    0 100%,
-    0 var(--nova-cut)
-  );
   position: relative;
   display: inline-flex;
   width: fit-content;
@@ -28,6 +19,15 @@
 }
 
 .nova-toggle {
+  --nova-cut: 8px;
+  --nova-clip: polygon(
+    var(--nova-cut) 0,
+    100% 0,
+    100% calc(100% - var(--nova-cut)),
+    calc(100% - var(--nova-cut)) 100%,
+    0 100%,
+    0 var(--nova-cut)
+  );
   position: relative;
   z-index: 1;
   display: inline-flex;
