@@ -14,23 +14,32 @@ npm run build    # type-check + production build
 
 ## What's inside
 
-24 controls, **each in its own folder** under `src/components/<Name>/`
+30 controls, **each in its own folder** under `src/components/<Name>/`
 (`<Name>.tsx` + `<Name>.css` + `index.ts`):
 
 | Input | Feedback | Overlay | Display |
 | --- | --- | --- | --- |
 | Button | Progress | Tooltip | Avatar |
 | Switch | Meter | Popover | Badge |
-| Checkbox | Tabs | Dialog | Separator |
-| Radio Group | Accordion | Alert Dialog | Panel (HUD frame) |
-| Toggle Group | Collapsible | Drawer | |
-| Slider | | Toast | |
-| Number Field | | | |
-| Text Field / Field | | | |
-| Select | | | |
+| Checkbox | Tabs | Preview Card | Toolbar |
+| Radio Group | Accordion | Menu | Scroll Area |
+| Toggle Group | Collapsible | Context Menu | Separator |
+| Slider | | Dialog | Panel (HUD frame) |
+| Number Field | | Alert Dialog | |
+| Text Field / Field | | Drawer | |
+| Select | | Toast | |
+| Combobox | | | |
 
 The `App.tsx` demo lists every control in a sidebar index and showcases it in a
 `Panel` HUD frame.
+
+Each control earns its place by **purpose**, not just appearance — no
+similar-but-worse clones. Menu is an _action_ list (icons + shortcuts) and
+ContextMenu reuses its skin on right-click, both distinct from Select's
+value-picker; Combobox filters as you type; Preview Card is a hover-only rich
+card next to text-only Tooltip and click-driven Popover. Redundant Base UI
+parts (`autocomplete`, `menubar`, single `toggle`, `checkbox-group`, `fieldset`,
+`form`) are intentionally omitted.
 
 ## Theming
 

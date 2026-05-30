@@ -38,12 +38,18 @@ src/
 - **氛围层**:动态网格 + 径向辉光 + 扫描线(`html::before`)+ 胶片噪点(内联 `feTurbulence` SVG,`html::after`,`overlay` ~0.045)+ 暗角。
 - **动效**:按钮高光斜扫、进度条流动条纹、面板扫描光、徽章呼吸、Hero 旋转准星;入场编排 = 顶栏下滑 + Hero 文案 stagger + 面板 `IntersectionObserver` 滚动渐入(`.nova-reveal` 门控,无 JS 优雅降级);尊重 `prefers-reduced-motion`。
 
-## 控件清单(24 个,各独立文件夹)
-- **输入**:Button、Switch、Checkbox、Radio(Group)、ToggleGroup、Slider、NumberField、Input/Field、Select
+## 控件清单(30 个,各独立文件夹)
+- **输入**:Button、Switch、Checkbox、Radio(Group)、ToggleGroup、Slider、NumberField、Input/Field、Select、Combobox
 - **反馈**:Progress、Meter(分段 LED)、Tabs、Accordion、Collapsible
-- **浮层**:Tooltip、Popover、Dialog、AlertDialog、Drawer、Toast
-- **展示**:Avatar、Badge、Separator、Panel
+- **浮层**:Tooltip、Popover、PreviewCard、Menu、ContextMenu、Dialog、AlertDialog、Drawer、Toast
+- **展示**:Avatar、Badge、Toolbar、ScrollArea、Separator、Panel
 - 自带组件:Badge、Panel(HUD 框)非 Base UI,纯样式;Drawer = 边缘锚定的 Dialog;Toast 用 `ToastProvider` + `useToast`。
+- **避免「相似又差」**:每个控件靠**用途**区分,不做更差的克隆 ——
+  - Menu = 动作菜单(左图标 + 右快捷键),ContextMenu 复用其皮肤但**右键触发**(共用 `Menu/items.tsx` 渲染器);二者都不同于 Select(选值,左对勾)。
+  - Combobox = **输入即筛选**,区别于 Select 的点开选值。
+  - PreviewCard = **悬停富卡片**,区别于 Tooltip(纯文字)/ Popover(点击交互)。
+  - Progress = 动态斜纹传输条;Meter = 静态分段 LED 表(语义色 + 整条刻度可见)。
+  - 已**跳过**会造成冗余的 Base UI 件:autocomplete(≈Combobox)、menubar(≈Menu+Toolbar)、单个 toggle(⊂ToggleGroup)、checkbox-group/radio-group、fieldset/form。
 
 ## 核心技术
 
@@ -53,7 +59,7 @@ src/
   - **Panel 角括号** 放在**不切角的两角(TR/BL)**;
   - **浮层箭头**不能塞进切角元素 → 结构 `popup(不裁)> [切角面板, 箭头(面板的兄弟)]`;
   - **菜单 / 分段** 的激活高亮别被切角裁成半截(Select 高亮的发光竖线走完整左边 `top:0;bottom:0`)。
-- **浮层箭头**(Tooltip / Popover):旋转 45° 的方块,只描**朝外两边**,填充色与面板**完全一致**;偏移让**肩部压在面板边框上**(太靠外会断成「边框 + 一个 V」两道线)。
+- **浮层箭头**(Tooltip / Popover / PreviewCard):**两三角法** —— 填充三角(`::after`,填充色与面板一致)叠在略大的边框三角(`::before`)上,贴在面板边缘、四个方向各自定义边框方向,`::after` 朝面板内偏移约 1.5px。比旋转方块稳,不会断成「边框 + 一个 V」。
 
 ### 对比度
 - 「边框色打底 + `::before` 填充」时,**激活态填充必须深色不透明** —— 半透明会让底下的亮边框透上来铺满整块,前景(文字 / 滑块)看不清。
