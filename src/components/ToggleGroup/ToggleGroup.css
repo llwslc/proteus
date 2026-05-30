@@ -19,7 +19,7 @@
 }
 
 .nova-toggle {
-  --nova-cut: 8px;
+  --nova-cut: 7px;
   --nova-clip: polygon(
     var(--nova-cut) 0,
     100% 0,

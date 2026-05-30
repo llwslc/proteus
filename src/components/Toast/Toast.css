@@ -23,7 +23,6 @@
   background: rgba(8, 17, 28, 0.96);
   border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
   border-left: 2px solid var(--nova-toast-accent);
-  border-top: 2px solid var(--nova-toast-accent);
   clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
   box-shadow:
     0 10px 26px rgba(0, 0, 0, 0.5),
@@ -37,6 +36,16 @@
 .nova-toast[data-ending-style] {
   opacity: 0;
   transform: translateX(28px);
+}
+
+.nova-toast__accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nova-toast-accent), transparent 88%);
+  box-shadow: 0 0 8px var(--nova-toast-accent);
 }
 
 .nova-toast__main {
