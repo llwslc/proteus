@@ -1,0 +1,152 @@
+/* NOVA · Button — chamfered neon control.
+   The glow follows the cut corners because it's a drop-shadow filter
+   (which respects clip-path), not a rectangular box-shadow. */
+
+.nova-btn {
+  --nova-cut: 8px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--nova-control-h, 38px);
+  padding: 0 20px;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  color: var(--nova-on-primary, #02131a);
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-clip);
+  font-family: var(--nova-font-display, "Orbitron", sans-serif);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    filter var(--nova-dur, 0.22s) var(--nova-ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+
+/* Inner fill, inset by 1px so the parent background reads as a hairline frame. */
+.nova-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip);
+  background: linear-gradient(180deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+}
+
+/* Diagonal light sweep that flies across on hover. */
+.nova-btn::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  clip-path: var(--nova-clip);
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.6) 50%, transparent 62%);
+  transform: translateX(-130%);
+  transition: transform var(--nova-dur-slow, 0.45s) var(--nova-ease);
+  pointer-events: none;
+}
+
+.nova-btn__label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.nova-btn__icon {
+  display: inline-flex;
+  font-size: 1.15em;
+}
+
+.nova-btn:hover {
+  filter: drop-shadow(0 0 4px var(--nova-primary, #2de2ff))
+    drop-shadow(0 0 12px rgba(45, 226, 255, 0.45));
+}
+.nova-btn:hover::after {
+  transform: translateX(130%);
+}
+.nova-btn:active {
+  transform: translateY(1px);
+}
+.nova-btn:focus-visible {
+  outline: none;
+  filter: drop-shadow(0 0 4px var(--nova-primary, #2de2ff))
+    drop-shadow(0 0 16px rgba(45, 226, 255, 0.65));
+}
+.nova-btn[data-disabled],
+.nova-btn:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.6) brightness(0.6);
+  opacity: 0.55;
+}
+.nova-btn[data-disabled]::after,
+.nova-btn:disabled::after {
+  display: none;
+}
+
+/* ---- Variant: secondary (magenta) ---- */
+.nova-btn--secondary {
+  background: rgba(255, 45, 117, 0.55);
+  color: #1c0410;
+}
+.nova-btn--secondary::before {
+  background: linear-gradient(180deg, var(--nova-secondary, #ff2d75), #c4185a);
+}
+.nova-btn--secondary:hover,
+.nova-btn--secondary:focus-visible {
+  filter: drop-shadow(0 0 4px var(--nova-secondary, #ff2d75))
+    drop-shadow(0 0 14px rgba(255, 45, 117, 0.55));
+}
+
+/* ---- Variant: danger ---- */
+.nova-btn--danger {
+  background: rgba(255, 77, 94, 0.55);
+  color: #1c0406;
+}
+.nova-btn--danger::before {
+  background: linear-gradient(180deg, var(--nova-danger, #ff4d5e), #b3242f);
+}
+.nova-btn--danger:hover,
+.nova-btn--danger:focus-visible {
+  filter: drop-shadow(0 0 4px var(--nova-danger, #ff4d5e))
+    drop-shadow(0 0 14px rgba(255, 77, 94, 0.55));
+}
+
+/* ---- Variant: ghost (outline) ---- */
+.nova-btn--ghost {
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  color: var(--nova-primary, #2de2ff);
+}
+.nova-btn--ghost::before {
+  background: rgba(45, 226, 255, 0.05);
+}
+.nova-btn--ghost::after {
+  opacity: 0.3;
+}
+.nova-btn--ghost:hover {
+  color: #eafdff;
+}
+.nova-btn--ghost:hover::before {
+  background: rgba(45, 226, 255, 0.16);
+}
+
+/* ---- Sizes ---- */
+.nova-btn--sm {
+  --nova-cut: 6px;
+  height: 30px;
+  padding: 0 13px;
+  font-size: 11px;
+}
+.nova-btn--lg {
+  --nova-cut: 11px;
+  height: 47px;
+  padding: 0 28px;
+  font-size: 15px;
+}

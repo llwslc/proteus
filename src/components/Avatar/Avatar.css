@@ -1,0 +1,64 @@
+/* NOVA · Avatar — operator sigil */
+
+.nova-avatar {
+  --nova-avatar-size: 46px;
+  position: relative;
+  display: inline-block;
+  width: var(--nova-avatar-size);
+  height: var(--nova-avatar-size);
+}
+
+.nova-avatar__root {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
+  overflow: hidden;
+  filter: drop-shadow(0 0 7px rgba(45, 226, 255, 0.3));
+}
+.nova-avatar__img {
+  position: absolute;
+  inset: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  object-fit: cover;
+  clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
+}
+.nova-avatar__fallback {
+  position: absolute;
+  inset: 1px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, #0e2236, #081523);
+  color: var(--nova-primary, #2de2ff);
+  font-family: var(--nova-font-display, sans-serif);
+  font-weight: 700;
+  font-size: calc(var(--nova-avatar-size) * 0.36);
+  letter-spacing: 0.04em;
+  clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
+}
+
+.nova-avatar__status {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--nova-bg, #050a12);
+  background: var(--nova-text-mute, #46617e);
+  transform: rotate(45deg);
+}
+.nova-avatar__status--online {
+  background: var(--nova-success, #54ffb0);
+  box-shadow: 0 0 7px var(--nova-success, #54ffb0);
+}
+.nova-avatar__status--busy {
+  background: var(--nova-danger, #ff4d5e);
+  box-shadow: 0 0 7px var(--nova-danger, #ff4d5e);
+}
+.nova-avatar__status--away {
+  background: var(--nova-warning, #ffce54);
+  box-shadow: 0 0 7px var(--nova-warning, #ffce54);
+}

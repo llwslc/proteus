@@ -1,0 +1,61 @@
+/* NOVA · Separator — signal divider */
+
+.nova-separator {
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--nova-line-strong, rgba(45, 226, 255, 0.55)),
+    transparent
+  );
+}
+.nova-separator--horizontal {
+  width: 100%;
+  height: 1px;
+}
+.nova-separator--vertical {
+  width: 1px;
+  height: 100%;
+  min-height: 1em;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--nova-line-strong, rgba(45, 226, 255, 0.55)),
+    transparent
+  );
+}
+
+.nova-separator-labeled {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+.nova-separator-labeled__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--nova-line, rgba(45, 226, 255, 0.22))
+  );
+}
+.nova-separator-labeled__line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--nova-line, rgba(45, 226, 255, 0.22)),
+    transparent
+  );
+}
+.nova-separator-labeled__text {
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nova-text-dim, #7793b0);
+  white-space: nowrap;
+}
+.nova-separator-labeled__text::before {
+  content: "// ";
+  color: var(--nova-primary, #2de2ff);
+}

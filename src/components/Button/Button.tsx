@@ -1,0 +1,41 @@
+import { Button as BaseButton } from "@base-ui-components/react/button";
+import { forwardRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import "./Button.css";
+
+export type ButtonVariant = "primary" | "secondary" | "danger" | "ghost";
+export type ButtonSize = "sm" | "md" | "lg";
+
+export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  /** Optional leading glyph (icon) rendered before the label. */
+  icon?: ReactNode;
+}
+
+/* forwardRef so the button can act as a Base UI trigger (Tooltip,
+   Dialog, Popover): those attach positioning + interaction via the ref. */
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  { variant = "primary", size = "md", icon, className, children, ...props },
+  ref,
+) {
+  return (
+    <BaseButton
+      ref={ref}
+      className={[
+        "nova-btn",
+        `nova-btn--${variant}`,
+        `nova-btn--${size}`,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      {...props}
+    >
+      <span className="nova-btn__label">
+        {icon ? <span className="nova-btn__icon">{icon}</span> : null}
+        {children}
+      </span>
+    </BaseButton>
+  );
+});

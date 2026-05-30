@@ -1,0 +1,111 @@
+/* NOVA · Panel — HUD frame with corner brackets */
+
+.nova-panel {
+  --nova-cut: 12px;
+  position: relative;
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  clip-path: var(--nova-clip);
+  isolation: isolate;
+}
+/* Inner surface inset 1px → parent reads as a hairline frame. */
+.nova-panel::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  clip-path: var(--nova-clip);
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(45, 226, 255, 0.06), transparent 60%),
+    linear-gradient(160deg, rgba(12, 24, 38, 0.92), rgba(7, 14, 24, 0.94));
+}
+
+/* Optional moving scan sweep */
+.nova-panel--scan::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip);
+  background: linear-gradient(180deg, transparent 0%, rgba(45, 226, 255, 0.07) 50%, transparent 51%);
+  background-size: 100% 220%;
+  pointer-events: none;
+  animation: nova-panel-scan 6s linear infinite;
+}
+@keyframes nova-panel-scan {
+  from {
+    background-position: 0 -110%;
+  }
+  to {
+    background-position: 0 110%;
+  }
+}
+
+/* Corner brackets */
+.nova-panel__corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 1;
+  border: 0 solid var(--nova-primary, #2de2ff);
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(45, 226, 255, 0.5));
+}
+.nova-panel__corner--tl {
+  top: 3px;
+  left: 3px;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+.nova-panel__corner--tr {
+  top: 3px;
+  right: 3px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+.nova-panel__corner--bl {
+  bottom: 3px;
+  left: 3px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+.nova-panel__corner--br {
+  bottom: 3px;
+  right: 3px;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+}
+
+.nova-panel__head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
+}
+.nova-panel__title {
+  margin: 0;
+  font-family: var(--nova-font-display, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nova-text, #d7ecff);
+}
+.nova-panel__title::before {
+  content: "▸ ";
+  color: var(--nova-primary, #2de2ff);
+}
+.nova-panel__meta {
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--nova-text-dim, #7793b0);
+}
+.nova-panel__body {
+  position: relative;
+  z-index: 1;
+  padding: 20px 18px;
+}

@@ -1,0 +1,87 @@
+/* NOVA · Checkbox — chamfered box with animated check/indeterminate */
+
+.nova-checkbox {
+  --nova-cut: 4px;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  color: var(--nova-on-primary, #02131a);
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-clip);
+  -webkit-tap-highlight-color: transparent;
+  transition: filter var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-checkbox::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  clip-path: var(--nova-clip);
+  background: rgba(8, 16, 26, 0.92);
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+}
+
+.nova-checkbox__indicator {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+}
+.nova-checkbox__check,
+.nova-checkbox__dash {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity var(--nova-dur, 0.22s) var(--nova-ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease);
+}
+
+/* Checked */
+.nova-checkbox[data-checked]::before,
+.nova-checkbox[data-indeterminate]::before {
+  background: linear-gradient(160deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
+}
+.nova-checkbox[data-checked],
+.nova-checkbox[data-indeterminate] {
+  filter: drop-shadow(0 0 6px rgba(45, 226, 255, 0.5));
+}
+.nova-checkbox[data-checked] .nova-checkbox__check {
+  opacity: 1;
+  transform: scale(1);
+}
+.nova-checkbox[data-indeterminate] .nova-checkbox__dash {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nova-checkbox:focus-visible {
+  outline: none;
+  filter: drop-shadow(0 0 7px rgba(45, 226, 255, 0.7));
+}
+.nova-checkbox[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Inline label layout */
+.nova-checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--nova-font, sans-serif);
+  font-size: 16px;
+  color: var(--nova-text, #d7ecff);
+}
+.nova-checkbox-field__label {
+  line-height: 1;
+}

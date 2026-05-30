@@ -1,0 +1,77 @@
+/* ============================================================
+   NOVA · Sci-Fi UI — Design Tokens
+   ------------------------------------------------------------
+   Every component reads from these CSS custom properties (with
+   inline fallbacks), so a component folder can be copied into any
+   project and still render. Drop this file in once to re-skin the
+   whole kit, or override any --nova-* variable on :root.
+   ============================================================ */
+
+:root {
+  /* ---- Core palette ---- */
+  --nova-bg: #050a12;
+  --nova-bg-2: #07101c;
+  --nova-elevated: #0b1828;
+  --nova-surface: rgba(13, 27, 45, 0.72);
+  --nova-surface-2: rgba(20, 38, 60, 0.85);
+
+  /* ---- Brand / accents ---- */
+  --nova-primary: #2de2ff; /* electric cyan */
+  --nova-primary-deep: #119cb8;
+  --nova-secondary: #ff2d75; /* hot magenta */
+  --nova-accent: #b388ff; /* holo violet */
+  --nova-success: #54ffb0;
+  --nova-warning: #ffce54;
+  --nova-danger: #ff4d5e;
+
+  /* ---- Text ---- */
+  --nova-text: #d7ecff;
+  --nova-text-dim: #7793b0;
+  --nova-text-mute: #46617e;
+  --nova-on-primary: #02131a;
+
+  /* ---- Lines / structure ---- */
+  --nova-line: rgba(45, 226, 255, 0.22);
+  --nova-line-strong: rgba(45, 226, 255, 0.55);
+  --nova-line-soft: rgba(45, 226, 255, 0.1);
+  --nova-grid: rgba(45, 226, 255, 0.06);
+  --nova-track: rgba(120, 170, 210, 0.16);
+
+  /* ---- Glows ---- */
+  --nova-glow: 0 0 0 1px rgba(45, 226, 255, 0.35), 0 0 14px rgba(45, 226, 255, 0.28);
+  --nova-glow-soft: 0 0 20px rgba(45, 226, 255, 0.16);
+  --nova-glow-text: 0 0 8px rgba(45, 226, 255, 0.55);
+  --nova-glow-magenta: 0 0 0 1px rgba(255, 45, 117, 0.4), 0 0 16px rgba(255, 45, 117, 0.4);
+
+  /* ---- Typography ---- */
+  --nova-font: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+  --nova-font-display: "Orbitron", "Rajdhani", sans-serif;
+  --nova-font-mono: "Share Tech Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ---- Geometry (sci-fi = sharp + chamfered) ---- */
+  --nova-radius: 2px;
+  --nova-cut: 9px; /* chamfer size used by clip-path corners */
+  --nova-border: 1px;
+
+  /* ---- Motion ---- */
+  --nova-dur: 0.22s;
+  --nova-dur-slow: 0.45s;
+  --nova-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --nova-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Control metrics ---- */
+  --nova-control-h: 38px;
+  --nova-gap: 10px;
+}
+
+/* Chamfered-corner clip used across panels, buttons, popups. */
+:root {
+  --nova-clip: polygon(
+    var(--nova-cut) 0,
+    100% 0,
+    100% calc(100% - var(--nova-cut)),
+    calc(100% - var(--nova-cut)) 100%,
+    0 100%,
+    0 var(--nova-cut)
+  );
+}

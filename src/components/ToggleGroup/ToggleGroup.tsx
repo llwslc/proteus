@@ -1,0 +1,28 @@
+import { ToggleGroup as BaseToggleGroup } from "@base-ui-components/react/toggle-group";
+import { Toggle as BaseToggle } from "@base-ui-components/react/toggle";
+import type { ComponentPropsWithoutRef } from "react";
+import "./ToggleGroup.css";
+
+export interface ToggleGroupProps
+  extends ComponentPropsWithoutRef<typeof BaseToggleGroup> {}
+
+export function ToggleGroup({ className, ...props }: ToggleGroupProps) {
+  return (
+    <BaseToggleGroup
+      className={["nova-togglegroup", className].filter(Boolean).join(" ")}
+      {...props}
+    />
+  );
+}
+
+export interface ToggleProps
+  extends ComponentPropsWithoutRef<typeof BaseToggle> {}
+
+export function Toggle({ className, ...props }: ToggleProps) {
+  return (
+    <BaseToggle
+      className={["nova-toggle", className].filter(Boolean).join(" ")}
+      {...props}
+    />
+  );
+}

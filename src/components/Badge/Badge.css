@@ -1,0 +1,52 @@
+/* NOVA · Badge — status chip */
+
+.nova-badge {
+  --nova-badge-color: var(--nova-primary, #2de2ff);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 22px;
+  padding: 0 10px;
+  background: color-mix(in srgb, var(--nova-badge-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nova-badge-color) 45%, transparent);
+  color: var(--nova-badge-color);
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+}
+.nova-badge__dot {
+  width: 6px;
+  height: 6px;
+  background: var(--nova-badge-color);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--nova-badge-color);
+  animation: nova-badge-pulse 1.8s var(--nova-ease) infinite;
+}
+@keyframes nova-badge-pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.nova-badge--primary {
+  --nova-badge-color: var(--nova-primary, #2de2ff);
+}
+.nova-badge--secondary {
+  --nova-badge-color: var(--nova-secondary, #ff2d75);
+}
+.nova-badge--success {
+  --nova-badge-color: var(--nova-success, #54ffb0);
+}
+.nova-badge--warning {
+  --nova-badge-color: var(--nova-warning, #ffce54);
+}
+.nova-badge--danger {
+  --nova-badge-color: var(--nova-danger, #ff4d5e);
+}
+.nova-badge--neutral {
+  --nova-badge-color: var(--nova-text-dim, #7793b0);
+}

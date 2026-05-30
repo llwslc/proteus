@@ -1,0 +1,52 @@
+/* NOVA · Progress — transfer bar with animated stripes */
+
+.nova-progress {
+  width: 100%;
+}
+.nova-progress__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.nova-progress__label {
+  font-family: var(--nova-font-display, sans-serif);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nova-text-dim, #7793b0);
+}
+.nova-progress__value {
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--nova-primary, #2de2ff);
+}
+
+.nova-progress__track {
+  position: relative;
+  width: 100%;
+  height: 11px;
+  background: var(--nova-track, rgba(120, 170, 210, 0.16));
+  box-shadow: inset 0 0 0 1px var(--nova-line-soft, rgba(45, 226, 255, 0.1));
+  clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+  overflow: hidden;
+}
+.nova-progress__indicator {
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0 8px, transparent 8px 18px),
+    linear-gradient(90deg, var(--nova-primary-deep, #119cb8), var(--nova-primary, #2de2ff));
+  background-size: 56px 100%, 100% 100%;
+  box-shadow: 0 0 12px rgba(45, 226, 255, 0.6);
+  transition: width var(--nova-dur-slow, 0.45s) var(--nova-ease);
+  animation: nova-progress-stripes 0.9s linear infinite;
+}
+@keyframes nova-progress-stripes {
+  to {
+    background-position:
+      56px 0,
+      0 0;
+  }
+}

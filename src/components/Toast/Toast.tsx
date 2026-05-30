@@ -1,0 +1,58 @@
+import { Toast as BaseToast } from "@base-ui-components/react/toast";
+import type { ReactNode } from "react";
+import { XIcon } from "../icons";
+import "./Toast.css";
+
+export type ToastTone = "info" | "success" | "warning" | "danger";
+
+export interface ToastProviderProps {
+  children: ReactNode;
+  timeout?: number;
+  limit?: number;
+}
+
+/** Wrap the app once. Exposes toasts via the `useToast` hook. */
+export function ToastProvider({
+  children,
+  timeout = 5000,
+  limit = 4,
+}: ToastProviderProps) {
+  return (
+    <BaseToast.Provider timeout={timeout} limit={limit}>
+      {children}
+      <BaseToast.Viewport className="nova-toast__viewport">
+        <ToastList />
+      </BaseToast.Viewport>
+    </BaseToast.Provider>
+  );
+}
+
+function ToastList() {
+  const { toasts } = BaseToast.useToastManager();
+  return (
+    <>
+      {toasts.map((toast) => (
+        <BaseToast.Root
+          key={toast.id}
+          toast={toast}
+          swipeDirection="right"
+          className={`nova-toast nova-toast--${toast.type ?? "info"}`}
+        >
+          <span className="nova-toast__accent" />
+          <div className="nova-toast__main">
+            <BaseToast.Title className="nova-toast__title" />
+            <BaseToast.Description className="nova-toast__desc" />
+          </div>
+          <BaseToast.Close className="nova-toast__close" aria-label="Dismiss">
+            <XIcon />
+          </BaseToast.Close>
+        </BaseToast.Root>
+      ))}
+    </>
+  );
+}
+
+/** Returns the toast manager: `const { add } = useToast()`. */
+export function useToast() {
+  return BaseToast.useToastManager();
+}

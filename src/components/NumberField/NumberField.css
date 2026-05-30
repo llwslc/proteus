@@ -1,0 +1,69 @@
+/* NOVA · NumberField — calibrated stepper */
+
+.nova-numberfield {
+  display: inline-block;
+}
+
+.nova-numberfield__group {
+  --nova-cut: 6px;
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--nova-control-h, 38px);
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  clip-path: var(--nova-clip);
+  transition:
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    filter var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-numberfield__group:hover {
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}
+.nova-numberfield__group:focus-within {
+  background: var(--nova-primary, #2de2ff);
+  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
+}
+
+.nova-numberfield__btn {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  margin: 1px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: rgba(12, 24, 38, 0.96);
+  color: var(--nova-primary, #2de2ff);
+  font-size: 15px;
+  transition:
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-numberfield__btn:hover {
+  background: rgba(45, 226, 255, 0.16);
+  color: #eafdff;
+}
+.nova-numberfield__btn:active {
+  background: rgba(45, 226, 255, 0.3);
+}
+
+.nova-numberfield__input {
+  position: relative;
+  z-index: 1;
+  width: 66px;
+  margin: 1px 0;
+  padding: 0 8px;
+  border: 0;
+  outline: none;
+  text-align: center;
+  background: rgba(8, 16, 26, 0.96);
+  color: var(--nova-text, #d7ecff);
+  box-shadow:
+    inset 1px 0 0 var(--nova-line-soft, rgba(45, 226, 255, 0.1)),
+    inset -1px 0 0 var(--nova-line-soft, rgba(45, 226, 255, 0.1));
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+}

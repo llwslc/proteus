@@ -1,0 +1,76 @@
+/* NOVA · Switch — sliding HUD toggle */
+
+.nova-switch {
+  --nova-cut: 5px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 54px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Track */
+.nova-switch__track {
+  position: absolute;
+  inset: 0;
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  clip-path: var(--nova-clip);
+  transition:
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    filter var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-switch__track::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  clip-path: var(--nova-clip);
+  background: rgba(8, 16, 26, 0.92);
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+}
+
+/* Thumb */
+.nova-switch__thumb {
+  --nova-cut: 3px;
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  background: var(--nova-text-dim, #7793b0);
+  clip-path: var(--nova-clip);
+  transition:
+    transform var(--nova-dur, 0.22s) var(--nova-ease),
+    background var(--nova-dur, 0.22s) var(--nova-ease),
+    box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
+}
+
+/* Checked */
+.nova-switch[data-checked] .nova-switch__track {
+  background: var(--nova-primary, #2de2ff);
+  filter: drop-shadow(0 0 7px rgba(45, 226, 255, 0.55));
+}
+.nova-switch[data-checked] .nova-switch__track::before {
+  background: linear-gradient(90deg, rgba(45, 226, 255, 0.32), rgba(45, 226, 255, 0.12));
+}
+.nova-switch[data-checked] .nova-switch__thumb {
+  transform: translateX(28px);
+  background: linear-gradient(180deg, #eafdff, var(--nova-primary, #2de2ff));
+  box-shadow: 0 0 10px var(--nova-primary, #2de2ff);
+}
+
+.nova-switch:focus-visible {
+  outline: none;
+}
+.nova-switch:focus-visible .nova-switch__track {
+  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.7));
+}
+
+.nova-switch[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

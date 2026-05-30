@@ -1,0 +1,55 @@
+/* NOVA · Tooltip — readout chip */
+
+.nova-tooltip__positioner {
+  z-index: 1300;
+}
+
+.nova-tooltip__popup {
+  position: relative;
+  max-width: 240px;
+  padding: 7px 12px;
+  background: rgba(7, 16, 26, 0.96);
+  border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  color: var(--nova-text, #d7ecff);
+  font-family: var(--nova-font-mono, monospace);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(45, 226, 255, 0.2);
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity var(--nova-dur, 0.22s) var(--nova-ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease);
+}
+.nova-tooltip__popup[data-starting-style],
+.nova-tooltip__popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.nova-tooltip__arrow {
+  width: 9px;
+  height: 9px;
+  background: rgba(7, 16, 26, 0.96);
+  border-left: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  border-top: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}
+.nova-tooltip__arrow[data-side="top"] {
+  bottom: -5px;
+  transform: rotate(225deg);
+}
+.nova-tooltip__arrow[data-side="bottom"] {
+  top: -5px;
+  transform: rotate(45deg);
+}
+.nova-tooltip__arrow[data-side="left"] {
+  right: -5px;
+  transform: rotate(135deg);
+}
+.nova-tooltip__arrow[data-side="right"] {
+  left: -5px;
+  transform: rotate(315deg);
+}
