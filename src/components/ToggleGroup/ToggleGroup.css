@@ -4,6 +4,17 @@
    trimmed by the group's clip-path to follow the outer chamfer. */
 .nova-togglegroup {
   --nova-cut: 8px;
+  /* Re-define --nova-clip here so it resolves --nova-cut at THIS level (8px)
+     and inherits to ::before + the segments. The :root --nova-clip pre-resolves
+     --nova-cut to its root value, so a local override alone won't change it. */
+  --nova-clip: polygon(
+    var(--nova-cut) 0,
+    100% 0,
+    100% calc(100% - var(--nova-cut)),
+    calc(100% - var(--nova-cut)) 100%,
+    0 100%,
+    0 var(--nova-cut)
+  );
   position: relative;
   display: inline-flex;
   /* Size to the segments. Without this it gets blockified + stretched to full
@@ -24,9 +35,8 @@
 }
 
 .nova-toggle {
-  /* Match the group's cut so a corner segment's chamfer stays parallel to the
-     outer chamfer — keeps the diagonal gap uniform with the straight edges. */
-  --nova-cut: 8px;
+  /* Inherits the group's re-defined --nova-clip (8px), so the segment chamfer
+     matches the outer chamfer automatically. */
   position: relative;
   z-index: 1;
   display: inline-flex;
