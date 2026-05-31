@@ -60,7 +60,7 @@ export function renderMenuEntries(items: MenuEntry[], parts: Parts) {
               className="nova-menu__positioner"
               side="right"
               align="start"
-              sideOffset={4}
+              sideOffset={8}
             >
               <Popup className="nova-menu__popup">
                 {renderMenuEntries(it.submenu, parts)}

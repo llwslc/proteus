@@ -16,11 +16,18 @@
   background: var(--nova-primary, #2de2ff);
   filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.4));
 }
-.nova-input-wrap--error {
+.nova-input-wrap--error,
+.nova-input-wrap--error:hover {
   background: var(--nova-danger, #ff4d5e);
 }
 .nova-input-wrap--error:focus-within {
+  background: var(--nova-danger, #ff4d5e);
   filter: drop-shadow(0 0 8px rgba(255, 77, 94, 0.5));
+}
+/* Keep a red wash on the fill so the error frame reads even while focused. */
+.nova-input-wrap--error .nova-input,
+.nova-input-wrap--error:focus-within .nova-input {
+  background: #2a0e14;
 }
 
 .nova-input {

@@ -7,7 +7,6 @@ import {
   Avatar,
   Badge,
   Button,
-  Checkbox,
   CheckboxGroup,
   Collapsible,
   Combobox,
@@ -65,7 +64,6 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
     items: [
       ["buttons", "Button", "BTN"],
       ["switch", "Switch", "SWT"],
-      ["checkbox", "Checkbox", "CHK"],
       ["checkgroup", "Checkbox Group", "CHG"],
       ["radio", "Radio Group", "RDO"],
       ["toggle", "Toggle Group", "TGL"],
@@ -307,19 +305,6 @@ const SHIP_LOG = [
   { t: "08:29:31", m: "Crew manifest synced, 47 aboard" },
 ];
 
-function CheckboxDemo() {
-  // Plain single-checkbox states — the parent/child tree lives in CheckboxGroup.
-  return (
-    <div className="demo-stack">
-      <Checkbox defaultChecked label="Encrypt channel" />
-      <Checkbox label="Relay telemetry" />
-      <Checkbox indeterminate label="Partial sync" />
-      <Checkbox disabled label="Quarantine (locked)" />
-      <Checkbox disabled defaultChecked label="Beacon (locked on)" />
-    </div>
-  );
-}
-
 function AccessCodeField() {
   // Error clears once the code is valid (≥ 6 chars) — not a static red label.
   const [code, setCode] = useState("");
@@ -531,7 +516,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 37 Controls
+              <BoltIcon /> Component System · 36 Controls
             </div>
             <h1>
               A <b>sci-fi</b> interface kit
@@ -546,7 +531,7 @@ function Demo() {
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
-                <b>37</b>
+                <b>36</b>
                 <span>Controls</span>
               </div>
               <div className="nova-hero__stat">
@@ -609,13 +594,6 @@ function Demo() {
                     <Switch disabled defaultChecked />
                   </div>
                 </div>
-              </Panel>
-            </div>
-
-            {/* Checkbox */}
-            <div className="nova-section" id="checkbox">
-              <Panel title="Checkbox" meta="CHK">
-                <CheckboxDemo />
               </Panel>
             </div>
 

@@ -18,7 +18,7 @@
   width: 44px;
   height: 52px;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip-6);
+  clip-path: var(--nova-clip-7);
   transition:
     background var(--nova-dur, 0.22s) var(--nova-ease),
     filter var(--nova-dur, 0.22s) var(--nova-ease);
@@ -28,7 +28,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-6);
+  clip-path: var(--nova-clip-7);
   background: rgba(8, 16, 26, 0.92);
   transition: background var(--nova-dur, 0.22s) var(--nova-ease);
 }
