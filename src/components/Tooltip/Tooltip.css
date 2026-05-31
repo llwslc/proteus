@@ -1,5 +1,3 @@
-/* NOVA · Tooltip — readout chip (chamfered) with a connecting arrow */
-
 .nova-tooltip__positioner {
   z-index: 1300;
 }
@@ -23,7 +21,6 @@
   transform: scale(0.94);
 }
 
-/* The chamfered panel. */
 .nova-tooltip__surface {
   display: block;
   padding: 7px 12px;
@@ -53,7 +50,6 @@
   width: 0;
   height: 0;
 }
-/* data-side="top": popup above the trigger; arrow at the bottom, points down */
 .nova-tooltip__arrow[data-side="top"] {
   bottom: -8px;
   width: 16px;
@@ -73,7 +69,6 @@
   border-right: 6.5px solid transparent;
   border-top: 6.5px solid var(--arrow-fill);
 }
-/* data-side="bottom": popup below the trigger; arrow at the top, points up */
 .nova-tooltip__arrow[data-side="bottom"] {
   top: -8px;
   width: 16px;
@@ -93,7 +88,6 @@
   border-right: 6.5px solid transparent;
   border-bottom: 6.5px solid var(--arrow-fill);
 }
-/* data-side="left": popup left of the trigger; arrow at the right, points right */
 .nova-tooltip__arrow[data-side="left"] {
   right: -8px;
   width: 8px;
@@ -113,7 +107,6 @@
   border-bottom: 6.5px solid transparent;
   border-left: 6.5px solid var(--arrow-fill);
 }
-/* data-side="right": popup right of the trigger; arrow at the left, points left */
 .nova-tooltip__arrow[data-side="right"] {
   left: -8px;
   width: 8px;

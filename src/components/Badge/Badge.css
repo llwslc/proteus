@@ -1,5 +1,3 @@
-/* NOVA · Badge — status chip */
-
 .nova-badge {
   --nova-badge-color: var(--nova-primary, #2de2ff);
   display: inline-flex;

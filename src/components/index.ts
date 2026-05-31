@@ -1,10 +1,3 @@
-/* NOVA · Sci-Fi UI Kit — public surface.
-   Import any control from a single entry point:
-     import { Button, Switch, Slider } from "@/components";
-   Or copy a single component folder into another project; each
-   folder is self-contained (tsx + css) and only relies on the
-   --nova-* CSS variables defined in theme/tokens.css. */
-
 export { Button } from "./Button";
 export type { ButtonProps, ButtonVariant, ButtonSize } from "./Button";
 

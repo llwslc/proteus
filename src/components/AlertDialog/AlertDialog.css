@@ -1,6 +1,3 @@
-/* NOVA · AlertDialog — same frame as Dialog, tinted to the alert tone.
-   Only the top "breathing" scan beam + title accent change colour. */
-
 .nova-alert__backdrop {
   position: fixed;
   inset: 0;
@@ -23,7 +20,6 @@
   width: min(440px, calc(100vw - 32px));
   transform: translate(-50%, -50%);
   padding: 26px 28px;
-  /* Frame border in the alert tone (red), to match the scan beam + title. */
   background: color-mix(in srgb, var(--nova-alert-accent) 50%, transparent);
   clip-path: var(--nova-clip-14);
   filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6))
@@ -56,7 +52,6 @@
   --nova-alert-accent: var(--nova-primary, #2de2ff);
 }
 
-/* Top breathing scan beam — same as Dialog, only the colour differs. */
 .nova-alert__scan {
   position: absolute;
   top: 1px;

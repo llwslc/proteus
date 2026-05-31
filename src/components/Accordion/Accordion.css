@@ -1,5 +1,3 @@
-/* NOVA · Accordion — collapsible data manifest */
-
 .nova-accordion {
   display: flex;
   flex-direction: column;
@@ -7,9 +5,6 @@
   width: 100%;
 }
 
-/* Frame technique: outer = border colour, inset fill = surface, both
-   clipped to the same chamfer → a complete border around the cut corner
-   (a border+clip-path combo leaves the diagonal edge unstroked). */
 .nova-accordion__item {
   position: relative;
   background: var(--nova-line, rgba(45, 226, 255, 0.22));

@@ -1,5 +1,3 @@
-/* NOVA · Radio — targeting reticle */
-
 .nova-radiogroup {
   display: flex;
   flex-direction: column;
@@ -71,7 +69,6 @@
   opacity: 0.5;
 }
 
-/* Disabled — dim the whole row (control + label) + not-allowed cursor. */
 .nova-radio:has(.nova-radio__control[data-disabled]) {
   opacity: 0.4;
   cursor: not-allowed;

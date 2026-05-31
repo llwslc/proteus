@@ -29,8 +29,6 @@ export function Tooltip({
             side={side}
             sideOffset={sideOffset}
           >
-            {/* Outer popup is unclipped so the arrow can overhang it; the
-                chamfered panel is the inner surface, the arrow is its sibling. */}
             <BaseTooltip.Popup className="nova-tooltip__popup">
               <span className="nova-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="nova-tooltip__arrow" />

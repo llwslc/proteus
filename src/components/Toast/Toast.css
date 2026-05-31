@@ -1,5 +1,3 @@
-/* NOVA · Toast — incoming transmission */
-
 .nova-toast__viewport {
   position: fixed;
   top: 22px;
@@ -36,7 +34,6 @@
   transform: translateX(28px);
 }
 
-/* The single accent: a solid tone-coloured bar down the left edge. */
 .nova-toast__beam {
   position: absolute;
   top: 0;
@@ -83,7 +80,6 @@
   color: var(--nova-text, #d7ecff);
 }
 
-/* Tones */
 .nova-toast--success {
   --nova-toast-accent: var(--nova-success, #54ffb0);
 }

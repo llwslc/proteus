@@ -33,8 +33,6 @@ export function Popover({
           align={align}
           sideOffset={sideOffset}
         >
-          {/* Unclipped popup so the arrow can overhang; chamfered surface +
-              arrow sibling (same technique as the Tooltip). */}
           <BasePopover.Popup
             className={["nova-popover__popup", className]
               .filter(Boolean)

@@ -1,5 +1,3 @@
-/* NOVA · Select — dropdown manifest */
-
 .nova-select__trigger {
   position: relative;
   display: inline-flex;
@@ -57,7 +55,6 @@
   transform: rotate(180deg);
 }
 
-/* ---- Popup ---- */
 .nova-select__positioner {
   z-index: 1200;
   outline: none;
@@ -109,7 +106,6 @@
     background var(--nova-dur, 0.22s) var(--nova-ease),
     color var(--nova-dur, 0.22s) var(--nova-ease);
 }
-/* Full-height glowing left edge, fades in on highlight. */
 .nova-select__item::after {
   content: "";
   position: absolute;

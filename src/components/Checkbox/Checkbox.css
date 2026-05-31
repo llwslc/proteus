@@ -1,5 +1,3 @@
-/* NOVA · Checkbox — chamfered box with animated check/indeterminate */
-
 .nova-checkbox {
   position: relative;
   display: inline-grid;
@@ -43,7 +41,6 @@
     transform var(--nova-dur, 0.22s) var(--nova-ease);
 }
 
-/* Checked */
 .nova-checkbox[data-checked]::before,
 .nova-checkbox[data-indeterminate]::before {
   background: linear-gradient(160deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
@@ -70,7 +67,6 @@
   opacity: 0.5;
 }
 
-/* Inline label layout */
 .nova-checkbox-field {
   display: inline-flex;
   align-items: center;
@@ -85,7 +81,6 @@
   line-height: 1;
 }
 
-/* Disabled — dim the whole row (box + label) + not-allowed cursor. */
 .nova-checkbox-field:has(.nova-checkbox[data-disabled]) {
   opacity: 0.4;
   cursor: not-allowed;

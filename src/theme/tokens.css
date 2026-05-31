@@ -1,73 +1,46 @@
-/* ============================================================
-   NOVA · Sci-Fi UI — Design Tokens
-   ------------------------------------------------------------
-   Every component reads from these CSS custom properties (with
-   inline fallbacks), so a component folder can be copied into any
-   project and still render. Drop this file in once to re-skin the
-   whole kit, or override any --nova-* variable on :root.
-   ============================================================ */
-
+/* NOVA design tokens. Override any --nova-* on :root to re-skin the kit; every
+   component reads these with inline fallbacks, so a component folder can be
+   copied out on its own and still render. */
 :root {
-  /* ---- Core palette ---- */
   --nova-bg: #050a12;
   --nova-bg-2: #07101c;
-  --nova-elevated: #0b1828;
   --nova-surface: rgba(13, 27, 45, 0.72);
-  --nova-surface-2: rgba(20, 38, 60, 0.85);
 
-  /* ---- Brand / accents ---- */
-  --nova-primary: #2de2ff; /* electric cyan */
+  --nova-primary: #2de2ff;
   --nova-primary-deep: #119cb8;
-  --nova-secondary: #ff2d75; /* hot magenta */
-  --nova-accent: #b388ff; /* holo violet */
+  --nova-secondary: #ff2d75;
   --nova-success: #54ffb0;
   --nova-warning: #ffce54;
   --nova-danger: #ff4d5e;
 
-  /* ---- Text ---- */
   --nova-text: #d7ecff;
   --nova-text-dim: #7793b0;
   --nova-text-mute: #46617e;
   --nova-on-primary: #02131a;
 
-  /* ---- Lines / structure ---- */
   --nova-line: rgba(45, 226, 255, 0.22);
   --nova-line-strong: rgba(45, 226, 255, 0.55);
   --nova-line-soft: rgba(45, 226, 255, 0.1);
   --nova-grid: rgba(45, 226, 255, 0.06);
   --nova-track: rgba(120, 170, 210, 0.16);
-
-  /* ---- Glows ---- */
   --nova-glow: 0 0 0 1px rgba(45, 226, 255, 0.35), 0 0 14px rgba(45, 226, 255, 0.28);
-  --nova-glow-soft: 0 0 20px rgba(45, 226, 255, 0.16);
   --nova-glow-text: 0 0 8px rgba(45, 226, 255, 0.55);
-  --nova-glow-magenta: 0 0 0 1px rgba(255, 45, 117, 0.4), 0 0 16px rgba(255, 45, 117, 0.4);
 
-  /* ---- Typography ---- */
   --nova-font: "Rajdhani", "Segoe UI", system-ui, sans-serif;
   --nova-font-display: "Orbitron", "Rajdhani", sans-serif;
   --nova-font-mono: "Share Tech Mono", ui-monospace, "SFMono-Regular", monospace;
 
-  /* ---- Geometry (sci-fi = sharp + chamfered) ---- */
-  --nova-radius: 2px;
-  --nova-cut: 9px; /* default chamfer size; see --nova-clip-* for pre-built clips */
-  --nova-border: 1px;
-
-  /* ---- Motion ---- */
   --nova-dur: 0.22s;
   --nova-dur-slow: 0.45s;
   --nova-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --nova-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* ---- Control metrics ---- */
   --nova-control-h: 38px;
-  --nova-gap: 10px;
 }
 
-/* Chamfered-corner clips, pre-built per size — a component picks one directly,
-   e.g. `clip-path: var(--nova-clip-7)`. Each is a fixed polygon (no --nova-cut
-   indirection), so an element's chamfer is always exactly the size it names —
-   no inheritance or resolution traps. --nova-clip is the default alias (9px). */
+/* Pre-built chamfer clips: pick a size by name, e.g. clip-path: var(--nova-clip-7).
+   Fixed polygons rather than a --nova-cut variable, so a cut is always exactly
+   the size it names — no inheritance or var-resolution surprises. */
 :root {
   --nova-clip-3: polygon(3px 0, 100% 0, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0 100%, 0 3px);
   --nova-clip-4: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
@@ -76,12 +49,9 @@
   --nova-clip-7: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
   --nova-clip-8: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
   --nova-clip-9: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
-  --nova-clip-10: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
   --nova-clip-11: polygon(11px 0, 100% 0, 100% calc(100% - 11px), calc(100% - 11px) 100%, 0 100%, 0 11px);
   --nova-clip-12: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
   --nova-clip-14: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
   --nova-clip: var(--nova-clip-9);
-
-  /* Title-tick pennant (Dialog / AlertDialog / Drawer headers). */
   --nova-clip-tick: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
 }

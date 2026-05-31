@@ -1,5 +1,4 @@
-/* Minimal inline icon set shared by the NOVA components.
-   Each is a 1em, currentColor SVG so it inherits text color + size. */
+/* 1em currentColor SVGs, so icons inherit the surrounding text size + colour. */
 import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;

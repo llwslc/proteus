@@ -1,5 +1,3 @@
-/* NOVA · Switch — sliding HUD toggle */
-
 .nova-switch {
   position: relative;
   display: inline-flex;
@@ -13,12 +11,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Track */
 .nova-switch__track {
   position: absolute;
   inset: 0;
-  /* Muted blue-grey OFF outline — visible against the dark page, yet clearly
-     distinct from the cyan ON state. */
   background: rgba(126, 162, 198, 0.5);
   clip-path: var(--nova-clip-9);
   transition:
@@ -34,7 +29,6 @@
   transition: background var(--nova-dur, 0.22s) var(--nova-ease);
 }
 
-/* Thumb */
 .nova-switch__thumb {
   position: relative;
   z-index: 1;
@@ -50,8 +44,6 @@
     box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
 }
 
-/* Checked — cyan fill + dark thumb: the kit's active language (like the dark
-   check on a cyan checkbox), keeping the thumb high-contrast on the fill. */
 .nova-switch[data-checked] .nova-switch__track {
   background: var(--nova-primary, #2de2ff);
   filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.6));
