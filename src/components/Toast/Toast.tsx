@@ -38,7 +38,7 @@ function ToastList() {
           swipeDirection="right"
           className={`nova-toast nova-toast--${toast.type ?? "info"}`}
         >
-          <span className="nova-toast__accent" />
+          <span className="nova-toast__beam" />
           <div className="nova-toast__main">
             <BaseToast.Title className="nova-toast__title" />
             <BaseToast.Description className="nova-toast__desc" />

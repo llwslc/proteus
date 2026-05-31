@@ -19,15 +19,12 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 13px 14px 13px 16px;
-  background: rgba(8, 17, 28, 0.96);
-  border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
-  border-top: 0;
-  border-left: 2px solid var(--nova-toast-accent);
+  padding: 14px 16px;
+  background: rgba(8, 17, 28, 0.97);
   clip-path: var(--nova-clip-8);
   box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.5),
-    0 0 16px rgba(45, 226, 255, 0.12);
+    0 12px 28px rgba(0, 0, 0, 0.55),
+    0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent);
   overflow: hidden;
   transition:
     opacity var(--nova-dur-slow, 0.45s) var(--nova-ease),
@@ -39,7 +36,8 @@
   transform: translateX(28px);
 }
 
-.nova-toast__accent {
+/* The single accent: a tone-coloured beam across the top edge. */
+.nova-toast__beam {
   position: absolute;
   top: 0;
   left: 0;
