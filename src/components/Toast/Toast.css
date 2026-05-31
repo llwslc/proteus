@@ -36,14 +36,14 @@
   transform: translateX(28px);
 }
 
-/* The single accent: a tone-coloured beam across the top edge. */
+/* The single accent: a solid tone-coloured bar down the left edge. */
 .nova-toast__beam {
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--nova-toast-accent), transparent 88%);
+  width: 3px;
+  background: var(--nova-toast-accent);
   box-shadow: 0 0 8px var(--nova-toast-accent);
 }
 
