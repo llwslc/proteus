@@ -1,5 +1,6 @@
 import { Input as BaseInput } from "@base-ui-components/react/input";
 import { Field as BaseField } from "@base-ui-components/react/field";
+import { useId } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Input.css";
 
@@ -9,7 +10,8 @@ export interface InputProps
   icon?: ReactNode;
 }
 
-export function Input({ className, icon, ...props }: InputProps) {
+export function Input({ className, icon, id, ...props }: InputProps) {
+  const autoId = useId();
   return (
     <span
       className={[
@@ -22,6 +24,7 @@ export function Input({ className, icon, ...props }: InputProps) {
     >
       {icon ? <span className="nova-input__icon">{icon}</span> : null}
       <BaseInput
+        id={id ?? autoId}
         className={["nova-input", icon ? "nova-input--has-icon" : ""]
           .filter(Boolean)
           .join(" ")}

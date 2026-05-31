@@ -497,13 +497,33 @@
 @media (max-width: 900px) {
   .nova-shell {
     grid-template-columns: 1fr;
+    gap: 0;
+    padding: 16px 13px 56px;
   }
   .nova-sidebar {
-    position: static;
-    max-height: none;
+    display: none;
   }
   .nova-grid {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+  .nova-header {
+    padding: 0 14px;
+    gap: 12px;
+  }
+  .nova-hero {
+    padding: 20px 16px;
+    margin-bottom: 18px;
+  }
+  .nova-hero p {
+    font-size: 14.5px;
+  }
+  .nova-hero__stats {
+    gap: 14px 22px;
   }
 }
 @media (max-width: 540px) {

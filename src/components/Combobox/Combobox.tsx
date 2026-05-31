@@ -1,4 +1,5 @@
 import { Combobox as BaseCombobox } from "@base-ui-components/react/combobox";
+import { useId } from "react";
 import { CheckIcon, ChevronDownIcon, SearchIcon, XIcon } from "../icons";
 import "./Combobox.css";
 
@@ -15,6 +16,7 @@ export function Combobox({
   defaultValue,
   emptyText = "No matching signal",
 }: ComboboxProps) {
+  const inputId = useId();
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue}>
       <div className="nova-combobox__control">
@@ -22,6 +24,7 @@ export function Combobox({
           <SearchIcon />
         </span>
         <BaseCombobox.Input
+          id={inputId}
           className="nova-combobox__input"
           placeholder={placeholder}
         />

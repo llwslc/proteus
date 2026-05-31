@@ -45,6 +45,12 @@
 .nova-numberfield__btn:active {
   background: rgba(45, 226, 255, 0.3);
 }
+.nova-numberfield__btn:disabled {
+  cursor: not-allowed;
+  background: rgba(12, 24, 38, 0.96);
+  color: var(--nova-text-mute, #46617e);
+  opacity: 0.55;
+}
 
 .nova-numberfield__input {
   position: relative;

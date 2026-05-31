@@ -1,4 +1,5 @@
 import { Checkbox as BaseCheckbox } from "@base-ui-components/react/checkbox";
+import { useId } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { CheckIcon, MinusIcon } from "../icons";
 import "./Checkbox.css";
@@ -10,9 +11,10 @@ export interface CheckboxProps
 }
 
 export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
+  const autoId = useId();
   const box = (
     <BaseCheckbox.Root
-      id={id}
+      id={id ?? autoId}
       className={["nova-checkbox", className].filter(Boolean).join(" ")}
       {...props}
     >
@@ -25,7 +27,7 @@ export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
 
   if (label == null) return box;
   return (
-    <label className="nova-checkbox-field" htmlFor={id}>
+    <label className="nova-checkbox-field">
       {box}
       <span className="nova-checkbox-field__label">{label}</span>
     </label>

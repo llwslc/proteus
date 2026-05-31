@@ -1,4 +1,5 @@
 import { Select as BaseSelect } from "@base-ui-components/react/select";
+import { useId } from "react";
 import type { ReactNode } from "react";
 import { CheckIcon, ChevronDownIcon } from "../icons";
 import "./Select.css";
@@ -33,6 +34,7 @@ export function Select({
   name,
   id,
 }: SelectProps) {
+  const autoId = useId();
   return (
     <BaseSelect.Root
       items={items}
@@ -42,10 +44,10 @@ export function Select({
         onValueChange ? (v: unknown) => onValueChange(v as string | null) : undefined
       }
       disabled={disabled}
-      name={name}
+      name={name ?? autoId}
     >
       <BaseSelect.Trigger
-        id={id}
+        id={id ?? autoId}
         className={["nova-select__trigger", className].filter(Boolean).join(" ")}
       >
         <BaseSelect.Value>
