@@ -98,7 +98,7 @@
   color: var(--nova-text-dim, #7793b0);
 }
 .nova-menu__item[data-disabled] {
-  opacity: 0.4;
+  opacity: var(--nova-disabled-opacity, 0.4);
   cursor: not-allowed;
 }
 .nova-menu__item--danger {

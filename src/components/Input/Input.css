@@ -38,7 +38,7 @@
   padding: 0 13px;
   border: 0;
   outline: none;
-  background: rgba(8, 16, 26, 0.92);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
   color: var(--nova-text, #d7ecff);
   font-family: var(--nova-font, sans-serif);
   font-size: 15px;

@@ -65,7 +65,7 @@
   box-shadow: inset 0 0 0 1px var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
 .nova-tabs__tab[data-disabled] {
-  opacity: 0.4;
+  opacity: var(--nova-disabled-opacity, 0.4);
   cursor: not-allowed;
 }
 

@@ -18,7 +18,7 @@
   position: absolute;
   inset: 1px;
   clip-path: var(--nova-clip-9);
-  background: rgba(8, 16, 26, 0.92);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
   transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
@@ -85,6 +85,6 @@
    so it isn't double-dimmed: a disabled-checked box (lit cyan + check) now
    stays clearly distinct from a disabled-unchecked one (empty dark). */
 .nova-checkbox-field:has(.nova-checkbox[data-disabled]) {
-  opacity: 0.55;
+  opacity: var(--nova-disabled-opacity, 0.4);
   cursor: not-allowed;
 }

@@ -78,7 +78,7 @@
     0 0 14px var(--nova-primary, #2de2ff);
 }
 .nova-slider[data-disabled] {
-  opacity: 0.5;
+  opacity: var(--nova-disabled-opacity, 0.4);
 }
 .nova-slider[data-disabled] .nova-slider__control {
   cursor: not-allowed;

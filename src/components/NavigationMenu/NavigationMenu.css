@@ -21,7 +21,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-9);
-  background: rgba(8, 18, 30, 0.94);
+  background: var(--nova-surface-bar, rgba(8, 18, 30, 0.94));
 }
 .nova-navmenu__list > * {
   position: relative;
@@ -144,7 +144,7 @@
 }
 .nova-navmenu__link:hover,
 .nova-navmenu__link:focus-visible {
-  background: rgba(45, 226, 255, 0.12);
+  background: var(--nova-line-soft, rgba(45, 226, 255, 0.1));
 }
 .nova-navmenu__link-title {
   display: block;

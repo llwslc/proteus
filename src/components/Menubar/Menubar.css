@@ -15,7 +15,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-9);
-  background: rgba(8, 18, 30, 0.94);
+  background: var(--nova-surface-bar, rgba(8, 18, 30, 0.94));
 }
 .nova-menubar > * {
   position: relative;

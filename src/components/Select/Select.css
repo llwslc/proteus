@@ -27,7 +27,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-7);
-  background: rgba(8, 16, 26, 0.92);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
 }
 .nova-select__trigger > * {
   position: relative;
@@ -129,7 +129,7 @@
   color: var(--nova-primary, #2de2ff);
 }
 .nova-select__item[data-disabled] {
-  opacity: 0.4;
+  opacity: var(--nova-disabled-opacity, 0.4);
   cursor: not-allowed;
 }
 .nova-select__item-indicator {

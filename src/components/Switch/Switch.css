@@ -68,5 +68,5 @@
 
 .nova-switch[data-disabled] {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: var(--nova-disabled-opacity, 0.4);
 }

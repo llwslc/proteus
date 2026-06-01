@@ -29,7 +29,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-7);
-  background: rgba(8, 16, 26, 0.92);
+  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
   transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
@@ -61,7 +61,7 @@
   text-shadow: var(--nova-glow-text, 0 0 8px rgba(45, 226, 255, 0.55));
 }
 .nova-otp__cell:has(.nova-otp__slot:disabled) {
-  opacity: 0.4;
+  opacity: var(--nova-disabled-opacity, 0.4);
 }
 .nova-otp__slot:disabled {
   cursor: not-allowed;
