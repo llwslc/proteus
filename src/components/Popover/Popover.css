@@ -62,94 +62,52 @@
   color: var(--nova-primary, #2de2ff);
 }
 
-/* Arrow — classic two-triangle (same technique as the Tooltip): a fill
-   triangle (::after) over a slightly larger border triangle (::before),
-   flush at the popup edge so it's deterministic. */
+/* Arrow — one inline SVG (open path: filled → surface, stroked legs → border,
+   open base blends into the popup edge). fill + stroke are tokens, so it
+   re-themes for free and the border width matches the popup's. Rotated per side. */
 .nova-popover__arrow {
   --arrow-fill: #0a1422;
   --arrow-border: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   z-index: 2;
+  width: 16px;
+  height: 8px;
 }
-.nova-popover__arrow::before,
-.nova-popover__arrow::after {
-  content: "";
+.nova-popover__arrow svg {
   position: absolute;
-  width: 0;
-  height: 0;
+  inset: 0;
+  margin: auto;
+  width: 16px;
+  height: 8px;
+  overflow: visible;
+}
+.nova-popover__arrow path {
+  fill: var(--arrow-fill);
+  stroke: var(--arrow-border);
+  stroke-width: 1;
+  stroke-linejoin: miter;
 }
 .nova-popover__arrow[data-side="top"] {
   bottom: -8px;
-  width: 16px;
-  height: 8px;
-}
-.nova-popover__arrow[data-side="top"]::before {
-  top: 0;
-  left: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid var(--arrow-border);
-}
-.nova-popover__arrow[data-side="top"]::after {
-  top: -1.5px;
-  left: 1.5px;
-  border-left: 6.5px solid transparent;
-  border-right: 6.5px solid transparent;
-  border-top: 6.5px solid var(--arrow-fill);
 }
 .nova-popover__arrow[data-side="bottom"] {
   top: -8px;
-  width: 16px;
-  height: 8px;
 }
-.nova-popover__arrow[data-side="bottom"]::before {
-  bottom: 0;
-  left: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--arrow-border);
-}
-.nova-popover__arrow[data-side="bottom"]::after {
-  bottom: -1.5px;
-  left: 1.5px;
-  border-left: 6.5px solid transparent;
-  border-right: 6.5px solid transparent;
-  border-bottom: 6.5px solid var(--arrow-fill);
+.nova-popover__arrow[data-side="bottom"] svg {
+  transform: rotate(180deg);
 }
 .nova-popover__arrow[data-side="left"] {
   right: -8px;
   width: 8px;
   height: 16px;
 }
-.nova-popover__arrow[data-side="left"]::before {
-  top: 0;
-  left: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 8px solid var(--arrow-border);
-}
-.nova-popover__arrow[data-side="left"]::after {
-  top: 1.5px;
-  left: -1.5px;
-  border-top: 6.5px solid transparent;
-  border-bottom: 6.5px solid transparent;
-  border-left: 6.5px solid var(--arrow-fill);
+.nova-popover__arrow[data-side="left"] svg {
+  transform: rotate(-90deg);
 }
 .nova-popover__arrow[data-side="right"] {
   left: -8px;
   width: 8px;
   height: 16px;
 }
-.nova-popover__arrow[data-side="right"]::before {
-  top: 0;
-  right: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 8px solid var(--arrow-border);
-}
-.nova-popover__arrow[data-side="right"]::after {
-  top: 1.5px;
-  right: -1.5px;
-  border-top: 6.5px solid transparent;
-  border-bottom: 6.5px solid transparent;
-  border-right: 6.5px solid var(--arrow-fill);
+.nova-popover__arrow[data-side="right"] svg {
+  transform: rotate(90deg);
 }

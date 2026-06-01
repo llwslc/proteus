@@ -32,7 +32,11 @@ export function PreviewCard({
               <span className="nova-previewcard__scan" />
               <div className="nova-previewcard__body">{children}</div>
             </span>
-            <BasePreviewCard.Arrow className="nova-previewcard__arrow" />
+            <BasePreviewCard.Arrow className="nova-previewcard__arrow">
+              <svg viewBox="0 0 16 8" aria-hidden="true">
+                <path d="M0 0 L8 8 L16 0" />
+              </svg>
+            </BasePreviewCard.Arrow>
           </BasePreviewCard.Popup>
         </BasePreviewCard.Positioner>
       </BasePreviewCard.Portal>

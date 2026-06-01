@@ -161,56 +161,37 @@
   line-height: 1.5;
 }
 
-/* Arrow — two-triangle, same technique as Popover/Tooltip. */
+/* Arrow — inline SVG (filled surface + stroked legs, tokenised, open base),
+   same technique as Popover/Tooltip. Only top/bottom are used here. */
 .nova-navmenu__arrow {
   --arrow-fill: rgba(7, 14, 24, 0.97);
   --arrow-border: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   z-index: 2;
+  width: 16px;
+  height: 8px;
 }
-.nova-navmenu__arrow::before,
-.nova-navmenu__arrow::after {
-  content: "";
+.nova-navmenu__arrow svg {
   position: absolute;
-  width: 0;
-  height: 0;
+  inset: 0;
+  margin: auto;
+  width: 16px;
+  height: 8px;
+  overflow: visible;
+}
+.nova-navmenu__arrow path {
+  fill: var(--arrow-fill);
+  stroke: var(--arrow-border);
+  stroke-width: 1;
+  stroke-linejoin: miter;
 }
 .nova-navmenu__arrow[data-side="bottom"] {
   top: -8px;
-  width: 16px;
-  height: 8px;
 }
-.nova-navmenu__arrow[data-side="bottom"]::before {
-  bottom: 0;
-  left: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--arrow-border);
-}
-.nova-navmenu__arrow[data-side="bottom"]::after {
-  bottom: -1.5px;
-  left: 1.5px;
-  border-left: 6.5px solid transparent;
-  border-right: 6.5px solid transparent;
-  border-bottom: 6.5px solid var(--arrow-fill);
+.nova-navmenu__arrow[data-side="bottom"] svg {
+  transform: rotate(180deg);
 }
 .nova-navmenu__arrow[data-side="top"] {
   bottom: -8px;
-  width: 16px;
-  height: 8px;
-}
-.nova-navmenu__arrow[data-side="top"]::before {
-  top: 0;
-  left: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid var(--arrow-border);
-}
-.nova-navmenu__arrow[data-side="top"]::after {
-  top: -1.5px;
-  left: 1.5px;
-  border-left: 6.5px solid transparent;
-  border-right: 6.5px solid transparent;
-  border-top: 6.5px solid var(--arrow-fill);
 }
 
 @media (max-width: 768px) {
