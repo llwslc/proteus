@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import type { ReactElement, ReactNode } from "react";
 import { XIcon } from "../icons";
@@ -37,9 +38,7 @@ export function Drawer({
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Popup
-          className={["nova-drawer", `nova-drawer--${side}`, className]
-            .filter(Boolean)
-            .join(" ")}
+          className={cx("nova-drawer", `nova-drawer--${side}`, className)}
         >
           <span className="nova-drawer__edge" />
           <BaseDialog.Close

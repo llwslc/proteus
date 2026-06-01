@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Separator as BaseSeparator } from "@base-ui/react/separator";
 import type { ReactNode } from "react";
 import "./Separator.css";
@@ -16,9 +17,9 @@ export function Separator({
   if (label != null && orientation === "horizontal") {
     return (
       <div
-        className={["nova-separator-labeled", className]
-          .filter(Boolean)
-          .join(" ")}
+        role="separator"
+        aria-orientation="horizontal"
+        className={cx("nova-separator-labeled", className)}
       >
         <span className="nova-separator-labeled__line" />
         <span className="nova-separator-labeled__text">{label}</span>
@@ -29,13 +30,7 @@ export function Separator({
   return (
     <BaseSeparator
       orientation={orientation}
-      className={[
-        "nova-separator",
-        `nova-separator--${orientation}`,
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx("nova-separator", `nova-separator--${orientation}`, className)}
     />
   );
 }

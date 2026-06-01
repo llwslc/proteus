@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Avatar as BaseAvatar } from "@base-ui/react/avatar";
 import type { CSSProperties, ReactNode } from "react";
 import "./Avatar.css";
@@ -23,7 +24,7 @@ export function Avatar({
 }: AvatarProps) {
   return (
     <span
-      className={["nova-avatar", className].filter(Boolean).join(" ")}
+      className={cx("nova-avatar", className)}
       style={{ "--nova-avatar-size": `${size}px` } as CSSProperties}
     >
       <BaseAvatar.Root className="nova-avatar__root">

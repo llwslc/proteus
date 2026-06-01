@@ -29,7 +29,7 @@ export function Tooltip({
           >
             <BaseTooltip.Popup className="nova-tooltip__popup">
               <span className="nova-tooltip__surface">{content}</span>
-              <BaseTooltip.Arrow className="nova-tooltip__arrow" />
+              <BaseTooltip.Arrow className="nova-connector" />
             </BaseTooltip.Popup>
           </BaseTooltip.Positioner>
         </BaseTooltip.Portal>

@@ -22,6 +22,15 @@
 .nova-accordion__item:hover {
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
 }
+.nova-accordion__item:has([data-disabled]) {
+  opacity: var(--nova-disabled-opacity, 0.4);
+}
+.nova-accordion__item:has([data-disabled]):hover {
+  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+}
+.nova-accordion__trigger[data-disabled] {
+  cursor: not-allowed;
+}
 
 .nova-accordion__header {
   position: relative;

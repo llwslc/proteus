@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
 import type { ReactNode } from "react";
 import "./Tabs.css";
@@ -26,11 +27,13 @@ export function Tabs({
 }: TabsProps) {
   return (
     <BaseTabs.Root
-      className={["nova-tabs", className].filter(Boolean).join(" ")}
+      className={cx("nova-tabs", className)}
       defaultValue={defaultValue ?? items[0]?.value}
       value={value}
       onValueChange={
-        onValueChange ? (v: unknown) => onValueChange(String(v)) : undefined
+        onValueChange
+          ? (v: unknown) => onValueChange(v == null ? "" : String(v))
+          : undefined
       }
     >
       <BaseTabs.List className="nova-tabs__list">

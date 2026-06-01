@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import type { ReactNode } from "react";
 import "./Badge.css";
 
@@ -24,9 +25,7 @@ export function Badge({
 }: BadgeProps) {
   return (
     <span
-      className={["nova-badge", `nova-badge--${tone}`, className]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx("nova-badge", `nova-badge--${tone}`, className)}
     >
       {dot ? <span className="nova-badge__dot" /> : null}
       {children}

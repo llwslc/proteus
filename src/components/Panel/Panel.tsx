@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import type { ReactNode } from "react";
 import "./Panel.css";
 
@@ -12,9 +13,7 @@ export interface PanelProps {
 export function Panel({ title, meta, children, scan, className }: PanelProps) {
   return (
     <section
-      className={["nova-panel", scan ? "nova-panel--scan" : "", className]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx("nova-panel", scan ? "nova-panel--scan" : "", className)}
     >
       <i className="nova-panel__corner nova-panel__corner--tr" aria-hidden />
       <i className="nova-panel__corner nova-panel__corner--bl" aria-hidden />

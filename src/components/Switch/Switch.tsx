@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Switch as BaseSwitch } from "@base-ui/react/switch";
 import type { ComponentPropsWithoutRef } from "react";
 import "./Switch.css";
@@ -8,7 +9,7 @@ export interface SwitchProps
 export function Switch({ className, ...props }: SwitchProps) {
   return (
     <BaseSwitch.Root
-      className={["nova-switch", className].filter(Boolean).join(" ")}
+      className={cx("nova-switch", className)}
       {...props}
     >
       <span className="nova-switch__track" />

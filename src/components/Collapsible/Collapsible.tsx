@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Collapsible as BaseCollapsible } from "@base-ui/react/collapsible";
 import type { ReactNode } from "react";
 import { ChevronDownIcon } from "../icons";
@@ -25,7 +26,7 @@ export function Collapsible({
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
-      className={["nova-collapsible", className].filter(Boolean).join(" ")}
+      className={cx("nova-collapsible", className)}
     >
       <BaseCollapsible.Trigger className="nova-collapsible__trigger">
         <span className="nova-collapsible__marker" />

@@ -64,6 +64,7 @@
 }
 .nova-checkbox[data-disabled] {
   cursor: not-allowed;
+  opacity: var(--nova-disabled-opacity, 0.4);
 }
 
 .nova-checkbox-field {
@@ -81,10 +82,12 @@
 }
 
 /* Dim the whole disabled row (not just the label, so it doesn't read as
-   clickable) — but only to 0.55. The box no longer carries its own opacity,
-   so it isn't double-dimmed: a disabled-checked box (lit cyan + check) now
-   stays clearly distinct from a disabled-unchecked one (empty dark). */
+   clickable). The box resets to opacity:1 inside a field so it isn't
+   double-dimmed (row dim × box dim); a standalone box keeps its own dim. */
 .nova-checkbox-field:has(.nova-checkbox[data-disabled]) {
   opacity: var(--nova-disabled-opacity, 0.4);
   cursor: not-allowed;
+}
+.nova-checkbox-field .nova-checkbox[data-disabled] {
+  opacity: 1;
 }

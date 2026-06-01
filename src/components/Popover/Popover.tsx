@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Popover as BasePopover } from "@base-ui/react/popover";
 import type { ReactElement, ReactNode } from "react";
 import { XIcon } from "../icons";
@@ -33,9 +34,7 @@ export function Popover({
           sideOffset={sideOffset}
         >
           <BasePopover.Popup
-            className={["nova-popover__popup", className]
-              .filter(Boolean)
-              .join(" ")}
+            className={cx("nova-popover__popup", className)}
           >
             <span className="nova-popover__surface">
               {title != null ? (
@@ -48,7 +47,7 @@ export function Popover({
                 <XIcon />
               </BasePopover.Close>
             </span>
-            <BasePopover.Arrow className="nova-popover__arrow" />
+            <BasePopover.Arrow className="nova-connector" />
           </BasePopover.Popup>
         </BasePopover.Positioner>
       </BasePopover.Portal>

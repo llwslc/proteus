@@ -20,6 +20,7 @@
   padding: 14px 16px;
   background: rgba(8, 17, 28, 0.97);
   clip-path: var(--nova-clip-8);
+  outline: none;
   box-shadow:
     0 12px 26px rgba(0, 0, 0, 0.6),
     0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent);

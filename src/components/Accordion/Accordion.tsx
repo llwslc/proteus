@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion";
 import type { ReactNode } from "react";
 import { ChevronDownIcon } from "../icons";
@@ -25,7 +26,7 @@ export function Accordion({
 }: AccordionProps) {
   return (
     <BaseAccordion.Root
-      className={["nova-accordion", className].filter(Boolean).join(" ")}
+      className={cx("nova-accordion", className)}
       multiple={openMultiple}
       defaultValue={defaultValue}
     >

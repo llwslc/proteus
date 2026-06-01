@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Select as BaseSelect } from "@base-ui/react/select";
 import { useId } from "react";
 import type { ReactNode } from "react";
@@ -47,7 +48,7 @@ export function Select({
     >
       <BaseSelect.Trigger
         id={id ?? autoId}
-        className={["nova-select__trigger", className].filter(Boolean).join(" ")}
+        className={cx("nova-select__trigger", className)}
       >
         <BaseSelect.Value>
           {(val: unknown) => {

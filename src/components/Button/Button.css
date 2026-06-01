@@ -86,7 +86,7 @@
 
 .nova-btn--secondary {
   background: var(--nova-secondary-fill, rgba(255, 45, 117, 0.55));
-  color: #1c0410;
+  color: var(--nova-on-secondary, #1c0410);
 }
 .nova-btn--secondary::before {
   background: linear-gradient(180deg, var(--nova-secondary, #ff2d75), #c4185a);
@@ -99,7 +99,7 @@
 
 .nova-btn--danger {
   background: var(--nova-danger-fill, rgba(255, 77, 94, 0.55));
-  color: #1c0406;
+  color: var(--nova-on-danger, #1c0406);
 }
 .nova-btn--danger::before {
   background: linear-gradient(180deg, var(--nova-danger, #ff4d5e), var(--nova-danger-deep, #b3242f));

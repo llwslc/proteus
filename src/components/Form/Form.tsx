@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Form as BaseForm } from "@base-ui/react/form";
 import type { ComponentPropsWithoutRef } from "react";
 import "./Form.css";
@@ -8,7 +9,7 @@ export interface FormProps
 export function Form({ className, ...props }: FormProps) {
   return (
     <BaseForm
-      className={["nova-form", className].filter(Boolean).join(" ")}
+      className={cx("nova-form", className)}
       {...props}
     />
   );

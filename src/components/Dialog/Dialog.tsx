@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
@@ -32,7 +33,7 @@ export function Dialog({
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Popup
-          className={["nova-dialog__popup", className].filter(Boolean).join(" ")}
+          className={cx("nova-dialog__popup", className)}
         >
           <span className="nova-scan" />
           <BaseDialog.Close

@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { ScrollArea as BaseScrollArea } from "@base-ui/react/scroll-area";
 import type { CSSProperties, ReactNode } from "react";
 import "./ScrollArea.css";
@@ -15,7 +16,7 @@ export function ScrollArea({
 }: ScrollAreaProps) {
   return (
     <BaseScrollArea.Root
-      className={["nova-scrollarea", className].filter(Boolean).join(" ")}
+      className={cx("nova-scrollarea", className)}
     >
       <BaseScrollArea.Viewport
         className="nova-scrollarea__viewport"

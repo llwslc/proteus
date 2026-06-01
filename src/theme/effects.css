@@ -32,6 +32,47 @@
   }
 }
 
+/* Floating-overlay connector — a solid 1px line in --nova-line-strong bridging
+   the popup edge toward the trigger, for all four sides. No triangle → no
+   border seam (a clipped triangle under a semi-transparent border + chamfer
+   breaks into "border + a V"; a line never does). Shared by Tooltip / Popover
+   / PreviewCard; the element is Base UI's Arrow, which sets data-side. */
+.nova-connector {
+  z-index: 2;
+  width: 16px;
+  height: 8px;
+}
+.nova-connector::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1px;
+  height: 100%;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+}
+.nova-connector[data-side="top"] {
+  bottom: -8px;
+}
+.nova-connector[data-side="bottom"] {
+  top: -8px;
+}
+.nova-connector[data-side="left"] {
+  right: -8px;
+  width: 8px;
+  height: 16px;
+}
+.nova-connector[data-side="right"] {
+  left: -8px;
+  width: 8px;
+  height: 16px;
+}
+.nova-connector[data-side="left"]::before,
+.nova-connector[data-side="right"]::before {
+  width: 100%;
+  height: 1px;
+}
+
 /* Chamfered accent tick — title/legend marker. Colour via --nova-tick-color. */
 .nova-tick {
   flex: 0 0 auto;

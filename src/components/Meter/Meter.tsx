@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Meter as BaseMeter } from "@base-ui/react/meter";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Meter.css";
@@ -18,9 +19,7 @@ export function Meter({
 }: MeterProps) {
   return (
     <BaseMeter.Root
-      className={["nova-meter", `nova-meter--${tone}`, className]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx("nova-meter", `nova-meter--${tone}`, className)}
       {...props}
     >
       {(label != null || showValue) && (

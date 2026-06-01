@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { RadioGroup as BaseRadioGroup } from "@base-ui/react/radio-group";
 import { Radio as BaseRadio } from "@base-ui/react/radio";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
@@ -9,7 +10,7 @@ export interface RadioGroupProps
 export function RadioGroup({ className, ...props }: RadioGroupProps) {
   return (
     <BaseRadioGroup
-      className={["nova-radiogroup", className].filter(Boolean).join(" ")}
+      className={cx("nova-radiogroup", className)}
       {...props}
     />
   );
@@ -24,7 +25,7 @@ export function Radio({ className, children, ...props }: RadioProps) {
   return (
     <label className="nova-radio">
       <BaseRadio.Root
-        className={["nova-radio__control", className].filter(Boolean).join(" ")}
+        className={cx("nova-radio__control", className)}
         {...props}
       >
         <BaseRadio.Indicator className="nova-radio__indicator" keepMounted />

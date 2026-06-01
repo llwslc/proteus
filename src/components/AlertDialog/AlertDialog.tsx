@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
@@ -33,9 +34,7 @@ export function AlertDialog({
       <BaseAlertDialog.Portal>
         <BaseAlertDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseAlertDialog.Popup
-          className={["nova-alert__popup", `nova-alert__popup--${tone}`, className]
-            .filter(Boolean)
-            .join(" ")}
+          className={cx("nova-alert__popup", `nova-alert__popup--${tone}`, className)}
         >
           <span className="nova-scan" />
           {title != null ? (

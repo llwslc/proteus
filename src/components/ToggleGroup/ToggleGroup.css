@@ -40,7 +40,8 @@
   transition:
     color var(--nova-dur, 0.22s) var(--nova-ease, ease),
     background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-toggle:hover {
   color: var(--nova-text, #d7ecff);
@@ -49,7 +50,9 @@
 .nova-toggle[data-pressed] {
   color: var(--nova-on-primary, #02131a);
   background: linear-gradient(180deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
-  box-shadow: 0 0 12px rgba(45, 226, 255, 0.5);
+  /* drop-shadow (not box-shadow) so the active halo follows the clip-path
+     chamfer instead of being clipped to a rectangle. */
+  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.5));
 }
 .nova-toggle:focus-visible {
   outline: none;

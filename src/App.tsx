@@ -517,7 +517,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 36 Controls
+              <BoltIcon /> Component System · 37 Controls
             </div>
             <h1>
               A <b>sci-fi</b> interface kit
@@ -532,7 +532,7 @@ function Demo() {
             </p>
             <div className="nova-hero__stats">
               <div className="nova-hero__stat">
-                <b>36</b>
+                <b>37</b>
                 <span>Controls</span>
               </div>
               <div className="nova-hero__stat">
@@ -582,15 +582,15 @@ function Demo() {
                 <div className="demo-stack">
                   <div className="demo-spread">
                     <span className="demo-tag">Auto-Pilot</span>
-                    <Switch defaultChecked />
+                    <Switch defaultChecked aria-label="Auto-Pilot" />
                   </div>
                   <div className="demo-spread">
                     <span className="demo-tag">Cloaking</span>
-                    <Switch />
+                    <Switch aria-label="Cloaking" />
                   </div>
                   <div className="demo-spread">
                     <span className="demo-tag">Locked</span>
-                    <Switch disabled defaultChecked />
+                    <Switch disabled defaultChecked aria-label="Locked" />
                   </div>
                 </div>
               </Panel>
@@ -962,11 +962,11 @@ function Demo() {
                 >
                   <div className="demo-spread">
                     <span className="demo-tag">Auto-Pilot</span>
-                    <Switch defaultChecked />
+                    <Switch defaultChecked aria-label="Auto-Pilot" />
                   </div>
                   <div className="demo-spread">
                     <span className="demo-tag">Stealth Mode</span>
-                    <Switch />
+                    <Switch aria-label="Stealth Mode" />
                   </div>
                   <Slider label="Sensor Gain" defaultValue={72} />
                 </Drawer>

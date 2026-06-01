@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Button as BaseButton } from "@base-ui/react/button";
 import { forwardRef } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
@@ -21,14 +22,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <BaseButton
       ref={ref}
-      className={[
-        "nova-btn",
-        `nova-btn--${variant}`,
-        `nova-btn--${size}`,
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx("nova-btn", `nova-btn--${variant}`, `nova-btn--${size}`, className)}
       {...props}
     >
       <span className="nova-btn__label">

@@ -46,7 +46,7 @@
   background: var(--nova-primary, #2de2ff);
   box-shadow: 0 0 8px var(--nova-primary, #2de2ff);
   transform: scale(0);
-  transition: transform var(--nova-dur, 0.22s) var(--nova-ease-out, ease);
+  transition: transform var(--nova-dur, 0.22s) var(--nova-ease-out, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 .nova-radio__control[data-checked] {

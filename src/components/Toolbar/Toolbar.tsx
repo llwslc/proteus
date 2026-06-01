@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Toolbar as BaseToolbar } from "@base-ui/react/toolbar";
 import type { ReactNode } from "react";
 import "./Toolbar.css";
@@ -11,7 +12,7 @@ export interface ToolbarProps {
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
     <BaseToolbar.Root
-      className={["nova-toolbar", className].filter(Boolean).join(" ")}
+      className={cx("nova-toolbar", className)}
       {...props}
     >
       {children}
@@ -34,9 +35,7 @@ export function ToolbarButton({
 }: ToolbarButtonProps) {
   return (
     <BaseToolbar.Button
-      className={["nova-toolbar__btn", active ? "is-active" : ""]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx("nova-toolbar__btn", active ? "is-active" : "")}
       {...props}
     >
       {children}

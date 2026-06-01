@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 import { Toggle as BaseToggle } from "@base-ui/react/toggle";
 import type { ComponentPropsWithoutRef } from "react";
@@ -9,7 +10,7 @@ export interface ToggleGroupProps
 export function ToggleGroup({ className, ...props }: ToggleGroupProps) {
   return (
     <BaseToggleGroup
-      className={["nova-togglegroup", className].filter(Boolean).join(" ")}
+      className={cx("nova-togglegroup", className)}
       {...props}
     />
   );
@@ -21,7 +22,7 @@ export interface ToggleProps
 export function Toggle({ className, ...props }: ToggleProps) {
   return (
     <BaseToggle
-      className={["nova-toggle", className].filter(Boolean).join(" ")}
+      className={cx("nova-toggle", className)}
       {...props}
     />
   );

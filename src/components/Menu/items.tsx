@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import type { ComponentType, ReactNode } from "react";
 import { ChevronRightIcon } from "../icons";
 
@@ -46,12 +47,7 @@ export function renderMenuEntries(items: MenuEntry[], parts: Parts) {
       return (
         <SubmenuRoot key={i}>
           <SubmenuTrigger
-            className={[
-              "nova-menu__item",
-              it.tone === "danger" ? "nova-menu__item--danger" : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
+            className={cx("nova-menu__item", it.tone === "danger" ? "nova-menu__item--danger" : "")}
             disabled={it.disabled}
           >
             <span className="nova-menu__icon">{it.icon}</span>
@@ -78,12 +74,7 @@ export function renderMenuEntries(items: MenuEntry[], parts: Parts) {
     return (
       <Item
         key={i}
-        className={[
-          "nova-menu__item",
-          it.tone === "danger" ? "nova-menu__item--danger" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        className={cx("nova-menu__item", it.tone === "danger" ? "nova-menu__item--danger" : "")}
         disabled={it.disabled}
         onClick={it.onClick}
       >

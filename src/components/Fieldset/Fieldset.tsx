@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Fieldset.css";
@@ -10,7 +11,7 @@ export interface FieldsetProps
 export function Fieldset({ className, legend, children, ...props }: FieldsetProps) {
   return (
     <BaseFieldset.Root
-      className={["nova-fieldset", className].filter(Boolean).join(" ")}
+      className={cx("nova-fieldset", className)}
       {...props}
     >
       {legend != null ? (

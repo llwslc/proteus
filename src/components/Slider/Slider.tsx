@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Slider as BaseSlider } from "@base-ui/react/slider";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Slider.css";
@@ -16,7 +17,7 @@ export function Slider({
 }: SliderProps) {
   return (
     <BaseSlider.Root
-      className={["nova-slider", className].filter(Boolean).join(" ")}
+      className={cx("nova-slider", className)}
       {...props}
     >
       {(label != null || showValue) && (

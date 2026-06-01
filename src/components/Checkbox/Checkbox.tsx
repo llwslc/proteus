@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox";
 import { useId } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
@@ -14,7 +15,7 @@ export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   const box = (
     <BaseCheckbox.Root
       id={id ?? autoId}
-      className={["nova-checkbox", className].filter(Boolean).join(" ")}
+      className={cx("nova-checkbox", className)}
       {...props}
     >
       <BaseCheckbox.Indicator className="nova-checkbox__indicator" keepMounted>

@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { CheckboxGroup as BaseCheckboxGroup } from "@base-ui/react/checkbox-group";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Checkbox } from "../Checkbox";
@@ -25,7 +26,7 @@ export function CheckboxGroup({
   const everyValue = allValues ?? items.map((i) => i.value);
   return (
     <BaseCheckboxGroup
-      className={["nova-checkboxgroup", className].filter(Boolean).join(" ")}
+      className={cx("nova-checkboxgroup", className)}
       allValues={everyValue}
       {...props}
     >

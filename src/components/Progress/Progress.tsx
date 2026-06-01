@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Progress as BaseProgress } from "@base-ui/react/progress";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Progress.css";
@@ -16,7 +17,7 @@ export function Progress({
 }: ProgressProps) {
   return (
     <BaseProgress.Root
-      className={["nova-progress", className].filter(Boolean).join(" ")}
+      className={cx("nova-progress", className)}
       {...props}
     >
       {(label != null || showValue) && (

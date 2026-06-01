@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { Input as BaseInput } from "@base-ui/react/input";
 import { Field as BaseField } from "@base-ui/react/field";
 import { useId } from "react";
@@ -13,20 +14,12 @@ export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (
     <span
-      className={[
-        "nova-input-wrap",
-        icon ? "nova-input-wrap--icon" : "",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", className)}
     >
       {icon ? <span className="nova-input__icon">{icon}</span> : null}
       <BaseInput
         id={id ?? autoId}
-        className={["nova-input", icon ? "nova-input--has-icon" : ""]
-          .filter(Boolean)
-          .join(" ")}
+        className={cx("nova-input", icon ? "nova-input--has-icon" : "")}
         {...props}
       />
     </span>
@@ -53,29 +46,17 @@ export function Field({
 }: FieldProps) {
   return (
     <BaseField.Root
-      className={["nova-field", rootClassName].filter(Boolean).join(" ")}
+      className={cx("nova-field", rootClassName)}
     >
       {label != null ? (
         <BaseField.Label className="nova-field__label">{label}</BaseField.Label>
       ) : null}
       <span
-        className={[
-          "nova-input-wrap",
-          icon ? "nova-input-wrap--icon" : "",
-          error != null ? "nova-input-wrap--error" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", error != null ? "nova-input-wrap--error" : "")}
       >
         {icon ? <span className="nova-input__icon">{icon}</span> : null}
         <BaseField.Control
-          className={[
-            "nova-input",
-            icon ? "nova-input--has-icon" : "",
-            className,
-          ]
-            .filter(Boolean)
-            .join(" ")}
+          className={cx("nova-input", icon ? "nova-input--has-icon" : "", className)}
           {...control}
         />
       </span>

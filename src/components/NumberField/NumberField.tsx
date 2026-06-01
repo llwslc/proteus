@@ -1,3 +1,4 @@
+import { cx } from "../cx";
 import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
 import { useId, useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
@@ -26,7 +27,7 @@ export function NumberField({
 
   return (
     <BaseNumberField.Root
-      className={["nova-numberfield", className].filter(Boolean).join(" ")}
+      className={cx("nova-numberfield", className)}
       name={name ?? autoId}
       min={min}
       max={max}
