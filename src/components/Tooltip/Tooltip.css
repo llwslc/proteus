@@ -8,7 +8,7 @@
 .nova-tooltip__popup {
   position: relative;
   max-width: 240px;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5))
+  filter: drop-shadow(var(--nova-shadow-popup, 0 10px 24px rgba(0, 0, 0, 0.55)))
     var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22)));
   transform-origin: var(--transform-origin);
   transition:
