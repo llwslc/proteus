@@ -1,6 +1,5 @@
 import { PreviewCard as BasePreviewCard } from "@base-ui/react/preview-card";
 import type { ReactElement, ReactNode } from "react";
-import { ArrowShape } from "../icons";
 import "./PreviewCard.css";
 
 export interface PreviewCardProps {
@@ -33,9 +32,7 @@ export function PreviewCard({
               <span className="nova-previewcard__scan" />
               <div className="nova-previewcard__body">{children}</div>
             </span>
-            <BasePreviewCard.Arrow className="nova-previewcard__arrow">
-              <ArrowShape />
-            </BasePreviewCard.Arrow>
+            <BasePreviewCard.Arrow className="nova-previewcard__arrow" />
           </BasePreviewCard.Popup>
         </BasePreviewCard.Positioner>
       </BasePreviewCard.Portal>

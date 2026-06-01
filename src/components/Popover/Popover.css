@@ -62,52 +62,46 @@
   color: var(--nova-primary, #2de2ff);
 }
 
-/* Arrow — one inline SVG (open path: filled → surface, stroked legs → border,
-   open base blends into the popup edge). fill + stroke are tokens, so it
-   re-themes for free and the border width matches the popup's. Rotated per side. */
+/* Arrow — Base UI's rotated-square method: a 45°-rotated square with the same
+   border + fill as the surface, clipped to a triangle. Its two visible edges ARE
+   the surface border (seamless even with a semi-transparent border); the base
+   slides under the surface. Tokenised, rotated per data-side. */
 .nova-popover__arrow {
   --arrow-fill: #0a1422;
   --arrow-border: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   z-index: 2;
   width: 16px;
   height: 8px;
+  overflow: clip;
 }
-.nova-popover__arrow svg {
+.nova-popover__arrow::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 16px;
-  height: 8px;
-  overflow: visible;
-}
-.nova-popover__arrow path {
-  fill: var(--arrow-fill);
-  stroke: var(--arrow-border);
-  stroke-width: 1;
-  stroke-linejoin: miter;
+  bottom: 0;
+  left: 50%;
+  box-sizing: border-box;
+  width: calc(8px * 1.414);
+  height: calc(8px * 1.414);
+  background: var(--arrow-fill);
+  border: 1px solid var(--arrow-border);
+  transform: translate(-50%, 50%) rotate(45deg);
 }
 .nova-popover__arrow[data-side="top"] {
   bottom: -8px;
+  rotate: 180deg;
 }
 .nova-popover__arrow[data-side="bottom"] {
   top: -8px;
-}
-.nova-popover__arrow[data-side="bottom"] svg {
-  transform: rotate(180deg);
 }
 .nova-popover__arrow[data-side="left"] {
   right: -8px;
   width: 8px;
   height: 16px;
-}
-.nova-popover__arrow[data-side="left"] svg {
-  transform: rotate(-90deg);
+  rotate: 90deg;
 }
 .nova-popover__arrow[data-side="right"] {
   left: -8px;
   width: 8px;
   height: 16px;
-}
-.nova-popover__arrow[data-side="right"] svg {
-  transform: rotate(90deg);
+  rotate: -90deg;
 }

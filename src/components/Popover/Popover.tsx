@@ -1,6 +1,6 @@
 import { Popover as BasePopover } from "@base-ui/react/popover";
 import type { ReactElement, ReactNode } from "react";
-import { ArrowShape, XIcon } from "../icons";
+import { XIcon } from "../icons";
 import "./Popover.css";
 
 export interface PopoverProps {
@@ -48,9 +48,7 @@ export function Popover({
                 <XIcon />
               </BasePopover.Close>
             </span>
-            <BasePopover.Arrow className="nova-popover__arrow">
-              <ArrowShape />
-            </BasePopover.Arrow>
+            <BasePopover.Arrow className="nova-popover__arrow" />
           </BasePopover.Popup>
         </BasePopover.Positioner>
       </BasePopover.Portal>

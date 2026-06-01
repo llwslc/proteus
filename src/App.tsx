@@ -784,13 +784,17 @@ function Demo() {
             <div className="nova-section" id="tooltip">
               <Panel title="Tooltip" meta="TIP">
                 <div className="demo-row">
-                  <Tooltip content="Fire main cannon — hold to charge">
-                    <Button variant="ghost">Hover me</Button>
+                  <Tooltip content="Points down" side="top">
+                    <Button variant="ghost">Top</Button>
                   </Tooltip>
-                  <Tooltip content="System nominal" side="right">
-                    <Button variant="ghost" icon={<BoltIcon />}>
-                      Status
-                    </Button>
+                  <Tooltip content="Points up" side="bottom">
+                    <Button variant="ghost">Bottom</Button>
+                  </Tooltip>
+                  <Tooltip content="Points right" side="left">
+                    <Button variant="ghost">Left</Button>
+                  </Tooltip>
+                  <Tooltip content="Points left" side="right">
+                    <Button variant="ghost">Right</Button>
                   </Tooltip>
                 </div>
               </Panel>

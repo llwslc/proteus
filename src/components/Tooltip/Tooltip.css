@@ -34,55 +34,48 @@
   line-height: 1.5;
 }
 
-/* Arrow: one inline SVG. A single open path (two legs, no base) is FILLED
-   (auto-closes → solid triangle = surface) and STROKED (only the drawn legs →
-   the border edges; the base stays open and blends into the popup edge). fill +
-   stroke are both tokens, so the arrow re-themes for free and the border width
-   matches the popup's exactly — no fragile pixel offsets. The down-pointing
-   shape is rotated per data-side. */
+/* Arrow: Base UI's rotated-square method. A 45°-rotated square carrying the SAME
+   border + fill as the surface is clipped by the arrow box (overflow:clip) into a
+   triangle — so its two visible edges ARE the surface border (same colour, works
+   even with a semi-transparent border) and the base, sliding under the surface,
+   has no seam. fill + border are tokens, so it re-themes for free. Rotated per
+   data-side. Square side = arrow-width / √2 so its diagonal spans the box. */
 .nova-tooltip__arrow {
   --arrow-fill: #08121c;
   --arrow-border: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   z-index: 2;
   width: 16px;
   height: 8px;
+  overflow: clip;
 }
-.nova-tooltip__arrow svg {
+.nova-tooltip__arrow::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 16px;
-  height: 8px;
-  overflow: visible;
-}
-.nova-tooltip__arrow path {
-  fill: var(--arrow-fill);
-  stroke: var(--arrow-border);
-  stroke-width: 1;
-  stroke-linejoin: miter;
+  bottom: 0;
+  left: 50%;
+  box-sizing: border-box;
+  width: calc(8px * 1.414);
+  height: calc(8px * 1.414);
+  background: var(--arrow-fill);
+  border: 1px solid var(--arrow-border);
+  transform: translate(-50%, 50%) rotate(45deg);
 }
 .nova-tooltip__arrow[data-side="top"] {
   bottom: -8px;
+  rotate: 180deg;
 }
 .nova-tooltip__arrow[data-side="bottom"] {
   top: -8px;
-}
-.nova-tooltip__arrow[data-side="bottom"] svg {
-  transform: rotate(180deg);
 }
 .nova-tooltip__arrow[data-side="left"] {
   right: -8px;
   width: 8px;
   height: 16px;
-}
-.nova-tooltip__arrow[data-side="left"] svg {
-  transform: rotate(-90deg);
+  rotate: 90deg;
 }
 .nova-tooltip__arrow[data-side="right"] {
   left: -8px;
   width: 8px;
   height: 16px;
-}
-.nova-tooltip__arrow[data-side="right"] svg {
-  transform: rotate(90deg);
+  rotate: -90deg;
 }

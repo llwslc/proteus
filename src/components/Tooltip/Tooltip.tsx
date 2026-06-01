@@ -1,6 +1,5 @@
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
 import type { ReactElement, ReactNode } from "react";
-import { ArrowShape } from "../icons";
 import "./Tooltip.css";
 
 export interface TooltipProps {
@@ -30,9 +29,7 @@ export function Tooltip({
           >
             <BaseTooltip.Popup className="nova-tooltip__popup">
               <span className="nova-tooltip__surface">{content}</span>
-              <BaseTooltip.Arrow className="nova-tooltip__arrow">
-                <ArrowShape />
-              </BaseTooltip.Arrow>
+              <BaseTooltip.Arrow className="nova-tooltip__arrow" />
             </BaseTooltip.Popup>
           </BaseTooltip.Positioner>
         </BaseTooltip.Portal>

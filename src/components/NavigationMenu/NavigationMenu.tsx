@@ -1,6 +1,6 @@
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
 import type { ReactNode } from "react";
-import { ArrowShape, ChevronDownIcon } from "../icons";
+import { ChevronDownIcon } from "../icons";
 import "./NavigationMenu.css";
 
 export interface NavMenuLink {
@@ -78,9 +78,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
           collisionPadding={16}
         >
           <BaseNav.Popup className="nova-navmenu__popup">
-            <BaseNav.Arrow className="nova-navmenu__arrow">
-              <ArrowShape />
-            </BaseNav.Arrow>
+            <BaseNav.Arrow className="nova-navmenu__arrow" />
             <BaseNav.Viewport className="nova-navmenu__viewport" />
           </BaseNav.Popup>
         </BaseNav.Positioner>
