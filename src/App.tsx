@@ -160,6 +160,7 @@ const CHECKGROUP_ITEMS = [
   { value: "relay", label: "Relay telemetry" },
   { value: "encrypt", label: "Encrypt channel" },
   { value: "beacon", label: "Nav beacon" },
+  { value: "quarantine", label: "Quarantine (locked)", disabled: true },
 ];
 
 const MENUBAR_MENUS: MenubarMenu[] = [
@@ -183,7 +184,7 @@ const MENUBAR_MENUS: MenubarMenu[] = [
     label: "View",
     items: [
       { label: "Map", icon: <SearchIcon /> },
-      { label: "Grid View" },
+      { label: "Grid View", icon: <CopyIcon /> },
       {
         label: "Sensors",
         icon: <SignalIcon />,

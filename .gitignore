@@ -18,6 +18,3 @@ pnpm-debug.log*
 
 # TS build info
 *.tsbuildinfo
-
-# local screenshot helper
-/shot.mjs
