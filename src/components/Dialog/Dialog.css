@@ -74,7 +74,7 @@
   gap: 10px;
   margin: 0 36px 6px 0;
   font-family: var(--nova-font-display, sans-serif);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -97,7 +97,7 @@
 .nova-dialog__body {
   color: var(--nova-text, #d7ecff);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 .nova-dialog__footer {
   display: flex;

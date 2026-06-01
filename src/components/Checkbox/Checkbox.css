@@ -60,7 +60,7 @@
 
 .nova-checkbox:focus-visible {
   outline: none;
-  filter: drop-shadow(0 0 7px rgba(45, 226, 255, 0.7));
+  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.7));
 }
 .nova-checkbox[data-disabled] {
   cursor: not-allowed;

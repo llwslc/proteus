@@ -21,7 +21,7 @@
   background: rgba(8, 17, 28, 0.97);
   clip-path: var(--nova-clip-8);
   box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.55),
+    0 12px 26px rgba(0, 0, 0, 0.6),
     0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent);
   overflow: hidden;
   transition:
@@ -59,7 +59,7 @@
 }
 .nova-toast__desc {
   margin: 4px 0 0;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--nova-text-dim, #7793b0);
 }

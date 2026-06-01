@@ -40,8 +40,8 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 8px 12px 8px 11px;
+  gap: 12px;
+  padding: 8px 12px;
   cursor: pointer;
   color: var(--nova-text-dim, #7793b0);
   font-size: 14px;
