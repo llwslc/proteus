@@ -30,6 +30,9 @@
     ),
     rgba(11, 24, 40, 0.6);
 }
+.nova-ctxmenu__zone[data-popup-open] {
+  outline-color: var(--nova-primary, #2de2ff);
+}
 .nova-ctxmenu__zone kbd {
   font-family: var(--nova-font-mono, monospace);
   font-size: 12px;

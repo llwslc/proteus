@@ -8,6 +8,10 @@
   box-sizing: border-box;
   min-width: 210px;
   padding: 5px;
+  /* Kill the UA focus ring: the popup is focused when it opens, and the
+     browser's default blue (#005fcc) outline would show on top of the cyan
+     frame — reading as a second border colour that flickers as focus moves. */
+  outline: none;
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   clip-path: var(--nova-clip-9);
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55))
