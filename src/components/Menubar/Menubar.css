@@ -37,8 +37,8 @@
   outline: none;
   clip-path: var(--nova-clip-6);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    color var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-menubar__trigger:hover,
 .nova-menubar__trigger:focus-visible {

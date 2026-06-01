@@ -11,7 +11,7 @@
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
   clip-path: var(--nova-clip-9);
   -webkit-tap-highlight-color: transparent;
-  transition: filter var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-checkbox::before {
   content: "";
@@ -19,7 +19,7 @@
   inset: 1px;
   clip-path: var(--nova-clip-9);
   background: rgba(8, 16, 26, 0.92);
-  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
 .nova-checkbox__indicator {
@@ -37,8 +37,8 @@
   opacity: 0;
   transform: scale(0.4);
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease);
+    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
 .nova-checkbox[data-checked]::before,

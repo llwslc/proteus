@@ -4,7 +4,7 @@
   z-index: 1400;
   background: rgba(2, 6, 12, 0.62);
   backdrop-filter: blur(3px) saturate(1.1);
-  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-drawer__backdrop[data-starting-style],
 .nova-drawer__backdrop[data-ending-style] {
@@ -23,7 +23,7 @@
   color: var(--nova-text, #d7ecff);
   transition:
     transform var(--nova-dur-slow, 0.45s) var(--nova-ease-out, ease),
-    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease);
+    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
 }
 
 .nova-drawer__edge {
@@ -171,9 +171,9 @@
   font-size: 15px;
   clip-path: var(--nova-clip-5);
   transition:
-    color var(--nova-dur, 0.22s) var(--nova-ease),
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    border-color var(--nova-dur, 0.22s) var(--nova-ease);
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    border-color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-drawer__x:hover {
   color: var(--nova-danger, #ff4d5e);

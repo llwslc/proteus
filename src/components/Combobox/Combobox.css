@@ -10,8 +10,8 @@
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
   clip-path: var(--nova-clip-7);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    filter var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-combobox__control::before {
   content: "";
@@ -68,8 +68,8 @@
   background: transparent;
   cursor: pointer;
   transition:
-    color var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease);
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-combobox__clear {
   font-size: 13px;
@@ -103,8 +103,8 @@
   overflow-y: auto;
   transform-origin: top center;
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease);
+    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-combobox__popup::before {
   content: "";
@@ -150,8 +150,8 @@
   outline: none;
   clip-path: var(--nova-clip-7);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    color var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-combobox__item::after {
   content: "";
@@ -163,10 +163,10 @@
   background: var(--nova-primary, #2de2ff);
   box-shadow: 0 0 7px var(--nova-primary, #2de2ff);
   opacity: 0;
-  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-combobox__item[data-highlighted] {
-  background: rgba(45, 226, 255, 0.14);
+  background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
   color: #eafdff;
 }
 .nova-combobox__item[data-highlighted]::after {

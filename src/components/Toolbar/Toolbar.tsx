@@ -8,11 +8,11 @@ export interface ToolbarProps {
   "aria-label"?: string;
 }
 
-export function Toolbar({ children, className, ...rest }: ToolbarProps) {
+export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
     <BaseToolbar.Root
       className={["nova-toolbar", className].filter(Boolean).join(" ")}
-      {...rest}
+      {...props}
     >
       {children}
     </BaseToolbar.Root>
@@ -30,14 +30,14 @@ export interface ToolbarButtonProps {
 export function ToolbarButton({
   children,
   active,
-  ...rest
+  ...props
 }: ToolbarButtonProps) {
   return (
     <BaseToolbar.Button
       className={["nova-toolbar__btn", active ? "is-active" : ""]
         .filter(Boolean)
         .join(" ")}
-      {...rest}
+      {...props}
     >
       {children}
     </BaseToolbar.Button>

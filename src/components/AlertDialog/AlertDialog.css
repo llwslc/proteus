@@ -4,7 +4,7 @@
   z-index: 1400;
   background: rgba(2, 6, 12, 0.66);
   backdrop-filter: blur(3px) saturate(1.1);
-  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-alert__backdrop[data-starting-style],
 .nova-alert__backdrop[data-ending-style] {
@@ -25,8 +25,8 @@
   filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6))
     drop-shadow(0 0 22px color-mix(in srgb, var(--nova-alert-accent) 26%, transparent));
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease);
+    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-alert__popup::before {
   content: "";
@@ -61,7 +61,7 @@
   z-index: 1;
   background: linear-gradient(90deg, transparent, var(--nova-alert-accent), transparent);
   opacity: 0.8;
-  animation: nova-alert-scan 3.5s var(--nova-ease) infinite;
+  animation: nova-alert-scan 3.5s var(--nova-ease, ease) infinite;
 }
 @keyframes nova-alert-scan {
   0%,

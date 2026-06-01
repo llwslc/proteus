@@ -46,8 +46,8 @@
   outline: none;
   clip-path: var(--nova-clip-6);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    color var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-navmenu__trigger:hover,
 .nova-navmenu__trigger:focus-visible,
@@ -64,7 +64,7 @@
 .nova-navmenu__chevron {
   display: inline-flex;
   font-size: 14px;
-  transition: transform var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-navmenu__trigger[data-popup-open] .nova-navmenu__chevron {
   transform: rotate(180deg);
@@ -77,7 +77,7 @@
   box-sizing: border-box;
   width: var(--positioner-width);
   height: var(--positioner-height);
-  transition: transform var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 /* Unclipped outer popup so the arrow can overhang the chamfered viewport
    (clip-path on the popup would otherwise crop the arrow off). */
@@ -89,10 +89,10 @@
     drop-shadow(0 0 12px rgba(45, 226, 255, 0.22));
   transform-origin: var(--transform-origin);
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease),
-    width var(--nova-dur, 0.22s) var(--nova-ease),
-    height var(--nova-dur, 0.22s) var(--nova-ease);
+    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    width var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    height var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-navmenu__popup[data-starting-style],
 .nova-navmenu__popup[data-ending-style] {
@@ -140,7 +140,7 @@
   cursor: pointer;
   outline: none;
   clip-path: var(--nova-clip-6);
-  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-navmenu__link:hover,
 .nova-navmenu__link:focus-visible {

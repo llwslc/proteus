@@ -12,8 +12,8 @@
     drop-shadow(0 0 10px rgba(45, 226, 255, 0.22));
   transform-origin: var(--transform-origin);
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease);
+    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-tooltip__popup[data-starting-style],
 .nova-tooltip__popup[data-ending-style] {

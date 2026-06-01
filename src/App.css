@@ -125,13 +125,13 @@
   cursor: pointer;
   border-left: 2px solid transparent;
   transition:
-    color var(--nova-dur) var(--nova-ease),
-    background var(--nova-dur) var(--nova-ease),
-    border-color var(--nova-dur) var(--nova-ease);
+    color var(--nova-dur) var(--nova-ease, ease),
+    background var(--nova-dur) var(--nova-ease, ease),
+    border-color var(--nova-dur) var(--nova-ease, ease);
 }
 .nova-sidebar__link:hover {
   color: var(--nova-text);
-  background: rgba(45, 226, 255, 0.06);
+  background: var(--nova-grid, rgba(45, 226, 255, 0.06));
   border-left-color: var(--nova-line-strong);
 }
 .nova-sidebar__link span {
@@ -277,8 +277,8 @@
   border-bottom: 1px dashed var(--nova-line-strong);
   cursor: pointer;
   transition:
-    text-shadow var(--nova-dur) var(--nova-ease),
-    border-color var(--nova-dur) var(--nova-ease);
+    text-shadow var(--nova-dur) var(--nova-ease, ease),
+    border-color var(--nova-dur) var(--nova-ease, ease);
 }
 .demo-link:hover {
   text-shadow: var(--nova-glow-text);
@@ -369,7 +369,7 @@
 
 /* ---------- Entrance orchestration ---------- */
 .nova-header {
-  animation: nova-drop 0.6s var(--nova-ease) both;
+  animation: nova-drop 0.6s var(--nova-ease, ease) both;
 }
 @keyframes nova-drop {
   from {
@@ -378,16 +378,16 @@
   }
 }
 .nova-hero__eyebrow {
-  animation: nova-rise 0.7s var(--nova-ease) both 0.08s;
+  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.08s;
 }
 .nova-hero h1 {
-  animation: nova-rise 0.7s var(--nova-ease) both 0.18s;
+  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.18s;
 }
 .nova-hero p {
-  animation: nova-rise 0.7s var(--nova-ease) both 0.3s;
+  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.3s;
 }
 .nova-hero__stats {
-  animation: nova-rise 0.7s var(--nova-ease) both 0.42s;
+  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.42s;
 }
 @keyframes nova-rise {
   from {
@@ -402,8 +402,8 @@
   opacity: 0;
   transform: translateY(24px);
   transition:
-    opacity 0.6s var(--nova-ease),
-    transform 0.6s var(--nova-ease);
+    opacity 0.6s var(--nova-ease, ease),
+    transform 0.6s var(--nova-ease, ease);
 }
 .nova-grid.nova-reveal .nova-section.is-visible {
   opacity: 1;
@@ -436,7 +436,7 @@
   height: 168px;
   pointer-events: none;
   opacity: 0.9;
-  animation: nova-rise 0.9s var(--nova-ease) both 0.5s;
+  animation: nova-rise 0.9s var(--nova-ease, ease) both 0.5s;
 }
 .nova-hero__reticle::before {
   content: "";
@@ -454,8 +454,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-    linear-gradient(0deg, transparent calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% - 0.5px), rgba(45, 226, 255, 0.22) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    linear-gradient(90deg, transparent calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    linear-gradient(0deg, transparent calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% + 0.5px), transparent calc(50% + 0.5px));
 }
 .nova-hero__ring {
   position: absolute;
@@ -474,7 +474,7 @@
   height: 118px;
   border: 1px solid rgba(45, 226, 255, 0.16);
   border-top-color: var(--nova-primary);
-  box-shadow: 0 0 16px rgba(45, 226, 255, 0.22);
+  box-shadow: 0 0 16px var(--nova-line, rgba(45, 226, 255, 0.22));
   animation: nova-spin 7s linear infinite reverse;
 }
 .nova-hero__ring--3 {

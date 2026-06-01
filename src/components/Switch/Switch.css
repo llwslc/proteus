@@ -17,8 +17,8 @@
   background: rgba(126, 162, 198, 0.5);
   clip-path: var(--nova-clip-9);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    filter var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-switch__track::before {
   content: "";
@@ -26,7 +26,7 @@
   inset: 1px;
   clip-path: var(--nova-clip-9);
   background: rgba(9, 17, 27, 0.95);
-  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
 .nova-switch__thumb {
@@ -39,9 +39,9 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   clip-path: var(--nova-clip-7);
   transition:
-    transform var(--nova-dur, 0.22s) var(--nova-ease),
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
 .nova-switch[data-checked] .nova-switch__track {

@@ -33,7 +33,7 @@
   text-transform: uppercase;
   text-align: left;
   -webkit-tap-highlight-color: transparent;
-  transition: color var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-collapsible__marker {
   width: 7px;
@@ -42,8 +42,8 @@
   background: var(--nova-text-mute, #46617e);
   transform: rotate(45deg);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-collapsible__title {
   flex: 1;
@@ -52,7 +52,7 @@
   flex: 0 0 auto;
   font-size: 18px;
   color: var(--nova-text-dim, #7793b0);
-  transition: transform var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-collapsible__trigger[data-panel-open] {
   color: var(--nova-primary, #2de2ff);
@@ -76,7 +76,7 @@
   z-index: 1;
   height: var(--collapsible-panel-height);
   overflow: hidden;
-  transition: height var(--nova-dur-slow, 0.45s) var(--nova-ease);
+  transition: height var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
 }
 .nova-collapsible__panel[data-starting-style],
 .nova-collapsible__panel[data-ending-style] {

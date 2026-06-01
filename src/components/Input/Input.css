@@ -6,8 +6,8 @@
   background: var(--nova-line, rgba(45, 226, 255, 0.22));
   clip-path: var(--nova-clip-7);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    filter var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-input-wrap:hover {
   background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
@@ -67,7 +67,7 @@
   font-size: 17px;
   color: var(--nova-text-dim, #7793b0);
   pointer-events: none;
-  transition: color var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-input-wrap:focus-within .nova-input__icon {
   color: var(--nova-primary, #2de2ff);

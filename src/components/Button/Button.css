@@ -19,9 +19,9 @@
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
   transition:
-    filter var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease),
-    color var(--nova-dur, 0.22s) var(--nova-ease);
+    filter var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
 .nova-btn::before {
@@ -31,7 +31,7 @@
   z-index: 0;
   clip-path: var(--nova-clip-8);
   background: linear-gradient(180deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
-  transition: background var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
 .nova-btn::after {
@@ -42,7 +42,7 @@
   clip-path: var(--nova-clip-8);
   background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.6) 50%, transparent 62%);
   transform: translateX(-130%);
-  transition: transform var(--nova-dur-slow, 0.45s) var(--nova-ease);
+  transition: transform var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
   pointer-events: none;
 }
 

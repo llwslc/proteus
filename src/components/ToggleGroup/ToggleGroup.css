@@ -38,9 +38,9 @@
   text-transform: uppercase;
   -webkit-tap-highlight-color: transparent;
   transition:
-    color var(--nova-dur, 0.22s) var(--nova-ease),
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-toggle:hover {
   color: var(--nova-text, #d7ecff);

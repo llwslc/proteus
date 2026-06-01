@@ -28,8 +28,8 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition:
-    border-color var(--nova-dur, 0.22s) var(--nova-ease),
-    box-shadow var(--nova-dur, 0.22s) var(--nova-ease);
+    border-color var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 
 .nova-radio__indicator {

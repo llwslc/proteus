@@ -1,6 +1,6 @@
 import { CheckboxGroup as BaseCheckboxGroup } from "@base-ui/react/checkbox-group";
-import { Checkbox } from "../Checkbox";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { Checkbox } from "../Checkbox";
 import "./CheckboxGroup.css";
 
 export interface CheckboxGroupOption {

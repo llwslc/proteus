@@ -9,8 +9,8 @@
     drop-shadow(0 0 14px rgba(45, 226, 255, 0.18));
   transform-origin: var(--transform-origin);
   transition:
-    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease),
-    transform var(--nova-dur-slow, 0.45s) var(--nova-ease);
+    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease, ease),
+    transform var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
 }
 .nova-previewcard__popup[data-starting-style],
 .nova-previewcard__popup[data-ending-style] {

@@ -10,8 +10,8 @@
     drop-shadow(0 0 12px rgba(45, 226, 255, 0.2));
   transform-origin: var(--transform-origin);
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease);
+    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-popover__popup[data-starting-style],
 .nova-popover__popup[data-ending-style] {
@@ -67,7 +67,7 @@
   color: var(--nova-text-mute, #46617e);
   cursor: pointer;
   font-size: 14px;
-  transition: color var(--nova-dur, 0.22s) var(--nova-ease);
+  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-popover__x:hover {
   color: var(--nova-primary, #2de2ff);

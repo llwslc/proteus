@@ -46,8 +46,8 @@
   clip-path: var(--nova-clip-7);
   -webkit-tap-highlight-color: transparent;
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease),
-    color var(--nova-dur, 0.22s) var(--nova-ease);
+    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    color var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
 .nova-toolbar__btn:hover {
   background: var(--nova-line-soft, rgba(45, 226, 255, 0.1));

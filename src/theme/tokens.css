@@ -26,6 +26,7 @@
   --nova-line-strong: rgba(45, 226, 255, 0.55);
   --nova-line-soft: rgba(45, 226, 255, 0.1);
   --nova-grid: rgba(45, 226, 255, 0.06);
+  --nova-highlight: rgba(45, 226, 255, 0.14);
   --nova-track: rgba(120, 170, 210, 0.16);
   --nova-glow: 0 0 0 1px rgba(45, 226, 255, 0.35), 0 0 14px rgba(45, 226, 255, 0.28);
   --nova-glow-text: 0 0 8px rgba(45, 226, 255, 0.55);

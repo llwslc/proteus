@@ -22,7 +22,7 @@
   background: var(--nova-badge-color);
   border-radius: 50%;
   box-shadow: 0 0 6px var(--nova-badge-color);
-  animation: nova-badge-pulse 1.8s var(--nova-ease) infinite;
+  animation: nova-badge-pulse 1.8s var(--nova-ease, ease) infinite;
 }
 @keyframes nova-badge-pulse {
   50% {
