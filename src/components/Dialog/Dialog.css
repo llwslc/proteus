@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--nova-z-backdrop, 1400);
-  background: rgba(2, 6, 12, 0.66);
+  background: var(--nova-scrim, rgba(2, 6, 12, 0.66));
   backdrop-filter: blur(3px) saturate(1.1);
   transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
 }
