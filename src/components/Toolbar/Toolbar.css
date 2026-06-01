@@ -50,7 +50,7 @@
     color var(--nova-dur, 0.22s) var(--nova-ease);
 }
 .nova-toolbar__btn:hover {
-  background: rgba(45, 226, 255, 0.1);
+  background: var(--nova-line-soft, rgba(45, 226, 255, 0.1));
   color: var(--nova-text, #d7ecff);
 }
 .nova-toolbar__btn:focus-visible {

@@ -1,7 +1,7 @@
 # NOVA · Sci-Fi UI Kit
 
 A neon / HUD themed React component kit built on top of
-[**Base UI**](https://base-ui.com) (`@base-ui-components/react`). Base UI gives
+[**Base UI**](https://base-ui.com) (`@base-ui/react`). Base UI gives
 each control its accessible, unstyled behaviour; NOVA wraps it in a cohesive
 sci-fi skin — chamfered frames, reactive glow, scanline motion, and a single
 token file you can re-colour in seconds.
@@ -67,7 +67,7 @@ Components are intentionally easy to lift into another project:
 
 1. **Copy the component folder** (e.g. `src/components/Slider/`).
 2. **Copy `src/theme/tokens.css`** once (or paste the `--nova-*` vars you use).
-3. `npm i @base-ui-components/react` and import.
+3. `npm i @base-ui/react` and import.
 
 Every CSS rule reads tokens with inline fallbacks
 (`var(--nova-primary, #2de2ff)`), so a copied component still renders even

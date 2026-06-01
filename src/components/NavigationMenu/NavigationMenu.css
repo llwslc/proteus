@@ -53,7 +53,7 @@
 .nova-navmenu__trigger:focus-visible,
 .nova-navmenu__toplink:hover,
 .nova-navmenu__toplink:focus-visible {
-  background: rgba(45, 226, 255, 0.1);
+  background: var(--nova-line-soft, rgba(45, 226, 255, 0.1));
   color: var(--nova-text, #d7ecff);
 }
 .nova-navmenu__trigger[data-popup-open] {

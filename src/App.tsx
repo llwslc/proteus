@@ -556,7 +556,6 @@ function Demo() {
           </section>
 
           <div className="nova-grid">
-            {/* Buttons */}
             <div className="nova-section span-2" id="buttons">
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
@@ -578,7 +577,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Switch */}
             <div className="nova-section" id="switch">
               <Panel title="Switch" meta="SWT">
                 <div className="demo-stack">
@@ -598,7 +596,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Checkbox — a group, then standalone on/off/disabled singles */}
             <div className="nova-section" id="checkbox">
               <Panel title="Checkbox" meta="CHK">
                 <div className="demo-stack">
@@ -616,7 +613,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Radio */}
             <div className="nova-section" id="radio">
               <Panel title="Radio Group" meta="RDO">
                 <RadioGroup defaultValue="impulse">
@@ -630,7 +626,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Toggle Group */}
             <div className="nova-section" id="toggle">
               <Panel title="Toggle Group" meta="TGL">
                 <div className="demo-stack">
@@ -648,7 +643,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Slider */}
             <div className="nova-section" id="slider">
               <Panel title="Slider" meta="SLD">
                 <div className="demo-stack">
@@ -664,7 +658,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Number Field */}
             <div className="nova-section" id="number">
               <Panel title="Number Field" meta="NUM">
                 <div className="demo-stack">
@@ -677,7 +670,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Text Field */}
             <div className="nova-section" id="input">
               <Panel title="Text Field" meta="TXT">
                 <div className="demo-stack">
@@ -692,7 +684,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* OTP Field */}
             <div className="nova-section" id="otp">
               <Panel title="OTP Field" meta="OTP">
                 <div className="demo-stack">
@@ -702,7 +693,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Select */}
             <div className="nova-section" id="select">
               <Panel title="Select" meta="SEL">
                 <div className="demo-stack">
@@ -712,7 +702,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Combobox */}
             <div className="nova-section" id="combobox">
               <Panel title="Combobox" meta="CBX">
                 <div className="demo-stack">
@@ -722,7 +711,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Autocomplete */}
             <div className="nova-section" id="autocomplete">
               <Panel title="Autocomplete" meta="ACP">
                 <div className="demo-stack">
@@ -735,7 +723,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Fieldset */}
             <div className="nova-section" id="fieldset">
               <Panel title="Fieldset" meta="FLD">
                 <Fieldset legend="Pilot Credentials">
@@ -745,21 +732,18 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Form */}
             <div className="nova-section" id="form">
               <Panel title="Form" meta="FRM">
                 <FormDemo />
               </Panel>
             </div>
 
-            {/* Progress */}
             <div className="nova-section" id="progress">
               <Panel title="Progress" meta="PRG">
                 <ProgressDemo />
               </Panel>
             </div>
 
-            {/* Meter */}
             <div className="nova-section" id="meter">
               <Panel title="Meter" meta="MTR">
                 <div className="demo-stack">
@@ -770,21 +754,18 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Tabs */}
             <div className="nova-section span-2" id="tabs">
               <Panel title="Tabs" meta="TAB">
                 <Tabs items={TAB_ITEMS} />
               </Panel>
             </div>
 
-            {/* Accordion */}
             <div className="nova-section span-2" id="accordion">
               <Panel title="Accordion" meta="ACC">
                 <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
               </Panel>
             </div>
 
-            {/* Collapsible */}
             <div className="nova-section span-2" id="collapsible">
               <Panel title="Collapsible" meta="CLP">
                 <div className="demo-stack">
@@ -800,7 +781,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Tooltip */}
             <div className="nova-section" id="tooltip">
               <Panel title="Tooltip" meta="TIP">
                 <div className="demo-row">
@@ -816,7 +796,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Popover */}
             <div className="nova-section" id="popover">
               <Panel title="Popover" meta="POP">
                 <Popover
@@ -829,7 +808,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Preview Card */}
             <div className="nova-section" id="preview">
               <Panel title="Preview Card" meta="PVW">
                 <div className="demo-stack">
@@ -877,7 +855,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Menu */}
             <div className="nova-section" id="menu">
               <Panel title="Menu" meta="MNU">
                 <Menu
@@ -899,21 +876,18 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Menubar */}
             <div className="nova-section span-2" id="menubar">
               <Panel title="Menubar" meta="MBR">
                 <Menubar menus={MENUBAR_MENUS} />
               </Panel>
             </div>
 
-            {/* Navigation Menu */}
             <div className="nova-section span-2" id="navmenu">
               <Panel title="Navigation Menu" meta="NAV">
                 <NavigationMenu items={NAVMENU_ITEMS} />
               </Panel>
             </div>
 
-            {/* Context Menu */}
             <div className="nova-section" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <ContextMenu
@@ -934,7 +908,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Dialog */}
             <div className="nova-section" id="dialog">
               <Panel title="Dialog" meta="DLG">
                 <Dialog
@@ -956,7 +929,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Alert Dialog */}
             <div className="nova-section" id="alert">
               <Panel title="Alert Dialog" meta="ALT">
                 <AlertDialog
@@ -975,7 +947,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Drawer */}
             <div className="nova-section" id="drawer">
               <Panel title="Drawer" meta="DRW">
                 <Drawer
@@ -998,14 +969,12 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Toast */}
             <div className="nova-section" id="toast">
               <Panel title="Toast" meta="TST">
                 <ToastDemo />
               </Panel>
             </div>
 
-            {/* Avatar */}
             <div className="nova-section" id="avatar">
               <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
@@ -1021,7 +990,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Badge */}
             <div className="nova-section" id="badge">
               <Panel title="Badge" meta="BDG">
                 <div className="demo-row">
@@ -1039,14 +1007,12 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Toolbar */}
             <div className="nova-section" id="toolbar">
               <Panel title="Toolbar" meta="TBR">
                 <ToolbarDemo />
               </Panel>
             </div>
 
-            {/* Scroll Area */}
             <div className="nova-section" id="scroll">
               <Panel title="Scroll Area" meta="SCR">
                 <ScrollArea maxHeight={200}>
@@ -1062,7 +1028,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Separator */}
             <div className="nova-section" id="separator">
               <Panel title="Separator" meta="SEP">
                 <div className="demo-stack">
@@ -1074,7 +1039,6 @@ function Demo() {
               </Panel>
             </div>
 
-            {/* Panel (self) */}
             <div className="nova-section" id="panel">
               <Panel title="Panel" meta="PNL" scan>
                 <p style={{ marginTop: 0, color: "var(--nova-text-dim)" }}>
