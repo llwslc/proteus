@@ -1,5 +1,5 @@
 .nova-previewcard__positioner {
-  z-index: 1250;
+  z-index: var(--nova-z-menu, 1250);
 }
 
 .nova-previewcard__popup {

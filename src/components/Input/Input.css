@@ -64,7 +64,7 @@
   transform: translateY(-50%);
   z-index: 2;
   display: inline-flex;
-  font-size: 17px;
+  font-size: 16px;
   color: var(--nova-text-dim, #7793b0);
   pointer-events: none;
   transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);

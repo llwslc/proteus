@@ -72,7 +72,7 @@
 
 /* ---- Shared popup + viewport ---- */
 .nova-navmenu__positioner {
-  z-index: 1250;
+  z-index: var(--nova-z-menu, 1250);
   outline: none;
   box-sizing: border-box;
   width: var(--positioner-width);

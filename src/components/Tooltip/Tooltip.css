@@ -1,5 +1,5 @@
 .nova-tooltip__positioner {
-  z-index: 1300;
+  z-index: var(--nova-z-tooltip, 1300);
 }
 
 /* Outer popup: a transparent, UN-clipped container. The arrow can overhang

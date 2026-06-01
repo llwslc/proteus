@@ -1,7 +1,7 @@
 .nova-drawer__backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1400;
+  z-index: var(--nova-z-backdrop, 1400);
   background: rgba(2, 6, 12, 0.62);
   backdrop-filter: blur(3px) saturate(1.1);
   transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
@@ -13,7 +13,7 @@
 
 .nova-drawer {
   position: fixed;
-  z-index: 1401;
+  z-index: var(--nova-z-overlay, 1401);
   display: flex;
   flex-direction: column;
   padding: 26px 26px 22px;
@@ -120,7 +120,7 @@
   font-family: var(--nova-font-display, sans-serif);
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--nova-primary, #2de2ff);
   text-shadow: var(--nova-glow-text, 0 0 8px rgba(45, 226, 255, 0.55));

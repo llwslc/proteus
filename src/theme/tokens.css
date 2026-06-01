@@ -46,6 +46,15 @@
 
   --nova-control-h: 38px;
   --nova-disabled-opacity: 0.4;
+
+  /* Overlay stacking ladder — one source of truth for portal layers, low→high:
+     dropdown < menu/popover < tooltip < modal backdrop < modal surface < toast. */
+  --nova-z-dropdown: 1200;
+  --nova-z-menu: 1250;
+  --nova-z-tooltip: 1300;
+  --nova-z-backdrop: 1400;
+  --nova-z-overlay: 1401;
+  --nova-z-toast: 1500;
 }
 
 /* Pre-built chamfer clips: pick a size by name, e.g. clip-path: var(--nova-clip-7).

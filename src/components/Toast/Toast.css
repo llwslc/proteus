@@ -2,7 +2,7 @@
   position: fixed;
   top: 22px;
   right: 22px;
-  z-index: 1500;
+  z-index: var(--nova-z-toast, 1500);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -60,7 +60,7 @@
 .nova-toast__desc {
   margin: 4px 0 0;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--nova-text-dim, #7793b0);
 }
 .nova-toast__close {

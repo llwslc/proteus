@@ -87,7 +87,7 @@
 }
 
 .nova-combobox__positioner {
-  z-index: 1200;
+  z-index: var(--nova-z-dropdown, 1200);
   outline: none;
 }
 .nova-combobox__popup {
