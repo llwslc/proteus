@@ -59,7 +59,7 @@
 .nova-navmenu__trigger[data-popup-open] {
   background: var(--nova-primary, #2de2ff);
   color: var(--nova-on-primary, #02131a);
-  box-shadow: 0 0 10px rgba(45, 226, 255, 0.35);
+  box-shadow: var(--nova-glow-bar, 0 0 10px rgba(45, 226, 255, 0.35));
 }
 .nova-navmenu__chevron {
   display: inline-flex;

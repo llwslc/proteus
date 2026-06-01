@@ -85,7 +85,7 @@
 }
 
 .nova-btn--secondary {
-  background: rgba(255, 45, 117, 0.55);
+  background: var(--nova-secondary-fill, rgba(255, 45, 117, 0.55));
   color: #1c0410;
 }
 .nova-btn--secondary::before {
@@ -94,11 +94,11 @@
 .nova-btn--secondary:hover,
 .nova-btn--secondary:focus-visible {
   filter: drop-shadow(0 0 4px var(--nova-secondary, #ff2d75))
-    drop-shadow(0 0 14px rgba(255, 45, 117, 0.55));
+    drop-shadow(0 0 14px var(--nova-secondary-fill, rgba(255, 45, 117, 0.55)));
 }
 
 .nova-btn--danger {
-  background: rgba(255, 77, 94, 0.55);
+  background: var(--nova-danger-fill, rgba(255, 77, 94, 0.55));
   color: #1c0406;
 }
 .nova-btn--danger::before {
@@ -107,7 +107,7 @@
 .nova-btn--danger:hover,
 .nova-btn--danger:focus-visible {
   filter: drop-shadow(0 0 4px var(--nova-danger, #ff4d5e))
-    drop-shadow(0 0 14px rgba(255, 77, 94, 0.55));
+    drop-shadow(0 0 14px var(--nova-danger-fill, rgba(255, 77, 94, 0.55)));
 }
 
 .nova-btn--ghost {

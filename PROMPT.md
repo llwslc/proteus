@@ -21,6 +21,7 @@
 src/
   theme/tokens.css       # 设计令牌 —— 改这里整体换肤
   theme/global.css       # 背景氛围层(网格/扫描线/噪点/暗角),仅 demo 用
+  theme/effects.css      # 跨组件共享配方(scan 扫光 / tick 尖角 / 模态 scrim·标题·关闭按钮),main.tsx 引一次
   components/
     <Name>/<Name>.tsx    # 包一层 Base UI,套 nova-* class
     <Name>/<Name>.css    # 同目录样式,只依赖 --nova-* 令牌
@@ -28,7 +29,7 @@ src/
     icons.tsx            # 共享内联 SVG 图标(1em / currentColor)
     index.ts             # 统一出口(barrel)
 ```
-**移植 = 拷一个组件文件夹 + `tokens.css`,装 `@base-ui/react` 即可。**
+**移植 = 拷一个组件文件夹 + `tokens.css`,装 `@base-ui/react` 即可**(模态/带共享配方的件再加 `theme/effects.css`)。
 
 ## 设计语言
 - **基调**:深空暗色;主色 电光青 `#2de2ff`、副色 品红 `#ff2d75`;`success/warning/danger` = `#54ffb0` / `#ffce54` / `#ff4d5e`。
@@ -54,8 +55,28 @@ src/
 - **带描边的切角用双层 frame**,别用 `border + clip-path`(斜边不描):外层背景 = 边框色 + `clip-path`,`::before` 内缩 1px 填背景色,内容 `position:relative; z-index:1` 压在填充上。
 - **`clip-path` 会裁掉子元素/伪元素**:Panel 角括号只放在不切角的两角(TR/BL);浮层箭头不能塞进切角元素,结构为 `popup(不裁) > [切角面板, 箭头(面板的兄弟)]`;列表/分段的激活高亮别被切角裁断。
 - **双层 frame 里的分隔线/高亮必须 `position:relative; z-index:1`**——否则停留在普通流(z=0),被 `::before` 那层不透明填充**盖住而不可见**;这是层级问题不是颜色问题(染什么色都没用)。分隔线统一复用全局 `.nova-separator`,别每个浮层手搓;竖排分隔(Toolbar)要用 `line-strong` 平涂**覆盖** `.nova-separator` 的 `90deg` 渐变——横向渐变在 1px 宽的竖列上会淡成全透明。
-- **浮层箭头 = 两三角法**(Tooltip / Popover / PreviewCard):填充三角(`::after`,色同面板)叠在略大的边框三角(`::before`)上,贴面板边缘、四个方向各自定义,`::after` 朝面板内偏移 ~1.5px。比旋转方块稳,不会断成「边框 + 一个 V」。
+- **浮层箭头 = 一条竖线连接法**(Tooltip / Popover / PreviewCard 同款):`__arrow::before` 一根 1px 线、色 `--nova-line-strong`,四个方向定位(`top/bottom` 竖线、`left/right` 横线)。**别用三角**:半透明边框 + 切角下,裁出来的三角会断成「边框 + 一个 V」,旋转方块也对不齐缺口;一根线最稳、最统一、无缝。
 - **分段控件(ToggleGroup / Toolbar)**:外框一个尺寸(9)、内部按钮统一另一个尺寸(7),所有按钮同款切角,不按 first/last 区分。
+
+### 设计系统一致性(令牌化 + 共享配方 + 清零)
+> 核心铁律:**任何视觉值在第 2 个地方出现,就该有个名字**——要么是 `tokens.css` 里的令牌,要么是 `effects.css` 里的共享 class。代码里**零裸字面**重复值。
+
+- **零裸字面色 / 渐变 / 辉光**:凡是「等于或派生自某令牌」的 `rgba()` / 渐变 / `box-shadow` / `drop-shadow`,**必须**写成 `var(--nova-x, 字面)`(令牌 + 内联 fallback),不许裸写。判定方法:写完跑一遍 `grep` 把每个重复的 `rgba(...)` / 渐变捞出来,出现 ≥2 次或与某令牌同值的,一律建令牌。已建令牌覆盖的维度:
+  - 青色 alpha 阶梯:`--nova-line-soft .10 / grid .06 / tint-faint .05 / tint-soft .08 / highlight .14 / line .22 / line-strong .55`——新出现的青 alpha 先在这个阶梯里找,没有再加,**别裸写**。
+  - 品牌色填充(hex 令牌带不了 alpha):`--nova-secondary-fill`(品红 .55)、`--nova-danger-fill`(红 .55)、`--nova-danger-wash`(红 .12)。
+  - 辉光成品:`--nova-glow`(环+晕)、`--nova-glow-text`(文字光晕)、`--nova-glow-bar`(条状激活项 `0 0 10px`)。
+  - 模态面:`--nova-scrim`(背板)、`--nova-surface-modal`(双层 frame 内层渐变填充)、`--nova-surface-popup/input/bar`(三类浮层/控件/常驻条的填充)。
+  - 其它阶梯类令牌别压平:`--nova-z-*`(浮层层级 dropdown<menu<tooltip<backdrop<overlay<toast)、`--nova-clip-N`(切角尺寸)、`--nova-dur/-slow`、`--nova-disabled-opacity .4`、`--nova-control-h 38px`。
+- **重复的 CSS 块抽到 `theme/effects.css` 当共享 class**,颜色差异用 `--nova-*-color` 变量参数化、让组件就近覆盖,**别复制粘贴**整块规则:
+  - `.nova-scan`(+ `@keyframes nova-scan`)= 头部扫光,色走 `--nova-scan-color`(默认 primary)。
+  - `.nova-tick` = 标题/图例的切角尖角,色走 `--nova-tick-color`。
+  - `.nova-scrim-backdrop` = 模态背板(含 `[data-starting/ending-style]{opacity:0}`)。
+  - `.nova-modal-title / -desc / -body / -actions` = 模态文本配方,标题色走 `--nova-title-color`。
+  - `.nova-modal-close` = 切角关闭按钮,组件只就近覆盖 `top/right/z-index`。
+  - **参数化套路**:Dialog/Drawer 用默认(primary);AlertDialog 在 `.nova-alert__popup` 上一把设 `--nova-scan-color / --nova-title-color / --nova-tick-color = var(--nova-alert-accent)`,扫光/标题/尖角靠**继承**统一变色,零重复块。组件 TSX 里写 `className="nova-modal-title"`(无本地差异时直接用共享 class)或 `"nova-modal-close nova-xxx__x"`(本地差异挂在自己 BEM class 上)。
+  - **真变体要留本地、别硬塞**:PreviewCard 的 scan 是静态变体(`top:0`、无动画)、Drawer 的 `__body`(可滚动列)和 `__footer`(带上边框分隔)是真不同——**不**并入共享 class。判定:逐字节 diff,只有「前缀不同 / 单个色令牌不同」才算重复;几何/动画/布局不同就是真变体。
+- **其余度量维度按「角色多数」收敛**(role majority):同角色元素的 `padding / margin / gap / font-size / letter-spacing / line-height` 取出现最多的那个值统一,零散的孤值改成多数值。但**辉光/阴影的「电梯」是有意的**(如浮层抬升 popup 阴影由弱到强、Button 6/8/11 切角阶梯、OTP 22/19px),**别为了"统一"压平有意的梯度**——改之前先判断是孤值漂移还是有意阶梯。
+- **改完必须证明清零**:`grep` 全量扫该维度,确认除令牌定义 / `var()` fallback 外**无裸字面残留**;再 `npm run build` + 截图过一遍受影响组件。**别用注释解释"这里先留着"——能清就清干净。**
 
 ### 对比度
 - 「边框色打底 + `::before` 填充」时,**激活态填充必须深色不透明**——半透明会让底下的亮边框透上来铺满整块,前景(文字/滑块)看不清。

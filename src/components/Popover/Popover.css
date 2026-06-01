@@ -73,8 +73,7 @@
   color: var(--nova-primary, #2de2ff);
 }
 
-/* Connector: a solid glowing line bridging the popup edge toward the trigger
-   (no triangle → no seam; solid --nova-primary, not the alpha border token). */
+/* Connector: a solid 1px line in --nova-line-strong (no triangle → no seam). */
 .nova-popover__arrow {
   z-index: 2;
   width: 16px;

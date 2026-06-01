@@ -15,7 +15,7 @@ export function Fieldset({ className, legend, children, ...props }: FieldsetProp
     >
       {legend != null ? (
         <BaseFieldset.Legend className="nova-fieldset__legend">
-          <span className="nova-fieldset__tick" />
+          <span className="nova-tick" />
           {legend}
         </BaseFieldset.Legend>
       ) : null}

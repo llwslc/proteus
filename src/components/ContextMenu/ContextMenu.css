@@ -26,7 +26,7 @@
   background: repeating-linear-gradient(
       -45deg,
       transparent 0 9px,
-      rgba(45, 226, 255, 0.06) 9px 10px
+      var(--nova-grid, rgba(45, 226, 255, 0.06)) 9px 10px
     ),
     rgba(11, 24, 40, 0.6);
 }

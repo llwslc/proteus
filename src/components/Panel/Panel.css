@@ -27,7 +27,7 @@
   top: 1px;
   height: 44%;
   z-index: 0;
-  background: linear-gradient(180deg, transparent, rgba(45, 226, 255, 0.08), transparent);
+  background: linear-gradient(180deg, transparent, var(--nova-tint-soft, rgba(45, 226, 255, 0.08)), transparent);
   pointer-events: none;
   animation: nova-panel-scan 6s linear infinite;
 }

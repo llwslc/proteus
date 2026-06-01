@@ -31,29 +31,29 @@ export function AlertDialog({
     <BaseAlertDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseAlertDialog.Trigger render={trigger} />
       <BaseAlertDialog.Portal>
-        <BaseAlertDialog.Backdrop className="nova-alert__backdrop" />
+        <BaseAlertDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseAlertDialog.Popup
           className={["nova-alert__popup", `nova-alert__popup--${tone}`, className]
             .filter(Boolean)
             .join(" ")}
         >
-          <span className="nova-alert__scan" />
+          <span className="nova-scan" />
           {title != null ? (
-            <BaseAlertDialog.Title className="nova-alert__title">
-              <span className="nova-alert__title-tick" />
+            <BaseAlertDialog.Title className="nova-modal-title">
+              <span className="nova-tick" />
               {title}
             </BaseAlertDialog.Title>
           ) : null}
           {description != null ? (
-            <BaseAlertDialog.Description className="nova-alert__desc">
+            <BaseAlertDialog.Description className="nova-modal-desc">
               {description}
             </BaseAlertDialog.Description>
           ) : null}
           {children != null ? (
-            <div className="nova-alert__body">{children}</div>
+            <div className="nova-modal-body">{children}</div>
           ) : null}
           {actions != null ? (
-            <div className="nova-alert__actions">{actions}</div>
+            <div className="nova-modal-actions">{actions}</div>
           ) : null}
         </BaseAlertDialog.Popup>
       </BaseAlertDialog.Portal>

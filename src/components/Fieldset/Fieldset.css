@@ -23,15 +23,6 @@
   color: var(--nova-primary, #2de2ff);
   text-shadow: var(--nova-glow-text, 0 0 8px rgba(45, 226, 255, 0.55));
 }
-.nova-fieldset__tick {
-  flex: 0 0 auto;
-  width: 8px;
-  height: 16px;
-  background: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 8px var(--nova-primary, #2de2ff);
-  clip-path: var(--nova-clip-tick);
-}
-
 .nova-fieldset__body {
   display: flex;
   flex-direction: column;

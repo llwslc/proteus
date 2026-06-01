@@ -30,30 +30,33 @@ export function Dialog({
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseDialog.Trigger render={trigger} />
       <BaseDialog.Portal>
-        <BaseDialog.Backdrop className="nova-dialog__backdrop" />
+        <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Popup
           className={["nova-dialog__popup", className].filter(Boolean).join(" ")}
         >
-          <span className="nova-dialog__scan" />
-          <BaseDialog.Close className="nova-dialog__x" aria-label="Close">
+          <span className="nova-scan" />
+          <BaseDialog.Close
+            className="nova-modal-close nova-dialog__x"
+            aria-label="Close"
+          >
             <XIcon />
           </BaseDialog.Close>
           {title != null ? (
-            <BaseDialog.Title className="nova-dialog__title">
-              <span className="nova-dialog__title-tick" />
+            <BaseDialog.Title className="nova-modal-title">
+              <span className="nova-tick" />
               {title}
             </BaseDialog.Title>
           ) : null}
           {description != null ? (
-            <BaseDialog.Description className="nova-dialog__desc">
+            <BaseDialog.Description className="nova-modal-desc">
               {description}
             </BaseDialog.Description>
           ) : null}
           {children != null ? (
-            <div className="nova-dialog__body">{children}</div>
+            <div className="nova-modal-body">{children}</div>
           ) : null}
           {footer != null ? (
-            <div className="nova-dialog__footer">{footer}</div>
+            <div className="nova-modal-actions">{footer}</div>
           ) : null}
         </BaseDialog.Popup>
       </BaseDialog.Portal>

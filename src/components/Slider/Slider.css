@@ -22,7 +22,7 @@
   font-size: 13px;
   letter-spacing: 0.06em;
   color: var(--nova-primary, #2de2ff);
-  background: rgba(45, 226, 255, 0.08);
+  background: var(--nova-tint-soft, rgba(45, 226, 255, 0.08));
   border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
   padding: 1px 9px;
   min-width: 42px;

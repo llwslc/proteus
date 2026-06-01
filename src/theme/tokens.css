@@ -13,8 +13,10 @@
   --nova-surface-popup: rgba(7, 14, 24, 0.97);
   --nova-surface-input: rgba(8, 16, 26, 0.92);
   --nova-surface-bar: rgba(8, 18, 30, 0.94);
-  /* Modal scrim behind Dialog/AlertDialog/Drawer. */
+  /* Modal scrim behind Dialog/AlertDialog/Drawer, and the inner-frame fill for
+     the modal popup ::before (double-frame technique). */
   --nova-scrim: rgba(2, 6, 12, 0.66);
+  --nova-surface-modal: linear-gradient(160deg, rgba(11, 22, 36, 0.98), rgba(7, 14, 24, 0.98));
 
   --nova-primary: #2de2ff;
   --nova-primary-deep: #119cb8;
@@ -22,6 +24,12 @@
   --nova-success: #54ffb0;
   --nova-warning: #ffce54;
   --nova-danger: #ff4d5e;
+
+  /* Brand-tint fills — alpha variants of the colours above, reused as solid
+     washes/glows (the colour tokens are hex and can't carry an alpha alone). */
+  --nova-secondary-fill: rgba(255, 45, 117, 0.55);
+  --nova-danger-fill: rgba(255, 77, 94, 0.55);
+  --nova-danger-wash: rgba(255, 77, 94, 0.12);
 
   --nova-text: #d7ecff;
   --nova-text-dim: #7793b0;
@@ -32,10 +40,13 @@
   --nova-line-strong: rgba(45, 226, 255, 0.55);
   --nova-line-soft: rgba(45, 226, 255, 0.1);
   --nova-grid: rgba(45, 226, 255, 0.06);
+  --nova-tint-faint: rgba(45, 226, 255, 0.05);
+  --nova-tint-soft: rgba(45, 226, 255, 0.08);
   --nova-highlight: rgba(45, 226, 255, 0.14);
   --nova-track: rgba(120, 170, 210, 0.16);
   --nova-glow: 0 0 0 1px rgba(45, 226, 255, 0.35), 0 0 14px rgba(45, 226, 255, 0.28);
   --nova-glow-text: 0 0 8px rgba(45, 226, 255, 0.55);
+  --nova-glow-bar: 0 0 10px rgba(45, 226, 255, 0.35);
 
   --nova-font: "Rajdhani", "Segoe UI", system-ui, sans-serif;
   --nova-font-display: "Orbitron", "Rajdhani", sans-serif;

@@ -35,24 +35,27 @@ export function Drawer({
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseDialog.Trigger render={trigger} />
       <BaseDialog.Portal>
-        <BaseDialog.Backdrop className="nova-drawer__backdrop" />
+        <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Popup
           className={["nova-drawer", `nova-drawer--${side}`, className]
             .filter(Boolean)
             .join(" ")}
         >
           <span className="nova-drawer__edge" />
-          <BaseDialog.Close className="nova-drawer__x" aria-label="Close">
+          <BaseDialog.Close
+            className="nova-modal-close nova-drawer__x"
+            aria-label="Close"
+          >
             <XIcon />
           </BaseDialog.Close>
           {title != null ? (
-            <BaseDialog.Title className="nova-drawer__title">
-              <span className="nova-drawer__title-tick" />
+            <BaseDialog.Title className="nova-modal-title">
+              <span className="nova-tick" />
               {title}
             </BaseDialog.Title>
           ) : null}
           {description != null ? (
-            <BaseDialog.Description className="nova-drawer__desc">
+            <BaseDialog.Description className="nova-modal-desc">
               {description}
             </BaseDialog.Description>
           ) : null}

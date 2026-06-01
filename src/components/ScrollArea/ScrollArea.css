@@ -39,7 +39,7 @@
   justify-content: center;
   width: 11px;
   margin: 1px;
-  background: rgba(45, 226, 255, 0.05);
+  background: var(--nova-tint-faint, rgba(45, 226, 255, 0.05));
   opacity: 0;
   transition: opacity var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
 }

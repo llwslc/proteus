@@ -42,15 +42,10 @@
   background: var(--nova-surface-popup, rgba(7, 14, 24, 0.97));
 }
 
-/* Arrow: Base UI's rotated-square method. A 45°-rotated square carrying the SAME
-   border + fill as the surface is clipped by the arrow box (overflow:clip) into a
-   triangle — so its two visible edges ARE the surface border (same colour, works
-   even with a semi-transparent border) and the base, sliding under the surface,
-   has no seam. fill + border are tokens, so it re-themes for free. Rotated per
-   data-side. Square side = arrow-width / √2 so its diagonal spans the box. */
-/* Connector: a solid glowing line bridging the popup edge toward the trigger.
-   No triangle → no border seam, and a solid --nova-primary (not the semi-
-   transparent border token), so it reads crisp on the dark surface. */
+/* Connector: a solid 1px line in --nova-line-strong bridging the popup edge
+   toward the trigger. No triangle → no border seam; a clipped triangle under a
+   semi-transparent border + chamfer breaks into "border + a V", a line never
+   does. Same recipe in Popover / PreviewCard. */
 .nova-tooltip__arrow {
   z-index: 2;
   width: 16px;
