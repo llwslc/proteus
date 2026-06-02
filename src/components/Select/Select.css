@@ -1,3 +1,10 @@
+.nova-select__field {
+  display: block;
+  width: 100%;
+  min-width: 190px;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+
 .nova-select__trigger {
   position: relative;
   display: inline-flex;
@@ -18,9 +25,7 @@
   letter-spacing: 0.01em;
   text-align: left;
   -webkit-tap-highlight-color: transparent;
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    filter var(--nova-dur) var(--nova-ease);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-select__trigger::before {
   content: "";
@@ -41,6 +46,9 @@
 .nova-select__trigger:focus-visible {
   outline: none;
   background: var(--nova-primary);
+}
+.nova-select__field:has(.nova-select__trigger[data-popup-open]),
+.nova-select__field:has(.nova-select__trigger:focus-visible) {
   filter: var(--nova-glow-focus);
 }
 .nova-select__placeholder {

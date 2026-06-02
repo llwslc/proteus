@@ -13,15 +13,17 @@ export interface InputProps
 export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (
-    <span
-      className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", className)}
-    >
-      {icon ? <span className="nova-input__icon">{icon}</span> : null}
-      <BaseInput
-        id={id ?? autoId}
-        className={cx("nova-input", icon ? "nova-input--has-icon" : "")}
-        {...props}
-      />
+    <span className="nova-input-glow">
+      <span
+        className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", className)}
+      >
+        {icon ? <span className="nova-input__icon">{icon}</span> : null}
+        <BaseInput
+          id={id ?? autoId}
+          className={cx("nova-input", icon ? "nova-input--has-icon" : "")}
+          {...props}
+        />
+      </span>
     </span>
   );
 }
@@ -51,14 +53,16 @@ export function Field({
       {label != null ? (
         <BaseField.Label className="nova-field__label">{label}</BaseField.Label>
       ) : null}
-      <span
-        className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", error != null ? "nova-input-wrap--error" : "")}
-      >
-        {icon ? <span className="nova-input__icon">{icon}</span> : null}
-        <BaseField.Control
-          className={cx("nova-input", icon ? "nova-input--has-icon" : "", className)}
-          {...control}
-        />
+      <span className="nova-input-glow">
+        <span
+          className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", error != null ? "nova-input-wrap--error" : "")}
+        >
+          {icon ? <span className="nova-input__icon">{icon}</span> : null}
+          <BaseField.Control
+            className={cx("nova-input", icon ? "nova-input--has-icon" : "", className)}
+            {...control}
+          />
+        </span>
       </span>
       {description != null ? (
         <BaseField.Description className="nova-field__desc">

@@ -52,12 +52,17 @@
 .nova-scrollarea__thumb {
   flex: 1;
   position: relative;
-  background: var(--nova-line-strong);
   box-shadow: 0 0 7px var(--nova-primary-a40);
+}
+.nova-scrollarea__thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   clip-path: var(--nova-clip-3);
+  background: var(--nova-line-strong);
   transition: background var(--nova-dur) var(--nova-ease);
 }
-.nova-scrollarea__thumb:hover,
-.nova-scrollarea__thumb[data-scrolling] {
+.nova-scrollarea__thumb:hover::before,
+.nova-scrollarea__thumb[data-scrolling]::before {
   background: var(--nova-primary);
 }

@@ -21,9 +21,11 @@ export function Menubar({ menus }: MenubarProps) {
     <BaseMenubar className="nova-menubar">
       {menus.map((m) => (
         <BaseMenu.Root key={m.label}>
-          <BaseMenu.Trigger className="nova-menubar__trigger">
-            {m.label}
-          </BaseMenu.Trigger>
+          <span className="nova-menubar__triggerwrap">
+            <BaseMenu.Trigger className="nova-menubar__trigger">
+              {m.label}
+            </BaseMenu.Trigger>
+          </span>
           <BaseMenu.Portal>
             <BaseMenu.Positioner
               className="nova-elevation nova-menu__positioner"

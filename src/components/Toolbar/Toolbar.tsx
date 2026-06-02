@@ -34,12 +34,14 @@ export function ToolbarButton({
   ...props
 }: ToolbarButtonProps) {
   return (
-    <BaseToolbar.Button
-      className={cx("nova-toolbar__btn", active ? "is-active" : "")}
-      {...props}
-    >
-      {children}
-    </BaseToolbar.Button>
+    <span className="nova-toolbar__btnwrap">
+      <BaseToolbar.Button
+        className={cx("nova-toolbar__btn", active ? "is-active" : "")}
+        {...props}
+      >
+        {children}
+      </BaseToolbar.Button>
+    </span>
   );
 }
 

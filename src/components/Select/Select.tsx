@@ -46,24 +46,26 @@ export function Select({
       disabled={disabled}
       name={name ?? autoId}
     >
-      <BaseSelect.Trigger
-        id={id ?? autoId}
-        className={cx("nova-select__trigger", className)}
-      >
-        <BaseSelect.Value>
-          {(val: unknown) => {
-            const item = items.find((i) => i.value === val);
-            return item ? (
-              item.label
-            ) : (
-              <span className="nova-select__placeholder">{placeholder}</span>
-            );
-          }}
-        </BaseSelect.Value>
-        <BaseSelect.Icon className="nova-select__chevron">
-          <ChevronDownIcon />
-        </BaseSelect.Icon>
-      </BaseSelect.Trigger>
+      <span className={cx("nova-select__field", className)}>
+        <BaseSelect.Trigger
+          id={id ?? autoId}
+          className="nova-select__trigger"
+        >
+          <BaseSelect.Value>
+            {(val: unknown) => {
+              const item = items.find((i) => i.value === val);
+              return item ? (
+                item.label
+              ) : (
+                <span className="nova-select__placeholder">{placeholder}</span>
+              );
+            }}
+          </BaseSelect.Value>
+          <BaseSelect.Icon className="nova-select__chevron">
+            <ChevronDownIcon />
+          </BaseSelect.Icon>
+        </BaseSelect.Trigger>
+      </span>
 
       <BaseSelect.Portal>
         <BaseSelect.Positioner

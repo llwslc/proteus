@@ -1,3 +1,12 @@
+.nova-autocomplete__field {
+  display: block;
+  width: 100%;
+  min-width: 240px;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+.nova-autocomplete__field:has(:focus-within) {
+  filter: var(--nova-glow-focus);
+}
 .nova-autocomplete__control {
   position: relative;
   display: flex;
@@ -9,9 +18,7 @@
   padding: 0 12px;
   background: var(--nova-line);
   clip-path: var(--nova-clip-7);
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    filter var(--nova-dur) var(--nova-ease);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-autocomplete__control::before {
   content: "";
@@ -27,7 +34,6 @@
 }
 .nova-autocomplete__control:focus-within {
   background: var(--nova-line-strong);
-  filter: var(--nova-glow-focus);
 }
 .nova-autocomplete__control:focus-within::before {
   background: var(--nova-surface-inset);

@@ -9,6 +9,13 @@
   gap: 8px;
 }
 
+.nova-otp__cell-glow {
+  display: inline-flex;
+  width: 44px;
+  height: 52px;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+
 .nova-otp__cell {
   position: relative;
   display: inline-flex;
@@ -16,9 +23,7 @@
   height: 52px;
   background: var(--nova-line-strong);
   clip-path: var(--nova-clip-7);
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    filter var(--nova-dur) var(--nova-ease);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-otp__cell::before {
   content: "";
@@ -46,9 +51,11 @@
   outline: none;
 }
 
+.nova-otp__cell-glow:has(.nova-otp__slot:focus) {
+  filter: drop-shadow(0 0 8px var(--nova-primary-a50));
+}
 .nova-otp__cell:has(.nova-otp__slot:focus) {
   background: var(--nova-primary);
-  filter: drop-shadow(0 0 8px var(--nova-primary-a50));
 }
 .nova-otp__cell:has(.nova-otp__slot:focus)::before {
   background: var(--nova-surface-inset);

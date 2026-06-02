@@ -96,11 +96,17 @@
 }
 
 .nova-tick {
+  position: relative;
   flex: 0 0 auto;
   width: 8px;
   height: 16px;
+  filter: drop-shadow(0 0 8px var(--nova-tick-color, var(--nova-primary)));
+}
+.nova-tick::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: var(--nova-tick-color, var(--nova-primary));
-  box-shadow: 0 0 8px var(--nova-tick-color, var(--nova-primary));
   clip-path: var(--nova-clip-tick);
 }
 

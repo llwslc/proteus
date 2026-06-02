@@ -21,9 +21,11 @@ export interface ToggleProps
 
 export function Toggle({ className, ...props }: ToggleProps) {
   return (
-    <BaseToggle
-      className={cx("nova-toggle", className)}
-      {...props}
-    />
+    <span className="nova-toggle-wrap">
+      <BaseToggle
+        className={cx("nova-toggle", className)}
+        {...props}
+      />
+    </span>
   );
 }

@@ -22,6 +22,14 @@
   z-index: 1;
 }
 
+.nova-menubar__triggerwrap {
+  display: inline-flex;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+.nova-menubar__triggerwrap:has([data-popup-open]) {
+  filter: drop-shadow(0 0 10px var(--nova-primary-a40));
+}
+
 .nova-menubar__trigger {
   display: inline-flex;
   align-items: center;
@@ -48,5 +56,4 @@
 .nova-menubar__trigger[data-popup-open] {
   background: var(--nova-primary);
   color: var(--nova-on-primary);
-  box-shadow: var(--nova-glow-bar);
 }

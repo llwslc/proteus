@@ -55,14 +55,20 @@
 }
 
 .nova-slider__thumb {
+  position: relative;
   width: 16px;
   height: 16px;
-  background: linear-gradient(160deg, var(--nova-text-bright), var(--nova-primary));
-  clip-path: var(--nova-clip-4);
   box-shadow: 0 0 10px var(--nova-primary);
   transition:
     box-shadow var(--nova-dur) var(--nova-ease),
     transform var(--nova-dur) var(--nova-ease);
+}
+.nova-slider__thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: var(--nova-clip-4);
+  background: linear-gradient(160deg, var(--nova-text-bright), var(--nova-primary));
 }
 .nova-slider__thumb:hover {
   transform: scale(1.14);

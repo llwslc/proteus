@@ -1,5 +1,9 @@
 .nova-numberfield {
   display: inline-block;
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+.nova-numberfield:focus-within {
+  filter: var(--nova-glow-focus);
 }
 
 .nova-numberfield__group {
@@ -9,16 +13,13 @@
   height: var(--nova-control-h);
   background: var(--nova-line);
   clip-path: var(--nova-clip-7);
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    filter var(--nova-dur) var(--nova-ease);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-numberfield__group:hover {
   background: var(--nova-line-strong);
 }
 .nova-numberfield__group:focus-within {
   background: var(--nova-primary);
-  filter: var(--nova-glow-focus);
 }
 
 .nova-numberfield__btn {

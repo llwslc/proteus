@@ -21,16 +21,18 @@ export function Autocomplete({
   const inputId = useId();
   return (
     <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
-      <div className="nova-autocomplete__control">
-        <span className="nova-autocomplete__lead">
-          <BoltIcon />
-        </span>
-        <BaseAutocomplete.Input
-          id={inputId}
-          className="nova-autocomplete__input"
-          placeholder={placeholder}
-          aria-label={label ?? placeholder}
-        />
+      <div className="nova-autocomplete__field">
+        <div className="nova-autocomplete__control">
+          <span className="nova-autocomplete__lead">
+            <BoltIcon />
+          </span>
+          <BaseAutocomplete.Input
+            id={inputId}
+            className="nova-autocomplete__input"
+            placeholder={placeholder}
+            aria-label={label ?? placeholder}
+          />
+        </div>
       </div>
       <BaseAutocomplete.Portal>
         <BaseAutocomplete.Positioner
