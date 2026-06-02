@@ -56,6 +56,7 @@ import {
   SearchIcon,
   SignalIcon,
   TrashIcon,
+  XIcon,
 } from "./components/icons";
 import "./App.css";
 
@@ -562,11 +563,10 @@ function Demo() {
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
                   <div className="demo-row">
-                    <Button>Engage</Button>
+                    <Button icon={<BoltIcon />}>Charge</Button>
                     <Button variant="secondary">Override</Button>
                     <Button variant="danger">Abort</Button>
                     <Button variant="ghost">Standby</Button>
-                    <Button icon={<BoltIcon />}>Charge</Button>
                     <Button disabled>Offline</Button>
                   </div>
                   <Separator />
@@ -577,9 +577,6 @@ function Demo() {
                   </div>
                   <Separator />
                   <div className="demo-row">
-                    <Button variant="icon" aria-label="Charge">
-                      <BoltIcon />
-                    </Button>
                     <Button variant="icon" aria-label="Copy">
                       <CopyIcon />
                     </Button>
@@ -592,8 +589,8 @@ function Demo() {
                     <Button variant="icon-ghost" aria-label="Search">
                       <SearchIcon />
                     </Button>
-                    <Button variant="icon-ghost" aria-label="Copy">
-                      <CopyIcon />
+                    <Button variant="icon-ghost" aria-label="Close">
+                      <XIcon />
                     </Button>
                   </div>
                 </div>
