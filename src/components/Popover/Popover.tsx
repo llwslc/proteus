@@ -28,15 +28,15 @@ export function Popover({
       <BasePopover.Trigger render={trigger} />
       <BasePopover.Portal>
         <BasePopover.Positioner
-          className="nova-popover__positioner"
+          className="nova-elevation nova-popover__positioner"
           side={side}
           align={align}
           sideOffset={sideOffset}
         >
           <BasePopover.Popup
-            className={cx("nova-popover__popup", className)}
+            className={cx("nova-anim-pop nova-popover__popup", className)}
           >
-            <span className="nova-popover__surface">
+            <span className="nova-surface nova-popover__surface">
               {title != null ? (
                 <BasePopover.Title className="nova-popover__title">
                   {title}

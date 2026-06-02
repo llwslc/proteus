@@ -33,10 +33,10 @@ export function Autocomplete({
       </div>
       <BaseAutocomplete.Portal>
         <BaseAutocomplete.Positioner
-          className="nova-autocomplete__positioner"
+          className="nova-elevation nova-autocomplete__positioner"
           sideOffset={6}
         >
-          <BaseAutocomplete.Popup className="nova-autocomplete__popup">
+          <BaseAutocomplete.Popup className="nova-surface nova-anim-pop nova-autocomplete__popup">
             <BaseAutocomplete.Empty className="nova-autocomplete__empty">
               {emptyText}
             </BaseAutocomplete.Empty>

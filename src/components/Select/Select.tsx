@@ -67,11 +67,11 @@ export function Select({
 
       <BaseSelect.Portal>
         <BaseSelect.Positioner
-          className="nova-select__positioner"
+          className="nova-elevation nova-select__positioner"
           sideOffset={6}
           alignItemWithTrigger={false}
         >
-          <BaseSelect.Popup className="nova-select__popup">
+          <BaseSelect.Popup className="nova-surface nova-anim-pop nova-select__popup">
             {items.map((it) => (
               <BaseSelect.Item
                 key={it.value}

@@ -23,12 +23,12 @@ export function Tooltip({
         <BaseTooltip.Trigger render={children} />
         <BaseTooltip.Portal>
           <BaseTooltip.Positioner
-            className="nova-tooltip__positioner"
+            className="nova-elevation nova-tooltip__positioner"
             side={side}
             sideOffset={sideOffset}
           >
-            <BaseTooltip.Popup className="nova-tooltip__popup">
-              <span className="nova-tooltip__surface">{content}</span>
+            <BaseTooltip.Popup className="nova-anim-pop nova-tooltip__popup">
+              <span className="nova-surface nova-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="nova-connector" />
             </BaseTooltip.Popup>
           </BaseTooltip.Positioner>

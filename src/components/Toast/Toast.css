@@ -11,23 +11,28 @@
   outline: none;
 }
 
+/* Root = unclipped elevation layer (shared .nova-elevation fed the toast shadow
+   + accent glow); the chamfer + fill live on the inner .nova-toast__surface so
+   the shadow/glow are never cropped. */
 .nova-toast {
   --nova-toast-accent: var(--nova-primary, #2de2ff);
+  --nova-overlay-shadow: 0 12px 26px rgba(0, 0, 0, 0.6);
+  --nova-overlay-glow: drop-shadow(
+    0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent)
+  );
   position: relative;
+  outline: none;
+  transition:
+    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease, ease),
+    transform var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
+}
+.nova-toast__surface {
+  --nova-surface-clip: var(--nova-clip-8);
   display: flex;
   align-items: flex-start;
   gap: 12px;
   padding: 14px 16px;
-  background: rgba(8, 17, 28, 0.97);
-  clip-path: var(--nova-clip-8);
-  outline: none;
-  box-shadow:
-    0 12px 26px rgba(0, 0, 0, 0.6),
-    0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent);
   overflow: hidden;
-  transition:
-    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease, ease),
-    transform var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
 }
 .nova-toast[data-starting-style],
 .nova-toast[data-ending-style] {

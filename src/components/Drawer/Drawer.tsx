@@ -38,32 +38,38 @@ export function Drawer({
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Popup
-          className={cx("nova-drawer", `nova-drawer--${side}`, className)}
+          className={cx(
+            "nova-elevation nova-drawer",
+            `nova-drawer--${side}`,
+            className,
+          )}
         >
-          <span className="nova-drawer__edge" />
-          <BaseDialog.Close
-            className="nova-modal-close nova-drawer__x"
-            aria-label="Close"
-          >
-            <XIcon />
-          </BaseDialog.Close>
-          {title != null ? (
-            <BaseDialog.Title className="nova-modal-title">
-              <span className="nova-tick" />
-              {title}
-            </BaseDialog.Title>
-          ) : null}
-          {description != null ? (
-            <BaseDialog.Description className="nova-modal-desc">
-              {description}
-            </BaseDialog.Description>
-          ) : null}
-          {children != null ? (
-            <div className="nova-drawer__body">{children}</div>
-          ) : null}
-          {footer != null ? (
-            <div className="nova-drawer__footer">{footer}</div>
-          ) : null}
+          <div className="nova-surface nova-drawer__surface">
+            <span className="nova-drawer__edge" />
+            <BaseDialog.Close
+              className="nova-modal-close nova-drawer__x"
+              aria-label="Close"
+            >
+              <XIcon />
+            </BaseDialog.Close>
+            {title != null ? (
+              <BaseDialog.Title className="nova-modal-title">
+                <span className="nova-tick" />
+                {title}
+              </BaseDialog.Title>
+            ) : null}
+            {description != null ? (
+              <BaseDialog.Description className="nova-modal-desc">
+                {description}
+              </BaseDialog.Description>
+            ) : null}
+            {children != null ? (
+              <div className="nova-drawer__body">{children}</div>
+            ) : null}
+            {footer != null ? (
+              <div className="nova-drawer__footer">{footer}</div>
+            ) : null}
+          </div>
         </BaseDialog.Popup>
       </BaseDialog.Portal>
     </BaseDialog.Root>

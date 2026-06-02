@@ -2,41 +2,16 @@
   z-index: var(--nova-z-menu, 1250);
 }
 
+/* elevation = .nova-elevation, motion = .nova-anim-pop, chamfer = .nova-surface */
 .nova-previewcard__popup {
   position: relative;
   width: 286px;
-  filter: drop-shadow(var(--nova-shadow-popup, 0 10px 24px rgba(0, 0, 0, 0.55)))
-    var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22)));
-  transform-origin: var(--transform-origin);
-  transition:
-    opacity var(--nova-dur-slow, 0.45s) var(--nova-ease, ease),
-    transform var(--nova-dur-slow, 0.45s) var(--nova-ease, ease);
-}
-.nova-previewcard__popup[data-starting-style],
-.nova-previewcard__popup[data-ending-style] {
-  opacity: 0;
-  transform: scale(0.94) translateY(4px);
 }
 
 .nova-previewcard__surface {
-  position: relative;
   display: block;
   padding: 16px;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip-9);
   overflow: hidden;
-}
-.nova-previewcard__surface::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-popup, rgba(7, 14, 24, 0.97));
-}
-.nova-previewcard__surface > * {
-  position: relative;
-  z-index: 1;
 }
 .nova-previewcard__scan {
   position: absolute;

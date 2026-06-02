@@ -3,6 +3,58 @@
    Components add the shared class alongside their BEM class and override only
    what genuinely differs (accent colour via a --nova-*-color var, or offsets). */
 
+/* === Floating-overlay surface system ======================================
+   ONE recipe for every floating surface in the kit — dropdowns (Menu/Menubar/
+   ContextMenu/Select/Combobox/Autocomplete), arrow popups (Popover/Tooltip/
+   PreviewCard), NavigationMenu, modals (Dialog/AlertDialog/Drawer) and Toast.
+   Split into two layers so the elevation shadow + glow are NEVER clipped by the
+   chamfer (clip-path applies AFTER filter on the same element, so a drop-shadow
+   sharing an element with clip-path gets cropped away — the bug this replaces):
+
+     .nova-elevation  unclipped layer that carries the drop-shadow(s). Sits on
+                      the Positioner for anchored popups, or on the Popup/Root
+                      for modals & toast (no positioner). Tune per surface with
+                      --nova-overlay-shadow / --nova-overlay-glow.
+     .nova-surface    the chamfered double-framed panel (clip-path + 1px cyan
+                      frame in --nova-line-strong + inner fill). Never carries a
+                      drop-shadow. Size/fill via --nova-surface-clip / -fill.
+     .nova-anim-pop   shared open/close motion for anchored popups; goes on the
+                      Base UI Popup, which carries the data-*-style attributes. */
+.nova-elevation {
+  filter: drop-shadow(
+      var(--nova-overlay-shadow, var(--nova-shadow-popup, 0 10px 24px rgba(0, 0, 0, 0.55)))
+    )
+    var(--nova-overlay-glow, var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22))));
+}
+.nova-surface {
+  position: relative;
+  /* Own stacking context so the inner fill can sit at z-index:-1, below ANY
+     content (raw text, elements, absolutely-placed children) yet above the 1px
+     cyan frame — no per-child z-index lifting needed. */
+  isolation: isolate;
+  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  clip-path: var(--nova-surface-clip, var(--nova-clip-9));
+}
+.nova-surface::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  clip-path: var(--nova-surface-clip, var(--nova-clip-9));
+  background: var(--nova-surface-fill, var(--nova-surface-popup, rgba(7, 14, 24, 0.97)));
+}
+.nova-anim-pop {
+  transform-origin: var(--transform-origin, center);
+  transition:
+    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
+    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
+}
+.nova-anim-pop[data-starting-style],
+.nova-anim-pop[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
+}
+
 /* Animated edge sweep — modal header beam. Colour via --nova-scan-color. */
 .nova-scan {
   position: absolute;

@@ -22,13 +22,13 @@ export function PreviewCard({
       <BasePreviewCard.Trigger render={trigger} />
       <BasePreviewCard.Portal>
         <BasePreviewCard.Positioner
-          className="nova-previewcard__positioner"
+          className="nova-elevation nova-previewcard__positioner"
           side={side}
           align={align}
           sideOffset={sideOffset}
         >
-          <BasePreviewCard.Popup className="nova-previewcard__popup">
-            <span className="nova-previewcard__surface">
+          <BasePreviewCard.Popup className="nova-anim-pop nova-previewcard__popup">
+            <span className="nova-surface nova-previewcard__surface">
               <span className="nova-previewcard__scan" />
               <div className="nova-previewcard__body">{children}</div>
             </span>

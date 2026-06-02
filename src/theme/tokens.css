@@ -79,8 +79,10 @@
      dropdowns/NavMenu/PreviewCard) so they sit at the same height; modals use
      the bigger --nova-shadow-modal. Paired with --nova-glow-popup in filter. */
   --nova-shadow-popup: 0 10px 24px rgba(0, 0, 0, 0.55);
-  /* Modal frame metrics — shared by Dialog / AlertDialog / Drawer. */
+  /* Modal frame metrics — shared by Dialog / AlertDialog / Drawer. The glow is
+     the modal counterpart of --nova-glow-popup (bigger, to match the shadow). */
   --nova-shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --nova-glow-modal: drop-shadow(0 0 22px rgba(45, 226, 255, 0.28));
   --nova-pad-modal: 26px 28px;
 
   /* Overlay stacking ladder — one source of truth for portal layers, low→high:

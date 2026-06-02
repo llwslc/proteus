@@ -60,34 +60,13 @@
   z-index: var(--nova-z-dropdown, 1200);
   outline: none;
 }
+/* surface + motion = shared .nova-surface + .nova-anim-pop; elevation on positioner */
 .nova-select__popup {
-  position: relative;
   box-sizing: border-box;
   min-width: var(--anchor-width);
   max-height: var(--available-height);
   padding: 5px;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
-  clip-path: var(--nova-clip-9);
-  filter: drop-shadow(var(--nova-shadow-popup, 0 10px 24px rgba(0, 0, 0, 0.55)))
-    var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22)));
   overflow-y: auto;
-  transform-origin: top center;
-  transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
-}
-.nova-select__popup::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-popup, rgba(7, 14, 24, 0.97));
-}
-.nova-select__popup[data-starting-style],
-.nova-select__popup[data-ending-style] {
-  opacity: 0;
-  transform: translateY(-6px) scaleY(0.95);
 }
 
 .nova-select__item {

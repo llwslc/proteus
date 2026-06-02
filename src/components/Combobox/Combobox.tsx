@@ -40,10 +40,10 @@ export function Combobox({
       </div>
       <BaseCombobox.Portal>
         <BaseCombobox.Positioner
-          className="nova-combobox__positioner"
+          className="nova-elevation nova-combobox__positioner"
           sideOffset={6}
         >
-          <BaseCombobox.Popup className="nova-combobox__popup">
+          <BaseCombobox.Popup className="nova-surface nova-anim-pop nova-combobox__popup">
             <BaseCombobox.Empty className="nova-combobox__empty">
               {emptyText}
             </BaseCombobox.Empty>

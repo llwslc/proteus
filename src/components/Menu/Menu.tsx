@@ -18,12 +18,12 @@ export function Menu({ trigger, items, side = "bottom", align = "start" }: MenuP
       <BaseMenu.Trigger render={trigger} />
       <BaseMenu.Portal>
         <BaseMenu.Positioner
-          className="nova-menu__positioner"
+          className="nova-elevation nova-menu__positioner"
           side={side}
           align={align}
           sideOffset={6}
         >
-          <BaseMenu.Popup className="nova-menu__popup">
+          <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
             {renderMenuEntries(items, {
               Item: BaseMenu.Item,
               Separator: BaseMenu.Separator,

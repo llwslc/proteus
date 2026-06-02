@@ -33,32 +33,34 @@ export function Dialog({
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Popup
-          className={cx("nova-dialog__popup", className)}
+          className={cx("nova-elevation nova-dialog__popup", className)}
         >
-          <span className="nova-scan" />
-          <BaseDialog.Close
-            className="nova-modal-close nova-dialog__x"
-            aria-label="Close"
-          >
-            <XIcon />
-          </BaseDialog.Close>
-          {title != null ? (
-            <BaseDialog.Title className="nova-modal-title">
-              <span className="nova-tick" />
-              {title}
-            </BaseDialog.Title>
-          ) : null}
-          {description != null ? (
-            <BaseDialog.Description className="nova-modal-desc">
-              {description}
-            </BaseDialog.Description>
-          ) : null}
-          {children != null ? (
-            <div className="nova-modal-body">{children}</div>
-          ) : null}
-          {footer != null ? (
-            <div className="nova-modal-actions">{footer}</div>
-          ) : null}
+          <div className="nova-surface nova-dialog__surface">
+            <span className="nova-scan" />
+            <BaseDialog.Close
+              className="nova-modal-close nova-dialog__x"
+              aria-label="Close"
+            >
+              <XIcon />
+            </BaseDialog.Close>
+            {title != null ? (
+              <BaseDialog.Title className="nova-modal-title">
+                <span className="nova-tick" />
+                {title}
+              </BaseDialog.Title>
+            ) : null}
+            {description != null ? (
+              <BaseDialog.Description className="nova-modal-desc">
+                {description}
+              </BaseDialog.Description>
+            ) : null}
+            {children != null ? (
+              <div className="nova-modal-body">{children}</div>
+            ) : null}
+            {footer != null ? (
+              <div className="nova-modal-actions">{footer}</div>
+            ) : null}
+          </div>
         </BaseDialog.Popup>
       </BaseDialog.Portal>
     </BaseDialog.Root>

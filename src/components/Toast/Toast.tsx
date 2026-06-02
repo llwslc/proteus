@@ -35,16 +35,18 @@ function ToastList() {
           key={toast.id}
           toast={toast}
           swipeDirection="right"
-          className={`nova-toast nova-toast--${toast.type ?? "info"}`}
+          className={`nova-elevation nova-toast nova-toast--${toast.type ?? "info"}`}
         >
-          <span className="nova-toast__beam" />
-          <div className="nova-toast__main">
-            <BaseToast.Title className="nova-toast__title" />
-            <BaseToast.Description className="nova-toast__desc" />
+          <div className="nova-surface nova-toast__surface">
+            <span className="nova-toast__beam" />
+            <div className="nova-toast__main">
+              <BaseToast.Title className="nova-toast__title" />
+              <BaseToast.Description className="nova-toast__desc" />
+            </div>
+            <BaseToast.Close className="nova-toast__close" aria-label="Dismiss">
+              <XIcon />
+            </BaseToast.Close>
           </div>
-          <BaseToast.Close className="nova-toast__close" aria-label="Dismiss">
-            <XIcon />
-          </BaseToast.Close>
         </BaseToast.Root>
       ))}
     </>

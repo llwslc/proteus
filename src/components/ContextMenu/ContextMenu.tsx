@@ -22,8 +22,8 @@ export function ContextMenu({ children, items, className }: ContextMenuProps) {
         {children}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
-        <BaseContextMenu.Positioner className="nova-menu__positioner">
-          <BaseContextMenu.Popup className="nova-menu__popup">
+        <BaseContextMenu.Positioner className="nova-elevation nova-menu__positioner">
+          <BaseContextMenu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
             {renderMenuEntries(items, {
               Item: BaseContextMenu.Item,
               Separator: BaseContextMenu.Separator,
