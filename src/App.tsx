@@ -51,6 +51,7 @@ import {
 } from "./components";
 import {
   BoltIcon,
+  CheckIcon,
   CopyIcon,
   SearchIcon,
   SignalIcon,
@@ -586,7 +587,7 @@ function Demo() {
                       <TrashIcon />
                     </Button>
                     <Button variant="icon" disabled aria-label="Locked">
-                      <SignalIcon />
+                      <CheckIcon />
                     </Button>
                     <Button variant="icon-ghost" aria-label="Search">
                       <SearchIcon />
