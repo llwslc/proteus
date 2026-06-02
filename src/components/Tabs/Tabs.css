@@ -52,7 +52,7 @@
   color: var(--nova-text);
   background: linear-gradient(180deg, transparent, var(--nova-tint-soft));
 }
-.nova-tabs__tab[data-selected] {
+.nova-tabs__tab[data-active] {
   color: var(--nova-primary);
   text-shadow: var(--nova-glow-text);
 }

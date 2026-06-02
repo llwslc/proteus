@@ -9,6 +9,7 @@
   cursor: pointer;
   background: transparent;
   -webkit-tap-highlight-color: transparent;
+  transition: filter var(--nova-dur) var(--nova-ease);
 }
 
 .nova-switch__track {
@@ -16,9 +17,7 @@
   inset: 0;
   background: rgba(126, 162, 198, 0.5);
   clip-path: var(--nova-clip-9);
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    filter var(--nova-dur) var(--nova-ease);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-switch__track::before {
   content: "";
@@ -46,6 +45,8 @@
 
 .nova-switch[data-checked] .nova-switch__track {
   background: var(--nova-primary);
+}
+.nova-switch[data-checked] {
   filter: drop-shadow(0 0 8px var(--nova-tint-bright));
 }
 .nova-switch[data-checked] .nova-switch__track::before {
@@ -61,8 +62,6 @@
 
 .nova-switch:focus-visible {
   outline: none;
-}
-.nova-switch:focus-visible .nova-switch__track {
   filter: drop-shadow(0 0 8px var(--nova-primary-a70));
 }
 

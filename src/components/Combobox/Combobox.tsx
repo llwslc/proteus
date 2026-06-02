@@ -8,6 +8,7 @@ export interface ComboboxProps {
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
+  label?: string;
 }
 
 export function Combobox({
@@ -15,6 +16,7 @@ export function Combobox({
   placeholder = "Search…",
   defaultValue,
   emptyText = "No matching signal",
+  label,
 }: ComboboxProps) {
   const inputId = useId();
   return (
@@ -27,6 +29,7 @@ export function Combobox({
           id={inputId}
           className="nova-combobox__input"
           placeholder={placeholder}
+          aria-label={label ?? placeholder}
         />
         <BaseCombobox.Clear className="nova-combobox__clear" aria-label="Clear">
           <XIcon />

@@ -58,12 +58,12 @@ export function renderMenuEntries(items: MenuEntry[], parts: Parts) {
           </SubmenuTrigger>
           <Portal>
             <Positioner
-              className="nova-menu__positioner"
+              className="nova-elevation nova-menu__positioner"
               side="right"
               align="start"
               sideOffset={8}
             >
-              <Popup className="nova-menu__popup">
+              <Popup className="nova-surface nova-anim-pop nova-menu__popup">
                 {renderMenuEntries(it.submenu, parts)}
               </Popup>
             </Positioner>

@@ -8,15 +8,15 @@ export interface AutocompleteProps {
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
+  label?: string;
 }
 
-/* Free-text entry with assistive suggestions: the field keeps whatever you
-   type (unlike Combobox, which commits to a value picked from the list). */
 export function Autocomplete({
   items,
   placeholder = "Type a command…",
   defaultValue,
   emptyText = "No matching command",
+  label,
 }: AutocompleteProps) {
   const inputId = useId();
   return (
@@ -29,6 +29,7 @@ export function Autocomplete({
           id={inputId}
           className="nova-autocomplete__input"
           placeholder={placeholder}
+          aria-label={label ?? placeholder}
         />
       </div>
       <BaseAutocomplete.Portal>
