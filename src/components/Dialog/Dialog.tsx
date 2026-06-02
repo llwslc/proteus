@@ -43,7 +43,7 @@ export function Dialog({
                   variant="icon"
                   size="sm"
                   aria-label="Close"
-                  className="nova-modal-x nova-dialog__x"
+                  className="nova-modal-x nova-modal-x--danger nova-dialog__x"
                 >
                   <XIcon />
                 </Button>

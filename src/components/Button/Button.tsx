@@ -4,7 +4,13 @@ import { forwardRef } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Button.css";
 
-export type ButtonVariant = "primary" | "secondary" | "danger" | "ghost" | "icon";
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "danger"
+  | "ghost"
+  | "icon"
+  | "icon-ghost";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {

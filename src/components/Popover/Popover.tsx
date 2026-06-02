@@ -47,7 +47,7 @@ export function Popover({
               <BasePopover.Close
                 render={
                   <Button
-                    variant="icon"
+                    variant="icon-ghost"
                     size="sm"
                     aria-label="Close"
                     className="nova-modal-x nova-popover__x"

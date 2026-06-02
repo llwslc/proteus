@@ -151,12 +151,12 @@
 .nova-btn--icon {
   aspect-ratio: 1;
   padding: 0;
-  color: var(--nova-text-dim);
   background: var(--nova-line);
+  color: var(--nova-text-dim);
   font-size: 15px;
 }
 .nova-btn--icon::before {
-  background: var(--nova-surface-input);
+  background: var(--nova-tint-faint);
 }
 .nova-btn--icon::after {
   display: none;
@@ -164,4 +164,22 @@
 .nova-btn--icon:hover,
 .nova-btn--icon:focus-visible {
   color: var(--nova-primary);
+  filter: none;
+}
+
+.nova-btn--icon-ghost {
+  aspect-ratio: 1;
+  padding: 0;
+  background: transparent;
+  color: var(--nova-text-mute);
+  font-size: 14px;
+}
+.nova-btn--icon-ghost::before,
+.nova-btn--icon-ghost::after {
+  display: none;
+}
+.nova-btn--icon-ghost:hover,
+.nova-btn--icon-ghost:focus-visible {
+  color: var(--nova-primary);
+  filter: none;
 }
