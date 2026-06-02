@@ -1,18 +1,16 @@
-/* Unclipped positioned layer; elevation = shared .nova-elevation fed the modal
-   shadow/glow tokens, chamfer = .nova-surface on the inner __surface. */
 .nova-dialog__popup {
-  --nova-overlay-shadow: var(--nova-shadow-modal, 0 20px 50px rgba(0, 0, 0, 0.6));
-  --nova-overlay-glow: var(--nova-glow-modal, drop-shadow(0 0 22px rgba(45, 226, 255, 0.28)));
+  --nova-overlay-shadow: var(--nova-shadow-modal);
+  --nova-overlay-glow: var(--nova-glow-modal);
   position: fixed;
-  z-index: var(--nova-z-overlay, 1401);
+  z-index: var(--nova-z-overlay);
   top: 50%;
   left: 50%;
   width: min(460px, calc(100vw - 32px));
   transform: translate(-50%, -50%);
   outline: none;
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    opacity var(--nova-dur) var(--nova-ease),
+    transform var(--nova-dur) var(--nova-ease);
 }
 .nova-dialog__popup[data-starting-style],
 .nova-dialog__popup[data-ending-style] {
@@ -20,15 +18,12 @@
   transform: translate(-50%, -50%) scale(0.94);
 }
 
-/* chamfered modal surface = shared .nova-surface scaled up to clip-12 with the
-   gradient modal fill; owns the padding so the popup itself stays unclipped. */
 .nova-dialog__surface {
   --nova-surface-clip: var(--nova-clip-12);
-  --nova-surface-fill: var(--nova-surface-modal, linear-gradient(160deg, rgba(11, 22, 36, 0.98), rgba(7, 14, 24, 0.98)));
-  padding: var(--nova-pad-modal, 26px 28px);
+  --nova-surface-fill: var(--nova-surface-modal);
+  padding: var(--nova-pad-modal);
 }
 
-/* close button = shared .nova-modal-close + Dialog corner offset */
 .nova-dialog__x {
   top: 14px;
   right: 14px;

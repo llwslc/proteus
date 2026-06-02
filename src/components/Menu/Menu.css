@@ -1,7 +1,5 @@
-/* surface + open/close motion = shared .nova-surface + .nova-anim-pop;
-   elevation (shadow + glow) = shared .nova-elevation on the positioner. */
 .nova-menu__positioner {
-  z-index: var(--nova-z-menu, 1250);
+  z-index: var(--nova-z-menu);
   outline: none;
 }
 
@@ -9,9 +7,6 @@
   box-sizing: border-box;
   min-width: 210px;
   padding: 5px;
-  /* Kill the UA focus ring: the popup is focused when it opens, and the
-     browser's default blue (#005fcc) outline would show on top of the cyan
-     frame — reading as a second border colour that flickers as focus moves. */
   outline: none;
 }
 
@@ -23,14 +18,14 @@
   gap: 12px;
   padding: 8px 12px;
   cursor: pointer;
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
   font-size: 14px;
   user-select: none;
   outline: none;
   clip-path: var(--nova-clip-7);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    background var(--nova-dur) var(--nova-ease),
+    color var(--nova-dur) var(--nova-ease);
 }
 .nova-menu__item::after {
   content: "";
@@ -39,17 +34,17 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 7px var(--nova-primary, #2de2ff);
+  background: var(--nova-primary);
+  box-shadow: 0 0 7px var(--nova-primary);
   opacity: 0;
-  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  transition: opacity var(--nova-dur) var(--nova-ease);
 }
 .nova-menu__icon {
   flex: 0 0 auto;
   display: inline-flex;
   font-size: 16px;
-  color: var(--nova-text-mute, #46617e);
-  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  color: var(--nova-text-mute);
+  transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-menu__label {
   flex: 1;
@@ -58,51 +53,46 @@
 .nova-menu__shortcut {
   flex: 0 0 auto;
   margin-left: 18px;
-  font-family: var(--nova-font-mono, monospace);
+  font-family: var(--nova-font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
-  color: var(--nova-text-mute, #46617e);
+  color: var(--nova-text-mute);
 }
 .nova-menu__item[data-highlighted] {
-  background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
-  color: var(--nova-text-bright, #eafdff);
+  background: var(--nova-highlight);
+  color: var(--nova-text-bright);
 }
 .nova-menu__item[data-highlighted]::after {
   opacity: 1;
 }
 .nova-menu__item[data-highlighted] .nova-menu__icon {
-  color: var(--nova-primary, #2de2ff);
+  color: var(--nova-primary);
 }
 .nova-menu__item[data-highlighted] .nova-menu__shortcut {
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
 }
 .nova-menu__item[data-disabled] {
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
   cursor: not-allowed;
 }
 .nova-menu__item--danger {
-  color: var(--nova-danger, #ff4d5e);
+  color: var(--nova-danger);
 }
 .nova-menu__item--danger .nova-menu__icon {
-  color: var(--nova-danger, #ff4d5e);
+  color: var(--nova-danger);
 }
 .nova-menu__item--danger[data-highlighted] {
   background: rgba(255, 77, 94, 0.16);
   color: #ffd9dc;
 }
 .nova-menu__item--danger[data-highlighted] .nova-menu__icon {
-  color: var(--nova-danger, #ff4d5e);
+  color: var(--nova-danger);
 }
 .nova-menu__item--danger::after {
-  background: var(--nova-danger, #ff4d5e);
-  box-shadow: 0 0 7px var(--nova-danger, #ff4d5e);
+  background: var(--nova-danger);
+  box-shadow: 0 0 7px var(--nova-danger);
 }
 
-/* Reuse the shared nova-separator visual; only add what the popup context
-   needs: relative+z-index:1 so the line clears the popup's ::before fill
-   (a positioned z-index:0 layer that buries plain in-flow siblings), plus
-   inset margins. Without the z-index lift the line is painted UNDER the fill
-   and is invisible regardless of colour. */
 .nova-menu__separator.nova-separator {
   position: relative;
   z-index: 1;
@@ -110,24 +100,21 @@
   margin: 6px 6px;
 }
 
-/* Submenu trigger: a right-pointing chevron pinned to the trailing edge.
-   Reuses .nova-menu__item, so highlight/danger states come along for free. */
 .nova-menu__arrow {
   flex: 0 0 auto;
   display: inline-flex;
   margin-left: 14px;
   font-size: 15px;
-  color: var(--nova-text-mute, #46617e);
-  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  color: var(--nova-text-mute);
+  transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-menu__item[data-highlighted] .nova-menu__arrow,
 .nova-menu__item[data-popup-open] .nova-menu__arrow {
-  color: var(--nova-primary, #2de2ff);
+  color: var(--nova-primary);
 }
-/* Keep the trigger highlighted while its submenu is open. */
 .nova-menu__item[data-popup-open] {
-  background: var(--nova-highlight, rgba(45, 226, 255, 0.14));
-  color: var(--nova-text-bright, #eafdff);
+  background: var(--nova-highlight);
+  color: var(--nova-text-bright);
 }
 .nova-menu__item[data-popup-open]::after {
   opacity: 1;

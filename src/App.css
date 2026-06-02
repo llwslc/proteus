@@ -1,7 +1,3 @@
-/* ============================================================
-   NOVA · Demo shell (header, sidebar index, showcase grid)
-   ============================================================ */
-
 .nova-app {
   min-height: 100vh;
 }
@@ -42,9 +38,9 @@
   width: 34px;
   height: 34px;
   color: var(--nova-on-primary);
-  background: linear-gradient(160deg, var(--nova-text-bright, #eafdff), var(--nova-primary));
+  background: linear-gradient(160deg, var(--nova-text-bright), var(--nova-primary));
   clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
-  box-shadow: 0 0 14px rgba(45, 226, 255, 0.5);
+  box-shadow: 0 0 14px var(--nova-primary-a50);
   font-size: 18px;
 }
 .nova-logo__text {
@@ -125,13 +121,13 @@
   cursor: pointer;
   border-left: 2px solid transparent;
   transition:
-    color var(--nova-dur) var(--nova-ease, ease),
-    background var(--nova-dur) var(--nova-ease, ease),
-    border-color var(--nova-dur) var(--nova-ease, ease);
+    color var(--nova-dur) var(--nova-ease),
+    background var(--nova-dur) var(--nova-ease),
+    border-color var(--nova-dur) var(--nova-ease);
 }
 .nova-sidebar__link:hover {
   color: var(--nova-text);
-  background: var(--nova-grid, rgba(45, 226, 255, 0.06));
+  background: var(--nova-grid);
   border-left-color: var(--nova-line-strong);
 }
 .nova-sidebar__link span {
@@ -219,7 +215,7 @@
 }
 .nova-section {
   display: flex;
-  min-width: 0; /* let the grid column shrink below the panel's content width */
+  min-width: 0;
   scroll-margin-top: 80px;
 }
 .nova-section.span-2 {
@@ -268,9 +264,6 @@
   justify-content: space-between;
   gap: 14px;
 }
-/* Setting-row label paired with a Switch. A Switch has no built-in label, so
-   it reads as a real control label (Rajdhani / bright), matching the Checkbox
-   and Radio labels — not the mono .demo-tag caption used above input fields. */
 .demo-rowlabel {
   font-family: var(--nova-font);
   font-size: 16px;
@@ -285,8 +278,8 @@
   border-bottom: 1px dashed var(--nova-line-strong);
   cursor: pointer;
   transition:
-    text-shadow var(--nova-dur) var(--nova-ease, ease),
-    border-color var(--nova-dur) var(--nova-ease, ease);
+    text-shadow var(--nova-dur) var(--nova-ease),
+    border-color var(--nova-dur) var(--nova-ease);
 }
 .demo-link:hover {
   text-shadow: var(--nova-glow-text);
@@ -377,7 +370,7 @@
 
 /* ---------- Entrance orchestration ---------- */
 .nova-header {
-  animation: nova-drop 0.6s var(--nova-ease, ease) both;
+  animation: nova-drop 0.6s var(--nova-ease) both;
 }
 @keyframes nova-drop {
   from {
@@ -386,16 +379,16 @@
   }
 }
 .nova-hero__eyebrow {
-  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.08s;
+  animation: nova-rise 0.7s var(--nova-ease) both 0.08s;
 }
 .nova-hero h1 {
-  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.18s;
+  animation: nova-rise 0.7s var(--nova-ease) both 0.18s;
 }
 .nova-hero p {
-  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.3s;
+  animation: nova-rise 0.7s var(--nova-ease) both 0.3s;
 }
 .nova-hero__stats {
-  animation: nova-rise 0.7s var(--nova-ease, ease) both 0.42s;
+  animation: nova-rise 0.7s var(--nova-ease) both 0.42s;
 }
 @keyframes nova-rise {
   from {
@@ -404,14 +397,12 @@
   }
 }
 
-/* Scroll-reveal for showcase panels. Gated by .nova-reveal (added via JS)
-   so a no-JS render still shows every panel. */
 .nova-grid.nova-reveal .nova-section {
   opacity: 0;
   transform: translateY(24px);
   transition:
-    opacity 0.6s var(--nova-ease, ease),
-    transform 0.6s var(--nova-ease, ease);
+    opacity 0.6s var(--nova-ease),
+    transform 0.6s var(--nova-ease);
 }
 .nova-grid.nova-reveal .nova-section.is-visible {
   opacity: 1;
@@ -444,7 +435,7 @@
   height: 168px;
   pointer-events: none;
   opacity: 0.9;
-  animation: nova-rise 0.9s var(--nova-ease, ease) both 0.5s;
+  animation: nova-rise 0.9s var(--nova-ease) both 0.5s;
 }
 .nova-hero__reticle::before {
   content: "";
@@ -462,8 +453,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, transparent calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-    linear-gradient(0deg, transparent calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% - 0.5px), var(--nova-line, rgba(45, 226, 255, 0.22)) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    linear-gradient(90deg, transparent calc(50% - 0.5px), var(--nova-line) calc(50% - 0.5px), var(--nova-line) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    linear-gradient(0deg, transparent calc(50% - 0.5px), var(--nova-line) calc(50% - 0.5px), var(--nova-line) calc(50% + 0.5px), transparent calc(50% + 0.5px));
 }
 .nova-hero__ring {
   position: absolute;
@@ -480,9 +471,9 @@
 .nova-hero__ring--2 {
   width: 118px;
   height: 118px;
-  border: 1px solid var(--nova-highlight, rgba(45, 226, 255, 0.14));
+  border: 1px solid var(--nova-highlight);
   border-top-color: var(--nova-primary);
-  box-shadow: 0 0 16px var(--nova-line, rgba(45, 226, 255, 0.22));
+  box-shadow: 0 0 16px var(--nova-line);
   animation: nova-spin 7s linear infinite reverse;
 }
 .nova-hero__ring--3 {

@@ -1,9 +1,7 @@
 .nova-popover__positioner {
-  z-index: var(--nova-z-menu, 1250);
+  z-index: var(--nova-z-menu);
 }
 
-/* Unclipped wrapper so the arrow can overhang; elevation = .nova-elevation on
-   the positioner, motion = .nova-anim-pop, chamfer = .nova-surface inside. */
 .nova-popover__popup {
   position: relative;
   max-width: 300px;
@@ -16,16 +14,16 @@
 
 .nova-popover__title {
   margin: 0 24px 6px 0;
-  font-family: var(--nova-font-display, sans-serif);
+  font-family: var(--nova-font-display);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--nova-primary, #2de2ff);
-  text-shadow: var(--nova-glow-text, 0 0 8px rgba(45, 226, 255, 0.55));
+  color: var(--nova-primary);
+  text-shadow: var(--nova-glow-text);
 }
 .nova-popover__body {
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -39,11 +37,11 @@
   height: 22px;
   border: 0;
   background: transparent;
-  color: var(--nova-text-mute, #46617e);
+  color: var(--nova-text-mute);
   cursor: pointer;
   font-size: 14px;
-  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-popover__x:hover {
-  color: var(--nova-primary, #2de2ff);
+  color: var(--nova-primary);
 }

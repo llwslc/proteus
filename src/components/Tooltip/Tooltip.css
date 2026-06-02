@@ -1,9 +1,7 @@
 .nova-tooltip__positioner {
-  z-index: var(--nova-z-tooltip, 1300);
+  z-index: var(--nova-z-tooltip);
 }
 
-/* Unclipped wrapper so the arrow can overhang; elevation/motion/chamfer come
-   from .nova-elevation + .nova-anim-pop + .nova-surface. */
 .nova-tooltip__popup {
   position: relative;
   max-width: 240px;
@@ -12,8 +10,8 @@
 .nova-tooltip__surface {
   display: block;
   padding: 7px 12px;
-  color: var(--nova-text, #d7ecff);
-  font-family: var(--nova-font-mono, monospace);
+  color: var(--nova-text);
+  font-family: var(--nova-font-mono);
   font-size: 12px;
   letter-spacing: 0.04em;
   line-height: 1.5;

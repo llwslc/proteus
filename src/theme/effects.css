@@ -1,38 +1,13 @@
-/* NOVA shared effect layer — cross-component recipes the theme owns rather than
-   each component re-declaring. Imported once in main.tsx after tokens + global.
-   Components add the shared class alongside their BEM class and override only
-   what genuinely differs (accent colour via a --nova-*-color var, or offsets). */
-
-/* === Floating-overlay surface system ======================================
-   ONE recipe for every floating surface in the kit — dropdowns (Menu/Menubar/
-   ContextMenu/Select/Combobox/Autocomplete), arrow popups (Popover/Tooltip/
-   PreviewCard), NavigationMenu, modals (Dialog/AlertDialog/Drawer) and Toast.
-   Split into two layers so the elevation shadow + glow are NEVER clipped by the
-   chamfer (clip-path applies AFTER filter on the same element, so a drop-shadow
-   sharing an element with clip-path gets cropped away — the bug this replaces):
-
-     .nova-elevation  unclipped layer that carries the drop-shadow(s). Sits on
-                      the Positioner for anchored popups, or on the Popup/Root
-                      for modals & toast (no positioner). Tune per surface with
-                      --nova-overlay-shadow / --nova-overlay-glow.
-     .nova-surface    the chamfered double-framed panel (clip-path + 1px cyan
-                      frame in --nova-line-strong + inner fill). Never carries a
-                      drop-shadow. Size/fill via --nova-surface-clip / -fill.
-     .nova-anim-pop   shared open/close motion for anchored popups; goes on the
-                      Base UI Popup, which carries the data-*-style attributes. */
 .nova-elevation {
   filter: drop-shadow(
-      var(--nova-overlay-shadow, var(--nova-shadow-popup, 0 10px 24px rgba(0, 0, 0, 0.55)))
+      var(--nova-overlay-shadow, var(--nova-shadow-popup))
     )
-    var(--nova-overlay-glow, var(--nova-glow-popup, drop-shadow(0 0 12px rgba(45, 226, 255, 0.22))));
+    var(--nova-overlay-glow, var(--nova-glow-popup));
 }
 .nova-surface {
   position: relative;
-  /* Own stacking context so the inner fill can sit at z-index:-1, below ANY
-     content (raw text, elements, absolutely-placed children) yet above the 1px
-     cyan frame — no per-child z-index lifting needed. */
   isolation: isolate;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong);
   clip-path: var(--nova-surface-clip, var(--nova-clip-9));
 }
 .nova-surface::before {
@@ -41,13 +16,13 @@
   inset: 1px;
   z-index: -1;
   clip-path: var(--nova-surface-clip, var(--nova-clip-9));
-  background: var(--nova-surface-fill, var(--nova-surface-popup, rgba(7, 14, 24, 0.97)));
+  background: var(--nova-surface-fill, var(--nova-surface-popup));
 }
 .nova-anim-pop {
   transform-origin: var(--transform-origin, center);
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    opacity var(--nova-dur) var(--nova-ease),
+    transform var(--nova-dur) var(--nova-ease);
 }
 .nova-anim-pop[data-starting-style],
 .nova-anim-pop[data-ending-style] {
@@ -55,7 +30,6 @@
   transform: translateY(-6px) scale(0.97);
 }
 
-/* Animated edge sweep — modal header beam. Colour via --nova-scan-color. */
 .nova-scan {
   position: absolute;
   top: 1px;
@@ -66,11 +40,11 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--nova-scan-color, var(--nova-primary, #2de2ff)),
+    var(--nova-scan-color, var(--nova-primary)),
     transparent
   );
   opacity: 0.8;
-  animation: nova-scan 3.5s var(--nova-ease, ease) infinite;
+  animation: nova-scan 3.5s var(--nova-ease) infinite;
 }
 @keyframes nova-scan {
   0%,
@@ -84,11 +58,6 @@
   }
 }
 
-/* Floating-overlay connector — a solid 1px line in --nova-line-strong bridging
-   the popup edge toward the trigger, for all four sides. No triangle → no
-   border seam (a clipped triangle under a semi-transparent border + chamfer
-   breaks into "border + a V"; a line never does). Shared by Tooltip / Popover
-   / PreviewCard; the element is Base UI's Arrow, which sets data-side. */
 .nova-connector {
   z-index: 2;
   width: 16px;
@@ -101,7 +70,7 @@
   margin: auto;
   width: 1px;
   height: 100%;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong);
 }
 .nova-connector[data-side="top"] {
   bottom: -8px;
@@ -125,54 +94,50 @@
   height: 1px;
 }
 
-/* Chamfered accent tick — title/legend marker. Colour via --nova-tick-color. */
 .nova-tick {
   flex: 0 0 auto;
   width: 8px;
   height: 16px;
-  background: var(--nova-tick-color, var(--nova-primary, #2de2ff));
-  box-shadow: 0 0 8px var(--nova-tick-color, var(--nova-primary, #2de2ff));
+  background: var(--nova-tick-color, var(--nova-primary));
+  box-shadow: 0 0 8px var(--nova-tick-color, var(--nova-primary));
   clip-path: var(--nova-clip-tick);
 }
 
-/* Modal scrim backdrop — Dialog/AlertDialog/Drawer. */
 .nova-scrim-backdrop {
   position: fixed;
   inset: 0;
-  z-index: var(--nova-z-backdrop, 1400);
-  background: var(--nova-scrim, rgba(2, 6, 12, 0.66));
+  z-index: var(--nova-z-backdrop);
+  background: var(--nova-scrim);
   backdrop-filter: blur(3px) saturate(1.1);
-  transition: opacity var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  transition: opacity var(--nova-dur) var(--nova-ease);
 }
 .nova-scrim-backdrop[data-starting-style],
 .nova-scrim-backdrop[data-ending-style] {
   opacity: 0;
 }
 
-/* Shared modal text recipes. Title colour via --nova-title-color (default
-   primary); the right margin clears the corner close button. */
 .nova-modal-title {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 0 36px 6px 0;
-  font-family: var(--nova-font-display, sans-serif);
+  font-family: var(--nova-font-display);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--nova-title-color, var(--nova-primary, #2de2ff));
+  color: var(--nova-title-color, var(--nova-primary));
   text-shadow: 0 0 8px
-    color-mix(in srgb, var(--nova-title-color, var(--nova-primary, #2de2ff)) 55%, transparent);
+    color-mix(in srgb, var(--nova-title-color, var(--nova-primary)) 55%, transparent);
 }
 .nova-modal-desc {
   margin: 0 0 16px;
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
   font-size: 14px;
   line-height: 1.6;
 }
 .nova-modal-body {
-  color: var(--nova-text, #d7ecff);
+  color: var(--nova-text);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -183,27 +148,25 @@
   margin-top: 24px;
 }
 
-/* Bordered chamfer close button — Dialog/Drawer corner. Each sets its own
-   top/right/z-index locally; everything else is shared. */
 .nova-modal-close {
   position: absolute;
   display: grid;
   place-items: center;
   width: 28px;
   height: 28px;
-  border: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
-  background: var(--nova-tint-faint, rgba(45, 226, 255, 0.05));
-  color: var(--nova-text-dim, #7793b0);
+  border: 1px solid var(--nova-line);
+  background: var(--nova-tint-faint);
+  color: var(--nova-text-dim);
   cursor: pointer;
   font-size: 15px;
   clip-path: var(--nova-clip-5);
   transition:
-    color var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    border-color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    color var(--nova-dur) var(--nova-ease),
+    background var(--nova-dur) var(--nova-ease),
+    border-color var(--nova-dur) var(--nova-ease);
 }
 .nova-modal-close:hover {
-  color: var(--nova-danger, #ff4d5e);
-  border-color: var(--nova-danger, #ff4d5e);
-  background: var(--nova-danger-wash, rgba(255, 77, 94, 0.12));
+  color: var(--nova-danger);
+  border-color: var(--nova-danger);
+  background: var(--nova-danger-wash);
 }

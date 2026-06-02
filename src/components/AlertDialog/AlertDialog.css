@@ -1,29 +1,27 @@
 .nova-alert__popup {
-  --nova-alert-accent: var(--nova-danger, #ff4d5e);
+  --nova-alert-accent: var(--nova-danger);
   --nova-scan-color: var(--nova-alert-accent);
   --nova-title-color: var(--nova-alert-accent);
   --nova-tick-color: var(--nova-alert-accent);
-  --nova-overlay-shadow: var(--nova-shadow-modal, 0 20px 50px rgba(0, 0, 0, 0.6));
+  --nova-overlay-shadow: var(--nova-shadow-modal);
   --nova-overlay-glow: drop-shadow(0 0 22px color-mix(in srgb, var(--nova-alert-accent) 26%, transparent));
   position: fixed;
-  z-index: var(--nova-z-overlay, 1401);
+  z-index: var(--nova-z-overlay);
   top: 50%;
   left: 50%;
   width: min(440px, calc(100vw - 32px));
   transform: translate(-50%, -50%);
   outline: none;
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    opacity var(--nova-dur) var(--nova-ease),
+    transform var(--nova-dur) var(--nova-ease);
 }
 
-/* chamfered modal surface = shared .nova-surface at clip-12 with the modal fill;
-   the 1px frame is tone-tinted via --nova-line-strong. */
 .nova-alert__surface {
   --nova-surface-clip: var(--nova-clip-12);
-  --nova-surface-fill: var(--nova-surface-modal, linear-gradient(160deg, rgba(11, 22, 36, 0.98), rgba(7, 14, 24, 0.98)));
+  --nova-surface-fill: var(--nova-surface-modal);
   --nova-line-strong: color-mix(in srgb, var(--nova-alert-accent) 50%, transparent);
-  padding: var(--nova-pad-modal, 26px 28px);
+  padding: var(--nova-pad-modal);
 }
 .nova-alert__popup[data-starting-style],
 .nova-alert__popup[data-ending-style] {
@@ -31,13 +29,12 @@
   transform: translate(-50%, -50%) scale(0.94);
 }
 .nova-alert__popup--warning {
-  --nova-alert-accent: var(--nova-warning, #ffce54);
+  --nova-alert-accent: var(--nova-warning);
 }
 .nova-alert__popup--primary {
-  --nova-alert-accent: var(--nova-primary, #2de2ff);
+  --nova-alert-accent: var(--nova-primary);
 }
 
-/* AlertDialog has no close button, so its title needs no right gutter. */
 .nova-alert__popup .nova-modal-title {
   margin: 0 0 6px;
 }

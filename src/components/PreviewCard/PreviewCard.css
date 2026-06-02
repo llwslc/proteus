@@ -1,8 +1,7 @@
 .nova-previewcard__positioner {
-  z-index: var(--nova-z-menu, 1250);
+  z-index: var(--nova-z-menu);
 }
 
-/* elevation = .nova-elevation, motion = .nova-anim-pop, chamfer = .nova-surface */
 .nova-previewcard__popup {
   position: relative;
   width: 286px;
@@ -22,7 +21,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--nova-primary, #2de2ff) 45%,
+    var(--nova-primary) 45%,
     transparent
   );
   opacity: 0.85;

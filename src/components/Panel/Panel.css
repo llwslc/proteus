@@ -1,10 +1,6 @@
-/* Chamfered HUD frame. Frame technique (bg = border colour, ::before inset
-   1px = surface) gives a COMPLETE border around the cut corners. The corner
-   brackets live on the two NON-chamfered corners (TR/BL) so the chamfer and
-   the brackets coexist without either being clipped. */
 .nova-panel {
   position: relative;
-  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  background: var(--nova-line);
   clip-path: var(--nova-clip-12);
   isolation: isolate;
 }
@@ -15,7 +11,7 @@
   z-index: -1;
   clip-path: var(--nova-clip-12);
   background:
-    radial-gradient(120% 80% at 50% -10%, var(--nova-grid, rgba(45, 226, 255, 0.06)), transparent 60%),
+    radial-gradient(120% 80% at 50% -10%, var(--nova-grid), transparent 60%),
     linear-gradient(160deg, rgba(12, 24, 38, 0.92), rgba(7, 14, 24, 0.94));
 }
 
@@ -27,7 +23,7 @@
   top: 1px;
   height: 44%;
   z-index: 0;
-  background: linear-gradient(180deg, transparent, var(--nova-tint-soft, rgba(45, 226, 255, 0.08)), transparent);
+  background: linear-gradient(180deg, transparent, var(--nova-tint-soft), transparent);
   pointer-events: none;
   animation: nova-panel-scan 6s linear infinite;
 }
@@ -45,11 +41,10 @@
   width: 14px;
   height: 14px;
   z-index: 1;
-  border: 0 solid var(--nova-primary, #2de2ff);
+  border: 0 solid var(--nova-primary);
   pointer-events: none;
-  filter: drop-shadow(0 0 4px rgba(45, 226, 255, 0.5));
+  filter: drop-shadow(0 0 4px var(--nova-primary-a50));
 }
-/* Brackets only on the non-chamfered corners (TR + BL). */
 .nova-panel__corner--tr {
   top: 3px;
   right: 3px;
@@ -71,26 +66,26 @@
   justify-content: space-between;
   gap: 12px;
   padding: 13px 18px;
-  border-bottom: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
+  border-bottom: 1px solid var(--nova-line);
 }
 .nova-panel__title {
   margin: 0;
-  font-family: var(--nova-font-display, sans-serif);
+  font-family: var(--nova-font-display);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--nova-text, #d7ecff);
+  color: var(--nova-text);
 }
 .nova-panel__title::before {
   content: "▸ ";
-  color: var(--nova-primary, #2de2ff);
+  color: var(--nova-primary);
 }
 .nova-panel__meta {
-  font-family: var(--nova-font-mono, monospace);
+  font-family: var(--nova-font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
 }
 .nova-panel__body {
   position: relative;

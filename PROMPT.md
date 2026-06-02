@@ -13,7 +13,7 @@
 ## 技术栈
 - Vite + React 18 + TypeScript
 - 样式 = **纯 CSS,与组件同目录**(不用 Tailwind / CSS-in-JS / 运行时样式依赖)
-- 全部视觉走 `--nova-*` CSS 变量,**带内联 fallback**(`var(--nova-primary, #2de2ff)`),集中定义在 `theme/tokens.css`
+- 全部视觉走 `--nova-*` CSS 变量,**纯 `var(--nova-primary)`(无内联 fallback)**,字面值只在 `theme/tokens.css` 集中定义一次;组件依赖 `tokens.css`(移植本就要带它)
 - 构建:`tsc --noEmit && vite build`
 
 ## 目录结构(可移植性核心)
@@ -63,7 +63,7 @@ src/
 
 - **铁律**:同一元素同时有 `clip-path` 和 `filter: drop-shadow()`(或 `box-shadow`),阴影 + 辉光会被切角**裁光**(`clip-path` 后于 `filter`)。所以拆成两层:
   - `.nova-elevation`——**不切角**的抬升层,只挂 drop-shadow 阴影 + 辉光,经 `--nova-overlay-shadow` / `--nova-overlay-glow` 调参(默认 = `--nova-shadow-popup` + `--nova-glow-popup`)。锚定浮层挂 **Positioner**;模态 / Toast 无 positioner,挂 **Popup / Root**。
-  - `.nova-surface`——切角双层 frame(`clip-path` + 1px 边框 + 内填充),**绝不挂阴影**。`isolation: isolate` + `::before{inset:1px; z-index:-1}` 让任意内容(连裸文本)天然压在填充之上,无需逐个 lift。尺寸 / 填充走 `--nova-surface-clip`(默认 `--nova-clip-9`)/ `--nova-surface-fill`(默认 `--nova-surface-popup`)——这俩是**可选输入变量**,故意不在 `:root` 定义、不写就走 fallback,需要才就近覆盖(IDE 标「未定义」是正常的)。
+  - `.nova-surface`——切角双层 frame(`clip-path` + 1px 边框 + 内填充),**绝不挂阴影**。`isolation: isolate` + `::before{inset:1px; z-index:-1}` 让任意内容(连裸文本)天然压在填充之上,无需逐个 lift。尺寸 / 填充走 `--nova-surface-clip` / `--nova-surface-fill`——这俩是**可选输入变量**,故意不在 `:root` 定义,写成 `var(--nova-surface-clip, var(--nova-clip-9))`(fallback 指向**默认令牌**、不是裸字面),组件需要才就近覆盖(IDE 标「未定义」是正常的)。这类「输入变量 + 默认令牌 fallback」是全库**唯一**保留 fallback 的场景。
   - `.nova-anim-pop`——锚定浮层统一开合动效(`transform-origin` + 过渡 + `[data-starting/ending-style]{opacity:0; translateY(-6px) scale(.97)}`),挂在带 `data-*-style` 的 Base UI **Popup** 上。
   - **同一元素绝不同时带 `.nova-elevation` 和 `.nova-surface`**(否则又把阴影切回去);改完 `grep` 证明无违例。
 - **各浮层往哪挂**(class 一样,挂点随 Base UI 各组件解剖结构):
@@ -77,8 +77,8 @@ src/
 ### 设计系统一致性(令牌化 + 共享配方 + 清零)
 > 核心铁律:**任何视觉值在第 2 个地方出现,就该有个名字**——要么是 `tokens.css` 里的令牌,要么是 `effects.css` 里的共享 class。代码里**零裸字面**重复值。
 
-- **零裸字面色 / 渐变 / 辉光**:凡是「等于或派生自某令牌」的 `rgba()` / 渐变 / `box-shadow` / `drop-shadow`,**必须**写成 `var(--nova-x, 字面)`(令牌 + 内联 fallback),不许裸写。判定方法:写完跑一遍 `grep` 把每个重复的 `rgba(...)` / 渐变捞出来,出现 ≥2 次或与某令牌同值的,一律建令牌。已建令牌覆盖的维度:
-  - 青色 alpha 阶梯:`--nova-line-soft .10 / grid .06 / tint-faint .05 / tint-soft .08 / highlight .14 / line .22 / line-strong .55`——新出现的青 alpha 先在这个阶梯里找,没有再加,**别裸写**。
+- **零裸字面色 / 渐变 / 辉光**:凡是「等于或派生自某令牌」的 `rgba()` / 渐变 / `box-shadow` / `drop-shadow`,**必须**写成**纯 `var(--nova-x)`(无内联 fallback)**——字面值只活在 `tokens.css` 的令牌定义里,组件里不许裸写、也不写 fallback(唯一例外:上节那几个「输入变量 + 默认令牌 fallback」,如 `var(--nova-surface-clip, var(--nova-clip-9))`)。判定方法:写完跑一遍 `grep` 把每个重复的 `rgba(...)` / 渐变捞出来,出现 ≥2 次或与某令牌同值的,一律建令牌。已建令牌覆盖的维度:
+  - 青色 alpha 阶梯:`tint-faint .05 / grid .06 / tint-soft .08 / line-soft .10 / highlight .14 / line .22 / tint-active .30 / primary-a40 .40 / primary-a50 .50 / line-strong .55 / tint-bright .60 / primary-a70 .70`——新出现的青 alpha 先在这个阶梯里找,没有再加,**别裸写**。
   - 品牌色填充(hex 令牌带不了 alpha):`--nova-secondary-fill`(品红 .55)、`--nova-danger-fill`(红 .55)、`--nova-danger-wash`(红 .12)。
   - 辉光成品:`--nova-glow`(环+晕)、`--nova-glow-text`(文字光晕)、`--nova-glow-bar`(条状激活项 `0 0 10px`);浮层抬升 `--nova-shadow-popup/-modal`(阴影)、`--nova-glow-popup/-modal`(青晕)。
   - 模态面:`--nova-scrim`(背板)、`--nova-surface-modal`(双层 frame 内层渐变填充)、`--nova-surface-popup/input/bar`(三类浮层/控件/常驻条的填充)。
@@ -92,7 +92,7 @@ src/
   - **参数化套路**:Dialog/Drawer 用默认(primary);AlertDialog 在 `.nova-alert__popup` 上一把设 `--nova-scan-color / --nova-title-color / --nova-tick-color = var(--nova-alert-accent)`,扫光/标题/尖角靠**继承**统一变色,零重复块。组件 TSX 里写 `className="nova-modal-title"`(无本地差异时直接用共享 class)或 `"nova-modal-close nova-xxx__x"`(本地差异挂在自己 BEM class 上)。浮层抬升 / 切角的参数(`--nova-overlay-*` / `--nova-surface-*`)见「浮层面板」节;Toast 同理把 `--nova-line-strong` 按 `--nova-toast-accent` 染色。
   - **真变体要留本地、别硬塞**:PreviewCard 的 scan 是静态变体(`top:0`、无动画)、Drawer 的 `__body`(可滚动列)和 `__footer`(带上边框分隔)是真不同——**不**并入共享 class。判定:逐字节 diff,只有「前缀不同 / 单个色令牌不同」才算重复;几何/动画/布局不同就是真变体。
 - **其余度量维度按「角色多数」收敛**(role majority):同角色元素的 `padding / margin / gap / font-size / letter-spacing / line-height` 取出现最多的那个值统一,零散的孤值改成多数值。但**辉光/阴影的「电梯」是有意的**(如浮层抬升 popup 阴影由弱到强、Button 6/8/11 切角阶梯、OTP 22/19px),**别为了"统一"压平有意的梯度**——改之前先判断是孤值漂移还是有意阶梯。
-- **改完必须证明清零**:`grep` 全量扫该维度,确认除令牌定义 / `var()` fallback 外**无裸字面残留**;再 `npm run build` + 截图过一遍受影响组件。**别用注释解释"这里先留着"——能清就清干净。**
+- **改完必须证明清零**:`grep` 全量扫该维度,确认除 `tokens.css` 令牌定义外**无裸字面残留**(组件里零裸字面、零 fallback);再 `npm run build` + 截图过一遍受影响组件。**注释只留极简分区标题(`/* ---- X ---- */`),补丁/解释性注释一律删干净——代码靠令牌 / class 命名自解释。**
 
 ### 对比度
 - 「边框色打底 + `::before` 填充」时,**激活态填充必须深色不透明**——半透明会让底下的亮边框透上来铺满整块,前景(文字/滑块)看不清。

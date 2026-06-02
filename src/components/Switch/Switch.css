@@ -17,16 +17,16 @@
   background: rgba(126, 162, 198, 0.5);
   clip-path: var(--nova-clip-9);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    background var(--nova-dur) var(--nova-ease),
+    filter var(--nova-dur) var(--nova-ease);
 }
 .nova-switch__track::before {
   content: "";
   position: absolute;
   inset: 1px;
   clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
-  transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  background: var(--nova-surface-input);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 
 .nova-switch__thumb {
@@ -39,17 +39,17 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   clip-path: var(--nova-clip-7);
   transition:
-    transform var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    transform var(--nova-dur) var(--nova-ease),
+    background var(--nova-dur) var(--nova-ease),
+    box-shadow var(--nova-dur) var(--nova-ease);
 }
 
 .nova-switch[data-checked] .nova-switch__track {
-  background: var(--nova-primary, #2de2ff);
-  filter: drop-shadow(0 0 8px var(--nova-tint-bright, rgba(45, 226, 255, 0.6)));
+  background: var(--nova-primary);
+  filter: drop-shadow(0 0 8px var(--nova-tint-bright));
 }
 .nova-switch[data-checked] .nova-switch__track::before {
-  background: linear-gradient(180deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
+  background: linear-gradient(180deg, var(--nova-primary), var(--nova-primary-deep));
 }
 .nova-switch[data-checked] .nova-switch__thumb {
   transform: translateX(28px);
@@ -63,10 +63,10 @@
   outline: none;
 }
 .nova-switch:focus-visible .nova-switch__track {
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.7));
+  filter: drop-shadow(0 0 8px var(--nova-primary-a70));
 }
 
 .nova-switch[data-disabled] {
   cursor: not-allowed;
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
 }

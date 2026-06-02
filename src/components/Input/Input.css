@@ -3,28 +3,27 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  background: var(--nova-line);
   clip-path: var(--nova-clip-7);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    background var(--nova-dur) var(--nova-ease),
+    filter var(--nova-dur) var(--nova-ease);
 }
 .nova-input-wrap:hover {
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong);
 }
 .nova-input-wrap:focus-within {
-  background: var(--nova-primary, #2de2ff);
-  filter: var(--nova-glow-focus, drop-shadow(0 0 8px rgba(45, 226, 255, 0.4)));
+  background: var(--nova-primary);
+  filter: var(--nova-glow-focus);
 }
 .nova-input-wrap--error,
 .nova-input-wrap--error:hover {
-  background: var(--nova-danger, #ff4d5e);
+  background: var(--nova-danger);
 }
 .nova-input-wrap--error:focus-within {
-  background: var(--nova-danger, #ff4d5e);
+  background: var(--nova-danger);
   filter: drop-shadow(0 0 8px rgba(255, 77, 94, 0.5));
 }
-/* Keep a red wash on the fill so the error frame reads even while focused. */
 .nova-input-wrap--error .nova-input,
 .nova-input-wrap--error:focus-within .nova-input {
   background: #2a0e14;
@@ -33,25 +32,23 @@
 .nova-input {
   flex: 1;
   width: 100%;
-  height: calc(var(--nova-control-h, 38px) - 2px);
+  height: calc(var(--nova-control-h) - 2px);
   margin: 1px;
   padding: 0 13px;
   border: 0;
   outline: none;
-  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
-  color: var(--nova-text, #d7ecff);
-  font-family: var(--nova-font, sans-serif);
+  background: var(--nova-surface-input);
+  color: var(--nova-text);
+  font-family: var(--nova-font);
   font-size: 15px;
   letter-spacing: 0.01em;
   clip-path: var(--nova-clip-7);
 }
 .nova-input::placeholder {
-  color: var(--nova-text-mute, #46617e);
+  color: var(--nova-text-mute);
 }
 .nova-input-wrap:focus-within .nova-input {
-  /* On focus the frame turns bright cyan, so the fill stays dark + opaque
-     to keep the typed text legible. */
-  background: var(--nova-surface-inset, #0a1a29);
+  background: var(--nova-surface-inset);
 }
 .nova-input--has-icon {
   padding-left: 40px;
@@ -65,12 +62,12 @@
   z-index: 2;
   display: inline-flex;
   font-size: 16px;
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
   pointer-events: none;
-  transition: color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-input-wrap:focus-within .nova-input__icon {
-  color: var(--nova-primary, #2de2ff);
+  color: var(--nova-primary);
 }
 
 .nova-field {
@@ -80,22 +77,22 @@
   width: 100%;
 }
 .nova-field__label {
-  font-family: var(--nova-font-display, sans-serif);
+  font-family: var(--nova-font-display);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
 }
 .nova-field__desc {
   font-size: 13px;
-  color: var(--nova-text-mute, #46617e);
+  color: var(--nova-text-mute);
 }
 .nova-field__error {
-  font-family: var(--nova-font-mono, monospace);
+  font-family: var(--nova-font-mono);
   font-size: 12px;
   letter-spacing: 0.04em;
-  color: var(--nova-danger, #ff4d5e);
+  color: var(--nova-danger);
 }
 .nova-field__error::before {
   content: "⚠ ";

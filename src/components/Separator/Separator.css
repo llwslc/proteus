@@ -3,7 +3,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--nova-line-strong, rgba(45, 226, 255, 0.55)),
+    var(--nova-line-strong),
     transparent
   );
 }
@@ -18,7 +18,7 @@
   background: linear-gradient(
     180deg,
     transparent,
-    var(--nova-line-strong, rgba(45, 226, 255, 0.55)),
+    var(--nova-line-strong),
     transparent
   );
 }
@@ -35,25 +35,25 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--nova-line, rgba(45, 226, 255, 0.22))
+    var(--nova-line)
   );
 }
 .nova-separator-labeled__line:last-child {
   background: linear-gradient(
     90deg,
-    var(--nova-line, rgba(45, 226, 255, 0.22)),
+    var(--nova-line),
     transparent
   );
 }
 .nova-separator-labeled__text {
-  font-family: var(--nova-font-mono, monospace);
+  font-family: var(--nova-font-mono);
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--nova-text-dim, #7793b0);
+  color: var(--nova-text-dim);
   white-space: nowrap;
 }
 .nova-separator-labeled__text::before {
   content: "// ";
-  color: var(--nova-primary, #2de2ff);
+  color: var(--nova-primary);
 }

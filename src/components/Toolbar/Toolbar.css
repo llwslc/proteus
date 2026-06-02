@@ -6,7 +6,7 @@
   width: fit-content;
   max-width: 100%;
   padding: 5px;
-  background: var(--nova-line, rgba(45, 226, 255, 0.22));
+  background: var(--nova-line);
   clip-path: var(--nova-clip-9);
 }
 .nova-toolbar::before {
@@ -15,7 +15,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-bar, rgba(8, 18, 30, 0.94));
+  background: var(--nova-surface-bar);
 }
 .nova-toolbar > * {
   position: relative;
@@ -38,54 +38,46 @@
   padding: 0 10px;
   border: 0;
   background: transparent;
-  color: var(--nova-text-dim, #7793b0);
-  font-family: var(--nova-font, sans-serif);
+  color: var(--nova-text-dim);
+  font-family: var(--nova-font);
   font-size: 16px;
   letter-spacing: 0.04em;
   cursor: pointer;
   clip-path: var(--nova-clip-7);
   -webkit-tap-highlight-color: transparent;
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    color var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    background var(--nova-dur) var(--nova-ease),
+    color var(--nova-dur) var(--nova-ease);
 }
 .nova-toolbar__btn:hover {
-  background: var(--nova-line-soft, rgba(45, 226, 255, 0.1));
-  color: var(--nova-text, #d7ecff);
+  background: var(--nova-line-soft);
+  color: var(--nova-text);
 }
 .nova-toolbar__btn:focus-visible {
   outline: none;
-  background: var(--nova-line-soft, rgba(45, 226, 255, 0.1));
-  color: var(--nova-text, #d7ecff);
+  background: var(--nova-line-soft);
+  color: var(--nova-text);
 }
 .nova-toolbar__btn.is-active {
-  background: var(--nova-primary, #2de2ff);
-  color: var(--nova-on-primary, #02131a);
-  box-shadow: var(--nova-glow-bar, 0 0 10px rgba(45, 226, 255, 0.35));
+  background: var(--nova-primary);
+  color: var(--nova-on-primary);
+  box-shadow: var(--nova-glow-bar);
 }
 .nova-toolbar__btn[data-disabled],
 .nova-toolbar__btn:disabled {
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
   cursor: not-allowed;
 }
 
-/* Reuse the shared .nova-separator token colour, but force a SOLID vertical
-   fill: nova-separator's base gradient runs left→right (90deg), which on a 1px
-   column collapses to nothing — so override with a flat line-strong fill.
-   Local rules set the toolbar layout: a short stretched rule that never shrinks. */
 .nova-toolbar__sep.nova-separator {
   align-self: stretch;
-  flex: 0 0 1px; /* never let flex shrink the 1px rule to nothing as the panel narrows */
+  flex: 0 0 1px;
   width: 1px;
   height: auto;
   margin: 3px 4px;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong);
 }
 
-/* Phone (≤768px): wrap to multiple rows, left-aligned, so every control
-   (incl. LIVE) stays visible — no horizontal scroll (unreachable with a mouse,
-   clipped on mobile) and no centering (reads as ragged). Groups stay intact;
-   the inter-group vertical rules hide when stacked since they'd be noise. */
 @media (max-width: 768px) {
   .nova-toolbar {
     flex-wrap: wrap;

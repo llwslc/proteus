@@ -9,5 +9,5 @@
   gap: 12px;
   margin-left: 9px;
   padding-left: 16px;
-  border-left: 1px solid var(--nova-line, rgba(45, 226, 255, 0.22));
+  border-left: 1px solid var(--nova-line);
 }

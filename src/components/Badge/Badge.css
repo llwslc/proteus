@@ -1,5 +1,5 @@
 .nova-badge {
-  --nova-badge-color: var(--nova-primary, #2de2ff);
+  --nova-badge-color: var(--nova-primary);
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -8,7 +8,7 @@
   background: color-mix(in srgb, var(--nova-badge-color) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--nova-badge-color) 45%, transparent);
   color: var(--nova-badge-color);
-  font-family: var(--nova-font-mono, monospace);
+  font-family: var(--nova-font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -21,7 +21,7 @@
   background: var(--nova-badge-color);
   border-radius: 50%;
   box-shadow: 0 0 6px var(--nova-badge-color);
-  animation: nova-badge-pulse 1.8s var(--nova-ease, ease) infinite;
+  animation: nova-badge-pulse 1.8s var(--nova-ease) infinite;
 }
 @keyframes nova-badge-pulse {
   50% {
@@ -30,20 +30,20 @@
 }
 
 .nova-badge--primary {
-  --nova-badge-color: var(--nova-primary, #2de2ff);
+  --nova-badge-color: var(--nova-primary);
 }
 .nova-badge--secondary {
-  --nova-badge-color: var(--nova-secondary, #ff2d75);
+  --nova-badge-color: var(--nova-secondary);
 }
 .nova-badge--success {
-  --nova-badge-color: var(--nova-success, #54ffb0);
+  --nova-badge-color: var(--nova-success);
 }
 .nova-badge--warning {
-  --nova-badge-color: var(--nova-warning, #ffce54);
+  --nova-badge-color: var(--nova-warning);
 }
 .nova-badge--danger {
-  --nova-badge-color: var(--nova-danger, #ff4d5e);
+  --nova-badge-color: var(--nova-danger);
 }
 .nova-badge--neutral {
-  --nova-badge-color: var(--nova-text-dim, #7793b0);
+  --nova-badge-color: var(--nova-text-dim);
 }

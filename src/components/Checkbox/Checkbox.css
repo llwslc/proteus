@@ -7,19 +7,19 @@
   padding: 0;
   border: 0;
   cursor: pointer;
-  color: var(--nova-on-primary, #02131a);
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  color: var(--nova-on-primary);
+  background: var(--nova-line-strong);
   clip-path: var(--nova-clip-9);
   -webkit-tap-highlight-color: transparent;
-  transition: filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  transition: filter var(--nova-dur) var(--nova-ease);
 }
 .nova-checkbox::before {
   content: "";
   position: absolute;
   inset: 1px;
   clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
-  transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  background: var(--nova-surface-input);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 
 .nova-checkbox__indicator {
@@ -37,17 +37,17 @@
   opacity: 0;
   transform: scale(0.4);
   transition:
-    opacity var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    transform var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    opacity var(--nova-dur) var(--nova-ease),
+    transform var(--nova-dur) var(--nova-ease);
 }
 
 .nova-checkbox[data-checked]::before,
 .nova-checkbox[data-indeterminate]::before {
-  background: linear-gradient(160deg, var(--nova-primary, #2de2ff), var(--nova-primary-deep, #119cb8));
+  background: linear-gradient(160deg, var(--nova-primary), var(--nova-primary-deep));
 }
 .nova-checkbox[data-checked],
 .nova-checkbox[data-indeterminate] {
-  filter: drop-shadow(0 0 6px rgba(45, 226, 255, 0.5));
+  filter: drop-shadow(0 0 6px var(--nova-primary-a50));
 }
 .nova-checkbox[data-checked] .nova-checkbox__check {
   opacity: 1;
@@ -60,11 +60,11 @@
 
 .nova-checkbox:focus-visible {
   outline: none;
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.7));
+  filter: drop-shadow(0 0 8px var(--nova-primary-a70));
 }
 .nova-checkbox[data-disabled] {
   cursor: not-allowed;
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
 }
 
 .nova-checkbox-field {
@@ -73,19 +73,16 @@
   gap: 10px;
   cursor: pointer;
   user-select: none;
-  font-family: var(--nova-font, sans-serif);
+  font-family: var(--nova-font);
   font-size: 16px;
-  color: var(--nova-text, #d7ecff);
+  color: var(--nova-text);
 }
 .nova-checkbox-field__label {
   line-height: 1;
 }
 
-/* Dim the whole disabled row (not just the label, so it doesn't read as
-   clickable). The box resets to opacity:1 inside a field so it isn't
-   double-dimmed (row dim × box dim); a standalone box keeps its own dim. */
 .nova-checkbox-field:has(.nova-checkbox[data-disabled]) {
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
   cursor: not-allowed;
 }
 .nova-checkbox-field .nova-checkbox[data-disabled] {

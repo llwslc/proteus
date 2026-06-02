@@ -9,19 +9,16 @@
   gap: 8px;
 }
 
-/* Each cell is a double-frame: the bright border-coloured layer is the cell
-   background + clip, the dark fill is an inset ::before, and the input sits
-   transparent on top. This keeps even empty slots clearly outlined. */
 .nova-otp__cell {
   position: relative;
   display: inline-flex;
   width: 44px;
   height: 52px;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong);
   clip-path: var(--nova-clip-7);
   transition:
-    background var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    filter var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    background var(--nova-dur) var(--nova-ease),
+    filter var(--nova-dur) var(--nova-ease);
 }
 .nova-otp__cell::before {
   content: "";
@@ -29,8 +26,8 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-7);
-  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
-  transition: background var(--nova-dur, 0.22s) var(--nova-ease, ease);
+  background: var(--nova-surface-input);
+  transition: background var(--nova-dur) var(--nova-ease);
 }
 
 .nova-otp__slot {
@@ -42,26 +39,26 @@
   border: 0;
   text-align: center;
   background: transparent;
-  color: var(--nova-text, #d7ecff);
-  font-family: var(--nova-font-mono, monospace);
+  color: var(--nova-text);
+  font-family: var(--nova-font-mono);
   font-size: 22px;
-  caret-color: var(--nova-primary, #2de2ff);
+  caret-color: var(--nova-primary);
   outline: none;
 }
 
 .nova-otp__cell:has(.nova-otp__slot:focus) {
-  background: var(--nova-primary, #2de2ff);
-  filter: drop-shadow(0 0 8px rgba(45, 226, 255, 0.5));
+  background: var(--nova-primary);
+  filter: drop-shadow(0 0 8px var(--nova-primary-a50));
 }
 .nova-otp__cell:has(.nova-otp__slot:focus)::before {
-  background: var(--nova-surface-inset, #0a1a29);
+  background: var(--nova-surface-inset);
 }
 .nova-otp__cell:has(.nova-otp__slot[data-filled]) .nova-otp__slot {
-  color: var(--nova-primary, #2de2ff);
-  text-shadow: var(--nova-glow-text, 0 0 8px rgba(45, 226, 255, 0.55));
+  color: var(--nova-primary);
+  text-shadow: var(--nova-glow-text);
 }
 .nova-otp__cell:has(.nova-otp__slot:disabled) {
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
 }
 .nova-otp__slot:disabled {
   cursor: not-allowed;
@@ -70,11 +67,9 @@
 .nova-otp__divider {
   width: 12px;
   height: 2px;
-  background: var(--nova-text-mute, #46617e);
+  background: var(--nova-text-mute);
 }
 
-/* Very narrow phones (≤360px): six 44px cells + gaps overflow a ~294px column.
-   Shrink the cells + gaps so the row fits without the page scrolling sideways. */
 @media (max-width: 360px) {
   .nova-otp,
   .nova-otp__slot-wrap {

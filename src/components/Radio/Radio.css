@@ -10,9 +10,9 @@
   gap: 10px;
   cursor: pointer;
   user-select: none;
-  font-family: var(--nova-font, sans-serif);
+  font-family: var(--nova-font);
   font-size: 16px;
-  color: var(--nova-text, #d7ecff);
+  color: var(--nova-text);
 }
 
 .nova-radio__control {
@@ -22,14 +22,14 @@
   width: 22px;
   height: 22px;
   padding: 0;
-  border: 1px solid var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  border: 1px solid var(--nova-line-strong);
   border-radius: 50%;
-  background: var(--nova-surface-input, rgba(8, 16, 26, 0.92));
+  background: var(--nova-surface-input);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition:
-    border-color var(--nova-dur, 0.22s) var(--nova-ease, ease),
-    box-shadow var(--nova-dur, 0.22s) var(--nova-ease, ease);
+    border-color var(--nova-dur) var(--nova-ease),
+    box-shadow var(--nova-dur) var(--nova-ease);
 }
 
 .nova-radio__indicator {
@@ -43,17 +43,17 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 8px var(--nova-primary, #2de2ff);
+  background: var(--nova-primary);
+  box-shadow: 0 0 8px var(--nova-primary);
   transform: scale(0);
-  transition: transform var(--nova-dur, 0.22s) var(--nova-ease-out, cubic-bezier(0.16, 1, 0.3, 1));
+  transition: transform var(--nova-dur) var(--nova-ease-out);
 }
 
 .nova-radio__control[data-checked] {
-  border-color: var(--nova-primary, #2de2ff);
+  border-color: var(--nova-primary);
   box-shadow:
-    0 0 0 1px var(--nova-tint-active, rgba(45, 226, 255, 0.3)),
-    0 0 8px rgba(45, 226, 255, 0.4);
+    0 0 0 1px var(--nova-tint-active),
+    0 0 8px var(--nova-primary-a40);
 }
 .nova-radio__control[data-checked] .nova-radio__indicator::before {
   transform: scale(1);
@@ -61,16 +61,16 @@
 
 .nova-radio__control:focus-visible {
   outline: none;
-  border-color: var(--nova-primary, #2de2ff);
-  box-shadow: 0 0 0 3px var(--nova-line, rgba(45, 226, 255, 0.22));
+  border-color: var(--nova-primary);
+  box-shadow: 0 0 0 3px var(--nova-line);
 }
 .nova-radio__control[data-disabled] {
   cursor: not-allowed;
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
 }
 
 .nova-radio:has(.nova-radio__control[data-disabled]) {
-  opacity: var(--nova-disabled-opacity, 0.4);
+  opacity: var(--nova-disabled-opacity);
   cursor: not-allowed;
 }
 .nova-radio:has(.nova-radio__control[data-disabled]) .nova-radio__control[data-disabled] {

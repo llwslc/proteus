@@ -11,10 +11,10 @@
   display: block;
   width: 100%;
   height: 100%;
-  background: var(--nova-line-strong, rgba(45, 226, 255, 0.55));
+  background: var(--nova-line-strong);
   clip-path: var(--nova-clip-9);
   overflow: hidden;
-  filter: drop-shadow(0 0 7px var(--nova-tint-active, rgba(45, 226, 255, 0.3)));
+  filter: drop-shadow(0 0 7px var(--nova-tint-active));
 }
 .nova-avatar__img {
   position: absolute;
@@ -30,8 +30,8 @@
   display: grid;
   place-items: center;
   background: linear-gradient(160deg, #0e2236, #081523);
-  color: var(--nova-primary, #2de2ff);
-  font-family: var(--nova-font-display, sans-serif);
+  color: var(--nova-primary);
+  font-family: var(--nova-font-display);
   font-weight: 700;
   font-size: calc(var(--nova-avatar-size) * 0.36);
   letter-spacing: 0.04em;
@@ -44,19 +44,19 @@
   bottom: -2px;
   width: 12px;
   height: 12px;
-  border: 2px solid var(--nova-bg, #050a12);
-  background: var(--nova-text-mute, #46617e);
+  border: 2px solid var(--nova-bg);
+  background: var(--nova-text-mute);
   transform: rotate(45deg);
 }
 .nova-avatar__status--online {
-  background: var(--nova-success, #54ffb0);
-  box-shadow: 0 0 7px var(--nova-success, #54ffb0);
+  background: var(--nova-success);
+  box-shadow: 0 0 7px var(--nova-success);
 }
 .nova-avatar__status--busy {
-  background: var(--nova-danger, #ff4d5e);
-  box-shadow: 0 0 7px var(--nova-danger, #ff4d5e);
+  background: var(--nova-danger);
+  box-shadow: 0 0 7px var(--nova-danger);
 }
 .nova-avatar__status--away {
-  background: var(--nova-warning, #ffce54);
-  box-shadow: 0 0 7px var(--nova-warning, #ffce54);
+  background: var(--nova-warning);
+  box-shadow: 0 0 7px var(--nova-warning);
 }

@@ -1,9 +1,3 @@
-/* ============================================================
-   NOVA · Global demo styles (page shell, grid, scanlines)
-   Components do NOT depend on this file — it only dresses the
-   demo background. Components are self-contained via tokens.css.
-   ============================================================ */
-
 *,
 *::before,
 *::after {
@@ -14,11 +8,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* The document itself scrolls. Don't pin body/#root to height:100% — combined
-   with body{overflow-x:hidden} that turns body into a viewport-height scroll
-   container, leaving window scroll dead on mobile (footer unreachable). The
-   fixed-position backdrops fill the viewport regardless, so #root only needs a
-   min-height to look full on short pages. */
 #root {
   min-height: 100vh;
 }
@@ -35,7 +24,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Deep-space backdrop: dual neon grid + radial vignette + drifting glow. */
 body::before {
   content: "";
   position: fixed;
@@ -66,9 +54,6 @@ body::after {
   }
 }
 
-/* Faint scanline veil over the whole page.
-   Lives on <html> (not body) so it never collides with the body::before
-   space backdrop — they are different elements' pseudo-elements. */
 html::before {
   content: "";
   position: fixed;
@@ -86,7 +71,6 @@ html::before {
   opacity: 0.5;
 }
 
-/* Film-grain texture for depth — inline fractal-noise SVG, blended subtly. */
 html::after {
   content: "";
   position: fixed;
