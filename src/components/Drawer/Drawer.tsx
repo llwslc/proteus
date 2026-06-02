@@ -1,6 +1,7 @@
 import { cx } from "../cx";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import type { ReactElement, ReactNode } from "react";
+import { Button } from "../Button";
 import { XIcon } from "../icons";
 import "./Drawer.css";
 
@@ -47,11 +48,17 @@ export function Drawer({
           <div className="nova-surface nova-drawer__surface">
             <span className="nova-drawer__edge" />
             <BaseDialog.Close
-              className="nova-modal-close nova-drawer__x"
-              aria-label="Close"
-            >
-              <XIcon />
-            </BaseDialog.Close>
+              render={
+                <Button
+                  variant="icon"
+                  size="sm"
+                  aria-label="Close"
+                  className="nova-modal-x nova-drawer__x"
+                >
+                  <XIcon />
+                </Button>
+              }
+            />
             {title != null ? (
               <BaseDialog.Title className="nova-modal-title">
                 <span className="nova-tick" />

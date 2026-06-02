@@ -28,20 +28,6 @@
   line-height: 1.6;
 }
 .nova-popover__x {
-  position: absolute;
   top: 10px;
   right: 10px;
-  display: grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  border: 0;
-  background: transparent;
-  color: var(--nova-text-mute);
-  cursor: pointer;
-  font-size: 14px;
-  transition: color var(--nova-dur) var(--nova-ease);
-}
-.nova-popover__x:hover {
-  color: var(--nova-primary);
 }

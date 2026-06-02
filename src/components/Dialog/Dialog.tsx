@@ -38,11 +38,17 @@ export function Dialog({
           <div className="nova-surface nova-dialog__surface">
             <span className="nova-scan" />
             <BaseDialog.Close
-              className="nova-modal-close nova-dialog__x"
-              aria-label="Close"
-            >
-              <XIcon />
-            </BaseDialog.Close>
+              render={
+                <Button
+                  variant="icon"
+                  size="sm"
+                  aria-label="Close"
+                  className="nova-modal-x nova-dialog__x"
+                >
+                  <XIcon />
+                </Button>
+              }
+            />
             {title != null ? (
               <BaseDialog.Title className="nova-modal-title">
                 <span className="nova-tick" />

@@ -155,25 +155,7 @@
   margin-top: 24px;
 }
 
-.nova-modal-close {
+.nova-btn.nova-modal-x {
   position: absolute;
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--nova-line);
-  background: var(--nova-tint-faint);
-  color: var(--nova-text-dim);
-  cursor: pointer;
-  font-size: 15px;
-  clip-path: var(--nova-clip-5);
-  transition:
-    color var(--nova-dur) var(--nova-ease),
-    background var(--nova-dur) var(--nova-ease),
-    border-color var(--nova-dur) var(--nova-ease);
-}
-.nova-modal-close:hover {
-  color: var(--nova-danger);
-  border-color: var(--nova-danger);
-  background: var(--nova-danger-wash);
+  z-index: 2;
 }

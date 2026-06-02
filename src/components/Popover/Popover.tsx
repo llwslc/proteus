@@ -1,6 +1,7 @@
 import { cx } from "../cx";
 import { Popover as BasePopover } from "@base-ui/react/popover";
 import type { ReactElement, ReactNode } from "react";
+import { Button } from "../Button";
 import { XIcon } from "../icons";
 import "./Popover.css";
 
@@ -43,9 +44,18 @@ export function Popover({
                 </BasePopover.Title>
               ) : null}
               <div className="nova-popover__body">{children}</div>
-              <BasePopover.Close className="nova-popover__x" aria-label="Close">
-                <XIcon />
-              </BasePopover.Close>
+              <BasePopover.Close
+                render={
+                  <Button
+                    variant="icon"
+                    size="sm"
+                    aria-label="Close"
+                    className="nova-modal-x nova-popover__x"
+                  >
+                    <XIcon />
+                  </Button>
+                }
+              />
             </span>
             <BasePopover.Arrow className="nova-connector" />
           </BasePopover.Popup>

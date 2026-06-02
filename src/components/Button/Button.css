@@ -147,3 +147,21 @@
 .nova-btn--lg::after {
   clip-path: var(--nova-clip-11);
 }
+
+.nova-btn--icon {
+  aspect-ratio: 1;
+  padding: 0;
+  color: var(--nova-text-dim);
+  background: var(--nova-line);
+  font-size: 15px;
+}
+.nova-btn--icon::before {
+  background: var(--nova-surface-input);
+}
+.nova-btn--icon::after {
+  display: none;
+}
+.nova-btn--icon:hover,
+.nova-btn--icon:focus-visible {
+  color: var(--nova-primary);
+}
