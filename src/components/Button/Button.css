@@ -31,7 +31,9 @@
   z-index: 0;
   clip-path: var(--nova-clip-8);
   background: linear-gradient(180deg, var(--nova-primary), var(--nova-primary-deep));
-  transition: background var(--nova-dur) var(--nova-ease);
+  transition:
+    background var(--nova-dur) var(--nova-ease),
+    filter var(--nova-dur) var(--nova-ease);
 }
 
 .nova-btn::after {
@@ -78,28 +80,13 @@
   display: none;
 }
 
-.nova-btn-glow {
-  display: inline-flex;
-  transition: filter var(--nova-dur) var(--nova-ease);
-}
-.nova-btn-glow--primary {
-  --nova-btn-glow: var(--nova-primary-a50);
-}
-.nova-btn-glow--secondary {
-  --nova-btn-glow: var(--nova-secondary-fill);
-}
-.nova-btn-glow--danger {
-  --nova-btn-glow: var(--nova-danger-fill);
-}
-.nova-btn-glow:has(.nova-btn:hover) {
-  filter: drop-shadow(0 0 8px var(--nova-btn-glow));
-}
-.nova-btn-glow:has(.nova-btn:focus-visible) {
-  filter: drop-shadow(0 0 10px var(--nova-btn-glow));
-}
-.nova-btn-glow:has(.nova-btn:disabled),
-.nova-btn-glow:has(.nova-btn[data-disabled]) {
-  filter: none;
+.nova-btn--primary:hover::before,
+.nova-btn--primary:focus-visible::before,
+.nova-btn--secondary:hover::before,
+.nova-btn--secondary:focus-visible::before,
+.nova-btn--danger:hover::before,
+.nova-btn--danger:focus-visible::before {
+  filter: brightness(1.15);
 }
 
 .nova-btn--secondary {
