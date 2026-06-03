@@ -15,7 +15,7 @@
 
 - Vite + React 18 + TypeScript。
 - 样式 = 纯 CSS，与组件同目录（不用 Tailwind / CSS-in-JS / 运行时样式库）。
-- 视觉值一律走 `--nova-*` CSS 变量：组件里只写 **纯 `var(--nova-x)`**，字面值只在 `theme/tokens.css` 定义一次。
+- 视觉值分两类，按**值的性质**而非所在文件判定：**设计语言**（调色板、根基如 body bg / base 字型、各类尺度＝字号 / 切角 / 动效 / 层级 / 度量）一律走 `--nova-*`，组件与演示页都引用，字面值只在 `theme/tokens.css` 定义一次；**一次性 / 展示层值**（单点响应式公式如 hero `clamp`、demo chrome、氛围效果 alpha）就近写立即数。判定：换肤需跟着变、或在 kit 里有意复用 → token，否则立即数。
 - 跨组件共享的视觉配方集中在 `theme/effects.css`（`main.tsx` 引一次）；演示页的背景氛围层在 `theme/global.css`。
 - 构建：`tsc --noEmit && vite build`。
 
@@ -30,7 +30,7 @@
 
 ## 设计令牌（`theme/tokens.css`）
 
-所有视觉值集中在此，组件只引用。换肤改这里即可。分组：
+设计语言的视觉值集中在此，组件只引用（一次性 / 展示层值就近写立即数，见上节）。换肤改这里即可。分组：
 
 - **色板**：`--nova-bg / -2`、`--nova-primary / -deep`、`--nova-secondary`、`--nova-success / warning / danger`、`--nova-text / -bright / -dim / -mute`、`--nova-on-primary / -danger`。
 - **青色 alpha 阶梯**（同一青色的不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。新出现的青 alpha 先在阶梯里找。
