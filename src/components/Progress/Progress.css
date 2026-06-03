@@ -39,12 +39,29 @@
   background-size: 56px 100%, 100% 100%;
   box-shadow: 0 0 12px var(--nova-line-strong);
   transition: width var(--nova-dur-slow) var(--nova-ease);
+}
+.nova-progress__indicator[data-progressing] {
   animation: nova-progress-stripes 0.9s linear infinite;
+}
+.nova-progress__indicator[data-indeterminate] {
+  width: 40%;
+  transition: none;
+  animation:
+    nova-progress-stripes 0.9s linear infinite,
+    nova-progress-sweep 1.4s var(--nova-ease) infinite;
 }
 @keyframes nova-progress-stripes {
   to {
     background-position:
       56px 0,
       0 0;
+  }
+}
+@keyframes nova-progress-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
   }
 }

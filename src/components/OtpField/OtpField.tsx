@@ -4,6 +4,7 @@ import "./OtpField.css";
 
 export interface OtpFieldProps {
   length?: number;
+  name?: string;
   defaultValue?: string;
   value?: string;
   onValueChange?: (value: string) => void;
@@ -15,6 +16,7 @@ export interface OtpFieldProps {
 
 export function OtpField({
   length = 6,
+  name,
   defaultValue,
   value,
   onValueChange,
@@ -26,6 +28,7 @@ export function OtpField({
   return (
     <BaseOtp.Root
       id={id}
+      name={name}
       length={length}
       defaultValue={defaultValue}
       value={value}

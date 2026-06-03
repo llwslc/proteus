@@ -14,7 +14,7 @@ export function Separator({
   label,
   className,
 }: SeparatorProps) {
-  if (label != null && orientation === "horizontal") {
+  if (label != null) {
     return (
       <div
         role="separator"

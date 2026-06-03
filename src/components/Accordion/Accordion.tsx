@@ -14,7 +14,7 @@ export interface AccordionItem {
 export interface AccordionProps {
   items: AccordionItem[];
   openMultiple?: boolean;
-  defaultValue?: (string | number)[];
+  defaultValue?: string[];
   className?: string;
 }
 

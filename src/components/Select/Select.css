@@ -51,6 +51,11 @@
 .nova-select__field:has(.nova-select__trigger:focus-visible) {
   filter: var(--nova-glow-focus);
 }
+.nova-select__trigger[data-disabled],
+.nova-select__trigger:disabled {
+  opacity: var(--nova-disabled-opacity);
+  cursor: not-allowed;
+}
 .nova-select__placeholder {
   color: var(--nova-text-mute);
 }

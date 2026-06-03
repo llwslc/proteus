@@ -33,7 +33,7 @@ export function NumberField({
       max={max}
       {...(controlled !== undefined ? { value: controlled } : { defaultValue })}
       onValueChange={(v, details) => {
-        setTracked(v);
+        if (controlled === undefined) setTracked(v);
         onValueChange?.(v, details);
       }}
       {...props}

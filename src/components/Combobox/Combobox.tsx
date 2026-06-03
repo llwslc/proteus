@@ -9,6 +9,7 @@ export interface ComboboxProps {
   defaultValue?: string;
   emptyText?: string;
   label?: string;
+  name?: string;
 }
 
 export function Combobox({
@@ -17,10 +18,11 @@ export function Combobox({
   defaultValue,
   emptyText = "No matching signal",
   label,
+  name,
 }: ComboboxProps) {
   const inputId = useId();
   return (
-    <BaseCombobox.Root items={items} defaultValue={defaultValue}>
+    <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
       <div className="nova-combobox__control">
         <span className="nova-combobox__lead">
           <SearchIcon />

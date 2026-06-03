@@ -63,6 +63,6 @@
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-scrollarea__thumb:hover::before,
-.nova-scrollarea__thumb[data-scrolling]::before {
+.nova-scrollarea__scrollbar[data-scrolling] .nova-scrollarea__thumb::before {
   background: var(--nova-primary);
 }

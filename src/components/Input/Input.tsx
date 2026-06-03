@@ -69,7 +69,11 @@ export function Field({
           {description}
         </BaseField.Description>
       ) : null}
-      {error != null ? <span className="nova-field__error">{error}</span> : null}
+      {error != null ? (
+        <BaseField.Error className="nova-field__error" match>
+          {error}
+        </BaseField.Error>
+      ) : null}
     </BaseField.Root>
   );
 }
