@@ -78,11 +78,8 @@
 
 .nova-toolbar__sep.nova-separator {
   align-self: stretch;
-  flex: 0 0 1px;
-  width: 1px;
   height: auto;
   margin: 3px var(--nova-space-1);
-  background: var(--nova-line-strong);
 }
 
 @media (max-width: 768px) {
