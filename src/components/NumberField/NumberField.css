@@ -63,11 +63,11 @@
   border: 0;
   outline: none;
   text-align: center;
-  background: var(--nova-surface-input);
+  background: var(--nova-surface-popup);
   color: var(--nova-text);
   box-shadow:
-    inset 1px 0 0 var(--nova-line-soft),
-    inset -1px 0 0 var(--nova-line-soft);
+    inset 1px 0 0 var(--nova-tint-soft),
+    inset -1px 0 0 var(--nova-tint-soft);
   font-family: var(--nova-font-mono);
   font-size: 16px;
   letter-spacing: 0.08em;

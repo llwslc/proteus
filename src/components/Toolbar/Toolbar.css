@@ -15,7 +15,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-bar);
+  background: var(--nova-surface-popup);
 }
 .nova-toolbar > * {
   position: relative;
@@ -58,12 +58,12 @@
     color var(--nova-dur) var(--nova-ease);
 }
 .nova-toolbar__btn:hover {
-  background: var(--nova-line-soft);
+  background: var(--nova-tint-soft);
   color: var(--nova-text);
 }
 .nova-toolbar__btn:focus-visible {
   outline: none;
-  background: var(--nova-line-soft);
+  background: var(--nova-tint-soft);
   color: var(--nova-text);
 }
 .nova-toolbar__btn.is-active {

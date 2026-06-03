@@ -24,7 +24,7 @@
   padding: 0;
   border: 1px solid var(--nova-line-strong);
   border-radius: 50%;
-  background: var(--nova-surface-input);
+  background: var(--nova-surface-popup);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition:

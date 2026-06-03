@@ -33,7 +33,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-7);
-  background: var(--nova-surface-input);
+  background: var(--nova-surface-popup);
 }
 .nova-select__trigger > * {
   position: relative;

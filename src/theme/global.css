@@ -41,8 +41,8 @@ body::after {
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(var(--nova-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--nova-grid) 1px, transparent 1px);
+    linear-gradient(var(--nova-tint-faint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nova-tint-faint) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: radial-gradient(120% 120% at 50% 0%, #000 30%, transparent 90%);
   animation: nova-grid-drift 24s linear infinite;

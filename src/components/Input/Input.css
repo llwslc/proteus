@@ -46,7 +46,7 @@
   padding: 0 13px;
   border: 0;
   outline: none;
-  background: var(--nova-surface-input);
+  background: var(--nova-surface-popup);
   color: var(--nova-text);
   font-family: var(--nova-font);
   font-size: 15px;

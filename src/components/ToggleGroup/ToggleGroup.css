@@ -13,7 +13,7 @@
   position: absolute;
   inset: 1px;
   clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-input);
+  background: var(--nova-surface-popup);
 }
 
 .nova-toggle-wrap {
@@ -23,7 +23,7 @@
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 .nova-toggle-wrap:has(.nova-toggle[data-pressed]) {
-  filter: drop-shadow(0 0 8px var(--nova-primary-a50));
+  filter: drop-shadow(0 0 8px var(--nova-line-strong));
 }
 
 .nova-toggle {
@@ -53,7 +53,7 @@
 }
 .nova-toggle:hover {
   color: var(--nova-text);
-  background: var(--nova-line-soft);
+  background: var(--nova-tint-soft);
 }
 .nova-toggle[data-pressed] {
   color: var(--nova-on-primary);

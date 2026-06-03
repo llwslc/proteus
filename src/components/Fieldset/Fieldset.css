@@ -27,5 +27,5 @@
   gap: 16px;
   margin-left: 5px;
   padding-left: 16px;
-  border-left: 1px solid var(--nova-line-soft);
+  border-left: 1px solid var(--nova-tint-soft);
 }

@@ -31,7 +31,7 @@
   inset: 1px;
   z-index: 0;
   clip-path: var(--nova-clip-7);
-  background: var(--nova-surface-input);
+  background: var(--nova-surface-popup);
   transition: background var(--nova-dur) var(--nova-ease);
 }
 
@@ -52,7 +52,7 @@
 }
 
 .nova-otp__cell-glow:has(.nova-otp__slot:focus) {
-  filter: drop-shadow(0 0 8px var(--nova-primary-a50));
+  filter: drop-shadow(0 0 8px var(--nova-line-strong));
 }
 .nova-otp__cell:has(.nova-otp__slot:focus) {
   background: var(--nova-primary);

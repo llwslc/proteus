@@ -91,7 +91,7 @@
 
 .nova-btn--secondary {
   background: var(--nova-secondary-fill);
-  color: var(--nova-on-secondary);
+  color: var(--nova-on-danger);
 }
 .nova-btn--secondary::before {
   background: linear-gradient(180deg, var(--nova-secondary), var(--nova-secondary-deep));
@@ -110,7 +110,7 @@
   color: var(--nova-primary);
 }
 .nova-btn--ghost::before {
-  background: var(--nova-surface-input);
+  background: var(--nova-surface-popup);
 }
 .nova-btn--ghost::after {
   opacity: 0.25;
