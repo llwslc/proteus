@@ -74,23 +74,25 @@ export function Select({
           alignItemWithTrigger={false}
         >
           <BaseSelect.Popup className="nova-surface nova-anim-pop nova-select__popup">
-            {items.map((it) => (
-              <BaseSelect.Item
-                key={it.value}
-                value={it.value}
-                disabled={it.disabled}
-                className="nova-select__item"
-              >
-                <span className="nova-select__item-indicator">
-                  <BaseSelect.ItemIndicator>
-                    <CheckIcon />
-                  </BaseSelect.ItemIndicator>
-                </span>
-                <BaseSelect.ItemText className="nova-select__item-text">
-                  {it.label}
-                </BaseSelect.ItemText>
-              </BaseSelect.Item>
-            ))}
+            <div className="nova-select__list">
+              {items.map((it) => (
+                <BaseSelect.Item
+                  key={it.value}
+                  value={it.value}
+                  disabled={it.disabled}
+                  className="nova-select__item"
+                >
+                  <span className="nova-select__item-indicator">
+                    <BaseSelect.ItemIndicator>
+                      <CheckIcon />
+                    </BaseSelect.ItemIndicator>
+                  </span>
+                  <BaseSelect.ItemText className="nova-select__item-text">
+                    {it.label}
+                  </BaseSelect.ItemText>
+                </BaseSelect.Item>
+              ))}
+            </div>
           </BaseSelect.Popup>
         </BaseSelect.Positioner>
       </BaseSelect.Portal>

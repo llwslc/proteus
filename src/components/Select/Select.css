@@ -71,8 +71,10 @@
 .nova-select__popup {
   box-sizing: border-box;
   min-width: var(--anchor-width);
-  max-height: var(--available-height);
   padding: 5px;
+}
+.nova-select__list {
+  max-height: var(--available-height);
   overflow-y: auto;
 }
 

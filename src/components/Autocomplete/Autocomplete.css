@@ -68,9 +68,7 @@
 .nova-autocomplete__popup {
   box-sizing: border-box;
   min-width: var(--anchor-width);
-  max-height: min(var(--available-height), 264px);
   padding: 5px;
-  overflow-y: auto;
 }
 
 .nova-autocomplete__empty {
@@ -88,6 +86,8 @@
 .nova-autocomplete__list {
   position: relative;
   z-index: 1;
+  max-height: min(var(--available-height), 264px);
+  overflow-y: auto;
 }
 
 .nova-autocomplete__item {
