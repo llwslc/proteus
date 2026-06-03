@@ -31,7 +31,7 @@ body::before {
   z-index: -2;
   background:
     radial-gradient(120% 90% at 80% -10%, rgba(255, 45, 117, 0.12), transparent 55%),
-    radial-gradient(120% 90% at 0% 110%, rgba(45, 226, 255, 0.14), transparent 55%),
+    radial-gradient(120% 90% at 0% 110%, var(--nova-highlight), transparent 55%),
     linear-gradient(to bottom, var(--nova-bg), var(--nova-bg-2));
 }
 
@@ -84,7 +84,7 @@ html::after {
 }
 
 ::selection {
-  background: rgba(45, 226, 255, 0.3);
+  background: var(--nova-tint-active);
   color: #fff;
 }
 

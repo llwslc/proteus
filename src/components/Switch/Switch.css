@@ -15,7 +15,7 @@
 .nova-switch__track {
   position: absolute;
   inset: 0;
-  background: rgba(126, 162, 198, 0.5);
+  background: var(--nova-off);
   clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }
@@ -57,7 +57,7 @@
   background: linear-gradient(180deg, #0e2a3a, #03141d);
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    inset 0 1px 0 var(--nova-sheen-soft);
 }
 
 .nova-switch:focus-visible {

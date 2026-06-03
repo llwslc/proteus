@@ -34,7 +34,7 @@
 .nova-progress__indicator {
   height: 100%;
   background-image:
-    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0 8px, transparent 8px 18px),
+    repeating-linear-gradient(115deg, var(--nova-sheen-soft) 0 8px, transparent 8px 18px),
     linear-gradient(90deg, var(--nova-primary-deep), var(--nova-primary));
   background-size: 56px 100%, 100% 100%;
   box-shadow: 0 0 12px var(--nova-tint-bright);

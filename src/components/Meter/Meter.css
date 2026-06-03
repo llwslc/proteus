@@ -5,11 +5,11 @@
 }
 .nova-meter--success {
   --nova-meter-fill: var(--nova-success);
-  --nova-meter-fill-deep: #1f9c68;
+  --nova-meter-fill-deep: var(--nova-success-deep);
 }
 .nova-meter--warning {
   --nova-meter-fill: var(--nova-warning);
-  --nova-meter-fill-deep: #b8861f;
+  --nova-meter-fill-deep: var(--nova-warning-deep);
 }
 .nova-meter--danger {
   --nova-meter-fill: var(--nova-danger);

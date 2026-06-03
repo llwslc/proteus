@@ -82,8 +82,8 @@
   color: var(--nova-danger);
 }
 .nova-menu__item--danger[data-highlighted] {
-  background: rgba(255, 77, 94, 0.16);
-  color: #ffd9dc;
+  background: var(--nova-danger-highlight);
+  color: var(--nova-danger-text);
 }
 .nova-menu__item--danger[data-highlighted] .nova-menu__icon {
   color: var(--nova-danger);
