@@ -1,6 +1,5 @@
 import { cx } from "../cx";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
-import { useEffect, useRef, useState } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
@@ -28,66 +27,12 @@ export function Dialog({
   onOpenChange,
   className,
 }: DialogProps) {
-  const [internalOpen, setInternalOpen] = useState(false);
-  const effectiveOpen = open ?? internalOpen;
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-
-  const handleOpenChange = (nextOpen: boolean) => {
-    setInternalOpen(nextOpen);
-    onOpenChange?.(nextOpen);
-  };
-
-  useEffect(() => {
-    if (!effectiveOpen) {
-      return;
-    }
-    const htmlEl = document.documentElement;
-    const prevHtmlOverflow = htmlEl.style.overflow;
-    const prevHtmlPaddingRight = htmlEl.style.paddingRight;
-    const scrollbarWidth = window.innerWidth - htmlEl.clientWidth;
-    htmlEl.style.overflow = "hidden";
-    if (scrollbarWidth > 0) {
-      htmlEl.style.paddingRight = `${scrollbarWidth}px`;
-    }
-    const restoreScroll = () => {
-      htmlEl.style.overflow = prevHtmlOverflow;
-      htmlEl.style.paddingRight = prevHtmlPaddingRight;
-    };
-
-    const viewportEl = viewportRef.current;
-    if (!viewportEl) {
-      return restoreScroll;
-    }
-
-    const sync = () => {
-      const vv = window.visualViewport;
-      const w = vv?.width ?? window.innerWidth;
-      const h = vv?.height ?? window.innerHeight;
-      viewportEl.style.setProperty("--nova-overlay-vw", `${w}px`);
-      viewportEl.style.setProperty("--nova-overlay-vh", `${h}px`);
-    };
-
-    sync();
-    window.addEventListener("resize", sync);
-    window.visualViewport?.addEventListener("resize", sync);
-    window.visualViewport?.addEventListener("scroll", sync);
-
-    return () => {
-      viewportEl.style.removeProperty("--nova-overlay-vw");
-      viewportEl.style.removeProperty("--nova-overlay-vh");
-      window.removeEventListener("resize", sync);
-      window.visualViewport?.removeEventListener("resize", sync);
-      window.visualViewport?.removeEventListener("scroll", sync);
-      restoreScroll();
-    };
-  }, [effectiveOpen]);
-
   return (
-    <BaseDialog.Root open={open} onOpenChange={handleOpenChange}>
+    <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseDialog.Trigger render={trigger} />
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
-        <BaseDialog.Viewport ref={viewportRef} className="nova-dialog__viewport">
+        <BaseDialog.Viewport className="nova-dialog__viewport">
           <BaseDialog.Popup
             initialFocus={false}
             finalFocus={false}
