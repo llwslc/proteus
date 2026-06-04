@@ -21,7 +21,6 @@ body {
   line-height: var(--nova-lh-150);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
 }
 
 body::before {
