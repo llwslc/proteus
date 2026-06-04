@@ -9,6 +9,12 @@ html {
   overflow-x: hidden;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
 #root {
   min-height: 100vh;
 }
