@@ -7,6 +7,10 @@
   transition: transform var(--nova-dur-slow) var(--nova-ease-out);
 }
 
+.nova-scrim-backdrop.nova-drawer__backdrop {
+  transition-duration: var(--nova-dur-slow);
+}
+
 .nova-drawer__surface {
   --nova-surface-clip: none;
   --nova-surface-fill:

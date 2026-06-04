@@ -49,6 +49,7 @@
   font-size: var(--nova-fs-22);
   caret-color: var(--nova-primary);
   outline: none;
+  transition: color var(--nova-dur) var(--nova-ease);
 }
 
 .nova-otp__cell-glow:has(.nova-otp__slot:focus) {

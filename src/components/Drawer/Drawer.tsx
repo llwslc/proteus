@@ -37,7 +37,7 @@ export function Drawer({
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseDialog.Trigger render={trigger} />
       <BaseDialog.Portal>
-        <BaseDialog.Backdrop className="nova-scrim-backdrop" />
+        <BaseDialog.Backdrop className="nova-scrim-backdrop nova-drawer__backdrop" />
         <BaseDialog.Popup
           className={cx("nova-elevation nova-drawer", `nova-drawer--${side}`, className)}
         >

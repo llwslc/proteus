@@ -17,7 +17,9 @@
   clip-path: var(--nova-clip-9);
   outline: 1px dashed var(--nova-line-strong);
   outline-offset: -1px;
-  transition: background var(--nova-dur) var(--nova-ease);
+  transition:
+    background var(--nova-dur) var(--nova-ease),
+    outline-color var(--nova-dur) var(--nova-ease);
 }
 .nova-ctxmenu__zone:hover {
   background:
