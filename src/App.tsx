@@ -123,13 +123,15 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
       ["badge", "Badge", "BDG"],
       ["toolbar", "Toolbar", "TBR"],
       ["scroll", "Scroll Area", "SCR"],
-      ["separator", "Separator", "SEP"],
-      ["panel", "Panel", "PNL"],
     ],
   },
   {
     group: "Foundations",
-    items: [["typography", "Typography", "TYP"]],
+    items: [
+      ["typography", "Typography", "TYP"],
+      ["panel", "Panel", "PNL"],
+      ["separator", "Separator", "SEP"],
+    ],
   },
 ];
 
@@ -1068,21 +1070,19 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section" id="separator">
-              <Panel title="Separator" meta="SEP">
-                <div className="demo-stack">
-                  <span className="demo-tag">Plain</span>
-                  <Separator />
-                  <span className="demo-tag">Labelled</span>
-                  <Separator label="Section 7G" />
-                  <span className="demo-tag">Vertical</span>
-                  <div className="demo-row">
-                    <span className="demo-rowlabel">Sector A</span>
-                    <Separator orientation="vertical" />
-                    <span className="demo-rowlabel">Sector B</span>
-                    <Separator orientation="vertical" />
-                    <span className="demo-rowlabel">Sector C</span>
-                  </div>
+            <div className="nova-section" id="typography">
+              <Panel title="Typography" meta="TYP">
+                <div className="demo-col">
+                  <p className="nova-h1">Nova Command</p>
+                  <p className="nova-h2">Telemetry Feed</p>
+                  <p className="nova-h3">Sensor Array</p>
+                  <p className="nova-text">
+                    All systems nominal — reactor output holding at 98.4% across
+                    the primary manifold, tracking 1,204 contacts in range.
+                  </p>
+                  <span className="demo-tag">
+                    .nova-h1 / h2 / h3 · .nova-text — style-only, any tag
+                  </span>
                 </div>
               </Panel>
             </div>
@@ -1099,19 +1099,21 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section" id="typography">
-              <Panel title="Typography" meta="TYP">
-                <div className="demo-col">
-                  <p className="nova-h1">Nova Command</p>
-                  <p className="nova-h2">Telemetry Feed</p>
-                  <p className="nova-h3">Sensor Array</p>
-                  <p className="nova-text">
-                    All systems nominal — reactor output holding at 98.4% across
-                    the primary manifold, tracking 1,204 contacts in range.
-                  </p>
-                  <span className="demo-tag">
-                    .nova-h1 / h2 / h3 · .nova-text — style-only, any tag
-                  </span>
+            <div className="nova-section" id="separator">
+              <Panel title="Separator" meta="SEP">
+                <div className="demo-stack">
+                  <span className="demo-tag">Plain</span>
+                  <Separator />
+                  <span className="demo-tag">Labelled</span>
+                  <Separator label="Section 7G" />
+                  <span className="demo-tag">Vertical</span>
+                  <div className="demo-row">
+                    <span className="demo-rowlabel">Sector A</span>
+                    <Separator orientation="vertical" />
+                    <span className="demo-rowlabel">Sector B</span>
+                    <Separator orientation="vertical" />
+                    <span className="demo-rowlabel">Sector C</span>
+                  </div>
                 </div>
               </Panel>
             </div>
