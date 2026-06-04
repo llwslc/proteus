@@ -226,6 +226,41 @@
   min-width: 0;
 }
 
+/* ---------- Grid group dividers ---------- */
+.nova-grid__group {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  scroll-margin-top: 80px;
+}
+.nova-grid__group:first-child {
+  margin-top: 0;
+}
+.nova-grid__group-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--nova-font-display);
+  font-size: var(--nova-fs-13);
+  font-weight: var(--nova-fw-700);
+  letter-spacing: var(--nova-ls-16);
+  text-transform: uppercase;
+  color: var(--nova-text-dim);
+  white-space: nowrap;
+}
+.nova-grid__group-title::before {
+  content: "//";
+  color: var(--nova-primary);
+}
+.nova-grid__group::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--nova-line-strong), transparent);
+}
+
 /* ---------- Demo helpers ---------- */
 .demo-row {
   display: flex;

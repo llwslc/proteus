@@ -533,6 +533,9 @@ function Demo() {
           </section>
 
           <div className="nova-grid">
+            <div className="nova-grid__group">
+              <span className="nova-grid__group-title">Input</span>
+            </div>
             <div className="nova-section span-2" id="buttons">
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
@@ -728,6 +731,9 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="nova-grid__group">
+              <span className="nova-grid__group-title">Forms</span>
+            </div>
             <div className="nova-section" id="fieldset">
               <Panel title="Fieldset" meta="FLD">
                 <Fieldset legend="Pilot Credentials">
@@ -743,6 +749,9 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="nova-grid__group">
+              <span className="nova-grid__group-title">Feedback</span>
+            </div>
             <div className="nova-section" id="progress">
               <Panel title="Progress" meta="PRG">
                 <ProgressDemo />
@@ -786,6 +795,9 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="nova-grid__group">
+              <span className="nova-grid__group-title">Overlay</span>
+            </div>
             <div className="nova-section" id="tooltip">
               <Panel title="Tooltip" meta="TIP">
                 <div className="demo-row">
@@ -1017,6 +1029,9 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="nova-grid__group">
+              <span className="nova-grid__group-title">Display</span>
+            </div>
             <div className="nova-section" id="avatar">
               <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
@@ -1070,6 +1085,9 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="nova-grid__group">
+              <span className="nova-grid__group-title">Foundations</span>
+            </div>
             <div className="nova-section" id="typography">
               <Panel title="Typography" meta="TYP">
                 <div className="demo-col">
