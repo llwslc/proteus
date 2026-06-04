@@ -19,7 +19,7 @@
   cursor: pointer;
   color: var(--nova-text);
   background: var(--nova-line);
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   font-family: var(--nova-font);
   font-size: var(--nova-fs-15);
   letter-spacing: var(--nova-ls-4);
@@ -32,7 +32,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   background: var(--nova-surface-popup);
 }
 .nova-select__trigger > * {

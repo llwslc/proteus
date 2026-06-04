@@ -17,7 +17,7 @@
   height: var(--nova-control-h);
   padding: 0 var(--nova-space-3);
   background: var(--nova-line);
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-autocomplete__control::before {
@@ -25,7 +25,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   background: var(--nova-surface-popup);
 }
 .nova-autocomplete__control > * {

@@ -22,7 +22,7 @@
   width: 44px;
   height: 52px;
   background: var(--nova-line-strong);
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-otp__cell::before {
@@ -30,7 +30,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   background: var(--nova-surface-popup);
   transition: background var(--nova-dur) var(--nova-ease);
 }

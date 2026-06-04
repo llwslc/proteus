@@ -17,7 +17,7 @@
   align-items: center;
   width: 100%;
   background: var(--nova-line);
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-input-wrap:hover {
@@ -51,7 +51,7 @@
   font-family: var(--nova-font);
   font-size: var(--nova-fs-15);
   letter-spacing: var(--nova-ls-4);
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
 }
 .nova-input::placeholder {
   color: var(--nova-text-mute);

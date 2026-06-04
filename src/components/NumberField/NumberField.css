@@ -12,7 +12,7 @@
   align-items: stretch;
   height: var(--nova-control-h);
   background: var(--nova-line);
-  clip-path: var(--nova-clip-7);
+  clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-numberfield__group:hover {

@@ -34,7 +34,7 @@
   text-decoration: none;
   cursor: pointer;
   outline: none;
-  clip-path: var(--nova-clip-6);
+  clip-path: var(--nova-clip-7);
   transition:
     background var(--nova-dur) var(--nova-ease),
     color var(--nova-dur) var(--nova-ease);

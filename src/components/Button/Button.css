@@ -10,7 +10,7 @@
   cursor: pointer;
   color: var(--nova-on-primary);
   background: var(--nova-line-strong);
-  clip-path: var(--nova-clip-8);
+  clip-path: var(--nova-clip-9);
   font-family: var(--nova-font-display);
   font-weight: var(--nova-fw-700);
   font-size: var(--nova-fs-13);
@@ -29,7 +29,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-8);
+  clip-path: var(--nova-clip-9);
   background: linear-gradient(180deg, var(--nova-primary), var(--nova-primary-deep));
   transition:
     background var(--nova-dur) var(--nova-ease),
@@ -41,7 +41,7 @@
   position: absolute;
   inset: 1px;
   z-index: 1;
-  clip-path: var(--nova-clip-8);
+  clip-path: var(--nova-clip-9);
   background: linear-gradient(105deg, transparent 38%, var(--nova-sheen) 50%, transparent 62%);
   transform: translateX(-130%);
   transition: transform var(--nova-dur-slow) var(--nova-ease);
@@ -126,21 +126,21 @@
   height: 30px;
   padding: 0 var(--nova-space-3);
   font-size: var(--nova-fs-11);
-  clip-path: var(--nova-clip-6);
+  clip-path: var(--nova-clip-9);
 }
 .nova-btn--sm::before,
 .nova-btn--sm::after {
-  clip-path: var(--nova-clip-6);
+  clip-path: var(--nova-clip-9);
 }
 .nova-btn--lg {
   height: 47px;
   padding: 0 var(--nova-space-7);
   font-size: var(--nova-fs-15);
-  clip-path: var(--nova-clip-11);
+  clip-path: var(--nova-clip-9);
 }
 .nova-btn--lg::before,
 .nova-btn--lg::after {
-  clip-path: var(--nova-clip-11);
+  clip-path: var(--nova-clip-9);
 }
 
 .nova-btn--icon {
@@ -151,7 +151,7 @@
   background: var(--nova-tint-faint);
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-15);
-  clip-path: var(--nova-clip-5);
+  clip-path: var(--nova-clip-9);
   transition:
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease),
