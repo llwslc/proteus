@@ -6,12 +6,10 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-y: scroll;
 }
 
 #root {
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 body {
@@ -23,6 +21,7 @@ body {
   line-height: var(--nova-lh-150);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 body::before {
