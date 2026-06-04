@@ -41,9 +41,22 @@ export function Dialog({
     if (!effectiveOpen) {
       return;
     }
+    const htmlEl = document.documentElement;
+    const prevHtmlOverflow = htmlEl.style.overflow;
+    const prevHtmlPaddingRight = htmlEl.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - htmlEl.clientWidth;
+    htmlEl.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      htmlEl.style.paddingRight = `${scrollbarWidth}px`;
+    }
+    const restoreScroll = () => {
+      htmlEl.style.overflow = prevHtmlOverflow;
+      htmlEl.style.paddingRight = prevHtmlPaddingRight;
+    };
+
     const viewportEl = viewportRef.current;
     if (!viewportEl) {
-      return;
+      return restoreScroll;
     }
 
     const sync = () => {
@@ -65,6 +78,7 @@ export function Dialog({
       window.removeEventListener("resize", sync);
       window.visualViewport?.removeEventListener("resize", sync);
       window.visualViewport?.removeEventListener("scroll", sync);
+      restoreScroll();
     };
   }, [effectiveOpen]);
 
