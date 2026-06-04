@@ -40,8 +40,6 @@ export function Drawer({
         <BaseDialog.Backdrop className="nova-scrim-backdrop nova-drawer__backdrop" />
         <BaseDialog.Viewport className="nova-drawer__viewport">
           <BaseDialog.Popup
-            initialFocus={false}
-            finalFocus={false}
             className={cx("nova-elevation nova-drawer", `nova-drawer--${side}`, className)}
           >
             <div className="nova-surface nova-drawer__surface">

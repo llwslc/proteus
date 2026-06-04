@@ -33,11 +33,7 @@ export function Dialog({
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Viewport className="nova-dialog__viewport">
-          <BaseDialog.Popup
-            initialFocus={false}
-            finalFocus={false}
-            className={cx("nova-elevation nova-dialog__popup", className)}
-          >
+          <BaseDialog.Popup className={cx("nova-elevation nova-dialog__popup", className)}>
             <div className="nova-surface nova-dialog__surface">
               <span className="nova-scan" />
               <BaseDialog.Close
