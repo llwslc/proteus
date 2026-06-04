@@ -3,14 +3,14 @@
   display: block;
   width: 100%;
   background: var(--nova-line);
-  clip-path: var(--nova-clip-8);
+  clip-path: var(--nova-clip-9);
 }
 .nova-collapsible::before {
   content: "";
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-8);
+  clip-path: var(--nova-clip-9);
   background: var(--nova-surface);
 }
 

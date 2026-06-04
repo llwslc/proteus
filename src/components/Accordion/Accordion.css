@@ -8,7 +8,7 @@
 .nova-accordion__item {
   position: relative;
   background: var(--nova-line);
-  clip-path: var(--nova-clip-8);
+  clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-accordion__item::before {
@@ -16,7 +16,7 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  clip-path: var(--nova-clip-8);
+  clip-path: var(--nova-clip-9);
   background: var(--nova-surface);
 }
 .nova-accordion__item:hover {
