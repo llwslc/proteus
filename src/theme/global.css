@@ -6,17 +6,12 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  html {
-    scrollbar-gutter: stable;
-  }
+  overflow-y: scroll;
 }
 
 #root {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 body {
