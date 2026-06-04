@@ -70,6 +70,7 @@
 }
 .nova-btn:active {
   transform: translateY(1px);
+  transition-duration: 0s;
 }
 .nova-btn:focus-visible {
   outline: none;
@@ -160,7 +161,8 @@
   transition:
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease),
-    border-color var(--nova-dur) var(--nova-ease);
+    border-color var(--nova-dur) var(--nova-ease),
+    transform var(--nova-dur) var(--nova-ease);
 }
 .nova-btn--icon::before,
 .nova-btn--icon::after {
@@ -179,7 +181,9 @@
   background: transparent;
   color: var(--nova-text-mute);
   font-size: var(--nova-fs-14);
-  transition: color var(--nova-dur) var(--nova-ease);
+  transition:
+    color var(--nova-dur) var(--nova-ease),
+    transform var(--nova-dur) var(--nova-ease);
 }
 .nova-btn--icon-ghost::before,
 .nova-btn--icon-ghost::after {
