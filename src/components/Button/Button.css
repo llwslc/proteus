@@ -1,6 +1,5 @@
 .nova-btn {
   position: relative;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -44,12 +43,14 @@
   clip-path: var(--nova-clip-9);
   background: linear-gradient(
     105deg,
-    transparent 38%,
+    transparent 46%,
     var(--nova-sheen) 50%,
-    transparent 62%
+    transparent 54%
   );
-  transform: translateX(-130%);
-  transition: transform var(--nova-dur-slow) var(--nova-ease);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  transition: background-position var(--nova-dur-slow) var(--nova-ease);
   pointer-events: none;
 }
 
@@ -66,7 +67,7 @@
 }
 
 .nova-btn:hover::after {
-  transform: translateX(130%);
+  background-position: 0 0;
 }
 .nova-btn:active {
   transform: translateY(1px);
