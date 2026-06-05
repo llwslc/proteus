@@ -302,7 +302,7 @@
 .demo-rowlabel {
   font-family: var(--nova-font);
   font-size: 16px;
-  color: var(--nova-text);
+  color: var(--nova-text-dim);
 }
 
 /* Preview Card trigger + content */

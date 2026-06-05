@@ -125,11 +125,6 @@
   background: linear-gradient(180deg, transparent, var(--nova-line-strong), transparent);
 }
 
-/* Shared centered-overlay layer — Dialog + AlertDialog.
-   left/right:0 (not 100vw) sizes to the content box, never the scrollbar gutter;
-   height:100dvh anchors to the dynamic mobile viewport;
-   grid + margin:auto centers a short popup yet scrolls a tall one from the top
-   (place-items:center would push the header above the scroll origin). */
 .nova-overlay-viewport {
   position: fixed;
   top: 0;
