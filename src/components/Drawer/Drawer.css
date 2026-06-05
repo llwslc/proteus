@@ -1,11 +1,10 @@
 .nova-drawer__viewport {
-  box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: var(--nova-z-overlay);
-  width: 100vw;
+  right: 0;
   height: 100dvh;
+  z-index: var(--nova-z-overlay);
   overflow: hidden;
 }
 
@@ -48,7 +47,7 @@
 .nova-drawer--left {
   top: 0;
   height: 100%;
-  width: min(420px, 80vw);
+  width: min(420px, 80%);
 }
 .nova-drawer--right {
   right: 0;

@@ -32,7 +32,7 @@ export function Dialog({
       <BaseDialog.Trigger render={trigger} />
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
-        <BaseDialog.Viewport className="nova-dialog__viewport">
+        <BaseDialog.Viewport className="nova-overlay-viewport">
           <BaseDialog.Popup
             initialFocus={false}
             finalFocus={false}

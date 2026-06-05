@@ -7,12 +7,8 @@
   --nova-overlay-glow: drop-shadow(
     0 0 22px color-mix(in srgb, var(--nova-alert-accent) 26%, transparent)
   );
-  position: fixed;
-  z-index: var(--nova-z-overlay);
-  top: 50%;
-  left: 50%;
-  width: min(440px, calc(100vw - 32px));
-  transform: translate(-50%, -50%);
+  position: relative;
+  width: min(440px, 100%);
   outline: none;
   transition:
     opacity var(--nova-dur) var(--nova-ease),
@@ -28,7 +24,7 @@
 .nova-alert__popup[data-starting-style],
 .nova-alert__popup[data-ending-style] {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.94);
+  transform: scale(0.94);
 }
 .nova-alert__popup--warning {
   --nova-alert-accent: var(--nova-warning);
