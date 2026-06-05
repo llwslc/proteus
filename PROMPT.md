@@ -129,6 +129,7 @@
 - 细分隔条（1px）在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`，否则被按比例压成 0。
 - grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`，否则子项撑破轨道。
 - 让文档自身滚动，`#root` 仅 `min-height: 100vh`。≤900px 隐藏侧栏、单列；≤768px 作手机端处理（收紧间距、分段控件换行或横滚）。
+- **iOS transform 溢出**：会扫出 / 滑出自身盒子的装饰（按钮高光、面板扫描、进度不定态等）**不能用 `transform: translate()` 移出盒子** —— iOS WebKit 会把超出盒子的 transform 计入祖先 `scrollWidth`/`Height`，整页就横向 / 纵向漂；`overflow:hidden` / `clip-path` 都裁不住（只裁绘制）。改用 `background-position` 扫（`::after` 原地不动）或动 `top` / `left`（位置溢出能被 `overflow` 可靠裁掉）。触发器被点后 iOS 会留 sticky `:hover`，故按钮高光卡住外溢，「点开浮层」最易触发。
 
 ## 演示页
 
