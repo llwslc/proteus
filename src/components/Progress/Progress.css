@@ -45,6 +45,7 @@
   animation: nova-progress-stripes 0.9s linear infinite;
 }
 .nova-progress__indicator[data-indeterminate] {
+  position: absolute;
   width: 40%;
   transition: none;
   animation:
@@ -60,9 +61,9 @@
 }
 @keyframes nova-progress-sweep {
   0% {
-    transform: translateX(-100%);
+    left: -40%;
   }
   100% {
-    transform: translateX(250%);
+    left: 100%;
   }
 }

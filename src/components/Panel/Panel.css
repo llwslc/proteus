@@ -30,7 +30,7 @@
   position: absolute;
   left: 1px;
   right: 1px;
-  top: 1px;
+  top: -50%;
   height: 44%;
   z-index: 0;
   background: linear-gradient(180deg, transparent, var(--nova-tint-soft), transparent);
@@ -39,10 +39,10 @@
 }
 @keyframes nova-panel-scan {
   from {
-    transform: translateY(-120%);
+    top: -50%;
   }
   to {
-    transform: translateY(250%);
+    top: 110%;
   }
 }
 
