@@ -222,7 +222,6 @@
   letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   text-align: left;
-  -webkit-tap-highlight-color: transparent;
   transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-disclosure__marker {

@@ -45,7 +45,6 @@
   font-size: var(--nova-fs-12);
   letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
-  -webkit-tap-highlight-color: transparent;
   transition:
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease),

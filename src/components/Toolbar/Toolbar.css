@@ -42,7 +42,6 @@
   letter-spacing: var(--nova-ls-4);
   cursor: pointer;
   clip-path: var(--nova-clip-7);
-  -webkit-tap-highlight-color: transparent;
   transition:
     background var(--nova-dur) var(--nova-ease),
     color var(--nova-dur) var(--nova-ease);

@@ -8,7 +8,6 @@
   border: 0;
   cursor: pointer;
   background: transparent;
-  -webkit-tap-highlight-color: transparent;
   transition: filter var(--nova-dur) var(--nova-ease);
 }
 

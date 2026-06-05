@@ -43,7 +43,6 @@
   letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   white-space: nowrap;
-  -webkit-tap-highlight-color: transparent;
   transition:
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease);

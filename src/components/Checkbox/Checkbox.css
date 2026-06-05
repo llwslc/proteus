@@ -25,7 +25,6 @@
   color: var(--nova-on-primary);
   background: var(--nova-line-strong);
   clip-path: var(--nova-clip-9);
-  -webkit-tap-highlight-color: transparent;
 }
 .nova-checkbox::before {
   content: "";

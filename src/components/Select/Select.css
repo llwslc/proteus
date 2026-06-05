@@ -24,7 +24,6 @@
   font-size: var(--nova-fs-15);
   letter-spacing: var(--nova-ls-4);
   text-align: left;
-  -webkit-tap-highlight-color: transparent;
   transition: background var(--nova-dur) var(--nova-ease);
 }
 .nova-select__trigger::before {
