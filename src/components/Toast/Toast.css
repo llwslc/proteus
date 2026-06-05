@@ -81,7 +81,7 @@
   transition: color var(--nova-dur) var(--nova-ease);
 }
 .nova-toast__close:hover {
-  color: var(--nova-text);
+  color: var(--nova-primary);
 }
 
 .nova-toast--success {

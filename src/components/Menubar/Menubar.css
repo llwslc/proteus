@@ -2,7 +2,7 @@
   --nova-surface-border: var(--nova-line);
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: var(--nova-space-1);
   width: fit-content;
   max-width: 100%;
   padding: var(--nova-space-1);
@@ -42,6 +42,9 @@
 .nova-menubar__trigger:focus-visible {
   background: var(--nova-tint-soft);
   color: var(--nova-text);
+}
+.nova-menubar__trigger:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--nova-line-strong);
 }
 .nova-menubar__trigger[data-popup-open] {
   background: var(--nova-primary);

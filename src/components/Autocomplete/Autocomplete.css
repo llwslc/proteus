@@ -33,7 +33,7 @@
   z-index: 1;
 }
 .nova-autocomplete__control:focus-within {
-  background: var(--nova-line-strong);
+  background: var(--nova-primary);
 }
 .nova-autocomplete__control:focus-within::before {
   background: var(--nova-surface-inset);

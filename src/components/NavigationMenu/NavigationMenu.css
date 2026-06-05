@@ -6,7 +6,7 @@
   --nova-surface-border: var(--nova-line);
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: var(--nova-space-1);
   width: fit-content;
   max-width: 100%;
   margin: 0;
@@ -43,6 +43,9 @@
 .nova-navmenu__trigger:focus-visible {
   background: var(--nova-tint-soft);
   color: var(--nova-text);
+}
+.nova-navmenu__trigger:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--nova-line-strong);
 }
 .nova-navmenu__toplink:hover,
 .nova-navmenu__toplink:focus-visible {
@@ -155,7 +158,7 @@
 }
 .nova-navmenu__link-desc {
   display: block;
-  margin-top: 3px;
+  margin-top: var(--nova-space-1);
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-12);
   line-height: var(--nova-lh-150);

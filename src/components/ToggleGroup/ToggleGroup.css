@@ -4,7 +4,7 @@
   width: fit-content;
   max-width: 100%;
   padding: var(--nova-space-1);
-  gap: 3px;
+  gap: var(--nova-space-1);
   background: var(--nova-line);
   clip-path: var(--nova-clip-9);
 }
@@ -56,7 +56,7 @@
 }
 .nova-toggle[data-pressed] {
   color: var(--nova-on-primary);
-  background: var(--nova-accent-surface);
+  background: var(--nova-primary);
 }
 .nova-toggle:focus-visible {
   outline: none;

@@ -49,7 +49,7 @@
 }
 .nova-tabs__tab:hover {
   color: var(--nova-text);
-  background: linear-gradient(180deg, transparent, var(--nova-tint-soft));
+  background: var(--nova-tint-soft);
 }
 .nova-tabs__tab[data-active] {
   color: var(--nova-primary);
@@ -81,7 +81,7 @@
 }
 
 .nova-tabs__panel {
-  padding: var(--nova-space-5) 2px;
+  padding: var(--nova-space-5) 0;
   color: var(--nova-text);
   outline: none;
   animation: nova-tab-fade var(--nova-dur-slow) var(--nova-ease);

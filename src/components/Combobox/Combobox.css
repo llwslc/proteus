@@ -26,7 +26,7 @@
   z-index: 1;
 }
 .nova-combobox__control:focus-within {
-  background: var(--nova-line-strong);
+  background: var(--nova-primary);
   filter: var(--nova-glow-focus);
 }
 .nova-combobox__control:focus-within::before {
@@ -61,8 +61,8 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   padding: 0;
   border: 0;
   background: transparent;

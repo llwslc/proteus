@@ -48,12 +48,13 @@
 }
 .nova-toolbar__btn:hover {
   background: var(--nova-tint-soft);
-  color: var(--nova-text);
+  color: var(--nova-primary);
 }
 .nova-toolbar__btn:focus-visible {
   outline: none;
   background: var(--nova-tint-soft);
-  color: var(--nova-text);
+  color: var(--nova-primary);
+  box-shadow: inset 0 0 0 1px var(--nova-line-strong);
 }
 .nova-toolbar__btn.is-active {
   background: var(--nova-primary);

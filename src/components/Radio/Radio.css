@@ -63,8 +63,9 @@
 
 .nova-radio__control:focus-visible {
   outline: none;
-  border-color: var(--nova-primary);
-  box-shadow: 0 0 0 3px var(--nova-line);
+}
+.nova-radio:has(.nova-radio__control:focus-visible) {
+  filter: var(--nova-glow-focus);
 }
 .nova-radio__control[data-disabled] {
   cursor: not-allowed;
