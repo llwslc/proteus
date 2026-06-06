@@ -16,11 +16,14 @@
   --nova-overlay-glow: drop-shadow(
     0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent)
   );
+  display: grid;
+  grid-template-rows: 1fr;
   margin-bottom: var(--nova-space-3);
   outline: none;
   opacity: 1;
   transform: translateX(var(--toast-swipe-movement-x, 0px));
   transition:
+    grid-template-rows var(--nova-dur-slow) var(--nova-ease),
     margin-bottom var(--nova-dur-slow) var(--nova-ease),
     opacity var(--nova-dur-slow) var(--nova-ease),
     transform var(--nova-dur-slow) var(--nova-ease);
@@ -36,29 +39,27 @@
   align-items: flex-start;
   gap: var(--nova-space-3);
   padding: var(--nova-space-4) var(--nova-space-4);
-  max-height: 200px;
+  min-height: 0;
   overflow: hidden;
-  transition: max-height var(--nova-dur-slow) var(--nova-ease);
 }
 
 /* Enter slides DOWN from above; exit slides DOWN + out — everything flows
-   downward. The surface max-height and the margin collapse on enter/exit, so the
-   rest of the stack reflows by NORMAL FLOW (neighbours follow the animated height
-   — no per-card transform, so no snap). Glow lives on .nova-toast (no overflow
-   there) and is never cropped. */
+   downward. The card's own height (grid-template-rows 1fr<->0fr, the true
+   content height, linear the whole duration) and margin collapse on enter/exit,
+   so the rest of the stack reflows by NORMAL FLOW (no per-card transform → no
+   snap). Collapse is the grid row holding the inner surface; the outer
+   .nova-toast keeps the drop-shadow glow (no overflow there), never cropped. */
 .nova-toast[data-starting-style] {
   opacity: 0;
   margin-bottom: 0;
+  grid-template-rows: 0fr;
   transform: translateY(-16px);
 }
 .nova-toast[data-ending-style] {
   opacity: 0;
   margin-bottom: 0;
+  grid-template-rows: 0fr;
   transform: translateY(16px);
-}
-.nova-toast[data-starting-style] .nova-toast__surface,
-.nova-toast[data-ending-style] .nova-toast__surface {
-  max-height: 0;
 }
 /* swipe-to-dismiss (swipeDirection="right"): fly off rightward honoring the drag */
 .nova-toast[data-ending-style][data-swipe-direction="right"] {
