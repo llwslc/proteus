@@ -25,6 +25,7 @@
   top: 0;
   left: 0;
   right: 0;
+  padding-bottom: var(--nova-space-3);
   outline: none;
   transform: translateX(var(--toast-swipe-movement-x, 0px))
     translateY(var(--toast-offset-y));
@@ -51,6 +52,10 @@
 .nova-toast[data-starting-style],
 .nova-toast[data-ending-style] {
   opacity: 0;
+}
+.nova-toast[data-ending-style],
+.nova-toast[data-ending-style] .nova-toast__surface {
+  transition-timing-function: var(--nova-ease-in);
 }
 .nova-toast[data-starting-style] .nova-toast__surface {
   transform: translateY(-100%);
