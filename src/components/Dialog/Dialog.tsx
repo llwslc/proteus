@@ -34,8 +34,6 @@ export function Dialog({
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Viewport className="nova-overlay-viewport">
           <BaseDialog.Popup
-            initialFocus={false}
-            finalFocus={false}
             className={cx("nova-elevation nova-dialog__popup", className)}
           >
             <div className="nova-surface nova-dialog__surface">
