@@ -49,11 +49,8 @@
 }
 .nova-navmenu__toplink:hover,
 .nova-navmenu__toplink:focus-visible {
-  background: var(--nova-tint-soft);
-  color: var(--nova-text);
-}
-.nova-navmenu__toplink:focus-visible {
-  box-shadow: inset 0 0 0 1px var(--nova-line-strong);
+  background: var(--nova-primary);
+  color: var(--nova-on-primary);
 }
 .nova-navmenu__triggerwrap {
   display: inline-flex;

@@ -93,7 +93,7 @@
 
 - **选中 / 激活**按角色分两种青填充：「点亮表面」(Button / Switch / Checkbox) 用 `--nova-accent-surface` 渐变；「分段选中」(ToggleGroup / Toolbar / Menubar / NavMenu) 用实心 `--nova-primary`。二者前景一律翻深色 `--nova-on-primary`（深勾 / 深字 / 深滑块），且**任何切到 primary 填充的元素，其箭头 / 占位符 / 数值也要翻深**，否则青字叠青底看不见（Select 开启态即此坑）。列表 / Tab 类「文字强调选中」则只把文字转 `--nova-primary`、不填充。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明 —— 半透明会让底下的亮边框透上来铺满整块，前景看不清。
-- **悬停**：分段 / 触发条背景统一 `--nova-tint-soft` 纯色（Tabs 保留竖向渐变是有意例外）；图标 / 动作按钮（icon button、Toolbar 按钮、Toast 关闭）文字转 `--nova-primary`，菜单触发器 / 列表项转亮文 `--nova-text` / `-bright`。
+- **悬停**：分段 / 触发条背景统一 `--nova-tint-soft` 纯色（两处有意例外：Tabs 保留竖向渐变；NavMenu 直链 `__toplink` 用实心 `--nova-primary` + `--nova-on-primary` 填充，读作"可点击导航"、与触发器开启态呼应——否则夹在触发器的亮开启填充旁会显得灰/禁用）；图标 / 动作按钮（icon button、Toolbar 按钮、Toast 关闭）文字转 `--nova-primary`，菜单触发器 / 列表项转亮文 `--nova-text` / `-bright`。
 - **键盘焦点**：布尔开关（Checkbox / Switch / Radio）用 `--nova-glow-focus` 辉光；分段 / 触发条用 `box-shadow: inset 0 0 0 1px line-strong` 内描边；输入框边框点亮成 `--nova-primary` + 字段级 `--nova-glow-focus`。可聚焦浮层 popup 加 `outline: none`。
 - **禁用**：`opacity: var(--nova-disabled-opacity)` + `cursor: not-allowed`，整行 dim 不叠两层 opacity（Button 另叠灰度滤镜、NumberField 到界仅置灰步进按钮——属各自语义）。
 
