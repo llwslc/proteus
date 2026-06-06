@@ -1,12 +1,17 @@
+@property --toast-offset-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 .nova-toast__viewport {
   position: fixed;
   top: 22px;
   right: 22px;
   z-index: var(--nova-z-toast);
-  display: flex;
-  flex-direction: column;
   width: 360px;
   max-width: calc(100vw - 44px);
+  height: var(--toast-frontmost-height, 0px);
   outline: none;
 }
 
@@ -16,17 +21,17 @@
   --nova-overlay-glow: drop-shadow(
     0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent)
   );
-  display: grid;
-  grid-template-rows: 1fr;
-  margin-bottom: var(--nova-space-3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   outline: none;
+  transform: translateX(var(--toast-swipe-movement-x, 0px))
+    translateY(var(--toast-offset-y));
   opacity: 1;
-  transform: translateX(var(--toast-swipe-movement-x, 0px));
   transition:
-    grid-template-rows var(--nova-dur-slow) var(--nova-ease),
-    margin-bottom var(--nova-dur-slow) var(--nova-ease),
-    opacity var(--nova-dur-slow) var(--nova-ease),
-    transform var(--nova-dur-slow) var(--nova-ease);
+    --toast-offset-y var(--nova-dur-slow) var(--nova-ease),
+    opacity var(--nova-dur-slow) var(--nova-ease);
 }
 .nova-toast[data-swiping] {
   transition: none;
@@ -39,24 +44,19 @@
   align-items: flex-start;
   gap: var(--nova-space-3);
   padding: var(--nova-space-4) var(--nova-space-4);
-  min-height: 0;
   overflow: hidden;
+  transition: transform var(--nova-dur-slow) var(--nova-ease);
 }
 
-.nova-toast[data-starting-style] {
-  opacity: 0;
-  margin-bottom: 0;
-  grid-template-rows: 0fr;
-  transform: translateY(-16px);
-}
+.nova-toast[data-starting-style],
 .nova-toast[data-ending-style] {
   opacity: 0;
-  margin-bottom: 0;
-  grid-template-rows: 0fr;
-  transform: translateY(16px);
 }
-.nova-toast[data-ending-style][data-swipe-direction="right"] {
-  transform: translateX(calc(var(--toast-swipe-movement-x, 0px) + 110%));
+.nova-toast[data-starting-style] .nova-toast__surface {
+  transform: translateY(-100%);
+}
+.nova-toast[data-ending-style] .nova-toast__surface {
+  transform: translateY(100%);
 }
 
 .nova-toast__beam {
