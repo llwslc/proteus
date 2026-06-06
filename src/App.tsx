@@ -481,6 +481,7 @@ function Demo() {
             <div className="nova-logo__sub">SCI-FI UI KIT · BASE UI</div>
           </div>
         </div>
+        <NavigationMenu items={NAVMENU_ITEMS} />
         <div className="nova-header__status">
           <Badge tone="success" dot>
             Online

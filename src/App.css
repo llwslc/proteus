@@ -76,6 +76,14 @@
 .nova-header__hide {
   display: none;
 }
+.nova-header .nova-navmenu {
+  align-self: stretch;
+}
+.nova-header .nova-navmenu__triggerwrap,
+.nova-header .nova-navmenu__trigger,
+.nova-header .nova-navmenu__toplink {
+  height: 100%;
+}
 
 /* ---------- Shell ---------- */
 .nova-shell {
@@ -563,6 +571,9 @@
   .nova-header {
     padding: 0 14px;
     gap: 12px;
+  }
+  .nova-header .nova-navmenu {
+    display: none;
   }
   .nova-hero {
     padding: 20px 16px;
