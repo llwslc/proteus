@@ -1,5 +1,6 @@
 import { cx } from "../cx";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
+import { useRef } from "react";
 import type { ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import { XIcon } from "../icons";
@@ -33,6 +34,7 @@ export function Drawer({
   onOpenChange,
   className,
 }: DrawerProps) {
+  const popupRef = useRef<HTMLDivElement>(null);
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseDialog.Trigger render={trigger} />
@@ -40,6 +42,8 @@ export function Drawer({
         <BaseDialog.Backdrop className="nova-scrim-backdrop nova-drawer__backdrop" />
         <BaseDialog.Viewport className="nova-drawer__viewport">
           <BaseDialog.Popup
+            ref={popupRef}
+            initialFocus={popupRef}
             className={cx(
               "nova-elevation nova-drawer",
               `nova-drawer--${side}`,

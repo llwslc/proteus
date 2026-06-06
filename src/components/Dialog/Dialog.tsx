@@ -1,5 +1,6 @@
 import { cx } from "../cx";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
+import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
@@ -27,6 +28,7 @@ export function Dialog({
   onOpenChange,
   className,
 }: DialogProps) {
+  const popupRef = useRef<HTMLDivElement>(null);
   return (
     <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
       <BaseDialog.Trigger render={trigger} />
@@ -34,6 +36,8 @@ export function Dialog({
         <BaseDialog.Backdrop className="nova-scrim-backdrop" />
         <BaseDialog.Viewport className="nova-overlay-viewport">
           <BaseDialog.Popup
+            ref={popupRef}
+            initialFocus={popupRef}
             className={cx("nova-elevation nova-dialog__popup", className)}
           >
             <div className="nova-surface nova-dialog__surface">
