@@ -7,6 +7,16 @@
   display: flex;
   gap: var(--nova-space-1);
 }
+.nova-tabs__list::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--nova-line);
+}
+
 @media (max-width: 768px) {
   .nova-tabs__list {
     overflow-x: auto;
@@ -18,15 +28,6 @@
   .nova-tabs__tab {
     flex: 0 0 auto;
   }
-}
-.nova-tabs__list::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--nova-line);
 }
 
 .nova-tabs__tab {

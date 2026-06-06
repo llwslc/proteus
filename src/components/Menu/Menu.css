@@ -92,6 +92,13 @@
   background: var(--nova-danger);
   box-shadow: 0 0 7px var(--nova-danger);
 }
+.nova-menu__item[data-popup-open] {
+  background: var(--nova-highlight);
+  color: var(--nova-text-bright);
+}
+.nova-menu__item[data-popup-open]::after {
+  opacity: 1;
+}
 
 .nova-menu__separator.nova-separator {
   position: relative;
@@ -111,11 +118,4 @@
 .nova-menu__item[data-highlighted] .nova-menu__arrow,
 .nova-menu__item[data-popup-open] .nova-menu__arrow {
   color: var(--nova-primary);
-}
-.nova-menu__item[data-popup-open] {
-  background: var(--nova-highlight);
-  color: var(--nova-text-bright);
-}
-.nova-menu__item[data-popup-open]::after {
-  opacity: 1;
 }

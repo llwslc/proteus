@@ -36,12 +36,12 @@
 - **强调填充配方**：两条由 `primary` / `-deep` 拼出的复用渐变 —— `--nova-accent-surface`（`180deg, primary→deep`，「点亮表面」激活填充：Button / Switch / Checkbox）、`--nova-accent-fill`（`90deg, deep→primary 55%`，「方向填充」指示条：Slider / Progress / Meter，偏亮使填充读作 primary 青）。
 - **青色 alpha 阶梯**（同一青色的不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。新出现的青 alpha 先在阶梯里找。
 - **品牌色填充与 danger 家族**（hex 带不了 alpha）：`--nova-secondary-fill`、`--nova-danger-fill / -wash / -highlight`、危险态文字 `--nova-danger-text`、危险输入底色 `--nova-danger-inset`。
-- **中性 / 效果色**：关态轨 `--nova-off`、未填充轨 `--nova-track`（两者皆蓝灰，不在青色阶梯里）、ghost 按钮 hover `--nova-ghost-hover`、白色高光扫光 `--nova-sheen / -soft`。
-- **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`。
-- **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-active`（选中辉光 `0 0 8px line-strong`：Switch / Toggle / Avatar）、`--nova-glow-trigger`（激活触发器辉光 `0 0 10px primary-a40`：Toolbar / Menubar / NavMenu）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
+- **中性 / 效果色**：关态轨 `--nova-off`、未填充轨 `--nova-track`（两者皆蓝灰，不在青色阶梯里）、ghost 按钮 hover `--nova-ghost-hover`、白色高光扫光 `--nova-sheen / -soft`、关态 thumb 金属渐变止点 `--nova-thumb-idle-top / -bottom`（Switch 旋钮 idle 填充）。
+- **表面**：`--nova-surface`、`--nova-surface-popup / -modal / -inset`、`--nova-scrim`、深表面渐变止点 `--nova-surface-deep-top / -bottom`（Avatar 头像底 / Switch 选中 thumb）。
+- **辉光与阴影**：`--nova-glow-text`（文字）、`--nova-glow-focus`（焦点）、`--nova-glow-active`（选中辉光 `0 0 8px line-strong`：Switch / ToggleGroup / Avatar）、`--nova-glow-trigger`（激活触发器辉光 `0 0 10px primary-a40`：Toolbar / Menubar / NavMenu）、`--nova-glow-popup` / `-modal`（浮层 drop-shadow）；矩形阴影 `--nova-shadow-popup / -modal`。
 - **切角调色板**：`--nova-clip-3 / 4 / 7 / 9 / 12`（写死的 polygon，按名选尺寸）、`--nova-clip-tick`（标题尖角）。**按角色分三档**：超大外框（Dialog / AlertDialog / Panel）`clip-12`；默认控件 / 容器框及其 `::before` `clip-9`；容器内的嵌套项 + 小交互/标签 chip（菜单 / 列表项、toggle / toolbar 按钮、nav 链接、Badge、icon 按钮、Switch thumb）`clip-7`。细指示条 / 旋钮（Slider 轨道 `3`；Progress / Meter / 滚动条 thumb / Slider thumb `4`）放不下大切角，按厚度用 `clip-3 / 4`。
 - **层级阶梯**（一处定义浮层堆叠）：`--nova-z-dropdown < menu < tooltip < backdrop < overlay < toast`。
-- **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -out`、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
+- **动效与度量**：`--nova-dur / -slow`、`--nova-ease / -in / -out`（`-in` 加速退场，`-out` 减速入场）、`--nova-control-h`、`--nova-disabled-opacity`、`--nova-pad-modal`。
 - **间距**（4px 网格）：`--nova-space-1…7` ＝ `4 / 8 / 12 / 16 / 20 / 24 / 28`。组件的 padding / margin / gap / 分段 gap 一律走此阶梯（含 `row-gap` 等长写）；只有 `::before` 的 1px 发线内缩、细轨道高度等亚网格小值，与 `>28px` 的演示页结构性留白，属一次性写立即数。
 - **排版**（镜像切角的「按名选尺寸」）：`--nova-fs-N`（字号，N=px，如 `fs-14`）、`--nova-ls-N`（字距，N=em×100，如 `ls-10`=.1em）、`--nova-lh-N`（行高，N=×100，如 `lh-150`=1.5）、`--nova-fw-N`（字重，如 `fw-700`）；字体族走 `--nova-font / -display / -mono`。组件里字号 / 字距 / 行高 / 字重一律走 token，不裸写 px / em / 数字（仅 `clamp()` / `calc()` / `em` 相对值等上下文式除外）。
 
@@ -54,7 +54,7 @@
 
 ### 浮层：抬升层 + 切角面 + 开合动效
 
-全部浮层（Tooltip、Popover、PreviewCard、Menu、Menubar、ContextMenu、NavigationMenu、Select、Combobox、Autocomplete、Dialog、AlertDialog、Drawer、Toast）用 `effects.css` 里同一套原语拼出，切角与阴影分两层：
+全部带浮层的组件（Tooltip、Popover、PreviewCard、Menu、Menubar、ContextMenu、NavigationMenu、Select、Combobox、Autocomplete、Dialog、AlertDialog、Drawer、Toast —— 按是否使用浮层原语归组，与下文「组件」分类里的「浮层」类不同）用 `effects.css` 里同一套原语拼出，切角与阴影分两层：
 
 - `.nova-elevation` —— 不切角的抬升层，挂 drop-shadow 阴影 + 辉光，经 `--nova-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态 / Toast 挂 Popup / Root。
 - `.nova-surface` —— 切角双层 frame（`clip-path` + 1px 边框 + 填充），不挂阴影。`isolation: isolate` + `::before { z-index: -1 }` 让任意内容（含裸文本）自动压在填充之上。尺寸 / 填充 / 边框色走可选输入变量 `--nova-surface-clip`（默认 `--nova-clip-9`）/ `--nova-surface-fill` / `--nova-surface-border`（默认 `--nova-line-strong`；Menubar / Toolbar / NavMenu 的 list 用它把边框降到 `--nova-line`，复用同一配方）。
@@ -76,18 +76,18 @@
 - `.nova-modal-title / -desc / -body / -actions` —— 模态文本，标题色走 `--nova-title-color`。
 - `.nova-modal-x` —— 切角关闭按钮（`.nova-modal-x--danger` 为危险悬停态）。
 - 分隔线统一复用 `.nova-separator`。
-- 折叠类（Accordion / Collapsible）的 trigger / marker / chevron / panel / content 统一复用 `.nova-disclosure__*`。
+- 折叠类（Accordion / Collapsible）的 trigger / marker / title / chevron / panel / content 统一复用 `.nova-disclosure__*`。
 
 ### 排版标准
 
-标题 / 正文走一组**纯样式类**（`theme/typography.css`，风格与语义标签解耦，套在任意标签上）。规律同 HUD：字号越大、字距越紧。
+标题 / 正文走一组**纯样式类**（`theme/typography.css`，风格与语义标签解耦，套在任意标签上）。标题三档（h1/h2/h3）规律同 HUD：字号越大、字距越紧。
 
 - `.nova-h1`：display · `fs-22` · `fw-700` · `ls-4` · 大写 —— 区块 / 功能标题。
 - `.nova-h2`：display · `fs-16` · `fw-700` · `ls-10` · 大写 —— 卡片 / 弹窗标题（即 `.nova-modal-title` 的字型规格）。
 - `.nova-h3`：display · `fs-13` · `fw-700` · `ls-16` · 大写 —— 段 / 小节标题（`.nova-panel__title` 已复用此类）。
 - `.nova-text`：body · `fs-14` · `lh-160` · `text-dim` —— 正文段落。
 - 修饰：`-h*--accent`（转 primary + 辉光）、`.nova-text--bright`（正文转亮）。
-- **字段标签**（控件名）：display · `fs-12` · `fw-600` · `ls-10` · 大写 · `text-dim` 的 HUD caption —— Slider / Progress / Meter / Input 字段标签、Checkbox / Radio / Switch 行 / Toggle 选项文字、演示页 tag 统一此规格（非独立 class，各组件就地写同一组属性）。
+- **字段标签**（控件名）：display · `fs-12` · `fw-600` · `ls-10` · 大写 · `text-dim` 的 HUD caption —— Slider / Progress / Meter / Input 字段标签、Checkbox / Radio / Switch 行 / ToggleGroup 选项文字、演示页 tag 统一此规格（非独立 class，各组件就地写同一组属性；字距固定 `ls-10`，不参与标题档的字号-字距递变）。
 
 ### 交互态（统一约定）
 
@@ -114,7 +114,7 @@
 
 ## Base UI 对接
 
-- 状态样式对着 data 属性写：`[data-checked]`、`[data-highlighted]`、`[data-selected]`、`[data-open]` / `[data-panel-open]`、`[data-starting-style]` / `[data-ending-style]`。
+- 状态样式对着 data 属性写：`[data-checked]`、`[data-highlighted]`、`[data-selected]`、`[data-popup-open]` / `[data-panel-open]`、`[data-starting-style]` / `[data-ending-style]`。
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`（Tabs 指示器）、`--accordion-panel-height` / `--collapsible-panel-height`（折叠动画）、`--anchor-width`（浮层对齐触发器）。
 - 能当触发器的包装组件（Button）用 `forwardRef`，供 Tooltip / Popover / Select 定位。
 - `<X render={<Y />}>` 会把 X 的 className 合并到 Y；复用组件（如 DialogClose 复用 Button）时把 className 给 Y。
@@ -133,4 +133,4 @@
 
 ## 演示页
 
-顶部 HUD 栏（logo + 实时时钟 + 状态徽章）→ 左侧 sticky 索引（按 输入 / 表单 / 反馈 / 浮层 / 展示 分组，锚点平滑跳转）→ Hero（标题 + 数据条 + 旋转准星）→ 响应式两栏 Panel 网格逐个展示每个控件 → 根部包 `ToastProvider`；整页挂网格 / 扫描线 / 噪点氛围层。
+顶部 HUD 栏（logo + 实时时钟 + 状态徽章）→ 左侧 sticky 索引（按 输入 / 表单 / 反馈 / 浮层 / 展示 / 基础 分组，锚点平滑跳转）→ Hero（标题 + 数据条 + 旋转准星）→ 响应式两栏 Panel 网格逐个展示每个控件 → 根部包 `ToastProvider`；整页挂网格 / 扫描线 / 噪点氛围层。

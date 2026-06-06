@@ -32,6 +32,9 @@
 .nova-combobox__control:focus-within::before {
   background: var(--nova-surface-inset);
 }
+.nova-combobox__control:has(.nova-combobox__input:disabled) {
+  opacity: var(--nova-disabled-opacity);
+}
 
 .nova-combobox__lead {
   display: inline-flex;
@@ -53,6 +56,9 @@
 }
 .nova-combobox__input::placeholder {
   color: var(--nova-text-mute);
+}
+.nova-combobox__input:disabled {
+  cursor: not-allowed;
 }
 
 .nova-combobox__clear,
@@ -156,12 +162,6 @@
 .nova-combobox__item[data-disabled] {
   opacity: var(--nova-disabled-opacity);
   cursor: not-allowed;
-}
-.nova-combobox__input:disabled {
-  cursor: not-allowed;
-}
-.nova-combobox__control:has(.nova-combobox__input:disabled) {
-  opacity: var(--nova-disabled-opacity);
 }
 .nova-combobox__item-text {
   flex: 1;

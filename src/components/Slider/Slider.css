@@ -78,6 +78,7 @@
     0 0 0 4px var(--nova-line),
     0 0 14px var(--nova-primary);
 }
+
 .nova-slider[data-disabled] {
   opacity: var(--nova-disabled-opacity);
 }

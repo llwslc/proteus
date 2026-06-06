@@ -93,6 +93,7 @@
   gap: var(--nova-space-2);
   width: 100%;
 }
+
 .nova-field__label {
   font-family: var(--nova-font-display);
   font-size: var(--nova-fs-12);
@@ -101,10 +102,12 @@
   text-transform: uppercase;
   color: var(--nova-text-dim);
 }
+
 .nova-field__desc {
   font-size: var(--nova-fs-13);
   color: var(--nova-text-mute);
 }
+
 .nova-field__error {
   font-family: var(--nova-font-mono);
   font-size: var(--nova-fs-12);

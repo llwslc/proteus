@@ -93,6 +93,7 @@
   line-height: var(--nova-lh-160);
   color: var(--nova-text-dim);
 }
+
 .nova-toast__close {
   flex: 0 0 auto;
   display: grid;

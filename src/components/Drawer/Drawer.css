@@ -138,6 +138,7 @@
   flex-direction: column;
   gap: var(--nova-space-5);
 }
+
 .nova-drawer__footer {
   display: flex;
   justify-content: flex-end;

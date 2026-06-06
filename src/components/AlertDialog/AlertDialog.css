@@ -14,13 +14,6 @@
     opacity var(--nova-dur) var(--nova-ease),
     transform var(--nova-dur) var(--nova-ease);
 }
-
-.nova-alert__surface {
-  --nova-surface-clip: var(--nova-clip-12);
-  --nova-surface-fill: var(--nova-surface-modal);
-  --nova-surface-border: color-mix(in srgb, var(--nova-alert-accent) 50%, transparent);
-  padding: var(--nova-pad-modal);
-}
 .nova-alert__popup[data-starting-style],
 .nova-alert__popup[data-ending-style] {
   opacity: 0;
@@ -31,6 +24,13 @@
 }
 .nova-alert__popup--primary {
   --nova-alert-accent: var(--nova-primary);
+}
+
+.nova-alert__surface {
+  --nova-surface-clip: var(--nova-clip-12);
+  --nova-surface-fill: var(--nova-surface-modal);
+  --nova-surface-border: color-mix(in srgb, var(--nova-alert-accent) 50%, transparent);
+  padding: var(--nova-pad-modal);
 }
 
 .nova-alert__popup .nova-modal-title {

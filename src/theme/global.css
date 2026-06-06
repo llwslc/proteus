@@ -47,7 +47,6 @@ body::after {
   mask-image: radial-gradient(120% 120% at 50% 0%, #000 30%, transparent 90%);
   animation: nova-grid-drift 24s linear infinite;
 }
-
 @keyframes nova-grid-drift {
   to {
     background-position: 44px 44px;

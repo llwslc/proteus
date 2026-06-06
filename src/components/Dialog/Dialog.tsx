@@ -62,7 +62,9 @@ export function Dialog({
                   {description}
                 </BaseDialog.Description>
               ) : null}
-              {children != null ? <div className="nova-modal-body">{children}</div> : null}
+              {children != null ? (
+                <div className="nova-modal-body">{children}</div>
+              ) : null}
               {footer != null ? <div className="nova-modal-actions">{footer}</div> : null}
             </div>
           </BaseDialog.Popup>

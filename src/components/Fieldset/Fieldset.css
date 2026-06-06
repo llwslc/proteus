@@ -21,6 +21,7 @@
   color: var(--nova-primary);
   text-shadow: var(--nova-glow-text);
 }
+
 .nova-fieldset__body {
   display: flex;
   flex-direction: column;

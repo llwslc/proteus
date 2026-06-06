@@ -12,6 +12,7 @@
   padding: var(--nova-space-4);
   overflow: hidden;
 }
+
 .nova-previewcard__body {
   position: relative;
 }

@@ -16,6 +16,7 @@
   clip-path: var(--nova-clip-9);
   overflow: hidden;
 }
+
 .nova-avatar__img {
   position: absolute;
   inset: 1px;
@@ -24,6 +25,7 @@
   object-fit: cover;
   clip-path: var(--nova-clip-9);
 }
+
 .nova-avatar__fallback {
   position: absolute;
   inset: 1px;
