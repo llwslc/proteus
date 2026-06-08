@@ -1,9 +1,9 @@
 {
-  "name": "nova-ui",
+  "name": "baseui-kits",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "NOVA — a sci-fi / HUD themed React component kit built on Base UI",
+  "description": "Re-skinnable React component kits on Base UI — NOVA (sci-fi/HUD) and ABYSS (drowned R'lyeh / 克苏鲁)",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

@@ -1,0 +1,50 @@
+.abyss-badge {
+  --abyss-badge-color: var(--abyss-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  height: 22px;
+  padding: 0 var(--abyss-space-3);
+  background: color-mix(in srgb, var(--abyss-badge-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--abyss-badge-color) 45%, transparent);
+  color: var(--abyss-badge-color);
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-11);
+  letter-spacing: var(--abyss-ls-10);
+  text-transform: uppercase;
+  white-space: nowrap;
+  clip-path: var(--abyss-clip-7);
+}
+
+.abyss-badge__dot {
+  width: 6px;
+  height: 6px;
+  background: var(--abyss-badge-color);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--abyss-badge-color);
+  animation: abyss-badge-pulse 1.8s var(--abyss-ease) infinite;
+}
+@keyframes abyss-badge-pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.abyss-badge--primary {
+  --abyss-badge-color: var(--abyss-primary);
+}
+.abyss-badge--secondary {
+  --abyss-badge-color: var(--abyss-secondary);
+}
+.abyss-badge--success {
+  --abyss-badge-color: var(--abyss-success);
+}
+.abyss-badge--warning {
+  --abyss-badge-color: var(--abyss-warning);
+}
+.abyss-badge--danger {
+  --abyss-badge-color: var(--abyss-danger);
+}
+.abyss-badge--neutral {
+  --abyss-badge-color: var(--abyss-text-dim);
+}

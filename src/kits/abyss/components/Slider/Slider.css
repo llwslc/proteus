@@ -1,0 +1,87 @@
+.abyss-slider {
+  width: 100%;
+}
+
+.abyss-slider__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--abyss-space-3);
+  margin-bottom: var(--abyss-space-2);
+}
+.abyss-slider__label {
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-12);
+  font-weight: var(--abyss-fw-600);
+  letter-spacing: var(--abyss-ls-10);
+  text-transform: uppercase;
+  color: var(--abyss-text-dim);
+}
+.abyss-slider__value {
+  font-family: var(--abyss-font-mono);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-4);
+  color: var(--abyss-primary);
+}
+
+.abyss-slider__control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 26px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.abyss-slider__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--abyss-track);
+  box-shadow: inset 0 0 0 1px var(--abyss-tint-soft);
+  clip-path: var(--abyss-clip-3);
+}
+
+.abyss-slider__indicator {
+  position: absolute;
+  height: 100%;
+  background: var(--abyss-accent-fill);
+  box-shadow: 0 0 10px var(--abyss-line-strong);
+}
+
+.abyss-slider__thumb {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 0 10px var(--abyss-primary);
+  transition:
+    box-shadow var(--abyss-dur) var(--abyss-ease),
+    transform var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-slider__thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: var(--abyss-clip-4);
+  background: linear-gradient(160deg, var(--abyss-text-bright), var(--abyss-primary));
+}
+.abyss-slider__thumb:hover {
+  transform: scale(1.14);
+}
+.abyss-slider__thumb[data-dragging] {
+  transform: scale(1.2);
+  box-shadow: 0 0 16px var(--abyss-primary);
+}
+.abyss-slider__thumb:has(:focus-visible) {
+  outline: none;
+  box-shadow:
+    0 0 0 4px var(--abyss-line),
+    0 0 14px var(--abyss-primary);
+}
+
+.abyss-slider[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+}
+.abyss-slider[data-disabled] .abyss-slider__control {
+  cursor: not-allowed;
+}
