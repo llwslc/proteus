@@ -35,22 +35,13 @@
   margin-right: 0;
 }
 
-/* The unblinking watcher: iris + pupil forced wide, lids drawn back, tinted to
-   tone. No transition — it simply stares for the duration of the rite. */
-.abyss-alert__stare {
-  --eye: var(--abyss-alert-accent);
+/* The death's-head: a skull hung at the title, tinted to tone and burning its
+   own halo. No motion — it simply presides over the rite. */
+.abyss-alert__skull {
   flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  color: var(--abyss-alert-accent);
   filter: drop-shadow(0 0 7px color-mix(in srgb, var(--abyss-alert-accent) 55%, transparent));
-}
-.abyss-alert__stare .abyss-eye__sclera {
-  stroke: color-mix(in srgb, var(--abyss-alert-accent) 50%, var(--abyss-ink-strong));
-}
-.abyss-alert__stare .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-  transition: none;
-}
-.abyss-alert__stare .abyss-eye__pupil {
-  transform: scaleY(1);
-  transition: none;
 }

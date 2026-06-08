@@ -1,4 +1,5 @@
 import { cx } from "../cx";
+import { SkullIcon } from "../icons";
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
@@ -18,9 +19,10 @@ export interface AlertDialogProps {
   className?: string;
 }
 
-/* The forced rite. Like Dialog, but no escape glyph (no close X) and a STARING
-   eye that never blinks shut by the title. The tablet's ink and the title bleed
-   to the tone (danger = blood) through --abyss-alert-accent. */
+/* The forced rite. Like Dialog, but no escape glyph (no close X) and a death's-
+   head marking the title — a skull that hangs over the rite. The tablet's ink,
+   the title, and the skull bleed to the tone (danger = blood) through
+   --abyss-alert-accent. */
 export function AlertDialog({
   trigger,
   title,
@@ -51,23 +53,8 @@ export function AlertDialog({
             <div className="abyss-frame abyss-alert__tablet">
               {title != null ? (
                 <BaseAlertDialog.Title className="abyss-modal-title abyss-alert__title">
-                  <span className="abyss-eye abyss-alert__stare" aria-hidden>
-                    <svg viewBox="0 0 48 28" width="22" height="22">
-                      <path
-                        className="abyss-eye__sclera"
-                        d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14C45 14 37 23 24 23C11 23 3 14 3 14Z"
-                      />
-                      <circle className="abyss-eye__iris" cx="24" cy="14" r="7.2" />
-                      <circle className="abyss-eye__pupil" cx="24" cy="14" r="3" />
-                      <path
-                        className="abyss-eye__lid"
-                        d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14"
-                      />
-                      <path
-                        className="abyss-eye__lid"
-                        d="M3 14C3 14 11 23 24 23C37 23 45 14 45 14"
-                      />
-                    </svg>
+                  <span className="abyss-alert__skull" aria-hidden>
+                    <SkullIcon />
                   </span>
                   {title}
                 </BaseAlertDialog.Title>
