@@ -65,7 +65,9 @@ export function Drawer({
               />
               {title != null ? (
                 <BaseDrawer.Title className="abyss-modal-title">
-                  <EyeIcon className="abyss-modal-title__eye" />
+                  <span className="abyss-drawer__key" aria-hidden>
+                    <KeyIcon />
+                  </span>
                   {title}
                 </BaseDrawer.Title>
               ) : null}

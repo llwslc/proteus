@@ -1,6 +1,6 @@
 import { Toast as BaseToast } from "@base-ui/react/toast";
 import type { ReactNode } from "react";
-import { EyeIcon, CandleIcon, SkullIcon, XIcon } from "../icons";
+import { ConchIcon, SigilIcon, FlameIcon, SkullIcon, XIcon } from "../icons";
 import "./Toast.css";
 
 export type ToastTone = "info" | "success" | "warning" | "danger";
@@ -26,12 +26,13 @@ export function ToastProvider({
   );
 }
 
-/* per-tone glyph: a watching eye for the benign whispers, a guttering candle for
-   warnings, a skull for what crawls up from the deep. */
+/* per-tone glyph: a conch whispering up from the deep for info, a struck sigil
+   for success, a guttering flame for warnings, a skull for what crawls up. */
 function ToneSigil({ tone }: { tone: ToastTone }) {
-  if (tone === "warning") return <CandleIcon />;
+  if (tone === "success") return <SigilIcon />;
+  if (tone === "warning") return <FlameIcon />;
   if (tone === "danger") return <SkullIcon />;
-  return <EyeIcon />;
+  return <ConchIcon />;
 }
 
 function ToastList() {

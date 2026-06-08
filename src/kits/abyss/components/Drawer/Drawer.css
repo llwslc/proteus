@@ -159,3 +159,32 @@
   right: 14px;
   z-index: 3;
 }
+
+/* the key that unlocks the rites — turns in its lock as the drawer opens */
+.abyss-drawer__key {
+  flex: 0 0 auto;
+  display: inline-flex;
+  font-size: 20px;
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+  transform-origin: 8px 8px;
+  animation: abyss-drawer-key 1.4s var(--abyss-ease-out) both;
+}
+@keyframes abyss-drawer-key {
+  0% {
+    transform: rotate(-78deg);
+    opacity: 0;
+  }
+  55% {
+    transform: rotate(8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .abyss-drawer__key {
+    animation: none;
+  }
+}

@@ -25,33 +25,22 @@
   line-height: var(--abyss-lh-100);
 }
 
-.abyss-fieldset__eye {
-  width: 22px;
+/* the legend's struck sigil — dim phosphor at rest, brightening and turning a
+   touch when the group is hovered, as the tablet's mark catches the scribe */
+.abyss-fieldset__sigil {
   flex: 0 0 auto;
+  font-size: var(--abyss-fs-19);
+  color: var(--abyss-glow-a55);
   filter: drop-shadow(0 0 6px var(--abyss-glow-soft));
-  transition: filter var(--abyss-dur) var(--abyss-ease);
+  transition:
+    transform var(--abyss-dur-slow) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
-/* the legend's eye half-watches by default, opening fully when the group is
-   hovered — the tablet noticing the scribe */
-.abyss-fieldset__eye .abyss-eye__iris {
-  transform: scaleY(0.45);
-  opacity: 0.55;
-}
-.abyss-fieldset__eye .abyss-eye__pupil {
-  transform: scaleY(0.4);
-}
-.abyss-fieldset__eye .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
-}
-.abyss-fieldset:hover .abyss-fieldset__eye {
+.abyss-fieldset:hover .abyss-fieldset__sigil {
+  color: var(--abyss-glow);
+  transform: rotate(45deg);
   filter: drop-shadow(0 0 9px var(--abyss-glow-a55));
-}
-.abyss-fieldset:hover .abyss-fieldset__eye .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-fieldset:hover .abyss-fieldset__eye .abyss-eye__pupil {
-  transform: scaleY(1);
 }
 
 /* the body is the inked tablet; the legend overlaps its top rule so it reads
