@@ -1,5 +1,4 @@
 .abyss-numberfield {
-  --eye: var(--abyss-glow);
   display: inline-block;
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
@@ -16,7 +15,7 @@
   display: inline-flex;
   align-items: center;
   height: var(--abyss-control-h);
-  padding: 0 var(--abyss-space-2) 0 var(--abyss-space-3);
+  padding: 0 var(--abyss-space-2);
   gap: var(--abyss-space-2);
   transition: --abyss-frame-ink var(--abyss-dur) var(--abyss-ease);
 }
@@ -25,29 +24,6 @@
 }
 .abyss-numberfield:focus-within .abyss-numberfield__group {
   --abyss-frame-ink: var(--abyss-glow-a55);
-}
-
-/* the watching marker — closed at rest, dilates open on focus */
-.abyss-numberfield__watcher {
-  flex: 0 0 auto;
-  width: 30px;
-  margin-right: 2px;
-}
-.abyss-numberfield__watcher .abyss-eye__sclera {
-  stroke-width: 1.6;
-}
-.abyss-numberfield:focus-within .abyss-numberfield__watcher {
-  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
-}
-.abyss-numberfield:focus-within .abyss-numberfield__watcher .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-numberfield:focus-within .abyss-numberfield__watcher .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-numberfield:focus-within .abyss-numberfield__watcher .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
 }
 
 /* the carved numerals — mono, bone-bright, phosphor caret */
@@ -70,22 +46,17 @@
   text-shadow: var(--abyss-text-aura);
 }
 
-/* two stacked wax seals flanking the count */
-.abyss-numberfield__seals {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  margin: 4px 0;
-  border-left: 1px solid var(--abyss-ink-faint);
-  padding-left: var(--abyss-space-2);
-}
-
+/* two small inked wax seals flanking the count */
 .abyss-numberfield__btn {
+  --abyss-frame-round: 3px;
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-fill: linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
+  position: relative;
   display: grid;
   place-items: center;
-  width: 24px;
-  flex: 1;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
   padding: 0;
   border: 0;
   cursor: pointer;
@@ -98,6 +69,7 @@
 }
 .abyss-numberfield__btn:hover {
   color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a55);
   filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
 }
 .abyss-numberfield__btn:active {
@@ -106,11 +78,13 @@
 .abyss-numberfield__btn:focus-visible {
   outline: none;
   color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow);
   filter: drop-shadow(0 0 8px var(--abyss-glow-a70));
 }
 .abyss-numberfield__btn:disabled {
   cursor: not-allowed;
   color: var(--abyss-text-mute);
+  --abyss-frame-ink: var(--abyss-ink-faint);
   opacity: var(--abyss-disabled-opacity);
-  filter: none;
+  filter: grayscale(0.5);
 }

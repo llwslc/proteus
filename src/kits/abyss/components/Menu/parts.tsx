@@ -26,21 +26,18 @@ function useParts() {
   return parts;
 }
 
-/* A tiny watching eye that wakes on the active/highlighted row — the grimoire
-   noticing your hand. Closed by default; the iris dilates via [data-highlighted]
-   / [data-popup-open] on the item (see Menu.css). Pure SVG + CSS, no JS. */
-function ItemEye() {
+/* A tiny tendril curl that uncoils at the row's left margin when the row is
+   highlighted — the grimoire reaching a feeler toward your hand. Hidden at rest;
+   the stroke draws in via [data-highlighted] / [data-popup-open] on the item
+   (see Menu.css). Pure SVG + CSS, no JS. */
+function ItemCurl() {
   return (
-    <span className="abyss-eye abyss-menu__eye" aria-hidden>
-      <svg viewBox="0 0 28 28" width="28" height="28">
+    <span className="abyss-menu__curl" aria-hidden>
+      <svg viewBox="0 0 16 24" width="16" height="24">
         <path
-          className="abyss-eye__sclera"
-          d="M3 14C3 14 7.5 7 14 7C20.5 7 25 14 25 14C25 14 20.5 21 14 21C7.5 21 3 14 3 14Z"
+          className="abyss-menu__curl-path"
+          d="M2 2c0 6 5 7 5 11s-4 4-4 1 4-2 6 0 2 6-1 8"
         />
-        <circle className="abyss-eye__iris" cx="14" cy="14" r="5.4" />
-        <circle className="abyss-eye__pupil" cx="14" cy="14" r="2.3" />
-        <path className="abyss-eye__lid" d="M3 14C3 14 7.5 7 14 7C20.5 7 25 14 25 14" />
-        <path className="abyss-eye__lid" d="M3 14C3 14 7.5 21 14 21C20.5 21 25 14 25 14" />
       </svg>
     </span>
   );
@@ -76,7 +73,7 @@ export function MenuItem({
       <span className="abyss-menu__icon">{icon}</span>
       <span className="abyss-menu__label">{children}</span>
       {shortcut ? <kbd className="abyss-menu__shortcut">{shortcut}</kbd> : null}
-      <ItemEye />
+      <ItemCurl />
     </Item>
   );
 }
@@ -103,7 +100,7 @@ export function MenuSub({ label, icon, disabled, children }: MenuSubProps) {
         <span className="abyss-menu__arrow">
           <ChevronRightIcon />
         </span>
-        <ItemEye />
+        <ItemCurl />
       </SubmenuTrigger>
       <Portal>
         <Positioner

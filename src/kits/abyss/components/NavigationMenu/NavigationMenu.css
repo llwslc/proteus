@@ -137,9 +137,8 @@
   list-style: none;
 }
 
-/* ---- Links: a row of grimoire text marked by a watching eye ---- */
+/* ---- Links: a row of grimoire text marked by a ritual sigil ---- */
 .abyss-navmenu__link {
-  --eye: var(--abyss-glow);
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -156,28 +155,23 @@
   background: var(--abyss-glow-soft);
 }
 
-/* the marker eye — closed for every row, opening on the watched one */
-.abyss-navmenu__eye {
+/* the marker sigil — dim ink for every row, kindling + turning on the watched one */
+.abyss-navmenu__mark {
   flex: 0 0 auto;
-  width: 22px;
-  margin-top: 2px;
+  margin-top: 1px;
+  font-size: 18px;
+  color: var(--abyss-ink-strong);
+  transform-origin: center;
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease),
+    transform var(--abyss-dur-slow) var(--abyss-ease);
 }
-.abyss-navmenu__link:hover .abyss-eye__iris,
-.abyss-navmenu__link:focus-visible .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-navmenu__link:hover .abyss-eye__pupil,
-.abyss-navmenu__link:focus-visible .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-navmenu__link:hover .abyss-eye,
-.abyss-navmenu__link:focus-visible .abyss-eye {
+.abyss-navmenu__link:hover .abyss-navmenu__mark,
+.abyss-navmenu__link:focus-visible .abyss-navmenu__mark {
+  color: var(--abyss-glow);
   filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
-}
-.abyss-navmenu__link:hover .abyss-eye__lid,
-.abyss-navmenu__link:focus-visible .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
+  transform: rotate(180deg);
 }
 
 .abyss-navmenu__link-text {

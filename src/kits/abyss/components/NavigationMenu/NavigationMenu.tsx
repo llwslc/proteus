@@ -1,6 +1,6 @@
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
 import type { MouseEvent, ReactNode } from "react";
-import { ChevronDownIcon } from "../icons";
+import { ChevronDownIcon, SigilIcon } from "../icons";
 import "./NavigationMenu.css";
 
 export interface NavMenuLink {
@@ -20,23 +20,10 @@ export interface NavigationMenuProps {
   onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
-/* A closed grimoire eye that blinks open when its row is watched (hover/focus).
-   Pure SVG + CSS, driven by ancestor state — same motif as Switch. */
-function MarkerEye() {
-  return (
-    <span className="abyss-eye abyss-navmenu__eye" aria-hidden>
-      <svg viewBox="0 0 36 22" width="36" height="22">
-        <path
-          className="abyss-eye__sclera"
-          d="M2 11C2 11 8 4 18 4C28 4 34 11 34 11C34 11 28 18 18 18C8 18 2 11 2 11Z"
-        />
-        <circle className="abyss-eye__iris" cx="18" cy="11" r="5.6" />
-        <circle className="abyss-eye__pupil" cx="18" cy="11" r="2.4" />
-        <path className="abyss-eye__lid" d="M2 11C2 11 8 4 18 4C28 4 34 11 34 11" />
-        <path className="abyss-eye__lid" d="M2 11C2 11 8 18 18 18C28 18 34 11 34 11" />
-      </svg>
-    </span>
-  );
+/* A dim ritual sigil that kindles to phosphor and turns when its row is
+   watched (hover/focus). Inked currentColor glyph — no eye. */
+function MarkerSigil() {
+  return <SigilIcon className="abyss-navmenu__mark" aria-hidden />;
 }
 
 /* Site-level navigation: top-level items open rich panels of links into a
@@ -65,7 +52,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                         className="abyss-navmenu__link"
                         onClick={onLinkClick}
                       >
-                        <MarkerEye />
+                        <MarkerSigil />
                         <span className="abyss-navmenu__link-text">
                           <span className="abyss-navmenu__link-title">{link.label}</span>
                           {link.description != null ? (

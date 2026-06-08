@@ -1,5 +1,5 @@
 /* The control is a sunken stone well wearing the inked frame; the scrying-glass
-   leads, a clear mark and a waking-eye trigger flank the typed value. */
+   leads, a clear mark and a chevron trigger flank the typed value. */
 .abyss-combobox__control {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
@@ -138,8 +138,8 @@
   overscroll-behavior: contain;
 }
 
-/* Each row is a candidate omen. A closed watching eye marks it; highlight washes
-   it in phosphor and a left rule of light; selection opens the eye + inks a sigil. */
+/* Each row is a candidate omen. Highlight washes it in phosphor and a left rule
+   of light; selection inks it in living light and marks it with a phosphor check. */
 .abyss-combobox__item {
   position: relative;
   display: flex;
@@ -187,29 +187,6 @@
   cursor: not-allowed;
 }
 
-/* the per-row eye — closed by default, blinks open on hover/selection */
-.abyss-combobox__eye {
-  --eye: var(--abyss-glow);
-  flex: 0 0 auto;
-  width: 20px;
-}
-.abyss-combobox__item[data-highlighted] .abyss-eye__iris {
-  opacity: 0.6;
-}
-.abyss-combobox__item[data-selected] .abyss-combobox__eye {
-  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
-}
-.abyss-combobox__item[data-selected] .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-combobox__item[data-selected] .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-combobox__item[data-selected] .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
-}
-
 .abyss-combobox__item-text {
   flex: 1;
   white-space: nowrap;
@@ -217,15 +194,16 @@
   text-overflow: ellipsis;
 }
 
+/* the chosen omen is sealed with a phosphor check */
 .abyss-combobox__indicator {
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;
   width: 18px;
   height: 18px;
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   color: var(--abyss-glow);
 }
-.abyss-combobox__sigil {
+.abyss-combobox__check {
   filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
 }

@@ -56,6 +56,21 @@ export const MoonIcon = (p: IconProps) => (
   </svg>
 );
 
+export const FlameIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 3c3 4.5 4.2 6.6 4.2 9.4A4.2 4.2 0 0 1 7.8 12.4c0-1.4.5-2.6 1.5-3.6.2 1.6.8 2.6 1.7 3.2.5-2.4.2-5.6 1-9Z" />
+  </svg>
+);
+export const ConchIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M20 12a8 8 0 1 1-8-8c4 0 6 2.5 6 5.5S16 14 13.5 14 11 12.5 11 11.5s.8-1.5 1.6-1.2" />
+  </svg>
+);
+export const SpiralIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M12 12c0-1.1.9-2 2-2s2 .9 2 2-1.3 3-3.5 3S8 13.2 8 10.5 10.4 6 13.5 6 19 8.4 19 12" />
+  </svg>
+);
 export const SkullIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M5 11a7 7 0 0 1 14 0c0 2.4-1 3.8-2 4.6V18a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2.4C6 14.8 5 13.4 5 11Z" />

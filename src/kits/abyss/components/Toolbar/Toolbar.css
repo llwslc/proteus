@@ -1,6 +1,8 @@
 /* A wet-stone tablet holding a cluster of inked seal-buttons. The rail is a
-   faint frame; each button is its own seal that wakes to phosphor and opens a
-   watching eye when active. Inked separators part the groups. */
+   faint frame; each button is its own seal that wakes to phosphor on hover and,
+   when struck active, floods from ashen ink to a glowing phosphor seal — its
+   inked rule lit, an inner struck-mark pressed, the whole tablet breathing an
+   aura. Inked separators part the groups. */
 .abyss-toolbar {
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-fill: var(--abyss-surface);
@@ -28,7 +30,7 @@
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-toolbar__btnwrap:has(.is-active) {
-  filter: var(--abyss-aura);
+  filter: var(--abyss-aura-strong);
 }
 
 .abyss-toolbar__btn {
@@ -76,53 +78,27 @@
 }
 .abyss-toolbar__btn.is-active {
   color: var(--abyss-glow);
-  --abyss-frame-ink: var(--abyss-glow-a55);
+  --abyss-frame-ink: var(--abyss-glow-a70);
   --abyss-frame-fill: var(--abyss-glow-soft);
   text-shadow: var(--abyss-text-aura);
+}
+/* the struck-seal mark — a fainter inner phosphor rule pressed inside the lit
+   frame, displaced like the outer edge (decoration layer only, never on text) */
+.abyss-toolbar__btn.is-active::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  z-index: 0;
+  border: 1px solid var(--abyss-glow-a30);
+  border-radius: 2px;
+  filter: url(#abyss-edge);
+  pointer-events: none;
 }
 .abyss-toolbar__btn[data-disabled],
 .abyss-toolbar__btn:disabled {
   opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
   filter: grayscale(0.5);
-}
-
-/* the watching eye — sealed shut until the seal is struck active, then it lifts
-   its lid and the phosphor iris dilates */
-.abyss-toolbar__eye {
-  position: relative;
-  z-index: 1;
-  width: 0;
-  margin-left: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition:
-    width var(--abyss-dur) var(--abyss-ease),
-    margin-left var(--abyss-dur) var(--abyss-ease),
-    opacity var(--abyss-dur) var(--abyss-ease),
-    filter var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-toolbar__btn.is-active .abyss-toolbar__eye {
-  width: 18px;
-  margin-left: var(--abyss-space-1);
-  opacity: 1;
-  filter: drop-shadow(0 0 7px var(--abyss-glow-a55));
-}
-.abyss-toolbar__btn.is-active .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-toolbar__btn.is-active .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-toolbar__btn.is-active .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
-}
-.abyss-toolbar__btn:hover .abyss-eye__iris {
-  opacity: 0.5;
-}
-.abyss-toolbar__btn.is-active:hover .abyss-eye__iris {
-  opacity: 1;
 }
 
 .abyss-toolbar__sep.abyss-separator {

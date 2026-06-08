@@ -50,43 +50,30 @@
   cursor: not-allowed;
 }
 
-/* the watching eye — closed by default, blinks open as the leaf unfurls */
-.abyss-collapsible__eye {
+/* the sigil rune — dormant ash by default, rotates and ignites phosphor as the
+   leaf unfurls. It is the sole expander marker (no chevron). */
+.abyss-collapsible__rune {
   flex: 0 0 auto;
-  width: 26px;
+  display: inline-flex;
+  font-size: var(--abyss-fs-19);
+  color: var(--abyss-text-dim);
+  transition:
+    transform var(--abyss-dur-slow) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-collapsible__trigger:hover .abyss-eye__iris {
-  opacity: 0.5;
+.abyss-collapsible__trigger:hover .abyss-collapsible__rune {
+  color: var(--abyss-text);
+  transform: rotate(60deg);
 }
-.abyss-collapsible__trigger[data-panel-open] .abyss-eye {
+.abyss-collapsible__trigger[data-panel-open] .abyss-collapsible__rune {
+  transform: rotate(180deg);
+  color: var(--abyss-glow);
   filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
-}
-.abyss-collapsible__trigger[data-panel-open] .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-collapsible__trigger[data-panel-open] .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-collapsible__trigger[data-panel-open] .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
 }
 
 .abyss-collapsible__title {
   flex: 1;
-}
-
-.abyss-collapsible__chevron {
-  flex: 0 0 auto;
-  font-size: var(--abyss-fs-19);
-  color: var(--abyss-text-dim);
-  transition:
-    transform var(--abyss-dur) var(--abyss-ease),
-    color var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-collapsible__trigger[data-panel-open] .abyss-collapsible__chevron {
-  transform: rotate(180deg);
-  color: var(--abyss-glow);
 }
 
 /* the leaf unfurls on Base UI's measured panel height */
@@ -102,7 +89,7 @@
   height: 0;
 }
 .abyss-collapsible__content {
-  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 43px;
+  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 47px;
   color: var(--abyss-text-dim);
   font-size: var(--abyss-fs-14);
   line-height: var(--abyss-lh-165);

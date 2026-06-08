@@ -2,7 +2,7 @@ import { cx } from "../cx";
 import { Popover as BasePopover } from "@base-ui/react/popover";
 import type { ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
-import { XIcon } from "../icons";
+import { ConchIcon, XIcon } from "../icons";
 import "./Popover.css";
 
 export interface PopoverProps {
@@ -15,9 +15,9 @@ export interface PopoverProps {
   className?: string;
 }
 
-/* A click-opened inked tablet dredged up on a tendril (the Base UI Arrow). An
-   eye blinks open in the title to watch the reader; the close mark is a ghost
-   seal. Base UI wiring is untouched — only the skin and the eye are ours. */
+/* A click-opened inked tablet dredged up on a tendril (the Base UI Arrow). A
+   conch shell marks the title — the deep whispers through it as the tablet
+   settles. Base UI wiring is untouched — only the skin and the motif are ours. */
 export function Popover({
   trigger,
   title,
@@ -43,24 +43,7 @@ export function Popover({
             <span className="abyss-frame abyss-popover__surface">
               {title != null ? (
                 <BasePopover.Title className="abyss-popover__title">
-                  <span className="abyss-eye abyss-popover__title-eye" aria-hidden>
-                    <svg viewBox="0 0 48 28" width="20" height="14">
-                      <path
-                        className="abyss-eye__sclera"
-                        d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14C45 14 37 23 24 23C11 23 3 14 3 14Z"
-                      />
-                      <circle className="abyss-eye__iris" cx="24" cy="14" r="7.2" />
-                      <circle className="abyss-eye__pupil" cx="24" cy="14" r="3" />
-                      <path
-                        className="abyss-eye__lid"
-                        d="M3 14C3 14 11 5 24 5C37 5 45 14 45 14"
-                      />
-                      <path
-                        className="abyss-eye__lid"
-                        d="M3 14C3 14 11 23 24 23C37 23 45 14 45 14"
-                      />
-                    </svg>
-                  </span>
+                  <ConchIcon className="abyss-popover__conch" aria-hidden />
                   {title}
                 </BasePopover.Title>
               ) : null}

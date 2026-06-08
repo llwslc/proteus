@@ -59,26 +59,25 @@
   cursor: not-allowed;
 }
 
-/* the watching eye — closed by default, blinks open with the page */
-.abyss-accordion__eye {
+/* the sigil rune — dormant ash by default, rotates a quarter-turn and ignites
+   phosphor as the page unfurls, set beside the chevron */
+.abyss-accordion__sigil {
   flex: 0 0 auto;
-  width: 26px;
+  font-size: var(--abyss-fs-19);
+  color: var(--abyss-text-dim);
+  transition:
+    transform var(--abyss-dur-slow) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-accordion__trigger:hover .abyss-eye__iris {
-  opacity: 0.5;
+.abyss-accordion__trigger:hover .abyss-accordion__sigil {
+  color: var(--abyss-text);
+  transform: rotate(30deg);
 }
-.abyss-accordion__trigger[data-panel-open] .abyss-eye {
+.abyss-accordion__trigger[data-panel-open] .abyss-accordion__sigil {
+  transform: rotate(90deg);
+  color: var(--abyss-glow);
   filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
-}
-.abyss-accordion__trigger[data-panel-open] .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-accordion__trigger[data-panel-open] .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-accordion__trigger[data-panel-open] .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
 }
 
 .abyss-accordion__title {
@@ -111,7 +110,7 @@
   height: 0;
 }
 .abyss-accordion__content {
-  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 43px;
+  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 47px;
   color: var(--abyss-text-dim);
   font-size: var(--abyss-fs-14);
   line-height: var(--abyss-lh-165);

@@ -31,33 +31,28 @@
   text-shadow: var(--abyss-text-aura);
 }
 
-/* the watching eye in the title — closed as the tablet rises, then it blinks
-   open once the popup has settled (no longer in its entering/leaving style) */
-.abyss-popover__title-eye {
+/* the conch shell marking the title — the deep whispers through it. It rolls
+   in (spiral mouth turning toward the reader) once the popup has settled, and
+   stays coiled-shut while the tablet is entering or leaving. */
+.abyss-popover__conch {
   flex: 0 0 auto;
-  --eye: var(--abyss-glow);
-}
-.abyss-popover__popup[data-open] .abyss-popover__title-eye .abyss-eye__iris {
-  transform: scaleY(1);
+  font-size: 18px;
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+  transform: rotate(0deg) scale(1);
   opacity: 1;
+  transition:
+    transform var(--abyss-dur) var(--abyss-ease),
+    opacity var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-popover__popup[data-open] .abyss-popover__title-eye .abyss-eye__pupil {
-  transform: scaleY(1);
+.abyss-popover__popup[data-open] .abyss-popover__conch {
+  filter: var(--abyss-aura-strong);
 }
-.abyss-popover__popup[data-open] .abyss-popover__title-eye .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
-}
-.abyss-popover__popup[data-open] .abyss-popover__title-eye {
-  filter: drop-shadow(0 0 8px var(--abyss-glow-a55));
-}
-.abyss-popover__popup[data-starting-style] .abyss-popover__title-eye .abyss-eye__iris,
-.abyss-popover__popup[data-ending-style] .abyss-popover__title-eye .abyss-eye__iris {
-  transform: scaleY(0.06);
+.abyss-popover__popup[data-starting-style] .abyss-popover__conch,
+.abyss-popover__popup[data-ending-style] .abyss-popover__conch {
+  transform: rotate(-120deg) scale(0.7);
   opacity: 0.25;
-}
-.abyss-popover__popup[data-starting-style] .abyss-popover__title-eye .abyss-eye__pupil,
-.abyss-popover__popup[data-ending-style] .abyss-popover__title-eye .abyss-eye__pupil {
-  transform: scaleY(0.06);
 }
 
 .abyss-popover__body {

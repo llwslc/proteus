@@ -4,7 +4,7 @@ import { useRef } from "react";
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Button } from "../Button";
 import type { ButtonVariant, ButtonSize } from "../Button";
-import { EyeIcon, XIcon } from "../icons";
+import { SigilIcon, XIcon } from "../icons";
 import "./Dialog.css";
 
 export interface DialogProps {
@@ -54,7 +54,7 @@ export function Dialog({
               />
               {title != null ? (
                 <BaseDialog.Title className="abyss-modal-title">
-                  <EyeIcon className="abyss-modal-title__eye" />
+                  <SigilIcon className="abyss-dialog__sigil" aria-hidden />
                   {title}
                 </BaseDialog.Title>
               ) : null}

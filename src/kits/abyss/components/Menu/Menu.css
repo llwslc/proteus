@@ -1,7 +1,8 @@
 /* Action menu — an inked stone tablet dredged up beside its trigger. The popup
    is an .abyss-frame (warped border on a ::before, text stays crisp); each row
-   is icon · inked label · mono shortcut · a watching eye that wakes when the
-   row is highlighted. Danger rows bleed. */
+   is icon · inked label · mono shortcut. When a row is highlighted it floods
+   with a phosphor wash and a tiny tendril uncoils at its left margin. Danger
+   rows bleed. */
 .abyss-menu__positioner {
   z-index: var(--abyss-z-overlay);
   outline: none;
@@ -24,7 +25,7 @@
   display: flex;
   align-items: center;
   gap: var(--abyss-space-3);
-  padding: var(--abyss-space-2) var(--abyss-space-3);
+  padding: var(--abyss-space-2) var(--abyss-space-3) var(--abyss-space-2) var(--abyss-space-4);
   border-radius: 2px;
   cursor: pointer;
   color: var(--abyss-text-dim);
@@ -73,16 +74,34 @@
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
 
-/* the watching eye — closed lash-line at rest, far right of the row */
-.abyss-menu__eye {
-  --eye: var(--abyss-glow);
-  flex: 0 0 auto;
-  width: 18px;
-  margin-left: calc(-1 * var(--abyss-space-1));
+/* the tendril curl — uncoils at the row's left margin on highlight */
+.abyss-menu__curl {
+  --curl: var(--abyss-glow);
+  position: absolute;
+  left: 1px;
+  top: 50%;
+  width: 12px;
+  height: 18px;
+  transform: translateY(-50%);
+  line-height: 0;
+  pointer-events: none;
+  opacity: 0;
+  filter: url(#abyss-edge);
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-menu__eye .abyss-eye__sclera {
-  fill: var(--abyss-void);
-  stroke-width: 1.2;
+.abyss-menu__curl svg {
+  display: block;
+  overflow: visible;
+}
+.abyss-menu__curl-path {
+  fill: none;
+  stroke: var(--curl);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 34;
+  stroke-dashoffset: 34;
+  transition: stroke-dashoffset var(--abyss-dur-slow) var(--abyss-ease-out);
 }
 
 .abyss-menu__item[data-highlighted],
@@ -102,23 +121,15 @@
 .abyss-menu__item[data-popup-open] .abyss-menu__shortcut {
   color: var(--abyss-text-dim);
 }
-/* the eye opens — iris dilates, lid lights, faint aura */
-.abyss-menu__item[data-highlighted] .abyss-menu__eye,
-.abyss-menu__item[data-popup-open] .abyss-menu__eye {
-  filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
-}
-.abyss-menu__item[data-highlighted] .abyss-eye__iris,
-.abyss-menu__item[data-popup-open] .abyss-eye__iris {
-  transform: scaleY(1);
+/* the tendril uncoils — stroke draws in, faint aura */
+.abyss-menu__item[data-highlighted] .abyss-menu__curl,
+.abyss-menu__item[data-popup-open] .abyss-menu__curl {
   opacity: 1;
+  filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-glow-a55));
 }
-.abyss-menu__item[data-highlighted] .abyss-eye__pupil,
-.abyss-menu__item[data-popup-open] .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-menu__item[data-highlighted] .abyss-eye__lid,
-.abyss-menu__item[data-popup-open] .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
+.abyss-menu__item[data-highlighted] .abyss-menu__curl-path,
+.abyss-menu__item[data-popup-open] .abyss-menu__curl-path {
+  stroke-dashoffset: 0;
 }
 
 .abyss-menu__item[data-disabled] {
@@ -133,8 +144,8 @@
 .abyss-menu__item--danger .abyss-menu__icon {
   color: var(--abyss-blood);
 }
-.abyss-menu__item--danger .abyss-menu__eye {
-  --eye: var(--abyss-blood);
+.abyss-menu__item--danger .abyss-menu__curl {
+  --curl: var(--abyss-blood);
 }
 .abyss-menu__item--danger::after {
   background: var(--abyss-blood);
@@ -147,11 +158,8 @@
 .abyss-menu__item--danger[data-highlighted] .abyss-menu__icon {
   color: var(--abyss-blood);
 }
-.abyss-menu__item--danger[data-highlighted] .abyss-menu__eye {
-  filter: drop-shadow(0 0 6px rgba(210, 64, 89, 0.55));
-}
-.abyss-menu__item--danger[data-highlighted] .abyss-eye__lid {
-  stroke: rgba(210, 64, 89, 0.6);
+.abyss-menu__item--danger[data-highlighted] .abyss-menu__curl {
+  filter: url(#abyss-edge) drop-shadow(0 0 5px rgba(210, 64, 89, 0.55));
 }
 
 .abyss-menu__separator.abyss-separator {

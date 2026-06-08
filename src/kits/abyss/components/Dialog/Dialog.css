@@ -18,3 +18,20 @@
   right: 10px;
   z-index: 2;
 }
+.abyss-dialog__sigil {
+  flex: 0 0 auto;
+  font-size: 20px;
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura);
+  animation: abyss-dialog-sigil 30s linear infinite;
+}
+@keyframes abyss-dialog-sigil {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .abyss-dialog__sigil {
+    animation: none;
+  }
+}

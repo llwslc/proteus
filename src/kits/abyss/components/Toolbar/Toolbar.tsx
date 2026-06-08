@@ -26,8 +26,9 @@ export interface ToolbarButtonProps {
 }
 
 /* Each control is a small inked seal (.abyss-frame). It wakes from ashen ink to
-   phosphor on hover; when active it is washed in phosphor and a watching eye
-   blinks open beside it (lid lifting, iris dilating). */
+   phosphor on hover; when active the seal is struck — its inked rule floods to
+   phosphor, the whole tablet washes in light and breathes an aura, as if a
+   freshly pressed wax seal still glowing. */
 export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps) {
   return (
     <span className="abyss-toolbar__btnwrap">
@@ -36,18 +37,6 @@ export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps
         {...props}
       >
         <span className="abyss-toolbar__label">{children}</span>
-        <span className="abyss-eye abyss-toolbar__eye" aria-hidden>
-          <svg viewBox="0 0 26 16" width="26" height="16">
-            <path
-              className="abyss-eye__sclera"
-              d="M2 8C2 8 6 3 13 3C20 3 24 8 24 8C24 8 20 13 13 13C6 13 2 8 2 8Z"
-            />
-            <circle className="abyss-eye__iris" cx="13" cy="8" r="4" />
-            <circle className="abyss-eye__pupil" cx="13" cy="8" r="1.7" />
-            <path className="abyss-eye__lid" d="M2 8C2 8 6 3 13 3C20 3 24 8 24 8" />
-            <path className="abyss-eye__lid" d="M2 8C2 8 6 13 13 13C20 13 24 8 24 8" />
-          </svg>
-        </span>
       </BaseToolbar.Button>
     </span>
   );

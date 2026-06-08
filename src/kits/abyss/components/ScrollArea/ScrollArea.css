@@ -26,32 +26,6 @@
   opacity: 1;
 }
 
-/* the watcher — a closed lidded eye in the corner, opening as you hover/scroll */
-.abyss-scrollarea__watcher {
-  position: absolute;
-  top: 6px;
-  right: 14px;
-  z-index: 3;
-  width: 26px;
-  pointer-events: none;
-  opacity: 0.55;
-  transition: opacity var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-scrollarea:hover .abyss-scrollarea__watcher {
-  opacity: 1;
-  filter: drop-shadow(0 0 7px var(--abyss-glow-a30));
-}
-.abyss-scrollarea:hover .abyss-scrollarea__watcher .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-}
-.abyss-scrollarea:hover .abyss-scrollarea__watcher .abyss-eye__pupil {
-  transform: scaleY(1);
-}
-.abyss-scrollarea:hover .abyss-scrollarea__watcher .abyss-eye__lid {
-  stroke: var(--abyss-glow-a55);
-}
-
 .abyss-scrollarea__viewport {
   position: relative;
   z-index: 1;
@@ -99,12 +73,15 @@
   opacity: 1;
 }
 
-/* the thumb — a slim glowing tendril-bead descending the channel */
+/* the thumb — a slim phosphor tendril coiled round a spiral bead */
 .abyss-scrollarea__thumb {
   flex: 1;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  min-height: 28px;
+  min-height: 30px;
 }
 .abyss-scrollarea__thumb::before {
   content: "";
@@ -132,22 +109,37 @@
     0 0 12px var(--abyss-glow-a55),
     inset 0 0 0 1px var(--abyss-glow-a55);
 }
-/* a brighter living bead riding the centre of the tendril */
-.abyss-scrollarea__thumb::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--abyss-text-bright);
-  box-shadow: 0 0 8px var(--abyss-glow-a70);
-  opacity: 0;
-  transition: opacity var(--abyss-dur) var(--abyss-ease);
+/* a living spiral bead coiled at the centre of the tendril */
+.abyss-scrollarea__bead {
+  position: relative;
+  z-index: 1;
+  display: block;
+  line-height: 0;
+  filter: drop-shadow(0 0 5px var(--abyss-glow-a55));
+  transition:
+    transform var(--abyss-dur-slow) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__thumb::after,
-.abyss-scrollarea__thumb:hover::after {
+.abyss-scrollarea__bead svg {
+  display: block;
+  overflow: visible;
+}
+.abyss-scrollarea__spiral {
+  fill: none;
+  stroke: var(--abyss-text-bright);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  opacity: 0.72;
+  transition:
+    stroke var(--abyss-dur) var(--abyss-ease),
+    opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__bead,
+.abyss-scrollarea__thumb:hover .abyss-scrollarea__bead {
+  transform: rotate(140deg);
+  filter: drop-shadow(0 0 8px var(--abyss-glow-a70));
+}
+.abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__spiral,
+.abyss-scrollarea__thumb:hover .abyss-scrollarea__spiral {
   opacity: 1;
 }
