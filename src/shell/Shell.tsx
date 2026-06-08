@@ -1,30 +1,19 @@
 import { Suspense, lazy, useEffect, useState } from "react";
+import { KITS, resolveKit } from "../kits/registry";
 import "./Shell.css";
 
-const NovaKit = lazy(() => import("../kits/nova"));
-const AbyssKit = lazy(() => import("../kits/abyss"));
-
-type KitId = "nova" | "abyss";
-
-const KITS: { id: KitId; label: string; tag: string }[] = [
-  { id: "abyss", label: "ABYSS", tag: "克苏鲁 · 溺城" },
-  { id: "nova", label: "NOVA", tag: "Sci-Fi · HUD" },
-];
-
-function readKit(): KitId {
-  const saved = localStorage.getItem("kit");
-  return saved === "nova" ? "nova" : "abyss";
-}
+// One lazy component per registered kit — its theme CSS loads with its chunk.
+const LAZY = Object.fromEntries(KITS.map((k) => [k.id, lazy(k.load)]));
 
 export function Shell() {
-  const [kit, setKit] = useState<KitId>(readKit);
+  const [kit, setKit] = useState(() => resolveKit(localStorage.getItem("kit")));
 
   useEffect(() => {
     document.documentElement.dataset.kit = kit;
     localStorage.setItem("kit", kit);
   }, [kit]);
 
-  const Active = kit === "nova" ? NovaKit : AbyssKit;
+  const Active = LAZY[kit];
 
   return (
     <>
@@ -36,9 +25,7 @@ export function Shell() {
           <button
             key={k.id}
             type="button"
-            className={
-              "shell-switch__btn" + (kit === k.id ? " is-active" : "")
-            }
+            className={"shell-switch__btn" + (kit === k.id ? " is-active" : "")}
             aria-pressed={kit === k.id}
             onClick={() => setKit(k.id)}
           >

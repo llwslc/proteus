@@ -17,6 +17,16 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  /* Degrade gracefully as more kits are registered. */
+  max-width: min(92vw, 760px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.shell-switch::-webkit-scrollbar {
+  display: none;
+}
+.shell-switch__btn {
+  flex: 0 0 auto;
 }
 
 .shell-switch__btn {

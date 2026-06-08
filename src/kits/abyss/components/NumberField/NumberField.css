@@ -23,7 +23,7 @@
 }
 
 .abyss-numberfield__btn {
-  --abyss-numberfield-btn-bg: rgba(12, 24, 38, 0.96);
+  --abyss-numberfield-btn-bg: rgba(9, 24, 21, 0.96);
   position: relative;
   z-index: 1;
   display: grid;

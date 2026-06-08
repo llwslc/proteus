@@ -42,6 +42,32 @@ clip palette, fonts, glow, motion) plus `theme/{global,effects,typography}.css`.
 The two component layers are the same Base UI wiring under different class
 prefixes (`.nova-*` / `.abyss-*`).
 
+## Adding a kit
+
+The shell is registry-driven, so a new theme is one entry plus a folder that
+follows the contract — nothing else hardcodes a kit id.
+
+1. **Scaffold** `src/kits/<id>/` — quickest start is to copy an existing kit and
+   rename its namespace end-to-end (lowercase):
+   ```bash
+   cp -R src/kits/abyss src/kits/<id>
+   find src/kits/<id> -type f \( -name '*.ts*' -o -name '*.css' \) -print0 \
+     | xargs -0 perl -pi -e 's/abyss/<id>/g'
+   ```
+   This gives you all 37 controls wired and namespaced; the design work then
+   lives entirely in `src/kits/<id>/theme/` (recast tokens/effects/global/
+   typography) plus any per-component flourishes.
+2. **Gate the chrome** — confirm `theme/global.css` scopes every page-level rule
+   (body / html ambient, scrollbars, `::selection`) under
+   `html[data-kit="<id>"]`, so it never collides with other kits.
+3. **Register** — add one line to `src/kits/registry.ts`:
+   ```ts
+   { id: "<id>", label: "<NAME>", tag: "<subtitle>", load: () => import("./<id>") }
+   ```
+
+`KitDef.load` is the only place an import lives; the switcher, the persisted
+preference, and the no-flash `data-kit` in `main.tsx` all derive from the list.
+
 ## Details
 
 See **[PROMPT.md](PROMPT.md)** — the authoritative spec for NOVA's design
