@@ -2,7 +2,6 @@
   min-height: 100vh;
 }
 
-/* ---------- Top HUD header ---------- */
 .nova-header {
   position: sticky;
   top: 0;
@@ -85,7 +84,6 @@
   height: 100%;
 }
 
-/* ---------- Shell ---------- */
 .nova-shell {
   display: grid;
   grid-template-columns: 232px minmax(0, 1fr);
@@ -95,7 +93,6 @@
   padding: 26px 22px 28px;
 }
 
-/* ---------- Sidebar index ---------- */
 .nova-sidebar {
   position: sticky;
   top: 86px;
@@ -144,7 +141,6 @@
   color: var(--nova-text-mute);
 }
 
-/* ---------- Main ---------- */
 .nova-main {
   min-width: 0;
 }
@@ -212,7 +208,6 @@
   color: var(--nova-text-mute);
 }
 
-/* ---------- Showcase grid ---------- */
 .nova-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -234,7 +229,6 @@
   min-width: 0;
 }
 
-/* ---------- Grid group dividers ---------- */
 .nova-grid__group {
   grid-column: 1 / -1;
   display: flex;
@@ -269,7 +263,6 @@
   background: linear-gradient(90deg, var(--nova-line-strong), transparent);
 }
 
-/* ---------- Demo helpers ---------- */
 .demo-row {
   display: flex;
   flex-wrap: wrap;
@@ -317,7 +310,6 @@
   color: var(--nova-text-dim);
 }
 
-/* Preview Card trigger + content */
 .demo-link {
   color: var(--nova-primary);
   font-weight: 600;
@@ -363,7 +355,6 @@
   gap: 8px;
 }
 
-/* Scroll Area log */
 .demo-log {
   list-style: none;
   margin: 0;
@@ -396,7 +387,6 @@
   color: var(--nova-text-dim);
 }
 
-/* Toolbar text label */
 .demo-toolbar__label {
   font-family: var(--nova-font);
   font-size: 13px;
@@ -415,7 +405,6 @@
   text-align: center;
 }
 
-/* ---------- Entrance orchestration ---------- */
 .nova-header {
   animation: nova-drop 0.6s var(--nova-ease) both;
 }
@@ -468,7 +457,6 @@
   transition-delay: 0.26s;
 }
 
-/* ---------- Hero targeting reticle (uses the right-hand negative space) ---------- */
 @media (min-width: 760px) {
   .nova-hero {
     padding-right: 215px;
@@ -553,7 +541,6 @@
   }
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .nova-shell {
     grid-template-columns: minmax(0, 1fr);

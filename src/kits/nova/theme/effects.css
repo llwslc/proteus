@@ -108,7 +108,6 @@
   clip-path: var(--nova-clip-tick);
 }
 
-/* Shared separator recipe — every divider (Separator, Toolbar, Menu) reuses this */
 .nova-separator {
   border: 0;
   background: linear-gradient(90deg, transparent, var(--nova-line-strong), transparent);
@@ -198,7 +197,6 @@
   filter: none;
 }
 
-/* Disclosure trigger internals — shared by Accordion + Collapsible */
 .nova-disclosure__trigger {
   position: relative;
   z-index: 1;

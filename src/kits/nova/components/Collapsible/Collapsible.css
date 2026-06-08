@@ -13,5 +13,3 @@
   clip-path: var(--nova-clip-9);
   background: var(--nova-surface);
 }
-
-/* trigger / marker / chevron / panel / content: shared .nova-disclosure__* in effects.css */

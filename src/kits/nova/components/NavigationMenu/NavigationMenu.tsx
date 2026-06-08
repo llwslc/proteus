@@ -20,8 +20,6 @@ export interface NavigationMenuProps {
   onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
-/* Site-level navigation: top-level items open rich panels of links into a
-   shared viewport (distinct from Menu's action lists). */
 export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
   return (
     <BaseNav.Root className="nova-navmenu">

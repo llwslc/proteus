@@ -90,7 +90,6 @@
   transform: rotate(180deg);
 }
 
-/* ---- Shared popup + viewport ---- */
 .nova-navmenu__positioner {
   z-index: var(--nova-z-menu);
   outline: none;

@@ -10,9 +10,6 @@ export interface MenubarProps {
   children: ReactNode;
 }
 
-/* A persistent application menu bar (File · Edit · View). Base UI's Menubar
-   coordinates roving focus across the menus; each MenubarMenu is a Menu.Root
-   that reuses the Menu popup + item skin. */
 export function Menubar({ children }: MenubarProps) {
   return <BaseMenubar className="nova-surface nova-menubar">{children}</BaseMenubar>;
 }

@@ -1,5 +1,3 @@
-/* Page chrome is scoped to [data-kit="nova"] on <html> so it never collides
-   with another kit's ambient layers. Universal resets live in shell/reset.css. */
 html[data-kit="nova"] body {
   background-color: var(--nova-bg);
   color: var(--nova-text);
@@ -73,7 +71,6 @@ html[data-kit="nova"] ::selection {
   color: var(--nova-text-bright);
 }
 
-/* Themed scrollbars */
 html[data-kit="nova"] * {
   scrollbar-width: thin;
   scrollbar-color: var(--nova-line-strong) transparent;

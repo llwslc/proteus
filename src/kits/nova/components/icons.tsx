@@ -1,4 +1,3 @@
-/* 1em currentColor SVGs, so icons inherit the surrounding text size + colour. */
 import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;

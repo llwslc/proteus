@@ -1,4 +1,3 @@
-/* Base + orientation variants live in effects.css (shared by Toolbar/Menu too). */
 .nova-separator-labeled {
   display: flex;
   align-items: center;

@@ -10,7 +10,7 @@ export interface OtpFieldProps {
   onValueChange?: (value: string) => void;
   mask?: boolean;
   disabled?: boolean;
-  /** Index after which to insert a divider, e.g. 3 splits 6 slots into 3·3. */
+
   splitAt?: number;
 }
 

@@ -64,7 +64,6 @@ import {
 } from "./components/icons";
 import "./App.css";
 
-/* ---- Sidebar index config (lists every control) ---- */
 const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   {
     group: "Input",
@@ -296,7 +295,6 @@ const SHIP_LOG = [
 ];
 
 function AccessCodeField() {
-  // Error clears once the code is valid (≥ 6 chars) — not a static red label.
   const [code, setCode] = useState("");
   const touched = code.length > 0;
   const valid = code.length >= 6;
@@ -446,8 +444,6 @@ function ToastDemo() {
 }
 
 function Demo() {
-  // Staggered scroll-reveal for showcase panels. Gated by adding .nova-reveal
-  // so the page still renders fully if JS/IntersectionObserver is unavailable.
   useEffect(() => {
     const grid = document.querySelector(".nova-grid");
     if (!grid || typeof IntersectionObserver === "undefined") return;
