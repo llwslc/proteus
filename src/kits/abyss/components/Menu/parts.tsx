@@ -90,7 +90,10 @@ export function MenuSub({ label, icon, disabled, children }: MenuSubProps) {
   const { SubmenuRoot, SubmenuTrigger, Portal, Positioner, Popup } = useParts();
   return (
     <SubmenuRoot>
-      <SubmenuTrigger className="abyss-menu__item abyss-menu__item--sub" disabled={disabled}>
+      <SubmenuTrigger
+        className="abyss-menu__item abyss-menu__item--sub"
+        disabled={disabled}
+      >
         <span className="abyss-menu__icon">{icon}</span>
         <span className="abyss-menu__label">{label}</span>
         <span className="abyss-menu__arrow">

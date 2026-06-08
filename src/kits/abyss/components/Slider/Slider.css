@@ -42,7 +42,12 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #d8fff2, var(--abyss-glow) 45%, var(--abyss-glow-deep));
+  background: radial-gradient(
+    circle at 38% 32%,
+    #d8fff2,
+    var(--abyss-glow) 45%,
+    var(--abyss-glow-deep)
+  );
   box-shadow:
     0 0 0 3px rgba(70, 232, 184, 0.16),
     0 0 11px var(--abyss-glow-a55);

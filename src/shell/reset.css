@@ -1,5 +1,3 @@
-/* Universal resets shared by every kit. Page chrome (bg, ambient, scrollbars,
-   selection) is owned per-kit and scoped under html[data-kit="…"]. */
 *,
 *::before,
 *::after {
@@ -17,7 +15,7 @@ html {
 
 body {
   margin: 0;
-  /* Neutral pre-paint fill so the kit's own background never flashes white. */
+
   background-color: #04070a;
 }
 

@@ -13,7 +13,11 @@ export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (
     <span
-      className={cx("abyss-input-wrap abyss-frame", icon && "abyss-input-wrap--icon", className)}
+      className={cx(
+        "abyss-input-wrap abyss-frame",
+        icon && "abyss-input-wrap--icon",
+        className,
+      )}
     >
       {icon ? <span className="abyss-input__icon">{icon}</span> : null}
       <BaseInput
@@ -45,7 +49,9 @@ export function Field({
   return (
     <BaseField.Root className={cx("abyss-field", rootClassName)}>
       {label != null ? (
-        <BaseField.Label className="abyss-cap abyss-field__label">{label}</BaseField.Label>
+        <BaseField.Label className="abyss-cap abyss-field__label">
+          {label}
+        </BaseField.Label>
       ) : null}
       <span
         className={cx(

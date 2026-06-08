@@ -3,13 +3,19 @@ import { Progress as BaseProgress } from "@base-ui/react/progress";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import "./Progress.css";
 
-export interface ProgressProps
-  extends ComponentPropsWithoutRef<typeof BaseProgress.Root> {
+export interface ProgressProps extends ComponentPropsWithoutRef<
+  typeof BaseProgress.Root
+> {
   label?: ReactNode;
   showValue?: boolean;
 }
 
-export function Progress({ className, label, showValue = true, ...props }: ProgressProps) {
+export function Progress({
+  className,
+  label,
+  showValue = true,
+  ...props
+}: ProgressProps) {
   return (
     <BaseProgress.Root className={cx("abyss-progress", className)} {...props}>
       {(label != null || showValue) && (
@@ -21,9 +27,7 @@ export function Progress({ className, label, showValue = true, ...props }: Progr
           ) : (
             <span />
           )}
-          {showValue ? (
-            <BaseProgress.Value className="abyss-progress__value" />
-          ) : null}
+          {showValue ? <BaseProgress.Value className="abyss-progress__value" /> : null}
         </div>
       )}
       <BaseProgress.Track className="abyss-progress__track">

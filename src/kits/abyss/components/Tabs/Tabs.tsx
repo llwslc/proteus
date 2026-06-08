@@ -18,7 +18,13 @@ export interface TabsProps {
   className?: string;
 }
 
-export function Tabs({ items, defaultValue, value, onValueChange, className }: TabsProps) {
+export function Tabs({
+  items,
+  defaultValue,
+  value,
+  onValueChange,
+  className,
+}: TabsProps) {
   return (
     <BaseTabs.Root
       className={cx("abyss-tabs", className)}

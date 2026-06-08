@@ -79,8 +79,10 @@ export function Dialog({
 
 export type DialogCloseVariant = ButtonVariant;
 
-export interface DialogCloseProps
-  extends Omit<ComponentPropsWithoutRef<typeof BaseDialog.Close>, "className" | "render"> {
+export interface DialogCloseProps extends Omit<
+  ComponentPropsWithoutRef<typeof BaseDialog.Close>,
+  "className" | "render"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;

@@ -1,6 +1,3 @@
-/* ABYSS ambient — scoped to [data-kit="abyss"]. Not a starfield: a lightless
-   deep where something below glows, motes of silt drift up, and the edges press
-   in. Motion is background-position only (no transform → no iOS overflow). */
 html[data-kit="abyss"] body {
   background-color: var(--abyss-bg);
   color: var(--abyss-text);
@@ -11,7 +8,6 @@ html[data-kit="abyss"] body {
   text-rendering: optimizeLegibility;
 }
 
-/* depth: cold downwelling, a phosphor presence rising from below, a violet wound */
 html[data-kit="abyss"] body::before {
   content: "";
   position: fixed;
@@ -24,7 +20,6 @@ html[data-kit="abyss"] body::before {
     linear-gradient(to bottom, var(--abyss-void), var(--abyss-bg) 42%, var(--abyss-bg-2));
 }
 
-/* drifting silt / spores rising slowly */
 html[data-kit="abyss"] body::after {
   content: "";
   position: fixed;
@@ -50,7 +45,6 @@ html[data-kit="abyss"] body::after {
   }
 }
 
-/* pressure — the dark presses in at the edges (porthole vignette) */
 html[data-kit="abyss"]::before {
   content: "";
   position: fixed;
@@ -66,7 +60,6 @@ html[data-kit="abyss"]::before {
   mix-blend-mode: multiply;
 }
 
-/* aged-vellum grain */
 html[data-kit="abyss"]::after {
   content: "";
   position: fixed;

@@ -17,7 +17,12 @@ export interface BadgeProps {
   className?: string;
 }
 
-export function Badge({ tone = "primary", dot = false, children, className }: BadgeProps) {
+export function Badge({
+  tone = "primary",
+  dot = false,
+  children,
+  className,
+}: BadgeProps) {
   return (
     <span className={cx("abyss-badge", `abyss-badge--${tone}`, className)}>
       {dot ? <span className="abyss-badge__dot" /> : null}

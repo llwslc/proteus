@@ -1,14 +1,8 @@
-/* ABYSS shared recipes. The signature is the hand-inked frame: a border layer
-   warped by the SVG #abyss-edge displacement filter (mounted once in App), so
-   every "straight" edge wavers like it was drawn by a shaking hand. Fills and
-   text stay crisp — only the border ::before is displaced. */
-
 .abyss-frame {
   position: relative;
   isolation: isolate;
 }
-/* The tablet itself: fill + inked border on one displaced pseudo, so the whole
-   silhouette wavers like a hand-drawn edge. Content sits above (normal flow). */
+
 .abyss-frame::before {
   content: "";
   position: absolute;
@@ -20,7 +14,7 @@
   filter: url(#abyss-edge);
   pointer-events: none;
 }
-/* a second, fainter inner rule — like a scribe's double border */
+
 .abyss-frame--double::after {
   content: "";
   position: absolute;
@@ -32,7 +26,6 @@
   pointer-events: none;
 }
 
-/* slow living pulse — replaces NOVA's mechanical scan sweep */
 @keyframes abyss-breathe {
   0%,
   100% {
@@ -48,16 +41,12 @@
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 
-/* a sigil inscribing itself (stroke-dashoffset run to 0) */
 @keyframes abyss-inscribe {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-/* THE EYE — opening lid + dilating phosphor iris. Used by Switch and as a motif.
-   Markup: .abyss-eye > svg with .lid (upper/lower) + .iris + .pupil groups.
-   State is driven by a data-attr on an ancestor: [data-checked]/[data-open]. */
 .abyss-eye {
   --eye: var(--abyss-glow);
   display: inline-block;
@@ -98,7 +87,6 @@
   stroke-linecap: round;
 }
 
-/* overlay open/close — organic fade + small rise, no mechanical pop */
 .abyss-aura-pop {
   transform-origin: var(--transform-origin, center);
   transition:
@@ -111,7 +99,6 @@
   transform: translateY(-6px) scale(0.97);
 }
 
-/* ink tendril joining a popup to its trigger (Base UI Arrow) */
 .abyss-connector {
   z-index: 2;
   width: 14px;
@@ -165,7 +152,6 @@
   background: linear-gradient(180deg, transparent, var(--abyss-ink-strong), transparent);
 }
 
-/* modal scaffolding */
 .abyss-scrim {
   position: fixed;
   inset: 0;

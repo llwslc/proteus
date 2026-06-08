@@ -24,7 +24,8 @@
 }
 
 .abyss-drawer__tablet {
-  --abyss-frame-fill: radial-gradient(140% 60% at 100% 0%, var(--abyss-glow-soft), transparent 55%),
+  --abyss-frame-fill:
+    radial-gradient(140% 60% at 100% 0%, var(--abyss-glow-soft), transparent 55%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: 4px;

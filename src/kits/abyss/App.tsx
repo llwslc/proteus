@@ -246,8 +246,8 @@ const TAB_ITEMS = [
     label: "Rites",
     content: (
       <p className="abyss-text" style={{ margin: 0 }}>
-        Speak the seven names in the old order. The water will answer before the
-        candle gutters — do not answer back.
+        Speak the seven names in the old order. The water will answer before the candle
+        gutters — do not answer back.
       </p>
     ),
   },
@@ -405,7 +405,10 @@ function ToastDemo() {
         size="sm"
         variant="ghost"
         onClick={() =>
-          add({ title: "A Whisper", description: "Something answered from the Black Reef." })
+          add({
+            title: "A Whisper",
+            description: "Something answered from the Black Reef.",
+          })
         }
       >
         Whisper
@@ -490,7 +493,14 @@ function HeroSigil() {
             strokeWidth="1"
             strokeDasharray="2 11"
           />
-          <circle cx="120" cy="120" r="96" fill="none" stroke="rgba(145,118,255,0.22)" strokeWidth="1" />
+          <circle
+            cx="120"
+            cy="120"
+            r="96"
+            fill="none"
+            stroke="rgba(145,118,255,0.22)"
+            strokeWidth="1"
+          />
           <path
             d="M120 24 L120 40 M216 120 L200 120 M120 216 L120 200 M24 120 L40 120
                M52 52 L63 63 M188 52 L177 63 M188 188 L177 177 M52 188 L63 177"
@@ -512,7 +522,14 @@ function HeroSigil() {
           <path d="M80 120 C50 124 34 140 34 162 C30 136 48 112 72 110" />
         </g>
         <g className="abyss-hero__ring abyss-hero__ring--in">
-          <circle cx="120" cy="120" r="64" fill="none" stroke="rgba(70,232,184,0.28)" strokeWidth="1" />
+          <circle
+            cx="120"
+            cy="120"
+            r="64"
+            fill="none"
+            stroke="rgba(70,232,184,0.28)"
+            strokeWidth="1"
+          />
           <path
             d="M120 64 L168 152 L60 96 L180 96 L72 152 Z"
             fill="none"
@@ -529,7 +546,13 @@ function HeroSigil() {
             strokeWidth="2"
             filter="url(#abyss-edge)"
           />
-          <circle className="abyss-hero__iris" cx="120" cy="120" r="27" fill="url(#hs-iris)" />
+          <circle
+            className="abyss-hero__iris"
+            cx="120"
+            cy="120"
+            r="27"
+            fill="url(#hs-iris)"
+          />
           <circle cx="120" cy="120" r="11" fill="#02100a" />
           <circle cx="111" cy="112" r="4" fill="#eafff8" opacity="0.85" />
         </g>
@@ -730,7 +753,13 @@ function Demo() {
               <Panel title="Slider" meta="vii">
                 <div className="demo-stack">
                   <Slider label="Descent" defaultValue={62} />
-                  <Slider label="Resonance" defaultValue={34} min={0} max={100} step={2} />
+                  <Slider
+                    label="Resonance"
+                    defaultValue={34}
+                    min={0}
+                    max={100}
+                    step={2}
+                  />
                 </div>
               </Panel>
             </div>
@@ -750,7 +779,11 @@ function Demo() {
             <div className="abyss-section" id="input">
               <Panel title="Text Field" meta="ix">
                 <div className="demo-stack">
-                  <Field label="Sea-name" defaultValue="Drowned Lark" placeholder="Speak your name" />
+                  <Field
+                    label="Sea-name"
+                    defaultValue="Drowned Lark"
+                    placeholder="Speak your name"
+                  />
                   <Input icon={<SearchIcon />} placeholder="Search the codex…" />
                   <AccessCodeField />
                   <Field label="Sealed Verse" defaultValue="VERSE-SEALED" disabled />
@@ -849,7 +882,8 @@ function Demo() {
                     the water has been quiet since.
                   </Collapsible>
                   <Collapsible title="The Hold">
-                    Six reliquaries · two sealed · one marked for rites at the next low tide.
+                    Six reliquaries · two sealed · one marked for rites at the next low
+                    tide.
                   </Collapsible>
                 </div>
               </Panel>
@@ -878,7 +912,10 @@ function Demo() {
 
             <div className="abyss-section" id="popover">
               <Panel title="Popover" meta="xxii">
-                <Popover trigger={<Button variant="ghost">The Conch</Button>} title="Third Key">
+                <Popover
+                  trigger={<Button variant="ghost">The Conch</Button>}
+                  title="Third Key"
+                >
                   Press it to your ear and the deep answers — a voice 94 fathoms down, two
                   long tides late. Click outside or ✕ to silence it.
                 </Popover>
@@ -893,21 +930,31 @@ function Demo() {
                     Reef warden{" "}
                     <PreviewCard
                       trigger={
-                        <a className="demo-link" href="#preview" onClick={(e) => e.preventDefault()}>
+                        <a
+                          className="demo-link"
+                          href="#preview"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           @drowned_keeper
                         </a>
                       }
                     >
                       <div className="demo-pcard__head">
-                        <Avatar src="https://i.pravatar.cc/96?img=15" alt="The Keeper" status="online" />
+                        <Avatar
+                          src="https://i.pravatar.cc/96?img=15"
+                          alt="The Keeper"
+                          status="online"
+                        />
                         <div>
                           <div className="demo-pcard__name">The Keeper</div>
-                          <div className="demo-pcard__handle">Warden of the Reef · Fathom 7</div>
+                          <div className="demo-pcard__handle">
+                            Warden of the Reef · Fathom 7
+                          </div>
                         </div>
                       </div>
                       <p className="demo-pcard__bio">
-                        Tends the wards at the trench mouth. 1,204 descents logged, and every
-                        one came back up.
+                        Tends the wards at the trench mouth. 1,204 descents logged, and
+                        every one came back up.
                       </p>
                       <div className="demo-row">
                         <Badge tone="primary" dot>
@@ -981,7 +1028,10 @@ function Demo() {
 
             <div className="abyss-section span-2" id="navmenu">
               <Panel title="Navigation Menu" meta="xxvi">
-                <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
+                <NavigationMenu
+                  items={NAVMENU_ITEMS}
+                  onLinkClick={(e) => e.preventDefault()}
+                />
               </Panel>
             </div>
 
@@ -1077,7 +1127,11 @@ function Demo() {
             <div className="abyss-section" id="avatar">
               <Panel title="Avatar" meta="xxxii">
                 <div className="demo-row">
-                  <Avatar src="https://i.pravatar.cc/96?img=12" alt="Acolyte" status="online" />
+                  <Avatar
+                    src="https://i.pravatar.cc/96?img=12"
+                    alt="Acolyte"
+                    status="online"
+                  />
                   <Avatar fallback="DG" status="busy" />
                   <Avatar fallback="HY" status="away" />
                   <Avatar fallback="NL" size={60} status="online" />
@@ -1132,8 +1186,8 @@ function Demo() {
                   <p className="abyss-h2">The Drowned Choir</p>
                   <p className="abyss-h3">Soundings</p>
                   <p className="abyss-text">
-                    The water holds — pressure steady at 98.4 fathoms across the lower reach,
-                    and 1,204 lights drift in the dark below.
+                    The water holds — pressure steady at 98.4 fathoms across the lower
+                    reach, and 1,204 lights drift in the dark below.
                   </p>
                   <span className="abyss-cap">
                     .abyss-h1 / h2 / h3 · .abyss-text — style-only, any tag
@@ -1164,8 +1218,8 @@ function Demo() {
             <div className="abyss-section" id="panel">
               <Panel title="Panel" meta="xxxviii" breathe>
                 <p className="abyss-text" style={{ margin: "0 0 18px" }}>
-                  The wet-stone tablet wrapping every rite: a hand-inked frame that wavers,
-                  corner tendrils, and a breathing sigil. Composable to any depth.
+                  The wet-stone tablet wrapping every rite: a hand-inked frame that
+                  wavers, corner tendrils, and a breathing sigil. Composable to any depth.
                 </p>
                 <Panel title="Nested Tablet" meta="·">
                   <span className="abyss-cap">A tablet within a tablet</span>

@@ -9,7 +9,6 @@
   min-height: 100vh;
 }
 
-/* ---------- Sticky header ---------- */
 .abyss-header {
   position: sticky;
   top: 0;
@@ -34,7 +33,14 @@
   right: 0;
   bottom: -1px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--abyss-glow-a55) 35%, var(--abyss-ichor) 50%, var(--abyss-glow-a55) 65%, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--abyss-glow-a55) 35%,
+    var(--abyss-ichor) 50%,
+    var(--abyss-glow-a55) 65%,
+    transparent
+  );
   opacity: 0.55;
 }
 .abyss-logo {
@@ -52,7 +58,11 @@
   color: var(--abyss-glow);
   border: 1px solid var(--abyss-glow-a55);
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 36%, rgba(70, 232, 184, 0.18), transparent 72%);
+  background: radial-gradient(
+    circle at 50% 36%,
+    rgba(70, 232, 184, 0.18),
+    transparent 72%
+  );
   filter: var(--abyss-aura);
 }
 .abyss-logo__words {
@@ -104,7 +114,6 @@
   align-self: stretch;
 }
 
-/* ---------- Hero illustration ---------- */
 .abyss-hero__sigil {
   position: absolute;
   top: 50%;
@@ -172,7 +181,6 @@
   }
 }
 
-/* ---------- Shell ---------- */
 .abyss-shell {
   display: grid;
   grid-template-columns: 224px minmax(0, 1fr);
@@ -182,7 +190,6 @@
   padding: 28px 24px 36px;
 }
 
-/* ---------- Sidebar index ---------- */
 .abyss-sidebar {
   position: sticky;
   top: 88px;
@@ -222,7 +229,6 @@
   border-left-color: var(--abyss-glow-a55);
 }
 
-/* ---------- Main + hero ---------- */
 .abyss-main {
   min-width: 0;
 }
@@ -283,7 +289,6 @@
   color: var(--abyss-glow);
 }
 
-/* ---------- Showcase grid ---------- */
 .abyss-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -335,7 +340,6 @@
   color: var(--abyss-text-mute);
 }
 
-/* ---------- Demo helpers ---------- */
 .demo-stack {
   display: flex;
   flex-direction: column;
@@ -452,7 +456,6 @@ kbd {
   text-align: center;
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 920px) {
   .abyss-shell {
     grid-template-columns: minmax(0, 1fr);

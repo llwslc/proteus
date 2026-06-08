@@ -1,4 +1,3 @@
-
 @property --toast-offset-y {
   syntax: "<length>";
   inherits: false;
@@ -39,9 +38,14 @@
 }
 
 .abyss-toast__tablet {
-  --abyss-frame-fill: radial-gradient(120% 80% at 0% 0%, var(--abyss-toast-accent-soft), transparent 62%),
+  --abyss-frame-fill:
+    radial-gradient(120% 80% at 0% 0%, var(--abyss-toast-accent-soft), transparent 62%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
-  --abyss-frame-ink: color-mix(in srgb, var(--abyss-toast-accent) 50%, var(--abyss-ink-strong));
+  --abyss-frame-ink: color-mix(
+    in srgb,
+    var(--abyss-toast-accent) 50%,
+    var(--abyss-ink-strong)
+  );
   --abyss-frame-round: 4px;
   position: relative;
   display: flex;
@@ -73,7 +77,12 @@
   bottom: 6px;
   left: 0;
   width: 2px;
-  background: linear-gradient(180deg, transparent, var(--abyss-toast-accent), transparent);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--abyss-toast-accent),
+    transparent
+  );
   box-shadow: 0 0 8px var(--abyss-toast-accent);
   filter: url(#abyss-edge);
   pointer-events: none;
@@ -86,7 +95,9 @@
   margin-top: 1px;
   font-size: 18px;
   color: var(--abyss-toast-accent);
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent));
+  filter: drop-shadow(
+    0 0 8px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent)
+  );
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 
@@ -129,7 +140,9 @@
 }
 .abyss-toast__close:hover {
   color: var(--abyss-toast-accent);
-  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent));
+  filter: drop-shadow(
+    0 0 7px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent)
+  );
 }
 .abyss-toast__close:focus-visible {
   outline: none;

@@ -38,8 +38,7 @@
     transparent
   );
 }
-/* two-class specificity beats the global html[data-kit] *::-webkit-scrollbar,
-   so only the custom phosphor scrollbar shows (not the themed native one) */
+
 .abyss-scrollarea .abyss-scrollarea__viewport {
   scrollbar-width: none;
 }

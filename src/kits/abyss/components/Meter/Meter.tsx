@@ -17,7 +17,10 @@ export function Meter({
   ...props
 }: MeterProps) {
   return (
-    <BaseMeter.Root className={cx("abyss-meter", `abyss-meter--${tone}`, className)} {...props}>
+    <BaseMeter.Root
+      className={cx("abyss-meter", `abyss-meter--${tone}`, className)}
+      {...props}
+    >
       {(label != null || showValue) && (
         <div className="abyss-meter__head">
           {label != null ? (

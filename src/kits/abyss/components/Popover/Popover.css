@@ -10,7 +10,8 @@
 }
 
 .abyss-popover__surface {
-  --abyss-frame-fill: radial-gradient(120% 80% at 50% -10%, rgba(70, 232, 184, 0.07), transparent 62%),
+  --abyss-frame-fill:
+    radial-gradient(120% 80% at 50% -10%, rgba(70, 232, 184, 0.07), transparent 62%),
     var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: 4px;

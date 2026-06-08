@@ -1,11 +1,8 @@
 .abyss-panel {
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-round: 4px;
-  --abyss-frame-fill: radial-gradient(
-      130% 80% at 50% -10%,
-      rgba(70, 232, 184, 0.05),
-      transparent 62%
-    ),
+  --abyss-frame-fill:
+    radial-gradient(130% 80% at 50% -10%, rgba(70, 232, 184, 0.05), transparent 62%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   position: relative;
 }

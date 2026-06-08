@@ -29,7 +29,10 @@ export function Separator({
           </span>
           <span className="abyss-separator-labeled__text">{label}</span>
         </span>
-        <span className="abyss-separator-labeled__line abyss-separator-labeled__line--end" aria-hidden />
+        <span
+          className="abyss-separator-labeled__line abyss-separator-labeled__line--end"
+          aria-hidden
+        />
       </div>
     );
   }

@@ -1,7 +1,11 @@
 .abyss-btn {
   --abyss-frame-round: 3px;
   --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-fill: linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
+  --abyss-frame-fill: linear-gradient(
+    180deg,
+    var(--abyss-stone-raised),
+    var(--abyss-stone)
+  );
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -40,13 +44,21 @@
 
 .abyss-btn--primary {
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-fill: linear-gradient(180deg, rgba(70, 232, 184, 0.11), rgba(70, 232, 184, 0.02));
+  --abyss-frame-fill: linear-gradient(
+    180deg,
+    rgba(70, 232, 184, 0.11),
+    rgba(70, 232, 184, 0.02)
+  );
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
 .abyss-btn--primary:hover {
   color: var(--abyss-text-bright);
-  --abyss-frame-fill: linear-gradient(180deg, rgba(70, 232, 184, 0.22), rgba(70, 232, 184, 0.06));
+  --abyss-frame-fill: linear-gradient(
+    180deg,
+    rgba(70, 232, 184, 0.22),
+    rgba(70, 232, 184, 0.06)
+  );
   filter: var(--abyss-aura-strong);
 }
 

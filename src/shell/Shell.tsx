@@ -2,7 +2,6 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import { KITS, resolveKit } from "../kits/registry";
 import "./Shell.css";
 
-// One lazy component per registered kit — its theme CSS loads with its chunk.
 const LAZY = Object.fromEntries(KITS.map((k) => [k.id, lazy(k.load)]));
 
 export function Shell() {

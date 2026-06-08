@@ -47,7 +47,11 @@
 .abyss-numberfield__btn {
   --abyss-frame-round: 3px;
   --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-fill: linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
+  --abyss-frame-fill: linear-gradient(
+    180deg,
+    var(--abyss-stone-raised),
+    var(--abyss-stone)
+  );
   position: relative;
   display: grid;
   place-items: center;

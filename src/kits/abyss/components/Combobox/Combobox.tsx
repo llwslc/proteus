@@ -49,7 +49,11 @@ export function Combobox({
             </BaseCombobox.Empty>
             <BaseCombobox.List className="abyss-combobox__list">
               {(item: string) => (
-                <BaseCombobox.Item key={item} value={item} className="abyss-combobox__item">
+                <BaseCombobox.Item
+                  key={item}
+                  value={item}
+                  className="abyss-combobox__item"
+                >
                   <span className="abyss-combobox__item-text">{item}</span>
                   <span className="abyss-combobox__indicator" aria-hidden>
                     <BaseCombobox.ItemIndicator>

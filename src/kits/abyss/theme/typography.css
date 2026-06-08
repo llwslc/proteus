@@ -1,6 +1,3 @@
-/* Type roles — style-only, decoupled from tag. Display = IM Fell English SC
-   (antique small-caps press), brand = UnifrakturCook (blackletter), body =
-   Spectral. Headings track wider as they grow (engraved-inscription cadence). */
 .abyss-h1,
 .abyss-h2,
 .abyss-h3 {
@@ -46,7 +43,7 @@
 .abyss-text--bright {
   color: var(--abyss-text);
 }
-/* HUD-style field caption shared by control labels */
+
 .abyss-cap {
   font-family: var(--abyss-font-display);
   font-size: var(--abyss-fs-12);
