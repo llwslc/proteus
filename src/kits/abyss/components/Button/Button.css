@@ -19,10 +19,12 @@
   transition:
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease),
-    transform 0.09s var(--abyss-ease);
+    transform 0.16s var(--abyss-ease-out);
 }
-.abyss-btn:active:not(:disabled) {
-  transform: scale(0.955);
+.abyss-btn:active:not(:disabled),
+.abyss-btn:active:not([data-disabled]) {
+  transform: scale(0.92);
+  transition-duration: 0.04s;
 }
 .abyss-btn__label {
   position: relative;
@@ -128,8 +130,12 @@
   --abyss-frame-ink: var(--abyss-glow);
   filter: var(--abyss-aura-strong);
 }
-.abyss-btn:disabled {
-  opacity: var(--abyss-disabled-opacity);
+.abyss-btn:disabled,
+.abyss-btn[data-disabled] {
   cursor: not-allowed;
-  filter: grayscale(0.5);
+  opacity: 0.72;
+  color: var(--abyss-text-mute);
+  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-fill: var(--abyss-stone);
+  filter: none;
 }
