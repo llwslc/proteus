@@ -1,6 +1,7 @@
 import { cx } from "../cx";
+import { FlameIcon } from "../icons";
 import { Meter as BaseMeter } from "@base-ui/react/meter";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, CSSProperties, ReactNode } from "react";
 import "./Meter.css";
 
 export interface MeterProps extends ComponentPropsWithoutRef<typeof BaseMeter.Root> {
@@ -10,18 +11,30 @@ export interface MeterProps extends ComponentPropsWithoutRef<typeof BaseMeter.Ro
 }
 
 /* A reading of corruption: a creeping phosphor tendril seeping along an inked
-   vein, tone-graded by `tone`. At the vein's end an eye keeps watch, its iris
-   dilating and aura swelling as the reading climbs. */
+   vein, tone-graded by `tone`. At the vein's end a votive flame answers the
+   reading — guttering low when the vein is dark, flaring tall and bright as the
+   value climbs. */
 export function Meter({
   className,
   label,
   showValue = true,
   tone = "primary",
+  value = 0,
+  max = 100,
+  min = 0,
+  style,
   ...props
 }: MeterProps) {
+  const span = max - min;
+  const ratio = span > 0 ? Math.min(1, Math.max(0, (value - min) / span)) : 0;
+
   return (
     <BaseMeter.Root
       className={cx("abyss-meter", `abyss-meter--${tone}`, className)}
+      value={value}
+      max={max}
+      min={min}
+      style={{ ...style, "--v": ratio } as CSSProperties}
       {...props}
     >
       {(label != null || showValue) && (
@@ -41,17 +54,8 @@ export function Meter({
           <BaseMeter.Indicator className="abyss-meter__indicator" />
           <span className="abyss-meter__segments" aria-hidden />
         </BaseMeter.Track>
-        <span className="abyss-meter__eye abyss-eye" aria-hidden>
-          <svg viewBox="0 0 40 28" width="40" height="28">
-            <path
-              className="abyss-eye__sclera"
-              d="M2 14C2 14 9 5 20 5C31 5 38 14 38 14C38 14 31 23 20 23C9 23 2 14 2 14Z"
-            />
-            <circle className="abyss-eye__iris" cx="20" cy="14" r="7" />
-            <circle className="abyss-eye__pupil" cx="20" cy="14" r="2.8" />
-            <path className="abyss-eye__lid" d="M2 14C2 14 9 5 20 5C31 5 38 14 38 14" />
-            <path className="abyss-eye__lid" d="M2 14C2 14 9 23 20 23C31 23 38 14 38 14" />
-          </svg>
+        <span className="abyss-meter__flame" aria-hidden>
+          <FlameIcon />
         </span>
       </div>
     </BaseMeter.Root>

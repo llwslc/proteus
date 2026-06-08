@@ -75,24 +75,43 @@
   opacity: 0.7;
 }
 
-/* the watching eye at the vein's end: iris dilated, aura tone-graded, breathing */
-.abyss-meter__eye {
-  --eye: var(--abyss-meter-fill);
+/* the votive flame at the vein's end: guttering low and dim when the reading is
+   dark, flaring tall and bright as --v (0..1) climbs. tone-graded by fill. */
+.abyss-meter__flame {
   flex: 0 0 auto;
-  width: 28px;
-  filter: drop-shadow(0 0 7px var(--abyss-meter-aura));
+  display: grid;
+  place-items: end center;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 0;
+  color: color-mix(in srgb, var(--abyss-meter-fill) calc(45% + var(--v, 0) * 55%), var(--abyss-ink-strong));
+  filter: drop-shadow(0 0 calc(2px + var(--v, 0) * 9px) var(--abyss-meter-aura));
+  transition:
+    color var(--abyss-dur-slow) var(--abyss-ease),
+    filter var(--abyss-dur-slow) var(--abyss-ease);
 }
-.abyss-meter__eye .abyss-eye__iris {
-  transform: scaleY(1);
-  opacity: 1;
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
+.abyss-meter__flame svg {
+  transform-origin: bottom center;
+  transform: scaleY(calc(0.7 + var(--v, 0) * 0.55)) scaleX(calc(0.82 + var(--v, 0) * 0.22));
+  opacity: calc(0.55 + var(--v, 0) * 0.45);
+  animation: abyss-flicker var(--abyss-breath) ease-in-out infinite;
+  transition:
+    transform var(--abyss-dur-slow) var(--abyss-ease),
+    opacity var(--abyss-dur-slow) var(--abyss-ease);
 }
-.abyss-meter__eye .abyss-eye__pupil {
-  transform: scaleY(1);
+@keyframes abyss-flicker {
+  0%,
+  100% {
+    transform: scaleY(calc(0.7 + var(--v, 0) * 0.55)) scaleX(calc(0.82 + var(--v, 0) * 0.22));
+  }
+  40% {
+    transform: scaleY(calc(0.76 + var(--v, 0) * 0.6)) scaleX(calc(0.8 + var(--v, 0) * 0.2));
+  }
+  70% {
+    transform: scaleY(calc(0.68 + var(--v, 0) * 0.52)) scaleX(calc(0.84 + var(--v, 0) * 0.24));
+  }
 }
-.abyss-meter__eye .abyss-eye__lid {
-  stroke: color-mix(in srgb, var(--abyss-meter-fill) 55%, var(--abyss-ink-strong));
-}
-.abyss-meter:hover .abyss-meter__eye {
-  filter: drop-shadow(0 0 11px var(--abyss-meter-aura));
+.abyss-meter:hover .abyss-meter__flame {
+  filter: drop-shadow(0 0 calc(5px + var(--v, 0) * 9px) var(--abyss-meter-aura));
 }
