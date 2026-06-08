@@ -18,7 +18,11 @@
   cursor: pointer;
   transition:
     color var(--abyss-dur) var(--abyss-ease),
-    filter var(--abyss-dur) var(--abyss-ease);
+    filter var(--abyss-dur) var(--abyss-ease),
+    transform 0.09s var(--abyss-ease);
+}
+.abyss-btn:active:not(:disabled) {
+  transform: scale(0.955);
 }
 .abyss-btn__label {
   position: relative;

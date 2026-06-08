@@ -30,7 +30,6 @@
   z-index: 1;
   overscroll-behavior: contain;
   outline: none;
-  scrollbar-width: none;
   mask-image: linear-gradient(
     to bottom,
     transparent,
@@ -39,7 +38,14 @@
     transparent
   );
 }
-.abyss-scrollarea__viewport::-webkit-scrollbar {
+/* two-class specificity beats the global html[data-kit] *::-webkit-scrollbar,
+   so only the custom phosphor scrollbar shows (not the themed native one) */
+.abyss-scrollarea .abyss-scrollarea__viewport {
+  scrollbar-width: none;
+}
+.abyss-scrollarea .abyss-scrollarea__viewport::-webkit-scrollbar {
+  width: 0;
+  height: 0;
   display: none;
 }
 .abyss-scrollarea__viewport:focus-visible {
