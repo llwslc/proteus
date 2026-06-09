@@ -11,10 +11,10 @@ export const KITS: KitDef[] = [
   {
     id: "abyss",
     label: "ABYSS",
-    tag: "Cosmic Horror · Grimoire",
+    tag: "Eldritch · Grimoire",
     load: () => import("./abyss"),
   },
-  { id: "nova", label: "NOVA", tag: "Sci-Fi · HUD", load: () => import("./nova") },
+  { id: "nova", label: "NOVA", tag: "Neon · HUD", load: () => import("./nova") },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;
