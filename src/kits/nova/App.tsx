@@ -482,7 +482,6 @@ function Demo() {
           <Badge tone="success" dot>
             Online
           </Badge>
-          <Badge tone="primary">v0.1.0</Badge>
           <Clock />
         </div>
       </header>
