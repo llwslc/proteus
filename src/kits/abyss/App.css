@@ -170,18 +170,14 @@
     animation: none;
   }
 }
-@media (min-width: 880px) {
+@media (min-width: 760px) {
   .abyss-hero {
-    padding-right: 256px;
+    padding-right: 236px;
   }
 }
-@media (max-width: 879px) {
+@media (max-width: 760px) {
   .abyss-hero__sigil {
-    position: static;
-    transform: none;
-    width: 160px;
-    height: 160px;
-    margin: 22px auto 0;
+    display: none;
   }
 }
 
