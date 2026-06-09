@@ -89,79 +89,79 @@ function EdgeFilter() {
   );
 }
 
-const SECTIONS: { group: string; sub: string; items: [string, string][] }[] = [
+const SECTIONS: { group: string; sub: string; items: [string, string, string][] }[] = [
   {
     group: "Inputs",
     sub: "rites of intent",
     items: [
-      ["button", "Button"],
-      ["switch", "Switch"],
-      ["checkbox", "Checkbox"],
-      ["checkbox-group", "Checkbox Group"],
-      ["radio", "Radio Group"],
-      ["toggle", "Toggle Group"],
-      ["slider", "Slider"],
-      ["number", "Number Field"],
-      ["input", "Text Field"],
-      ["otp", "OTP Field"],
-      ["select", "Select"],
-      ["combobox", "Combobox"],
-      ["autocomplete", "Autocomplete"],
+      ["button", "Button", "BTN"],
+      ["switch", "Switch", "SWT"],
+      ["checkbox", "Checkbox", "CHK"],
+      ["checkbox-group", "Checkbox Group", "CHG"],
+      ["radio", "Radio Group", "RDO"],
+      ["toggle", "Toggle Group", "TGL"],
+      ["slider", "Slider", "SLD"],
+      ["number", "Number Field", "NUM"],
+      ["input", "Text Field", "TXT"],
+      ["otp", "OTP Field", "OTP"],
+      ["select", "Select", "SEL"],
+      ["combobox", "Combobox", "CBX"],
+      ["autocomplete", "Autocomplete", "ACP"],
     ],
   },
   {
     group: "Forms",
     sub: "binding the acolyte",
     items: [
-      ["fieldset", "Fieldset"],
-      ["form", "Form"],
+      ["fieldset", "Fieldset", "FLD"],
+      ["form", "Form", "FRM"],
     ],
   },
   {
     group: "Feedback",
     sub: "what the deep returns",
     items: [
-      ["progress", "Progress"],
-      ["meter", "Meter"],
-      ["tabs", "Tabs"],
-      ["accordion", "Accordion"],
-      ["collapsible", "Collapsible"],
+      ["progress", "Progress", "PRG"],
+      ["meter", "Meter", "MTR"],
+      ["tabs", "Tabs", "TAB"],
+      ["accordion", "Accordion", "ACC"],
+      ["collapsible", "Collapsible", "CLP"],
     ],
   },
   {
     group: "Overlays",
     sub: "things that surface",
     items: [
-      ["tooltip", "Tooltip"],
-      ["popover", "Popover"],
-      ["preview", "Preview Card"],
-      ["menu", "Menu"],
-      ["menubar", "Menubar"],
-      ["navmenu", "Navigation Menu"],
-      ["context", "Context Menu"],
-      ["dialog", "Dialog"],
-      ["alert", "Alert Dialog"],
-      ["drawer", "Drawer"],
-      ["toast", "Toast"],
+      ["tooltip", "Tooltip", "TIP"],
+      ["popover", "Popover", "POP"],
+      ["preview", "Preview Card", "PVW"],
+      ["menu", "Menu", "MNU"],
+      ["menubar", "Menubar", "MBR"],
+      ["navmenu", "Navigation Menu", "NAV"],
+      ["context", "Context Menu", "CTX"],
+      ["dialog", "Dialog", "DLG"],
+      ["alert", "Alert Dialog", "ALT"],
+      ["drawer", "Drawer", "DRW"],
+      ["toast", "Toast", "TST"],
     ],
   },
   {
     group: "Display",
     sub: "what watches back",
     items: [
-      ["avatar", "Avatar"],
-      ["badge", "Badge"],
-      ["toolbar", "Toolbar"],
-      ["scroll", "Scroll Area"],
+      ["avatar", "Avatar", "AVT"],
+      ["badge", "Badge", "BDG"],
+      ["toolbar", "Toolbar", "TBR"],
+      ["scroll", "Scroll Area", "SCR"],
     ],
   },
   {
     group: "Foundations",
     sub: "stone & ink",
     items: [
-      ["typography", "Typography"],
-      ["separator", "Separator"],
-      ["panel", "Panel"],
+      ["typography", "Typography", "TYP"],
+      ["separator", "Separator", "SEP"],
+      ["panel", "Panel", "PNL"],
     ],
   },
 ];
@@ -234,7 +234,12 @@ const TAB_ITEMS = [
         <Badge tone="success" dot>
           Tide Rising
         </Badge>
-        <Badge tone="warning">Fathom 52</Badge>
+        <Badge tone="primary" dot>
+          Wards Held
+        </Badge>
+        <Badge tone="warning" dot>
+          Fathom 52
+        </Badge>
         <Badge tone="danger" dot>
           Seal 34%
         </Badge>
@@ -245,10 +250,12 @@ const TAB_ITEMS = [
     value: "rites",
     label: "Rites",
     content: (
-      <p className="abyss-text" style={{ margin: 0 }}>
-        Speak the seven names in the old order. The water will answer before the candle
-        gutters — do not answer back.
-      </p>
+      <div className="demo-row">
+        <Avatar fallback="DG" status="online" />
+        <Avatar fallback="YH" status="busy" />
+        <Avatar fallback="IN" status="away" />
+        <Avatar fallback="—" status="offline" />
+      </div>
     ),
   },
   {
@@ -612,9 +619,10 @@ function Demo() {
           {SECTIONS.map((sec) => (
             <nav className="abyss-sidebar__group" key={sec.group}>
               <p className="abyss-sidebar__group-title">{sec.group}</p>
-              {sec.items.map(([id, name]) => (
+              {sec.items.map(([id, name, code]) => (
                 <a className="abyss-sidebar__link" href={`#${id}`} key={id}>
                   {name}
+                  <span>{code}</span>
                 </a>
               ))}
             </nav>

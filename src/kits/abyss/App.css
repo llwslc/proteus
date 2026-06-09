@@ -216,7 +216,9 @@
   color: var(--abyss-text-mute);
 }
 .abyss-sidebar__link {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 6px 12px;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
@@ -232,6 +234,11 @@
   color: var(--abyss-text-bright);
   background: var(--abyss-glow-soft);
   border-left-color: var(--abyss-glow-a55);
+}
+.abyss-sidebar__link span {
+  font-family: var(--abyss-font-mono);
+  font-size: 10px;
+  color: var(--abyss-text-mute);
 }
 
 .abyss-main {
