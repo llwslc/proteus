@@ -11,7 +11,7 @@ export const KITS: KitDef[] = [
   {
     id: "abyss",
     label: "ABYSS",
-    tag: "Eldritch · Grimoire",
+    tag: "Cosmic Horror · Grimoire",
     load: () => import("./abyss"),
   },
   { id: "nova", label: "NOVA", tag: "Sci-Fi · HUD", load: () => import("./nova") },
