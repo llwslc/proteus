@@ -439,12 +439,13 @@ kbd {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: var(--abyss-space-3);
 }
 .demo-log li {
   display: flex;
-  gap: 14px;
-  padding-bottom: 11px;
+  align-items: baseline;
+  gap: var(--abyss-space-4);
+  padding-bottom: var(--abyss-space-3);
   border-bottom: 1px solid var(--abyss-ink-faint);
 }
 .demo-log li:last-child {
@@ -453,15 +454,14 @@ kbd {
 }
 .demo-log__t {
   flex: 0 0 auto;
-  padding-top: 1px;
   font-family: var(--abyss-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-size: var(--abyss-fs-11);
+  letter-spacing: var(--abyss-ls-6);
   color: var(--abyss-glow);
 }
 .demo-log__m {
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--abyss-fs-13);
+  line-height: var(--abyss-lh-165);
   color: var(--abyss-text-dim);
 }
 
