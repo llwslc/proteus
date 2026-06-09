@@ -118,6 +118,12 @@
 .abyss-header .abyss-navmenu__toplink {
   height: 100%;
 }
+.abyss-header .abyss-navmenu__trigger::after,
+.abyss-header .abyss-navmenu__toplink::after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 .abyss-hero__sigil {
   position: absolute;
@@ -388,12 +394,14 @@
   margin-top: var(--abyss-space-2);
 }
 .demo-link {
-  color: var(--abyss-glow);
+  color: var(--abyss-gold);
+  font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px dashed var(--abyss-glow-a55);
+  border-bottom: 1px dashed var(--abyss-gold-deep);
 }
 .demo-link:hover {
-  text-shadow: var(--abyss-text-aura);
+  border-bottom-color: var(--abyss-gold);
+  text-shadow: 0 0 11px var(--abyss-gold-soft);
 }
 kbd {
   font-family: var(--abyss-font-mono);

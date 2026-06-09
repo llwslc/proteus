@@ -262,9 +262,12 @@ const TAB_ITEMS = [
     value: "dives",
     label: "Dives",
     content: (
-      <p className="abyss-text" style={{ margin: 0 }}>
-        <code>04:12</code> descent began · <code>04:31</code> sigil answered ·{" "}
-        <code>04:52</code> the water held its breath
+      <p className="abyss-text" style={{ margin: 0, lineHeight: 1.7 }}>
+        <code>04:12</code> · descent began
+        <br />
+        <code>04:31</code> · sigil answered
+        <br />
+        <code>04:52</code> · the water held its breath
       </p>
     ),
   },
