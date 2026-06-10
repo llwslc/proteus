@@ -22,7 +22,7 @@
   display: inline-flex;
   width: var(--nova-otp-cell-w);
   height: var(--nova-otp-cell-h);
-  background: var(--nova-line-strong);
+  background: var(--nova-line);
   clip-path: var(--nova-clip-9);
   transition: background var(--nova-dur) var(--nova-ease);
 }

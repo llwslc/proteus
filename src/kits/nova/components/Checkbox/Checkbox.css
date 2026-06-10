@@ -24,7 +24,7 @@
   border: 0;
   cursor: pointer;
   color: var(--nova-on-primary);
-  background: var(--nova-line-strong);
+  background: var(--nova-line);
   clip-path: var(--nova-clip-9);
 }
 .nova-checkbox::before {

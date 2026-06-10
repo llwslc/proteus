@@ -49,6 +49,7 @@
 - 每个带框元素都走**同一个 frame 原语**(`.<kit>-surface` / `.<kit>-frame`),经输入变量取 填充 / 边框色 / 形状(`--<kit>-surface-fill / -border / -clip` 之类);组件**不裸写形状**,只覆盖输入变量。
 - `isolation: isolate` + 填充层 `z-index: -1`,让任意内容(含裸文本)自动压在填充上。
 - **具体描边策略 → theme**:形状吃不了 CSS `border` 的(`clip-path` / `polygon`)用双层 frame(外层背景＝边框色 + 形状,`::before` 内缩 1px 填表面色);圆角矩形直接 `border` + `border-radius`。
+- **边框层级**:页内控件 / 容器的 idle 边框一律安静 chrome 档;浮层 surface 一律强档;状态(hover / focus / 选中)升档;语义变体按 tone 重染。档值 → theme。
 
 ### 4.2 浮层原语
 凡带弹出层的组件都用 `effects.css` 同一套原语拼,**把形状与阴影分两层**(阴影 / 辉光挂"不带形状裁剪"的外层,形状挂内层;同一元素不同时带这两层):

@@ -30,6 +30,7 @@
 - 全套统一 frame 原语 `.abyss-frame::before`:`inset: 0`、1.5px 墨线 border + radius;输入变量 `--abyss-frame-fill / -ink / -round`。`--double` 变体加 `inset: 4px` 的内圈细线。
 - **`#abyss-edge`**:演示页顶部内联一个 SVG filter(feTurbulence `0.013 0.018` + feDisplacementMap),frame / 分隔线 / 连接线 / 指示条统一挂它——所有线条呈手绘颤动。
 - 辉光 / 阴影挂不带该滤镜的外层(positioner / popup 的 drop-shadow),常为黑影 + glow-soft 双层。
+- 边框层级:页内 idle = `ink / ink-strong` 灰墨;浮层 = `glow-a55` 亮辉;状态走 glow 阶梯(a30 → a55 → glow);语义变体按 tone。
 
 ## 4. 氛围层(`global.css`)
 

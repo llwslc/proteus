@@ -15,7 +15,7 @@
     repeating-linear-gradient(-45deg, transparent 0 9px, var(--nova-tint-faint) 9px 10px),
     var(--nova-surface-zone);
   clip-path: var(--nova-clip-9);
-  outline: 1px dashed var(--nova-line-strong);
+  outline: 1px dashed var(--nova-line);
   outline-offset: -1px;
   transition:
     background var(--nova-dur) var(--nova-ease),
