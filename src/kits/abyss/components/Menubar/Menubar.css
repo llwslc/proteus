@@ -32,7 +32,7 @@
   background: transparent;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
-  font-size: var(--abyss-fs-15);
+  font-size: var(--abyss-fs-13);
   letter-spacing: var(--abyss-ls-2);
   cursor: pointer;
   outline: none;
