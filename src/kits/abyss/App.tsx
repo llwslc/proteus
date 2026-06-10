@@ -138,8 +138,8 @@ const SECTIONS: { group: string; sub: string; items: [string, string, string][] 
       ["preview", "Preview Card", "PVW"],
       ["menu", "Menu", "MNU"],
       ["menubar", "Menubar", "MBR"],
-      ["navmenu", "Navigation Menu", "NAV"],
       ["context", "Context Menu", "CTX"],
+      ["navmenu", "Navigation Menu", "NAV"],
       ["dialog", "Dialog", "DLG"],
       ["alert", "Alert Dialog", "ALT"],
       ["drawer", "Drawer", "DRW"],
@@ -1058,15 +1058,6 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section span-2" id="navmenu">
-              <Panel title="Navigation Menu" meta="xxvi">
-                <NavigationMenu
-                  items={NAVMENU_ITEMS}
-                  onLinkClick={(e) => e.preventDefault()}
-                />
-              </Panel>
-            </div>
-
             <div className="abyss-section" id="context">
               <Panel title="Context Menu" meta="xxvii">
                 <ContextMenu
@@ -1091,6 +1082,15 @@ function Demo() {
                     Banish Node
                   </MenuItem>
                 </ContextMenu>
+              </Panel>
+            </div>
+
+            <div className="abyss-section span-2" id="navmenu">
+              <Panel title="Navigation Menu" meta="xxvi">
+                <NavigationMenu
+                  items={NAVMENU_ITEMS}
+                  onLinkClick={(e) => e.preventDefault()}
+                />
               </Panel>
             </div>
 

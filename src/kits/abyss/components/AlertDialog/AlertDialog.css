@@ -22,7 +22,7 @@
   --abyss-frame-fill:
     radial-gradient(
       130% 72% at 50% -8%,
-      color-mix(in srgb, var(--abyss-alert-accent) 14%, transparent),
+      color-mix(in srgb, var(--abyss-alert-accent) 20%, transparent),
       transparent 62%
     ),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));

@@ -28,7 +28,13 @@
 
 .nova-alert__surface {
   --nova-surface-clip: var(--nova-clip-12);
-  --nova-surface-fill: var(--nova-surface-modal);
+  --nova-surface-fill:
+    radial-gradient(
+      130% 72% at 50% -8%,
+      color-mix(in srgb, var(--nova-alert-accent) 20%, transparent),
+      transparent 62%
+    ),
+    var(--nova-surface-modal);
   --nova-surface-border: color-mix(in srgb, var(--nova-alert-accent) 50%, transparent);
   padding: var(--nova-pad-modal);
 }
