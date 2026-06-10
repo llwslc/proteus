@@ -69,19 +69,19 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   {
     group: "Input",
     items: [
-      ["buttons", "Button", "BTN"],
+      ["button", "Button", "BTN"],
       ["switch", "Switch", "SWT"],
+      ["toggle", "Toggle Group", "TGL"],
       ["checkbox", "Checkbox", "CHK"],
       ["checkbox-group", "Checkbox Group", "CHG"],
       ["radio", "Radio Group", "RDO"],
-      ["toggle", "Toggle Group", "TGL"],
+      ["select", "Select", "SEL"],
+      ["combobox", "Combobox", "CBX"],
+      ["autocomplete", "Autocomplete", "ACP"],
       ["slider", "Slider", "SLD"],
       ["number", "Number Field", "NUM"],
       ["input", "Text Field", "TXT"],
       ["otp", "OTP Field", "OTP"],
-      ["select", "Select", "SEL"],
-      ["combobox", "Combobox", "CBX"],
-      ["autocomplete", "Autocomplete", "ACP"],
     ],
   },
   {
@@ -547,7 +547,7 @@ function Demo() {
             <div className="nova-grid__group">
               <span className="nova-grid__group-title">Input</span>
             </div>
-            <div className="nova-section span-2" id="buttons">
+            <div className="nova-section span-2" id="button">
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
                   <div className="demo-row">
@@ -604,6 +604,23 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="nova-section" id="toggle">
+              <Panel title="Toggle Group" meta="TGL">
+                <div className="demo-stack">
+                  <ToggleGroup defaultValue={["map"]}>
+                    <Toggle value="map">Map</Toggle>
+                    <Toggle value="grid">Grid</Toggle>
+                    <Toggle value="scan">Scan</Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup defaultValue={["shields", "weapons"]} multiple>
+                    <Toggle value="shields">Shields</Toggle>
+                    <Toggle value="weapons">Weapons</Toggle>
+                    <Toggle value="sensors">Sensors</Toggle>
+                  </ToggleGroup>
+                </div>
+              </Panel>
+            </div>
+
             <div className="nova-section" id="checkbox">
               <Panel title="Checkbox" meta="CHK">
                 <div className="demo-stack">
@@ -638,19 +655,32 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section" id="toggle">
-              <Panel title="Toggle Group" meta="TGL">
+            <div className="nova-section" id="select">
+              <Panel title="Select" meta="SEL">
                 <div className="demo-stack">
-                  <ToggleGroup defaultValue={["map"]}>
-                    <Toggle value="map">Map</Toggle>
-                    <Toggle value="grid">Grid</Toggle>
-                    <Toggle value="scan">Scan</Toggle>
-                  </ToggleGroup>
-                  <ToggleGroup defaultValue={["shields", "weapons"]} multiple>
-                    <Toggle value="shields">Shields</Toggle>
-                    <Toggle value="weapons">Weapons</Toggle>
-                    <Toggle value="sensors">Sensors</Toggle>
-                  </ToggleGroup>
+                  <span className="demo-tag">Destination</span>
+                  <Select items={SELECT_ITEMS} defaultValue="proxima" />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="nova-section" id="combobox">
+              <Panel title="Combobox" meta="CBX">
+                <div className="demo-stack">
+                  <span className="demo-tag">Filter star systems</span>
+                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="nova-section" id="autocomplete">
+              <Panel title="Autocomplete" meta="ACP">
+                <div className="demo-stack">
+                  <span className="demo-tag">Command palette</span>
+                  <Autocomplete
+                    items={AUTOCOMPLETE_ITEMS}
+                    placeholder="Type a command…"
+                  />
                 </div>
               </Panel>
             </div>
@@ -706,36 +736,6 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section" id="select">
-              <Panel title="Select" meta="SEL">
-                <div className="demo-stack">
-                  <span className="demo-tag">Destination</span>
-                  <Select items={SELECT_ITEMS} defaultValue="proxima" />
-                </div>
-              </Panel>
-            </div>
-
-            <div className="nova-section" id="combobox">
-              <Panel title="Combobox" meta="CBX">
-                <div className="demo-stack">
-                  <span className="demo-tag">Filter star systems</span>
-                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
-                </div>
-              </Panel>
-            </div>
-
-            <div className="nova-section" id="autocomplete">
-              <Panel title="Autocomplete" meta="ACP">
-                <div className="demo-stack">
-                  <span className="demo-tag">Command palette</span>
-                  <Autocomplete
-                    items={AUTOCOMPLETE_ITEMS}
-                    placeholder="Type a command…"
-                  />
-                </div>
-              </Panel>
-            </div>
-
             <div className="nova-grid__group">
               <span className="nova-grid__group-title">Forms</span>
             </div>
@@ -779,13 +779,13 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section span-2" id="accordion">
+            <div className="nova-section" id="accordion">
               <Panel title="Accordion" meta="ACC">
                 <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
               </Panel>
             </div>
 
-            <div className="nova-section span-2" id="collapsible">
+            <div className="nova-section" id="collapsible">
               <Panel title="Collapsible" meta="CLP">
                 <div className="demo-stack">
                   <Collapsible title="Diagnostics Log" defaultOpen>
@@ -1097,7 +1097,7 @@ function Demo() {
             <div className="nova-grid__group">
               <span className="nova-grid__group-title">Foundations</span>
             </div>
-            <div className="nova-section" id="typography">
+            <div className="nova-section span-2" id="typography">
               <Panel title="Typography" meta="TYP">
                 <div className="demo-col">
                   <p className="nova-h1">Nova Command</p>

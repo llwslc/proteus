@@ -4,7 +4,22 @@
 
 ## 演示页 `App.tsx`(每套一个)
 
-组装全部控件:顶部栏(logo + NavigationMenu 主导航 + 状态徽章 + 时钟)→ 左侧 sticky 索引(按 core 分组,锚点平滑跳转)→ Hero(eyebrow + 大标题 + 描述 + 数据条 + 右侧主题装饰件)→ 响应式两栏 Panel 网格逐个展示每个控件 → 根包 `ToastProvider` → 整页挂 theme 氛围层。
+组装全部控件:顶部栏(logo + NavigationMenu 主导航 + 状态徽章 + 时钟)→ 左侧 sticky 索引(按下表分组,锚点平滑跳转)→ Hero(eyebrow + 大标题 + 描述 + 数据条 + 右侧主题装饰件)→ 两栏 Panel 网格(版式见下表)→ 根包 `ToastProvider` → 整页挂 theme 氛围层。
+
+## 面板版式(两栏网格;组标题通栏分隔,每组从新行起;不留半行空位)
+
+跨度规则:演示内容横向铺开的面板通栏(`span-2`),其余单栏、逐行配对。`·` 分行,`|` 同行:
+
+同行配对按**语义亲缘**(开关类、勾选类、单选类、选择器、数值、文本……),不按字母或随手序:
+
+- **Inputs**:button[通栏] · switch|toggle · checkbox|checkbox-group · radio|select · combobox|autocomplete · slider|number · input|otp
+- **Forms**:fieldset|form
+- **Feedback**:progress|meter · tabs[通栏] · accordion|collapsible
+- **Overlays**:tooltip|popover · preview[通栏] · menu|menubar · navmenu|context · dialog|alert · drawer|toast
+- **Display**:avatar|badge · toolbar|scroll
+- **Foundations**:typography[通栏] · separator|panel
+
+侧栏索引与面板同序;面板 id 两 kit 同名。
 
 ## 文案槽位(两 kit 同构,词由 theme 填)
 

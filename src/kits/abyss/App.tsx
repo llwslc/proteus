@@ -97,17 +97,17 @@ const SECTIONS: { group: string; sub: string; items: [string, string, string][] 
     items: [
       ["button", "Button", "BTN"],
       ["switch", "Switch", "SWT"],
+      ["toggle", "Toggle Group", "TGL"],
       ["checkbox", "Checkbox", "CHK"],
       ["checkbox-group", "Checkbox Group", "CHG"],
       ["radio", "Radio Group", "RDO"],
-      ["toggle", "Toggle Group", "TGL"],
+      ["select", "Select", "SEL"],
+      ["combobox", "Combobox", "CBX"],
+      ["autocomplete", "Autocomplete", "ACP"],
       ["slider", "Slider", "SLD"],
       ["number", "Number Field", "NUM"],
       ["input", "Text Field", "TXT"],
       ["otp", "OTP Field", "OTP"],
-      ["select", "Select", "SEL"],
-      ["combobox", "Combobox", "CBX"],
-      ["autocomplete", "Autocomplete", "ACP"],
     ],
   },
   {
@@ -730,6 +730,23 @@ function Demo() {
               </Panel>
             </div>
 
+            <div className="abyss-section" id="toggle">
+              <Panel title="Toggle Group" meta="vi">
+                <div className="demo-stack">
+                  <ToggleGroup defaultValue={["chart"]}>
+                    <Toggle value="chart">Chart</Toggle>
+                    <Toggle value="reef">Reef</Toggle>
+                    <Toggle value="deep">Deep</Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup defaultValue={["wards", "sigils"]} multiple>
+                    <Toggle value="wards">Wards</Toggle>
+                    <Toggle value="sigils">Sigils</Toggle>
+                    <Toggle value="omens">Omens</Toggle>
+                  </ToggleGroup>
+                </div>
+              </Panel>
+            </div>
+
             <div className="abyss-section" id="checkbox">
               <Panel title="Checkbox" meta="iii">
                 <div className="demo-stack">
@@ -764,19 +781,29 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section" id="toggle">
-              <Panel title="Toggle Group" meta="vi">
+            <div className="abyss-section" id="select">
+              <Panel title="Select" meta="xi">
                 <div className="demo-stack">
-                  <ToggleGroup defaultValue={["chart"]}>
-                    <Toggle value="chart">Chart</Toggle>
-                    <Toggle value="reef">Reef</Toggle>
-                    <Toggle value="deep">Deep</Toggle>
-                  </ToggleGroup>
-                  <ToggleGroup defaultValue={["wards", "sigils"]} multiple>
-                    <Toggle value="wards">Wards</Toggle>
-                    <Toggle value="sigils">Sigils</Toggle>
-                    <Toggle value="omens">Omens</Toggle>
-                  </ToggleGroup>
+                  <span className="abyss-cap">Bearing</span>
+                  <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="combobox">
+              <Panel title="Combobox" meta="xii">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Sound the depths</span>
+                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="abyss-section" id="autocomplete">
+              <Panel title="Autocomplete" meta="xiii">
+                <div className="demo-stack">
+                  <span className="abyss-cap">Speak a rite</span>
+                  <Autocomplete items={AUTOCOMPLETE_ITEMS} placeholder="Speak a rite…" />
                 </div>
               </Panel>
             </div>
@@ -832,33 +859,6 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section" id="select">
-              <Panel title="Select" meta="xi">
-                <div className="demo-stack">
-                  <span className="abyss-cap">Bearing</span>
-                  <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
-                </div>
-              </Panel>
-            </div>
-
-            <div className="abyss-section" id="combobox">
-              <Panel title="Combobox" meta="xii">
-                <div className="demo-stack">
-                  <span className="abyss-cap">Sound the depths</span>
-                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
-                </div>
-              </Panel>
-            </div>
-
-            <div className="abyss-section" id="autocomplete">
-              <Panel title="Autocomplete" meta="xiii">
-                <div className="demo-stack">
-                  <span className="abyss-cap">Speak a rite</span>
-                  <Autocomplete items={AUTOCOMPLETE_ITEMS} placeholder="Speak a rite…" />
-                </div>
-              </Panel>
-            </div>
-
             <GroupRule group="Forms" sub="binding the acolyte" />
 
             <div className="abyss-section" id="fieldset">
@@ -900,13 +900,13 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section span-2" id="accordion">
+            <div className="abyss-section" id="accordion">
               <Panel title="Accordion" meta="xix">
                 <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
               </Panel>
             </div>
 
-            <div className="abyss-section span-2" id="collapsible">
+            <div className="abyss-section" id="collapsible">
               <Panel title="Collapsible" meta="xx">
                 <div className="demo-stack">
                   <Collapsible title="The Tide Log" defaultOpen>
@@ -1215,7 +1215,7 @@ function Demo() {
 
             <GroupRule group="Foundations" sub="stone & ink" />
 
-            <div className="abyss-section" id="typography">
+            <div className="abyss-section span-2" id="typography">
               <Panel title="Typography" meta="xxxvi">
                 <div className="demo-stack">
                   <p className="abyss-h1">R'lyeh Rises</p>
