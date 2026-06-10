@@ -937,7 +937,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-section" id="context">
+            <div className="nova-section span-2" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <ContextMenu
                   trigger={

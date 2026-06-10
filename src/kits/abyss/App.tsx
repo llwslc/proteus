@@ -1058,7 +1058,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="abyss-section" id="context">
+            <div className="abyss-section span-2" id="context">
               <Panel title="Context Menu" meta="xxvii">
                 <ContextMenu
                   trigger={
