@@ -33,9 +33,10 @@
   border: 0;
   background: transparent;
   color: var(--abyss-text-dim);
-  font-family: var(--abyss-font);
+  font-family: var(--abyss-font-display);
   font-size: var(--abyss-fs-13);
-  letter-spacing: var(--abyss-ls-2);
+  letter-spacing: var(--abyss-ls-6);
+  text-transform: uppercase;
   cursor: pointer;
   outline: none;
   transition:
