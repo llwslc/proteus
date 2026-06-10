@@ -56,6 +56,7 @@ import {
 import {
   BoltIcon,
   CheckIcon,
+  ChevronDownIcon,
   ChevronUpIcon,
   CopyIcon,
   SearchIcon,
@@ -882,7 +883,9 @@ function Demo() {
 
             <div className="nova-section" id="menu">
               <Panel title="Menu" meta="MNU">
-                <Menu trigger={<Button variant="ghost">Actions ▾</Button>}>
+                <Menu trigger={<Button variant="ghost">
+                      Actions <ChevronDownIcon className="demo-trigger-chevron" />
+                    </Button>}>
                   <MenuItem icon={<SearchIcon />} shortcut="⌘S">
                     Scan Sector
                   </MenuItem>

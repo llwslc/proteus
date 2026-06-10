@@ -583,3 +583,11 @@ kbd {
     display: none;
   }
 }
+
+.demo-trigger-chevron {
+  font-size: 0.9em;
+  transition: transform var(--nova-dur) var(--nova-ease);
+}
+[data-popup-open] .demo-trigger-chevron {
+  transform: rotate(180deg);
+}
