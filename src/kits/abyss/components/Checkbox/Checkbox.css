@@ -1,7 +1,7 @@
 .abyss-check {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   position: relative;
   display: inline-grid;
   place-items: center;

@@ -12,16 +12,16 @@
 - 五个强调色,各配一个 `-deep` 暗档:primary 电光青 `#2de2ff / #119cb8`,secondary 品红 `#ff2d75 / #c4185a`,success `#54ffb0 / #1f9c68`,warning `#ffce54 / #b8861f`,danger `#ff4d5e / #b3242f`。
 - 文本(冷白偏蓝):`text #d7ecff`、`-bright #eafdff`、`-dim #7793b0`、`-mute #46617e`;反色前景 `on-primary #02131a`、`on-danger #1c0406`。
 - 两条复用强调渐变:`accent-surface` = `180deg primary→deep`(点亮表面);`accent-fill` = `90deg deep→primary 55%`(方向指示条)。
-- 青 alpha 阶梯:`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55 · primary-a70 .70`。新的青 alpha 先用阶梯。
-- 另立 alpha 家族:`secondary-fill .55`;danger 一组 `-fill .55 / -wash .12 / -highlight .16 / -text #ffd9dc / -inset #2a0e14`。
+- 青 alpha 阶梯:`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55`。新的青 alpha 先用阶梯。
+- 另立 alpha 家族:`secondary-fill .55`;danger 一组 `-fill .55 / -wash .12 / -text #ffd9dc / -inset #2a0e14`。
 - 中性 / 效果色:`off`(关态轨,蓝灰)、`track`(未填充轨)、`ghost-hover`、白扫光 `sheen .6 / sheen-soft .14`、关态旋钮金属渐变 `thumb-idle-top/-bottom`、深表面渐变 `surface-deep-top/-bottom`。
-- 表面:`surface .72`、`surface-popup .97`、`surface-modal`(160deg 深渐变)、`surface-inset #0a1a29`;`scrim .66`。
-- 辉光与阴影:文字 `glow-text`;drop-shadow 一组 `glow-focus / -popup / -active / -trigger / -modal`;矩形影 `shadow-popup / -modal`。
+- 表面:`surface .72`、`surface-popup .97`、`surface-modal`(160deg 深渐变)、`surface-inset #0a1a29`、`surface-raised`(步进钮底)、`surface-zone / -hover`(右键区底);`scrim .66`。
+- 辉光与阴影:文字 `glow-text`;drop-shadow 一组 `glow-focus / -popup / -active / -trigger / -modal`;辉光半径统一 `--nova-glow-r` 8px;矩形影 `shadow-popup / -modal`、影墨 `shadow-ink`、旋钮微影 `shadow-thumb`。
 
 ## 2. 字体与排版
 
 - **Orbitron**(display,大写)、**Rajdhani**(正文)、**Share Tech Mono**(数值)。
-- 尺度档:字号 `fs-11…22`,字距 `ls-4 / 10 / 16`,行高 `lh-100 / 150 / 160`,字重 `fw-600 / 700`。
+- 尺度档:字号 `fs-12 / 13 / 14 / 16 / 18 / 22`,字距 `ls-4 / 10 / 16`,行高 `lh-100 / 160`,字重 `fw-600 / 700`。
 - 标题三档,全大写 `fw-700`,字号越大字距越紧:`h1` fs-22 + ls-4,`h2` fs-16 + ls-10,`h3` fs-13 + ls-16;正文 `text` = fs-14 + lh-160 + text-dim;`--accent` 修饰 = primary + glow-text。
 - 字段 caption 无独立 class:各组件就地写同一组属性(display · fs-12 · fw-600 · ls-10 · 大写 · text-dim)。
 

@@ -9,7 +9,7 @@
 .abyss-input-wrap {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   display: flex;
   align-items: center;

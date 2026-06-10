@@ -7,7 +7,7 @@
 .abyss-select__trigger {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -70,7 +70,7 @@
 .abyss-select__popup {
   --abyss-frame-fill: var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   box-sizing: border-box;
   min-width: var(--anchor-width);
   padding: var(--abyss-space-1);
@@ -86,11 +86,11 @@
   align-items: center;
   gap: var(--abyss-space-2);
   padding: var(--abyss-space-2) var(--abyss-space-3);
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   cursor: pointer;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   user-select: none;
   outline: none;
   transition:

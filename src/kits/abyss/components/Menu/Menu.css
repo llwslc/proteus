@@ -8,7 +8,7 @@
 .abyss-menu__popup {
   --abyss-frame-fill: var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   box-sizing: border-box;
   min-width: var(--abyss-menu-min-w);
   padding: var(--abyss-space-2);
@@ -23,11 +23,11 @@
   gap: var(--abyss-space-3);
   padding: var(--abyss-space-2) var(--abyss-space-3) var(--abyss-space-2)
     var(--abyss-space-4);
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   cursor: pointer;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   user-select: none;
   outline: none;
   transition:
@@ -41,7 +41,7 @@
   top: 4px;
   bottom: 4px;
   width: 2px;
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   background: var(--abyss-glow);
   box-shadow: 0 0 7px var(--abyss-glow-a70);
   opacity: 0;
@@ -64,7 +64,7 @@
   flex: 0 0 auto;
   margin-left: var(--abyss-space-4);
   font-family: var(--abyss-font-mono);
-  font-size: var(--abyss-fs-11);
+  font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);
   color: var(--abyss-text-mute);
   transition: color var(--abyss-dur) var(--abyss-ease);
@@ -152,7 +152,7 @@
   color: var(--abyss-blood);
 }
 .abyss-menu__item--danger[data-highlighted] .abyss-menu__curl {
-  filter: url(#abyss-edge) drop-shadow(0 0 5px rgba(210, 64, 89, 0.55));
+  filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-blood-a55));
 }
 
 .abyss-menu__separator.abyss-separator {

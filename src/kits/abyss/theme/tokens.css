@@ -1,7 +1,6 @@
 :root {
   --abyss-void: #030706;
   --abyss-bg: #070c0b;
-  --abyss-bg-2: #0a1512;
 
   --abyss-stone: #0c1411;
   --abyss-stone-raised: #101b16;
@@ -21,26 +20,42 @@
 
   --abyss-glow: #46e8b8;
   --abyss-glow-deep: #128a6e;
+  --abyss-glow-faint: rgba(70, 232, 184, 0.06);
   --abyss-glow-soft: rgba(70, 232, 184, 0.12);
   --abyss-glow-a30: rgba(70, 232, 184, 0.3);
   --abyss-glow-a55: rgba(70, 232, 184, 0.55);
   --abyss-glow-a70: rgba(70, 232, 184, 0.7);
-  --abyss-on-glow: #03140e;
+  --abyss-glow-wash: linear-gradient(
+    180deg,
+    rgba(70, 232, 184, 0.11),
+    rgba(70, 232, 184, 0.02)
+  );
+  --abyss-glow-wash-strong: linear-gradient(
+    180deg,
+    rgba(70, 232, 184, 0.22),
+    rgba(70, 232, 184, 0.06)
+  );
 
   --abyss-gold: #cda94a;
   --abyss-gold-deep: #8a6c22;
   --abyss-gold-soft: rgba(205, 169, 74, 0.15);
-  --abyss-on-gold: #160f02;
+  --abyss-gold-a50: rgba(205, 169, 74, 0.5);
 
   --abyss-ichor: #9176ff;
-  --abyss-ichor-deep: #4d3aa6;
   --abyss-ichor-soft: rgba(145, 118, 255, 0.16);
+  --abyss-ichor-a50: rgba(145, 118, 255, 0.5);
 
   --abyss-blood: #d24059;
   --abyss-blood-deep: #7e2233;
   --abyss-blood-soft: rgba(210, 64, 89, 0.13);
+  --abyss-blood-a55: rgba(210, 64, 89, 0.55);
   --abyss-blood-text: #f4c8cf;
-  --abyss-on-blood: #190305;
+
+  --abyss-success: #7ad99a;
+  --abyss-success-soft: rgba(122, 217, 154, 0.12);
+  --abyss-success-a50: rgba(122, 217, 154, 0.5);
+
+  --abyss-thumb-glint: #d8fff2;
 
   --abyss-aura: drop-shadow(0 0 10px var(--abyss-glow-a30));
   --abyss-aura-strong: drop-shadow(0 0 16px var(--abyss-glow-a55));
@@ -48,17 +63,15 @@
   --abyss-text-aura: 0 0 11px var(--abyss-glow-a55);
   --abyss-shadow-pop: 0 14px 34px rgba(0, 0, 0, 0.66);
   --abyss-shadow-modal: 0 26px 64px rgba(0, 0, 0, 0.72);
+  --abyss-shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.6);
 
   --abyss-font: "Spectral", "Iowan Old Style", Georgia, serif;
-  --abyss-font-script: "Spectral", "Iowan Old Style", serif;
   --abyss-font-display: "Cinzel", "Spectral", serif;
   --abyss-font-rune: "UnifrakturCook", "Cinzel", serif;
   --abyss-font-mono: "Cutive Mono", ui-monospace, "SFMono-Regular", monospace;
 
-  --abyss-fs-11: 11px;
   --abyss-fs-12: 12px;
   --abyss-fs-13: 13px;
-  --abyss-fs-14: 14px;
   --abyss-fs-15: 15px;
   --abyss-fs-16: 16px;
   --abyss-fs-19: 19px;
@@ -68,16 +81,13 @@
   --abyss-ls-2: 0.02em;
   --abyss-ls-6: 0.06em;
   --abyss-ls-12: 0.12em;
-  --abyss-ls-20: 0.2em;
 
   --abyss-lh-100: 1;
   --abyss-lh-150: 1.5;
   --abyss-lh-165: 1.65;
 
   --abyss-fw-400: 400;
-  --abyss-fw-500: 500;
   --abyss-fw-600: 600;
-  --abyss-fw-900: 900;
 
   --abyss-dur: 0.3s;
   --abyss-dur-slow: 0.66s;
@@ -95,6 +105,11 @@
   --abyss-space-5: 20px;
   --abyss-space-6: 24px;
   --abyss-space-7: 32px;
+
+  --abyss-round-2: 2px;
+  --abyss-round-3: 3px;
+  --abyss-round-4: 4px;
+  --abyss-round-5: 5px;
 
   --abyss-w-dialog: 460px;
   --abyss-w-alert: 440px;

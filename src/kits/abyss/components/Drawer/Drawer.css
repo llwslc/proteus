@@ -28,7 +28,7 @@
     radial-gradient(140% 60% at 100% 0%, var(--abyss-glow-soft), transparent 55%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -162,7 +162,7 @@
 .abyss-drawer__key {
   flex: 0 0 auto;
   display: inline-flex;
-  font-size: 20px;
+  font-size: var(--abyss-fs-19);
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
   transform-origin: 8px 8px;

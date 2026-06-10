@@ -46,7 +46,7 @@
   height: 9px;
   border-radius: 50%;
   background: var(--nova-primary);
-  box-shadow: 0 0 8px var(--nova-primary);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);
   transform: scale(0);
   transition: transform var(--nova-dur) var(--nova-ease-out);
 }
@@ -55,7 +55,7 @@
   border-color: var(--nova-primary);
   box-shadow:
     0 0 0 1px var(--nova-tint-active),
-    0 0 8px var(--nova-primary-a40);
+    0 0 var(--nova-glow-r) var(--nova-primary-a40);
 }
 .nova-radio__control[data-checked] .nova-radio__indicator::before {
   transform: scale(1);

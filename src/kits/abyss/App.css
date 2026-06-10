@@ -271,7 +271,7 @@
 .abyss-hero h1 {
   margin: 0 0 16px;
   font-size: clamp(30px, 4.4vw, 46px);
-  font-weight: var(--abyss-fw-900);
+  font-weight: 900;
 }
 .abyss-hero .abyss-text {
   max-width: 60ch;
@@ -349,7 +349,7 @@
   color: var(--abyss-text);
 }
 .abyss-grid__group-sub {
-  font-family: var(--abyss-font-script);
+  font-family: "Spectral", "Iowan Old Style", serif;
   font-style: italic;
   font-size: var(--abyss-fs-13);
   color: var(--abyss-text-mute);
@@ -382,7 +382,7 @@
 }
 .demo-toolbar__label {
   font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-11);
+  font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);
 }
 .abyss-form__row {
@@ -455,7 +455,7 @@ kbd {
 .demo-log__t {
   flex: 0 0 auto;
   font-family: var(--abyss-font-mono);
-  font-size: var(--abyss-fs-11);
+  font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);
   color: var(--abyss-glow);
 }

@@ -17,7 +17,7 @@ Exit 0 = clean. Each section prints `file:line` findings:
 
 | check | rule |
 |---|---|
-| raw colors | no hex/rgba literal in component css — use a palette/alpha-ladder token (the script also flags literals that duplicate a token value verbatim) |
+| raw colors | no hex/rgba literal in component css — use a palette/alpha-ladder token (the script also flags literals that duplicate a token value verbatim; pure `#000` mask/shadow stops are allowed) |
 | raw type | no px font-size / letter-spacing / line-height / numeric font-weight — use the fs/ls/lh/fw ladders (em/clamp/calc are contextual, allowed) |
 | raw spacing | no padding/margin/gap value >3px off the space ladder (≤3px sub-grid allowed) |
 | raw shapes | no polygon()/border-radius/frame-round px literal — use the named geometry ladder (50% circles allowed) |

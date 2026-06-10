@@ -1,7 +1,7 @@
 .abyss-togglegroup {
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-fill: var(--abyss-surface);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-1);
@@ -25,7 +25,7 @@
 .abyss-toggle {
   --abyss-frame-ink: transparent;
   --abyss-frame-fill: transparent;
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -68,7 +68,7 @@
   inset: 3px;
   z-index: 0;
   border: 1px solid var(--abyss-glow-a30);
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   filter: url(#abyss-edge);
   pointer-events: none;
 }

@@ -1,7 +1,7 @@
 .abyss-scrollarea {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -67,9 +67,9 @@
   display: flex;
   justify-content: center;
   width: 12px;
-  margin: 10px 3px;
+  margin: var(--abyss-space-2) 3px;
   background: var(--abyss-ink-faint);
-  border-radius: 6px;
+  border-radius: var(--abyss-round-5);
   opacity: 0;
   transition: opacity var(--abyss-dur-slow) var(--abyss-ease);
 }
@@ -92,7 +92,7 @@
   content: "";
   position: absolute;
   inset: 0 3px;
-  border-radius: 6px;
+  border-radius: var(--abyss-round-5);
   background: linear-gradient(
     180deg,
     var(--abyss-glow-deep),

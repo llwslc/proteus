@@ -1,8 +1,8 @@
 .abyss-panel {
   --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   --abyss-frame-fill:
-    radial-gradient(130% 280px at 50% -36px, rgba(70, 232, 184, 0.05), transparent 62%),
+    radial-gradient(130% 280px at 50% -36px, var(--abyss-glow-faint), transparent 62%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone) 240px);
   position: relative;
   overflow: clip;
@@ -22,18 +22,18 @@
   color: var(--abyss-text);
 }
 .abyss-panel__mark {
-  font-size: 15px;
+  font-size: var(--abyss-fs-15);
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
 .abyss-panel__meta {
   font-family: var(--abyss-font-mono);
-  font-size: var(--abyss-fs-11);
+  font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);
   color: var(--abyss-gold);
-  padding: 2px 8px;
+  padding: 2px var(--abyss-space-2);
   border: 1px solid var(--abyss-gold-soft);
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
 }
 .abyss-panel__body {
   padding: var(--abyss-space-5) var(--abyss-space-4);

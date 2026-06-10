@@ -27,7 +27,7 @@
     ),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: color-mix(in srgb, var(--abyss-alert-accent) 58%, transparent);
-  --abyss-frame-round: 5px;
+  --abyss-frame-round: var(--abyss-round-5);
   position: relative;
   padding: var(--abyss-space-6) var(--abyss-space-6) var(--abyss-space-5);
 }
@@ -40,7 +40,7 @@
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  font-size: 22px;
+  font-size: var(--abyss-fs-24);
   color: var(--abyss-alert-accent);
   filter: drop-shadow(
     0 0 7px color-mix(in srgb, var(--abyss-alert-accent) 55%, transparent)

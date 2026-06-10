@@ -46,7 +46,7 @@
     var(--abyss-toast-accent) 50%,
     var(--abyss-ink-strong)
   );
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -93,7 +93,7 @@
   display: grid;
   place-items: center;
   margin-top: 1px;
-  font-size: 18px;
+  font-size: var(--abyss-fs-19);
   color: var(--abyss-toast-accent);
   filter: drop-shadow(
     0 0 8px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent)
@@ -117,7 +117,7 @@
 .abyss-toast__desc {
   margin: var(--abyss-space-1) 0 0;
   font-family: var(--abyss-font);
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   line-height: var(--abyss-lh-150);
   color: var(--abyss-text-dim);
 }

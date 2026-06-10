@@ -102,7 +102,7 @@
 .abyss-navmenu__popup {
   --abyss-frame-fill: var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   position: relative;
   box-sizing: border-box;
   width: var(--popup-width);
@@ -140,7 +140,7 @@
   align-items: flex-start;
   gap: var(--abyss-space-3);
   padding: var(--abyss-space-3);
-  border-radius: 3px;
+  border-radius: var(--abyss-round-3);
   text-decoration: none;
   cursor: pointer;
   outline: none;
@@ -154,7 +154,7 @@
 .abyss-navmenu__mark {
   flex: 0 0 auto;
   margin-top: 1px;
-  font-size: 18px;
+  font-size: var(--abyss-fs-19);
   color: var(--abyss-ink-strong);
   transform-origin: center;
   transition:

@@ -1,6 +1,6 @@
 .abyss-tooltip__pos {
   z-index: var(--abyss-z-tooltip);
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6))
+  filter: drop-shadow(var(--abyss-shadow-sm))
     drop-shadow(0 0 10px var(--abyss-glow-soft));
 }
 .abyss-tooltip__popup {
@@ -9,12 +9,12 @@
 .abyss-tooltip__surface {
   --abyss-frame-fill: var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   display: block;
   max-width: var(--abyss-w-tooltip);
-  padding: 7px 12px;
+  padding: var(--abyss-space-2) var(--abyss-space-3);
   font-family: var(--abyss-font);
   font-size: var(--abyss-fs-13);
-  line-height: 1.45;
+  line-height: var(--abyss-lh-150);
   color: var(--abyss-text);
 }

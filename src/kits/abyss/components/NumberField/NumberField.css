@@ -9,7 +9,7 @@
 .abyss-numberfield__group {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -45,7 +45,7 @@
 }
 
 .abyss-numberfield__btn {
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-fill: linear-gradient(
     180deg,

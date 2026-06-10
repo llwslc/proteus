@@ -9,7 +9,7 @@
   border: 1px solid color-mix(in srgb, var(--nova-badge-color) 45%, transparent);
   color: var(--nova-badge-color);
   font-family: var(--nova-font-mono);
-  font-size: var(--nova-fs-11);
+  font-size: var(--nova-fs-12);
   letter-spacing: var(--nova-ls-10);
   text-transform: uppercase;
   white-space: nowrap;
@@ -21,7 +21,7 @@
   height: 6px;
   background: var(--nova-badge-color);
   border-radius: 50%;
-  box-shadow: 0 0 6px var(--nova-badge-color);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-badge-color);
   animation: nova-badge-pulse 1.8s var(--nova-ease) infinite;
 }
 @keyframes nova-badge-pulse {

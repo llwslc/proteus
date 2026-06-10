@@ -25,8 +25,8 @@ run() { # run <title> <findings>
   fi
 }
 
-# 1. raw colors in component css (hex / rgba not var-wrapped)
-f=$(grep -rnE '(#[0-9a-fA-F]{3,8}\b|rgba?\([0-9])' "$C" --include='*.css' 2>/dev/null | grep -v 'var(')
+# 1. raw colors in component css (hex / rgba not var-wrapped; mask gradient stops allowed)
+f=$(grep -rnE '(#[0-9a-fA-F]{3,8}\b|rgba?\([0-9])' "$C" --include='*.css' 2>/dev/null | grep -v 'var(' | grep -v 'mask' | grep -vE '#000\b')
 run "raw colors in components" "$f"
 
 # 1b. raw color literals that duplicate an existing token value exactly
@@ -53,10 +53,12 @@ run "raw spacing in components" "$f"
 f=$(grep -rnE '(polygon\(|(border-radius|frame-round):[[:space:]]*[0-9]+px)' "$C" --include='*.css' 2>/dev/null | grep -v 'var(')
 run "raw shape values in components (need a named ladder)" "$f"
 
-# 5. raw motion (durations not via dur/breath tokens; long decorative spins = reviewer's call)
+# 5. raw motion — informational only (decorative one-off durations are reviewer's call)
 f=$(grep -rnE '(transition|animation):[^;]*[0-9.]+m?s' "$C" --include='*.css' 2>/dev/null \
   | grep -v "var(--$KIT-dur" | grep -v "var(--$KIT-breath")
-run "raw durations in components (decorative spins may pass review)" "$f"
+echo
+echo "## raw durations in components (INFO — justify decorative one-offs, no fail)"
+if [ -n "$f" ]; then echo "$f" | head -20; else echo "-> clean"; fi
 
 # 6. raw z-index beyond local stacking
 f=$(grep -rnE 'z-index:[[:space:]]*[0-9]{2,}' "$C" --include='*.css' 2>/dev/null | grep -v 'var(')

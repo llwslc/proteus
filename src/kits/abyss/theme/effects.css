@@ -10,7 +10,7 @@
   z-index: -1;
   background: var(--abyss-frame-fill, var(--abyss-surface));
   border: 1.5px solid var(--abyss-frame-ink, var(--abyss-ink-strong));
-  border-radius: var(--abyss-frame-round, 3px);
+  border-radius: var(--abyss-frame-round, var(--abyss-round-3));
   filter: url(#abyss-edge);
   pointer-events: none;
 }
@@ -21,7 +21,7 @@
   inset: 4px;
   z-index: -1;
   border: 1px solid var(--abyss-ink-faint);
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   filter: url(#abyss-edge);
   pointer-events: none;
 }
@@ -199,7 +199,7 @@
 .abyss-modal-desc {
   margin: 0 0 var(--abyss-space-4);
   color: var(--abyss-text-dim);
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   line-height: var(--abyss-lh-165);
 }
 .abyss-modal-body {

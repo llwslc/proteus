@@ -23,7 +23,7 @@
 }
 .abyss-separator-labeled__sigil {
   display: inline-flex;
-  font-size: 15px;
+  font-size: var(--abyss-fs-15);
   color: var(--abyss-gold);
   filter: var(--abyss-aura-gold);
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;

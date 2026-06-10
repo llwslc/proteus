@@ -3,7 +3,7 @@ body {
   color: var(--nova-text);
   font-family: var(--nova-font);
   font-size: var(--nova-fs-16);
-  line-height: var(--nova-lh-150);
+  line-height: var(--nova-lh-160);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

@@ -51,7 +51,7 @@
   bottom: 0;
   height: 2px;
   background: var(--nova-primary);
-  box-shadow: 0 0 7px var(--nova-primary);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);
   opacity: 0;
   transition: opacity var(--nova-dur) var(--nova-ease);
 }
@@ -146,7 +146,7 @@
   left: 0;
   width: 2px;
   background: var(--nova-primary);
-  box-shadow: 0 0 7px var(--nova-primary);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);
   opacity: 0;
   transition: opacity var(--nova-dur) var(--nova-ease);
 }
@@ -175,7 +175,7 @@
   margin-top: var(--nova-space-1);
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-12);
-  line-height: var(--nova-lh-150);
+  line-height: var(--nova-lh-160);
 }
 
 @media (max-width: 768px) {

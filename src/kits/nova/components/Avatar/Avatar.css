@@ -56,13 +56,13 @@
 }
 .nova-avatar__status--online {
   background: var(--nova-success);
-  box-shadow: 0 0 7px var(--nova-success);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-success);
 }
 .nova-avatar__status--busy {
   background: var(--nova-danger);
-  box-shadow: 0 0 7px var(--nova-danger);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-danger);
 }
 .nova-avatar__status--away {
   background: var(--nova-warning);
-  box-shadow: 0 0 7px var(--nova-warning);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-warning);
 }

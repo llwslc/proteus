@@ -1,7 +1,7 @@
 .abyss-menubar {
   --abyss-frame-fill: var(--abyss-surface);
   --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-1);
@@ -28,7 +28,7 @@
   height: var(--abyss-menubar-trigger-h);
   padding: 0 var(--abyss-space-4);
   border: 0;
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   background: transparent;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font-display);

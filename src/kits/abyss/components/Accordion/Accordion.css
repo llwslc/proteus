@@ -6,7 +6,7 @@
 }
 
 .abyss-accordion__item {
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-fill: var(--abyss-surface);
   position: relative;
@@ -37,7 +37,7 @@
   cursor: pointer;
   color: var(--abyss-text);
   font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   letter-spacing: var(--abyss-ls-6);
   text-transform: uppercase;
   text-align: left;
@@ -108,6 +108,6 @@
 .abyss-accordion__content {
   padding: 0 var(--abyss-space-4) var(--abyss-space-4) 47px;
   color: var(--abyss-text-dim);
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   line-height: var(--abyss-lh-165);
 }

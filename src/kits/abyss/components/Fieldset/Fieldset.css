@@ -43,7 +43,7 @@
 
 .abyss-fieldset__body {
   --abyss-frame-ink: var(--abyss-ink-strong);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   --abyss-frame-fill:
     radial-gradient(120% 70% at 18% -12%, var(--abyss-glow-soft), transparent 60%),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));

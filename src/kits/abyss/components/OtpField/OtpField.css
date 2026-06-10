@@ -20,7 +20,7 @@
 .abyss-otp__cell {
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   display: inline-flex;
   width: var(--abyss-otp-cell-w);
@@ -32,7 +32,7 @@
   position: absolute;
   inset: 1.5px;
   z-index: 1;
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   background: radial-gradient(
     120% 90% at 50% 100%,
     var(--abyss-glow-soft),

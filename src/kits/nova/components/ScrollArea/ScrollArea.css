@@ -58,7 +58,7 @@
 .nova-scrollarea__thumb {
   flex: 1;
   position: relative;
-  filter: drop-shadow(0 0 6px var(--nova-primary-a40));
+  filter: drop-shadow(0 0 var(--nova-glow-r) var(--nova-primary-a40));
 }
 .nova-scrollarea__thumb::before {
   content: "";

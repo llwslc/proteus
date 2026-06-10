@@ -8,7 +8,7 @@
 }
 .nova-checkbox-box:has([data-checked]),
 .nova-checkbox-box:has([data-indeterminate]) {
-  filter: drop-shadow(0 0 6px var(--nova-line-strong));
+  filter: drop-shadow(0 0 var(--nova-glow-r) var(--nova-line-strong));
 }
 .nova-checkbox-box:has(:focus-visible) {
   filter: var(--nova-glow-focus);
@@ -43,7 +43,7 @@
   place-items: center;
   width: 100%;
   height: 100%;
-  font-size: var(--nova-fs-15);
+  font-size: var(--nova-fs-14);
 }
 .nova-checkbox__check,
 .nova-checkbox__dash {

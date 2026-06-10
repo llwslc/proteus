@@ -53,7 +53,7 @@
   z-index: 1;
   border: 0 solid var(--nova-primary);
   pointer-events: none;
-  filter: drop-shadow(0 0 7px var(--nova-primary));
+  filter: drop-shadow(0 0 var(--nova-glow-r) var(--nova-primary));
 }
 .nova-panel__corner--tr {
   top: 3px;
@@ -84,7 +84,7 @@
 }
 .nova-panel__meta {
   font-family: var(--nova-font-mono);
-  font-size: var(--nova-fs-11);
+  font-size: var(--nova-fs-12);
   letter-spacing: var(--nova-ls-10);
   color: var(--nova-text-dim);
 }

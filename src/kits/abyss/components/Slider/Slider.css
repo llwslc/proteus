@@ -27,7 +27,7 @@
   width: 100%;
   height: 3px;
   background: var(--abyss-inset);
-  border-radius: 3px;
+  border-radius: var(--abyss-round-3);
   filter: url(#abyss-edge);
   box-shadow: inset 0 0 0 1px var(--abyss-ink-faint);
 }
@@ -35,7 +35,7 @@
   position: absolute;
   left: 0;
   height: 100%;
-  border-radius: 3px;
+  border-radius: var(--abyss-round-3);
   background: linear-gradient(90deg, var(--abyss-glow-deep), var(--abyss-glow));
   box-shadow: 0 0 8px var(--abyss-glow-a55);
 }
@@ -45,19 +45,19 @@
   border-radius: 50%;
   background: radial-gradient(
     circle at 38% 32%,
-    #d8fff2,
+    var(--abyss-thumb-glint),
     var(--abyss-glow) 45%,
     var(--abyss-glow-deep)
   );
   box-shadow:
-    0 0 0 3px rgba(70, 232, 184, 0.16),
+    0 0 0 3px var(--abyss-glow-soft),
     0 0 11px var(--abyss-glow-a55);
   cursor: grab;
 }
 .abyss-slider__thumb:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 4px rgba(70, 232, 184, 0.28),
+    0 0 0 4px var(--abyss-glow-a30),
     0 0 13px var(--abyss-glow-a70);
 }
 .abyss-slider__thumb[data-dragging] {

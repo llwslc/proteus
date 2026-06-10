@@ -10,7 +10,7 @@
 
 .nova-drawer {
   --nova-overlay-glow: var(--nova-glow-modal);
-  --nova-drawer-shadow: rgba(0, 0, 0, 0.6);
+  --nova-drawer-shadow: var(--nova-shadow-ink);
   position: absolute;
   outline: none;
   transition: transform var(--nova-dur-slow) var(--nova-ease-out);

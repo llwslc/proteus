@@ -1,5 +1,5 @@
 .abyss-btn {
-  --abyss-frame-round: 3px;
+  --abyss-frame-round: var(--abyss-round-3);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-fill: linear-gradient(
     180deg,
@@ -43,42 +43,34 @@
 
 .abyss-btn--primary {
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-fill: linear-gradient(
-    180deg,
-    rgba(70, 232, 184, 0.11),
-    rgba(70, 232, 184, 0.02)
-  );
+  --abyss-frame-fill: var(--abyss-glow-wash);
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
 .abyss-btn--primary:hover {
   color: var(--abyss-text-bright);
-  --abyss-frame-fill: linear-gradient(
-    180deg,
-    rgba(70, 232, 184, 0.22),
-    rgba(70, 232, 184, 0.06)
-  );
+  --abyss-frame-fill: var(--abyss-glow-wash-strong);
   filter: var(--abyss-aura-strong);
 }
 
 .abyss-btn--secondary {
-  --abyss-frame-ink: rgba(145, 118, 255, 0.55);
+  --abyss-frame-ink: var(--abyss-ichor-a50);
   --abyss-frame-fill: var(--abyss-ichor-soft);
   color: var(--abyss-ichor);
 }
 .abyss-btn--secondary:hover {
   color: var(--abyss-text-bright);
-  filter: drop-shadow(0 0 12px rgba(145, 118, 255, 0.42));
+  filter: drop-shadow(0 0 12px var(--abyss-ichor-a50));
 }
 
 .abyss-btn--danger {
-  --abyss-frame-ink: rgba(210, 64, 89, 0.6);
+  --abyss-frame-ink: var(--abyss-blood-a55);
   --abyss-frame-fill: var(--abyss-blood-soft);
   color: var(--abyss-blood);
 }
 .abyss-btn--danger:hover {
   color: var(--abyss-blood-text);
-  filter: drop-shadow(0 0 12px rgba(210, 64, 89, 0.45));
+  filter: drop-shadow(0 0 12px var(--abyss-blood-a55));
 }
 
 .abyss-btn--ghost {

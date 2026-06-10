@@ -175,7 +175,7 @@
 }
 .nova-modal-body {
   color: var(--nova-text);
-  font-size: var(--nova-fs-15);
+  font-size: var(--nova-fs-14);
   line-height: var(--nova-lh-160);
 }
 .nova-modal-actions {

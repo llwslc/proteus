@@ -1,13 +1,13 @@
 .abyss-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--abyss-space-2);
   height: var(--abyss-badge-h);
-  padding: 0 10px;
+  padding: 0 var(--abyss-space-3);
   border: 1px solid;
-  border-radius: 2px;
+  border-radius: var(--abyss-round-2);
   font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-11);
+  font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);
   text-transform: uppercase;
   white-space: nowrap;
@@ -26,22 +26,22 @@
 }
 .abyss-badge--secondary {
   color: var(--abyss-ichor);
-  border-color: rgba(145, 118, 255, 0.5);
+  border-color: var(--abyss-ichor-a50);
   background: var(--abyss-ichor-soft);
 }
 .abyss-badge--success {
-  color: #7ad99a;
-  border-color: rgba(122, 217, 154, 0.5);
-  background: rgba(122, 217, 154, 0.12);
+  color: var(--abyss-success);
+  border-color: var(--abyss-success-a50);
+  background: var(--abyss-success-soft);
 }
 .abyss-badge--warning {
   color: var(--abyss-gold);
-  border-color: rgba(205, 169, 74, 0.5);
+  border-color: var(--abyss-gold-a50);
   background: var(--abyss-gold-soft);
 }
 .abyss-badge--danger {
   color: var(--abyss-blood);
-  border-color: rgba(210, 64, 89, 0.55);
+  border-color: var(--abyss-blood-a55);
   background: var(--abyss-blood-soft);
 }
 .abyss-badge--neutral {

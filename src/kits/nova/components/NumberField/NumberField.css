@@ -23,7 +23,7 @@
 }
 
 .nova-numberfield__btn {
-  --nova-numberfield-btn-bg: rgba(12, 24, 38, 0.96);
+  --nova-numberfield-btn-bg: var(--nova-surface-raised);
   position: relative;
   z-index: 1;
   display: grid;
@@ -35,7 +35,7 @@
   cursor: pointer;
   background: var(--nova-numberfield-btn-bg);
   color: var(--nova-primary);
-  font-size: var(--nova-fs-15);
+  font-size: var(--nova-fs-14);
   transition:
     background var(--nova-dur) var(--nova-ease),
     color var(--nova-dur) var(--nova-ease);

@@ -3,11 +3,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  padding: var(--abyss-space-1);
   border: 0;
   background: transparent;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--abyss-round-4);
 }
 .abyss-switch .abyss-eye {
   width: var(--abyss-switch-w);

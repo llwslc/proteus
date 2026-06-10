@@ -102,7 +102,7 @@
 
 .abyss-avatar__status--busy {
   --moon: var(--abyss-blood);
-  --moon-glow: rgba(210, 64, 89, 0.6);
+  --moon-glow: var(--abyss-blood-a55);
 }
 .abyss-avatar__status--busy .abyss-avatar__moon-shadow {
   transform: translateX(72%);
@@ -110,7 +110,7 @@
 
 .abyss-avatar__status--away {
   --moon: var(--abyss-gold);
-  --moon-glow: rgba(205, 169, 74, 0.45);
+  --moon-glow: var(--abyss-gold-a50);
 }
 .abyss-avatar__status--away .abyss-avatar__moon-shadow {
   transform: translateX(40%);

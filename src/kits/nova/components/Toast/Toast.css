@@ -17,7 +17,7 @@
 
 .nova-toast {
   --nova-toast-accent: var(--nova-primary);
-  --nova-overlay-shadow: 0 12px 26px rgba(0, 0, 0, 0.6);
+  --nova-overlay-shadow: var(--nova-shadow-popup);
   --nova-overlay-glow: drop-shadow(
     0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent)
   );
@@ -71,7 +71,7 @@
   left: 0;
   width: 3px;
   background: var(--nova-toast-accent);
-  box-shadow: 0 0 8px var(--nova-toast-accent);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-toast-accent);
 }
 
 .nova-toast__main {

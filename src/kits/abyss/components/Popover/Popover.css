@@ -11,10 +11,10 @@
 
 .abyss-popover__surface {
   --abyss-frame-fill:
-    radial-gradient(120% 80% at 50% -10%, rgba(70, 232, 184, 0.07), transparent 62%),
+    radial-gradient(120% 80% at 50% -10%, var(--abyss-glow-faint), transparent 62%),
     var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: 4px;
+  --abyss-frame-round: var(--abyss-round-4);
   display: block;
   padding: var(--abyss-space-4) var(--abyss-space-4) var(--abyss-space-4);
 }
@@ -34,7 +34,7 @@
 
 .abyss-popover__conch {
   flex: 0 0 auto;
-  font-size: 18px;
+  font-size: var(--abyss-fs-19);
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
   transform: rotate(0deg) scale(1);
@@ -56,7 +56,7 @@
 .abyss-popover__body {
   color: var(--abyss-text);
   font-family: var(--abyss-font);
-  font-size: var(--abyss-fs-14);
+  font-size: var(--abyss-fs-15);
   line-height: var(--abyss-lh-165);
 }
 
