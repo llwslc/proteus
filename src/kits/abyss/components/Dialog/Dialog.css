@@ -6,7 +6,7 @@
 }
 .abyss-dialog__tablet {
   --abyss-frame-fill:
-    radial-gradient(120% 70% at 50% -8%, var(--abyss-glow-faint), transparent 60%),
+    var(--abyss-wash-top),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-5);

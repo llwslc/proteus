@@ -20,11 +20,16 @@
 
   --abyss-glow: #46e8b8;
   --abyss-glow-deep: #128a6e;
-  --abyss-glow-faint: rgba(70, 232, 184, 0.06);
   --abyss-glow-soft: rgba(70, 232, 184, 0.12);
   --abyss-glow-a30: rgba(70, 232, 184, 0.3);
   --abyss-glow-a55: rgba(70, 232, 184, 0.55);
   --abyss-glow-a70: rgba(70, 232, 184, 0.7);
+  --abyss-wash-top: radial-gradient(
+    130% 120px at 50% -20px,
+    rgba(70, 232, 184, 0.12),
+    rgba(70, 232, 184, 0.04) 45%,
+    transparent 78%
+  );
   --abyss-glow-wash: linear-gradient(
     180deg,
     rgba(70, 232, 184, 0.11),

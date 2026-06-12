@@ -11,7 +11,7 @@
 
 .abyss-previewcard__surface {
   --abyss-frame-fill:
-    radial-gradient(120% 80% at 50% -10%, var(--abyss-glow-faint), transparent 62%),
+    var(--abyss-wash-top),
     var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-4);
