@@ -19,8 +19,19 @@ Each line is a terse imperative — the decision only. Allowed: what to do, what
 
 Keep (NOT violations): the rule itself, and a short parenthetical that **disambiguates the instruction** (e.g. "use `left/right:0`, not `100vw`") — that changes what's built. A parenthetical that **justifies** it does not — cut it.
 
+## Placement (layered specs)
+When the spec is split into shared/base files plus per-variant files (here: `core.md` + `app.md` shared, `themes/<kit>.md` per theme), each statement must live at the right layer:
+
+- A rule that applies to **every variant** lives in a shared file — never repeated per variant.
+- A variant file holds **only** that variant's values and skin decisions (filling slots the shared files leave open).
+- **Flag**: a clause appearing (verbatim or near-verbatim) in two or more sibling variant files → move it up to the shared file.
+- **Flag**: one variant's values (its palette, class names, copy) sitting in a shared file → move it down.
+- Before adding a line to a variant file, ask: *would the sibling file need the same line?* If yes, it goes up.
+- Mechanical assist — surface clauses shared by sibling files:
+  `for f in <variant files>; do sed 's/[;,;、]/\n/g' "$f"; done | sed 's/^ *//' | sort | uniq -d`
+
 ## Procedure
-1. **Read each spec file in full** (in this repo: `prompt/*.md`). This is the real check and it is **language-agnostic** — the model reads the prose in whatever language it's written. For every line ask: *does this change what the AI builds?* If no → flag it.
+1. **Read each spec file in full** (in this repo: `prompt/*.md`). This is the real check and it is **language-agnostic** — the model reads the prose in whatever language it's written. For every line ask: *does this change what the AI builds?* If no → flag it. *Is it at the right layer?* If not → flag it.
 2. *(Optional first pass)* grep the loud English connectives to jump to suspects:
    `grep -rniE "otherwise|because|rejected|tradeoff|originally|used to|was .* now|note that" <spec-dir>`
    On a non-English spec this misses most — step 1's read is what catches them.

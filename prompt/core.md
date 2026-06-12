@@ -55,7 +55,7 @@
 凡带弹出层的组件都用 `effects.css` 同一套原语拼,**把形状与阴影分两层**(阴影 / 辉光挂"不带形状裁剪"的外层,形状挂内层;同一元素不同时带这两层):
 - **elevation** —— 不裁形状的抬升层,挂 drop-shadow + 辉光,经输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner;无 positioner 的模态 / Toast 挂 Popup / Root。
 - **surface** —— 带框表面(见 4.1),尺寸 / 填充 / 边框色走输入变量,不挂阴影。
-- **anim-pop** —— 锚定浮层统一开合动效(`transform-origin` + 过渡 + `[data-starting/ending-style]` 淡入缩放)。
+- **anim-pop** —— 锚定浮层统一开合动效:`transform-origin` + 过渡,`[data-starting/ending-style]` = 淡入 + `translateY(-6px) scale(0.97)`。
 - **connector** —— 1px 线连触发器(Base UI 的 Arrow):四方向定位、与弹层边框同色。不用三角。
 - **模态承载**:Dialog / AlertDialog 共用一个 viewport(`position:fixed; top/left/right:0; height:100dvh`,用 `left/right:0`、不用 `100vw`;`display:grid` + 子项 `margin:auto`、不用 `place-items:center`;`overflow:auto`);Drawer 用自带边缘 viewport(`overflow:hidden`)。
 
@@ -63,7 +63,7 @@
 重复视觉块抽到 `effects.css`,颜色差异用 `--<kit>-*-color` 就近覆盖:头部扫光、标题 / 图例标记、模态背板、模态文本(title / desc / body / actions)、关闭按钮、分隔线、折叠类(Accordion / Collapsible)共用的 trigger / marker / title / chevron / panel / content。
 
 ### 4.4 排版类(`theme/typography.css`)
-一组与语义标签解耦、可套任意标签的纯样式类:三档标题(`h1/h2/h3`,卡片 / 弹窗标题即 `h2` 字型、小节标题即 `h3`)、正文 `text`、修饰类(`--accent` / `--bright`)、**字段标签 caption 共享类 `.<kit>-cap`**(控件名:display 小号大写 dim;Slider / Progress / Meter / Input 标签、Checkbox / Radio / Switch 行、ToggleGroup 选项统一引用,不在组件里重抄)。三档标题的字号 / 字距递变关系由 theme 定。
+一组与语义标签解耦、可套任意标签的纯样式类:三档标题(`h1/h2/h3`,卡片 / 弹窗标题即 `h2` 字型、小节标题即 `h3`)、正文 `text`、修饰类(`h1--accent`)、**字段标签 caption 共享类 `.<kit>-cap`**(控件名:display 小号大写 dim;Slider / Progress / Meter / Input 标签、Checkbox / Radio / Switch 行、ToggleGroup 选项统一引用,不在组件里重抄)。三档标题的字号 / 字距递变关系由 theme 定。
 
 ## 5. 交互态(统一约定,**颜色留空给 theme**)
 

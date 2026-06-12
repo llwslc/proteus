@@ -43,7 +43,7 @@
 
 - `dur .22s / -slow .45s`,`ease (0.2, 0.8, 0.2, 1)`——快进缓出,干脆。
 - 微动:按钮高光斜扫(`background-position`)、进度条流动条纹、面板扫描光(`.nova-scan`,scaleX 呼吸)、徽章点 pulse、Hero 准星旋转。
-- 入场:顶栏下滑、Hero 文案 stagger(`nova-rise`)、面板滚动渐入;锚定浮层开合 = 淡入 + `translateY(-6px) scale(0.97)`。
+- 入场:顶栏下滑、Hero 文案 stagger(`nova-rise`)、面板滚动渐入。
 
 ## 6. 交互态配色(填 core §5 的留白)
 
@@ -65,4 +65,4 @@
 
 - logo:`NOVA`(VA 强调)/ 副标 `SCI-FI UI KIT`;状态徽章 `Online`(success)。
 - Hero:eyebrow `Component System · 37 Controls`;标题 `A **sci-fi** interface kit / forged in neon`;描述关键词 neon HUD skin、chamfered frames、reactive glow、scanline motion;单位词 `Controls`、`Token File`。
-- 区块组名:Input / Forms / Feedback / Overlays / Display / Foundations;面板 meta 用三字母缩码(BTN / DRW…);demo 文案走舰桥 / 遥测词汇(Command、Telemetry、Sensor)。
+- 区块组名:Input / Forms / Feedback / Overlays / Display / Foundations;demo 文案走舰桥 / 遥测词汇(Command、Telemetry、Sensor)。
