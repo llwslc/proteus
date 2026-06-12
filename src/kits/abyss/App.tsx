@@ -691,7 +691,7 @@ function Demo() {
             <GroupRule group="Inputs" sub="rites of intent" />
 
             <div className="abyss-section span-2" id="button">
-              <Panel title="Button" meta="i" breathe>
+              <Panel title="Button" meta="BTN" breathe>
                 <div className="demo-stack">
                   <div className="demo-row">
                     <Button icon={<KeyIcon />}>Invoke</Button>
@@ -729,7 +729,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="switch">
-              <Panel title="Switch" meta="ii">
+              <Panel title="Switch" meta="SWT">
                 <div className="demo-stack">
                   <div className="demo-spread">
                     <span className="abyss-cap">The Watcher</span>
@@ -748,7 +748,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="toggle">
-              <Panel title="Toggle Group" meta="vi">
+              <Panel title="Toggle Group" meta="TGL">
                 <div className="demo-stack">
                   <ToggleGroup defaultValue={["chart"]}>
                     <Toggle value="chart">Chart</Toggle>
@@ -765,7 +765,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="checkbox">
-              <Panel title="Checkbox" meta="iii">
+              <Panel title="Checkbox" meta="CHK">
                 <div className="demo-stack">
                   <Checkbox defaultChecked label="Speak the name" />
                   <Checkbox label="Open the way" />
@@ -776,7 +776,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="checkbox-group">
-              <Panel title="Checkbox Group" meta="iv">
+              <Panel title="Checkbox Group" meta="CHG">
                 <CheckboxGroup
                   parentLabel="All currents"
                   defaultValue={["echo"]}
@@ -786,7 +786,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="radio">
-              <Panel title="Radio Group" meta="v">
+              <Panel title="Radio Group" meta="RDO">
                 <RadioGroup defaultValue="tide">
                   <Radio value="tide">Walk the tide</Radio>
                   <Radio value="deep">Descend the deep</Radio>
@@ -799,7 +799,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="select">
-              <Panel title="Select" meta="xi">
+              <Panel title="Select" meta="SEL">
                 <div className="demo-stack">
                   <span className="abyss-cap">Bearing</span>
                   <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
@@ -808,7 +808,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="combobox">
-              <Panel title="Combobox" meta="xii">
+              <Panel title="Combobox" meta="CBX">
                 <div className="demo-stack">
                   <span className="abyss-cap">Sound the depths</span>
                   <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
@@ -817,7 +817,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="autocomplete">
-              <Panel title="Autocomplete" meta="xiii">
+              <Panel title="Autocomplete" meta="ACP">
                 <div className="demo-stack">
                   <span className="abyss-cap">Speak a rite</span>
                   <Autocomplete items={AUTOCOMPLETE_ITEMS} placeholder="Speak a rite…" />
@@ -826,7 +826,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="slider">
-              <Panel title="Slider" meta="vii">
+              <Panel title="Slider" meta="SLD">
                 <div className="demo-stack">
                   <Slider label="Descent" defaultValue={62} />
                   <Slider
@@ -841,7 +841,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="number">
-              <Panel title="Number Field" meta="viii">
+              <Panel title="Number Field" meta="NUM">
                 <div className="demo-stack">
                   <span className="abyss-cap">Fathom Mark</span>
                   <div className="demo-row">
@@ -853,7 +853,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="input">
-              <Panel title="Text Field" meta="ix">
+              <Panel title="Text Field" meta="TXT">
                 <div className="demo-stack">
                   <Field
                     label="Sea-name"
@@ -868,7 +868,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="otp">
-              <Panel title="OTP Field" meta="x">
+              <Panel title="OTP Field" meta="OTP">
                 <div className="demo-stack">
                   <span className="abyss-cap">Litany code</span>
                   <OtpField length={6} splitAt={3} defaultValue="427" />
@@ -879,7 +879,7 @@ function Demo() {
             <GroupRule group="Forms" sub="binding the acolyte" />
 
             <div className="abyss-section" id="fieldset">
-              <Panel title="Fieldset" meta="xiv">
+              <Panel title="Fieldset" meta="FLD">
                 <Fieldset legend="Acolyte Rites">
                   <Field label="Sea-name" defaultValue="Drowned Lark" />
                   <Field label="Order" defaultValue="Esoteric-7" />
@@ -888,7 +888,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="form">
-              <Panel title="Form" meta="xv">
+              <Panel title="Form" meta="FRM">
                 <FormDemo />
               </Panel>
             </div>
@@ -896,13 +896,13 @@ function Demo() {
             <GroupRule group="Feedback" sub="what the deep returns" />
 
             <div className="abyss-section" id="progress">
-              <Panel title="Progress" meta="xvi">
+              <Panel title="Progress" meta="PRG">
                 <ProgressDemo />
               </Panel>
             </div>
 
             <div className="abyss-section" id="meter">
-              <Panel title="Meter" meta="xvii">
+              <Panel title="Meter" meta="MTR">
                 <div className="demo-stack">
                   <Meter label="Communion" value={88} />
                   <Meter label="Corruption" value={52} tone="warning" />
@@ -912,19 +912,19 @@ function Demo() {
             </div>
 
             <div className="abyss-section span-2" id="tabs">
-              <Panel title="Tabs" meta="xviii">
+              <Panel title="Tabs" meta="TAB">
                 <Tabs items={TAB_ITEMS} />
               </Panel>
             </div>
 
             <div className="abyss-section" id="accordion">
-              <Panel title="Accordion" meta="xix">
+              <Panel title="Accordion" meta="ACC">
                 <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
               </Panel>
             </div>
 
             <div className="abyss-section" id="collapsible">
-              <Panel title="Collapsible" meta="xx">
+              <Panel title="Collapsible" meta="CLP">
                 <div className="demo-stack">
                   <Collapsible title="The Tide Log" defaultOpen>
                     All currents reading true. The last omen passed fourteen tides ago and
@@ -941,7 +941,7 @@ function Demo() {
             <GroupRule group="Overlays" sub="things that surface" />
 
             <div className="abyss-section" id="tooltip">
-              <Panel title="Tooltip" meta="xxi">
+              <Panel title="Tooltip" meta="TIP">
                 <div className="demo-row">
                   <Tooltip content="It watches from above" side="top">
                     <Button variant="ghost">Above</Button>
@@ -960,7 +960,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="popover">
-              <Panel title="Popover" meta="xxii">
+              <Panel title="Popover" meta="POP">
                 <Popover
                   trigger={<Button variant="ghost">The Conch</Button>}
                   title="Third Key"
@@ -972,7 +972,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section span-2" id="preview">
-              <Panel title="Preview Card" meta="xxiii">
+              <Panel title="Preview Card" meta="PVW">
                 <div className="demo-stack">
                   <span className="abyss-cap">Hover the sea-name</span>
                   <div className="abyss-text">
@@ -1019,7 +1019,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="menu">
-              <Panel title="Menu" meta="xxiv">
+              <Panel title="Menu" meta="MNU">
                 <Menu trigger={<Button variant="ghost">
                       Rites <ChevronDownIcon className="demo-trigger-chevron" />
                     </Button>}>
@@ -1044,7 +1044,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="menubar">
-              <Panel title="Menubar" meta="xxv">
+              <Panel title="Menubar" meta="MBR">
                 <Menubar>
                   <MenubarMenu label="Tome">
                     <MenuItem icon={<KeyIcon />} shortcut="⌘N">
@@ -1078,7 +1078,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="navmenu">
-              <Panel title="Navigation Menu" meta="xxvi">
+              <Panel title="Navigation Menu" meta="NAV">
                 <NavigationMenu
                   items={NAVMENU_ITEMS}
                   onLinkClick={(e) => e.preventDefault()}
@@ -1087,7 +1087,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="context">
-              <Panel title="Context Menu" meta="xxvii">
+              <Panel title="Context Menu" meta="CTX">
                 <ContextMenu
                   trigger={
                     <>
@@ -1114,7 +1114,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="dialog">
-              <Panel title="Dialog" meta="xxviii">
+              <Panel title="Dialog" meta="DLG">
                 <Dialog
                   trigger={<Button variant="secondary">Begin the Rite</Button>}
                   title="Descend?"
@@ -1134,7 +1134,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="alert">
-              <Panel title="Alert Dialog" meta="xxix">
+              <Panel title="Alert Dialog" meta="ALT">
                 <AlertDialog
                   trigger={<Button variant="danger">Break the Seal</Button>}
                   title="Break the Seal?"
@@ -1150,7 +1150,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="drawer">
-              <Panel title="Drawer" meta="xxx">
+              <Panel title="Drawer" meta="DRW">
                 <Drawer
                   side="right"
                   trigger={<Button variant="ghost">Open the Rites</Button>}
@@ -1172,7 +1172,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="toast">
-              <Panel title="Toast" meta="xxxi">
+              <Panel title="Toast" meta="TST">
                 <ToastDemo />
               </Panel>
             </div>
@@ -1180,7 +1180,7 @@ function Demo() {
             <GroupRule group="Display" sub="what watches back" />
 
             <div className="abyss-section" id="avatar">
-              <Panel title="Avatar" meta="xxxii">
+              <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
                   <Avatar
                     src="https://i.pravatar.cc/96?img=12"
@@ -1195,7 +1195,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="badge">
-              <Panel title="Badge" meta="xxxiii">
+              <Panel title="Badge" meta="BDG">
                 <div className="demo-row">
                   <Badge tone="primary" dot>
                     Awake
@@ -1212,13 +1212,13 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="toolbar">
-              <Panel title="Toolbar" meta="xxxiv">
+              <Panel title="Toolbar" meta="TBR">
                 <ToolbarDemo />
               </Panel>
             </div>
 
             <div className="abyss-section" id="scroll">
-              <Panel title="Scroll Area" meta="xxxv">
+              <Panel title="Scroll Area" meta="SCR">
                 <ScrollArea maxHeight={200}>
                   <ol className="demo-log">
                     {DIVE_LOG.map((entry, i) => (
@@ -1235,7 +1235,7 @@ function Demo() {
             <GroupRule group="Foundations" sub="stone & ink" />
 
             <div className="abyss-section span-2" id="typography">
-              <Panel title="Typography" meta="xxxvi">
+              <Panel title="Typography" meta="TYP">
                 <div className="demo-stack">
                   <p className="abyss-h1">R'lyeh Rises</p>
                   <p className="abyss-h2">The Drowned Choir</p>
@@ -1252,7 +1252,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="separator">
-              <Panel title="Separator" meta="xxxvii">
+              <Panel title="Separator" meta="SEP">
                 <div className="demo-stack">
                   <span className="abyss-cap">Plain</span>
                   <Separator />
@@ -1271,12 +1271,12 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="panel">
-              <Panel title="Panel" meta="xxxviii" breathe>
+              <Panel title="Panel" meta="PNL" breathe>
                 <p className="abyss-text" style={{ margin: "0 0 18px" }}>
                   The wet-stone tablet wrapping every rite: a hand-inked frame that
                   wavers, corner tendrils, and a breathing sigil. Composable to any depth.
                 </p>
-                <Panel title="Nested Tablet" meta="·">
+                <Panel title="Nested Tablet" meta="SUB">
                   <span className="abyss-cap">A tablet within a tablet</span>
                 </Panel>
               </Panel>

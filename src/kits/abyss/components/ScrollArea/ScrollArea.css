@@ -110,34 +110,3 @@
     0 0 12px var(--abyss-glow-a55),
     inset 0 0 0 1px var(--abyss-glow-a55);
 }
-.abyss-scrollarea__bead {
-  position: relative;
-  z-index: 1;
-  display: block;
-  line-height: 0;
-  filter: drop-shadow(0 0 5px var(--abyss-glow-a55));
-  transition:
-    transform var(--abyss-dur-slow) var(--abyss-ease),
-    filter var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-scrollarea__bead svg {
-  display: block;
-  overflow: visible;
-}
-.abyss-scrollarea__spiral {
-  fill: none;
-  stroke: var(--abyss-text-bright);
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  opacity: 0.72;
-  transition: opacity var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__bead,
-.abyss-scrollarea__thumb:hover .abyss-scrollarea__bead {
-  transform: rotate(140deg);
-  filter: drop-shadow(0 0 8px var(--abyss-glow-a70));
-}
-.abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__spiral,
-.abyss-scrollarea__thumb:hover .abyss-scrollarea__spiral {
-  opacity: 1;
-}

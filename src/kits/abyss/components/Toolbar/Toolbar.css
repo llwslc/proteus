@@ -4,7 +4,9 @@
   --abyss-frame-round: var(--abyss-round-4);
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--abyss-space-1);
+  row-gap: var(--abyss-space-2);
   width: fit-content;
   max-width: 100%;
   padding: var(--abyss-space-1);
@@ -101,11 +103,6 @@
 }
 
 @media (max-width: 768px) {
-  .abyss-toolbar {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    row-gap: var(--abyss-space-2);
-  }
   .abyss-toolbar__sep {
     display: none;
   }

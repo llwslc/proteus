@@ -86,7 +86,5 @@
 .abyss-numberfield__btn:disabled {
   cursor: not-allowed;
   color: var(--abyss-text-mute);
-  --abyss-frame-ink: var(--abyss-ink-faint);
   opacity: var(--abyss-disabled-opacity);
-  filter: grayscale(0.5);
 }

@@ -26,19 +26,6 @@ function useParts() {
   return parts;
 }
 
-function ItemCurl() {
-  return (
-    <span className="abyss-menu__curl" aria-hidden>
-      <svg viewBox="0 0 16 24" width="16" height="24">
-        <path
-          className="abyss-menu__curl-path"
-          d="M2 2c0 6 5 7 5 11s-4 4-4 1 4-2 6 0 2 6-1 8"
-        />
-      </svg>
-    </span>
-  );
-}
-
 export interface MenuItemProps {
   children: ReactNode;
   icon?: ReactNode;
@@ -69,7 +56,6 @@ export function MenuItem({
       <span className="abyss-menu__icon">{icon}</span>
       <span className="abyss-menu__label">{children}</span>
       {shortcut ? <kbd className="abyss-menu__shortcut">{shortcut}</kbd> : null}
-      <ItemCurl />
     </Item>
   );
 }
@@ -99,14 +85,13 @@ export function MenuSub({ label, icon, disabled, children }: MenuSubProps) {
         <span className="abyss-menu__arrow">
           <ChevronRightIcon />
         </span>
-        <ItemCurl />
       </SubmenuTrigger>
       <Portal>
         <Positioner
           className="abyss-menu__positioner"
           side="right"
           align="start"
-          sideOffset={8}
+          sideOffset={14}
         >
           <Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
             {children}

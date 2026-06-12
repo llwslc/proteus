@@ -2,7 +2,9 @@
   --nova-surface-border: var(--nova-line);
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--nova-space-1);
+  row-gap: var(--nova-space-2);
   width: fit-content;
   max-width: 100%;
   padding: var(--nova-space-1);
@@ -73,11 +75,6 @@
 }
 
 @media (max-width: 768px) {
-  .nova-toolbar {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    row-gap: var(--nova-space-2);
-  }
   .nova-toolbar__sep {
     display: none;
   }

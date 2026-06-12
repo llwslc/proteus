@@ -43,7 +43,7 @@
 
 - `dur .3s / -slow .66s`,`ease (0.38, 0.1, 0.2, 1)`——比 NOVA 慢半拍、沉。
 - **呼吸是主旋律**:`--abyss-breath 7s`,`.abyss-breathe` 共享 class(徽章点、sigil、Toast 图记)。
-- **inscribe**:勾选 / 标记按 `stroke-dashoffset` 描画出现(Checkbox 对勾、Menu 卷边)。
+- **inscribe**:勾选 / 标记按 `stroke-dashoffset` 描画出现(Checkbox 对勾)。
 - Hero 法阵:外环 96s 正转 + 内环 62s 反转 + 瞳孔脉动;Dialog sigil 30s 自转;OTP 光标闪动;Drawer 钥匙动效。
 - 入场:Hero 文案 `abyss-rise` stagger、区块滚动渐入;锚定浮层开合 = 淡入 + `translateY(-6px) scale(0.97)`。
 
@@ -60,7 +60,7 @@
 ## 7. 组件皮肤决定
 
 - **Switch 是一只眼**(`.abyss-eye`:sclera / iris / pupil / lid SVG),选中 iris + pupil `scaleY(0.06→1)` 睁眼 + 辉光;无轨道滑块。
-- Panel:角部触手 tendril;Toast:右下角向上堆叠,左缘光束 + 呼吸 sigil;Menu 带卷边;模态标题配图记(Dialog 自转 sigil、Alert 按 tone)。
+- Panel:角部触手 tendril;Toast:右下角向上堆叠,左缘光束 + 呼吸 sigil;模态标题配图记(Dialog 自转 sigil、Alert 按 tone)。
 - AlertDialog 按 `tone` 重染:danger = blood(默认,骷髅图记)、warning = gold、primary = glow。
 - NavigationMenu 触发器栏复用 Tabs 皮肤;Hero 法阵、分组线 GroupRule 带 sigil 标记。
 - 背板 scrim 额外 `brightness(.8)` 压暗;连接线 1.5px glow + edge 滤镜。
@@ -69,4 +69,4 @@
 
 - logo:`Abyss`(rune 体)/ 副标 `Eldritch UI Kit`;状态徽章 `Awake`(primary),时钟带月相图标。
 - Hero:eyebrow `Grimoire · 37 Rites`;标题 `An **eldritch** interface kit / dredged from the deep`;描述关键词 wet-stone tablets、watching eyes、inscribed sigils、hand-inked frames;单位词 `Rites`、`Sigil File`。
-- 区块组名带 script 斜体副题:Inputs · rites of intent,Forms · binding the acolyte,Feedback · what the deep returns,Overlays · things that surface,Display · what watches back,Foundations · stone & ink;面板 meta 用罗马数字;demo 文案走深海 / 仪式词汇(R'lyeh、Ward、Tide、Sounding)。
+- 区块组名带 script 斜体副题:Inputs · rites of intent,Forms · binding the acolyte,Feedback · what the deep returns,Overlays · things that surface,Display · what watches back,Foundations · stone & ink;面板 meta 用三字母缩码(BTN / DRW…);demo 文案走深海 / 仪式词汇(R'lyeh、Ward、Tide、Sounding)。

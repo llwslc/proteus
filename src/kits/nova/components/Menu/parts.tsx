@@ -90,7 +90,7 @@ export function MenuSub({ label, icon, disabled, children }: MenuSubProps) {
           className="nova-elevation nova-menu__positioner"
           side="right"
           align="start"
-          sideOffset={8}
+          sideOffset={10}
         >
           <Popup className="nova-surface nova-anim-pop nova-menu__popup">
             {children}
