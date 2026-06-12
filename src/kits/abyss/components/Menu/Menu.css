@@ -9,7 +9,6 @@
   --abyss-frame-fill: var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-4);
-  box-sizing: border-box;
   min-width: var(--abyss-menu-min-w);
   padding: var(--abyss-space-2);
   outline: none;
@@ -131,9 +130,7 @@
   cursor: not-allowed;
 }
 
-.abyss-menu__item--danger {
-  color: var(--abyss-blood);
-}
+.abyss-menu__item--danger,
 .abyss-menu__item--danger .abyss-menu__icon {
   color: var(--abyss-blood);
 }
@@ -158,7 +155,6 @@
 .abyss-menu__separator.abyss-separator {
   position: relative;
   z-index: 1;
-  height: 1px;
   margin: var(--abyss-space-2) var(--abyss-space-2);
 }
 

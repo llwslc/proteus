@@ -93,23 +93,17 @@
 .nova-navmenu__positioner {
   z-index: var(--nova-z-menu);
   outline: none;
-  box-sizing: border-box;
   width: var(--positioner-width);
   height: var(--positioner-height);
 }
 .nova-navmenu__popup {
   position: relative;
-  box-sizing: border-box;
   width: var(--popup-width);
   height: var(--popup-height);
-  transition:
-    opacity var(--nova-dur) var(--nova-ease),
-    transform var(--nova-dur) var(--nova-ease);
 }
 
 .nova-navmenu__viewport {
   z-index: 1;
-  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;

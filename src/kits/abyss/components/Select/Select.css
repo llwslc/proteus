@@ -59,8 +59,13 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
+.abyss-select__trigger:hover .abyss-select__chevron {
+  color: var(--abyss-text);
+}
 .abyss-select__trigger[data-popup-open] .abyss-select__chevron {
   transform: rotate(180deg);
+  color: var(--abyss-glow);
+  filter: var(--abyss-aura-mark);
 }
 
 .abyss-select__positioner {
@@ -75,7 +80,6 @@
     var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-4);
-  box-sizing: border-box;
   min-width: var(--anchor-width);
   padding: var(--abyss-space-1);
 }

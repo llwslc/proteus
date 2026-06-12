@@ -69,12 +69,10 @@
   color: var(--abyss-blood-text);
 }
 .abyss-btn--danger:hover {
-  color: var(--abyss-blood-text);
   filter: drop-shadow(0 0 12px var(--abyss-blood-a55));
 }
 
 .abyss-btn--ghost {
-  --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-fill: transparent;
   color: var(--abyss-text-dim);
 }
@@ -93,9 +91,6 @@
 .abyss-btn--icon-ghost {
   padding: 0;
   width: var(--abyss-control-h);
-}
-.abyss-btn--icon {
-  color: var(--abyss-text-bright);
 }
 .abyss-btn--icon:hover,
 .abyss-btn--icon-ghost:hover {

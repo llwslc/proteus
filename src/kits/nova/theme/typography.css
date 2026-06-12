@@ -20,12 +20,6 @@
   font-size: var(--nova-fs-13);
   letter-spacing: var(--nova-ls-16);
 }
-.nova-h1--accent,
-.nova-h2--accent,
-.nova-h3--accent {
-  color: var(--nova-primary);
-  text-shadow: var(--nova-glow-text);
-}
 
 .nova-text {
   margin: 0;
@@ -33,7 +27,4 @@
   font-size: var(--nova-fs-14);
   line-height: var(--nova-lh-160);
   color: var(--nova-text-dim);
-}
-.nova-text--bright {
-  color: var(--nova-text);
 }

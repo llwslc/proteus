@@ -57,10 +57,6 @@
 .abyss-toast[data-ending-style] {
   opacity: 0;
 }
-.abyss-toast[data-ending-style],
-.abyss-toast[data-ending-style] .abyss-toast__tablet {
-  transition-timing-function: var(--abyss-ease);
-}
 .abyss-toast[data-starting-style] .abyss-toast__tablet {
   transform: translateY(20px) scale(0.97);
 }
@@ -151,10 +147,6 @@
   --abyss-toast-accent: var(--abyss-ichor);
   --abyss-toast-accent-soft: var(--abyss-ichor-soft);
   --abyss-toast-accent-text: var(--abyss-ichor-text);
-}
-.abyss-toast--success {
-  --abyss-toast-accent: var(--abyss-glow);
-  --abyss-toast-accent-soft: var(--abyss-glow-soft);
 }
 .abyss-toast--warning {
   --abyss-toast-accent: var(--abyss-gold);

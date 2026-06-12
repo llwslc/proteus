@@ -10,7 +10,6 @@
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-round: var(--abyss-round-3);
-  position: relative;
   display: flex;
   align-items: center;
   min-height: var(--abyss-control-h);

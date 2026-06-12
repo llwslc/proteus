@@ -1,5 +1,4 @@
 .abyss-avatar {
-  --abyss-avatar-size: var(--abyss-avatar-size-base);
   position: relative;
   display: inline-block;
   width: var(--abyss-avatar-size);
@@ -91,7 +90,6 @@
 
 .abyss-avatar__status--online {
   --moon: var(--abyss-glow);
-  --moon-glow: var(--abyss-glow-a55);
 }
 .abyss-avatar__status--online .abyss-avatar__moon {
   animation: abyss-moon-pulse var(--abyss-breath) ease-in-out infinite;
@@ -129,10 +127,6 @@
   transform: translateX(40%);
 }
 
-.abyss-avatar__status--offline {
-  --moon: var(--abyss-text-mute);
-  --moon-glow: transparent;
-}
 .abyss-avatar__status--offline .abyss-avatar__moon-shadow {
   transform: translateX(0);
 }

@@ -121,9 +121,7 @@
 .nova-btn--ghost::after {
   opacity: 0.25;
 }
-.nova-btn--ghost:hover {
-  color: var(--nova-primary);
-}
+.nova-btn--ghost:hover,
 .nova-btn--ghost[data-popup-open] {
   color: var(--nova-primary);
 }
@@ -135,22 +133,12 @@
   height: var(--nova-button-h-sm);
   padding: 0 var(--nova-space-3);
   font-size: var(--nova-fs-12);
-  clip-path: var(--nova-clip-9);
-}
-.nova-btn--sm::before,
-.nova-btn--sm::after {
-  clip-path: var(--nova-clip-9);
 }
 
 .nova-btn--lg {
   height: var(--nova-button-h-lg);
   padding: 0 var(--nova-space-7);
   font-size: var(--nova-fs-14);
-  clip-path: var(--nova-clip-9);
-}
-.nova-btn--lg::before,
-.nova-btn--lg::after {
-  clip-path: var(--nova-clip-9);
 }
 
 .nova-btn--icon {
@@ -168,16 +156,6 @@
     border-color var(--nova-dur) var(--nova-ease),
     transform var(--nova-dur) var(--nova-ease);
 }
-.nova-btn--icon::before,
-.nova-btn--icon::after {
-  display: none;
-}
-.nova-btn--icon:hover,
-.nova-btn--icon:focus-visible {
-  color: var(--nova-primary);
-  filter: none;
-}
-
 .nova-btn--icon-ghost {
   width: var(--nova-button-icon-ghost);
   height: var(--nova-button-icon-ghost);
@@ -189,10 +167,14 @@
     color var(--nova-dur) var(--nova-ease),
     transform var(--nova-dur) var(--nova-ease);
 }
+.nova-btn--icon::before,
+.nova-btn--icon::after,
 .nova-btn--icon-ghost::before,
 .nova-btn--icon-ghost::after {
   display: none;
 }
+.nova-btn--icon:hover,
+.nova-btn--icon:focus-visible,
 .nova-btn--icon-ghost:hover,
 .nova-btn--icon-ghost:focus-visible {
   color: var(--nova-primary);

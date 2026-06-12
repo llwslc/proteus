@@ -66,7 +66,6 @@
   outline: none;
 }
 .nova-autocomplete__popup {
-  box-sizing: border-box;
   min-width: var(--anchor-width);
   padding: var(--nova-space-1);
 }

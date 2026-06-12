@@ -3,7 +3,6 @@
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-round: var(--abyss-round-3);
   position: relative;
-  box-sizing: border-box;
   width: 100%;
 }
 .abyss-scrollarea::after {
@@ -46,9 +45,6 @@
   width: 0;
   height: 0;
   display: none;
-}
-.abyss-scrollarea__viewport:focus-visible {
-  outline: none;
 }
 .abyss-scrollarea:focus-within {
   --abyss-frame-ink: var(--abyss-glow-a55);
@@ -134,9 +130,7 @@
   stroke-width: 1.1;
   stroke-linecap: round;
   opacity: 0.72;
-  transition:
-    stroke var(--abyss-dur) var(--abyss-ease),
-    opacity var(--abyss-dur) var(--abyss-ease);
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-scrollarea__scrollbar[data-scrolling] .abyss-scrollarea__bead,
 .abyss-scrollarea__thumb:hover .abyss-scrollarea__bead {

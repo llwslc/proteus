@@ -270,8 +270,16 @@
 }
 .abyss-hero h1 {
   margin: 0 0 16px;
+  font-family: var(--abyss-font-display);
   font-size: clamp(30px, 4.4vw, 46px);
   font-weight: 900;
+  line-height: var(--abyss-lh-100);
+  letter-spacing: var(--abyss-ls-2);
+  color: var(--abyss-text-bright);
+}
+.abyss-hero h1 b {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
 }
 .abyss-hero .abyss-text {
   max-width: 60ch;
@@ -372,23 +380,10 @@
   justify-content: space-between;
   gap: var(--abyss-space-4);
 }
-.demo-rowlabel,
-.abyss-cap {
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-12);
-  letter-spacing: var(--abyss-ls-12);
-  text-transform: uppercase;
-  color: var(--abyss-text-dim);
-}
 .demo-toolbar__label {
   font-family: var(--abyss-font-display);
   font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);
-}
-.abyss-form__row {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: var(--abyss-space-2);
 }
 .demo-link {
   color: var(--abyss-gold);

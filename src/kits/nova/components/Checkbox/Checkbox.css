@@ -59,10 +59,7 @@
 .nova-checkbox[data-indeterminate]::before {
   background: var(--nova-accent-surface);
 }
-.nova-checkbox[data-checked] .nova-checkbox__check {
-  opacity: 1;
-  transform: scale(1);
-}
+.nova-checkbox[data-checked] .nova-checkbox__check,
 .nova-checkbox[data-indeterminate] .nova-checkbox__dash {
   opacity: 1;
   transform: scale(1);

@@ -16,7 +16,6 @@
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-round: 50%;
-  position: relative;
   display: grid;
   place-items: center;
   width: var(--abyss-radio-box);
@@ -26,6 +25,8 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-radio__spark {
   width: var(--abyss-radio-glyph);
@@ -51,11 +52,11 @@
 }
 .abyss-radio__control[data-checked] {
   --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: var(--abyss-aura-mark);
 }
 .abyss-radio__control[data-checked] .abyss-radio__spark path {
   transform: scale(1) rotate(0deg);
   opacity: 1;
-  filter: var(--abyss-aura-mark);
 }
 .abyss-radio__control:focus-visible {
   outline: none;

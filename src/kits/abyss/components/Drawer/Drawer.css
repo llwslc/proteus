@@ -41,7 +41,6 @@
   position: absolute;
   z-index: 2;
   pointer-events: none;
-  background: var(--abyss-glow);
   box-shadow: 0 0 14px var(--abyss-glow-a70);
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }

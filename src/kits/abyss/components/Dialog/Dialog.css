@@ -10,7 +10,6 @@
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-round: var(--abyss-round-5);
-  position: relative;
   padding: var(--abyss-space-6) var(--abyss-space-6) var(--abyss-space-5);
 }
 .abyss-dialog__x {

@@ -42,7 +42,6 @@
 .nova-drawer__edge {
   position: absolute;
   z-index: 2;
-  background: var(--nova-primary);
   box-shadow: 0 0 14px var(--nova-primary);
 }
 
@@ -158,5 +157,4 @@
 .nova-drawer__x {
   top: 16px;
   right: 16px;
-  z-index: 3;
 }

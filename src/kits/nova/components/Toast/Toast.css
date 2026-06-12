@@ -17,7 +17,6 @@
 
 .nova-toast {
   --nova-toast-accent: var(--nova-primary);
-  --nova-overlay-shadow: var(--nova-shadow-popup);
   --nova-overlay-glow: drop-shadow(
     0 0 20px color-mix(in srgb, var(--nova-toast-accent) 15%, transparent)
   );
@@ -39,7 +38,6 @@
 }
 
 .nova-toast__surface {
-  --nova-surface-clip: var(--nova-clip-9);
   --nova-surface-border: color-mix(in srgb, var(--nova-toast-accent) 50%, transparent);
   display: flex;
   align-items: flex-start;

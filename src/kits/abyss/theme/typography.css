@@ -21,12 +21,6 @@
   text-transform: uppercase;
   color: var(--abyss-text-dim);
 }
-.abyss-h1--accent,
-.abyss-h2--accent,
-.abyss-h3--accent {
-  color: var(--abyss-glow);
-  text-shadow: var(--abyss-text-aura);
-}
 .abyss-brand {
   font-family: var(--abyss-font-rune);
   font-weight: var(--abyss-fw-400);
@@ -39,9 +33,6 @@
   font-size: var(--abyss-fs-15);
   line-height: var(--abyss-lh-165);
   color: var(--abyss-text-dim);
-}
-.abyss-text--bright {
-  color: var(--abyss-text);
 }
 
 .abyss-cap {

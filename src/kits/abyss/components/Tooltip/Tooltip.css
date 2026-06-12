@@ -9,7 +9,6 @@
 .abyss-tooltip__surface {
   --abyss-frame-fill: var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: var(--abyss-round-3);
   display: block;
   max-width: var(--abyss-w-tooltip);
   padding: var(--abyss-space-2) var(--abyss-space-3);

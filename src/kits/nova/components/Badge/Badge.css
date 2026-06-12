@@ -30,9 +30,6 @@
   }
 }
 
-.nova-badge--primary {
-  --nova-badge-color: var(--nova-primary);
-}
 .nova-badge--secondary {
   --nova-badge-color: var(--nova-secondary);
 }

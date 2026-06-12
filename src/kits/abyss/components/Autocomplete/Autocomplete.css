@@ -12,12 +12,10 @@
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-round: var(--abyss-round-3);
-  position: relative;
   display: flex;
   align-items: center;
   gap: var(--abyss-space-2);
   width: 100%;
-  min-width: var(--abyss-autocomplete-min-w);
   min-height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-3);
 }
@@ -66,8 +64,6 @@
 .abyss-autocomplete__popup {
   --abyss-frame-fill: var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
-  --abyss-frame-round: var(--abyss-round-3);
-  box-sizing: border-box;
   min-width: var(--anchor-width);
   padding: var(--abyss-space-1);
 }

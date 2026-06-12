@@ -27,14 +27,11 @@
   background: var(--nova-primary);
 }
 .nova-input-wrap--error,
-.nova-input-wrap--error:hover {
-  background: var(--nova-danger);
-}
+.nova-input-wrap--error:hover,
 .nova-input-wrap--error:focus-within {
   background: var(--nova-danger);
 }
-.nova-input-wrap--error .nova-input,
-.nova-input-wrap--error:focus-within .nova-input {
+.nova-input-wrap--error .nova-input {
   background: var(--nova-danger-inset);
 }
 

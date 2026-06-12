@@ -1,9 +1,4 @@
-.nova-otp {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--nova-space-2);
-}
-
+.nova-otp,
 .nova-otp__slot-wrap {
   display: inline-flex;
   align-items: center;

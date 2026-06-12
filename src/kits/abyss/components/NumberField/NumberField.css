@@ -44,7 +44,6 @@
 }
 
 .abyss-numberfield__btn {
-  --abyss-frame-round: var(--abyss-round-3);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-fill: linear-gradient(
     180deg,

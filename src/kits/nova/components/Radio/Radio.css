@@ -69,7 +69,6 @@
 }
 .nova-radio__control[data-disabled] {
   cursor: not-allowed;
-  opacity: var(--nova-disabled-opacity);
 }
 
 .nova-radio:has(.nova-radio__control[data-disabled]) {

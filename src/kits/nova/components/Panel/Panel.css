@@ -38,9 +38,6 @@
   animation: nova-panel-scan 6s linear infinite;
 }
 @keyframes nova-panel-scan {
-  from {
-    background-position: 0 -100%;
-  }
   to {
     background-position: 0 200%;
   }

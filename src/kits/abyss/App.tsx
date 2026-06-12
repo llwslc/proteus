@@ -655,8 +655,8 @@ function Demo() {
             <p className="abyss-hero__eyebrow">
               <TentacleIcon /> Grimoire · 37 Rites
             </p>
-            <h1 className="abyss-h1">
-              An <span className="abyss-h1--accent">eldritch</span> interface kit
+            <h1>
+              An <b>eldritch</b> interface kit
               <br />
               dredged from the deep
             </h1>

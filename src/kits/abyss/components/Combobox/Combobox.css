@@ -2,7 +2,6 @@
   --abyss-frame-fill: var(--abyss-inset);
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-round: var(--abyss-round-3);
-  position: relative;
   display: flex;
   align-items: center;
   gap: var(--abyss-space-2);
@@ -102,7 +101,6 @@
 }
 .abyss-combobox__popup {
   position: relative;
-  box-sizing: border-box;
   min-width: var(--anchor-width);
   padding: var(--abyss-space-1);
 }

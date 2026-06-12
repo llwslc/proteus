@@ -9,7 +9,6 @@
   --abyss-frame-round: var(--abyss-round-3);
   --abyss-frame-ink: var(--abyss-ink-strong);
   --abyss-frame-fill: var(--abyss-surface);
-  position: relative;
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-accordion__item:has(.abyss-accordion__trigger[data-panel-open]) {

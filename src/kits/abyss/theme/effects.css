@@ -41,14 +41,7 @@
   animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 
-@keyframes abyss-inscribe {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 .abyss-eye {
-  --eye: var(--abyss-glow);
   display: inline-block;
   line-height: 0;
   filter: drop-shadow(0 0 0 transparent);
@@ -64,7 +57,7 @@
   stroke-width: 1.4;
 }
 .abyss-eye .abyss-eye__iris {
-  fill: var(--eye);
+  fill: var(--abyss-glow);
   transform-box: fill-box;
   transform-origin: center;
   transform: scaleY(0.06);
@@ -190,11 +183,6 @@
   color: var(--abyss-title-color, var(--abyss-glow));
   text-shadow: 0 0 11px
     color-mix(in srgb, var(--abyss-title-color, var(--abyss-glow)) 45%, transparent);
-}
-.abyss-modal-title__eye {
-  flex: 0 0 auto;
-  font-size: 20px;
-  filter: var(--abyss-aura);
 }
 .abyss-modal-desc {
   margin: 0 0 var(--abyss-space-4);

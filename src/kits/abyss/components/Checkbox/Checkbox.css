@@ -12,6 +12,8 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-check__sigil {
   width: var(--abyss-checkbox-glyph);
@@ -26,9 +28,7 @@
   stroke-linejoin: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  transition:
-    stroke-dashoffset var(--abyss-dur-slow) var(--abyss-ease),
-    filter var(--abyss-dur) var(--abyss-ease);
+  transition: stroke-dashoffset var(--abyss-dur-slow) var(--abyss-ease);
 }
 .abyss-check__bar {
   stroke: var(--abyss-glow);
@@ -40,19 +40,16 @@
 .abyss-check:hover {
   --abyss-frame-ink: var(--abyss-glow-a30);
 }
-.abyss-check[data-checked] {
+.abyss-check[data-checked],
+.abyss-check[data-indeterminate] {
   --abyss-frame-ink: var(--abyss-glow-a55);
+  filter: var(--abyss-aura-mark);
 }
 .abyss-check[data-checked] .abyss-check__mark {
   stroke-dashoffset: 0;
-  filter: var(--abyss-aura-mark);
-}
-.abyss-check[data-indeterminate] {
-  --abyss-frame-ink: var(--abyss-glow-a55);
 }
 .abyss-check[data-indeterminate] .abyss-check__bar {
   opacity: 1;
-  filter: var(--abyss-aura-mark);
 }
 .abyss-check:focus-visible {
   outline: none;

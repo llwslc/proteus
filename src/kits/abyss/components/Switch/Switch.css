@@ -1,5 +1,4 @@
 .abyss-switch {
-  --eye: var(--abyss-glow);
   display: inline-flex;
   align-items: center;
   justify-content: center;

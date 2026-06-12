@@ -108,7 +108,6 @@
 
 .abyss-otp__cell:has(.abyss-otp__slot[data-filled]:focus) .abyss-otp__caret {
   animation: none;
-  opacity: 0;
 }
 
 .abyss-otp__cell:has(.abyss-otp__slot:disabled) {

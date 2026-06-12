@@ -7,11 +7,6 @@
   gap: var(--abyss-space-2);
   width: 100%;
 }
-.abyss-meter--success {
-  --abyss-meter-fill: var(--abyss-glow);
-  --abyss-meter-fill-deep: var(--abyss-glow-deep);
-  --abyss-meter-aura: var(--abyss-glow-a55);
-}
 .abyss-meter--warning {
   --abyss-meter-fill: var(--abyss-gold);
   --abyss-meter-fill-deep: var(--abyss-gold-deep);

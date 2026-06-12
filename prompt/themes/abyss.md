@@ -20,7 +20,7 @@
 
 - **Cinzel**(display,石刻小型大写)、**Spectral**(正文衬线;italic 兼作 script 注脚)、**UnifrakturCook**(rune,仅 logo 品牌字)、**Cutive Mono**(数值)。
 - 尺度档:字号 `fs-12 / 13 / 15 / 16 / 19 / 24 / 34`,字距 `ls-2 / 6 / 12`,行高 `lh-100 / 150 / 165`,字重 `fw-400 / 600`。
-- 标题三档 `fw-400`、不加 text-transform(Cinzel 天然小型大写):`h1` fs-34 + ls-2,`h2` fs-19 + ls-6,`h3` fs-13 + ls-12 + 大写 + dim;正文 `text` = fs-15 + lh-165 + dim;`--accent` 修饰 = glow + text-aura。
+- 标题三档 `fw-400`、不加 text-transform(Cinzel 天然小型大写):`h1` fs-34 + ls-2,`h2` fs-19 + ls-6,`h3` fs-13 + ls-12 + 大写 + dim;正文 `text` = fs-15 + lh-165 + dim。
 - 字段 caption 有独立类 **`.abyss-cap`**(display · fs-12 · ls-12 · 大写 · dim),组件统一引用。
 - `.abyss-brand` = rune 字,只给 logo。
 
@@ -43,7 +43,7 @@
 
 - `dur .3s / -slow .66s`,`ease (0.38, 0.1, 0.2, 1)`——比 NOVA 慢半拍、沉。
 - **呼吸是主旋律**:`--abyss-breath 7s`,`.abyss-breathe` 共享 class(徽章点、sigil、Toast 图记)。
-- **inscribe**:勾选 / 标记按 `stroke-dashoffset` 描画出现(Checkbox 对勾、Panel 触手)。
+- **inscribe**:勾选 / 标记按 `stroke-dashoffset` 描画出现(Checkbox 对勾、Menu 卷边)。
 - Hero 法阵:外环 96s 正转 + 内环 62s 反转 + 瞳孔脉动;Dialog sigil 30s 自转;OTP 光标闪动;Drawer 钥匙动效。
 - 入场:Hero 文案 `abyss-rise` stagger、区块滚动渐入;锚定浮层开合 = 淡入 + `translateY(-6px) scale(0.97)`。
 
@@ -54,13 +54,13 @@
 - 文字强调选中(列表 / Tab / NavMenu)转 `glow` + `text-aura`;Tab / NavMenu 配辉光下划线。
 - 悬停:面 `glow-soft` 底;图标 / 动作按钮转 glow + aura;菜单项转亮文。
 - 焦点:`frame-ink` 直接点到实色 `glow` + `aura`(Switch 无框,例外用 `aura-strong`);输入框同。
-- **标记辉光统一 `aura-mark`**:一切选中 / 激活的标记(眼、星印、火花、勾、下划线条、记号)同一档;条 / 值文字用 `text-aura`。
+- **选中辉光统一 `aura-mark`**:选择控件(Switch 眼、Checkbox 盒、Radio 圈)选中时整件外发光,内部标记不单独打光;弹层勾记 / 指示条同档;条 / 值文字用 `text-aura`。
 - 禁用 `opacity .55`。
 
 ## 7. 组件皮肤决定
 
 - **Switch 是一只眼**(`.abyss-eye`:sclera / iris / pupil / lid SVG),选中 iris + pupil `scaleY(0.06→1)` 睁眼 + 辉光;无轨道滑块。
-- Panel:角部触手 tendril(stroke 描画入场);Toast:右下角向上堆叠,左缘光束 + 呼吸 sigil;Menu 带卷边;模态标题配注视眼(`.abyss-modal-title__eye`)。
+- Panel:角部触手 tendril;Toast:右下角向上堆叠,左缘光束 + 呼吸 sigil;Menu 带卷边;模态标题配图记(Dialog 自转 sigil、Alert 按 tone)。
 - AlertDialog 按 `tone` 重染:danger = blood(默认,骷髅图记)、warning = gold、primary = glow。
 - NavigationMenu 触发器栏复用 Tabs 皮肤;Hero 法阵、分组线 GroupRule 带 sigil 标记。
 - 背板 scrim 额外 `brightness(.8)` 压暗;连接线 1.5px glow + edge 滤镜。
