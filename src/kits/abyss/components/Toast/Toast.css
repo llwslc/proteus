@@ -39,8 +39,9 @@
 }
 
 .abyss-toast__tablet {
+  --abyss-frame-bevel: var(--abyss-bevel);
   --abyss-frame-fill:
-    radial-gradient(120% 80% at 0% 0%, var(--abyss-toast-accent-soft), transparent 62%),
+    var(--abyss-stone-grain),
     linear-gradient(180deg, var(--abyss-stone-raised), var(--abyss-stone));
   --abyss-frame-ink: color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent);
   --abyss-frame-round: var(--abyss-round-4);
