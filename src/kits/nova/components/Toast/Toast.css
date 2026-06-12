@@ -30,8 +30,8 @@
     translateY(var(--toast-offset-y));
   opacity: 1;
   transition:
-    --toast-offset-y var(--nova-dur-slow) var(--nova-ease),
-    opacity var(--nova-dur-slow) var(--nova-ease);
+    --toast-offset-y calc(var(--nova-dur-slow) * 1.4) var(--nova-ease-soft),
+    opacity calc(var(--nova-dur-slow) * 1.4) var(--nova-ease-soft);
 }
 .nova-toast[data-swiping] {
   transition: none;
@@ -44,7 +44,7 @@
   gap: var(--nova-space-3);
   padding: var(--nova-space-4) var(--nova-space-4);
   overflow: hidden;
-  transition: transform var(--nova-dur-slow) var(--nova-ease);
+  transition: transform calc(var(--nova-dur-slow) * 1.4) var(--nova-ease-soft);
 }
 
 .nova-toast[data-starting-style],

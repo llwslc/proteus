@@ -41,7 +41,7 @@
 
 ## 5. 动效个性
 
-- `dur .22s / -slow .45s`,`ease (0.2, 0.8, 0.2, 1)`——快进缓出,干脆。
+- `dur .22s / -slow .45s`,`ease (0.2, 0.8, 0.2, 1)`——快进缓出,干脆;`ease-soft (0.38, 0.1, 0.2, 1)` 给 Toast 栈位移这类大位移缓起步。
 - 微动:按钮高光斜扫(`background-position`)、进度条流动条纹、面板扫描光(`.nova-scan`,scaleX 呼吸)、徽章点 pulse、Hero 准星旋转。
 - 入场:顶栏下滑、Hero 文案 stagger(`nova-rise`)、面板滚动渐入。
 
