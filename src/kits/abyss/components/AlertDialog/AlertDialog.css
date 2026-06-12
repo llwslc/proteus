@@ -1,20 +1,17 @@
 .abyss-alert {
   --abyss-alert-accent: var(--abyss-blood);
-  --abyss-alert-accent-soft: var(--abyss-blood-soft);
   --abyss-title-color: var(--abyss-blood-text);
   position: relative;
   width: min(100%, var(--abyss-w-alert));
   filter: drop-shadow(var(--abyss-shadow-modal))
-    drop-shadow(0 0 22px var(--abyss-alert-accent-soft));
+    drop-shadow(0 0 26px color-mix(in srgb, var(--abyss-alert-accent) 32%, transparent));
 }
 .abyss-alert--warning {
   --abyss-alert-accent: var(--abyss-gold);
-  --abyss-alert-accent-soft: var(--abyss-gold-soft);
   --abyss-title-color: var(--abyss-gold);
 }
 .abyss-alert--primary {
   --abyss-alert-accent: var(--abyss-glow);
-  --abyss-alert-accent-soft: var(--abyss-glow-soft);
   --abyss-title-color: var(--abyss-glow);
 }
 

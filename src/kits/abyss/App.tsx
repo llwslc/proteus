@@ -505,13 +505,15 @@ function HeroSigil() {
             <stop offset="100%" stopColor="#0c6a55" />
           </radialGradient>
           <radialGradient id="hs-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(70,232,184,0.32)" />
-            <stop offset="64%" stopColor="rgba(70,232,184,0.05)" />
+            <stop offset="0%" stopColor="rgba(70,232,184,0.26)" />
+            <stop offset="35%" stopColor="rgba(70,232,184,0.13)" />
+            <stop offset="62%" stopColor="rgba(70,232,184,0.05)" />
+            <stop offset="82%" stopColor="rgba(70,232,184,0.015)" />
             <stop offset="100%" stopColor="rgba(70,232,184,0)" />
           </radialGradient>
         </defs>
         <circle cx="120" cy="120" r="120" fill="url(#hs-glow)" />
-        <g className="abyss-hero__ring abyss-hero__ring--out" filter="url(#abyss-edge)">
+        <g className="abyss-hero__ring abyss-hero__ring--out">
           <circle
             cx="120"
             cy="120"
