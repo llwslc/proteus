@@ -53,7 +53,7 @@
 
 填充 core §5 的留白。
 
-- 选中、激活**不实心填充、不翻深**：覆盖 frame 输入变量——`-ink` 升到 `glow-a55 / a70`，`-fill` 给 `glow-soft` 或淡 glow 渐变，文字转 `glow`，叠 `aura / aura-strong`。
+- 选中、激活**不填实色、不加深底色**：覆盖 frame 输入变量——`-ink` 升到 `glow-a55 / a70`，`-fill` 给 `glow-soft` 或淡 glow 渐变，文字转 `glow`，叠 `aura / aura-strong`。
 - Button 变体同构换色：primary = `glow-wash` 渐变 + glow 文字 + aura，hover 换 `glow-wash-strong`、文字转 bright、aura-strong；secondary = ichor；danger = blood；ghost 透明、hover 点亮 ink。
 - 文字强调选中，如列表、Tab、NavMenu，转 `glow` + `text-aura`；Tab、NavMenu 配辉光下划线。
 - 悬停：面 `glow-soft` 底；图标、动作按钮转 glow + aura；菜单项转亮文。

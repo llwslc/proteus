@@ -77,7 +77,7 @@
 
 统一约定，**颜色留空给 theme**。
 
-- **选中、激活**：按角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；填充配方由 theme 定，如实心、渐变翻深，或半透明 wash + 强调文字。**主色填充上的前景必须可读**：翻深时箭头、占位符、数值一并翻。列表、Tab、NavMenu 的「文字强调选中」只转文字色、不填充，Tab、NavMenu 另配底部辉光下划线。
+- **选中、激活**：按角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；填充配方由 theme 定，如实色填充、渐变加深，或半透明 wash + 强调文字。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值的前景一并转为反色。列表、Tab、NavMenu 的「文字强调选中」只转文字色、不填充，Tab、NavMenu 另配底部辉光下划线。
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
 - **悬停**：分段、触发条统一柔色纯底——Tabs、NavMenu 复用同一 tab 皮肤：竖向渐变 + 底部辉光下划线；图标、动作按钮文字转主色，菜单触发器、列表项转亮文。
 - **键盘焦点**：布尔开关 Checkbox、Switch、Radio 用辉光；分段、触发条用 `inset 0 0 0 1px` 内描边；输入框边框点亮 + 字段级辉光。可聚焦浮层 popup 加 `outline:none`。

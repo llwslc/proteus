@@ -51,7 +51,7 @@
 
 填充 core §5 的留白。
 
-- 点亮表面用于 Button primary、Switch、Checkbox = `accent-surface` 渐变填充，前景翻 `on-primary`，含箭头、占位、数值。
+- 点亮表面用于 Button primary、Switch、Checkbox = `accent-surface` 渐变填充，前景转 `on-primary`，含箭头、占位、数值。
 - 分段选中用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary`。
 - 文字强调选中用于列表、Tab、NavMenu，只转 `primary`；Tab、NavMenu 配底部辉光下划线。
 - 悬停：分段与触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent→tint-soft` 渐变 + 下划线；图标与动作按钮文字转 `primary`；菜单项转亮文。
