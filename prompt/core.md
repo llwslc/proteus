@@ -38,7 +38,7 @@
 - **中性、效果色**：关态轨、未填充轨、ghost hover、扫光、关态旋钮金属渐变等。
 - **表面**：面板、浮层、模态、内嵌表面 + 背板 scrim。
 - **辉光与阴影**：文字辉光、焦点辉光、选中辉光、触发器激活辉光、浮层投影——随形状轮廓的 drop-shadow 与矩形 shadow 各一套。
-- **几何尺度，强制 token 化、按角色分档**：几何 corner 是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色选，组件**绝不**裸写形状值。角色至少四类 —— ① 超大外框，如 Dialog、AlertDialog、Panel ② 默认控件、容器框及其 `::before` ③ 容器内嵌套项 + 小交互、标签 chip，即菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮 ④ 细指示条、旋钮，按厚度再分。**形状种类——切角 `polygon` 还是圆角值——与具体档数、档值 → theme**。
+- **几何尺度，强制 token 化、按角色分档**：转角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色选，组件**绝不**裸写形状值。角色至少四类 —— ① 超大外框，如 Dialog、AlertDialog、Panel ② 默认控件、容器框及其 `::before` ③ 容器内嵌套项 + 小交互、标签 chip，即菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮 ④ 细指示条、旋钮，按厚度再分。**形状种类——切角 `polygon` 还是圆角值——与具体档数、档值 → theme**。
 - **层级阶梯**：一处定义浮层堆叠顺序 dropdown < menu < tooltip < backdrop < overlay < toast。
 - **动效与度量**：`dur / -slow`、`ease / -out`、控件高、禁用透明度、模态内边距。
 - **间距，4px 网格**：`space-1…N`，即 `4 / 8 / 12 …`。组件 padding、margin、gap，含 `row-gap` 等长写，一律走此阶梯；只有不足一格的小值，如 `::before` 1px 内缩、细轨道高度，和演示页 `>28px` 的结构留白，才写立即数。
@@ -47,11 +47,8 @@
 
 ## 4. 核心技术
 
-结构性约定，与主题无关。
-
 ### 4.1 框与描边
 
-本节只定契约。
 - 每个带框元素都走**同一个 frame 原语** `.<kit>-surface`、`.<kit>-frame`，经输入变量取 填充、边框色、形状，如 `--<kit>-surface-fill / -border / -clip`；组件**不裸写形状**，只覆盖输入变量。
 - `isolation: isolate` + 填充层 `z-index: -1`，让任意内容自动压在填充上，含裸文本。
 - **具体描边策略 → theme**：形状吃不了 CSS `border` 的，即 `clip-path`、`polygon`，用双层 frame——外层背景＝边框色 + 形状，`::before` 内缩 1px 填表面色；圆角矩形直接 `border` + `border-radius`。
@@ -113,7 +110,7 @@
 
 - inline-flex 分段控件 ToggleGroup 加 `width: fit-content`；细分隔条 1px 在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`。
 - **唯一断点 `768px`**，不另设别的断点。`≤768` 组件走手机态——Tabs、Toolbar 分段控件**横滚**、不换行。外壳、侧栏、演示页响应式 → `app.md`。
-- **装饰层别出盒撑宽页面**：扫光走 `background-position`、移动块、不定态进度走 `top`/`left`；非用 `transform` 不可时，关进不带 `clip-path` 的 `overflow:hidden` 祖先。
+- **装饰层不得撑宽页面**：扫光走 `background-position`、移动块、不定态进度走 `top`/`left`；非用 `transform` 不可时，关进不带 `clip-path` 的 `overflow:hidden` 祖先。
 
 ## 9. 验收门
 
