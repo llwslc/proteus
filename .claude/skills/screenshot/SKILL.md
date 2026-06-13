@@ -53,5 +53,10 @@ const URL = 'http://127.0.0.1:<port>/';
 - The fixed kit-switcher pill can overlap bottom-of-viewport element shots — hide it first:
   `await page.evaluate(() => { document.querySelector('.shell-switch').style.display = 'none'; });`
 
+## Interaction-state sweep (run before accepting a kit change)
+A resting full-page shot misses the states bugs hide in. Most regressions caught here were **interaction-only**: a pressed button, a stepper driven to its disabled min/max edge, an opened overlay — none visible at rest. Static disabled rows (checkbox/switch/select/radio) DO render in the resting demo, so review the full-page shot for those.
+
+`cp .claude/skills/screenshot/states.js /tmp/pw/ && cd /tmp/pw && node states.js [port]` (sandbox-disabled) → `/tmp/states/<kit>_<state>.png`: full PAGE, button pressed (mousedown held), numberfield at max/min (disabled stepper), and every overlay opened, both kits. Read them and check disabled/pressed/open look right — don't sign off on resting state alone.
+
 ## Look at the result
 Read the PNG. A Chrome error page ("This site can't be reached") means wrong port or sandboxed networking — recheck both. Crop before judging fine detail (`sips -c <h> <w> --cropOffset <y> <x> in.png --out crop.png`): Read scales tall images down hard.
