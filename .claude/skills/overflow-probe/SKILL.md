@@ -5,7 +5,7 @@ description: Find and fix horizontal overflow / off-center overlays at narrow vi
 
 # overflow-probe
 
-One principle: **something is wider than the space it sits in, and a narrow-enough viewport exposes it.** Not browser- or OS-specific, not an "iOS thing" — narrow any window far enough and the widest rigid element stops fitting. The bug wears two faces:
+One principle: **something is wider than the space it sits in, and a narrow-enough viewport exposes it.** Narrow any window far enough and the widest rigid element stops fitting; there is no special width. The bug wears two faces:
 
 - the page scrolls sideways — an element is wider than the viewport;
 - a `position:fixed` centered overlay looks like it drifts — it is still viewport-centered, but over-wide content makes the page pannable, so it reads as a sideways slide.
