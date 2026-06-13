@@ -59,7 +59,6 @@
 - 悬停：面 `glow-soft` 底；图标、动作按钮转 glow + aura；菜单项转亮文。
 - 焦点：`frame-ink` 直接点到实色 `glow` + `aura`，Switch 无框，例外用 `aura-strong`；输入框同。
 - 选中辉光统一 `aura-mark`：选择控件如 Switch 眼、Checkbox 盒、Radio 圈，选中时整件外发光，内部标记不单独打光；弹层勾记、指示条同档；条、值文字用 `text-aura`。
-- 禁用 `opacity .55`。
 
 ## 7. 组件皮肤决定
 
