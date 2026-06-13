@@ -16,6 +16,8 @@ Each line is a terse imperative — the decision only. Allowed: what to do, what
 - **Incident anecdotes** — "this got re-broken", "the original bug", debugging war stories.
 - **Framework restatement** — re-explaining the library / framework / language the model already knows (a prop's behavior, an API, what a CSS property does).
 - **Hedging / meta** — "note that…", "for clarity…", uncertainty.
+- **Fixed-cardinality wording** — baking the current count/roster of variants into prose: "the two kits", "两 kit / 两套", naming the sibling to define a value ("比 NOVA 慢半拍"). A spec must read the same when an Nth variant is added. Say "each kit / 各 kit / across kits"; give each variant its values absolutely, never by comparison to another. Adding a variant should need a new `themes/<kit>.md` and zero edits to shared files.
+- **Parenthesis overload** — prose where most lines carry a `(...)` aside reads like footnotes, not documentation. A parenthetical is fine for a bare value/example right after its term; it is NOT fine as the default container for clauses. Rough smell: more than ~1 in 3 lines parenthesized, or any line with ≥3. Re-flow asides into colons, em-dashes 「——」, comma clauses, or separate sentences.
 
 Keep (NOT violations): the rule itself, and a short parenthetical that **disambiguates the instruction** (e.g. "use `left/right:0`, not `100vw`") — that changes what's built. A parenthetical that **justifies** it does not — cut it.
 
