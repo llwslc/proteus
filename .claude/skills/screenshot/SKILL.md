@@ -38,12 +38,8 @@ const URL = 'http://127.0.0.1:<port>/';
 - **Element over clip.** `page.locator(sel).screenshot()` auto-waits and scrolls into view. `page.screenshot({ clip })` is page-coordinate and misses anything `position:fixed` once scrolled — for overlays (drawer/dialog/toast/popup) shoot the popup **element**.
 - **reducedMotion for stills.** Perpetual animation forces a fresh composite every shot and never settles; freezing it is faster and deterministic. Drop it only when capturing motion itself, then let entrance settle before shooting.
 - **Small viewport by default; tall only for full-page.** Element shots at a short viewport are cheap; a tall viewport re-rasterizes the whole filter-heavy page per shot. For a true full-page (`fullPage: true`) use `height: 6600` so every scroll-reveal has fired. Narrow widths (420 / 900) for responsive checks.
-- **State, not just rest.** Most regressions live in states the resting page never shows — pressed, hovered, focused, a control driven to its disabled edge, an opened overlay. Exercise them (`.hover()`, `mouse.down()`, drive a value to min/max, open each overlay) and shoot. The resting page does show static disabled rows — review those in the full-page shot.
-- **One script, every state.** Batch all kits/states into one run; relaunching per shot is the cost, not page content.
-
-## Interaction-state sweep
-
-`cp .claude/skills/screenshot/states.js /tmp/pw/ && cd /tmp/pw && node states.js [port]` → `/tmp/states/<kit>_<state>.png`: full page, pressed button, stepper at its disabled min/max, every overlay opened, both kits. Run it before accepting a kit change and read the states — don't sign off on the resting page alone.
+- **State over rest.** A state lives only while held — exercise it before shooting: `.hover()`, `mouse.down()`, drive a value to its min/max, open each overlay. (Sweeping every interaction state as an acceptance gate is its own skill, **kit-states**; this skill is just the capture mechanics it builds on.)
+- **One script, many shots.** Batch all kits/states into one run; relaunching per shot is the cost, not page content.
 
 ## Look
 
