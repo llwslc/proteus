@@ -36,7 +36,7 @@ export function Autocomplete({
       </div>
       <BaseAutocomplete.Portal>
         <BaseAutocomplete.Positioner
-          className="abyss-autocomplete__positioner"
+          className="abyss-elevation abyss-autocomplete__positioner"
           sideOffset={6}
         >
           <BaseAutocomplete.Popup className="abyss-aura-pop abyss-frame abyss-autocomplete__popup">

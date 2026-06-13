@@ -58,8 +58,7 @@
 .abyss-autocomplete__positioner {
   z-index: var(--abyss-z-dropdown);
   outline: none;
-  filter: drop-shadow(var(--abyss-shadow-pop))
-    drop-shadow(0 0 10px var(--abyss-glow-soft));
+  --abyss-overlay-glow: drop-shadow(0 0 10px var(--abyss-glow-soft));
 }
 .abyss-autocomplete__popup {
   --abyss-frame-bevel: var(--abyss-bevel);

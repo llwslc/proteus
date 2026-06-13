@@ -44,7 +44,7 @@ function ToastList() {
             key={toast.id}
             toast={toast}
             swipeDirection="right"
-            className={`abyss-toast abyss-toast--${tone}`}
+            className={`abyss-elevation abyss-toast abyss-toast--${tone}`}
           >
             <div className="abyss-frame abyss-toast__tablet">
               <span className="abyss-toast__sigil abyss-breathe" aria-hidden>
