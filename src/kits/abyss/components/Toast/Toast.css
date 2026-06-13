@@ -92,7 +92,6 @@
   filter: drop-shadow(
     0 0 8px color-mix(in srgb, var(--abyss-toast-accent) 55%, transparent)
   );
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 
 .abyss-toast__main {

@@ -57,7 +57,7 @@ export function Combobox({
                   <span className="abyss-combobox__item-text">{item}</span>
                   <span className="abyss-combobox__indicator" aria-hidden>
                     <BaseCombobox.ItemIndicator>
-                      <CheckIcon className="abyss-combobox__check" />
+                      <CheckIcon className="abyss-breathe" />
                     </BaseCombobox.ItemIndicator>
                   </span>
                 </BaseCombobox.Item>

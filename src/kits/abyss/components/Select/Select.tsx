@@ -82,7 +82,7 @@ export function Select<Value extends string = string>({
                 >
                   <span className="abyss-select__item-indicator" aria-hidden>
                     <BaseSelect.ItemIndicator>
-                      <CheckIcon className="abyss-select__item-seal" />
+                      <CheckIcon className="abyss-select__item-seal abyss-breathe" />
                     </BaseSelect.ItemIndicator>
                   </span>
                   <BaseSelect.ItemText className="abyss-select__item-text">

@@ -26,7 +26,7 @@ export function Collapsible({
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
-      className={cx("nova-collapsible", className)}
+      className={cx("nova-surface nova-collapsible", className)}
     >
       <BaseCollapsible.Trigger className="nova-disclosure__trigger">
         <span className="nova-disclosure__marker" />

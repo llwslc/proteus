@@ -6,27 +6,18 @@
 }
 
 .nova-accordion__item {
-  position: relative;
-  background: var(--nova-line);
-  clip-path: var(--nova-clip-9);
+  --nova-surface-border: var(--nova-line);
+  --nova-surface-fill: var(--nova-surface);
   transition: background var(--nova-dur) var(--nova-ease);
 }
-.nova-accordion__item::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 0;
-  clip-path: var(--nova-clip-9);
-  background: var(--nova-surface);
-}
 .nova-accordion__item:hover {
-  background: var(--nova-line-strong);
+  --nova-surface-border: var(--nova-line-strong);
 }
 .nova-accordion__item:has([data-disabled]) {
   opacity: var(--nova-disabled-opacity);
 }
 .nova-accordion__item:has([data-disabled]):hover {
-  background: var(--nova-line);
+  --nova-surface-border: var(--nova-line);
 }
 
 .nova-accordion__header {

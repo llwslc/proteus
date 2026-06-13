@@ -35,7 +35,7 @@ export function Accordion({
           key={it.value}
           value={it.value}
           disabled={it.disabled}
-          className="nova-accordion__item"
+          className="nova-surface nova-accordion__item"
         >
           <BaseAccordion.Header className="nova-accordion__header">
             <BaseAccordion.Trigger className="nova-disclosure__trigger">

@@ -25,7 +25,7 @@ export function Badge({
 }: BadgeProps) {
   return (
     <span className={cx("abyss-badge", `abyss-badge--${tone}`, className)}>
-      {dot ? <span className="abyss-badge__dot" /> : null}
+      {dot ? <span className="abyss-badge__dot abyss-breathe" /> : null}
       {children}
     </span>
   );

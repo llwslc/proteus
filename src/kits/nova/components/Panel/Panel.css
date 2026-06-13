@@ -8,19 +8,10 @@
 }
 
 .nova-panel {
-  position: relative;
   overflow: clip;
-  background: var(--nova-line);
-  clip-path: var(--nova-clip-12);
-  isolation: isolate;
-}
-.nova-panel::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
-  clip-path: var(--nova-clip-12);
-  background:
+  --nova-surface-border: var(--nova-line);
+  --nova-surface-clip: var(--nova-clip-12);
+  --nova-surface-fill:
     radial-gradient(120% 280px at 50% -36px, var(--nova-tint-faint), transparent 60%),
     var(--nova-surface-modal);
 }

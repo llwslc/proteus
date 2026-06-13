@@ -47,7 +47,7 @@ function ToastList() {
             className={`abyss-toast abyss-toast--${tone}`}
           >
             <div className="abyss-frame abyss-toast__tablet">
-              <span className="abyss-toast__sigil" aria-hidden>
+              <span className="abyss-toast__sigil abyss-breathe" aria-hidden>
                 <ToneSigil tone={tone} />
               </span>
               <span className="abyss-toast__beam" aria-hidden />

@@ -43,7 +43,6 @@
   z-index: 2;
   pointer-events: none;
   box-shadow: 0 0 14px var(--abyss-glow-a70);
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 
 .abyss-drawer--right,
@@ -128,9 +127,6 @@
   gap: var(--abyss-space-5);
   padding: var(--abyss-space-3);
   margin: calc(var(--abyss-space-3) * -1);
-  color: var(--abyss-text);
-  font-size: var(--abyss-fs-15);
-  line-height: var(--abyss-lh-165);
 }
 
 .abyss-drawer__footer {

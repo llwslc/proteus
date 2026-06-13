@@ -18,7 +18,6 @@
   border-radius: 50%;
   background: currentColor;
   box-shadow: 0 0 6px currentColor;
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 .abyss-badge--primary {
   color: var(--abyss-glow);

@@ -24,10 +24,10 @@ export function Separator({
       >
         <span className="abyss-separator-labeled__line" aria-hidden />
         <span className="abyss-separator-labeled__mark">
-          <span className="abyss-separator-labeled__sigil" aria-hidden>
+          <span className="abyss-separator-labeled__sigil abyss-breathe" aria-hidden>
             <SigilIcon />
           </span>
-          <span className="abyss-separator-labeled__text">{label}</span>
+          <span className="abyss-separator-labeled__text abyss-cap">{label}</span>
         </span>
         <span
           className="abyss-separator-labeled__line abyss-separator-labeled__line--end"

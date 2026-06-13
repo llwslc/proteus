@@ -111,7 +111,4 @@
 }
 .abyss-accordion__content {
   padding: 0 var(--abyss-space-4) var(--abyss-space-4) 47px;
-  color: var(--abyss-text-dim);
-  font-size: var(--abyss-fs-15);
-  line-height: var(--abyss-lh-165);
 }

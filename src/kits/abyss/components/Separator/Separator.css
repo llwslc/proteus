@@ -26,7 +26,6 @@
   font-size: var(--abyss-fs-15);
   color: var(--abyss-gold);
   filter: var(--abyss-aura-gold);
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
   transition:
     transform var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
@@ -36,10 +35,5 @@
   filter: var(--abyss-aura-gold-strong);
 }
 .abyss-separator-labeled__text {
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-12);
-  letter-spacing: var(--abyss-ls-12);
-  text-transform: uppercase;
-  color: var(--abyss-text-dim);
   white-space: nowrap;
 }

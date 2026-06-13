@@ -51,7 +51,7 @@ export function Drawer({
             className={cx("abyss-drawer", `abyss-drawer--${side}`, className)}
           >
             <BaseDrawer.Content className="abyss-frame abyss-drawer__tablet">
-              <span className="abyss-drawer__seam" aria-hidden />
+              <span className="abyss-drawer__seam abyss-breathe" aria-hidden />
               <BaseDrawer.Close
                 render={
                   <Button
@@ -77,7 +77,7 @@ export function Drawer({
                 </BaseDrawer.Description>
               ) : null}
               {children != null ? (
-                <div className="abyss-drawer__body">{children}</div>
+                <div className="abyss-drawer__body abyss-modal-body">{children}</div>
               ) : null}
               {footer != null ? (
                 <div className="abyss-drawer__footer">{footer}</div>

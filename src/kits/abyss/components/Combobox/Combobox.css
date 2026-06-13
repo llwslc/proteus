@@ -200,6 +200,3 @@
   color: var(--abyss-glow);
   filter: var(--abyss-aura-mark);
 }
-.abyss-combobox__check {
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
-}

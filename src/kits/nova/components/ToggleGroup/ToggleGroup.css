@@ -1,19 +1,10 @@
 .nova-togglegroup {
-  position: relative;
   display: inline-flex;
   width: fit-content;
   max-width: 100%;
   padding: var(--nova-space-1);
   gap: var(--nova-space-1);
-  background: var(--nova-line);
-  clip-path: var(--nova-clip-9);
-}
-.nova-togglegroup::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  clip-path: var(--nova-clip-9);
-  background: var(--nova-surface-popup);
+  --nova-surface-border: var(--nova-line);
 }
 
 .nova-toggle-wrap {
@@ -40,11 +31,6 @@
   color: var(--nova-text-dim);
   background: transparent;
   clip-path: var(--nova-clip-7);
-  font-family: var(--nova-font-display);
-  font-weight: var(--nova-fw-600);
-  font-size: var(--nova-fs-12);
-  letter-spacing: var(--nova-ls-10);
-  text-transform: uppercase;
   transition:
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease),

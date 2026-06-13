@@ -147,7 +147,6 @@
 }
 .abyss-select__item-seal {
   font-size: var(--abyss-fs-16);
-  animation: abyss-breathe var(--abyss-breath) ease-in-out infinite;
 }
 .abyss-select__item-text {
   flex: 1;

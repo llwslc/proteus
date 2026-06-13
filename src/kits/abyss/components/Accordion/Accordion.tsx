@@ -45,7 +45,7 @@ export function Accordion({
             </BaseAccordion.Trigger>
           </BaseAccordion.Header>
           <BaseAccordion.Panel className="abyss-accordion__panel">
-            <div className="abyss-accordion__content">{it.content}</div>
+            <div className="abyss-accordion__content abyss-text">{it.content}</div>
           </BaseAccordion.Panel>
         </BaseAccordion.Item>
       ))}
