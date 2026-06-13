@@ -16,7 +16,7 @@
 }
 .abyss-combobox__control:focus-within {
   --abyss-frame-ink: var(--abyss-glow-a55);
-  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+  filter: var(--abyss-glow-focus);
 }
 .abyss-combobox__control:has(.abyss-combobox__input:disabled) {
   opacity: var(--abyss-disabled-opacity);

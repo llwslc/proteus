@@ -17,7 +17,7 @@
 }
 .abyss-input-wrap:focus-within {
   --abyss-frame-ink: var(--abyss-glow-a55);
-  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+  filter: var(--abyss-glow-focus);
 }
 .abyss-input-wrap:not(.abyss-input-wrap--error):hover:not(:focus-within) {
   --abyss-frame-ink: var(--abyss-ink-strong);

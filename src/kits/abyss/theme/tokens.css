@@ -70,6 +70,7 @@
   --abyss-shadow-pop: 0 14px 34px rgba(0, 0, 0, 0.66);
   --abyss-shadow-modal: 0 26px 64px rgba(0, 0, 0, 0.72);
   --abyss-shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.6);
+  --abyss-glow-focus: drop-shadow(0 2px 8px var(--abyss-glow-soft));
   --abyss-glow-popup: drop-shadow(0 0 14px var(--abyss-glow-soft));
   --abyss-glow-modal: drop-shadow(0 0 22px var(--abyss-glow-soft));
 

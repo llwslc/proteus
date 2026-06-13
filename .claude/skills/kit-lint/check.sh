@@ -88,6 +88,16 @@ echo "## alpha spread per rgb family (components + tokens; review for clusters)"
 { grep -rhoE 'rgba\([0-9, ]+,[ 0-9.]+\)' "$C" --include='*.css' 2>/dev/null; grep -hoE 'rgba\([0-9, ]+,[ 0-9.]+\)' "$T"; } \
   | sed -E 's/rgba\(([0-9, ]+),([ 0-9.]+)\)/\1 ->\2/' | sort | awk -F' ->' '{a[$1]=a[$1]" "$2} END {for (k in a) print "  rgb("k"):"a[k]}' | sort
 
+
+# 10. repeated recipe across components (a rich filter/box-shadow/animation value in 2+ files = extract to a shared class/token)
+f=$(find "$C" -name '*.css' | xargs awk '
+  FNR==1 { file=FILENAME; sub(/.*\/components\//,"",file); sub(/\/[a-zA-Z0-9_.-]+$/,"",file) }
+  { if (acc!="") acc=acc" "$0; else if ($0 ~ /^[[:space:]]*(filter|box-shadow|animation):/) acc=$0
+    if (acc!="" && acc ~ /;/) { v=acc; sub(/;.*/,"",v); gsub(/^[[:space:]]+|[[:space:]]+$/,"",v); gsub(/[[:space:]]+/," ",v)
+      if (v !~ /drop-shadow\(0 0 0 transparent\)/ && v ~ /(drop-shadow|breathe|, )/) print v "\t" file; acc="" } }'   | sort | awk -F'\t' '{ if($1==p){fs=fs", "$2;n++} else {if(n>1)print p"  ["n"x: "fs"]"; p=$1;fs=$2;n=1} } END{if(n>1)print p"  ["n"x: "fs"]"}')
+run "repeated recipe across components (extract to shared class/token)" "$f"
+
+
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"
 exit $FAIL

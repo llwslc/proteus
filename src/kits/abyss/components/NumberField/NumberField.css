@@ -3,7 +3,7 @@
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-numberfield:focus-within {
-  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+  filter: var(--abyss-glow-focus);
 }
 
 .abyss-numberfield__group {

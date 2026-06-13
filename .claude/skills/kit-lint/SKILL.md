@@ -1,43 +1,37 @@
 ---
 name: kit-lint
-description: One-shot acceptance check for a theme kit under src/kits/<kit> against the token contract (prompt/core.md §3) — raw literals, dead tokens, app-only tokens, alpha clusters, plus judgment checks the script can't do. Run after generating or heavily editing a kit, before accepting it. Usage targets a kit id, e.g. "lint the abyss kit".
+description: Acceptance check for a theme kit under src/kits/<kit> against the token contract (prompt/core.md §3). A kit's CSS must RESTATE NOTHING — every value comes from a token, every repeated recipe from a shared class or primitive — and must cover every contract group. Run after generating or heavily editing a kit, before accepting it. Usage targets a kit id, e.g. "lint the abyss kit".
 ---
 
-# kit-lint — accept a kit only when this passes
+# kit-lint
 
-A kit's CSS must consume tokens, never restate values. This skill runs the mechanical checks as a script, then walks the judgment checks that need reading.
+One principle: **a kit's CSS consumes the design language, never restates it.** A literal value, a duplicated recipe, or a hand-rolled primitive is a failure — the kit isn't done until every one routes through a token, a shared class, or the frame/elevation primitive. The script enforces what's greppable; the rest is a read.
 
-## 1. Mechanical checks (script)
+## Run
 
 ```
 sh .claude/skills/kit-lint/check.sh <kit-id>
 ```
 
-Exit 0 = clean. Each section prints `file:line` findings:
+Exit 0 = clean. Fix or explicitly justify every finding, then re-run until PASS.
 
-| check | rule |
-|---|---|
-| raw colors | no hex/rgba literal in component css — use a palette/alpha-ladder token (the script also flags literals that duplicate a token value verbatim; pure `#000` mask/shadow stops are allowed) |
-| raw type | no px font-size / letter-spacing / line-height / numeric font-weight — use the fs/ls/lh/fw ladders (em/clamp/calc are contextual, allowed) |
-| raw spacing | no padding/margin/gap value >3px off the space ladder (≤3px sub-grid allowed) |
-| raw shapes | no polygon()/border-radius/frame-round px literal — use the named geometry ladder (50% circles allowed) |
-| raw motion | durations via dur tokens; long one-off decorative spins (6s+) may pass review — justify each |
-| raw z-index | tiers via z tokens only |
-| dead tokens | every defined token is consumed somewhere in the kit |
-| app-only tokens | tokens serve components; a token consumed only by App/Loader should be an inline value in App.css instead |
-| alpha spread | per-RGB alpha list — eyeball it: one family's alphas must sit on few named steps, not a smear (e.g. `.02 .05 .06 .07 .08 .11 .16 .22 .28` is a fail) |
+## What the script enforces (greppable)
 
-Fix or explicitly justify every finding; re-run until PASS (or all remaining hits are justified decorative durations).
+Two failure shapes, mechanically:
 
-## 2. Judgment checks (read the kit)
+- **Raw value** — a literal where a token belongs: colors (hex/rgba), type (px font-size / letter-spacing / line-height / numeric weight), spacing off the grid (>3px), shapes (polygon / radius px), z-index, motion (informational). Also a literal that duplicates a token value verbatim. Contextual forms (`clamp`/`calc`/`em`, ≤3px sub-grid, `#000` shadow stops) pass.
+- **Restated recipe** — a rich `filter`/`box-shadow`/`animation` value appearing in 2+ component files. That recipe belongs in a token or a shared class/primitive, applied once.
 
-- **Semantic accent coverage** — the palette defines an accent family (base + `-deep` + `-soft`/alpha steps) for every tone the component APIs expose (primary / success / warning / danger at minimum). A component inventing a color inline (e.g. a Badge success green that exists nowhere in tokens.css) is the failure signature.
-- **Ladder spacing** — adjacent ladder steps must be perceptibly different: font sizes ≥2px apart, alphas ≥0.1 apart, no two palette colors within a few RGB points of each other. Merge anything closer.
-- **Frame primitive usage** — every bordered surface goes through the kit's frame primitive and is recolored via its input vars (`--<kit>-frame-*` / `--<kit>-surface-*`), never by overriding a global token on a container.
-- **Shared recipes extracted** — multi-property clusters repeated across 3+ components (field captions, glow recipes) must be a shared class (`.<kit>-cap`) or token, not hand-copied.
-- **Glow recipes** — `box-shadow: 0 0 Npx` / `drop-shadow(...)` radii come from 1–2 glow tokens per intensity, not per-component improvisation.
-- **Contract groups present** — tokens.css has every group core.md §3 requires (palette, accent fills, alpha ladder, surfaces, glow/shadow, geometry ladder, z tiers, motion, spacing, type, component footprints).
+Plus token hygiene: no dead tokens (defined, never consumed), no app-only tokens (a token used only by App/Loader should be an inline value there), and an alpha-spread report per color family to eyeball for smear.
 
-## 3. Report
+## What the read covers (judgment — the script can't)
 
-Output one list per failed check with `file:line` + the fix (which token to use, or which token/class to create). Don't auto-fix unless asked — the owner decides merges that change visuals (ladder consolidation, color dedupe).
+- **Contract complete** — tokens.css has every group core.md §3 names (palette, accent fills, alpha ladder, surfaces, glow/shadow, geometry ladder, z tiers, motion, spacing, type, component footprints). A missing group is a silent gap: the kit hand-rolls what the slot should have held — exactly how a value or recipe ends up duplicated. When the script flags a restated recipe, ask first *which contract slot is missing*, fill it, then route consumers through it.
+- **Semantic coverage** — the palette defines an accent family (base + deep + alpha steps) for every tone the component APIs expose. A component inventing a color inline is the tell.
+- **Ladder perceptibility** — adjacent steps differ enough to matter (font ≥2px, alpha ≥0.1, no two palette colors a few RGB points apart). Merge anything closer.
+- **Primitive routing** — every bordered/elevated surface goes through the kit's frame/elevation primitive, recolored via its input vars — never by overriding a global token on a container.
+- **Cross-kit parity** — a recipe a sibling kit factored into a token/class/primitive must be factored the same way here; if the sibling has the slot and this kit hand-rolls it, fill the slot. (Diff structure across kits, not values.)
+
+## Report
+
+One list per failed check: `file:line`, the offending text, and the fix — which token to use, or which token/class/primitive to create and route through. Don't auto-fix unless asked; merges that change visuals (ladder consolidation, color dedupe) are the owner's call.

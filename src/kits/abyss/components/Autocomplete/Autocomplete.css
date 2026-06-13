@@ -5,7 +5,7 @@
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-autocomplete__field:has(:focus-within) {
-  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+  filter: var(--abyss-glow-focus);
 }
 
 .abyss-autocomplete__control {

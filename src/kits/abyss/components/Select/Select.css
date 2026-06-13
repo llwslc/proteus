@@ -33,7 +33,7 @@
 .abyss-select__trigger:focus-visible {
   outline: none;
   --abyss-frame-ink: var(--abyss-glow-a55);
-  filter: drop-shadow(0 2px 8px var(--abyss-glow-soft));
+  filter: var(--abyss-glow-focus);
 }
 .abyss-select__trigger[data-disabled],
 .abyss-select__trigger:disabled {
