@@ -44,7 +44,7 @@
 }
 
 .abyss-numberfield__btn {
-  --abyss-frame-ink: var(--abyss-ink-strong);
+  --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-fill: linear-gradient(
     180deg,
     var(--abyss-stone-raised),
@@ -86,5 +86,5 @@
 .abyss-numberfield__btn:disabled {
   cursor: not-allowed;
   color: var(--abyss-text-mute);
-  opacity: var(--abyss-disabled-opacity);
+  --abyss-frame-ink: var(--abyss-ink-faint);
 }
