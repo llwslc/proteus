@@ -30,7 +30,7 @@
 - 形状 = **锐利切角**，以 `clip-path` polygon 实现。切角阶梯 `--nova-clip-3 / 4 / 7 / 9 / 12` + `clip-tick`，按 core §3 的角色档选用。
 - 描边走双层 frame，即 `.nova-surface`：外层背景 = 边框色 + clip-path，`::before` 内缩 1px 填表面；输入变量 `--nova-surface-clip` 默认 clip-9、`-fill` 默认 surface-popup、`-border` 默认 line-strong。
 - 辉光用 `filter: drop-shadow()` 跟随切角轮廓，挂不切角的外层 `.nova-elevation`，其输入 `--nova-overlay-shadow / -glow` 默认 shadow-popup、glow-popup。
-- 边框层级：页内 idle = `line`；浮层 = `line-strong`，即 surface 默认；状态升 `line-strong`、`primary`；语义变体按 tone。
+- 边框层级：页内 idle = `line`；浮层 = `line-strong`，即 surface 默认；状态升 `line-strong`、`primary`。
 
 ## 4. 氛围层
 
@@ -54,7 +54,7 @@
 - 点亮表面用于 Button primary、Switch、Checkbox = `accent-surface` 渐变填充，前景转 `on-primary`，含箭头、占位、数值。
 - 分段选中用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary`。
 - 文字强调选中用于列表、Tab、NavMenu，只转 `primary`；Tab、NavMenu 配底部辉光下划线。
-- 悬停：分段与触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent→tint-soft` 渐变 + 下划线；图标与动作按钮文字转 `primary`；菜单项转亮文。
+- 悬停：分段与触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent→tint-soft` 渐变 + 下划线；图标与动作按钮文字转 `primary`。
 - 焦点：布尔开关 `glow-focus`；分段与触发条 `inset 0 0 0 1px line-strong`；输入框边框点亮 `primary` + `glow-focus`。
 - 危险态用 danger 家族：`-fill / -wash / -highlight / -text / -inset`。
 

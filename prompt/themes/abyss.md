@@ -30,7 +30,7 @@
 - 全套统一 frame 原语 `.abyss-frame::before`：`inset: 0`、1.5px 墨线 border + radius；输入变量 `--abyss-frame-fill / -ink / -round / -bevel`。`--double` 变体加 `inset: 4px` 的内圈细线。
 - `#abyss-edge`：演示页顶部内联一个 SVG filter，由 feTurbulence `0.013 0.018` + feDisplacementMap 组成，frame、分隔线、连接线、指示条统一挂它——所有线条呈手绘颤动。
 - 浮层抬升原语 `.abyss-elevation`，挂 positioner 与模态 popup 且不带 etch 滤镜：`drop-shadow(阴影) drop-shadow(辉光)` 双层，输入变量 `--abyss-overlay-shadow / -glow`；默认 `shadow-pop + glow-popup`，模态走 `shadow-modal + glow-modal`，Tooltip 小档，Alert 按 tone。
-- 边框层级：页内 idle = `ink / ink-strong` 灰墨；浮层 = `glow-a55` 亮辉；状态走 glow 阶梯 a30 → a55 → glow；语义变体按 tone。
+- 边框层级：页内 idle = `ink / ink-strong` 灰墨；浮层 = `glow-a55` 亮辉；状态走 glow 阶梯 a30 → a55 → glow。
 
 ## 4. 氛围层
 
@@ -56,7 +56,7 @@
 - 选中、激活**不填实色、不加深底色**：覆盖 frame 输入变量——`-ink` 升到 `glow-a55 / a70`，`-fill` 给 `glow-soft` 或淡 glow 渐变，文字转 `glow`，叠 `aura / aura-strong`。
 - Button 变体同构换色：primary = `glow-wash` 渐变 + glow 文字 + aura，hover 换 `glow-wash-strong`、文字转 bright、aura-strong；secondary = ichor；danger = blood；ghost 透明、hover 点亮 ink。
 - 文字强调选中，如列表、Tab、NavMenu，转 `glow` + `text-aura`；Tab、NavMenu 配辉光下划线。
-- 悬停：面 `glow-soft` 底；图标、动作按钮转 glow + aura；菜单项转亮文。
+- 悬停：面 `glow-soft` 底；图标、动作按钮转 glow + aura。
 - 焦点：`frame-ink` 直接点到实色 `glow` + `aura`，Switch 无框，例外用 `aura-strong`；输入框同。
 - 选中辉光统一 `aura-mark`：选择控件如 Switch 眼、Checkbox 盒、Radio 圈，选中时整件外发光，内部标记不单独打光；弹层勾记、指示条同档；条、值文字用 `text-aura`。
 
