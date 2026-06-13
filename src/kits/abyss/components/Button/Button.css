@@ -27,7 +27,7 @@
 }
 .abyss-btn:active:not(:disabled) {
   transform: scale(0.92) translateY(1px);
-  transition-duration: 0.05s;
+  transition-duration: 0s;
 }
 .abyss-btn__label {
   position: relative;
