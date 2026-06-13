@@ -34,7 +34,7 @@ export function Tooltip({
         />
         <BaseTooltip.Portal>
           <BaseTooltip.Positioner
-            className="abyss-tooltip__pos"
+            className="abyss-elevation abyss-tooltip__pos"
             side={side}
             sideOffset={sideOffset}
           >

@@ -88,7 +88,7 @@ export function MenuSub({ label, icon, disabled, children }: MenuSubProps) {
       </SubmenuTrigger>
       <Portal>
         <Positioner
-          className="abyss-menu__positioner"
+          className="abyss-elevation abyss-menu__positioner"
           side="right"
           align="start"
           sideOffset={14}

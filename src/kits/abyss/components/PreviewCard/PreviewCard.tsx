@@ -32,7 +32,7 @@ export function PreviewCard({
       <BasePreviewCard.Trigger render={trigger} onPointerDown={onTouchToggle} />
       <BasePreviewCard.Portal>
         <BasePreviewCard.Positioner
-          className="abyss-previewcard__positioner"
+          className="abyss-elevation abyss-previewcard__positioner"
           side={side}
           align={align}
           sideOffset={sideOffset}

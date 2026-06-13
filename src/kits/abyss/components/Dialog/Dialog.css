@@ -1,8 +1,8 @@
 .abyss-dialog {
   position: relative;
   width: min(100%, var(--abyss-w-dialog));
-  filter: drop-shadow(var(--abyss-shadow-modal))
-    drop-shadow(0 0 22px var(--abyss-glow-soft));
+  --abyss-overlay-shadow: var(--abyss-shadow-modal);
+  --abyss-overlay-glow: var(--abyss-glow-modal);
 }
 .abyss-dialog__tablet {
   --abyss-frame-bevel: var(--abyss-bevel);

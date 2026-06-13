@@ -79,7 +79,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
 
       <BaseNav.Portal>
         <BaseNav.Positioner
-          className="abyss-navmenu__positioner"
+          className="abyss-elevation abyss-navmenu__positioner"
           sideOffset={10}
           collisionPadding={16}
         >

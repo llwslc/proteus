@@ -1,3 +1,8 @@
+.abyss-elevation {
+  filter: drop-shadow(var(--abyss-overlay-shadow, var(--abyss-shadow-pop)))
+    var(--abyss-overlay-glow, var(--abyss-glow-popup));
+}
+
 .abyss-frame {
   position: relative;
   isolation: isolate;

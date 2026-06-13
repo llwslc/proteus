@@ -38,7 +38,7 @@ export function Dialog({
           <BaseDialog.Popup
             ref={popupRef}
             initialFocus={popupRef}
-            className={cx("abyss-aura-pop abyss-dialog", className)}
+            className={cx("abyss-aura-pop abyss-elevation abyss-dialog", className)}
           >
             <div className="abyss-frame abyss-dialog__tablet">
               <BaseDialog.Close

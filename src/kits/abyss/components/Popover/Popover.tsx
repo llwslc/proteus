@@ -29,7 +29,7 @@ export function Popover({
       <BasePopover.Trigger render={trigger} />
       <BasePopover.Portal>
         <BasePopover.Positioner
-          className="abyss-popover__pos"
+          className="abyss-elevation abyss-popover__pos"
           side={side}
           align={align}
           sideOffset={sideOffset}

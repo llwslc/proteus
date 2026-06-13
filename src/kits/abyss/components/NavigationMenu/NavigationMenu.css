@@ -95,8 +95,6 @@
   outline: none;
   width: var(--positioner-width);
   height: var(--positioner-height);
-  filter: drop-shadow(var(--abyss-shadow-pop))
-    drop-shadow(0 0 14px var(--abyss-glow-soft));
 }
 .abyss-navmenu__popup {
   --abyss-frame-bevel: var(--abyss-bevel);

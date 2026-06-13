@@ -1,8 +1,6 @@
 .abyss-menu__positioner {
   z-index: var(--abyss-z-menu);
   outline: none;
-  filter: drop-shadow(var(--abyss-shadow-pop))
-    drop-shadow(0 0 14px var(--abyss-glow-soft));
 }
 
 .abyss-menu__popup {

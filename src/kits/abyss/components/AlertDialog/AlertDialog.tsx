@@ -37,7 +37,7 @@ export function AlertDialog({
         <BaseAlertDialog.Viewport className="abyss-overlay-viewport">
           <BaseAlertDialog.Popup
             className={cx(
-              "abyss-aura-pop abyss-alert",
+              "abyss-aura-pop abyss-elevation abyss-alert",
               `abyss-alert--${tone}`,
               className,
             )}
