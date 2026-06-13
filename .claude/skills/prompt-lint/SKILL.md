@@ -9,7 +9,7 @@ A spec is the text you feed an AI to build something. It must read like a profes
 
 ## Axis 1 — Content: only build decisions, correctly placed
 
-- **How, not why.** Each line states a decision: what to do, what value, what to name, what not to do. Cut anything that doesn't change the output — rationale ("because / to avoid / otherwise"), history ("was X now Y, originally, accepted/rejected"), incident anecdotes ("this broke, the old bug"), framework restatement (re-explaining an API / CSS property / library the model knows), and hedging ("note that, for clarity").
+- **How, not why.** Each line states a decision: what to do, what value, what to name, what not to do. Cut anything that doesn't change the output — rationale ("because / to avoid / otherwise"), history ("was X now Y, originally, accepted/rejected"), incident anecdotes ("this broke, the old bug"), framework restatement (re-explaining an API / CSS property / library the model knows), and hedging ("note that, for clarity"). **Negating a past misconception is still residue** — "not an X thing / not actually Y" corrects a belief the reader never held; state the rule positively and don't name the wrong idea at all.
 - **Right layer.** When a spec is shared base + per-variant files, a rule true for every variant lives in the base (never repeated per variant); a variant file holds only its own values. Flag a clause duplicated across sibling variants (hoist it up) and a single variant's specifics sitting in the base (push it down).
 - **Variant-count-agnostic.** Never bake in the current number or roster of variants ("the two X"), and never define one variant's value by comparison to another. Adding a variant should need a new variant file and zero edits to the base. State each value absolutely.
 
