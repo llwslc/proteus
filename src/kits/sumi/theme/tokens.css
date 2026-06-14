@@ -1,21 +1,21 @@
 :root {
   --sumi-paper-deep: #e7dcc6;
-  --sumi-paper: #f4eee2;
+  --sumi-paper: #ece3d0;
 
-  --sumi-mist: #efe7d6;
-  --sumi-mist-raised: #f9f3e8;
-  --sumi-surface: rgba(249, 243, 232, 0.86);
+  --sumi-mist: #f7f1e7;
+  --sumi-mist-raised: #fdfbf5;
+  --sumi-surface: rgba(253, 250, 244, 0.92);
   --sumi-surface-popup: rgba(251, 246, 237, 0.98);
   --sumi-inset: #ebe1cd;
   --sumi-scrim: rgba(42, 35, 24, 0.34);
 
-  --sumi-ink-line: rgba(28, 24, 18, 0.24);
-  --sumi-ink-line-strong: rgba(28, 24, 18, 0.44);
-  --sumi-ink-line-faint: rgba(28, 24, 18, 0.1);
+  --sumi-ink-line: rgba(28, 24, 18, 0.32);
+  --sumi-ink-line-strong: rgba(28, 24, 18, 0.5);
+  --sumi-ink-line-faint: rgba(28, 24, 18, 0.12);
 
-  --sumi-text-bright: #1b1712;
-  --sumi-text: #2c2619;
-  --sumi-text-dim: #5e5647;
+  --sumi-text-bright: #16120c;
+  --sumi-text: #241d12;
+  --sumi-text-dim: #514a3c;
   --sumi-text-mute: #968c79;
 
   --sumi-seal: #c0392b;
@@ -95,7 +95,6 @@
   --sumi-lh-150: 1.5;
   --sumi-lh-180: 1.8;
 
-  --sumi-fw-300: 300;
   --sumi-fw-400: 400;
   --sumi-fw-600: 600;
 

@@ -1,6 +1,6 @@
 ---
 name: kit-states
-description: Dynamic acceptance gate for a theme kit — verify every interaction state renders right (pressed, hovered, focused, a control at its disabled edge, every overlay open), the states the resting page never shows. Sweeps both kits to /tmp/states for review. Run before accepting a kit change, alongside kit-lint. The pair: kit-lint checks the static token/reuse contract; kit-states checks the rendered dynamic states.
+description: Dynamic acceptance gate for a theme kit — verify every interaction state renders right (pressed, hovered, focused, a control at its disabled edge, every overlay open), the states the resting page never shows. Sweeps every kit under src/kits/ to /tmp/states for review. Run before accepting a kit change, alongside kit-lint. The pair: kit-lint checks the static token/reuse contract; kit-states checks the rendered dynamic states.
 ---
 
 # kit-states
@@ -12,7 +12,7 @@ One principle: **a kit is accepted only when every interaction state renders rig
 ```
 cp .claude/skills/kit-states/states.js /tmp/pw/ && cd /tmp/pw && node states.js [port]
 ```
-(sandbox-disabled; needs the dev server and `/tmp/pw` playwright-core from the screenshot skill). Writes `/tmp/states/<kit>_<state>.png` for both kits.
+(sandbox-disabled; needs the dev server and `/tmp/pw` playwright-core from the screenshot skill). The kit list is read from the app's own kit switcher (the registry), so every registered kit is swept and adding one needs no edit here. Writes `/tmp/states/<kit>_<state>.png`.
 
 ## What it sweeps
 
@@ -29,4 +29,4 @@ Read every PNG. Check the dynamic states specifically: pressed depth, hover/focu
 
 ## Extend
 
-When the kit gains an interaction state the sweep doesn't cover, add it to `states.js` — the gate is only as good as its state list.
+When the kit gains an interaction state the sweep doesn't cover, add it to `states.js` — the gate is only as good as its state list. (The kit *list* needs no maintenance — it's read from the app's kit switcher.)

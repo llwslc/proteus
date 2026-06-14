@@ -33,7 +33,7 @@
 .sumi-text {
   margin: 0;
   font-family: var(--sumi-font);
-  font-weight: var(--sumi-fw-300);
+  font-weight: var(--sumi-fw-400);
   font-size: var(--sumi-fs-15);
   line-height: var(--sumi-lh-180);
   color: var(--sumi-text-dim);

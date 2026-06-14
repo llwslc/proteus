@@ -28,6 +28,7 @@ export function Shell() {
           <button
             key={k.id}
             type="button"
+            data-kit-id={k.id}
             className={"shell-switch__btn" + (kit === k.id ? " is-active" : "")}
             aria-pressed={kit === k.id}
             onClick={() => switchKit(k.id)}

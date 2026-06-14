@@ -7,6 +7,7 @@
     linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist) 240px);
   position: relative;
   overflow: clip;
+  box-shadow: var(--sumi-shadow-sm);
 }
 .sumi-panel__head {
   display: flex;

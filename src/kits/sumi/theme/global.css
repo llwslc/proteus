@@ -2,7 +2,7 @@ body {
   background-color: var(--sumi-paper);
   color: var(--sumi-text);
   font-family: var(--sumi-font);
-  font-weight: var(--sumi-fw-300);
+  font-weight: var(--sumi-fw-400);
   font-size: var(--sumi-fs-16);
   line-height: var(--sumi-lh-150);
   -webkit-font-smoothing: antialiased;

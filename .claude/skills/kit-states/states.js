@@ -19,7 +19,12 @@ const shoot = async (loc, path) => { try { await loc.screenshot({ path }); } cat
   const page = await browser.newPage({ viewport: { width: 1440, height: 950 } });
   await page.emulateMedia({ reducedMotion: 'reduce' });
 
-  for (const kit of ['nova', 'abyss']) {
+  // kit list = the app's own switcher (reflects the registry) — no hardcoded names
+  await page.goto(URL, { waitUntil: 'networkidle' });
+  const KITS = await page.$$eval('.shell-switch__btn', (els) =>
+    els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
+
+  for (const kit of KITS) {
     await page.goto(URL, { waitUntil: 'networkidle' });
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
     await page.reload({ waitUntil: 'networkidle' });
