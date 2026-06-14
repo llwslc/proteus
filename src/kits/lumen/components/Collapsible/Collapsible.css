@@ -1,9 +1,0 @@
-.lumen-collapsible {
-  display: block;
-  width: 100%;
-  --lumen-surface-fill: var(--lumen-surface);
-  transition: box-shadow var(--lumen-dur) var(--lumen-ease);
-}
-.lumen-collapsible:has([data-panel-open]) {
-  box-shadow: var(--lumen-shadow-sm);
-}

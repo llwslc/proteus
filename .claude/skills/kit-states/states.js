@@ -19,7 +19,7 @@ const shoot = async (loc, path) => { try { await loc.screenshot({ path }); } cat
   const page = await browser.newPage({ viewport: { width: 1440, height: 950 } });
   await page.emulateMedia({ reducedMotion: 'reduce' });
 
-  for (const kit of ['nova', 'abyss', 'lumen']) {
+  for (const kit of ['nova', 'abyss']) {
     await page.goto(URL, { waitUntil: 'networkidle' });
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
     await page.reload({ waitUntil: 'networkidle' });
