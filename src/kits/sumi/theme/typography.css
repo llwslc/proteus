@@ -1,0 +1,51 @@
+.sumi-h1,
+.sumi-h2,
+.sumi-h3 {
+  margin: 0;
+  font-family: var(--sumi-font-display);
+  font-weight: var(--sumi-fw-400);
+  line-height: var(--sumi-lh-100);
+  color: var(--sumi-text-bright);
+}
+.sumi-h1 {
+  font-size: var(--sumi-fs-38);
+  letter-spacing: var(--sumi-ls-2);
+}
+.sumi-h2 {
+  font-size: var(--sumi-fs-20);
+  letter-spacing: var(--sumi-ls-6);
+}
+.sumi-h3 {
+  font-size: var(--sumi-fs-13);
+  letter-spacing: var(--sumi-ls-12);
+  color: var(--sumi-text-dim);
+}
+.sumi-h1--accent {
+  color: var(--sumi-seal);
+  text-shadow: var(--sumi-ink-wet);
+}
+.sumi-brand {
+  font-family: var(--sumi-font-brand);
+  font-weight: var(--sumi-fw-400);
+  line-height: var(--sumi-lh-100);
+}
+
+.sumi-text {
+  margin: 0;
+  font-family: var(--sumi-font);
+  font-weight: var(--sumi-fw-300);
+  font-size: var(--sumi-fs-15);
+  line-height: var(--sumi-lh-180);
+  color: var(--sumi-text-dim);
+}
+
+.sumi-cap {
+  font-family: var(--sumi-font-display);
+  font-size: var(--sumi-fs-12);
+  letter-spacing: var(--sumi-ls-12);
+  color: var(--sumi-text-dim);
+}
+
+.sumi-vert {
+  writing-mode: vertical-rl;
+}

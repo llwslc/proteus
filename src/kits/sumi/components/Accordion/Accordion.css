@@ -1,0 +1,65 @@
+.sumi-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sumi-space-2);
+  width: 100%;
+}
+
+.sumi-accordion__item {
+  --sumi-frame-round: var(--sumi-round-1);
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
+  --sumi-frame-fill: var(--sumi-surface);
+  transition: filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-accordion__item:has(.sumi-accordion__trigger[data-panel-open]) {
+  --sumi-frame-ink: var(--sumi-seal-a55);
+  filter: var(--sumi-bleed);
+}
+.sumi-accordion__item:has([data-disabled]) {
+  opacity: var(--sumi-disabled-opacity);
+}
+
+.sumi-accordion__header {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.sumi-accordion__sigil {
+  flex: 0 0 auto;
+  font-size: var(--sumi-fs-20);
+  color: var(--sumi-text-dim);
+  transition:
+    transform var(--sumi-dur-slow) var(--sumi-ease),
+    color var(--sumi-dur) var(--sumi-ease),
+    filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-accordion__trigger:hover .sumi-accordion__sigil {
+  color: var(--sumi-text);
+  transform: rotate(30deg);
+}
+.sumi-accordion__trigger[data-panel-open] .sumi-accordion__sigil {
+  transform: rotate(90deg);
+  color: var(--sumi-seal);
+  filter: var(--sumi-bleed-mark);
+}
+
+.sumi-accordion__chevron {
+  flex: 0 0 auto;
+  font-size: var(--sumi-fs-20);
+  color: var(--sumi-text-dim);
+  transition:
+    transform var(--sumi-dur) var(--sumi-ease),
+    color var(--sumi-dur) var(--sumi-ease),
+    filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-accordion__trigger:hover .sumi-accordion__chevron {
+  color: var(--sumi-text);
+}
+.sumi-accordion__trigger[data-panel-open] .sumi-accordion__chevron {
+  transform: rotate(180deg);
+  color: var(--sumi-seal);
+  filter: var(--sumi-bleed-mark);
+}
+
+

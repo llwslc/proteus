@@ -1,0 +1,112 @@
+.sumi-scrollarea {
+  --sumi-frame-fill: var(--sumi-inset);
+  --sumi-frame-ink: var(--sumi-ink-line);
+  --sumi-frame-round: var(--sumi-round-1);
+  position: relative;
+  width: 100%;
+}
+.sumi-scrollarea::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--sumi-frame-round);
+  background: radial-gradient(
+    120% 70% at 50% 116%,
+    var(--sumi-seal-soft),
+    transparent 64%
+  );
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity var(--sumi-dur-slow) var(--sumi-ease);
+}
+.sumi-scrollarea:hover::after {
+  opacity: 1;
+}
+
+.sumi-scrollarea__viewport {
+  position: relative;
+  z-index: 1;
+  overscroll-behavior: contain;
+  outline: none;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 22px,
+    #000 calc(100% - 22px),
+    transparent
+  );
+}
+
+.sumi-scrollarea .sumi-scrollarea__viewport {
+  scrollbar-width: none;
+}
+.sumi-scrollarea .sumi-scrollarea__viewport::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+.sumi-scrollarea:focus-within {
+  --sumi-frame-ink: var(--sumi-seal-a55);
+}
+
+.sumi-scrollarea__content {
+  padding: var(--sumi-space-4) var(--sumi-space-5);
+  color: var(--sumi-text);
+  font-family: var(--sumi-font);
+  font-size: var(--sumi-fs-15);
+  line-height: var(--sumi-lh-180);
+}
+
+.sumi-scrollarea__scrollbar {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 12px;
+  margin: var(--sumi-space-2) 3px;
+  background: var(--sumi-ink-line-faint);
+  border-radius: var(--sumi-round-3);
+  opacity: 0;
+  transition: opacity var(--sumi-dur-slow) var(--sumi-ease);
+}
+.sumi-scrollarea:hover .sumi-scrollarea__scrollbar,
+.sumi-scrollarea__scrollbar[data-scrolling],
+.sumi-scrollarea__scrollbar[data-hovering] {
+  opacity: 1;
+}
+
+.sumi-scrollarea__thumb {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--sumi-scrollarea-thumb-min-h);
+}
+.sumi-scrollarea__thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0 3px;
+  border-radius: var(--sumi-round-3);
+  background: linear-gradient(
+    180deg,
+    var(--sumi-seal-deep),
+    var(--sumi-seal) 50%,
+    var(--sumi-seal-deep)
+  );
+  box-shadow:
+    0 0 7px var(--sumi-seal-a30),
+    inset 0 0 0 1px var(--sumi-seal-a30);
+  opacity: 0.62;
+  transition:
+    opacity var(--sumi-dur) var(--sumi-ease),
+    box-shadow var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-scrollarea__thumb:hover::before,
+.sumi-scrollarea__scrollbar[data-scrolling] .sumi-scrollarea__thumb::before {
+  opacity: 1;
+  box-shadow:
+    0 0 12px var(--sumi-seal-a55),
+    inset 0 0 0 1px var(--sumi-seal-a55);
+}

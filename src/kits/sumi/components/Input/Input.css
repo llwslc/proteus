@@ -1,0 +1,86 @@
+.sumi-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sumi-space-2);
+}
+.sumi-field__label {
+  display: block;
+}
+.sumi-input-wrap {
+  --sumi-frame-fill: var(--sumi-inset);
+  --sumi-frame-ink: var(--sumi-ink-line);
+  --sumi-frame-round: var(--sumi-round-1);
+  display: flex;
+  align-items: center;
+  min-height: var(--sumi-control-h);
+  transition: filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-input-wrap:focus-within {
+  --sumi-frame-ink: var(--sumi-seal-a55);
+  filter: var(--sumi-lift-focus);
+}
+.sumi-input-wrap:not(.sumi-input-wrap--error):hover:not(:focus-within) {
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
+}
+.sumi-input-wrap--error,
+.sumi-input-wrap--error:focus-within {
+  --sumi-frame-ink: var(--sumi-danger);
+}
+.sumi-input-wrap--error:focus-within {
+  filter: drop-shadow(0 2px 8px var(--sumi-danger-soft));
+}
+.sumi-input-wrap--error .sumi-input {
+  caret-color: var(--sumi-danger);
+}
+.sumi-input-wrap--error:focus-within .sumi-input__icon {
+  color: var(--sumi-danger);
+}
+.sumi-input {
+  flex: 1;
+  min-width: 0;
+  height: var(--sumi-control-h);
+  padding: 0 var(--sumi-space-3);
+  border: 0;
+  background: transparent;
+  color: var(--sumi-text-bright);
+  font-family: var(--sumi-font);
+  font-size: var(--sumi-fs-15);
+  caret-color: var(--sumi-seal);
+}
+.sumi-input::placeholder {
+  color: var(--sumi-text-mute);
+}
+.sumi-input:focus {
+  outline: none;
+}
+.sumi-input--has-icon {
+  padding-left: var(--sumi-space-2);
+}
+.sumi-input__icon {
+  display: inline-flex;
+  align-items: center;
+  padding-left: var(--sumi-space-3);
+  color: var(--sumi-text-dim);
+  font-size: 1.05em;
+  transition:
+    color var(--sumi-dur) var(--sumi-ease),
+    filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-input-wrap:focus-within .sumi-input__icon {
+  color: var(--sumi-seal);
+  filter: var(--sumi-bleed);
+}
+.sumi-input:disabled {
+  cursor: not-allowed;
+}
+.sumi-input-wrap:has(.sumi-input:disabled) {
+  opacity: var(--sumi-disabled-opacity);
+}
+.sumi-field__desc {
+  font-size: var(--sumi-fs-12);
+  color: var(--sumi-text-mute);
+}
+.sumi-field__error {
+  font-size: var(--sumi-fs-12);
+  color: var(--sumi-danger);
+}

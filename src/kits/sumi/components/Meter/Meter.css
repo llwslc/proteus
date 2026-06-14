@@ -1,0 +1,52 @@
+.sumi-meter {
+  --sumi-meter-fill: var(--sumi-seal);
+  --sumi-meter-fill-deep: var(--sumi-seal-deep);
+  --sumi-meter-aura: var(--sumi-seal-a55);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sumi-space-2);
+  width: 100%;
+}
+.sumi-meter--warning {
+  --sumi-meter-fill: var(--sumi-warning);
+  --sumi-meter-fill-deep: var(--sumi-warning-deep);
+  --sumi-meter-aura: var(--sumi-warning-a50);
+}
+.sumi-meter--danger {
+  --sumi-meter-fill: var(--sumi-danger);
+  --sumi-meter-fill-deep: var(--sumi-danger-deep);
+  --sumi-meter-aura: var(--sumi-danger-a55);
+}
+
+.sumi-meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sumi-space-3);
+}
+.sumi-meter__value {
+  font-family: var(--sumi-font-mono);
+  font-size: var(--sumi-fs-13);
+  color: var(--sumi-meter-value, var(--sumi-meter-fill));
+  text-shadow: var(--sumi-ink-wet);
+}
+
+.sumi-meter__track {
+  position: relative;
+  height: 6px;
+  background: var(--sumi-inset);
+  border-radius: var(--sumi-round-3);
+  box-shadow: inset 0 0 0 1px var(--sumi-ink-line-faint);
+  filter: url(#sumi-edge);
+}
+.sumi-meter__indicator {
+  height: 100%;
+  border-radius: var(--sumi-round-3);
+  background: linear-gradient(
+    90deg,
+    var(--sumi-meter-fill-deep),
+    var(--sumi-meter-fill)
+  );
+  box-shadow: 0 0 8px var(--sumi-meter-aura);
+  transition: width var(--sumi-dur-slow) var(--sumi-ease);
+}

@@ -1,0 +1,90 @@
+.sumi-numberfield {
+  display: inline-block;
+  transition: filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-numberfield:focus-within {
+  filter: var(--sumi-lift-focus);
+}
+
+.sumi-numberfield__group {
+  --sumi-frame-fill: var(--sumi-inset);
+  --sumi-frame-ink: var(--sumi-ink-line);
+  --sumi-frame-round: var(--sumi-round-1);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--sumi-control-h);
+  padding: 0 var(--sumi-space-2);
+  gap: var(--sumi-space-2);
+}
+.sumi-numberfield__group:hover {
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
+}
+.sumi-numberfield:focus-within .sumi-numberfield__group {
+  --sumi-frame-ink: var(--sumi-seal-a55);
+}
+
+.sumi-numberfield__input {
+  width: var(--sumi-number-field-w);
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  text-align: center;
+  background: transparent;
+  color: var(--sumi-text-bright);
+  caret-color: var(--sumi-seal);
+  font-family: var(--sumi-font-mono);
+  font-size: var(--sumi-fs-16);
+  letter-spacing: var(--sumi-ls-2);
+}
+.sumi-numberfield:focus-within .sumi-numberfield__input {
+  text-shadow: var(--sumi-ink-wet);
+}
+
+.sumi-numberfield__btn {
+  --sumi-frame-ink: var(--sumi-ink-line);
+  --sumi-frame-fill: linear-gradient(
+    180deg,
+    var(--sumi-mist-raised),
+    var(--sumi-mist)
+  );
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: var(--sumi-number-field-stepper);
+  height: var(--sumi-number-field-stepper);
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  color: var(--sumi-text-dim);
+  font-size: var(--sumi-fs-13);
+  transition:
+    color var(--sumi-dur) var(--sumi-ease),
+    filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-numberfield__btn:hover {
+  color: var(--sumi-seal);
+  --sumi-frame-ink: var(--sumi-seal-a55);
+  filter: drop-shadow(0 0 6px var(--sumi-seal-a55));
+}
+.sumi-numberfield__btn:active {
+  color: var(--sumi-text-bright);
+}
+.sumi-numberfield__btn:focus-visible {
+  outline: none;
+  color: var(--sumi-seal);
+  --sumi-frame-ink: var(--sumi-seal);
+  filter: drop-shadow(0 0 8px var(--sumi-seal-a70));
+}
+.sumi-numberfield__group:has(.sumi-numberfield__input:disabled) {
+  opacity: var(--sumi-disabled-opacity);
+}
+.sumi-numberfield__btn:disabled {
+  cursor: not-allowed;
+  color: var(--sumi-text-mute);
+  --sumi-frame-ink: var(--sumi-ink-line-faint);
+}

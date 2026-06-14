@@ -1,0 +1,129 @@
+.sumi-menu__positioner {
+  z-index: var(--sumi-z-menu);
+  outline: none;
+}
+
+.sumi-menu__popup {
+  --sumi-frame-bevel: var(--sumi-bevel);
+  --sumi-frame-fill:
+    var(--sumi-paper-grain),
+    var(--sumi-surface-popup);
+  --sumi-frame-ink: var(--sumi-seal-a55);
+  --sumi-frame-round: var(--sumi-round-2);
+  min-width: var(--sumi-menu-min-w);
+  padding: var(--sumi-space-2);
+  outline: none;
+}
+
+.sumi-menu__item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--sumi-space-3);
+  padding: var(--sumi-space-2) var(--sumi-space-3) var(--sumi-space-2)
+    var(--sumi-space-4);
+  border-radius: var(--sumi-round-0);
+  cursor: pointer;
+  color: var(--sumi-text-dim);
+  font-family: var(--sumi-font);
+  font-size: var(--sumi-fs-15);
+  user-select: none;
+  outline: none;
+  transition:
+    background var(--sumi-dur) var(--sumi-ease),
+    color var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-menu__item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  border-radius: var(--sumi-round-0);
+  background: var(--sumi-seal);
+  box-shadow: 0 0 7px var(--sumi-seal-a70);
+  opacity: 0;
+  filter: url(#sumi-edge);
+  transition: opacity var(--sumi-dur) var(--sumi-ease);
+}
+
+.sumi-menu__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  font-size: var(--sumi-fs-16);
+  color: var(--sumi-text-mute);
+  transition: color var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-menu__label {
+  flex: 1;
+  white-space: nowrap;
+}
+.sumi-menu__shortcut {
+  flex: 0 0 auto;
+  margin-left: var(--sumi-space-4);
+  font-family: var(--sumi-font-mono);
+  font-size: var(--sumi-fs-12);
+  letter-spacing: var(--sumi-ls-6);
+  color: var(--sumi-text-mute);
+  transition: color var(--sumi-dur) var(--sumi-ease);
+}
+
+.sumi-menu__item[data-highlighted],
+.sumi-menu__item[data-popup-open] {
+  background: var(--sumi-seal-soft);
+  color: var(--sumi-text-bright);
+}
+.sumi-menu__item[data-highlighted]::after,
+.sumi-menu__item[data-popup-open]::after {
+  opacity: 1;
+}
+.sumi-menu__item[data-highlighted] .sumi-menu__icon,
+.sumi-menu__item[data-popup-open] .sumi-menu__icon {
+  color: var(--sumi-seal);
+}
+.sumi-menu__item[data-highlighted] .sumi-menu__shortcut,
+.sumi-menu__item[data-popup-open] .sumi-menu__shortcut {
+  color: var(--sumi-text-dim);
+}
+
+.sumi-menu__item[data-disabled] {
+  opacity: var(--sumi-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.sumi-menu__item--danger,
+.sumi-menu__item--danger .sumi-menu__icon {
+  color: var(--sumi-danger);
+}
+.sumi-menu__item--danger::after {
+  background: var(--sumi-danger);
+  box-shadow: 0 0 7px var(--sumi-danger-a55);
+}
+.sumi-menu__item--danger[data-highlighted] {
+  background: var(--sumi-danger-soft);
+  color: var(--sumi-danger);
+}
+.sumi-menu__item--danger[data-highlighted] .sumi-menu__icon {
+  color: var(--sumi-danger);
+}
+
+.sumi-menu__separator.sumi-separator {
+  position: relative;
+  z-index: 1;
+  margin: var(--sumi-space-2) var(--sumi-space-2);
+}
+
+.sumi-menu__arrow {
+  flex: 0 0 auto;
+  display: inline-flex;
+  margin-left: var(--sumi-space-3);
+  font-size: var(--sumi-fs-15);
+  color: var(--sumi-text-mute);
+  transition: color var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-menu__item[data-highlighted] .sumi-menu__arrow,
+.sumi-menu__item[data-popup-open] .sumi-menu__arrow {
+  color: var(--sumi-seal);
+}

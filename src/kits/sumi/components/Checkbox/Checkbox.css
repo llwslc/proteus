@@ -1,0 +1,83 @@
+.sumi-check {
+  --sumi-frame-fill: var(--sumi-inset);
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
+  --sumi-frame-round: var(--sumi-round-2);
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--sumi-checkbox-box);
+  height: var(--sumi-checkbox-box);
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-check__sigil {
+  width: var(--sumi-checkbox-glyph);
+  height: var(--sumi-checkbox-glyph);
+  overflow: visible;
+}
+.sumi-check__mark {
+  fill: none;
+  stroke: var(--sumi-seal);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: url(#sumi-edge);
+  transition: stroke-dashoffset var(--sumi-dur-slow) var(--sumi-ease);
+}
+.sumi-check__bar {
+  stroke: var(--sumi-seal);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-check:hover {
+  --sumi-frame-ink: var(--sumi-seal-a30);
+}
+.sumi-check[data-checked],
+.sumi-check[data-indeterminate] {
+  --sumi-frame-ink: var(--sumi-seal-a55);
+  filter: var(--sumi-bleed-mark);
+}
+.sumi-check[data-checked] .sumi-check__mark {
+  stroke-dashoffset: 0;
+}
+.sumi-check[data-indeterminate] .sumi-check__bar {
+  opacity: 1;
+}
+.sumi-check:focus-visible {
+  outline: none;
+  --sumi-frame-ink: var(--sumi-seal);
+  filter: var(--sumi-bleed);
+}
+.sumi-check[data-disabled] {
+  opacity: var(--sumi-disabled-opacity);
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.sumi-check-field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sumi-space-3);
+  cursor: pointer;
+  font-family: var(--sumi-font);
+  font-size: var(--sumi-fs-15);
+  color: var(--sumi-text);
+}
+.sumi-check-field:has(.sumi-check[data-disabled]) {
+  cursor: not-allowed;
+}
+.sumi-check-field:has(.sumi-check[data-disabled]) .sumi-check-field__label {
+  opacity: var(--sumi-disabled-opacity);
+}
+.sumi-check-field__label {
+  user-select: none;
+}

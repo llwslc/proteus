@@ -1,0 +1,597 @@
+.sumi-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.sumi-app {
+  min-height: 100vh;
+}
+
+.sumi-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 68px;
+  padding: 0 26px;
+  background:
+    radial-gradient(120% 240% at 50% -70%, var(--sumi-seal-soft), transparent 60%),
+    linear-gradient(180deg, rgba(249, 243, 232, 0.94), rgba(244, 238, 226, 0.8));
+  border-bottom: 1px solid var(--sumi-ink-line);
+  backdrop-filter: blur(12px) saturate(1.05);
+  -webkit-backdrop-filter: blur(12px) saturate(1.05);
+}
+.sumi-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--sumi-seal-a55) 38%,
+    var(--sumi-seal) 50%,
+    var(--sumi-seal-a55) 62%,
+    transparent
+  );
+  opacity: 0.5;
+}
+.sumi-logo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex: 0 0 auto;
+}
+.sumi-logo__mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  color: var(--sumi-seal);
+  border: 1px solid var(--sumi-seal-a55);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, var(--sumi-seal-soft), transparent 72%);
+  filter: var(--sumi-bleed);
+}
+.sumi-logo__words {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sumi-logo__text {
+  font-size: 30px;
+  line-height: 0.86;
+  color: var(--sumi-text-bright);
+  text-shadow: var(--sumi-ink-wet);
+}
+.sumi-logo__sub {
+  font-family: var(--sumi-font-display);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--sumi-text-mute);
+}
+.sumi-header__status {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex: 0 0 auto;
+}
+.sumi-header__tide {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border: 1px solid var(--sumi-ink-line);
+  border-radius: 999px;
+  background: var(--sumi-seal-soft);
+}
+.sumi-header__tide svg {
+  width: 13px;
+  height: 13px;
+  color: var(--sumi-seal);
+  filter: var(--sumi-bleed);
+}
+.sumi-clock {
+  font-family: var(--sumi-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--sumi-seal);
+}
+.sumi-header .sumi-navmenu {
+  align-self: stretch;
+}
+.sumi-header .sumi-navmenu__triggerwrap,
+.sumi-header .sumi-navmenu__trigger,
+.sumi-header .sumi-navmenu__toplink {
+  height: 100%;
+}
+.sumi-header .sumi-navmenu__trigger::after,
+.sumi-header .sumi-navmenu__toplink::after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.sumi-hero__sigil {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  width: 208px;
+  height: 208px;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 12px rgba(45, 37, 24, 0.1));
+}
+.sumi-hero__sigil svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.sumi-hero__enso {
+  fill: none;
+  stroke: var(--sumi-text-bright);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 90 100;
+  stroke-dashoffset: 100;
+  transform-origin: 120px 120px;
+  transform: rotate(125deg);
+  animation: sumi-enso 2.6s var(--sumi-ease-out) 0.3s both;
+}
+.sumi-hero__seal {
+  fill: var(--sumi-seal);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sumi-seal-stamp 0.5s var(--sumi-ease) 2.7s both;
+}
+@keyframes sumi-enso {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes sumi-seal-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sumi-hero__enso,
+  .sumi-hero__seal {
+    animation: none;
+  }
+  .sumi-hero__enso {
+    stroke-dashoffset: 0;
+  }
+  .sumi-hero__seal {
+    opacity: 1;
+  }
+}
+
+.sumi-shell {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 26px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 26px 22px 28px;
+}
+
+.sumi-sidebar {
+  position: sticky;
+  top: 94px;
+  align-self: start;
+  max-height: calc(100vh - 118px);
+  overflow-y: auto;
+  padding-right: 6px;
+}
+.sumi-sidebar__group {
+  margin-bottom: 18px;
+}
+.sumi-sidebar__group-title {
+  margin: 0 0 8px;
+  padding-left: 12px;
+  font-family: var(--sumi-font-display);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--sumi-text-mute);
+}
+.sumi-sidebar__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  color: var(--sumi-text-dim);
+  font-family: var(--sumi-font);
+  font-size: 14px;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition:
+    color var(--sumi-dur) var(--sumi-ease),
+    background var(--sumi-dur) var(--sumi-ease),
+    border-color var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-sidebar__link:hover {
+  color: var(--sumi-text-bright);
+  background: var(--sumi-seal-soft);
+  border-left-color: var(--sumi-seal-a55);
+}
+.sumi-sidebar__link span {
+  font-family: var(--sumi-font-mono);
+  font-size: 10px;
+  color: var(--sumi-text-mute);
+}
+
+.sumi-main {
+  min-width: 0;
+}
+.sumi-hero {
+  position: relative;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 26px;
+  padding: 36px 30px;
+  border: 1px solid var(--sumi-ink-line);
+  border-radius: var(--sumi-round-3);
+  overflow: hidden;
+  background:
+    radial-gradient(110% 90% at 92% -10%, var(--sumi-seal-soft), transparent 55%),
+    linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist));
+}
+.sumi-hero__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.sumi-hero__title {
+  flex: 0 0 auto;
+  align-self: center;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-right: 200px;
+  writing-mode: vertical-rl;
+  font-family: var(--sumi-font-display);
+  font-weight: var(--sumi-fw-400);
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.08;
+  letter-spacing: 0.06em;
+  color: var(--sumi-text-bright);
+  text-shadow: var(--sumi-ink-wet);
+}
+.sumi-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  font-family: var(--sumi-font-display);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--sumi-seal);
+}
+.sumi-hero__eyebrow svg {
+  filter: var(--sumi-bleed);
+}
+.sumi-hero .sumi-text {
+  max-width: 46ch;
+}
+.sumi-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 24px;
+}
+.sumi-hero__stat b {
+  display: block;
+  font-family: var(--sumi-font-display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--sumi-seal);
+  text-shadow: var(--sumi-ink-wet);
+}
+.sumi-hero__stat span {
+  font-family: var(--sumi-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--sumi-text-mute);
+}
+.sumi-hero code,
+.sumi-app code {
+  font-family: var(--sumi-font-mono);
+  font-size: 0.86em;
+  color: var(--sumi-seal);
+}
+
+.sumi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.sumi-section {
+  display: flex;
+  min-width: 0;
+  scroll-margin-top: 88px;
+}
+.sumi-section.span-2 {
+  grid-column: 1 / -1;
+}
+.sumi-section > .sumi-panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.sumi-grid__group {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--sumi-space-3);
+  margin: var(--sumi-space-5) 0 calc(var(--sumi-space-2) * -1);
+  padding-bottom: var(--sumi-space-2);
+  scroll-margin-top: 88px;
+  border-bottom: 1px solid var(--sumi-ink-line-faint);
+}
+.sumi-grid__group:first-child {
+  margin-top: 0;
+}
+.sumi-grid__group-mark {
+  align-self: center;
+  font-size: 15px;
+  color: var(--sumi-seal);
+  filter: var(--sumi-bleed);
+}
+.sumi-grid__group-title {
+  font-family: var(--sumi-font-display);
+  font-size: var(--sumi-fs-20);
+  letter-spacing: var(--sumi-ls-6);
+  color: var(--sumi-text-bright);
+}
+.sumi-grid__group-sub {
+  font-family: var(--sumi-font);
+  font-size: var(--sumi-fs-13);
+  color: var(--sumi-text-mute);
+}
+
+.demo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sumi-space-4);
+}
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sumi-space-3);
+}
+.demo-spread {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sumi-space-4);
+}
+.demo-toolbar__label {
+  font-family: var(--sumi-font-display);
+  font-size: var(--sumi-fs-13);
+  letter-spacing: var(--sumi-ls-2);
+}
+.demo-link {
+  color: var(--sumi-seal);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--sumi-seal-a55);
+}
+.demo-link:hover {
+  border-bottom-color: var(--sumi-seal);
+  text-shadow: var(--sumi-ink-wet);
+}
+kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--sumi-font-mono);
+  font-size: 0.82em;
+  padding: 1px 6px;
+  border: 1px solid var(--sumi-ink-line);
+  border-radius: var(--sumi-round-1);
+  color: var(--sumi-text-dim);
+}
+.demo-pcard__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sumi-space-3);
+  margin-bottom: var(--sumi-space-3);
+}
+.demo-pcard__name {
+  font-family: var(--sumi-font-display);
+  font-size: var(--sumi-fs-16);
+  color: var(--sumi-text-bright);
+}
+.demo-pcard__handle {
+  font-size: var(--sumi-fs-12);
+  color: var(--sumi-text-mute);
+}
+.demo-pcard__bio {
+  margin: 0 0 var(--sumi-space-3);
+  font-size: var(--sumi-fs-13);
+  line-height: var(--sumi-lh-180);
+  color: var(--sumi-text-dim);
+}
+
+.demo-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sumi-space-3);
+}
+.demo-log li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sumi-space-4);
+  padding-bottom: var(--sumi-space-3);
+  border-bottom: 1px solid var(--sumi-ink-line-faint);
+}
+.demo-log li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.demo-log__t {
+  flex: 0 0 auto;
+  font-family: var(--sumi-font-mono);
+  font-size: var(--sumi-fs-12);
+  letter-spacing: var(--sumi-ls-2);
+  color: var(--sumi-seal);
+}
+.demo-log__m {
+  font-size: var(--sumi-fs-13);
+  line-height: var(--sumi-lh-180);
+  color: var(--sumi-text-dim);
+}
+
+.sumi-footer {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: var(--sumi-space-7) 24px var(--sumi-space-4);
+  border-top: 1px solid var(--sumi-ink-line-faint);
+  font-family: var(--sumi-font-mono);
+  font-size: var(--sumi-fs-12);
+  color: var(--sumi-text-mute);
+  text-align: center;
+}
+
+.sumi-header {
+  animation: sumi-drop 0.6s var(--sumi-ease) both;
+}
+@keyframes sumi-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+.sumi-hero__eyebrow {
+  animation: sumi-rise 0.7s var(--sumi-ease) both 0.08s;
+}
+.sumi-hero__title {
+  animation: sumi-rise 0.7s var(--sumi-ease) both 0.18s;
+}
+.sumi-hero .sumi-text {
+  animation: sumi-rise 0.7s var(--sumi-ease) both 0.3s;
+}
+.sumi-hero__stats {
+  animation: sumi-rise 0.7s var(--sumi-ease) both 0.42s;
+}
+@keyframes sumi-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.sumi-grid.sumi-reveal .sumi-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s var(--sumi-ease),
+    transform 0.6s var(--sumi-ease);
+}
+.sumi-grid.sumi-reveal .sumi-section.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.sumi-grid.sumi-reveal .sumi-section:nth-child(1) {
+  transition-delay: 0.02s;
+}
+.sumi-grid.sumi-reveal .sumi-section:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.sumi-grid.sumi-reveal .sumi-section:nth-child(3) {
+  transition-delay: 0.18s;
+}
+.sumi-grid.sumi-reveal .sumi-section:nth-child(4) {
+  transition-delay: 0.26s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sumi-header,
+  .sumi-hero__eyebrow,
+  .sumi-hero__title,
+  .sumi-hero .sumi-text,
+  .sumi-hero__stats {
+    animation: none;
+  }
+  .sumi-grid.sumi-reveal .sumi-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sumi-shell {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 16px 13px 20px;
+  }
+  .sumi-sidebar {
+    display: none;
+  }
+  .sumi-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sumi-section.span-2 {
+    grid-column: auto;
+  }
+  .sumi-header {
+    padding: 0 14px;
+    gap: 12px;
+  }
+  .sumi-header .sumi-navmenu {
+    display: none;
+  }
+  .sumi-hero {
+    flex-direction: column;
+    padding: 22px 18px;
+    margin-bottom: 18px;
+  }
+  .sumi-hero__title {
+    writing-mode: horizontal-tb;
+    align-self: flex-start;
+    order: -1;
+    padding-right: 0;
+    margin-bottom: 16px;
+    font-size: clamp(30px, 8vw, 44px);
+  }
+  .sumi-hero__sigil {
+    display: none;
+  }
+  .sumi-logo__sub,
+  .sumi-clock {
+    display: none;
+  }
+}
+
+.demo-trigger-chevron {
+  font-size: 0.9em;
+  transition: transform var(--sumi-dur) var(--sumi-ease);
+}
+[data-popup-open] .demo-trigger-chevron {
+  transform: rotate(180deg);
+}

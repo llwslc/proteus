@@ -1,0 +1,182 @@
+:root {
+  --sumi-paper-deep: #e7dcc6;
+  --sumi-paper: #f4eee2;
+
+  --sumi-mist: #efe7d6;
+  --sumi-mist-raised: #f9f3e8;
+  --sumi-surface: rgba(249, 243, 232, 0.86);
+  --sumi-surface-popup: rgba(251, 246, 237, 0.98);
+  --sumi-inset: #ebe1cd;
+  --sumi-scrim: rgba(42, 35, 24, 0.34);
+
+  --sumi-ink-line: rgba(28, 24, 18, 0.24);
+  --sumi-ink-line-strong: rgba(28, 24, 18, 0.44);
+  --sumi-ink-line-faint: rgba(28, 24, 18, 0.1);
+
+  --sumi-text-bright: #1b1712;
+  --sumi-text: #2c2619;
+  --sumi-text-dim: #5e5647;
+  --sumi-text-mute: #968c79;
+
+  --sumi-seal: #c0392b;
+  --sumi-seal-deep: #8c2820;
+  --sumi-seal-soft: rgba(192, 57, 43, 0.12);
+  --sumi-seal-a30: rgba(192, 57, 43, 0.3);
+  --sumi-seal-a55: rgba(192, 57, 43, 0.55);
+  --sumi-seal-a70: rgba(192, 57, 43, 0.72);
+  --sumi-paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.36 0 0 0 0 0.31 0 0 0 0 0.24 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --sumi-bevel:
+    inset 0 1px 0 rgba(255, 252, 244, 0.55),
+    inset 0 -1px 0 rgba(28, 24, 18, 0.05);
+  --sumi-seal-wash: linear-gradient(
+    180deg,
+    rgba(192, 57, 43, 0.13),
+    rgba(192, 57, 43, 0.03)
+  );
+  --sumi-seal-wash-strong: linear-gradient(
+    180deg,
+    rgba(192, 57, 43, 0.26),
+    rgba(192, 57, 43, 0.08)
+  );
+
+  --sumi-warning: #4f4636;
+  --sumi-warning-deep: #322c20;
+  --sumi-warning-soft: rgba(79, 70, 54, 0.13);
+  --sumi-warning-a50: rgba(79, 70, 54, 0.5);
+
+  --sumi-secondary: var(--sumi-text);
+  --sumi-secondary-soft: rgba(28, 24, 18, 0.08);
+  --sumi-secondary-a50: rgba(28, 24, 18, 0.45);
+  --sumi-secondary-text: var(--sumi-text-bright);
+
+  --sumi-danger: var(--sumi-seal);
+  --sumi-danger-deep: var(--sumi-seal-deep);
+  --sumi-danger-soft: var(--sumi-seal-soft);
+  --sumi-danger-a55: var(--sumi-seal-a55);
+  --sumi-danger-text: #f6f1e6;
+
+  --sumi-success: #1e1b14;
+  --sumi-success-soft: rgba(30, 27, 20, 0.1);
+  --sumi-success-a50: rgba(30, 27, 20, 0.5);
+
+  --sumi-thumb-glint: #fffdf7;
+
+  --sumi-bleed: drop-shadow(0 1px 5px rgba(28, 24, 18, 0.15));
+  --sumi-bleed-strong: drop-shadow(0 2px 9px rgba(28, 24, 18, 0.24));
+  --sumi-bleed-mark: drop-shadow(0 1px 5px rgba(192, 57, 43, 0.42));
+  --sumi-bleed-warn: drop-shadow(0 1px 6px rgba(79, 70, 54, 0.32));
+  --sumi-bleed-warn-strong: drop-shadow(0 2px 8px rgba(79, 70, 54, 0.46));
+  --sumi-ink-wet: 0 1px 1px rgba(28, 24, 18, 0.18);
+  --sumi-shadow-pop: 0 12px 30px rgba(45, 37, 24, 0.13);
+  --sumi-shadow-modal: 0 24px 60px rgba(45, 37, 24, 0.2);
+  --sumi-shadow-sm: 0 4px 14px rgba(45, 37, 24, 0.1);
+  --sumi-lift-focus: drop-shadow(0 0 5px rgba(192, 57, 43, 0.25));
+  --sumi-lift-popup: drop-shadow(0 3px 10px rgba(45, 37, 24, 0.1));
+  --sumi-lift-modal: drop-shadow(0 6px 18px rgba(45, 37, 24, 0.14));
+
+  --sumi-font: "Noto Serif SC", "Songti SC", "Source Han Serif SC", serif;
+  --sumi-font-display: "Ma Shan Zheng", "Noto Serif SC", serif;
+  --sumi-font-brand: "Zhi Mang Xing", "Ma Shan Zheng", cursive;
+  --sumi-font-mono: "Cutive Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --sumi-fs-12: 12px;
+  --sumi-fs-13: 13px;
+  --sumi-fs-15: 15px;
+  --sumi-fs-16: 16px;
+  --sumi-fs-20: 20px;
+  --sumi-fs-26: 26px;
+  --sumi-fs-38: 38px;
+
+  --sumi-ls-2: 0.02em;
+  --sumi-ls-6: 0.06em;
+  --sumi-ls-12: 0.12em;
+
+  --sumi-lh-100: 1;
+  --sumi-lh-150: 1.5;
+  --sumi-lh-180: 1.8;
+
+  --sumi-fw-300: 300;
+  --sumi-fw-400: 400;
+  --sumi-fw-600: 600;
+
+  --sumi-dur: 0.4s;
+  --sumi-dur-slow: 0.9s;
+  --sumi-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --sumi-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --sumi-breath: 8s;
+
+  --sumi-control-h: 40px;
+  --sumi-disabled-opacity: 0.45;
+
+  --sumi-space-1: 4px;
+  --sumi-space-2: 8px;
+  --sumi-space-3: 12px;
+  --sumi-space-4: 16px;
+  --sumi-space-5: 20px;
+  --sumi-space-6: 24px;
+  --sumi-space-7: 32px;
+
+  --sumi-round-0: 0;
+  --sumi-round-1: 1px;
+  --sumi-round-2: 2px;
+  --sumi-round-3: 3px;
+
+  --sumi-w-dialog: 460px;
+  --sumi-w-alert: 440px;
+  --sumi-w-drawer: 420px;
+  --sumi-h-drawer: 460px;
+  --sumi-w-popover: 320px;
+  --sumi-w-preview: 286px;
+  --sumi-w-tooltip: 240px;
+  --sumi-w-toast: 360px;
+  --sumi-h-popup-list: 264px;
+
+  --sumi-autocomplete-min-w: 240px;
+  --sumi-avatar-status-min-w: 14px;
+  --sumi-avatar-status-min-h: 14px;
+  --sumi-badge-h: 22px;
+  --sumi-button-h-sm: 32px;
+  --sumi-button-h-lg: 48px;
+  --sumi-button-icon-h-sm: 32px;
+  --sumi-button-icon-h-lg: 48px;
+  --sumi-checkbox-box: 28px;
+  --sumi-checkbox-glyph: 24px;
+  --sumi-combobox-min-w: 240px;
+  --sumi-combobox-icon: 24px;
+  --sumi-combobox-glyph: 18px;
+  --sumi-contextmenu-min-h: 132px;
+  --sumi-menu-min-w: 216px;
+  --sumi-menubar-trigger-h: 34px;
+  --sumi-menubar-trigger-min-w: 34px;
+  --sumi-navmenu-trigger-h: 38px;
+  --sumi-number-field-stepper: 28px;
+  --sumi-number-field-w: 64px;
+  --sumi-otp-cell-w: 44px;
+  --sumi-otp-cell-h: 52px;
+  --sumi-otp-cell-w-sm: 38px;
+  --sumi-otp-cell-h-sm: 48px;
+  --sumi-otp-caret-h: 24px;
+  --sumi-otp-divider: 14px;
+  --sumi-preview-mark: 16px;
+  --sumi-radio-box: 28px;
+  --sumi-radio-glyph: 12px;
+  --sumi-scrollarea-thumb-min-h: 30px;
+  --sumi-select-min-w: 190px;
+  --sumi-select-indicator: 18px;
+  --sumi-slider-control-h: 24px;
+  --sumi-slider-thumb: 16px;
+  --sumi-switch-w: 52px;
+  --sumi-toast-close: 22px;
+  --sumi-togglegroup-h: 34px;
+  --sumi-togglegroup-min-w: 34px;
+  --sumi-toolbar-btn-h: 34px;
+  --sumi-toolbar-btn-min-w: 34px;
+  --sumi-toolbar-sep-min-h: 18px;
+
+  --sumi-z-dropdown: 1200;
+  --sumi-z-menu: 1250;
+  --sumi-z-tooltip: 1300;
+  --sumi-z-backdrop: 1400;
+  --sumi-z-overlay: 1401;
+  --sumi-z-toast: 1500;
+}

@@ -1,0 +1,51 @@
+.sumi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sumi-space-2);
+  height: var(--sumi-badge-h);
+  padding: 0 var(--sumi-space-3);
+  border: 1px solid;
+  border-radius: var(--sumi-round-0);
+  font-family: var(--sumi-font-display);
+  font-size: var(--sumi-fs-12);
+  letter-spacing: var(--sumi-ls-6);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sumi-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+.sumi-badge--primary {
+  color: var(--sumi-seal);
+  border-color: var(--sumi-seal-a55);
+  background: var(--sumi-seal-soft);
+}
+.sumi-badge--secondary {
+  color: var(--sumi-secondary-text);
+  border-color: var(--sumi-secondary-a50);
+  background: var(--sumi-secondary-soft);
+}
+.sumi-badge--success {
+  color: var(--sumi-success);
+  border-color: var(--sumi-success-a50);
+  background: var(--sumi-success-soft);
+}
+.sumi-badge--warning {
+  color: var(--sumi-warning);
+  border-color: var(--sumi-warning-a50);
+  background: var(--sumi-warning-soft);
+}
+.sumi-badge--danger {
+  color: var(--sumi-danger-text);
+  border-color: var(--sumi-danger);
+  background: var(--sumi-danger);
+}
+.sumi-badge--neutral {
+  color: var(--sumi-text-dim);
+  border-color: var(--sumi-ink-line);
+  background: transparent;
+}

@@ -1,0 +1,66 @@
+.sumi-radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sumi-space-3);
+}
+.sumi-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sumi-space-3);
+  cursor: pointer;
+  font-family: var(--sumi-font);
+  font-size: var(--sumi-fs-15);
+  color: var(--sumi-text);
+}
+.sumi-radio__control {
+  --sumi-frame-fill: var(--sumi-inset);
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
+  --sumi-frame-round: 50%;
+  display: grid;
+  place-items: center;
+  width: var(--sumi-radio-box);
+  height: var(--sumi-radio-box);
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-radio__dot {
+  width: var(--sumi-radio-glyph);
+  height: var(--sumi-radio-glyph);
+  border-radius: 50%;
+  background: var(--sumi-seal);
+  transform: scale(0);
+  opacity: 0;
+  filter: url(#sumi-edge);
+  transition:
+    transform var(--sumi-dur) var(--sumi-ease),
+    opacity var(--sumi-dur) var(--sumi-ease);
+}
+.sumi-radio:hover .sumi-radio__control:not([data-checked]) {
+  --sumi-frame-ink: var(--sumi-seal-a30);
+}
+.sumi-radio:hover .sumi-radio__dot {
+  transform: scale(0.45);
+  opacity: 0.4;
+}
+.sumi-radio__control[data-checked] {
+  --sumi-frame-ink: var(--sumi-seal-a55);
+  filter: var(--sumi-bleed-mark);
+}
+.sumi-radio__control[data-checked] .sumi-radio__dot {
+  transform: scale(1);
+  opacity: 1;
+}
+.sumi-radio__control:focus-visible {
+  outline: none;
+  --sumi-frame-ink: var(--sumi-seal);
+  filter: var(--sumi-bleed);
+}
+.sumi-radio:has([data-disabled]) {
+  opacity: var(--sumi-disabled-opacity);
+  cursor: not-allowed;
+}
