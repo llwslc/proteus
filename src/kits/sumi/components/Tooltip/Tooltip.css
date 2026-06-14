@@ -1,17 +1,11 @@
 .sumi-tooltip__pos {
   z-index: var(--sumi-z-tooltip);
-  --sumi-overlay-shadow: var(--sumi-shadow-sm);
-  --sumi-overlay-glow: var(--sumi-lift-popup);
 }
 .sumi-tooltip__popup {
   position: relative;
 }
 .sumi-tooltip__surface {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    var(--sumi-surface-popup);
-  --sumi-frame-ink: var(--sumi-seal-a55);
+  --sumi-frame-fill: var(--sumi-surface-popup);
   display: block;
   max-width: var(--sumi-w-tooltip);
   padding: var(--sumi-space-2) var(--sumi-space-3);

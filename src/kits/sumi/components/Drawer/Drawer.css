@@ -24,12 +24,7 @@
 }
 
 .sumi-drawer__tablet {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist));
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  --sumi-frame-round: var(--sumi-round-2);
+  --sumi-frame-fill: var(--sumi-mist-raised);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -42,7 +37,7 @@
   position: absolute;
   z-index: 2;
   pointer-events: none;
-  box-shadow: 0 0 14px var(--sumi-seal-a70);
+  filter: url(#sumi-edge);
 }
 
 .sumi-drawer--right,
@@ -162,24 +157,4 @@
   font-size: var(--sumi-fs-20);
   color: var(--sumi-seal);
   filter: var(--sumi-bleed);
-  transform-origin: 8px 8px;
-  animation: sumi-drawer-key 1.4s var(--sumi-ease-out) both;
-}
-@keyframes sumi-drawer-key {
-  0% {
-    transform: rotate(-78deg);
-    opacity: 0;
-  }
-  55% {
-    transform: rotate(8deg);
-  }
-  100% {
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sumi-drawer__key {
-    animation: none;
-  }
 }

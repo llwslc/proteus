@@ -2,28 +2,34 @@
   display: block;
   width: 100%;
   min-width: var(--sumi-autocomplete-min-w);
-  transition: filter var(--sumi-dur) var(--sumi-ease);
-}
-.sumi-autocomplete__field:has(:focus-within) {
-  filter: var(--sumi-lift-focus);
 }
 
 .sumi-autocomplete__control {
-  --sumi-frame-fill: var(--sumi-inset);
-  --sumi-frame-ink: var(--sumi-ink-line);
-  --sumi-frame-round: var(--sumi-round-1);
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--sumi-space-2);
   width: 100%;
   min-height: var(--sumi-control-h);
   padding: 0 var(--sumi-space-3);
+  background: var(--sumi-inset);
 }
-.sumi-autocomplete__field:hover:not(:focus-within) .sumi-autocomplete__control {
-  --sumi-frame-ink: var(--sumi-ink-line-strong);
+.sumi-autocomplete__control::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--sumi-ink-line-strong);
+  filter: url(#sumi-edge);
+  transition: background var(--sumi-dur) var(--sumi-ease);
 }
-.sumi-autocomplete__field:has(:focus-within) .sumi-autocomplete__control {
-  --sumi-frame-ink: var(--sumi-seal-a55);
+.sumi-autocomplete__field:hover:not(:focus-within) .sumi-autocomplete__control::after {
+  background: var(--sumi-text-dim);
+}
+.sumi-autocomplete__field:has(:focus-within) .sumi-autocomplete__control::after {
+  background: var(--sumi-seal);
 }
 
 .sumi-autocomplete__lead {
@@ -35,7 +41,6 @@
 }
 .sumi-autocomplete__field:has(:focus-within) .sumi-autocomplete__lead {
   color: var(--sumi-seal);
-  filter: var(--sumi-bleed);
 }
 
 .sumi-autocomplete__input {
@@ -58,14 +63,10 @@
 .sumi-autocomplete__positioner {
   z-index: var(--sumi-z-dropdown);
   outline: none;
-  --sumi-overlay-glow: var(--sumi-lift-popup);
 }
 .sumi-autocomplete__popup {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    var(--sumi-surface-popup);
-  --sumi-frame-ink: var(--sumi-seal-a55);
+  --sumi-frame-fill: var(--sumi-surface-popup);
+  --sumi-frame-round: var(--sumi-round-0);
   min-width: var(--anchor-width);
   padding: var(--sumi-space-1);
 }
@@ -93,7 +94,7 @@
   align-items: center;
   gap: var(--sumi-space-3);
   padding: var(--sumi-space-2) var(--sumi-space-3);
-  border-radius: var(--sumi-round-1);
+  border-radius: var(--sumi-round-0);
   cursor: pointer;
   color: var(--sumi-text-dim);
   font-family: var(--sumi-font);
@@ -104,26 +105,12 @@
     background var(--sumi-dur) var(--sumi-ease),
     color var(--sumi-dur) var(--sumi-ease);
 }
-.sumi-autocomplete__item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 4px;
-  bottom: 4px;
-  width: 2px;
-  border-radius: var(--sumi-round-0);
-  background: var(--sumi-seal);
-  box-shadow: 0 0 7px var(--sumi-seal-a70);
-  filter: url(#sumi-edge);
-  opacity: 0;
-  transition: opacity var(--sumi-dur) var(--sumi-ease);
-}
 .sumi-autocomplete__item[data-highlighted] {
-  background: var(--sumi-seal-soft);
+  background: var(--sumi-secondary-soft);
   color: var(--sumi-text-bright);
 }
-.sumi-autocomplete__item[data-highlighted]::after {
-  opacity: 1;
+.sumi-autocomplete__item[data-selected] {
+  color: var(--sumi-seal);
 }
 .sumi-autocomplete__item[data-disabled] {
   opacity: var(--sumi-disabled-opacity);

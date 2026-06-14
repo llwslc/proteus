@@ -1,7 +1,5 @@
 .sumi-combobox__control {
-  --sumi-frame-fill: var(--sumi-inset);
-  --sumi-frame-ink: var(--sumi-ink-line);
-  --sumi-frame-round: var(--sumi-round-1);
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--sumi-space-2);
@@ -9,14 +7,24 @@
   min-width: var(--sumi-combobox-min-w);
   height: var(--sumi-control-h);
   padding: 0 var(--sumi-space-2) 0 var(--sumi-space-3);
-  transition: filter var(--sumi-dur) var(--sumi-ease);
+  background: var(--sumi-inset);
 }
-.sumi-combobox__control:hover:not(:focus-within) {
-  --sumi-frame-ink: var(--sumi-ink-line-strong);
+.sumi-combobox__control::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--sumi-ink-line-strong);
+  filter: url(#sumi-edge);
+  transition: background var(--sumi-dur) var(--sumi-ease);
 }
-.sumi-combobox__control:focus-within {
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  filter: var(--sumi-lift-focus);
+.sumi-combobox__control:hover:not(:focus-within)::after {
+  background: var(--sumi-text-dim);
+}
+.sumi-combobox__control:focus-within::after {
+  background: var(--sumi-seal);
 }
 .sumi-combobox__control:has(.sumi-combobox__input:disabled) {
   opacity: var(--sumi-disabled-opacity);
@@ -31,7 +39,6 @@
 }
 .sumi-combobox__control:focus-within .sumi-combobox__lead {
   color: var(--sumi-seal);
-  filter: var(--sumi-bleed);
 }
 
 .sumi-combobox__input {
@@ -68,8 +75,7 @@
   cursor: pointer;
   transition:
     color var(--sumi-dur) var(--sumi-ease),
-    transform var(--sumi-dur) var(--sumi-ease),
-    filter var(--sumi-dur) var(--sumi-ease);
+    transform var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-combobox__clear {
   font-size: var(--sumi-fs-13);
@@ -77,7 +83,6 @@
 }
 .sumi-combobox__clear:hover {
   color: var(--sumi-danger);
-  filter: drop-shadow(0 0 7px var(--sumi-danger-a55));
 }
 .sumi-combobox__trigger {
   font-size: var(--sumi-fs-20);
@@ -85,18 +90,15 @@
 }
 .sumi-combobox__trigger:hover {
   color: var(--sumi-seal);
-  filter: var(--sumi-bleed);
 }
 .sumi-combobox__trigger[data-popup-open] {
   transform: rotate(180deg);
   color: var(--sumi-seal);
-  filter: var(--sumi-bleed);
 }
 
 .sumi-combobox__positioner {
   z-index: var(--sumi-z-dropdown);
   outline: none;
-  --sumi-overlay-glow: var(--sumi-lift-popup);
 }
 .sumi-combobox__popup {
   position: relative;
@@ -104,12 +106,8 @@
   padding: var(--sumi-space-1);
 }
 .sumi-combobox__tablet {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    var(--sumi-surface-popup);
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  --sumi-frame-round: var(--sumi-round-2);
+  --sumi-frame-fill: var(--sumi-surface-popup);
+  --sumi-frame-round: var(--sumi-round-0);
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -141,7 +139,7 @@
   align-items: center;
   gap: var(--sumi-space-2);
   padding: var(--sumi-space-2) var(--sumi-space-3);
-  border-radius: var(--sumi-round-1);
+  border-radius: var(--sumi-round-0);
   cursor: pointer;
   color: var(--sumi-text-dim);
   font-family: var(--sumi-font);
@@ -152,30 +150,12 @@
     background var(--sumi-dur) var(--sumi-ease),
     color var(--sumi-dur) var(--sumi-ease);
 }
-.sumi-combobox__item::before {
-  content: "";
-  position: absolute;
-  left: 2px;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
-  border-radius: var(--sumi-round-0);
-  background: var(--sumi-seal);
-  box-shadow: 0 0 7px var(--sumi-seal-a70);
-  filter: url(#sumi-edge);
-  opacity: 0;
-  transition: opacity var(--sumi-dur) var(--sumi-ease);
-}
 .sumi-combobox__item[data-highlighted] {
-  background: var(--sumi-seal-soft);
+  background: var(--sumi-secondary-soft);
   color: var(--sumi-text-bright);
-}
-.sumi-combobox__item[data-highlighted]::before {
-  opacity: 1;
 }
 .sumi-combobox__item[data-selected] {
   color: var(--sumi-seal);
-  text-shadow: var(--sumi-ink-wet);
 }
 .sumi-combobox__item[data-disabled] {
   opacity: var(--sumi-disabled-opacity);
@@ -197,5 +177,4 @@
   height: var(--sumi-combobox-glyph);
   font-size: var(--sumi-fs-16);
   color: var(--sumi-seal);
-  filter: var(--sumi-bleed-mark);
 }

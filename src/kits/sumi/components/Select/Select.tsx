@@ -47,7 +47,7 @@ export function Select<Value extends string = string>({
       <span className={cx("sumi-select__field", className)}>
         <BaseSelect.Trigger
           id={id ?? autoId}
-          className="sumi-frame sumi-select__trigger"
+          className="sumi-select__trigger"
         >
           <BaseSelect.Value>
             {(val) => {

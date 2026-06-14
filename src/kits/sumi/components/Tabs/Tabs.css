@@ -51,11 +51,10 @@
   transition: color var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-tabs__tab:hover {
-  color: var(--sumi-text);
+  color: var(--sumi-seal);
 }
 .sumi-tabs__tab[data-selected] {
   color: var(--sumi-seal);
-  text-shadow: var(--sumi-ink-wet);
 }
 .sumi-tabs__tab:focus-visible {
   outline: none;
@@ -73,7 +72,6 @@
   width: var(--active-tab-width);
   transform: translateX(var(--active-tab-left));
   background: var(--sumi-seal);
-  box-shadow: 0 0 8px var(--sumi-seal-a55);
   filter: url(#sumi-edge);
   transition:
     transform var(--sumi-dur) var(--sumi-ease),

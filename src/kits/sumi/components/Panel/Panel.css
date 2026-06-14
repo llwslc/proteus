@@ -1,30 +1,36 @@
 .sumi-panel {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-ink: var(--sumi-ink-line-strong);
-  --sumi-frame-round: var(--sumi-round-2);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist) 240px);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--sumi-mist-raised);
   overflow: clip;
-  box-shadow: var(--sumi-shadow-sm);
 }
 .sumi-panel__head {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--sumi-space-3);
   padding: var(--sumi-space-4) var(--sumi-space-4) var(--sumi-space-3);
-  border-bottom: 1px solid var(--sumi-ink-line-faint);
+}
+.sumi-panel__head::after {
+  content: "";
+  position: absolute;
+  left: var(--sumi-space-4);
+  right: var(--sumi-space-4);
+  bottom: 0;
+  height: 2px;
+  background: var(--sumi-ink-line-strong);
+  filter: url(#sumi-edge);
 }
 .sumi-panel__title {
   display: flex;
   align-items: center;
   gap: var(--sumi-space-2);
-  color: var(--sumi-text);
+  color: var(--sumi-text-bright);
 }
 .sumi-panel__mark {
-  font-size: var(--sumi-fs-15);
+  font-size: var(--sumi-fs-16);
   color: var(--sumi-seal);
   filter: var(--sumi-bleed);
 }
@@ -32,10 +38,7 @@
   font-family: var(--sumi-font-mono);
   font-size: var(--sumi-fs-12);
   letter-spacing: var(--sumi-ls-6);
-  color: var(--sumi-warning);
-  padding: 2px var(--sumi-space-2);
-  border: 1px solid var(--sumi-warning-a50);
-  border-radius: var(--sumi-round-0);
+  color: var(--sumi-text-mute);
 }
 .sumi-panel__body {
   padding: var(--sumi-space-5) var(--sumi-space-4);

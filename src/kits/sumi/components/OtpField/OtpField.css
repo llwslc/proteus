@@ -10,37 +10,13 @@
   gap: var(--sumi-space-2);
 }
 
-.sumi-otp__cell-glow {
-  display: inline-flex;
-  width: var(--sumi-otp-cell-w);
-  height: var(--sumi-otp-cell-h);
-  transition: filter var(--sumi-dur) var(--sumi-ease);
-}
-
 .sumi-otp__cell {
   --sumi-frame-fill: var(--sumi-inset);
   --sumi-frame-ink: var(--sumi-ink-line);
-  --sumi-frame-round: var(--sumi-round-1);
   position: relative;
   display: inline-flex;
   width: var(--sumi-otp-cell-w);
   height: var(--sumi-otp-cell-h);
-  transition: filter var(--sumi-dur) var(--sumi-ease);
-}
-
-.sumi-otp__well {
-  position: absolute;
-  inset: 1.5px;
-  z-index: 1;
-  border-radius: var(--sumi-round-0);
-  background: radial-gradient(
-    120% 90% at 50% 100%,
-    var(--sumi-seal-soft),
-    transparent 70%
-  );
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--sumi-dur) var(--sumi-ease);
 }
 
 .sumi-otp__slot {
@@ -68,7 +44,7 @@
   width: 1.5px;
   height: var(--sumi-otp-caret-h);
   background: var(--sumi-seal);
-  filter: url(#sumi-edge) drop-shadow(0 0 5px var(--sumi-seal-a70));
+  filter: url(#sumi-edge);
   opacity: 0;
   pointer-events: none;
 }
@@ -84,26 +60,18 @@
   }
 }
 
-.sumi-otp__cell-glow:has(.sumi-otp__slot:focus) {
-  filter: drop-shadow(0 2px 9px var(--sumi-seal-soft));
-}
 .sumi-otp__cell:has(.sumi-otp__slot:focus) {
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  filter: drop-shadow(0 0 7px var(--sumi-seal-soft));
-}
-.sumi-otp__cell:has(.sumi-otp__slot:focus) .sumi-otp__well {
-  opacity: 1;
+  --sumi-frame-ink: var(--sumi-seal);
 }
 .sumi-otp__cell:has(.sumi-otp__slot:focus) .sumi-otp__caret {
   animation: sumi-otp-caret 1.1s steps(1, end) infinite;
 }
 
 .sumi-otp__cell:has(.sumi-otp__slot[data-filled]) {
-  --sumi-frame-ink: var(--sumi-seal-a30);
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
 }
 .sumi-otp__cell:has(.sumi-otp__slot[data-filled]) .sumi-otp__slot {
   color: var(--sumi-text-bright);
-  text-shadow: var(--sumi-ink-wet);
 }
 
 .sumi-otp__cell:has(.sumi-otp__slot[data-filled]:focus) .sumi-otp__caret {
@@ -129,7 +97,6 @@
   .sumi-otp__slot-wrap {
     gap: var(--sumi-space-1);
   }
-  .sumi-otp__cell-glow,
   .sumi-otp__cell {
     width: var(--sumi-otp-cell-w-sm);
     height: var(--sumi-otp-cell-h-sm);

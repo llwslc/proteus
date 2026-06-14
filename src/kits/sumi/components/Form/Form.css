@@ -5,11 +5,21 @@
 }
 
 .sumi-form__row {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: var(--sumi-space-3);
   margin-top: var(--sumi-space-2);
   padding-top: var(--sumi-space-4);
-  border-top: 1px solid var(--sumi-ink-line-faint);
+}
+.sumi-form__row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--sumi-ink-line-strong);
+  filter: url(#sumi-edge);
 }

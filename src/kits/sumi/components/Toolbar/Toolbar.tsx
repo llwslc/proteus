@@ -29,7 +29,7 @@ export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps
   return (
     <span className="sumi-toolbar__btnwrap">
       <BaseToolbar.Button
-        className={cx("sumi-toolbar__btn sumi-frame", active ? "is-active" : "")}
+        className={cx("sumi-toolbar__btn", active ? "is-active" : "")}
         {...props}
       >
         <span className="sumi-toolbar__label">{children}</span>
@@ -40,7 +40,7 @@ export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps
 
 export function ToolbarSeparator() {
   return (
-    <BaseToolbar.Separator className="sumi-separator sumi-separator--vertical sumi-toolbar__sep" />
+    <BaseToolbar.Separator className="sumi-toolbar__sep" />
   );
 }
 

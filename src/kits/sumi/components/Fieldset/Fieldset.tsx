@@ -19,7 +19,7 @@ export function Fieldset({ className, legend, children, ...props }: FieldsetProp
           <span className="sumi-fieldset__legend-text">{legend}</span>
         </BaseFieldset.Legend>
       ) : null}
-      <div className="sumi-fieldset__body sumi-frame">{children}</div>
+      <div className="sumi-fieldset__body">{children}</div>
     </BaseFieldset.Root>
   );
 }

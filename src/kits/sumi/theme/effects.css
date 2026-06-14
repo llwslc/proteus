@@ -15,20 +15,8 @@
   z-index: -1;
   background: var(--sumi-frame-fill, var(--sumi-surface));
   border: 1px solid var(--sumi-frame-ink, var(--sumi-ink-line-strong));
-  border-radius: var(--sumi-frame-round, var(--sumi-round-1));
-  box-shadow: var(--sumi-frame-bevel, none);
+  border-radius: var(--sumi-frame-round, var(--sumi-round-0));
   filter: var(--sumi-frame-etch, url(#sumi-edge));
-  pointer-events: none;
-}
-
-.sumi-frame--double::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  z-index: -1;
-  border: 1px solid var(--sumi-ink-line-faint);
-  border-radius: var(--sumi-round-0);
-  filter: url(#sumi-edge);
   pointer-events: none;
 }
 

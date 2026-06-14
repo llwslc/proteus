@@ -7,27 +7,31 @@
   display: block;
 }
 .sumi-input-wrap {
-  --sumi-frame-fill: var(--sumi-inset);
-  --sumi-frame-ink: var(--sumi-ink-line);
-  --sumi-frame-round: var(--sumi-round-1);
+  position: relative;
   display: flex;
   align-items: center;
   min-height: var(--sumi-control-h);
-  transition: filter var(--sumi-dur) var(--sumi-ease);
+  background: var(--sumi-inset);
 }
-.sumi-input-wrap:focus-within {
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  filter: var(--sumi-lift-focus);
+.sumi-input-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--sumi-ink-line-strong);
+  filter: url(#sumi-edge);
+  transition: background var(--sumi-dur) var(--sumi-ease);
 }
-.sumi-input-wrap:not(.sumi-input-wrap--error):hover:not(:focus-within) {
-  --sumi-frame-ink: var(--sumi-ink-line-strong);
+.sumi-input-wrap:hover:not(:focus-within):not(.sumi-input-wrap--error)::after {
+  background: var(--sumi-text-dim);
 }
-.sumi-input-wrap--error,
-.sumi-input-wrap--error:focus-within {
-  --sumi-frame-ink: var(--sumi-danger);
+.sumi-input-wrap:focus-within::after {
+  background: var(--sumi-seal);
 }
-.sumi-input-wrap--error:focus-within {
-  filter: drop-shadow(0 2px 8px var(--sumi-danger-soft));
+.sumi-input-wrap--error::after {
+  background: var(--sumi-danger);
 }
 .sumi-input-wrap--error .sumi-input {
   caret-color: var(--sumi-danger);
@@ -62,13 +66,10 @@
   padding-left: var(--sumi-space-3);
   color: var(--sumi-text-dim);
   font-size: 1.05em;
-  transition:
-    color var(--sumi-dur) var(--sumi-ease),
-    filter var(--sumi-dur) var(--sumi-ease);
+  transition: color var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-input-wrap:focus-within .sumi-input__icon {
   color: var(--sumi-seal);
-  filter: var(--sumi-bleed);
 }
 .sumi-input:disabled {
   cursor: not-allowed;

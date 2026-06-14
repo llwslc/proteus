@@ -23,7 +23,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
   return (
     <BaseMenu.Root>
       <span className="sumi-menubar__triggerwrap">
-        <BaseMenu.Trigger className="sumi-frame sumi-menubar__trigger">{label}</BaseMenu.Trigger>
+        <BaseMenu.Trigger className="sumi-menubar__trigger">{label}</BaseMenu.Trigger>
       </span>
       <BaseMenu.Portal>
         <BaseMenu.Positioner

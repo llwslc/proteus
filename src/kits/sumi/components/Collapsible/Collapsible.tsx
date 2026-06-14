@@ -26,7 +26,7 @@ export function Collapsible({
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
-      className={cx("sumi-collapsible sumi-frame", className)}
+      className={cx("sumi-collapsible", className)}
     >
       <BaseCollapsible.Trigger className="sumi-disclosure__trigger sumi-collapsible__trigger">
         <span className="sumi-collapsible__rune" aria-hidden>

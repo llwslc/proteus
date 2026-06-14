@@ -8,12 +8,7 @@
 }
 
 .sumi-popover__surface {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    var(--sumi-surface-popup);
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  --sumi-frame-round: var(--sumi-round-2);
+  --sumi-frame-fill: var(--sumi-surface-popup);
   display: block;
   padding: var(--sumi-space-4) var(--sumi-space-4) var(--sumi-space-4);
 }

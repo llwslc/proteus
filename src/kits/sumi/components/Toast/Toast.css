@@ -17,7 +17,6 @@
 
 .sumi-toast {
   --sumi-toast-accent: var(--sumi-seal);
-  --sumi-toast-accent-soft: var(--sumi-seal-soft);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -37,12 +36,8 @@
 }
 
 .sumi-toast__tablet {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist));
+  --sumi-frame-fill: var(--sumi-mist-raised);
   --sumi-frame-ink: color-mix(in srgb, var(--sumi-toast-accent) 55%, transparent);
-  --sumi-frame-round: var(--sumi-round-2);
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -132,13 +127,10 @@
 
 .sumi-toast--info {
   --sumi-toast-accent: var(--sumi-secondary);
-  --sumi-toast-accent-soft: var(--sumi-secondary-soft);
 }
 .sumi-toast--warning {
   --sumi-toast-accent: var(--sumi-warning);
-  --sumi-toast-accent-soft: var(--sumi-warning-soft);
 }
 .sumi-toast--danger {
   --sumi-toast-accent: var(--sumi-danger);
-  --sumi-toast-accent-soft: var(--sumi-danger-soft);
 }

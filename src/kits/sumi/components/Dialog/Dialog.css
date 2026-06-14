@@ -5,12 +5,7 @@
   --sumi-overlay-glow: var(--sumi-lift-modal);
 }
 .sumi-dialog__tablet {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist));
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  --sumi-frame-round: var(--sumi-round-3);
+  --sumi-frame-fill: var(--sumi-mist-raised);
   padding: var(--sumi-space-6) var(--sumi-space-6) var(--sumi-space-5);
 }
 .sumi-dialog__x {

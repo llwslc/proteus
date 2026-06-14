@@ -16,18 +16,15 @@
 }
 
 .sumi-alert__tablet {
-  --sumi-frame-bevel: var(--sumi-bevel);
   --sumi-frame-fill:
     radial-gradient(
       130% 120px at 50% -20px,
-      color-mix(in srgb, var(--sumi-alert-accent) 20%, transparent),
-      color-mix(in srgb, var(--sumi-alert-accent) 6%, transparent) 45%,
+      color-mix(in srgb, var(--sumi-alert-accent) 18%, transparent),
+      color-mix(in srgb, var(--sumi-alert-accent) 5%, transparent) 45%,
       transparent 78%
     ),
-    var(--sumi-paper-grain),
-    linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist));
+    var(--sumi-mist-raised);
   --sumi-frame-ink: color-mix(in srgb, var(--sumi-alert-accent) 55%, transparent);
-  --sumi-frame-round: var(--sumi-round-3);
   padding: var(--sumi-space-6) var(--sumi-space-6) var(--sumi-space-5);
 }
 

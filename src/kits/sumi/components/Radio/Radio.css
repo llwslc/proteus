@@ -25,8 +25,6 @@
   border: 0;
   background: transparent;
   cursor: pointer;
-  filter: drop-shadow(0 0 0 transparent);
-  transition: filter var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-radio__dot {
   width: var(--sumi-radio-glyph);
@@ -49,7 +47,6 @@
 }
 .sumi-radio__control[data-checked] {
   --sumi-frame-ink: var(--sumi-seal-a55);
-  filter: var(--sumi-bleed-mark);
 }
 .sumi-radio__control[data-checked] .sumi-radio__dot {
   transform: scale(1);
@@ -58,7 +55,6 @@
 .sumi-radio__control:focus-visible {
   outline: none;
   --sumi-frame-ink: var(--sumi-seal);
-  filter: var(--sumi-bleed);
 }
 .sumi-radio:has([data-disabled]) {
   opacity: var(--sumi-disabled-opacity);

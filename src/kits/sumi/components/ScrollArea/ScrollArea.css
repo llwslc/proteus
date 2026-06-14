@@ -1,27 +1,9 @@
 .sumi-scrollarea {
   --sumi-frame-fill: var(--sumi-inset);
   --sumi-frame-ink: var(--sumi-ink-line);
-  --sumi-frame-round: var(--sumi-round-1);
+  --sumi-frame-round: var(--sumi-round-0);
   position: relative;
   width: 100%;
-}
-.sumi-scrollarea::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: var(--sumi-frame-round);
-  background: radial-gradient(
-    120% 70% at 50% 116%,
-    var(--sumi-seal-soft),
-    transparent 64%
-  );
-  opacity: 0.7;
-  pointer-events: none;
-  transition: opacity var(--sumi-dur-slow) var(--sumi-ease);
-}
-.sumi-scrollarea:hover::after {
-  opacity: 1;
 }
 
 .sumi-scrollarea__viewport {
@@ -62,10 +44,9 @@
   z-index: 2;
   display: flex;
   justify-content: center;
-  width: 12px;
+  width: 10px;
   margin: var(--sumi-space-2) 3px;
   background: var(--sumi-ink-line-faint);
-  border-radius: var(--sumi-round-3);
   opacity: 0;
   transition: opacity var(--sumi-dur-slow) var(--sumi-ease);
 }
@@ -88,25 +69,12 @@
   content: "";
   position: absolute;
   inset: 0 3px;
-  border-radius: var(--sumi-round-3);
-  background: linear-gradient(
-    180deg,
-    var(--sumi-seal-deep),
-    var(--sumi-seal) 50%,
-    var(--sumi-seal-deep)
-  );
-  box-shadow:
-    0 0 7px var(--sumi-seal-a30),
-    inset 0 0 0 1px var(--sumi-seal-a30);
-  opacity: 0.62;
-  transition:
-    opacity var(--sumi-dur) var(--sumi-ease),
-    box-shadow var(--sumi-dur) var(--sumi-ease);
+  background: var(--sumi-ink-line-strong);
+  filter: url(#sumi-edge);
+  opacity: 0.7;
+  transition: opacity var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-scrollarea__thumb:hover::before,
 .sumi-scrollarea__scrollbar[data-scrolling] .sumi-scrollarea__thumb::before {
   opacity: 1;
-  box-shadow:
-    0 0 12px var(--sumi-seal-a55),
-    inset 0 0 0 1px var(--sumi-seal-a55);
 }

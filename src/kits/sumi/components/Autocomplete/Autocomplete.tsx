@@ -22,7 +22,7 @@ export function Autocomplete({
   return (
     <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
       <div className="sumi-autocomplete__field">
-        <div className="sumi-frame sumi-autocomplete__control">
+        <div className="sumi-autocomplete__control">
           <span className="sumi-autocomplete__lead">
             <SearchIcon />
           </span>

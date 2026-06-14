@@ -38,12 +38,9 @@ export function OtpField({
     >
       {Array.from({ length }, (_, i) => (
         <span className="sumi-otp__slot-wrap" key={i}>
-          <span className="sumi-otp__cell-glow">
-            <span className="sumi-otp__cell sumi-frame">
-              <span className="sumi-otp__well" aria-hidden="true" />
-              <BaseOtp.Input className="sumi-otp__slot" />
-              <span className="sumi-otp__caret" aria-hidden="true" />
-            </span>
+          <span className="sumi-otp__cell sumi-frame">
+            <BaseOtp.Input className="sumi-otp__slot" />
+            <span className="sumi-otp__caret" aria-hidden="true" />
           </span>
           {splitAt != null && i + 1 === splitAt && i + 1 < length ? (
             <span className="sumi-otp__divider" aria-hidden="true" />

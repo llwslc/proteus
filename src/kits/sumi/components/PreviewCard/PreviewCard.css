@@ -8,12 +8,7 @@
 }
 
 .sumi-previewcard__surface {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    var(--sumi-surface-popup);
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  --sumi-frame-round: var(--sumi-round-2);
+  --sumi-frame-fill: var(--sumi-surface-popup);
   display: block;
   padding: var(--sumi-space-4);
   overflow: hidden;
@@ -28,10 +23,7 @@
   height: var(--sumi-preview-mark);
   pointer-events: none;
   color: var(--sumi-ink-line-strong);
-  filter: drop-shadow(0 0 0 transparent);
-  transition:
-    color var(--sumi-dur) var(--sumi-ease),
-    filter var(--sumi-dur) var(--sumi-ease);
+  transition: color var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-previewcard__popup[data-open] .sumi-previewcard__mark {
   color: var(--sumi-seal);

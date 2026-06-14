@@ -14,7 +14,7 @@ export function Input({ className, icon, id, ...props }: InputProps) {
   return (
     <span
       className={cx(
-        "sumi-input-wrap sumi-frame",
+        "sumi-input-wrap",
         icon && "sumi-input-wrap--icon",
         className,
       )}
@@ -55,7 +55,7 @@ export function Field({
       ) : null}
       <span
         className={cx(
-          "sumi-input-wrap sumi-frame",
+          "sumi-input-wrap",
           icon && "sumi-input-wrap--icon",
           error != null && "sumi-input-wrap--error",
         )}

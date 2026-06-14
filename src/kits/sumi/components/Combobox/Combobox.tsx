@@ -23,7 +23,7 @@ export function Combobox({
   const inputId = useId();
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
-      <div className="sumi-frame sumi-combobox__control">
+      <div className="sumi-combobox__control">
         <span className="sumi-combobox__lead" aria-hidden>
           <SearchIcon />
         </span>

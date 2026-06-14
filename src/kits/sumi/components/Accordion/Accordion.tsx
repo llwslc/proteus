@@ -35,7 +35,7 @@ export function Accordion({
           key={it.value}
           value={it.value}
           disabled={it.disabled}
-          className="sumi-accordion__item sumi-frame"
+          className="sumi-accordion__item"
         >
           <BaseAccordion.Header className="sumi-accordion__header">
             <BaseAccordion.Trigger className="sumi-disclosure__trigger sumi-accordion__trigger">

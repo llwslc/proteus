@@ -25,9 +25,6 @@
   --sumi-seal-a55: rgba(192, 57, 43, 0.55);
   --sumi-seal-a70: rgba(192, 57, 43, 0.72);
   --sumi-paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.36 0 0 0 0 0.31 0 0 0 0 0.24 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --sumi-bevel:
-    inset 0 1px 0 rgba(255, 252, 244, 0.55),
-    inset 0 -1px 0 rgba(28, 24, 18, 0.05);
   --sumi-seal-wash: linear-gradient(
     180deg,
     rgba(192, 57, 43, 0.13),
@@ -51,15 +48,11 @@
 
   --sumi-danger: var(--sumi-seal);
   --sumi-danger-deep: var(--sumi-seal-deep);
-  --sumi-danger-soft: var(--sumi-seal-soft);
-  --sumi-danger-a55: var(--sumi-seal-a55);
   --sumi-danger-text: #f6f1e6;
 
   --sumi-success: #1e1b14;
   --sumi-success-soft: rgba(30, 27, 20, 0.1);
   --sumi-success-a50: rgba(30, 27, 20, 0.5);
-
-  --sumi-thumb-glint: #fffdf7;
 
   --sumi-bleed: drop-shadow(0 1px 5px rgba(28, 24, 18, 0.15));
   --sumi-bleed-strong: drop-shadow(0 2px 9px rgba(28, 24, 18, 0.24));
@@ -69,8 +62,6 @@
   --sumi-ink-wet: 0 1px 1px rgba(28, 24, 18, 0.18);
   --sumi-shadow-pop: 0 12px 30px rgba(45, 37, 24, 0.13);
   --sumi-shadow-modal: 0 24px 60px rgba(45, 37, 24, 0.2);
-  --sumi-shadow-sm: 0 4px 14px rgba(45, 37, 24, 0.1);
-  --sumi-lift-focus: drop-shadow(0 0 5px rgba(192, 57, 43, 0.25));
   --sumi-lift-popup: drop-shadow(0 3px 10px rgba(45, 37, 24, 0.1));
   --sumi-lift-modal: drop-shadow(0 6px 18px rgba(45, 37, 24, 0.14));
 
@@ -116,9 +107,9 @@
   --sumi-space-7: 32px;
 
   --sumi-round-0: 0;
-  --sumi-round-1: 1px;
-  --sumi-round-2: 2px;
-  --sumi-round-3: 3px;
+  --sumi-round-1: 0;
+  --sumi-round-2: 0;
+  --sumi-round-3: 1px;
 
   --sumi-w-dialog: 460px;
   --sumi-w-alert: 440px;

@@ -47,7 +47,7 @@ function ToastList() {
             className={`sumi-elevation sumi-toast sumi-toast--${tone}`}
           >
             <div className="sumi-frame sumi-toast__tablet">
-              <span className="sumi-toast__sigil sumi-breathe" aria-hidden>
+              <span className="sumi-toast__sigil" aria-hidden>
                 <ToneSigil tone={tone} />
               </span>
               <span className="sumi-toast__beam" aria-hidden />

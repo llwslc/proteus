@@ -7,7 +7,7 @@
 .sumi-avatar__root {
   --sumi-frame-fill: var(--sumi-mist-raised);
   --sumi-frame-ink: var(--sumi-ink-line-strong);
-  --sumi-frame-round: 36%;
+  --sumi-frame-round: var(--sumi-round-0);
   position: relative;
   display: block;
   width: 100%;
@@ -20,7 +20,6 @@
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   object-fit: cover;
-  border-radius: calc(var(--sumi-frame-round) - 2%);
   filter: saturate(0.82) contrast(1.04) brightness(0.94);
 }
 
@@ -29,35 +28,28 @@
   inset: 2px;
   display: grid;
   place-items: center;
-  border-radius: calc(var(--sumi-frame-round) - 2%);
-  background: radial-gradient(
-    120% 120% at 50% 18%,
-    var(--sumi-mist-raised),
-    var(--sumi-inset)
-  );
+  background: var(--sumi-inset);
   color: var(--sumi-seal);
   font-family: var(--sumi-font-display);
   font-weight: var(--sumi-fw-400);
   font-size: calc(var(--sumi-avatar-size) * 0.38);
   letter-spacing: var(--sumi-ls-2);
-  text-shadow: var(--sumi-ink-wet);
 }
 
 .sumi-avatar__status {
   --moon: var(--sumi-text-mute);
-  --moon-glow: transparent;
   position: absolute;
-  right: -5px;
-  bottom: -5px;
+  right: -4px;
+  bottom: -4px;
   display: grid;
   place-items: center;
-  width: calc(var(--sumi-avatar-size) * 0.34);
+  width: calc(var(--sumi-avatar-size) * 0.3);
   min-width: var(--sumi-avatar-status-min-w);
-  height: calc(var(--sumi-avatar-size) * 0.34);
+  height: calc(var(--sumi-avatar-size) * 0.3);
   min-height: var(--sumi-avatar-status-min-h);
   padding: 2px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, var(--sumi-paper) 64%, transparent);
+  background: var(--sumi-paper);
 }
 .sumi-avatar__moon {
   position: relative;
@@ -65,67 +57,23 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  overflow: hidden;
-  background: radial-gradient(
-    circle at 36% 30%,
-    color-mix(in srgb, var(--moon) 70%, var(--sumi-text-bright)),
-    var(--moon) 56%,
-    color-mix(in srgb, var(--moon) 60%, var(--sumi-paper-deep))
-  );
-  box-shadow:
-    inset 0 0 0 1px var(--sumi-ink-line-strong),
-    0 0 7px var(--moon-glow);
-  transition:
-    box-shadow var(--sumi-dur) var(--sumi-ease),
-    background var(--sumi-dur) var(--sumi-ease);
+  background: var(--moon);
+  box-shadow: inset 0 0 0 1px var(--sumi-ink-line-strong);
+  filter: var(--sumi-bleed);
 }
 .sumi-avatar__moon-shadow {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--sumi-inset);
-  transition: transform var(--sumi-dur) var(--sumi-ease);
+  display: none;
 }
 
 .sumi-avatar__status--online {
   --moon: var(--sumi-seal);
 }
-.sumi-avatar__status--online .sumi-avatar__moon {
-  animation: sumi-moon-pulse var(--sumi-breath) ease-in-out infinite;
-}
-@keyframes sumi-moon-pulse {
-  0%,
-  100% {
-    box-shadow:
-      inset 0 0 0 1px var(--sumi-ink-line-strong),
-      0 0 5px var(--sumi-seal-a30);
-  }
-  50% {
-    box-shadow:
-      inset 0 0 0 1px var(--sumi-ink-line-strong),
-      0 0 9px var(--sumi-seal-a70);
-  }
-}
-.sumi-avatar__status--online .sumi-avatar__moon-shadow {
-  transform: translateX(120%);
-}
-
 .sumi-avatar__status--busy {
   --moon: var(--sumi-danger);
-  --moon-glow: var(--sumi-danger-a55);
 }
-.sumi-avatar__status--busy .sumi-avatar__moon-shadow {
-  transform: translateX(72%);
-}
-
 .sumi-avatar__status--away {
   --moon: var(--sumi-warning);
-  --moon-glow: var(--sumi-warning-a50);
 }
-.sumi-avatar__status--away .sumi-avatar__moon-shadow {
-  transform: translateX(40%);
-}
-
-.sumi-avatar__status--offline .sumi-avatar__moon-shadow {
-  transform: translateX(0);
+.sumi-avatar__status--offline {
+  --moon: var(--sumi-text-mute);
 }

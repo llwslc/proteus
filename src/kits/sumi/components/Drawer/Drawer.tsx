@@ -51,7 +51,7 @@ export function Drawer({
             className={cx("sumi-elevation sumi-drawer", `sumi-drawer--${side}`, className)}
           >
             <BaseDrawer.Content className="sumi-frame sumi-drawer__tablet">
-              <span className="sumi-drawer__seam sumi-breathe" aria-hidden />
+              <span className="sumi-drawer__seam" aria-hidden />
               <BaseDrawer.Close
                 render={
                   <Button

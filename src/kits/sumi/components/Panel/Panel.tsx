@@ -13,7 +13,7 @@ export interface PanelProps {
 
 export function Panel({ title, meta, children, breathe, className }: PanelProps) {
   return (
-    <section className={cx("sumi-panel sumi-frame sumi-frame--double", className)}>
+    <section className={cx("sumi-panel", className)}>
       {(title != null || meta != null) && (
         <header className="sumi-panel__head">
           {title != null ? (

@@ -20,7 +20,7 @@
   position: relative;
   height: 6px;
   background: var(--sumi-inset);
-  border-radius: var(--sumi-round-3);
+  border-radius: var(--sumi-round-0);
   box-shadow: inset 0 0 0 1px var(--sumi-ink-line-faint);
   filter: url(#sumi-edge);
 }
@@ -29,9 +29,8 @@
 }
 .sumi-progress__indicator {
   height: 100%;
-  border-radius: var(--sumi-round-3);
+  border-radius: var(--sumi-round-0);
   background: linear-gradient(90deg, var(--sumi-seal-deep), var(--sumi-seal));
-  box-shadow: 0 0 8px var(--sumi-seal-a55);
   transition: width var(--sumi-dur-slow) var(--sumi-ease);
 }
 .sumi-progress__track[data-indeterminate] .sumi-progress__indicator {

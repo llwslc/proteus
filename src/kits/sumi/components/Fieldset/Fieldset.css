@@ -6,20 +6,28 @@
 }
 
 .sumi-fieldset__legend {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--sumi-space-2);
-  width: auto;
-  margin: 0 0 var(--sumi-space-2) var(--sumi-space-1);
-  padding: 0;
+  width: 100%;
+  margin: 0 0 var(--sumi-space-3);
+  padding: 0 0 var(--sumi-space-2);
   font-family: var(--sumi-font-display);
   font-size: var(--sumi-fs-13);
   letter-spacing: var(--sumi-ls-12);
   text-transform: uppercase;
   color: var(--sumi-seal);
-  text-shadow: var(--sumi-ink-wet);
-  position: relative;
-  z-index: 1;
+}
+.sumi-fieldset__legend::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--sumi-ink-line-strong);
+  filter: url(#sumi-edge);
 }
 .sumi-fieldset__legend-text {
   line-height: var(--sumi-lh-100);
@@ -29,26 +37,18 @@
   flex: 0 0 auto;
   font-size: var(--sumi-fs-20);
   color: var(--sumi-seal-a55);
-  filter: drop-shadow(0 0 6px var(--sumi-seal-soft));
   transition:
     transform var(--sumi-dur-slow) var(--sumi-ease),
-    color var(--sumi-dur) var(--sumi-ease),
-    filter var(--sumi-dur) var(--sumi-ease);
+    color var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-fieldset:hover .sumi-fieldset__sigil {
   color: var(--sumi-seal);
   transform: rotate(45deg);
-  filter: drop-shadow(0 0 9px var(--sumi-seal-a55));
 }
 
 .sumi-fieldset__body {
-  --sumi-frame-ink: var(--sumi-ink-line-strong);
-  --sumi-frame-round: var(--sumi-round-2);
-  --sumi-frame-fill:
-    radial-gradient(120% 70% at 18% -12%, var(--sumi-seal-soft), transparent 60%),
-    linear-gradient(180deg, var(--sumi-mist-raised), var(--sumi-mist));
   display: flex;
   flex-direction: column;
   gap: var(--sumi-space-4);
-  padding: var(--sumi-space-5);
+  padding: var(--sumi-space-2) 0 0;
 }

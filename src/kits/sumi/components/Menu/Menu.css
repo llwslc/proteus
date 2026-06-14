@@ -4,12 +4,7 @@
 }
 
 .sumi-menu__popup {
-  --sumi-frame-bevel: var(--sumi-bevel);
-  --sumi-frame-fill:
-    var(--sumi-paper-grain),
-    var(--sumi-surface-popup);
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  --sumi-frame-round: var(--sumi-round-2);
+  --sumi-frame-fill: var(--sumi-surface-popup);
   min-width: var(--sumi-menu-min-w);
   padding: var(--sumi-space-2);
   outline: none;
@@ -41,9 +36,7 @@
   top: 4px;
   bottom: 4px;
   width: 2px;
-  border-radius: var(--sumi-round-0);
   background: var(--sumi-seal);
-  box-shadow: 0 0 7px var(--sumi-seal-a70);
   opacity: 0;
   filter: url(#sumi-edge);
   transition: opacity var(--sumi-dur) var(--sumi-ease);
@@ -72,7 +65,7 @@
 
 .sumi-menu__item[data-highlighted],
 .sumi-menu__item[data-popup-open] {
-  background: var(--sumi-seal-soft);
+  background: var(--sumi-secondary-soft);
   color: var(--sumi-text-bright);
 }
 .sumi-menu__item[data-highlighted]::after,
@@ -95,18 +88,21 @@
 
 .sumi-menu__item--danger,
 .sumi-menu__item--danger .sumi-menu__icon {
-  color: var(--sumi-danger);
+  color: var(--sumi-seal);
 }
 .sumi-menu__item--danger::after {
-  background: var(--sumi-danger);
-  box-shadow: 0 0 7px var(--sumi-danger-a55);
+  background: var(--sumi-seal);
 }
 .sumi-menu__item--danger[data-highlighted] {
-  background: var(--sumi-danger-soft);
-  color: var(--sumi-danger);
+  background: var(--sumi-seal);
+  color: var(--sumi-danger-text);
 }
-.sumi-menu__item--danger[data-highlighted] .sumi-menu__icon {
-  color: var(--sumi-danger);
+.sumi-menu__item--danger[data-highlighted] .sumi-menu__icon,
+.sumi-menu__item--danger[data-highlighted] .sumi-menu__shortcut {
+  color: var(--sumi-danger-text);
+}
+.sumi-menu__item--danger[data-highlighted]::after {
+  opacity: 0;
 }
 
 .sumi-menu__separator.sumi-separator {

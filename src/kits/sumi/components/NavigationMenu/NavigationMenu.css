@@ -46,9 +46,8 @@
   left: var(--sumi-space-3);
   right: var(--sumi-space-3);
   bottom: 4px;
-  height: 1.5px;
+  height: 2px;
   background: var(--sumi-seal);
-  box-shadow: 0 0 7px var(--sumi-seal-a70);
   filter: url(#sumi-edge);
   opacity: 0;
   transform: scaleX(0.5);
@@ -61,18 +60,17 @@
 .sumi-navmenu__trigger:focus-visible,
 .sumi-navmenu__toplink:hover,
 .sumi-navmenu__toplink:focus-visible {
-  color: var(--sumi-text);
+  color: var(--sumi-seal);
 }
 .sumi-navmenu__trigger:hover::after,
 .sumi-navmenu__trigger:focus-visible::after,
 .sumi-navmenu__toplink:hover::after,
 .sumi-navmenu__toplink:focus-visible::after {
-  opacity: 0.7;
+  opacity: 1;
   transform: scaleX(1);
 }
 .sumi-navmenu__trigger[data-popup-open] {
   color: var(--sumi-seal);
-  text-shadow: var(--sumi-ink-wet);
 }
 .sumi-navmenu__trigger[data-popup-open]::after {
   opacity: 1;
@@ -97,12 +95,10 @@
   height: var(--positioner-height);
 }
 .sumi-navmenu__popup {
-  --sumi-frame-bevel: var(--sumi-bevel);
   --sumi-frame-fill:
     var(--sumi-paper-grain),
     var(--sumi-surface-popup);
-  --sumi-frame-ink: var(--sumi-seal-a55);
-  --sumi-frame-round: var(--sumi-round-2);
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
   position: relative;
   width: var(--popup-width);
   height: var(--popup-height);
@@ -136,7 +132,6 @@
   align-items: flex-start;
   gap: var(--sumi-space-3);
   padding: var(--sumi-space-3);
-  border-radius: var(--sumi-round-1);
   text-decoration: none;
   cursor: pointer;
   outline: none;
@@ -144,7 +139,7 @@
 }
 .sumi-navmenu__link:hover,
 .sumi-navmenu__link:focus-visible {
-  background: var(--sumi-seal-soft);
+  background: var(--sumi-secondary-soft);
 }
 
 .sumi-navmenu__mark {
@@ -152,17 +147,11 @@
   margin-top: 1px;
   font-size: var(--sumi-fs-20);
   color: var(--sumi-ink-line-strong);
-  transform-origin: center;
-  transition:
-    color var(--sumi-dur) var(--sumi-ease),
-    filter var(--sumi-dur) var(--sumi-ease),
-    transform var(--sumi-dur-slow) var(--sumi-ease);
+  transition: color var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-navmenu__link:hover .sumi-navmenu__mark,
 .sumi-navmenu__link:focus-visible .sumi-navmenu__mark {
   color: var(--sumi-seal);
-  filter: var(--sumi-bleed-mark);
-  transform: rotate(180deg);
 }
 
 .sumi-navmenu__link-text {

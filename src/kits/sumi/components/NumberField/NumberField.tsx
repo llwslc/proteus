@@ -39,7 +39,7 @@ export function NumberField({
       }}
       {...props}
     >
-      <BaseNumberField.Group className="sumi-numberfield__group sumi-frame">
+      <BaseNumberField.Group className="sumi-numberfield__group">
         <BaseNumberField.Decrement
           className="sumi-numberfield__btn sumi-frame"
           disabled={atMin}

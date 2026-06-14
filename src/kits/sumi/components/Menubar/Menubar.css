@@ -1,13 +1,10 @@
 .sumi-menubar {
-  --sumi-frame-fill: var(--sumi-surface);
-  --sumi-frame-ink: var(--sumi-ink-line);
-  --sumi-frame-round: var(--sumi-round-2);
+  --sumi-frame-ink: var(--sumi-ink-line-strong);
+  --sumi-frame-fill: var(--sumi-mist-raised);
   display: inline-flex;
-  align-items: center;
-  gap: var(--sumi-space-1);
+  align-items: stretch;
   width: fit-content;
   max-width: 100%;
-  padding: var(--sumi-space-1);
 }
 .sumi-menubar > * {
   position: relative;
@@ -16,22 +13,19 @@
 
 .sumi-menubar__triggerwrap {
   display: inline-flex;
-  transition: filter var(--sumi-dur) var(--sumi-ease);
 }
-.sumi-menubar__triggerwrap:has([data-popup-open]) {
-  filter: var(--sumi-bleed-strong);
+.sumi-menubar__triggerwrap + .sumi-menubar__triggerwrap {
+  border-left: 1px solid var(--sumi-ink-line-faint);
 }
 
 .sumi-menubar__trigger {
-  --sumi-frame-ink: transparent;
-  --sumi-frame-fill: transparent;
-  --sumi-frame-round: var(--sumi-round-1);
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: var(--sumi-menubar-trigger-h);
   min-width: var(--sumi-menubar-trigger-min-w);
-  padding: 0 var(--sumi-space-3);
+  padding: 0 var(--sumi-space-4);
   border: 0;
   background: transparent;
   color: var(--sumi-text-dim);
@@ -43,36 +37,31 @@
   outline: none;
   transition:
     color var(--sumi-dur) var(--sumi-ease),
-    filter var(--sumi-dur) var(--sumi-ease);
+    background var(--sumi-dur) var(--sumi-ease);
 }
 .sumi-menubar__trigger:hover {
-  color: var(--sumi-seal);
-  --sumi-frame-ink: var(--sumi-seal-a30);
-  --sumi-frame-fill: var(--sumi-seal-soft);
+  color: var(--sumi-text-bright);
+  background: var(--sumi-secondary-soft);
 }
 .sumi-menubar__trigger:focus-visible {
   color: var(--sumi-seal);
-  --sumi-frame-ink: var(--sumi-seal);
-  filter: var(--sumi-bleed);
+  box-shadow: inset 0 0 0 1px var(--sumi-seal);
 }
 .sumi-menubar__trigger[data-popup-open] {
   color: var(--sumi-seal);
-  --sumi-frame-ink: var(--sumi-seal-a70);
-  --sumi-frame-fill: var(--sumi-seal-soft);
-  text-shadow: var(--sumi-ink-wet);
+  background: var(--sumi-secondary-soft);
 }
 .sumi-menubar__trigger[data-popup-open]::after {
   content: "";
   position: absolute;
-  inset: 3px;
-  z-index: 0;
-  border: 1px solid var(--sumi-seal-a30);
-  border-radius: var(--sumi-round-0);
+  left: var(--sumi-space-3);
+  right: var(--sumi-space-3);
+  bottom: 4px;
+  height: 2px;
+  background: var(--sumi-seal);
   filter: url(#sumi-edge);
-  pointer-events: none;
 }
 .sumi-menubar__trigger[data-disabled] {
   opacity: var(--sumi-disabled-opacity);
   cursor: not-allowed;
-  filter: grayscale(0.5);
 }

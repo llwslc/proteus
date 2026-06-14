@@ -60,12 +60,12 @@
 }
 .sumi-btn--secondary:hover {
   color: var(--sumi-text-bright);
-  filter: drop-shadow(0 0 12px var(--sumi-secondary-a50));
+  --sumi-frame-ink: var(--sumi-secondary);
 }
 
 .sumi-btn--danger {
   --sumi-frame-ink: var(--sumi-danger-deep);
-  --sumi-frame-fill: linear-gradient(180deg, var(--sumi-danger), var(--sumi-danger-deep));
+  --sumi-frame-fill: var(--sumi-danger);
   color: var(--sumi-danger-text);
 }
 .sumi-btn--danger:hover {
@@ -139,5 +139,4 @@
 .sumi-btn[data-disabled] {
   opacity: var(--sumi-disabled-opacity);
   cursor: not-allowed;
-  filter: grayscale(0.5);
 }
