@@ -4,6 +4,7 @@
 .brass-plate {
   position: relative;
   isolation: isolate;
+  border: 0;
   border-radius: var(--brass-plate-round, var(--brass-round-md));
   background: var(--brass-plate-bezel, var(--brass-bezel));
 }

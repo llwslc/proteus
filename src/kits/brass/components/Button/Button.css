@@ -87,7 +87,8 @@
   --brass-plate-bevel: none;
   color: var(--brass-text-dim);
 }
-.brass-btn--ghost:hover {
+.brass-btn--ghost:hover,
+.brass-btn--ghost:focus-visible {
   --brass-plate-bezel: transparent;
   --brass-plate-fill: var(--brass-tint-soft);
   color: var(--brass-text-bright);
