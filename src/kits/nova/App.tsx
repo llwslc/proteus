@@ -184,7 +184,7 @@ const AUTOCOMPLETE_ITEMS = [
 const CHECKGROUP_ITEMS = [
   { value: "relay", label: "Relay telemetry" },
   { value: "encrypt", label: "Encrypt channel" },
-  { value: "beacon", label: "Nav beacon", disabled: true },
+  { value: "beacon", label: "Nav beacon" },
 ];
 
 const NAVMENU_ITEMS: NavMenuItem[] = [

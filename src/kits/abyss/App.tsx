@@ -225,7 +225,7 @@ const AUTOCOMPLETE_ITEMS = [
 const CHECKGROUP_ITEMS = [
   { value: "echo", label: "Echo the deep" },
   { value: "cipher", label: "Cipher the rite" },
-  { value: "beacon", label: "Tide beacon", disabled: true },
+  { value: "beacon", label: "Tide beacon" },
 ];
 
 const NAVMENU_ITEMS: NavMenuItem[] = [

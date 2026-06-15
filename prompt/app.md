@@ -37,7 +37,7 @@
 - switch：四行「caption + Switch」—— 开（`defaultChecked`）、关、`disabled` 且开、`disabled` 且关。
 - toggle：两个 ToggleGroup，各 3 项；单选组默认选第 1、末项 `disabled`，多选组（`multiple`）默认选前 2。
 - checkbox：四枚独立 Checkbox —— 勾选、未勾、`disabled` 且勾选、`disabled` 且未勾。
-- checkbox-group：一个带父级全选的 CheckboxGroup，3 项，默认勾 1、1 项 `disabled`，父级呈 indeterminate。
+- checkbox-group：一个带父级全选的 CheckboxGroup，3 项均可选、默认勾 1，父级呈 indeterminate；禁用态见 checkbox 面板。
 - radio：一个 RadioGroup，4 项，默认选第 1，第 4 项 `disabled`。
 - select：「caption + Select」，5 项、末项 `disabled`，默认选第 2。
 - combobox：「caption + Combobox」，可过滤列表 12 项，无默认值。
