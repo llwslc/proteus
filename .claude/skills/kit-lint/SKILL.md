@@ -1,6 +1,6 @@
 ---
 name: kit-lint
-description: Acceptance check for a theme kit under src/kits/<kit> against the token contract (prompt/core.md §3). A kit's CSS must RESTATE NOTHING — every value comes from a token, every repeated recipe from a shared class or primitive — and must cover every contract group. Run after generating or heavily editing a kit, before accepting it. Usage targets a kit id, e.g. "lint the abyss kit".
+description: Acceptance check for a theme kit under src/kits/<kit> against the token contract (prompt/core.md §3). A kit's CSS must RESTATE NOTHING — every value comes from a token, every repeated recipe from a shared class or primitive — and must cover every contract group. Run after generating or heavily editing a kit, before accepting it. Usage targets a kit id, e.g. "lint the <kit-id> kit".
 ---
 
 # kit-lint

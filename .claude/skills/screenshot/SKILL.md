@@ -1,6 +1,6 @@
 ---
 name: screenshot
-description: See the demo app (NOVA/ABYSS kits) instead of guessing from CSS — drive the real page headlessly and look. Full page, a cropped region, a specific element, a specific kit, and every interaction state. Use whenever a change needs a visual check.
+description: See the rendered demo app instead of guessing from CSS — drive the real page headlessly and look. Full page, a cropped region, a specific element, a specific theme kit, and every interaction state. Use whenever a change needs a visual check.
 ---
 
 # screenshot
@@ -23,8 +23,10 @@ const URL = 'http://127.0.0.1:<port>/';
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
   const page = await browser.newPage({ viewport: { width: 1440, height: 950 } });
   await page.emulateMedia({ reducedMotion: 'reduce' });           // freeze perpetual animation
-  for (const kit of ['nova', 'abyss']) {
-    await page.goto(URL, { waitUntil: 'networkidle' });
+  await page.goto(URL, { waitUntil: 'networkidle' });
+  // kit list from the live switcher (the registry) — never hardcode kit names
+  const kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
+  for (const kit of kits) {
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
     await page.reload({ waitUntil: 'networkidle' });
     await page.locator('#menu').screenshot({ path: `/tmp/${kit}_menu.png` });   // element shot: auto-waits + scrolls

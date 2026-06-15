@@ -1,6 +1,6 @@
 #!/bin/sh
 # kit-lint — mechanical token-contract checks for one kit.
-# Usage: sh .claude/skills/kit-lint/check.sh <kit-id>   (e.g. nova, abyss)
+# Usage: sh .claude/skills/kit-lint/check.sh <kit-id>   (any folder under src/kits/)
 # Exit 0 = all mechanical checks clean; exit 1 = findings printed.
 
 KIT="$1"
