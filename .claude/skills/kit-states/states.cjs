@@ -1,5 +1,7 @@
-// states.js — interaction-state sweep for every kit.
-// node states.js [port]   (run sandbox-disabled)
+// states.cjs — interaction-state sweep for every kit.
+// node .claude/skills/kit-states/states.cjs [port]   (run in place, sandbox-disabled)
+// .cjs so it runs despite the repo's package.json "type": "module"; no cp step —
+// running a stale /tmp copy was a real miss.
 // Captures the states the resting demo does NOT show on its own — pressed
 // buttons, steppers driven to their min/max disabled edge, and every opened
 // overlay — into /tmp/states/<kit>_<name>.png. The resting demo already

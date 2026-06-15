@@ -10,9 +10,18 @@ One principle: **a kit is accepted only when every interaction state renders rig
 ## Run
 
 ```
-cp .claude/skills/kit-states/states.js /tmp/pw/ && cd /tmp/pw && node states.js [port]
+node .claude/skills/kit-states/states.cjs [port]
 ```
-(sandbox-disabled; needs the dev server and `/tmp/pw` playwright-core from the screenshot skill). The kit list is read from the app's own kit switcher (the registry), so every registered kit is swept and adding one needs no edit here. Writes `/tmp/states/<kit>_<state>.png`.
+Run it in place — no copy step. It is `.cjs` so it runs despite the repo's `type: module`; the `require('/tmp/pw/...')` path is absolute, so it works from the repo root. (Do NOT `cp` it to `/tmp/pw` and run that — editing the script then running a stale copy was a real miss.) Sandbox-disabled; needs the dev server and `/tmp/pw` playwright-core from the screenshot skill. The kit list is read from the app's own kit switcher (the registry), so every registered kit is swept and adding one needs no edit here.
+
+Writes `/tmp/states/<kit>_<state>.png` and prints a per-kit line: `✓ <kit>: all N interaction states captured`, or `⚠ <kit>: NOT captured -> …` listing every state it could not drive. **A state that fails to capture is a gap to fix, never a silent pass** — the gate reports it, it does not swallow it.
+
+## Demo contract
+
+The sweep finds controls by convention; a kit whose demo diverges has its states reported as not-captured (the `⚠` line), not silently skipped. For full coverage the demo must:
+
+- give each component panel a `#<component>` id — `#button`, `#number`, `#menu`, `#select`, `#combobox`, `#dialog`, `#alert`, `#drawer`, `#popover`;
+- name parts `<kit>-<component>__<part>` — `-btn`, `-numberfield__input`, `-select__trigger`, `-menu__popup`, `-combobox__control` / `-combobox__popup`, `-popover__popup`, and a `-dialog` / `-alert` / `-drawer` popup class.
 
 ## What it sweeps
 
@@ -29,4 +38,4 @@ Read every PNG. Check the dynamic states specifically: pressed depth, hover/focu
 
 ## Extend
 
-When the kit gains an interaction state the sweep doesn't cover, add it to `states.js` — the gate is only as good as its state list. (The kit *list* needs no maintenance — it's read from the app's kit switcher.)
+When the kit gains an interaction state the sweep doesn't cover, add it to `states.cjs` and to its `EXPECT` list so a miss is reported — the gate is only as good as its state list. (The kit *list* needs no maintenance — it's read from the app's kit switcher.)
