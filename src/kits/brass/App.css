@@ -153,8 +153,9 @@
   gap: var(--brass-space-1);
 }
 .brass-hero__stat-n {
-  font-family: var(--brass-font-display);
-  font-size: var(--brass-fs-26);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-20);
+  font-weight: 700;
   color: var(--brass-text-bright);
 }
 

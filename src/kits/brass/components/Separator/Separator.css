@@ -8,10 +8,10 @@
   height: 1px;
 }
 .brass-separator[data-orientation="vertical"] {
-  align-self: stretch;
+  align-self: center;
   width: 1px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, var(--brass-line-strong), transparent);
+  height: var(--brass-space-5);
+  background: var(--brass-line-strong);
 }
 
 .brass-separator-labeled {
