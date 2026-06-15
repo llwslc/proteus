@@ -1,6 +1,6 @@
 ---
 name: prompt-lint
-description: Audit a generation-prompt / spec doc on two axes — it must CONTAIN only build decisions (no rationale, history, anecdotes, framework restatement) placed at the right layer and free of fixed-cardinality assumptions, and must READ as clean native professional documentation. Use after editing a spec, before committing spec changes, or when asked to review how a spec is written. The check is a read, in any language — not a regex.
+description: Audit a generation-prompt / spec doc, or a skill SKILL.md, on two axes — it must CONTAIN only build decisions (no rationale, history, anecdotes, framework restatement) placed at the right layer and free of fixed-cardinality assumptions, and must READ as clean native professional documentation. Use after editing a spec or skill doc, before committing those changes, or when asked to review how a doc reads. The check is a read, in any language — not a regex.
 ---
 
 # prompt-lint
@@ -25,7 +25,7 @@ Keep (NOT violations): the rule itself, and a short parenthetical that **disambi
 
 ## Procedure
 
-1. **Read each spec file in full** (here: `prompt/*.md`). This is the real check and is language-agnostic. For every line ask: does it change the build? Is it at the right layer? Does it read like native documentation? Flag what fails.
+1. **Read each doc in full** — the generation specs `prompt/*.md`, and skill docs `.claude/skills/*/SKILL.md`. This is the real check and is language-agnostic. For every line ask: does it change the build? Is it at the right layer? Does it read like native documentation? Flag what fails. The Form axis applies to every doc; for a skill doc the Content axis is looser — a SKILL.md may legitimately state when and why to use the tool.
 2. *(Optional)* mechanical aids to jump to suspects — none is the check, the read is:
    - connectives: `grep -rniE "because|otherwise|tradeoff|originally|used to|was .* now|note that" <dir>`
    - heading qualifiers: `grep -rnE '^#+ .+ (—|--|:|\()' <dir>` (a code-span `()` is exempt)
