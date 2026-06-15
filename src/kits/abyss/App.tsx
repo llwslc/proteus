@@ -203,6 +203,8 @@ const COMBOBOX_ITEMS = [
   "Unknown Kadath",
   "The Sunless Sea",
   "Dagon's Trench",
+  "The Weeping Caverns",
+  "The Lampless Fathoms",
 ];
 
 const AUTOCOMPLETE_ITEMS = [
@@ -213,12 +215,17 @@ const AUTOCOMPLETE_ITEMS = [
   "Raise the Wards",
   "Loose the Tide",
   "Mark the Sigil",
+  "Still the Choir",
+  "Wake the Dreamer",
+  "Drown the Lantern",
+  "Read the Auguries",
+  "Seal the Trench",
 ];
 
 const CHECKGROUP_ITEMS = [
   { value: "echo", label: "Echo the deep" },
   { value: "cipher", label: "Cipher the rite" },
-  { value: "beacon", label: "Tide beacon" },
+  { value: "beacon", label: "Tide beacon", disabled: true },
 ];
 
 const NAVMENU_ITEMS: NavMenuItem[] = [
@@ -257,6 +264,7 @@ const TAB_ITEMS = [
   {
     value: "dives",
     label: "Dives",
+    disabled: true,
     content: <p className="abyss-text">The descent began at 0.42 fathoms and the water held its breath.</p>,
   },
 ];
@@ -712,6 +720,10 @@ function Demo() {
                     <span className="abyss-cap">Bound Shut</span>
                     <Switch disabled defaultChecked aria-label="Bound Shut" />
                   </div>
+                  <div className="demo-spread">
+                    <span className="abyss-cap">Sealed Cold</span>
+                    <Switch disabled aria-label="Sealed Cold" />
+                  </div>
                 </div>
               </Panel>
             </div>
@@ -722,7 +734,9 @@ function Demo() {
                   <ToggleGroup defaultValue={["chart"]}>
                     <Toggle value="chart">Chart</Toggle>
                     <Toggle value="reef">Reef</Toggle>
-                    <Toggle value="deep">Deep</Toggle>
+                    <Toggle value="deep" disabled>
+                      Deep
+                    </Toggle>
                   </ToggleGroup>
                   <ToggleGroup defaultValue={["wards", "sigils"]} multiple>
                     <Toggle value="wards">Wards</Toggle>
@@ -798,13 +812,7 @@ function Demo() {
               <Panel title="Slider" meta="SLD">
                 <div className="demo-stack">
                   <Slider label="Descent" defaultValue={62} />
-                  <Slider
-                    label="Resonance"
-                    defaultValue={34}
-                    min={0}
-                    max={100}
-                    step={2}
-                  />
+                  <Slider label="Resonance" defaultValue={34} disabled />
                 </div>
               </Panel>
             </div>
@@ -973,7 +981,7 @@ function Demo() {
                         Tends the wards at the trench mouth. 1,204 descents logged, and
                         every one came back up.
                       </p>
-                      <div className="demo-row">
+                      <div className="demo-pcard__stats">
                         <Badge tone="primary" dot>
                           Keeping Watch
                         </Badge>
@@ -1157,7 +1165,7 @@ function Demo() {
                   />
                   <Avatar fallback="DG" status="busy" />
                   <Avatar fallback="HY" status="away" />
-                  <Avatar fallback="NL" size={60} status="online" />
+                  <Avatar fallback="NL" size={60} status="offline" />
                 </div>
               </Panel>
             </div>

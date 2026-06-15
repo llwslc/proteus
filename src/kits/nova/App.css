@@ -65,6 +65,17 @@
   align-items: center;
   gap: 16px;
 }
+.nova-header__signal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.nova-header__signal svg {
+  width: 15px;
+  height: 15px;
+  color: var(--nova-primary);
+  filter: drop-shadow(var(--nova-glow-text));
+}
 .nova-clock {
   font-family: var(--nova-font-mono);
   font-size: 14px;
@@ -217,13 +228,20 @@
 .nova-grid__group {
   grid-column: 1 / -1;
   display: flex;
-  align-items: center;
-  gap: 16px;
+  align-items: baseline;
+  gap: 12px;
   margin-top: 14px;
   scroll-margin-top: 80px;
 }
 .nova-grid__group:first-child {
   margin-top: 0;
+}
+.nova-grid__group-mark {
+  align-self: center;
+  width: 16px;
+  height: 16px;
+  color: var(--nova-primary);
+  filter: drop-shadow(var(--nova-glow-text));
 }
 .nova-grid__group-title {
   display: inline-flex;
@@ -232,9 +250,12 @@
   color: var(--nova-text-dim);
   white-space: nowrap;
 }
-.nova-grid__group-title::before {
-  content: "//";
-  color: var(--nova-primary);
+.nova-grid__group-sub {
+  font-family: var(--nova-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--nova-text-mute);
+  white-space: nowrap;
 }
 .nova-grid__group::after {
   content: "";

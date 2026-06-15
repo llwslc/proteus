@@ -66,9 +66,10 @@ import {
 } from "./components/icons";
 import "./App.css";
 
-const SECTIONS: { group: string; items: [string, string, string][] }[] = [
+const SECTIONS: { group: string; sub: string; items: [string, string, string][] }[] = [
   {
     group: "Input",
+    sub: "operator console inputs",
     items: [
       ["button", "Button", "BTN"],
       ["switch", "Switch", "SWT"],
@@ -87,6 +88,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   },
   {
     group: "Forms",
+    sub: "crew credential intake",
     items: [
       ["fieldset", "Fieldset", "FLD"],
       ["form", "Form", "FRM"],
@@ -94,6 +96,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   },
   {
     group: "Feedback",
+    sub: "live telemetry readouts",
     items: [
       ["progress", "Progress", "PRG"],
       ["meter", "Meter", "MTR"],
@@ -104,6 +107,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   },
   {
     group: "Overlay",
+    sub: "signals that break through",
     items: [
       ["tooltip", "Tooltip", "TIP"],
       ["popover", "Popover", "POP"],
@@ -120,6 +124,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   },
   {
     group: "Display",
+    sub: "what the viewport shows",
     items: [
       ["avatar", "Avatar", "AVT"],
       ["badge", "Badge", "BDG"],
@@ -129,6 +134,7 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   },
   {
     group: "Foundations",
+    sub: "the hull beneath the HUD",
     items: [
       ["typography", "Typography", "TYP"],
       ["separator", "Separator", "SEP"],
@@ -169,12 +175,16 @@ const AUTOCOMPLETE_ITEMS = [
   "Vent Plasma",
   "Lock Target",
   "Engage Cloak",
+  "Reroute Power",
+  "Spool Hyperdrive",
+  "Purge Coolant",
+  "Sync Beacon",
 ];
 
 const CHECKGROUP_ITEMS = [
   { value: "relay", label: "Relay telemetry" },
   { value: "encrypt", label: "Encrypt channel" },
-  { value: "beacon", label: "Nav beacon" },
+  { value: "beacon", label: "Nav beacon", disabled: true },
 ];
 
 const NAVMENU_ITEMS: NavMenuItem[] = [
@@ -217,6 +227,7 @@ const TAB_ITEMS = [
   {
     value: "logs",
     label: "Logs",
+    disabled: true,
     content: <p className="nova-text">Jump drive spooled to 99.4% — telemetry nominal across all decks.</p>,
   },
 ];
@@ -412,6 +423,16 @@ function ToastDemo() {
   );
 }
 
+function GroupRule({ group, sub }: { group: string; sub: string }) {
+  return (
+    <div className="nova-grid__group">
+      <SignalIcon className="nova-grid__group-mark" />
+      <span className="nova-h3 nova-grid__group-title">{group}</span>
+      <span className="nova-grid__group-sub">{sub}</span>
+    </div>
+  );
+}
+
 function Demo() {
   useEffect(() => {
     const grid = document.querySelector(".nova-grid");
@@ -451,7 +472,10 @@ function Demo() {
           <Badge tone="success" dot>
             Online
           </Badge>
-          <Clock />
+          <span className="nova-header__signal">
+            <SignalIcon />
+            <Clock />
+          </span>
         </div>
       </header>
 
@@ -512,9 +536,7 @@ function Demo() {
           </section>
 
           <div className="nova-grid">
-            <div className="nova-grid__group">
-              <span className="nova-h3 nova-grid__group-title">Input</span>
-            </div>
+            <GroupRule group="Input" sub="operator console inputs" />
             <div className="nova-section span-2" id="button">
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
@@ -568,6 +590,10 @@ function Demo() {
                     <span className="nova-cap">Locked</span>
                     <Switch disabled defaultChecked aria-label="Locked" />
                   </div>
+                  <div className="demo-spread">
+                    <span className="nova-cap">Sealed</span>
+                    <Switch disabled aria-label="Sealed" />
+                  </div>
                 </div>
               </Panel>
             </div>
@@ -578,7 +604,9 @@ function Demo() {
                   <ToggleGroup defaultValue={["map"]}>
                     <Toggle value="map">Map</Toggle>
                     <Toggle value="grid">Grid</Toggle>
-                    <Toggle value="scan">Scan</Toggle>
+                    <Toggle value="scan" disabled>
+                      Scan
+                    </Toggle>
                   </ToggleGroup>
                   <ToggleGroup defaultValue={["shields", "weapons"]} multiple>
                     <Toggle value="shields">Shields</Toggle>
@@ -657,13 +685,7 @@ function Demo() {
               <Panel title="Slider" meta="SLD">
                 <div className="demo-stack">
                   <Slider label="Thrust" defaultValue={64} />
-                  <Slider
-                    label="Frequency"
-                    defaultValue={40}
-                    min={0}
-                    max={100}
-                    step={5}
-                  />
+                  <Slider label="Frequency" defaultValue={40} disabled />
                 </div>
               </Panel>
             </div>
@@ -703,9 +725,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-grid__group">
-              <span className="nova-h3 nova-grid__group-title">Forms</span>
-            </div>
+            <GroupRule group="Forms" sub="crew credential intake" />
             <div className="nova-section" id="fieldset">
               <Panel title="Fieldset" meta="FLD">
                 <Fieldset legend="Pilot Credentials">
@@ -721,9 +741,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-grid__group">
-              <span className="nova-h3 nova-grid__group-title">Feedback</span>
-            </div>
+            <GroupRule group="Feedback" sub="live telemetry readouts" />
             <div className="nova-section" id="progress">
               <Panel title="Progress" meta="PRG">
                 <ProgressDemo />
@@ -766,9 +784,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-grid__group">
-              <span className="nova-h3 nova-grid__group-title">Overlay</span>
-            </div>
+            <GroupRule group="Overlay" sub="signals that break through" />
             <div className="nova-section" id="tooltip">
               <Panel title="Tooltip" meta="TIP">
                 <div className="demo-row">
@@ -1007,9 +1023,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-grid__group">
-              <span className="nova-h3 nova-grid__group-title">Display</span>
-            </div>
+            <GroupRule group="Display" sub="what the viewport shows" />
             <div className="nova-section" id="avatar">
               <Panel title="Avatar" meta="AVT">
                 <div className="demo-row">
@@ -1020,7 +1034,7 @@ function Demo() {
                   />
                   <Avatar fallback="VK" status="busy" />
                   <Avatar fallback="R7" status="away" />
-                  <Avatar fallback="ZX" size={56} status="online" />
+                  <Avatar fallback="ZX" size={56} status="offline" />
                 </div>
               </Panel>
             </div>
@@ -1063,9 +1077,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <div className="nova-grid__group">
-              <span className="nova-h3 nova-grid__group-title">Foundations</span>
-            </div>
+            <GroupRule group="Foundations" sub="the hull beneath the HUD" />
             <div className="nova-section span-2" id="typography">
               <Panel title="Typography" meta="TYP">
                 <div className="demo-col">

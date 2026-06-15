@@ -419,6 +419,10 @@ kbd {
   line-height: var(--abyss-lh-165);
   color: var(--abyss-text-dim);
 }
+.demo-pcard__stats {
+  display: flex;
+  gap: var(--abyss-space-2);
+}
 
 .demo-log {
   list-style: none;
