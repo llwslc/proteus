@@ -25,13 +25,6 @@ export const KITS: KitDef[] = [
     app: () => import("./nova"),
     loader: () => import("./nova/Loader"),
   },
-  {
-    id: "sumi",
-    label: "SUMI",
-    tag: "Zen · Ink",
-    app: () => import("./sumi"),
-    loader: () => import("./sumi/Loader"),
-  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;
