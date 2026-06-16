@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog";
 import { Button, type ButtonProps } from "../Button";
-import { Bolt, Close, Gauge, Gear } from "../icons";
+import { Bolt, Gauge, Gear } from "../icons";
 import "./AlertDialog.css";
 
 type Tone = "danger" | "warning" | "primary";
@@ -81,14 +81,6 @@ export function AlertDialog({
                 </>
               )}
             </div>
-            <BaseAlertDialog.Close
-              className="brass-modal-close"
-              render={
-                <Button iconOnly variant="ghost" aria-label="Close">
-                  <Close />
-                </Button>
-              }
-            />
           </BaseAlertDialog.Popup>
         </BaseAlertDialog.Viewport>
       </BaseAlertDialog.Portal>

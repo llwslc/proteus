@@ -551,7 +551,9 @@ function Demo() {
             </Panel>
 
             <Panel id="preview" title="Preview Card" meta="PVW" wide>
-              <p className="brass-text">
+              <div className="brass-stack">
+                <span className="brass-cap">Hover the engineer</span>
+                <p className="brass-text">
                 Chief engineer{" "}
                 <PreviewCard
                   title="I. K. Brunel"
@@ -577,7 +579,8 @@ function Demo() {
                   </a>
                 </PreviewCard>{" "}
                 signed off the last overhaul.
-              </p>
+                </p>
+              </div>
             </Panel>
 
             <Panel id="menu" title="Menu" meta="MNU">
@@ -650,7 +653,7 @@ function Demo() {
               <ContextMenu
                 hint={
                   <>
-                    Right-click the plate <kbd>⌥</kbd>
+                    Right-click the plate <kbd>⌃</kbd>
                   </>
                 }
               >
