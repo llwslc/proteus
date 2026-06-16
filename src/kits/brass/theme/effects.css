@@ -201,18 +201,6 @@
   opacity: 0;
 }
 
-/* ── Header sheen: breathing brushed highlight ────────── */
-.brass-sheen {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 1px;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent, var(--brass-sheen-color, var(--brass-sheen)) 50%, transparent);
-  transform-origin: center;
-  animation: brass-breathe var(--brass-dur-breath) ease-in-out infinite;
-}
 @keyframes brass-breathe {
   0%,
   100% {

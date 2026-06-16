@@ -23,7 +23,6 @@ export function Panel({ id, title, meta, marker, wide, children }: PanelProps) {
         wide && "brass-panel--wide",
       )}
     >
-      <span className="brass-sheen" />
       {(title || meta || marker) && (
         <header className="brass-panel__head">
           {marker !== undefined ? (
