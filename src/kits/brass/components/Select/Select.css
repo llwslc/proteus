@@ -16,7 +16,12 @@
   transition: filter var(--brass-dur) var(--brass-ease);
 }
 .brass-select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
   text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .brass-select__ph {
   color: var(--brass-text-mute);

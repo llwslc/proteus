@@ -76,3 +76,16 @@
   opacity: var(--brass-disabled-opacity);
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  /* The root reuses .brass-seg, whose mobile rule forces nowrap + overflow-x
+     scroll — that squeezes the inner toggle group until it clips its options.
+     Wrap instead (like the sibling kits) so every control stays at full size. */
+  .brass-seg.brass-toolbar {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+  .brass-toolbar__sep {
+    display: none;
+  }
+}
