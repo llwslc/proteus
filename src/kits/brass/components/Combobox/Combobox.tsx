@@ -64,12 +64,12 @@ export function Combobox<Multiple extends boolean | undefined = false>({
             <BaseCombobox.List>
               {(item: ComboboxOption) => (
                 <BaseCombobox.Item key={item.value} value={item} className="brass-list-item">
+                  <span className="brass-list-item__text">{item.label}</span>
                   <span className="brass-list-item__check">
                     <BaseCombobox.ItemIndicator>
                       <Check />
                     </BaseCombobox.ItemIndicator>
                   </span>
-                  <span className="brass-list-item__text">{item.label}</span>
                 </BaseCombobox.Item>
               )}
             </BaseCombobox.List>
