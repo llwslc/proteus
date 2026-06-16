@@ -23,8 +23,6 @@
   padding: var(--brass-modal-pad);
   overflow-y: auto;
   filter: var(--brass-shadow-modal) var(--brass-glow-modal);
-  /* this element is the scroller, so its absolute ::before fill would scroll
-     away and expose the bezel — paint fill + frame as its own background */
   background: var(--brass-plate-fill) padding-box, var(--brass-plate-bezel) border-box;
   border: var(--brass-plate-edge, 2px) solid transparent;
   box-shadow: var(--brass-plate-bevel, var(--brass-bevel));

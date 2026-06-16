@@ -65,9 +65,6 @@
   overflow-y: auto;
   padding: var(--brass-space-1);
   outline: none;
-  /* This element is the scroll container, so its absolute ::before fill would
-     scroll away and expose the raw bezel behind lower items. Paint the recessed
-     fill + bezel frame as the element's own background (non-scrolling) instead. */
   background:
     linear-gradient(var(--brass-plate-fill), var(--brass-plate-fill)) padding-box,
     var(--brass-plate-bezel) border-box;
