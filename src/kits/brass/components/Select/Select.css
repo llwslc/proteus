@@ -43,7 +43,8 @@
 .brass-select[data-popup-open] .brass-select__icon {
   transform: rotate(180deg);
 }
-.brass-select[data-disabled] {
+.brass-select[data-disabled],
+.brass-select:disabled {
   opacity: var(--brass-disabled-opacity);
   cursor: not-allowed;
 }
