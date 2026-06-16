@@ -119,15 +119,6 @@
   flex: 0 0 auto;
   color: var(--brass-text-dim);
 }
-.brass-menu-label {
-  padding: var(--brass-space-2) var(--brass-space-3) var(--brass-space-1);
-  font-family: var(--brass-font-mono);
-  font-size: var(--brass-fs-11);
-  font-weight: var(--brass-fw-700);
-  letter-spacing: var(--brass-ls-3);
-  text-transform: uppercase;
-  color: var(--brass-text-mute);
-}
 .brass-menu-sep {
   height: 1px;
   margin: var(--brass-space-1) var(--brass-space-2);

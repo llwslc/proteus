@@ -57,7 +57,3 @@
 .brass-scrollarea__thumb:hover {
   filter: var(--brass-glow-trigger);
 }
-
-.brass-scrollarea__corner {
-  background: var(--brass-track);
-}

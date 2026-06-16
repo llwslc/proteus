@@ -4,5 +4,4 @@ export {
   ScrollAreaContent,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
-  ScrollAreaCorner,
 } from "./ScrollArea";

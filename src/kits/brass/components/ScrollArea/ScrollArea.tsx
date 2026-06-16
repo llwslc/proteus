@@ -21,7 +21,3 @@ export function ScrollAreaScrollbar({ className, ...props }: React.ComponentProp
 export function ScrollAreaThumb({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Thumb>) {
   return <BaseScrollArea.Thumb className={cx("brass-scrollarea__thumb", className)} {...props} />;
 }
-
-export function ScrollAreaCorner({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Corner>) {
-  return <BaseScrollArea.Corner className={cx("brass-scrollarea__corner", className)} {...props} />;
-}

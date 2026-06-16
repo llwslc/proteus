@@ -14,14 +14,6 @@ export function ToolbarGroup({ className, ...props }: React.ComponentProps<typeo
   return <BaseToolbar.Group className={cx("brass-toolbar__group", className)} {...props} />;
 }
 
-export function ToolbarLink({ className, ...props }: React.ComponentProps<typeof BaseToolbar.Link>) {
-  return <BaseToolbar.Link className={cx("brass-toolbar__link", className)} {...props} />;
-}
-
-export function ToolbarInput({ className, ...props }: React.ComponentProps<typeof BaseToolbar.Input>) {
-  return <BaseToolbar.Input className={cx("brass-toolbar__input", className)} {...props} />;
-}
-
 export function ToolbarSeparator({ className, ...props }: React.ComponentProps<typeof BaseToolbar.Separator>) {
   return <BaseToolbar.Separator className={cx("brass-toolbar__sep", className)} {...props} />;
 }

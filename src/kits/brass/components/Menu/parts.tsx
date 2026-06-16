@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Menu } from "@base-ui/react/menu";
 import { cx } from "../cx";
-import { Check, ChevronRight, Dot } from "../icons";
+import { ChevronRight } from "../icons";
 
 export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
   icon?: ReactNode;
@@ -31,54 +31,8 @@ export function MenuItem({
   );
 }
 
-export function MenuGroup(props: React.ComponentProps<typeof Menu.Group>) {
-  return <Menu.Group {...props} />;
-}
-
-export function MenuLabel({ className, ...props }: React.ComponentProps<typeof Menu.GroupLabel>) {
-  return <Menu.GroupLabel className={cx("brass-menu-label", className)} {...props} />;
-}
-
 export function MenuSeparator() {
   return <div className="brass-menu-sep" role="separator" />;
-}
-
-export function MenuCheckboxItem({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof Menu.CheckboxItem>) {
-  return (
-    <Menu.CheckboxItem className={cx("brass-list-item", className)} {...props}>
-      <span className="brass-list-item__check">
-        <Menu.CheckboxItemIndicator>
-          <Check />
-        </Menu.CheckboxItemIndicator>
-      </span>
-      <span className="brass-list-item__text">{children}</span>
-    </Menu.CheckboxItem>
-  );
-}
-
-export function MenuRadioGroup(props: React.ComponentProps<typeof Menu.RadioGroup>) {
-  return <Menu.RadioGroup {...props} />;
-}
-
-export function MenuRadioItem({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof Menu.RadioItem>) {
-  return (
-    <Menu.RadioItem className={cx("brass-list-item", className)} {...props}>
-      <span className="brass-list-item__check">
-        <Menu.RadioItemIndicator>
-          <Dot />
-        </Menu.RadioItemIndicator>
-      </span>
-      <span className="brass-list-item__text">{children}</span>
-    </Menu.RadioItem>
-  );
 }
 
 export function MenuSub({
