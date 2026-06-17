@@ -64,7 +64,6 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
       <BaseNav.Portal>
         <BaseNav.Positioner className="brass-lift brass-nav-positioner" sideOffset={8}>
           <BaseNav.Popup className="brass-plate brass-pop brass-popup brass-nav-popup">
-            <BaseNav.Arrow className="brass-connector" />
             <BaseNav.Viewport className="brass-nav-viewport" />
           </BaseNav.Popup>
         </BaseNav.Positioner>

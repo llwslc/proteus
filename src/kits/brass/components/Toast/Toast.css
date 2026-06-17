@@ -31,17 +31,6 @@
   transform: translateY(calc(min(var(--toast-index), 3) * -1 * var(--brass-space-3)))
     scale(calc(1 - 0.05 * min(var(--toast-index), 3)));
 }
-.brass-toast::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 2px;
-  border-radius: var(--brass-round-md) 0 0 var(--brass-round-md);
-  background: var(--brass-toast-tone);
-  box-shadow: var(--brass-glow-text);
-}
 .brass-toast[data-expanded] {
   transform: translateY(calc(var(--toast-offset-y) * -1px));
 }

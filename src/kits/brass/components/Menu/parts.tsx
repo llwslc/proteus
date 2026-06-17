@@ -52,7 +52,7 @@ export function MenuSub({
         <ChevronRight className="brass-list-item__chevron" />
       </Menu.SubmenuTrigger>
       <Menu.Portal>
-        <Menu.Positioner className="brass-lift" sideOffset={4} alignOffset={-4}>
+        <Menu.Positioner className="brass-lift" sideOffset={18}>
           <Menu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
             {children}
           </Menu.Popup>

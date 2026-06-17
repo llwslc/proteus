@@ -98,7 +98,8 @@
 }
 
 .brass-btn--ghost {
-  --brass-plate-bezel: transparent;
+  --brass-plate-edge: 1px;
+  --brass-plate-bezel: var(--brass-line);
   --brass-plate-fill: transparent;
   --brass-plate-bevel: none;
   color: var(--brass-text-dim);
