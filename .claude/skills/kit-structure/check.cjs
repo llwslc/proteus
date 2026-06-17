@@ -81,7 +81,7 @@ const tsxOf = (k, c) => {
   for (const f of fs.readdirSync(dir)) if (/\.tsx$/.test(f)) s += read(`${dir}/${f}`) + '\n';
   return s;
 };
-const BEHAV = ['alignItemWithTrigger', 'modal', 'dismissible', 'openOnHover', 'openOnInputClick', 'loop', 'openMultiple', 'toggleMultiple', 'multiple', 'autoHighlight', 'activateOnFocus', 'allowWheelScrub', 'grid'];
+const BEHAV = ['alignItemWithTrigger', 'modal', 'dismissible', 'closeOnClick', 'openOnHover', 'openOnInputClick', 'loop', 'openMultiple', 'toggleMultiple', 'multiple', 'autoHighlight', 'activateOnFocus', 'allowWheelScrub', 'grid'];
 const propVal = (s, p) => {
   let m = s.match(new RegExp('\\b' + p + '\\s*=\\s*\\{\\s*(true|false)\\s*\\}'));
   if (m) return m[1];

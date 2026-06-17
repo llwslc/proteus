@@ -607,7 +607,7 @@ function Demo() {
             <span className="abyss-logo__sub">Eldritch UI Kit</span>
           </span>
         </div>
-        <NavigationMenu items={NAVMENU_ITEMS} onLinkClick={(e) => e.preventDefault()} />
+        <NavigationMenu items={NAVMENU_ITEMS} />
         <div className="abyss-header__status">
           <Badge tone="primary" dot>
             Awake

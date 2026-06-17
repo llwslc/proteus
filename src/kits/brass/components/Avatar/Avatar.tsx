@@ -20,7 +20,7 @@ export interface AvatarProps extends React.ComponentProps<typeof BaseAvatar.Root
 export function Avatar({ size = "md", status, className, children, ...props }: AvatarProps) {
   return (
     <BaseAvatar.Root className={cx("brass-avatar", `brass-avatar--${size}`, className)} {...props}>
-      {children}
+      <span className="brass-avatar__frame">{children}</span>
       {status ? (
         <span
           className={cx("brass-avatar__status", `brass-avatar__status--${status}`)}

@@ -4,9 +4,6 @@
   display: inline-block;
   width: var(--nova-avatar-size);
   height: var(--nova-avatar-size);
-  background: var(--nova-line);
-  clip-path: var(--nova-clip-9);
-  overflow: hidden;
   filter: var(--nova-glow-active);
 }
 .nova-avatar--sm {
@@ -14,6 +11,14 @@
 }
 .nova-avatar--lg {
   --nova-avatar-size: var(--nova-avatar-lg);
+}
+
+.nova-avatar__frame {
+  position: absolute;
+  inset: 0;
+  background: var(--nova-line);
+  clip-path: var(--nova-clip-9);
+  overflow: hidden;
 }
 
 .nova-avatar__img {

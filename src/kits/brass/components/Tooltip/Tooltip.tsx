@@ -1,45 +1,56 @@
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
-import type { ReactElement, ReactNode } from "react";
 import { useRef, useState } from "react";
+import type { PointerEvent, ReactElement, ReactNode } from "react";
 import "./Tooltip.css";
 
 export interface TooltipProps {
   content: ReactNode;
   children: ReactElement;
   side?: "top" | "bottom" | "left" | "right";
+  sideOffset?: number;
+  delay?: number;
 }
 
-export function Tooltip({ content, children, side = "top" }: TooltipProps) {
+export function Tooltip({
+  content,
+  children,
+  side = "top",
+  sideOffset = 8,
+  delay = 200,
+}: TooltipProps) {
   const [open, setOpen] = useState(false);
   const touch = useRef(false);
+  const onTouchToggle = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "touch") return;
+    touch.current = true;
+    setOpen((prev) => !prev);
+  };
   return (
-    <BaseTooltip.Root
-      open={open}
-      onOpenChange={(next) => {
-        if (touch.current && !next) {
-          touch.current = false;
-          return;
-        }
-        setOpen(next);
-      }}
-    >
-      <BaseTooltip.Trigger
-        render={children}
-        onPointerDown={(event: React.PointerEvent) => {
-          if (event.pointerType === "touch") {
-            touch.current = true;
-            setOpen((o) => !o);
+    <BaseTooltip.Provider delay={delay}>
+      <BaseTooltip.Root
+        open={open}
+        onOpenChange={(next) => {
+          if (touch.current && !next) {
+            touch.current = false;
+            return;
           }
+          setOpen(next);
         }}
-      />
-      <BaseTooltip.Portal>
-        <BaseTooltip.Positioner className="brass-lift brass-lift--sm" side={side} sideOffset={8}>
-          <BaseTooltip.Popup className="brass-plate brass-pop brass-popup brass-tooltip">
-            {content}
-            <BaseTooltip.Arrow className="brass-connector" />
-          </BaseTooltip.Popup>
-        </BaseTooltip.Positioner>
-      </BaseTooltip.Portal>
-    </BaseTooltip.Root>
+      >
+        <BaseTooltip.Trigger
+          render={children}
+          closeOnClick={false}
+          onPointerDown={onTouchToggle}
+        />
+        <BaseTooltip.Portal>
+          <BaseTooltip.Positioner className="brass-lift brass-lift--sm" side={side} sideOffset={sideOffset}>
+            <BaseTooltip.Popup className="brass-plate brass-pop brass-popup brass-tooltip">
+              {content}
+              <BaseTooltip.Arrow className="brass-connector" />
+            </BaseTooltip.Popup>
+          </BaseTooltip.Positioner>
+        </BaseTooltip.Portal>
+      </BaseTooltip.Root>
+    </BaseTooltip.Provider>
   );
 }

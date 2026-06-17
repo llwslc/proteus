@@ -1,5 +1,5 @@
 .brass-alert {
-  width: var(--brass-alert-w);
+  width: min(var(--brass-alert-w), 100%);
   --brass-tone: var(--brass-danger);
   --brass-tone-deep: var(--brass-danger-deep);
   --brass-plate-bezel: linear-gradient(

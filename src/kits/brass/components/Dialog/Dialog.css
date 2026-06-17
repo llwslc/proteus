@@ -1,5 +1,5 @@
 .brass-dialog {
-  width: var(--brass-dialog-w);
+  width: min(var(--brass-dialog-w), 100%);
 }
 .brass-dialog .brass-modal__sigil svg {
   animation: brass-rotate var(--brass-dur-spin) linear infinite;
