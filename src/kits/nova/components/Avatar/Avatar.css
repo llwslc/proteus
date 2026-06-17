@@ -58,6 +58,14 @@
   background: var(--nova-text-mute);
   transform: rotate(45deg);
 }
+.nova-avatar--sm .nova-avatar__status {
+  width: 10px;
+  height: 10px;
+}
+.nova-avatar--lg .nova-avatar__status {
+  width: 16px;
+  height: 16px;
+}
 .nova-avatar__status--online {
   background: var(--nova-success);
   box-shadow: 0 0 var(--nova-glow-r) var(--nova-success);

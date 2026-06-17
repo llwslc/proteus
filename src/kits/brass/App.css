@@ -299,6 +299,10 @@
   .brass-shell__clock {
     display: none;
   }
+  .brass-shell__bar {
+    gap: var(--brass-space-3);
+    padding: 0 14px;
+  }
   .brass-shell__body {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;

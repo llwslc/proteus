@@ -112,6 +112,7 @@
     flex: 0 0 auto;
   }
   .brass-nav-content {
+    grid-template-columns: 1fr;
     width: min(var(--brass-nav-w), calc(100vw - var(--brass-space-8)));
   }
 }

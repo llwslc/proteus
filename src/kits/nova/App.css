@@ -579,7 +579,7 @@ kbd {
     gap: 14px 22px;
   }
   .nova-logo__sub,
-  .nova-header__status .nova-badge {
+  .nova-clock {
     display: none;
   }
 }
