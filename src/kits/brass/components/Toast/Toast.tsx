@@ -14,6 +14,7 @@ function ToastList() {
         <BaseToast.Root
           key={toast.id}
           toast={toast}
+          swipeDirection="right"
           className="brass-plate brass-pop brass-toast"
         >
           <span className="brass-marker brass-toast__marker">
@@ -45,11 +46,13 @@ function ToastList() {
 
 export interface ToastProviderProps {
   children?: ReactNode;
+  timeout?: number;
+  limit?: number;
 }
 
-export function ToastProvider({ children }: ToastProviderProps) {
+export function ToastProvider({ children, timeout = 5000, limit = 4 }: ToastProviderProps) {
   return (
-    <BaseToast.Provider>
+    <BaseToast.Provider timeout={timeout} limit={limit}>
       {children}
       <BaseToast.Portal>
         <BaseToast.Viewport className="brass-toast-viewport">

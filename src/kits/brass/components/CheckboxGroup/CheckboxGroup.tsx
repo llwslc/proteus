@@ -12,12 +12,12 @@ export interface CheckboxGroupOption {
 export interface CheckboxGroupProps
   extends Omit<React.ComponentProps<typeof BaseCheckboxGroup>, "children"> {
   items: CheckboxGroupOption[];
-  selectAllLabel?: ReactNode;
+  parentLabel?: ReactNode;
 }
 
 export function CheckboxGroup({
   items,
-  selectAllLabel,
+  parentLabel,
   className,
   allValues,
   ...props
@@ -29,10 +29,10 @@ export function CheckboxGroup({
       allValues={all}
       {...props}
     >
-      {selectAllLabel && (
+      {parentLabel && (
         <label className="brass-check-row brass-check-row--parent">
           <Checkbox parent />
-          <span className="brass-cap brass-check-row__label">{selectAllLabel}</span>
+          <span className="brass-cap brass-check-row__label">{parentLabel}</span>
         </label>
       )}
       <div className="brass-check-group__items">

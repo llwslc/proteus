@@ -183,7 +183,7 @@ function ProgressGauges() {
       <Progress label="Stoking firebox" value={val} />
       <Progress label="Building pressure" value={67} />
       <Progress label="Boiler primed" value={100} />
-      <Progress label="Sweeping gauges…" value={null} />
+      <Progress label="Sweeping gauges…" showValue={false} value={null} />
     </div>
   );
 }
@@ -385,7 +385,7 @@ function Demo() {
             <Panel id="checkbox-group" title="Checkbox Group" meta="CBG">
               <CheckboxGroup
                 defaultValue={["pressure"]}
-                selectAllLabel="All gauges"
+                parentLabel="All gauges"
                 items={[
                   { label: "Pressure", value: "pressure" },
                   { label: "Temperature", value: "temp" },
@@ -451,11 +451,10 @@ function Demo() {
           <GroupRule id="forms" label="Forms" sub="binding the crew" />
           <div className="brass-grid">
             <Panel id="fieldset" title="Fieldset" meta="FLD">
-              <Fieldset.Root>
-                <Fieldset.Legend>Engineer</Fieldset.Legend>
+              <Fieldset legend="Engineer">
                 <Field label="Name" defaultValue="I. K. Brunel" />
                 <Field label="Watch" defaultValue="Forenoon" />
-              </Fieldset.Root>
+              </Fieldset>
             </Panel>
             <Panel id="form" title="Form" meta="FRM">
               <Form

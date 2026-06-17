@@ -5,15 +5,20 @@ import "./Progress.css";
 
 export interface ProgressProps extends React.ComponentProps<typeof BaseProgress.Root> {
   label?: ReactNode;
+  showValue?: boolean;
 }
 
-export function Progress({ label, className, ...props }: ProgressProps) {
+export function Progress({ label, showValue = true, className, ...props }: ProgressProps) {
   return (
     <BaseProgress.Root className={cx("brass-progress", className)} {...props}>
-      {label && (
+      {(label != null || showValue) && (
         <div className="brass-progress__head">
-          <BaseProgress.Label className="brass-cap">{label}</BaseProgress.Label>
-          <BaseProgress.Value className="brass-progress__value" />
+          {label != null ? (
+            <BaseProgress.Label className="brass-cap">{label}</BaseProgress.Label>
+          ) : (
+            <span />
+          )}
+          {showValue ? <BaseProgress.Value className="brass-progress__value" /> : null}
         </div>
       )}
       <BaseProgress.Track className="brass-progress__track">

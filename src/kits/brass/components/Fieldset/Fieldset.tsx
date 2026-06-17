@@ -1,17 +1,19 @@
 import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
 import "./Fieldset.css";
 
-export interface FieldsetProps extends React.ComponentProps<typeof BaseFieldset.Root> {}
-
-function Root({ className, ...props }: FieldsetProps) {
-  return <BaseFieldset.Root className={cx("brass-fieldset", className)} {...props} />;
+export interface FieldsetProps extends ComponentPropsWithoutRef<typeof BaseFieldset.Root> {
+  legend?: ReactNode;
 }
 
-function Legend({ className, ...props }: React.ComponentProps<typeof BaseFieldset.Legend>) {
+export function Fieldset({ className, legend, children, ...props }: FieldsetProps) {
   return (
-    <BaseFieldset.Legend className={cx("brass-h3", "brass-fieldset__legend", className)} {...props} />
+    <BaseFieldset.Root className={cx("brass-fieldset", className)} {...props}>
+      {legend != null ? (
+        <BaseFieldset.Legend className="brass-h3 brass-fieldset__legend">{legend}</BaseFieldset.Legend>
+      ) : null}
+      <div className="brass-fieldset__body">{children}</div>
+    </BaseFieldset.Root>
   );
 }
-
-export const Fieldset = { Root, Legend };

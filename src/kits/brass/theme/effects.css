@@ -63,6 +63,7 @@
   min-width: var(--brass-popup-w);
   max-height: var(--brass-popup-h);
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: var(--brass-space-1);
   outline: none;
   background:
@@ -91,6 +92,7 @@
     color var(--brass-dur) var(--brass-ease);
 }
 .brass-list-item[data-highlighted],
+.brass-list-item[data-popup-open],
 .brass-list-item:hover {
   background: var(--brass-tint-soft);
   color: var(--brass-text-bright);

@@ -15,7 +15,6 @@ export interface AlertDialogProps {
   children?: ReactNode;
   actions?: ReactNode;
   tone?: Tone;
-  confirmLabel?: ReactNode;
 }
 
 export interface AlertDialogCloseProps {
@@ -28,12 +27,6 @@ const toneMarker = {
   primary: <Gear />,
   warning: <Gauge />,
   danger: <Bolt />,
-} as const;
-
-const toneVariant = {
-  primary: "primary",
-  warning: "secondary",
-  danger: "danger",
 } as const;
 
 export function AlertDialogClose({ children, variant = "ghost", size }: AlertDialogCloseProps) {
@@ -50,7 +43,6 @@ export function AlertDialog({
   children,
   actions,
   tone = "danger",
-  confirmLabel = "Confirm",
 }: AlertDialogProps) {
   return (
     <BaseAlertDialog.Root>
@@ -73,14 +65,9 @@ export function AlertDialog({
               </BaseAlertDialog.Description>
             )}
             {children && <div className="brass-modal-body">{children}</div>}
-            <div className="brass-modal-actions">
-              {actions ?? (
-                <>
-                  <AlertDialogClose>Cancel</AlertDialogClose>
-                  <AlertDialogClose variant={toneVariant[tone]}>{confirmLabel}</AlertDialogClose>
-                </>
-              )}
-            </div>
+            {actions != null && (
+              <div className="brass-modal-actions">{actions}</div>
+            )}
           </BaseAlertDialog.Popup>
         </BaseAlertDialog.Viewport>
       </BaseAlertDialog.Portal>

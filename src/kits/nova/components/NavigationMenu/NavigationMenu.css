@@ -173,6 +173,13 @@
 }
 
 @media (max-width: 768px) {
+  .nova-navmenu__list {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  .nova-navmenu__list > * {
+    flex: 0 0 auto;
+  }
   .nova-navmenu__grid {
     grid-template-columns: 1fr;
   }

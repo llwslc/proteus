@@ -47,6 +47,12 @@
 .nova-numberfield__btn:active {
   background: var(--nova-tint-active);
 }
+.nova-numberfield__btn:focus-visible {
+  outline: none;
+  background: var(--nova-highlight);
+  color: var(--nova-text-bright);
+  box-shadow: inset 0 0 0 1px var(--nova-line-strong);
+}
 .nova-numberfield__btn:disabled {
   cursor: not-allowed;
   background: var(--nova-numberfield-btn-bg);
