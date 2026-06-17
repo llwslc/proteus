@@ -114,5 +114,28 @@ for (const c of shared) {
 }
 if (fail === failBefore) out('  ok');
 
+out('\n## 6. component-class coupling (a leaf component class reused by another component — the navmenu↔tab class)');
+const LEAF = ['tab', 'tabs', 'select', 'combobox', 'autocomplete', 'slider', 'switch', 'checkbox', 'radio', 'dialog', 'alert', 'drawer', 'toast', 'tooltip', 'popover', 'preview', 'previewcard', 'accordion', 'collapsible', 'avatar', 'meter', 'progress', 'otp', 'otpfield', 'numberfield', 'fieldset', 'navmenu', 'navigationmenu'];
+const norm = (s) => s.toLowerCase().replace(/[^a-z]/g, '');
+const cBefore = fail;
+for (const k of KITS) {
+  const cls2comp = {};
+  for (const c of compSets[k]) {
+    if (c === 'icons') continue;
+    const dir = `src/kits/${k}/components/${c}`;
+    let s = '';
+    for (const f of fs.readdirSync(dir)) if (/\.tsx$/.test(f)) s += read(`${dir}/${f}`) + '\n';
+    for (const m of s.matchAll(new RegExp(k + '-[a-z0-9]+(?:[-_][a-z0-9]+)*', 'g'))) (cls2comp[m[0]] ||= new Set()).add(c);
+  }
+  for (const [cls, set] of Object.entries(cls2comp)) {
+    if (set.size < 2) continue;
+    const word = (cls.slice(k.length + 1).match(/^[a-z]+/) || [])[0];
+    if (!word || !LEAF.includes(word)) continue;
+    const intruders = [...set].filter((c) => !norm(c).includes(word));
+    if (intruders.length) { out(`  FAIL ${k}: ${cls} (a ${word} class) used by ${intruders.join(', ')} — give them their own classes`); fail++; }
+  }
+}
+if (fail === cBefore) out('  ok');
+
 out(`\nRESULT: ${fail ? fail + ' STRUCTURAL FAIL' : 'structure OK'}${review ? ` · ${review} API divergence(s) to review` : ''}`);
 process.exit(fail ? 1 : 0);
