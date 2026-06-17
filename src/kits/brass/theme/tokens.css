@@ -101,6 +101,7 @@
   /* ── Motion & metrics ──────────────────────────────── */
   --brass-dur: 0.26s;
   --brass-dur-slow: 0.5s;
+  --brass-dur-sweep: 1.5s;
   --brass-dur-breath: 6s;
   --brass-dur-spin: 30s;
   --brass-ease: cubic-bezier(0.32, 0.72, 0.2, 1);

@@ -40,7 +40,7 @@
   width: 38%;
   margin-left: -38%;
   transition: none;
-  animation: brass-progress-slide 1.5s var(--brass-ease) infinite;
+  animation: brass-progress-slide var(--brass-dur-sweep) var(--brass-ease) infinite;
 }
 @keyframes brass-progress-slide {
   to {

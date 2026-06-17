@@ -35,7 +35,7 @@
 .abyss-progress__track[data-indeterminate] .abyss-progress__indicator {
   width: 40%;
   margin-left: -40%;
-  animation: abyss-creep 1.5s var(--abyss-ease) infinite;
+  animation: abyss-creep var(--abyss-dur-sweep) var(--abyss-ease) infinite;
 }
 @keyframes abyss-creep {
   to {
