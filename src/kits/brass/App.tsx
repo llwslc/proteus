@@ -656,8 +656,8 @@ function Demo() {
                 description="Confirm the boiler is depressurized before opening the hatch."
                 footer={
                   <>
-                    <DialogClose>Open hatch</DialogClose>
                     <DialogClose variant="secondary">Stand clear</DialogClose>
+                    <DialogClose variant="primary">Open hatch</DialogClose>
                   </>
                 }
               >

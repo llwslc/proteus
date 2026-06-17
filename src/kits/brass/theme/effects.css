@@ -140,7 +140,7 @@
 
 /* ── Connector: 1px brass pipe stub (Base UI Arrow) ───── */
 .brass-connector {
-  position: relative;
+  z-index: 2;
   width: 9px;
   height: 9px;
   color: var(--brass-primary);
@@ -161,6 +161,18 @@
 .brass-connector[data-side="right"]::before {
   width: 9px;
   height: 2px;
+}
+.brass-connector[data-side="top"] {
+  bottom: -9px;
+}
+.brass-connector[data-side="bottom"] {
+  top: -9px;
+}
+.brass-connector[data-side="left"] {
+  right: -9px;
+}
+.brass-connector[data-side="right"] {
+  left: -9px;
 }
 
 /* ── Modal viewport & backdrop (Dialog / AlertDialog) ─── */
