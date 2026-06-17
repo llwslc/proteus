@@ -74,5 +74,45 @@ for (const c of shared) {
 if (!review) out('  no value/API divergences');
 if (typDiv) out(`  (+ ${typDiv} type-only export divergences${process.env.DETAIL ? '' : ' — DETAIL=1 to list'})`);
 
+out('\n## 5. composition parity (same Base UI wiring across kits — props + selected-indicator side)');
+const tsxOf = (k, c) => {
+  const dir = `src/kits/${k}/components/${c}`;
+  let s = '';
+  for (const f of fs.readdirSync(dir)) if (/\.tsx$/.test(f)) s += read(`${dir}/${f}`) + '\n';
+  return s;
+};
+const BEHAV = ['alignItemWithTrigger', 'modal', 'dismissible', 'openOnHover', 'openOnInputClick', 'loop', 'openMultiple', 'toggleMultiple', 'multiple', 'autoHighlight', 'activateOnFocus', 'allowWheelScrub', 'grid'];
+const propVal = (s, p) => {
+  let m = s.match(new RegExp('\\b' + p + '\\s*=\\s*\\{\\s*(true|false)\\s*\\}'));
+  if (m) return m[1];
+  m = s.match(new RegExp('\\b' + p + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\')'));
+  if (m) return m[1] ?? m[2];
+  if (new RegExp('[\\s<]' + p + '\\s*(?:/?>|\\s)').test(s) && !new RegExp('\\b' + p + '\\s*=').test(s)) return 'true';
+  return null;
+};
+const sideOf = (s) => {
+  if (!/\bItemIndicator\b/.test(s)) return null;
+  const ti = s.search(/ItemText|item-text|list-item__text/);
+  const ii = s.search(/\bItemIndicator\b/);
+  if (ti < 0 || ii < 0) return null;
+  return ii < ti ? 'left' : 'right';
+};
+const failBefore = fail;
+for (const c of shared) {
+  const tsx = Object.fromEntries(KITS.map((k) => [k, tsxOf(k, c)]));
+  const sides = KITS.map((k) => [k, sideOf(tsx[k])]).filter(([, v]) => v);
+  if (sides.length && new Set(sides.map(([, v]) => v)).size > 1) {
+    out(`  FAIL ${c}: selected-indicator side differs — ${sides.map(([k, v]) => k + ':' + v).join(', ')}`); fail++;
+  }
+  for (const p of BEHAV) {
+    const vals = KITS.map((k) => [k, propVal(tsx[k], p)]);
+    if (vals.every(([, v]) => v === null)) continue;
+    if (new Set(vals.map(([, v]) => (v === null ? '<unset>' : v))).size > 1) {
+      out(`  FAIL ${c}.${p}: ${vals.map(([k, v]) => k + ':' + (v === null ? 'unset' : v)).join(', ')}`); fail++;
+    }
+  }
+}
+if (fail === failBefore) out('  ok');
+
 out(`\nRESULT: ${fail ? fail + ' STRUCTURAL FAIL' : 'structure OK'}${review ? ` · ${review} API divergence(s) to review` : ''}`);
 process.exit(fail ? 1 : 0);

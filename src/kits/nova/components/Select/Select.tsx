@@ -77,14 +77,14 @@ export function Select<Value extends string = string>({
                   disabled={it.disabled}
                   className="nova-select__item"
                 >
+                  <BaseSelect.ItemText className="nova-select__item-text">
+                    {it.label}
+                  </BaseSelect.ItemText>
                   <span className="nova-select__item-indicator">
                     <BaseSelect.ItemIndicator>
                       <CheckIcon />
                     </BaseSelect.ItemIndicator>
                   </span>
-                  <BaseSelect.ItemText className="nova-select__item-text">
-                    {it.label}
-                  </BaseSelect.ItemText>
                 </BaseSelect.Item>
               ))}
             </div>

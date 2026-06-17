@@ -80,14 +80,14 @@ export function Select<Value extends string = string>({
                   disabled={it.disabled}
                   className="abyss-select__item"
                 >
+                  <BaseSelect.ItemText className="abyss-select__item-text">
+                    {it.label}
+                  </BaseSelect.ItemText>
                   <span className="abyss-select__item-indicator" aria-hidden>
                     <BaseSelect.ItemIndicator>
                       <CheckIcon className="abyss-select__item-seal abyss-breathe" />
                     </BaseSelect.ItemIndicator>
                   </span>
-                  <BaseSelect.ItemText className="abyss-select__item-text">
-                    {it.label}
-                  </BaseSelect.ItemText>
                 </BaseSelect.Item>
               ))}
             </div>

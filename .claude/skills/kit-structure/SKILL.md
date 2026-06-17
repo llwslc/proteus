@@ -1,6 +1,6 @@
 ---
 name: kit-structure
-description: Code-structure gate for the theme kits — the architectural invariants the other gates don't cover. Checks cross-kit ISOLATION (no kit imports from or references another kit — the "never copy a sibling" rule), component-set PARITY (same components in every kit), module COMPLETENESS (every component has .tsx + index.ts and is re-exported by the top barrel), and export-surface parity (reports where a kit's component API diverges from its siblings). Run when accepting or restructuring a kit.
+description: Code-structure gate for the theme kits — the architectural invariants the other gates don't cover. Checks cross-kit ISOLATION (no kit imports from or references another kit — the "never copy a sibling" rule), component-set PARITY (same components in every kit), module COMPLETENESS (every component has .tsx + index.ts and is re-exported by the top barrel), export-surface parity (reports where a kit's component API diverges from its siblings), and composition parity (the same Base UI component wired the same way across kits — behavioral props + selected-indicator side). Run when accepting or restructuring a kit.
 ---
 
 # kit-structure
@@ -12,6 +12,7 @@ description: Code-structure gate for the theme kits — the architectural invari
 | cross-kit isolation (no sibling imports/refs) | **kit-structure** |
 | component-set / module / barrel completeness | **kit-structure** |
 | export-surface parity across kits | **kit-structure** (advisory) |
+| composition parity (props + indicator side) | **kit-structure** |
 | dead classes / keyframes / exports | kit-deadcode |
 | dead tokens / repeated recipe / raw values | kit-lint |
 | anti-reskin (visual layer authored, not copied) | kit-distinct |
@@ -34,3 +35,4 @@ Kits discovered from `src/kits/*/components`. Exit 1 on a STRUCTURAL FAIL.
 - **component-set parity (FAIL)** — a component dir present in some kits but not all.
 - **module completeness (FAIL)** — a component missing its `.tsx` or `index.ts`, or not re-exported by `components/index.ts` (the 3-place barrel rule).
 - **export-surface parity (REVIEW)** — a value/type export present in some kits but not all. Advisory, not a fail: a from-scratch kit may legitimately compose a component differently (e.g. a compound `AvatarImage`/`AvatarFallback` vs a prop-based Avatar). Use it to spot *accidental* API drift; a dead divergent export is kit-deadcode's job.
+- **composition parity (FAIL)** — the same Base UI component must be wired the same way across kits: a behavioral prop (`alignItemWithTrigger`, `modal`, `openOnHover`, `loop`, `multiple`, …) set or valued differently across kits, or a selected-indicator (`ItemIndicator`) rendered on a different side of the item text. The export surface can match while the *behavior* drifts; skin (color/shape/motion) is free to differ, interaction is not.

@@ -30,7 +30,7 @@ export function Select({ items = [], placeholder = "Select…", className, ...pr
         </BaseSelect.Icon>
       </BaseSelect.Trigger>
       <BaseSelect.Portal>
-        <BaseSelect.Positioner className="brass-lift" sideOffset={6}>
+        <BaseSelect.Positioner className="brass-lift" sideOffset={6} alignItemWithTrigger={false}>
           <BaseSelect.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-select__popup">
             {items.map((it) => (
               <BaseSelect.Item key={it.value} value={it.value} disabled={it.disabled} className="brass-list-item">
