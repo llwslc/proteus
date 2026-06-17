@@ -26,8 +26,8 @@
   transition:
     transform var(--brass-dur) var(--brass-ease),
     opacity var(--brass-dur) var(--brass-ease);
-  transform: translateY(calc(var(--toast-index) * -1 * var(--brass-space-3)))
-    scale(calc(1 - 0.05 * var(--toast-index)));
+  transform: translateY(calc(min(var(--toast-index), 3) * -1 * var(--brass-space-3)))
+    scale(calc(1 - 0.05 * min(var(--toast-index), 3)));
 }
 .brass-toast::after {
   content: "";

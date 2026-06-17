@@ -56,7 +56,7 @@
   height: 100%;
   padding: 0;
   border: 0;
-  background: var(--brass-surface-raised);
+  background: transparent;
   color: var(--brass-text-dim);
   font-size: var(--brass-fs-17);
   cursor: pointer;
@@ -90,5 +90,5 @@
   opacity: var(--brass-disabled-opacity);
   color: var(--brass-text-mute);
   cursor: not-allowed;
-  background: var(--brass-surface-raised);
+  background: transparent;
 }
