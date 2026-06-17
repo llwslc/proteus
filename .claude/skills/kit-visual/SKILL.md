@@ -18,8 +18,11 @@ node .claude/skills/kit-visual/check.cjs 5273 brass # one kit / port
 ```
 
 Run it IN PLACE (do not copy to /tmp — a stale copy was a real miss on a sibling
-gate). Kits come from the live switcher buttons, panels from `section[id]` — nothing
-hardcoded. Exit 1 if any finding.
+gate). Kits come from the live switcher buttons; panels are matched by their
+`<kit>-panel` class and the id is resolved from the nearest ancestor — NOT
+`section[id]`, which silently matched **zero** panels in any kit that puts the demo
+id on a wrapper `<div>` (the gate was a no-op for those kits). Nothing hardcoded.
+Exit 1 if any finding.
 
 ## What it asserts (per demo panel)
 
@@ -31,6 +34,11 @@ hardcoded. Exit 1 if any finding.
 - **CLIPPED (HIGH)** — content whose box spills >2px outside a NON-scrolling panel.
   Content inside an inner scroll/clip container (ScrollArea) is excluded — that
   clipping is intentional.
+- **SCROLLAREA NOT SCROLLING (HIGH)** — a `*-scrollarea__viewport` whose content is
+  taller than the box (>280px) yet `scrollHeight == clientHeight`: the scroller is
+  unbounded (the height cap landed on the Root, not the Viewport) so it shows all
+  content and never scrolls. Caught the rewrite that moved `max-height` off the
+  viewport in all three kits.
 - **OVERLAP (REVIEW)** — two non-nested leaf boxes (content, or a painted leaf
   decoration) overlapping by ≥9px². Caught the corner bracket sitting on the header
   marker / meta tag / a corner-most checkbox. REVIEW (not HIGH) because a hollow
@@ -41,10 +49,15 @@ hardcoded. Exit 1 if any finding.
 
 Excluded as never-a-visible-fault: sr-only / off-screen elements (clip-path:inset,
 legacy clip, parked past the viewport, or 1px+overflow:hidden); hidden form `<input>`
-overlays (Base UI slider/checkbox); and intentional-overlap decorations matched by
-class (`__status`, `__dot`, `__badge-dot`, `__notch` — status pips ride on top by
-design). It runs clean on the current NOVA/ABYSS/BRASS demos; re-introducing either
-the Separator collapse or the oversized corner bracket makes it fail, as designed.
+overlays (Base UI slider/checkbox); and by-design stacked parts / ornaments matched
+by class — control sub-parts that are *meant* to overlap (`__thumb`/`__track`,
+`__indicator`/`__segments`/`__range`/`__fill`/`__progress`) and sparse-bbox flourishes
+(`__status`/`__dot`/`__moon`/`__tendril`/`__corner`/`__mark`/`__glyph`/`__rivet`/
+`__scan`/`__sheen`/`__glow`/`__tick`). A switch thumb rides its track and a corner
+tendril's 36² bbox laps the title by design — flagging those is the bbox-overstatement
+noise the `overlap-bbox-audit` memory warns about. It runs clean on the current
+NOVA/ABYSS/BRASS demos; re-introducing the Separator collapse, the oversized corner
+bracket, or an unbounded ScrollArea makes it fail, as designed.
 
 Pair with kit-lint + kit-distinct + kit-parity + kit-states when accepting a kit:
 those cover tokens, anti-reskin, functional parity and rendered states; this covers

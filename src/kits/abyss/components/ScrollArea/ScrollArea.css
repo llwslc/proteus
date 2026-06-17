@@ -4,7 +4,6 @@
   --abyss-frame-round: var(--abyss-round-3);
   position: relative;
   width: 100%;
-  max-height: var(--abyss-h-scrollarea);
 }
 .abyss-scrollarea::after {
   content: "";
@@ -28,6 +27,7 @@
 .abyss-scrollarea__viewport {
   position: relative;
   z-index: 1;
+  max-height: var(--abyss-h-scrollarea);
   overscroll-behavior: contain;
   outline: none;
   mask-image: linear-gradient(

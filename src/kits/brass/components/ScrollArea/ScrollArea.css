@@ -1,13 +1,17 @@
 .brass-scrollarea {
   position: relative;
   overflow: hidden;
-  max-height: var(--brass-scrollarea-h);
+  border: 2px solid transparent;
   border-radius: var(--brass-round-md);
+  background:
+    linear-gradient(var(--brass-surface-inset), var(--brass-surface-inset)) padding-box,
+    var(--brass-bezel-dim) border-box;
 }
 
 .brass-scrollarea__viewport {
   width: 100%;
-  height: 100%;
+  max-height: var(--brass-scrollarea-h);
+  padding: var(--brass-space-3);
   outline: none;
   overscroll-behavior: contain;
 }

@@ -1,5 +1,7 @@
 // kit-visual — rendered-geometry gate. See SKILL.md.
 // node .claude/skills/kit-visual/check.cjs [port] [kit]   (run in place)
+// Panels matched by their `<kit>-panel` class (kit-agnostic) — NOT section[id],
+// which silently matched 0 panels in kits that put the demo id on a wrapper div.
 const { chromium } = require('/tmp/pw/node_modules/playwright-core');
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const PORT = process.argv[2] || '5273';
@@ -31,19 +33,29 @@ const AUDIT = () => {
     }
     return false;
   };
-  const overlapExempt = (el) => el.tagName === 'INPUT' || /__(status|dot|badge-dot|notch)/.test(el.getAttribute('class') || '');
+  const overlapExempt = (el) => el.tagName === 'INPUT' ||
+    /__(status|dot|badge-dot|notch|thumb|track|indicator|segments|range|fill|progress|moon|tendril|corner|mark|glyph|scan|sheen|glow|rivet|tick)\b/.test(el.getAttribute('class') || '');
   const desc = (el) => {
     const cls = (el.getAttribute('class') || '').split(/\s+/).filter(Boolean).slice(0, 2).join('.');
     const txt = (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 16);
     return (el.tagName.toLowerCase() + (cls ? '.' + cls : '') + (txt ? ` "${txt}"` : '')).slice(0, 46);
   };
 
-  for (const panel of document.querySelectorAll('section[id]')) {
-    const id = panel.id;
+  const panelEls = [...document.querySelectorAll('section, div')].filter((el) =>
+    (el.getAttribute('class') || '').split(/\s+/).some((c) => /^[a-z0-9]+-panel$/.test(c)));
+  for (const panel of panelEls) {
+    const idEl = panel.closest('[id]');
+    const id = (idEl && idEl.id) || (panel.getAttribute('class') || '').split(/\s+/).find((c) => /-panel$/.test(c)) || 'panel';
     const pr = panel.getBoundingClientRect();
     if (pr.width < 4) continue;
     const els = [...panel.querySelectorAll('*')];
     const R = new Map(els.map((e) => [e, e.getBoundingClientRect()]));
+
+    for (const vp of panel.querySelectorAll('[class*="scrollarea__viewport"]')) {
+      if (!vis(vp)) continue;
+      if (vp.scrollHeight <= vp.clientHeight + 2 && vp.clientHeight > 280)
+        out.push(`HIGH   ${id}  scrollarea not scrolling: viewport ${Math.round(vp.clientHeight)}px shows all ${Math.round(vp.scrollHeight)}px of content (scroller unbounded — bound the viewport, not the root)`);
+    }
 
     for (const el of els) {
       if (!vis(el)) continue;
