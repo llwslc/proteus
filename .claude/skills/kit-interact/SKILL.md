@@ -1,6 +1,6 @@
 ---
 name: kit-interact
-description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, a toast stack whose newest is hidden behind older ones, and a trigger/link that scroll-jumps the page on click. Run when accepting or QAing a kit, alongside kit-visual + kit-states.
+description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, and a trigger/link that scroll-jumps the page on click. Run when accepting or QAing a kit, alongside kit-visual + kit-states.
 ---
 
 # kit-interact
@@ -25,6 +25,12 @@ Slow by design (~1–2 min). Exit 1 on any HIGH fault.
 
 ## What it asserts
 
+- **MOBILE OVERFLOW (HIGH)** — on an iPhone viewport: the page must not scroll
+  sideways (`documentElement.scrollWidth <= innerWidth`), and every opened overlay
+  must FIT the viewport (its box can't spill past left/right). Caught the brass
+  Dialog/Alert using a fixed `width` instead of `min(w, 100%)` — 90px off-screen.
+  This is the class `kit-visual` (1440px only) and the manual `overflow-probe`
+  skill both missed; now automatic.
 - **TOUCH open (HIGH)** — on an iPhone viewport, tapping each overlay trigger
   (tooltip, popover, preview, menu, menubar, navmenu, select, combobox, dialog,
   alert, drawer) must open its popup. Caught the Tooltip being dead on touch

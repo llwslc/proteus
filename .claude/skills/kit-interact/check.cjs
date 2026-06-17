@@ -47,6 +47,10 @@ const setKit = async (page, kit) => {
 
   for (const kit of kits) {
     const m = await browser.newPage({ ...devices['iPhone 13'] });
+    // mobile page must not scroll sideways (nothing wider than the viewport)
+    await setKit(m, kit);
+    const pageOver = await m.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    if (pageOver > 1) out.push(`HIGH  ${kit}  mobile page overflows horizontally by ${Math.round(pageOver)}px — an element is wider than the phone`);
     for (const [id, trig] of TAP_OPEN) {
       try {
         await setKit(m, kit);                       // clean state per overlay — no leakage
@@ -56,7 +60,18 @@ const setKit = async (page, kit) => {
         await t.tap();
         await m.waitForTimeout(900);
         const after = await m.evaluate(countPortal, PORTAL_POPUP);
-        if (after <= before) out.push(`HIGH  ${kit}  ${id}: did NOT open on tap (mobile) — touch trigger broken`);
+        if (after <= before) { out.push(`HIGH  ${kit}  ${id}: did NOT open on tap (mobile) — touch trigger broken`); continue; }
+        // opened overlay must FIT the phone viewport (the dialog-bigger-than-screen class)
+        const over = await m.evaluate((sel) => {
+          let worst = 0;
+          for (const el of document.querySelectorAll(sel)) {
+            const r = el.getBoundingClientRect(), c = getComputedStyle(el);
+            if (r.width < 4 || r.height < 4 || c.visibility === 'hidden' || +c.opacity < 0.01) continue;
+            worst = Math.max(worst, r.right - window.innerWidth, -r.left);
+          }
+          return Math.round(worst);
+        }, PORTAL_POPUP);
+        if (over > 2) out.push(`HIGH  ${kit}  ${id}: overlay overflows the mobile viewport by ${over}px — constrain width to min(w, 100%)`);
       } catch (e) { out.push(`WARN  ${kit}  ${id}: tap check errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     }
     await m.close();
