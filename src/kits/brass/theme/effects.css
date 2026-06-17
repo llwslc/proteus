@@ -316,7 +316,7 @@
   font-size: var(--brass-fs-20);
 }
 
-/* ── Tab skin (Tabs / NavigationMenu) ─────────────────── */
+/* ── Tab skin (Tabs) ──────────────────────────────────── */
 .brass-tabs-list {
   position: relative;
   display: flex;

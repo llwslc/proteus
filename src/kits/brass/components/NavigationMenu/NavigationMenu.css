@@ -1,7 +1,9 @@
-.brass-nav-list.brass-tabs-list {
+.brass-nav-list {
+  position: relative;
+  display: flex;
+  gap: var(--brass-space-1);
   margin: 0;
   padding: 0;
-  border-bottom: 0;
   list-style: none;
 }
 .brass-nav-item {
@@ -9,7 +11,43 @@
 }
 
 .brass-nav-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  height: var(--brass-tab-h);
+  padding: 0 var(--brass-space-4);
+  border: 0;
+  background: none;
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-11);
+  font-weight: var(--brass-fw-700);
+  letter-spacing: var(--brass-ls-2);
+  text-transform: uppercase;
+  color: var(--brass-text-dim);
   text-decoration: none;
+  cursor: pointer;
+  transition:
+    color var(--brass-dur) var(--brass-ease),
+    background var(--brass-dur) var(--brass-ease);
+}
+.brass-nav-trigger :where(svg) {
+  font-size: var(--brass-fs-17);
+}
+.brass-nav-trigger:hover {
+  background: linear-gradient(180deg, transparent, var(--brass-tint-soft));
+  color: var(--brass-text-bright);
+}
+.brass-nav-trigger[data-popup-open] {
+  color: var(--brass-primary);
+}
+.brass-nav-trigger:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--brass-primary);
+}
+.brass-nav-trigger[data-disabled] {
+  opacity: var(--brass-disabled-opacity);
+  cursor: not-allowed;
 }
 .brass-nav-trigger[data-popup-open]::after,
 .brass-nav-trigger[data-pressed]::after {

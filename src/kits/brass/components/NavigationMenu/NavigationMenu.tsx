@@ -23,11 +23,11 @@ export interface NavigationMenuProps {
 export function NavigationMenu({ items }: NavigationMenuProps) {
   return (
     <BaseNav.Root className="brass-nav">
-      <BaseNav.List className="brass-nav-list brass-tabs-list">
+      <BaseNav.List className="brass-nav-list">
         {items.map((item, i) =>
           item.links ? (
             <BaseNav.Item key={i} className="brass-nav-item">
-              <BaseNav.Trigger className="brass-tab brass-nav-trigger">
+              <BaseNav.Trigger className="brass-nav-trigger">
                 {item.label}
                 <BaseNav.Icon className="brass-nav-trigger__icon">
                   <ChevronDown />
@@ -53,7 +53,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
             </BaseNav.Item>
           ) : (
             <BaseNav.Item key={i} className="brass-nav-item">
-              <BaseNav.Link className="brass-tab brass-nav-trigger" href={item.href ?? "#"}>
+              <BaseNav.Link className="brass-nav-trigger" href={item.href ?? "#"}>
                 {item.label}
               </BaseNav.Link>
             </BaseNav.Item>
