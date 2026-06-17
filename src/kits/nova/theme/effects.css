@@ -236,6 +236,9 @@
   color: var(--nova-text-dim);
   transition: transform var(--nova-dur) var(--nova-ease);
 }
+.nova-disclosure__trigger:hover {
+  color: var(--nova-text-bright);
+}
 .nova-disclosure__trigger[data-panel-open] {
   color: var(--nova-primary);
 }

@@ -4,3 +4,6 @@
   --nova-surface-border: var(--nova-line);
   --nova-surface-fill: var(--nova-surface);
 }
+.nova-collapsible:has([data-disabled]) {
+  opacity: var(--nova-disabled-opacity);
+}

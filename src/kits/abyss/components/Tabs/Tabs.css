@@ -53,7 +53,7 @@
 .abyss-tabs__tab:hover {
   color: var(--abyss-text);
 }
-.abyss-tabs__tab[data-selected] {
+.abyss-tabs__tab[data-active] {
   color: var(--abyss-glow);
   text-shadow: var(--abyss-text-aura);
 }

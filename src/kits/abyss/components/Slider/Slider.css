@@ -54,6 +54,12 @@
     0 0 0 3px var(--abyss-glow-soft),
     0 0 11px var(--abyss-glow-a55);
   cursor: grab;
+  transition:
+    transform var(--abyss-dur) var(--abyss-ease),
+    box-shadow var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-slider__thumb:hover {
+  transform: scale(1.12);
 }
 .abyss-slider__thumb:focus-visible {
   outline: none;
@@ -63,6 +69,10 @@
 }
 .abyss-slider__thumb[data-dragging] {
   cursor: grabbing;
+  transform: scale(1.18);
+  box-shadow:
+    0 0 0 4px var(--abyss-glow-a30),
+    0 0 16px var(--abyss-glow-a70);
 }
 .abyss-slider[data-disabled] {
   opacity: var(--abyss-disabled-opacity);

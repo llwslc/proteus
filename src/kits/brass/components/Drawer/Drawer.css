@@ -21,7 +21,7 @@
   max-width: 100%;
   height: 100dvh;
   padding: var(--brass-modal-pad);
-  overflow-y: auto;
+  overflow: hidden;
   filter: var(--brass-shadow-modal) var(--brass-glow-modal);
   background: var(--brass-plate-fill) padding-box, var(--brass-plate-bezel) border-box;
   border: var(--brass-plate-edge, 2px) solid transparent;
@@ -70,6 +70,11 @@
 .brass-drawer .brass-modal-body,
 .brass-drawer .brass-modal-actions {
   padding-left: var(--brass-space-4);
+}
+.brass-drawer .brass-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 .brass-drawer .brass-modal-actions {
   margin-top: auto;

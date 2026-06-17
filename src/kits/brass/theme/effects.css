@@ -267,7 +267,8 @@
   color: var(--brass-on-primary);
   box-shadow: var(--brass-bevel);
 }
-.brass-seg__btn[data-disabled] {
+.brass-seg__btn[data-disabled],
+.brass-seg__btn:disabled {
   opacity: var(--brass-disabled-opacity);
   cursor: not-allowed;
 }
@@ -349,7 +350,7 @@
   background: linear-gradient(180deg, transparent, var(--brass-tint-soft));
   color: var(--brass-text-bright);
 }
-.brass-tab[data-selected],
+.brass-tab[data-active],
 .brass-tab[data-popup-open] {
   color: var(--brass-primary);
 }

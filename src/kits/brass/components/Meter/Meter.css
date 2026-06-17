@@ -59,4 +59,5 @@
   border-radius: var(--brass-round-pill);
   background: var(--brass-meter-fill);
   box-shadow: var(--brass-bevel);
+  transition: width var(--brass-dur-slow) var(--brass-ease);
 }

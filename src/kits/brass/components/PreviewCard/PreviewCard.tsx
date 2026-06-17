@@ -28,7 +28,10 @@ export function PreviewCard({
       <BasePreviewCard.Trigger
         render={children}
         onPointerDown={(event: React.PointerEvent) => {
-          if (event.pointerType === "touch") setOpen((o) => !o);
+          if (event.pointerType === "touch") {
+            event.preventDefault();
+            setOpen((o) => !o);
+          }
         }}
       />
       <BasePreviewCard.Portal>
