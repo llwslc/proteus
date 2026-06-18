@@ -27,12 +27,12 @@ export function Dialog({ trigger, title, description, children, footer }: Dialog
             initialFocus={popupRef}
             className="brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-dialog"
           >
-            <header className="brass-modal__head">
+            <BaseDialog.Title className="brass-h2 brass-modal-title">
               <span className="brass-marker brass-modal__sigil">
                 <Gear />
               </span>
-              <BaseDialog.Title className="brass-h2 brass-modal-title">{title}</BaseDialog.Title>
-            </header>
+              {title}
+            </BaseDialog.Title>
             {description && (
               <BaseDialog.Description className="brass-text brass-modal-desc">
                 {description}

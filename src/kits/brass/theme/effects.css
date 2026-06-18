@@ -308,12 +308,6 @@
   max-width: 100%;
   padding: var(--brass-modal-pad);
 }
-.brass-modal__head {
-  display: flex;
-  align-items: center;
-  gap: var(--brass-space-3);
-  padding-right: var(--brass-space-8);
-}
 .brass-modal__sigil {
   font-size: var(--brass-fs-20);
 }
@@ -379,13 +373,15 @@
 
 /* ── Shared modal text parts (Dialog / AlertDialog / Drawer); compose .brass-h2 / .brass-text ── */
 .brass-modal-title {
-  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--brass-space-3);
+  margin: 0 var(--brass-space-9) var(--brass-space-2) 0;
 }
 .brass-modal-desc {
-  margin: var(--brass-space-2) 0 0;
+  margin: 0 0 var(--brass-space-4);
 }
 .brass-modal-body {
-  margin-top: var(--brass-space-4);
   display: flex;
   flex-direction: column;
   gap: var(--brass-space-3);

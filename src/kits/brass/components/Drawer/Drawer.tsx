@@ -62,11 +62,9 @@ export function Drawer({
                 }
               />
               {title != null ? (
-                <header className="brass-modal__head">
-                  <BaseDrawer.Title className="brass-h2 brass-modal-title">
-                    {title}
-                  </BaseDrawer.Title>
-                </header>
+                <BaseDrawer.Title className="brass-h2 brass-modal-title">
+                  {title}
+                </BaseDrawer.Title>
               ) : null}
               {description != null ? (
                 <BaseDrawer.Description className="brass-text brass-modal-desc">

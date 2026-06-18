@@ -53,12 +53,10 @@ export function AlertDialog({
           <BaseAlertDialog.Popup
             className={`brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-alert brass-alert--${tone}`}
           >
-            <header className="brass-modal__head">
+            <BaseAlertDialog.Title className="brass-h2 brass-modal-title">
               <span className="brass-marker brass-modal__sigil">{toneMarker[tone]}</span>
-              <BaseAlertDialog.Title className="brass-h2 brass-modal-title">
-                {title}
-              </BaseAlertDialog.Title>
-            </header>
+              {title}
+            </BaseAlertDialog.Title>
             {description && (
               <BaseAlertDialog.Description className="brass-text brass-modal-desc">
                 {description}

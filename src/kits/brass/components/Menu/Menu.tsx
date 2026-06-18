@@ -21,7 +21,7 @@ export function Menu({ trigger, children }: MenuProps) {
         }
       />
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="brass-lift" sideOffset={6}>
+        <BaseMenu.Positioner className="brass-lift" side="bottom" align="start" sideOffset={6}>
           <BaseMenu.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-menu__popup">
             {children}
           </BaseMenu.Popup>

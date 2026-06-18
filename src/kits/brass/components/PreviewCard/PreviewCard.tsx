@@ -11,6 +11,7 @@ export interface PreviewCardProps {
   handle?: ReactNode;
   footer?: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function PreviewCard({
@@ -21,6 +22,7 @@ export function PreviewCard({
   handle,
   footer,
   side = "top",
+  align = "center",
 }: PreviewCardProps) {
   const [open, setOpen] = useState(false);
   return (
@@ -35,7 +37,7 @@ export function PreviewCard({
         }}
       />
       <BasePreviewCard.Portal>
-        <BasePreviewCard.Positioner className="brass-lift brass-lift--sm" side={side} sideOffset={8}>
+        <BasePreviewCard.Positioner className="brass-lift brass-lift--sm" side={side} align={align} sideOffset={8}>
           <BasePreviewCard.Popup className="brass-plate brass-pop brass-popup brass-preview">
             <div className="brass-preview__head">
               <span className="brass-preview__avatar">{avatar}</span>

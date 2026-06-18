@@ -25,7 +25,7 @@ function parse(k, c) {
   for (const f of fs.readdirSync(dir)) if (/\.tsx?$/.test(f) && f !== 'index.ts') s += fs.readFileSync(`${dir}/${f}`, 'utf8') + '\n';
   const exports = new Set([...s.matchAll(/export (?:function|const) (\w+)/g)].map((m) => m[1]));
   const ifaces = {};
-  const re = /(?:export )?interface (\w+Props)(?:\s+extends ([^{]+))?\{([\s\S]*?)\n\}/g;
+  const re = /(?:export )?interface (\w+Props)(?:\s+extends ([^{]+?))?\s*\{([\s\S]*?)\n\}/g;
   let m;
   while ((m = re.exec(s))) {
     const props = new Set();

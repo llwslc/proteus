@@ -149,6 +149,8 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  padding: var(--brass-space-3);
+  margin: calc(var(--brass-space-3) * -1);
 }
 .brass-drawer__sheet .brass-modal-actions {
   margin-top: auto;
