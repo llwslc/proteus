@@ -531,12 +531,9 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
-              <Popover
-                trigger="Readout"
-                triggerProps={{ variant: "ghost" }}
-                title="Manifold A"
-                description="Three cylinders nominal; one flagged for inspection on the next watch."
-              />
+              <Popover trigger={<Button variant="ghost">Readout</Button>} title="Manifold A">
+                Three cylinders nominal; one flagged for inspection on the next watch.
+              </Popover>
             </Panel>
 
             <Panel id="preview" title="Preview Card" meta="PVW" wide>
@@ -623,7 +620,7 @@ function Demo() {
             </Panel>
 
             <Panel id="navmenu" title="Navigation Menu" meta="NAV">
-              <NavigationMenu items={NAV} />
+              <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
               <ContextMenu
@@ -638,7 +635,7 @@ function Demo() {
 
             <Panel id="dialog" title="Dialog" meta="DLG">
               <Dialog
-                trigger="Open hatch"
+                trigger={<Button>Open hatch</Button>}
                 title="Inspection hatch"
                 description="Confirm the boiler is depressurized before opening the hatch."
                 footer={
@@ -654,8 +651,7 @@ function Demo() {
             <Panel id="alert" title="Alert Dialog" meta="ALT">
               <AlertDialog
                 tone="danger"
-                triggerVariant="danger"
-                trigger="Emergency stop"
+                trigger={<Button variant="danger">Emergency stop</Button>}
                 title="Trigger emergency stop?"
                 description="This vents all pressure and halts the engine immediately."
                 actions={

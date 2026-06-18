@@ -5,10 +5,6 @@
 .brass-popover__title {
   padding-right: var(--brass-space-7);
 }
-.brass-popover__desc {
-  margin-top: var(--brass-space-2);
-  color: var(--brass-text);
-}
 .brass-popover__body {
   margin-top: var(--brass-space-4);
   display: flex;

@@ -1,38 +1,44 @@
 import { useRef } from "react";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { Button } from "../Button";
 import type { ButtonProps } from "../Button";
+import { cx } from "../cx";
 import { Close, Gear } from "../icons";
 import "./Dialog.css";
 
 export interface DialogProps {
-  trigger: ReactNode;
-  title: ReactNode;
+  trigger: ReactElement;
+  title?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
 }
 
-export function Dialog({ trigger, title, description, children, footer }: DialogProps) {
+export function Dialog({ trigger, title, description, children, footer, open, onOpenChange, className }: DialogProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   return (
-    <BaseDialog.Root>
-      <BaseDialog.Trigger render={<Button>{trigger}</Button>} />
+    <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
+      <BaseDialog.Trigger render={trigger} />
       <BaseDialog.Portal>
         <BaseDialog.Backdrop className="brass-backdrop" />
         <BaseDialog.Viewport className="brass-viewport">
           <BaseDialog.Popup
             ref={popupRef}
             initialFocus={popupRef}
-            className="brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-dialog"
+            className={cx("brass-plate brass-lift brass-lift--modal brass-rivets brass-pop brass-modal brass-dialog", className)}
           >
-            <BaseDialog.Title className="brass-h2 brass-modal-title">
-              <span className="brass-marker brass-modal__sigil">
-                <Gear />
-              </span>
-              {title}
-            </BaseDialog.Title>
+            {title != null ? (
+              <BaseDialog.Title className="brass-h2 brass-modal-title">
+                <span className="brass-marker brass-modal__sigil">
+                  <Gear />
+                </span>
+                {title}
+              </BaseDialog.Title>
+            ) : null}
             {description && (
               <BaseDialog.Description className="brass-text brass-modal-desc">
                 {description}

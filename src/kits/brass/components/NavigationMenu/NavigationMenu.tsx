@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
 import { ChevronDown } from "../icons";
 import "./NavigationMenu.css";
@@ -18,9 +18,10 @@ export interface NavMenuItem {
 
 export interface NavigationMenuProps {
   items: NavMenuItem[];
+  onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export function NavigationMenu({ items }: NavigationMenuProps) {
+export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
   return (
     <BaseNav.Root className="brass-nav">
       <BaseNav.List className="brass-nav-list">
@@ -39,6 +40,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
                     key={j}
                     className="brass-list-item brass-nav-link"
                     href={link.href ?? "#"}
+                    onClick={onLinkClick}
                   >
                     {link.icon && <span className="brass-list-item__check">{link.icon}</span>}
                     <span className="brass-nav-link__body">
@@ -53,7 +55,7 @@ export function NavigationMenu({ items }: NavigationMenuProps) {
             </BaseNav.Item>
           ) : (
             <BaseNav.Item key={i} className="brass-nav-item">
-              <BaseNav.Link className="brass-nav-trigger" href={item.href ?? "#"}>
+              <BaseNav.Link className="brass-nav-trigger" href={item.href ?? "#"} onClick={onLinkClick}>
                 {item.label}
               </BaseNav.Link>
             </BaseNav.Item>

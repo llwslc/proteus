@@ -10,10 +10,11 @@ const KITROOT = 'src/kits';
 const KITS = fs.readdirSync(KITROOT).filter((k) => {
   try { return fs.existsSync(`${KITROOT}/${k}/components`); } catch { return false; }
 });
+const SKIP = new Set(['icons', 'Panel']);
 const compSet = new Set();
 for (const k of KITS) {
   for (const d of fs.readdirSync(`${KITROOT}/${k}/components`)) {
-    try { if (fs.statSync(`${KITROOT}/${k}/components/${d}`).isDirectory() && d !== 'icons') compSet.add(d); } catch {}
+    try { if (fs.statSync(`${KITROOT}/${k}/components/${d}`).isDirectory() && !SKIP.has(d)) compSet.add(d); } catch {}
   }
 }
 const comps = [...compSet].sort();
