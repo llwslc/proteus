@@ -12,6 +12,11 @@
   --abyss-meter-fill-deep: var(--abyss-gold-deep);
   --abyss-meter-aura: var(--abyss-gold-a50);
 }
+.abyss-meter--success {
+  --abyss-meter-fill: var(--abyss-success);
+  --abyss-meter-fill-deep: var(--abyss-success);
+  --abyss-meter-aura: var(--abyss-success-a50);
+}
 .abyss-meter--danger {
   --abyss-meter-fill: var(--abyss-blood);
   --abyss-meter-fill-deep: var(--abyss-blood-deep);
