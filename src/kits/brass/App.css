@@ -4,7 +4,7 @@
 }
 
 /* ── Top bar ───────────────────────────────────────── */
-.brass-shell__bar {
+.brass-header {
   position: sticky;
   top: 0;
   z-index: 30;
@@ -18,26 +18,26 @@
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--brass-line);
 }
-.brass-shell__brand {
+.brass-logo {
   display: flex;
   align-items: center;
   gap: var(--brass-space-2);
 }
-.brass-shell__logo-icon {
+.brass-logo__mark {
   font-size: 20px;
   color: var(--brass-primary);
 }
-.brass-shell__logo {
+.brass-logo__text {
   font-family: var(--brass-font-display);
   font-size: var(--brass-fs-20);
   color: var(--brass-text-bright);
   letter-spacing: var(--brass-ls-1);
 }
-.brass-shell__logo-accent {
+.brass-logo__accent {
   color: var(--brass-primary);
   text-shadow: var(--brass-glow-text);
 }
-.brass-shell__sub {
+.brass-logo__sub {
   font-family: var(--brass-font-mono);
   font-size: var(--brass-fs-11);
   letter-spacing: var(--brass-ls-3);
@@ -46,22 +46,22 @@
   padding-left: var(--brass-space-3);
   border-left: 1px solid var(--brass-line);
 }
-.brass-shell__nav {
+.brass-header__nav {
   margin-inline: auto;
 }
-.brass-shell__status {
+.brass-header__status {
   display: flex;
   align-items: center;
   gap: var(--brass-space-4);
 }
-.brass-shell__clock {
+.brass-clock {
   font-family: var(--brass-font-mono);
   font-size: var(--brass-fs-13);
   color: var(--brass-text-dim);
 }
 
 /* ── Body shell ────────────────────────────────────── */
-.brass-shell__body {
+.brass-shell {
   max-width: 1320px;
   margin: 0 auto;
   display: grid;
@@ -69,7 +69,7 @@
   gap: 26px;
   padding: 26px 22px 28px;
 }
-.brass-shell__index {
+.brass-sidebar {
   position: sticky;
   top: calc(var(--bar-h) + 26px);
   align-self: start;
@@ -77,10 +77,10 @@
   flex-direction: column;
   gap: var(--brass-space-1);
 }
-.brass-shell__index-head {
+.brass-sidebar__head {
   padding: 0 var(--brass-space-3) var(--brass-space-2);
 }
-.brass-shell__index-link {
+.brass-sidebar__link {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,12 +96,12 @@
     background var(--brass-dur) var(--brass-ease),
     border-color var(--brass-dur) var(--brass-ease);
 }
-.brass-shell__index-link:hover {
+.brass-sidebar__link:hover {
   background: var(--brass-tint-soft);
   border-left-color: var(--brass-primary);
   color: var(--brass-text-bright);
 }
-.brass-shell__index-meta {
+.brass-sidebar__meta {
   font-family: var(--brass-font-mono);
   font-size: var(--brass-fs-11);
   color: var(--brass-text-mute);
@@ -295,21 +295,21 @@
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
-  .brass-shell__nav,
-  .brass-shell__sub,
-  .brass-shell__clock {
+  .brass-header__nav,
+  .brass-logo__sub,
+  .brass-clock {
     display: none;
   }
-  .brass-shell__bar {
+  .brass-header {
     gap: var(--brass-space-3);
     padding: 0 14px;
   }
-  .brass-shell__body {
+  .brass-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
     padding: 16px 13px 20px;
   }
-  .brass-shell__index {
+  .brass-sidebar {
     display: none;
   }
   .brass-hero {

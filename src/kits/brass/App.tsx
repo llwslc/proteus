@@ -136,7 +136,7 @@ function Clock() {
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
-  return <span className="brass-shell__clock">{now.toLocaleTimeString("en-GB")}</span>;
+  return <span className="brass-clock">{now.toLocaleTimeString("en-GB")}</span>;
 }
 
 function GaugeDial() {
@@ -216,33 +216,33 @@ function Demo() {
 
   return (
     <div className="brass-app">
-      <header className="brass-shell__bar">
-        <div className="brass-shell__brand">
-          <Pipe className="brass-shell__logo-icon" />
-          <span className="brass-shell__logo">
-            BRA<span className="brass-shell__logo-accent">SS</span>
+      <header className="brass-header">
+        <div className="brass-logo">
+          <Pipe className="brass-logo__mark" />
+          <span className="brass-logo__text">
+            BRA<span className="brass-logo__accent">SS</span>
           </span>
-          <span className="brass-shell__sub">Clockwork UI Kit</span>
+          <span className="brass-logo__sub">Clockwork UI Kit</span>
         </div>
-        <nav className="brass-shell__nav">
+        <nav className="brass-header__nav">
           <NavigationMenu items={NAV} />
         </nav>
-        <div className="brass-shell__status">
+        <div className="brass-header__status">
           <Badge tone="success" dot>
             Pressurized
           </Badge>
-          <ClockIcon className="brass-shell__status-icon" aria-hidden="true" />
+          <ClockIcon className="brass-header__status-icon" aria-hidden="true" />
           <Clock />
         </div>
       </header>
 
-      <div className="brass-shell__body">
-        <aside className="brass-shell__index">
-          <span className="brass-cap brass-shell__index-head">Registry</span>
+      <div className="brass-shell">
+        <aside className="brass-sidebar">
+          <span className="brass-cap brass-sidebar__head">Registry</span>
           {SECTIONS.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="brass-shell__index-link">
+            <a key={s.id} href={`#${s.id}`} className="brass-sidebar__link">
               <span>{s.label}</span>
-              <span className="brass-shell__index-meta">{s.meta}</span>
+              <span className="brass-sidebar__meta">{s.meta}</span>
             </a>
           ))}
         </aside>

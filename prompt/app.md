@@ -8,6 +8,8 @@
 
 组装全部控件：顶部栏含 logo、NavigationMenu 主导航、状态徽章、主题图标与时钟，接左侧 sticky 索引——按下表分组，锚点平滑跳转，接 Hero——eyebrow、大标题、描述、数据条与右侧主题装饰件，接两栏 Panel 网格——版式见下表，根包 `ToastProvider`，整页挂 theme 氛围层。
 
+外壳类名按独立 block 命名：`<kit>-header`（顶栏）、`<kit>-shell`（两栏网格）、`<kit>-sidebar`（索引）、`<kit>-logo`（品牌）、`<kit>-clock`（时钟），各自带 `__` 元素。
+
 样式先复用 kit 的排版类、组件类；复用不了的页面装置才就近自定义，例如侧栏、hero 装饰。
 
 ## 面板版式
