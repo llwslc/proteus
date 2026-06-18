@@ -89,20 +89,21 @@
   text-shadow: var(--abyss-text-aura);
 }
 
-.abyss-btn--icon,
-.abyss-btn--icon-ghost {
+.abyss-btn--icon {
   padding: 0;
   width: var(--abyss-control-h);
+}
+.abyss-btn--icon-ghost {
+  padding: 0;
+  width: var(--abyss-button-icon-ghost);
+  --abyss-frame-ink: transparent;
+  --abyss-frame-fill: transparent;
+  color: var(--abyss-text-mute);
 }
 .abyss-btn--icon:not(:disabled):not([data-disabled]):hover,
 .abyss-btn--icon-ghost:not(:disabled):not([data-disabled]):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a55);
-}
-.abyss-btn--icon-ghost {
-  --abyss-frame-ink: transparent;
-  --abyss-frame-fill: transparent;
-  color: var(--abyss-text-dim);
 }
 
 .abyss-btn--icon-ghost::before {
