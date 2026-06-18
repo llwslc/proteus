@@ -1,5 +1,5 @@
 .brass-app {
-  --bar-h: 60px;
+  --bar-h: var(--shell-header-h);
   min-height: 100vh;
 }
 

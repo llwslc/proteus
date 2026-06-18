@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--abyss-space-5);
-  height: 60px;
+  height: var(--shell-header-h);
   padding: 0 22px;
   background:
     radial-gradient(120% 240% at 50% -70%, rgba(70, 232, 184, 0.07), transparent 60%),
@@ -198,9 +198,9 @@
 
 .abyss-sidebar {
   position: sticky;
-  top: 94px;
+  top: calc(var(--shell-header-h) + var(--shell-sticky-gap));
   align-self: start;
-  max-height: calc(100vh - 118px);
+  max-height: var(--shell-sidebar-cap);
   overflow-y: auto;
   padding-right: 6px;
 }
@@ -312,7 +312,7 @@
 .abyss-section {
   display: flex;
   min-width: 0;
-  scroll-margin-top: 88px;
+  scroll-margin-top: calc(var(--shell-header-h) + var(--shell-scroll-margin));
 }
 .abyss-section.span-2 {
   grid-column: 1 / -1;
@@ -329,7 +329,7 @@
   gap: var(--abyss-space-3);
   margin: var(--abyss-space-5) 0 calc(var(--abyss-space-2) * -1);
   padding-bottom: var(--abyss-space-2);
-  scroll-margin-top: 88px;
+  scroll-margin-top: calc(var(--shell-header-h) + var(--shell-scroll-margin));
   border-bottom: 1px solid var(--abyss-ink-faint);
 }
 .abyss-grid__group:first-child {

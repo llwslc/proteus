@@ -1,0 +1,6 @@
+:root {
+  --shell-header-h: 60px;
+  --shell-sticky-gap: 26px;
+  --shell-scroll-margin: 20px;
+  --shell-sidebar-cap: calc(100vh - var(--shell-header-h) - 50px);
+}
