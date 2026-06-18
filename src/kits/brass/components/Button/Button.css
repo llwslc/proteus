@@ -2,6 +2,9 @@
   --brass-plate-bezel: var(--brass-bezel-dim);
   --brass-plate-fill: var(--brass-surface-raised);
   --brass-plate-round: var(--brass-round-md);
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -60,9 +63,7 @@
 .brass-btn--icon-ghost {
   width: var(--brass-button-icon-ghost);
   padding: 0;
-  --brass-plate-bezel: transparent;
-  --brass-plate-fill: transparent;
-  --brass-plate-bevel: none;
+  background: transparent;
   color: var(--brass-text-mute);
 }
 .brass-btn--icon.brass-btn--sm,
@@ -71,7 +72,6 @@
 }
 .brass-btn--icon-ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--icon-ghost:focus-visible {
-  --brass-plate-bezel: transparent;
   color: var(--brass-primary);
 }
 .brass-btn__icon {

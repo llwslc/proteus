@@ -27,7 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     <BaseButton
       ref={ref}
       className={cx(
-        "brass-plate",
+        variant !== "icon-ghost" && "brass-plate",
         "brass-btn",
         `brass-btn--${variant}`,
         size !== "md" && `brass-btn--${size}`,
