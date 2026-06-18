@@ -71,83 +71,8 @@ import {
   XIcon,
 } from "./components/icons";
 import "./App.css";
+import { PANELS as SECTIONS } from "../../shared/panels";
 
-const SECTIONS: { group: string; sub: string; items: [string, string, string][] }[] = [
-  {
-    group: "Input",
-    sub: "operator console inputs",
-    items: [
-      ["button", "Button", "BTN"],
-      ["switch", "Switch", "SWT"],
-      ["toggle", "Toggle Group", "TGL"],
-      ["checkbox", "Checkbox", "CHK"],
-      ["checkbox-group", "Checkbox Group", "CHG"],
-      ["radio", "Radio Group", "RDO"],
-      ["select", "Select", "SEL"],
-      ["combobox", "Combobox", "CBX"],
-      ["autocomplete", "Autocomplete", "ACP"],
-      ["slider", "Slider", "SLD"],
-      ["number", "Number Field", "NUM"],
-      ["input", "Text Field", "TXT"],
-      ["otp", "OTP Field", "OTP"],
-    ],
-  },
-  {
-    group: "Forms",
-    sub: "crew credential intake",
-    items: [
-      ["fieldset", "Fieldset", "FLD"],
-      ["form", "Form", "FRM"],
-    ],
-  },
-  {
-    group: "Feedback",
-    sub: "live telemetry readouts",
-    items: [
-      ["progress", "Progress", "PRG"],
-      ["meter", "Meter", "MTR"],
-      ["tabs", "Tabs", "TAB"],
-      ["accordion", "Accordion", "ACC"],
-      ["collapsible", "Collapsible", "CLP"],
-    ],
-  },
-  {
-    group: "Overlay",
-    sub: "signals that break through",
-    items: [
-      ["tooltip", "Tooltip", "TIP"],
-      ["popover", "Popover", "POP"],
-      ["preview", "Preview Card", "PVW"],
-      ["menu", "Menu", "MNU"],
-      ["menubar", "Menubar", "MBR"],
-      ["navmenu", "Navigation Menu", "NAV"],
-      ["context", "Context Menu", "CTX"],
-      ["dialog", "Dialog", "DLG"],
-      ["alert", "Alert Dialog", "ALT"],
-      ["drawer", "Drawer", "DRW"],
-      ["toast", "Toast", "TST"],
-    ],
-  },
-  {
-    group: "Display",
-    sub: "what the viewport shows",
-    items: [
-      ["avatar", "Avatar", "AVT"],
-      ["badge", "Badge", "BDG"],
-      ["toolbar", "Toolbar", "TBR"],
-      ["scroll", "Scroll Area", "SCR"],
-    ],
-  },
-  {
-    group: "Foundations",
-    sub: "the hull beneath the HUD",
-    items: [
-      ["typography", "Typography", "TYP"],
-      ["separator", "Separator", "SEP"],
-      ["panel", "Panel", "PNL"],
-    ],
-  },
-];
 
 const SELECT_ITEMS = [
   { label: "Sol — Sector 001", value: "sol" },
@@ -542,7 +467,7 @@ function Demo() {
           </section>
 
           <div className="nova-grid">
-            <GroupRule group="Input" sub="operator console inputs" />
+            <GroupRule group="Inputs" sub="operator console inputs" />
             <div className="nova-section span-2" id="button">
               <Panel title="Button" meta="BTN" scan>
                 <div className="demo-stack">
@@ -790,7 +715,7 @@ function Demo() {
               </Panel>
             </div>
 
-            <GroupRule group="Overlay" sub="signals that break through" />
+            <GroupRule group="Overlays" sub="signals that break through" />
             <div className="nova-section" id="tooltip">
               <Panel title="Tooltip" meta="TIP">
                 <div className="demo-row">

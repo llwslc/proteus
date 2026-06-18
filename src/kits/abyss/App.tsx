@@ -73,6 +73,7 @@ import {
   XIcon,
 } from "./components/icons";
 import "./App.css";
+import { PANELS as SECTIONS } from "../../shared/panels";
 
 function EdgeFilter() {
   return (
@@ -113,82 +114,6 @@ function EdgeFilter() {
   );
 }
 
-const SECTIONS: { group: string; sub: string; items: [string, string, string][] }[] = [
-  {
-    group: "Inputs",
-    sub: "rites of intent",
-    items: [
-      ["button", "Button", "BTN"],
-      ["switch", "Switch", "SWT"],
-      ["toggle", "Toggle Group", "TGL"],
-      ["checkbox", "Checkbox", "CHK"],
-      ["checkbox-group", "Checkbox Group", "CHG"],
-      ["radio", "Radio Group", "RDO"],
-      ["select", "Select", "SEL"],
-      ["combobox", "Combobox", "CBX"],
-      ["autocomplete", "Autocomplete", "ACP"],
-      ["slider", "Slider", "SLD"],
-      ["number", "Number Field", "NUM"],
-      ["input", "Text Field", "TXT"],
-      ["otp", "OTP Field", "OTP"],
-    ],
-  },
-  {
-    group: "Forms",
-    sub: "binding the acolyte",
-    items: [
-      ["fieldset", "Fieldset", "FLD"],
-      ["form", "Form", "FRM"],
-    ],
-  },
-  {
-    group: "Feedback",
-    sub: "what the deep returns",
-    items: [
-      ["progress", "Progress", "PRG"],
-      ["meter", "Meter", "MTR"],
-      ["tabs", "Tabs", "TAB"],
-      ["accordion", "Accordion", "ACC"],
-      ["collapsible", "Collapsible", "CLP"],
-    ],
-  },
-  {
-    group: "Overlays",
-    sub: "things that surface",
-    items: [
-      ["tooltip", "Tooltip", "TIP"],
-      ["popover", "Popover", "POP"],
-      ["preview", "Preview Card", "PVW"],
-      ["menu", "Menu", "MNU"],
-      ["menubar", "Menubar", "MBR"],
-      ["navmenu", "Navigation Menu", "NAV"],
-      ["context", "Context Menu", "CTX"],
-      ["dialog", "Dialog", "DLG"],
-      ["alert", "Alert Dialog", "ALT"],
-      ["drawer", "Drawer", "DRW"],
-      ["toast", "Toast", "TST"],
-    ],
-  },
-  {
-    group: "Display",
-    sub: "what watches back",
-    items: [
-      ["avatar", "Avatar", "AVT"],
-      ["badge", "Badge", "BDG"],
-      ["toolbar", "Toolbar", "TBR"],
-      ["scroll", "Scroll Area", "SCR"],
-    ],
-  },
-  {
-    group: "Foundations",
-    sub: "stone & ink",
-    items: [
-      ["typography", "Typography", "TYP"],
-      ["separator", "Separator", "SEP"],
-      ["panel", "Panel", "PNL"],
-    ],
-  },
-];
 
 const SELECT_ITEMS = [
   { label: "R'lyeh — Fathom 001", value: "rlyeh" },

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { PANELS as SECTIONS } from "../../shared/panels";
 import {
   Accordion,
   AlertDialog,
@@ -83,76 +84,6 @@ const NAV = [
   { label: "Manual", href: "#hero" },
 ];
 
-const SECTIONS: { group: string; items: [string, string, string][] }[] = [
-  {
-    group: "Inputs",
-    items: [
-      ["button", "Button", "BTN"],
-      ["switch", "Switch", "SWT"],
-      ["toggle", "Toggle Group", "TGL"],
-      ["checkbox", "Checkbox", "CHK"],
-      ["checkbox-group", "Checkbox Group", "CBG"],
-      ["radio", "Radio", "RAD"],
-      ["select", "Select", "SEL"],
-      ["combobox", "Combobox", "CMB"],
-      ["autocomplete", "Autocomplete", "ACP"],
-      ["slider", "Slider", "SLD"],
-      ["number", "Number Field", "NUM"],
-      ["input", "Input", "INP"],
-      ["otp", "OTP Field", "OTP"],
-    ],
-  },
-  {
-    group: "Forms",
-    items: [
-      ["fieldset", "Fieldset", "FLD"],
-      ["form", "Form", "FRM"],
-    ],
-  },
-  {
-    group: "Feedback",
-    items: [
-      ["progress", "Progress", "PRG"],
-      ["meter", "Meter", "MTR"],
-      ["tabs", "Tabs", "TAB"],
-      ["accordion", "Accordion", "ACC"],
-      ["collapsible", "Collapsible", "CLP"],
-    ],
-  },
-  {
-    group: "Overlays",
-    items: [
-      ["tooltip", "Tooltip", "TIP"],
-      ["popover", "Popover", "POP"],
-      ["preview", "Preview Card", "PVW"],
-      ["menu", "Menu", "MNU"],
-      ["menubar", "Menubar", "MBR"],
-      ["navmenu", "Navigation Menu", "NAV"],
-      ["context", "Context Menu", "CTX"],
-      ["dialog", "Dialog", "DLG"],
-      ["alert", "Alert Dialog", "ALT"],
-      ["drawer", "Drawer", "DRW"],
-      ["toast", "Toast", "TST"],
-    ],
-  },
-  {
-    group: "Display",
-    items: [
-      ["avatar", "Avatar", "AVT"],
-      ["badge", "Badge", "BDG"],
-      ["toolbar", "Toolbar", "TBR"],
-      ["scroll", "Scroll Area", "SCR"],
-    ],
-  },
-  {
-    group: "Foundations",
-    items: [
-      ["typography", "Typography", "TYP"],
-      ["separator", "Separator", "SEP"],
-      ["panel", "Panel", "PNL"],
-    ],
-  },
-];
 
 const PRESSURE = [
   { label: "Low", value: "low" },
@@ -433,7 +364,7 @@ function Demo() {
                 <Checkbox disabled label="Sealed shut" />
               </div>
             </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group" meta="CBG">
+            <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
               <CheckboxGroup
                 defaultValue={["pressure"]}
                 parentLabel="All gauges"
@@ -445,7 +376,7 @@ function Demo() {
               />
             </Panel>
 
-            <Panel id="radio" title="Radio" meta="RAD">
+            <Panel id="radio" title="Radio Group" meta="RDO">
               <RadioGroup defaultValue="low">
                 <Radio value="low">Low draught</Radio>
                 <Radio value="nominal">Nominal</Radio>
@@ -462,7 +393,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="combobox" title="Combobox" meta="CMB">
+            <Panel id="combobox" title="Combobox" meta="CBX">
               <div className="brass-stack">
                 <span className="brass-cap">Filter feedstock</span>
                 <Combobox items={FUEL_PARTS} placeholder="Search fuel…" />
@@ -488,7 +419,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="input" title="Input" meta="INP">
+            <Panel id="input" title="Text Field" meta="TXT">
               <div className="brass-stack">
                 <Field label="Vessel name" placeholder="HMS Aurora" defaultValue="HMS Aurora" />
                 <Input icon={<Search />} placeholder="Search registry…" />
