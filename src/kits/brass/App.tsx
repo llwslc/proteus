@@ -83,13 +83,75 @@ const NAV = [
   { label: "Manual", href: "#hero" },
 ];
 
-const SECTIONS = [
-  { id: "inputs", label: "Inputs", meta: "13" },
-  { id: "forms", label: "Forms", meta: "02" },
-  { id: "feedback", label: "Feedback", meta: "05" },
-  { id: "overlays", label: "Overlays", meta: "11" },
-  { id: "display", label: "Display", meta: "04" },
-  { id: "foundations", label: "Foundations", meta: "02" },
+const SECTIONS: { group: string; items: [string, string, string][] }[] = [
+  {
+    group: "Inputs",
+    items: [
+      ["button", "Button", "BTN"],
+      ["switch", "Switch", "SWT"],
+      ["toggle", "Toggle Group", "TGL"],
+      ["checkbox", "Checkbox", "CHK"],
+      ["checkbox-group", "Checkbox Group", "CBG"],
+      ["radio", "Radio", "RAD"],
+      ["select", "Select", "SEL"],
+      ["combobox", "Combobox", "CMB"],
+      ["autocomplete", "Autocomplete", "ACP"],
+      ["slider", "Slider", "SLD"],
+      ["number", "Number Field", "NUM"],
+      ["input", "Input", "INP"],
+      ["otp", "OTP Field", "OTP"],
+    ],
+  },
+  {
+    group: "Forms",
+    items: [
+      ["fieldset", "Fieldset", "FLD"],
+      ["form", "Form", "FRM"],
+    ],
+  },
+  {
+    group: "Feedback",
+    items: [
+      ["progress", "Progress", "PRG"],
+      ["meter", "Meter", "MTR"],
+      ["tabs", "Tabs", "TAB"],
+      ["accordion", "Accordion", "ACC"],
+      ["collapsible", "Collapsible", "CLP"],
+    ],
+  },
+  {
+    group: "Overlays",
+    items: [
+      ["tooltip", "Tooltip", "TIP"],
+      ["popover", "Popover", "POP"],
+      ["preview", "Preview Card", "PVW"],
+      ["menu", "Menu", "MNU"],
+      ["menubar", "Menubar", "MBR"],
+      ["navmenu", "Navigation Menu", "NAV"],
+      ["context", "Context Menu", "CTX"],
+      ["dialog", "Dialog", "DLG"],
+      ["alert", "Alert Dialog", "ALT"],
+      ["drawer", "Drawer", "DRW"],
+      ["toast", "Toast", "TST"],
+    ],
+  },
+  {
+    group: "Display",
+    items: [
+      ["avatar", "Avatar", "AVT"],
+      ["badge", "Badge", "BDG"],
+      ["toolbar", "Toolbar", "TBR"],
+      ["scroll", "Scroll Area", "SCR"],
+    ],
+  },
+  {
+    group: "Foundations",
+    items: [
+      ["typography", "Typography", "TYP"],
+      ["separator", "Separator", "SEP"],
+      ["panel", "Panel", "PNL"],
+    ],
+  },
 ];
 
 const PRESSURE = [
@@ -238,12 +300,16 @@ function Demo() {
 
       <div className="brass-shell">
         <aside className="brass-sidebar">
-          <span className="brass-cap brass-sidebar__head">Registry</span>
-          {SECTIONS.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="brass-sidebar__link">
-              <span>{s.label}</span>
-              <span className="brass-sidebar__meta">{s.meta}</span>
-            </a>
+          {SECTIONS.map((sec) => (
+            <nav className="brass-sidebar__group" key={sec.group}>
+              <span className="brass-cap brass-sidebar__group-title">{sec.group}</span>
+              {sec.items.map(([id, name, code]) => (
+                <a key={id} href={`#${id}`} className="brass-sidebar__link">
+                  <span>{name}</span>
+                  <span className="brass-sidebar__meta">{code}</span>
+                </a>
+              ))}
+            </nav>
           ))}
         </aside>
 

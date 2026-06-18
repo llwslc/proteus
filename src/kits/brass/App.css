@@ -73,11 +73,19 @@
   position: sticky;
   top: calc(var(--bar-h) + 26px);
   align-self: start;
+  max-height: calc(100vh - var(--bar-h) - 50px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--brass-space-5);
+  padding-right: var(--brass-space-2);
+}
+.brass-sidebar__group {
   display: flex;
   flex-direction: column;
   gap: var(--brass-space-1);
 }
-.brass-sidebar__head {
+.brass-sidebar__group-title {
   padding: 0 var(--brass-space-3) var(--brass-space-2);
 }
 .brass-sidebar__link {
