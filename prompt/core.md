@@ -99,48 +99,50 @@
 
 ## 6.1 逐组件结构
 
-每件只记「Base UI 不管、跨 kit 必须一致」的骨架、指示物方位、关键布局关系、行为 prop。**标记字形、装饰槽、填充配方、beam = theme**，不在此。
+每件记跨 kit 必须一致的四项：类型集（变体、尺寸、tone）、自定义 props、骨架、态。**类型集与 props 名跨 kit 逐字一致；字形、装饰、填充、beam = theme**。交互件的态统一覆盖 rest、hover、focus-visible、disabled 加自身开态（`active·checked·selected·open` 取一），配色按 §5；下列只补组件专属处。变体、尺寸列表内首项加（默认）即缺省值。
 
 **输入**
 
-- **Button**：图标在文字前，同一 inline-flex 居中。
-- **Switch**：指示物从一端滑到另一端；轨与旋钮形态 = theme。
-- **Checkbox、Radio**：`<label> = 控件 + .cap 文字`，控件在前；勾选、选中标记在控件内，字形 = theme。
-- **CheckboxGroup**：`Root 竖排 > [parent Checkbox?] + items 容器`；items 靠左缩进带左引导线。
-- **Slider**：`Root 竖排 > head[label .cap + Value] + Control > Track > Indicator + Thumb`；head 两端对齐、value 在右；Indicator 自左起。
+- **Button**：变体 `primary·secondary·danger·ghost·icon·icon-ghost`（默认 primary）；尺寸 `sm·md·lg`（默认 md）；props `variant·size·icon`；`forwardRef` 可作触发器。`BaseButton > label[icon? + children]`，图标在前居中。icon-ghost 透明无底无边、rest 不露 frame。
+- **Switch**：指示物从一端滑到另一端，态 +checked；轨与旋钮形态 = theme。
+- **Checkbox**：props `label`；`<label> = 控件 + .cap 文字`，控件在前，标记在控件内，态 +checked、+indeterminate。
+- **CheckboxGroup**：props `items·parentLabel`（allValues 默认取 items）；`Root 竖排 > [parent Checkbox?] + items 容器`，items 靠左缩进带左引导线。
+- **Radio**：RadioGroup 竖排；`<label> = 控件 + .cap 文字`，标记在控件内，态 +checked。
+- **ToggleGroup**：分段条家族，`width: fit-content`，段 +pressed。
+- **Slider**：props `label·showValue`（默认 true）；`Root 竖排 > head[label .cap + Value 右] + Control > Track > Indicator + Thumb`，Indicator 自左起。
 - **NumberField**：`Group > [减 + Input + 加]`，步进钮等宽夹住输入；到 min/max 自行 disable 步进钮 + 置灰。
-- **Input/Field**：`Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`；图标左侧绝对定位，Control `flex:1`。
-- **OtpField**：cells 横排等宽，`splitAt` 处插分隔。
-- **Select**：`field > Trigger[Value flex:1 + Chevron 右、开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 右]`；**勾选在右、弹层向下**；`alignItemWithTrigger=false`，宽随 `--anchor-width`。
-- **Combobox、Autocomplete**：`control[左图标? + Input flex:1 + 辅助钮?] + Popup[Empty + List]`；弹层向下；项不带勾选标记。
-- **ToggleGroup**：分段条家族，`width: fit-content`。
-- Fieldset、Form 竖排，Base UI 直管，略。
+- **Input/Field**：props `label·icon·description·error`；`Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标左侧绝对定位、Control `flex:1`，态 +focus（边框亮 + 字段辉光）、+error。
+- **OtpField**：props `length·splitAt·mask`；cells 横排等宽，`splitAt` 处插分隔，cell 态 +filled、+focus。
+- **Select**：props `items·placeholder`；`field > Trigger[Value flex:1 + Chevron 右、开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 右]`；**勾选在右、弹层向下**；`alignItemWithTrigger=false`，宽随 `--anchor-width`；item 态 +selected、+highlighted。
+- **Combobox、Autocomplete**：props `items·placeholder·emptyText·label`；`control[左图标? + Input flex:1 + 辅助钮?] + Popup[Empty + List]`，弹层向下，项不带勾选。
+- **Fieldset**（props `legend`）、**Form** 竖排，Base UI 直管。
 
 **反馈**
 
-- **Progress、Meter**：`Root > head[label + Value 右] + Track > Indicator`；Indicator 自左满宽填充；Meter 按 tone 重染。
-- **Tabs**：`Root > List[Tab* + Indicator] + Panel*`；Indicator 底部下划线，随 `--active-tab-*` 移；手机横滚。
-- **Accordion、Collapsible**：§4.3 折叠配方 `trigger[marker 左 + title + chevron 右] + panel > content`；**content 左缩进须对齐 title 文字起点（= trigger 左内距 + marker 宽 + gap）**；开合须有可见 affordance（chevron 或会动的 marker）。
+- **Progress**：props `label·showValue`；`Root > head[label + Value 右] + Track > Indicator`，Indicator 自左满宽。
+- **Meter**：同 Progress + props `tone`（`primary·success·warning·danger`），按 tone 重染。
+- **Tabs**：props `items·defaultValue`；`Root > List[Tab* + Indicator] + Panel*`，Indicator 底部下划线随 `--active-tab-*` 移，手机横滚，tab 态 +selected。
+- **Accordion**（props `items·openMultiple·defaultValue`）、**Collapsible**（props `title·defaultOpen`）：§4.3 折叠配方 `trigger[marker 左 + title + chevron 右] + panel > content`；**content 左缩进对齐 title 起点（= trigger 左内距 + marker 宽 + gap）**；态 +panel-open，须有可见 affordance（chevron 或会动的 marker）。
 
 **浮层**
 
-- **通则**（承 §4.2）：`Trigger + Portal > Positioner(elevation 阴影) > Popup(anim-pop + surface 形状，或内嵌 surface 子层) + Arrow(connector)`；**阴影挂 Positioner、形状挂 Popup 或其子层，二者绝不同元素**。
-- **Tooltip、PreviewCard**：`mouseOnly` + focus 开 + `pointerType==="touch"` 轻点补触摸路径；Tooltip `closeOnClick=false`。
-- **Popover**：surface 内 `title? + body + Close`，Close 复用 Button icon-ghost。
-- **Menu、Menubar、ContextMenu**：共用 `Menu/parts`；item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
-- **NavigationMenu**：`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
-- **Dialog、AlertDialog**：共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上绝对 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向。
-- **Drawer**：`全屏 viewport > Popup(按 side 定位) > Content > [Close + 边缘辉光 + title + desc + body(flex:1 滚动、留辉光余地) + footer 右对齐带顶分隔]`，四边全驱动。
-- **Toast**：`Provider(timeout、limit) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；新条压顶。
+- **通则**（承 §4.2）：`Trigger + Portal > Positioner(elevation 阴影) > Popup(anim-pop + surface 形状，或内嵌 surface 子层) + Arrow(connector)`；**阴影挂 Positioner、形状挂 Popup 或子层，绝不同元素**；项、链接态 +highlighted。
+- **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`；`mouseOnly` + focus 开 + `pointerType==="touch"` 轻点补触摸；`closeOnClick=false`。
+- **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
+- **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close(复用 Button icon-ghost)`。
+- **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
+- **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
+- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体（默认 ghost）。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留 glow-room。
+- **Toast**：`Provider(props `timeout·limit`) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；tone `info·success·warning·danger` 配 marker；新条压顶；`swipeDirection`。
 
 **展示**
 
-- **Avatar**：`Root > frame(裁剪 + 定位上下文) > [Image + Fallback] + Status 右下`。
-- **Badge**：`[dot? + 文字]`，纯样式件。
-- **Toolbar**：分段条家族；手机横滚。
-- **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 必须挂 Viewport、不是 Root**。
-- **Separator**：无标签 = BaseSeparator；有标签 = `线 + 文字/标记 + 线`；会缩的 flex 里加 `flex:0 0`。
-- **Panel**：`外框? > section > header[marker 左? + title + meta 右] + body + footer?`；header `:empty` 隐藏。
+- **Avatar**：props `size`（`sm·md·lg`，默认 md）`·status`（`online·busy·away·offline`）；`Root > frame(裁剪) > [Image + Fallback] + Status 右下`。
+- **Badge**：props `tone`（`primary·secondary·success·warning·danger·neutral`）`·dot`；`[dot? + 文字]`，纯样式件。
+- **Toolbar**：分段条家族；ToolbarButton props `active·disabled`；手机横滚。
+- **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 挂 Viewport、非 Root**。
+- **Separator**：props `orientation`（`horizontal·vertical`）`·label`；无标签 = BaseSeparator，有标签 = `线 + 文字/标记 + 线`；会缩 flex 里 `flex:0 0`。
+- **Panel**：props `title·meta` + 主题专属装饰 flag；`外框? > section > header[marker 左? + title + meta 右] + body + footer?`，header `:empty` 隐藏。
 
 ## 7. Base UI 对接
 
