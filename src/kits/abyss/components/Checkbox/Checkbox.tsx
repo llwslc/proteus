@@ -33,7 +33,7 @@ export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   return (
     <label className="abyss-check-field">
       {box}
-      <span className="abyss-check-field__label">{label}</span>
+      <span className="abyss-cap abyss-check-field__label">{label}</span>
     </label>
   );
 }
