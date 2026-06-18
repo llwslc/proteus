@@ -6,10 +6,12 @@ import "./Toast.css";
 
 export const useToast = BaseToast.useToastManager;
 
-function toneIcon(type?: string) {
-  if (type === "success") return <Check />;
-  if (type === "warning") return <Gauge />;
-  if (type === "danger") return <Bolt />;
+export type ToastTone = "info" | "success" | "warning" | "danger";
+
+function toneIcon(tone: ToastTone) {
+  if (tone === "success") return <Check />;
+  if (tone === "warning") return <Gauge />;
+  if (tone === "danger") return <Bolt />;
   return <Gear />;
 }
 
@@ -25,7 +27,7 @@ function ToastList() {
           className="brass-plate brass-pop brass-toast"
         >
           <span className="brass-marker brass-toast__marker">
-            {toneIcon(toast.type)}
+            {toneIcon((toast.type ?? "info") as ToastTone)}
           </span>
           <BaseToast.Content className="brass-toast__content">
             <BaseToast.Title className="brass-h3 brass-toast__title" />
