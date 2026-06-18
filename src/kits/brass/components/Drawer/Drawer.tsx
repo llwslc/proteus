@@ -48,32 +48,34 @@ export function Drawer({
     >
       <BaseDrawer.Trigger render={trigger} />
       <BaseDrawer.Portal>
-        <BaseDrawer.Backdrop className="brass-backdrop" />
-        <BaseDrawer.Viewport className="brass-drawer-viewport">
-          <BaseDrawer.Popup className={cx("brass-plate brass-pop brass-drawer", className)}>
-            <span className="brass-drawer__handle" aria-hidden="true" />
-            <BaseDrawer.Close
-              className="brass-modal-close"
-              render={
-                <Button variant="icon-ghost" aria-label="Close">
-                  <Close />
-                </Button>
-              }
-            />
-            {title != null ? (
-              <header className="brass-modal__head">
-                <BaseDrawer.Title className="brass-h2 brass-modal-title">
-                  {title}
-                </BaseDrawer.Title>
-              </header>
-            ) : null}
-            {description != null ? (
-              <BaseDrawer.Description className="brass-text brass-modal-desc">
-                {description}
-              </BaseDrawer.Description>
-            ) : null}
-            {children != null ? <div className="brass-modal-body">{children}</div> : null}
-            {footer != null ? <div className="brass-modal-actions">{footer}</div> : null}
+        <BaseDrawer.Backdrop className="brass-backdrop brass-drawer__backdrop" />
+        <BaseDrawer.Viewport className="brass-drawer__viewport">
+          <BaseDrawer.Popup className={cx("brass-drawer", `brass-drawer--${side}`, className)}>
+            <BaseDrawer.Content className="brass-drawer__sheet">
+              <span className="brass-drawer__handle" aria-hidden="true" />
+              <BaseDrawer.Close
+                className="brass-modal-close"
+                render={
+                  <Button variant="icon-ghost" aria-label="Close">
+                    <Close />
+                  </Button>
+                }
+              />
+              {title != null ? (
+                <header className="brass-modal__head">
+                  <BaseDrawer.Title className="brass-h2 brass-modal-title">
+                    {title}
+                  </BaseDrawer.Title>
+                </header>
+              ) : null}
+              {description != null ? (
+                <BaseDrawer.Description className="brass-text brass-modal-desc">
+                  {description}
+                </BaseDrawer.Description>
+              ) : null}
+              {children != null ? <div className="brass-modal-body">{children}</div> : null}
+              {footer != null ? <div className="brass-modal-actions">{footer}</div> : null}
+            </BaseDrawer.Content>
           </BaseDrawer.Popup>
         </BaseDrawer.Viewport>
       </BaseDrawer.Portal>
