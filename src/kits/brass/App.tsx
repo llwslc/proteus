@@ -101,18 +101,18 @@ const PRESSURE = [
 ];
 
 const FUEL_PARTS = [
-  { label: "Anthracite", value: "anthracite" },
-  { label: "Bituminous", value: "bituminous" },
-  { label: "Coke", value: "coke" },
-  { label: "Lignite", value: "lignite" },
-  { label: "Peat", value: "peat" },
-  { label: "Charcoal", value: "charcoal" },
-  { label: "Coal gas", value: "coal-gas" },
-  { label: "Producer gas", value: "producer-gas" },
-  { label: "Naphtha", value: "naphtha" },
-  { label: "Paraffin", value: "paraffin" },
-  { label: "Tar", value: "tar" },
-  { label: "Coke breeze", value: "coke-breeze" },
+  "Anthracite",
+  "Bituminous",
+  "Coke",
+  "Lignite",
+  "Peat",
+  "Charcoal",
+  "Coal gas",
+  "Producer gas",
+  "Naphtha",
+  "Paraffin",
+  "Tar",
+  "Coke breeze",
 ];
 
 const FUELS = [
@@ -542,31 +542,36 @@ function Demo() {
                 <p className="brass-text">
                 Chief engineer{" "}
                 <PreviewCard
-                  title="I. K. Brunel"
-                  handle="@brunel"
-                  description="Chief engineer, Great Western works. Forty years on the footplate, last man off the boiler at night."
-                  avatar={
+                  trigger={
+                    <a
+                      href="#preview"
+                      className="brass-link"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      @brunel
+                    </a>
+                  }
+                >
+                  <div className="brass-preview__head">
                     <Avatar status="online">
                       <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
                       <AvatarFallback>IB</AvatarFallback>
                     </Avatar>
-                  }
-                  footer={
-                    <>
-                      <Badge tone="primary" dot>
-                        Engineer
-                      </Badge>
-                      <Badge tone="neutral">Off watch</Badge>
-                    </>
-                  }
-                >
-                  <a
-                    href="#preview"
-                    className="brass-link"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    @brunel
-                  </a>
+                    <span className="brass-preview__ident">
+                      <span className="brass-h3 brass-preview__title">I. K. Brunel</span>
+                      <span className="brass-preview__handle">@brunel</span>
+                    </span>
+                  </div>
+                  <p className="brass-text brass-preview__desc">
+                    Chief engineer, Great Western works. Forty years on the footplate, last man
+                    off the boiler at night.
+                  </p>
+                  <div className="brass-preview__footer">
+                    <Badge tone="primary" dot>
+                      Engineer
+                    </Badge>
+                    <Badge tone="neutral">Off watch</Badge>
+                  </div>
                 </PreviewCard>{" "}
                 signed off the last overhaul.
                 </p>
@@ -624,7 +629,7 @@ function Demo() {
             </Panel>
             <Panel id="context" title="Context Menu" meta="CTX">
               <ContextMenu
-                hint="Right-click the plate to open the works"
+                trigger={<span className="brass-cap">Right-click the plate to open the works</span>}
               >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘L">Lubricate</MenuItem>

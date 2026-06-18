@@ -10,10 +10,6 @@
   padding: 0 var(--brass-space-2) 0 var(--brass-space-3);
   transition: filter var(--brass-dur) var(--brass-ease);
 }
-.brass-combobox--multi {
-  flex-wrap: wrap;
-  padding-block: var(--brass-space-1);
-}
 .brass-combobox__lead {
   display: inline-flex;
   align-items: center;
@@ -31,11 +27,6 @@
   color: var(--brass-text-bright);
   font-family: var(--brass-font);
   font-size: var(--brass-fs-15);
-}
-.brass-combobox--multi .brass-combobox__control {
-  width: auto;
-  min-width: var(--brass-space-10);
-  height: var(--brass-seg-h);
 }
 .brass-combobox__control::placeholder {
   color: var(--brass-text-mute);
@@ -92,61 +83,6 @@
 }
 .brass-combobox:has(.brass-combobox__control:disabled) {
   opacity: var(--brass-disabled-opacity);
-}
-
-/* ── Multi-select chips ──────────────────────────────── */
-.brass-combobox__chips {
-  display: contents;
-}
-.brass-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--brass-space-1);
-  height: var(--brass-seg-h);
-  padding: 0 var(--brass-space-1) 0 var(--brass-space-2);
-  background: var(--brass-tint);
-  border: 1px solid var(--brass-line);
-  border-radius: var(--brass-round-sm);
-  font-family: var(--brass-font-mono);
-  font-size: var(--brass-fs-11);
-  font-weight: var(--brass-fw-700);
-  letter-spacing: var(--brass-ls-2);
-  text-transform: uppercase;
-  color: var(--brass-text-bright);
-  cursor: default;
-  user-select: none;
-}
-.brass-chip[data-highlighted] {
-  background: var(--brass-tint-active);
-  border-color: var(--brass-line-strong);
-}
-.brass-chip[data-disabled] {
-  opacity: var(--brass-disabled-opacity);
-}
-.brass-chip__remove {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--brass-fs-17);
-  height: var(--brass-fs-17);
-  padding: 0;
-  border: 0;
-  background: none;
-  border-radius: var(--brass-round-xs);
-  color: var(--brass-text-dim);
-  font-size: var(--brass-fs-13);
-  cursor: pointer;
-  transition:
-    color var(--brass-dur) var(--brass-ease),
-    background var(--brass-dur) var(--brass-ease);
-}
-.brass-chip__remove:hover {
-  background: var(--brass-tint-active);
-  color: var(--brass-text-bright);
-}
-.brass-chip__remove:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 1px var(--brass-primary);
 }
 
 /* ── Popup geometry ──────────────────────────────────── */

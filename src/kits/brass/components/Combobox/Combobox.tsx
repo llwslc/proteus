@@ -1,54 +1,38 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
-import { cx } from "../cx";
+import { useId } from "react";
 import { Check, ChevronDown, Close, Search } from "../icons";
 import "./Combobox.css";
 
-export interface ComboboxOption {
-  label: string;
-  value: string;
-}
-
-export interface ComboboxProps<Multiple extends boolean | undefined = false>
-  extends React.ComponentProps<typeof BaseCombobox.Root<ComboboxOption, Multiple>> {
-  items?: ComboboxOption[];
+export interface ComboboxProps {
+  items: string[];
   placeholder?: string;
+  defaultValue?: string;
   emptyText?: string;
-  className?: string;
+  label?: string;
+  name?: string;
 }
 
-export function Combobox<Multiple extends boolean | undefined = false>({
-  items = [],
+export function Combobox({
+  items,
   placeholder = "Search…",
+  defaultValue,
   emptyText = "No matches",
-  multiple,
-  className,
-  ...props
-}: ComboboxProps<Multiple>) {
+  label,
+  name,
+}: ComboboxProps) {
+  const inputId = useId();
   return (
-    <BaseCombobox.Root items={items} multiple={multiple} {...props}>
-      <div className={cx("brass-plate", "brass-combobox", multiple && "brass-combobox--multi", className)}>
+    <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
+      <div className="brass-plate brass-combobox">
         <span className="brass-combobox__lead" aria-hidden>
           <Search />
         </span>
-        {multiple ? (
-          <BaseCombobox.Chips className="brass-combobox__chips">
-            <BaseCombobox.Value>
-              {(selected: ComboboxOption[]) =>
-                selected.map((opt) => (
-                  <BaseCombobox.Chip key={opt.value} className="brass-chip" aria-label={opt.label}>
-                    {opt.label}
-                    <BaseCombobox.ChipRemove className="brass-chip__remove" aria-label="Remove">
-                      <Close />
-                    </BaseCombobox.ChipRemove>
-                  </BaseCombobox.Chip>
-                ))
-              }
-            </BaseCombobox.Value>
-            <BaseCombobox.Input placeholder={placeholder} className="brass-combobox__control" />
-          </BaseCombobox.Chips>
-        ) : (
-          <BaseCombobox.Input placeholder={placeholder} className="brass-combobox__control" />
-        )}
+        <BaseCombobox.Input
+          id={inputId}
+          placeholder={placeholder}
+          aria-label={label ?? placeholder}
+          className="brass-combobox__control"
+        />
         <span className="brass-combobox__aux">
           <BaseCombobox.Clear className="brass-combobox__clear" aria-label="Clear">
             <Close />
@@ -65,9 +49,9 @@ export function Combobox<Multiple extends boolean | undefined = false>({
           <BaseCombobox.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-combobox__popup">
             <BaseCombobox.Empty className="brass-text brass-combobox__empty">{emptyText}</BaseCombobox.Empty>
             <BaseCombobox.List>
-              {(item: ComboboxOption) => (
-                <BaseCombobox.Item key={item.value} value={item} className="brass-list-item">
-                  <span className="brass-list-item__text">{item.label}</span>
+              {(item: string) => (
+                <BaseCombobox.Item key={item} value={item} className="brass-list-item">
+                  <span className="brass-list-item__text">{item}</span>
                   <span className="brass-list-item__check">
                     <BaseCombobox.ItemIndicator>
                       <Check />

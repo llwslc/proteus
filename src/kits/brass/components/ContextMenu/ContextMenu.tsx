@@ -1,17 +1,19 @@
 import type { ReactNode } from "react";
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu";
+import { cx } from "../cx";
 import "./ContextMenu.css";
 
 export interface ContextMenuProps {
-  hint?: ReactNode;
+  trigger: ReactNode;
   children: ReactNode;
+  className?: string;
 }
 
-export function ContextMenu({ hint = "Right-click", children }: ContextMenuProps) {
+export function ContextMenu({ trigger, children, className }: ContextMenuProps) {
   return (
     <BaseContextMenu.Root>
-      <BaseContextMenu.Trigger className="brass-plate brass-ctx-zone">
-        <span className="brass-cap">{hint}</span>
+      <BaseContextMenu.Trigger className={cx("brass-plate brass-ctx-zone", className)}>
+        {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="brass-lift">

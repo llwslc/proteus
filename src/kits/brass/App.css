@@ -287,7 +287,7 @@
   margin-right: var(--brass-space-1);
 }
 .brass-footer {
-  margin-top: var(--brass-space-10);
+  margin-top: 40px;
   padding-top: var(--brass-space-5);
   border-top: 1px solid var(--brass-line);
   text-align: center;

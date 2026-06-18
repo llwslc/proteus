@@ -1,53 +1,36 @@
 import { PreviewCard as BasePreviewCard } from "@base-ui/react/preview-card";
-import type { ReactElement, ReactNode } from "react";
 import { useState } from "react";
+import type { PointerEvent, ReactElement, ReactNode } from "react";
 import "./PreviewCard.css";
 
 export interface PreviewCardProps {
-  children: ReactElement;
-  title: ReactNode;
-  description: ReactNode;
-  avatar?: ReactNode;
-  handle?: ReactNode;
-  footer?: ReactNode;
+  trigger: ReactElement;
+  children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
   align?: "start" | "center" | "end";
+  sideOffset?: number;
 }
 
 export function PreviewCard({
+  trigger,
   children,
-  title,
-  description,
-  avatar,
-  handle,
-  footer,
   side = "top",
   align = "center",
+  sideOffset = 8,
 }: PreviewCardProps) {
   const [open, setOpen] = useState(false);
+  const onTouchToggle = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "touch") return;
+    event.preventDefault();
+    setOpen((prev) => !prev);
+  };
   return (
     <BasePreviewCard.Root open={open} onOpenChange={setOpen}>
-      <BasePreviewCard.Trigger
-        render={children}
-        onPointerDown={(event: React.PointerEvent) => {
-          if (event.pointerType === "touch") {
-            event.preventDefault();
-            setOpen((o) => !o);
-          }
-        }}
-      />
+      <BasePreviewCard.Trigger render={trigger} onPointerDown={onTouchToggle} />
       <BasePreviewCard.Portal>
-        <BasePreviewCard.Positioner className="brass-lift brass-lift--sm" side={side} align={align} sideOffset={8}>
+        <BasePreviewCard.Positioner className="brass-lift brass-lift--sm" side={side} align={align} sideOffset={sideOffset}>
           <BasePreviewCard.Popup className="brass-plate brass-pop brass-popup brass-preview">
-            <div className="brass-preview__head">
-              <span className="brass-preview__avatar">{avatar}</span>
-              <span className="brass-preview__ident">
-                <span className="brass-h3 brass-preview__title">{title}</span>
-                {handle && <span className="brass-preview__handle">{handle}</span>}
-              </span>
-            </div>
-            <p className="brass-text brass-preview__desc">{description}</p>
-            {footer && <div className="brass-preview__footer">{footer}</div>}
+            <div className="brass-preview__body">{children}</div>
             <BasePreviewCard.Arrow className="brass-connector" />
           </BasePreviewCard.Popup>
         </BasePreviewCard.Positioner>
