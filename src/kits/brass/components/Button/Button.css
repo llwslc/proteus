@@ -71,6 +71,7 @@
 }
 .brass-btn--icon-ghost:not(:disabled):not([data-disabled]):hover,
 .brass-btn--icon-ghost:focus-visible {
+  --brass-plate-bezel: transparent;
   color: var(--brass-primary);
 }
 .brass-btn__icon {
