@@ -1,6 +1,6 @@
 ---
 name: kit-interact
-description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, and a mobile shell header that bunches logo+status to one side once the nav hides. Run when accepting or QAing a kit, alongside kit-visual + kit-states.
+description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, and a mobile shell header that bunches logo+status to one side once the nav hides, and a left sidebar index that doesn't resolve to / match the panel set across kits. Run when accepting or QAing a kit, alongside kit-visual + kit-states.
 ---
 
 # kit-interact
@@ -39,6 +39,12 @@ Slow by design (~1–2 min). Exit 1 on any HIGH fault.
   `justify-content: space-between`, which still distributes the two remaining
   groups. The shell/header is a blind spot for the panel gates (it isn't a
   `.kit-panel`).
+- **SIDEBAR index parity (HIGH)** — every kit's left index (`[class*="sidebar__link"]`)
+  must resolve to a real panel (no `#id` pointing at nothing) and index the SAME panel
+  set across kits. Caught brass shipping a flat 6-section list (Inputs/Forms/…) while
+  nova/abyss index all 38 component panels grouped — app.md requires "侧栏索引与面板同序;
+  面板 id 各 kit 同名", but the demo App.tsx is ungated by the component gates, so the
+  divergence shipped. Revert-tested: dropping one panel from a kit's index → FAIL.
 - **TOUCH open (HIGH)** — on an iPhone viewport, tapping each overlay trigger
   (tooltip, popover, preview, menu, menubar, navmenu, select, combobox, dialog,
   alert, drawer) must open its popup. Caught the Tooltip being dead on touch

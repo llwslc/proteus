@@ -44,6 +44,7 @@ const setKit = async (page, kit) => {
   await probe.close();
   if (ONLY) kits = kits.filter((k) => k === ONLY);
   const out = [];
+  const sidebarIds = {};
 
   for (const kit of kits) {
     const m = await browser.newPage({ ...devices['iPhone 13'] });
@@ -129,8 +130,30 @@ const setKit = async (page, kit) => {
           out.push(`HIGH  ${kit}  ${id}: trigger click scroll-JUMPED (Δy=${Math.round(after.y - before.y)}, hash ${before.h || '∅'}→${after.h || '∅'})`);
       } catch (e) { /* not a link in this kit */ }
     }
+    try {
+      await setKit(d, kit);
+      const sb = await d.evaluate(() => {
+        const hrefs = [...document.querySelectorAll('[class*="sidebar__link"]')]
+          .map((a) => (a.getAttribute('href') || '').replace(/^#/, '')).filter(Boolean);
+        return { hrefs, broken: hrefs.filter((h) => !document.getElementById(h)) };
+      });
+      sidebarIds[kit] = sb.hrefs;
+      if (sb.broken.length) out.push(`HIGH  ${kit}  sidebar: ${sb.broken.length} link(s) resolve to no panel — ${sb.broken.join(', ')}`);
+    } catch (e) { out.push(`WARN  ${kit}  sidebar: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     await d.close();
     console.log(`  ${kit}: checked`);
+  }
+
+  const sbKits = Object.keys(sidebarIds);
+  if (sbKits.length > 1) {
+    const ref = sbKits[0], refSet = new Set(sidebarIds[ref]);
+    for (const k of sbKits.slice(1)) {
+      const kSet = new Set(sidebarIds[k]);
+      const missing = sidebarIds[ref].filter((x) => !kSet.has(x));
+      const extra = sidebarIds[k].filter((x) => !refSet.has(x));
+      if (missing.length || extra.length)
+        out.push(`HIGH  ${k}  sidebar index differs from ${ref} — missing [${missing.join(',')}] extra [${extra.join(',')}]`);
+    }
   }
 
   await browser.close();
