@@ -4,10 +4,30 @@
   gap: var(--brass-space-3);
 }
 .brass-checkboxgroup__items {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--brass-space-3);
   margin-left: var(--brass-space-2);
-  padding-left: var(--brass-space-4);
-  border-left: 1px solid var(--brass-line);
+  padding-left: var(--brass-space-5);
+}
+.brass-checkboxgroup__items::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  bottom: 3px;
+  width: 3px;
+  border-radius: var(--brass-round-sm);
+  background: linear-gradient(180deg, var(--brass-line-strong), var(--brass-line));
+}
+.brass-checkboxgroup__items::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brass-rivet);
 }

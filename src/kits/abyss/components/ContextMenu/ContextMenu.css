@@ -1,5 +1,6 @@
 .abyss-ctxmenu__zone {
   position: relative;
+  isolation: isolate;
   display: grid;
   place-items: center;
   gap: var(--abyss-space-2);
@@ -13,21 +14,29 @@
   cursor: context-menu;
   user-select: none;
   border-radius: var(--abyss-round-4);
-  background:
-    repeating-linear-gradient(-45deg, transparent 0 9px, var(--abyss-ink-faint) 9px 10px),
-    var(--abyss-inset);
+  background: var(--abyss-inset);
   outline: 1px dashed var(--abyss-ink-strong);
   outline-offset: -3px;
   transition:
-    background var(--abyss-dur) var(--abyss-ease),
     outline-color var(--abyss-dur) var(--abyss-ease),
     color var(--abyss-dur) var(--abyss-ease);
 }
+.abyss-ctxmenu__zone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 64% 54% at 50% 50%, var(--abyss-glow-soft), transparent 72%);
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
 .abyss-ctxmenu__zone:hover {
   color: var(--abyss-text);
-  background:
-    repeating-linear-gradient(-45deg, transparent 0 9px, var(--abyss-glow-soft) 9px 10px),
-    var(--abyss-inset);
+}
+.abyss-ctxmenu__zone:hover::before {
+  opacity: 1;
 }
 .abyss-ctxmenu__zone[data-popup-open] {
   color: var(--abyss-glow);
