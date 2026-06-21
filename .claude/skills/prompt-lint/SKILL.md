@@ -23,7 +23,7 @@ Exit 0 = the greppable Form rules are clean: punctuation register (ASCII `,:;()`
 
 ## Axis 2 — Form: clean native documentation
 
-- **Native words.** No coined compounds or literal calques from another language. A defined term-of-art reused consistently is fine; an ad-hoc non-word is not. Read it aloud — if a fluent speaker wouldn't say it, flag it.
+- **Native words.** No coined compounds or literal calques from another language. A defined term-of-art reused consistently is fine; an ad-hoc non-word is not. **Terse means fewer words, not crushed words** — keep a grammatical skeleton (a verb/connective); a clause that piles nouns with no connective (`四边全驱动定位`), re-segments wrong (`等长写`), or collides with a real word (`高档`) fails even if every morpheme is native. Read it aloud — if a fluent speaker wouldn't say it, or must back up to re-parse, flag it.
 - **Standard punctuation.** Use the spec language's own punctuation system, applied consistently — don't mix registers (e.g. a language with full-width marks uses them throughout, not half-and-half). Punctuation inside `code spans` stays as code. Enumerate with the language's list separator, not an ASCII slash.
 - **Headings are titles.** A heading is the title alone — no qualifier crammed on with brackets, a dash, or a trailing clause. Put the qualifier on the next line as a real sentence. (A document's top title may carry a tagline.)
 - **Emphasis is systematic.** Bold/italic marks one consistent thing applied to every peer — a definition-list lead on all siblings, a uniform set of names, a parallel keyword across variants. Flag emphasis sprinkled on one item while its peers are plain, or applied in one variant but not its sibling.
