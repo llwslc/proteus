@@ -20,7 +20,7 @@ node .claude/skills/kit-api/check.cjs      # all kits (kit list derived from src
 Static (no dev server). Kit list + component list are derived from the
 filesystem — never hardcoded.
 
-## What it asserts (per shared component, FAIL on any)
+## What it asserts
 
 - **Exported symbols match** — the set of `export function/const` names is
   identical across kits (catches a compound `{Root, Legend}` vs a render-prop

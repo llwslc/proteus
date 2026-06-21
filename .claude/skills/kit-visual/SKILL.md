@@ -23,7 +23,7 @@ Run it in place. Kits come from the live switcher buttons; panels are matched by
 id on a wrapper `<div>` (the gate was a no-op for those kits). Nothing hardcoded.
 Exit 1 if any finding.
 
-## What it asserts (per demo panel)
+## What it asserts
 
 - **COLLAPSED (HIGH)** — a text/svg element that renders with a 0 dimension, or a
   *painted line/box* that lost exactly one dimension (`w>0,h=0` or `h>0,w=0`). Caught

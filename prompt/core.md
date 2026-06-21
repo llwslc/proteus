@@ -1,6 +1,6 @@
 # Core —— 组件系统构建规范，所有 kit 通用
 
-> 与主题无关的"骨架"：定义一套 kit 的结构、token 契约、核心技术、组件清单与规则。
+> 与主题无关的「骨架」：定义一套 kit 的结构、token 契约、核心技术、组件清单与规则。
 > **不含**任何具体颜色、形状、字体、动效个性，这些归 `themes/<kit>.md`；**不含** App 演示页、加载、外壳，这些归 `app.md`。
 
 ## 0. 怎么用
@@ -24,7 +24,7 @@
 
 ## 3. token 契约
 
-`theme/tokens.css` 必须提供哪些"槽"，**值由 theme 填**。
+`theme/tokens.css` 必须提供哪些「槽」，**值由 theme 填**。
 
 > 设计语言的视觉值集中在此、组件只引用。**判据**：换肤要跟着变、或在 kit 内有意复用 → token；一次性、展示层值，如单点 `clamp`、演示页布局、氛围 alpha → 就近立即数。
 > **token 为组件服务**：仅演示页、Loader 使用的值不进 `tokens.css`，就近写在 App.css。
@@ -43,7 +43,7 @@
 - **动效与度量**：`dur / -slow`、`ease / -out`、控件高、禁用透明度、模态内边距。
 - **间距，4px 网格**：`space-1…N`，即 `4 / 8 / 12 …`。组件 padding、margin、gap，含 `row-gap` 等长写，一律走此阶梯；只有不足一格的小值，如 `::before` 1px 内缩、细轨道高度，和演示页 `>28px` 的结构留白，才写立即数。
 - **组件尺寸 footprint，强制 token 化**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`w-dialog`、`h-popup-list`，集中在 `tokens.css`、组件**绝不**裸写尺寸数值；换肤按名补齐全套。只有不足一格小值——边框、细轨道、小圆点 ≤8px——与上下文式——`clamp`、`calc`、`%`、`dvh`、Base UI 锚定变量——才就近立即数。
-- **排版尺度**：字号 `fs-N`、字距 `ls-N`、行高 `lh-N`、字重 `fw-N` 各一组"按名选"；字体族 `font / -display / -mono`。组件里字号、字距、行高、字重一律走 token，不裸写，上下文式除外，如 `clamp()`、`calc()`、`em`。
+- **排版尺度**：字号 `fs-N`、字距 `ls-N`、行高 `lh-N`、字重 `fw-N` 各一组「按名选」；字体族 `font / -display / -mono`。组件里字号、字距、行高、字重一律走 token，不裸写，上下文式除外，如 `clamp()`、`calc()`、`em`。
 
 ## 4. 核心技术
 
@@ -55,7 +55,7 @@
 - **边框层级**：页内控件、容器的 idle 边框一律安静 chrome 档；浮层 surface 一律强档；状态 hover、focus、选中 升档；语义变体按 tone 重染。档值 → theme。
 
 ### 4.2 浮层原语
-凡带弹出层的组件都用 `effects.css` 同一套原语拼，**把形状与阴影分两层**：阴影、辉光挂"不带形状裁剪"的外层，形状挂内层；同一元素不同时带这两层。
+凡带弹出层的组件都用 `effects.css` 同一套原语拼，**把形状与阴影分两层**：阴影、辉光挂「不带形状裁剪」的外层，形状挂内层；同一元素不同时带这两层。
 - **elevation** —— 不裁形状的抬升层，挂 drop-shadow + 辉光，经输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定浮层挂 Positioner；无 positioner 的模态、Toast 挂 Popup、Root。
 - **surface** —— 带框表面，见 4.1，尺寸、填充、边框色走输入变量，不挂阴影。
 - **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
@@ -84,7 +84,7 @@
 
 共 37 个。
 
-- **输入**：Button、Switch、Checkbox、CheckboxGroup、Radio、ToggleGroup、Slider、NumberField、Input(Field)、OtpField、Select、Combobox、Autocomplete
+- **输入**：Button、Switch、Checkbox、CheckboxGroup、Radio、ToggleGroup、Slider、NumberField、Input/Field、OtpField、Select、Combobox、Autocomplete
 - **表单**：Fieldset、Form
 - **反馈**：Progress、Meter、Tabs、Accordion、Collapsible
 - **浮层**：Tooltip、Popover、PreviewCard、Menu、Menubar、NavigationMenu、ContextMenu、Dialog、AlertDialog、Drawer、Toast
@@ -93,7 +93,7 @@
 > 组件名映射到 Base UI 基元，API、语义、用法用 Base UI 的；core 只记 Base UI 管不到的**结构决定**：
 
 - **Badge、Panel** 是纯样式件，**不是** Base UI 组件，Base UI 没这俩。
-- **Menu、ContextMenu、Menubar** 共享同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，经 context 注入底层 primitive——三者复用，避免各写一套。
+- **Menu、ContextMenu、Menubar** 共享同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，经 context 注入底层 primitive。
 - **分段条家族**：Toolbar、Menubar、ToggleGroup 共用同一箱体与文字语言——暗框条，`space-1` 内衬，加紧凑 chip 触发钮，同钮高档，加分段文字规格，display 体大写、档值由 theme 定；悬停、激活态同 §5「分段」档。Menubar 触发器不带 chevron；独立 Menu 的触发按钮带会旋转的 chevron。
 - **AlertDialog** 与 Dialog 同基底，按 `tone` 重染：边框、标题、图记 + **表面顶部 tone 径向**（tone 与表面的混合比 → theme），几何同 Dialog 的顶部径向。
 
@@ -132,7 +132,7 @@
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close(复用 Button icon-ghost)`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
-- **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
+- **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`；触发器栏复用 Tabs 的皮肤处理，具体字型、配色 → theme。
 - **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留 glow-room。
 - **Toast**：`Provider(props `timeout·limit`) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；tone `info·success·warning·danger` 配 marker；新条压顶；`swipeDirection`。
 

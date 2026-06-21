@@ -35,7 +35,7 @@ covered automatically. Exit 0 = parity; exit 1 = GAPs printed.
 
 Each `GAP` is a **candidate**, not an automatic defect. Either:
 - **fix it** — add the missing rule (it's almost always a real omission in a
-  from-scratch kit; see the project memory on BRASS parity gaps), or
+  from-scratch kit), or
 - **document it as an intentional exception** — a kit may legitimately not need a
   rule, or may handle the same concern via a different selector. Example: NOVA marks
   the selected tab with `[data-active]` while ABYSS/BRASS use `[data-selected]`, so a

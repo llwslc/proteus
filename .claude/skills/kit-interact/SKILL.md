@@ -7,9 +7,8 @@ description: Dynamic INTERACTION gate for the theme kits — drives the componen
 
 The static gates photograph **resting / open** states; they cannot see what only
 happens when you *use* a control. This gate exercises the components and asserts
-on the result — the blind spots that kept slipping through review
-(see the `qa-blind-spots-interaction-shell-gap` memory): **interaction**,
-**touch/mobile**, and **navigation side effects**.
+on the result — the blind spots that kept slipping through review:
+**interaction**, **touch/mobile**, and **navigation side effects**.
 
 ## Run it
 
