@@ -60,6 +60,7 @@
 
 ## 7. 组件皮肤决定
 
+- NavigationMenu 触发器栏复用 Tabs 皮肤：大写 Orbitron、渐变 hover、辉光下划线、开启态转 primary、chevron 翻转。
 - AlertDialog 按 `tone` 整体重染，tone 取 danger、warning、primary：scan、标题、tick、边框随 tone，表面顶部加 tone 径向 20%。
 - Switch：关态金属 thumb 用 `thumb-idle` 渐变，选中 `accent-surface` 轨 + `surface-deep` thumb。
 - 共享配方色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。

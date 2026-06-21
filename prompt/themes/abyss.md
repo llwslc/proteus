@@ -20,7 +20,7 @@
 
 - **Cinzel** 作 display，石刻小型大写；**Spectral** 作正文衬线，其 italic 兼作 script 注脚；**UnifrakturCook** 作 rune，仅用于 logo 品牌字；**Cutive Mono** 用于数值。
 - 尺度档：字号 `fs-12 / 13 / 15 / 16 / 19 / 24 / 34`，字距 `ls-2 / 6 / 12`，行高 `lh-100 / 150 / 165`，字重 `fw-400 / 600`。
-- 标题三档 `fw-400`，不加 text-transform：`h1` fs-34 + ls-2，`h2` fs-19 + ls-6，`h3` fs-13 + ls-12 + 大写 + dim；正文 `text` = fs-15 + lh-165 + dim；`h1--accent` 修饰 = glow + text-aura。
+- 标题三档 `fw-400`：`h1` fs-34 + ls-2，`h2` fs-19 + ls-6，`h3` fs-13 + ls-12 + 大写 + dim；正文 `text` = fs-15 + lh-165 + dim；`h1--accent` 修饰 = glow + text-aura。
 - 字段 caption 有独立类 **`.abyss-cap`**，即 display · fs-12 · ls-12 · 大写 · dim，组件统一引用。
 - `.abyss-brand` = rune 字，只给 logo。
 
@@ -65,7 +65,7 @@
 - Switch 是一只眼：`.abyss-eye` 含 sclera、iris、pupil、lid SVG，选中 iris + pupil `scaleY(0.06→1)` 睁眼 + 辉光；无轨道滑块。
 - Panel：角部触手 tendril；Toast：右下角向上堆叠，左缘光束 + 呼吸 sigil；模态标题配图记，Dialog 自转 sigil、Alert 按 tone。
 - AlertDialog 按 `tone` 重染：danger = blood 为默认、骷髅图记，warning = gold，primary = glow。
-- Hero 法阵、分组线 GroupRule 带 sigil 标记。
+- NavigationMenu 触发器栏复用 Tabs 皮肤；Hero 法阵、分组线 GroupRule 带 sigil 标记。
 - 背板 scrim 额外 `brightness(.8)` 压暗；连接线 1.5px glow + edge 滤镜。
 
 ## 8. 文案
