@@ -60,7 +60,7 @@
 - **surface** —— 带框表面，见 4.1，尺寸、填充、边框色走输入变量，不挂阴影。
 - **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
 - **connector** —— 1px 线连触发器，即 Base UI 的 Arrow：四方向定位、与弹层边框同色。不用三角。
-- **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，`side` 四边全驱动定位。**模态宽高走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，各 kit 同值**；Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`；drawer body 滚动容器，padding + 等量负 margin 容下控件焦点提示。
+- **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四向都由 `side` 驱动定位。**模态宽高走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，各 kit 同值**；Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`；drawer body 滚动容器，padding + 等量负 margin 容下控件焦点提示。
 
 ### 4.3 共享配方 class
 重复视觉块抽到 `effects.css`，颜色差异用 `--<kit>-*-color` 就近覆盖：头部扫光、标题、图例标记、模态背板、模态文本——title、desc、body、actions、关闭按钮、分隔线、折叠类 Accordion、Collapsible 共用的 trigger、marker、title、chevron、panel、content。
@@ -133,7 +133,7 @@
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close(复用 Button icon-ghost)`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 右`，子菜单向右开；**Menubar 触发器无 chevron，独立 Menu 触发器带会转的 chevron**；ContextMenu 触发器是隐形 zone。
 - **NavigationMenu**：props `items·onLinkClick`；`List > Item[Trigger(chevron 开转 180°) + Content > grid > Link]`。
-- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、四边驱动、body 留焦点提示余量。
+- **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 加 `side`：`left·right·top·bottom`；AlertDialog 加 `tone`：`danger·warning·primary`）；各导出 `<Close>` 子件、复用 Button 变体。共用 viewport（§4.2）；`Popup(或内嵌 surface) > [Close 右上 + title + desc + body + actions 右对齐]`；AlertDialog 按 tone 重染 + 顶部 tone 径向；Drawer 全屏 viewport、`side` 四向定位、body 留焦点提示余量。
 - **Toast**：`Provider(props `timeout·limit`) > Viewport(定角) > Root[marker + 主体 title+desc + Close]`；tone `info·success·warning·danger` 配 marker；新条压顶；`swipeDirection`。
 
 **展示**
