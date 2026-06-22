@@ -77,9 +77,11 @@ html::after {
   color: var(--abyss-text-bright);
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--abyss-ink-strong) transparent;
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--abyss-ink-strong) transparent;
+  }
 }
 *::-webkit-scrollbar {
   width: 11px;
