@@ -16,7 +16,7 @@
 .nova-scrollarea__viewport {
   position: relative;
   z-index: 1;
-  max-height: var(--nova-h-scrollarea);
+  max-height: var(--nova-scrollarea-h);
   padding: var(--nova-space-4) var(--nova-space-4);
   overscroll-behavior: contain;
   outline: none;

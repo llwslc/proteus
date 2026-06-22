@@ -130,7 +130,7 @@
 }
 
 .abyss-combobox__list {
-  max-height: min(var(--available-height), var(--abyss-h-popup-list));
+  max-height: min(var(--available-height), var(--abyss-popup-h));
   overflow-y: auto;
   overscroll-behavior: contain;
 }

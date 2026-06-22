@@ -2,7 +2,7 @@
   --abyss-alert-accent: var(--abyss-blood);
   --abyss-title-color: var(--abyss-blood-text);
   position: relative;
-  width: min(100%, var(--abyss-w-alert));
+  width: min(100%, var(--abyss-alert-w));
   --abyss-overlay-shadow: var(--abyss-shadow-modal);
   --abyss-overlay-glow: drop-shadow(0 0 26px color-mix(in srgb, var(--abyss-alert-accent) 32%, transparent));
 }

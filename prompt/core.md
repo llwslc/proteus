@@ -42,7 +42,7 @@
 - **层级阶梯**：一处定义浮层堆叠顺序 dropdown < menu < tooltip < backdrop < overlay < toast。
 - **动效与度量**：`dur / -slow`、`ease / -out`、控件高、禁用透明度、模态内边距。
 - **间距，4px 网格**：`space-1…N`，即 `4 / 8 / 12 …`。组件 padding、margin、gap（含 `row-gap` 等）一律走此阶梯；只有不足一格的小值，如 `::before` 1px 内缩、细轨道高度，和演示页 `>28px` 的结构留白，才写立即数。
-- **组件尺寸 footprint，强制 token 化**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`w-dialog`、`h-popup-list`，集中在 `tokens.css`、组件**绝不**裸写尺寸数值；换肤按名补齐全套。只有不足一格小值——边框、细轨道、小圆点 ≤8px——与上下文式——`clamp`、`calc`、`%`、`dvh`、Base UI 锚定变量——才就近立即数。
+- **组件尺寸 footprint，强制 token 化**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，**维度作后缀**（`-w`、`-h`、`-min-w`…，随 `src/shared/geometry.css` 的 `--shell-*` 同构，如 `header-h`、`dialog-w`），如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`dialog-w`、`popup-h`，集中在 `tokens.css`、组件**绝不**裸写尺寸数值；换肤按名补齐全套。只有不足一格小值——边框、细轨道、小圆点 ≤8px——与上下文式——`clamp`、`calc`、`%`、`dvh`、Base UI 锚定变量——才就近立即数。
 - **排版尺度**：字号 `fs-N`、字距 `ls-N`、行高 `lh-N`、字重 `fw-N` 各一组「按名选」；字体族 `font / -display / -mono`。组件里字号、字距、行高、字重一律走 token，不裸写，上下文式除外，如 `clamp()`、`calc()`、`em`。
 
 ## 4. 核心技术
@@ -61,7 +61,7 @@
 - **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
 - **connector** —— 1px 线连触发器，即 Base UI 的 Arrow：四方向定位、与弹层边框同色。不用三角。
 - **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四向都由 `side` 驱动定位。**模态宽高走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，各 kit 同值**；Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`；drawer body 滚动容器，padding + 等量负 margin 容下控件焦点提示。
-- **锚定弹层滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，`max-height` 取 `min(var(--available-height), var(--<kit>-h-popup-list))`，超出即滚，加 `overscroll-behavior: contain`；双层 frame 的 surface 把滚动挂在内层列表容器、框面本身不滚。
+- **锚定弹层滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，`max-height` 取 `min(var(--available-height), var(--<kit>-popup-h))`，超出即滚，加 `overscroll-behavior: contain`；双层 frame 的 surface 把滚动挂在内层列表容器、框面本身不滚。
 
 ### 4.3 共享配方 class
 重复视觉块抽到 `effects.css`，颜色差异用 `--<kit>-*-color` 就近覆盖：头部扫光、标题、图例标记、模态背板、模态文本——title、desc、body、actions、关闭按钮、分隔线、折叠类 Accordion、Collapsible 共用的 trigger、marker、title、chevron、panel、content。

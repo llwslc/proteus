@@ -1,6 +1,6 @@
 .abyss-dialog {
   position: relative;
-  width: min(100%, var(--abyss-w-dialog));
+  width: min(100%, var(--abyss-dialog-w));
   --abyss-overlay-shadow: var(--abyss-shadow-modal);
   --abyss-overlay-glow: var(--abyss-glow-modal);
 }

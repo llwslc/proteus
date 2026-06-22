@@ -4,7 +4,7 @@
 
 .abyss-previewcard__popup {
   position: relative;
-  width: var(--abyss-w-preview);
+  width: var(--abyss-preview-w);
 }
 
 .abyss-previewcard__surface {

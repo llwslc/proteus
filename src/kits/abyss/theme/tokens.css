@@ -121,16 +121,16 @@
   --abyss-round-4: 4px;
   --abyss-round-5: 5px;
 
-  --abyss-w-dialog: var(--shell-dialog-w);
-  --abyss-w-alert: var(--shell-alert-w);
-  --abyss-w-drawer: var(--shell-drawer-w);
-  --abyss-h-drawer: var(--shell-drawer-h);
-  --abyss-w-popover: 320px;
-  --abyss-w-preview: 286px;
-  --abyss-w-tooltip: 240px;
-  --abyss-w-toast: 360px;
-  --abyss-h-popup-list: 264px;
-  --abyss-h-scrollarea: 200px;
+  --abyss-dialog-w: var(--shell-dialog-w);
+  --abyss-alert-w: var(--shell-alert-w);
+  --abyss-drawer-w: var(--shell-drawer-w);
+  --abyss-drawer-h: var(--shell-drawer-h);
+  --abyss-popover-w: 320px;
+  --abyss-preview-w: 286px;
+  --abyss-tooltip-w: 240px;
+  --abyss-toast-w: 360px;
+  --abyss-popup-h: 264px;
+  --abyss-scrollarea-h: 200px;
 
   --abyss-autocomplete-min-w: 240px;
   --abyss-avatar-sm: 34px;

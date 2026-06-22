@@ -121,16 +121,16 @@
   --nova-surface-deep-top: #0e2236;
   --nova-surface-deep-bottom: #081523;
 
-  --nova-w-dialog: var(--shell-dialog-w);
-  --nova-w-alert: var(--shell-alert-w);
-  --nova-w-drawer: var(--shell-drawer-w);
-  --nova-h-drawer: var(--shell-drawer-h);
-  --nova-w-popover: 300px;
-  --nova-w-preview: 286px;
-  --nova-w-tooltip: 240px;
-  --nova-w-toast: 360px;
-  --nova-h-popup-list: 264px;
-  --nova-h-scrollarea: 200px;
+  --nova-dialog-w: var(--shell-dialog-w);
+  --nova-alert-w: var(--shell-alert-w);
+  --nova-drawer-w: var(--shell-drawer-w);
+  --nova-drawer-h: var(--shell-drawer-h);
+  --nova-popover-w: 300px;
+  --nova-preview-w: 286px;
+  --nova-tooltip-w: 240px;
+  --nova-toast-w: 360px;
+  --nova-popup-h: 264px;
+  --nova-scrollarea-h: 200px;
   --nova-avatar-sm: 34px;
   --nova-avatar-md: 46px;
   --nova-avatar-lg: 64px;

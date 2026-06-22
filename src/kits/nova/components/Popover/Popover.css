@@ -4,7 +4,7 @@
 
 .nova-popover__popup {
   position: relative;
-  max-width: var(--nova-w-popover);
+  max-width: var(--nova-popover-w);
 }
 
 .nova-popover__surface {

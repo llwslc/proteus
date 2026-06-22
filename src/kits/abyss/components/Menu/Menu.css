@@ -15,7 +15,7 @@
   outline: none;
 }
 .abyss-menu__scroll {
-  max-height: min(var(--available-height), var(--abyss-h-popup-list));
+  max-height: min(var(--available-height), var(--abyss-popup-h));
   overflow-y: auto;
   overscroll-behavior: contain;
 }

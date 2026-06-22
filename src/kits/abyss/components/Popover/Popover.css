@@ -4,7 +4,7 @@
 
 .abyss-popover__popup {
   position: relative;
-  max-width: var(--abyss-w-popover);
+  max-width: var(--abyss-popover-w);
 }
 
 .abyss-popover__surface {

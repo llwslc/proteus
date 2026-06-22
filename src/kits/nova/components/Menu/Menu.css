@@ -9,7 +9,7 @@
   outline: none;
 }
 .nova-menu__scroll {
-  max-height: min(var(--available-height), var(--nova-h-popup-list));
+  max-height: min(var(--available-height), var(--nova-popup-h));
   overflow-y: auto;
   overscroll-behavior: contain;
 }

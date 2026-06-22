@@ -9,7 +9,7 @@
   top: 22px;
   right: 22px;
   z-index: var(--nova-z-toast);
-  width: var(--nova-w-toast);
+  width: var(--nova-toast-w);
   max-width: calc(100vw - 44px);
   height: var(--toast-frontmost-height, 0px);
   outline: none;

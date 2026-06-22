@@ -4,7 +4,7 @@
 
 .nova-tooltip__popup {
   position: relative;
-  max-width: var(--nova-w-tooltip);
+  max-width: var(--nova-tooltip-w);
 }
 
 .nova-tooltip__surface {

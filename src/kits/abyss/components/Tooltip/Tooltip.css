@@ -13,7 +13,7 @@
     var(--abyss-surface-popup);
   --abyss-frame-ink: var(--abyss-glow-a55);
   display: block;
-  max-width: var(--abyss-w-tooltip);
+  max-width: var(--abyss-tooltip-w);
   padding: var(--abyss-space-2) var(--abyss-space-3);
   font-family: var(--abyss-font);
   font-size: var(--abyss-fs-13);
