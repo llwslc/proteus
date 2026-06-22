@@ -81,6 +81,7 @@ html::after {
 .nova-autocomplete__list {
   scrollbar-width: auto;
   scrollbar-color: auto;
+  margin-bottom: var(--nova-space-1);
 }
 *::-webkit-scrollbar {
   width: 10px;
