@@ -1,6 +1,6 @@
 .bauhaus-panel {
   --bauhaus-surface-fill: var(--bauhaus-paper);
-  --bauhaus-surface-stroke: var(--bauhaus-stroke-bold);
+  border-width: var(--bauhaus-stroke-bold);
   display: flex;
   flex-direction: column;
 }

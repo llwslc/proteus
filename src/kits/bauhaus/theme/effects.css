@@ -192,7 +192,7 @@
 /* ═══ Modal field — Dialog / AlertDialog / Drawer ═══ */
 .bauhaus-modal {
   --bauhaus-surface-fill: var(--bauhaus-surface-modal);
-  --bauhaus-surface-stroke: var(--bauhaus-stroke-heavy);
+  border-width: var(--bauhaus-stroke-heavy);
   --bauhaus-surface-r: var(--bauhaus-r-frame);
   position: relative;
   max-width: 100%;
