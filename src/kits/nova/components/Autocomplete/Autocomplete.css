@@ -85,8 +85,6 @@
 .nova-autocomplete__list {
   position: relative;
   z-index: 1;
-  max-height: min(var(--available-height), var(--nova-popup-h));
-  overflow-y: auto;
 }
 
 .nova-autocomplete__item {

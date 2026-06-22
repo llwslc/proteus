@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Menu } from "@base-ui/react/menu";
+import { ScrollArea } from "../ScrollArea";
 import { cx } from "../cx";
 import { ChevronRightIcon } from "../icons";
 
@@ -63,7 +64,7 @@ export function MenuSub({
           sideOffset={10}
         >
           <Menu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
-            <div className="nova-menu__scroll">{children}</div>
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>

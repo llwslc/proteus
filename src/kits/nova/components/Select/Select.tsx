@@ -1,5 +1,6 @@
 import { cx } from "../cx";
 import { Select as BaseSelect } from "@base-ui/react/select";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import type { ReactNode } from "react";
 import { CheckIcon, ChevronDownIcon } from "../icons";
@@ -69,7 +70,7 @@ export function Select<Value extends string = string>({
           alignItemWithTrigger={false}
         >
           <BaseSelect.Popup className="nova-surface nova-anim-pop nova-select__popup">
-            <div className="nova-select__list">
+            <ScrollArea variant="popup">
               {items.map((it) => (
                 <BaseSelect.Item
                   key={it.value}
@@ -87,7 +88,7 @@ export function Select<Value extends string = string>({
                   </span>
                 </BaseSelect.Item>
               ))}
-            </div>
+            </ScrollArea>
           </BaseSelect.Popup>
         </BaseSelect.Positioner>
       </BaseSelect.Portal>

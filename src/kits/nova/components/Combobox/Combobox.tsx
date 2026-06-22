@@ -1,4 +1,5 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { CheckIcon, ChevronDownIcon, SearchIcon, XIcon } from "../icons";
 import "./Combobox.css";
@@ -49,22 +50,24 @@ export function Combobox({
             <BaseCombobox.Empty className="nova-combobox__empty">
               {emptyText}
             </BaseCombobox.Empty>
-            <BaseCombobox.List className="nova-combobox__list">
-              {(item: string) => (
-                <BaseCombobox.Item
-                  key={item}
-                  value={item}
-                  className="nova-combobox__item"
-                >
-                  <span className="nova-combobox__item-text">{item}</span>
-                  <span className="nova-combobox__indicator">
-                    <BaseCombobox.ItemIndicator>
-                      <CheckIcon />
-                    </BaseCombobox.ItemIndicator>
-                  </span>
-                </BaseCombobox.Item>
-              )}
-            </BaseCombobox.List>
+            <ScrollArea variant="popup">
+              <BaseCombobox.List className="nova-combobox__list">
+                {(item: string) => (
+                  <BaseCombobox.Item
+                    key={item}
+                    value={item}
+                    className="nova-combobox__item"
+                  >
+                    <span className="nova-combobox__item-text">{item}</span>
+                    <span className="nova-combobox__indicator">
+                      <BaseCombobox.ItemIndicator>
+                        <CheckIcon />
+                      </BaseCombobox.ItemIndicator>
+                    </span>
+                  </BaseCombobox.Item>
+                )}
+              </BaseCombobox.List>
+            </ScrollArea>
           </BaseCombobox.Popup>
         </BaseCombobox.Positioner>
       </BaseCombobox.Portal>

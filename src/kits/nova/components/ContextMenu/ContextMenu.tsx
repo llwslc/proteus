@@ -1,5 +1,6 @@
 import { cx } from "../cx";
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu";
+import { ScrollArea } from "../ScrollArea";
 import type { ReactNode } from "react";
 import "../Menu/Menu.css";
 import "./ContextMenu.css";
@@ -19,7 +20,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="nova-elevation nova-menu__positioner">
           <BaseContextMenu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
-            <div className="nova-menu__scroll">{children}</div>
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>
       </BaseContextMenu.Portal>

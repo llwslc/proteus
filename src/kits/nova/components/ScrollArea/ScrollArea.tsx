@@ -2,8 +2,26 @@ import { ScrollArea as BaseScrollArea } from "@base-ui/react/scroll-area";
 import { cx } from "../cx";
 import "./ScrollArea.css";
 
-export function ScrollArea({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Root>) {
-  return <BaseScrollArea.Root className={cx("nova-scrollarea", className)} {...props} />;
+export interface ScrollAreaProps extends React.ComponentProps<typeof BaseScrollArea.Root> {
+  variant?: "panel" | "popup";
+}
+
+export function ScrollArea({ className, variant = "panel", children, ...props }: ScrollAreaProps) {
+  if (variant === "popup") {
+    return (
+      <BaseScrollArea.Root className={cx("nova-scrollarea", "nova-scrollarea--popup", className)} {...props}>
+        <BaseScrollArea.Viewport className="nova-scrollarea__viewport">{children}</BaseScrollArea.Viewport>
+        <BaseScrollArea.Scrollbar className="nova-scrollarea__scrollbar">
+          <BaseScrollArea.Thumb className="nova-scrollarea__thumb" />
+        </BaseScrollArea.Scrollbar>
+      </BaseScrollArea.Root>
+    );
+  }
+  return (
+    <BaseScrollArea.Root className={cx("nova-scrollarea", className)} {...props}>
+      {children}
+    </BaseScrollArea.Root>
+  );
 }
 
 export function ScrollAreaViewport({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Viewport>) {

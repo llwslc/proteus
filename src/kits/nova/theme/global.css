@@ -75,27 +75,3 @@ html::after {
   scrollbar-width: thin;
   scrollbar-color: var(--nova-line-strong) transparent;
 }
-.nova-menu__scroll,
-.nova-select__list,
-.nova-combobox__list,
-.nova-autocomplete__list {
-  scrollbar-width: auto;
-  scrollbar-color: auto;
-  margin-bottom: var(--nova-space-1);
-}
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-*::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.25);
-}
-*::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--nova-primary-deep), var(--nova-primary));
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--nova-primary);
-  background-clip: padding-box;
-}

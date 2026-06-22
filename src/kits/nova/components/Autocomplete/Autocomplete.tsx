@@ -1,4 +1,5 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { BoltIcon } from "../icons";
 import "./Autocomplete.css";
@@ -43,17 +44,19 @@ export function Autocomplete({
             <BaseAutocomplete.Empty className="nova-autocomplete__empty">
               {emptyText}
             </BaseAutocomplete.Empty>
-            <BaseAutocomplete.List className="nova-autocomplete__list">
-              {(item: string) => (
-                <BaseAutocomplete.Item
-                  key={item}
-                  value={item}
-                  className="nova-autocomplete__item"
-                >
-                  {item}
-                </BaseAutocomplete.Item>
-              )}
-            </BaseAutocomplete.List>
+            <ScrollArea variant="popup">
+              <BaseAutocomplete.List className="nova-autocomplete__list">
+                {(item: string) => (
+                  <BaseAutocomplete.Item
+                    key={item}
+                    value={item}
+                    className="nova-autocomplete__item"
+                  >
+                    {item}
+                  </BaseAutocomplete.Item>
+                )}
+              </BaseAutocomplete.List>
+            </ScrollArea>
           </BaseAutocomplete.Popup>
         </BaseAutocomplete.Positioner>
       </BaseAutocomplete.Portal>

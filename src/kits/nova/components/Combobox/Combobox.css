@@ -116,9 +116,6 @@
 .nova-combobox__list {
   position: relative;
   z-index: 1;
-  max-height: min(var(--available-height), var(--nova-popup-h));
-  overflow-y: auto;
-  overscroll-behavior: contain;
 }
 
 .nova-combobox__item {

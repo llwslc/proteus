@@ -8,12 +8,6 @@
   padding: var(--nova-space-1);
   outline: none;
 }
-.nova-menu__scroll {
-  max-height: min(var(--available-height), var(--nova-popup-h));
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-}
 
 .nova-menu__item {
   position: relative;
