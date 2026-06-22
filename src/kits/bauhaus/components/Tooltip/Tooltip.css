@@ -1,0 +1,9 @@
+.bauhaus-tooltip {
+  box-sizing: border-box;
+  width: var(--bauhaus-tooltip-w);
+  padding: var(--bauhaus-space-2) var(--bauhaus-space-3);
+  font-family: var(--bauhaus-font);
+  font-size: var(--bauhaus-fs-13);
+  line-height: var(--bauhaus-lh-150);
+  color: var(--bauhaus-text);
+}

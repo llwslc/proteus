@@ -1,0 +1,157 @@
+/* PRIMARY — design tokens. Values only; components reference, never restate. */
+
+:root {
+  /* ── Backgrounds & paper ───────────────────────────── */
+  --bauhaus-bg: #ece5d3;
+  --bauhaus-paper: #f7f3e8;
+  --bauhaus-paper-2: #efe9d8;
+
+  /* ── Accent families (semantic) ────────────────────── */
+  --bauhaus-primary: #1a4fd6;
+  --bauhaus-secondary: #1b1b1b;
+  --bauhaus-success: #2f9e44;
+  --bauhaus-warning: #f5b612;
+  --bauhaus-warning-deep: #a8760a;
+  --bauhaus-danger: #e23121;
+
+  /* ── Text & reverse foreground ─────────────────────── */
+  --bauhaus-text: #211d15;
+  --bauhaus-text-bright: #050505;
+  --bauhaus-text-dim: #5c5647;
+  --bauhaus-text-mute: #918a76;
+  --bauhaus-on-fill: #f7f3e8;
+  --bauhaus-on-warning: #16140f;
+
+  /* ── Reusable accent fills (flat solid, no gradient) ── */
+  --bauhaus-accent-surface: var(--bauhaus-primary);
+  --bauhaus-accent-fill: var(--bauhaus-primary);
+
+  /* ── Primary alpha ladder (by opacity) ─────────────── */
+  --bauhaus-tint-soft: rgba(26, 79, 214, 0.1);
+  --bauhaus-tint: rgba(26, 79, 214, 0.16);
+
+  /* ── Per-family alpha & danger set ─────────────────── */
+  --bauhaus-ink-faint: rgba(20, 20, 20, 0.06);
+  --bauhaus-danger-wash: rgba(226, 49, 33, 0.12);
+  --bauhaus-danger-text: #7c1209;
+
+  /* ── Neutrals & effect colors ──────────────────────── */
+  --bauhaus-off: #ddd5c0;
+  --bauhaus-track: #e2dbc9;
+
+  /* ── Surfaces ──────────────────────────────────────── */
+  --bauhaus-surface: var(--bauhaus-paper);
+  --bauhaus-surface-popup: var(--bauhaus-paper);
+  --bauhaus-surface-modal: #fbf8ef;
+  --bauhaus-surface-inset: #e8e1ce;
+  --bauhaus-surface-zone: rgba(26, 79, 214, 0.07);
+  --bauhaus-scrim: rgba(22, 19, 12, 0.5);
+
+  /* ── Stroke (the black grid edge), by role ─────────── */
+  --bauhaus-ink: #141414;
+  --bauhaus-stroke-hair: 1px;
+  --bauhaus-stroke: 2px;
+  --bauhaus-stroke-bold: 3px;
+  --bauhaus-stroke-heavy: 4px;
+
+  /* ── Depth: hard-offset solid casts (no blur, no glow) ── */
+  --bauhaus-cast-pop: drop-shadow(5px 5px 0 var(--bauhaus-ink));
+  --bauhaus-cast-sm: drop-shadow(3px 3px 0 var(--bauhaus-ink));
+  --bauhaus-cast-modal: drop-shadow(8px 8px 0 var(--bauhaus-ink));
+  --bauhaus-shadow-hard: 3px 3px 0 var(--bauhaus-ink);
+  --bauhaus-ring: 0 0 0 2px var(--bauhaus-paper), 0 0 0 4px var(--bauhaus-primary);
+
+  /* ── Geometry (sharp rect + perfect circle) ────────── */
+  --bauhaus-r-frame: 0;
+  --bauhaus-r-control: 0;
+  --bauhaus-r-chip: 0;
+  --bauhaus-r-round: 999px;
+
+  /* ── Z-layer ladder ────────────────────────────────── */
+  --bauhaus-z-dropdown: 50;
+  --bauhaus-z-menu: 60;
+  --bauhaus-z-tooltip: 70;
+  --bauhaus-z-backdrop: 80;
+  --bauhaus-z-overlay: 90;
+  --bauhaus-z-toast: 100;
+
+  /* ── Motion & metrics ──────────────────────────────── */
+  --bauhaus-dur: 0.16s;
+  --bauhaus-dur-slow: 0.34s;
+  --bauhaus-dur-sweep: 1.5s;
+  --bauhaus-ease: cubic-bezier(0.2, 0, 0, 1);
+  --bauhaus-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --bauhaus-control-h: 40px;
+  --bauhaus-disabled-opacity: 0.4;
+  --bauhaus-modal-pad: 24px;
+
+  /* ── Spacing (4px grid) ────────────────────────────── */
+  --bauhaus-space-1: 4px;
+  --bauhaus-space-2: 8px;
+  --bauhaus-space-3: 12px;
+  --bauhaus-space-4: 16px;
+  --bauhaus-space-5: 20px;
+  --bauhaus-space-6: 24px;
+  --bauhaus-space-7: 28px;
+  --bauhaus-space-8: 32px;
+  --bauhaus-space-9: 36px;
+
+  /* ── Typography ────────────────────────────────────── */
+  --bauhaus-font: "Jost", "Century Gothic", "Futura", system-ui, sans-serif;
+  --bauhaus-font-display: "Archivo Black", "Jost", system-ui, sans-serif;
+  --bauhaus-font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+  --bauhaus-fs-11: 11px;
+  --bauhaus-fs-13: 13px;
+  --bauhaus-fs-15: 15px;
+  --bauhaus-fs-18: 18px;
+  --bauhaus-fs-22: 22px;
+  --bauhaus-fs-44: 44px;
+  --bauhaus-ls-1: 0;
+  --bauhaus-ls-2: 0.03em;
+  --bauhaus-ls-4: 0.2em;
+  --bauhaus-lh-100: 1;
+  --bauhaus-lh-130: 1.3;
+  --bauhaus-lh-150: 1.5;
+  --bauhaus-fw-400: 400;
+  --bauhaus-fw-500: 500;
+  --bauhaus-fw-700: 700;
+
+  /* ── Component footprints ──────────────────────────── */
+  --bauhaus-button-h-sm: 32px;
+  --bauhaus-button-h-lg: 48px;
+  --bauhaus-button-icon: 40px;
+  --bauhaus-button-icon-ghost: 32px;
+  --bauhaus-switch-w: 54px;
+  --bauhaus-switch-h: 28px;
+  --bauhaus-switch-knob: 20px;
+  --bauhaus-checkbox-box: 22px;
+  --bauhaus-radio-box: 22px;
+  --bauhaus-radio-dot: 8px;
+  --bauhaus-seg-h: 34px;
+  --bauhaus-slider-track: 6px;
+  --bauhaus-slider-thumb: 18px;
+  --bauhaus-numberfield-step: 38px;
+  --bauhaus-numberfield-w: 64px;
+  --bauhaus-otp-cell-w: 42px;
+  --bauhaus-otp-cell-h: 50px;
+  --bauhaus-progress-h: 14px;
+  --bauhaus-meter-h: 16px;
+  --bauhaus-tab-h: 42px;
+  --bauhaus-scrollbar: 12px;
+  --bauhaus-scrollarea-h: 200px;
+  --bauhaus-popup-w: 224px;
+  --bauhaus-popup-h: 264px;
+  --bauhaus-tooltip-w: 240px;
+  --bauhaus-popover-w: 288px;
+  --bauhaus-preview-w: 320px;
+  --bauhaus-nav-w: 460px;
+  --bauhaus-dialog-w: var(--shell-dialog-w);
+  --bauhaus-alert-w: var(--shell-alert-w);
+  --bauhaus-drawer-w: var(--shell-drawer-w);
+  --bauhaus-drawer-h: var(--shell-drawer-h);
+  --bauhaus-toast-w: 344px;
+  --bauhaus-avatar-sm: 32px;
+  --bauhaus-avatar-md: 44px;
+  --bauhaus-avatar-lg: 64px;
+  --bauhaus-badge-h: 20px;
+}

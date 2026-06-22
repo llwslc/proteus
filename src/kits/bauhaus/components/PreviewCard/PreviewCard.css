@@ -1,0 +1,9 @@
+.bauhaus-preview {
+  box-sizing: border-box;
+  width: var(--bauhaus-preview-w);
+  padding: var(--bauhaus-space-4);
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bauhaus-space-3);
+}

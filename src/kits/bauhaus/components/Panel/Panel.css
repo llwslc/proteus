@@ -1,0 +1,37 @@
+.bauhaus-panel {
+  --bauhaus-surface-fill: var(--bauhaus-paper);
+  --bauhaus-surface-stroke: var(--bauhaus-stroke-bold);
+  display: flex;
+  flex-direction: column;
+}
+.bauhaus-panel--wide {
+  grid-column: span 2;
+}
+.bauhaus-panel__head {
+  display: flex;
+  align-items: center;
+  gap: var(--bauhaus-space-3);
+  padding: var(--bauhaus-space-4) var(--bauhaus-space-5);
+  border-bottom: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+}
+.bauhaus-panel__head:empty {
+  display: none;
+}
+.bauhaus-panel__marker {
+  flex: 0 0 auto;
+  font-size: var(--bauhaus-fs-15);
+}
+.bauhaus-panel__title {
+  flex: 1;
+  min-width: 0;
+}
+.bauhaus-panel__meta {
+  flex: 0 0 auto;
+  color: var(--bauhaus-text-mute);
+}
+.bauhaus-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bauhaus-space-4);
+  padding: var(--bauhaus-space-5);
+}

@@ -1,0 +1,41 @@
+.bauhaus-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bauhaus-space-2);
+}
+.bauhaus-meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bauhaus-space-2);
+}
+.bauhaus-meter__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bauhaus-meter__value {
+  flex: 0 0 auto;
+  font-family: var(--bauhaus-font-mono);
+  font-size: var(--bauhaus-fs-13);
+  color: var(--bauhaus-text);
+}
+.bauhaus-meter__track {
+  width: 100%;
+  height: var(--bauhaus-meter-h);
+  overflow: hidden;
+}
+.bauhaus-meter__indicator {
+  height: 100%;
+  background: var(--bauhaus-meter-fill, var(--bauhaus-accent-fill));
+}
+.bauhaus-meter--success {
+  --bauhaus-meter-fill: var(--bauhaus-success);
+}
+.bauhaus-meter--warning {
+  --bauhaus-meter-fill: var(--bauhaus-warning);
+}
+.bauhaus-meter--danger {
+  --bauhaus-meter-fill: var(--bauhaus-danger);
+}

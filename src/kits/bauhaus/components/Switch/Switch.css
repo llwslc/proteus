@@ -1,0 +1,38 @@
+.bauhaus-switch {
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  width: var(--bauhaus-switch-w);
+  height: var(--bauhaus-switch-h);
+  padding: 0;
+  background: var(--bauhaus-off);
+  border: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+  border-radius: var(--bauhaus-r-control);
+  cursor: pointer;
+  transition: background var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-switch:focus-visible {
+  outline: none;
+  box-shadow: var(--bauhaus-ring);
+}
+.bauhaus-switch[data-checked] {
+  background: var(--bauhaus-primary);
+}
+.bauhaus-switch[data-disabled] {
+  opacity: var(--bauhaus-disabled-opacity);
+  cursor: not-allowed;
+}
+.bauhaus-switch__thumb {
+  position: absolute;
+  left: var(--bauhaus-space-1);
+  width: var(--bauhaus-switch-knob);
+  height: var(--bauhaus-switch-knob);
+  background: var(--bauhaus-ink);
+  border-radius: var(--bauhaus-r-round);
+  transition: transform var(--bauhaus-dur) var(--bauhaus-ease-out);
+}
+.bauhaus-switch[data-checked] .bauhaus-switch__thumb {
+  background: var(--bauhaus-on-fill);
+  transform: translateX(calc(var(--bauhaus-switch-w) - var(--bauhaus-switch-knob) - 2 * var(--bauhaus-stroke) - 2 * var(--bauhaus-space-1)));
+}

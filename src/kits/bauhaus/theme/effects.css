@@ -1,0 +1,298 @@
+/* PRIMARY — shared visual primitives & recipes. Flat fields, black strokes; colors via input vars. */
+
+/* ═══ Frame: one flat field inside a hard black stroke ═══ */
+.bauhaus-surface {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--bauhaus-surface-r, var(--bauhaus-r-control));
+  border: var(--bauhaus-surface-stroke, var(--bauhaus-stroke)) solid var(--bauhaus-surface-border, var(--bauhaus-ink));
+  background: var(--bauhaus-surface-fill, var(--bauhaus-surface));
+}
+
+/* ═══ Geometric legend / feedback marker ═══ */
+.bauhaus-marker {
+  display: inline-flex;
+  color: var(--bauhaus-marker-color, var(--bauhaus-primary));
+}
+
+/* ═══ Segmented box — ToggleGroup / Toolbar / Menubar ═══ */
+.bauhaus-seg {
+  display: inline-flex;
+  gap: var(--bauhaus-space-1);
+  align-items: center;
+  padding: var(--bauhaus-space-1);
+  border: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
+  background: var(--bauhaus-surface-inset);
+}
+.bauhaus-seg__btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  gap: var(--bauhaus-space-2);
+  align-items: center;
+  justify-content: center;
+  height: var(--bauhaus-seg-h);
+  padding: 0 var(--bauhaus-space-3);
+  border: 0;
+  background: none;
+  color: var(--bauhaus-text-dim);
+  font-family: var(--bauhaus-font);
+  font-weight: var(--bauhaus-fw-700);
+  font-size: var(--bauhaus-fs-11);
+  letter-spacing: var(--bauhaus-ls-2);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color var(--bauhaus-dur) var(--bauhaus-ease),
+    background var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-seg__btn :where(svg) {
+  font-size: var(--bauhaus-fs-18);
+}
+.bauhaus-seg__btn[data-pressed],
+.bauhaus-seg__btn[data-selected],
+.bauhaus-seg__btn[data-popup-open] {
+  background: var(--bauhaus-primary);
+  color: var(--bauhaus-on-fill);
+}
+.bauhaus-seg__btn:hover,
+.bauhaus-seg__btn[data-highlighted] {
+  background: var(--bauhaus-tint-soft);
+  color: var(--bauhaus-text-bright);
+}
+.bauhaus-seg__btn:focus-visible {
+  outline: var(--bauhaus-stroke) solid var(--bauhaus-primary);
+  outline-offset: calc(-1 * var(--bauhaus-stroke));
+}
+.bauhaus-seg__btn:disabled,
+.bauhaus-seg__btn[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--bauhaus-disabled-opacity);
+}
+@media (max-width: 768px) {
+  .bauhaus-seg {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* ═══ Dropdown surface + option rows ═══ */
+.bauhaus-popup {
+  --bauhaus-surface-fill: var(--bauhaus-surface-popup);
+  --bauhaus-surface-stroke: var(--bauhaus-stroke);
+}
+.bauhaus-popup-list {
+  box-sizing: border-box;
+  min-width: var(--bauhaus-popup-w);
+  max-height: var(--bauhaus-popup-h);
+  padding: var(--bauhaus-space-1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline: none;
+}
+.bauhaus-list-item {
+  display: flex;
+  gap: var(--bauhaus-space-2);
+  align-items: center;
+  padding: var(--bauhaus-space-2) var(--bauhaus-space-3);
+  color: var(--bauhaus-text);
+  font-family: var(--bauhaus-font);
+  font-size: var(--bauhaus-fs-15);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: background var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-list-item:hover,
+.bauhaus-list-item[data-highlighted],
+.bauhaus-list-item[data-popup-open] {
+  background: var(--bauhaus-tint-soft);
+}
+.bauhaus-list-item[data-selected] {
+  font-weight: var(--bauhaus-fw-700);
+  color: var(--bauhaus-primary);
+}
+.bauhaus-list-item[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--bauhaus-disabled-opacity);
+}
+.bauhaus-list-item__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.bauhaus-list-item__check {
+  flex: 0 0 auto;
+  display: inline-flex;
+  width: var(--bauhaus-fs-15);
+  color: var(--bauhaus-primary);
+}
+.bauhaus-list-item__chevron {
+  flex: 0 0 auto;
+  color: var(--bauhaus-text-dim);
+}
+.bauhaus-menu-sep {
+  height: var(--bauhaus-stroke-hair);
+  margin: var(--bauhaus-space-1) var(--bauhaus-space-2);
+  background: var(--bauhaus-ink);
+}
+
+/* ═══ Collapse — Accordion / Collapsible ═══ */
+.bauhaus-collapse-trigger {
+  display: flex;
+  gap: var(--bauhaus-space-3);
+  align-items: center;
+  width: 100%;
+  padding: var(--bauhaus-space-3) var(--bauhaus-space-4);
+  border: 0;
+  background: none;
+  color: var(--bauhaus-text);
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-collapse-trigger:hover {
+  color: var(--bauhaus-text-bright);
+}
+.bauhaus-collapse-marker {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--bauhaus-primary);
+  transition: transform var(--bauhaus-dur-slow) var(--bauhaus-ease);
+}
+.bauhaus-collapse-trigger[data-panel-open] .bauhaus-collapse-marker {
+  transform: rotate(45deg);
+}
+.bauhaus-collapse-title {
+  flex: 1;
+}
+.bauhaus-collapse-chevron {
+  flex: 0 0 auto;
+  color: var(--bauhaus-text-dim);
+  transition: transform var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-collapse-trigger[data-panel-open] .bauhaus-collapse-chevron {
+  color: var(--bauhaus-primary);
+  transform: rotate(180deg);
+}
+.bauhaus-collapse-panel {
+  overflow: hidden;
+  height: var(--collapsible-panel-height, var(--accordion-panel-height));
+  transition: height var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-collapse-panel[data-starting-style],
+.bauhaus-collapse-panel[data-ending-style] {
+  height: 0;
+}
+.bauhaus-collapse-content {
+  padding: 0 var(--bauhaus-space-4) var(--bauhaus-space-4) calc(var(--bauhaus-space-4) + var(--bauhaus-space-6));
+}
+
+/* ═══ Modal field — Dialog / AlertDialog / Drawer ═══ */
+.bauhaus-modal {
+  --bauhaus-surface-fill: var(--bauhaus-surface-modal);
+  --bauhaus-surface-stroke: var(--bauhaus-stroke-heavy);
+  --bauhaus-surface-r: var(--bauhaus-r-frame);
+  position: relative;
+  max-width: 100%;
+  padding: var(--bauhaus-modal-pad);
+}
+.bauhaus-modal__sigil {
+  font-size: var(--bauhaus-fs-22);
+}
+.bauhaus-modal-title {
+  display: flex;
+  gap: var(--bauhaus-space-3);
+  align-items: center;
+}
+.bauhaus-h2.bauhaus-modal-title {
+  margin: 0 var(--bauhaus-space-9) var(--bauhaus-space-2) 0;
+}
+.bauhaus-text.bauhaus-modal-desc {
+  margin: 0 0 var(--bauhaus-space-4);
+}
+.bauhaus-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bauhaus-space-3);
+}
+.bauhaus-modal-actions {
+  display: flex;
+  gap: var(--bauhaus-space-2);
+  justify-content: flex-end;
+  margin-top: var(--bauhaus-space-6);
+}
+.bauhaus-modal-close {
+  position: absolute;
+  top: var(--bauhaus-space-4);
+  right: var(--bauhaus-space-4);
+}
+
+/* ═══ Overlay mechanics ═══ */
+/* depth = a hard solid offset cast (no blur, no glow) on the un-clipped positioner */
+.bauhaus-lift {
+  z-index: var(--bauhaus-z-dropdown);
+  filter: var(--bauhaus-overlay-shadow, var(--bauhaus-cast-pop));
+}
+.bauhaus-lift--sm {
+  z-index: var(--bauhaus-z-tooltip);
+  --bauhaus-overlay-shadow: var(--bauhaus-cast-sm);
+}
+.bauhaus-lift--modal {
+  --bauhaus-overlay-shadow: var(--bauhaus-cast-modal);
+}
+/* entrance = a hard block-reveal wiping down from the top edge */
+.bauhaus-pop {
+  transition:
+    opacity var(--bauhaus-dur) var(--bauhaus-ease-out),
+    clip-path var(--bauhaus-dur) var(--bauhaus-ease-out);
+  clip-path: inset(0 0 0 0);
+}
+.bauhaus-pop[data-starting-style],
+.bauhaus-pop[data-ending-style] {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+}
+/* connector = a solid black square tack seated on the join (Base UI Arrow) */
+.bauhaus-connector {
+  width: var(--bauhaus-space-2);
+  height: var(--bauhaus-space-2);
+  background: var(--bauhaus-ink);
+}
+.bauhaus-connector[data-side="top"] {
+  bottom: calc(-1 * var(--bauhaus-space-1));
+}
+.bauhaus-connector[data-side="bottom"] {
+  top: calc(-1 * var(--bauhaus-space-1));
+}
+.bauhaus-connector[data-side="left"] {
+  right: calc(-1 * var(--bauhaus-space-1));
+}
+.bauhaus-connector[data-side="right"] {
+  left: calc(-1 * var(--bauhaus-space-1));
+}
+/* modal scaffold */
+.bauhaus-viewport {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 100dvh;
+  z-index: var(--bauhaus-z-overlay);
+  display: grid;
+  padding: var(--bauhaus-space-5);
+  overflow: auto;
+}
+.bauhaus-viewport > * {
+  margin: auto;
+}
+.bauhaus-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--bauhaus-z-backdrop);
+  background: var(--bauhaus-scrim);
+  transition: opacity var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-backdrop[data-starting-style],
+.bauhaus-backdrop[data-ending-style] {
+  opacity: 0;
+}

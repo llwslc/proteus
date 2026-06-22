@@ -1,0 +1,68 @@
+.bauhaus-avatar {
+  position: relative;
+  display: inline-flex;
+  width: var(--bauhaus-avatar-md);
+  height: var(--bauhaus-avatar-md);
+}
+.bauhaus-avatar--sm {
+  width: var(--bauhaus-avatar-sm);
+  height: var(--bauhaus-avatar-sm);
+}
+.bauhaus-avatar--lg {
+  width: var(--bauhaus-avatar-lg);
+  height: var(--bauhaus-avatar-lg);
+}
+.bauhaus-avatar__frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.bauhaus-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bauhaus-avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--bauhaus-primary);
+  font-family: var(--bauhaus-font-display);
+  font-size: var(--bauhaus-fs-15);
+  line-height: var(--bauhaus-lh-100);
+  text-transform: uppercase;
+  color: var(--bauhaus-on-fill);
+}
+.bauhaus-avatar--sm .bauhaus-avatar__fallback {
+  font-size: var(--bauhaus-fs-11);
+}
+.bauhaus-avatar--lg .bauhaus-avatar__fallback {
+  font-size: var(--bauhaus-fs-22);
+}
+.bauhaus-avatar__status {
+  position: absolute;
+  right: calc(-1 * var(--bauhaus-stroke));
+  bottom: calc(-1 * var(--bauhaus-stroke));
+  width: var(--bauhaus-radio-dot);
+  height: var(--bauhaus-radio-dot);
+  border: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+  border-radius: var(--bauhaus-r-round);
+}
+.bauhaus-avatar--lg .bauhaus-avatar__status {
+  width: var(--bauhaus-slider-thumb);
+  height: var(--bauhaus-slider-thumb);
+}
+.bauhaus-avatar__status--online {
+  background: var(--bauhaus-success);
+}
+.bauhaus-avatar__status--busy {
+  background: var(--bauhaus-danger);
+}
+.bauhaus-avatar__status--away {
+  background: var(--bauhaus-warning);
+}
+.bauhaus-avatar__status--offline {
+  background: var(--bauhaus-text-mute);
+}

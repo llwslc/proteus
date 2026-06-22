@@ -1,0 +1,54 @@
+/* PRIMARY — atmosphere: flat constructivist forms on warm paper. Zero texture. */
+
+body {
+  margin: 0;
+  background: var(--bauhaus-bg);
+  color: var(--bauhaus-text);
+  font-family: var(--bauhaus-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* large flat primary forms + one diagonal bar — no blur, no noise */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 4% 98%, rgba(26, 79, 214, 0.07) 0 23vw, transparent 23vw),
+    linear-gradient(rgba(245, 182, 18, 0.09), rgba(245, 182, 18, 0.09)) top 9vh right -4vw / 18vw 18vw no-repeat,
+    linear-gradient(118deg, transparent calc(62% - 1px), rgba(226, 49, 33, 0.07) 62% 63%, transparent calc(63% + 1px));
+}
+
+::selection {
+  background: var(--bauhaus-warning);
+  color: var(--bauhaus-on-warning);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bauhaus-ink) var(--bauhaus-paper-2);
+}
+::-webkit-scrollbar {
+  width: var(--bauhaus-scrollbar);
+  height: var(--bauhaus-scrollbar);
+}
+::-webkit-scrollbar-track {
+  background: var(--bauhaus-paper-2);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: var(--bauhaus-r-frame);
+  background: var(--bauhaus-ink);
+  border: 3px solid var(--bauhaus-paper-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

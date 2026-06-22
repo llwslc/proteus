@@ -1,0 +1,12 @@
+.bauhaus-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bauhaus-space-4);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.bauhaus-fieldset__legend {
+  margin-bottom: var(--bauhaus-space-1);
+  padding: 0;
+}

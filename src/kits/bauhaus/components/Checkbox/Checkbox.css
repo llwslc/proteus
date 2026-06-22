@@ -1,0 +1,35 @@
+.bauhaus-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bauhaus-space-2);
+  cursor: pointer;
+}
+.bauhaus-checkbox:has(.bauhaus-checkbox__box[data-disabled]) {
+  opacity: var(--bauhaus-disabled-opacity);
+  cursor: not-allowed;
+}
+.bauhaus-checkbox__box {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--bauhaus-checkbox-box);
+  height: var(--bauhaus-checkbox-box);
+  padding: 0;
+  cursor: inherit;
+  transition: background var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-checkbox__box:focus-visible {
+  outline: none;
+  box-shadow: var(--bauhaus-ring);
+}
+.bauhaus-checkbox__box[data-checked],
+.bauhaus-checkbox__box[data-indeterminate] {
+  --bauhaus-surface-fill: var(--bauhaus-primary);
+}
+.bauhaus-checkbox__mark {
+  display: inline-flex;
+  width: var(--bauhaus-fs-15);
+  height: var(--bauhaus-fs-15);
+  color: var(--bauhaus-on-fill);
+}

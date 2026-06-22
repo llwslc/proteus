@@ -1,0 +1,45 @@
+.bauhaus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bauhaus-space-1);
+  height: var(--bauhaus-badge-h);
+  padding: 0 var(--bauhaus-space-2);
+  border: var(--bauhaus-stroke) solid var(--bauhaus-ink);
+  border-radius: var(--bauhaus-r-chip);
+  font-family: var(--bauhaus-font);
+  font-size: var(--bauhaus-fs-11);
+  font-weight: var(--bauhaus-fw-700);
+  letter-spacing: var(--bauhaus-ls-2);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.bauhaus-badge__dot {
+  width: var(--bauhaus-radio-dot);
+  height: var(--bauhaus-radio-dot);
+  background: currentColor;
+  border-radius: var(--bauhaus-r-round);
+}
+.bauhaus-badge--primary {
+  background: var(--bauhaus-primary);
+  color: var(--bauhaus-on-fill);
+}
+.bauhaus-badge--secondary {
+  background: var(--bauhaus-secondary);
+  color: var(--bauhaus-on-fill);
+}
+.bauhaus-badge--success {
+  background: var(--bauhaus-success);
+  color: var(--bauhaus-on-fill);
+}
+.bauhaus-badge--warning {
+  background: var(--bauhaus-warning);
+  color: var(--bauhaus-on-warning);
+}
+.bauhaus-badge--danger {
+  background: var(--bauhaus-danger);
+  color: var(--bauhaus-on-fill);
+}
+.bauhaus-badge--neutral {
+  background: var(--bauhaus-surface);
+  color: var(--bauhaus-ink);
+}

@@ -1,0 +1,97 @@
+/* ── Drawer: full-screen viewport, side-driven plane, hard block-slide ── */
+.bauhaus-drawer__viewport {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  z-index: var(--bauhaus-z-overlay);
+  overflow: hidden;
+}
+.bauhaus-drawer__backdrop {
+  transition-duration: var(--bauhaus-dur-slow);
+}
+
+.bauhaus-drawer {
+  position: absolute;
+  outline: none;
+  transition: transform var(--bauhaus-dur-slow) var(--bauhaus-ease-out);
+}
+.bauhaus-drawer[data-swiping] {
+  transition: none;
+}
+
+.bauhaus-drawer__sheet {
+  --bauhaus-surface-fill: var(--bauhaus-surface-modal);
+  --bauhaus-surface-stroke: var(--bauhaus-stroke-heavy);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: var(--bauhaus-modal-pad);
+  overflow: hidden;
+  color: var(--bauhaus-text);
+  outline: none;
+}
+
+.bauhaus-drawer--right,
+.bauhaus-drawer--left {
+  top: 0;
+  height: 100%;
+  width: min(var(--bauhaus-drawer-w), 80%);
+  transform: translateX(var(--drawer-swipe-movement-x, 0px));
+}
+.bauhaus-drawer--right {
+  right: 0;
+}
+.bauhaus-drawer--left {
+  left: 0;
+}
+.bauhaus-drawer--top,
+.bauhaus-drawer--bottom {
+  left: 0;
+  width: 100%;
+  height: min(var(--bauhaus-drawer-h), 80%);
+  transform: translateY(var(--drawer-swipe-movement-y, 0px));
+}
+.bauhaus-drawer--top {
+  top: 0;
+}
+.bauhaus-drawer--bottom {
+  bottom: 0;
+}
+
+.bauhaus-drawer--right[data-starting-style],
+.bauhaus-drawer--right[data-ending-style] {
+  transform: translateX(100%);
+}
+.bauhaus-drawer--left[data-starting-style],
+.bauhaus-drawer--left[data-ending-style] {
+  transform: translateX(-100%);
+}
+.bauhaus-drawer--top[data-starting-style],
+.bauhaus-drawer--top[data-ending-style] {
+  transform: translateY(-100%);
+}
+.bauhaus-drawer--bottom[data-starting-style],
+.bauhaus-drawer--bottom[data-ending-style] {
+  transform: translateY(100%);
+}
+
+.bauhaus-drawer__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--bauhaus-space-1) var(--bauhaus-space-3);
+  margin: calc(-1 * var(--bauhaus-space-1)) calc(-1 * var(--bauhaus-space-3));
+}
+.bauhaus-drawer__sheet .bauhaus-modal-actions {
+  margin-top: auto;
+  padding-top: var(--bauhaus-space-5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bauhaus-drawer {
+    transition: none;
+  }
+}

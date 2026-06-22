@@ -1,0 +1,70 @@
+/* PRIMARY — Menu / Menubar / ContextMenu skin. Items compose .bauhaus-list-item. */
+
+/* ── Standalone Menu trigger: ghost Button + rotating chevron ── */
+.bauhaus-menu__trigger {
+  gap: var(--bauhaus-space-2);
+}
+.bauhaus-menu__trigger-label {
+  display: inline-flex;
+  align-items: center;
+}
+.bauhaus-menu__trigger-chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--bauhaus-text-dim);
+  transition: transform var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-menu__trigger[data-popup-open] .bauhaus-menu__trigger-chevron {
+  transform: rotate(180deg);
+  color: var(--bauhaus-primary);
+}
+
+/* ── Popup: align the option list to the menu footprint ── */
+.bauhaus-menu__positioner {
+  z-index: var(--bauhaus-z-menu);
+}
+.bauhaus-menu__popup {
+  min-width: var(--bauhaus-popup-w);
+}
+
+/* ── Item parts: icon, shortcut, submenu chevron ── */
+.bauhaus-menu-item__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: var(--bauhaus-fs-18);
+  color: var(--bauhaus-text-dim);
+}
+.bauhaus-menu-item__shortcut {
+  flex: 0 0 auto;
+  margin-left: var(--bauhaus-space-4);
+  font-family: var(--bauhaus-font-mono);
+  font-size: var(--bauhaus-fs-11);
+  letter-spacing: var(--bauhaus-ls-2);
+  color: var(--bauhaus-text-mute);
+}
+.bauhaus-list-item[data-highlighted] .bauhaus-menu-item__icon,
+.bauhaus-list-item:hover .bauhaus-menu-item__icon {
+  color: var(--bauhaus-primary);
+}
+
+/* ── Submenu trigger keeps its chevron lit while its popup is open ── */
+.bauhaus-menu-item__sub[data-popup-open] {
+  background: var(--bauhaus-tint-soft);
+  color: var(--bauhaus-text-bright);
+}
+.bauhaus-menu-item__sub[data-popup-open] .bauhaus-list-item__chevron {
+  color: var(--bauhaus-primary);
+}
+
+/* ── Danger item: red text across rest + highlighted, black grid intact ── */
+.bauhaus-menu-item--danger,
+.bauhaus-menu-item--danger .bauhaus-menu-item__icon,
+.bauhaus-menu-item--danger[data-highlighted],
+.bauhaus-menu-item--danger[data-highlighted] .bauhaus-menu-item__icon,
+.bauhaus-menu-item--danger:hover {
+  color: var(--bauhaus-danger-text);
+}
+.bauhaus-menu-item--danger[data-highlighted],
+.bauhaus-menu-item--danger:hover {
+  background: var(--bauhaus-danger-wash);
+}

@@ -1,0 +1,11 @@
+/* PRIMARY — ContextMenu skin. The trigger is an invisible zone wrapping children. */
+
+.bauhaus-context-zone {
+  background: var(--bauhaus-surface-zone);
+  border: var(--bauhaus-stroke) dashed var(--bauhaus-ink);
+  border-radius: var(--bauhaus-r-control);
+  transition: background var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-context-zone[data-popup-open] {
+  background: var(--bauhaus-tint);
+}

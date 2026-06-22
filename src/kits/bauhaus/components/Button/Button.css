@@ -1,0 +1,98 @@
+.bauhaus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bauhaus-space-2);
+  height: var(--bauhaus-control-h);
+  padding: 0 var(--bauhaus-space-4);
+  font-family: var(--bauhaus-font);
+  font-size: var(--bauhaus-fs-13);
+  font-weight: var(--bauhaus-fw-700);
+  letter-spacing: var(--bauhaus-ls-2);
+  text-transform: uppercase;
+  color: var(--bauhaus-on-fill);
+  cursor: pointer;
+  --bauhaus-surface-fill: var(--bauhaus-accent-surface);
+  transition:
+    box-shadow var(--bauhaus-dur) var(--bauhaus-ease),
+    background var(--bauhaus-dur) var(--bauhaus-ease),
+    color var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--bauhaus-fs-18);
+}
+.bauhaus-btn:hover {
+  box-shadow: var(--bauhaus-shadow-hard);
+}
+.bauhaus-btn:active {
+  box-shadow: none;
+}
+.bauhaus-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--bauhaus-ring);
+}
+.bauhaus-btn:disabled {
+  opacity: var(--bauhaus-disabled-opacity);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.bauhaus-btn--secondary {
+  --bauhaus-surface-fill: var(--bauhaus-secondary);
+}
+.bauhaus-btn--danger {
+  --bauhaus-surface-fill: var(--bauhaus-danger);
+}
+
+.bauhaus-btn--ghost {
+  --bauhaus-surface-fill: transparent;
+  color: var(--bauhaus-text);
+}
+.bauhaus-btn--ghost:hover {
+  --bauhaus-surface-fill: var(--bauhaus-ink-faint);
+  color: var(--bauhaus-text-bright);
+  box-shadow: none;
+}
+
+.bauhaus-btn--icon {
+  --bauhaus-surface-fill: var(--bauhaus-surface);
+  width: var(--bauhaus-button-icon);
+  height: var(--bauhaus-button-icon);
+  padding: 0;
+  color: var(--bauhaus-text);
+}
+.bauhaus-btn--icon .bauhaus-btn__icon,
+.bauhaus-btn--icon-ghost .bauhaus-btn__icon {
+  font-size: var(--bauhaus-fs-22);
+}
+.bauhaus-btn--icon:hover {
+  --bauhaus-surface-fill: var(--bauhaus-tint-soft);
+  color: var(--bauhaus-primary);
+  box-shadow: none;
+}
+
+.bauhaus-btn--icon-ghost {
+  width: var(--bauhaus-button-icon-ghost);
+  height: var(--bauhaus-button-icon-ghost);
+  padding: 0;
+  background: none;
+  color: var(--bauhaus-text-dim);
+}
+.bauhaus-btn--icon-ghost:hover {
+  background: var(--bauhaus-ink-faint);
+  color: var(--bauhaus-primary);
+  box-shadow: none;
+}
+
+.bauhaus-btn--sm {
+  height: var(--bauhaus-button-h-sm);
+  padding: 0 var(--bauhaus-space-3);
+  font-size: var(--bauhaus-fs-11);
+}
+.bauhaus-btn--lg {
+  height: var(--bauhaus-button-h-lg);
+  padding: 0 var(--bauhaus-space-5);
+  font-size: var(--bauhaus-fs-15);
+}

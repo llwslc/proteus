@@ -1,0 +1,9 @@
+/* PRIMARY — Menubar skin. Composes the segmented box; triggers have no chevron, menus drop down. */
+
+.bauhaus-menubar {
+  width: fit-content;
+}
+.bauhaus-menubar__trigger {
+  /* segmented chip via .bauhaus-seg__btn; menubar triggers carry no chevron */
+  cursor: pointer;
+}

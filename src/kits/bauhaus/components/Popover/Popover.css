@@ -1,0 +1,17 @@
+.bauhaus-popover {
+  box-sizing: border-box;
+  position: relative;
+  width: var(--bauhaus-popover-w);
+  padding: var(--bauhaus-space-4);
+  outline: none;
+}
+
+.bauhaus-popover__title {
+  margin: 0 var(--bauhaus-space-8) var(--bauhaus-space-2) 0;
+}
+
+.bauhaus-popover__close {
+  position: absolute;
+  top: var(--bauhaus-space-2);
+  right: var(--bauhaus-space-2);
+}

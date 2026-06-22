@@ -1,0 +1,50 @@
+.bauhaus-autocomplete {
+  display: flex;
+  align-items: center;
+  gap: var(--bauhaus-space-2);
+  height: var(--bauhaus-control-h);
+  padding: 0 var(--bauhaus-space-3);
+}
+.bauhaus-autocomplete:focus-within {
+  --bauhaus-surface-border: var(--bauhaus-primary);
+  box-shadow: var(--bauhaus-ring);
+}
+.bauhaus-autocomplete:has(.bauhaus-autocomplete__input:disabled) {
+  opacity: var(--bauhaus-disabled-opacity);
+}
+.bauhaus-autocomplete__label {
+  display: block;
+  margin-bottom: var(--bauhaus-space-2);
+}
+.bauhaus-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--bauhaus-font);
+  font-size: var(--bauhaus-fs-15);
+  color: var(--bauhaus-text);
+}
+.bauhaus-autocomplete__input::placeholder {
+  color: var(--bauhaus-text-mute);
+}
+.bauhaus-autocomplete__input:disabled {
+  cursor: not-allowed;
+}
+
+.bauhaus-autocomplete__popup {
+  min-width: var(--anchor-width);
+}
+.bauhaus-autocomplete__list:empty {
+  display: none;
+}
+.bauhaus-autocomplete__empty {
+  padding: var(--bauhaus-space-2) var(--bauhaus-space-3);
+  font-family: var(--bauhaus-font);
+  font-size: var(--bauhaus-fs-13);
+  color: var(--bauhaus-text-mute);
+}
+.bauhaus-autocomplete__empty:empty {
+  display: none;
+}

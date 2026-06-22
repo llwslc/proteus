@@ -32,6 +32,13 @@ export const KITS: KitDef[] = [
     app: () => import("./brass"),
     loader: () => import("./brass/Loader"),
   },
+  {
+    id: "bauhaus",
+    label: "PRIMARY",
+    tag: "Bauhaus · Constructivist",
+    app: () => import("./bauhaus"),
+    loader: () => import("./bauhaus/Loader"),
+  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;

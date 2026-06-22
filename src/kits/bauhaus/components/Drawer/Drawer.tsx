@@ -1,0 +1,101 @@
+import { Drawer as BaseDrawer } from "@base-ui/react/drawer";
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
+import { cx } from "../cx";
+import { Button, type ButtonProps } from "../Button";
+import { Square, Close } from "../icons";
+import "./Drawer.css";
+
+type ButtonVariant = NonNullable<ButtonProps["variant"]>;
+type ButtonSize = NonNullable<ButtonProps["size"]>;
+
+export type DrawerSide = "left" | "right" | "top" | "bottom";
+
+const SWIPE_DIRECTION: Record<DrawerSide, "left" | "right" | "up" | "down"> = {
+  left: "left",
+  right: "right",
+  top: "up",
+  bottom: "down",
+};
+
+export interface DrawerProps {
+  trigger: ReactElement;
+  title?: ReactNode;
+  description?: ReactNode;
+  children?: ReactNode;
+  footer?: ReactNode;
+  side?: DrawerSide;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+}
+
+export function Drawer({
+  trigger,
+  title,
+  description,
+  children,
+  footer,
+  side = "right",
+  open,
+  onOpenChange,
+  className,
+}: DrawerProps) {
+  return (
+    <BaseDrawer.Root open={open} onOpenChange={onOpenChange} swipeDirection={SWIPE_DIRECTION[side]}>
+      <BaseDrawer.Trigger render={trigger} />
+      <BaseDrawer.Portal>
+        <BaseDrawer.Backdrop className="bauhaus-backdrop bauhaus-drawer__backdrop" />
+        <BaseDrawer.Viewport className="bauhaus-drawer__viewport">
+          <BaseDrawer.Popup className={cx("bauhaus-drawer", `bauhaus-drawer--${side}`, className)}>
+            <BaseDrawer.Content className="bauhaus-surface bauhaus-drawer__sheet">
+              <BaseDrawer.Close
+                className="bauhaus-modal-close"
+                render={
+                  <Button variant="icon-ghost" aria-label="Close">
+                    <Close />
+                  </Button>
+                }
+              />
+              {title != null ? (
+                <BaseDrawer.Title className="bauhaus-h2 bauhaus-modal-title">
+                  <span className="bauhaus-modal__sigil" aria-hidden="true">
+                    <Square />
+                  </span>
+                  {title}
+                </BaseDrawer.Title>
+              ) : null}
+              {description != null ? (
+                <BaseDrawer.Description className="bauhaus-text bauhaus-modal-desc">{description}</BaseDrawer.Description>
+              ) : null}
+              {children != null ? <div className="bauhaus-modal-body bauhaus-drawer__body">{children}</div> : null}
+              {footer != null ? <div className="bauhaus-modal-actions">{footer}</div> : null}
+            </BaseDrawer.Content>
+          </BaseDrawer.Popup>
+        </BaseDrawer.Viewport>
+      </BaseDrawer.Portal>
+    </BaseDrawer.Root>
+  );
+}
+
+export type DrawerCloseVariant = ButtonVariant;
+
+export interface DrawerCloseProps
+  extends Omit<ComponentPropsWithoutRef<typeof BaseDrawer.Close>, "className" | "render"> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+  children?: ReactNode;
+}
+
+export function DrawerClose({ variant = "secondary", size = "md", className, children, ...props }: DrawerCloseProps) {
+  return (
+    <BaseDrawer.Close
+      render={
+        <Button variant={variant} size={size} className={className}>
+          {children}
+        </Button>
+      }
+      {...props}
+    />
+  );
+}

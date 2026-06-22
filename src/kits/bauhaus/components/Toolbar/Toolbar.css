@@ -1,0 +1,19 @@
+.bauhaus-toolbar {
+  width: fit-content;
+  max-width: 100%;
+}
+.bauhaus-seg__btn[aria-pressed="true"] {
+  background: var(--bauhaus-primary);
+  color: var(--bauhaus-on-fill);
+}
+.bauhaus-toolbar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bauhaus-space-1);
+}
+.bauhaus-toolbar__sep {
+  flex: 0 0 var(--bauhaus-stroke);
+  align-self: stretch;
+  margin: 0 var(--bauhaus-space-1);
+  background: var(--bauhaus-ink);
+}

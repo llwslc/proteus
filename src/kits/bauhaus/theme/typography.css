@@ -1,0 +1,54 @@
+/* PRIMARY — typography classes, decoupled from semantic tags. */
+
+.bauhaus-h1 {
+  margin: 0;
+  font-family: var(--bauhaus-font-display);
+  font-weight: var(--bauhaus-fw-400);
+  font-size: var(--bauhaus-fs-44);
+  line-height: var(--bauhaus-lh-100);
+  letter-spacing: var(--bauhaus-ls-1);
+  color: var(--bauhaus-text-bright);
+}
+.bauhaus-h1--accent {
+  color: var(--bauhaus-primary);
+  padding-bottom: var(--bauhaus-space-1);
+  border-bottom: var(--bauhaus-stroke-heavy) solid var(--bauhaus-warning);
+}
+
+.bauhaus-h2 {
+  margin: 0;
+  font-family: var(--bauhaus-font-display);
+  font-weight: var(--bauhaus-fw-400);
+  font-size: var(--bauhaus-fs-22);
+  line-height: var(--bauhaus-lh-130);
+  color: var(--bauhaus-text-bright);
+}
+
+.bauhaus-h3 {
+  margin: 0;
+  font-family: var(--bauhaus-font);
+  font-weight: var(--bauhaus-fw-700);
+  font-size: var(--bauhaus-fs-13);
+  line-height: var(--bauhaus-lh-130);
+  letter-spacing: var(--bauhaus-ls-4);
+  text-transform: uppercase;
+  color: var(--bauhaus-text-dim);
+}
+
+.bauhaus-text {
+  margin: 0;
+  font-family: var(--bauhaus-font);
+  font-weight: var(--bauhaus-fw-400);
+  font-size: var(--bauhaus-fs-15);
+  line-height: var(--bauhaus-lh-150);
+  color: var(--bauhaus-text-dim);
+}
+
+.bauhaus-cap {
+  font-family: var(--bauhaus-font);
+  font-weight: var(--bauhaus-fw-700);
+  font-size: var(--bauhaus-fs-11);
+  letter-spacing: var(--bauhaus-ls-4);
+  text-transform: uppercase;
+  color: var(--bauhaus-text-dim);
+}
