@@ -39,7 +39,7 @@
 - `body::before`：深渊青自底部上涌 + 灵液紫右上 + 血红左下三个径向，叠 `void→bg→stone` 竖直渐变。
 - `body::after`：两层光尘孢子，即 radial 圆点 140、220px，`abyss-drift` 40s 向上漂，径向遮罩。
 - 根元素 `::before`：四周暗角 vignette，radial、multiply；`::after`：feTurbulence 噪点 240px，overlay、.05。
-- `::selection` = glow-a30；全局滚动条 11px、圆角 thumb、glow-deep 渐变。
+- `::selection` = glow-a30；滚动条 11px、圆角 thumb、glow-deep 渐变。
 
 ## 5. 动效个性
 

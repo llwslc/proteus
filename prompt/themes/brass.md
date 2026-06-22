@@ -42,7 +42,7 @@
 - `body::before`：顶部琥珀仪表灯辉光 + 紫铜右下 + 铜绿左下三个径向，叠 `bg → bg-2` 竖直暖暗渐变。
 - `body::after`：极淡铆钉网格 + 缓漂蒸汽雾，`brass-steam` 30s 上飘，径向遮罩向下淡出。
 - 根元素 `::before` 是拉丝金属竖纹，repeating-linear 极淡，multiply；`::after` 是 feTurbulence 噪点 220px，overlay，.05，作陈旧金属颗粒。
-- `::selection` = tint-active；全局滚动条 11px，thumb 黄铜滚花渐变。
+- `::selection` = tint-active；滚动条 11px，thumb 黄铜滚花渐变。
 
 ## 5. 动效个性
 
