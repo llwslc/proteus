@@ -81,7 +81,6 @@
   color: var(--bauhaus-text-dim);
 }
 .bauhaus-btn--icon-ghost:not(:disabled):not([data-disabled]):hover {
-  background: var(--bauhaus-ink-faint);
   color: var(--bauhaus-primary);
   box-shadow: none;
 }
