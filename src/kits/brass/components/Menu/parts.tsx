@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Menu } from "@base-ui/react/menu";
+import { ScrollArea } from "../ScrollArea";
 import { cx } from "../cx";
 import { ChevronRight } from "../icons";
 
@@ -54,7 +55,7 @@ export function MenuSub({
       <Menu.Portal>
         <Menu.Positioner className="brass-lift" sideOffset={12}>
           <Menu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
-            {children}
+            <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>

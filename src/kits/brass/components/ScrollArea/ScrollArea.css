@@ -62,3 +62,19 @@
 .brass-scrollarea__thumb:hover {
   filter: var(--brass-glow-trigger);
 }
+
+.brass-scrollarea--popup {
+  overflow: visible;
+  border: 0;
+  background: none;
+}
+.brass-scrollarea--popup .brass-scrollarea__viewport {
+  max-height: min(var(--available-height), var(--brass-popup-h));
+  padding: 0;
+}
+.brass-scrollarea--popup .brass-scrollarea__viewport[data-has-overflow-y] {
+  padding-right: var(--brass-space-4);
+}
+.brass-scrollarea--popup .brass-scrollarea__bar {
+  opacity: 1;
+}

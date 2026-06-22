@@ -1,4 +1,5 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { Check, ChevronDown, Close, Search } from "../icons";
 import "./Combobox.css";
@@ -48,18 +49,20 @@ export function Combobox({
         <BaseCombobox.Positioner className="brass-lift" sideOffset={6}>
           <BaseCombobox.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-combobox__popup">
             <BaseCombobox.Empty className="brass-text brass-combobox__empty">{emptyText}</BaseCombobox.Empty>
-            <BaseCombobox.List>
-              {(item: string) => (
-                <BaseCombobox.Item key={item} value={item} className="brass-list-item">
-                  <span className="brass-list-item__text">{item}</span>
-                  <span className="brass-list-item__check">
-                    <BaseCombobox.ItemIndicator>
-                      <Check />
-                    </BaseCombobox.ItemIndicator>
-                  </span>
-                </BaseCombobox.Item>
-              )}
-            </BaseCombobox.List>
+            <ScrollArea variant="popup">
+              <BaseCombobox.List>
+                {(item: string) => (
+                  <BaseCombobox.Item key={item} value={item} className="brass-list-item">
+                    <span className="brass-list-item__text">{item}</span>
+                    <span className="brass-list-item__check">
+                      <BaseCombobox.ItemIndicator>
+                        <Check />
+                      </BaseCombobox.ItemIndicator>
+                    </span>
+                  </BaseCombobox.Item>
+                )}
+              </BaseCombobox.List>
+            </ScrollArea>
           </BaseCombobox.Popup>
         </BaseCombobox.Positioner>
       </BaseCombobox.Portal>

@@ -1,4 +1,5 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { cx } from "../cx";
 import { Close, Search } from "../icons";
@@ -42,13 +43,15 @@ export function Autocomplete({
             <BaseAutocomplete.Empty className="brass-text brass-autocomplete__empty">
               {emptyText}
             </BaseAutocomplete.Empty>
-            <BaseAutocomplete.List>
-              {(item: string) => (
-                <BaseAutocomplete.Item key={item} value={item} className="brass-list-item">
-                  <span className="brass-list-item__text">{item}</span>
-                </BaseAutocomplete.Item>
-              )}
-            </BaseAutocomplete.List>
+            <ScrollArea variant="popup">
+              <BaseAutocomplete.List>
+                {(item: string) => (
+                  <BaseAutocomplete.Item key={item} value={item} className="brass-list-item">
+                    <span className="brass-list-item__text">{item}</span>
+                  </BaseAutocomplete.Item>
+                )}
+              </BaseAutocomplete.List>
+            </ScrollArea>
           </BaseAutocomplete.Popup>
         </BaseAutocomplete.Positioner>
       </BaseAutocomplete.Portal>
