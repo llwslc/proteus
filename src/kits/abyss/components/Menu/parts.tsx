@@ -61,7 +61,7 @@ export function MenuSub({
           sideOffset={14}
         >
           <Menu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
-            {children}
+            <div className="abyss-menu__scroll">{children}</div>
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>

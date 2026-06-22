@@ -31,7 +31,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
           sideOffset={6}
         >
           <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
-            {children}
+            <div className="nova-menu__scroll">{children}</div>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

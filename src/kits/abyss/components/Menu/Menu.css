@@ -14,6 +14,11 @@
   padding: var(--abyss-space-2);
   outline: none;
 }
+.abyss-menu__scroll {
+  max-height: min(var(--available-height), var(--abyss-h-popup-list));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
 
 .abyss-menu__item {
   position: relative;

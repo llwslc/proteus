@@ -19,7 +19,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="abyss-elevation abyss-menu__positioner">
           <BaseContextMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
-            {children}
+            <div className="abyss-menu__scroll">{children}</div>
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>
       </BaseContextMenu.Portal>

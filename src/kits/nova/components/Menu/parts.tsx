@@ -63,7 +63,7 @@ export function MenuSub({
           sideOffset={10}
         >
           <Menu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
-            {children}
+            <div className="nova-menu__scroll">{children}</div>
           </Menu.Popup>
         </Menu.Positioner>
       </Menu.Portal>

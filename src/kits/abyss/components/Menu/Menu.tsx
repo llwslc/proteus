@@ -19,7 +19,7 @@ export function Menu({ trigger, children }: MenuProps) {
           sideOffset={6}
         >
           <BaseMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu__popup">
-            {children}
+            <div className="abyss-menu__scroll">{children}</div>
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

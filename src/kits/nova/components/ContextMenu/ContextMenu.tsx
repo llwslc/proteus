@@ -19,7 +19,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="nova-elevation nova-menu__positioner">
           <BaseContextMenu.Popup className="nova-surface nova-anim-pop nova-menu__popup">
-            {children}
+            <div className="nova-menu__scroll">{children}</div>
           </BaseContextMenu.Popup>
         </BaseContextMenu.Positioner>
       </BaseContextMenu.Portal>
