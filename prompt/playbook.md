@@ -9,7 +9,7 @@
 新 kit **消费**这层、不重定义（皮肤各异，契约共享）：
 
 - `panels.ts` —— 面板清单（分组 + `[id, title, code]`）。侧栏索引、区块顺序由它驱动；面板演示 JSX 各写各的、按 id 对应。区块副标 `sub` 是主题文案，就近内联。
-- `geometry.css` —— 外壳「各 kit 同值」几何（顶栏高、sticky 偏移、侧栏滚动盖），以 `--shell-*` 自定义属性供 `App.css` 引。
+- `geometry.css` —— 「各 kit 同值」几何，全走 `--shell-*`：外壳顶栏高、sticky 偏移、侧栏滚动盖（`App.css` 引），模态与抽屉宽高 `--shell-dialog-w` 等（各 kit 取别名为 `--<kit>-*` 用，见 core §4.2）。
 - 接线：`index.tsx` 引 `../../shared/geometry.css`；`App.tsx` 引 `../../shared/panels`。
 - 隔离：绝不 import 另一套 **kit**；**必须** import `src/shared/` 契约。`src/shared/` 无 `/components`，所有 gate 自动跳过它。
 
