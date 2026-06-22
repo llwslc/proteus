@@ -27,7 +27,7 @@
     border-color var(--brass-dur) var(--brass-ease),
     filter var(--brass-dur) var(--brass-ease);
 }
-.brass-radio:hover {
+.brass-radio:not(:disabled):not([data-disabled]):hover {
   border-color: var(--brass-primary);
 }
 .brass-radio:focus-visible {

@@ -168,6 +168,21 @@ const setKit = async (page, kit) => {
     }
     try {
       await setKit(d, kit);
+      await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
+      const sig = (el) => { const c = getComputedStyle(el); return [c.backgroundColor, c.color, c.boxShadow, c.borderTopColor, c.borderTopWidth, c.opacity, c.filter].join('|'); };
+      const restyled = [];
+      for (const h of await d.$$('button:disabled, [data-disabled]')) {
+        if (!(await h.isVisible().catch(() => false))) continue;
+        const rest = await h.evaluate(sig);
+        await h.hover({ force: true, timeout: 1000 }).catch(() => {});
+        await d.waitForTimeout(80);
+        if ((await h.evaluate(sig)) !== rest) restyled.push(await h.evaluate((el) => (el.getAttribute('class') || el.tagName).replace(/[a-z0-9]+-/, '').slice(0, 24)));
+        await d.mouse.move(3, 3);
+      }
+      if (restyled.length) out.push(`HIGH  ${kit}  ${restyled.length} disabled control(s) restyle on hover — guard :hover with :not(:disabled):not([data-disabled]): ${[...new Set(restyled)].join(', ')}`);
+    } catch (e) { out.push(`WARN  ${kit}  disabled-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    try {
+      await setKit(d, kit);
       const sb = await d.evaluate(() => {
         const hrefs = [...document.querySelectorAll('[class*="sidebar__link"]')]
           .map((a) => (a.getAttribute('href') || '').replace(/^#/, '')).filter(Boolean);

@@ -48,12 +48,12 @@
 .abyss-toggle::before {
   display: none;
 }
-.abyss-toggle:hover::before,
+.abyss-toggle:not(:disabled):not([data-disabled]):hover::before,
 .abyss-toggle:focus-visible::before,
 .abyss-toggle[data-pressed]::before {
   display: block;
 }
-.abyss-toggle:hover {
+.abyss-toggle:not(:disabled):not([data-disabled]):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a30);
   --abyss-frame-fill: var(--abyss-glow-soft);

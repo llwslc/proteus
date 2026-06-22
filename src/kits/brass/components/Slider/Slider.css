@@ -38,7 +38,7 @@
   height: var(--brass-slider-thumb);
   transition: filter var(--brass-dur) var(--brass-ease);
 }
-.brass-slider__thumb:hover,
+.brass-slider__thumb:not(:disabled):not([data-disabled]):hover,
 .brass-slider__thumb[data-dragging] {
   filter: var(--brass-glow-active);
 }

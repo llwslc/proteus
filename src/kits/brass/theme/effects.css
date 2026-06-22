@@ -253,7 +253,7 @@
 .brass-seg__btn :where(svg) {
   font-size: var(--brass-fs-17);
 }
-.brass-seg__btn:hover,
+.brass-seg__btn:not(:disabled):not([data-disabled]):hover,
 .brass-seg__btn[data-highlighted] {
   background: var(--brass-tint-soft);
   color: var(--brass-text-bright);
@@ -342,7 +342,7 @@
 .brass-tab :where(svg) {
   font-size: var(--brass-fs-17);
 }
-.brass-tab:hover {
+.brass-tab:not(:disabled):not([data-disabled]):hover {
   background: linear-gradient(180deg, transparent, var(--brass-tint-soft));
   color: var(--brass-text-bright);
 }

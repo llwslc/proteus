@@ -1,6 +1,6 @@
 ---
 name: kit-interact
-description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, a mobile shell header that bunches logo+status to one side once the nav hides, a left sidebar index that doesn't resolve to / match the panel set across kits, and an overlay title/desc cramped against the body (no padding). Run when accepting or QAing a kit, alongside kit-visual + kit-states.
+description: Dynamic INTERACTION gate for the theme kits — drives the components the way a user would (tap on mobile, pop a toast sequence, click a trigger) and asserts behavior that a static screenshot can't see. Catches overlays that don't open on touch, an overlay/dialog wider than the phone viewport, a page that scrolls sideways on mobile, a toast stack whose newest is hidden behind older ones, a trigger/link that scroll-jumps the page on click, a mobile shell header that bunches logo+status to one side once the nav hides, a left sidebar index that doesn't resolve to / match the panel set across kits, an overlay title/desc cramped against the body (no padding), and a disabled control that visibly restyles on hover (its `:hover` not guarded against the disabled state). Run when accepting or QAing a kit, alongside kit-visual + kit-states.
 ---
 
 # kit-interact
@@ -65,6 +65,14 @@ worse than none — an early version false-flagged 22 faults from state leakage)
   desc→body-element read false-reports 4px). Caught the recurring "title/desc has
   no padding" that kept being eyeballed; revert-tested: zeroing the brass
   modal-title bottom margin → 3 FAILs (dialog/alert/drawer).
+- **DISABLED inert to hover (HIGH)** — on desktop, force-hover every visible
+  disabled control (`button:disabled, [data-disabled]`); its computed style
+  (background/color/shadow/border/opacity/filter) must be unchanged. A change
+  means the `:hover` rule isn't guarded against `:disabled`/`[data-disabled]`,
+  so a disabled control animates on hover. Caught the bauhaus icon Button and
+  disabled toggles/tabs across every kit. Dynamic on purpose: a static
+  "unguarded `:hover`" grep is ~90% false positives — the siblings carry 26–40
+  unguarded hovers but only 2–4 actually restyle a disabled control.
 
 Pair with kit-visual (rendered geometry) + kit-states (rendered states):
 those photograph, this one *operates* the components.
