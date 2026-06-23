@@ -79,5 +79,5 @@ html::after {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--abyss-ink-strong) transparent;
+  scrollbar-color: var(--abyss-glow-deep) transparent;
 }

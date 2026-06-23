@@ -68,7 +68,7 @@
 .abyss-logo__words {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 7px;
 }
 .abyss-logo__text {
   font-size: 28px;
