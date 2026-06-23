@@ -32,7 +32,7 @@ body::before {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--bauhaus-ink) var(--bauhaus-paper-2);
+  scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-2);
 }
 
 @media (prefers-reduced-motion: reduce) {

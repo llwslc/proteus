@@ -43,7 +43,7 @@
 - `body`：暖纸 `bg`、`ink` 文字、Jost。
 - `body::before`：大尺度平涂构成——左下大群青正圆、右上原黄方块与朱红三角，极低 alpha `.05`–`.08`，再加一道对角 bar 给动势；无模糊、无噪点。
 - 零纹理：不加噪点、不加渐变氛围、不加辉光。
-- `::selection` = `warning` 原黄底 + `ink` 字；滚动条 12px，track 浅纸、thumb 纯黑实块、radius 0。
+- `::selection` = `warning` 原黄底 + `ink` 字；滚动条 12px，track 浅纸、thumb primary 蓝实块、radius 0。
 - `prefers-reduced-motion` 守卫关动画。
 
 ## 5. 动效个性

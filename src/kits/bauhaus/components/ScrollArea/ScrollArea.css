@@ -22,7 +22,7 @@
 }
 .bauhaus-scrollarea__thumb {
   width: 100%;
-  background: var(--bauhaus-ink);
+  background: var(--bauhaus-primary);
   border-radius: var(--bauhaus-r-control);
 }
 
