@@ -129,7 +129,7 @@
   --abyss-preview-w: 286px;
   --abyss-tooltip-w: 240px;
   --abyss-toast-w: 360px;
-  --abyss-popup-h: 264px;
+  --abyss-popup-h: calc(var(--abyss-control-h) * 7);
   --abyss-scrollarea-h: 200px;
 
   --abyss-autocomplete-min-w: 240px;

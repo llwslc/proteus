@@ -129,7 +129,7 @@
   --nova-preview-w: 286px;
   --nova-tooltip-w: 240px;
   --nova-toast-w: 360px;
-  --nova-popup-h: 264px;
+  --nova-popup-h: calc(var(--nova-control-h) * 7);
   --nova-scrollarea-h: 200px;
   --nova-avatar-sm: 34px;
   --nova-avatar-md: 46px;
