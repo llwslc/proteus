@@ -31,6 +31,7 @@
 - 描边走双层 frame，即 `.nova-surface`：外层背景 = 边框色 + clip-path，`::before` 内缩 1px 填表面；输入变量 `--nova-surface-clip` 默认 clip-9、`-fill` 默认 surface-popup、`-border` 默认 line-strong。
 - 辉光用 `filter: drop-shadow()` 跟随切角轮廓，挂不切角的外层 `.nova-elevation`，其输入 `--nova-overlay-shadow / -glow` 默认 shadow-popup、glow-popup。
 - 边框层级：页内 idle = `line`；浮层 = `line-strong`，即 surface 默认；状态升 `line-strong`、`primary`。
+- 浮层连接件 = 1px `line-strong` 青线 + 微辉，长度取 `--nova-overlay-gap` 跨缝连触发器。
 
 ## 4. 氛围层
 

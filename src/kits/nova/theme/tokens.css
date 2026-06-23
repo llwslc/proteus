@@ -128,6 +128,7 @@
   --nova-popover-w: 300px;
   --nova-preview-w: 286px;
   --nova-tooltip-w: 240px;
+  --nova-overlay-gap: 10px;
   --nova-toast-w: 360px;
   --nova-popup-h: calc(var(--nova-control-h) * 7);
   --nova-scrollarea-h: 200px;

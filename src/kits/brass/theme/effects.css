@@ -140,38 +140,33 @@
 /* ── Connector: 1px brass pipe stub (Base UI Arrow) ───── */
 .brass-connector {
   z-index: 2;
-  width: 9px;
-  height: 9px;
+  width: 0;
+  height: 0;
   color: var(--brass-primary);
 }
-.brass-connector::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  background: currentColor;
-}
-.brass-connector[data-side="top"]::before,
-.brass-connector[data-side="bottom"]::before {
-  width: 2px;
-  height: 9px;
-}
-.brass-connector[data-side="left"]::before,
-.brass-connector[data-side="right"]::before {
-  width: 9px;
-  height: 2px;
-}
 .brass-connector[data-side="top"] {
-  bottom: -9px;
+  bottom: -8px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid currentColor;
 }
 .brass-connector[data-side="bottom"] {
-  top: -9px;
+  top: -8px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 8px solid currentColor;
 }
 .brass-connector[data-side="left"] {
-  right: -9px;
+  right: -8px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 8px solid currentColor;
 }
 .brass-connector[data-side="right"] {
-  left: -9px;
+  left: -8px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 8px solid currentColor;
 }
 
 /* ── Modal viewport & backdrop (Dialog / AlertDialog) ─── */

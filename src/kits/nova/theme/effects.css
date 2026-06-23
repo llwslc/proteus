@@ -59,7 +59,7 @@
 .nova-connector {
   z-index: 2;
   width: 16px;
-  height: 8px;
+  height: var(--nova-overlay-gap);
 }
 .nova-connector::before {
   content: "";
@@ -72,19 +72,19 @@
   box-shadow: 0 0 6px var(--nova-primary);
 }
 .nova-connector[data-side="top"] {
-  bottom: -8px;
+  bottom: calc(-1 * var(--nova-overlay-gap));
 }
 .nova-connector[data-side="bottom"] {
-  top: -8px;
+  top: calc(-1 * var(--nova-overlay-gap));
 }
 .nova-connector[data-side="left"] {
-  right: -8px;
-  width: 8px;
+  right: calc(-1 * var(--nova-overlay-gap));
+  width: var(--nova-overlay-gap);
   height: 16px;
 }
 .nova-connector[data-side="right"] {
-  left: -8px;
-  width: 8px;
+  left: calc(-1 * var(--nova-overlay-gap));
+  width: var(--nova-overlay-gap);
   height: 16px;
 }
 .nova-connector[data-side="left"]::before,

@@ -254,23 +254,35 @@
   opacity: 0;
   clip-path: inset(0 0 100% 0);
 }
-/* connector = a solid black square tack seated on the join (Base UI Arrow) */
+/* connector = a solid black triangle notch pointing at the trigger (Base UI Arrow) */
 .bauhaus-connector {
-  width: var(--bauhaus-space-2);
-  height: var(--bauhaus-space-2);
-  background: var(--bauhaus-ink);
+  width: 0;
+  height: 0;
+  background: none;
 }
 .bauhaus-connector[data-side="top"] {
-  bottom: calc(-1 * var(--bauhaus-space-1));
+  bottom: calc(-1 * var(--bauhaus-space-2));
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: var(--bauhaus-space-2) solid var(--bauhaus-ink);
 }
 .bauhaus-connector[data-side="bottom"] {
-  top: calc(-1 * var(--bauhaus-space-1));
+  top: calc(-1 * var(--bauhaus-space-2));
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: var(--bauhaus-space-2) solid var(--bauhaus-ink);
 }
 .bauhaus-connector[data-side="left"] {
-  right: calc(-1 * var(--bauhaus-space-1));
+  right: calc(-1 * var(--bauhaus-space-2));
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: var(--bauhaus-space-2) solid var(--bauhaus-ink);
 }
 .bauhaus-connector[data-side="right"] {
-  left: calc(-1 * var(--bauhaus-space-1));
+  left: calc(-1 * var(--bauhaus-space-2));
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: var(--bauhaus-space-2) solid var(--bauhaus-ink);
 }
 /* modal scaffold */
 .bauhaus-viewport {
