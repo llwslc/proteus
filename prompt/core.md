@@ -143,7 +143,7 @@
 - **Avatar**：props `size`（`sm·md·lg`，默认 md）`·status`（`online·busy·away·offline`）；`Root > frame(裁剪) > [Image + Fallback] + Status 右下`。
 - **Badge**：props `tone`（`primary·secondary·success·warning·danger·neutral`）`·dot`；`[dot? + 文字]`，纯样式件。
 - **Toolbar**：分段条家族；ToolbarButton props `active·disabled`；手机横滚。
-- **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 挂 Viewport、非 Root**。`variant`（`panel·popup`）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体包 children、给弹层用——常驻条、满高、`data-has-overflow-y` 时 `padding-right` 让位（见锚定弹层滚动）。
+- **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 挂 Viewport、非 Root**。`variant`（`panel·popup`）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体包 children、给弹层用（见锚定弹层滚动、滚动条）。
 - **Separator**：props `orientation`（`horizontal·vertical`）`·label`；无标签 = BaseSeparator，有标签 = `线 + 文字/标记 + 线`；在会收缩的 flex 里加 `flex:0 0`。
 - **Panel**：props `title·meta` + 主题专属装饰 flag；`外框? > section > header[marker 左? + title + meta 右] + body + footer?`，header `:empty` 隐藏。
 

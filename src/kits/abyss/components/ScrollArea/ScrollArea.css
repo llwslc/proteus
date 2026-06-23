@@ -39,14 +39,6 @@
   );
 }
 
-.abyss-scrollarea .abyss-scrollarea__viewport {
-  scrollbar-width: none;
-}
-.abyss-scrollarea .abyss-scrollarea__viewport::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  display: none;
-}
 .abyss-scrollarea:focus-within {
   --abyss-frame-ink: var(--abyss-glow-a55);
 }
