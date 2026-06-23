@@ -77,8 +77,7 @@
   background: var(--brass-tint);
   color: var(--brass-text-bright);
 }
-.brass-numberfield__step:active,
-.brass-numberfield__step[data-pressed] {
+.brass-numberfield__step:active {
   background: var(--brass-tint-active);
 }
 .brass-numberfield__step:focus-visible {

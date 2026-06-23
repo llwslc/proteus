@@ -69,8 +69,7 @@
 .nova-btn:hover::after {
   background-position: 0 0;
 }
-.nova-btn:active,
-.nova-btn[data-pressed] {
+.nova-btn:active {
   transform: translateY(1px);
   transition-duration: 0s;
 }

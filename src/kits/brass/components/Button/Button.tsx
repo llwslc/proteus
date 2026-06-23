@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 import { Button as BaseButton } from "@base-ui/react/button";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
-import { usePress } from "../../../../shared/usePress";
 import "./Button.css";
 
 export type ButtonVariant =
@@ -24,7 +23,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   { variant = "primary", size = "md", icon, className, children, ...props },
   ref,
 ) {
-  const pressProps = usePress(props);
   return (
     <BaseButton
       ref={ref}
@@ -35,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         size !== "md" && `brass-btn--${size}`,
         className,
       )}
-      {...pressProps}
+      {...props}
     >
       {icon ? <span className="brass-btn__icon">{icon}</span> : null}
       {children}

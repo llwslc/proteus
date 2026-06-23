@@ -27,8 +27,7 @@
 .bauhaus-btn:not(:disabled):not([data-disabled]):hover {
   box-shadow: var(--bauhaus-shadow-hard);
 }
-.bauhaus-btn:active,
-.bauhaus-btn[data-pressed] {
+.bauhaus-btn:active {
   transform: translate(3px, 3px);
   box-shadow: none;
   transition-duration: 0s;

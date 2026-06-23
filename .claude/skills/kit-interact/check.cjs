@@ -183,34 +183,6 @@ const setKit = async (page, kit) => {
     } catch (e) { out.push(`WARN  ${kit}  disabled-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     try {
       await setKit(d, kit);
-      await d.addStyleTag({ content: '.shell-switch{display:none!important}' });
-      const press = await d.evaluate(async () => {
-        const sig = (el) => { const c = getComputedStyle(el); return [c.transform, c.backgroundColor, c.color, c.boxShadow, c.filter, c.opacity].join('|'); };
-        const frames = () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-        const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-        const label = (el) => (el.getAttribute('class') || el.tagName).replace(/[a-z0-9]+-/, '').slice(0, 22);
-        const dead = []; let stuck = null, tested = 0, first = true;
-        for (const el of document.querySelectorAll('#button button, #numberfield button')) {
-          const r = el.getBoundingClientRect(), c = getComputedStyle(el);
-          if (r.width < 6 || r.height < 6 || c.visibility === 'hidden' || +c.opacity < 0.01) continue;
-          if (el.disabled || el.getAttribute('aria-disabled') === 'true' || el.hasAttribute('data-disabled')) continue;
-          tested++;
-          const rest = sig(el);
-          const o = { bubbles: true, cancelable: true, pointerId: 1, pointerType: 'mouse', button: 0, isPrimary: true };
-          el.dispatchEvent(new PointerEvent('pointerdown', o));
-          el.dispatchEvent(new PointerEvent('pointerup', o));
-          await frames();
-          if (sig(el) === rest) { dead.push(label(el)); continue; }
-          if (first) { first = false; await wait(450); await frames(); if (sig(el) !== rest) stuck = label(el); }
-        }
-        return { dead, stuck, tested };
-      });
-      if (!press.tested) out.push(`WARN  ${kit}  press-latch: no press-buttons found (#button/#numberfield) — selector drift?`);
-      if (press.dead.length) out.push(`HIGH  ${kit}  ${press.dead.length} button(s) show NO press on a quick (sub-frame) tap — latch the press to [data-pressed] via usePress, not :active alone: ${[...new Set(press.dead)].join(', ')}`);
-      if (press.stuck) out.push(`HIGH  ${kit}  press stays stuck after release (${press.stuck}) — the [data-pressed] latch never clears`);
-    } catch (e) { out.push(`WARN  ${kit}  press-latch: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
-    try {
-      await setKit(d, kit);
       const sb = await d.evaluate(() => {
         const hrefs = [...document.querySelectorAll('[class*="sidebar__link"]')]
           .map((a) => (a.getAttribute('href') || '').replace(/^#/, '')).filter(Boolean);

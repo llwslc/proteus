@@ -71,8 +71,7 @@
   --abyss-frame-ink: var(--abyss-glow-a55);
   filter: drop-shadow(0 0 6px var(--abyss-glow-a55));
 }
-.abyss-numberfield__btn:active,
-.abyss-numberfield__btn[data-pressed] {
+.abyss-numberfield__btn:active {
   color: var(--abyss-text-bright);
 }
 .abyss-numberfield__btn:focus-visible {

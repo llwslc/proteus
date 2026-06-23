@@ -44,8 +44,7 @@
   background: var(--nova-highlight);
   color: var(--nova-text-bright);
 }
-.nova-numberfield__btn:active,
-.nova-numberfield__btn[data-pressed] {
+.nova-numberfield__btn:active {
   background: var(--nova-tint-active);
 }
 .nova-numberfield__btn:focus-visible {
