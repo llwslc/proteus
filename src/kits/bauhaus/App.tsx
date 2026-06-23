@@ -215,7 +215,7 @@ function Demo() {
             <path d="M13 21 23 21 18 13Z" />
           </svg>
           <span className="bauhaus-logo__text">
-            PRIMA<span className="bauhaus-logo__accent">RY</span>
+            PRI<span className="bauhaus-logo__accent">SM</span>
           </span>
           <span className="bauhaus-logo__sub">Bauhaus UI Kit</span>
         </div>
@@ -880,7 +880,7 @@ function Demo() {
 
           <footer className="bauhaus-footer">
             <span className="bauhaus-cap">
-              PRIMARY · built on @base-ui/react · themed via --bauhaus-* tokens · 2026
+              PRISM · built on @base-ui/react · themed via --bauhaus-* tokens · 2026
             </span>
           </footer>
         </main>

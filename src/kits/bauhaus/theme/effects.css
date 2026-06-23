@@ -1,5 +1,3 @@
-/* PRIMARY — shared visual primitives & recipes. Flat fields, black strokes; colors via input vars. */
-
 /* ═══ Frame: one flat field inside a hard black stroke ═══ */
 .bauhaus-surface {
   position: relative;

@@ -1,5 +1,3 @@
-/* PRIMARY — Menu / Menubar / ContextMenu skin. Items compose .bauhaus-list-item. */
-
 /* ── Standalone Menu trigger: ghost Button + rotating chevron ── */
 .bauhaus-menu__trigger {
   gap: var(--bauhaus-space-2);

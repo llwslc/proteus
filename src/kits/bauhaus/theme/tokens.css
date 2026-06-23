@@ -1,5 +1,3 @@
-/* PRIMARY — design tokens. Values only; components reference, never restate. */
-
 :root {
   /* ── Backgrounds & paper ───────────────────────────── */
   --bauhaus-bg: #ece5d3;

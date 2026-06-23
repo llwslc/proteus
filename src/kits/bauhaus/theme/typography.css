@@ -1,5 +1,3 @@
-/* PRIMARY — typography classes, decoupled from semantic tags. */
-
 .bauhaus-h1 {
   margin: 0;
   font-family: var(--bauhaus-font-display);

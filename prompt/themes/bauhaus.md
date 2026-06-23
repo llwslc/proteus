@@ -1,10 +1,10 @@
-# Theme · PRIMARY —— 包豪斯构成
+# Theme · PRISM —— 包豪斯构成
 
 > 配合 `core.md` + `app.md`，只填 core 的 token 契约与「留空给 theme」的部分。`<kit>` = `bauhaus`。
 
 ## 0. 身份
 
-- 代号 **PRIMARY**，包豪斯与风格派工坊：暖纸画布上的纯黑网格描边、三原色与黑的平涂色域、圆三角方基本形；模数硬网格加对角动势点亮版面，每个框是一道粗黑实线边；零纹理、零渐变、零辉光。
+- 代号 **PRISM**，包豪斯与风格派工坊：暖纸画布上的纯黑网格描边、三原色与黑的平涂色域、圆三角方基本形；模数硬网格加对角动势点亮版面，每个框是一道粗黑实线边；零纹理、零渐变、零辉光。
 
 ## 1. 调色板
 
@@ -80,7 +80,7 @@
 
 用于填充 `app.md` 的文案槽位。
 
-- logo：`PRIMARY`，SS 强调；副标 `BAUHAUS UI KIT`；状态徽章 `Composed`，走 success。
+- logo：`PRISM`，尾 `SM` 走 primary；副标 `BAUHAUS UI KIT`；状态徽章 `Composed`，走 success。
 - Hero：eyebrow `Form & Function · 37 Elements`；标题 `A **constructed** interface kit / built from primary forms`；描述关键词 flat primary fields、hard black strokes、basic forms、modular grid；单位词 `Elements`、`Token File`。
 - 区块组名：Inputs、Forms、Feedback、Overlays、Display、Foundations；demo 文案走工坊与构成词汇，如 Workshop、Composition、Module、Plane、Grid、Press、Stencil。
-- Footer：`PRIMARY · built on @base-ui/react · themed via --bauhaus-* tokens · 2026`。
+- Footer：`PRISM · built on @base-ui/react · themed via --bauhaus-* tokens · 2026`。

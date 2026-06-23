@@ -34,7 +34,7 @@ export const KITS: KitDef[] = [
   },
   {
     id: "bauhaus",
-    label: "PRIMARY",
+    label: "PRISM",
     tag: "Bauhaus · Constructivist",
     app: () => import("./bauhaus"),
     loader: () => import("./bauhaus/Loader"),
