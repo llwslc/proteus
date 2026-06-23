@@ -61,8 +61,8 @@
 - **anim-pop** —— 锚定浮层统一开合动效：`transform-origin` + 过渡，`[data-starting/ending-style]` = 淡入 + 轻微位移与缩放（位移量、缩放值 → theme）。
 - **connector** —— 1px 线连触发器，即 Base UI 的 Arrow：四方向定位、与弹层边框同色。不用三角。
 - **模态承载**：Dialog、AlertDialog 共用一个 viewport，`position:fixed; top/left/right:0; height:100dvh`——用 `left/right:0`、不用 `100vw`，`display:grid` + 子项 `margin:auto`、不用 `place-items:center`，`overflow:auto`；Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），Popup 按 `--<side>` 定位定尺寸、进出 `[data-starting/ending-style]` 离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四向都由 `side` 驱动定位。**模态宽高走 `src/shared` 的 `--shell-dialog-w`、`-alert-w`、`-drawer-w`、`-drawer-h`，各 kit 同值**；Popup 宽 `min(该值, 100%)`、drawer 左右 `min(宽, 80%)`；drawer body 滚动容器，padding + 等量负 margin 容下控件焦点提示。
-- **锚定弹层滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，`max-height` 取 `min(var(--available-height), var(--<kit>-popup-h))`，超出即滚，加 `overscroll-behavior: contain`；双层 frame 的 surface 把滚动挂在内层列表容器、框面本身不滚。
-- **滚动条**：页面与一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色，macOS 滑动才现）；需常驻显示的弹层控件列表（Select、Combobox、Autocomplete、Menu）把 `scrollbar-width`、`scrollbar-color` 重置为 `auto`、改走 `::-webkit-scrollbar`——同一元素这两套不可兼设。切角 clip 的 surface，把滚动容器底部内缩、让常驻条避开斜角。宽度、thumb 配色 → theme。
+- **锚定弹层滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）包其列表内容；上限 `min(var(--available-height), var(--<kit>-popup-h))` 挂该 viewport，`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`，超出即滚，`overscroll-behavior: contain`。框面／底板不自己当滚动器，只该 viewport 滚。
+- **滚动条**：页面与一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色，macOS 滑动才现）；弹层列表的常驻条即上条 ScrollArea「popup」型的自绘 DOM 条（viewport `scrollbar-width: none` 藏原生），跑满全高，仅 viewport 带 `data-has-overflow-y` 时给它 `padding-right` 让内容避开条。宽度、thumb 配色 → theme。
 
 ### 4.3 共享配方 class
 重复视觉块抽到 `effects.css`，颜色差异用 `--<kit>-*-color` 就近覆盖：头部扫光、标题、图例标记、模态背板、模态文本——title、desc、body、actions、关闭按钮、分隔线、折叠类 Accordion、Collapsible 共用的 trigger、marker、title、chevron、panel、content。
@@ -143,7 +143,7 @@
 - **Avatar**：props `size`（`sm·md·lg`，默认 md）`·status`（`online·busy·away·offline`）；`Root > frame(裁剪) > [Image + Fallback] + Status 右下`。
 - **Badge**：props `tone`（`primary·secondary·success·warning·danger·neutral`）`·dot`；`[dot? + 文字]`，纯样式件。
 - **Toolbar**：分段条家族；ToolbarButton props `active·disabled`；手机横滚。
-- **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 挂 Viewport、非 Root**。
+- **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 挂 Viewport、非 Root**。`variant`（`panel·popup`）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体包 children、给弹层用——常驻条、满高、`data-has-overflow-y` 时 `padding-right` 让位（见锚定弹层滚动）。
 - **Separator**：props `orientation`（`horizontal·vertical`）`·label`；无标签 = BaseSeparator，有标签 = `线 + 文字/标记 + 线`；在会收缩的 flex 里加 `flex:0 0`。
 - **Panel**：props `title·meta` + 主题专属装饰 flag；`外框? > section > header[marker 左? + title + meta 右] + body + footer?`，header `:empty` 隐藏。
 
