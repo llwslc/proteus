@@ -281,6 +281,22 @@
   border-bottom: var(--bauhaus-stroke) solid var(--bauhaus-ink);
   border-left: var(--bauhaus-stroke) solid var(--bauhaus-ink);
 }
+.bauhaus-connector[data-open] {
+  animation: bauhaus-connector-in var(--bauhaus-dur) var(--bauhaus-ease-out);
+}
+.bauhaus-connector[data-closed] {
+  animation: bauhaus-connector-out var(--bauhaus-dur) var(--bauhaus-ease-out) forwards;
+}
+@keyframes bauhaus-connector-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes bauhaus-connector-out {
+  to {
+    opacity: 0;
+  }
+}
 /* modal scaffold */
 .bauhaus-viewport {
   position: fixed;
