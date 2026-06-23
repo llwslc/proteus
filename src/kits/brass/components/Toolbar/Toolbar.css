@@ -1,4 +1,6 @@
 .brass-toolbar {
+  flex-wrap: wrap;
+  row-gap: var(--brass-space-2);
   max-width: 100%;
 }
 

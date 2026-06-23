@@ -1,4 +1,6 @@
 .bauhaus-toolbar {
+  flex-wrap: wrap;
+  row-gap: var(--bauhaus-space-2);
   width: fit-content;
   max-width: 100%;
 }
@@ -16,4 +18,10 @@
   align-self: stretch;
   margin: 0 var(--bauhaus-space-1);
   background: var(--bauhaus-ink);
+}
+
+@media (max-width: 768px) {
+  .bauhaus-toolbar__sep {
+    display: none;
+  }
 }
