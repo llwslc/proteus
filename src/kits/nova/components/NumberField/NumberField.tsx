@@ -3,6 +3,7 @@ import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
 import { useId, useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
 import { MinusIcon, PlusIcon } from "../icons";
+import { usePress } from "../../../../shared/usePress";
 import "./NumberField.css";
 
 export interface NumberFieldProps extends ComponentPropsWithoutRef<
@@ -25,6 +26,8 @@ export function NumberField({
   const value = controlled !== undefined ? controlled : tracked;
   const atMin = min != null && value != null && value <= min;
   const atMax = max != null && value != null && value >= max;
+  const dec = usePress();
+  const inc = usePress();
 
   return (
     <BaseNumberField.Root
@@ -40,11 +43,11 @@ export function NumberField({
       {...props}
     >
       <BaseNumberField.Group className="nova-numberfield__group">
-        <BaseNumberField.Decrement className="nova-numberfield__btn" disabled={atMin}>
+        <BaseNumberField.Decrement className="nova-numberfield__btn" disabled={atMin} {...dec}>
           <MinusIcon />
         </BaseNumberField.Decrement>
         <BaseNumberField.Input id={id ?? autoId} className="nova-numberfield__input" />
-        <BaseNumberField.Increment className="nova-numberfield__btn" disabled={atMax}>
+        <BaseNumberField.Increment className="nova-numberfield__btn" disabled={atMax} {...inc}>
           <PlusIcon />
         </BaseNumberField.Increment>
       </BaseNumberField.Group>

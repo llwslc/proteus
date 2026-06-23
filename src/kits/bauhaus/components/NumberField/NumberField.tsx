@@ -3,6 +3,7 @@ import { useId, useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
 import { cx } from "../cx";
 import { Plus, Minus } from "../icons";
+import { usePress } from "../../../../shared/usePress";
 import "./NumberField.css";
 
 export interface NumberFieldProps extends ComponentPropsWithoutRef<
@@ -25,6 +26,8 @@ export function NumberField({
   const value = controlled !== undefined ? controlled : tracked;
   const atMin = min != null && value != null && value <= min;
   const atMax = max != null && value != null && value >= max;
+  const dec = usePress();
+  const inc = usePress();
 
   return (
     <BaseNumberField.Root
@@ -44,6 +47,7 @@ export function NumberField({
         <BaseNumberField.Decrement
           className="bauhaus-surface bauhaus-numberfield__step"
           disabled={atMin}
+          {...dec}
         >
           <Minus />
         </BaseNumberField.Decrement>
@@ -51,6 +55,7 @@ export function NumberField({
         <BaseNumberField.Increment
           className="bauhaus-surface bauhaus-numberfield__step"
           disabled={atMax}
+          {...inc}
         >
           <Plus />
         </BaseNumberField.Increment>

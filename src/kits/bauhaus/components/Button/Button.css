@@ -16,7 +16,8 @@
   transition:
     box-shadow var(--bauhaus-dur) var(--bauhaus-ease),
     background var(--bauhaus-dur) var(--bauhaus-ease),
-    color var(--bauhaus-dur) var(--bauhaus-ease);
+    color var(--bauhaus-dur) var(--bauhaus-ease),
+    transform var(--bauhaus-dur) var(--bauhaus-ease);
 }
 .bauhaus-btn__icon {
   display: inline-flex;
@@ -26,8 +27,11 @@
 .bauhaus-btn:not(:disabled):not([data-disabled]):hover {
   box-shadow: var(--bauhaus-shadow-hard);
 }
-.bauhaus-btn:active {
+.bauhaus-btn:active,
+.bauhaus-btn[data-pressed] {
+  transform: translate(3px, 3px);
   box-shadow: none;
+  transition-duration: 0s;
 }
 .bauhaus-btn:focus-visible {
   outline: none;

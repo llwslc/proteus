@@ -31,8 +31,10 @@
   --brass-plate-bezel: var(--brass-bezel);
   color: var(--brass-text-bright);
 }
-.brass-btn:active {
+.brass-btn:active,
+.brass-btn[data-pressed] {
   transform: translateY(1px);
+  transition-duration: 0s;
 }
 .brass-btn:focus-visible {
   outline: none;

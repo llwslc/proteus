@@ -33,7 +33,8 @@
   z-index: 1;
   --bauhaus-surface-border: var(--bauhaus-primary);
 }
-.bauhaus-numberfield__step:active {
+.bauhaus-numberfield__step:active,
+.bauhaus-numberfield__step[data-pressed] {
   background: var(--bauhaus-primary);
   color: var(--bauhaus-on-fill);
 }

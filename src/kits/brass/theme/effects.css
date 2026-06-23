@@ -268,7 +268,7 @@
 .brass-seg__btn :where(svg) {
   font-size: var(--brass-fs-17);
 }
-.brass-seg__btn:not(:disabled):not([data-disabled]):hover,
+.brass-seg__btn:where(:not(:disabled):not([data-disabled])):hover,
 .brass-seg__btn[data-highlighted] {
   background: var(--brass-tint-soft);
   color: var(--brass-text-bright);

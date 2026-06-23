@@ -53,7 +53,7 @@
 .abyss-toggle[data-pressed]::before {
   display: block;
 }
-.abyss-toggle:not(:disabled):not([data-disabled]):hover {
+.abyss-toggle:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a30);
   --abyss-frame-fill: var(--abyss-glow-soft);

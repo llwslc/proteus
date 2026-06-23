@@ -37,7 +37,7 @@
     background var(--nova-dur) var(--nova-ease),
     box-shadow var(--nova-dur) var(--nova-ease);
 }
-.nova-toggle:not(:disabled):not([data-disabled]):hover {
+.nova-toggle:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--nova-text);
   background: var(--nova-tint-soft);
 }

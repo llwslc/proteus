@@ -2,6 +2,7 @@ import { cx } from "../cx";
 import { Button as BaseButton } from "@base-ui/react/button";
 import { forwardRef } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { usePress } from "../../../../shared/usePress";
 import "./Button.css";
 
 export type ButtonVariant =
@@ -23,11 +24,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   { variant = "primary", size = "md", icon, className, children, ...props },
   ref,
 ) {
+  const pressProps = usePress(props);
   return (
     <BaseButton
       ref={ref}
       className={cx("nova-btn", `nova-btn--${variant}`, `nova-btn--${size}`, className)}
-      {...props}
+      {...pressProps}
     >
       <span className="nova-btn__label">
         {icon ? <span className="nova-btn__icon">{icon}</span> : null}

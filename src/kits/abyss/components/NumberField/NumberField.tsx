@@ -3,6 +3,7 @@ import { NumberField as BaseNumberField } from "@base-ui/react/number-field";
 import { useId, useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
 import { MinusIcon, PlusIcon } from "../icons";
+import { usePress } from "../../../../shared/usePress";
 import "./NumberField.css";
 
 export interface NumberFieldProps extends ComponentPropsWithoutRef<
@@ -25,6 +26,8 @@ export function NumberField({
   const value = controlled !== undefined ? controlled : tracked;
   const atMin = min != null && value != null && value <= min;
   const atMax = max != null && value != null && value >= max;
+  const dec = usePress();
+  const inc = usePress();
 
   return (
     <BaseNumberField.Root
@@ -43,6 +46,7 @@ export function NumberField({
         <BaseNumberField.Decrement
           className="abyss-numberfield__btn abyss-frame"
           disabled={atMin}
+          {...dec}
         >
           <MinusIcon />
         </BaseNumberField.Decrement>
@@ -50,6 +54,7 @@ export function NumberField({
         <BaseNumberField.Increment
           className="abyss-numberfield__btn abyss-frame"
           disabled={atMax}
+          {...inc}
         >
           <PlusIcon />
         </BaseNumberField.Increment>
