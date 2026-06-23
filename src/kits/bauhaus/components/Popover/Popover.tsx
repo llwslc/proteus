@@ -20,7 +20,7 @@ export function Popover({
   title,
   side,
   align,
-  sideOffset,
+  sideOffset = 8,
   className,
   children,
 }: PopoverProps) {

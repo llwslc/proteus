@@ -22,6 +22,11 @@
   border: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
   background: var(--bauhaus-surface-inset);
 }
+.bauhaus-seg .bauhaus-seg {
+  padding: 0;
+  border: 0;
+  background: none;
+}
 .bauhaus-seg__btn {
   flex: 0 0 auto;
   display: inline-flex;
@@ -46,16 +51,16 @@
 .bauhaus-seg__btn :where(svg) {
   font-size: var(--bauhaus-fs-18);
 }
+.bauhaus-seg__btn:where(:not(:disabled):not([data-disabled])):hover,
+.bauhaus-seg__btn[data-highlighted] {
+  background: var(--bauhaus-tint-soft);
+  color: var(--bauhaus-text-bright);
+}
 .bauhaus-seg__btn[data-pressed],
 .bauhaus-seg__btn[data-selected],
 .bauhaus-seg__btn[data-popup-open] {
   background: var(--bauhaus-primary);
   color: var(--bauhaus-on-fill);
-}
-.bauhaus-seg__btn:not(:disabled):not([data-disabled]):hover,
-.bauhaus-seg__btn[data-highlighted] {
-  background: var(--bauhaus-tint-soft);
-  color: var(--bauhaus-text-bright);
 }
 .bauhaus-seg__btn:focus-visible {
   outline: var(--bauhaus-stroke) solid var(--bauhaus-primary);
@@ -220,8 +225,8 @@
 }
 .bauhaus-modal-close {
   position: absolute;
-  top: var(--bauhaus-space-4);
-  right: var(--bauhaus-space-4);
+  top: var(--bauhaus-modal-pad);
+  right: var(--bauhaus-modal-pad);
 }
 
 /* ═══ Overlay mechanics ═══ */
