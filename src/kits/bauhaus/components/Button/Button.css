@@ -28,7 +28,7 @@
   box-shadow: var(--bauhaus-shadow-hard);
 }
 .bauhaus-btn:active {
-  transform: translate(3px, 3px);
+  transform: translateY(1px);
   box-shadow: none;
   transition-duration: 0s;
 }
