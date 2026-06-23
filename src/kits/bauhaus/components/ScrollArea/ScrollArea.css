@@ -12,7 +12,6 @@
   width: var(--bauhaus-scrollbar);
   padding: 0;
   background: var(--bauhaus-track);
-  border-left: var(--bauhaus-stroke-hair) solid var(--bauhaus-ink);
   opacity: 0;
   transition: opacity var(--bauhaus-dur) var(--bauhaus-ease);
 }
