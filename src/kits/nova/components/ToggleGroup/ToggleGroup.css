@@ -8,17 +8,17 @@
   --nova-surface-clip: var(--nova-clip-9);
 }
 
-.nova-toggle-wrap {
+.nova-togglegroup__item {
   position: relative;
   z-index: 1;
   display: inline-flex;
   transition: filter var(--nova-dur) var(--nova-ease);
 }
-.nova-toggle-wrap:has(.nova-toggle[data-pressed]) {
+.nova-togglegroup__item:has(.nova-togglegroup__btn[data-pressed]) {
   filter: var(--nova-glow-active);
 }
 
-.nova-toggle {
+.nova-togglegroup__btn {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -37,19 +37,19 @@
     background var(--nova-dur) var(--nova-ease),
     box-shadow var(--nova-dur) var(--nova-ease);
 }
-.nova-toggle:where(:not(:disabled):not([data-disabled])):hover {
+.nova-togglegroup__btn:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--nova-text);
   background: var(--nova-tint-soft);
 }
-.nova-toggle[data-pressed] {
+.nova-togglegroup__btn[data-pressed] {
   color: var(--nova-on-primary);
   background: var(--nova-primary);
 }
-.nova-toggle:focus-visible {
+.nova-togglegroup__btn:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 1px var(--nova-line-strong);
 }
-.nova-toggle[data-disabled] {
+.nova-togglegroup__btn[data-disabled] {
   cursor: not-allowed;
   opacity: var(--nova-disabled-opacity);
 }

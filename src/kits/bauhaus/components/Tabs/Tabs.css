@@ -3,13 +3,13 @@
   flex-direction: column;
   gap: var(--bauhaus-space-4);
 }
-.bauhaus-tabs-list {
+.bauhaus-tabs__list {
   position: relative;
   display: flex;
   gap: var(--bauhaus-space-1);
   border-bottom: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
 }
-.bauhaus-tab {
+.bauhaus-tabs__tab {
   position: relative;
   display: inline-flex;
   gap: var(--bauhaus-space-2);
@@ -27,27 +27,27 @@
   cursor: pointer;
   transition: color var(--bauhaus-dur) var(--bauhaus-ease);
 }
-.bauhaus-tab__icon {
+.bauhaus-tabs__tab-icon {
   display: inline-flex;
   align-items: center;
   font-size: var(--bauhaus-fs-18);
 }
-.bauhaus-tab:where(:not(:disabled):not([data-disabled])):hover {
+.bauhaus-tabs__tab:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--bauhaus-text-bright);
 }
-.bauhaus-tab[data-active],
-.bauhaus-tab[data-popup-open] {
+.bauhaus-tabs__tab[data-active],
+.bauhaus-tabs__tab[data-popup-open] {
   color: var(--bauhaus-primary);
 }
-.bauhaus-tab:focus-visible {
+.bauhaus-tabs__tab:focus-visible {
   outline: var(--bauhaus-stroke) solid var(--bauhaus-primary);
   outline-offset: calc(-1 * var(--bauhaus-stroke));
 }
-.bauhaus-tab[data-disabled] {
+.bauhaus-tabs__tab[data-disabled] {
   cursor: not-allowed;
   opacity: var(--bauhaus-disabled-opacity);
 }
-.bauhaus-tab-indicator {
+.bauhaus-tabs__indicator {
   position: absolute;
   bottom: calc(-1 * var(--bauhaus-stroke-bold));
   left: var(--active-tab-left);
@@ -58,22 +58,22 @@
     left var(--bauhaus-dur) var(--bauhaus-ease-out),
     width var(--bauhaus-dur) var(--bauhaus-ease-out);
 }
-.bauhaus-tabs-panel {
+.bauhaus-tabs__panel {
   font-family: var(--bauhaus-font);
   font-size: var(--bauhaus-fs-15);
   line-height: var(--bauhaus-lh-150);
   color: var(--bauhaus-text-dim);
 }
-.bauhaus-tabs-panel:focus-visible {
+.bauhaus-tabs__panel:focus-visible {
   outline: none;
 }
 
 @media (max-width: 768px) {
-  .bauhaus-tabs-list {
+  .bauhaus-tabs__list {
     overflow-x: auto;
     flex-wrap: nowrap;
   }
-  .bauhaus-tab {
+  .bauhaus-tabs__tab {
     flex: 0 0 auto;
   }
 }

@@ -14,15 +14,15 @@
   z-index: 1;
 }
 
-.abyss-toggle-wrap {
+.abyss-togglegroup__item {
   display: inline-flex;
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-toggle-wrap:has([data-pressed]) {
+.abyss-togglegroup__item:has([data-pressed]) {
   filter: var(--abyss-aura-strong);
 }
 
-.abyss-toggle {
+.abyss-togglegroup__btn {
   --abyss-frame-ink: transparent;
   --abyss-frame-fill: transparent;
   --abyss-frame-round: var(--abyss-round-3);
@@ -45,32 +45,32 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-toggle::before {
+.abyss-togglegroup__btn::before {
   display: none;
 }
-.abyss-toggle:not(:disabled):not([data-disabled]):hover::before,
-.abyss-toggle:focus-visible::before,
-.abyss-toggle[data-pressed]::before {
+.abyss-togglegroup__btn:not(:disabled):not([data-disabled]):hover::before,
+.abyss-togglegroup__btn:focus-visible::before,
+.abyss-togglegroup__btn[data-pressed]::before {
   display: block;
 }
-.abyss-toggle:where(:not(:disabled):not([data-disabled])):hover {
+.abyss-togglegroup__btn:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a30);
   --abyss-frame-fill: var(--abyss-glow-soft);
 }
-.abyss-toggle:focus-visible {
+.abyss-togglegroup__btn:focus-visible {
   outline: none;
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
-.abyss-toggle[data-pressed] {
+.abyss-togglegroup__btn[data-pressed] {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a70);
   --abyss-frame-fill: var(--abyss-glow-soft);
   text-shadow: var(--abyss-text-aura);
 }
-.abyss-toggle[data-pressed]::after {
+.abyss-togglegroup__btn[data-pressed]::after {
   content: "";
   position: absolute;
   inset: 3px;
@@ -80,7 +80,7 @@
   filter: url(#abyss-edge);
   pointer-events: none;
 }
-.abyss-toggle[data-disabled] {
+.abyss-togglegroup__btn[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
   filter: grayscale(0.5);

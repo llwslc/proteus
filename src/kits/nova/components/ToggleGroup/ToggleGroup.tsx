@@ -16,8 +16,8 @@ export interface ToggleProps extends ComponentPropsWithoutRef<typeof BaseToggle>
 
 export function Toggle({ className, ...props }: ToggleProps) {
   return (
-    <span className="nova-toggle-wrap">
-      <BaseToggle className={cx("nova-toggle nova-cap", className)} {...props} />
+    <span className="nova-togglegroup__item">
+      <BaseToggle className={cx("nova-togglegroup__btn nova-cap", className)} {...props} />
     </span>
   );
 }
