@@ -256,14 +256,11 @@ function ToolbarDemo() {
         <ToolbarButton aria-label="Charge">
           <BoltIcon />
         </ToolbarButton>
-        <ToolbarButton aria-label="Purge">
-          <TrashIcon />
-        </ToolbarButton>
       </ToolbarGroup>
       <ToolbarSeparator />
       <ToolbarLink href="#">
         <SignalIcon />
-        <span className="demo-toolbar__label">Synced 2m ago</span>
+        <span className="demo-toolbar__label">Synced</span>
       </ToolbarLink>
     </Toolbar>
   );

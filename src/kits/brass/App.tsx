@@ -818,12 +818,9 @@ function Demo() {
                   <ToolbarButton aria-label="Read gauge">
                     <Gauge />
                   </ToolbarButton>
-                  <ToolbarButton aria-label="Open valve">
-                    <Valve />
-                  </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarLink href="#">Calibrated 5m ago</ToolbarLink>
+                <ToolbarLink href="#">Live</ToolbarLink>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">

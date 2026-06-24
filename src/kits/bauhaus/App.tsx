@@ -807,12 +807,9 @@ function Demo() {
                   <ToolbarButton aria-label="Circle">
                     <Circle />
                   </ToolbarButton>
-                  <ToolbarButton aria-label="Triangle">
-                    <Triangle />
-                  </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarLink href="#">Composed 2m ago</ToolbarLink>
+                <ToolbarLink href="#">Saved</ToolbarLink>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">

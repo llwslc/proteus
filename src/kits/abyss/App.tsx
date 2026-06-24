@@ -310,14 +310,11 @@ function ToolbarDemo() {
         <ToolbarButton aria-label="Mark">
           <KeyIcon />
         </ToolbarButton>
-        <ToolbarButton aria-label="Banish">
-          <TrashIcon />
-        </ToolbarButton>
       </ToolbarGroup>
       <ToolbarSeparator />
       <ToolbarLink href="#">
         <EyeIcon />
-        <span className="demo-toolbar__label">Watched 3m ago</span>
+        <span className="demo-toolbar__label">Watch</span>
       </ToolbarLink>
     </Toolbar>
   );
