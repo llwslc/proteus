@@ -144,7 +144,7 @@
 
 - **Avatar**：props `size`（`sm·md·lg`，默认 md）`·status`（`online·busy·away·offline`）；`Root > frame(裁剪) > [Image + Fallback] + Status 右下`。
 - **Badge**：props `tone`（`primary·secondary·success·warning·danger·neutral`）`·dot`；`[dot? + 文字]`，纯样式件。
-- **Toolbar**：分段条家族；ToolbarButton props `active·disabled`；手机横滚。
+- **Toolbar**：分段条家族；ToolbarButton props `active·disabled`；手机换行。
 - **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 挂 Viewport、非 Root**。`variant`（`panel·popup`）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体包 children、给弹层用（见锚定弹层滚动、滚动条）。
 - **Separator**：props `orientation`（`horizontal·vertical`）`·label`；无标签 = BaseSeparator，有标签 = `线 + 文字/标记 + 线`；在会收缩的 flex 里加 `flex:0 0`。
 - **Panel**：props `title·meta` + 主题专属装饰 flag；`外框? > section > header[marker 左? + title + meta 右] + body + footer?`，header `:empty` 隐藏。
@@ -161,7 +161,7 @@
 ## 8. 布局与响应式
 
 - inline-flex 分段控件 ToggleGroup 加 `width: fit-content`；细分隔条 1px 在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；跨列子项用 `grid-column: 1 / -1`、不用定值 `span N`。
-- **唯一断点 `768px`**，不另设别的断点。`≤768` 组件走手机态——Tabs、Toolbar 分段控件**横滚**、不换行。外壳、侧栏、演示页响应式 → `app.md`。
+- **唯一断点 `768px`**，不另设别的断点。`≤768` 组件走手机态——Tabs **横滚**不换行、Toolbar **换行**不横滚。外壳、侧栏、演示页响应式 → `app.md`。
 - **装饰层不得撑宽页面**：扫光走 `background-position`、移动块、不定态进度走 `top`/`left`；非用 `transform` 不可时，关进不带 `clip-path` 的 `overflow:hidden` 祖先。
 
 ## 9. 验收门
