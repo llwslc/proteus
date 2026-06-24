@@ -81,7 +81,7 @@
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
 - **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文；选中、开启态压过悬停（悬停的禁用守卫用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 形变瞬时到位（`transition-duration: 0s`），松手按 `dur` 回弹；具体形变 → theme。
-- **键盘焦点**：按控件族分焦点提示——布尔开关 Checkbox、Switch、Radio 整个控件一起亮，分段、触发条收一圈内描边（宽度 → theme），输入框聚焦时整框点亮、多块拼成的（如 NumberField 步进钮夹输入框）整组一起亮、不只亮中间一块；具体效果 → theme。可聚焦浮层 popup 加 `outline:none`。
+- **键盘焦点**：焦点提示按控件族定位——布尔开关 Checkbox、Switch、Radio 落在整个控件，分段、触发条落在按钮自身，输入框落在整框、多块拼成的（如 NumberField 步进钮夹输入框）落在整组、不只中间一块；具体形式与效果 → theme。可聚焦浮层 popup 加 `outline:none`。
 - **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`；整行单层 dim、opacity 不叠两层。
 
 ## 6. 组件
@@ -144,7 +144,7 @@
 
 - **Avatar**：props `size`（`sm·md·lg`，默认 md）`·status`（`online·busy·away·offline`）；`Root > frame(裁剪) > [Image + Fallback] + Status 右下`。
 - **Badge**：props `tone`（`primary·secondary·success·warning·danger·neutral`）`·dot`；`[dot? + 文字]`，纯样式件。
-- **Toolbar**：分段条家族；ToolbarButton props `active·disabled`；手机换行。
+- **Toolbar**：分段条家族、roving 焦点；`ToolbarButton` props `active·disabled`，可经 `render` 把别的控件托管成 toolbar 项（如 `ToggleGroup` 内 `ToolbarButton render={<Toggle/>}`）；另有 `ToolbarLink`；手机换行。
 - **ScrollArea**：`Root > Viewport + Scrollbar > Thumb`；**滚动上限 max-height 挂 Viewport、非 Root**。`variant`（`panel·popup`）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体包 children、给弹层用（见锚定弹层滚动、滚动条）。
 - **Separator**：props `orientation`（`horizontal·vertical`）`·label`；无标签 = BaseSeparator，有标签 = `线 + 文字/标记 + 线`；在会收缩的 flex 里加 `flex:0 0`。
 - **Panel**：props `title·meta` + 主题专属装饰 flag；`外框? > section > header[marker 左? + title + meta 右] + body + footer?`，header `:empty` 隐藏。

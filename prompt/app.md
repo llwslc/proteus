@@ -80,7 +80,7 @@
 
 - avatar：一行 4 个 Avatar，覆盖全部 4 种 status —— ① 图片 + online；② fallback + busy；③ fallback + away；④ fallback + 放大 + offline。
 - badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
-- toolbar：ToolbarGroup（3 图标钮）+ 分隔 + ToolbarGroup（3 个互斥 toggle、1 个 active）+ 分隔 + 1 个独立 ToolbarButton（图标 + 标签、可切）；共 7 钮、2 组、2 分隔。
+- toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮）+ 分隔 + ToolbarLink（末尾状态链接）；2 分隔。
 - scroll：ScrollArea（`maxHeight` 200），内嵌 12 行「时间 + 消息」列表。
 
 **Foundations**
