@@ -200,6 +200,9 @@
   filter: var(--bauhaus-overlay-shadow, var(--bauhaus-cast-modal));
 }
 .bauhaus-modal__sigil {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: var(--bauhaus-fs-22);
 }
 .bauhaus-modal-title {
