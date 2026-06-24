@@ -23,30 +23,30 @@ export interface NavigationMenuProps {
 
 export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
   return (
-    <BaseNav.Root className="bauhaus-nav">
-      <BaseNav.List className="bauhaus-nav__list">
+    <BaseNav.Root className="bauhaus-navmenu">
+      <BaseNav.List className="bauhaus-navmenu__list">
         {items.map((item, i) =>
           item.links ? (
             <BaseNav.Item key={i} value={String(i)}>
-              <BaseNav.Trigger className="bauhaus-nav__trigger">
+              <BaseNav.Trigger className="bauhaus-navmenu__trigger">
                 {item.label}
-                <span className="bauhaus-nav__chevron">
+                <span className="bauhaus-navmenu__chevron">
                   <ChevronDown />
                 </span>
               </BaseNav.Trigger>
-              <BaseNav.Content className="bauhaus-nav__content">
-                <div className="bauhaus-nav__grid">
+              <BaseNav.Content className="bauhaus-navmenu__content">
+                <div className="bauhaus-navmenu__grid">
                   {item.links.map((link, j) => (
                     <BaseNav.Link
                       key={j}
                       href={link.href ?? "#"}
-                      className="bauhaus-nav__link"
+                      className="bauhaus-navmenu__link"
                       onClick={onLinkClick}
                     >
                       {link.icon}
-                      <span className="bauhaus-nav__link-label">{link.label}</span>
+                      <span className="bauhaus-navmenu__link-label">{link.label}</span>
                       {link.description != null && (
-                        <span className="bauhaus-nav__link-desc">{link.description}</span>
+                        <span className="bauhaus-navmenu__link-desc">{link.description}</span>
                       )}
                     </BaseNav.Link>
                   ))}
@@ -56,7 +56,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
           ) : (
             <BaseNav.Item key={i} value={String(i)}>
               <BaseNav.Link
-                className="bauhaus-nav__trigger"
+                className="bauhaus-navmenu__trigger"
                 href={item.href ?? "#"}
                 onClick={onLinkClick}
               >
@@ -68,8 +68,8 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
       </BaseNav.List>
       <BaseNav.Portal>
         <BaseNav.Positioner className="bauhaus-lift" collisionPadding={16}>
-          <BaseNav.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-nav__popup">
-            <BaseNav.Viewport className="bauhaus-nav__viewport" />
+          <BaseNav.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-navmenu__popup">
+            <BaseNav.Viewport className="bauhaus-navmenu__viewport" />
           </BaseNav.Popup>
         </BaseNav.Positioner>
       </BaseNav.Portal>

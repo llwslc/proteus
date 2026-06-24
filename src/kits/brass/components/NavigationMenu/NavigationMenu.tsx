@@ -23,30 +23,30 @@ export interface NavigationMenuProps {
 
 export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
   return (
-    <BaseNav.Root className="brass-nav">
-      <BaseNav.List className="brass-nav-list">
+    <BaseNav.Root className="brass-navmenu">
+      <BaseNav.List className="brass-navmenu__list">
         {items.map((item, i) =>
           item.links ? (
-            <BaseNav.Item key={i} className="brass-nav-item">
-              <BaseNav.Trigger className="brass-nav-trigger">
+            <BaseNav.Item key={i} className="brass-navmenu__item">
+              <BaseNav.Trigger className="brass-navmenu__trigger">
                 {item.label}
-                <BaseNav.Icon className="brass-nav-trigger__icon">
+                <BaseNav.Icon className="brass-navmenu__trigger-icon">
                   <ChevronDown />
                 </BaseNav.Icon>
               </BaseNav.Trigger>
-              <BaseNav.Content className="brass-nav-content">
+              <BaseNav.Content className="brass-navmenu__content">
                 {item.links.map((link, j) => (
                   <BaseNav.Link
                     key={j}
-                    className="brass-list-item brass-nav-link"
+                    className="brass-list-item brass-navmenu__link"
                     href={link.href ?? "#"}
                     onClick={onLinkClick}
                   >
                     {link.icon && <span className="brass-list-item__check">{link.icon}</span>}
-                    <span className="brass-nav-link__body">
+                    <span className="brass-navmenu__link-body">
                       <span className="brass-list-item__text">{link.label}</span>
                       {link.description && (
-                        <span className="brass-nav-link__desc">{link.description}</span>
+                        <span className="brass-navmenu__link-desc">{link.description}</span>
                       )}
                     </span>
                   </BaseNav.Link>
@@ -54,8 +54,8 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
               </BaseNav.Content>
             </BaseNav.Item>
           ) : (
-            <BaseNav.Item key={i} className="brass-nav-item">
-              <BaseNav.Link className="brass-nav-trigger" href={item.href ?? "#"} onClick={onLinkClick}>
+            <BaseNav.Item key={i} className="brass-navmenu__item">
+              <BaseNav.Link className="brass-navmenu__trigger" href={item.href ?? "#"} onClick={onLinkClick}>
                 {item.label}
               </BaseNav.Link>
             </BaseNav.Item>
@@ -64,9 +64,9 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
       </BaseNav.List>
 
       <BaseNav.Portal>
-        <BaseNav.Positioner className="brass-lift brass-nav-positioner" sideOffset={8} collisionPadding={16}>
-          <BaseNav.Popup className="brass-plate brass-pop brass-popup brass-nav-popup">
-            <BaseNav.Viewport className="brass-nav-viewport" />
+        <BaseNav.Positioner className="brass-lift brass-navmenu__positioner" sideOffset={8} collisionPadding={16}>
+          <BaseNav.Popup className="brass-plate brass-pop brass-popup brass-navmenu__popup">
+            <BaseNav.Viewport className="brass-navmenu__viewport" />
           </BaseNav.Popup>
         </BaseNav.Positioner>
       </BaseNav.Portal>

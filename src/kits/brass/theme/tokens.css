@@ -176,7 +176,7 @@
   --brass-overlay-gap: 8px;
   --brass-popover-w: 284px;
   --brass-preview-w: 320px;
-  --brass-nav-w: 440px;
+  --brass-navmenu-w: 440px;
   --brass-dialog-w: var(--shell-dialog-w);
   --brass-alert-w: var(--shell-alert-w);
   --brass-drawer-w: var(--shell-drawer-w);
