@@ -176,7 +176,19 @@
   .nova-navmenu__list {
     overflow-x: auto;
     flex-wrap: nowrap;
-    scrollbar-width: none;
+    scrollbar-width: auto;
+  }
+  .nova-navmenu__list::-webkit-scrollbar {
+    height: 6px;
+  }
+  .nova-navmenu__list::-webkit-scrollbar-thumb {
+    background: var(--nova-line-strong);
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    .nova-navmenu__list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--nova-line-strong) transparent;
+    }
   }
   .nova-navmenu__list > * {
     flex: 0 0 auto;

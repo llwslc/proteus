@@ -124,7 +124,19 @@
   .bauhaus-navmenu__list {
     overflow-x: auto;
     flex-wrap: nowrap;
-    scrollbar-width: none;
+    scrollbar-width: auto;
+  }
+  .bauhaus-navmenu__list::-webkit-scrollbar {
+    height: 6px;
+  }
+  .bauhaus-navmenu__list::-webkit-scrollbar-thumb {
+    background: var(--bauhaus-primary);
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    .bauhaus-navmenu__list {
+      scrollbar-width: thin;
+      scrollbar-color: var(--bauhaus-primary) var(--bauhaus-paper-raised);
+    }
   }
   .bauhaus-navmenu__list > * {
     flex: 0 0 auto;
