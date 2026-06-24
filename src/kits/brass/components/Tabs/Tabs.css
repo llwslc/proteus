@@ -11,6 +11,7 @@
 @media (max-width: 768px) {
   .brass-tabs__rail {
     overflow-x: auto;
+    scrollbar-width: none;
   }
   .brass-tabs-list {
     width: max-content;

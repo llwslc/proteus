@@ -124,6 +124,7 @@
   .bauhaus-navmenu__list {
     overflow-x: auto;
     flex-wrap: nowrap;
+    scrollbar-width: none;
   }
   .bauhaus-navmenu__list > * {
     flex: 0 0 auto;

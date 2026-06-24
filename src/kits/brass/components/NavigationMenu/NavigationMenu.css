@@ -145,6 +145,7 @@
     max-width: 100%;
     overflow-x: auto;
     flex-wrap: nowrap;
+    scrollbar-width: none;
   }
   .brass-navmenu__item {
     flex: 0 0 auto;
