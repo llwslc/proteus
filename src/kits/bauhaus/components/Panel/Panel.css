@@ -35,3 +35,6 @@
   gap: var(--bauhaus-space-4);
   padding: var(--bauhaus-space-5);
 }
+.bauhaus-panel__body > button {
+  align-self: flex-start;
+}
