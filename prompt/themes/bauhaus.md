@@ -10,20 +10,20 @@
 
 - 背景：`base #ece5d3`，暖纸画布。
 - 纸面：`paper #f7f3e8`、`paper-raised #efe9d8`，面板与浮层的实色纸底，比 `base` 亮，浮起为卡片。
-- 五个强调家族，各配 `-deep` 暗档：primary 群青蓝 `#1a4fd6 / #11317f`，secondary 墨黑 `#1b1b1b / #000000`，success 草绿 `#2f9e44 / #1c6b2e`，warning 原黄 `#f5b612 / #a8760a`，danger 朱红 `#e23121 / #9e1b10`。
+- 五个强调家族，warning 配 `-deep` 暗档：primary 群青蓝 `#1a4fd6`，secondary 墨黑 `#1b1b1b`，success 草绿 `#2f9e44`，warning 原黄 `#f5b612 / #a8760a`，danger 朱红 `#e23121`。
 - 文本走纸上墨：`text #211d15`、`-bright #050505` 纯黑高反差、`-dim #5c5647`、`-mute #918a76`。
 - 两档反色前景：`on-fill #f7f3e8` 纸白，压在蓝、红、绿、黑实填上；`on-warning #16140f` 墨黑，压在原黄实填上。
 - 两条复用强调填充，**平涂无渐变**：`accent-surface` = 实色 `primary`，点亮表面；`accent-fill` = 实色 `primary`，方向指示条。
-- primary alpha 阶梯：`tint-soft .1 · tint .16 · tint-active .24`，悬停与激活蓝 wash。新蓝 alpha 先并入阶梯。
-- 另立 alpha 家族：`ink-faint .06` 给 ghost hover 墨 wash；success `-wash .12`；warning `-wash .14`；danger 一组 `-fill .5 / -wash .12 / -text #7c1209`。
+- primary alpha 阶梯：`tint-soft .1 · tint .16`，悬停与激活蓝 wash。新蓝 alpha 先并入阶梯。
+- 另立 alpha 家族：`ink-faint .06` 给 ghost hover 墨 wash；danger `-wash .12 / -text #7c1209`。
 - 中性与效果色：`off #ddd5c0` 关态轨呈浅暖灰；`track #e2dbc9` 未填充轨。
 - 表面：`surface` = `paper`、`surface-popup` 实纸、`surface-modal` 纯纸 `#fbf8ef`、`surface-inset #e8e1ce` 凹陷浅纸即段箱与 OTP 底、`surface-zone` 右键区浅蓝 tint；`scrim` 墨 `.5` 平涂背板。
-- 描边与投影：全局描边恒 `ink #141414` 纯黑；投影走**硬切偏移实影**——随轮廓的 drop-shadow `cast-pop` 5px·`cast-modal` 8px·`cast-sm` 3px，皆 `Npx Npx 0 ink`、无模糊无辉光；矩形硬影 `shadow-hard` 给 chip、旋钮；焦点环 `ring` = 纸白间隙 + 蓝外环；文字强调、选中提示取 `primary` 色。
+- 描边与投影：全局描边恒 `ink #141414` 纯黑；投影走**硬切偏移实影**——随轮廓的 drop-shadow `cast-pop` 5px·`cast-modal` 8px·`cast-sm` 3px，皆 `Npx Npx 0 ink`、无模糊无辉光；矩形硬影 `shadow-hard` 给按钮静态；焦点环 `ring` = 纸白间隙 + 蓝外环；文字强调、选中提示取 `primary` 色。
 
 ## 2. 字体与排版
 
 - **Jost** 作 body 几何无衬线、**Archivo Black** 作 display 粗黑展示体、**DM Mono** 作数值刻度即 mono。
-- 尺度档：字号 `fs-11 / 13 / 15 / 18 / 22 / 30 / 44`，字距 `ls-1 0 / -2 .03em / -3 .1em / -4 .2em`，行高 `lh-100 / 130 / 150`，字重 `fw-400 / 500 / 700`。
+- 尺度档：字号 `fs-11 / 13 / 15 / 18 / 22 / 44`，字距 `ls-1 0 / -2 .03em / -4 .2em`，行高 `lh-100 / 130 / 150`，字重 `fw-400 / 500 / 700`。
 - 标题三档：`h1` = display · fs-44 · lh-100 · bright 纯黑；`h2` = display · fs-22 · lh-130 · bright；`h3` = Jost · fs-13 · 大写 · ls-4 · fw-700 · dim，几何小节标签；正文 `text` = Jost · fs-15 · lh-150 · dim；`h1--accent` 修饰 = primary 蓝 + 底部 `stroke-heavy` 原黄横杠。
 - 字段 caption 有独立类 **`.bauhaus-cap`**，即 Jost · fs-11 · 大写 · ls-4 · fw-700 · dim，几何标签，组件统一引用；数值就近用 mono。
 
@@ -31,7 +31,7 @@
 
 - 形状 = **锐角矩形 + 正圆**，无 clip-path、无圆角矩形过渡。半径阶梯二元：`--bauhaus-r-frame / -control / -chip` 全 `0`，硬网格锐角；`--bauhaus-r-round 999px` 给正圆即 Radio、Switch 旋钮、状态点、圆形 marker；组件不裸写 radius。
 - 尺度走**描边粗细**而非圆角，阶梯 `--bauhaus-stroke-hair 1 / -default 2 / -bold 3 / -heavy 4`，按角色选：细分隔 = hair，控件与容器 = default，面板与段箱 = bold，Dialog、AlertDialog、Drawer、Hero = heavy；组件不裸写 border-width。
-- 浮层连接件 = 纸面填充、`ink` 描边的三角尾，尖端指向触发器，随弹层同步淡入淡出。
+- 浮层连接件 = 旋转方块作纸面三角尾、两边 `ink` 描边，尖端指向触发器，随弹层同步淡入淡出。
 - 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接走 CSS `border`，无双层 `::before`、无 bevel、无渐变。
 - 边框层级：页内 idle 与浮层一律 `ink` 纯黑，统一黑网格；状态升靠**加色**——焦点蓝环、选中实填；语义变体改 FILL 色、border 恒黑。
 - 抬升：硬切偏移实影 drop-shadow 挂浮层自身（弹层、模态）、不挂 positioner，入场 clip-path 在投影侧留出、不裁影；输入变量 `--bauhaus-overlay-shadow`，默认 `cast-pop`、模态 `cast-modal`、Tooltip `cast-sm`；`.bauhaus-lift` 仅作 z 档。无辉光层。
@@ -42,14 +42,14 @@
 定义在 `global.css`。
 
 - `body`：暖纸 `base`、`ink` 文字、Jost。
-- `body::before`：大尺度平涂构成——左下大群青正圆、右上原黄方块与朱红三角，极低 alpha `.05`–`.08`，再加一道对角 bar 给动势；无模糊、无噪点。
+- `body::before`：大尺度平涂构成——左下大群青正圆、右上原黄方块，极低 alpha `.07`–`.09`，再加一道朱红对角 bar 给动势；无模糊、无噪点。
 - 零纹理：不加噪点、不加渐变氛围、不加辉光。
-- `::selection` = `warning` 原黄底 + `ink` 字；滚动条 12px，track 浅纸、thumb primary 蓝实块、radius 0。
+- `::selection` = `warning` 原黄底 + `ink` 字；滚动条走标准细条 `scrollbar-width: thin`、track 浅纸 `paper-raised`、thumb `primary` 蓝。
 - `prefers-reduced-motion` 守卫关动画。
 
 ## 5. 动效个性
 
-- `dur .16s / -slow .34s`，`ease (0.2, 0, 0, 1)` 硬落定；`ease-out (0.16, 1, 0.3, 1)` 给块面滑移这类大位移；加 `dur-sweep`、`dur-spin` 给进度条与 loader。
+- `dur .16s / -slow .34s`，`ease (0.2, 0, 0, 1)` 硬落定；`ease-out (0.16, 1, 0.3, 1)` 给块面滑移这类大位移；加 `dur-sweep` 给进度条与 loader。
 - 微动：进度条流动；招牌三原形旋转、步进；徽章点是平闪 pulse、非辉光。
 - 入场：硬切 + 块面滑移即 `translate`，Hero 文案 stagger，面板滑入；形旋转给 Loader。
 
@@ -62,7 +62,7 @@
 - 文字强调选中用于列表、Tab、NavMenu，只转 `primary`；Tab、NavMenu 配底部 `stroke-bold` 实色蓝下划线。
 - 悬停：分段与触发条用 `tint-soft` 蓝 wash 纯底；图标与动作按钮文字转 `primary`，菜单触发器、列表项转 `bright`。
 - 焦点：布尔开关 Checkbox、Switch、Radio 整件用 `ring` 纸白间隙加蓝外环；分段与触发条用 `inset 0 0 0 2px primary`；输入框 border 升蓝 + 字段级 `ring`。可聚焦浮层 popup 加 `outline:none`。
-- 危险态用 danger 家族：`-fill / -wash / -text`，FILL 转朱红、border 恒黑、前景反白。
+- 危险态用 danger 家族：实填朱红 + `-wash` + `-text`，border 恒黑、前景反白。
 - 黄填特例：`warning` 实填上前景转 `on-warning` 墨黑，含 Meter warning、warning Toast 与 Badge。
 
 ## 7. 组件皮肤决定

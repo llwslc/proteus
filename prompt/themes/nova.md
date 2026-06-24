@@ -40,7 +40,7 @@
 - `body::before`：品红右上 + 青左下两个角落径向辉光，叠 `base→base-raised` 竖直渐变。
 - `body::after`：44px 网格线 tint-faint，径向遮罩向下淡出，`nova-grid-drift` 24s 平移。
 - 根元素 `::before` 是扫描线，repeating 4px，multiply，.5；`::after` 是 feTurbulence 噪点 200px，overlay，.045。
-- `::selection` = tint-active；滚动条 10px，thumb 青色渐变。
+- `::selection` = tint-active；滚动条走标准细条 `scrollbar-width: thin`、thumb `line-strong`。
 
 ## 5. 动效个性
 
@@ -72,4 +72,4 @@
 
 - logo：`NOVA`，VA 强调；副标 `SCI-FI UI KIT`；状态徽章 `Online`，走 success。
 - Hero：eyebrow `Component System · 37 Controls`；标题 `A **sci-fi** interface kit / forged in neon`；描述关键词 neon HUD skin、chamfered frames、reactive glow、scanline motion；单位词 `Controls`、`Token File`。
-- 区块组名：Input、Forms、Feedback、Overlays、Display、Foundations；demo 文案走舰桥与遥测词汇，如 Command、Telemetry、Sensor。
+- 区块组名：Inputs、Forms、Feedback、Overlays、Display、Foundations；demo 文案走舰桥与遥测词汇，如 Command、Telemetry、Sensor。

@@ -39,14 +39,14 @@
 - `body::before`：深渊青自底部上涌 + 灵液紫右上 + 血红左下三个径向，叠 `void→base→stone` 竖直渐变。
 - `body::after`：两层光尘孢子，即 radial 圆点 140、220px，`abyss-drift` 40s 向上漂，径向遮罩。
 - 根元素 `::before`：四周暗角 vignette，radial、multiply；`::after`：feTurbulence 噪点 240px，overlay、.05。
-- `::selection` = glow-a30；滚动条 11px、圆角 thumb、glow-deep 渐变。
+- `::selection` = glow-a30；滚动条走标准细条 `scrollbar-width: thin`、thumb `glow-deep`。
 
 ## 5. 动效个性
 
 - `dur .3s / -slow .66s`，`ease (0.38, 0.1, 0.2, 1)`——沉、缓。
 - 呼吸是主旋律：`--abyss-breath 7s`，`.abyss-breathe` 共享 class，用于徽章点、sigil、Toast 图记。
 - inscribe：勾选、标记按 `stroke-dashoffset` 描画出现，如 Checkbox 对勾。
-- Hero 法阵：外环 96s 正转 + 内环 62s 反转 + 瞳孔脉动；Dialog sigil 30s 自转；OTP 光标闪动；Drawer 钥匙动效。
+- Hero 法阵：外环 96s 正转 + 内环 62s 反转 + 虹膜脉动；Dialog sigil 30s 自转；OTP 光标闪动；Drawer 钥匙动效。
 - 入场：Hero 文案 `abyss-rise` stagger、区块滚动渐入。
 
 ## 6. 交互态配色

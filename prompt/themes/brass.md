@@ -10,14 +10,14 @@
 
 - 背景：`base #15110b`、`base-raised #1d1810`，暖铁褐近黑。
 - 金属板：`plate #1a150d`、`plate-raised #241d12` 是不透明面板渐变两端，`plate` 兼作页底渐变末端。
-- 五个强调家族，各配 `-deep` 暗档：primary 黄铜金 `#cf9d3a / #876521`，secondary 紫铜 `#c2683b / #74371c`，success 铜绿 `#56a98a / #2a6350`，warning 琥珀灯 `#f0bf3a / #9c7418`，danger 漆红 `#d2503c / #7c281d`。
+- 五个强调家族，primary、warning、danger 配 `-deep` 暗档：primary 黄铜金 `#cf9d3a / #876521`，secondary 紫铜 `#c2683b`，success 铜绿 `#56a98a`，warning 琥珀灯 `#f0bf3a / #9c7418`，danger 漆红 `#d2503c / #7c281d`。
 - 文本走陈年象牙：`text #e3dac6`、`-bright #f7f1e2`、`-dim #a99c82`、`-mute #6f6552`；反色前景 `on-primary #271a06`，压在黄铜、琥珀、紫铜亮填充上。
 - 两条复用强调渐变：`accent-surface` = `180deg #e6c266 → primary 46% → #9a7528`，拉丝黄铜点亮板；`accent-fill` = `90deg deep → primary 62%`，指示条。
-- 黄铜 alpha 阶梯：`tint-faint .05 · tint-soft .09 · tint .14 · line .18 · tint-active .26 · line-strong .40 · a55 .55`。新黄铜 alpha 先并入阶梯。
-- 另立 alpha 家族：`secondary-fill .50`；success `-a45 / -wash .12`；warning `-a45`；danger 一组 `-fill .50 / -wash .12 / -text #f4c3b5 / -inset #2a0d09`。
-- 中性与效果色：`off #2c2519` 关态轨呈发蓝褐钢；`track #221c12` 未填充轨；`ghost-hover` 暖象牙 .06；金属扫光 `sheen .55 / sheen-soft .12`；关态旋钮金属渐变 `thumb-top #6a5f49 / -bottom #312a1d`；步进钮底渐变 `surface-raised`。
-- 表面：`surface .82`、`surface-popup .975`、`surface-modal` 走 165deg 深渐变、`surface-inset #100c06` 凹陷井、`surface-zone / -hover` 右键区底；`scrim .66`。
-- 辉光与阴影：文字 `glow-text` 暖琥珀；drop-shadow 一组 `glow-focus / -popup / -active / -trigger / -modal` 走黄铜灯晕，半径 `--brass-glow-r` 9px；焦点描边环 `ring-focus`（暗座 + 亮铜外圈）、`-recessed`（叠 `bevel-inset`，给 Switch、Radio）；矩形影 `shadow-popup / -modal`、硬机加工影 `shadow-ink`、旋钮微影 `shadow-thumb`。
+- 黄铜 alpha 阶梯：`tint-soft .09 · tint .14 · line .18 · tint-active .26 · line-strong .40`。新黄铜 alpha 先并入阶梯。
+- 另立 alpha 家族：success `-wash .12`；warning `-wash .12`；danger `-fill .50 / -wash .12`。
+- 中性与效果色：`off #2c2519` 关态轨呈发蓝褐钢；`track #221c12` 未填充轨；金属扫光 `sheen .55`；关态旋钮金属渐变 `thumb-top #6a5f49 / -bottom #312a1d`；步进钮底渐变 `surface-raised`。
+- 表面：`surface .82`、`surface-popup .975`、`surface-modal` 走 165deg 深渐变、`surface-inset #100c06` 凹陷井、`surface-zone` 右键区底；`scrim .66`。
+- 辉光与阴影：文字 `glow-text` 暖琥珀；drop-shadow 一组 `glow-focus / -popup / -active / -trigger / -modal` 走黄铜灯晕；焦点描边环 `ring-focus`（暗座 + 亮铜外圈）、`-recessed`（叠 `bevel-inset`，给 Switch、Radio）；矩形影 `shadow-popup / -modal`、硬机加工影 `shadow-ink`、旋钮微影 `shadow-thumb`。
 
 ## 2. 字体与排版
 
@@ -43,13 +43,12 @@
 - `body::before`：顶部琥珀仪表灯辉光 + 紫铜右下 + 铜绿左下三个径向，叠 `base → base-raised` 竖直暖暗渐变。
 - `body::after`：极淡铆钉网格 + 缓漂蒸汽雾，`brass-steam` 30s 上飘，径向遮罩向下淡出。
 - 根元素 `::before` 是拉丝金属竖纹，repeating-linear 极淡，multiply；`::after` 是 feTurbulence 噪点 220px，overlay，.05，作陈旧金属颗粒。
-- `::selection` = tint-active；滚动条 11px，thumb 黄铜滚花渐变。
+- `::selection` = tint-active；滚动条走标准细条 `scrollbar-width: thin`、thumb `primary-deep`。
 
 ## 5. 动效个性
 
-- `dur .26s / -slow .5s`，`ease (0.32, 0.72, 0.2, 1)`——干脆机械落定；`ease-out (0.34, 0.11, 0.2, 1)` 给 Toast 栈位移这类大位移；`ease-detent (0.5, 1.4, 0.5, 1)` 微过冲给指针、阀门落位。
-- 微动：头部拉丝金属扫光，即 `background-position`；进度条流动；面板扫光 `.brass-sheen`，scaleX 呼吸；徽章点是琥珀灯 pulse；Hero 表盘指针摆动 + 齿轮咬合转。
-- 入场：顶栏机械落定下滑、Hero 文案 stagger 即 `brass-rise`、面板滚动渐入。
+- `dur .26s / -slow .5s`，`ease (0.32, 0.72, 0.2, 1)`——干脆机械落定；`ease-detent (0.5, 1.4, 0.5, 1)` 微过冲给指针、阀门落位。
+- 微动：进度条流动；徽章点是琥珀灯 pulse；Hero 表盘指针摆动 + 齿轮咬合转。
 
 ## 6. 交互态配色
 
@@ -64,13 +63,13 @@
 
 ## 7. 组件皮肤决定
 
-- Switch 是黄铜阀杆：开槽发蓝钢轨 `off` + 滚花黄铜旋钮 `thumb` 渐变，刻印 O/I 端记；选中轨转 `accent-surface` + 旋钮滑右 + `glow-active`，`ease-detent` 落位。
+- Switch 是黄铜阀杆：开槽发蓝钢轨 `off` + 滚花黄铜旋钮 `thumb` 渐变；选中轨转 `accent-surface` + 旋钮滑右 + `glow-active`，`ease-detent` 落位。
 - Meter 是压力表：横轨分三色区 success → warning → danger，填充走 `accent-fill`，端部刻度记。
 - Progress 黄铜灯丝填充 + 刻度记；不定态滑块走 `left`。
 - AlertDialog 按 `tone` 重染，tone 取 danger、warning、primary：bezel、标题、图记随 tone，表面顶部加 tone 径向 20%，几何同 Dialog。
-- NavigationMenu 触发器栏复用 Tabs 皮肤：Yeseva 标题、渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
-- Panel：角部铆钉 + 黄铜角托；Toast：右下角向上堆叠，左缘黄铜光束 + 齿轮图记；Dialog 标题配齿轮 cartouche 图记。
-- 招牌 SVG：Loader 啮合双齿轮 + 蒸汽，Hero 压力表盘 + 摆针 + 小齿轮，Checkbox 黄铜板刻印对勾，Radio 凹陷黄铜孔眼、选中亮琥珀芯，Avatar 兜底齿轮字母组。
+- NavigationMenu 触发器栏复用 Tabs 皮肤：渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
+- Panel：角部铆钉；Toast：右下角向上堆叠，左缘黄铜光束 + 齿轮图记；Dialog 标题配齿轮 cartouche 图记。
+- 招牌 SVG：Loader 啮合双齿轮，Hero 压力表盘 + 摆针 + 小齿轮，Checkbox 黄铜板刻印对勾，Radio 凹陷黄铜孔眼、选中亮琥珀芯，Avatar 兜底齿轮字母组。
 - 共享配方色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`。
 
 ## 8. 文案
@@ -80,5 +79,3 @@
 - logo：`BRASS`，SS 强调；副标 `CLOCKWORK UI KIT`；状态徽章 `Pressurized`，走 success。
 - Hero：eyebrow `Pressure Console · 37 Instruments`；标题 `A **clockwork** interface kit / machined from brass`；描述关键词 brushed-brass bezels、riveted plates、gauge instruments、steam-lit motion；单位词 `Instruments`、`Token File`。
 - 区块组名：Inputs、Forms、Feedback、Overlays、Display、Foundations；demo 文案走引擎与仪表词汇，如 Boiler、Manifold、Throttle、Gauge、Regulator。
-</content>
-</invoke>
