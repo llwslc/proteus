@@ -31,7 +31,6 @@
 .bauhaus-numberfield__step:focus-visible {
   outline: none;
   z-index: 1;
-  --bauhaus-surface-border: var(--bauhaus-primary);
 }
 .bauhaus-numberfield__step:active {
   background: var(--bauhaus-primary);
@@ -55,6 +54,9 @@
 .bauhaus-numberfield__input:focus-visible {
   outline: none;
   z-index: 1;
+}
+.bauhaus-numberfield__group:focus-within .bauhaus-numberfield__step,
+.bauhaus-numberfield__group:focus-within .bauhaus-numberfield__input {
   --bauhaus-surface-border: var(--bauhaus-primary);
 }
 .bauhaus-numberfield__input:disabled {
