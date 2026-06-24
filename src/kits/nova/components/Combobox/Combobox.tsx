@@ -24,7 +24,7 @@ export function Combobox({
   const inputId = useId();
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
-      <div className="nova-combobox__control">
+      <BaseCombobox.InputGroup className="nova-combobox__control">
         <span className="nova-combobox__lead">
           <SearchIcon />
         </span>
@@ -40,7 +40,7 @@ export function Combobox({
         <BaseCombobox.Trigger className="nova-combobox__trigger" aria-label="Open list">
           <ChevronDownIcon />
         </BaseCombobox.Trigger>
-      </div>
+      </BaseCombobox.InputGroup>
       <BaseCombobox.Portal>
         <BaseCombobox.Positioner
           className="nova-elevation nova-combobox__positioner"

@@ -40,7 +40,7 @@ export function Combobox({
       {label != null ? (
         <BaseCombobox.Label className="bauhaus-cap bauhaus-combobox__label">{label}</BaseCombobox.Label>
       ) : null}
-      <div className="bauhaus-surface bauhaus-combobox">
+      <BaseCombobox.InputGroup className="bauhaus-surface bauhaus-combobox">
         <BaseCombobox.Input
           id={inputId}
           placeholder={placeholder}
@@ -52,7 +52,7 @@ export function Combobox({
         <BaseCombobox.Trigger className="bauhaus-combobox__trigger" aria-label="Open">
           <ChevronDown />
         </BaseCombobox.Trigger>
-      </div>
+      </BaseCombobox.InputGroup>
       <BaseCombobox.Portal>
         <BaseCombobox.Positioner className="bauhaus-lift" sideOffset={6} side="bottom" align="start">
           <BaseCombobox.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-combobox__popup">

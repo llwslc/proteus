@@ -23,7 +23,7 @@ export function Autocomplete({
   const inputId = useId();
   return (
     <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
-      <div className={cx("brass-plate", "brass-autocomplete")}>
+      <BaseAutocomplete.InputGroup className={cx("brass-plate", "brass-autocomplete")}>
         <span className="brass-autocomplete__icon">
           <Search />
         </span>
@@ -36,7 +36,7 @@ export function Autocomplete({
         <BaseAutocomplete.Clear className="brass-autocomplete__clear" aria-label="Clear">
           <Close />
         </BaseAutocomplete.Clear>
-      </div>
+      </BaseAutocomplete.InputGroup>
       <BaseAutocomplete.Portal>
         <BaseAutocomplete.Positioner className="brass-lift" sideOffset={6}>
           <BaseAutocomplete.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-autocomplete__popup">

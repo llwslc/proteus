@@ -23,7 +23,7 @@ export function Autocomplete({
   return (
     <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
       <div className="abyss-autocomplete__field">
-        <div className="abyss-frame abyss-autocomplete__control">
+        <BaseAutocomplete.InputGroup className="abyss-frame abyss-autocomplete__control">
           <span className="abyss-autocomplete__lead">
             <SearchIcon />
           </span>
@@ -33,7 +33,7 @@ export function Autocomplete({
             placeholder={placeholder}
             aria-label={label ?? placeholder}
           />
-        </div>
+        </BaseAutocomplete.InputGroup>
       </div>
       <BaseAutocomplete.Portal>
         <BaseAutocomplete.Positioner

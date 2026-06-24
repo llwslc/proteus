@@ -38,13 +38,13 @@ export function Autocomplete({
           {label}
         </label>
       ) : null}
-      <div className="bauhaus-surface bauhaus-autocomplete">
+      <BaseAutocomplete.InputGroup className="bauhaus-surface bauhaus-autocomplete">
         <BaseAutocomplete.Input
           id={inputId}
           placeholder={placeholder}
           className="bauhaus-autocomplete__input"
         />
-      </div>
+      </BaseAutocomplete.InputGroup>
       <BaseAutocomplete.Portal>
         <BaseAutocomplete.Positioner className="bauhaus-lift" sideOffset={6} side="bottom" align="start">
           <BaseAutocomplete.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-autocomplete__popup">

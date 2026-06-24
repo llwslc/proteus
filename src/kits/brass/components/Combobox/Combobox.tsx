@@ -24,7 +24,7 @@ export function Combobox({
   const inputId = useId();
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
-      <div className="brass-plate brass-combobox">
+      <BaseCombobox.InputGroup className="brass-plate brass-combobox">
         <span className="brass-combobox__lead" aria-hidden>
           <Search />
         </span>
@@ -44,7 +44,7 @@ export function Combobox({
             </BaseCombobox.Icon>
           </BaseCombobox.Trigger>
         </span>
-      </div>
+      </BaseCombobox.InputGroup>
       <BaseCombobox.Portal>
         <BaseCombobox.Positioner className="brass-lift" sideOffset={6}>
           <BaseCombobox.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-combobox__popup">

@@ -118,8 +118,8 @@
 - **Input/Field**：props `label·icon·description·error`；`Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标左侧绝对定位、Control `flex:1`，态 +focus、+error。
 - **OtpField**：props `length·splitAt·mask`；cells 横排等宽，`splitAt` 处插分隔，cell 态 +filled、+focus。
 - **Select**：props `items·placeholder`；`field > Trigger[Value flex:1 + Chevron 右、开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 右]`；**勾选在右、弹层向下**；`alignItemWithTrigger=false`，宽随 `--anchor-width`；item 态 +selected、+highlighted。
-- **Combobox**：props `items·placeholder·emptyText·label`；`control[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(带勾选 右)]`，弹层向下。
-- **Autocomplete**：props 同 Combobox；`control[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下，项不带勾选、无 Trigger chevron。
+- **Combobox**：props `items·placeholder·emptyText·label`；`InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(带勾选 右)]`，弹层向下、宽随 `--anchor-width`。
+- **Autocomplete**：props 同 Combobox；`InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、宽随 `--anchor-width`，项不带勾选、无 Trigger chevron。
 - **Fieldset**（props `legend`）、**Form** 竖排，Base UI 直管。
 
 **反馈**

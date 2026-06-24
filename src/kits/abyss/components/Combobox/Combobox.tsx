@@ -24,7 +24,7 @@ export function Combobox({
   const inputId = useId();
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
-      <div className="abyss-frame abyss-combobox__control">
+      <BaseCombobox.InputGroup className="abyss-frame abyss-combobox__control">
         <span className="abyss-combobox__lead" aria-hidden>
           <SearchIcon />
         </span>
@@ -40,7 +40,7 @@ export function Combobox({
         <BaseCombobox.Trigger className="abyss-combobox__trigger" aria-label="Open list">
           <ChevronDownIcon />
         </BaseCombobox.Trigger>
-      </div>
+      </BaseCombobox.InputGroup>
       <BaseCombobox.Portal>
         <BaseCombobox.Positioner className="abyss-elevation abyss-combobox__positioner" sideOffset={8}>
           <BaseCombobox.Popup className="abyss-aura-pop abyss-combobox__popup">

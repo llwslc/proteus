@@ -23,7 +23,7 @@ export function Autocomplete({
   return (
     <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
       <div className="nova-autocomplete__field">
-        <div className="nova-autocomplete__control">
+        <BaseAutocomplete.InputGroup className="nova-autocomplete__control">
           <span className="nova-autocomplete__lead">
             <BoltIcon />
           </span>
@@ -33,7 +33,7 @@ export function Autocomplete({
             placeholder={placeholder}
             aria-label={label ?? placeholder}
           />
-        </div>
+        </BaseAutocomplete.InputGroup>
       </div>
       <BaseAutocomplete.Portal>
         <BaseAutocomplete.Positioner
