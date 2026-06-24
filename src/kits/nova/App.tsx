@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
+import { Toggle as BaseToggle } from "@base-ui/react/toggle";
+import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 import {
   Accordion,
   AlertDialog,
@@ -55,6 +57,7 @@ import {
   Toolbar,
   ToolbarButton,
   ToolbarGroup,
+  ToolbarLink,
   ToolbarSeparator,
   Tooltip,
   useToast,
@@ -232,11 +235,21 @@ function AccessCodeField() {
 }
 
 function ToolbarDemo() {
-  const [view, setView] = useState<"map" | "grid" | "scan">("map");
-  const [live, setLive] = useState(true);
   return (
     <Toolbar aria-label="Console toolbar">
-      <ToolbarGroup>
+      <BaseToggleGroup
+        className="nova-toolbar__group"
+        defaultValue={["grid"]}
+        aria-label="Overlays"
+      >
+        {(["grid", "scan", "axes"] as const).map((v) => (
+          <ToolbarButton key={v} render={<BaseToggle />} value={v} aria-label={`${v} overlay`}>
+            <span className="demo-toolbar__label">{v.toUpperCase()}</span>
+          </ToolbarButton>
+        ))}
+      </BaseToggleGroup>
+      <ToolbarSeparator />
+      <ToolbarGroup aria-label="Actions">
         <ToolbarButton aria-label="Scan">
           <SearchIcon />
         </ToolbarButton>
@@ -248,18 +261,10 @@ function ToolbarDemo() {
         </ToolbarButton>
       </ToolbarGroup>
       <ToolbarSeparator />
-      <ToolbarGroup>
-        {(["map", "grid", "scan"] as const).map((v) => (
-          <ToolbarButton key={v} active={view === v} onClick={() => setView(v)}>
-            <span className="demo-toolbar__label">{v.toUpperCase()}</span>
-          </ToolbarButton>
-        ))}
-      </ToolbarGroup>
-      <ToolbarSeparator />
-      <ToolbarButton active={live} onClick={() => setLive((b) => !b)}>
+      <ToolbarLink href="#">
         <SignalIcon />
-        <span className="demo-toolbar__label">LIVE</span>
-      </ToolbarButton>
+        <span className="demo-toolbar__label">Synced 2m ago</span>
+      </ToolbarLink>
     </Toolbar>
   );
 }

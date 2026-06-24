@@ -18,6 +18,25 @@
   background: var(--brass-line);
 }
 
+.brass-toolbar__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  padding: 0 var(--brass-space-3);
+  color: var(--brass-text-dim);
+  font-family: var(--brass-font-mono);
+  font-size: var(--brass-fs-13);
+  letter-spacing: var(--brass-ls-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--brass-dur) var(--brass-ease);
+}
+.brass-toolbar__link:hover,
+.brass-toolbar__link:focus-visible {
+  outline: none;
+  color: var(--brass-primary);
+}
+
 @media (max-width: 768px) {
   .brass-seg.brass-toolbar {
     flex-wrap: wrap;

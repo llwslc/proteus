@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Toggle as BaseToggle } from "@base-ui/react/toggle";
+import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 import "./App.css";
 import { PANELS as SECTIONS } from "../../shared/panels";
 import {
@@ -56,6 +58,7 @@ import {
   Toolbar,
   ToolbarButton,
   ToolbarGroup,
+  ToolbarLink,
   ToolbarSeparator,
   Tooltip,
   useToast,
@@ -780,8 +783,24 @@ function Demo() {
             </Panel>
 
             <Panel id="toolbar" title="Toolbar" meta="TBR">
-              <Toolbar>
-                <ToolbarGroup>
+              <Toolbar aria-label="Tools">
+                <BaseToggleGroup
+                  className="bauhaus-toolbar__group"
+                  defaultValue={["fill"]}
+                  aria-label="Layers"
+                >
+                  <ToolbarButton render={<BaseToggle />} value="fill">
+                    Fill
+                  </ToolbarButton>
+                  <ToolbarButton render={<BaseToggle />} value="stroke">
+                    Stroke
+                  </ToolbarButton>
+                  <ToolbarButton render={<BaseToggle />} value="grid">
+                    Grid
+                  </ToolbarButton>
+                </BaseToggleGroup>
+                <ToolbarSeparator />
+                <ToolbarGroup aria-label="Forms">
                   <ToolbarButton aria-label="Square">
                     <Square />
                   </ToolbarButton>
@@ -793,16 +812,7 @@ function Demo() {
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToggleGroup defaultValue={["fill"]}>
-                  <Toggle value="fill">Fill</Toggle>
-                  <Toggle value="stroke">Stroke</Toggle>
-                  <Toggle value="grid">Grid</Toggle>
-                </ToggleGroup>
-                <ToolbarSeparator />
-                <Toggle value="snap">
-                  <Grid />
-                  Snap
-                </Toggle>
+                <ToolbarLink href="#">Composed 2m ago</ToolbarLink>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">

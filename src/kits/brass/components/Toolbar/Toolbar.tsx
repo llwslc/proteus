@@ -1,13 +1,9 @@
 import { Toolbar as BaseToolbar } from "@base-ui/react/toolbar";
 import { cx } from "../cx";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import "./Toolbar.css";
 
-export interface ToolbarProps {
-  children: ReactNode;
-  className?: string;
-  "aria-label"?: string;
-}
+export interface ToolbarProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Root> {}
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
@@ -17,18 +13,15 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
   );
 }
 
-export interface ToolbarButtonProps {
-  children: ReactNode;
+export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Button> {
   active?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-  "aria-label"?: string;
+  value?: string;
 }
 
-export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps) {
+export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
   return (
     <BaseToolbar.Button
-      className={cx("brass-seg__btn", "brass-toolbar__btn", active ? "is-active" : "")}
+      className={cx("brass-seg__btn", "brass-toolbar__btn", className, active ? "is-active" : "")}
       {...props}
     >
       {children}
@@ -36,12 +29,30 @@ export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps
   );
 }
 
+export function ToolbarLink({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof BaseToolbar.Link>) {
+  return (
+    <BaseToolbar.Link className={cx("brass-toolbar__link", className)} {...props}>
+      {children}
+    </BaseToolbar.Link>
+  );
+}
+
 export function ToolbarSeparator() {
   return <BaseToolbar.Separator className="brass-toolbar__sep" />;
 }
 
-export function ToolbarGroup({ children }: { children: ReactNode }) {
+export function ToolbarGroup({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof BaseToolbar.Group>) {
   return (
-    <BaseToolbar.Group className="brass-toolbar__group">{children}</BaseToolbar.Group>
+    <BaseToolbar.Group className={cx("brass-toolbar__group", className)} {...props}>
+      {children}
+    </BaseToolbar.Group>
   );
 }

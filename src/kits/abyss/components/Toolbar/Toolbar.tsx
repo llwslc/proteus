@@ -1,13 +1,9 @@
 import { cx } from "../cx";
 import { Toolbar as BaseToolbar } from "@base-ui/react/toolbar";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import "./Toolbar.css";
 
-export interface ToolbarProps {
-  children: ReactNode;
-  className?: string;
-  "aria-label"?: string;
-}
+export interface ToolbarProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Root> {}
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
@@ -17,24 +13,33 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
   );
 }
 
-export interface ToolbarButtonProps {
-  children: ReactNode;
+export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Button> {
   active?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-  "aria-label"?: string;
+  value?: string;
 }
 
-export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps) {
+export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
   return (
     <span className="abyss-toolbar__btnwrap">
       <BaseToolbar.Button
-        className={cx("abyss-toolbar__btn abyss-frame", active ? "is-active" : "")}
+        className={cx("abyss-toolbar__btn abyss-frame", className, active ? "is-active" : "")}
         {...props}
       >
         <span className="abyss-toolbar__label">{children}</span>
       </BaseToolbar.Button>
     </span>
+  );
+}
+
+export function ToolbarLink({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof BaseToolbar.Link>) {
+  return (
+    <BaseToolbar.Link className={cx("abyss-toolbar__link", className)} {...props}>
+      {children}
+    </BaseToolbar.Link>
   );
 }
 
@@ -44,8 +49,14 @@ export function ToolbarSeparator() {
   );
 }
 
-export function ToolbarGroup({ children }: { children: ReactNode }) {
+export function ToolbarGroup({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof BaseToolbar.Group>) {
   return (
-    <BaseToolbar.Group className="abyss-toolbar__group">{children}</BaseToolbar.Group>
+    <BaseToolbar.Group className={cx("abyss-toolbar__group", className)} {...props}>
+      {children}
+    </BaseToolbar.Group>
   );
 }

@@ -19,6 +19,24 @@
   margin: 0 var(--bauhaus-space-1);
   background: var(--bauhaus-ink);
 }
+.bauhaus-toolbar__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bauhaus-space-2);
+  padding: 0 var(--bauhaus-space-3);
+  color: var(--bauhaus-text-dim);
+  font-family: var(--bauhaus-font);
+  font-size: var(--bauhaus-fs-13);
+  letter-spacing: var(--bauhaus-ls-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--bauhaus-dur) var(--bauhaus-ease);
+}
+.bauhaus-toolbar__link:hover,
+.bauhaus-toolbar__link:focus-visible {
+  outline: none;
+  color: var(--bauhaus-primary);
+}
 
 @media (max-width: 768px) {
   .bauhaus-toolbar__sep {

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Toggle as BaseToggle } from "@base-ui/react/toggle";
+import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 import {
   Accordion,
   AlertDialog,
@@ -54,6 +56,7 @@ import {
   Toolbar,
   ToolbarButton,
   ToolbarGroup,
+  ToolbarLink,
   ToolbarSeparator,
   Tooltip,
   useToast,
@@ -286,11 +289,21 @@ function ProgressDemo() {
 }
 
 function ToolbarDemo() {
-  const [view, setView] = useState<"chart" | "reef" | "deep">("chart");
-  const [watch, setWatch] = useState(true);
   return (
     <Toolbar aria-label="Rite toolbar">
-      <ToolbarGroup>
+      <BaseToggleGroup
+        className="abyss-toolbar__group"
+        defaultValue={["chart"]}
+        aria-label="Charts"
+      >
+        {(["chart", "reef", "deep"] as const).map((v) => (
+          <ToolbarButton key={v} render={<BaseToggle />} value={v} aria-label={`${v} chart`}>
+            <span className="demo-toolbar__label">{v.toUpperCase()}</span>
+          </ToolbarButton>
+        ))}
+      </BaseToggleGroup>
+      <ToolbarSeparator />
+      <ToolbarGroup aria-label="Rites">
         <ToolbarButton aria-label="Sound">
           <SearchIcon />
         </ToolbarButton>
@@ -302,18 +315,10 @@ function ToolbarDemo() {
         </ToolbarButton>
       </ToolbarGroup>
       <ToolbarSeparator />
-      <ToolbarGroup>
-        {(["chart", "reef", "deep"] as const).map((v) => (
-          <ToolbarButton key={v} active={view === v} onClick={() => setView(v)}>
-            <span className="demo-toolbar__label">{v.toUpperCase()}</span>
-          </ToolbarButton>
-        ))}
-      </ToolbarGroup>
-      <ToolbarSeparator />
-      <ToolbarButton active={watch} onClick={() => setWatch((b) => !b)}>
+      <ToolbarLink href="#">
         <EyeIcon />
-        <span className="demo-toolbar__label">WATCH</span>
-      </ToolbarButton>
+        <span className="demo-toolbar__label">Watched 3m ago</span>
+      </ToolbarLink>
     </Toolbar>
   );
 }

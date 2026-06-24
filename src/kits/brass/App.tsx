@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Toggle as BaseToggle } from "@base-ui/react/toggle";
+import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 import "./App.css";
 import { PANELS as SECTIONS } from "../../shared/panels";
 import {
@@ -56,6 +58,7 @@ import {
   Toolbar,
   ToolbarButton,
   ToolbarGroup,
+  ToolbarLink,
   ToolbarSeparator,
   Tooltip,
   useToast,
@@ -791,8 +794,24 @@ function Demo() {
             </Panel>
 
             <Panel id="toolbar" title="Toolbar" meta="TBR">
-              <Toolbar>
-                <ToolbarGroup>
+              <Toolbar aria-label="Console">
+                <BaseToggleGroup
+                  className="brass-toolbar__group"
+                  defaultValue={["heat"]}
+                  aria-label="Mode"
+                >
+                  <ToolbarButton render={<BaseToggle />} value="heat">
+                    Heat
+                  </ToolbarButton>
+                  <ToolbarButton render={<BaseToggle />} value="steam">
+                    Steam
+                  </ToolbarButton>
+                  <ToolbarButton render={<BaseToggle />} value="cool">
+                    Cool
+                  </ToolbarButton>
+                </BaseToggleGroup>
+                <ToolbarSeparator />
+                <ToolbarGroup aria-label="Controls">
                   <ToolbarButton aria-label="Adjust gear">
                     <Gear />
                   </ToolbarButton>
@@ -804,16 +823,7 @@ function Demo() {
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToggleGroup defaultValue={["heat"]}>
-                  <Toggle value="heat">Heat</Toggle>
-                  <Toggle value="steam">Steam</Toggle>
-                  <Toggle value="cool">Cool</Toggle>
-                </ToggleGroup>
-                <ToolbarSeparator />
-                <Toggle value="auto">
-                  <Bolt />
-                  Auto
-                </Toggle>
+                <ToolbarLink href="#">Calibrated 5m ago</ToolbarLink>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">

@@ -1,13 +1,9 @@
 import { Toolbar as BaseToolbar } from "@base-ui/react/toolbar";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import { cx } from "../cx";
 import "./Toolbar.css";
 
-export interface ToolbarProps {
-  children: ReactNode;
-  className?: string;
-  "aria-label"?: string;
-}
+export interface ToolbarProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Root> {}
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
@@ -17,19 +13,31 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
   );
 }
 
-export interface ToolbarButtonProps {
-  children: ReactNode;
+export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof BaseToolbar.Button> {
   active?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-  "aria-label"?: string;
+  value?: string;
 }
 
-export function ToolbarButton({ children, active, ...props }: ToolbarButtonProps) {
+export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
   return (
-    <BaseToolbar.Button aria-pressed={active} className="bauhaus-seg__btn" {...props}>
+    <BaseToolbar.Button
+      className={cx("bauhaus-seg__btn", className, active ? "is-active" : "")}
+      {...props}
+    >
       {children}
     </BaseToolbar.Button>
+  );
+}
+
+export function ToolbarLink({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof BaseToolbar.Link>) {
+  return (
+    <BaseToolbar.Link className={cx("bauhaus-toolbar__link", className)} {...props}>
+      {children}
+    </BaseToolbar.Link>
   );
 }
 
@@ -37,6 +45,14 @@ export function ToolbarSeparator() {
   return <BaseToolbar.Separator className="bauhaus-toolbar__sep" />;
 }
 
-export function ToolbarGroup({ children }: { children: ReactNode }) {
-  return <BaseToolbar.Group className="bauhaus-toolbar__group">{children}</BaseToolbar.Group>;
+export function ToolbarGroup({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof BaseToolbar.Group>) {
+  return (
+    <BaseToolbar.Group className={cx("bauhaus-toolbar__group", className)} {...props}>
+      {children}
+    </BaseToolbar.Group>
+  );
 }
