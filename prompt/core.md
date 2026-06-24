@@ -81,7 +81,7 @@
 - 「边框色打底 + `::before` 填充」时激活填充必须深色不透明。
 - **悬停**：分段、触发条统一柔色纯底；图标、动作按钮文字转主色，菜单触发器、列表项转亮文；选中、开启态压过悬停（悬停的禁用守卫用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 形变瞬时到位（`transition-duration: 0s`），松手按 `dur` 回弹；具体形变 → theme。
-- **键盘焦点**：按控件族分焦点提示——布尔开关 Checkbox、Switch、Radio 整件提示，分段、触发条用 `inset 0 0 0 1px` 内描边，输入框边框点亮 + 字段级提示；具体效果 → theme。可聚焦浮层 popup 加 `outline:none`。
+- **键盘焦点**：按控件族分焦点提示——布尔开关 Checkbox、Switch、Radio 整个控件一起亮，分段、触发条用 `inset 0 0 0 1px` 内描边，输入框聚焦时整框点亮、多块拼成的（如 NumberField 步进钮夹输入框）整组一起亮、不只亮中间一块；具体效果 → theme。可聚焦浮层 popup 加 `outline:none`。
 - **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`；整行单层 dim、opacity 不叠两层。
 
 ## 6. 组件

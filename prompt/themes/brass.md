@@ -58,7 +58,7 @@
 - 分段选中用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary` + 内嵌 `bevel`，呈按下黄铜键。
 - 文字强调选中用于列表、Tab、NavMenu，只转 `primary`；Tab、NavMenu 配底部黄铜灯丝下划线。
 - 悬停：分段与触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent → tint-soft` 渐变 + 下划线；图标与动作按钮文字转 `primary`，菜单触发器、列表项转 bright。
-- 焦点：布尔开关 Checkbox、Switch、Radio 用 `ring-focus` 黄铜描边环，Switch、Radio 叠 bevel 用 `-recessed`；分段与触发条用 `inset 0 0 0 1px primary`；输入框边框升 `bezel-strong` + 字段级 `glow-focus`。可聚焦浮层 popup 加 `outline:none`。
+- 焦点：布尔开关 Checkbox、Switch、Radio 用 `ring-focus` 黄铜描边环，Switch、Radio 叠 bevel 用 `-recessed`；分段与触发条用 `inset 0 0 0 1px primary`；输入框聚焦时整框升 `bezel-strong` + `glow-focus`。可聚焦浮层 popup 加 `outline:none`。
 - 危险态用 danger 家族：`-fill / -wash / -text / -inset`，bezel 转 danger。
 
 ## 7. 组件皮肤决定

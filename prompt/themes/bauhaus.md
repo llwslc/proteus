@@ -61,7 +61,7 @@
 - 分段选中用于 ToggleGroup、Toolbar、Menubar = 实色 `primary` + `on-fill`，呈实心色块。
 - 文字强调选中用于列表、Tab、NavMenu，只转 `primary`；Tab、NavMenu 配底部 `stroke-bold` 实色蓝下划线。
 - 悬停：分段与触发条用 `tint-soft` 蓝 wash 纯底；图标与动作按钮文字转 `primary`，菜单触发器、列表项转 `bright`。
-- 焦点：布尔开关 Checkbox、Switch、Radio 整件用 `ring` 纸白间隙加蓝外环；分段与触发条用 `inset 0 0 0 2px primary`；输入框 border 升蓝 + 字段级 `ring`。可聚焦浮层 popup 加 `outline:none`。
+- 焦点：布尔开关 Checkbox、Switch、Radio 整个控件用 `ring` 纸白间隙加蓝外环；分段与触发条用 `inset 0 0 0 2px primary`；输入框聚焦时整框 border 升蓝 + `ring`。可聚焦浮层 popup 加 `outline:none`。
 - 危险态用 danger 家族：实填朱红 + `-wash` + `-text`，border 恒黑、前景反白。
 - 黄填特例：`warning` 实填上前景转 `on-warning` 墨黑，含 Meter warning、warning Toast 与 Badge。
 
