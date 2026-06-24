@@ -83,6 +83,7 @@
     overflow-x: auto;
     flex-wrap: nowrap;
     scrollbar-width: auto;
+    scrollbar-color: auto;
   }
   .bauhaus-tabs__list::-webkit-scrollbar {
     height: 6px;

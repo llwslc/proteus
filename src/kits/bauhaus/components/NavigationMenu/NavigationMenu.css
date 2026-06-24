@@ -125,6 +125,7 @@
     overflow-x: auto;
     flex-wrap: nowrap;
     scrollbar-width: auto;
+    scrollbar-color: auto;
   }
   .bauhaus-navmenu__list::-webkit-scrollbar {
     height: 6px;

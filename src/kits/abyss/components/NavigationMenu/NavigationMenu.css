@@ -196,6 +196,7 @@
     overflow-x: auto;
     flex-wrap: nowrap;
     scrollbar-width: auto;
+    scrollbar-color: auto;
   }
   .abyss-navmenu__list::-webkit-scrollbar {
     height: 6px;

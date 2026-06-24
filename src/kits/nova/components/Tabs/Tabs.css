@@ -21,6 +21,7 @@
   .nova-tabs__list {
     overflow-x: auto;
     scrollbar-width: auto;
+    scrollbar-color: auto;
     padding-bottom: var(--nova-space-2);
     margin-bottom: calc(var(--nova-space-2) * -1);
   }
