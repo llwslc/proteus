@@ -8,8 +8,8 @@
 
 ## 1. 调色板
 
-- 背景：`bg #ece5d3`、`bg-2 #e3dac3`，暖纸画布。
-- 纸面：`paper #f7f3e8`、`paper-2 #efe9d8`，面板与浮层的实色纸底，比 `bg` 亮，浮起为卡片。
+- 背景：`base #ece5d3`，暖纸画布。
+- 纸面：`paper #f7f3e8`、`paper-raised #efe9d8`，面板与浮层的实色纸底，比 `base` 亮，浮起为卡片。
 - 五个强调家族，各配 `-deep` 暗档：primary 群青蓝 `#1a4fd6 / #11317f`，secondary 墨黑 `#1b1b1b / #000000`，success 草绿 `#2f9e44 / #1c6b2e`，warning 原黄 `#f5b612 / #a8760a`，danger 朱红 `#e23121 / #9e1b10`。
 - 文本走纸上墨：`text #211d15`、`-bright #050505` 纯黑高反差、`-dim #5c5647`、`-mute #918a76`。
 - 两档反色前景：`on-fill #f7f3e8` 纸白，压在蓝、红、绿、黑实填上；`on-warning #16140f` 墨黑，压在原黄实填上。
@@ -41,7 +41,7 @@
 
 定义在 `global.css`。
 
-- `body`：暖纸 `bg`、`ink` 文字、Jost。
+- `body`：暖纸 `base`、`ink` 文字、Jost。
 - `body::before`：大尺度平涂构成——左下大群青正圆、右上原黄方块与朱红三角，极低 alpha `.05`–`.08`，再加一道对角 bar 给动势；无模糊、无噪点。
 - 零纹理：不加噪点、不加渐变氛围、不加辉光。
 - `::selection` = `warning` 原黄底 + `ink` 字；滚动条 12px，track 浅纸、thumb primary 蓝实块、radius 0。

@@ -8,7 +8,7 @@
 
 ## 1. 调色板
 
-- 背景：`void #030706`、`bg #070c0b`；石板 `stone #0c1411`、`stone-raised #101b16` 是不透明面板渐变两端，其中 `stone` 兼作页底渐变末端。
+- 背景：`void #030706`、`base #070c0b`；石板 `stone #0c1411`、`stone-raised #101b16` 是不透明面板渐变两端，其中 `stone` 兼作页底渐变末端。
 - 墨线：边框用暖灰绿「墨」——`ink .3`、`ink-strong .52`、`ink-faint .1`。
 - 文本走暖褐羊皮：`text #d8ceb4`、`-bright #f3edda`、`-dim #8d9079`、`-mute #565a4b`。
 - 五个强调家族，各配 `-soft` 与按需的 `-deep`：glow 深渊青 `#46e8b8` 为主，gold 鎏金 `#cda94a` 用于注脚与警示，ichor 灵液紫 `#9176ff` 为次强调，blood 血红 `#d24059` 表危险，success 生苔绿 `#7ad99a`。
@@ -36,7 +36,7 @@
 
 定义在 `global.css`。
 
-- `body::before`：深渊青自底部上涌 + 灵液紫右上 + 血红左下三个径向，叠 `void→bg→stone` 竖直渐变。
+- `body::before`：深渊青自底部上涌 + 灵液紫右上 + 血红左下三个径向，叠 `void→base→stone` 竖直渐变。
 - `body::after`：两层光尘孢子，即 radial 圆点 140、220px，`abyss-drift` 40s 向上漂，径向遮罩。
 - 根元素 `::before`：四周暗角 vignette，radial、multiply；`::after`：feTurbulence 噪点 240px，overlay、.05。
 - `::selection` = glow-a30；滚动条 11px、圆角 thumb、glow-deep 渐变。

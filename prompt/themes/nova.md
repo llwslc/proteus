@@ -8,7 +8,7 @@
 
 ## 1. 调色板
 
-- 背景：`bg #050a12`、`bg-2 #07101c`。
+- 背景：`base #050a12`、`base-raised #07101c`。
 - 五个强调色，各配一个 `-deep` 暗档：primary 电光青 `#2de2ff / #119cb8`，secondary 品红 `#ff2d75 / #c4185a`，success `#54ffb0 / #1f9c68`，warning `#ffce54 / #b8861f`，danger `#ff4d5e / #b3242f`。
 - 文本走冷白偏蓝：`text #d7ecff`、`-bright #eafdff`、`-dim #7793b0`、`-mute #46617e`；反色前景 `on-primary #02131a`、`on-danger #1c0406`。
 - 两条复用强调渐变：`accent-surface` = `180deg primary→deep`，用于点亮表面；`accent-fill` = `90deg deep→primary 55%`，用于方向指示条。
@@ -37,7 +37,7 @@
 
 定义在 `global.css`。
 
-- `body::before`：品红右上 + 青左下两个角落径向辉光，叠 `bg→bg-2` 竖直渐变。
+- `body::before`：品红右上 + 青左下两个角落径向辉光，叠 `base→base-raised` 竖直渐变。
 - `body::after`：44px 网格线 tint-faint，径向遮罩向下淡出，`nova-grid-drift` 24s 平移。
 - 根元素 `::before` 是扫描线，repeating 4px，multiply，.5；`::after` 是 feTurbulence 噪点 200px，overlay，.045。
 - `::selection` = tint-active；滚动条 10px，thumb 青色渐变。

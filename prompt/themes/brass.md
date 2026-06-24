@@ -8,7 +8,7 @@
 
 ## 1. 调色板
 
-- 背景：`bg #15110b`、`bg-2 #1d1810`，暖铁褐近黑。
+- 背景：`base #15110b`、`base-raised #1d1810`，暖铁褐近黑。
 - 金属板：`plate #1a150d`、`plate-raised #241d12` 是不透明面板渐变两端，`plate` 兼作页底渐变末端。
 - 五个强调家族，各配 `-deep` 暗档：primary 黄铜金 `#cf9d3a / #876521`，secondary 紫铜 `#c2683b / #74371c`，success 铜绿 `#56a98a / #2a6350`，warning 琥珀灯 `#f0bf3a / #9c7418`，danger 漆红 `#d2503c / #7c281d`。
 - 文本走陈年象牙：`text #e3dac6`、`-bright #f7f1e2`、`-dim #a99c82`、`-mute #6f6552`；反色前景 `on-primary #271a06`，压在黄铜、琥珀、紫铜亮填充上。
@@ -40,7 +40,7 @@
 
 定义在 `global.css`。
 
-- `body::before`：顶部琥珀仪表灯辉光 + 紫铜右下 + 铜绿左下三个径向，叠 `bg → bg-2` 竖直暖暗渐变。
+- `body::before`：顶部琥珀仪表灯辉光 + 紫铜右下 + 铜绿左下三个径向，叠 `base → base-raised` 竖直暖暗渐变。
 - `body::after`：极淡铆钉网格 + 缓漂蒸汽雾，`brass-steam` 30s 上飘，径向遮罩向下淡出。
 - 根元素 `::before` 是拉丝金属竖纹，repeating-linear 极淡，multiply；`::after` 是 feTurbulence 噪点 220px，overlay，.05，作陈旧金属颗粒。
 - `::selection` = tint-active；滚动条 11px，thumb 黄铜滚花渐变。
