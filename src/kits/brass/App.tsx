@@ -435,7 +435,10 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
-              <OtpField length={6} splitAt={3} defaultValue="427" />
+              <div className="brass-stack">
+                <span className="brass-cap">Ignition code</span>
+                <OtpField length={6} splitAt={3} defaultValue="427" />
+              </div>
             </Panel>
           </div>
 

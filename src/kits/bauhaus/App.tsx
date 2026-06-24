@@ -430,7 +430,10 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
-              <OtpField length={6} splitAt={3} defaultValue="919" />
+              <div className="bauhaus-stack">
+                <span className="bauhaus-cap">Access code</span>
+                <OtpField length={6} splitAt={3} defaultValue="919" />
+              </div>
             </Panel>
           </div>
 
