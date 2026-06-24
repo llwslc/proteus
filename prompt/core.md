@@ -159,7 +159,7 @@
 
 ## 8. 布局与响应式
 
-- inline-flex 分段控件 ToggleGroup 加 `width: fit-content`；细分隔条 1px 在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`。
+- inline-flex 分段控件 ToggleGroup 加 `width: fit-content`；细分隔条 1px 在会收缩的 flex 容器里加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；跨列子项用 `grid-column: 1 / -1`、不用定值 `span N`。
 - **唯一断点 `768px`**，不另设别的断点。`≤768` 组件走手机态——Tabs、Toolbar 分段控件**横滚**、不换行。外壳、侧栏、演示页响应式 → `app.md`。
 - **装饰层不得撑宽页面**：扫光走 `background-position`、移动块、不定态进度走 `top`/`left`；非用 `transform` 不可时，关进不带 `clip-path` 的 `overflow:hidden` 祖先。
 
