@@ -116,7 +116,7 @@
 }
 .nova-navmenu__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  grid-template-columns: repeat(2, minmax(var(--nova-navmenu-col-w), 1fr));
   gap: var(--nova-space-1);
   margin: 0;
   padding: 0;

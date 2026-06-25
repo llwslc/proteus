@@ -68,10 +68,14 @@
   transform: rotate(180deg);
 }
 
+.bauhaus-navmenu__positioner {
+  width: var(--positioner-width);
+  height: var(--positioner-height);
+}
 .bauhaus-navmenu__popup {
   box-sizing: border-box;
-  width: var(--bauhaus-navmenu-w);
-  max-width: 100%;
+  width: var(--popup-width);
+  height: var(--popup-height);
   outline: none;
 }
 .bauhaus-navmenu__viewport {
@@ -79,11 +83,12 @@
   outline: none;
 }
 .bauhaus-navmenu__content {
+  width: max-content;
   padding: var(--bauhaus-space-4);
 }
 .bauhaus-navmenu__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(var(--bauhaus-navmenu-col-w), 1fr));
   gap: var(--bauhaus-space-2);
 }
 
@@ -130,9 +135,6 @@
     flex: 0 0 auto;
   }
   .bauhaus-navmenu__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .bauhaus-navmenu__popup {
-    width: 100%;
+    grid-template-columns: 1fr;
   }
 }

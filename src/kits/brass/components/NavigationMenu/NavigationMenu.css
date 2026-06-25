@@ -95,7 +95,7 @@
 
 .brass-navmenu__content {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  grid-template-columns: repeat(2, minmax(var(--brass-navmenu-col-w), 1fr));
   gap: var(--brass-space-1);
   width: var(--brass-navmenu-w);
   max-width: 100%;

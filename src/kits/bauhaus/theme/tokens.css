@@ -142,12 +142,12 @@
   --bauhaus-tooltip-w: 240px;
   --bauhaus-popover-w: 288px;
   --bauhaus-preview-w: 320px;
-  --bauhaus-navmenu-w: 460px;
   --bauhaus-contextmenu-min-h: 132px;
   --bauhaus-dialog-w: var(--shell-dialog-w);
   --bauhaus-alert-w: var(--shell-alert-w);
   --bauhaus-drawer-w: var(--shell-drawer-w);
   --bauhaus-drawer-h: var(--shell-drawer-h);
+  --bauhaus-navmenu-col-w: var(--shell-navmenu-col-w);
   --bauhaus-toast-w: 344px;
   --bauhaus-avatar-sm: 32px;
   --bauhaus-avatar-md: 44px;
