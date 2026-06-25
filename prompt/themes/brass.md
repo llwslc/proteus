@@ -69,6 +69,7 @@
 - AlertDialog 按 `tone` 重染，tone 取 danger、warning、primary：bezel、标题、图记随 tone 变；表面顶部加一道 tone 的径向光 20%，几何同 Dialog。
 - NavigationMenu 的触发器栏复用 Tabs 皮肤：渐变 hover、黄铜下划线、开启态转 primary、chevron 翻转。
 - Panel：角部放铆钉；Toast：锚在右下角、向上堆叠，左缘一道黄铜光束 + 一个齿轮图记；Dialog 标题配一个齿轮 cartouche 图记。
+- Drawer：不走 `.brass-plate` 整框，只在朝屏内那一条边收边——一道黄铜光束（`primary` + 灯晕）当内沿、配一个滚花拉手，其余三边贴屏不描；靠 `shadow-modal` + `glow-modal` 浮起。
 - 招牌 SVG：Loader 是两枚啮合的齿轮，Hero 是压力表盘 + 摆针 + 小齿轮，Checkbox 是黄铜板上刻印的对勾，Radio 是凹陷的黄铜孔眼、选中时亮起琥珀芯，Avatar 的兜底是齿轮加字母组合。
 - 共享配方的颜色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`。
 

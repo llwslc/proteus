@@ -21,7 +21,7 @@
 
 .bauhaus-drawer__sheet {
   --bauhaus-surface-fill: var(--bauhaus-surface-modal);
-  --bauhaus-surface-stroke: var(--bauhaus-stroke-heavy);
+  --bauhaus-surface-stroke: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -31,6 +31,18 @@
   overflow: hidden;
   color: var(--bauhaus-text);
   outline: none;
+}
+.bauhaus-drawer--right .bauhaus-drawer__sheet {
+  border-left: var(--bauhaus-stroke-heavy) solid var(--bauhaus-ink);
+}
+.bauhaus-drawer--left .bauhaus-drawer__sheet {
+  border-right: var(--bauhaus-stroke-heavy) solid var(--bauhaus-ink);
+}
+.bauhaus-drawer--top .bauhaus-drawer__sheet {
+  border-bottom: var(--bauhaus-stroke-heavy) solid var(--bauhaus-ink);
+}
+.bauhaus-drawer--bottom .bauhaus-drawer__sheet {
+  border-top: var(--bauhaus-stroke-heavy) solid var(--bauhaus-ink);
 }
 
 .bauhaus-drawer--right,
