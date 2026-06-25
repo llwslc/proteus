@@ -701,7 +701,7 @@ function Demo() {
 
             <Panel id="drawer" title="Drawer" meta="DRW">
               <div className="brass-row">
-                {(["left", "right", "top", "bottom"] as const).map((side) => (
+                {(["top", "bottom", "left", "right"] as const).map((side) => (
                   <Drawer
                     key={side}
                     side={side}

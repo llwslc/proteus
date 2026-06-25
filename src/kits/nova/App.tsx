@@ -625,7 +625,7 @@ function Demo() {
             <div className="nova-section" id="slider">
               <Panel title="Slider" meta="SLD">
                 <div className="demo-stack">
-                  <Slider label="Thrust" defaultValue={64} />
+                  <Slider label="Thrust" defaultValue={62} />
                   <Slider label="Frequency" defaultValue={40} disabled />
                 </div>
               </Panel>
@@ -954,7 +954,7 @@ function Demo() {
             <div className="nova-section" id="drawer">
               <Panel title="Drawer" meta="DRW">
                 <div className="demo-row">
-                  {(["left", "right", "top", "bottom"] as const).map((side) => (
+                  {(["top", "bottom", "left", "right"] as const).map((side) => (
                     <Drawer
                       key={side}
                       side={side}
@@ -971,7 +971,7 @@ function Demo() {
                         <span className="nova-cap">Stealth Mode</span>
                         <Switch aria-label="Stealth Mode" />
                       </div>
-                      <Slider label="Sensor Gain" defaultValue={72} />
+                      <Slider label="Sensor Gain" defaultValue={50} />
                     </Drawer>
                   ))}
                 </div>

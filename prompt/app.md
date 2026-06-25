@@ -44,7 +44,7 @@
 - select：「caption + Select」，12 项、末项 `disabled`，默认选第 2。
 - combobox：「caption + Combobox」，可过滤列表 12 项，无默认值。
 - autocomplete：「caption + Autocomplete」，建议列表 12 项，无默认值。
-- slider：两个 Slider —— 其一 label + 默认值，其二 `disabled` 且带值。
+- slider：两个 Slider —— 其一 label + 默认值 62，其二 `disabled`、值 40。
 - number：「caption + NumberField」，`defaultValue` 7、`min` 0、`max` 12、`step` 1。
 - input：四个字段 —— ① label + 默认值 + placeholder；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`。
 - otp：「caption + OtpField」，`length` 6、`splitAt` 3、预填 3 位。
@@ -73,7 +73,7 @@
 - context：trigger = 文本投放区 + kbd 提示；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：trigger = `danger` Button；内容 = 标题 + 描述 + actions 2 个 AlertDialogClose（默认、`danger`）。
-- drawer：四个 `ghost` Button 排一行，各弹一个方向——`left`／`right`／`top`／`bottom`；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider + 页脚 1 个 DrawerClose（`secondary`）。
+- drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。
 - toast：一行 4 个 Button（`sm`、`ghost`），分别触发默认、`success`、`warning`、`danger` 四种 toast。
 
 **Display**

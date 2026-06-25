@@ -753,7 +753,7 @@ function Demo() {
               <Panel title="Slider" meta="SLD">
                 <div className="demo-stack">
                   <Slider label="Descent" defaultValue={62} />
-                  <Slider label="Resonance" defaultValue={34} disabled />
+                  <Slider label="Resonance" defaultValue={40} disabled />
                 </div>
               </Panel>
             </div>
@@ -1082,7 +1082,7 @@ function Demo() {
             <div className="abyss-section" id="drawer">
               <Panel title="Drawer" meta="DRW">
                 <div className="demo-row">
-                  {(["left", "right", "top", "bottom"] as const).map((side) => (
+                  {(["top", "bottom", "left", "right"] as const).map((side) => (
                     <Drawer
                       key={side}
                       side={side}
@@ -1099,7 +1099,7 @@ function Demo() {
                         <span className="abyss-cap">Walk Unseen</span>
                         <Switch aria-label="Walk Unseen" />
                       </div>
-                      <Slider label="Lantern Gain" defaultValue={72} />
+                      <Slider label="Lantern Gain" defaultValue={50} />
                     </Drawer>
                   ))}
                 </div>
