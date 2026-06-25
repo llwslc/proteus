@@ -8,30 +8,16 @@
   position: relative;
   display: flex;
   gap: var(--abyss-space-2);
-}
-.abyss-tabs__list::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--abyss-ink-faint);
+  border-bottom: 1px solid var(--abyss-ink-faint);
 }
 
 @media (max-width: 768px) {
   .abyss-tabs__list {
     overflow-x: auto;
     scrollbar-width: none;
-    padding-bottom: var(--abyss-space-2);
-    margin-bottom: calc(var(--abyss-space-2) * -1);
   }
   .abyss-tabs__list::-webkit-scrollbar {
     display: none;
-  }
-  .abyss-tabs__list::after,
-  .abyss-tabs__list .abyss-tabs__indicator {
-    bottom: var(--abyss-space-2);
   }
   .abyss-tabs__tab {
     flex: 0 0 auto;

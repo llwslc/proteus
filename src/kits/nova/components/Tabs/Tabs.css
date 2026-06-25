@@ -6,30 +6,16 @@
   position: relative;
   display: flex;
   gap: var(--nova-space-1);
-}
-.nova-tabs__list::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--nova-line);
+  border-bottom: 1px solid var(--nova-line);
 }
 
 @media (max-width: 768px) {
   .nova-tabs__list {
     overflow-x: auto;
     scrollbar-width: none;
-    padding-bottom: var(--nova-space-2);
-    margin-bottom: calc(var(--nova-space-2) * -1);
   }
   .nova-tabs__list::-webkit-scrollbar {
     display: none;
-  }
-  .nova-tabs__list::after,
-  .nova-tabs__list .nova-tabs__indicator {
-    bottom: var(--nova-space-2);
   }
   .nova-tabs__tab {
     flex: 0 0 auto;
