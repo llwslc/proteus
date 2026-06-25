@@ -1,4 +1,4 @@
-/* ── Toast: bottom-right, stacks upward (newest on top), left tone bar + geometric marker ── */
+/* ── Toast: bottom-right, stacks upward (newest on top), solid tone block + reversed marker ── */
 .bauhaus-toast__viewport {
   position: fixed;
   right: var(--bauhaus-space-5);
@@ -19,7 +19,7 @@
   bottom: 0;
   left: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: var(--bauhaus-space-3);
   padding: var(--bauhaus-space-4);
   padding-left: var(--bauhaus-space-5);
@@ -30,15 +30,6 @@
   transition:
     transform var(--bauhaus-dur-slow) var(--bauhaus-ease),
     opacity var(--bauhaus-dur-slow) var(--bauhaus-ease);
-}
-.bauhaus-toast::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: var(--bauhaus-stroke-heavy);
-  background: var(--bauhaus-toast-tone);
 }
 .bauhaus-toast[data-expanded] {
   transform: translateY(calc(var(--toast-offset-y) * -1px)) scale(1);
@@ -71,11 +62,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1px;
-  color: var(--bauhaus-toast-tone);
+  width: var(--bauhaus-space-9);
+  margin: calc(-1 * var(--bauhaus-space-4)) 0 calc(-1 * var(--bauhaus-space-4)) calc(-1 * var(--bauhaus-space-5));
+  background: var(--bauhaus-toast-tone);
+  color: var(--bauhaus-on-fill);
 }
 .bauhaus-toast[data-type="warning"] .bauhaus-toast__marker {
-  color: var(--bauhaus-warning-deep);
+  color: var(--bauhaus-on-warning);
 }
 .bauhaus-toast__glyph {
   font-size: var(--bauhaus-fs-18);
@@ -106,6 +99,7 @@
 }
 .bauhaus-toast__close {
   flex: 0 0 auto;
+  align-self: flex-start;
   margin: calc(-1 * var(--bauhaus-space-1)) calc(-1 * var(--bauhaus-space-1)) 0 0;
 }
 

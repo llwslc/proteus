@@ -1,29 +1,22 @@
 .bauhaus-alert {
   width: min(var(--bauhaus-alert-w), 100%);
-  padding-top: var(--bauhaus-space-7);
 }
-.bauhaus-alert::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--bauhaus-space-2);
+.bauhaus-alert .bauhaus-h2.bauhaus-modal-title {
+  margin: calc(-1 * var(--bauhaus-modal-pad)) calc(-1 * var(--bauhaus-modal-pad)) var(--bauhaus-space-5);
+  padding: var(--bauhaus-space-4) var(--bauhaus-modal-pad);
   background: var(--bauhaus-bar-color, var(--bauhaus-primary));
+  color: var(--bauhaus-on-fill);
 }
-.bauhaus-alert__sigil {
-  color: var(--bauhaus-marker-color, var(--bauhaus-primary));
+.bauhaus-alert--warning .bauhaus-h2.bauhaus-modal-title {
+  color: var(--bauhaus-on-warning);
 }
 
 .bauhaus-alert--primary {
   --bauhaus-bar-color: var(--bauhaus-primary);
-  --bauhaus-marker-color: var(--bauhaus-primary);
 }
 .bauhaus-alert--warning {
   --bauhaus-bar-color: var(--bauhaus-warning);
-  --bauhaus-marker-color: var(--bauhaus-warning-deep);
 }
 .bauhaus-alert--danger {
   --bauhaus-bar-color: var(--bauhaus-danger);
-  --bauhaus-marker-color: var(--bauhaus-danger);
 }

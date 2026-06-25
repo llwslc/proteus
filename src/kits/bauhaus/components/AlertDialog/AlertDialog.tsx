@@ -69,7 +69,7 @@ export function AlertDialog({
           >
             {title != null ? (
               <BaseAlertDialog.Title className="bauhaus-h2 bauhaus-modal-title">
-                <span className="bauhaus-modal__sigil bauhaus-alert__sigil" aria-hidden="true">
+                <span className="bauhaus-modal__sigil" aria-hidden="true">
                   {TONE_MARKER[tone]}
                 </span>
                 {title}
