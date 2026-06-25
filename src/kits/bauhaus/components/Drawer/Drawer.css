@@ -62,7 +62,7 @@
 .bauhaus-drawer--bottom {
   left: 0;
   width: 100%;
-  height: min(var(--bauhaus-drawer-h), 80%);
+  height: min(60%, var(--bauhaus-drawer-h));
   transform: translateY(var(--drawer-swipe-movement-y, 0px));
 }
 .bauhaus-drawer--top {
