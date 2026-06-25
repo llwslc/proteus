@@ -50,7 +50,7 @@
 .bauhaus-tabs__indicator {
   position: absolute;
   z-index: 1;
-  bottom: 0;
+  bottom: calc(-1 * var(--bauhaus-stroke-bold));
   left: var(--active-tab-left);
   width: var(--active-tab-width);
   height: var(--bauhaus-stroke-bold);
