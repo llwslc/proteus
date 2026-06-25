@@ -360,6 +360,12 @@
   flex-direction: column;
   gap: var(--abyss-space-4);
 }
+.demo-loader-stage {
+  position: relative;
+  transform: translateZ(0);
+  height: 180px;
+  overflow: hidden;
+}
 .demo-row {
   display: flex;
   flex-wrap: wrap;

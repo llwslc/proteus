@@ -35,6 +35,7 @@ const AUDIT = (vw) => {
     return false;
   };
   const overlapExempt = (el) => el.tagName === 'INPUT' ||
+    el.closest('[class*="-loader"]') !== null ||
     /__(status|dot|badge-dot|notch|thumb|track|indicator|segments|range|fill|progress|moon|tendril|corner|mark|glyph|scan|sheen|glow|rivet|tick)\b/.test(el.getAttribute('class') || '');
   const desc = (el) => {
     const cls = (el.getAttribute('class') || '').split(/\s+/).filter(Boolean).slice(0, 2).join('.');

@@ -22,7 +22,7 @@
 
 - **Inputs**：button[通栏] · switch|toggle · checkbox|checkbox-group · radio|select · combobox|autocomplete · slider|number · input|otp
 - **Forms**：fieldset|form
-- **Feedback**：progress|meter · tabs[通栏] · accordion|collapsible
+- **Feedback**：progress|meter · tabs[通栏] · accordion|collapsible · loader[通栏]
 - **Overlays**：tooltip|popover · preview[通栏] · menu|menubar · navmenu|context · dialog|alert · drawer|toast
 - **Display**：avatar|badge · toolbar|scroll
 - **Foundations**：typography[通栏] · separator|panel
@@ -61,6 +61,7 @@
 - tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
 - accordion：3 项，默认展开第 1，每项 = 标题 + 一段正文。
 - collapsible：两个 Collapsible —— ① `defaultOpen`；② 关。
+- loader：通栏面板，内嵌展示该 kit 的 Loader（即 Suspense 兜底那枚），用 `demo-loader-stage` 容器收进面板、不占全屏。
 
 **Overlays**
 

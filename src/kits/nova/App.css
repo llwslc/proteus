@@ -280,6 +280,12 @@
   flex-direction: column;
   gap: 12px;
 }
+.demo-loader-stage {
+  position: relative;
+  transform: translateZ(0);
+  height: 180px;
+  overflow: hidden;
+}
 .demo-spread {
   display: flex;
   align-items: center;

@@ -76,6 +76,7 @@ import {
   XIcon,
 } from "./components/icons";
 import "./App.css";
+import Loader from "./Loader";
 import { PANELS as SECTIONS } from "../../shared/panels";
 
 function EdgeFilter() {
@@ -851,6 +852,13 @@ function Demo() {
                     Six reliquaries · two sealed · one marked for rites at the next low
                     tide.
                   </Collapsible>
+                </div>
+              </Panel>
+            </div>
+            <div className="abyss-section span-2" id="loader">
+              <Panel title="Loader" meta="LDR">
+                <div className="demo-loader-stage">
+                  <Loader />
                 </div>
               </Panel>
             </div>

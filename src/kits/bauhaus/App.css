@@ -277,6 +277,12 @@
 .bauhaus-panel-note {
   margin: 0 0 var(--bauhaus-space-4);
 }
+.demo-loader-stage {
+  position: relative;
+  transform: translateZ(0);
+  height: 180px;
+  overflow: hidden;
+}
 
 /* ── Preview card body ─────────────────────────────── */
 .bauhaus-preview__head {

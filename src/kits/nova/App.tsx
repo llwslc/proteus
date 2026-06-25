@@ -74,6 +74,7 @@ import {
   XIcon,
 } from "./components/icons";
 import "./App.css";
+import Loader from "./Loader";
 import { PANELS as SECTIONS } from "../../shared/panels";
 
 
@@ -721,6 +722,13 @@ function Demo() {
                   <Collapsible title="Cargo Manifest">
                     6 containers · 2 sealed · 1 flagged for inspection at the next port.
                   </Collapsible>
+                </div>
+              </Panel>
+            </div>
+            <div className="nova-section span-2" id="loader">
+              <Panel title="Loader" meta="LDR">
+                <div className="demo-loader-stage">
+                  <Loader />
                 </div>
               </Panel>
             </div>

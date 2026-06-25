@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Toggle as BaseToggle } from "@base-ui/react/toggle";
 import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 import "./App.css";
+import Loader from "./Loader";
 import { PANELS as SECTIONS } from "../../shared/panels";
 import {
   Accordion,
@@ -517,6 +518,11 @@ function Demo() {
                     Two spare injectors, one gauge glass, half a ton of firebricks in the tender.
                   </p>
                 </Collapsible>
+              </div>
+            </Panel>
+            <Panel id="loader" title="Loader" meta="LDR" wide>
+              <div className="demo-loader-stage">
+                <Loader />
               </div>
             </Panel>
           </div>
