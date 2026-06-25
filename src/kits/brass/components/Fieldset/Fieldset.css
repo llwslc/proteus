@@ -12,8 +12,6 @@
 }
 
 .brass-fieldset__legend {
-  padding: 0 var(--brass-space-2);
-  margin-left: calc(-1 * var(--brass-space-1));
   color: var(--brass-text-bright);
 }
 .brass-fieldset__body {
