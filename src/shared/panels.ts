@@ -67,4 +67,8 @@ export const PANELS: { group: string; items: [string, string, string][] }[] = [
       ["panel", "Panel", "PNL"],
     ],
   },
+  {
+    group: "Signature",
+    items: [["loader", "Loader", "LDR"]],
+  },
 ];

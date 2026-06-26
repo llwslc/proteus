@@ -22,10 +22,11 @@
 
 - **Inputs**：button[通栏] · switch|toggle · checkbox|checkbox-group · radio|select · combobox|autocomplete · slider|number · input|otp
 - **Forms**：fieldset|form
-- **Feedback**：progress|meter · tabs[通栏] · accordion|collapsible · loader[通栏]
+- **Feedback**：progress|meter · tabs[通栏] · accordion|collapsible
 - **Overlays**：tooltip|popover · preview[通栏] · menu|menubar · navmenu|context · dialog|alert · drawer|toast
 - **Display**：avatar|badge · toolbar|scroll
 - **Foundations**：typography[通栏] · separator|panel
+- **Signature**：loader[通栏]
 
 侧栏索引与面板同序；面板 id 各 kit 同名。
 

@@ -725,13 +725,6 @@ function Demo() {
                 </div>
               </Panel>
             </div>
-            <div className="nova-section nova-section--wide" id="loader">
-              <Panel title="Loader" meta="LDR">
-                <div className="demo-loader-stage">
-                  <Loader />
-                </div>
-              </Panel>
-            </div>
 
             <GroupRule group="Overlays" sub="signals that break through" />
             <div className="nova-section" id="tooltip">
@@ -1107,6 +1100,14 @@ function Demo() {
                 <Panel title="Nested Frame" meta="SUB">
                   <span className="nova-cap">Composable to any depth</span>
                 </Panel>
+              </Panel>
+            </div>
+            <GroupRule group="Signature" sub="the boot sequence" />
+            <div className="nova-section nova-section--wide" id="loader">
+              <Panel title="Loader" meta="LDR">
+                <div className="demo-loader-stage">
+                  <Loader />
+                </div>
               </Panel>
             </div>
           </div>

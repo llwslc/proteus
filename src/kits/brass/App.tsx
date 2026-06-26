@@ -520,11 +520,6 @@ function Demo() {
                 </Collapsible>
               </div>
             </Panel>
-            <Panel id="loader" title="Loader" meta="LDR" wide>
-              <div className="demo-loader-stage">
-                <Loader />
-              </div>
-            </Panel>
           </div>
 
           {/* ── Overlays ─────────────────────────────── */}
@@ -907,6 +902,15 @@ function Demo() {
               <Panel title="Nested plate" meta="SUB">
                 <span className="brass-cap">A plate within a plate</span>
               </Panel>
+            </Panel>
+          </div>
+
+          <GroupRule id="signature" label="Signature" sub="the warm-up" />
+          <div className="brass-grid">
+            <Panel id="loader" title="Loader" meta="LDR" wide>
+              <div className="demo-loader-stage">
+                <Loader />
+              </div>
             </Panel>
           </div>
 

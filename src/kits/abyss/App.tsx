@@ -855,13 +855,6 @@ function Demo() {
                 </div>
               </Panel>
             </div>
-            <div className="abyss-section abyss-section--wide" id="loader">
-              <Panel title="Loader" meta="LDR">
-                <div className="demo-loader-stage">
-                  <Loader />
-                </div>
-              </Panel>
-            </div>
 
             <GroupRule group="Overlays" sub="things that surface" />
 
@@ -1237,6 +1230,14 @@ function Demo() {
                 <Panel title="Nested Tablet" meta="SUB">
                   <span className="abyss-cap">A tablet within a tablet</span>
                 </Panel>
+              </Panel>
+            </div>
+            <GroupRule group="Signature" sub="what stirs below" />
+            <div className="abyss-section abyss-section--wide" id="loader">
+              <Panel title="Loader" meta="LDR">
+                <div className="demo-loader-stage">
+                  <Loader />
+                </div>
               </Panel>
             </div>
           </div>
