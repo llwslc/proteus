@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState } from "react";
 import { KITS, resolveKit } from "../kits/registry";
 import "./Shell.css";
 
@@ -9,9 +9,14 @@ export function Shell() {
   const kit = resolveKit(localStorage.getItem("kit"));
   const Active = APPS[kit];
   const KitLoader = LOADERS[kit];
+  const [open, setOpen] = useState(false);
+  const active = KITS.find((k) => k.id === kit) ?? KITS[0];
 
   const switchKit = (id: string) => {
-    if (id === kit) return;
+    if (id === kit) {
+      setOpen(false);
+      return;
+    }
     localStorage.setItem("kit", id);
     location.reload();
   };
@@ -23,21 +28,41 @@ export function Shell() {
           <Active />
         </Suspense>
       </Suspense>
-      <nav className="shell-switch" aria-label="Component kit">
-        {KITS.map((k) => (
-          <button
-            key={k.id}
-            type="button"
-            data-kit-id={k.id}
-            className={"shell-switch__btn" + (kit === k.id ? " is-active" : "")}
-            aria-pressed={kit === k.id}
-            title={k.tag}
-            onClick={() => switchKit(k.id)}
-          >
-            <span className="shell-switch__label">{k.label}</span>
-          </button>
-        ))}
-      </nav>
+      <div className="shell-switch" data-open={open || undefined}>
+        <button
+          type="button"
+          className="shell-switch__scrim"
+          aria-label="Close kit menu"
+          onClick={() => setOpen(false)}
+        />
+        <ul className="shell-switch__menu" role="listbox" aria-label="Component kit">
+          {KITS.map((k) => (
+            <li key={k.id}>
+              <button
+                type="button"
+                data-kit-id={k.id}
+                className={"shell-switch__btn" + (kit === k.id ? " is-active" : "")}
+                role="option"
+                aria-selected={kit === k.id}
+                onClick={() => switchKit(k.id)}
+              >
+                <span className="shell-switch__label">{k.label}</span>
+                <span className="shell-switch__tag">{k.tag}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <button
+          type="button"
+          className="shell-switch__trigger"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span className="shell-switch__label">{active.label}</span>
+          <span className="shell-switch__chev" aria-hidden="true">▴</span>
+        </button>
+      </div>
     </>
   );
 }
