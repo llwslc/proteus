@@ -42,13 +42,3 @@
   color: var(--abyss-glow);
   outline-color: var(--abyss-glow-a55);
 }
-.abyss-context__zone kbd {
-  font-family: var(--abyss-font-mono);
-  font-size: var(--abyss-fs-12);
-  color: var(--abyss-text-dim);
-  transition: color var(--abyss-dur) var(--abyss-ease);
-}
-.abyss-context__zone:hover kbd,
-.abyss-context__zone[data-popup-open] kbd {
-  color: var(--abyss-glow);
-}

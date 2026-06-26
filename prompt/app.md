@@ -16,7 +16,7 @@
 
 两栏网格；组标题通栏分隔——主题标记 + 组名 + 一句副题，每组从新行起，不留半行空位。
 
-跨度规则：演示内容横向铺开的面板通栏，其余单栏、逐行配对；通栏跨度见 core §8。`·` 分行，`|` 同行：
+跨度规则：演示内容横向铺开的面板通栏，其余单栏、逐行配对；通栏跨度见 core §8。锚点 id 与通栏跨度怎么落地（Panel 自带 prop，或外层 section 容器）由 theme 定。`·` 分行，`|` 同行：
 
 同行配对按**语义亲缘**，即开关类、勾选类、单选类、选择器、数值、文本等，不按字母或随手序：
 
@@ -72,7 +72,7 @@
 - menu：trigger = `ghost` Button（内联标签 + 翻转 chevron）；12 个 MenuItem + 1 个 MenuSeparator，全部带图标，前 3 项带快捷键，第 4 项 `disabled`，分隔后末项 `tone="danger"`。
 - menubar：3 个菜单 —— ① 2 项 + 分隔 + 1 个 `danger` 项；② 2 项（带快捷键）；③ 2 项 + 1 个子菜单，子菜单 = 3 项 + 分隔 + 1 项。
 - navmenu：与顶栏主导航同数据 —— 3 个条目：2 个下拉组各 4 条链接（label + 描述），加 1 个纯链接。
-- context：trigger = 文本投放区 + kbd 提示；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
+- context：trigger = 文本投放区；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：trigger = `danger` Button；内容 = 标题 + 描述 + actions 2 个 AlertDialogClose（默认、`danger`）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。

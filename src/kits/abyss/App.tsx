@@ -63,7 +63,6 @@ import {
   type NavMenuItem,
 } from "./components";
 import {
-  ChevronDownIcon,
   CopyIcon,
   EyeIcon,
   KeyIcon,
@@ -1013,9 +1012,7 @@ function Demo() {
 
             <div className="abyss-section" id="menu">
               <Panel title="Menu" meta="MNU">
-                <Menu trigger={<Button variant="ghost">
-                      Rites <ChevronDownIcon className="demo-trigger-chevron" />
-                    </Button>}>
+                <Menu trigger="Rites">
                   <MenuItem icon={<SearchIcon />} shortcut="⌘S">
                     Sound the Deep
                   </MenuItem>

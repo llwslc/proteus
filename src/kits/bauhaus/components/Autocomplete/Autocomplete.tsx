@@ -1,7 +1,6 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
 import { ScrollArea } from "../ScrollArea";
 import { useId, useMemo, useState } from "react";
-import type { ReactNode } from "react";
 import "./Autocomplete.css";
 
 export interface AutocompleteProps {
@@ -9,7 +8,7 @@ export interface AutocompleteProps {
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
-  label?: ReactNode;
+  label?: string;
 }
 
 export function Autocomplete({
@@ -33,14 +32,10 @@ export function Autocomplete({
       defaultValue={defaultValue}
       onValueChange={setQuery}
     >
-      {label != null ? (
-        <label htmlFor={inputId} className="bauhaus-cap bauhaus-autocomplete__label">
-          {label}
-        </label>
-      ) : null}
       <BaseAutocomplete.InputGroup className="bauhaus-surface bauhaus-autocomplete">
         <BaseAutocomplete.Input
           id={inputId}
+          aria-label={label ?? placeholder}
           placeholder={placeholder}
           className="bauhaus-autocomplete__input"
         />

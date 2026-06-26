@@ -558,9 +558,9 @@ function Demo() {
               <Tabs
                 defaultValue="form"
                 items={[
-                  { value: "form", label: "Form", content: "Circle, triangle, square — the three basic forms, flat and unshaded." },
-                  { value: "function", label: "Function", content: "Every element earns its place on the grid; nothing decorative, nothing wasted." },
-                  { value: "archive", label: "Archive", content: "Dessau, 1925: the workshop catalogue, pressed in red, yellow and blue.", disabled: true },
+                  { value: "form", label: "Form", content: <p className="bauhaus-text">Circle, triangle, square — the three basic forms, flat and unshaded.</p> },
+                  { value: "function", label: "Function", content: <p className="bauhaus-text">Every element earns its place on the grid; nothing decorative, nothing wasted.</p> },
+                  { value: "archive", label: "Archive", content: <p className="bauhaus-text">Dessau, 1925: the workshop catalogue, pressed in red, yellow and blue.</p>, disabled: true },
                 ]}
               />
             </Panel>

@@ -68,12 +68,6 @@
     left var(--bauhaus-dur) var(--bauhaus-ease-out),
     width var(--bauhaus-dur) var(--bauhaus-ease-out);
 }
-.bauhaus-tabs__panel {
-  font-family: var(--bauhaus-font);
-  font-size: var(--bauhaus-fs-15);
-  line-height: var(--bauhaus-lh-150);
-  color: var(--bauhaus-text-dim);
-}
 .bauhaus-tabs__panel:focus-visible {
   outline: none;
 }

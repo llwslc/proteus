@@ -50,7 +50,7 @@ export function Tabs({
       </div>
       {items.map((it) => (
         <BaseTabs.Panel key={it.value} value={it.value} className="brass-tabs__panel">
-          <p className="brass-text">{it.content}</p>
+          {it.content}
         </BaseTabs.Panel>
       ))}
     </BaseTabs.Root>

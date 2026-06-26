@@ -12,10 +12,6 @@
 .bauhaus-combobox:has(.bauhaus-combobox__input:disabled) {
   opacity: var(--bauhaus-disabled-opacity);
 }
-.bauhaus-combobox__label {
-  display: block;
-  margin-bottom: var(--bauhaus-space-2);
-}
 .bauhaus-combobox__input {
   flex: 1;
   min-width: 0;

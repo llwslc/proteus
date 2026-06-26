@@ -12,10 +12,6 @@
 .bauhaus-autocomplete:has(.bauhaus-autocomplete__input:disabled) {
   opacity: var(--bauhaus-disabled-opacity);
 }
-.bauhaus-autocomplete__label {
-  display: block;
-  margin-bottom: var(--bauhaus-space-2);
-}
 .bauhaus-autocomplete__input {
   flex: 1;
   min-width: 0;

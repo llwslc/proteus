@@ -3,6 +3,14 @@
   outline: none;
 }
 
+.abyss-menu__trigger-chevron {
+  font-size: 0.9em;
+  transition: transform var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-menu__trigger[data-popup-open] .abyss-menu__trigger-chevron {
+  transform: rotate(180deg);
+}
+
 .abyss-menu__popup {
   --abyss-frame-bevel: var(--abyss-bevel);
   --abyss-frame-fill:

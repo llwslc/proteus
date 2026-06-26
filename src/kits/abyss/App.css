@@ -574,10 +574,3 @@ kbd {
   }
 }
 
-.demo-trigger-chevron {
-  font-size: 0.9em;
-  transition: transform var(--abyss-dur) var(--abyss-ease);
-}
-[data-popup-open] .demo-trigger-chevron {
-  transform: rotate(180deg);
-}

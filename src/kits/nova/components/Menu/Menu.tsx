@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
+import { Button } from "../Button";
+import { ChevronDownIcon } from "../icons";
 import "./Menu.css";
 
 export interface MenuProps {
@@ -11,7 +13,13 @@ export interface MenuProps {
 export function Menu({ trigger, children }: MenuProps) {
   return (
     <BaseMenu.Root>
-      <BaseMenu.Trigger render={trigger as React.ReactElement} />
+      <BaseMenu.Trigger
+        render={
+          <Button variant="ghost" className="nova-menu__trigger">
+            {trigger} <ChevronDownIcon className="nova-menu__trigger-chevron" />
+          </Button>
+        }
+      />
       <BaseMenu.Portal>
         <BaseMenu.Positioner
           className="nova-elevation nova-menu__positioner"

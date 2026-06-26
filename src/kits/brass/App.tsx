@@ -563,9 +563,9 @@ function Demo() {
               <Tabs
                 defaultValue="steam"
                 items={[
-                  { value: "steam", label: "Steam", content: "Saturated at 180 PSI, superheater online." },
-                  { value: "water", label: "Water", content: "Feedwater tank at 74%, injectors primed." },
-                  { value: "fire", label: "Firebox", content: "Grate clean, draught nominal, ash bin clear.", disabled: true },
+                  { value: "steam", label: "Steam", content: <p className="brass-text">Saturated at 180 PSI, superheater online.</p> },
+                  { value: "water", label: "Water", content: <p className="brass-text">Feedwater tank at 74%, injectors primed.</p> },
+                  { value: "fire", label: "Firebox", content: <p className="brass-text">Grate clean, draught nominal, ash bin clear.</p>, disabled: true },
                 ]}
               />
             </Panel>

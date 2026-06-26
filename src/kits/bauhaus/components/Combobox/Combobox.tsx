@@ -1,7 +1,6 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 import { ScrollArea } from "../ScrollArea";
 import { useId, useMemo, useState } from "react";
-import type { ReactNode } from "react";
 import { Check, ChevronDown, Close } from "../icons";
 import "./Combobox.css";
 
@@ -10,7 +9,7 @@ export interface ComboboxProps {
   placeholder?: string;
   defaultValue?: string;
   emptyText?: string;
-  label?: ReactNode;
+  label?: string;
   name?: string;
 }
 
@@ -37,12 +36,10 @@ export function Combobox({
       onInputValueChange={setQuery}
       name={name}
     >
-      {label != null ? (
-        <BaseCombobox.Label className="bauhaus-cap bauhaus-combobox__label">{label}</BaseCombobox.Label>
-      ) : null}
       <BaseCombobox.InputGroup className="bauhaus-surface bauhaus-combobox">
         <BaseCombobox.Input
           id={inputId}
+          aria-label={label ?? placeholder}
           placeholder={placeholder}
           className="bauhaus-combobox__input"
         />

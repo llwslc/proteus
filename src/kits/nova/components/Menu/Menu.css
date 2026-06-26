@@ -9,6 +9,14 @@
   outline: none;
 }
 
+.nova-menu__trigger-chevron {
+  font-size: 0.9em;
+  transition: transform var(--nova-dur) var(--nova-ease);
+}
+.nova-menu__trigger[data-popup-open] .nova-menu__trigger-chevron {
+  transform: rotate(180deg);
+}
+
 .nova-menu__item {
   position: relative;
   z-index: 1;
