@@ -2,7 +2,7 @@
 
 ## 1. 交互态配色
 
-填 core §5 留的空。
+填 components.md §5 留的空。
 
 - 选中、激活：覆盖 frame 的输入变量——`-ink` 升到 `glow-a55 / a70`，`-fill` 给 `glow-soft` 或淡淡的 glow 渐变，文字转 `glow`，再叠 `aura / aura-strong` 辉光。
 - Button 各变体同构换色：primary = `glow-wash` 渐变 + glow 文字 + aura，hover 时换成 `glow-wash-strong`、文字转 bright、辉光升 aura-strong；secondary = ichor 紫；danger = blood 红；ghost 透明、hover 时点亮 ink。

@@ -2,7 +2,7 @@
 
 ## 1. 交互态配色
 
-填 core §5 留的空。
+填 components.md §5 留的空。
 
 - 「点亮表面」用于 Button primary、Switch、Checkbox = 用 `accent-surface` 渐变填充，前景（含箭头、占位符、数值）转 `on-primary`。
 - 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary`。

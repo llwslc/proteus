@@ -1,12 +1,12 @@
 # Components —— 组件库构建规范，所有 kit 通用
 
 > 与皮无关的骨架：定义 37 个控件的结构、token 契约、核心技术、组件清单和规则。
-> 只规定「必须成立的契约」，不规定「长什么样」——颜色、形状、字体、动效、tone／强调／指示的视觉形式，读 `theme/<kit>.md`（风格）；本套各控件按风格怎么落皮，写在 `components/<kit>.md`。演示页是 `app/` 的事，本规范不掺和。
+> 只规定「必须成立的契约」，不规定「长什么样」——颜色、形状、字体、动效、tone／强调／指示的视觉形式，读 `theme/<kit>.md`（风格）；本套各控件按风格怎么落皮，写在 `components/theme/<kit>.md`。演示页是 `app/` 的事，本规范不掺和。
 
 ## 0. 怎么用
 
-- **风格是根**：`theme/<kit>.md` 定一套的视觉 DNA——身份、调色、字体、几何、氛围、动效语言。`components/`（本骨架 + `components/<kit>.md` 控件皮）读它来皮控件，`app/` 读它来皮演示页，两边互不引用。
-- 做全新一套：写 `theme/<kit>.md`（风格）+ `components/<kit>.md`（控件皮），本骨架直接复用。
+- **风格是根**：`theme/<kit>.md` 定一套的视觉 DNA——身份、调色、字体、几何、氛围、动效语言。`components/`（本骨架 + `components/theme/<kit>.md` 控件皮）读它来皮控件，`app/` 读它来皮演示页，两边互不引用。
+- 做全新一套：写 `theme/<kit>.md`（风格）+ `components/theme/<kit>.md`（控件皮），本骨架直接复用。
 - 文中 `<kit>` 是该套代号，写代码时把 `--<kit>-*`、`.<kit>-*` 里的 `<kit>` 换成代号。
 
 ## 1. 目标 & 技术栈
@@ -100,7 +100,7 @@
 - **浮层**：Tooltip、Popover、PreviewCard、Menu、Menubar、NavigationMenu、ContextMenu、Dialog、AlertDialog、Drawer、Toast
 - **展示**：Avatar、Badge、Toolbar、ScrollArea、Separator、Panel
 
-> 组件名对应 Base UI 基元，API、语义、用法都用 Base UI 的；core 只记 Base UI 管不到的**结构决定**：
+> 组件名对应 Base UI 基元，API、语义、用法都用 Base UI 的；本骨架只记 Base UI 管不到的**结构决定**：
 
 - **Badge、Panel** 是纯样式件，**不是** Base UI 组件（Base UI 没有这两个）。
 - **Menu、ContextMenu、Menubar** 共用同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，通过 context 注入底层 primitive。

@@ -1,6 +1,6 @@
 # Playbook —— 加一套新 kit
 
-> 主题无关的构建流程。风格是根：`theme/<kit>.md` 定视觉 DNA，`components/`（`components.md` 骨架 + `components/<kit>.md` 控件皮）皮控件，`app/`（`app.md` + `app/<kit>.md` 文案）皮演示页，两边互不引用。`<kit>` = 新代号。
+> 主题无关的构建流程。风格是根：`theme/<kit>.md` 定视觉 DNA，`components/`（`components.md` 骨架 + `components/theme/<kit>.md` 控件皮）皮控件，`app/`（`app.md` + `app/theme/<kit>.md` 文案）皮演示页，两边互不引用。`<kit>` = 新代号。
 
 **核心原则 —— 从零生成，不拷贝任何文件。** 每个 kit 文件按三文档 spec + `@base-ui/react` 的 API 从零写。**绝不 `cp` 兄弟 kit 的任何文件、不照搬其代码、不前缀改名沿用。** 要参考的只有 `@base-ui/react` 的 API 与 `components.md` 的契约，不是任何已有 kit。差异由 **kit-distinct** gate 把关（步骤 6）。
 
@@ -16,7 +16,7 @@
 
 ## 步骤
 
-1. **写风格 + 控件皮 + 文案** —— `theme/<kit>.md` 填视觉 DNA（身份、调色、字体、几何体系与深度模型、氛围、动效语言）；`components/<kit>.md` 填控件皮（交互态配色 + 各控件皮肤决定）；`app/<kit>.md` 填演示文案。位置见 `components.md §3` 契约与各处「留空给 theme」。过 **prompt-lint**（`check.sh` + 通读，每个分句一遍读通）；要够独特先用 frontend-design skill 压一遍方向。
+1. **写风格 + 控件皮 + 文案** —— `theme/<kit>.md` 填视觉 DNA（身份、调色、字体、几何体系与深度模型、氛围、动效语言）；`components/theme/<kit>.md` 填控件皮（交互态配色 + 各控件皮肤决定）；`app/theme/<kit>.md` 填演示文案。位置见 `components.md §3` 契约与各处「留空给 theme」。过 **prompt-lint**（`check.sh` + 通读，每个分句一遍读通）；要够独特先用 frontend-design skill 压一遍方向。
 2. **建空目录骨架** —— 新建 `src/kits/<kit>/`，全是新写的空文件：`components/<Component>/{.tsx,.css,index.ts}`、`components/{cx.ts,icons.tsx,index.ts}`、`theme/{tokens,effects,global,typography}.css`、`App.tsx`、`Loader.tsx`、`index.tsx`（引 4 个 theme CSS、re-export App）。组件清单见 `components.md §6`。不 `cp`、不拿任何已有文件起手。
 3. **写 theme 视觉层** —— `tokens.css` 按 §3 契约的槽位填本套调色 + 几何阶梯 + 字体 + 动效 token；`effects.css` 本套的 frame、elevation 原语与共享配方；`global.css` 氛围；`typography.css` 字体族 + 尺度 + 主题特性（如竖排）。`index.html` 追加本套字体 `<link>`，与现有并存。
 4. **写每个组件** —— `.tsx` 照 `@base-ui/react` 该基元的 API 写接线，遵 `components.md §6/§7` 记的结构决定（复合件共享、分段条家族、AlertDialog 按 tone 重染、触屏路径等）；`.css` 按本主题视觉语言原生写，走 frame/elevation 原语经输入变量换色。可并行：给 subagent 组件清单 + token 清单 + 2–3 个手写范例（容器、字段、分段）+ 硬规则，各写各的、tokens-only、不碰 theme/ 与彼此、不参考任何已有 kit。导出同步 `.tsx` + 目录 `index.ts` + 顶层 `index.ts`。
