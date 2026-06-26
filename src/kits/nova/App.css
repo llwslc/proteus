@@ -146,7 +146,7 @@
 }
 .nova-sidebar__link:focus-visible {
   outline: none;
-  box-shadow: inset 0 0 0 1px var(--nova-primary);
+  border-left-color: var(--nova-primary);
 }
 .nova-sidebar__link span {
   font-family: var(--nova-font-mono);
