@@ -13,6 +13,7 @@ const URL = `http://127.0.0.1:${PORT}/`;
 const TOKEN_DIMS = [
   'z-dropdown', 'z-menu', 'z-tooltip', 'z-backdrop', 'z-overlay', 'z-toast',
   'dialog-w', 'alert-w', 'drawer-w', 'drawer-h', 'drawer-w-cap', 'drawer-h-cap', 'navmenu-col-w',
+  'contextmenu-min-h',
 ];
 // read as computed style [shellBlock, prop] — base values that must match (skip
 // hero padding-RIGHT: it's a per-kit decoration, so we check top/left only).
