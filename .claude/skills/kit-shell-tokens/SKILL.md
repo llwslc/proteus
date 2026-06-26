@@ -1,6 +1,6 @@
 ---
 name: kit-shell-tokens
-description: Asserts every "各 kit 同值" number is IDENTICAL across all kits — the z-layer ladder (dropdown..toast), modal/drawer widths + viewport caps, NavigationMenu column width, and the shell-frame geometry from app.md §125 (header height/z/padding, max-width, sidebar column, grid/panel gaps, shell & hero paddings, hero margin-bottom). There is no src/shared: each kit writes its own literals; this gate is what keeps them from drifting. Sibling of kit-panels.
+description: Asserts every "各 kit 同值" number is IDENTICAL across all kits — the z-layer ladder (dropdown..toast), modal/drawer widths + viewport caps, NavigationMenu column width, and the shell-frame geometry from app.md (布局与响应式: header height/z/padding, max-width, sidebar column, grid/panel gaps, shell & hero paddings, hero margin-bottom). There is no src/shared: each kit writes its own literals; this gate is what keeps them from drifting. Sibling of kit-panels.
 ---
 
 # kit-shell-tokens
