@@ -41,7 +41,7 @@
 - **表面**：面板、浮层、模态、内嵌表面，外加背板 scrim。
 - **强调与投影**：文字强调、焦点提示、选中提示、触发器激活提示、浮层投影——投影分两套，一套是随形状轮廓的 drop-shadow、一套是矩形 shadow；**具体效果由 theme 定**。
 - **几何尺度（强制 token 化、按角色分档）**：圆角／切角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色挑，组件**绝不**裸写形状值。角色至少分四类——① 超大外框（如 Dialog、AlertDialog、Panel）② 默认控件、容器框及其 `::before` ③ 容器内的嵌套项 + 小交互、标签 chip（菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮）④ 细指示条、旋钮（按厚度再细分）。**用切角 `polygon` 还是圆角、分几档、每档多少，全由 theme 定。**
-- **层级阶梯**：在一处定义浮层的堆叠顺序 `dropdown < menu < tooltip < backdrop < overlay < toast`。
+- **层级阶梯**：浮层堆叠顺序 `dropdown < menu < tooltip < backdrop < overlay < toast`、跨 kit 同值，走 `src/shared` 的 `--shell-z-*` 一处定义、各 kit 引别名。
 - **动效与度量**：时长 `dur / -slow`、缓动 `ease / -out`、控件高度、禁用透明度、模态内边距。
 - **间距（4px 网格）**：`space-1…N`，即 `4 / 8 / 12 …`。组件的 padding、margin、gap（含 `row-gap` 等）一律走这套阶梯；只有不足一格的小值（如 `::before` 1px 内缩、细轨道高度）和演示页里 `>28px` 的结构留白，才写立即数。
 - **组件尺寸 footprint（强制 token 化）**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，**维度作后缀**（`-w`、`-h`、`-min-w`…，与 `src/shared/geometry.css` 里 `--shell-*` 同构，如 `header-h`、`dialog-w`），例如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`dialog-w`、`popup-h`；都集中在 `tokens.css`，组件**绝不**裸写尺寸数字，换皮时按名补齐。只有不足一格的小值（边框、细轨道、`≤8px` 的小圆点）和上下文式的值（`clamp`、`calc`、`%`、`dvh`、Base UI 的锚定变量）才就近写立即数。

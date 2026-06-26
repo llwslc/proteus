@@ -110,7 +110,7 @@
 - 切换：写 `localStorage` + `location.reload()`；启动读 `localStorage` 决定加载哪套，默认第一套。
 - 各套 `global.css` 与演示页 helper 类用裸选择器、无作用域。
 - `index.html` 设暗底；`#root` 仅 `min-height:100vh`，文档自身滚动。
-- 切换器：常驻浮层、中性外观。
+- 切换器：常驻浮层、中性外观；压在浮层阶梯之下（低于 `backdrop`），遇模态打开即隐藏，绝不遮挡其内容。
 
 ## Loader
 

@@ -96,12 +96,12 @@
   --brass-round-pill: 999px;
 
   /* ── Z-layer ladder ────────────────────────────────── */
-  --brass-z-dropdown: 50;
-  --brass-z-menu: 60;
-  --brass-z-tooltip: 70;
-  --brass-z-backdrop: 80;
-  --brass-z-overlay: 90;
-  --brass-z-toast: 100;
+  --brass-z-dropdown: var(--shell-z-dropdown);
+  --brass-z-menu: var(--shell-z-menu);
+  --brass-z-tooltip: var(--shell-z-tooltip);
+  --brass-z-backdrop: var(--shell-z-backdrop);
+  --brass-z-overlay: var(--shell-z-overlay);
+  --brass-z-toast: var(--shell-z-toast);
 
   /* ── Motion & metrics ──────────────────────────────── */
   --brass-dur: 0.26s;

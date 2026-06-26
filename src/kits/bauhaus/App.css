@@ -7,13 +7,13 @@
 .bauhaus-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--shell-z-header);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--bauhaus-space-5);
   height: var(--bar-h);
-  padding: 0 22px;
+  padding: var(--shell-header-pad);
   background: var(--bauhaus-paper);
   border-bottom: var(--bauhaus-stroke-bold) solid var(--bauhaus-ink);
 }
@@ -80,18 +80,18 @@
 
 /* ── Body shell ────────────────────────────────────── */
 .bauhaus-shell {
-  max-width: 1320px;
+  max-width: var(--shell-max-w);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 232px minmax(0, 1fr);
-  gap: 26px;
-  padding: 26px 22px 28px;
+  grid-template-columns: var(--shell-sidebar-w) minmax(0, 1fr);
+  gap: var(--shell-grid-gap);
+  padding: var(--shell-pad);
 }
 .bauhaus-sidebar {
   position: sticky;
-  top: calc(var(--bar-h) + 26px);
+  top: calc(var(--bar-h) + var(--shell-sticky-gap));
   align-self: start;
-  max-height: calc(100vh - var(--bar-h) - 50px);
+  max-height: var(--shell-sidebar-cap);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -141,9 +141,9 @@
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--bauhaus-space-8);
-  margin-bottom: 26px;
-  padding: 30px 28px;
-  scroll-margin-top: calc(var(--bar-h) + 20px);
+  margin-bottom: var(--shell-hero-mb);
+  padding: var(--shell-hero-pad);
+  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
 }
 .bauhaus-hero__eyebrow {
   display: block;
@@ -225,7 +225,7 @@
   align-items: center;
   gap: var(--bauhaus-space-3);
   margin: var(--bauhaus-space-8) 0 var(--bauhaus-space-5);
-  scroll-margin-top: calc(var(--bar-h) + 20px);
+  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
 }
 .bauhaus-grouprule__marker {
   font-size: var(--bauhaus-fs-18);
@@ -243,10 +243,10 @@
 .bauhaus-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: var(--shell-panel-gap);
 }
 .bauhaus-panel {
-  scroll-margin-top: calc(var(--bar-h) + 20px);
+  scroll-margin-top: calc(var(--bar-h) + var(--shell-scroll-margin));
 }
 
 /* ── Demo helpers ──────────────────────────────────── */
@@ -339,19 +339,19 @@
   }
   .bauhaus-header {
     gap: var(--bauhaus-space-3);
-    padding: 0 14px;
+    padding: var(--shell-header-pad-m);
   }
   .bauhaus-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
-    padding: 16px 13px 20px;
+    padding: var(--shell-pad-m);
   }
   .bauhaus-sidebar {
     display: none;
   }
   .bauhaus-hero {
     grid-template-columns: minmax(0, 1fr);
-    padding: 20px 16px;
+    padding: var(--shell-hero-pad-m);
   }
   .bauhaus-hero__visual {
     display: none;

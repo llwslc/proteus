@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { KITS, resolveKit } from "../kits/registry";
 import "./Shell.css";
 
@@ -10,7 +10,25 @@ export function Shell() {
   const Active = APPS[kit];
   const KitLoader = LOADERS[kit];
   const [open, setOpen] = useState(false);
+  const [overlay, setOverlay] = useState(false);
   const active = KITS.find((k) => k.id === kit) ?? KITS[0];
+
+  useEffect(() => {
+    const sync = () => {
+      const modalOpen = !!document.querySelector('[class*="backdrop"][data-open]');
+      setOverlay(modalOpen);
+      if (modalOpen) setOpen(false);
+    };
+    const mo = new MutationObserver(sync);
+    mo.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-open", "class"],
+    });
+    sync();
+    return () => mo.disconnect();
+  }, []);
 
   const switchKit = (id: string) => {
     if (id === kit) {
@@ -28,7 +46,7 @@ export function Shell() {
           <Active />
         </Suspense>
       </Suspense>
-      <div className="shell-switch" data-open={open || undefined}>
+      <div className="shell-switch" data-open={open || undefined} data-overlay={overlay || undefined}>
         <button
           type="button"
           className="shell-switch__scrim"

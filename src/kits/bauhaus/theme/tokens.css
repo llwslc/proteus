@@ -65,12 +65,12 @@
   --bauhaus-r-round: 999px;
 
   /* ── Z-layer ladder ────────────────────────────────── */
-  --bauhaus-z-dropdown: 50;
-  --bauhaus-z-menu: 60;
-  --bauhaus-z-tooltip: 70;
-  --bauhaus-z-backdrop: 80;
-  --bauhaus-z-overlay: 90;
-  --bauhaus-z-toast: 100;
+  --bauhaus-z-dropdown: var(--shell-z-dropdown);
+  --bauhaus-z-menu: var(--shell-z-menu);
+  --bauhaus-z-tooltip: var(--shell-z-tooltip);
+  --bauhaus-z-backdrop: var(--shell-z-backdrop);
+  --bauhaus-z-overlay: var(--shell-z-overlay);
+  --bauhaus-z-toast: var(--shell-z-toast);
 
   /* ── Motion & metrics ──────────────────────────────── */
   --bauhaus-dur: 0.16s;

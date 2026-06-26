@@ -182,10 +182,10 @@
   --abyss-toolbar-btn-min-w: 34px;
   --abyss-toolbar-sep-min-h: 18px;
 
-  --abyss-z-dropdown: 1200;
-  --abyss-z-menu: 1250;
-  --abyss-z-tooltip: 1300;
-  --abyss-z-backdrop: 1400;
-  --abyss-z-overlay: 1401;
-  --abyss-z-toast: 1500;
+  --abyss-z-dropdown: var(--shell-z-dropdown);
+  --abyss-z-menu: var(--shell-z-menu);
+  --abyss-z-tooltip: var(--shell-z-tooltip);
+  --abyss-z-backdrop: var(--shell-z-backdrop);
+  --abyss-z-overlay: var(--shell-z-overlay);
+  --abyss-z-toast: var(--shell-z-toast);
 }
