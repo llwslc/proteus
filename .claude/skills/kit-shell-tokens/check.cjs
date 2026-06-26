@@ -62,7 +62,7 @@ const GEO = [
   console.log(`kit-shell-tokens @ :${PORT} — kits: ${kits.join(' ')} (${Object.keys(data).length} dims)`);
   if (fail) {
     lines.forEach((l) => console.log(l));
-    console.log('RESULT: FAIL — a "各 kit 同值" number diverged; the value is pinned in spec (app.md/core.md) — write that same literal in every kit');
+    console.log('RESULT: FAIL — a "各 kit 同值" number diverged; the value is pinned in spec (app.md/components.md) — write that same literal in every kit');
   } else {
     console.log('RESULT: PASS (every cross-kit number is identical across all kits)');
   }

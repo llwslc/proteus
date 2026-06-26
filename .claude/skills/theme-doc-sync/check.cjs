@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = process.cwd();
-const themesDir = path.join(ROOT, 'prompt/themes');
+const themesDir = path.join(ROOT, 'prompt/theme');
 const kitsDir = path.join(ROOT, 'src/kits');
 
 const kits = fs.readdirSync(kitsDir).filter((k) =>

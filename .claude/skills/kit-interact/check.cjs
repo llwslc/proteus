@@ -183,7 +183,7 @@ const setKit = async (page, kit) => {
     } catch (e) { out.push(`WARN  ${kit}  disabled-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     try {
       // a SELECTED/open segmented control (ToggleGroup toggle, Toolbar button) must KEEP its look on hover —
-      // the selected fill must not lose to an over-specific :hover (core.md §5). Force :hover via CDP (real
+      // the selected fill must not lose to an over-specific :hover (components.md §5). Force :hover via CDP (real
       // hover is flaky headless) and disable motion so the read is the settled value, not a mid-fade sample.
       await setKit(d, kit);
       await d.emulateMedia({ reducedMotion: 'reduce' });

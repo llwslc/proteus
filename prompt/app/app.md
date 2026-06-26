@@ -1,6 +1,6 @@
 # App —— 演示页 + 外壳 + 加载
 
-> 配合 `core.md` + `themes/<kit>.md`。承载、展示层，非控件。结构通用，文案、装饰、loader 视觉随 theme。
+> 读 `theme/<kit>.md`（风格）+ `app/<kit>.md`（文案）皮这张展示页：外壳、Hero、面板网格、氛围、loader。承载层、非控件，不引 `components/`。结构通用，装饰与 loader 视觉随风格。
 
 ## 演示页
 

@@ -1,6 +1,6 @@
 # Theme · PRISM —— 包豪斯构成
 
-> 配合 `core.md` + `app.md` 使用，只负责填 core 的 token 契约、以及 core 里标了「交给 theme」的那些视觉部分。`<kit>` = `bauhaus`。
+> 本套风格：视觉 DNA——身份、调色、字体、几何、氛围、动效语言。`components/`（控件皮）与 `app/`（演示页）都读它，它本身不认识控件、也不认识演示页。`<kit>` = `bauhaus`。
 
 ## 0. 身份
 

@@ -89,7 +89,7 @@ echo "## alpha spread per rgb family (components + tokens; review for clusters)"
   | sed -E 's/rgba\(([0-9, ]+),([ 0-9.]+)\)/\1 ->\2/' | sort | awk -F' ->' '{a[$1]=a[$1]" "$2} END {for (k in a) print "  rgb("k"):"a[k]}' | sort
 
 
-# 10b. raw pixel sizes passed as .tsx props / inline styles (core.md: component size footprint must be a --<kit>- token)
+# 10b. raw pixel sizes passed as .tsx props / inline styles (components.md: component size footprint must be a --<kit>- token)
 #   .css is covered above; this catches sizes that bypass css via JSX — size={56}, maxHeight={200}, style={{ width: 120 }}, style={{ height: "48px" }}.
 #   scope = size-footprint keys only (size/width/height/min-/max-), so semantic data props (value/min/max/step/length) and
 #   Base UI anchor props (sideOffset/alignOffset/collisionPadding) are excluded by construction. tokens/%/dvh/vh/vw/em/clamp/calc/0 pass.

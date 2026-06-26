@@ -9,7 +9,7 @@ Run: `node .claude/skills/kit-shell-tokens/check.cjs [port]` (dev server on :527
 
 These numbers are a cross-kit constant — identical across kits *by design*. They
 are **not** shared at runtime (there is no `src/shared/geometry.css`); the canonical
-value lives in the **spec** (`app.md` §布局 for shell geometry, `core.md` for the
+value lives in the **spec** (`app.md` §布局 for shell geometry, `components.md` for the
 z-ladder / modal+drawer widths+caps / navmenu column), and **each kit writes that
 same literal** into its own `tokens.css` / `App.css`. Self-contained kits, no
 runtime dependency — at the cost that a value could be fat-fingered in one kit.
