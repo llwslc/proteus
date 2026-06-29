@@ -13,7 +13,7 @@
 - **浮层尺寸**（模态/抽屉宽高与 cap、NavigationMenu 列宽）：见 `components.md`。
 - **z 阶梯**：见 `components.md`。
 
-锁不了固定值的形状——组合、骨架、DOM 顺序、指示器侧、缩进、撑满 vs 紧凑——进 `components.md`，逐组件精确。对着 `components.md`/`app.md` 写，不照兄弟 kit。
+组合、骨架、DOM 顺序、指示器侧、缩进、撑满还是紧凑这类形状钉不成固定值，逐组件写进 `components.md`。
 
 ## 步骤
 
