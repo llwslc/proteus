@@ -95,7 +95,7 @@
 
 - avatar：一行 4 个 Avatar，4 种 status 与 3 种尺寸 —— ① 图片 + online（`md`）；② fallback + busy（`sm`）；③ fallback + away（`md`）；④ fallback + offline（`lg`）。
 - badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
-- toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮）+ 分隔 + ToolbarLink（末尾状态链接）；2 分隔。
+- toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮）+ 分隔 + ToolbarLink（末尾状态链接，图标 + 文字）；2 分隔。
 - scroll：ScrollArea（`maxHeight` 200），内嵌 12 行「时间 + 消息」列表。
 
 **Foundations**

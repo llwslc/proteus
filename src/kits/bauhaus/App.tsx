@@ -936,7 +936,10 @@ function Demo() {
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarLink href="#">Saved</ToolbarLink>
+                <ToolbarLink href="#">
+                    <Dot />
+                    Saved
+                  </ToolbarLink>
               </Toolbar>
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">
