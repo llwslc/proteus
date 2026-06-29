@@ -9,10 +9,10 @@
 - 做全新一套：写 `theme/<kit>.md`（风格）+ `components/theme/<kit>.md`（控件皮），本骨架直接复用。
 - 文中 `<kit>` 是该套代号，写代码时把 `--<kit>-*`、`.<kit>-*` 里的 `<kit>` 换成代号。
 
-## 1. 目标 & 技术栈
+## 1. 目标与技术栈
 
 - 用 **Base UI**（`@base-ui/react`）做一套可换肤的 React 组件库：37 个控件，一套能整体换皮的设计 token。结构、token 契约、交互骨架是共用的底盘，统一而克制；皮各自一个视觉世界，不是同一张皮改色。
-- **皮要有招牌**：每套皮都拿出成体系的招牌——动效人人都要有，自绘控件、装饰层次、构成动势按各自美学取舍；这和结构、token 一样要紧，**招牌取什么形、走哪条路，由 theme 定**。
+- **皮要有招牌**：每套皮拿出成体系的招牌——自绘控件、动效、装饰层次、构成动势，按各自美学取舍；这和结构、token 一样要紧，**招牌取什么形、走哪条路，由 theme 定**。
 - Vite + React 18 + TypeScript；构建命令 `tsc --noEmit && vite build`。
 - 样式用纯 CSS，和组件放同一目录；不用 Tailwind、CSS-in-JS、或任何运行时样式库。
 - 主题文件有四份，都由 `<kit>/index.tsx` 引入：跨组件复用的视觉配方放 `theme/effects.css`，主题值放 `theme/tokens.css`，氛围层放 `theme/global.css`，排版类放 `theme/typography.css`。
@@ -87,7 +87,7 @@
 - 当用「边框色打底 + `::before` 填充」这种画法时，激活态的填充必须是深色、不透明。
 - **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**
-- **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的（如 NumberField 步进钮夹着输入框）落在整组上、不只中间那块；**提示的具体形式和效果由 theme 定**。可聚焦的浮层 popup 加 `outline:none`。
+- **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的（如 NumberField 步进钮夹着输入框）落在整组上、不只中间那块；**提示的具体形式和效果由 theme 定**。
 - **禁用**：`opacity: var(--<kit>-disabled-opacity)` + `cursor: not-allowed`；整行只 dim 一层，opacity 不叠两遍。
 
 ## 6. 组件
@@ -104,7 +104,7 @@
 
 - **Badge、Panel** 是纯样式件，**不是** Base UI 组件（Base UI 没有这两个）。
 - **Menu、ContextMenu、Menubar** 共用同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`，通过 context 注入底层 primitive。
-- **分段条家族**（Toolbar、Menubar、ToggleGroup）共用同一套箱体与文字语言：一条带框的横条，内衬 `space-1`（嵌套时只外层画箱体），里面排紧凑的 chip 触发钮、各钮等高，文字用 display 体大写；**箱体和文字的具体档值由 theme 定**；悬停、激活态走 §5 的「分段」档。Menubar 的触发器不带 chevron；独立 Menu 的触发按钮带一个会旋转的 chevron。
+- **分段条家族**（Toolbar、Menubar、ToggleGroup）共用同一套箱体与文字语言：一条带框的横条，内衬 `space-1`（嵌套时只外层画箱体），里面排紧凑的 chip 触发钮、各钮等高，文字用 display 体大写；**箱体和文字的具体档值由 theme 定**；悬停、激活态走 §5 的「分段」档。
 - **AlertDialog** 与 Dialog 同一基底，按 `tone` 重染边框、标题、图标；**怎么重染、tone 强调放在哪、长什么样，全由 theme 定。**
 
 ## 6.1 逐组件结构
@@ -166,7 +166,7 @@
 
 ## 8. 布局与响应式
 
-- inline-flex 的分段控件 ToggleGroup 加 `width: fit-content`；1px 的细分隔条放在会收缩的 flex 容器里要加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；`<fieldset>` 也要加 `min-width: 0`（破掉它默认的 `min-content`，否则不收缩）；跨列的子项用 `grid-column: 1 / -1`、不用定值 `span N`。
+- inline-flex 的分段控件 ToggleGroup 加 `width: fit-content`；1px 的细分隔条放在会收缩的 flex 容器里要加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；`<fieldset>` 也要加 `min-width: 0`；跨列的子项用 `grid-column: 1 / -1`、不用定值 `span N`。
 - 按钮、图标按钮保持内容宽，不撑满整行；整行通栏只给 Input、Select、textarea、Accordion 这类输入控件。
 - **唯一断点 `768px`**，不另设别的断点。`≤768` 时组件走手机态——Tabs、NavMenu **横向滚动**不换行、滚动条隐藏（靠拖动滚）；Toolbar **换行**不横滚。
 - **装饰层不许把页面撑宽**：扫光用 `background-position` 移动、不定态进度用 `top`/`left` 移动；非用 `transform` 不可时，把它关进一个不带 `clip-path` 的 `overflow:hidden` 祖先里。
