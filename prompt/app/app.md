@@ -87,13 +87,13 @@
 - navmenu：与顶栏主导航同数据 —— 3 个条目：2 个下拉组各 4 条链接（label + 描述），加 1 个纯链接。
 - context：trigger = 文本投放区；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
-- alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` tone 的 AlertDialog；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
+- alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` 三种 tone 的 AlertDialog；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。
-- toast：一行 4 个 Button（`sm`、`ghost`），分别触发 `info`、`success`、`warning`、`danger` toast。
+- toast：一行 4 个 Button（`sm`、`ghost`），分别触发 `info`、`success`、`warning`、`danger` 四种 toast。
 
 **Display**
 
-- avatar：一行 4 个 Avatar —— ① 图片 + online（`md`）；② fallback + busy（`sm`）；③ fallback + away（`md`）；④ fallback + offline（`lg`）。
+- avatar：一行 4 个 Avatar，4 种 status 与 3 种尺寸 —— ① 图片 + online（`md`）；② fallback + busy（`sm`）；③ fallback + away（`md`）；④ fallback + offline（`lg`）。
 - badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
 - toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮）+ 分隔 + ToolbarLink（末尾状态链接）；2 分隔。
 - scroll：ScrollArea（`maxHeight` 200），内嵌 12 行「时间 + 消息」列表。
