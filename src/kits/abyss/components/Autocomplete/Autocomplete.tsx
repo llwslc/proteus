@@ -50,7 +50,7 @@ export function Autocomplete({
                   <BaseAutocomplete.Item
                     key={item}
                     value={item}
-                    className="abyss-autocomplete__item"
+                    className="abyss-option"
                   >
                     <span className="abyss-autocomplete__label">{item}</span>
                   </BaseAutocomplete.Item>

@@ -406,3 +406,50 @@
 .abyss-menu__item[data-popup-open] .abyss-menu__arrow {
   color: var(--abyss-glow);
 }
+
+.abyss-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  padding: var(--abyss-space-2) var(--abyss-space-3);
+  border-radius: var(--abyss-round-3);
+  cursor: pointer;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font);
+  font-size: var(--abyss-fs-15);
+  user-select: none;
+  outline: none;
+  transition:
+    background var(--abyss-dur) var(--abyss-ease),
+    color var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-option::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  border-radius: var(--abyss-round-2);
+  background: var(--abyss-glow);
+  box-shadow: 0 0 7px var(--abyss-glow-a70);
+  filter: url(#abyss-edge);
+  opacity: 0;
+  transition: opacity var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-option[data-highlighted] {
+  background: var(--abyss-glow-soft);
+  color: var(--abyss-text-bright);
+}
+.abyss-option[data-highlighted]::before {
+  opacity: 1;
+}
+.abyss-option[data-selected] {
+  color: var(--abyss-glow);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-option[data-disabled] {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+}

@@ -403,3 +403,47 @@
 .nova-menu__item[data-popup-open] .nova-menu__arrow {
   color: var(--nova-primary);
 }
+
+.nova-option {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--nova-space-2);
+  padding: var(--nova-space-2) var(--nova-space-3);
+  cursor: pointer;
+  color: var(--nova-text-dim);
+  font-size: var(--nova-fs-14);
+  user-select: none;
+  outline: none;
+  clip-path: var(--nova-clip-7);
+  transition:
+    background var(--nova-dur) var(--nova-ease),
+    color var(--nova-dur) var(--nova-ease);
+}
+.nova-option::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--nova-primary);
+  box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);
+  opacity: 0;
+  transition: opacity var(--nova-dur) var(--nova-ease);
+}
+.nova-option[data-highlighted] {
+  background: var(--nova-highlight);
+  color: var(--nova-text-bright);
+}
+.nova-option[data-highlighted]::after {
+  opacity: 1;
+}
+.nova-option[data-selected] {
+  color: var(--nova-primary);
+}
+.nova-option[data-disabled] {
+  opacity: var(--nova-disabled-opacity);
+  cursor: not-allowed;
+}

@@ -56,7 +56,7 @@ export function Combobox({
                   <BaseCombobox.Item
                     key={item}
                     value={item}
-                    className="abyss-combobox__item"
+                    className="abyss-option"
                   >
                     <span className="abyss-combobox__item-text">{item}</span>
                     <span className="abyss-combobox__indicator" aria-hidden>

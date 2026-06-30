@@ -58,7 +58,7 @@ export function Combobox({
                   <BaseCombobox.Item
                     key={item}
                     value={item}
-                    className="nova-combobox__item"
+                    className="nova-option"
                   >
                     <span className="nova-combobox__item-text">{item}</span>
                     <span className="nova-combobox__indicator">

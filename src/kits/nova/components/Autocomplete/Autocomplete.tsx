@@ -50,7 +50,7 @@ export function Autocomplete({
                   <BaseAutocomplete.Item
                     key={item}
                     value={item}
-                    className="nova-autocomplete__item"
+                    className="nova-option"
                   >
                     {item}
                   </BaseAutocomplete.Item>

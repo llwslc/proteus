@@ -81,49 +81,6 @@
   padding: var(--nova-space-1);
 }
 
-.nova-select__item {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: var(--nova-space-2);
-  padding: var(--nova-space-2) var(--nova-space-3);
-  cursor: pointer;
-  color: var(--nova-text-dim);
-  font-size: var(--nova-fs-14);
-  user-select: none;
-  outline: none;
-  clip-path: var(--nova-clip-7);
-  transition:
-    background var(--nova-dur) var(--nova-ease),
-    color var(--nova-dur) var(--nova-ease);
-}
-.nova-select__item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--nova-primary);
-  box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);
-  opacity: 0;
-  transition: opacity var(--nova-dur) var(--nova-ease);
-}
-.nova-select__item[data-highlighted] {
-  background: var(--nova-highlight);
-  color: var(--nova-text-bright);
-}
-.nova-select__item[data-highlighted]::after {
-  opacity: 1;
-}
-.nova-select__item[data-selected] {
-  color: var(--nova-primary);
-}
-.nova-select__item[data-disabled] {
-  opacity: var(--nova-disabled-opacity);
-  cursor: not-allowed;
-}
 .nova-select__item-indicator {
   display: inline-grid;
   place-items: center;
