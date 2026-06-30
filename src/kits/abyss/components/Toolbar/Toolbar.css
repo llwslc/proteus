@@ -32,28 +32,9 @@
 }
 
 .abyss-toolbar__btn {
-  --abyss-frame-ink: transparent;
-  --abyss-frame-fill: transparent;
-  --abyss-frame-round: var(--abyss-round-3);
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   gap: var(--abyss-space-2);
   height: var(--abyss-toolbar-btn-h);
   min-width: var(--abyss-toolbar-btn-min-w);
-  padding: 0 var(--abyss-space-3);
-  border: 0;
-  background: transparent;
-  color: var(--abyss-text-dim);
-  font-family: var(--abyss-font-display);
-  font-size: var(--abyss-fs-13);
-  letter-spacing: var(--abyss-ls-6);
-  text-transform: uppercase;
-  cursor: pointer;
-  transition:
-    color var(--abyss-dur) var(--abyss-ease),
-    filter var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-toolbar__label {
   position: relative;
@@ -61,50 +42,6 @@
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-2);
-}
-.abyss-toolbar__btn::before {
-  display: none;
-}
-.abyss-toolbar__btn:hover::before,
-.abyss-toolbar__btn:focus-visible::before,
-.abyss-toolbar__btn.is-active::before,
-.abyss-toolbar__btn[data-pressed]::before {
-  display: block;
-}
-.abyss-toolbar__btn:hover {
-  color: var(--abyss-glow);
-  --abyss-frame-ink: var(--abyss-glow-a30);
-  --abyss-frame-fill: var(--abyss-glow-soft);
-}
-.abyss-toolbar__btn:focus-visible {
-  outline: none;
-  color: var(--abyss-glow);
-  --abyss-frame-ink: var(--abyss-glow);
-  filter: var(--abyss-aura);
-}
-.abyss-toolbar__btn.is-active,
-.abyss-toolbar__btn[data-pressed] {
-  color: var(--abyss-glow);
-  --abyss-frame-ink: var(--abyss-glow-a70);
-  --abyss-frame-fill: var(--abyss-glow-soft);
-  text-shadow: var(--abyss-text-aura);
-}
-.abyss-toolbar__btn.is-active::after,
-.abyss-toolbar__btn[data-pressed]::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  z-index: 0;
-  border: 1px solid var(--abyss-glow-a30);
-  border-radius: var(--abyss-round-2);
-  filter: url(#abyss-edge);
-  pointer-events: none;
-}
-.abyss-toolbar__btn[data-disabled],
-.abyss-toolbar__btn:disabled {
-  opacity: var(--abyss-disabled-opacity);
-  cursor: not-allowed;
-  filter: grayscale(0.5);
 }
 
 .abyss-toolbar__link {

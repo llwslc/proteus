@@ -453,3 +453,75 @@
   opacity: var(--abyss-disabled-opacity);
   cursor: not-allowed;
 }
+
+.abyss-seg__btn {
+  --abyss-frame-ink: transparent;
+  --abyss-frame-fill: transparent;
+  --abyss-frame-round: var(--abyss-round-3);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--abyss-space-3);
+  border: 0;
+  background: transparent;
+  color: var(--abyss-text-dim);
+  font-family: var(--abyss-font-display);
+  font-size: var(--abyss-fs-13);
+  letter-spacing: var(--abyss-ls-6);
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  transition:
+    color var(--abyss-dur) var(--abyss-ease),
+    filter var(--abyss-dur) var(--abyss-ease);
+}
+.abyss-seg__btn::before {
+  display: none;
+}
+.abyss-seg__btn:where(:not(:disabled):not([data-disabled])):hover::before,
+.abyss-seg__btn:focus-visible::before,
+.abyss-seg__btn[data-pressed]::before,
+.abyss-seg__btn[data-selected]::before,
+.abyss-seg__btn[data-popup-open]::before,
+.abyss-seg__btn.is-active::before {
+  display: block;
+}
+.abyss-seg__btn:where(:not(:disabled):not([data-disabled])):hover {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a30);
+  --abyss-frame-fill: var(--abyss-glow-soft);
+}
+.abyss-seg__btn:focus-visible {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}
+.abyss-seg__btn[data-pressed],
+.abyss-seg__btn[data-selected],
+.abyss-seg__btn[data-popup-open],
+.abyss-seg__btn.is-active {
+  color: var(--abyss-glow);
+  --abyss-frame-ink: var(--abyss-glow-a70);
+  --abyss-frame-fill: var(--abyss-glow-soft);
+  text-shadow: var(--abyss-text-aura);
+}
+.abyss-seg__btn[data-pressed]::after,
+.abyss-seg__btn[data-selected]::after,
+.abyss-seg__btn[data-popup-open]::after,
+.abyss-seg__btn.is-active::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  z-index: 0;
+  border: 1px solid var(--abyss-glow-a30);
+  border-radius: var(--abyss-round-2);
+  filter: url(#abyss-edge);
+  pointer-events: none;
+}
+.abyss-seg__btn[data-disabled],
+.abyss-seg__btn:disabled {
+  opacity: var(--abyss-disabled-opacity);
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}

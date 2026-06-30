@@ -21,7 +21,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
   return (
     <BaseMenu.Root>
       <span className="abyss-menubar__triggerwrap">
-        <BaseMenu.Trigger className="abyss-frame abyss-menubar__trigger">{label}</BaseMenu.Trigger>
+        <BaseMenu.Trigger className="abyss-seg__btn abyss-frame abyss-menubar__trigger">{label}</BaseMenu.Trigger>
       </span>
       <BaseMenu.Portal>
         <BaseMenu.Positioner
