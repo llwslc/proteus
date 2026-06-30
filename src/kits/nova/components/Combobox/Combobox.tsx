@@ -24,14 +24,14 @@ export function Combobox({
   const inputId = useId();
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
-      <div className="nova-combobox__field">
-        <BaseCombobox.InputGroup className="nova-combobox__control">
-          <span className="nova-combobox__lead">
+      <div className="nova-field nova-combobox__field">
+        <BaseCombobox.InputGroup className="nova-field__control nova-combobox__control">
+          <span className="nova-field__lead">
             <SearchIcon />
           </span>
           <BaseCombobox.Input
             id={inputId}
-            className="nova-combobox__input"
+            className="nova-field__input"
             placeholder={placeholder}
             aria-label={label ?? placeholder}
           />

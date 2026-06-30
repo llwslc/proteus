@@ -414,3 +414,71 @@
   z-index: 1;
   margin: var(--nova-space-2) 0;
 }
+
+.nova-field {
+  display: block;
+  width: 100%;
+  min-width: var(--nova-field-min-w);
+  transition: filter var(--nova-dur) var(--nova-ease);
+}
+.nova-field:has(:focus-within) {
+  filter: var(--nova-glow-focus);
+}
+.nova-field:has(.nova-field__input:disabled) {
+  opacity: var(--nova-disabled-opacity);
+}
+.nova-field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--nova-space-2);
+  width: 100%;
+  min-width: var(--nova-field-min-w);
+  height: var(--nova-control-h);
+  padding: 0 var(--nova-space-3);
+  background: var(--nova-line);
+  clip-path: var(--nova-clip-9);
+  transition: background var(--nova-dur) var(--nova-ease);
+}
+.nova-field__control::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  clip-path: var(--nova-clip-9);
+  background: var(--nova-surface-popup);
+}
+.nova-field__control > * {
+  position: relative;
+  z-index: 1;
+}
+.nova-field__control:focus-within {
+  background: var(--nova-primary);
+}
+.nova-field__control:focus-within::before {
+  background: var(--nova-surface-inset);
+}
+.nova-field__lead {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: var(--nova-fs-16);
+  color: var(--nova-primary);
+}
+.nova-field__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--nova-text);
+  font-family: var(--nova-font);
+  font-size: var(--nova-fs-14);
+  letter-spacing: var(--nova-ls-4);
+  outline: none;
+}
+.nova-field__input::placeholder {
+  color: var(--nova-text-mute);
+}
+.nova-field__input:disabled {
+  cursor: not-allowed;
+}
