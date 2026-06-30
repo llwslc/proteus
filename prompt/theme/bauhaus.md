@@ -17,7 +17,7 @@
 - primary 的 alpha 阶梯：`tint-soft .1 · tint .16`，做悬停和激活的蓝色 wash。新的蓝色 alpha 先并进这条阶梯，不另造。
 - 另立的 alpha 家族：`ink-faint .06` 给 ghost 按钮的 hover 墨 wash；danger 的 `-wash .12 / -text #7c1209`。
 - 中性与效果色：`off #ddd5c0` 是关态轨道（浅暖灰）；`track #e2dbc9` 是未填充的轨道。
-- 表面：`surface` = `paper`；`surface-popup` 是实纸；`surface-modal` 是纯纸 `#fbf8ef`；`surface-inset #e8e1ce` 是凹陷的浅纸，用作分段控件的箱底和 OTP 的格底；`surface-zone` 是右键投放区的浅蓝 tint；`scrim` 是墨色 `.5` 的平涂背板。
+- 表面：`surface` = `paper`；`surface-popup` 是实纸；`surface-modal` 是纯纸 `#fbf8ef`；`surface-inset #e8e1ce` 是凹陷的浅纸底；`surface-zone` 是右键投放区的浅蓝 tint；`scrim` 是墨色 `.5` 的平涂背板。
 - 描边与投影：全局描边恒为 `ink #141414` 纯黑；投影用**硬边偏移的实影**——不是模糊阴影，是沿形状轮廓、朝一侧偏移的纯色块：沿轮廓的 drop-shadow 有 `cast-pop` 5px、`cast-modal` 8px、`cast-sm` 3px，都是 `Npx Npx 0 ink`、无模糊无辉光；矩形硬影 `shadow-hard` 给按钮的静止态；焦点环 `ring` = 一圈纸白间隙 + 一圈蓝色外环；文字强调和选中提示都取 `primary` 蓝。
 
 ## 2. 字体与排版
@@ -29,26 +29,23 @@
 
 ## 3. 几何与描边
 
-- 造型只有**锐角矩形 + 正圆**，不用 clip-path、不用圆角矩形过渡。半径只有两档：`--bauhaus-r-frame / -control / -chip` 全为 `0`（硬网格、锐角），`--bauhaus-r-round 999px` 给正圆（旋钮、状态点、圆形 marker 等）；组件不裸写 radius。
+- 造型只有**锐角矩形 + 正圆**，不用 clip-path、不做圆角矩形。半径只有两档：`--bauhaus-r-frame / -control / -chip` 全为 `0`（硬网格、锐角），`--bauhaus-r-round 999px` 给正圆（旋钮、状态点、圆形 marker 等）；组件不裸写 radius。
 - 尺度感靠**描边的粗细**来体现，不靠圆角。粗细阶梯 `--bauhaus-stroke-hair 1 / -default 2 / -bold 3 / -heavy 4`，按角色挑：细分隔用 hair，控件和容器框用 default，大型框面用 bold，超大外框用 heavy；组件不裸写 border-width。
-- 浮层的连接件（连到触发器的那个小箭头）是一个旋转 45° 的方块、当作纸面三角的尾巴，两条边描 `ink`，尖端指向触发器，跟弹层一起淡入淡出。
-- 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量是 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接用 CSS `border`，不搞双层 `::before`、不要 bevel、不要渐变。
+- 浮层的连接件（连到触发器的那个小箭头）是一个旋转 45° 的方块、当作纸面三角的尾巴，两条边描 `ink`，尖端指向触发器。
+- 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量是 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接用 CSS `border`，不搞双层 `::before`。
 - 边框轻重：页内静止框和浮层框一律 `ink` 纯黑，统一成黑网格；状态升级靠**加颜色**——焦点加蓝环、错误加红环、选中加实填；整块语义变体平涂实色。
-- 抬升：硬边偏移的实影 drop-shadow 挂在浮层自己身上（弹层、模态）、不挂 positioner；入场用的 clip-path 要在投影那一侧留出余量、别把影子裁掉；输入变量 `--bauhaus-overlay-shadow`，默认取 `cast-pop`、模态取 `cast-modal`、小档取 `cast-sm`；`.bauhaus-lift` 只用来定 z 层、不画别的。没有辉光层。
+- 抬升：硬边偏移的实影 drop-shadow 挂在浮层自己身上（弹层、模态）、不挂 positioner；入场用的 clip-path 要在投影那一侧留出余量、别把影子裁掉；输入变量 `--bauhaus-overlay-shadow`，默认取 `cast-pop`、模态取 `cast-modal`、小档取 `cast-sm`；`.bauhaus-lift` 只用来定 z 层、不画别的。
 - 基本形 marker 母题：圆、三角、方三种原形，用作角标、tone 图标、列表标记和招牌，靠输入变量换色。
 
 ## 4. 氛围层
 
 定义在 `global.css`。
 
-- `body`：暖纸 `base` 底、`ink` 文字、Jost 字体。
 - `body::before`：一层大尺度的平涂构成——左下角一个大群青正圆、右上角一个原黄方块，alpha 都压得很低（`.07`–`.09`），再加一道朱红对角 bar 给动势；不模糊、不加噪点。
-- 不要纹理：不加噪点、不加渐变氛围、不加辉光。
 - `::selection` = `warning` 原黄底 + `ink` 字；滚动条走标准细条（`scrollbar-width: thin`），轨道是浅纸 `paper-raised`、thumb 是 `primary` 蓝。
-- 加 `prefers-reduced-motion` 守卫，开了就关动画。
 
 ## 5. 动效个性
 
 - 时长 `dur .16s / -slow .34s`、`dur-sweep 1.5s`；缓动 `ease (0.2, 0, 0, 1)` 硬落定，`ease-out (0.16, 1, 0.3, 1)` 给块面滑移这类大位移。
-- 共享动效（`effects.css`）：只有 `.bauhaus-connector` 浮层连接件随弹层淡入淡出；无氛围动画、无辉光。
+- 共享动效（`effects.css`）：只有 `.bauhaus-connector` 浮层连接件随弹层淡入淡出。
 

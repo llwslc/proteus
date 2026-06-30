@@ -4,7 +4,7 @@
 
 ## 0. 身份
 
-- 代号 **NOVA**，取科幻指挥舱抬头显示（HUD）的味道：深空暗色作底，框的边角切成锐利的斜角，再叠一层电光青的辉光；整体统一而克制，不喧哗。
+- 代号 **NOVA**，取科幻指挥舱抬头显示（HUD）的味道：深空暗色作底，框的边角切成锐利的斜角，再叠一层电光青的辉光。
 
 ## 1. 调色板
 
@@ -12,7 +12,7 @@
 - 五个强调色家族，每个都配一个 `-deep` 暗档：primary 电光青 `#2de2ff / #119cb8`，secondary 品红 `#ff2d75 / #c4185a`，success 草绿 `#54ffb0 / #1f9c68`，warning 琥珀黄 `#ffce54 / #b8861f`，danger 警示红 `#ff4d5e / #b3242f`。
 - 文本是冷白偏蓝的字色：`text #d7ecff`、`-bright #eafdff`（更亮、更高反差）、`-dim #7793b0`、`-mute #46617e`。
 - 两档反色前景（压在实色填充上的字色）：`on-primary #02131a` 压在青色填充上，`on-danger #1c0406` 压在红色填充上。
-- 两条复用的强调填充，都是渐变：`accent-surface` = `180deg` 自上而下从 primary 渐到 deep，用来点亮表面；`accent-fill` = `90deg` 从 deep 渐到 primary（到 55% 处为 primary），用作方向指示条（进度、表示数值方向的那种条）。
+- 两条复用的强调填充，都是渐变：`accent-surface` = `180deg` 自上而下从 primary 渐到 deep，用来点亮表面；`accent-fill` = `90deg` 从 deep 渐到 primary（到 55% 处为 primary），用作方向指示条。
 - 青色的 alpha 阶梯（同一个青、不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55`。新的青色半透明值先并进这条阶梯，不另造。
 - 另外单立的 alpha 家族：`secondary-fill .55`；danger 一组 `-fill .55 / -wash .12 / -text #ffd9dc`。
 - 中性与效果色：`off` 是关态轨道色，呈蓝灰；`track` 是未填充的轨道色；`ghost-hover` 给 ghost 按钮悬停；白扫光 `sheen .6 / sheen-soft .14`（高光斜扫用）；关态旋钮的金属渐变 `thumb-idle-top / -bottom`；深表面渐变 `surface-deep-top / -bottom`。
@@ -23,15 +23,15 @@
 
 - 字体：display（展示体）用 **Orbitron** 且全大写，正文用 **Rajdhani**，数值刻度用 **Share Tech Mono**。
 - 尺度各档：字号 `fs-12 / 13 / 14 / 16 / 18 / 22`，字距 `ls-4 / 10 / 16`，行高 `lh-100 / 160`，字重 `fw-600 / 700`。
-- 三档标题，全大写、`fw-700`，字号越大字距收得越紧：`h1` = fs-22 + ls-4，`h2` = fs-16 + ls-10，`h3` = fs-13 + ls-16；正文 `text` = fs-14 + lh-160 + text-dim；修饰类 `h1--accent` = primary 字色 + glow-text 辉光。
+- 三档标题，全大写、`fw-700`：`h1` = fs-22 + ls-4，`h2` = fs-16 + ls-10，`h3` = fs-13 + ls-16；正文 `text` = fs-14 + lh-160 + text-dim；修饰类 `h1--accent` = primary 字色 + glow-text 辉光。
 - 字段标签 caption 有独立类 **`.nova-cap`**：display · fs-12 · fw-600 · ls-10 · 大写 · dim，组件统一引用。
 
 ## 3. 几何与描边
 
-- 造型 = **锐利切角**，用 `clip-path` 的多边形来实现（把矩形的角斜切掉）。切角阶梯 `--nova-clip-3 / 4 / 7 / 9 / 12` 外加一个 `clip-tick`，按角色档来挑用哪一档。
+- 造型 = **锐利切角**，用 `clip-path` 的多边形来实现（把矩形的角斜切掉）。切角阶梯 `--nova-clip-3 / 4 / 7 / 9 / 12` 外加一个 `clip-tick`，按角色挑。
 - 描边走双层 frame 原语 `.nova-surface`：外层背景填边框色 + 切角，里头一层 `::before` 内缩 1px 填表面色，于是边缘留出一圈描边。输入变量：`--nova-surface-clip` 默认取 clip-9，`-fill` 默认取 surface-popup，`-border` 默认取 line-strong。
 - 辉光用 `filter: drop-shadow()` 沿着切角的轮廓发光，挂在一个不切角的外层 `.nova-elevation` 上；它的输入变量 `--nova-overlay-shadow / -glow` 默认取 shadow-popup、glow-popup。
-- 边框层级：页内静止态 = `line`；浮层 = `line-strong`，也就是 surface 的默认；状态升级则升到 `line-strong`、再到 `primary`；错误态 frame 取 `danger`、`Error` 文字同走 `danger`，不另填输入区底。
+- 边框层级：页内静止态 = `line`；浮层 = `line-strong`；状态升级则升到 `line-strong`、再到 `primary`；错误态 frame 取 `danger`、`Error` 文字同走 `danger`。
 - 浮层的连接件（连到触发器的那条短线）= 1px 的 `line-strong` 青线 + 一点微辉光，长度取 `--nova-overlay-gap`，跨过缝隙连到触发器。
 
 ## 4. 氛围层
