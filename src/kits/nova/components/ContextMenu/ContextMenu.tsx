@@ -2,7 +2,6 @@ import { cx } from "../cx";
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu";
 import { ScrollArea } from "../ScrollArea";
 import type { ReactNode } from "react";
-import "../Menu/Menu.css";
 import "./ContextMenu.css";
 
 export interface ContextMenuProps {

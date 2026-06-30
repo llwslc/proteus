@@ -2,7 +2,6 @@ import { Menubar as BaseMenubar } from "@base-ui/react/menubar";
 import { ScrollArea } from "../ScrollArea";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import type { ReactNode } from "react";
-import "../Menu/Menu.css";
 import "./Menubar.css";
 
 export interface MenubarMenuProps {

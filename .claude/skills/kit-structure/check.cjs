@@ -114,25 +114,35 @@ for (const c of shared) {
 }
 if (fail === failBefore) out('  ok');
 
-out('\n## 6. component-class coupling (a leaf component class reused by another component — the navmenu↔tab class)');
-const LEAF = ['tab', 'tabs', 'select', 'combobox', 'autocomplete', 'slider', 'switch', 'checkbox', 'radio', 'dialog', 'alert', 'drawer', 'toast', 'tooltip', 'popover', 'preview', 'previewcard', 'accordion', 'collapsible', 'avatar', 'meter', 'progress', 'otp', 'otpfield', 'numberfield', 'fieldset', 'navmenu', 'navigationmenu'];
-const norm = (s) => s.toLowerCase().replace(/[^a-z]/g, '');
+out('\n## 6. component CSS isolation (a component uses only its OWN classes + theme; never another component\'s CSS)');
 const cBefore = fail;
 for (const k of KITS) {
-  const cls2comp = {};
+  const defRe = new RegExp('\\.(' + k + '-[a-z0-9]+(?:[-_][a-z0-9]+)*)', 'g');
+  const useRe = new RegExp('(' + k + '-[a-z0-9]+(?:[-_][a-z0-9]+)*)', 'g');
+  const themeCls = new Set();
+  for (const f of cp.execSync(`find src/kits/${k}/theme -name '*.css'`).toString().trim().split('\n').filter(Boolean))
+    for (const m of read(f).matchAll(defRe)) themeCls.add(m[1]);
+  const defByComp = {};
+  for (const c of compSets[k]) {
+    if (c === 'icons') continue;
+    const set = new Set(), dir = `src/kits/${k}/components/${c}`;
+    for (const f of fs.readdirSync(dir)) if (f.endsWith('.css')) for (const m of read(`${dir}/${f}`).matchAll(defRe)) set.add(m[1]);
+    defByComp[c] = set;
+  }
   for (const c of compSets[k]) {
     if (c === 'icons') continue;
     const dir = `src/kits/${k}/components/${c}`;
-    let s = '';
-    for (const f of fs.readdirSync(dir)) if (/\.tsx$/.test(f)) s += read(`${dir}/${f}`) + '\n';
-    for (const m of s.matchAll(new RegExp(k + '-[a-z0-9]+(?:[-_][a-z0-9]+)*', 'g'))) (cls2comp[m[0]] ||= new Set()).add(c);
-  }
-  for (const [cls, set] of Object.entries(cls2comp)) {
-    if (set.size < 2) continue;
-    const word = (cls.slice(k.length + 1).match(/^[a-z]+/) || [])[0];
-    if (!word || !LEAF.includes(word)) continue;
-    const intruders = [...set].filter((c) => !norm(c).includes(word));
-    if (intruders.length) { out(`  FAIL ${k}: ${cls} (a ${word} class) used by ${intruders.join(', ')} — give them their own classes`); fail++; }
+    let tsx = '';
+    for (const f of fs.readdirSync(dir)) {
+      if (/\.tsx?$/.test(f)) for (const m of read(`${dir}/${f}`).matchAll(/import\s+['"]\.\.\/([A-Za-z0-9]+)\/[^'"]+\.css['"]/g))
+        if (m[1] !== c) { out(`  FAIL ${k}/${c}: imports ${m[1]}'s CSS ('../${m[1]}/…css') — move shared rules to theme/`); fail++; }
+      if (f.endsWith('.tsx')) tsx += read(`${dir}/${f}`) + '\n';
+    }
+    for (const cls of new Set([...tsx.matchAll(useRe)].map((m) => m[1]))) {
+      if (defByComp[c].has(cls) || themeCls.has(cls)) continue;
+      const owners = compSets[k].filter((o) => o !== c && o !== 'icons' && defByComp[o] && defByComp[o].has(cls));
+      if (owners.length) { out(`  FAIL ${k}/${c}: uses ${cls} defined in ${owners.join('/')}'s CSS — move it to theme/ or give ${c} its own`); fail++; }
+    }
   }
 }
 if (fail === cBefore) out('  ok');

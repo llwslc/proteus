@@ -89,6 +89,12 @@
   padding: var(--bauhaus-space-1);
   outline: none;
 }
+.bauhaus-menu__positioner {
+  z-index: var(--bauhaus-z-menu);
+}
+.bauhaus-menu__popup {
+  min-width: var(--bauhaus-popup-w);
+}
 .bauhaus-list-item {
   display: flex;
   gap: var(--bauhaus-space-2);

@@ -17,14 +17,6 @@
   color: var(--bauhaus-primary);
 }
 
-/* ── Popup: align the option list to the menu footprint ── */
-.bauhaus-menu__positioner {
-  z-index: var(--bauhaus-z-menu);
-}
-.bauhaus-menu__popup {
-  min-width: var(--bauhaus-popup-w);
-}
-
 /* ── Item parts: icon, shortcut, submenu chevron ── */
 .bauhaus-menu__icon {
   display: inline-flex;
