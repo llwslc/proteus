@@ -14,7 +14,7 @@
 - 两档反色前景（压在实色填充上的字色）：`on-primary #02131a` 压在青色填充上，`on-danger #1c0406` 压在红色填充上。
 - 两条复用的强调填充，都是渐变：`accent-surface` = `180deg` 自上而下从 primary 渐到 deep，用来点亮表面；`accent-fill` = `90deg` 从 deep 渐到 primary（到 55% 处为 primary），用作方向指示条（进度、表示数值方向的那种条）。
 - 青色的 alpha 阶梯（同一个青、不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55`。新的青色半透明值先并进这条阶梯，不另造。
-- 另外单立的 alpha 家族：`secondary-fill .55`；danger 一组 `-fill .55 / -wash .12 / -text #ffd9dc / -inset #2a0e14`。
+- 另外单立的 alpha 家族：`secondary-fill .55`；danger 一组 `-fill .55 / -wash .12 / -text #ffd9dc`。
 - 中性与效果色：`off` 是关态轨道色，呈蓝灰；`track` 是未填充的轨道色；`ghost-hover` 给 ghost 按钮悬停；白扫光 `sheen .6 / sheen-soft .14`（高光斜扫用）；关态旋钮的金属渐变 `thumb-idle-top / -bottom`；深表面渐变 `surface-deep-top / -bottom`。
 - 表面：`surface .72` 是半透明的面板底；`surface-popup .97` 是几乎不透的浮层底；`surface-modal` 走 `160deg` 的深色渐变；`surface-inset #0a1a29` 是凹陷的暗底；`surface-raised` 给步进钮的底；`surface-zone / -hover` 给右键投放区的底；`scrim .66` 是模态背后的半透明遮罩。
 - 辉光与阴影：文字辉光 `glow-text`；一组 drop-shadow 形态的辉光 `glow-focus / -popup / -active / -trigger / -modal`；辉光半径统一用 `--nova-glow-r` 8px；矩形投影 `shadow-popup / -modal`；影子的墨色 `shadow-ink`；旋钮的微投影 `shadow-thumb`。
@@ -31,7 +31,7 @@
 - 造型 = **锐利切角**，用 `clip-path` 的多边形来实现（把矩形的角斜切掉）。切角阶梯 `--nova-clip-3 / 4 / 7 / 9 / 12` 外加一个 `clip-tick`，按角色档来挑用哪一档。
 - 描边走双层 frame 原语 `.nova-surface`：外层背景填边框色 + 切角，里头一层 `::before` 内缩 1px 填表面色，于是边缘留出一圈描边。输入变量：`--nova-surface-clip` 默认取 clip-9，`-fill` 默认取 surface-popup，`-border` 默认取 line-strong。
 - 辉光用 `filter: drop-shadow()` 沿着切角的轮廓发光，挂在一个不切角的外层 `.nova-elevation` 上；它的输入变量 `--nova-overlay-shadow / -glow` 默认取 shadow-popup、glow-popup。
-- 边框层级：页内静止态 = `line`；浮层 = `line-strong`，也就是 surface 的默认；状态升级则升到 `line-strong`、再到 `primary`。
+- 边框层级：页内静止态 = `line`；浮层 = `line-strong`，也就是 surface 的默认；状态升级则升到 `line-strong`、再到 `primary`；错误态 frame 取 `danger`、`Error` 文字同走 `danger`，不另填输入区底。
 - 浮层的连接件（连到触发器的那条短线）= 1px 的 `line-strong` 青线 + 一点微辉光，长度取 `--nova-overlay-gap`，跨过缝隙连到触发器。
 
 ## 4. 氛围层
