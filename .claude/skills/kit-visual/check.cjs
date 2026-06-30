@@ -1,4 +1,4 @@
-// kit-visual — rendered-geometry gate. See SKILL.md.
+// kit-visual — rendered-geometry gate (panel layout + stray cross-axis scrollbars). See SKILL.md.
 // node .claude/skills/kit-visual/check.cjs [port] [kit]   (run in place)
 // Panels matched by their `<kit>-panel` class (kit-agnostic) — NOT section[id],
 // which silently matched 0 panels in kits that put the demo id on a wrapper div.
@@ -132,6 +132,24 @@ const AUDIT = (vw) => {
   return out;
 };
 
+const STRAY = (maxStray) => {
+  const out = [];
+  const scrollable = (v) => v === 'auto' || v === 'scroll';
+  for (const el of document.querySelectorAll('*')) {
+    const c = getComputedStyle(el);
+    if (c.display === 'none' || c.visibility === 'hidden') continue;
+    const yOver = el.scrollHeight - el.clientHeight, xOver = el.scrollWidth - el.clientWidth;
+    const rowScroller = c.display.includes('flex') && c.flexDirection.startsWith('row');
+    let s = null;
+    if (rowScroller) { if (scrollable(c.overflowY) && yOver > 1 && yOver <= maxStray) s = `${yOver}px stray VERTICAL overflow (row scroller)`; }
+    else if (scrollable(c.overflowX) && xOver > 1 && xOver <= maxStray) s = `${xOver}px stray HORIZONTAL overflow (column scroller)`;
+    if (!s) continue;
+    const cls = (el.getAttribute('class') || el.tagName).split(/\s+/).slice(0, 2).join('.');
+    out.push(`STRAY  stray scrollbar: ${cls} (overflow ${c.overflowX}/${c.overflowY}) — ${s}`);
+  }
+  return [...new Set(out)];
+};
+
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
   const page = await browser.newPage({ viewport: { width: 1440, height: 950 }, deviceScaleFactor: 2 });
@@ -151,7 +169,7 @@ const AUDIT = (vw) => {
       await page.setViewportSize({ width: w, height: 950 });
       await page.reload({ waitUntil: 'networkidle' });
       await page.waitForTimeout(500);
-      const findings = await page.evaluate(AUDIT, w);
+      const findings = [...await page.evaluate(AUDIT, w), ...await page.evaluate(STRAY, 16)];
       findings.forEach((f) => console.log(`  @${w} ${f}`));
       kitN += findings.length;
     }
