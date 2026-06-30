@@ -45,7 +45,7 @@ export function Field({
   ...control
 }: FieldProps) {
   return (
-    <BaseField.Root className={cx("nova-field", rootClassName)}>
+    <BaseField.Root className={cx("nova-field", rootClassName)} invalid={error != null}>
       {label != null ? (
         <BaseField.Label className="nova-cap nova-field__label">{label}</BaseField.Label>
       ) : null}
@@ -54,7 +54,6 @@ export function Field({
           className={cx(
             "nova-input-wrap",
             icon ? "nova-input-wrap--icon" : "",
-            error != null ? "nova-input-wrap--error" : "",
           )}
         >
           {icon ? <span className="nova-input__icon">{icon}</span> : null}

@@ -66,3 +66,6 @@
 .brass-input:has([data-invalid]) {
   --brass-plate-bezel: var(--brass-danger-deep);
 }
+.brass-input:focus-within:has([data-invalid]) {
+  filter: var(--brass-glow-danger);
+}

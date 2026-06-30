@@ -41,7 +41,7 @@ export function Field({
   ...control
 }: FieldProps) {
   return (
-    <BaseField.Root className={cx("brass-field", rootClassName)}>
+    <BaseField.Root className={cx("brass-field", rootClassName)} invalid={error != null}>
       {label != null ? (
         <BaseField.Label className="brass-cap brass-field__label">
           {label}

@@ -47,7 +47,7 @@ export function Field({
   ...control
 }: FieldProps) {
   return (
-    <BaseField.Root className={cx("abyss-field", rootClassName)}>
+    <BaseField.Root className={cx("abyss-field", rootClassName)} invalid={error != null}>
       {label != null ? (
         <BaseField.Label className="abyss-cap abyss-field__label">
           {label}
@@ -57,7 +57,6 @@ export function Field({
         className={cx(
           "abyss-input-wrap abyss-frame",
           icon && "abyss-input-wrap--icon",
-          error != null && "abyss-input-wrap--error",
         )}
       >
         {icon ? <span className="abyss-input__icon">{icon}</span> : null}

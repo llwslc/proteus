@@ -7,7 +7,7 @@
 .nova-input-glow:has(.nova-input-wrap:focus-within) {
   filter: var(--nova-glow-focus);
 }
-.nova-input-glow:has(.nova-input-wrap--error:focus-within) {
+.nova-input-glow:has(.nova-input-wrap:focus-within):has([data-invalid]) {
   filter: drop-shadow(0 0 var(--nova-glow-r) var(--nova-danger-fill));
 }
 
@@ -26,12 +26,10 @@
 .nova-input-wrap:focus-within {
   background: var(--nova-primary);
 }
-.nova-input-wrap--error,
-.nova-input-wrap--error:hover,
-.nova-input-wrap--error:focus-within {
+.nova-input-wrap:has([data-invalid]) {
   background: var(--nova-danger);
 }
-.nova-input-wrap--error .nova-input {
+.nova-input-wrap:has([data-invalid]) .nova-input {
   background: var(--nova-danger-inset);
 }
 

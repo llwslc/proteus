@@ -71,6 +71,7 @@
   /* ── Glows (drop-shadow, follow rounded outline) ───── */
   --brass-glow-text: 0 0 14px rgba(240, 191, 58, 0.35);
   --brass-glow-focus: drop-shadow(0 0 6px rgba(207, 157, 58, 0.55));
+  --brass-glow-danger: drop-shadow(0 0 6px var(--brass-danger-fill));
   --brass-glow-popup: drop-shadow(0 0 12px rgba(207, 157, 58, 0.22));
   --brass-glow-active: drop-shadow(0 0 9px rgba(207, 157, 58, 0.5));
   --brass-glow-trigger: drop-shadow(0 0 5px rgba(207, 157, 58, 0.42));
