@@ -11,8 +11,10 @@
 }
 .bauhaus-h1--accent {
   color: var(--bauhaus-primary);
-  padding-bottom: var(--bauhaus-space-1);
-  border-bottom: var(--bauhaus-stroke-heavy) solid var(--bauhaus-warning);
+  text-decoration-line: underline;
+  text-decoration-color: var(--bauhaus-warning);
+  text-decoration-thickness: var(--bauhaus-stroke-heavy);
+  text-underline-offset: var(--bauhaus-space-1);
 }
 
 .bauhaus-h2 {
