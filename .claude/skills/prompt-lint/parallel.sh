@@ -33,5 +33,5 @@ for n in $SECS; do
 done
 
 echo
-echo "READ each section across the 4 kits: a bullet/clause one kit has and the others"
+echo "READ each section across the kits: a bullet/clause one kit has and the others"
 echo "omit is a cross-kit OUTLIER — cut it unless it's a genuine kit-unique motif."

@@ -77,7 +77,7 @@ for f in $FILES; do
 done
 
 case " $FILES " in
-  *prompt/theme/*) echo; echo "## cross-kit — theme docs in scope"; echo "   run: sh .claude/skills/prompt-lint/parallel.sh — read each section across the 4 kits for an OUTLIER clause (SKILL.md: Siblings are the control)";;
+  *prompt/theme/*) echo; echo "## cross-kit — theme docs in scope"; echo "   run: sh .claude/skills/prompt-lint/parallel.sh — read each section across the kits for an OUTLIER clause (SKILL.md: Siblings are the control)";;
 esac
 
 echo
