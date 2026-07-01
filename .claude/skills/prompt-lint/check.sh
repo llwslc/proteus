@@ -76,6 +76,10 @@ for f in $FILES; do
   ' "$f"
 done
 
+case " $FILES " in
+  *prompt/theme/*) echo; echo "## cross-kit — theme docs in scope"; echo "   run: sh .claude/skills/prompt-lint/parallel.sh — read each section across the 4 kits for an OUTLIER clause (SKILL.md: Siblings are the control)";;
+esac
+
 echo
 if [ "$fail" = 0 ]; then echo "RESULT: PASS (mechanical clean — still do the SKILL.md read for content + emphasis)"; else echo "RESULT: FINDINGS — fix the mechanical hits above"; fi
 exit $fail

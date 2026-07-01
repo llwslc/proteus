@@ -19,6 +19,7 @@ Exit 0 = the greppable Form rules are clean: punctuation register (ASCII `,:;()`
 
 - **How, not why.** Each line states a decision: what to do, what value, what to name, what not to do. Cut anything that doesn't change the output — rationale ("because / to avoid / otherwise"), history ("was X now Y, originally, accepted/rejected"), incident anecdotes ("this broke, the old bug"), framework restatement (re-explaining an API / CSS property / library the model knows), and hedging ("note that, for clarity"). **Negating a past misconception is still residue** — "not an X thing / not actually Y" corrects a belief the reader never held; state the rule positively and don't name the wrong idea at all.
 - **Right layer.** When a spec is shared base + per-variant files, a rule true for every variant lives in the base (never repeated per variant); a variant file holds only its own values. Flag a clause duplicated across sibling variants (hoist it up) and a single variant's specifics sitting in the base (push it down).
+- **Siblings are the control.** In parallel per-variant docs (the four `theme/<kit>.md`), a clause one variant states that its siblings all omit is a candidate for cruft — the siblings prove it unnecessary: a redundant restatement of an earlier section, a rule a shared layer already owns, or a note the others plainly didn't need. Cut it unless it's a genuine variant-unique trait. `sh .claude/skills/prompt-lint/parallel.sh` dumps every section with all four kits adjacent so the outlier bullet shows at a glance.
 - **Variant-count-agnostic.** Never bake in the current number or roster of variants ("the two X"), and never define one variant's value by comparison to another. Adding a variant should need a new variant file and zero edits to the base. State each value absolutely.
 
 ## Axis 2 — Form: clean native documentation
@@ -33,7 +34,7 @@ Keep (NOT violations): the rule itself, and a short parenthetical that **disambi
 
 ## Procedure
 
-1. **Read each doc in full** — the generation specs `prompt/*.md`, and skill docs `.claude/skills/*/SKILL.md`. This is the real check and is language-agnostic. For every line ask: does it change the build? Is it at the right layer? Does it read like native documentation? Flag what fails. The Form axis applies to every doc; for a skill doc the Content axis is looser — a SKILL.md may legitimately state when and why to use the tool.
+1. **Read each doc in full** — the generation specs `prompt/*.md`, and skill docs `.claude/skills/*/SKILL.md`. This is the real check and is language-agnostic. For every line ask: does it change the build? Is it at the right layer? Does it read like native documentation? Flag what fails. The Form axis applies to every doc; for a skill doc the Content axis is looser — a SKILL.md may legitimately state when and why to use the tool. **A change to any `theme/<kit>.md` also requires the cross-kit read** — run `parallel.sh` and scan every section against the three siblings for an outlier clause (Content: Siblings are the control); the doc isn't clean until that read is done.
 2. *(Optional)* mechanical aids to jump to suspects — none is the check, the read is:
    - connectives: `grep -rniE "because|otherwise|tradeoff|originally|used to|was .* now|note that" <dir>`
    - heading qualifiers: `grep -rnE '^#+ .+ (—|--|:|\()' <dir>` (a code-span `()` is exempt)
