@@ -1,0 +1,38 @@
+.riot-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--riot-space-2);
+}
+.riot-progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.riot-progress__value {
+  font-family: var(--riot-font-mono);
+  font-size: var(--riot-fs-13);
+  color: var(--riot-primary);
+}
+.riot-progress__track {
+  position: relative;
+  overflow: hidden;
+  height: var(--riot-progress-h);
+  border: var(--riot-stroke) solid var(--riot-ink);
+  background: var(--riot-track);
+}
+.riot-progress__indicator {
+  height: 100%;
+  background: var(--riot-accent-fill);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--riot-marker) 0 6px,
+    transparent 6px 12px
+  );
+  animation: riot-progress-flow var(--riot-dur-sweep) linear infinite;
+  transition: width var(--riot-dur-slow) var(--riot-ease);
+}
+@keyframes riot-progress-flow {
+  to {
+    background-position: 34px 0;
+  }
+}

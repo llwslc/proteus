@@ -1,0 +1,35 @@
+.riot-menu__trigger-chevron {
+  font-size: var(--riot-fs-13);
+}
+.riot-menu__icon:empty {
+  display: none;
+}
+.riot-menu__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--riot-fs-18);
+  color: var(--riot-text-dim);
+}
+.riot-menu__label {
+  flex: 1;
+  min-width: 0;
+}
+.riot-menu__shortcut {
+  flex: 0 0 auto;
+  font-family: var(--riot-font-mono);
+  font-size: var(--riot-fs-11);
+  color: var(--riot-text-mute);
+}
+.riot-menu__arrow {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--riot-text-dim);
+}
+.riot-menu__item--danger {
+  color: var(--riot-danger);
+}
+.riot-menu__item--danger:not([data-disabled]):hover,
+.riot-menu__item--danger[data-highlighted] {
+  background: var(--riot-danger-wash);
+  color: var(--riot-danger);
+}

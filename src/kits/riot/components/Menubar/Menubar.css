@@ -1,0 +1,7 @@
+.riot-menubar {
+  width: fit-content;
+  max-width: 100%;
+}
+.riot-menubar__trigger {
+  font-family: var(--riot-font-display);
+}

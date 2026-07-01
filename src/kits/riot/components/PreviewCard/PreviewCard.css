@@ -1,0 +1,15 @@
+.riot-preview__positioner {
+  z-index: var(--riot-z-dropdown);
+}
+.riot-preview__surface {
+  display: block;
+  width: var(--riot-preview-w);
+  max-width: 100%;
+  padding: var(--riot-space-5);
+  box-shadow: var(--riot-shadow-hard);
+}
+.riot-preview__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--riot-space-3);
+}

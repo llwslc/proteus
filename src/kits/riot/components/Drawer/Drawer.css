@@ -1,0 +1,85 @@
+.riot-drawer__viewport {
+  position: fixed;
+  inset: 0;
+  z-index: var(--riot-z-overlay);
+  pointer-events: none;
+}
+.riot-drawer {
+  position: fixed;
+  pointer-events: auto;
+  transition: transform var(--riot-dur-slow) var(--riot-ease-out);
+}
+.riot-drawer--right {
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: var(--riot-drawer-w);
+  max-width: var(--riot-drawer-w-cap);
+}
+.riot-drawer--left {
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: var(--riot-drawer-w);
+  max-width: var(--riot-drawer-w-cap);
+}
+.riot-drawer--top {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: var(--riot-drawer-h);
+  max-height: var(--riot-drawer-h-cap);
+}
+.riot-drawer--bottom {
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: var(--riot-drawer-h);
+  max-height: var(--riot-drawer-h-cap);
+}
+.riot-drawer--right[data-starting-style],
+.riot-drawer--right[data-ending-style] {
+  transform: translateX(100%);
+}
+.riot-drawer--left[data-starting-style],
+.riot-drawer--left[data-ending-style] {
+  transform: translateX(-100%);
+}
+.riot-drawer--top[data-starting-style],
+.riot-drawer--top[data-ending-style] {
+  transform: translateY(-100%);
+}
+.riot-drawer--bottom[data-starting-style],
+.riot-drawer--bottom[data-ending-style] {
+  transform: translateY(100%);
+}
+.riot-drawer__surface {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  border: 0;
+  filter: none;
+}
+.riot-drawer--right .riot-drawer__surface {
+  border-left: var(--riot-stroke-heavy) solid var(--riot-ink);
+}
+.riot-drawer--left .riot-drawer__surface {
+  border-right: var(--riot-stroke-heavy) solid var(--riot-ink);
+}
+.riot-drawer--top .riot-drawer__surface {
+  border-bottom: var(--riot-stroke-heavy) solid var(--riot-ink);
+}
+.riot-drawer--bottom .riot-drawer__surface {
+  border-top: var(--riot-stroke-heavy) solid var(--riot-ink);
+}
+.riot-drawer__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--riot-space-3);
+}
+.riot-drawer__footer {
+  display: flex;
+  gap: var(--riot-space-2);
+  justify-content: flex-end;
+  margin-top: var(--riot-space-5);
+}

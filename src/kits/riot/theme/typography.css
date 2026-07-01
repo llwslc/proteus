@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=DM+Mono:wght@400;500&display=swap");
+
+.riot-h1 {
+  margin: 0;
+  font-family: var(--riot-font-display);
+  font-weight: var(--riot-fw-400);
+  font-size: var(--riot-fs-44);
+  line-height: var(--riot-lh-100);
+  letter-spacing: var(--riot-ls-1);
+  text-transform: uppercase;
+  color: var(--riot-text-bright);
+}
+.riot-h1--accent {
+  display: inline-block;
+  padding: 0 var(--riot-space-2) var(--riot-space-1);
+  background: var(--riot-primary);
+  color: var(--riot-on-fill);
+  box-shadow: var(--riot-shadow-hard);
+  transform: rotate(-2deg);
+}
+
+.riot-h2 {
+  margin: 0;
+  font-family: var(--riot-font-display);
+  font-weight: var(--riot-fw-400);
+  font-size: var(--riot-fs-24);
+  line-height: var(--riot-lh-130);
+  text-transform: uppercase;
+  color: var(--riot-text-bright);
+}
+
+.riot-h3 {
+  margin: 0;
+  font-family: var(--riot-font-display);
+  font-weight: var(--riot-fw-400);
+  font-size: var(--riot-fs-13);
+  line-height: var(--riot-lh-130);
+  letter-spacing: var(--riot-ls-4);
+  text-transform: uppercase;
+  color: var(--riot-text-bright);
+}
+
+.riot-text {
+  margin: 0;
+  font-family: var(--riot-font);
+  font-weight: var(--riot-fw-400);
+  font-size: var(--riot-fs-15);
+  line-height: var(--riot-lh-150);
+  color: var(--riot-text);
+}
+
+.riot-cap {
+  font-family: var(--riot-font-display);
+  font-weight: var(--riot-fw-400);
+  font-size: var(--riot-fs-11);
+  letter-spacing: var(--riot-ls-4);
+  text-transform: uppercase;
+  color: var(--riot-text-bright);
+}

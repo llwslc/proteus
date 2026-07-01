@@ -1,0 +1,51 @@
+.riot-combobox__field {
+  width: 100%;
+}
+.riot-combobox__control[data-popup-open] {
+  --riot-surface-border: var(--riot-primary);
+}
+.riot-combobox__clear,
+.riot-combobox__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--riot-fs-18);
+  height: var(--riot-fs-18);
+  border: 0;
+  background: none;
+  color: var(--riot-text-dim);
+  cursor: pointer;
+  transition: color var(--riot-dur) var(--riot-ease);
+}
+.riot-combobox__clear:hover,
+.riot-combobox__trigger:hover {
+  color: var(--riot-primary);
+}
+.riot-combobox__clear[data-empty] {
+  display: none;
+}
+.riot-combobox__positioner {
+  z-index: var(--riot-z-dropdown);
+}
+.riot-combobox__popup {
+  min-width: var(--anchor-width);
+}
+.riot-combobox__empty {
+  padding: var(--riot-space-3);
+  font-family: var(--riot-font);
+  font-size: var(--riot-fs-13);
+  color: var(--riot-text-mute);
+}
+.riot-combobox__list {
+  padding: var(--riot-space-1);
+}
+.riot-combobox__item-text {
+  flex: 1;
+}
+.riot-combobox__indicator {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--riot-fs-15);
+  color: var(--riot-primary);
+}

@@ -1,0 +1,44 @@
+.riot-numberfield {
+  display: inline-flex;
+}
+.riot-numberfield__group {
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--riot-control-h);
+  border: var(--riot-stroke-bold) solid var(--riot-ink);
+  background: var(--riot-paper);
+  box-shadow: var(--riot-shadow-hard);
+}
+.riot-numberfield__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--riot-numberfield-btn);
+  border: 0;
+  background: var(--riot-ink);
+  color: var(--riot-paper);
+  font-size: var(--riot-fs-18);
+  cursor: pointer;
+  transition: background var(--riot-dur) var(--riot-ease);
+}
+.riot-numberfield__btn:not(:disabled):hover {
+  background: var(--riot-primary);
+  color: var(--riot-on-fill);
+}
+.riot-numberfield__btn:disabled {
+  cursor: not-allowed;
+  opacity: var(--riot-disabled-opacity);
+}
+.riot-numberfield__input {
+  width: var(--riot-numberfield-w);
+  border: 0;
+  border-left: var(--riot-stroke-bold) solid var(--riot-ink);
+  border-right: var(--riot-stroke-bold) solid var(--riot-ink);
+  background: none;
+  outline: none;
+  text-align: center;
+  font-family: var(--riot-font-mono);
+  font-size: var(--riot-fs-15);
+  color: var(--riot-text-bright);
+}

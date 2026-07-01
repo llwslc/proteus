@@ -1,0 +1,29 @@
+.riot-separator {
+  border: 0;
+  background: var(--riot-ink);
+}
+.riot-separator--horizontal {
+  width: 100%;
+  height: var(--riot-stroke);
+}
+.riot-separator--vertical {
+  width: var(--riot-stroke);
+  align-self: stretch;
+}
+.riot-separator-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--riot-space-3);
+}
+.riot-separator-labeled__line {
+  flex: 1;
+  height: var(--riot-stroke);
+  background: var(--riot-ink);
+}
+.riot-separator-labeled__text {
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-11);
+  letter-spacing: var(--riot-ls-4);
+  text-transform: uppercase;
+  color: var(--riot-text-dim);
+}

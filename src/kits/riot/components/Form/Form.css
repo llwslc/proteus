@@ -1,0 +1,5 @@
+.riot-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--riot-space-5);
+}

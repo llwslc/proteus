@@ -1,0 +1,15 @@
+.riot-field__label {
+  display: block;
+}
+.riot-field__desc {
+  font-size: var(--riot-fs-13);
+  color: var(--riot-text-mute);
+}
+.riot-field__error {
+  margin: 0;
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-13);
+  letter-spacing: var(--riot-ls-2);
+  text-transform: uppercase;
+  color: var(--riot-danger);
+}

@@ -1,0 +1,18 @@
+.riot-autocomplete__field {
+  width: 100%;
+}
+.riot-autocomplete__positioner {
+  z-index: var(--riot-z-dropdown);
+}
+.riot-autocomplete__popup {
+  min-width: var(--anchor-width);
+}
+.riot-autocomplete__empty {
+  padding: var(--riot-space-3);
+  font-family: var(--riot-font);
+  font-size: var(--riot-fs-13);
+  color: var(--riot-text-mute);
+}
+.riot-autocomplete__list {
+  padding: var(--riot-space-1);
+}

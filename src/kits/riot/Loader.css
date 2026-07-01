@@ -1,0 +1,61 @@
+.riot-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--riot-space-4);
+}
+.riot-loader__stack {
+  display: flex;
+  gap: var(--riot-space-1);
+}
+.riot-loader__letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 48px;
+  border: var(--riot-stroke-bold) solid var(--riot-ink);
+  box-shadow: var(--riot-shadow-hard);
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-24);
+  color: var(--riot-on-fill);
+  animation: riot-loader-blink 0.8s steps(2, jump-none) infinite;
+}
+.riot-loader__letter--1 {
+  background: var(--riot-primary);
+  transform: rotate(-4deg);
+  animation-delay: 0s;
+}
+.riot-loader__letter--2 {
+  background: var(--riot-paper);
+  color: var(--riot-ink);
+  transform: rotate(3deg);
+  animation-delay: 0.1s;
+}
+.riot-loader__letter--3 {
+  background: var(--riot-secondary);
+  transform: rotate(-2deg);
+  animation-delay: 0.2s;
+}
+.riot-loader__letter--4 {
+  background: var(--riot-warning);
+  color: var(--riot-on-warning);
+  transform: rotate(5deg);
+  animation-delay: 0.3s;
+}
+@keyframes riot-loader-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.riot-loader__label {
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-13);
+  letter-spacing: var(--riot-ls-4);
+  text-transform: uppercase;
+  color: var(--riot-text-invert);
+}

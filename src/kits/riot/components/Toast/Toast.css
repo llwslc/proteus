@@ -1,0 +1,103 @@
+.riot-toast__viewport {
+  position: fixed;
+  right: var(--riot-space-5);
+  bottom: var(--riot-space-5);
+  z-index: var(--riot-z-toast);
+  width: var(--riot-toast-w);
+  max-width: calc(100vw - 2 * var(--riot-space-5));
+}
+.riot-toast {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  transform-origin: bottom right;
+  transform:
+    translateY(calc(var(--toast-index, 0) * -14px))
+    scale(calc(1 - var(--toast-index, 0) * 0.05))
+    rotate(var(--riot-toast-tilt, -2deg));
+  transition:
+    transform var(--riot-dur-slow) var(--riot-ease-out),
+    opacity var(--riot-dur) var(--riot-ease-out);
+}
+.riot-toast:nth-child(4n + 1) {
+  --riot-toast-tilt: -3deg;
+}
+.riot-toast:nth-child(4n + 2) {
+  --riot-toast-tilt: 2.5deg;
+}
+.riot-toast:nth-child(4n + 3) {
+  --riot-toast-tilt: -1.5deg;
+}
+.riot-toast:nth-child(4n) {
+  --riot-toast-tilt: 3.5deg;
+}
+.riot-toast[data-starting-style],
+.riot-toast[data-ending-style] {
+  opacity: 0;
+  transform: translateX(60px) rotate(8deg);
+}
+.riot-toast__surface {
+  display: flex;
+  gap: var(--riot-space-3);
+  align-items: stretch;
+  padding: 0;
+  box-shadow: var(--riot-shadow-hard);
+}
+.riot-toast__beam {
+  flex: 0 0 auto;
+  width: 40px;
+  background: var(--riot-primary);
+}
+.riot-toast--info .riot-toast__beam {
+  background: var(--riot-primary);
+}
+.riot-toast--success .riot-toast__beam {
+  background: var(--riot-success);
+}
+.riot-toast--warning .riot-toast__beam {
+  background: var(--riot-warning);
+}
+.riot-toast--danger .riot-toast__beam {
+  background: var(--riot-danger);
+}
+.riot-toast__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--riot-space-3) 0;
+}
+.riot-toast__title {
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-15);
+  text-transform: uppercase;
+  color: var(--riot-text-bright);
+}
+.riot-toast__desc {
+  font-family: var(--riot-font);
+  font-size: var(--riot-fs-13);
+  color: var(--riot-text);
+}
+.riot-toast__close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--riot-space-3);
+  border: 0;
+  background: none;
+  color: var(--riot-text-dim);
+  font-size: var(--riot-fs-15);
+  cursor: pointer;
+}
+.riot-toast__close:hover {
+  color: var(--riot-primary);
+}
+@media (max-width: 768px) {
+  .riot-toast__viewport {
+    right: var(--riot-space-4);
+    bottom: var(--riot-space-4);
+    width: calc(100vw - 2 * var(--riot-space-4));
+  }
+}

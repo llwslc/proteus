@@ -1,0 +1,29 @@
+.riot-panel {
+  padding: var(--riot-space-6) var(--riot-space-6) var(--riot-space-7);
+}
+.riot-panel--wide {
+  grid-column: 1 / -1;
+}
+.riot-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--riot-space-3);
+  margin-bottom: var(--riot-space-5);
+}
+.riot-panel__meta {
+  flex: 0 0 auto;
+  padding: var(--riot-space-1) var(--riot-space-2);
+  border: var(--riot-stroke) solid var(--riot-ink);
+  background: var(--riot-warning);
+  color: var(--riot-on-warning);
+  font-family: var(--riot-font-mono);
+  font-size: var(--riot-fs-11);
+  letter-spacing: var(--riot-ls-2);
+  transform: rotate(2.5deg);
+}
+.riot-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--riot-space-4);
+}

@@ -1,0 +1,28 @@
+.riot-toolbar {
+  gap: var(--riot-space-2);
+  flex-wrap: wrap;
+}
+.riot-toolbar__group {
+  display: inline-flex;
+  gap: var(--riot-space-1);
+  align-items: center;
+}
+.riot-toolbar__link {
+  text-decoration: none;
+}
+.riot-toolbar__sep {
+  width: var(--riot-stroke);
+  height: 20px;
+  margin: 0 var(--riot-space-1);
+  background: var(--riot-ink);
+}
+.riot-toolbar .riot-seg__btn.is-active {
+  background: var(--riot-ink);
+  color: var(--riot-primary);
+}
+@media (max-width: 768px) {
+  .riot-toolbar {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}

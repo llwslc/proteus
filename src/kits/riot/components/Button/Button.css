@@ -1,0 +1,88 @@
+.riot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--riot-control-h);
+  padding: 0 var(--riot-space-5);
+  border: var(--riot-stroke-bold) solid var(--riot-ink);
+  background: var(--riot-paper);
+  color: var(--riot-text-bright);
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-18);
+  letter-spacing: var(--riot-ls-2);
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--riot-shadow-hard);
+  transition:
+    transform var(--riot-dur) var(--riot-ease),
+    box-shadow var(--riot-dur) var(--riot-ease);
+}
+.riot-btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--riot-space-2);
+}
+.riot-btn__icon {
+  display: inline-flex;
+  font-size: var(--riot-fs-18);
+}
+.riot-btn:active {
+  transform: translate(4px, 5px);
+  box-shadow: 1px 1px 0 var(--riot-ink);
+}
+.riot-btn:focus-visible {
+  outline: var(--riot-stroke) solid var(--riot-primary);
+  outline-offset: 3px;
+}
+.riot-btn:disabled,
+.riot-btn[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--riot-disabled-opacity);
+}
+
+.riot-btn--primary {
+  background: var(--riot-accent-surface);
+  color: var(--riot-on-fill);
+}
+.riot-btn--danger {
+  background: var(--riot-danger);
+  color: var(--riot-on-fill);
+}
+.riot-btn--ghost {
+  border-style: dashed;
+  background: transparent;
+  color: var(--riot-text);
+  box-shadow: none;
+}
+.riot-btn--ghost:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.riot-btn--icon,
+.riot-btn--icon-ghost {
+  width: var(--riot-button-icon);
+  padding: 0;
+}
+.riot-btn--icon-ghost {
+  width: var(--riot-button-icon-ghost);
+  height: var(--riot-button-icon-ghost);
+  border: 0;
+  background: transparent;
+  color: var(--riot-text-dim);
+  box-shadow: none;
+}
+.riot-btn--icon-ghost:active {
+  transform: translate(2px, 2px);
+}
+
+.riot-btn--sm {
+  height: var(--riot-button-h-sm);
+  padding: 0 var(--riot-space-3);
+  font-size: var(--riot-fs-13);
+}
+.riot-btn--lg {
+  height: var(--riot-button-h-lg);
+  padding: 0 var(--riot-space-6);
+  font-size: var(--riot-fs-24);
+}

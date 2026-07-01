@@ -1,0 +1,27 @@
+.riot-scrollarea {
+  position: relative;
+}
+.riot-scrollarea--popup .riot-scrollarea__viewport {
+  max-height: var(--riot-popup-h);
+  overscroll-behavior: contain;
+}
+.riot-scrollarea__viewport {
+  max-height: var(--riot-scrollarea-h);
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+.riot-scrollarea__viewport[data-has-overflow-y] {
+  padding-right: var(--riot-space-3);
+}
+.riot-scrollarea__scrollbar {
+  display: flex;
+  width: var(--riot-scrollbar);
+  margin: 2px;
+  background: var(--riot-surface-inset);
+  border: var(--riot-stroke) solid var(--riot-ink);
+}
+.riot-scrollarea__thumb {
+  flex: 1;
+  background: var(--riot-ink);
+}

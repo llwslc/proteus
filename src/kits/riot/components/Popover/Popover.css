@@ -1,0 +1,28 @@
+.riot-popover__positioner {
+  z-index: var(--riot-z-dropdown);
+}
+.riot-popover__surface {
+  display: block;
+  position: relative;
+  width: var(--riot-popover-w);
+  max-width: 100%;
+  padding: var(--riot-space-5);
+  box-shadow: var(--riot-shadow-hard);
+}
+.riot-popover__title {
+  margin: 0 var(--riot-space-6) var(--riot-space-2) 0;
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-18);
+  text-transform: uppercase;
+  color: var(--riot-text-bright);
+}
+.riot-popover__body {
+  font-family: var(--riot-font);
+  font-size: var(--riot-fs-15);
+  color: var(--riot-text);
+}
+.riot-popover__x {
+  position: absolute;
+  top: var(--riot-space-2);
+  right: var(--riot-space-2);
+}

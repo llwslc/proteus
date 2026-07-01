@@ -1,0 +1,43 @@
+.riot-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--riot-space-1);
+  height: var(--riot-badge-h);
+  padding: 0 var(--riot-space-2);
+  border: var(--riot-stroke) solid var(--riot-ink);
+  font-family: var(--riot-font-display);
+  font-size: var(--riot-fs-11);
+  letter-spacing: var(--riot-ls-2);
+  text-transform: uppercase;
+  color: var(--riot-on-fill);
+  background: var(--riot-primary);
+}
+.riot-badge__dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+}
+.riot-badge--primary {
+  background: var(--riot-primary);
+  color: var(--riot-on-fill);
+}
+.riot-badge--secondary {
+  background: var(--riot-secondary);
+  color: var(--riot-on-fill);
+}
+.riot-badge--success {
+  background: var(--riot-success);
+  color: var(--riot-on-fill);
+}
+.riot-badge--warning {
+  background: var(--riot-warning);
+  color: var(--riot-on-warning);
+}
+.riot-badge--danger {
+  background: var(--riot-danger);
+  color: var(--riot-on-fill);
+}
+.riot-badge--neutral {
+  background: var(--riot-paper);
+  color: var(--riot-text-bright);
+}

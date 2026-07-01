@@ -1,0 +1,15 @@
+.riot-dialog__popup {
+  width: var(--riot-dialog-w);
+  max-width: 100%;
+  transition:
+    opacity var(--riot-dur) var(--riot-ease-out),
+    transform var(--riot-dur) var(--riot-ease-out);
+}
+.riot-dialog__popup[data-starting-style],
+.riot-dialog__popup[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-14px) rotate(-1.2deg);
+}
+.riot-dialog__surface {
+  position: relative;
+}

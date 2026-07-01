@@ -39,6 +39,13 @@ export const KITS: KitDef[] = [
     app: () => import("./bauhaus"),
     loader: () => import("./bauhaus/Loader"),
   },
+  {
+    id: "riot",
+    label: "RIOT",
+    tag: "Punk · Zine",
+    app: () => import("./riot"),
+    loader: () => import("./riot/Loader"),
+  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;

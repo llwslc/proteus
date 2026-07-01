@@ -1,0 +1,162 @@
+:root {
+  /* ── Backgrounds & paper ───────────────────────────── */
+  --riot-base: #111010;
+  --riot-base-raised: #191716;
+  --riot-paper: #e9e4d4;
+  --riot-paper-raised: #d7cfba;
+
+  /* ── Accent families (fluorescent marker), flat ────── */
+  --riot-primary: #ff4d0a;
+  --riot-secondary: #ff1f8f;
+  --riot-success: #8fe000;
+  --riot-warning: #ffe500;
+  --riot-danger: #ff2200;
+
+  /* ── Text & reverse foreground ─────────────────────── */
+  --riot-text: #17130d;
+  --riot-text-bright: #000000;
+  --riot-text-dim: #4c473b;
+  --riot-text-mute: #7d7666;
+  --riot-text-invert: #e9e4d4;
+  --riot-on-fill: #0d0d0d;
+  --riot-on-warning: #17130d;
+
+  /* ── Reusable accent fills (flat solid, no gradient) ── */
+  --riot-accent-surface: var(--riot-primary);
+  --riot-accent-fill: var(--riot-primary);
+
+  /* ── Primary alpha & tints ─────────────────────────── */
+  --riot-tint: rgba(255, 77, 10, 0.2);
+  --riot-danger-wash: rgba(255, 34, 0, 0.14);
+  --riot-tape: rgba(224, 210, 120, 0.5);
+  --riot-marker: rgba(255, 229, 0, 0.55);
+
+  /* ── Neutrals & effect colors ──────────────────────── */
+  --riot-off: #2b2824;
+  --riot-track: #d7cfba;
+
+  /* ── Surfaces ──────────────────────────────────────── */
+  --riot-surface: var(--riot-paper);
+  --riot-surface-popup: var(--riot-paper);
+  --riot-surface-modal: #f2eede;
+  --riot-surface-inset: #d3c9b0;
+  --riot-surface-zone: rgba(255, 77, 10, 0.07);
+  --riot-scrim: rgba(10, 10, 10, 0.6);
+
+  /* ── Stroke (thick black cut edge), by role ────────── */
+  --riot-ink: #0d0d0d;
+  --riot-stroke-hair: 1.5px;
+  --riot-stroke: 2.5px;
+  --riot-stroke-bold: 3px;
+  --riot-stroke-heavy: 4px;
+
+  /* ── Depth: hard-offset solid casts (no blur, no glow) ── */
+  --riot-cast-clip: drop-shadow(8px 8px 0 var(--riot-ink));
+  --riot-cast-sm: drop-shadow(4px 4px 0 var(--riot-ink));
+  --riot-cast-modal: drop-shadow(12px 12px 0 var(--riot-ink));
+  --riot-shadow-hard: 5px 6px 0 var(--riot-ink);
+  --riot-ring: 0 0 0 2px var(--riot-paper), 0 0 0 4px var(--riot-primary);
+
+  /* ── Geometry (sharp cut paper + one round for dots) ── */
+  --riot-r-frame: 0;
+  --riot-r-control: 0;
+  --riot-r-round: 999px;
+
+  /* ── Torn-edge clip (jagged paper outline) ─────────── */
+  --riot-clip-torn: polygon(
+    0% 6%, 8% 1%, 17% 5%, 30% 0%, 44% 4%, 58% 0%, 71% 5%, 84% 1%, 94% 5%, 100% 2%,
+    99% 18%, 100% 38%, 98% 58%, 100% 78%, 99% 94%,
+    90% 100%, 74% 96%, 58% 100%, 43% 96%, 28% 100%, 14% 96%, 4% 100%,
+    1% 84%, 0% 62%, 2% 40%, 0% 20%
+  );
+
+  /* ── Z-layer ladder ────────────────────────────────── */
+  --riot-z-dropdown: 1200;
+  --riot-z-menu: 1250;
+  --riot-z-tooltip: 1300;
+  --riot-z-backdrop: 1400;
+  --riot-z-overlay: 1401;
+  --riot-z-toast: 1500;
+
+  /* ── Motion & metrics ──────────────────────────────── */
+  --riot-dur: 0.1s;
+  --riot-dur-slow: 0.26s;
+  --riot-dur-sweep: 1.2s;
+  --riot-ease: steps(3, jump-none);
+  --riot-ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --riot-control-h: 42px;
+  --riot-disabled-opacity: 0.4;
+  --riot-modal-pad: 26px;
+
+  /* ── Spacing (4px grid) ────────────────────────────── */
+  --riot-space-1: 4px;
+  --riot-space-2: 8px;
+  --riot-space-3: 12px;
+  --riot-space-4: 16px;
+  --riot-space-5: 20px;
+  --riot-space-6: 24px;
+  --riot-space-7: 28px;
+  --riot-space-8: 32px;
+  --riot-space-9: 36px;
+
+  /* ── Typography ────────────────────────────────────── */
+  --riot-font: "Special Elite", "Courier New", monospace;
+  --riot-font-display: "Anton", "Arial Narrow", sans-serif;
+  --riot-font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+  --riot-fs-11: 11px;
+  --riot-fs-13: 13px;
+  --riot-fs-15: 15px;
+  --riot-fs-18: 18px;
+  --riot-fs-24: 24px;
+  --riot-fs-44: 44px;
+  --riot-ls-1: 0.01em;
+  --riot-ls-2: 0.04em;
+  --riot-ls-4: 0.12em;
+  --riot-lh-100: 1;
+  --riot-lh-130: 1.3;
+  --riot-lh-150: 1.5;
+  --riot-fw-400: 400;
+
+  /* ── Component footprints ──────────────────────────── */
+  --riot-button-h-sm: 34px;
+  --riot-button-h-lg: 50px;
+  --riot-button-icon: 42px;
+  --riot-button-icon-ghost: 34px;
+  --riot-switch-w: 56px;
+  --riot-switch-h: 30px;
+  --riot-switch-knob: 22px;
+  --riot-checkbox-box: 28px;
+  --riot-radio-box: 28px;
+  --riot-radio-dot: 12px;
+  --riot-seg-h: 36px;
+  --riot-slider-track: 14px;
+  --riot-slider-thumb: 26px;
+  --riot-numberfield-btn: 40px;
+  --riot-numberfield-w: 66px;
+  --riot-otp-cell-w: 44px;
+  --riot-otp-cell-h: 52px;
+  --riot-otp-cell-w-sm: 38px;
+  --riot-otp-cell-h-sm: 48px;
+  --riot-progress-h: 16px;
+  --riot-meter-h: 18px;
+  --riot-scrollbar: 12px;
+  --riot-scrollarea-h: 200px;
+  --riot-popup-w: 232px;
+  --riot-popup-h: calc(var(--riot-control-h) * 7);
+  --riot-tooltip-w: 240px;
+  --riot-popover-w: 288px;
+  --riot-preview-w: 320px;
+  --riot-contextmenu-min-h: 132px;
+  --riot-dialog-w: 460px;
+  --riot-alert-w: 440px;
+  --riot-drawer-w: 420px;
+  --riot-drawer-h: 460px;
+  --riot-drawer-w-cap: 80%;
+  --riot-drawer-h-cap: 60%;
+  --riot-navmenu-col-w: 210px;
+  --riot-toast-w: 344px;
+  --riot-avatar-sm: 32px;
+  --riot-avatar-md: 44px;
+  --riot-avatar-lg: 64px;
+  --riot-badge-h: 20px;
+}

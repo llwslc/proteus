@@ -1,0 +1,46 @@
+.riot-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--riot-space-2);
+}
+.riot-meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.riot-meter__value {
+  font-family: var(--riot-font-mono);
+  font-size: var(--riot-fs-13);
+  color: var(--riot-text-bright);
+}
+.riot-meter__track {
+  position: relative;
+  overflow: hidden;
+  height: var(--riot-meter-h);
+  border: var(--riot-stroke) solid var(--riot-ink);
+  background: var(--riot-track);
+}
+.riot-meter__indicator {
+  height: 100%;
+  background: var(--riot-accent-fill);
+}
+.riot-meter__segments {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(20% - var(--riot-stroke-hair)),
+    var(--riot-ink) calc(20% - var(--riot-stroke-hair)) 20%
+  );
+  opacity: 0.35;
+}
+.riot-meter--success .riot-meter__indicator {
+  background: var(--riot-success);
+}
+.riot-meter--warning .riot-meter__indicator {
+  background: var(--riot-warning);
+}
+.riot-meter--danger .riot-meter__indicator {
+  background: var(--riot-danger);
+}

@@ -1,0 +1,45 @@
+.riot-radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--riot-space-2);
+}
+.riot-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--riot-space-3);
+  cursor: pointer;
+}
+.riot-radio__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--riot-radio-box);
+  height: var(--riot-radio-box);
+  border: var(--riot-stroke-bold) solid var(--riot-ink);
+  border-radius: var(--riot-r-round);
+  background: var(--riot-paper);
+  box-shadow: 3px 3px 0 var(--riot-ink);
+  cursor: pointer;
+}
+.riot-radio__indicator {
+  display: none;
+  width: var(--riot-radio-dot);
+  height: var(--riot-radio-dot);
+  border-radius: var(--riot-r-round);
+  background: var(--riot-primary);
+}
+.riot-radio__control[data-checked] .riot-radio__indicator {
+  display: block;
+}
+.riot-radio__control:focus-visible {
+  box-shadow: var(--riot-ring), 3px 3px 0 var(--riot-ink);
+}
+.riot-radio__control:disabled,
+.riot-radio__control[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--riot-disabled-opacity);
+}
+.riot-radio__label {
+  color: var(--riot-text-bright);
+}

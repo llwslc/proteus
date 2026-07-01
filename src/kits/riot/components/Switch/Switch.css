@@ -1,0 +1,42 @@
+.riot-switch {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--riot-switch-w);
+  height: var(--riot-switch-h);
+  padding: 0;
+  border: var(--riot-stroke-bold) solid var(--riot-ink);
+  background: var(--riot-off);
+  box-shadow: var(--riot-shadow-hard);
+  cursor: pointer;
+  transition: background var(--riot-dur) var(--riot-ease);
+}
+.riot-switch[data-checked] {
+  background: var(--riot-primary);
+}
+.riot-switch__track {
+  position: absolute;
+  inset: 0;
+}
+.riot-switch__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: var(--riot-switch-knob);
+  height: var(--riot-switch-knob);
+  background: var(--riot-ink);
+  transition: transform var(--riot-dur) var(--riot-ease);
+}
+.riot-switch[data-checked] .riot-switch__thumb {
+  transform: translateX(
+    calc(var(--riot-switch-w) - var(--riot-switch-knob) - 2 * var(--riot-stroke-bold) - 4px)
+  );
+}
+.riot-switch:focus-visible {
+  box-shadow: var(--riot-ring), var(--riot-shadow-hard);
+}
+.riot-switch:disabled,
+.riot-switch[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--riot-disabled-opacity);
+}

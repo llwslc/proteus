@@ -1,0 +1,12 @@
+.riot-context__zone {
+  display: grid;
+  place-items: center;
+  min-height: var(--riot-contextmenu-min-h);
+  padding: var(--riot-space-4);
+  border: var(--riot-stroke) dashed var(--riot-text-mute);
+  background: var(--riot-surface-zone);
+  color: var(--riot-text-dim);
+  font-family: var(--riot-font);
+  font-size: var(--riot-fs-13);
+  text-align: center;
+}

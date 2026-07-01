@@ -1,0 +1,100 @@
+import { cx } from "../cx";
+import { Dialog as BaseDialog } from "@base-ui/react/dialog";
+import { useRef } from "react";
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
+import { Button } from "../Button";
+import type { ButtonVariant, ButtonSize } from "../Button";
+import { XIcon, BoltIcon } from "../icons";
+import "./Dialog.css";
+
+export interface DialogProps {
+  trigger: ReactElement;
+  title?: ReactNode;
+  description?: ReactNode;
+  children?: ReactNode;
+  footer?: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+}
+
+export function Dialog({
+  trigger,
+  title,
+  description,
+  children,
+  footer,
+  open,
+  onOpenChange,
+  className,
+}: DialogProps) {
+  const popupRef = useRef<HTMLDivElement>(null);
+  return (
+    <BaseDialog.Root open={open} onOpenChange={onOpenChange}>
+      <BaseDialog.Trigger render={trigger} />
+      <BaseDialog.Portal>
+        <BaseDialog.Backdrop className="riot-backdrop" />
+        <BaseDialog.Viewport className="riot-viewport">
+          <BaseDialog.Popup
+            ref={popupRef}
+            initialFocus={popupRef}
+            className={cx("riot-dialog__popup", className)}
+          >
+            <div className="riot-surface riot-modal riot-dialog__surface">
+              <BaseDialog.Close
+                render={
+                  <Button variant="icon" aria-label="Close" className="riot-modal-close">
+                    <XIcon />
+                  </Button>
+                }
+              />
+              {title != null ? (
+                <BaseDialog.Title className="riot-h2 riot-modal-title">
+                  <span className="riot-marker riot-modal__sigil">
+                    <BoltIcon />
+                  </span>
+                  {title}
+                </BaseDialog.Title>
+              ) : null}
+              {description != null ? (
+                <BaseDialog.Description className="riot-text riot-modal-desc">
+                  {description}
+                </BaseDialog.Description>
+              ) : null}
+              {children != null ? <div className="riot-modal-body">{children}</div> : null}
+              {footer != null ? <div className="riot-modal-actions">{footer}</div> : null}
+            </div>
+          </BaseDialog.Popup>
+        </BaseDialog.Viewport>
+      </BaseDialog.Portal>
+    </BaseDialog.Root>
+  );
+}
+
+export type DialogCloseVariant = ButtonVariant;
+
+export interface DialogCloseProps
+  extends Omit<ComponentPropsWithoutRef<typeof BaseDialog.Close>, "className" | "render"> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+}
+
+export function DialogClose({
+  variant = "ghost",
+  size = "md",
+  className,
+  children,
+  ...props
+}: DialogCloseProps) {
+  return (
+    <BaseDialog.Close
+      render={
+        <Button variant={variant} size={size} className={className}>
+          {children}
+        </Button>
+      }
+      {...props}
+    />
+  );
+}
