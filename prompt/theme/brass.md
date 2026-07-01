@@ -33,7 +33,7 @@
 - 铆钉 `.brass-rivets`：用 `::after` 在四角嵌出铆钉钉头的径向亮点，黄铜带高光；只给超大外框和招牌板用。
 - 滚花 `--brass-knurl`：一道 repeating-linear-gradient 斜纹，用在旋钮、滑块缘、滚动条 thumb 上。
 - 浮层抬升原语 `.brass-lift`，挂在 positioner 和模态 popup 上、且不带形状裁剪：`drop-shadow(硬影) drop-shadow(黄铜灯晕)` 两层叠加，输入变量是 `--brass-overlay-shadow / -glow`；默认取 `shadow-popup + glow-popup`，模态走 `shadow-modal + glow-modal`，另有小档与按 tone 重染档。
-- 边框轻重：页内静止态用 `bezel-dim`；浮层用 `bezel-strong`，也就是 plate 的默认值；状态升级时升到 `bezel-strong` + 灯晕；语义变体按 tone 重染 bezel 和填充。
+- 边框轻重：页内静止态用 `bezel-dim`；浮层用 `bezel-strong`，也就是 plate 的默认值；状态升级时升到 `bezel-strong` + 灯晕；语义变体按 tone 重染 bezel 和填充；`Error` 文字同走 `danger`。
 - 浮层的连接件（连到触发器的那截）是一道 2px 的 `primary` 黄铜线，长度取 `--brass-overlay-gap`，跨过缝隙连上触发器。
 
 ## 4. 氛围层
