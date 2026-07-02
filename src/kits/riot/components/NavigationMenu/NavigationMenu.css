@@ -29,6 +29,11 @@
 .riot-navmenu__trigger[data-popup-open] {
   color: var(--riot-primary);
 }
+.riot-navmenu__trigger:focus-visible,
+.riot-navmenu__toplink:focus-visible {
+  outline: var(--riot-stroke) solid var(--riot-primary);
+  outline-offset: 2px;
+}
 .riot-navmenu__chevron {
   display: inline-flex;
   font-size: var(--riot-fs-11);
@@ -64,6 +69,11 @@
 }
 .riot-navmenu__link:hover {
   background: var(--riot-marker);
+}
+.riot-navmenu__link:focus-visible {
+  outline: none;
+  background: var(--riot-marker);
+  box-shadow: inset 0 0 0 var(--riot-stroke) var(--riot-primary);
 }
 .riot-navmenu__link-title {
   font-family: var(--riot-font-display);

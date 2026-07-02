@@ -210,6 +210,10 @@
 .riot-collapse-trigger:not(:disabled):not([data-disabled]):hover {
   color: var(--riot-text-bright);
 }
+.riot-collapse-trigger:focus-visible {
+  outline: var(--riot-stroke) solid var(--riot-primary);
+  outline-offset: calc(-1 * var(--riot-stroke));
+}
 /* hand-scrawled plus, drawn in CSS; open = slashed into an X */
 .riot-collapse-marker {
   flex: 0 0 auto;

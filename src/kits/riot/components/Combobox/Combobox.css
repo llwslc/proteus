@@ -22,6 +22,11 @@
 .riot-combobox__trigger:hover {
   color: var(--riot-primary);
 }
+.riot-combobox__clear:focus-visible,
+.riot-combobox__trigger:focus-visible {
+  outline: var(--riot-stroke) solid var(--riot-primary);
+  outline-offset: 2px;
+}
 .riot-combobox__clear[data-empty] {
   display: none;
 }
