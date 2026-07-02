@@ -32,7 +32,7 @@ export function Collapsible({
         <span className="riot-collapse-marker">
           <PlusIcon />
         </span>
-        <span className="riot-collapse-title">{title}</span>
+        <span className="riot-collapse-title riot-cap">{title}</span>
         <ChevronDownIcon className="riot-collapse-chevron" />
       </BaseCollapsible.Trigger>
       <BaseCollapsible.Panel className="riot-collapse-panel">

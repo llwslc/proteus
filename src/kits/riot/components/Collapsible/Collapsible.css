@@ -1,3 +1,7 @@
 .riot-collapsible {
   overflow: hidden;
 }
+.riot-collapsible .riot-collapse-marker {
+  position: relative;
+  top: -2px;
+}

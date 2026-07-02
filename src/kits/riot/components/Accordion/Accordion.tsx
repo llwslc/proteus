@@ -37,7 +37,7 @@ export function Accordion({ items, openMultiple = false, defaultValue, className
               <span className="riot-collapse-marker">
                 <PlusIcon />
               </span>
-              <span className="riot-collapse-title">{it.title}</span>
+              <span className="riot-collapse-title riot-cap">{it.title}</span>
               <ChevronDownIcon className="riot-collapse-chevron" />
             </BaseAccordion.Trigger>
           </BaseAccordion.Header>

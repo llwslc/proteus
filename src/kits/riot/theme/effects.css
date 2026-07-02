@@ -151,7 +151,6 @@
   border: 0;
   background: none;
   color: var(--riot-text);
-  font-family: var(--riot-font-display);
   text-align: left;
   cursor: pointer;
   transition: color var(--riot-dur) var(--riot-ease);

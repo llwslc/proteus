@@ -25,11 +25,11 @@
     color var(--riot-dur) var(--riot-ease),
     background var(--riot-dur) var(--riot-ease);
 }
-.riot-tabs__tab:hover:not([data-disabled]) {
+.riot-tabs__tab:hover:where(:not([data-disabled])) {
   background: var(--riot-marker);
   color: var(--riot-text-bright);
 }
-.riot-tabs__tab[data-selected] {
+.riot-tabs__tab[data-active] {
   background: var(--riot-ink);
   color: var(--riot-primary);
 }
