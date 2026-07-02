@@ -10,7 +10,7 @@ Run: `sh .claude/skills/kit-qa/check.sh [port]` (port default 5273).
 The dynamic gates drive the real page, so **the dev server must be up** on that
 port first (`npm run dev`). The runner curl-checks it and bails early if not.
 
-## Playwright (recreate after a reboot)
+## Playwright
 
 The dynamic gates load `playwright-core` from a fixed path,
 `/tmp/pw/node_modules/playwright-core`. `/tmp` is ephemeral, so after a reboot they
