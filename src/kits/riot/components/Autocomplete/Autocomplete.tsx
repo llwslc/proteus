@@ -14,9 +14,9 @@ export interface AutocompleteProps {
 
 export function Autocomplete({
   items,
-  placeholder = "Type a command…",
+  placeholder = "Type a demand…",
   defaultValue,
-  emptyText = "No matching command",
+  emptyText = "Nothing on the wall",
   label,
 }: AutocompleteProps) {
   const inputId = useId();

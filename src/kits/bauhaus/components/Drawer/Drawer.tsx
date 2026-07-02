@@ -87,7 +87,7 @@ export interface DrawerCloseProps
   children?: ReactNode;
 }
 
-export function DrawerClose({ variant = "secondary", size = "md", className, children, ...props }: DrawerCloseProps) {
+export function DrawerClose({ variant = "ghost", size = "md", className, children, ...props }: DrawerCloseProps) {
   return (
     <BaseDrawer.Close
       render={

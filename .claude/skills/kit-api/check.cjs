@@ -3,8 +3,11 @@
 // The kits = Base UI primitive + a hand-written wrapper per kit. Base UI keeps
 // behavior consistent; it does NOT keep the wrappers' PUBLIC API consistent.
 // This gate diffs each component's exported API (export names, <Comp>Props prop
-// names, the `extends` clause) across kits and FAILs on divergence.
+// names, prop types, DEFAULT VALUES, the `extends` clause) across kits and FAILs
+// on divergence. Default-value exceptions: sideOffset (tuned per kit border so the
+// rendered gap matches — cf. kit-submenu-gap) and copy strings (theme voice).
 const fs = require('fs');
+const DEFAULT_EXEMPT = new Set(['sideOffset', 'placeholder', 'emptyText']);
 
 const KITROOT = 'src/kits';
 const KITS = fs.readdirSync(KITROOT).filter((k) => {
@@ -43,7 +46,15 @@ function parse(k, c) {
     // normalize extends: drop the React. namespace + all whitespace (formatting-agnostic)
     ifaces[m[1]] = { props, ext: (m[2] || '').replace(/React\./g, '').replace(/\s+/g, '') };
   }
-  return { exports, ifaces };
+  const defaults = {};
+  const fnRe = /(?:export )?function (\w+)\(\s*\{([\s\S]*?)\}\s*:/g;
+  let fm;
+  while ((fm = fnRe.exec(s))) {
+    for (const dm of fm[2].matchAll(/(\w+)\s*=\s*("(?:[^"]*)"|\d+|true|false)/g)) {
+      if (!DEFAULT_EXEMPT.has(dm[1])) defaults[`${fm[1]}.${dm[1]}`] = dm[2];
+    }
+  }
+  return { exports, ifaces, defaults };
 }
 
 const data = {};
@@ -74,6 +85,14 @@ for (const c of comps) {
     }
     const exts = withIface.map((k) => pk[k].ifaces[mi].ext);
     if (new Set(exts).size > 1) { out.push(`FAIL ${c}: ${mi} extends differ — ${withIface.map((k, i) => `${k}:${exts[i] || '∅'}`).join('  |  ')}`); fails++; }
+  }
+
+  const dkeys = new Set();
+  present.forEach((k) => Object.keys(pk[k].defaults).forEach((d) => dkeys.add(d)));
+  for (const d of dkeys) {
+    const per = present.filter((k) => pk[k].defaults[d] !== undefined);
+    const vals = per.map((k) => pk[k].defaults[d]);
+    if (new Set(vals).size > 1) { out.push(`FAIL ${c}: ${d} DEFAULT differs — ${per.map((k, i) => `${k}:${vals[i]}`).join('  |  ')}`); fails++; }
   }
 }
 

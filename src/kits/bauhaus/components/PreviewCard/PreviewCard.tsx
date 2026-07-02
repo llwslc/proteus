@@ -14,7 +14,7 @@ export interface PreviewCardProps {
 export function PreviewCard({
   trigger,
   children,
-  side = "bottom",
+  side = "top",
   align = "center",
   sideOffset = 8,
 }: PreviewCardProps) {

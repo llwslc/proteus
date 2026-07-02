@@ -17,7 +17,7 @@ export function Combobox({
   items,
   placeholder = "Search…",
   defaultValue,
-  emptyText = "No matching signal",
+  emptyText = "No such clipping",
   label,
   name,
 }: ComboboxProps) {

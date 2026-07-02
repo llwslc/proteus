@@ -91,7 +91,7 @@ export interface DrawerCloseProps
 }
 
 export function DrawerClose({
-  variant = "secondary",
+  variant = "ghost",
   size = "md",
   className,
   children,
