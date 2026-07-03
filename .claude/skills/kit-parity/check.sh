@@ -73,6 +73,21 @@ for comp in $COMPS; do
 done
 [ "$RFAIL" = 0 ] && echo "-> clean"
 
+# ── derived per-part structural-reset parity (advisory) ──────────────────────
+# The two sections above check a HAND-CURATED rule list — they only catch what a
+# human already got burned by. This derives the rules: per shared PART selector,
+# a structural reset all-but-one sibling declares but one omits (combobox/number-
+# field `padding:0`). Advisory only (never flips exit) — each hit needs triage:
+# live bug, latent inconsistency, or legit divergence (riot navmenu wraps where
+# siblings scroll). See derive.cjs. Skipped if node is unavailable.
 echo
-if [ "$FAIL" = 0 ]; then echo "RESULT: PASS (functional coverage at parity)"; exit 0
+echo "## derived per-part structural-reset parity (advisory)"
+if command -v node >/dev/null 2>&1; then
+  node "$(dirname "$0")/derive.cjs" "$ONLY"
+else
+  echo "-> skipped (node not found)"
+fi
+
+echo
+if [ "$FAIL" = 0 ]; then echo "RESULT: PASS (functional coverage at parity; review any advisory gaps above)"; exit 0
 else echo "RESULT: GAPS FOUND — review each (fix, or document as an intentional exception)"; exit 1; fi

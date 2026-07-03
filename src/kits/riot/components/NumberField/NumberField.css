@@ -15,6 +15,7 @@
   justify-content: center;
   flex: 0 0 auto;
   width: var(--riot-numberfield-btn);
+  padding: 0;
   border: 0;
   background: var(--riot-paper);
   color: var(--riot-text-bright);

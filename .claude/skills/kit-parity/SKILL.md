@@ -28,6 +28,19 @@ covered automatically. Exit 0 = parity; exit 1 = GAPs printed.
   absent from another.
 - **Per-component responsive parity**: a component that adapts on mobile
   (`@media max-width`) in 2+ kits but not another.
+- **Derived per-part structural-reset parity (advisory, `derive.cjs`)**: instead of
+  the hand-curated list above, this DERIVES the rules — per shared PART selector
+  (`.<kit>-combobox__trigger`), a structural declaration (`padding`, `overflow*`,
+  `text-overflow`, `flex`, `box-sizing`, `appearance`, `min-width`…) that all-but-one
+  sibling declares but one omits. This is the signature of a from-scratch kit dropping
+  an accumulated reset (combobox/numberfield stepper missing `padding:0` → UA button
+  padding crushes the glyph). Advisory only — never flips exit; each hit needs triage:
+  a **live bug**, a **latent inconsistency** (present but currently masked — e.g. a
+  stepper wide enough to hide the missing reset), or a **legit divergence** (riot's
+  navmenu WRAPS on mobile where siblings SCROLL). Skin (color/shadow/border/font) and
+  ALIGNMENT (`justify-content`/`align-items`) are excluded: alignment reaches the same
+  render via different layouts (the select-chevron flush-right bug), so it's a RENDER
+  assertion for kit-visual/kit-interact, not a static diff.
 
 ## What it deliberately does NOT check
 
