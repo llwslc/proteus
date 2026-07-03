@@ -13,6 +13,9 @@
   font-size: var(--riot-fs-13);
   color: var(--riot-text-mute);
 }
+.riot-autocomplete__empty:empty {
+  display: none;
+}
 .riot-autocomplete__list {
   padding: var(--riot-space-1);
 }

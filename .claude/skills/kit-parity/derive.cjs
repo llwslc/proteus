@@ -50,6 +50,19 @@ for (const kit of kits) {
     let m;
     while ((m = re.exec(css))) {
       const sel = m[1].trim();
+      // Functional-pseudo parity: a `<part>:empty { display:none }` present in
+      // all-but-one sibling is the recurring "Base UI Empty/slot renders even
+      // with results → dead band above the first item" bug (brass had it, riot
+      // repeated it on Combobox + Autocomplete). The kit-WIDE `:empty` check in
+      // check.sh misses it — one `menu__icon:empty` elsewhere marks the whole kit
+      // as "has :empty". Track `:empty` as a virtual prop on the specific PART.
+      // Whitelist is deliberately just `:empty` — NOT :hover/:disabled/[data-*],
+      // which may be hoisted to a shared recipe (see kit-parity-kit-wide note).
+      const fnPseudo = sel.match(new RegExp(`^\\.${kit}-([a-z]+)__([a-z-]+):empty$`));
+      if (fnPseudo) {
+        ((table[`${fnPseudo[1]}__${fnPseudo[2]}`] ??= {})[kit] ??= new Set()).add(':empty');
+        continue;
+      }
       if (/[:\[]/.test(sel)) continue; // base rule only — skip state/pseudo
       const pm = sel.match(new RegExp(`\\.${kit}-([a-z]+)__([a-z-]+)`));
       if (!pm) continue;
