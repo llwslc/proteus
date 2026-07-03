@@ -50,6 +50,9 @@
 .riot-combobox__list {
   padding: var(--riot-space-1);
 }
+.riot-combobox__list:empty {
+  padding: 0;
+}
 .riot-combobox__item-text {
   flex: 1;
 }
