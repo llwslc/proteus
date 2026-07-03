@@ -33,7 +33,7 @@
   );
 }
 .riot-switch:focus-visible {
-  box-shadow: var(--riot-ring), var(--riot-shadow-hard);
+  box-shadow: var(--riot-ring), var(--riot-shadow-sm);
 }
 .riot-switch:disabled,
 .riot-switch[data-disabled] {
