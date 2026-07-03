@@ -21,7 +21,7 @@
 .riot-switch__thumb {
   position: absolute;
   top: 50%;
-  left: 2px;
+  left: 4px;
   width: var(--riot-switch-knob);
   height: var(--riot-switch-knob);
   background: var(--riot-ink);
@@ -30,7 +30,7 @@
 }
 .riot-switch[data-checked] .riot-switch__thumb {
   transform: translate(
-    calc(var(--riot-switch-w) - var(--riot-switch-knob) - 2 * var(--riot-stroke-bold) - 4px),
+    calc(var(--riot-switch-w) - var(--riot-switch-knob) - 2 * var(--riot-stroke-bold) - 8px),
     -50%
   );
 }
