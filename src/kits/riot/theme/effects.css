@@ -195,7 +195,7 @@
 }
 .riot-menu-sep {
   height: var(--riot-stroke);
-  margin: var(--riot-space-1) var(--riot-space-2);
+  margin: var(--riot-space-1) 0;
   background: var(--riot-ink);
   filter: url(#riot-torn);
 }
