@@ -21,6 +21,12 @@
 .riot-otp__cell:has(:focus) {
   border-color: var(--riot-primary);
 }
+.riot-otp__cell:has(.riot-otp__slot:disabled) {
+  opacity: var(--riot-disabled-opacity);
+}
+.riot-otp__slot:disabled {
+  cursor: not-allowed;
+}
 .riot-otp__slot {
   width: 100%;
   height: 100%;
