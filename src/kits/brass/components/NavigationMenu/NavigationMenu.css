@@ -47,7 +47,6 @@
 }
 .brass-navmenu__trigger[data-disabled] {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 .brass-navmenu__trigger[data-popup-open]::after,
 .brass-navmenu__trigger[data-pressed]::after {

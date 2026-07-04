@@ -75,6 +75,3 @@
 .nova-slider[data-disabled] {
   opacity: var(--nova-disabled-opacity);
 }
-.nova-slider[data-disabled] .nova-slider__control {
-  cursor: not-allowed;
-}

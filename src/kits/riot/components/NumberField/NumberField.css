@@ -27,7 +27,6 @@
   background: var(--riot-marker);
 }
 .riot-numberfield__btn:disabled {
-  cursor: not-allowed;
   opacity: var(--riot-disabled-opacity);
 }
 .riot-numberfield__btn:focus-visible {

@@ -60,9 +60,6 @@
   outline: none;
   color: var(--abyss-glow);
 }
-.abyss-disclosure__trigger[data-disabled] {
-  cursor: not-allowed;
-}
 .abyss-disclosure__title {
   flex: 1;
 }
@@ -369,7 +366,6 @@
 
 .abyss-menu__item[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
-  cursor: not-allowed;
 }
 
 .abyss-menu__item--danger,
@@ -451,7 +447,6 @@
 }
 .abyss-list-item[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
-  cursor: not-allowed;
 }
 
 .abyss-seg__btn {
@@ -522,6 +517,5 @@
 .abyss-seg__btn[data-disabled],
 .abyss-seg__btn:disabled {
   opacity: var(--abyss-disabled-opacity);
-  cursor: not-allowed;
   filter: grayscale(0.5);
 }

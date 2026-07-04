@@ -43,7 +43,6 @@
 }
 .bauhaus-navmenu__trigger[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
 }
 .bauhaus-navmenu__trigger::after {
   content: "";

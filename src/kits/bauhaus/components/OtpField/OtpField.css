@@ -28,9 +28,6 @@
   --bauhaus-surface-border: var(--bauhaus-primary);
   box-shadow: var(--bauhaus-ring);
 }
-.bauhaus-otp__cell:disabled {
-  cursor: not-allowed;
-}
 .bauhaus-otp__divider {
   flex: 0 0 auto;
   width: var(--bauhaus-space-3);
@@ -39,9 +36,6 @@
 }
 .bauhaus-otp[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
-}
-.bauhaus-otp[data-disabled] .bauhaus-otp__cell {
-  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {

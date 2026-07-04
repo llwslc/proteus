@@ -39,6 +39,5 @@
 }
 .riot-switch:disabled,
 .riot-switch[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--riot-disabled-opacity);
 }

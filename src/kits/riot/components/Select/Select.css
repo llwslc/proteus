@@ -24,7 +24,6 @@
   outline-offset: 3px;
 }
 .riot-select__trigger:disabled {
-  cursor: not-allowed;
   opacity: var(--riot-disabled-opacity);
 }
 .riot-select__value {

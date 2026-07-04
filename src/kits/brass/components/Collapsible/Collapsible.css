@@ -5,7 +5,6 @@
 }
 .brass-collapsible[data-disabled] .brass-collapse-trigger {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 .brass-collapsible .brass-collapse-trigger:focus-visible {
   outline: none;

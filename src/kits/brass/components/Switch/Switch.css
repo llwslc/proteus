@@ -36,5 +36,4 @@
 }
 .brass-switch[data-disabled] {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }

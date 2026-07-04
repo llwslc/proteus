@@ -22,7 +22,6 @@
 }
 .bauhaus-select__trigger[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
 }
 .bauhaus-select__value {
   flex: 1;

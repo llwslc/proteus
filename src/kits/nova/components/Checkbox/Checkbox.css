@@ -69,7 +69,6 @@
   outline: none;
 }
 .nova-checkbox[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--nova-disabled-opacity);
 }
 

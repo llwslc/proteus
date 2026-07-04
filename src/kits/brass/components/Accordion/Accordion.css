@@ -13,7 +13,6 @@
 }
 .brass-accordion__item[data-disabled] .brass-collapse-trigger {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 .brass-accordion .brass-collapse-trigger:focus-visible {
   outline: none;

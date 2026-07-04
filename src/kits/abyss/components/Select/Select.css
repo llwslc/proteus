@@ -38,7 +38,6 @@
 .abyss-select__trigger[data-disabled],
 .abyss-select__trigger:disabled {
   opacity: var(--abyss-disabled-opacity);
-  cursor: not-allowed;
 }
 .abyss-select__value {
   overflow: hidden;

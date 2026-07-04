@@ -63,9 +63,6 @@
   font-weight: var(--brass-fw-700);
   cursor: pointer;
 }
-.brass-otp__input:disabled {
-  cursor: not-allowed;
-}
 
 @keyframes brass-otp-pulse {
   from {

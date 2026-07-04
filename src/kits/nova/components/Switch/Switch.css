@@ -72,6 +72,5 @@
   filter: var(--nova-glow-focus);
 }
 .nova-switch[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--nova-disabled-opacity);
 }

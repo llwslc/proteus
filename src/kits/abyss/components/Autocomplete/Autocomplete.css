@@ -91,9 +91,6 @@
   min-width: 0;
 }
 
-.abyss-autocomplete__input:disabled {
-  cursor: not-allowed;
-}
 .abyss-autocomplete__field:has(.abyss-autocomplete__input:disabled) {
   opacity: var(--abyss-disabled-opacity);
 }

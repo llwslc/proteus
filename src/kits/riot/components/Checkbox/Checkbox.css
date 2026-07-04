@@ -38,7 +38,6 @@
 }
 .riot-checkbox:disabled,
 .riot-checkbox[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--riot-disabled-opacity);
 }
 

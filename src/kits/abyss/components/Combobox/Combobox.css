@@ -58,9 +58,6 @@
 .abyss-combobox__input::placeholder {
   color: var(--abyss-text-mute);
 }
-.abyss-combobox__input:disabled {
-  cursor: not-allowed;
-}
 
 .abyss-combobox__clear,
 .abyss-combobox__trigger {

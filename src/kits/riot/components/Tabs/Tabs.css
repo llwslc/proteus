@@ -51,7 +51,6 @@
   color: var(--riot-primary);
 }
 .riot-tabs__tab[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--riot-disabled-opacity);
 }
 .riot-tabs__tab:focus-visible {

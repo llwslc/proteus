@@ -21,7 +21,6 @@
 }
 .bauhaus-switch[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
 }
 .bauhaus-switch__thumb {
   position: absolute;

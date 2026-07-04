@@ -40,7 +40,6 @@
 }
 .brass-radio__control[data-disabled] {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 .brass-radio__indicator {
   width: var(--brass-radio-dot);

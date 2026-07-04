@@ -136,7 +136,6 @@
 }
 .riot-seg__btn:disabled,
 .riot-seg__btn[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--riot-disabled-opacity);
 }
 @media (max-width: 768px) {
@@ -190,7 +189,6 @@
   color: var(--riot-primary);
 }
 .riot-list-item[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--riot-disabled-opacity);
 }
 .riot-menu-sep {
@@ -442,7 +440,4 @@
 }
 .riot-input__control::placeholder {
   color: var(--riot-text-mute);
-}
-.riot-input__control:disabled {
-  cursor: not-allowed;
 }

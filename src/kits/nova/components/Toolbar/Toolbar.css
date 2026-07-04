@@ -86,7 +86,6 @@
 .nova-toolbar__btn[data-disabled],
 .nova-toolbar__btn:disabled {
   opacity: var(--nova-disabled-opacity);
-  cursor: not-allowed;
 }
 
 .nova-toolbar__sep.nova-separator {

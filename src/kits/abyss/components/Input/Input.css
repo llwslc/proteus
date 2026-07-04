@@ -69,9 +69,6 @@
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
-.abyss-input:disabled {
-  cursor: not-allowed;
-}
 .abyss-input-wrap:has(.abyss-input:disabled) {
   opacity: var(--abyss-disabled-opacity);
 }

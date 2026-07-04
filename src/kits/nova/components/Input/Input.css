@@ -54,10 +54,6 @@
 .nova-input--has-icon {
   padding-left: 40px;
 }
-.nova-input:disabled,
-.nova-input[data-disabled] {
-  cursor: not-allowed;
-}
 .nova-input-wrap:has(.nova-input:disabled),
 .nova-input-wrap:has(.nova-input[data-disabled]) {
   opacity: var(--nova-disabled-opacity);

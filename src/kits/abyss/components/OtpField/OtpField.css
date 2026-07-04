@@ -113,9 +113,6 @@
 .abyss-otp__cell:has(.abyss-otp__slot:disabled) {
   opacity: var(--abyss-disabled-opacity);
 }
-.abyss-otp__slot:disabled {
-  cursor: not-allowed;
-}
 
 .abyss-otp__divider {
   width: var(--abyss-otp-divider);

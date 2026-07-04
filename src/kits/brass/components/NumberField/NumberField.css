@@ -89,6 +89,5 @@
 .brass-numberfield__btn:disabled {
   opacity: var(--brass-disabled-opacity);
   color: var(--brass-text-mute);
-  cursor: not-allowed;
   background: transparent;
 }

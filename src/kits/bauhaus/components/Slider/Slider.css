@@ -56,6 +56,3 @@
 .bauhaus-slider[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
 }
-.bauhaus-slider[data-disabled] .bauhaus-slider__thumb {
-  cursor: not-allowed;
-}

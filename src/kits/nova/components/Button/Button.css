@@ -78,7 +78,6 @@
 }
 .nova-btn[data-disabled],
 .nova-btn:disabled {
-  cursor: not-allowed;
   filter: grayscale(0.6) brightness(0.6);
   opacity: var(--nova-disabled-opacity);
 }

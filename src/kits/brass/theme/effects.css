@@ -99,7 +99,6 @@
 }
 .brass-list-item[data-disabled] {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 .brass-list-item__check {
   display: inline-flex;
@@ -287,7 +286,6 @@
 .brass-seg__btn[data-disabled],
 .brass-seg__btn:disabled {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 @media (max-width: 768px) {
   .brass-seg {
@@ -373,7 +371,6 @@
 }
 .brass-tab[data-disabled] {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 .brass-tab-indicator {
   position: absolute;

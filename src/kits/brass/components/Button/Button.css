@@ -43,7 +43,6 @@
 .brass-btn[data-disabled],
 .brass-btn:disabled {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
   transform: none;
 }
 

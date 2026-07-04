@@ -64,9 +64,6 @@
 .nova-otp__cell:has(.nova-otp__slot:disabled) {
   opacity: var(--nova-disabled-opacity);
 }
-.nova-otp__slot:disabled {
-  cursor: not-allowed;
-}
 
 .nova-otp__divider {
   width: 12px;

@@ -35,9 +35,6 @@
 .bauhaus-input__control::placeholder {
   color: var(--bauhaus-text-mute);
 }
-.bauhaus-input__control:disabled {
-  cursor: not-allowed;
-}
 
 .bauhaus-field {
   display: flex;

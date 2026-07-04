@@ -46,7 +46,6 @@
 .brass-select[data-disabled],
 .brass-select:disabled {
   opacity: var(--brass-disabled-opacity);
-  cursor: not-allowed;
 }
 .brass-select__popup {
   min-width: var(--anchor-width);

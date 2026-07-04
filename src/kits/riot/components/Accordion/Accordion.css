@@ -9,9 +9,6 @@
 .riot-accordion__item[data-disabled] {
   opacity: var(--riot-disabled-opacity);
 }
-.riot-accordion__item[data-disabled] .riot-collapse-trigger {
-  cursor: not-allowed;
-}
 .riot-accordion .riot-collapse-marker {
   top: 2px;
 }

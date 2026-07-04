@@ -15,5 +15,4 @@
 }
 .bauhaus-accordion .bauhaus-collapse-trigger[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
 }

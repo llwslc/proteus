@@ -58,7 +58,6 @@
 }
 .abyss-checkbox[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
-  cursor: not-allowed;
   filter: grayscale(0.5);
 }
 

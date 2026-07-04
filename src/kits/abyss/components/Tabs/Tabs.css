@@ -49,7 +49,6 @@
 }
 .abyss-tabs__tab[data-disabled] {
   opacity: var(--abyss-disabled-opacity);
-  cursor: not-allowed;
 }
 .abyss-tabs__indicator {
   position: absolute;

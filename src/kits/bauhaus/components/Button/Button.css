@@ -38,7 +38,6 @@
 }
 .bauhaus-btn:disabled {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
   box-shadow: none;
 }
 

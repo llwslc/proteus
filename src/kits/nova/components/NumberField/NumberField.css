@@ -54,7 +54,6 @@
   box-shadow: inset 0 0 0 1px var(--nova-line-strong);
 }
 .nova-numberfield__btn:disabled {
-  cursor: not-allowed;
   background: var(--nova-numberfield-btn-bg);
   color: var(--nova-text-mute);
   opacity: var(--nova-disabled-opacity);

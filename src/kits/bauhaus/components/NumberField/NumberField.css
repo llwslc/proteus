@@ -38,7 +38,6 @@
 }
 .bauhaus-numberfield__btn:disabled {
   opacity: var(--bauhaus-disabled-opacity);
-  cursor: not-allowed;
 }
 .bauhaus-numberfield__input {
   box-sizing: border-box;
@@ -59,12 +58,6 @@
 .bauhaus-numberfield__group:focus-within .bauhaus-numberfield__input {
   --bauhaus-surface-border: var(--bauhaus-primary);
 }
-.bauhaus-numberfield__input:disabled {
-  cursor: not-allowed;
-}
 .bauhaus-numberfield[data-disabled] {
   opacity: var(--bauhaus-disabled-opacity);
-}
-.bauhaus-numberfield[data-disabled] .bauhaus-numberfield__btn {
-  cursor: not-allowed;
 }

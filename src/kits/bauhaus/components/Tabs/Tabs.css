@@ -53,7 +53,6 @@
   outline-offset: calc(-1 * var(--bauhaus-stroke));
 }
 .bauhaus-tabs__tab[data-disabled] {
-  cursor: not-allowed;
   opacity: var(--bauhaus-disabled-opacity);
 }
 .bauhaus-tabs__indicator {

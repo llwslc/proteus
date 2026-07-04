@@ -25,9 +25,6 @@
 .bauhaus-autocomplete__input::placeholder {
   color: var(--bauhaus-text-mute);
 }
-.bauhaus-autocomplete__input:disabled {
-  cursor: not-allowed;
-}
 
 .bauhaus-autocomplete__popup {
   min-width: var(--anchor-width);
