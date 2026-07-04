@@ -19,19 +19,7 @@
   width: calc(var(--riot-scrollbar) - 4px);
   background: var(--riot-surface-inset);
 }
-.riot-scrollarea--popup .riot-scrollarea__scrollbar {
-  background: transparent;
-}
 .riot-scrollarea__thumb {
   flex: 1;
-  background: var(--riot-primary);
-}
-.riot-scrollarea--popup .riot-scrollarea__thumb {
-  position: relative;
-}
-.riot-scrollarea--popup .riot-scrollarea__thumb::before {
-  content: "";
-  position: absolute;
-  inset: -1px 0;
   background: var(--riot-primary);
 }
