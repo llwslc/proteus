@@ -51,7 +51,7 @@ export function Combobox({
               <BaseCombobox.List className="riot-combobox__list">
                 {(item: string) => (
                   <BaseCombobox.Item key={item} value={item} className="riot-list-item">
-                    <span className="riot-combobox__item-text">{item}</span>
+                    <span className="riot-combobox__item-text riot-list-item__text">{item}</span>
                     <span className="riot-combobox__indicator">
                       <BaseCombobox.ItemIndicator>
                         <CheckIcon />

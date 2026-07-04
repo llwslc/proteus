@@ -9,7 +9,7 @@
 - 「文字强调选中」用于列表、Tab、NavMenu，把文字转荧光 `primary`；Tab、NavMenu 另配一道 `stroke-bold` 粗细的记号笔实色横杠随激活项走。
 - 悬停：分段控件和触发条用 `tint` 荧光 wash 纯底；图标和动作按钮的文字转荧光 `primary`，菜单触发器、列表项转 `bright` 纯黑。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 荧光橙外环）；分段控件和触发条用 `inset 0 0 0 2.5px primary`；输入框聚焦时整框 border 升荧光 + 加 `ring`。可聚焦的浮层 popup 加 `outline:none`。
-- 危险态走 danger 家族：血红实填 + `-wash` + `-text`，border 仍黑、前景反白。
+- 危险态：`danger` 血红实填、前景反白，border 仍黑；静止态红字红图标。
 - 荧光黄／绿填充的特例：其上前景转 `on-warning`／`on-fill` 深色，包括 Meter、`warning` 的 Toast 与 Badge。
 
 ## 2. 组件皮肤决定

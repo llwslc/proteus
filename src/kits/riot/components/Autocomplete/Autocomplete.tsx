@@ -45,7 +45,7 @@ export function Autocomplete({
               <BaseAutocomplete.List className="riot-autocomplete__list">
                 {(item: string) => (
                   <BaseAutocomplete.Item key={item} value={item} className="riot-list-item">
-                    {item}
+                    <span className="riot-list-item__text">{item}</span>
                   </BaseAutocomplete.Item>
                 )}
               </BaseAutocomplete.List>
