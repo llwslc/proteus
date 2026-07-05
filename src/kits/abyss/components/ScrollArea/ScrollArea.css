@@ -80,7 +80,7 @@
 .abyss-scrollarea__thumb::before {
   content: "";
   position: absolute;
-  inset: 0 3px;
+  inset: 3px;
   border-radius: var(--abyss-round-5);
   background: linear-gradient(
     180deg,
