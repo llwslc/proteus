@@ -4,6 +4,9 @@
 .riot-combobox__control[data-popup-open] {
   --riot-surface-border: var(--riot-primary);
 }
+.riot-combobox__control[data-popup-open] .riot-combobox__trigger {
+  color: var(--riot-primary);
+}
 .riot-combobox__clear,
 .riot-combobox__trigger {
   display: inline-flex;
