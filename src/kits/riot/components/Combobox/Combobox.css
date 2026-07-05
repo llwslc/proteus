@@ -6,6 +6,7 @@
 }
 .riot-combobox__control[data-popup-open] .riot-combobox__trigger {
   color: var(--riot-primary);
+  transform: rotate(180deg);
 }
 .riot-combobox__clear,
 .riot-combobox__trigger {
@@ -21,7 +22,9 @@
   color: var(--riot-text-bright);
   font-size: var(--riot-fs-18);
   cursor: pointer;
-  transition: color var(--riot-dur) var(--riot-ease);
+  transition:
+    color var(--riot-dur) var(--riot-ease),
+    transform var(--riot-dur) var(--riot-ease);
 }
 .riot-combobox__clear:hover,
 .riot-combobox__trigger:hover {
