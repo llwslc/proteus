@@ -16,3 +16,6 @@
 .riot-autocomplete__empty:empty {
   padding: 0;
 }
+.riot-autocomplete__item-text {
+  flex: 1;
+}
