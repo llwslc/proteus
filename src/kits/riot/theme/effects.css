@@ -195,8 +195,8 @@
   height: 38px;
   transform: translateY(calc(-50% - 2px));
   background: var(--riot-marker-color, var(--riot-warning));
-  -webkit-mask-box-image: var(--riot-marker-swipe) 0 36 0 20 fill / 0 26px 0 13px stretch;
-  mask-border: var(--riot-marker-swipe) 0 36 0 20 fill / 0 26px 0 13px stretch;
+  -webkit-mask-box-image: var(--riot-marker-swipe) 0 64 0 20 fill / 0 48px 0 13px stretch;
+  mask-border: var(--riot-marker-swipe) 0 64 0 20 fill / 0 48px 0 13px stretch;
 }
 .riot-list-item[data-disabled] {
   opacity: var(--riot-disabled-opacity);
