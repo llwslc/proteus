@@ -14,6 +14,9 @@
   flex: 1;
   min-width: 0;
 }
+.riot-menu__item:has(.riot-menu__icon:not(:empty)) .riot-list-item__text::before {
+  left: calc(-12px - var(--riot-fs-18) - var(--riot-space-2));
+}
 .riot-menu__shortcut {
   flex: 0 0 auto;
   font-family: var(--riot-font-mono);
