@@ -168,6 +168,7 @@
   color: var(--riot-text);
   font-family: var(--riot-font);
   font-size: var(--riot-fs-15);
+  position: relative;
   cursor: pointer;
   user-select: none;
   outline: none;
@@ -181,15 +182,12 @@
 .riot-list-item[data-selected] {
   color: var(--riot-primary);
 }
-.riot-list-item__text {
-  position: relative;
-}
-.riot-list-item[data-highlighted]:not([data-disabled]) .riot-list-item__text::before,
-.riot-list-item[data-popup-open] .riot-list-item__text::before {
+.riot-list-item[data-highlighted]:not([data-disabled])::before,
+.riot-list-item[data-popup-open]::before {
   content: "";
   position: absolute;
   z-index: -1;
-  left: -12px;
+  left: 0;
   right: 0;
   top: 50%;
   height: 38px;
