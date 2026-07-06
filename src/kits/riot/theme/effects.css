@@ -191,13 +191,13 @@
   position: absolute;
   z-index: -1;
   left: -12px;
-  right: 0;
+  width: calc(100% + 40px);
   top: 50%;
   height: 38px;
   transform: translateY(-50%);
   background: var(--riot-warning);
-  -webkit-mask: var(--riot-marker-swipe) 0 50% / 72% 100% no-repeat;
-  mask: var(--riot-marker-swipe) 0 50% / 72% 100% no-repeat;
+  -webkit-mask: var(--riot-marker-swipe) 0 50% / 100% 100% no-repeat;
+  mask: var(--riot-marker-swipe) 0 50% / 100% 100% no-repeat;
 }
 .riot-list-item[data-disabled] {
   opacity: var(--riot-disabled-opacity);
