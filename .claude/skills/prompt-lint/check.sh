@@ -97,15 +97,12 @@ for f in $FILES; do
 done
 
 echo
-echo "## REVIEW — negation audit (heuristic, never fails; eyeball each 不/无/非)"
-echo "   KEEP if it states THIS thing's own nature (无渐变 / 无圆角 / 不变 / 不用太长)."
-echo "   DELETE if it disclaims a DIFFERENT treatment a from-scratch reader can't know —"
-echo "   cruft that contrasts against another rule (不走实填 / 全列表无划线 / 替掉X)."
-for f in $FILES; do
-  hits=$(grep -noE "[无非勿没][一-龥]{1,4}|不[一-龥]{1,4}|替掉[一-龥]{1,4}" "$f" 2>/dev/null \
-    | grep -vE ':(不同|不少|不止|不过|不仅|不但|不锈)' || true)
-  [ -n "$hits" ] && printf '%s\n' "$hits" | sed "s|^|  $f:|"
-done
+echo "## REVIEW — re-read your CHANGED prose as prose (semantic, not a grep)"
+echo "   spec text is writing, not code — cruft has infinite forms (mechanism / negation-"
+echo "   contrast / history / rationale / verbosity) no keyword list can enumerate. After"
+echo "   editing, RE-READ each clause you touched and ask: is it terse, correct, and"
+echo "   describing THIS thing's own nature? If it explains WHY, disclaims another rule"
+echo "   (不走实填), leaks the CSS (随词宽走), or recounts history (替掉X) — cut it."
 
 case " $FILES " in
   *prompt/theme/*) echo; echo "## cross-kit — theme docs in scope"; echo "   run: sh .claude/skills/prompt-lint/parallel.sh — read each section across the kits for an OUTLIER clause (SKILL.md: Siblings are the control)";;
