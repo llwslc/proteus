@@ -168,7 +168,6 @@
   color: var(--riot-text);
   font-family: var(--riot-font);
   font-size: var(--riot-fs-15);
-  line-height: var(--riot-lh-100);
   cursor: pointer;
   user-select: none;
   outline: none;
@@ -180,7 +179,6 @@
   color: var(--riot-text-bright);
 }
 .riot-list-item[data-selected] {
-  font-family: var(--riot-font-display);
   color: var(--riot-primary);
 }
 .riot-list-item__text {

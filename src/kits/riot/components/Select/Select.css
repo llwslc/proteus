@@ -61,5 +61,6 @@
   display: inline-flex;
   flex: 0 0 auto;
   width: var(--riot-fs-15);
+  height: var(--riot-fs-15);
   color: var(--riot-primary);
 }
