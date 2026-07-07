@@ -14,20 +14,24 @@ node .claude/skills/kit-states/states.cjs [port]
 ```
 Run it in place — no copy step. It is `.cjs` so it runs despite the repo's `type: module`; the `require('/tmp/pw/...')` path is absolute, so it works from the repo root. Sandbox-disabled; needs the dev server and `/tmp/pw` playwright-core from the screenshot skill. The kit list is read from the app's own kit switcher (the registry), so every registered kit is swept and adding one needs no edit here.
 
-Writes `/tmp/states/<kit>_<state>.png` and prints a per-kit line: `✓ <kit>: all N interaction states captured`, or `⚠ <kit>: NOT captured -> …` listing every state it could not drive. **A state that fails to capture is a gap to fix, never a silent pass** — the gate reports it, it does not swallow it.
+Writes `/tmp/states/<kit>_<state>.png` and prints a per-kit line: `✓ <kit>: all N interaction states captured`, or `⚠ <kit>: NOT captured -> …` listing every state it could not drive. **A state that fails to capture is a gap to fix, never a silent pass** — any kit with gaps makes the sweep exit 1.
 
 ## Demo contract
 
 The sweep finds controls by convention; a kit whose demo diverges has its states reported as not-captured (the `⚠` line), not silently skipped. For full coverage the demo must:
 
-- give each component panel a `#<component>` id — `#button`, `#number`, `#menu`, `#select`, `#combobox`, `#dialog`, `#alert`, `#drawer`, `#popover`;
-- name parts `<kit>-<component>__<part>` — `-btn`, `-numberfield__input`, `-select__trigger`, `-menu__popup`, `-combobox__control` / `-combobox__popup`, `-popover__popup`, and a `-dialog` / `-alert` / `-drawer` popup class.
+- give each component panel a `#<component>` id — `#button`, `#switch`, `#input`, `#number`, `#menu`, `#select`, `#combobox`, `#dialog`, `#alert`, `#drawer`, `#popover`;
+- name parts `<kit>-<component>__<part>` — `-btn`, `-switch` (or `[role="switch"]`), `-numberfield__input`, `-select__trigger`, `-menu__popup`, `-combobox__control` / `-combobox__popup`, `-popover__popup`, and a `-dialog` / `-alert` / `-drawer` popup class.
 
 ## What it sweeps
 
 The interaction-only states — none visible at rest:
 
+- **hovered** — real mouse over the primary button (shot of the panel).
 - **pressed** — a button held down (mousedown), to see the active treatment.
+- **focused** — keyboard ring on button + switch via CDP-forced `:focus-visible`
+  (the panel is shot, not the element — rings paint outside the box), plus a
+  real click-focus into the text field.
 - **edge-disabled** — a stepper driven to its min and its max, where one button disables.
 - **every overlay open** — menu, select, combobox, dialog, alert, drawer, popover.
 - plus a **full page** per kit, where the static disabled rows (checkbox/switch/select/radio) do render — review those there.

@@ -20,5 +20,6 @@ Kits are discovered from `src/kits/*/components`. Exit 1 if anything is dead.
 
 - **dead class** — a `.<kit>-…` selector defined in the kit's CSS that appears in no `.tsx` (as a literal or a `base--` template variant) and in no compound/descendant selector in the CSS.
 - **unused keyframe** — an `@keyframes` with no matching `animation:` consumer.
+- **dead export** — a component's `export function/const` referenced by no `.tsx` outside its own component directory.
 
 Run it after removing a component or a decoration, alongside kit-lint / kit-distinct / kit-visual. It does not judge motif fit (whether an element belongs to the theme) — that stays a design review; this only finds code that nothing references.

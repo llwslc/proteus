@@ -67,8 +67,8 @@ for S in $KITS; do
   [ "$fr" -gt "$worstfr" ] && { worstfr=$fr; worstfrkit=$S; }
 done
 
-# Calibrated on the two genuinely-distinct live kits (NOVA vs ABYSS = 58% avg / 44%
-# primitives); a pure cp+reskin sits ~95%+. Flag on either signal.
+# Calibrated across the five live kits (closest-sibling avg 52–56%, primitives
+# peak 33–63%); a pure cp+reskin sits ~95%+. Flag on either signal.
 echo
 AVG_T=75; PRIM_T=80
 if [ "$worst" -ge "$AVG_T" ] || [ "$worstfr" -ge "$PRIM_T" ]; then

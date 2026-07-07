@@ -2,13 +2,26 @@
 // node .claude/skills/kit-visual/check.cjs [port] [kit]   (run in place)
 // Panels matched by their `<kit>-panel` class (kit-agnostic) — NOT section[id],
 // which silently matched 0 panels in kits that put the demo id on a wrapper div.
-const { chromium } = require('/tmp/pw/node_modules/playwright-core');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const PORT = process.argv[2] || '5273';
+const fs = require('fs');
+const path = require('path');
+const G = require('../lib/gate.cjs');
+const { chromium } = G.pw();
+const CHROME = G.CHROME;
+const PORT = G.port(process.argv[2]);
 const URL = `http://127.0.0.1:${PORT}/`;
 const ONLY = process.argv[3];
 
-const AUDIT = (vw) => {
+// adjudicated intentional overlaps — exempt.txt lines `kit|panel-id|needleA|needleB`
+// (needles substring-match the two element descriptions, either order). Add a line
+// ONLY after a corner-crop confirms the overlap is design, never to silence a red.
+const EX_FILE = path.join(__dirname, 'exempt.txt');
+const EXEMPT = fs.existsSync(EX_FILE)
+  ? fs.readFileSync(EX_FILE, 'utf8').split('\n').map((l) => l.trim())
+      .filter((l) => l && !l.startsWith('#'))
+      .map((l) => { const [k, p, a, b] = l.split('|'); return { k, p, a, b }; })
+  : [];
+
+const AUDIT = ({ vw, exempt }) => {
   const out = [];
   const MOBILE = vw <= 480;
   const cs = (el) => getComputedStyle(el);
@@ -125,7 +138,12 @@ const AUDIT = (vw) => {
         const ra = R.get(a), rb = R.get(b);
         const ox = Math.min(ra.right, rb.right) - Math.max(ra.left, rb.left);
         const oy = Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top);
-        if (ox > 1.5 && oy > 1.5 && ox * oy >= 9) out.push(`REVIEW ${id}  overlap: ${desc(a)}  ∩  ${desc(b)}  = ${Math.round(ox)}x${Math.round(oy)}px`);
+        if (ox > 1.5 && oy > 1.5 && ox * oy >= 9) {
+          const da = desc(a), db = desc(b);
+          const waived = exempt.some((e) => e.p === id &&
+            ((da.includes(e.a) && db.includes(e.b)) || (da.includes(e.b) && db.includes(e.a))));
+          if (!waived) out.push(`REVIEW ${id}  overlap: ${da}  ∩  ${db}  = ${Math.round(ox)}x${Math.round(oy)}px`);
+        }
       }
     }
   }
@@ -140,12 +158,13 @@ const STRAY = (maxStray) => {
     if (c.display === 'none' || c.visibility === 'hidden') continue;
     const yOver = el.scrollHeight - el.clientHeight, xOver = el.scrollWidth - el.clientWidth;
     const rowScroller = c.display.includes('flex') && c.flexDirection.startsWith('row');
-    let s = null;
-    if (rowScroller) { if (scrollable(c.overflowY) && yOver > 1 && yOver <= maxStray) s = `${yOver}px stray VERTICAL overflow (row scroller)`; }
-    else if (scrollable(c.overflowX) && xOver > 1 && xOver <= maxStray) s = `${xOver}px stray HORIZONTAL overflow (column scroller)`;
+    let s = null, over = 0;
+    if (rowScroller) { if (scrollable(c.overflowY) && yOver > 1) { over = yOver; s = `${yOver}px VERTICAL overflow (row scroller)`; } }
+    else if (scrollable(c.overflowX) && xOver > 1) { over = xOver; s = `${xOver}px HORIZONTAL overflow (column scroller)`; }
     if (!s) continue;
     const cls = (el.getAttribute('class') || el.tagName).split(/\s+/).slice(0, 2).join('.');
-    out.push(`STRAY  stray scrollbar: ${cls} (overflow ${c.overflowX}/${c.overflowY}) — ${s}`);
+    const sev = over <= maxStray ? 'STRAY ' : 'REVIEW';
+    out.push(`${sev} stray scrollbar: ${cls} (overflow ${c.overflowX}/${c.overflowY}) — ${s}${over > maxStray ? ' — large; confirm the second axis is meant to scroll' : ''}`);
   }
   return [...new Set(out)];
 };
@@ -155,8 +174,7 @@ const STRAY = (maxStray) => {
   const page = await browser.newPage({ viewport: { width: 1440, height: 950 }, deviceScaleFactor: 2 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(URL, { waitUntil: 'networkidle' });
-  let kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
-  if (ONLY) kits = kits.filter((k) => k === ONLY);
+  const kits = await G.kitsOf(page, ONLY);
 
   const WIDTHS = [1440, 1100, 390];
   let total = 0;
@@ -164,12 +182,13 @@ const STRAY = (maxStray) => {
     await page.goto(URL, { waitUntil: 'networkidle' });
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
     console.log(`\n=== ${kit} ===`);
+    const exempt = EXEMPT.filter((e) => e.k === kit);
     let kitN = 0;
     for (const w of WIDTHS) {
       await page.setViewportSize({ width: w, height: 950 });
       await page.reload({ waitUntil: 'networkidle' });
       await page.waitForTimeout(500);
-      const findings = [...await page.evaluate(AUDIT, w), ...await page.evaluate(STRAY, 16)];
+      const findings = [...await page.evaluate(AUDIT, { vw: w, exempt }), ...await page.evaluate(STRAY, 16)];
       findings.forEach((f) => console.log(`  @${w} ${f}`));
       kitN += findings.length;
     }

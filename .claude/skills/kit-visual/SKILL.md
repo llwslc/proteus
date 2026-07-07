@@ -36,13 +36,18 @@ Exit 1 if any finding.
 - **SCROLLAREA NOT SCROLLING (HIGH)** — a `*-scrollarea__viewport` whose content is
   taller than the box (>280px) yet `scrollHeight == clientHeight`: the scroller is
   unbounded (the height cap landed on the Root, not the Viewport) so it shows all
-  content and never scrolls. Caught the rewrite that moved `max-height` off the
-  viewport in all three kits.
+  content and never scrolls.
 - **OVERLAP (REVIEW)** — two non-nested leaf boxes (content, or a painted leaf
-  decoration) overlapping by ≥9px². Caught the corner bracket sitting on the header
-  marker / meta tag / a corner-most checkbox. REVIEW (not HIGH) because a hollow
-  bordered decoration *overstates* its bbox — confirm with a 4× corner crop before
-  fixing.
+  decoration) overlapping by ≥9px². REVIEW (not HIGH) because a hollow bordered
+  decoration *overstates* its bbox — confirm with a 4× corner crop before fixing.
+  Adjudicated-intentional overlaps go in `exempt.txt` (one per line,
+  `kit|panel-id|needleA|needleB` — needles substring-match the two element
+  descriptions, either order). Add a line ONLY after a corner crop confirms the
+  overlap is design language; never to silence a red.
+- **STRAY cross-axis scrollbar** — a one-axis scroll container overflowing on the
+  OTHER axis: ≤16px = `STRAY` (the accidental class, usually overflow-x:auto
+  silently promoting overflow-y); >16px = `REVIEW` (large — confirm the second
+  axis is meant to scroll).
 - **DEAD SPACE (HIGH, phone width only)** — at 390px the grid is one column, so a
   panel should hug its content; >120px of empty space below the last content box
   means the panel didn't collapse. Caught a wide panel using `grid-column: span 2`

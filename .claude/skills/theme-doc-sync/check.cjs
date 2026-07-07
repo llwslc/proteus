@@ -4,8 +4,15 @@ const ROOT = process.cwd();
 const themesDir = path.join(ROOT, 'prompt/theme');
 const kitsDir = path.join(ROOT, 'src/kits');
 
-const kits = fs.readdirSync(kitsDir).filter((k) =>
-  fs.existsSync(path.join(kitsDir, k, 'theme/tokens.css')) && fs.existsSync(path.join(themesDir, `${k}.md`)));
+// every kit with a tokens.css MUST have a catalog doc — an intersection here would
+// silently drop a kit whose doc was never written and still PASS
+const withTokens = fs.readdirSync(kitsDir).filter((k) => fs.existsSync(path.join(kitsDir, k, 'theme/tokens.css')));
+const undocumented = withTokens.filter((k) => !fs.existsSync(path.join(themesDir, `${k}.md`)));
+if (undocumented.length) {
+  console.log(`RESULT: FAIL — kit(s) with no prompt/theme/<kit>.md catalog doc: ${undocumented.join(', ')}`);
+  process.exit(1);
+}
+const kits = withTokens;
 
 const KEBAB = /^[a-z][a-z0-9]*(-[a-z0-9]+)+$/;
 const SINGLE = /^(base|void|stone|paper|off|track|text|ink|scrim|surface|sheen|tint|line)$/;

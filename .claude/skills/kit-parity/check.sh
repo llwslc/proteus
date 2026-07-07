@@ -1,29 +1,11 @@
 #!/bin/sh
-# kit-parity — cross-kit FUNCTIONAL coverage diff.
-#
-# kit-lint (token hygiene), kit-distinct (anti-reskin) and kit-states (rendered
-# states) all pass a kit that is simply MISSING a small functional/a11y rule its
-# siblings have — e.g. `:empty` to collapse an empty dropdown block, ellipsis on
-# a long value, or a styled scrollbar. Those gaps only surface when someone USES
-# the kit. This gate flags them: a functional concern present in 2+ kits but
-# absent from another is a likely parity gap.
-#
-# Scope is deliberately KIT-WIDE, not per-component-per-token. A state can be
-# styled per-component OR via a shared theme recipe (nova/abyss inline it on each
-# component; brass/bauhaus hoist `.<kit>-list-item[data-highlighted]` into
-# theme/effects.css) — both valid, so a per-component token grep just flags the
-# architecture, not a bug. Rendered interaction states (:hover/:focus-visible/
-# [data-highlighted]/[data-selected]/:disabled/open) are therefore NOT checked
-# here: kit-states and kit-interact RENDER and assert them. App-level resets
-# (box-sizing, prefers-reduced-motion, scroll-behavior) live in src/shell and are
-# shared by every kit, so they aren't per-kit concerns either.
-#
-# Usage: sh .claude/skills/kit-parity/check.sh            (audit every kit)
-#        sh .claude/skills/kit-parity/check.sh <kit-id>   (only report that kit's gaps)
-#
-# Kits are discovered from src/kits/*/components (never hardcoded). Output is
-# advisory — review each GAP; a kit may legitimately not need a rule, in which
-# case it's a documented exception, not a fix. Exit 1 if any GAP is printed.
+# kit-parity — cross-kit FUNCTIONAL coverage diff: a functional/a11y concern
+# present in 2+ kits but absent from another is a likely gap. Scope is KIT-WIDE
+# (a concern may live per-component or in a theme recipe — both valid); rendered
+# interaction states belong to kit-states/kit-interact, shell resets to src/shell.
+# See SKILL.md.
+#   sh .claude/skills/kit-parity/check.sh [kit-id]   (kits derive from src/kits/*)
+# Review each GAP — a kit may legitimately not need a rule. Exit 1 on any GAP.
 
 ONLY="$1"
 KITS=$(for d in src/kits/*/components; do k=${d%/components}; echo "${k#src/kits/}"; done)

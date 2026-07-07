@@ -50,15 +50,19 @@ echo
 echo "## kit-motif coupling — kit-agnostic docs (components.md · app.md · playbook.md) name no one kit's shape"
 # Each kit's motifs live in <domain>/theme/<kit>.md. High-signal words only — NOT generic
 # geometry like 切角/圆角/网格, which components.md legitimately offers and delegates to theme.
-motif='符印|法阵|触手|准星|齿轮|铆钉|表盘|仪表|蒸汽|阀门|滚花|摆针|三原形|虹膜|瞳孔|符文|魔典|石板|黄铜|琥珀|霓虹|rune|reticle|gear|rivet|gauge|steam|valve|sigil|tendril|knurl|neon|nova|abyss|brass|bauhaus|prism'
+# Kit ids + labels derive from the registry — a hardcoded roster staled once already.
+roster=$( { grep -oE 'id: "[a-z0-9-]+"' src/kits/registry.ts | sed 's/id: "//; s/"//';
+            grep -oE 'label: "[A-Za-z0-9]+"' src/kits/registry.ts | sed 's/label: "//; s/"//' | tr 'A-Z' 'a-z'; } | sort -u | paste -sd'|' -)
+[ -n "$roster" ] || { echo "  ERR kit roster empty — src/kits/registry.ts unreadable"; exit 2; }
+motif="符印|法阵|触手|准星|齿轮|铆钉|表盘|仪表|蒸汽|阀门|滚花|摆针|三原形|虹膜|瞳孔|符文|魔典|石板|黄铜|琥珀|霓虹|rune|reticle|gear|rivet|gauge|steam|valve|sigil|tendril|knurl|neon|$roster"
 mk=0
 for f in $FILES; do
   case "$f" in
     prompt/components/components.md|prompt/app/app.md|prompt/playbook.md) ;;
     *) continue ;;
   esac
-  # high-signal motifs, plus '眼' as a shape-noun (但 肉眼/一眼/… 是成语，滤掉)
-  bad=$( { grep -nE "$motif" "$f" 2>/dev/null; grep -nE '眼' "$f" 2>/dev/null | grep -vE '肉眼|一眼|眼前|眼下|转眼|眼花|眼看|显眼|抢眼|字眼'; } | sort -t: -k1,1n -u )
+  # high-signal motifs (kit names case-insensitive), plus '眼' as a shape-noun (但 肉眼/一眼/… 是成语，滤掉)
+  bad=$( { grep -nE "$motif" "$f" 2>/dev/null; grep -inE "$roster" "$f" 2>/dev/null; grep -nE '眼' "$f" 2>/dev/null | grep -vE '肉眼|一眼|眼前|眼下|转眼|眼花|眼看|显眼|抢眼|字眼'; } | sort -t: -k1,1n -u )
   if [ -n "$bad" ]; then printf '  LEAK  %s — kit-specific motif (belongs in <domain>/theme/<kit>):\n' "$f"; printf '%s\n' "$bad" | sed 's/^/    /'; mk=1; fail=1; fi
 done
 [ "$mk" = 0 ] && echo "  -> clean"
@@ -103,6 +107,18 @@ echo "   contrast / history / rationale / verbosity) no keyword list can enumera
 echo "   editing, RE-READ each clause you touched and ask: is it terse, correct, and"
 echo "   describing THIS thing's own nature? If it explains WHY, disclaims another rule"
 echo "   (不走实填), leaks the CSS (随词宽走), or recounts history (替掉X) — cut it."
+
+echo
+echo "## REVIEW — decode test on CHANGED lines: 压缩过度 fails the same as 冗余 (semantic)"
+echo "   a fresh session holding ONLY this doc + the code literals must re-derive the"
+echo "   decision from each line. For every line you touched ask:"
+echo "   • does a cited value use the token's REAL name+scope as in tokens.css? An"
+echo "     invented shorthand that widens the claim ('各强调色 tint .2' when only primary"
+echo "     has a tint) is a WRONG SPEC, not just style."
+echo "   • is any subject/relation elided past recovery (带高于行)? Spell it out once"
+echo "     (涂划带高过行框) — terse is the house style, opaque is a defect."
+echo "   • back-writing chat into spec: cite CODE literals, never paraphrase the chat."
+echo "   Over-compression and fluff are EQUAL failures — never fix one by minting the other."
 
 case " $FILES " in
   *prompt/theme/*) echo; echo "## cross-kit — theme docs in scope"; echo "   run: sh .claude/skills/prompt-lint/parallel.sh — read each section across the kits for an OUTLIER clause (SKILL.md: Siblings are the control)";;

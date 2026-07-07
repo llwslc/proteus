@@ -11,16 +11,18 @@
 // The sweep NEVER skips silently: every expected state that fails to capture is
 // reported per kit at the end, so a state the demo's ids/classes don't expose
 // shows up as a gap to fix, not as a false pass.
-const { chromium } = require('/tmp/pw/node_modules/playwright-core');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const PORT = process.argv[2] || '5273';
+const G = require('../lib/gate.cjs');
+const { chromium } = G.pw();
+const CHROME = G.CHROME;
+const PORT = G.port(process.argv[2]);
 const URL = `http://127.0.0.1:${PORT}/`;
 const fs = require('fs');
 fs.mkdirSync('/tmp/states', { recursive: true });
 
 // Every interaction state the sweep is expected to capture for each kit.
 const EXPECT = [
-  'button_pressed',
+  'button_hover', 'button_pressed', 'button_focus',
+  'switch_focus', 'input_focus',
   'numberfield_max', 'numberfield_min',
   'menu_open', 'select_open', 'combobox_open',
   'dialog_open', 'alert_open', 'drawer_open', 'popover_open',
@@ -33,13 +35,31 @@ const shoot = async (loc, path) => {
 
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
-  const page = await browser.newPage({ viewport: { width: 1440, height: 950 } });
+  const page = await browser.newPage({ viewport: G.DESKTOP });
   await page.emulateMedia({ reducedMotion: 'reduce' });
 
   // kit list = the app's own switcher (reflects the registry) — no hardcoded names
   await page.goto(URL, { waitUntil: 'networkidle' });
-  const KITS = await page.$$eval('.shell-switch__btn', (els) =>
-    els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
+  const KITS = await G.kitsOf(page);
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
+  // force :focus/:focus-visible via CDP (real keyboard tab-hunting is flaky); shoot
+  // the PANEL region, not the element — focus rings paint outside the element box
+  const forcedShot = async (sel, pseudo, region, path) => {
+    const el = await page.$(sel);
+    if (!el) { console.log('  skip', path.split('/').pop(), '—', sel, 'not found'); return; }
+    await el.evaluate((e) => e.setAttribute('data-stchk', '1'));
+    try {
+      const { root } = await cdp.send('DOM.getDocument', { depth: -1 });
+      const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector: '[data-stchk="1"]' });
+      if (!nodeId) { console.log('  skip', path.split('/').pop(), '— CDP node not found'); return; }
+      await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: pseudo });
+      await page.waitForTimeout(120);
+      await shoot(page.locator(region).first(), path);
+      await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [] });
+    } finally { await el.evaluate((e) => e.removeAttribute('data-stchk')).catch(() => {}); }
+  };
+  let gapKits = 0;
 
   for (const kit of KITS) {
     // clear this kit's prior shots so file-existence == captured THIS run
@@ -57,18 +77,37 @@ const shoot = async (loc, path) => {
     // resting full page (shows all built-in disabled rows)
     await page.screenshot({ path: `/tmp/states/${kit}_PAGE.png`, fullPage: true });
 
-    // pressed button — shoot the held BUTTON element, not the panel, so a subtle
-    // active treatment (scale / translate) is actually visible.
+    // hover then pressed — real mouse both times; shoot the held BUTTON element
+    // for pressed (subtle active scale/translate), the panel for hover.
     await P('button');
     const b = await page.$(`#button .${kit}-btn`);
     if (b) {
       const bb = await b.boundingBox();
       await page.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2);
+      await page.waitForTimeout(150);
+      await shoot(page.locator('#button').first(), `/tmp/states/${kit}_button_hover.png`);
       await page.mouse.down();
       await page.waitForTimeout(120);
       await shoot(page.locator(`#button .${kit}-btn`).first(), `/tmp/states/${kit}_button_pressed.png`);
       await page.mouse.up();
-    } else { console.log('  skip', `${kit}_button_pressed`, '— #button .' + kit + '-btn not found'); }
+      await page.mouse.move(5, 5);
+    } else { console.log('  skip', `${kit}_button_hover/pressed`, '— #button .' + kit + '-btn not found'); }
+
+    // keyboard-focus states — the ring/glow the resting page never shows
+    await forcedShot(`#button .${kit}-btn`, ['focus', 'focus-visible'], '#button', `/tmp/states/${kit}_button_focus.png`);
+    await P('switch');
+    await forcedShot(`#switch [role="switch"], #switch .${kit}-switch`, ['focus', 'focus-visible'], '#switch', `/tmp/states/${kit}_switch_focus.png`);
+    await P('input');
+    const inp = page.locator('#input input').first();
+    if (await inp.count()) {
+      try {
+        await inp.click();
+        await page.waitForTimeout(150);
+        await shoot(page.locator('#input').first(), `/tmp/states/${kit}_input_focus.png`);
+        await page.keyboard.press('Escape').catch(() => {});
+        await page.evaluate(() => document.activeElement && document.activeElement.blur());
+      } catch (e) { console.log('  skip', `${kit}_input_focus`, '—', e.message.split('\n')[0]); }
+    } else { console.log('  skip', `${kit}_input_focus`, '— #input input not found'); }
 
     // numberfield driven to its real min/max via a committed edit (Enter), so the
     // controlled value updates and the edge stepper actually disables. Raw value
@@ -98,7 +137,7 @@ const shoot = async (loc, path) => {
       ['dialog', `#dialog .${kit}-btn`, `.${kit}-dialog__tablet, .${kit}-dialog__popup, .${kit}-dialog`],
       ['alert', `#alert .${kit}-btn`, `.${kit}-alert__tablet, .${kit}-alert__popup, .${kit}-alert`],
       ['drawer', `#drawer .${kit}-btn`, `.${kit}-drawer__tablet, .${kit}-drawer`],
-      ['popover', `#popover .${kit}-btn`, `.${kit}-popover__popup, [class*="popover__pos"]`],
+      ['popover', `#popover .${kit}-btn`, `.${kit}-popover__popup, .${kit}-popover, [class*="popover__pos"]`],
     ];
     for (const [name, trig, pop] of popups) {
       try {
@@ -114,9 +153,10 @@ const shoot = async (loc, path) => {
 
     // loud per-kit report: every expected state that did NOT produce a file
     const missing = EXPECT.filter((n) => !fs.existsSync(`/tmp/states/${kit}_${n}.png`));
-    if (missing.length) console.log(`⚠ ${kit}: NOT captured -> ${missing.join(', ')}`);
+    if (missing.length) { gapKits++; console.log(`⚠ ${kit}: NOT captured -> ${missing.join(', ')}`); }
     else console.log(`✓ ${kit}: all ${EXPECT.length} interaction states captured`);
   }
   await browser.close();
-  console.log('states sweep done -> /tmp/states/');
-})().catch((e) => { console.error(e); process.exit(1); });
+  console.log(`states sweep done -> /tmp/states/${gapKits ? ` — ${gapKits} kit(s) have capture GAPS (fix the demo hooks or the sweep)` : ''}`);
+  process.exit(gapKits ? 1 : 0);
+})().catch((e) => { console.error(e); process.exit(2); });

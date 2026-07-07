@@ -1,6 +1,7 @@
-const { chromium } = require('/tmp/pw/node_modules/playwright-core');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const PORT = process.argv[2] || '5273';
+const G = require('../lib/gate.cjs');
+const { chromium } = G.pw();
+const CHROME = G.CHROME;
+const PORT = G.port(process.argv[2]);
 const URL = `http://127.0.0.1:${PORT}/`;
 const ONLY = process.argv[3];
 const TOL = 1.6;
@@ -40,11 +41,10 @@ const SCAN = (rootSel) => {
 
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
-  const page = await browser.newPage({ viewport: { width: 1280, height: 950 }, deviceScaleFactor: 2 });
+  const page = await browser.newPage({ viewport: G.DESKTOP, deviceScaleFactor: 2 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(URL, { waitUntil: 'networkidle' });
-  let kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
-  if (ONLY) kits = kits.filter((k) => k === ONLY);
+  const kits = await G.kitsOf(page, ONLY);
 
   let total = 0;
   for (const kit of kits) {

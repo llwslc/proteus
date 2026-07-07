@@ -8,9 +8,10 @@
 //  (B) a one-shot decoration that animates while its overlay is still off-viewport —
 //      its flourish plays off-screen and is done by the time you see it (the abyss
 //      Drawer key bug). A flaky MOUNT is a WARN, never a FAIL (flaky gate < no gate).
-const { chromium } = require('/tmp/pw/node_modules/playwright-core');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const URL = `http://127.0.0.1:${process.argv[2]||'5273'}/`;
+const G = require('../lib/gate.cjs');
+const { chromium } = G.pw();
+const CHROME = G.CHROME;
+const URL = G.urlOf(G.port(process.argv[2]));
 const ONLY = process.argv[3] && process.argv[3]!=='break' ? process.argv[3] : null;
 const BREAK = process.argv.includes('break');
 const CONN = [['tooltip','#tooltip button, #tooltip a','hover'],['popover','#popover button','click'],['preview','#preview a, #preview button','hover']];
@@ -21,9 +22,17 @@ const RECORDER = (inject) => { // runs in page: start bg rAF recorder, catches o
   const find=()=>document.querySelector('body > div [class*="connector"],body > div [class*="popup"],body > div [class*="popover"],body > div [class*="tooltip"],body > div [class*="preview"],body > div [class*="drawer"],body > div [class*="modal"],body > div [role="dialog"],body > div [role="tooltip"]');
   const vw=innerWidth,vh=innerHeight;
   function tick(){ total++;
-    if(!track){ const a=find(); if(a){ const portal=a.closest('body > div'); const connector=portal.querySelector('[class*="connector"],[class*="arrow"]');
-      const boxes=[...portal.querySelectorAll('[class*="popup"],[class*="popover"],[class*="tooltip"],[class*="preview"],[class*="drawer"],[class*="modal"],[class*="sheet"],[role="dialog"],[role="tooltip"]')];
+    if(!track){ const a=find(); if(a){ const portal=a.closest('body > div');
+      // positioner wrappers match the loose class probes but never animate (opacity
+      // stays 1) — tracking one as "the popup" makes every opacity rule inert
+      const boxes=[...portal.querySelectorAll('[class*="popup"],[class*="popover"],[class*="tooltip"],[class*="preview"],[class*="drawer"],[class*="modal"],[class*="sheet"],[role="dialog"],[role="tooltip"]')]
+        .filter(e=>!/positioner/i.test((e.className||'').toString()));
       const popup=boxes.sort((x,y)=>{const rx=x.getBoundingClientRect(),ry=y.getBoundingClientRect();return ry.width*ry.height-rx.width*rx.height;})[0]||a;
+      // a connector INSIDE the popup rides the popup's own fade (a child cannot be
+      // more visible than its parent) — the ahead-of-popup rule only means anything
+      // for a sibling-of-popup connector
+      let connector=portal.querySelector('[class*="connector"],[class*="arrow"]');
+      if(connector && popup.contains(connector)) connector=null;
       const one=[...portal.querySelectorAll('*')].filter(e=>{const cs=getComputedStyle(e);return cs.animationName&&cs.animationName!=='none'&&cs.animationIterationCount==='1';});
       track=[['popup',popup]]; if(connector)track.push(['connector',connector]); one.forEach((e,i)=>{if(e!==popup&&e!==connector)track.push(['oneshot:'+((e.className||'').toString().split(' ').find(c=>/key|sigil|seam|art|glyph|mark|orbit|deco/i.test(c))||i),e]);}); } }
     if(track){ window.__rec.push(track.map(([n,el])=>{const cs=getComputedStyle(el),r=el.getBoundingClientRect();const offX=Math.max(0,-r.left)+Math.max(0,r.right-vw),offY=Math.max(0,-r.top)+Math.max(0,r.bottom-vh);return{n,op:+cs.opacity,tf:cs.transform,off:+Math.min(1,(offX*r.height+offY*r.width)/Math.max(1,r.width*r.height)).toFixed(2)};})); captured++; }
@@ -45,10 +54,11 @@ function analyze(r){ const f=[]; const pi=r.names.indexOf('popup'), ci=r.names.i
 }
 (async()=>{
   const browser=await chromium.launch({executablePath:CHROME,args:['--disable-gpu']});
-  const probe=await browser.newPage(); await probe.goto(URL,{waitUntil:'networkidle'}); let kits=await probe.$$eval('.shell-switch__btn',e=>e.map(x=>x.getAttribute('data-kit-id')).filter(Boolean)); await probe.close();
-  if(ONLY)kits=kits.filter(k=>k===ONLY); let total=0;
-  for(const kit of kits){ for(const [id,sel,kind] of [...CONN,...SLIDE]){ const p=await browser.newPage({viewport:{width:1440,height:900}}); await setKit(p,kit);
-    let r; try{ r=await record(p,kind,sel, BREAK ? '[class*="connector"]{animation:none !important;opacity:1 !important}' : null);}catch(e){ r={err:e.message.split('\n')[0].slice(0,40)}; }
+  const probe=await browser.newPage(); await probe.goto(URL,{waitUntil:'networkidle'}); const kits=await G.kitsOf(probe,ONLY); await probe.close();
+  let total=0;
+  for(const kit of kits){ for(const [id,sel,kind] of [...CONN,...SLIDE]){ const p=await browser.newPage({viewport:G.DESKTOP}); await setKit(p,kit);
+    let r; try{ r=await record(p,kind,sel, BREAK ? '@keyframes __gate_break{from{opacity:.2}to{opacity:1}} body > div [class*="popup"],body > div [class*="drawer"],body > div [class*="modal"],body > div [role="dialog"],body > div [role="tooltip"]{transform:translateX(150vw) !important;transition:none !important} body > div [class*="__"]{animation:__gate_break .4s 1 !important}' : null);}catch(e){ r={err:e.message.split('\n')[0].slice(0,40)}; }
     if(r.err){ console.log(`  WARN ${kit} ${id}: ${r.err}`); } else { for(const fl of analyze(r)){ console.log(`  FAIL ${kit} ${id}: ${fl}`); total++; } } await p.close(); } }
   console.log(total?`\nRESULT: ${total} fault(s)`:`\nRESULT: PASS (overlay animations in sync)`); await browser.close();
-})();
+  process.exit(total?1:0);
+})().catch((e)=>{ console.error('ERR',e.message); process.exit(2); });

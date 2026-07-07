@@ -25,8 +25,13 @@ run() { # run <title> <findings>
   fi
 }
 
-# 1. raw colors in component css (hex / rgba not var-wrapped; mask gradient stops allowed)
-f=$(grep -rnE '(#[0-9a-fA-F]{3,8}\b|rgba?\([0-9])' "$C" --include='*.css' 2>/dev/null | grep -v 'var(' | grep -v 'mask' | grep -vE '#000\b')
+# 1. raw colors in component css. Match-level, not line-level: var()/url() bodies and
+# the #000 allowance are STRIPPED so a raw color mixed on the same line still flags;
+# only mask-property declarations are exempt (their SVG/gradient stops are alpha shapes).
+f=$(grep -rnE '(#[0-9a-fA-F]{3,8}\b|rgba?\([0-9])' "$C" --include='*.css' 2>/dev/null \
+  | grep -vE '^[^:]+:[0-9]+:[[:space:]]*(-webkit-)?mask' \
+  | perl -pe 's/var\([^()]*(\([^()]*\)[^()]*)*\)//g; s/url\([^)]*\)//g; s/#000\b//g' \
+  | grep -E '(#[0-9a-fA-F]{3,8}\b|rgba?\([0-9])')
 run "raw colors in components" "$f"
 
 # 1b. raw color literals that duplicate an existing token value exactly

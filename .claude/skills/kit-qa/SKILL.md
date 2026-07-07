@@ -37,11 +37,12 @@ It **discovers** gates — every `.claude/skills/kit-*/` with a `check.cjs` or
 `check.sh`, plus `theme-doc-sync` — so new gates are picked up automatically; the
 gate list and the kit list are never hardcoded (kits come from `src/kits/*`).
 
-- Most gates sweep all kits when run bare → run bare.
-- `kit-lint` needs a `<kit-id>` → looped over every kit.
-- Skipped: `kit-states` (manual screenshot capture, no assertion) and
-  `kit-distinct` (new-kit-only, needs a `<kit-id>`) — run those by hand when
-  creating/heavily reworking a kit.
+- Most gates sweep all kits when run bare → run bare. The `[port]` reaches them
+  via the `GATE_PORT` env var (positional args stay gate-specific — several take
+  `[kit]`, not `[port]`).
+- `kit-lint` and `kit-distinct` need a `<kit-id>` → looped over every kit.
+- Skipped: `kit-states` (manual screenshot capture — run and review by hand) and
+  `kit-qa` itself (the runner must never recurse into its own folder).
 
 `diff-hygiene` and `prompt-lint` are commit-time/doc gates, not kit QA — run them
 separately before committing.

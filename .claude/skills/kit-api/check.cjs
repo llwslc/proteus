@@ -36,12 +36,12 @@ function parse(k, c) {
   while ((m = re.exec(s))) {
     const props = new Map();
     for (const line of m[3].split('\n')) {
-      const pm = line.match(/^\s*(\w+)\??:\s*(.+?);?\s*$/);
+      const pm = line.match(/^\s*(\w+)(\?)?:\s*(.+?);?\s*$/);
       if (!pm) continue;
-      let ty = pm[2].replace(/React\./g, '').replace(/\s+/g, '');
+      let ty = pm[3].replace(/React\./g, '').replace(/\s+/g, '');
       for (const [an, ad] of Object.entries(aliases)) ty = ty.replace(new RegExp('\\b' + an + '\\b', 'g'), ad);
       if (ty.includes('|')) ty = ty.split('|').map((x) => x.trim()).filter(Boolean).sort().join('|'); // union order/leading-pipe agnostic
-      props.set(pm[1], ty);
+      props.set(pm[1], { ty, opt: !!pm[2] });
     }
     // normalize extends: drop the React. namespace + all whitespace (formatting-agnostic)
     ifaces[m[1]] = { props, ext: (m[2] || '').replace(/React\./g, '').replace(/\s+/g, '') };
@@ -54,11 +54,42 @@ function parse(k, c) {
       if (!DEFAULT_EXEMPT.has(dm[1])) defaults[`${fm[1]}.${dm[1]}`] = dm[2];
     }
   }
-  return { exports, ifaces, defaults };
+  return { exports, ifaces, defaults, aliases };
 }
 
 const data = {};
 for (const c of comps) { data[c] = {}; for (const k of KITS) data[c][k] = parse(k, c); }
+
+// resolve type SPELLING per kit so only shape differences fail: cross-file aliases
+// (ButtonVariant), indexed access (ButtonProps["variant"]), NonNullable<…>, and the
+// Base-import naming (typeof BaseMenu.Item vs typeof Menu.Item) all normalize away.
+const kitAliases = {}, kitIfaces = {};
+for (const k of KITS) { kitAliases[k] = {}; kitIfaces[k] = {}; }
+for (const c of comps) for (const k of KITS) {
+  const d = data[c][k];
+  if (!d) continue;
+  Object.assign(kitAliases[k], d.aliases);
+  Object.assign(kitIfaces[k], d.ifaces);
+}
+const resolveTy = (k, ty) => {
+  let t = ty;
+  for (let i = 0; i < 5; i++) {
+    const prev = t;
+    t = t.replace(/typeofBase(?=[A-Z])/g, 'typeof').replace(/\bBase(?=[A-Z])/g, '');
+    let m = t.match(/^NonNullable<(.+)>$/);
+    if (m) t = m[1];
+    m = t.match(/^(\w+Props)\["(\w+)"\]$/);
+    if (m && kitIfaces[k][m[1]] && kitIfaces[k][m[1]].props.has(m[2])) t = kitIfaces[k][m[1]].props.get(m[2]).ty;
+    if (/^\w+$/.test(t) && kitAliases[k][t]) t = kitAliases[k][t];
+    if (t === prev) break;
+  }
+  if (t.includes('|')) t = t.split('|').map((x) => x.trim()).filter(Boolean).sort().join('|');
+  return t;
+};
+for (const k of KITS) for (const i of Object.values(kitIfaces[k])) {
+  for (const [p, v] of i.props) i.props.set(p, { ...v, ty: resolveTy(k, v.ty) });
+  i.ext = i.ext.replace(/typeofBase(?=[A-Z])/g, 'typeof').replace(/\bBase(?=[A-Z])/g, '');
+}
 
 let fails = 0;
 const out = [];
@@ -69,19 +100,27 @@ for (const c of comps) {
   const exSets = present.map((k) => [...pk[k].exports].sort().join(','));
   if (new Set(exSets).size > 1) { out.push(`FAIL ${c}: exported symbols differ — ${present.map((k, i) => `${k}:[${exSets[i]}]`).join('  ')}`); fails++; }
 
-  const mi = `${c}Props`;
-  const withIface = present.filter((k) => pk[k].ifaces[mi]);
-  if (withIface.length && withIface.length < present.length) {
-    out.push(`FAIL ${c}: ${mi} exists in [${withIface}] but missing in [${present.filter((k) => !pk[k].ifaces[mi])}]`); fails++;
-  } else if (withIface.length >= 2) {
+  // every *Props interface in the component's files — the main <Comp>Props must
+  // exist in all kits; sub-interfaces (MenuItemProps, …) are compared wherever shared
+  const inames = new Set();
+  present.forEach((k) => Object.keys(pk[k].ifaces).forEach((n) => inames.add(n)));
+  for (const mi of [...inames].sort()) {
+    const withIface = present.filter((k) => pk[k].ifaces[mi]);
+    if (mi === `${c}Props` && withIface.length && withIface.length < present.length) {
+      out.push(`FAIL ${c}: ${mi} exists in [${withIface}] but missing in [${present.filter((k) => !pk[k].ifaces[mi])}]`); fails++;
+      continue;
+    }
+    if (withIface.length < 2) continue;
     const union = new Set();
     withIface.forEach((k) => pk[k].ifaces[mi].props.forEach((_t, p) => union.add(p)));
     const diff = [...union].filter((p) => new Set(withIface.map((k) => pk[k].ifaces[mi].props.has(p))).size > 1);
     if (diff.length) { out.push(`FAIL ${c}: ${mi} prop(s) not in every kit — ${diff.join(', ')}  [${withIface.map((k) => `${k}:{${[...pk[k].ifaces[mi].props.keys()].join(',')}}`).join('  ')}]`); fails++; }
     const shared = [...union].filter((p) => withIface.every((k) => pk[k].ifaces[mi].props.has(p)));
     for (const p of shared) {
-      const types = withIface.map((k) => pk[k].ifaces[mi].props.get(p));
+      const types = withIface.map((k) => pk[k].ifaces[mi].props.get(p).ty);
       if (new Set(types).size > 1) { out.push(`FAIL ${c}: ${mi}.${p} TYPE differs — ${withIface.map((k, i) => `${k}:${types[i]}`).join('  |  ')}`); fails++; }
+      const opts = withIface.map((k) => pk[k].ifaces[mi].props.get(p).opt);
+      if (new Set(opts).size > 1) { out.push(`FAIL ${c}: ${mi}.${p} OPTIONALITY differs — ${withIface.map((k, i) => `${k}:${opts[i] ? 'optional' : 'REQUIRED'}`).join('  |  ')}`); fails++; }
     }
     const exts = withIface.map((k) => pk[k].ifaces[mi].ext);
     if (new Set(exts).size > 1) { out.push(`FAIL ${c}: ${mi} extends differ — ${withIface.map((k, i) => `${k}:${exts[i] || '∅'}`).join('  |  ')}`); fails++; }
@@ -97,5 +136,5 @@ for (const c of comps) {
 }
 
 out.forEach((l) => console.log('  ' + l));
-console.log(`\nRESULT: ${fails ? `${fails} API PARITY FAIL` : `PASS (wrapper APIs aligned across ${KITS.length} kits, ${comps.length} components)`}`);
+console.log(`\nRESULT: ${fails ? `${fails} API PARITY FAIL` : `PASS (wrapper APIs aligned across ${KITS.length} kits, ${comps.length} components; exempt: ${[...SKIP].join('/')})`}`);
 process.exit(fails ? 1 : 0);

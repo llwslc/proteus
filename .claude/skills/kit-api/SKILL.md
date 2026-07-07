@@ -7,8 +7,8 @@ description: Wrapper-layer API parity gate for the theme kits. Each kit is a Bas
 
 The kits share BEHAVIOR (Base UI) but each has its own hand-written wrapper
 (`src/kits/<kit>/components/<Comp>/<Comp>.tsx`). Base UI guarantees nothing about
-whether the three wrappers expose the SAME props/shape — that drift is invisible
-to the CSS gates and to `kit-distinct` (which wants kits to differ). This gate is
+whether the wrappers expose the SAME props/shape — that drift is invisible to
+the CSS gates and to `kit-distinct` (which wants kits to differ). This gate is
 the one that catches it.
 
 ## Run it
@@ -33,16 +33,24 @@ filesystem — never hardcoded.
   then compared (caught brass using `React.ComponentProps<X>` where siblings use
   `ComponentPropsWithoutRef<X>`, and `extends Base...Props` passthrough where
   siblings curate explicit props).
-- **`<Comp>Props` prop TYPES match** — for a prop present in every kit, its type
-  must be identical, after resolving local `type X = …` aliases and normalizing
-  unions (order- and leading-pipe-agnostic) so `Tone` vs the inline union, or a
-  multi-line vs single-line union, are NOT false positives. Catches the real
-  semantic class: a same-named prop typed differently (`label: string` vs
-  `ReactNode`) — which passes the name check but means a different contract.
+- **Prop TYPES match** — for a shared prop, its type must be identical after
+  resolving spelling: `type X = …` aliases (cross-file, e.g. `ButtonVariant`),
+  indexed access (`ButtonProps["variant"]`), `NonNullable<…>`, the `Base`-import
+  naming (`typeof BaseMenu.Item` ≡ `typeof Menu.Item`), and union order. Only a
+  different type SHAPE fails (`label: string` vs `ReactNode`, a missing union
+  member) — never a different spelling of the same shape.
+- **Prop OPTIONALITY matches** — a prop `tone?:` in four kits but `tone:` in one
+  makes shared call-site code type-error in that kit only; the `?` is part of
+  the contract and is compared.
+- **Default VALUES match** — literal destructuring defaults are compared, except
+  the tuned-per-kit set (`sideOffset`) and theme-voice copy strings
+  (`placeholder`, `emptyText`).
 
-It does NOT check default VALUES (a different default like Button's `variant`
-default still needs a cross-kit read). It checks the API surface — names, presence,
-exports, `extends`, and prop types — which is where the drift lives.
+Every `*Props` interface found in the component's files is compared (the main
+`<Comp>Props` must exist in all kits; sub-interfaces like `MenuItemProps` are
+compared wherever shared). `Panel` and `icons` are exempt — Panel's props are
+per-kit theme vocabulary — so the PASS line counts 36 compared components, not
+the 37 shipped ones.
 
 Pair with `kit-structure` (§5 composition parity = Base UI behavioral props +
 indicator side; §6 = component-class coupling). kit-api = the wrapper's own

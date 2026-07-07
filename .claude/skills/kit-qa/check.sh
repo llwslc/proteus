@@ -3,28 +3,30 @@
 # be skipped after a CSS change. Discovers every .claude/skills/kit-*/ gate with
 # a runnable check (+ theme-doc-sync); does NOT hardcode the gate or kit list.
 #   sh .claude/skills/kit-qa/check.sh [port]      (port default 5273)
-# The dynamic gates (kit-visual/-interact/-anim-sync/-stray-scroll/…) drive the
-# real page, so the dev server must be up on :port first.
+# The dynamic gates (kit-visual/-interact/-anim-sync/…) drive the real page, so
+# the dev server must be up on :port first. The port reaches every gate via
+# GATE_PORT (positional args are gate-specific: several take [kit], not [port]).
 PORT="${1:-5273}"
 SKILLS=.claude/skills
+export GATE_PORT="$PORT"
 
 curl -s -o /dev/null "http://127.0.0.1:${PORT}/" 2>/dev/null \
   || { echo "kit-qa: dev server not reachable on :${PORT} — start it (npm run dev) first"; exit 2; }
 
 KITS=$(ls -d src/kits/*/ 2>/dev/null | sed 's#src/kits/##; s#/##')   # derive, never hardcode
-PER_KIT="kit-lint"                 # gates that require a <kit-id> arg → loop kits
-SKIP="kit-states kit-distinct"     # kit-states = manual capture; kit-distinct = new-kit only
+PER_KIT="kit-lint kit-distinct"    # gates that require a <kit-id> arg → loop kits
+SKIP="kit-qa kit-states"           # kit-qa = this runner (never recurse); kit-states = manual capture
 
 fail=0
 run() {
   label="$1"; shift
   out=$("$@" 2>&1); code=$?
-  res=$(printf '%s\n' "$out" | grep -hE "^RESULT:|^diff-hygiene:|GAPS|usage:" | tail -1)
+  res=$(printf '%s\n' "$out" | grep -hE "^RESULT:|GAPS|usage:" | tail -1)
   if [ "$code" -eq 0 ]; then
     printf '  PASS  %-22s %s\n' "$label" "$res"
   else
     printf '  FAIL  %-22s %s\n' "$label" "$res"
-    printf '%s\n' "$out" | grep -hiE "FAIL|HIGH |GAP |finding|stray|overlap|dead |missing|off-panel" | head -8 | sed 's/^/          /'
+    printf '%s\n' "$out" | grep -hiE "FAIL|HIGH |GAP |finding|stray|overlap|dead |missing|off-panel|RESKIN" | head -8 | sed 's/^/          /'
     fail=1
   fi
 }

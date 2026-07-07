@@ -13,7 +13,7 @@ A kit is authored from scratch with NO shared `src` — each writes its own lite
 ## Run
 
 ```
-sh npm run dev  # dev server must be up on :5273 (the gate drives the live page)
+npm run dev     # dev server must be up on :5273 (the gate drives the live page)
 node .claude/skills/kit-equality/check.cjs [port]
 ```
 

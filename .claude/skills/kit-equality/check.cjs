@@ -2,10 +2,11 @@
 //   node .claude/skills/kit-equality/check.cjs [port]
 const fs = require('fs');
 const path = require('path');
-const { chromium } = require('/tmp/pw/node_modules/playwright-core');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const PORT = process.argv[2] || '5273';
-const URL = `http://127.0.0.1:${PORT}/`;
+const G = require('../lib/gate.cjs');
+const { chromium } = G.pw();
+const CHROME = G.CHROME;
+const PORT = G.port(process.argv[2]);
+const URL = G.urlOf(PORT);
 const APP_MD = path.join(__dirname, '../../../prompt/app/app.md');
 
 const TOKEN_DIMS = [
@@ -45,9 +46,9 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   try { canonFlat = flat(parseManifest()); } catch (e) { console.log('manifest parse error:', e.message); process.exit(2); }
 
   const browser = await chromium.launch({ executablePath: CHROME });
-  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  const page = await browser.newPage({ viewport: G.DESKTOP });
   await page.goto(URL, { waitUntil: 'networkidle' });
-  const kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
+  const kits = await G.kitsOf(page);
 
   const data = {}, sigs = {};
   for (const kit of kits) {

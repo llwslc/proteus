@@ -7,20 +7,11 @@ const KITS = cp.execSync("ls -d src/kits/*/components").toString().trim().split(
 const read = (f) => fs.readFileSync(f, 'utf8');
 const filesOf = (k) => cp.execSync(`find src/kits/${k} -type f \\( -name '*.ts' -o -name '*.tsx' -o -name '*.css' \\)`).toString().trim().split('\n').filter(Boolean);
 const comps = (k) => fs.readdirSync(`src/kits/${k}/components`).filter((d) => { try { return fs.statSync(`src/kits/${k}/components/${d}`).isDirectory(); } catch { return false; } });
-const exportsOf = (k, c) => {
-  const dir = `src/kits/${k}/components/${c}`;
-  let s = '';
-  for (const f of fs.readdirSync(dir)) if (/\.tsx?$/.test(f)) s += read(`${dir}/${f}`) + '\n';
-  return {
-    val: new Set([...s.matchAll(/export (?:function|const) ([A-Za-z0-9]+)/g)].map((m) => m[1])),
-    typ: new Set([...s.matchAll(/export (?:type|interface) ([A-Za-z0-9]+)/g)].map((m) => m[1])),
-  };
-};
-
-let fail = 0, review = 0;
+let fail = 0;
 const out = (s) => console.log(s);
 
 out('## 1. cross-kit isolation (no kit may import or reference another kit)');
+let f1 = fail;
 for (const k of KITS) {
   for (const f of filesOf(k)) {
     const s = read(f);
@@ -33,18 +24,20 @@ for (const k of KITS) {
     }
   }
 }
-out('  ok');
+if (fail === f1) out('  ok');
 
 out('\n## 2. component-set parity (same components in every kit)');
 const compSets = Object.fromEntries(KITS.map((k) => [k, comps(k)]));
 const allComps = [...new Set([].concat(...Object.values(compSets)))].sort();
+let f2 = fail;
 for (const c of allComps) {
   const miss = KITS.filter((k) => !compSets[k].includes(c));
   if (miss.length) { out(`  FAIL ${c}: missing in ${miss.join(', ')}`); fail++; }
 }
-out(`  ok (${allComps.length} components)`);
+if (fail === f2) out(`  ok (${allComps.length} components)`);
 
 out('\n## 3. module completeness (.tsx + index.ts per component; re-exported by top barrel)');
+let f3 = fail;
 for (const k of KITS) {
   const topBarrel = read(`src/kits/${k}/components/index.ts`);
   for (const c of compSets[k]) {
@@ -55,24 +48,10 @@ for (const k of KITS) {
     if (!new RegExp('["./]' + c + '["/]|\\b' + c + '\\b').test(topBarrel)) { out(`  FAIL ${k}: ${c} not re-exported by components/index.ts`); fail++; }
   }
 }
-out('  ok');
+if (fail === f3) out('  ok');
 
-out('\n## 4. export-surface parity (REVIEW — divergent component APIs across kits)');
+out('\n## 4. export-surface parity — moved to kit-api (the FAIL-grade gate for the wrapper API surface)');
 const shared = allComps.filter((c) => c !== 'icons' && KITS.every((k) => compSets[k].includes(c)));
-let typDiv = 0;
-for (const c of shared) {
-  const per = KITS.map((k) => [k, exportsOf(k, c)]);
-  for (const sym of [...new Set([].concat(...per.map(([_, e]) => [...e.val])))].sort()) {
-    const has = per.filter(([_, e]) => e.val.has(sym)).map(([k]) => k);
-    if (has.length < KITS.length) { out(`  REVIEW ${c}.${sym}: ${has.join('+')} only`); review++; }
-  }
-  for (const sym of [...new Set([].concat(...per.map(([_, e]) => [...e.typ])))].sort()) {
-    const has = per.filter(([_, e]) => e.typ.has(sym)).map(([k]) => k);
-    if (has.length < KITS.length) { typDiv++; if (process.env.DETAIL) out(`  type   ${c}.${sym}: ${has.join('+')} only`); }
-  }
-}
-if (!review) out('  no value/API divergences');
-if (typDiv) out(`  (+ ${typDiv} type-only export divergences${process.env.DETAIL ? '' : ' — DETAIL=1 to list'})`);
 
 out('\n## 5. composition parity (same Base UI wiring across kits — props + selected-indicator side)');
 const tsxOf = (k, c) => {
@@ -147,5 +126,5 @@ for (const k of KITS) {
 }
 if (fail === cBefore) out('  ok');
 
-out(`\nRESULT: ${fail ? fail + ' STRUCTURAL FAIL' : 'structure OK'}${review ? ` · ${review} API divergence(s) to review` : ''}`);
+out(`\nRESULT: ${fail ? fail + ' STRUCTURAL FAIL' : 'structure OK'}`);
 process.exit(fail ? 1 : 0);

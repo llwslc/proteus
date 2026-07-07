@@ -1,6 +1,7 @@
-const { chromium } = require('/tmp/pw/node_modules/playwright-core');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const PORT = process.argv[2] || '5273';
+const G = require('../lib/gate.cjs');
+const { chromium } = G.pw();
+const CHROME = G.CHROME;
+const PORT = G.port(process.argv[2]);
 const URL = `http://127.0.0.1:${PORT}/`;
 const SPREAD_MAX = 4; // kits' submenu gaps must agree within this (px)
 const MIN_GAP = 2; // below this the submenu is touching/occluding its parent
@@ -35,22 +36,26 @@ async function gapFor(page, kit) {
 
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
-  const page = await browser.newPage({ viewport: { width: 1280, height: 1000 } });
+  const page = await browser.newPage({ viewport: G.DESKTOP });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(URL, { waitUntil: 'networkidle' });
-  const kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
+  const kits = await G.kitsOf(page);
 
-  const gaps = {};
+  const gaps = {}, broken = [];
   for (const kit of kits) {
     const r = await gapFor(page, kit);
-    if (r.err) { console.log(`  ${kit.padEnd(8)} SKIP (${r.err})`); continue; }
+    if (r.err) { console.log(`  ${kit.padEnd(8)} FAIL (${r.err})`); broken.push(kit); continue; }
     gaps[kit] = r.gap;
     console.log(`  ${kit.padEnd(8)} submenu↔parent gap = ${r.gap}px (${r.side})`);
   }
   await browser.close();
 
+  if (broken.length) {
+    console.log(`\nRESULT: FAIL — submenu did not even open in: ${broken.join(', ')} (worse than a wrong gap; fix the menubar/submenu first)`);
+    process.exit(1);
+  }
   const vals = Object.values(gaps);
-  if (vals.length < 2) { console.log('\nRESULT: SKIP (need ≥2 kits measured)'); process.exit(0); }
+  if (vals.length < 2) { console.log('\nRESULT: SKIP (single kit — nothing to compare)'); process.exit(0); }
   const min = Math.min(...vals), max = Math.max(...vals), spread = max - min;
   const occluding = Object.entries(gaps).filter(([, g]) => g < MIN_GAP).map(([k]) => k);
   console.log(`\n  spread = ${spread}px (min ${min}, max ${max})` + (occluding.length ? `; occluding: ${occluding.join(', ')}` : ''));

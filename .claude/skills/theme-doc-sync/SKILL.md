@@ -9,16 +9,16 @@ description: Drift gate between the theme catalog (prompt/theme/<kit>.md) and th
 tokens as `` `<name> #<hex>` `` (e.g. `` `base #050a12` ``, `` `stone-raised
 #101b16` ``). Nothing links that prose to the code, so a token renamed or
 revalued in `src/kits/<kit>/theme/tokens.css` leaves the doc stale and no gate
-notices. This recurs (it's why `bg`/`bg-2` lived on in the docs after the code
-became `base`/`base-raised`, and why bauhaus listed a phantom `bg-2 #e3dac3` that
-was never a token). This gate cross-checks the two.
+notices. This gate cross-checks the two.
 
 ## What it asserts
 
-For every kit (list derived from `src/kits/*/theme/tokens.css` ∩ `prompt/theme/
-*.md`, never hardcoded), each `` `<name> #<hex>` `` citation in the doc must have
-`--<kit>-<name>: …#<hex>…` in that kit's `tokens.css`. Two failure modes:
+Every kit under `src/kits/*/theme/tokens.css` MUST have a `prompt/theme/<kit>.md`
+— a missing catalog doc is a FAIL, not a silent skip. Then each `` `<name>
+#<hex>` `` citation in the doc must have `--<kit>-<name>: …#<hex>…` in that
+kit's `tokens.css`. Failure modes:
 
+- **undocumented kit** — a kit shipped without its catalog doc.
 - **stale name** — `cited `bg #050a12` — no --nova-bg in tokens.css` (the token
   was renamed in code; the doc still uses the old name).
 - **phantom / wrong value** — `` `base`: doc #999999, code #15110b `` (the doc's

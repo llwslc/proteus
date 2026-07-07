@@ -4,9 +4,10 @@
 // toast stack whose newest is hidden behind older ones, and a trigger/link that
 // scroll-JUMPS the page on click. Reloads to a clean state before EVERY check so
 // no popup leaks between checks (a flaky gate is worse than none).
-const { chromium, devices } = require('/tmp/pw/node_modules/playwright-core');
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const PORT = process.argv[2] || '5273';
+const G = require('../lib/gate.cjs');
+const { chromium, devices } = G.pw();
+const CHROME = G.CHROME;
+const PORT = G.port(process.argv[2]);
 const URL = `http://127.0.0.1:${PORT}/`;
 const ONLY = process.argv[3];
 
@@ -40,11 +41,9 @@ const setKit = async (page, kit) => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu'] });
   const probe = await browser.newPage();
   await probe.goto(URL, { waitUntil: 'networkidle' });
-  let kits = await probe.$$eval('.shell-switch__btn', (e) => e.map((x) => x.getAttribute('data-kit-id')).filter(Boolean));
+  const kits = await G.kitsOf(probe, ONLY);
   await probe.close();
-  if (ONLY) kits = kits.filter((k) => k === ONLY);
   const out = [];
-  const sidebarIds = {};
 
   for (const kit of kits) {
     const m = await browser.newPage({ ...devices['iPhone 13'] });
@@ -189,7 +188,13 @@ const setKit = async (page, kit) => {
       await d.emulateMedia({ reducedMotion: 'reduce' });
       const cdp = await d.context().newCDPSession(d);
       await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
-      const sigH = (el) => { const c = getComputedStyle(el); return [c.backgroundColor, c.color, c.boxShadow, c.filter, c.textShadow, c.getPropertyValue('--abyss-frame-ink').trim()].join('|'); };
+      // kit-agnostic: frame primitives paint their border/fill on ::before/::after,
+      // so sample the pseudo layers too — never a kit-named token
+      const sigH = (el) => {
+        const c = getComputedStyle(el), b = getComputedStyle(el, '::before'), a = getComputedStyle(el, '::after');
+        return [c.backgroundColor, c.color, c.boxShadow, c.filter, c.textShadow,
+          b.backgroundColor, b.borderTopColor, b.boxShadow, a.backgroundColor, a.borderTopColor].join('|');
+      };
       const tags = await d.evaluate(() => {
         const segish = (el) => /(-toggle\b|seg__btn|toolbar__btn|menubar__trigger|-tab\b|tabs__tab)/.test(el.getAttribute('class') || '');
         const list = [...document.querySelectorAll('[data-pressed], [aria-pressed="true"], [data-active], [class*="toolbar__btn"].is-active')].filter((el) => {
@@ -218,29 +223,18 @@ const setKit = async (page, kit) => {
       if (drift.length) out.push(`HIGH  ${kit}  ${drift.length} selected control(s) change look on hover — selected/open fill loses to :hover; wrap the hover disabled-guard in :where() so it can't out-specify [data-pressed]: ${[...new Set(drift)].join(', ')}`);
     } catch (e) { out.push(`WARN  ${kit}  selected-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     try {
+      // broken anchors only — the cross-kit sidebar/manifest comparison is
+      // kit-equality's (spec-anchored, stronger than a first-kit reference)
       await setKit(d, kit);
-      const sb = await d.evaluate(() => {
+      const broken = await d.evaluate(() => {
         const hrefs = [...document.querySelectorAll('[class*="sidebar__link"]')]
           .map((a) => (a.getAttribute('href') || '').replace(/^#/, '')).filter(Boolean);
-        return { hrefs, broken: hrefs.filter((h) => !document.getElementById(h)) };
+        return hrefs.filter((h) => !document.getElementById(h));
       });
-      sidebarIds[kit] = sb.hrefs;
-      if (sb.broken.length) out.push(`HIGH  ${kit}  sidebar: ${sb.broken.length} link(s) resolve to no panel — ${sb.broken.join(', ')}`);
+      if (broken.length) out.push(`HIGH  ${kit}  sidebar: ${broken.length} link(s) resolve to no panel — ${broken.join(', ')}`);
     } catch (e) { out.push(`WARN  ${kit}  sidebar: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     await d.close();
     console.log(`  ${kit}: checked`);
-  }
-
-  const sbKits = Object.keys(sidebarIds);
-  if (sbKits.length > 1) {
-    const ref = sbKits[0], refSet = new Set(sidebarIds[ref]);
-    for (const k of sbKits.slice(1)) {
-      const kSet = new Set(sidebarIds[k]);
-      const missing = sidebarIds[ref].filter((x) => !kSet.has(x));
-      const extra = sidebarIds[k].filter((x) => !refSet.has(x));
-      if (missing.length || extra.length)
-        out.push(`HIGH  ${k}  sidebar index differs from ${ref} — missing [${missing.join(',')}] extra [${extra.join(',')}]`);
-    }
   }
 
   await browser.close();
