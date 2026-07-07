@@ -22,7 +22,7 @@
 3. **写 theme 视觉层** —— `tokens.css` 按 §3 契约的槽位填本套调色 + 几何阶梯 + 字体 + 动效 token；`effects.css` 本套的 frame、elevation 原语与共享配方；`global.css` 氛围；`typography.css` 顶部 `@import` 本套 web 字体，下接排版类（h1/h2/h3、正文、caption）。
 4. **写每个组件** —— `.tsx` 照 `@base-ui/react` 该基元的 API 写接线，遵 `components.md §6/§7` 记的结构决定；`.css` 按本主题视觉语言原生写，走 frame/elevation 原语经输入变量换色；组件自己的招牌 SVG——Switch、Checkbox 与 Radio 标记、Toast 与模态图记、占位图标——按 `components/theme` 的招牌决定原生做。可并行：给 subagent 组件清单 + token 清单 + 2–3 个手写范例（容器、字段、分段）+ 硬规则，各写各的、tokens-only、不碰 theme/ 与彼此、不参考任何已有 kit。导出同步 `.tsx` + 目录 `index.ts` + 顶层 `index.ts`。
 5. **写演示 + 招牌 `.tsx`** —— 演示层的招牌件带主题专属 SVG：hero 主视觉、`Loader.tsx`。`App.tsx` 按 `app.md` 结构 + 本主题文案写，含一份 `SECTIONS` 数组（见§跨 kit 同值）；`src/kits/registry.ts` 追加一条（条目形状见 `app.md` §外壳 Shell）；`theme/README.md` 移入「已建」并加链接。
-6. **验收门**（依次过；这是唯一一份验收清单）——
+6. **验收门**（依次过）——
    - `tsc --noEmit && vite build`。
    - **kit-qa** 一键跑全套门禁（静态 + 动态 + theme-doc-sync），全绿；FAIL 逐条修到绿——其中 kit-distinct FAIL 说明不知不觉照搬了某套的结构，去原生重写。
    - **kit-states** 人工过截图：每交互态、每浮层开态渲染正常。
