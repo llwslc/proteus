@@ -44,5 +44,5 @@
 ## 5. 动效个性
 
 - 时长 `dur .3s / -slow .66s`、`dur-sweep 1.5s`；缓动 `ease (0.38, 0.1, 0.2, 1)` 沉、缓，`ease-out (0.16, 1, 0.3, 1)` 给浮层。
-- 共享动效（`effects.css`）：呼吸是主旋律——`--abyss-breath 7s` + 共享 class `.abyss-breathe` 脉动，小标记统一引用；另有 `.abyss-connector` 浮层连接件。
+- 共享动效（`effects.css`）：呼吸是主旋律——`--abyss-breath 7s` + 共享 class `.abyss-breathe` 脉动，小标记统一引用；另有 `.abyss-connector` 浮层连接件；浮层开合走 `.abyss-aura-pop`。
 

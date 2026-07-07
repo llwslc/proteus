@@ -1029,7 +1029,8 @@ function Demo() {
 
           <footer className="bauhaus-footer">
             <span className="bauhaus-cap">
-              PRISM · built on @base-ui/react · themed via --bauhaus-* tokens · 2026
+              PRISM · built on @base-ui/react · themed via --bauhaus-* tokens ·{" "}
+              {new Date().getFullYear()}
             </span>
           </footer>
         </main>

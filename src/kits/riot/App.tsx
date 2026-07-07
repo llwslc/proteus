@@ -1060,7 +1060,8 @@ function Demo() {
 
           <footer className="riot-footer">
             <span className="riot-cap">
-              RIOT · built on @base-ui/react · themed via --riot-* tokens · 2026
+              RIOT · built on @base-ui/react · themed via --riot-* tokens ·{" "}
+              {new Date().getFullYear()}
             </span>
           </footer>
         </main>

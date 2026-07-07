@@ -8,7 +8,7 @@
 
 **每套 kit 完全自包含**——拷一个 `src/kits/<kit>/` 即可独立跑，不引任何共享 `src`。「各 kit 同值」的数**不共享运行时变量**：**spec 钉固定值，各 kit 各写本套 `--<kit>-*` 字面量（或自带数组），写出来必须相等**。
 
-- **面板清单**（分组 + `[id, title, code]`）：固定值见 `app.md` §面板版式与§面板内容；各 kit 在自己 `App.tsx` 内写一份 `SECTIONS` 数组，驱动侧栏索引与区块顺序，每个面板的演示代码各写各的、按 id 对应。区块副标 `sub` 是主题文案，就近内联。
+- **面板清单**（分组 + `[id, title, code]`）：固定值见 `app.md` §面板清单，版式与内容见 §面板版式、§面板内容与状态；各 kit 在自己 `App.tsx` 内写一份 `SECTIONS` 数组，驱动侧栏索引与区块顺序，每个面板的演示代码各写各的、按 id 对应。区块副标 `sub` 是主题文案，就近内联。
 - **外壳几何**：见 `app.md` §布局。
 - **浮层尺寸**（模态/抽屉宽高与 cap、NavigationMenu 列宽）：见 `components.md`。
 - **z 阶梯**：见 `components.md`。
@@ -21,12 +21,11 @@
 2. **建空目录骨架** —— 新建 `src/kits/<kit>/`，全是新写的空文件：`components/<Component>/{.tsx,.css,index.ts}`、`components/{cx.ts,icons.tsx,index.ts}`、`theme/{tokens,effects,global,typography}.css`、`App.tsx`、`Loader.tsx`、`index.tsx`（引 4 个 theme CSS、re-export App）。组件清单见 `components.md §6`。
 3. **写 theme 视觉层** —— `tokens.css` 按 §3 契约的槽位填本套调色 + 几何阶梯 + 字体 + 动效 token；`effects.css` 本套的 frame、elevation 原语与共享配方；`global.css` 氛围；`typography.css` 顶部 `@import` 本套 web 字体，下接排版类（h1/h2/h3、正文、caption）。
 4. **写每个组件** —— `.tsx` 照 `@base-ui/react` 该基元的 API 写接线，遵 `components.md §6/§7` 记的结构决定；`.css` 按本主题视觉语言原生写，走 frame/elevation 原语经输入变量换色；组件自己的招牌 SVG——Switch、Checkbox 与 Radio 标记、Toast 与模态图记、占位图标——按 `components/theme` 的招牌决定原生做。可并行：给 subagent 组件清单 + token 清单 + 2–3 个手写范例（容器、字段、分段）+ 硬规则，各写各的、tokens-only、不碰 theme/ 与彼此、不参考任何已有 kit。导出同步 `.tsx` + 目录 `index.ts` + 顶层 `index.ts`。
-5. **写演示 + 招牌 `.tsx`** —— 演示层的招牌件带主题专属 SVG：hero 主视觉、`Loader.tsx`。`App.tsx` 按 `app.md` 结构 + 本主题文案写，含一份 `SECTIONS` 数组（见§跨 kit 同值）；`registry.ts` 追加 `{ id, label, tag, app, loader }`；`theme/README.md` 移入「已建」并加链接。
-6. **验收门**（依次过）——
+5. **写演示 + 招牌 `.tsx`** —— 演示层的招牌件带主题专属 SVG：hero 主视觉、`Loader.tsx`。`App.tsx` 按 `app.md` 结构 + 本主题文案写，含一份 `SECTIONS` 数组（见§跨 kit 同值）；`src/kits/registry.ts` 追加一条（条目形状见 `app.md` §外壳 Shell）；`theme/README.md` 移入「已建」并加链接。
+6. **验收门**（依次过；这是唯一一份验收清单）——
    - `tsc --noEmit && vite build`。
-   - **kit-lint** 零报告，契约组齐全（z 阶梯、containment、触屏、响应式不漏）。
-   - **kit-distinct** 退出 0。FAIL 说明不知不觉照搬了某套的结构，去原生重写。
-   - **kit-states** 每交互态、每浮层开态渲染正常。
+   - **kit-qa** 一键跑全套门禁（静态 + 动态 + theme-doc-sync），全绿；FAIL 逐条修到绿——其中 kit-distinct FAIL 说明不知不觉照搬了某套的结构，去原生重写。
+   - **kit-states** 人工过截图：每交互态、每浮层开态渲染正常。
    - **screenshot** 逐区人工过对比度、主题个性、招牌动效、装饰位置，迭代打磨——招牌要真做出来。
 
 ## 横切注意

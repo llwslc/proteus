@@ -1040,7 +1040,8 @@ function Demo() {
 
           <footer className="brass-footer">
             <span className="brass-cap">
-              BRASS · built on @base-ui/react · themed via --brass-* tokens · 2026
+              BRASS · built on @base-ui/react · themed via --brass-* tokens ·{" "}
+              {new Date().getFullYear()}
             </span>
           </footer>
         </main>

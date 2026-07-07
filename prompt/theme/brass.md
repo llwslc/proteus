@@ -28,7 +28,7 @@
 
 ## 3. 几何与描边
 
-- 形状用**机加工圆角**，不用 clip-path。半径阶梯 `--brass-round-xs 2 / -sm 3 / -md 5 / -lg 8`，按角色挑：细指示条、旋钮床用 xs，嵌套项、chip、菜单项用 sm，默认控件、容器框及其 `::before` 用 md，模态、超大框用 lg；组件不裸写 radius。
+- 形状用**机加工圆角**，不用 clip-path。半径阶梯 `round-xs 2px · round-sm 3px · round-md 5px · round-lg 8px · round-pill 999px`，按角色挑：细指示条、旋钮床用 xs，嵌套项、chip、菜单项用 sm，默认控件、容器框及其 `::before` 用 md，模态、超大框用 lg，胶囊轨道与其填充、圆标记用 pill；组件不裸写 radius。
 - 描边走双层黄铜 bezel 原语 `.brass-plate`：外层背景是 `bezel` 拉丝黄铜渐变 + radius，内缩 2px 的 `::before` 是板的填充 + 内嵌 `bevel`（上沿亮、下沿暗的金属内沿）；输入变量是 `--brass-plate-fill / -bezel / -round / -bevel`。bezel 分三档：`bezel-dim` 给页内静止态的陈旧铜，`bezel` 是默认，`bezel-strong` 给浮层和升起态的亮铜。
 - 铆钉 `.brass-rivets`：用 `::after` 在四角嵌出铆钉钉头的径向亮点，黄铜带高光；只给超大外框和招牌板用。
 - 滚花 `--brass-knurl`：一道 repeating-linear-gradient 斜纹，用在旋钮、滑块缘、滚动条 thumb 上。
@@ -48,5 +48,5 @@
 ## 5. 动效个性
 
 - 时长 `dur .26s / -slow .5s`，另有 `dur-sweep 1.5s`、`dur-breath 6s`、`dur-spin 30s`；缓动 `ease (0.32, 0.72, 0.2, 1)` 干脆的机械落定，`ease-detent (0.5, 1.4, 0.5, 1)` 带微过冲、给落位回弹。
-- 共享动效（`effects.css`）：`brass-breathe` scaleX + 透明度呼吸脉动、`brass-rotate` 360° 匀速自转、`.brass-connector` 浮层连接件。
+- 共享动效（`effects.css`）：`brass-breathe` scaleX + 透明度呼吸脉动、`brass-rotate` 360° 匀速自转、`.brass-connector` 浮层连接件；浮层开合走 `.brass-pop`。
 

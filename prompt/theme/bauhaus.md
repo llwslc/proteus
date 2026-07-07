@@ -30,7 +30,7 @@
 ## 3. 几何与描边
 
 - 造型只有**锐角矩形 + 正圆**，不用 clip-path、不做圆角矩形。半径只有两档：`--bauhaus-r-frame / -control / -chip` 全为 `0`（硬网格、锐角），`--bauhaus-r-round 999px` 给正圆（旋钮、状态点、圆形 marker 等）；组件不裸写 radius。
-- 尺度感靠**描边的粗细**来体现，不靠圆角。粗细阶梯 `--bauhaus-stroke-hair 1 / -default 2 / -bold 3 / -heavy 4`，按角色挑：细分隔用 hair，控件和容器框用 default，大型框面用 bold，超大外框用 heavy；组件不裸写 border-width。
+- 尺度感靠**描边的粗细**来体现，不靠圆角。粗细阶梯：默认 `stroke 2px`，加档 `stroke-hair 1px · stroke-bold 3px · stroke-heavy 4px`，按角色挑：细分隔用 hair，控件和容器框用默认档，大型框面用 bold，超大外框用 heavy；组件不裸写 border-width。
 - 浮层的连接件（连到触发器的那个小箭头）是一个旋转 45° 的方块、当作纸面三角的尾巴，两条边描 `ink`，尖端指向触发器。
 - 描边走单层 frame 原语 `.bauhaus-surface`：平涂实填 + `ink` 纯黑实线 border + radius 0，输入变量是 `--bauhaus-surface-fill / -border / -stroke / -r`。锐角矩形直接用 CSS `border`，不搞双层 `::before`。
 - 边框轻重：页内静止框和浮层框一律 `ink` 纯黑，统一成黑网格；状态升级靠**加颜色**——焦点加蓝环、错误加红环、选中加实填；整块语义变体平涂实色；`Error` 文字同走 `danger`。
@@ -47,5 +47,5 @@
 ## 5. 动效个性
 
 - 时长 `dur .16s / -slow .34s`、`dur-sweep 1.5s`；缓动 `ease (0.2, 0, 0, 1)` 硬落定，`ease-out (0.16, 1, 0.3, 1)` 给块面滑移这类大位移。
-- 共享动效（`effects.css`）：只有 `.bauhaus-connector` 浮层连接件随弹层淡入淡出。
+- 共享动效（`effects.css`）：`.bauhaus-connector` 浮层连接件随弹层淡入淡出；浮层开合走 `.bauhaus-pop`。
 

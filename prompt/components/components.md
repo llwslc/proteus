@@ -35,16 +35,16 @@
 
 必须提供的分组：
 
-- **色板**：背景档；强调色**至少要覆盖组件 API 用到的语义档**——`primary`、`success`、`warning`、`danger`，可另加主题色——每个强调色再配一个 `-deep` 暗档（用于加深和填充打底）；文本档 `text / -bright / -dim / -mute`；以及主色填充上用的反色前景档。
-- **强调填充**：提供激活／选中态复用的填充槽（一条用于「点亮」激活表面，一条用于选中／方向指示）；**这些填充长什么样、怎么配，由 theme 定**。
+- **色板**：背景档；强调色**至少要覆盖组件 API 用到的语义档**——`primary`、`success`、`warning`、`danger`，可另加主题色——强调色**按需**配 `-deep` 暗档（加深、填充打底用；配不配、配几个由 theme 定）；文本档 `text / -bright / -dim / -mute`；以及主色填充上用的反色前景档。
+- **强调填充**：激活／选中态复用的填充**按需**立槽（一条用于「点亮」激活表面，一条用于选中／方向指示）；**立不立槽、填充长什么样，由 theme 定**——也可以不立槽、直接覆盖 frame 输入变量点亮。
 - **alpha 阶梯**：**每个强调色家族**的半透明值都走「按透明度命名」的档；hex 带不了 alpha 的颜色另立档。新的同色 alpha 先并入最近的现有档，不随手新造。
 - **中性、效果色**：关态轨道、未填充轨道、ghost 按钮的 hover 底、扫光、关态旋钮的金属渐变等。
 - **表面**：面板、浮层、模态、内嵌表面，外加背板 scrim。
 - **强调与投影**：文字强调、焦点提示、选中提示、触发器激活提示、浮层投影——投影分两套，一套是随形状轮廓的 drop-shadow、一套是矩形 shadow；**具体效果由 theme 定**。随形状轮廓的辉光与 `clip-path` 分属两层：辉光挂不裁形的外层包裹、裁形留内层框，同元素会把外发光裁掉。
-- **几何尺度（强制 token 化、按角色分档）**：圆角／切角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色挑，组件**绝不**裸写形状值。角色至少分四类——① 超大外框（如 Dialog、AlertDialog、Panel）② 默认控件、容器框及其 `::before` ③ 容器内的嵌套项 + 小交互、标签 chip（菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮）④ 细指示条、旋钮（按厚度再细分）。**用切角 `polygon` 还是圆角、分几档、每档多少，全由 theme 定。**
+- **几何尺度（强制 token 化、按角色分档）**：圆角／切角是设计语言的*尺度*，**必须**走命名 token 阶梯、按角色挑，组件**绝不**裸写形状值。角色划分参考——① 超大外框（如 Dialog、AlertDialog、Panel）② 默认控件、容器框及其 `::before` ③ 容器内的嵌套项 + 小交互、标签 chip（菜单项、toggle、toolbar 按钮、nav 链接、Badge、icon 按钮）④ 细指示条、旋钮（按厚度再细分）。**用切角 `polygon` 还是圆角、分几类几档、每档多少，全由 theme 定**（硬边主题可以只有一档 `0`）。
 - **圆角套圆角要同心**：内层圆角形状嵌进外层圆角框、需贴合时（轨道里的 thumb、框内填充、盒内勾标），四边**均匀内缩**，内层半径取外径减内缩量；缺哪档半径就给 theme 补一档 token。贴边的指示条／刻度／点例外，锚一边即可。
 - **层级阶梯**：浮层堆叠顺序、各 kit 同值——`dropdown 1200 < menu 1250 < tooltip 1300 < backdrop 1400 < overlay 1401 < toast 1500`。
-- **动效与度量**：时长 `dur / -slow`、缓动 `ease / -out`、控件高度、禁用透明度、模态内边距。
+- **动效与度量**：时长 `dur / -slow`、缓动 `ease`（更多时长／缓动档按需加，如 `-sweep`、`-out`、`-detent`）、控件高度、禁用透明度、模态内边距。
 - **间距（4px 网格）**：`space-1…N`，即 `4 / 8 / 12 …`。组件的 padding、margin、gap（含 `row-gap` 等）一律走这套阶梯；不足一格的小值（如 `::before` 1px 内缩、细轨道高度）和 `>28px` 的一次性结构留白，写立即数。
 - **组件尺寸 footprint（强制 token 化）**：每个控件、浮层的 `width`、`height`、`min-`、`max-` 尺寸都走 `--<kit>-<组件>-<角色>` 命名 token，**维度作后缀**（`-w`、`-h`、`-min-w`…，如 `header-h`、`dialog-w`），例如 `button-h-sm`、`checkbox-box`、`otp-cell-w`、`dialog-w`、`popup-h`；都集中在 `tokens.css`，组件**绝不**裸写尺寸数字，换皮时按名补齐。不足一格的小值（边框、细轨道、`≤8px` 的小圆点）和上下文式的值（`clamp`、`calc`、`%`、`dvh`、Base UI 的锚定变量）就近写立即数。
 - **排版尺度**：字号 `fs-N`、字距 `ls-N`、行高 `lh-N`、字重 `fw-N` 各一组「按名挑」；字体族 `font / -display / -mono`。组件里字号、字距、行高、字重一律走 token、不裸写，上下文式的除外（`clamp()`、`calc()`、`em`）。
@@ -64,7 +64,7 @@
 
 - **elevation**——不裁形状的抬升层，挂 drop-shadow + 辉光，通过输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定型浮层挂在 Positioner 上；没有 positioner 的模态、Toast 挂在 Popup 或 Root 上。
 - **surface**——带框的表面（见 4.1），尺寸、填充、边框色走输入变量，不挂阴影。
-- **anim-pop**——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
+- **anim-pop**（角色名；每套一个共享类，类名由 theme 定、在 `theme/<kit>.md` §动效个性认领）——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
 - **connector**——Base UI 的 Arrow，把弹层连到触发器：四个方向都能定位、颜色与弹层边框一致、跨过 `sideOffset` 的缝贴到触发器；**形状由 theme 定。**
 - **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四个方向都由 `side` 驱动定位。**模态宽高、各 kit 同值：dialog `460`、alert `440`、drawer `420`×`460`；drawer 另有两档视口占比上限 `--<kit>-drawer-w-cap` `80%`（左右）、`--<kit>-drawer-h-cap` `60%`（上下）**；Popup 宽取 `min(该值, 100%)`，drawer 左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`；drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量。
 - **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。
@@ -142,10 +142,10 @@
 - **Tooltip**：props `content·side`（默认 top）`·sideOffset·delay`；`mouseOnly` + focus 时打开 + `pointerType==="touch"` 时轻点补触摸路径；`closeOnClick=false`。
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`。
-- **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**，由 `kit-submenu-gap` 量。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
+- **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`，item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
 - **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`。
 - **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 多一个 `side`：`left·right·top·bottom`；AlertDialog 多一个 `tone`：`danger·warning·primary`）；各自导出 `<Close>` 子件、复用 Button 的变体。共用 viewport（§4.2）；结构 `Popup(或内嵌 surface) > [Close 在右上 + title + desc + body + actions 右对齐]`。AlertDialog 按 tone 重染，**重染的形式、tone 强调放在哪，由 theme 定**；Drawer 用全屏 viewport、按 `side` 四向定位，body 留出焦点提示的余量。
-- **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；结构 `Provider > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Close]`。按语义色 tone（`info·success·warning·danger`）区分；**用什么承载 tone、长什么样，由 theme 定。**
+- **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；另导出 `useToast`（Base UI 的 toast manager）；结构 `Provider > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Close]`。按语义色 tone（`info·success·warning·danger`）区分——tone 不走 prop，调用方经 `useToast().add({ title, description, type })` 的 `type` 传入、缺省 `info`；**用什么承载 tone、长什么样，由 theme 定。**
 
 **展示**
 
@@ -158,7 +158,7 @@
 
 ## 7. Base UI 对接
 
-- **状态样式一律对着 Base UI 的 `[data-*]` 写**：活动项高亮 `[data-highlighted]`、禁用 `[data-disabled]`、勾选 `[data-checked]`／`[data-unchecked]`、Toggle 开 `[data-pressed]`、Tab／NavMenu 选中 `[data-active]`、Slider 拖动 `[data-dragging]`、打开 `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。原生伪类只留给 Base UI 没有对应属性的：键盘焦点环 `:focus-visible`（挂真正可聚焦的元素）、普通 Button／图标钮／链接的 `:hover`、Button 与 NumberField 步进钮按下反馈的 `:active`。`kit-lint` 拦截错配。
+- **状态样式一律对着 Base UI 的 `[data-*]` 写**：活动项高亮 `[data-highlighted]`、禁用 `[data-disabled]`、勾选 `[data-checked]`／`[data-unchecked]`、Toggle 开 `[data-pressed]`、Tab／NavMenu 选中 `[data-active]`、Slider 拖动 `[data-dragging]`、打开 `[data-popup-open]`／`[data-open]`／`[data-panel-open]`。原生伪类只留给 Base UI 没有对应属性的：键盘焦点环 `:focus-visible`（挂真正可聚焦的元素）、普通 Button／图标钮／链接的 `:hover`、Button 与 NumberField 步进钮按下反馈的 `:active`。
 - 用 Base UI 暴露的 CSS 变量：`--active-tab-*`、`--accordion-panel-height`、`--collapsible-panel-height`、`--anchor-width`。
 - **NavigationMenu 下拉 morph**：下拉在触发器间变形，必须接 Base UI 的四个尺寸变量——`__positioner` 取 `--positioner-width`／`--positioner-height`、`__popup` 取 `--popup-width`／`--popup-height`、`__viewport` `width/height:100%` + `overflow:hidden` 裁剪、`__content` 用定宽（列宽 token）。
 - 能当触发器的包装件用 `forwardRef`；`<X render={<Y />}>` 会把 X 的 className 合并到 Y——所以像 DialogClose 复用 Button 时，要把 className 给到 Y。
@@ -175,9 +175,4 @@
 - **装饰层不许把页面撑宽**：扫光用 `background-position` 移动、不定态进度用 `top`/`left` 移动；非用 `transform` 不可时，把它关进一个不带 `clip-path` 的 `overflow:hidden` 祖先里。
 - **滚动容器里，固定装饰挂容器自身的盒子**：要铺满可视区、不能跟着滚走的装饰（底轨、外框），挂在滚动容器**自身的盒子**上（如 `border`），别挂在会随内容滚走的子层（`::after`、内层）上。
 
-## 9. 验收门
-
-- `tsc --noEmit && vite build` 通过。
-- 每个组件各变体、各状态都正常渲染。
-- **机检（grep 逐类零报告）**：组件 CSS 零裸写——颜色、字号、字距、行高、字重、`>3px` 的间距、形状、时长、z 一律走 token；零死 token；零只供单处、不复用的 token；每个强调色家族的 alpha 都收敛在命名档上。
-- **人工**：带框元素都走 frame 原语、靠输入变量换色；重复 3 次以上的配方已抽成共享类或 token；强调色覆盖了组件 API 的全部语义档。
+验收清单见 `playbook.md` §步骤 6，只维护那一份。
