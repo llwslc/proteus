@@ -64,7 +64,7 @@
 
 - **elevation**——不裁形状的抬升层，挂 drop-shadow + 辉光，通过输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定型浮层挂在 Positioner 上；没有 positioner 的模态、Toast 挂在 Popup 或 Root 上。
 - **surface**——带框的表面（见 4.1），尺寸、填充、边框色走输入变量，不挂阴影。
-- **anim-pop**（角色名；每套一个共享类，类名由 theme 定、在 `theme/<kit>.md` §动效个性认领）——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
+- **anim-pop**（角色名；每套一个共享类，类名由 theme 定、列在 `theme/<kit>.md` §动效个性）——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
 - **connector**——Base UI 的 Arrow，把弹层连到触发器：四个方向都能定位、颜色与弹层边框一致、跨过 `sideOffset` 的缝贴到触发器；**形状由 theme 定。**
 - **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板，左右上下四个方向都由 `side` 驱动定位。**模态宽高、各 kit 同值：dialog `460`、alert `440`、drawer `420`×`460`；drawer 另有两档视口占比上限 `--<kit>-drawer-w-cap` `80%`（左右）、`--<kit>-drawer-h-cap` `60%`（上下）**；Popup 宽取 `min(该值, 100%)`，drawer 左右取宽与 `-drawer-w-cap` 的 `min`、上下取高与 `-drawer-h-cap` 的 `min`；drawer 的 body 是滚动容器，用 padding + 等量负 margin 给控件的焦点提示留出余量。
 - **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(var(--available-height), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-control-h) * 7)`），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。
