@@ -161,6 +161,7 @@
   position: relative;
   margin-bottom: 26px;
   padding: 30px 28px;
+  padding-right: 215px;
   border: 1px solid var(--nova-line);
   background:
     radial-gradient(140% 120% at 90% 0%, rgba(255, 45, 117, 0.1), transparent 50%),
@@ -475,11 +476,6 @@ kbd {
   }
 }
 
-@media (min-width: 768px) {
-  .nova-hero {
-    padding-right: 215px;
-  }
-}
 .nova-hero__reticle {
   position: absolute;
   top: calc(50% - 84px);
