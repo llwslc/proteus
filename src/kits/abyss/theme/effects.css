@@ -233,7 +233,7 @@
   height: 100dvh;
   z-index: var(--abyss-z-overlay);
   display: grid;
-  padding: 18px;
+  padding: var(--abyss-space-5);
   overflow: auto;
   overscroll-behavior: contain;
 }
