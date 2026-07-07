@@ -1,7 +1,6 @@
 .riot-alert__popup {
   position: relative;
-  width: var(--riot-alert-w);
-  max-width: calc(100vw - 2 * var(--riot-space-5));
+  width: min(var(--riot-alert-w), 100%);
   transition:
     opacity var(--riot-dur) var(--riot-ease-out),
     transform var(--riot-dur) var(--riot-ease-out);
