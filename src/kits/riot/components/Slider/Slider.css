@@ -26,12 +26,18 @@
   position: relative;
   width: 100%;
   height: var(--riot-slider-track);
-  border: var(--riot-stroke-bold) solid var(--riot-ink);
   background: repeating-linear-gradient(
     90deg,
     var(--riot-ink) 0 6px,
     var(--riot-paper-raised) 6px 12px
   );
+}
+.riot-slider__track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: var(--riot-stroke-bold) solid var(--riot-ink);
+  pointer-events: none;
 }
 .riot-slider__indicator {
   position: absolute;
@@ -39,6 +45,7 @@
   background: var(--riot-accent-fill);
 }
 .riot-slider__thumb {
+  z-index: 1;
   width: var(--riot-slider-thumb);
   height: calc(var(--riot-slider-thumb) + 8px);
   background: var(--riot-secondary);

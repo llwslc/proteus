@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  transform: rotate(var(--riot-tilt, 0deg));
 }
 .riot-panel--wide {
   grid-column: 1 / -1;

@@ -84,6 +84,7 @@
 
 
 .nova-field__desc {
+  margin: 0;
   font-size: var(--nova-fs-13);
   color: var(--nova-text-mute);
 }

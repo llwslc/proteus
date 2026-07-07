@@ -39,10 +39,12 @@ next one. ~1–2 min per run. Exit 1 on any HIGH fault.
 - **TOAST newest-on-top (HIGH)** — pop 3 toasts; the newest (`--toast-index` 0)
   must be topmost at its own center (`elementFromPoint`); fix =
   `z-index: calc(N - var(--toast-index))`.
-- **EMPTY-FILTER scrollbar (HIGH)** — type garbage into the combobox until the
-  list is empty; no scrollbar part may still paint (Base UI freezes scrollbar
-  state at `scrollHeight` 0, leaving a stale bar/thumb; kits clip it with
-  `overflow: hidden` on the scrollbar). Paint-checked via `elementsFromPoint`.
+- **EMPTY-FILTER scrollbar (HIGH)** — type garbage into the combobox AND the
+  autocomplete until the list is empty; no scrollbar part may still paint
+  (Base UI freezes scrollbar state at `scrollHeight` 0, leaving a stale
+  bar/thumb; kits clip it with `overflow: hidden` on the scrollbar).
+  Paint-checked via `elementsFromPoint`. Select/menu popups have no filter, so
+  they cannot reach the empty state.
 - **No scroll-JUMP (HIGH)** — clicking an overlay trigger that is an `<a>` must
   not move the page. Uses DOM `el.click()` — Playwright's `.click()` auto-scrolls
   and would false-flag.

@@ -17,7 +17,7 @@
   position: relative;
   overflow: hidden;
   height: var(--riot-progress-h);
-  clip-path: var(--riot-clip-torn);
+  clip-path: var(--riot-clip-strip);
   background: var(--riot-track);
 }
 .riot-progress__indicator {

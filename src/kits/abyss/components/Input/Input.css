@@ -73,6 +73,7 @@
   opacity: var(--abyss-disabled-opacity);
 }
 .abyss-field__desc {
+  margin: 0;
   font-size: var(--abyss-fs-12);
   color: var(--abyss-text-mute);
 }

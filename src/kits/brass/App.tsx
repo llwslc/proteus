@@ -599,12 +599,19 @@ function Demo() {
 
             <Panel id="accordion" title="Accordion" meta="ACC">
               <Accordion
-                openMultiple
                 defaultValue={["valves"]}
                 items={[
                   { value: "valves", title: "Valves", content: "Safety, throttle and bypass valves serviced." },
                   { value: "bearings", title: "Bearings", content: "White-metal bearings re-poured and shimmed." },
                   { value: "linkage", title: "Linkage", content: "Walschaerts gear adjusted to spec." },
+                ]}
+              />
+              <Accordion
+                openMultiple
+                defaultValue={["gauges", "lamps"]}
+                items={[
+                  { value: "gauges", title: "Gauges", content: "Boiler pressure needles swapped and re-zeroed." },
+                  { value: "lamps", title: "Lamps", content: "Oil lamps trimmed, lenses polished for the night run." },
                 ]}
               />
             </Panel>

@@ -63,14 +63,18 @@
   padding: var(--riot-space-3) 0 var(--riot-space-3) var(--riot-space-4);
 }
 .riot-toast__title {
+  margin: 0;
   font-family: var(--riot-font-display);
   font-size: var(--riot-fs-15);
+  line-height: var(--riot-lh-130);
   text-transform: uppercase;
   color: var(--riot-text-bright);
 }
 .riot-toast__desc {
+  margin: 0;
   font-family: var(--riot-font);
   font-size: var(--riot-fs-13);
+  line-height: var(--riot-lh-130);
   color: var(--riot-text);
 }
 .riot-toast__action {

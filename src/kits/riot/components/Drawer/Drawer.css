@@ -55,8 +55,9 @@
 }
 .riot-drawer__surface {
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  overflow: auto;
   border: 0;
   filter: none;
 }
@@ -73,6 +74,9 @@
   border-top: var(--riot-stroke-heavy) solid var(--riot-ink);
 }
 .riot-drawer__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: var(--riot-space-3);

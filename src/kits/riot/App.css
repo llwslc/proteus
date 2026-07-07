@@ -475,14 +475,14 @@
 }
 .riot-grid.riot-reveal > * {
   opacity: 0;
-  transform: translateY(20px) rotate(var(--riot-tilt, 0deg));
+  transform: translateY(20px);
   transition:
     opacity 0.36s var(--riot-ease-out),
     transform 0.36s var(--riot-ease-out);
 }
 .riot-grid.riot-reveal > .is-visible {
   opacity: 1;
-  transform: rotate(var(--riot-tilt, 0deg));
+  transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .riot-header,
@@ -495,7 +495,7 @@
   }
   .riot-grid.riot-reveal > * {
     opacity: 1;
-    transform: rotate(var(--riot-tilt, 0deg));
+    transform: none;
     transition: none;
   }
 }

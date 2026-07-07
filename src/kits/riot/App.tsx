@@ -648,12 +648,19 @@ function Demo() {
 
             <Panel id="accordion" title="Accordion" meta="ACC" tape="tl">
               <Accordion
-                openMultiple
                 defaultValue={["cut"]}
                 items={[
                   { value: "cut", title: "Cut", content: "Scissors, a razor, whatever's sharp." },
                   { value: "paste", title: "Paste", content: "Glue stick, tape, spit if you must." },
                   { value: "print", title: "Print", content: "One xerox machine, stolen after hours." },
+                ]}
+              />
+              <Accordion
+                openMultiple
+                defaultValue={["staple", "fold"]}
+                items={[
+                  { value: "staple", title: "Staple", content: "Two rusty staples straight through the spine." },
+                  { value: "fold", title: "Fold", content: "Fold twice, crease it with a thumbnail." },
                 ]}
               />
             </Panel>

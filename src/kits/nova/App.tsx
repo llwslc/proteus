@@ -267,6 +267,19 @@ const ACCORDION_ITEMS = [
   },
 ];
 
+const ACCORDION_MULTI = [
+  {
+    value: "m1",
+    title: "Cargo Bay",
+    content: "Sealed crates from Kepler Station, manifests still unverified.",
+  },
+  {
+    value: "m2",
+    title: "Med Deck",
+    content: "Cryo pods four through nine recalibrated after the last jump.",
+  },
+];
+
 function Clock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -788,7 +801,8 @@ function Demo() {
 
             <div className="nova-section" id="accordion">
               <Panel title="Accordion" meta="ACC">
-                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} openMultiple />
+                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
+                <Accordion items={ACCORDION_MULTI} openMultiple defaultValue={["m1", "m2"]} />
               </Panel>
             </div>
 

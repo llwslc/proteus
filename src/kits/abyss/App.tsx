@@ -304,6 +304,19 @@ const ACCORDION_ITEMS = [
   },
 ];
 
+const ACCORDION_MULTI = [
+  {
+    value: "m1",
+    title: "Ballast Logs",
+    content: "Iron shot loosed at the third bell; the descent steadied itself.",
+  },
+  {
+    value: "m2",
+    title: "Hull Whispers",
+    content: "Rivets tick as the pressure leans in — the plating answers politely.",
+  },
+];
+
 const DIVE_LOG = [
   { t: "08:42:01", m: "Pressure nominal at 412 fathoms" },
   { t: "08:41:55", m: "Ward sigils retuned to the third key" },
@@ -917,7 +930,8 @@ function Demo() {
 
             <div className="abyss-section" id="accordion">
               <Panel title="Accordion" meta="ACC">
-                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} openMultiple />
+                <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
+                <Accordion items={ACCORDION_MULTI} openMultiple defaultValue={["m1", "m2"]} />
               </Panel>
             </div>
 

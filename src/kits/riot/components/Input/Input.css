@@ -2,6 +2,7 @@
   display: block;
 }
 .riot-field__desc {
+  margin: 0;
   font-size: var(--riot-fs-13);
   color: var(--riot-text-mute);
 }
