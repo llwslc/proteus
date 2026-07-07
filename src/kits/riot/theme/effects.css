@@ -146,6 +146,7 @@
   --riot-surface-fill: var(--riot-surface-popup);
   --riot-surface-stroke: var(--riot-stroke-bold);
   --riot-overlay-shadow: none;
+  padding: var(--riot-space-1);
   outline: none;
   transform: none;
 }
