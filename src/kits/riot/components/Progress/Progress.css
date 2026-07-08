@@ -21,18 +21,25 @@
   background: var(--riot-track);
 }
 .riot-progress__indicator {
+  position: relative;
+  overflow: hidden;
   height: 100%;
   background: var(--riot-accent-fill);
+  transition: width var(--riot-dur-slow) var(--riot-ease-out);
+}
+.riot-progress__indicator::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 -34px;
   background-image: repeating-linear-gradient(
     45deg,
     var(--riot-marker) 0 6px,
     transparent 6px 12px
   );
   animation: riot-progress-flow var(--riot-dur-sweep) linear infinite;
-  transition: width var(--riot-dur-slow) var(--riot-ease-out);
 }
 @keyframes riot-progress-flow {
   to {
-    background-position: 34px 0;
+    transform: translateX(33.94px);
   }
 }
