@@ -7,6 +7,7 @@
 - logo：`BRASS`，结尾 `SS` 走强调色；副标题 `CLOCKWORK UI KIT`；状态徽章 `Pressurized`，走 success 色。
 - hero：eyebrow `Pressure Console · 37 Instruments`；标题 `A **clockwork** interface kit / machined from brass`；描述关键词 brushed-brass bezels、riveted plates、gauge instruments、steam-lit motion；单位词 `Instruments`、`Token File`。
 - 区块组名：Inputs、Forms、Feedback、Overlays、Display、Foundations；demo 文案走引擎与仪表的词汇，如 Boiler、Manifold、Throttle、Gauge、Regulator。
+- otp 预填：`835`，取 GWR 创立年 1835。
 
 ## 2. 招牌
 

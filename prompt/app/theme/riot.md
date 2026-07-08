@@ -7,6 +7,7 @@
 - logo：`RIOT`，`OT` 走 primary 荧光橙；副标题 `XEROXED UI KIT`；状态徽章 `Live`，走 primary 色。
 - hero：eyebrow `Cut-Up System · 37 Clippings`；标题 `A **bootleg** interface kit / cut up, pasted crooked`；描述关键词 photocopied clippings、torn edges、fluorescent marker、ransom-note type；单位词 `Clippings`。
 - 区块组名：Inputs、Forms、Feedback、Overlays、Display、Foundations；demo 文案走地下 zine 的词汇，如 Riot、Demand、Manifesto、Deface、Staple、Bootleg、Xerox。
+- otp 预填：`977`，取朋克元年 1977，与 input 面板锁定值 `RIOT-1977` 同源。
 
 ## 2. 招牌
 

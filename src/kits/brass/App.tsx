@@ -541,9 +541,9 @@ function Demo() {
             <Panel id="otp" title="OTP Field" meta="OTP">
               <div className="brass-stack">
                 <span className="brass-cap">Ignition code</span>
-                <OtpField length={6} splitAt={3} defaultValue="427" />
+                <OtpField length={6} splitAt={3} defaultValue="835" />
                 <span className="brass-cap">Sealed cipher</span>
-                <OtpField length={6} splitAt={3} defaultValue="427" mask />
+                <OtpField length={6} splitAt={3} defaultValue="835" mask />
               </div>
             </Panel>
           </div>

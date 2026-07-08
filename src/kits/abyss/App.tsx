@@ -879,9 +879,9 @@ function Demo() {
               <Panel title="OTP Field" meta="OTP">
                 <div className="demo-stack">
                   <span className="abyss-cap">Litany code</span>
-                  <OtpField length={6} splitAt={3} defaultValue="427" />
+                  <OtpField length={6} splitAt={3} defaultValue="130" />
                   <span className="abyss-cap">Veiled litany</span>
-                  <OtpField length={6} splitAt={3} defaultValue="427" mask />
+                  <OtpField length={6} splitAt={3} defaultValue="130" mask />
                 </div>
               </Panel>
             </div>
