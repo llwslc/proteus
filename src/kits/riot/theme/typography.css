@@ -57,3 +57,12 @@
   text-transform: uppercase;
   color: var(--riot-text-bright);
 }
+
+.riot-tag {
+  font-family: var(--riot-font-tag);
+  font-weight: var(--riot-fw-400);
+  font-size: var(--riot-fs-18);
+  letter-spacing: var(--riot-ls-2);
+  text-transform: uppercase;
+  color: var(--riot-text-bright);
+}

@@ -47,12 +47,6 @@
   gap: var(--riot-space-3);
   cursor: pointer;
 }
-.riot-checkbox-field__label {
-  font-family: var(--riot-font-tag);
-  font-size: var(--riot-fs-18);
-  letter-spacing: var(--riot-ls-2);
-  color: var(--riot-text-bright);
-}
 .riot-checkbox-field:has([data-checked]) .riot-checkbox-field__label {
   text-decoration: line-through;
   text-decoration-color: var(--riot-primary);

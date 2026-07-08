@@ -51,6 +51,13 @@
 .riot-btn--secondary {
   background: var(--riot-secondary);
   color: var(--riot-on-fill);
+  transform: rotate(-4deg);
+}
+.riot-btn--secondary:hover:not(:disabled):not([data-disabled]) {
+  transform: rotate(-4deg) translate(-1px, -2px);
+}
+.riot-btn--secondary:active:not(:disabled):not([data-disabled]) {
+  transform: translate(4px, 5px);
 }
 .riot-btn--danger {
   background: var(--riot-danger);

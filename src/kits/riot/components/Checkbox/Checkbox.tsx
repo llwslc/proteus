@@ -26,7 +26,7 @@ export function Checkbox({ className, label, id, ...props }: CheckboxProps) {
   return (
     <label className="riot-cap riot-checkbox-field">
       {box}
-      <span className="riot-checkbox-field__label">{label}</span>
+      <span className="riot-tag riot-checkbox-field__label">{label}</span>
     </label>
   );
 }

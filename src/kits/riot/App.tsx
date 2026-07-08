@@ -459,19 +459,19 @@ function Demo() {
             <Panel id="switch" title="Switch" meta="SWT" stapled>
               <div className="riot-stack">
                 <label className="riot-row riot-row--between">
-                  <span className="riot-cap">Kill switch</span>
+                  <span className="riot-tag">Kill switch</span>
                   <Switch defaultChecked />
                 </label>
                 <label className="riot-row riot-row--between">
-                  <span className="riot-cap">Show grid</span>
+                  <span className="riot-tag">Show grid</span>
                   <Switch />
                 </label>
                 <label className="riot-row riot-row--between">
-                  <span className="riot-cap">Lock the press</span>
+                  <span className="riot-tag">Lock the press</span>
                   <Switch disabled defaultChecked />
                 </label>
                 <label className="riot-row riot-row--between">
-                  <span className="riot-cap">Sealed</span>
+                  <span className="riot-tag">Sealed</span>
                   <Switch disabled />
                 </label>
               </div>
