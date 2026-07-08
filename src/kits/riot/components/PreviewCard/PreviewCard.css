@@ -12,3 +12,7 @@
   flex-direction: column;
   gap: var(--riot-space-3);
 }
+
+.riot-preview__popup {
+  --riot-overlay-shadow: none;
+}

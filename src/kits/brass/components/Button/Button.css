@@ -115,3 +115,10 @@
   --brass-plate-bezel: var(--brass-bezel);
   color: var(--brass-text-bright);
 }
+
+.brass-btn--tilt {
+  transform: rotate(-2deg);
+}
+.brass-btn--tilt:active {
+  transform: translateY(1px);
+}

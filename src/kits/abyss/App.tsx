@@ -700,7 +700,7 @@ function Demo() {
                 <div className="demo-stack">
                   <div className="demo-row">
                     <Button icon={<KeyIcon />}>Invoke</Button>
-                    <Button variant="secondary">Bind</Button>
+                    <Button variant="secondary" tilt>Bind</Button>
                     <Button variant="danger">Banish</Button>
                     <Button variant="ghost">Dismiss</Button>
                     <Button disabled>Sealed</Button>

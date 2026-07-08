@@ -17,16 +17,17 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: ReactNode;
+  tilt?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = "primary", size = "md", icon, className, children, ...props },
+  { variant = "primary", size = "md", icon, tilt, className, children, ...props },
   ref,
 ) {
   return (
     <BaseButton
       ref={ref}
-      className={cx("nova-btn", `nova-btn--${variant}`, `nova-btn--${size}`, className)}
+      className={cx("nova-btn", `nova-btn--${variant}`, `nova-btn--${size}`, tilt ? "nova-btn--tilt" : "", className)}
       {...props}
     >
       <span className="nova-btn__label">

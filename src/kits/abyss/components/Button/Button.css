@@ -139,3 +139,10 @@
   opacity: var(--abyss-disabled-opacity);
   filter: grayscale(0.5);
 }
+
+.abyss-btn--tilt {
+  transform: rotate(2deg);
+}
+.abyss-btn--tilt:active {
+  transform: scale(0.92) translateY(1px);
+}

@@ -9,3 +9,7 @@
   font-family: var(--riot-font);
   font-size: var(--riot-fs-13);
 }
+
+.riot-tooltip__popup {
+  --riot-overlay-shadow: none;
+}

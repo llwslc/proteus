@@ -390,7 +390,7 @@ function Demo() {
               <div className="brass-stack">
                 <div className="brass-row">
                   <Button icon={<Bolt />}>Engage</Button>
-                  <Button variant="secondary">Standby</Button>
+                  <Button variant="secondary" tilt>Standby</Button>
                   <Button variant="danger">Vent</Button>
                   <Button variant="ghost">Cancel</Button>
                   <Button disabled>Locked</Button>

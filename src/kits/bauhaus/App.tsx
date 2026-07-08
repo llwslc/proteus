@@ -386,7 +386,7 @@ function Demo() {
               <div className="bauhaus-stack">
                 <div className="bauhaus-row">
                   <Button icon={<Triangle />}>Compose</Button>
-                  <Button variant="secondary">Preview</Button>
+                  <Button variant="secondary" tilt>Preview</Button>
                   <Button variant="danger">Clear</Button>
                   <Button variant="ghost">Cancel</Button>
                   <Button disabled>Locked</Button>

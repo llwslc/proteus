@@ -179,3 +179,10 @@
   color: var(--nova-primary);
   filter: none;
 }
+
+.nova-btn--tilt {
+  transform: rotate(-1.5deg);
+}
+.nova-btn--tilt:active {
+  transform: translateY(1px);
+}

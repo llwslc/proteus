@@ -5,6 +5,7 @@
 填 components.md §5 留的空。
 
 - 「点亮表面」用于 Button primary、Switch、Checkbox = 用 `accent-surface` 渐变填充，前景（含箭头、占位符、数值）转 `on-primary`。
+- Button `tilt` = 微旋 `-1.5deg`，摁下回正。
 - 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实心 `primary` + `on-primary`。
 - 「文字强调选中」用于列表、Tab、NavMenu，只把文字转 `primary`；Tab、NavMenu 另配一条底部的辉光下划线。
 - 悬停：分段控件和触发条用 `tint-soft` 纯底，其中 Tabs、NavMenu 用 `180deg transparent→tint-soft` 渐变 + 下划线；图标和动作按钮的文字转 `primary`；实填按钮（primary／secondary／danger）填充提亮一档（brightness），ghost 盖 `ghost-hover` 底、文字转 `primary`。

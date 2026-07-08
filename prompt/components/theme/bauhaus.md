@@ -5,6 +5,7 @@
 填 components.md §5 留的空。
 
 - 「点亮表面」用于 Button primary、Switch、Checkbox = 实色 `primary` 蓝平涂，前景（含箭头、占位符、数值）转 `on-fill` 纸白；无渐变、无辉光。
+- Button `tilt` = 微旋 `-3deg`，摁下回正。
 - 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实色 `primary` + `on-fill`，呈一块实心色块。
 - 「文字强调选中」用于列表、Tab、NavMenu，只把文字转 `primary`；Tab、NavMenu 另配一条底部的 `stroke-bold` 粗细、实色蓝下划线。
 - 悬停：分段控件和触发条用 `tint-soft` 蓝 wash 纯底；图标和动作按钮的文字转 `primary`，菜单触发器、列表项转 `bright`；按钮浮出 `shadow-hard` 硬影，ghost 盖 `ink-faint`、文字转 `bright`。

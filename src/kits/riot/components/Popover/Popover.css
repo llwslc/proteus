@@ -25,3 +25,7 @@
   top: var(--riot-space-2);
   right: var(--riot-space-2);
 }
+
+.riot-popover__popup {
+  --riot-overlay-shadow: none;
+}
