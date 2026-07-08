@@ -98,9 +98,3 @@
   font-size: var(--bauhaus-fs-15);
 }
 
-.bauhaus-btn--tilt {
-  transform: rotate(-3deg);
-}
-.bauhaus-btn--tilt:active {
-  transform: translateY(1px);
-}

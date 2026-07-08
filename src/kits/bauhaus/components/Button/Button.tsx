@@ -17,11 +17,10 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: ReactNode;
-  tilt?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = "primary", size = "md", icon, tilt, className, children, ...props },
+  { variant = "primary", size = "md", icon, className, children, ...props },
   ref,
 ) {
   return (
@@ -32,7 +31,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         "bauhaus-btn",
         `bauhaus-btn--${variant}`,
         size !== "md" && `bauhaus-btn--${size}`,
-        tilt && "bauhaus-btn--tilt",
         className,
       )}
       {...props}

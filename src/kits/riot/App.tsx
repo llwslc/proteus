@@ -424,13 +424,13 @@ function Demo() {
               <div className="riot-stack">
                 <div className="riot-row">
                   <Button icon={<BoltIcon />}>Smash</Button>
-                  <Button variant="secondary" tilt>Tear</Button>
+                  <Button variant="secondary">Tear</Button>
                   <Button variant="danger">Burn</Button>
                   <Button variant="ghost">Cancel</Button>
                   <Button disabled>Locked</Button>
                 </div>
                 <Separator />
-                <div className="riot-row">
+                <div className="riot-row riot-row--upright">
                   <Button size="sm">Cut</Button>
                   <Button size="md">Paste</Button>
                   <Button size="lg">Riot</Button>

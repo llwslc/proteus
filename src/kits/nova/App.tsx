@@ -570,7 +570,7 @@ function Demo() {
                 <div className="demo-stack">
                   <div className="demo-row">
                     <Button icon={<BoltIcon />}>Charge</Button>
-                    <Button variant="secondary" tilt>Override</Button>
+                    <Button variant="secondary">Override</Button>
                     <Button variant="danger">Abort</Button>
                     <Button variant="ghost">Standby</Button>
                     <Button disabled>Offline</Button>

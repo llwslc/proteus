@@ -13,6 +13,7 @@
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: var(--riot-shadow-hard);
+  transform: rotate(-4deg);
   transition:
     transform var(--riot-dur) var(--riot-ease),
     box-shadow var(--riot-dur) var(--riot-ease);
@@ -27,7 +28,7 @@
   font-size: var(--riot-fs-18);
 }
 .riot-btn:hover:not(:disabled):not([data-disabled]) {
-  transform: translate(-1px, -2px);
+  transform: rotate(-4deg) translate(-1px, -2px);
   box-shadow: 7px 8px 0 var(--riot-ink);
 }
 .riot-btn:active:not(:disabled):not([data-disabled]) {
@@ -51,15 +52,6 @@
 .riot-btn--secondary {
   background: var(--riot-secondary);
   color: var(--riot-on-fill);
-}
-.riot-btn--tilt {
-  transform: rotate(-4deg);
-}
-.riot-btn--tilt:hover:not(:disabled):not([data-disabled]) {
-  transform: rotate(-4deg) translate(-1px, -2px);
-}
-.riot-btn--tilt:active:not(:disabled):not([data-disabled]) {
-  transform: translate(4px, 5px);
 }
 .riot-btn--danger {
   background: var(--riot-danger);

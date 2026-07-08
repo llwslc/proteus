@@ -50,7 +50,7 @@
 
 **Inputs**
 
-- button：三行，以 2 条 Separator 分隔 —— ① 五枚 `primary`（带前导图标）、`secondary`（加 `tilt`）、`danger`、`ghost`、`disabled`；② 三枚尺寸 `sm`、`md`、`lg`；③ 五枚图标钮 `icon`、`icon`、`icon` + `disabled`、`icon-ghost`、`icon-ghost`。
+- button：三行，以 2 条 Separator 分隔 —— ① 五枚 `primary`（带前导图标）、`secondary`、`danger`、`ghost`、`disabled`；② 三枚尺寸 `sm`、`md`、`lg`；③ 五枚图标钮 `icon`、`icon`、`icon` + `disabled`、`icon-ghost`、`icon-ghost`。
 - switch：四行「caption + Switch」—— 开（`defaultChecked`）、关、`disabled` 且开、`disabled` 且关。
 - toggle：两个 ToggleGroup，各 3 项；单选组默认选第 1、末项 `disabled`，多选组（`multiple`）默认选前 2。
 - checkbox：四枚独立 Checkbox —— 勾选、未勾、`disabled` 且勾选、`disabled` 且未勾。
