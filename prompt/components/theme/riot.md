@@ -10,7 +10,7 @@
 - 悬停：分段控件和触发条用 `tint` 荧光 wash 纯底；带硬影的按钮整块上浮一步、硬影随之加深（press 的反向），ghost 按钮盖 `tint` wash、文字转 `bright`；图标和动作按钮的文字转荧光 `primary`，菜单触发器转 `bright` 纯黑；列表项盖一道荧光记号笔涂划。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 荧光橙外环）；分段控件和触发条用 `inset 0 0 0 2.5px primary`；输入框聚焦时整框 border 升荧光 + 加 `ring`。
 - 危险态：`danger` 血红实填、前景反白，border 仍黑；静止态红字红图标。
-- 荧光黄／绿填充的特例：其上前景转 `on-warning`／`on-fill` 深色，包括 Meter、`warning` 的 Toast 与 Badge。
+- 荧光黄实填的特例：其上前景转 `on-warning` 深色，即 warning 的 Badge 与 Panel 的 meta 章。
 
 ## 2. 组件皮肤决定
 
