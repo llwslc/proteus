@@ -23,14 +23,7 @@
 .riot-meter__indicator {
   height: 100%;
   background: var(--riot-accent-fill);
-  -webkit-mask-image: var(--riot-marker-cap), var(--riot-marker-body);
-  -webkit-mask-position: 0 50%, 44px 50%;
-  -webkit-mask-size: 44px 100%, calc(100% - 44px) 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-image: var(--riot-marker-cap), var(--riot-marker-body);
-  mask-position: 0 50%, 44px 50%;
-  mask-size: 44px 100%, calc(100% - 44px) 100%;
-  mask-repeat: no-repeat;
+  transition: width var(--riot-dur-slow) var(--riot-ease-out);
 }
 .riot-meter__segments {
   position: absolute;
