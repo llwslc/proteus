@@ -28,19 +28,21 @@ export function Tabs({ items, defaultValue, value, onValueChange, className }: T
         onValueChange ? (v: unknown) => onValueChange(v == null ? "" : String(v)) : undefined
       }
     >
-      <BaseTabs.List className="riot-tabs__list">
-        {items.map((it) => (
-          <BaseTabs.Tab
-            key={it.value}
-            value={it.value}
-            disabled={it.disabled}
-            className="riot-tabs__tab"
-          >
-            {it.label}
-          </BaseTabs.Tab>
-        ))}
-        <BaseTabs.Indicator className="riot-tabs__indicator" />
-      </BaseTabs.List>
+      <div className="riot-tabs__rail">
+        <BaseTabs.List className="riot-tabs__list">
+          {items.map((it) => (
+            <BaseTabs.Tab
+              key={it.value}
+              value={it.value}
+              disabled={it.disabled}
+              className="riot-tabs__tab"
+            >
+              {it.label}
+            </BaseTabs.Tab>
+          ))}
+          <BaseTabs.Indicator className="riot-tabs__indicator" />
+        </BaseTabs.List>
+      </div>
       {items.map((it) => (
         <BaseTabs.Panel key={it.value} value={it.value} className="riot-tabs__panel">
           {it.content}
