@@ -33,13 +33,34 @@
 
 | 类 | 条数 | 集中在 |
 |---|---|---|
-| A 改代码 | 19 | riot 9 条、brass 4 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
+| A 改代码 | 20 | riot 10 条、brass 4 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
-| C 回写 spec | 17 | brass 6 条、riot 5 条、abyss 3 条、nova 1 条、跨 kit 2 条 |
+| C 回写 spec | 19 | brass 6 条、riot 5 条、abyss 3 条、nova 1 条、跨 kit 4 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
 | E 低优先 | 7 | — |
 
-**契约级违反**：riot 占 4 条（A1–A4，另外四套在这些点上都做对了），brass 1 条（A19 骨架少一层）。
+**契约级违反**：riot 占 5 条（A1–A4 + A20，另外四套在这些点上都做对了），brass 1 条（A19 骨架少一层）。
+
+## 手机态覆盖总表
+
+> 结论先说：**不是「很多控件缺手机 spec」**。37 个控件里只有 5 个需要手机适配，五套 kit 在这 5 个上完全一致。
+> 缺的是**三处具体条款**（C17 / C18 / C19），外加 riot 违反了两条已有条款（A3 / A20）。
+
+其余 32 个控件没有 `@media`，也**不需要**——它们靠 `min(值, 100%)`、`--anchor-width`、`width: 100%`、`flex-wrap` 这类内在响应式。
+已实测确认：`kit-visual`（含 390px 手机宽度）与 `kit-interact`（触屏打开、弹层超宽、横向滚动）在五套上**全部 PASS，无几何缺陷**。所以这 32 个「没有手机 spec」不是缺失。
+
+| 控件 | 手机行为 | spec 出处 | 五套实现 | 问题 |
+|---|---|---|---|---|
+| **Tabs** | 横滚不换行 | `components.md:136` `:174` | 5/5 ✅ | — |
+| **NavigationMenu**（触发器排 `__list`） | 横滚不换行 | `components.md:174` | 4/5 | riot `flex-wrap: wrap` → **A3** |
+| **NavigationMenu**（下拉网格 `__grid`） | 收成单列 | **无** | 4/5 一致 | spec 缺口 → **C17** |
+| **Toolbar**（换行） | 换行不横滚 | `components.md:154` `:174` | 5/5 基样式 ✅ | riot 另加 `overflow-x:auto` → **A20** |
+| **Toolbar**（分隔条） | 隐藏 | **无** | 4/5 | spec 缺口 + riot 分歧 → **C19** |
+| **OtpField** | 单元收缩 | `app.md:143` | 5/5 ✅ | — |
+| **Toast** | 横向撑满 | 仅 `components/theme/nova.md:21` | 5/5 | spec 缺口（其余 4 套无据）→ **C18** |
+| 其余 31 个控件 | 无需适配 | — | 无 `@media` | 实测无缺陷 |
+
+外壳层（顶栏 / 侧栏 / 面板网格 / hero / logo 副标 / 时钟）的手机态由 `app.md:143` 统一钉死，五套都实现了，不在此表。
 
 ---
 
@@ -59,24 +80,6 @@
 - spec 这句只钉了**桌面**。手机态的下拉网格 spec 里没写 —— 见 C17。
 - `components.md:174`（§8）那条「NavMenu **横向滚动**不换行」管的是**触发器那一排 `__list`**，不是下拉里的链接网格 `__grid`。同一个组件的两个不同元素，别混。riot 在 `__list` 上的违反单列为 A3。
 - riot 是**所有宽度**下都单列，桌面也是。它的 `@media (max-width: 768px)` 段里只有 `.riot-navmenu__list { flex-wrap: wrap }`，对下拉网格**一条规则都没有** —— 因为本来就是单列，不需要收。所以 A1 与手机态无关，成立。
-
-- [ ] 已修
-
-## A19. BRASS 的 NavigationMenu 少了 `__grid` 这一层 ✅
-
-- **严重度**：骨架违反（跨 kit 必须一致的四项之一）
-- **位置**：`src/kits/brass/components/NavigationMenu/NavigationMenu.tsx:36`
-- **spec**：`components.md:146` ——「结构 `List > Item[Trigger(chevron 打开转 180°) + Content > **grid** > Link]`」；`:163` 另要求「`__content` 用**定宽**（列宽 token）」，即 `__content` 管宽度、`__grid` 管网格
-- **代码**：brass 没有 `__grid` 元素，链接是 `__content` 的直接子节点；两职责合并挂在 `__content` 上（`NavigationMenu.css:97` 同时有 `display: grid` 和 `width: var(--brass-navmenu-w)`）
-
-| kit | Content 下的网格层 | 桌面 2 列挂在 |
-|---|---|---|
-| nova / abyss / riot | `<ul class="__grid">` | `__grid` |
-| bauhaus | `<div class="__grid">` | `__grid` |
-| brass | **无** | **`__content`** |
-
-- **影响**：渲染等价，无可见缺陷。但 `§6.1` 把「骨架」列为跨 kit 必须逐字一致的四项之一，且 `:163` 的 morph 要求 `__content` 定宽 —— brass 让同一个元素既定宽又当网格容器
-- **为什么门禁没抓到**：`kit-naming` 只核**块类**跨 kit 一致，`kit-structure §5` 只核 Base UI 接线；子部件层级缺失没人管
 
 - [ ] 已修
 
@@ -297,6 +300,35 @@
 
 - [ ] 已修
 
+## A19. BRASS 的 NavigationMenu 少了 `__grid` 这一层 ✅
+
+- **严重度**：骨架违反（跨 kit 必须一致的四项之一）
+- **位置**：`src/kits/brass/components/NavigationMenu/NavigationMenu.tsx:36`
+- **spec**：`components.md:146` ——「结构 `List > Item[Trigger(chevron 打开转 180°) + Content > **grid** > Link]`」；`:163` 另要求「`__content` 用**定宽**（列宽 token）」，即 `__content` 管宽度、`__grid` 管网格
+- **代码**：brass 没有 `__grid` 元素，链接是 `__content` 的直接子节点；两职责合并挂在 `__content` 上（`NavigationMenu.css:97` 同时有 `display: grid` 和 `width: var(--brass-navmenu-w)`）
+
+| kit | Content 下的网格层 | 桌面 2 列挂在 |
+|---|---|---|
+| nova / abyss / riot | `<ul class="__grid">` | `__grid` |
+| bauhaus | `<div class="__grid">` | `__grid` |
+| brass | **无** | **`__content`** |
+
+- **影响**：渲染等价，无可见缺陷。但 `§6.1` 把「骨架」列为跨 kit 必须逐字一致的四项之一，且 `:163` 的 morph 要求 `__content` 定宽 —— brass 让同一个元素既定宽又当网格容器
+- **为什么门禁没抓到**：`kit-naming` 只核**块类**跨 kit 一致，`kit-structure §5` 只核 Base UI 接线；子部件层级缺失没人管
+
+- [ ] 已修
+
+## A20. RIOT 的 Toolbar 手机态横滚，spec 明写不许 ✅
+
+- **严重度**：契约违反（响应式）
+- **位置**：`src/kits/riot/components/Toolbar/Toolbar.css` 的 `@media (max-width: 768px)`
+- **spec**：`components.md:154` ——「Toolbar：… 手机端**换行**」；`components.md:174` ——「Tabs、NavMenu **横向滚动**不换行；Toolbar **换行**不横滚」
+- **代码**：`.riot-toolbar { max-width: 100%; overflow-x: auto; }`
+- **对照**：五套基样式都有 `flex-wrap: wrap`（这部分都对）；brass 的手机态还特地写了 `overflow-x: visible` 把 `.brass-seg` 继承来的横滚关掉。**只有 riot 反向加了 `overflow-x: auto`**
+- **影响**：基样式的 `wrap` 已阻止横向溢出，所以实际不产生滚动条（`kit-visual` 的游离滚动条检查因此放过）。但它与 spec 直接冲突，且 `overflow-x: auto` 会把 `overflow-y` 静默提升为 `auto` —— 是颗埋着的雷
+
+- [ ] 已修
+
 ---
 
 # B. 改 spec —— 五套 kit 一致地偏离，说明 spec 写错了
@@ -496,6 +528,44 @@
 
 - **风险**：照 spec 从零建一套新 kit，手机态下拉会保持两列 —— 390px 宽屏上塞两个 210px 列必然溢出
 - **建议**：在 `:146` 补一句「`≤768` 收成单列」；brass 那条额外的 `width: min(…, calc(100vw - …))` 视口夹取是否要一起钉成同值，需裁决
+
+- [ ] 已回写
+
+## C18. Toast 的手机态只写在 nova 一套的皮文档里 ✅
+
+- **位置**：`prompt/components/theme/nova.md:21`
+- **spec**：只有 nova 写了「Toast：锚在右上角、向下堆叠（**手机横向撑满**）」。`components.md`、`app.md`、以及 abyss / brass / bauhaus / riot 四套的皮文档，**都没有任何 Toast 手机态描述**
+- **代码**：五套**全部**在 `@media (max-width: 768px)` 里把 toast viewport 撑满宽度
+
+| kit | 手机态 Toast viewport |
+|---|---|
+| nova | `left/right: space-3; width: auto; max-width: none` |
+| abyss | `left/right: space-3; width: auto; max-width: none` |
+| brass | `left/right/bottom: space-3; width: auto; max-width: none` |
+| bauhaus | `left/right/bottom: space-3; width: auto; max-width: none` |
+| riot | `right/bottom: space-4; width: calc(100vw - 2 * space-4)` |
+
+- **判定**：这是**所有 kit 共有的行为**，不该只躺在一套的皮文档里。按「不要把所有 kit 共有的选择下放到单个 theme」的原则，该上提到 `components.md §6.1` 的 Toast 条目
+- **附带**：riot 用 `100vw`（含滚动条宽度）而非 `left/right`，与其余四套的做法不同；边距也用了 `space-4` 而非 `space-3`。边距属主题自由，`100vw` 的用法值得单独裁一下
+
+- [ ] 已回写
+
+## C19. Toolbar 手机态隐藏分隔条 —— spec 没写，且 riot 没做 ✅
+
+- **位置**：四套的 `Toolbar.css` `@media (max-width: 768px)`
+- **spec**：`components.md:154` 只说「手机端换行」，`:174` 只说「Toolbar 换行不横滚」。**隐藏分隔条这件事一个字都没有**
+- **代码**：
+
+| kit | 手机态 `__sep` |
+|---|---|
+| nova | `display: none` |
+| abyss | `display: none` |
+| brass | `display: none` |
+| bauhaus | `display: none` |
+| riot | **不隐藏**（`.riot-toolbar__sep` 存在，手机段未提及） |
+
+- **影响**：`app.md:98` 钉了 toolbar 演示有 2 条分隔。换行后分隔条会跟着换到行首/行尾，四套选择藏掉，riot 留着 —— 这是**可见的跨 kit 不一致**，但两边都不算违反 spec，因为 spec 没写
+- **判定**：先裁决「手机态该不该藏」，写进 `components.md:154`，再让另一边跟上
 
 - [ ] 已回写
 
