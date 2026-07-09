@@ -123,7 +123,7 @@
 - **Slider**：props `label·showValue`（默认 true）；结构 `Root（竖排）> head[label .cap + Value 在右] + Control > Track > Indicator + Thumb`，Indicator 从左端起。
 - **NumberField**：结构 `Group > [减 + Input + 加]`，两个步进钮等宽、夹住输入框；到 min/max 时自己 disable 对应步进钮并置灰。
 - **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error?`，图标在左侧绝对定位、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`。
-- **OtpField**：props `length·splitAt·mask`（`length` 默认 6）；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus。
+- **OtpField**：props `length·splitAt·mask`（`length` 默认 6）；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus；手机端 cell 收缩。
 - **Select**：props `items·placeholder`；结构 `field > Trigger[Value flex:1 + Chevron 在右、打开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
 - **Combobox**：props `items·placeholder·emptyText·label`；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、宽度随 `--anchor-width`；过滤走 Base UI 内建，`items` 直传 Root。
 - **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron；过滤走 Base UI 内建，`items` 直传 Root。
@@ -133,7 +133,7 @@
 
 - **Progress**：props `label·showValue`；结构 `Root > head[label + Value 在右] + Track > Indicator`，Indicator 从左满宽推进。
 - **Meter**：同 Progress，加 props `tone`（`primary·success·warning·danger`），按 tone 重染。
-- **Tabs**：props `items·defaultValue`；结构 `Root > List[Tab* + Indicator] + Panel*`。有一条选中指示，跟随 Base UI 的 `--active-tab-*` 移到当前 tab；**这条指示长什么样、放哪条边，由 theme 定。** 手机端横向滚动，tab 状态 +selected。
+- **Tabs**：props `items·defaultValue`；结构 `Root > List[Tab* + Indicator] + Panel*`。有一条选中指示，跟随 Base UI 的 `--active-tab-*` 移到当前 tab；**这条指示长什么样、放哪条边，由 theme 定。** tab 状态 +selected；手机端横向滚动不换行、滚动条隐藏（靠拖动滚）。
 - **Accordion**（props `items·openMultiple·defaultValue`）、**Collapsible**（props `title·defaultOpen`）：用 §4.3 的折叠配方 `trigger[marker 在左 + title + chevron 在右] + panel > content`；**content 向左缩进，对齐 title 的起点**（缩进量 = trigger 左内距 + marker 宽 + gap）；状态 +panel-open，指示物旋转。
 
 **浮层**
@@ -143,15 +143,15 @@
 - **PreviewCard**：props `side·align·sideOffset`；触摸路径同 Tooltip。
 - **Popover**：props `trigger·title·side·align·sideOffset`；surface 内 `title? + body + Close（复用 Button 的 icon-ghost）`。
 - **Menu、Menubar、ContextMenu**：props `trigger`（Menubar 用 `label`）；共用 `Menu/parts`——`MenuItem` props `tone`（`default·danger`，默认 default），item = `图标? + label flex:1 + 快捷键? + 子菜单 chevron 在右`，子菜单向右展开。子菜单与父级之间的缝由 `sideOffset` 控制——offset 各 kit 不同（框越粗、值越大），但渲染出的视觉缝**跨 kit 一致**。Menubar 的触发器不带 chevron，独立 Menu 的触发器带一个会旋转的 chevron。ContextMenu 的触发器是一个隐形的右键投放区（zone），min-height `132px`、各 kit 同值。
-- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`，`≤768` 收成单列；下拉与触发器左对齐（Positioner `align="start"`）。
+- **NavigationMenu**：props `items·onLinkClick`；结构 `List > Item[Trigger(chevron 打开转 180°) + Content > grid > Link]`。桌面下拉是两列网格，列宽 `210px`、各 kit 同值，网格写 `repeat(2, minmax(var(--<kit>-navmenu-col-w), 1fr))`；下拉与触发器左对齐（Positioner `align="start"`）；手机端触发器排横向滚动不换行、滚动条隐藏（靠拖动滚），下拉网格收成单列。
 - **Dialog、AlertDialog、Drawer**：props `trigger·title·description·footer`（Drawer 多一个 `side`：`left·right·top·bottom`；AlertDialog 多一个 `tone`：`danger·warning·primary`）；各自导出 `<Close>` 子件、复用 Button 的变体。共用 viewport（§4.2）；结构 `Popup(或内嵌 surface) > [Close 在右上 + title + desc + body + actions 右对齐]`。AlertDialog 按 tone 重染，**重染的形式、tone 强调放在哪，由 theme 定**；Drawer 用全屏 viewport、按 `side` 四向定位，body 留出焦点提示的余量；Drawer 的 body 弹性撑满并自行滚动，actions 常驻底边。
-- **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；另导出 `useToast`（Base UI 的 toast manager）；结构 `Provider > Portal > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Action? + Close]`，`add({ actionProps })` 传入动作时渲染 `Action`、复用本套 Button。按语义色 tone（`info·success·warning·danger`）区分——tone 不走 prop，调用方经 `useToast().add({ title, description, type })` 的 `type` 传入、缺省 `info`；**用什么承载 tone、长什么样，由 theme 定。**
+- **Toast**：props `timeout·limit·swipeDirection`（`swipeDirection` 定义往哪个方向滑动能划走它）；另导出 `useToast`（Base UI 的 toast manager）；结构 `Provider > Portal > Viewport(固定在屏幕某一角) > Root[标记 + 主体(title + desc) + Action? + Close]`，`add({ actionProps })` 传入动作时渲染 `Action`、复用本套 Button。按语义色 tone（`info·success·warning·danger`）区分——tone 不走 prop，调用方经 `useToast().add({ title, description, type })` 的 `type` 传入、缺省 `info`；**用什么承载 tone、长什么样、手机端视口怎么形变，全由 theme 定。**
 
 **展示**
 
 - **Avatar**：props `size`（`sm·md·lg`，默认 md）`·status`（`online·busy·away·offline`）；结构 `Root > frame(裁剪) > [Image + Fallback] + Status 在右下`。
 - **Badge**：props `tone`（`primary·secondary·success·warning·danger·neutral`，默认 primary）`·dot`；结构 `[dot? + 文字]`，纯样式件。
-- **Toolbar**：分段条家族、roving 焦点；`ToolbarButton` props `active·disabled`，可以用 `render` 把别的控件托管成 toolbar 项（如把 `ToggleGroup` 里的 `ToolbarButton` 写成 `render={<Toggle/>}`）；另有 `ToolbarLink`；手机端换行。
+- **Toolbar**：分段条家族、roving 焦点；`ToolbarButton` props `active·disabled`，可以用 `render` 把别的控件托管成 toolbar 项（如把 `ToggleGroup` 里的 `ToolbarButton` 写成 `render={<Toggle/>}`）；另有 `ToolbarLink`；手机端换行不横滚。
 - **ScrollArea**：结构 `Root > Viewport + Scrollbar > Thumb`；**高度上限（max-height）挂在 Viewport 上，不挂 Root**。`variant`（`panel·popup`）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体来包 children、给弹层用（见上文「锚定弹层的滚动」「滚动条」）。
 - **Separator**：props `orientation`（`horizontal·vertical`）`·label`；无标签时就是 BaseSeparator，有标签时结构是 `线 + 文字/标记 + 线`；放在会收缩的 flex 里要加 `flex:0 0`。
 - **Panel**：props `title·meta` + 主题专属的装饰开关；结构 `外框? > section > header[marker 在左? + title + meta 在右] + body + footer?`，header 为空时（`:empty`）隐藏。
@@ -171,6 +171,6 @@
 
 - inline-flex 的分段控件 ToggleGroup 加 `width: fit-content`；1px 的细分隔条放在会收缩的 flex 容器里要加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；`<fieldset>` 也要加 `min-width: 0`；跨列的子项用 `grid-column: 1 / -1`、不用定值 `span N`。
 - 按钮、图标按钮保持内容宽，不撑满整行；整行通栏只给 Input、Select、textarea、Accordion 这类输入控件。
-- **唯一断点 `768px`**，不另设别的断点。`≤768` 时组件走手机态——Tabs、NavMenu 的触发器排**横向滚动**不换行、滚动条隐藏（靠拖动滚）；Toolbar **换行**不横滚。
+- **唯一断点 `768px`**，不另设别的断点；手机改写集中进单个 `@media (max-width: 768px)`，PC 样式一律写在基样式，不另开 `min-width` 块。逐控件的手机形变见 §6.1。
 - **装饰层不许把页面撑宽**：扫光用 `background-position` 移动、不定态进度用 `top`/`left` 移动；非用 `transform` 不可时，把它关进一个不带 `clip-path` 的 `overflow:hidden` 祖先里。
 - **滚动容器里，固定装饰挂容器自身的盒子**：要铺满可视区、不能跟着滚走的装饰（底轨、外框），挂在滚动容器**自身的盒子**上（如 `border`），别挂在会随内容滚走的子层（`::after`、内层）上。随动装饰要**覆盖**这条固定装饰的（如选中指示压在底轨上换色），改双盒：滚动容器内放 `width: max-content; min-width: 100%` 的内层盒，线挂内层盒的 `border`，指示条同层压线上。
