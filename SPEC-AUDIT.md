@@ -57,7 +57,7 @@
 | **Toolbar**（换行） | 换行不横滚 | `components.md:154` `:174` | 3/5 计算值为 `auto` | `.seg` 共享配方漏进 Toolbar → **A20** | ✅ 已修 |
 | **Toolbar**（分隔条） | 保留 | 无（沉默即正确） | 4 藏 / riot 不藏 | 跨 kit 不一致 → **C19** | ✅ 已统一为保留 |
 | **OtpField** | 单元收缩 | `app.md:143` | 5/5 ✅ | — | ✅ |
-| **Toast** | 横向撑满 | 仅 nova 皮文档 → 已上提 `:148` | 5/5 | spec 缺口 → **C18** | ✅ 已回写 |
+| **Toast** | 横向撑满（主题自由，非强制） | 仅 nova 皮文档 → 已补齐五套 | 5/5 | spec 缺口 → **C18** | ✅ 已回写 |
 | **Menubar / ToggleGroup** | 横滚兜底 | **无** | 3/5 有 | 跨 kit 能力差 → **E8** | ⬜ 未处理 |
 | 其余 29 个控件 | 无需适配 | — | 无 `@media` | 实测无缺陷 | ✅ |
 
@@ -559,10 +559,23 @@
 | bauhaus | `left/right/bottom: space-3; width: auto; max-width: none` |
 | riot | `right/bottom: space-4; width: calc(100vw - 2 * space-4)` |
 
-- **判定**：这是**所有 kit 共有的行为**，且新 kit **被迫**做同样选择（420px 宽的 toast 放不进 390px 视口），不是主题自由。该上提到 `components.md §6.1` 的 Toast 条目
-- **订正**：我一度写「riot 用 `100vw` 与其余四套不同，值得单独裁」——**这是错的**。`calc(100vw - …)` 是五套 Toast viewport 基样式 `max-width` 的通用惯用法（nova/abyss `100vw - 44px`、brass `100vw - space-8`、riot `100vw - 2*space-5`），riot 并不特殊。边距取 `space-3` 还是 `space-4` 属主题自由
+**判定经过两次修正，记录如下。**
 
-- [x] 已回写 —— `components.md:148` 的 Toast 条目加「Viewport 在 `≤768` 横向撑满」；`components/theme/nova.md:21` 删掉「（手机横向撑满）」，避免共有规则重复躺在单套皮文档里
+- **初判（错的）**：「所有 kit 共有的行为，且新 kit 被迫做同样选择（420px 宽的 toast 放不进 390px 视口）」，据此上提到 `components.md:148`，并删掉 `nova.md` 那句。
+  两处硬伤：① `420px` 是 **drawer** 的宽度，toast 是 `344`–`360px`；② 根本没验证「不做会溢出」。
+- **实测裁决**（390px 真实 Chrome，注入等权重规则把手机段还原成基样式，弹出 toast 后量 viewport 盒）：
+
+| kit | 手机段生效 | 还原成基样式 | 溢出 | 页面横滚 |
+|---|---|---|---|---|
+| nova / abyss | 宽 366，边距 12 | 宽 346，边距 22 | 否 | 否 |
+| brass / bauhaus | 宽 366，边距 12 | 宽 344，边距 24 | 否 | 否 |
+| riot | 宽 350，边距 24 | 宽 344，边距 24 | 否 | 否 |
+
+  **没有手机段，五套都不溢出**——基样式的 `max-width: calc(100vw - 44px)`（brass/bauhaus 用 `100% - space-8`、riot 用 `100vw - 2*space-5`）已经夹住了。手机段只是把边距从 22–24px 收到 12px。
+- **终判**：横向撑满**不是宽度逼出来的必然，是每套自己挑的边距**。按判据「一套全新的 kit 会不会**被迫**这么做」——不会。**属主题自由，留在各 theme 皮文档，不上提 core。**
+- **另一处订正**：我一度写「riot 用 `100vw` 与其余四套不同，值得单独裁」——也是错的。`calc(100vw - …)` 是五套 Toast viewport 基样式 `max-width` 的通用惯用法，riot 并不特殊。
+
+- [x] 已回写 —— 撤回 `components.md:148` 的上提；恢复 `nova.md` 那句并补上边距；`abyss` / `brass` / `bauhaus` / `riot` 四份皮文档各补一句，边距逐字对齐代码（前四套 `space-3`，riot `space-4`）。C18 的真实缺口——四套做了没记——就此闭合，且闭合在正确的那一层
 
 ## C19. Toolbar 手机态隐藏分隔条 —— spec 没写，且 riot 没做 ✅
 
