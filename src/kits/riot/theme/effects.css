@@ -442,7 +442,6 @@
 }
 .riot-input:focus-within {
   --riot-surface-border: var(--riot-primary);
-  box-shadow: var(--riot-ring), var(--riot-shadow-hard);
 }
 .riot-input:has(.riot-input__control:disabled) {
   opacity: var(--riot-disabled-opacity);

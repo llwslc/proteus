@@ -236,16 +236,21 @@
 
 - [x] 已修 —— 用 `@property --riot-surface-tilt { inherits: false }` 把 tilt 变成**不继承**的 frame 输入变量（变量名正是 spec 写的那个，见 C11），只有 `.riot-panel__sheet` 把 App 层的 `--riot-tilt` 映射进去。实测：字段自身 0°、屏幕累积与 caption 一致，纸面仍 1.3°
 
-## A9. RIOT 输入框聚焦没有 ring ✅
+## A9. ~~RIOT 输入框聚焦没有 ring~~ —— **定级错误，实为文档 bug** ✅
 
-- **严重度**：皮肤决定未实现
-- **位置**：`src/kits/riot/theme/effects.css:424`
-- **spec**：`prompt/components/theme/riot.md:11` ——「输入框聚焦时整框 border 升荧光 + **加 ring**」
-- **代码**：`.riot-input:focus-within { --riot-surface-border: var(--riot-primary); }` —— 只升 border，无 `box-shadow: var(--riot-ring)`
-- **对照**：同套 Checkbox / Radio / Switch 都有 `--riot-ring`
-- **影响**：Input / Field / Combobox / Autocomplete（共用 `.riot-input`）
+- **原判（错的）**：`components/theme/riot.md:11`「输入框聚焦时整框 border 升荧光 + **加 `ring`**」，代码只升 border 没加 ring → 判为「spec 对、代码漏做」，遂给 `.riot-input:focus-within` 补了 `box-shadow: var(--riot-ring), var(--riot-shadow-hard)`
+- **改完发现丑**：2.5px 橙边 + 2px 纸缝 + 4px 橙环 + 黑硬影 = **三条同心线、两条同橙**。而 riot 自己的 Checkbox / Radio / Switch 一律是 **黑框 + 纸缝 + 橙环**（黑橙对比），从不双橙
+- **查证**（用户点破后才做）：
 
-- [x] 已修 —— `.riot-input:focus-within` 加 `box-shadow: var(--riot-ring), var(--riot-shadow-hard)`。实测计算值含 `0px 0px 0px 4px` 荧光外环
+  1. `git log -S "riot-ring"` 打 `theme/effects.css` —— 我那次提交之前**零命中**；`--riot-ring` 的消费者只有 Checkbox / Radio / Switch。**riot 从未给 input 做过 ring。**
+  2. `riot.md:11` 与 `bauhaus.md:11` 是同一句话，只换三个词：`蓝外环 → 荧光橙外环`、`2px → 2.5px`、`升蓝 → 升荧光`。（三段式结构本身由 `components.md §5` 强制，五套都有，不能单凭结构定「抄」；决定性证据是上面第 1 条。）
+  3. bauhaus 的 `.bauhaus-input` 基样式**没有 `shadow-hard`**，所以它 border 升蓝 + 蓝环不打架；riot 基样式带贴纸硬影，叠 ring 必然三线。
+
+- **判定**：这是一条**从未兑现的 spec 从句**。按既定原则「已验收 kit 的未实现 spec 从句 = 文档 bug，删从句对齐像素」，该删的是 spec，不是补代码
+- **我的过失**：这条原则已记在 memory 里（含「`git log -S` 先证从未实现」），我没执行就照 spec 改了代码
+
+- [x] 已修（反向）—— 撤回 `effects.css` 的 `box-shadow`；`riot.md:11` 删掉「+ 加 `ring`」。聚焦态回到单橙边 + 黑硬影。`--riot-ring` 仍有 3 个消费者（布尔开关），不成死 token
+- **顺带记录**：同句的「分段控件和触发条用 `inset 0 0 0 2.5px primary`」在 **riot 和 bauhaus 里都是** `outline + 负 outline-offset`，不是 `inset box-shadow`。视觉等价，措辞与机制不符——两份文档同病，未处理
 
 ## A10. RIOT 的 Toolbar / Menubar chip 没有微旋 ✅
 
