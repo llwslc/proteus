@@ -10,6 +10,16 @@ const SCAN = (rootSel) => {
   const root = rootSel ? document.querySelector(rootSel) : document.body;
   if (!root) return [];
   const cy = (r) => r.top + r.height / 2;
+  const cx = (r) => r.left + r.width / 2;
+  // a rotated ancestor (riot tilts every panel) skews a page-space vertical delta by dx·sinθ,
+  // so measure the offset in the title's OWN frame: unrotate by the cumulative ancestor angle.
+  const angleOf = (el) => {
+    const chain = [];
+    for (let n = el; n && n !== document.documentElement; n = n.parentElement) chain.push(n);
+    let m = new DOMMatrix();
+    for (const n of chain.reverse()) { const tf = getComputedStyle(n).transform; if (tf && tf !== 'none') m = m.multiply(new DOMMatrix(tf)); }
+    return Math.atan2(m.b, m.a);
+  };
   const out = [];
   const sel = 'h1,h2,h3,h4,legend,[class*="title"],[class*="legend"],[class*="trigger"],[class*="header"]';
   for (const t of root.querySelectorAll(sel)) {
@@ -32,7 +42,9 @@ const SCAN = (rootSel) => {
     if (txr.left < gr.right - 2) continue;
     const svg = glyph.querySelector('svg');
     const ink = (svg || glyph).getBoundingClientRect();
-    const delta = +(cy(ink) - cy(txr)).toFixed(1);
+    const th = angleOf(t);
+    const dx = cx(ink) - cx(txr), dy = cy(ink) - cy(txr);
+    const delta = +(dy * Math.cos(th) - dx * Math.sin(th)).toFixed(1);
     const label = (t.getAttribute('class') || '').split(/\s+/).find((c) => /(title|legend|trigger|header)/.test(c)) || t.tagName.toLowerCase();
     out.push({ label, text: tn.textContent.trim().slice(0, 20), delta });
   }

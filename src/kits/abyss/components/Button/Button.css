@@ -82,7 +82,7 @@
   --abyss-frame-ink: var(--abyss-ink-strong);
   color: var(--abyss-text);
 }
-.abyss-btn--ghost:not(:disabled):not([data-disabled]):hover {
+.abyss-btn--ghost:where(:not(:disabled):not([data-disabled])):hover {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a55);
   --abyss-frame-fill: var(--abyss-glow-soft);

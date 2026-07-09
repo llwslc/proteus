@@ -159,7 +159,7 @@
 - **影响**：drawer 里的 Switch / Slider 拿到键盘焦点时，riot 的 `--riot-ring` 双环会被 `overflow-y: auto` 裁掉
 - **备注**：spec 要求的「padding + 等量负 margin」只有 bauhaus 完整实现；nova / abyss 有 padding 无负 margin（见 C 类讨论）。riot 是唯一两样都没有的
 
-- [ ] 已修
+- [x] 已修 —— `.riot-drawer__body` 补 `padding: space-2 space-3` + 等量负 margin（drawer 纸面 padding 26px，负 12px 安全）。实测 padding 8/12、margin −8/−12、无横向裁切；`--riot-ring` 4px 有余量
 
 ## A5. `ToolbarButton` 的 `active` prop 在 brass 和 bauhaus 里是死的 ✅
 
@@ -179,7 +179,7 @@
 - **为什么门禁没抓到**：`kit-api` 只检查 prop 存在与类型一致（两套都有 `active`）；`kit-deadcode` 只查「CSS 定义了但没用」，反方向「用了但没定义」没人管
 - **备注**：演示页从不触发它（toolbar 面板走 `render={<Toggle/>}` → `data-pressed`，那条是有样式的），所以肉眼永远看不出来
 
-- [ ] 已修
+- [x] 已修 —— 把 `.is-active` 并进 `theme/effects.css` 里 `.<kit>-seg__btn[data-pressed]` 那条选择器列表（零声明复制）。五套实测：brass 转黄铜、bauhaus 转蓝、riot 转黑戳，均生效
 
 ## A6. PRISM 的 NavMenu 打开态被 hover 压过 ✅
 
@@ -202,7 +202,7 @@
 - **解法**：spec 自己给了——把禁用守卫包进 `:where()`。同一套的 `Tabs.css:30` 已经这么写了
 - **为什么门禁没抓到**：`kit-interact` 有这条检查，但只覆盖分段控件（ToggleGroup / Toolbar），够不到 navmenu 触发器
 
-- [ ] 已修
+- [x] 已修 —— 禁用守卫包进 `:where()`，权重降到 (0,2,0) 与 `[data-popup-open]` 齐平，靠源码顺序让打开态取胜。CDP 强制 `:hover` 叠在打开态上实测：color 保持 primary
 
 ## A7. ABYSS 的 ghost 触发钮打开态被 hover 压过 ✅
 
@@ -213,7 +213,7 @@
 - **影响**：悬停一个已打开的菜单/弹层触发钮，边框从 a70 掉到 a55，明显变弱
 - **备注**：nova 把这两个选择器写在**同一条规则**里（`Button.css:123-126`，逗号并列），所以没有这个问题——是个可以照抄的正例
 
-- [ ] 已修
+- [x] 已修 —— 同 A6。CDP 实测：打开 + 悬停时 `--abyss-frame-ink` 保持 `glow-a70`，不再掉回 `a55`
 
 ## A8. RIOT 的 `--riot-tilt` 继承泄漏，面内字段旋转两次 ✅（真实浏览器实测）
 
@@ -234,7 +234,7 @@
 - **影响**：输入框比它正上方的 caption 标签多歪 1.3°，比所在纸面多歪一倍
 - **佐证是 bug 而非有意**：`effects.css:151` 有 `.riot-popup { transform: none }`，`App.css:501,514` 另有两处 `transform: none` —— 作者知道存在泄漏，但只补了弹层和模态，没补面内字段
 
-- [ ] 已修
+- [x] 已修 —— 用 `@property --riot-surface-tilt { inherits: false }` 把 tilt 变成**不继承**的 frame 输入变量（变量名正是 spec 写的那个，见 C11），只有 `.riot-panel__sheet` 把 App 层的 `--riot-tilt` 映射进去。实测：字段自身 0°、屏幕累积与 caption 一致，纸面仍 1.3°
 
 ## A9. RIOT 输入框聚焦没有 ring ✅
 
@@ -245,7 +245,7 @@
 - **对照**：同套 Checkbox / Radio / Switch 都有 `--riot-ring`
 - **影响**：Input / Field / Combobox / Autocomplete（共用 `.riot-input`）
 
-- [ ] 已修
+- [x] 已修 —— `.riot-input:focus-within` 加 `box-shadow: var(--riot-ring), var(--riot-shadow-hard)`。实测计算值含 `0px 0px 0px 4px` 荧光外环
 
 ## A10. RIOT 的 Toolbar / Menubar chip 没有微旋 ✅
 
@@ -255,7 +255,7 @@
 - **代码**：`rotate` 命中数 —— ToggleGroup 3 处（nth-child ∓2/−3deg），Toolbar **0**，Menubar **0**
 - **影响**：三件套里只有 ToggleGroup 是散钉的，另两件是正的
 
-- [ ] 已修
+- [x] 已修 —— 微旋是分段条家族**共有**的皮肤决定，上提到 `theme/effects.css` 的 `.riot-seg__btn:nth-child(odd/even)` + `[data-pressed]`，删掉 ToggleGroup 的私有副本。实测 toolbar `-3/2/-2deg`、menubar `-2/2/-2deg`
 
 ## A11. RIOT 的 Tabs hover 用错 token ✅
 
@@ -266,7 +266,7 @@
 - **值差**：`--riot-tint` = `rgba(255,77,10,.2)` 荧光橙 wash；`--riot-marker` = `rgba(255,229,0,.55)` 荧光黄记号笔
 - **备注**：不是同色深浅，是**换了颜色**（橙 → 黄）。需裁决是代码用错还是 spec 该改成 marker
 
-- [ ] 已修
+- [x] 已修 —— `--riot-marker` → `--riot-tint`。`riot.md` 两处都说 tint（§1 分段控件与触发条、§2 Tabs），且 `.riot-seg__btn:hover` 本就用 tint；git log 显示是初版写错、非后来的有意调整
 
 ## A12. BRASS 的 Toast 没有左缘黄铜光束 ✅
 
@@ -522,7 +522,7 @@
 - **代码**：前三个都有 `surface-` 前缀；第四个 `.riot-surface` 读的是**没有前缀的** `--riot-tilt`（`effects.css:8`）
 - **备注**：这个命名不一致正是 A8 那条泄漏的成因——带前缀的变量不会被子孙的 `.riot-surface` 误读
 
-- [ ] 已回写
+- [x] 随 A8 一并闭合 —— 代码改用 `@property --riot-surface-tilt { inherits: false }`，与 spec 逐字一致；`--riot-tilt` 退化为 App 层提供的**来源值**，只由 `.riot-panel__sheet` 映射一次
 
 ## C12. RIOT 的 Toast 用的是 `--riot-toast-tilt` ✅
 
@@ -641,6 +641,16 @@
 
 - [x] 已裁决并统一 —— 选择「**riot 保留分隔，四套改为不隐藏**」。nova / abyss / brass / bauhaus 的 `Toolbar.css` 删掉 `__sep { display: none }`。因为五套行为已一致且非强制，**spec 无需新增条款，沉默即正确**。390px 实测：五套均 `2/2` 条分隔可见
 - **已知取舍**：换行后行首可能出现孤立竖线，这是采纳该选项时明确接受的代价
+
+## C20. RIOT 用两处魔法数把 collapse marker 推歪，以骗过旋转敏感的门禁 ✅（修 A8 时掀出）
+
+- **位置**：`src/kits/riot/components/Accordion/Accordion.css`、`Collapsible/Collapsible.css`
+- **代码（旧）**：`.riot-accordion .riot-collapse-marker { top: 2px }`、`.riot-collapsible .riot-collapse-marker { top: -3px }` —— 其余四套**一处都没有**
+- **成因**：`kit-glyph-center` 用 `getBoundingClientRect` 在**页面坐标系**里量 `cy(图记) − cy(文字)`。祖先一旦旋转 θ，两者中心各自沿弧移动，垂直差里就混进 `Δx·sinθ` 的假象。riot 每块面板都是斜的，于是有人把 marker **物理推歪**去抵消这个假象
+- **实测**：删掉两行后，tilt 归零时 delta **恰好为 0**（marker 本来就被 `align-items: center` 放正了）；带 tilt 时残差 ±0.6–1.1px，全是测量假象
+- **风险**：残差已吃掉 1.6px 容差的 2/3。而 C13 说 tilt 本该是 `±2°–6°`（现仅 ±1.3°）——一旦改回去，门禁必然误报，下一个人又会去加魔法数
+
+- [x] 已修 —— 删掉两行魔法数；`kit-glyph-center` 改为在**标题自己的坐标系**里量：沿祖先链累乘 transform 得到 θ，把偏移向量反旋 θ 再取 y 分量。riot 七条全部降到 `0.0px`。已 fail-on-broken 反证：把 `top: 2px` 加回 accordion，门禁 exit=1 且精确点名那 5 条
 
 ---
 

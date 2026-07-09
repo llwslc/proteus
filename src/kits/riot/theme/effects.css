@@ -1,3 +1,9 @@
+@property --riot-surface-tilt {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .riot-surface {
   position: relative;
   isolation: isolate;
@@ -5,7 +11,7 @@
   border: var(--riot-surface-stroke, var(--riot-stroke)) solid var(--riot-surface-border, var(--riot-ink));
   background: var(--riot-surface-fill, var(--riot-surface));
   color: var(--riot-surface-fg, var(--riot-text));
-  transform: rotate(var(--riot-tilt, 0deg));
+  transform: rotate(var(--riot-surface-tilt));
 }
 .riot-surface--torn {
   border: 0;
@@ -113,6 +119,12 @@
 .riot-seg__btn :where(svg) {
   font-size: var(--riot-fs-18);
 }
+.riot-seg__btn:nth-child(odd) {
+  rotate: -2deg;
+}
+.riot-seg__btn:nth-child(even) {
+  rotate: 2deg;
+}
 .riot-seg__btn:where(:not(:disabled):not([data-disabled])):hover,
 .riot-seg__btn[data-highlighted]:not([data-disabled]) {
   background: var(--riot-tint);
@@ -125,6 +137,9 @@
   color: var(--riot-primary);
   box-shadow: 3px 3px 0 var(--riot-primary);
   scale: 1.06;
+}
+.riot-seg__btn[data-pressed] {
+  rotate: -3deg;
 }
 .riot-seg__btn:focus-visible {
   outline: var(--riot-stroke) solid var(--riot-primary);
@@ -427,6 +442,7 @@
 }
 .riot-input:focus-within {
   --riot-surface-border: var(--riot-primary);
+  box-shadow: var(--riot-ring), var(--riot-shadow-hard);
 }
 .riot-input:has(.riot-input__control:disabled) {
   opacity: var(--riot-disabled-opacity);

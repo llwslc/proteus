@@ -17,6 +17,7 @@
   transform: rotate(-17deg);
 }
 .riot-panel__sheet {
+  --riot-surface-tilt: var(--riot-tilt, 0deg);
   flex: 1;
   padding: var(--riot-space-6) var(--riot-space-6) var(--riot-space-7);
 }

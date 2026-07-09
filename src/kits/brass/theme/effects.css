@@ -265,6 +265,7 @@
   outline: none;
   box-shadow: inset 0 0 0 1px var(--brass-primary);
 }
+.brass-seg__btn.is-active,
 .brass-seg__btn[data-pressed],
 .brass-seg__btn[data-selected],
 .brass-seg__btn[data-popup-open] {

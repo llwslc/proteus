@@ -53,6 +53,7 @@
   background: var(--bauhaus-tint-soft);
   color: var(--bauhaus-text-bright);
 }
+.bauhaus-seg__btn.is-active,
 .bauhaus-seg__btn[data-pressed],
 .bauhaus-seg__btn[data-selected],
 .bauhaus-seg__btn[data-popup-open] {
