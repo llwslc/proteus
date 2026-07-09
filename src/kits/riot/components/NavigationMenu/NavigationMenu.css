@@ -59,13 +59,13 @@
   overflow: hidden;
 }
 .riot-navmenu__content {
-  width: var(--riot-navmenu-col-w);
+  width: max-content;
   padding: var(--riot-space-3);
 }
 .riot-navmenu__grid {
-  display: flex;
-  flex-direction: column;
-  gap: var(--riot-space-1);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(var(--riot-navmenu-col-w), 1fr));
+  gap: var(--riot-space-1) var(--riot-space-4);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -118,5 +118,8 @@
   }
   .riot-navmenu__list > * {
     flex: 0 0 auto;
+  }
+  .riot-navmenu__grid {
+    grid-template-columns: 1fr;
   }
 }

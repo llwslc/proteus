@@ -112,7 +112,8 @@
 - `components.md:174`（§8）那条「NavMenu **横向滚动**不换行」管的是**触发器那一排 `__list`**，不是下拉里的链接网格 `__grid`。同一个组件的两个不同元素，别混。riot 在 `__list` 上的违反单列为 A3。
 - riot 是**所有宽度**下都单列，桌面也是。它的 `@media (max-width: 768px)` 段里只有 `.riot-navmenu__list { flex-wrap: wrap }`，对下拉网格**一条规则都没有** —— 因为本来就是单列，不需要收。所以 A1 与手机态无关，成立。
 
-- [ ] 已修
+- [x] 已修 —— `__content` 由定值 `210px` 改 `max-content`（同 nova/abyss/bauhaus），`__grid` 由 `flex-direction: column` 改 `grid-template-columns: repeat(2, minmax(var(--riot-navmenu-col-w), 1fr))`，手机段补 `1fr` 收单列。**列间距取 `space-4`（16px）而非兄弟们的 `space-1`**：riot 的 `__link::before` 记号笔涂划 `inset: -2px -8px`，左右各外溢 8px，4px 中缝会让两列的涂划撞上。实测中缝 16px、涂划右缘 596 < 右项左缘 604，不撞
+- **副作用（已确认无害）**：`max-content` 让 riot 手机态下拉宽度从 210px 变为 157px，与 nova/abyss/bauhaus（150 / 184 / 138）一致。截图确认 4 条链接文字不截断、不换行
 
 ## A2. RIOT 的锚定弹层滚动高度缺 `--available-height` 夹取 ✅
 
@@ -347,7 +348,10 @@
 - **影响**：渲染等价，无可见缺陷。但 `§6.1` 把「骨架」列为跨 kit 必须逐字一致的四项之一，且 `:163` 的 morph 要求 `__content` 定宽 —— brass 让同一个元素既定宽又当网格容器
 - **为什么门禁没抓到**：`kit-naming` 只核**块类**跨 kit 一致，`kit-structure §5` 只核 Base UI 接线；子部件层级缺失没人管
 
-- [ ] 已修
+- [x] 已修 —— `NavigationMenu.tsx` 在 `Content` 与 `Link` 之间补一层 `<div class="brass-navmenu__grid">`（取 bauhaus 的形状，`Content > grid > Link` 逐字对上 `§6.1` 骨架，不引入多余的 `ul/li`）；CSS 里 `__content` 只留定宽 `--brass-navmenu-w` + padding + morph 的 `transition`，网格三行迁进 `__grid`；手机段的 `1fr` 也随之挂到 `__grid`
+- **五套现状**：`__grid` 层全部存在，`__content` 全部不再带 `grid-template-columns`
+
+- [ ] 补门禁 F5（子部件层级缺失检查）
 
 ## A20. Toolbar 手机态横滚，spec 明写不许 —— 根因在共享的 `.<kit>-seg` ✅
 

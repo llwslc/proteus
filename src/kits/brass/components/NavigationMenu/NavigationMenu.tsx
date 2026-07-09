@@ -34,21 +34,23 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                 </BaseNav.Icon>
               </BaseNav.Trigger>
               <BaseNav.Content className="brass-navmenu__content">
-                {item.links.map((link, j) => (
-                  <BaseNav.Link
-                    key={j}
-                    className="brass-list-item brass-navmenu__link"
-                    href={link.href ?? "#"}
-                    onClick={onLinkClick}
-                  >
-                    <span className="brass-navmenu__link-body">
-                      <span className="brass-list-item__text">{link.label}</span>
-                      {link.description && (
-                        <span className="brass-navmenu__link-desc">{link.description}</span>
-                      )}
-                    </span>
-                  </BaseNav.Link>
-                ))}
+                <div className="brass-navmenu__grid">
+                  {item.links.map((link, j) => (
+                    <BaseNav.Link
+                      key={j}
+                      className="brass-list-item brass-navmenu__link"
+                      href={link.href ?? "#"}
+                      onClick={onLinkClick}
+                    >
+                      <span className="brass-navmenu__link-body">
+                        <span className="brass-list-item__text">{link.label}</span>
+                        {link.description && (
+                          <span className="brass-navmenu__link-desc">{link.description}</span>
+                        )}
+                      </span>
+                    </BaseNav.Link>
+                  ))}
+                </div>
               </BaseNav.Content>
             </BaseNav.Item>
           ) : (
