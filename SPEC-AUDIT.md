@@ -84,6 +84,15 @@
 
 `app.md` 与 `components.md` 各自重述一遍断点，是 `playbook.md:3`「两边互不引用」要求的自包含，不算重复。
 
+**OtpField 为什么是组件层而不是 app 层**（四条独立证据）：
+
+1. `components.md §3` 自己就把 `otp-cell-w` 列为**组件 footprint token** 的范例：「每个控件、浮层的 `width`、`height`… 都走 `--<kit>-<组件>-<角色>` 命名 token…例如 `button-h-sm`、`checkbox-box`、`otp-cell-w`」。
+2. 五套都在 `theme/tokens.css` 立了专门的手机档 `--<kit>-otp-cell-w-sm` / `-h-sm`（brass 例外，用 `calc(cell-w - space-2)`）。
+3. `@media` 住在 `components/OtpField/OtpField.css`，只改组件自己的 `__cell` / `__slot` / `__divider` / `__cells`。
+4. **五套 `App.css` 零条 OTP 规则**；demo 只写 `<OtpField length={6} splitAt={3} />`，无 demo 专属包装类。
+
+`app.md:143` 原先把它列在外壳条款里，是唯一的错层。
+
 ---
 
 # A. 改代码 —— spec 是对的，代码没做到
