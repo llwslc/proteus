@@ -98,6 +98,35 @@ if [ -n "$COMPS" ]; then
 else echo "  -> skip (components.md §6 not found)"; fi
 
 echo
+echo "## skin-doc §2 order — bullets follow components.md §6 order (ASCII-led lines only; 汉字-led exempt)"
+ORDER_OUT=$(python3 - <<'PYEOF'
+import pathlib, re, sys
+comp = pathlib.Path("prompt/components/components.md").read_text()
+sec = comp.split("## 6. 组件")[1].split("## 6.1")[0]
+canon, seen = [], set()
+for m in re.finditer(r"[A-Z][A-Za-z/]+", sec):
+    n = m.group(0)
+    if n not in seen and n not in ("Base", "UI"): seen.add(n); canon.append(n)
+idx = {n: i for i, n in enumerate(canon)}
+bad = 0
+for p in sorted(pathlib.Path("prompt/components/theme").glob("*.md")):
+    body = p.read_text().split("## 2. 组件皮肤决定", 1)
+    if len(body) < 2: continue
+    last, lastname = -1, None
+    for ln, line in enumerate(body[1].split("\n"), 1):
+        if not line.startswith("- "): continue
+        m = re.match(r"- \*{0,2}([A-Z][A-Za-z/]+)", line)
+        if not m or m.group(1) not in idx: continue
+        i = idx[m.group(1)]
+        if i < last:
+            print(f"  {p}:{m.group(1)} 排在 {lastname} 之后，违反 §6 顺序"); bad = 1
+        last, lastname = i, m.group(1)
+sys.exit(bad)
+PYEOF
+) && ORDER_OK=1 || ORDER_OK=0
+if [ "$ORDER_OK" = 1 ]; then echo "  -> clean"; else printf '%s\n' "$ORDER_OUT"; fail=1; fi
+
+echo
 echo "## REVIEW — emphasis mix in a bullet block (heuristic, never fails; eyeball each)"
 echo "   bold must mark ONE consistent thing per peer set; a block with both '- **' and"
 echo "   '- plain' leads is a CANDIDATE — most are fine (bold font/term vs plain prose);"

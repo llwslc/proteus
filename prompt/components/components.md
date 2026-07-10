@@ -127,14 +127,16 @@
 - **Select**：props `items·placeholder`；结构 `field > Trigger[Value flex:1 + Chevron 在右、打开转 180°] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
 - **Combobox**：props `items·placeholder·emptyText·label`；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、宽度随 `--anchor-width`；过滤走 Base UI 内建，`items` 直传 Root。
 - **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron；过滤走 Base UI 内建，`items` 直传 Root。
-- **Fieldset**（props `legend`）、**Form**：竖排，由 Base UI 直接管。
+- **Fieldset**：props `legend`；竖排，由 Base UI 直接管。
+- **Form**：竖排，由 Base UI 直接管。
 
 **反馈**
 
 - **Progress**：props `label·showValue`；结构 `Root > head[label + Value 在右] + Track > Indicator`，Indicator 从左满宽推进。
 - **Meter**：同 Progress，加 props `tone`（`primary·success·warning·danger`），按 tone 重染。
 - **Tabs**：props `items·defaultValue`；结构 `Root > List[Tab* + Indicator] + Panel*`。有一条选中指示，跟随 Base UI 的 `--active-tab-*` 移到当前 tab；**这条指示长什么样、放哪条边，由 theme 定。** tab 状态 +selected；手机端横向滚动不换行、滚动条隐藏。
-- **Accordion**（props `items·openMultiple·defaultValue`）、**Collapsible**（props `title·defaultOpen`）：用 §4.3 的折叠配方 `trigger[marker 在左 + title + chevron 在右] + panel > content`；**content 向左缩进，对齐 title 的起点**（缩进量 = trigger 左内距 + marker 宽 + gap）；状态 +panel-open，指示物旋转。
+- **Accordion**：props `items·openMultiple·defaultValue`；用 §4.3 的折叠配方 `trigger[marker 在左 + title + chevron 在右] + panel > content`；**content 向左缩进，对齐 title 的起点**（缩进量 = trigger 左内距 + marker 宽 + gap）；状态 +panel-open，指示物旋转。
+- **Collapsible**：props `title·defaultOpen`；折叠配方、缩进与状态同 Accordion。
 
 **浮层**
 
