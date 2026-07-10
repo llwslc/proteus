@@ -15,7 +15,7 @@ export function Tooltip({
   content,
   children,
   side = "top",
-  sideOffset = 8,
+  sideOffset = 10,
   delay = 200,
 }: TooltipProps) {
   const [open, setOpen] = useState(false);

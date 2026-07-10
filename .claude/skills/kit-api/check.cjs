@@ -132,6 +132,11 @@ for (const c of comps) {
     const per = present.filter((k) => pk[k].defaults[d] !== undefined);
     const vals = per.map((k) => pk[k].defaults[d]);
     if (new Set(vals).size > 1) { out.push(`FAIL ${c}: ${d} DEFAULT differs — ${per.map((k, i) => `${k}:${vals[i]}`).join('  |  ')}`); fails++; }
+    // present-vs-absent is ALSO drift: a kit that omits the default silently falls
+    // through to the library default (bauhaus Tooltip.delay -> Base UI 600 vs 200)
+    const fn = d.split('.')[0];
+    const missing = present.filter((k) => pk[k].defaults[d] === undefined && pk[k].exports.has(fn));
+    if (per.length && missing.length) { out.push(`FAIL ${c}: ${d} DEFAULT missing in [${missing.join(',')}] — others: ${per.map((k, i) => `${k}:${vals[i]}`).join('  ')}`); fails++; }
   }
 }
 

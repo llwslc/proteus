@@ -14,7 +14,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
     <BaseMenu.Root>
       <BaseMenu.Trigger className="bauhaus-seg__btn bauhaus-menubar__trigger">{label}</BaseMenu.Trigger>
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu__positioner" sideOffset={8} align="start">
+        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu__positioner" sideOffset={6} align="start">
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-menu__popup">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

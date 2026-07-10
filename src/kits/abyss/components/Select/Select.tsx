@@ -69,7 +69,7 @@ export function Select<Value extends string = string>({
       <BaseSelect.Portal>
         <BaseSelect.Positioner
           className="abyss-elevation abyss-select__positioner"
-          sideOffset={8}
+          sideOffset={6}
           alignItemWithTrigger={false}
         >
           <BaseSelect.Popup className="abyss-frame abyss-aura-pop abyss-select__popup">

@@ -20,7 +20,7 @@ export interface AccordionProps {
 
 export function Accordion({
   items,
-  openMultiple,
+  openMultiple = false,
   defaultValue,
   className,
 }: AccordionProps) {

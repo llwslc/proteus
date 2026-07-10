@@ -33,7 +33,7 @@
 
 | 类 | 条数 | 集中在 |
 |---|---|---|
-| A 改代码 | 22 | riot 10 条、brass 5 条、bauhaus 4 条、abyss 2 条、跨 kit 1 条 |
+| A 改代码 | 23 | riot 10 条、brass 5 条、bauhaus 4 条、abyss 2 条、跨 kit 2 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
 | C 回写 spec | 23（22 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 5 条、bauhaus 2 条、nova 1 条、跨 kit 3 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
@@ -448,6 +448,27 @@
 - **探针教训**：第一版探针连 nova 都钓不出（playwright 单跳 `mouse.move` 触不动 Base UI 的 hover 侦测，要真实的多步 move 序列）；第二版 bauhaus 全 -1，原因是我猜错了它的 popup 类名（`bauhaus-tooltip`，无 `__popup`）——负结果先查探针再查代码
 
 - [x] 已修 —— ① `bauhaus/Tooltip.tsx` 解构补 `delay = 200`；② `§6.1` Tooltip 条目钉上「`delay`（默认 200）」。`sideOffset` 不钉（10/10/8/8/10，按各套框厚调，同 MenuSub sideOffset 的既定理由）。tsc / kit-api / prompt-lint / kit-interact 全绿
+
+---
+
+## A23. 非皮肤面全量清扫：16 处跨 kit 分岔一次出清（用户拍桌后的整类扫除）✅
+
+- **起因**：A22（bauhaus tooltip 600ms）修完，用户拍桌——「对齐了这么多次还是不一样，问一个修一个，问一堆就是没问题」。memory 里明有 proactive-cross-kit-drift-sweep（交付前并排扫全 kit，问一修一是流程失败），A22 恰好复犯。本条是补交的整类清扫
+- **方法**：机械 sweep 全组件 tsx 的解构默认值 + JSX 字面量接线 → 15 行分岔；分类后 6 行属主题自由（emptyText/placeholder 文案、Checkbox 勾形 SVG、关闭钮 icon/icon-ghost、Toast 按钮变体），9 行是真分岔；再用浏览器量**八类锚定浮层的渲染缝**（原始 offset 允许因框厚而异、渲染缝必须同——kit-submenu-gap 的既定原则）
+- **修前渲染缝**（真实 Chrome）：
+
+| 类型 | nova | abyss | brass | bauhaus | riot |
+|---|---|---|---|---|---|
+| tooltip/popover/preview | 10 | 10 | **8** | **8** | 10 |
+| select / combobox | 6 | **8** | 6 | 6 | 6 |
+| menubar | 6 | 6 | 6 | **8** | 6 |
+| navmenu 下拉 | 10 | 10 | **8** | **0（贴脸）** | 10 |
+
+- **16 处修复**：brass ×4（tooltip/popover/preview 8→10、navmenu 8→10）；abyss ×2（select/combobox 8→6）；bauhaus ×10（tooltip/popover/preview 8→10、menubar 8→6、navmenu **补** sideOffset=10、contextmenu **删**独家 sideOffset=2、Accordion `openMultiple=false`、Badge `dot=false`、MenuItem `tone="default"`、Popover `side="bottom"`+`align="center"`——后五个是漏写默认吃库默认的 A22 同类，行为侥幸未错但 API 漂移）。修后八类 × 五套渲染缝全等：10/10/10/6/6/6/6/10
+- **工具性发现——「有 vs 没有」盲区，三处同一形状**：① 我的 sweep 脚本只比 present 值集合；② `kit-api` 的默认值比对先 `filter(defaults[d] !== undefined)` 再 diff——bauhaus 缺席被滤掉，这就是 A22 五项门禁全绿的原因；③ ContextMenu 的独家 sideOffset=2 靠同一漏洞逃过 sweep。**present-vs-absent 必须算分岔**
+- **焊死**：① `kit-api` 补 absent 检查（缺省默认值即 FAIL，点名缺席 kit）——补丁一上立刻现形 5 条 bauhaus 漏写；② `kit-submenu-gap` 扩成八类浮层渲染缝门禁（逐类跨 kit spread ≤1 且 ≥2px，兼抓「贴脸 0」）；③ `components.md §4.2` 钉渲染缝各 kit 同值（10/6/贴指针）
+
+- [x] 已修 —— 16 处代码 + spec 钉值 + 两门禁扩容；tsc / kit-api / kit-visual / kit-interact / kit-submenu-gap / prompt-lint 全绿
 
 ---
 

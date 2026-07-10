@@ -18,9 +18,9 @@ export interface PopoverProps {
 export function Popover({
   trigger,
   title,
-  side,
-  align,
-  sideOffset = 8,
+  side = "bottom",
+  align = "center",
+  sideOffset = 10,
   className,
   children,
 }: PopoverProps) {

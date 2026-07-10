@@ -1,6 +1,6 @@
 ---
 name: kit-api
-description: Wrapper-layer API parity gate for the theme kits. Each kit is a Base UI primitive + a hand-written wrapper component, and Base UI does NOT keep the wrappers' PUBLIC API consistent across kits — prop names, prop presence, prop types, exported symbols, and the `extends` clause drift (the selectAllLabel-vs-parentLabel / iconOnly-vs-icon / missing-showValue class). This gate diffs each component's exported API across kits and FAILs on divergence. Run when accepting or aligning a kit, alongside kit-structure.
+description: Wrapper-layer API parity gate for the theme kits. Each kit is a Base UI primitive + a hand-written wrapper component, and Base UI does NOT keep the wrappers' PUBLIC API consistent across kits — prop names, prop presence, prop types, DEFAULT VALUES (a kit that omits a default the siblings pin silently falls to the library default — the bauhaus Tooltip.delay→600 class; present-vs-absent counts as drift), exported symbols, and the `extends` clause drift (the selectAllLabel-vs-parentLabel / iconOnly-vs-icon / missing-showValue class). This gate diffs each component's exported API across kits and FAILs on divergence. Run when accepting or aligning a kit, alongside kit-structure.
 ---
 
 # kit-api

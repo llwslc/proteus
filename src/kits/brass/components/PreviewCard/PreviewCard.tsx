@@ -16,7 +16,7 @@ export function PreviewCard({
   children,
   side = "top",
   align = "center",
-  sideOffset = 8,
+  sideOffset = 10,
 }: PreviewCardProps) {
   const [open, setOpen] = useState(false);
   const onTouchToggle = (event: PointerEvent<HTMLElement>) => {

@@ -34,6 +34,41 @@ async function gapFor(page, kit) {
   return { err: 'no submenu trigger found' };
 }
 
+
+const OVERLAY_SPREAD = 1; // per-type rendered gap must agree across kits within this
+const orthoGap = (t, p) => {
+  if (p.bottom <= t.top + 1) return Math.round(t.top - p.bottom);
+  if (p.top >= t.bottom - 1) return Math.round(p.top - t.bottom);
+  if (p.right <= t.left + 1) return Math.round(t.left - p.right);
+  if (p.left >= t.right - 1) return Math.round(p.left - t.right);
+  return -999;
+};
+async function overlayGaps(page, kit) {
+  const out = {};
+  const rect = (h) => h.evaluate((el) => { const r = el.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right }; });
+  const step = async (name, panel, openFn, popupSel) => {
+    try {
+      await page.evaluate((id) => document.getElementById(id).scrollIntoView({ block: 'center' }), panel);
+      await page.waitForTimeout(140);
+      const trig = await openFn();
+      await page.waitForTimeout(420);
+      const pop = await page.waitForSelector(popupSel, { state: 'visible', timeout: 2500 });
+      out[name] = orthoGap(await rect(trig), await rect(pop));
+    } catch { out[name] = null; }
+    await page.keyboard.press('Escape').catch(() => {});
+    await page.mouse.move(5, 5); await page.waitForTimeout(220);
+  };
+  await step('tooltip', 'tooltip', async () => { const b = await page.$('#tooltip button'); await b.focus(); return b; }, `.${kit}-tooltip__popup, .${kit}-tooltip`);
+  await step('popover', 'popover', async () => { const b = await page.$('#popover button'); await b.click(); return b; }, `.${kit}-popover__popup, .${kit}-popover`);
+  await step('preview', 'preview', async () => { const a = await page.$('#preview a'); await a.focus(); return a; }, `.${kit}-preview__popup, .${kit}-preview`);
+  await step('select', 'select', async () => { const b = await page.$(`#select .${kit}-select__trigger`); await b.click(); return b; }, `.${kit}-select__popup`);
+  await step('combobox', 'combobox', async () => { const b = await page.$(`#combobox .${kit}-combobox__trigger`); await b.click(); return page.$(`#combobox .${kit}-combobox__field, #combobox .${kit}-combobox`); }, `.${kit}-combobox__popup`);
+  await step('autocomplete', 'autocomplete', async () => { const inp = await page.$('#autocomplete input'); await inp.click(); await page.keyboard.type('a'); return page.$(`#autocomplete .${kit}-autocomplete__field, #autocomplete .${kit}-autocomplete, #autocomplete .${kit}-field`); }, `.${kit}-autocomplete__popup`);
+  await step('menubar', 'menubar', async () => { const b = await page.$('#menubar button'); await b.click(); return b; }, '[role=menu]');
+  await step('navmenu', 'navmenu', async () => { const b = await page.$(`#navmenu .${kit}-navmenu__trigger`); await b.click(); return b; }, `.${kit}-navmenu__positioner`);
+  return out;
+}
+
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
   const page = await browser.newPage({ viewport: G.DESKTOP });
@@ -48,8 +83,30 @@ async function gapFor(page, kit) {
     gaps[kit] = r.gap;
     console.log(`  ${kit.padEnd(8)} submenu↔parent gap = ${r.gap}px (${r.side})`);
   }
+  const TYPES = ['tooltip', 'popover', 'preview', 'select', 'combobox', 'autocomplete', 'menubar', 'navmenu'];
+  const og = {};
+  for (const kit of kits) {
+    await page.evaluate((k) => localStorage.setItem('kit', k), kit);
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForTimeout(300);
+    og[kit] = await overlayGaps(page, kit);
+  }
+  let ofail = 0;
+  console.log('\n  anchored-overlay rendered gaps (per type, must match across kits):');
+  for (const t of TYPES) {
+    const vals = kits.map((k) => og[k][t]);
+    const bad = vals.some((v) => v === null || v === -999) ? 'unmeasurable in some kit'
+      : Math.max(...vals) - Math.min(...vals) > OVERLAY_SPREAD ? `spread ${Math.max(...vals) - Math.min(...vals)}px > ${OVERLAY_SPREAD}`
+      : Math.min(...vals) < MIN_GAP ? `touching (min ${Math.min(...vals)}px)` : null;
+    console.log(`    ${t.padEnd(13)} ${kits.map((k, i) => `${k}:${vals[i] === null ? 'x' : vals[i]}`).join('  ')}${bad ? `   FAIL — ${bad}` : ''}`);
+    if (bad) ofail++;
+  }
   await browser.close();
 
+  if (ofail) {
+    console.log(`\nRESULT: FAIL — ${ofail} overlay type(s) with divergent/touching rendered gaps (raw sideOffset may differ per kit; the RENDERED gap must not)`);
+    process.exit(1);
+  }
   if (broken.length) {
     console.log(`\nRESULT: FAIL — submenu did not even open in: ${broken.join(', ')} (worse than a wrong gap; fix the menubar/submenu first)`);
     process.exit(1);

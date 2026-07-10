@@ -10,7 +10,7 @@ export interface MenuItemProps extends ComponentProps<typeof BaseMenu.Item> {
   tone?: "default" | "danger";
 }
 
-export function MenuItem({ icon, shortcut, tone, className, children, ...props }: MenuItemProps) {
+export function MenuItem({ icon, shortcut, tone = "default", className, children, ...props }: MenuItemProps) {
   return (
     <BaseMenu.Item
       className={cx("bauhaus-list-item", tone === "danger" && "bauhaus-list-item--danger", className)}

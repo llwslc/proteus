@@ -44,7 +44,7 @@ export function Combobox({
         </BaseCombobox.InputGroup>
       </div>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="abyss-elevation abyss-combobox__positioner" sideOffset={8}>
+        <BaseCombobox.Positioner className="abyss-elevation abyss-combobox__positioner" sideOffset={6}>
           <BaseCombobox.Popup className="abyss-aura-pop abyss-combobox__popup">
             <span className="abyss-frame abyss-combobox__tablet" aria-hidden />
             <BaseCombobox.Empty className="abyss-combobox__empty">

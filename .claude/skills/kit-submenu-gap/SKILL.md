@@ -1,6 +1,6 @@
 ---
 name: kit-submenu-gap
-description: Asserts the menubar submenu opens with the SAME rendered gap from its parent in every kit — catching a submenu jammed against the parent (touching/occluding), one floating too far away, and a submenu that fails to open at all. The gap is each kit's MenuSub sideOffset, which must be tuned to that kit's border/frame width, so the raw numbers differ but the visual gap matches.
+description: Asserts every anchored overlay opens with the SAME rendered gap across kits — the menubar submenu (its original scope) PLUS eight overlay types (tooltip/popover/preview/select/combobox/autocomplete/menubar-menu/navmenu dropdown), each type's trigger→popup gap measured in-browser and required to agree within 1px and stay ≥2px (catches a kit that omits sideOffset and falls to the library default 0, like bauhaus navmenu) — catching a submenu jammed against the parent (touching/occluding), one floating too far away, and a submenu that fails to open at all. The gap is each kit's MenuSub sideOffset, which must be tuned to that kit's border/frame width, so the raw numbers differ but the visual gap matches.
 ---
 
 # kit-submenu-gap
