@@ -35,7 +35,7 @@
 |---|---|---|
 | A 改代码 | 20 | riot 10 条、brass 4 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
-| C 回写 spec | 21（20 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 4 条、nova 1 条、bauhaus 1 条、跨 kit 3 条 |
+| C 回写 spec | 22（21 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 5 条、nova 1 条、bauhaus 1 条、跨 kit 3 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
 | E 低优先 | 10 | — |
 
@@ -313,15 +313,20 @@
 
 - [x] 已修（用户裁决：代码为准，一并补齐）—— ① `brass.md:24` 改为同构句式「Avatar 的兜底是 mono 字母压在凹陷黄铜底上、圆形裁剪」（照 `font-mono` / `surface-inset` + `bevel-inset` / `border-radius: 50%` 实际代码写）；② 删掉三条 `:where(svg)` 遗迹规则（实测页面上含 svg 的兜底 = 0，删除像素中性）；③ 连锁：`--brass-fs-26` 的唯一消费者就是被删的 lg 齿轮档，`kit-lint` 立即报死 token —— 一并删除，`theme/brass.md:25` 字号阶梯 7 档改 6 档；④ abyss 缺口见 C21
 
-## A14. BRASS 承诺的三个共享配方覆盖变量一个都不存在 ✅
+## A14. ~~BRASS 承诺的三个共享配方覆盖变量一个都不存在~~ —— **修索引 + 上门禁** ✅
 
-- **严重度**：皮肤决定未实现
-- **位置**：整个 `src/kits/brass/`
-- **spec**：`components/theme/brass.md:26` ——「共享配方的颜色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`」
-- **代码**：三个变量全仓 **0 次命中**。AlertDialog 直接写死规则重染标题（`AlertDialog.css:37`），没走变量
-- **对照**：nova 的 `--nova-scan-color / -tick-color / -title-color` 8 次命中；riot 的 `--riot-marker-color` 4 次；bauhaus 的 `--bauhaus-marker-color` 1 次
+- **spec（旧）**：`components/theme/brass.md:26`「共享配方的颜色就近覆盖：`--brass-sheen-color / -tick-color / -title-color`」
+- **三个名字的出处各不相同**（`git log -S` 双向）：
+  1. `sheen-color` —— **真做过一天**。kit 诞生当天 `.brass-sheen` 头部扫光配方带 `var(--brass-sheen-color, var(--brass-sheen))` 输入变量；次日 `19d33c9` 整个配方被有据删除（1px 呼吸高光贴亮 bezel 零对比看不见；「细呼吸线是 NOVA 的 scanline 语汇，不是蒸汽朋克」）。删码没删文——与 A12 同一波早期打磨、同一个病
+  2. `tick-color / title-color` —— **从未存在**。是设计稿照抄 nova 的角色名；brass 实现时换了机制：AlertDialog 定义 `--brass-tone`，后代选择器直染 `.brass-modal-title`（恰是「就近覆盖」要禁的写法之一）
+  3. 而 brass **真实存在**的覆盖变量 `--brass-marker-color`（配方读 + Toast/AlertDialog 两处覆盖），这行反而没列
+- **横向**：nova（`scan/tick/title` 全真实）、riot、bauhaus 的同款行一直是准的；abyss 有真实的 `--abyss-title-color` 却整行缺失（→ C22）。`--nova-badge-color` 住在 `Badge.css` 组件私有，不属于共享配方行，nova 不动
+- **过程记录**：我第一版提议是「修 brass + 补 abyss」；用户问了句「这句话什么意思」，证据零变化，我自我升级成「四套整行删」——被用户点破「我一问你一删，老这样」。已立 memory：删除是裁决选项之一不是默认；防漂移先试十行门禁
 
-- [ ] 已修
+- [x] 已修（用户裁决 A：修索引 + 上门禁）——
+  1. `brass.md:26` 改为「共享配方的颜色就近覆盖：`--brass-marker-color`」；nova / riot / bauhaus 不动（一直是准的）；
+  2. abyss 补行（见 C22）；
+  3. `theme-doc-sync` 加第三项检查：皮文档里引用的 `--<kit>-*-color`（含 `-tick-color` 式斜杠缩写的展开）必须存在于 `src/kits/<kit>` 任意文件。fail-on-broken 已反证：把 brass 旧行放回，门禁 exit=1 且逐个点名三个幽灵变量；恢复后 PASS。**「索引是漂移磁铁」这一删除理由自此失效——索引烂了会响**
 
 ## A15. PRISM 的 Tabs hover 缺 `tint-soft` 底 ✅
 
@@ -686,6 +691,15 @@
 - **代码**：`.abyss-avatar__fallback` = 石面径向渐变底（`stone-raised → inset`）+ `glow` 字 + `text-aura`，display 体
 
 - [x] 已回写 —— §2 补「Avatar 的兜底是石面径向渐变底 + `glow` 字、叠 `text-aura`」，挂在 ScrollArea 条目之后
+
+---
+
+## C22. ABYSS 的皮文档缺「共享配方的颜色就近覆盖」行 ✅（A14 横向对拍时发现）
+
+- **位置**：`prompt/components/theme/abyss.md` —— 其余四套皮文档都有这行，abyss 没有
+- **代码**：`--abyss-title-color` 是货真价实的共享配方覆盖变量——`theme/effects.css:255,257` 模态标题配方读它（fallback `glow`），AlertDialog 按三个 tone 覆盖（blood-text / gold / glow）
+
+- [x] 已回写 —— §2 末尾补「共享配方的颜色就近覆盖：`--abyss-title-color`」，与四套同构；受 theme-doc-sync 新检查保护
 
 ---
 

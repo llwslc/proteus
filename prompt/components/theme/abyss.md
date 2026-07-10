@@ -22,4 +22,5 @@
 - ScrollArea 自绘条：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显。
 - Avatar 的兜底是石面径向渐变底 + `glow` 字、叠 `text-aura`。
 - 招牌微动：Checkbox／勾记按 `stroke-dashoffset` 一笔笔描出（inscribe）；OTP 光标闪动；Drawer 开启一记钥匙转启。
+- 共享配方的颜色就近覆盖：`--abyss-title-color`。
 

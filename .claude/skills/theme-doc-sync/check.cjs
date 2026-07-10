@@ -14,6 +14,11 @@ if (undocumented.length) {
 }
 const kits = withTokens;
 
+const readAll = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+  const p = path.join(dir, e.name);
+  return e.isDirectory() ? readAll(p) : [fs.readFileSync(p, 'utf8')];
+}).join('\n');
+
 const KEBAB = /^[a-z][a-z0-9]*(-[a-z0-9]+)+$/;
 const SINGLE = /^(base|void|stone|paper|off|track|text|ink|scrim|surface|sheen|tint|line)$/;
 const isHex = (s) => /^#[0-9a-fA-F]{3,8}$/.test(s);
@@ -42,6 +47,24 @@ for (const kit of kits) {
         findings.push(`\`${name}\`: doc ${val}, code ${def[1].trim()}`);
     }
   }
+  const skinPath = path.join(ROOT, 'prompt/components/theme', `${kit}.md`);
+  if (fs.existsSync(skinPath)) {
+    const skin = fs.readFileSync(skinPath, 'utf8');
+    const src = readAll(path.join(kitsDir, kit));
+    const cited = new Set();
+    for (const span of skin.matchAll(/`([^`]+)`/g)) {
+      let sawFull = false;
+      for (const part of span[1].split('/')) {
+        const t = part.trim();
+        const full = t.match(new RegExp(`^--${kit}-[a-z0-9-]+`));
+        if (full) { sawFull = true; if (full[0].endsWith('-color')) cited.add(full[0]); }
+        else if (sawFull && /^-[a-z][a-z0-9-]*-color$/.test(t)) cited.add(`--${kit}${t}`);
+      }
+    }
+    for (const name of cited)
+      if (!src.includes(name)) findings.push(`skin doc cites \`${name}\` — not found anywhere in src/kits/${kit}`);
+  }
+
   if (findings.length) {
     console.log(`\n=== ${kit} ===`);
     findings.forEach((f) => console.log(`  DRIFT ${f}`));
