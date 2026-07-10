@@ -48,21 +48,11 @@
   text-transform: uppercase;
   color: var(--brass-text-dim);
 }
-.brass-avatar__fallback :where(svg) {
-  font-size: var(--brass-fs-20);
-  color: var(--brass-primary);
-}
 .brass-avatar--lg .brass-avatar__fallback {
   font-size: var(--brass-fs-17);
 }
-.brass-avatar--lg .brass-avatar__fallback :where(svg) {
-  font-size: var(--brass-fs-26);
-}
 .brass-avatar--sm .brass-avatar__fallback {
   font-size: var(--brass-fs-11);
-}
-.brass-avatar--sm .brass-avatar__fallback :where(svg) {
-  font-size: var(--brass-fs-17);
 }
 
 .brass-avatar__status {

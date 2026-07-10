@@ -35,9 +35,9 @@
 |---|---|---|
 | A 改代码 | 20 | riot 10 条、brass 4 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
-| C 回写 spec | 19 | brass 6 条、riot 5 条、abyss 3 条、nova 1 条、跨 kit 4 条 |
+| C 回写 spec | 21（20 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 4 条、nova 1 条、bauhaus 1 条、跨 kit 3 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
-| E 低优先 | 7 | — |
+| E 低优先 | 10 | — |
 
 **契约级违反**：riot 占 5 条（A1–A4 + A20，另外四套在这些点上都做对了），brass 1 条（A19 骨架少一层）。
 
@@ -293,14 +293,25 @@
 - [x] 已删（用户裁决：代码为准）—— `brass.md:21` 去掉「左缘一道黄铜光束 +」。同时**回写**被删后从未记录的事实：`--brass-toast-tone` 的唯一消费者是齿轮图记的颜色，即齿轮独自承载 tone（nova 写了这条，brass 一直没写）
 - **代价（已知并接受）**：brass 从此在「左缘光束」这条语汇上与 nova / abyss 分家
 
-## A13. BRASS 的 Avatar 兜底没有齿轮 ✅
+## A13. ~~BRASS 的 Avatar 兜底没有齿轮~~ —— **代码为准，删 spec 从句** ✅
 
-- **严重度**：皮肤决定未实现
-- **位置**：`src/kits/brass/components/Avatar/Avatar.tsx:39`
-- **spec**：`components/theme/brass.md:24` ——「Avatar 的兜底是**齿轮加字母组合**」
-- **代码**：`AvatarFallback` 原样透传 children，演示页只传字母（`IB` / `GW` / `RS` / `TC`）。`Avatar.css:51` 有 `:where(svg)` 的齿轮样式，但**永远拿不到齿轮**
+- **spec（旧）**：`components/theme/brass.md:24`「Avatar 的兜底是**齿轮加字母组合**」——自 brass 设计稿 `aaf9571` 就在，早于实现
+- **`git log -S` 查证**：`gear / Gear / cog / Cog / 齿轮 / avatar__gear` 在 brass Avatar 组件的历史提交数**全为 0**；`AvatarFallback` 自诞生（`621798f`）就是纯透传，demo 只传过字母和一次空兜底。**与 A12 相反：A12 是做过被删，这条从未实现过**
+- **遗迹**：`Avatar.css` 曾有三条 `:where(svg)` 规则（sm/md/lg 三档字号 + primary 色）——为兜底里的图形写了完整样式，图形却从没放进去；五套里只有 brass 有；`kit-deadcode` 抓不到（只查类与 keyframes，不查后代元素选择器）
+- **可行性（渲染验证）**：fallback 是单槽 flex 居中，字母（`fs-13`/dim）与 svg（`fs-20`/primary）是**互斥两种填法**而非叠加；「只放齿轮」→ 四个头像一模一样，头像失去识别功能；「齿轮 + 字母」→ sm 32px 里被 `overflow: hidden` 裁掉。spec 字面在两个方向上都走不通
+- **横向对拍**（用户要求先查五套再定）：
 
-- [ ] 已修
+| kit | spec 兜底 | 代码 | 一致? |
+|---|---|---|---|
+| nova | 深表面渐变底 + `primary` 字 | 渐变底 + primary 字 | ✅ |
+| abyss | **只字未提** | 石面径向渐变 + `glow` 字 + `text-aura` | ⬜ → C21 |
+| brass | **齿轮加字母组合** | mono 字母 + dim，凹陷圆底，无齿轮 | ❌ 本条 |
+| bauhaus | Archivo Black 字母压实色块、方形裁剪 | 逐字吻合 | ✅ |
+| riot | Anton 字母压荧光块、方形硬裁 | 逐字吻合 | ✅ |
+
+  三套写了兜底的兄弟全是「字体 + 底」句式、全是字母；brass 是唯一承诺图标的，且从未兑现——**不是 brass 落后于 spec，是 brass 的 spec 落单了**
+
+- [x] 已修（用户裁决：代码为准，一并补齐）—— ① `brass.md:24` 改为同构句式「Avatar 的兜底是 mono 字母压在凹陷黄铜底上、圆形裁剪」（照 `font-mono` / `surface-inset` + `bevel-inset` / `border-radius: 50%` 实际代码写）；② 删掉三条 `:where(svg)` 遗迹规则（实测页面上含 svg 的兜底 = 0，删除像素中性）；③ 连锁：`--brass-fs-26` 的唯一消费者就是被删的 lg 齿轮档，`kit-lint` 立即报死 token —— 一并删除，`theme/brass.md:25` 字号阶梯 7 档改 6 档；④ abyss 缺口见 C21
 
 ## A14. BRASS 承诺的三个共享配方覆盖变量一个都不存在 ✅
 
@@ -666,6 +677,15 @@
 - **风险**：残差已吃掉 1.6px 容差的 2/3。而 C13 说 tilt 本该是 `±2°–6°`（现仅 ±1.3°）——一旦改回去，门禁必然误报，下一个人又会去加魔法数
 
 - [x] 已修 —— 删掉两行魔法数；`kit-glyph-center` 改为在**标题自己的坐标系**里量：沿祖先链累乘 transform 得到 θ，把偏移向量反旋 θ 再取 y 分量。riot 七条全部降到 `0.0px`。已 fail-on-broken 反证：把 `top: 2px` 加回 accordion，门禁 exit=1 且精确点名那 5 条
+
+---
+
+## C21. ABYSS 的皮文档没写 Avatar 兜底 ✅（A13 横向对拍时发现）
+
+- **位置**：`prompt/components/theme/abyss.md` —— `Avatar` 出现 **0 次**；其余四套皮文档都有兜底描述
+- **代码**：`.abyss-avatar__fallback` = 石面径向渐变底（`stone-raised → inset`）+ `glow` 字 + `text-aura`，display 体
+
+- [x] 已回写 —— §2 补「Avatar 的兜底是石面径向渐变底 + `glow` 字、叠 `text-aura`」，挂在 ScrollArea 条目之后
 
 ---
 
