@@ -121,6 +121,16 @@ for p in sorted(pathlib.Path("prompt/components/theme").glob("*.md")):
         if i < last:
             print(f"  {p}:{m.group(1)} 排在 {lastname} 之后，违反 §6 顺序"); bad = 1
         last, lastname = i, m.group(1)
+for p in sorted(pathlib.Path("prompt/components").rglob("*.md")):
+    text = p.read_text(); lines = text.split("\n")
+    for n, line in enumerate(lines):
+        if not line.startswith("- "): continue
+        for m in re.finditer(r"(?:同|复用)\s*([A-Z][A-Za-z/]+)", line):
+            name = m.group(1)
+            if name not in idx: continue
+            earlier = "\n".join(lines[:n])
+            if name not in earlier and name.rstrip("s") not in earlier:
+                print(f"  {p}:{n+1} 引用「同/复用 {name}」但 {name} 此前未定义（向前引用）"); bad = 1
 sys.exit(bad)
 PYEOF
 ) && ORDER_OK=1 || ORDER_OK=0
