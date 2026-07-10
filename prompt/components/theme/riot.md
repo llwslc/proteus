@@ -20,17 +20,17 @@
 - ToggleGroup：不画外箱体——chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
 - Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
 - Select：列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。
-- Combobox：列表记号笔与选中同 Select。
-- Autocomplete：列表记号笔同 Select。
+- Combobox：列表项皮肤同 Select。
+- Autocomplete：列表项的记号笔同 Select。
 - Progress：右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示，条填充流动。
 - Meter：轨与平涂同 Progress，按 `tone` 重染，轨上压每 20% 一道 `stroke-hair` 的 `ink` 刻度。
 - Tabs：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，hover 用 `tint` wash；底轨是过 `#riot-torn` 的 `ink` 手撕条，`stroke-bold` 记号笔横杠随激活项走——同过撕纹、随激活 chip 同角微旋贴其斜底边。
 - Tooltip：平贴的纸片小剪条——纸面 + `ink` 框，胶带连接件（`.riot-connector`）钉向触发器，正文打字机体。
-- Popover：纸片小剪条同 Tooltip。
-- PreviewCard：纸片小剪条同 Tooltip。
-- Menu：列表记号笔同 Select；危险项高亮时记号笔转 `danger` 红、字与图标转黑（换色走 `--riot-marker-color`）。
+- Popover：皮肤同 Tooltip。
+- PreviewCard：皮肤同 Tooltip。
+- Menu：列表项的记号笔同 Select；危险项高亮时记号笔转 `danger` 红、字与图标转黑（换色走 `--riot-marker-color`）。
 - Menubar：chip 同 ToggleGroup。
-- NavigationMenu：触发器 Anton 大写、hover 与打开转荧光 `primary`、chevron 随开合翻转；下拉链接的列表记号笔同 Select。
+- NavigationMenu：触发器 Anton 大写、hover 与打开转荧光 `primary`、chevron 随开合翻转；下拉链接的记号笔同 Select。
 - Dialog 撕边纸面、顶边贴胶带。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
