@@ -48,5 +48,6 @@
 ## 5. 动效个性
 
 - 时长 `dur .26s / -slow .5s`，另有 `dur-sweep 1.5s`、`dur-breath 6s`、`dur-spin 30s`；缓动 `ease (0.32, 0.72, 0.2, 1)` 干脆的机械落定，`ease-detent (0.5, 1.4, 0.5, 1)` 带微过冲、给落位回弹。
+- 按压：下沉 `translateY(1px)`。
 - 共享动效（`effects.css`）：`brass-breathe` scaleX + 透明度呼吸脉动、`brass-rotate` 360° 匀速自转、`.brass-connector` 浮层连接件；浮层开合走 `.brass-pop`。
 

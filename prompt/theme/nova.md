@@ -46,5 +46,6 @@
 ## 5. 动效个性
 
 - 时长 `dur .22s / -slow .45s`，扫掠类另有 `dur-sweep 1.4s`、`dur-stripe .9s`；缓动 `ease (0.2, 0.8, 0.2, 1)` 快进缓出、干脆，`ease-soft (0.38, 0.1, 0.2, 1)` 给大位移起步缓，`ease-out (0.16, 1, 0.3, 1)` 给浮层。
+- 按压：微下沉 `translateY(1px)`。
 - 共享动效（`effects.css`）：`.nova-scan` 扫描光带靠 scaleX 来回呼吸、`.nova-connector` 浮层连接件随开合淡入淡出、`.nova-anim-pop` 浮层进出场（translateY + scale 微缩）。
 

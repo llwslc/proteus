@@ -47,4 +47,5 @@
 ## 5. 动效个性
 
 - 时长 `dur .1s / -slow .26s`、`dur-sweep 1.2s`；缓动 `ease steps(3, jump-none) 咔哒硬切`，`ease-out (0.2, 0, 0, 1)` 给块面。
+- 按压：甩正砸下——旋角归零、`translate(4px, 5px)`，硬影收到 `1px`；`:active` 透明光环外扩 `16px` 兜住命中盒。
 - 共享动效（`effects.css`）：`.riot-jitter` 微抖动——位移与旋转的小幅步进，招牌与标记就近引用；`.riot-connector` 浮层连接件随弹层淡入淡出；浮层开合走 `.riot-pop`；无辉光、动画不缓入。

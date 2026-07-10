@@ -47,5 +47,6 @@
 ## 5. 动效个性
 
 - 时长 `dur .16s / -slow .34s`、`dur-sweep 1.5s`；缓动 `ease (0.2, 0, 0, 1)` 硬落定，`ease-out (0.16, 1, 0.3, 1)` 给块面滑移这类大位移。
+- 按压：下沉 `translateY(1px)`，硬影收没、贴地。
 - 共享动效（`effects.css`）：`.bauhaus-connector` 浮层连接件随弹层淡入淡出；浮层开合走 `.bauhaus-pop`。
 
