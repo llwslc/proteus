@@ -33,7 +33,7 @@
 
 | 类 | 条数 | 集中在 |
 |---|---|---|
-| A 改代码 | 20 | riot 10 条、brass 4 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
+| A 改代码 | 21 | riot 10 条、brass 5 条、bauhaus 3 条、abyss 2 条、跨 kit 1 条 |
 | B 改 spec | 4 | 全部 5 套一致 |
 | C 回写 spec | 22（21 节，C1+C2 合并） | brass 6 条、riot 6 条、abyss 5 条、nova 1 条、bauhaus 1 条、跨 kit 3 条 |
 | D spec 内部打架 | 2 | riot 1 条、bauhaus 1 条 |
@@ -418,6 +418,19 @@
 - **过程教训**：我一度把 brass 那条 `overflow-x: visible` 判为「冗余」并删掉 —— 那是条**承重规则**，删掉即回归。是 390px 实测（而非门禁）把它抓了回来
 
 - [x] 已修 —— 不给 Toolbar 打补丁，改在共享配方里用 base + modifier 表达策略：`theme/effects.css` 的手机段加 `.<kit>-seg--wrap`（`overflow: visible`，brass 另带 `flex-wrap: wrap`），Toolbar Root 挂上该修饰符。三套 `Toolbar.css` 的 `@media` 全部删除 —— 于是**五套 Toolbar 都不再有 `@media`**，`kit-parity` 的 responsive parity 自然干净。390px 实测：五套 `overflow-x`/`overflow-y` 均为 `visible`、均换行（2–3 行）、均无横滚
+
+---
+
+## A21. BRASS 的 AlertDialog 标题重染用后代选择器直染，绕过输入变量 ✅（A14 调查中点名，用户抓住漏立案才补）
+
+- **严重度**：契约违反（§4.3 机制）
+- **位置**：`src/kits/brass/components/AlertDialog/AlertDialog.css`（旧 `:37`）
+- **spec**：`components.md §4.3` ——「各 kit 的颜色差异用 `--<kit>-*-color` **就近覆盖**」；后代选择器伸进配方内部直染正是它要禁的写法（耦合配方内部结构 + 权重仗种子，A6/A7 的病根同源）
+- **代码（旧）**：`.brass-alert .brass-modal-title { color: var(--brass-tone) }` —— 同文件里图记走的是输入变量（`--brass-marker-color`），标题却直染；nova / abyss 的标题重染都走 `--<kit>-title-color` 输入变量
+- **过程记录**：A14 调查里我两次点名这处（「恰是就近覆盖要禁的写法」「机制分岔的地方」），但只当旁白说完就丢——没立案、没修。用户抓住：「不是你之前还抓住一个实现错误的什么，这次没改代码啊」。发现只写在聊天里就会蒸发，审计文档存在的意义正是接住它们
+- **修法里的一个雷**：brass 标题挂着 `.brass-h2`（typography 层，声明 `color: text-bright`），且 typography 在 effects **之后**加载——给配方裸加 (0,1,0) 的 color 会打顺序仗。nova 没这个问题是因为它的标题**不挂** h2、配方自含全套字型。解法：把 var 读点放进 effects.css **已有的** `.brass-h2.brass-modal-title` 复合规则（0,2,0），fallback 取 `text-bright`（= h2 原色），顺序无关且静止态像素恒等
+
+- [x] 已修 —— ① `effects.css` 的 `.brass-h2.brass-modal-title` 加 `color: var(--brass-title-color, var(--brass-text-bright))`；② `.brass-alert` 根上设 `--brass-title-color: var(--brass-tone)`，删掉后代直染规则；③ `brass.md` 索引行随之长真的一项：`--brass-marker-color / -title-color`（theme-doc-sync 新检查顺带锻炼了斜杠缩写展开）。实测五场景标题色全部命中：alert danger/warning/primary = 各自 tone 解析值，dialog / drawer = `text-bright` 不变
 
 ---
 

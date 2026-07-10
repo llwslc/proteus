@@ -23,5 +23,5 @@
 - ScrollArea 自绘条：thumb 是圆角滚花黄铜（`knurl` + `primary → primary-deep` 渐变 + `bevel`），悬停加 `glow-trigger`；轨 `track` + `bevel-inset` 凹槽；panel 型悬停显、popup 型常显。
 - 招牌 SVG：Checkbox 是黄铜板上刻印的对勾，Radio 是凹陷的黄铜孔眼、选中时亮起琥珀芯，Avatar 的兜底是 mono 字母压在凹陷黄铜底上、圆形裁剪。
 - 招牌微动：Progress 灯丝流动；Badge 点用 `brass-breathe` 琥珀灯呼吸；Checkbox 盖印（`brass-stamp`）；OTP 输入往复 pulse；Dialog 齿轮图记 `brass-rotate` 自转；旋钮、阀门交互带 `ease-detent` 回弹。
-- 共享配方的颜色就近覆盖：`--brass-marker-color`。
+- 共享配方的颜色就近覆盖：`--brass-marker-color / -title-color`。
 

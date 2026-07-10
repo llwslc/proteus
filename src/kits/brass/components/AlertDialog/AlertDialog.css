@@ -2,6 +2,7 @@
   width: min(var(--brass-alert-w), 100%);
   --brass-tone: var(--brass-danger);
   --brass-tone-deep: var(--brass-danger-deep);
+  --brass-title-color: var(--brass-tone);
   --brass-plate-bezel: linear-gradient(
     150deg,
     var(--brass-tone-deep),
@@ -33,7 +34,4 @@
 
 .brass-alert .brass-marker {
   --brass-marker-color: var(--brass-tone);
-}
-.brass-alert .brass-modal-title {
-  color: var(--brass-tone);
 }

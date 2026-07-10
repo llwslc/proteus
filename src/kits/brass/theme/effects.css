@@ -383,6 +383,7 @@
 }
 .brass-h2.brass-modal-title {
   margin: 0 var(--brass-space-9) var(--brass-space-2) 0;
+  color: var(--brass-title-color, var(--brass-text-bright));
 }
 .brass-text.brass-modal-desc {
   margin: 0 0 var(--brass-space-4);
