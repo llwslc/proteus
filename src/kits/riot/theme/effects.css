@@ -168,9 +168,6 @@
   outline: none;
   transform: none;
 }
-.riot-menu-tier {
-  z-index: var(--riot-z-menu);
-}
 .riot-menu-pane {
   min-width: var(--riot-popup-w);
 }
@@ -332,6 +329,9 @@
 
 .riot-lift {
   z-index: var(--riot-z-dropdown);
+}
+.riot-menu-tier {
+  z-index: var(--riot-z-menu);
 }
 .riot-lift--sm {
   z-index: var(--riot-z-tooltip);

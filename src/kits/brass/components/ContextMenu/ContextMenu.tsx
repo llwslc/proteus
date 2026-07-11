@@ -17,7 +17,7 @@ export function ContextMenu({ trigger, children, className }: ContextMenuProps) 
         {trigger}
       </BaseContextMenu.Trigger>
       <BaseContextMenu.Portal>
-        <BaseContextMenu.Positioner className="brass-lift">
+        <BaseContextMenu.Positioner className="brass-lift brass-menu-tier">
           <BaseContextMenu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseContextMenu.Popup>

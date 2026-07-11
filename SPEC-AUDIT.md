@@ -373,7 +373,7 @@
 - **nova/abyss separator**：Menu/Toolbar 两处按类借用 ⇒ 借方自立（`menu__separator`/`toolbar__sep` 各自吸收 base+modifier+compound 三层声明并成一条），`{k}-separator` 本体规则搬回 `Separator.css`。
 - **abyss switch 眼睛（6 条）、brass tabs 轨（2 条）**：只有本组件写 ⇒ 纯搬家回 `Switch.css`/`Tabs.css`。
 
-`theme-block-exempt.txt` 清零（只准减不准加），kit-structure 空豁免直接绿。z 分层房型澄清：`lift` 原语兜 `z-dropdown`，要更高层的在自己 positioner 类上覆盖（menu-tier 即家族版）——brass 的菜单没挂 z-menu（全家唯一），潜在层级分歧、未动，另行裁决。
+`theme-block-exempt.txt` 清零（只准减不准加），kit-structure 空豁免直接绿。z 分层房型澄清：`lift` 原语兜 `z-dropdown`，要更高层的在自己 positioner 类上覆盖（menu-tier 即家族版）。**用户裁决「brass 和其他对齐」后按应用值实测，分歧比类名清点显示的大**：brass 没挂 tier（1200），bauhaus/riot 挂了 tier 但 `.{kit}-lift` 在 effects.css 里定义更靠后、同权重把 `z-menu` 压掉（应用值也是 1200）——真在 1250 的只有 nova/abyss。修齐：brass 补 `brass-menu-tier`（lift 块后定义＋四个 positioner 挂类），bauhaus/riot 的 tier 块移到 lift 之后让它赢；五套应用值全 1250。kit-equality 新增「菜单开着时 positioner 应用 z 各 kit 同值」检查（修前红 1250/1250/1200/1200/1200、修后绿）——类名在场≠值在生效，量应用值。
 
 ## A18. ABYSS 输入框聚焦档位低于 spec ✅
 

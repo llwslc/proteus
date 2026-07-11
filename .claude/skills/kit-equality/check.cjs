@@ -50,7 +50,7 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   await page.goto(URL, { waitUntil: 'networkidle' });
   const kits = await G.kitsOf(page);
 
-  const data = {}, sigs = {}, rowsByKit = {};
+  const data = {}, sigs = {}, rowsByKit = {}, menuZByKit = {};
   for (const kit of kits) {
     await page.evaluate((k) => localStorage.setItem('kit', k), kit);
     await page.reload({ waitUntil: 'networkidle' });
@@ -71,6 +71,19 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
       probe.remove();
       return rowH > 0 ? +(popupH / rowH).toFixed(3) : null;
     }, kit);
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(200);
+
+    await page.evaluate(() => document.getElementById('menu').scrollIntoView({ block: 'center' }));
+    await page.waitForTimeout(150);
+    await page.click('#menu button');
+    await page.waitForSelector('[role=menu]', { state: 'visible', timeout: 2500 }).catch(() => {});
+    await page.waitForTimeout(250);
+    menuZByKit[kit] = await page.evaluate(() => {
+      let el = document.querySelector('[role=menu]');
+      while (el) { const z = getComputedStyle(el).zIndex; if (z !== 'auto') return z; el = el.parentElement; }
+      return null;
+    });
     await page.keyboard.press('Escape');
     await page.waitForTimeout(200);
 
@@ -119,8 +132,17 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   }
   console.log(rLines.length ? rLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${rowsByKit[k]}`).join(' ')})`);
 
+  console.log('\n## 菜单弹层的应用层级 (z-menu 挂在 positioner 上、各 kit 同值)');
+  const zLines = [];
+  for (const kit of kits) if (menuZByKit[kit] == null) { fail = 1; zLines.push(`  FAIL ${kit} — menu did not open / no positioned ancestor`); }
+  if (new Set(kits.map((k) => menuZByKit[k]).filter(Boolean)).size > 1) {
+    fail = 1;
+    zLines.push(`  FAIL applied menu z diverges: ${kits.map((k) => `${k}:${menuZByKit[k]}`).join(' ')} — the §3 ladder pins menu above dropdown; apply z-menu on the menu positioner (menu-tier)`);
+  }
+  console.log(zLines.length ? zLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${menuZByKit[k]}`).join(' ')})`);
+
   console.log(`\nRESULT: ${fail
     ? 'FAIL — a pinned cross-kit value diverged (各 kit 同值 in components.md/app.md, the 面板清单, or the 7-row popup height). Write the same literal / manifest in every kit.'
-    : 'PASS (cross-kit numbers identical + every sidebar matches the 面板清单 + every popup shows 7 rows)'}`);
+    : 'PASS (cross-kit numbers identical + every sidebar matches the 面板清单 + every popup shows 7 rows + menu z applied uniformly)'}`);
   process.exit(fail);
 })();

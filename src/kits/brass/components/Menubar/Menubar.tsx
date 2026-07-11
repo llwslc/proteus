@@ -22,7 +22,7 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
     <Menu.Root>
       <Menu.Trigger className="brass-seg__btn">{label}</Menu.Trigger>
       <Menu.Portal>
-        <Menu.Positioner className="brass-lift" side="bottom" align="start" sideOffset={6}>
+        <Menu.Positioner className="brass-lift brass-menu-tier" side="bottom" align="start" sideOffset={6}>
           <Menu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>

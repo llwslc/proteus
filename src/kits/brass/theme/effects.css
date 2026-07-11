@@ -37,6 +37,9 @@
   z-index: var(--brass-z-dropdown);
   filter: var(--brass-overlay-shadow, var(--brass-shadow-popup)) var(--brass-overlay-glow, var(--brass-glow-popup));
 }
+.brass-menu-tier {
+  z-index: var(--brass-z-menu);
+}
 .brass-lift--sm {
   z-index: var(--brass-z-tooltip);
   --brass-overlay-shadow: var(--brass-shadow-pop-sm);
