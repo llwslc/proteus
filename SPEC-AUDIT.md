@@ -384,7 +384,7 @@
 - **对照**：同套 Button / Checkbox / Radio 确实是实色 `glow` + `aura`
 - **备注**：「输入框同此处理」指代不明（同前一分句还是同 Switch 例外？），裁决前先把这句话说清楚
 
-- [ ] 已修
+- [x] 已修（文，用户裁决按建议改）—— 代码是对的：安静档是**成体系**的场形家族处理（Input/Select/OTP 格 `glow-a55` 描框；六员全走 `glow-focus` 级辉光、OTP 是 `glow-soft` 变体），从 abyss 初版（0a27265）就在、熬过整套重构（b81691a）；实色版在 Input 上零次存在（`git log -S` 双向）。真正实现 spec 主句的是点亮类（Checkbox/Radio/主 Button）。悬空从句改写成两档制写实：「场形控件（Input、NumberField、Select、Combobox、Autocomplete）安静一档——辉光走 `glow-focus`、描框至多 `glow-a55` 不上实色，OTP 格是同档的 `glow-soft` 变体」。三态截图（现状/强制实色预览/Checkbox 参照）呈用户后裁定。
 
 ## A19. BRASS 的 NavigationMenu 少了 `__grid` 这一层 ✅
 
