@@ -47,16 +47,19 @@ async function overlayGaps(page, kit) {
   const out = {};
   const rect = (h) => h.evaluate((el) => { const r = el.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right }; });
   const step = async (name, panel, openFn, popupSel) => {
-    try {
-      await page.evaluate((id) => document.getElementById(id).scrollIntoView({ block: 'center' }), panel);
-      await page.waitForTimeout(140);
-      const trig = await openFn();
-      await page.waitForTimeout(420);
-      const pop = await page.waitForSelector(popupSel, { state: 'visible', timeout: 2500 });
-      out[name] = orthoGap(await rect(trig), await rect(pop));
-    } catch { out[name] = null; }
-    await page.keyboard.press('Escape').catch(() => {});
-    await page.mouse.move(5, 5); await page.waitForTimeout(220);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        await page.evaluate((id) => document.getElementById(id).scrollIntoView({ block: 'center' }), panel);
+        await page.waitForTimeout(140);
+        const trig = await openFn();
+        await page.waitForTimeout(420);
+        const pop = await page.waitForSelector(popupSel, { state: 'visible', timeout: 2500 });
+        out[name] = orthoGap(await rect(trig), await rect(pop));
+      } catch { out[name] = null; }
+      await page.keyboard.press('Escape').catch(() => {});
+      await page.mouse.move(5, 5); await page.waitForTimeout(220);
+      if (out[name] !== null && out[name] !== -999) break;
+    }
   };
   await step('tooltip', 'tooltip', async () => { const b = await page.$('#tooltip button'); await b.focus(); return b; }, `.${kit}-tooltip__popup, .${kit}-tooltip`);
   await step('popover', 'popover', async () => { const b = await page.$('#popover button'); await b.click(); return b; }, `.${kit}-popover__popup, .${kit}-popover`);
