@@ -553,7 +553,7 @@
 - **判断**：代码是对的——alert 的语义就是强制二选一，不该给用户一个「点叉逃走」的出口
 - **建议**：把 Close 从共用结构行里拆出去，只挂 Dialog / Drawer
 
-- [x] 已改（文）——用户追问「这不是 Base UI 定的么」，查实：**正是**——Base UI 的 Dialog.Root 有 `dismissible`、AlertDialog.Root 连这个 prop 都不提供（ARIA alertdialog 语义：必须显式选择，无逃生口），五套从初版就照此实现、右上 X 在 AlertDialog 上零次存在（git -S）。「出现」的原因是三件套共用一个结构合并句，「Close 在右上」对两件真、对第三件假——合并句各半各真的老病。拆句：结构行去掉 Close，尾接「Dialog、Drawer 另有 `Close` 在右上，AlertDialog 不设」。
+- [x] 已改（文）——用户追问「这不是 Base UI 定的么」，查实：**正是**——Base UI 的 Dialog.Root 有 `disablePointerDismissal` 与 `modal` 两个旋钮、AlertDialog.Root 一个都不提供（d.ts 逐 props diff 证实；ARIA alertdialog 语义：必须显式选择，无逃生口。首版账里我写成 `dismissible`——训练记忆里的旧名，grep 0 命中仍照写，已改正），五套从初版就照此实现、右上 X 在 AlertDialog 上零次存在（git -S）。「出现」的原因是三件套共用一个结构合并句，「Close 在右上」对两件真、对第三件假——合并句各半各真的老病。拆句：结构行去掉 Close，尾接「Dialog、Drawer 另有 `Close` 在右上，AlertDialog 不设」。
 
 ## B4. Input 的图标不是「绝对定位」 ✅
 
