@@ -15,7 +15,8 @@
 }
 .bauhaus-toolbar__sep {
   flex: 0 0 var(--bauhaus-stroke);
-  align-self: stretch;
+  align-self: center;
+  height: 34px;
   margin: 0 var(--bauhaus-space-1);
   background: var(--bauhaus-ink);
 }

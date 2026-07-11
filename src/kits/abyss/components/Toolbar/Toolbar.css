@@ -65,8 +65,7 @@
 }
 
 .abyss-toolbar__sep.abyss-separator {
-  align-self: stretch;
-  height: auto;
-  min-height: var(--abyss-toolbar-sep-min-h);
+  align-self: center;
+  height: 26px;
   margin: 4px var(--abyss-space-1);
 }

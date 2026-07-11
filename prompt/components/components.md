@@ -154,7 +154,7 @@
 
 - **Avatar**：props `size`（`sm·md·lg`，默认 md）`·status`（`online·busy·away·offline`）；结构 `Root > frame(裁剪) > [Image + Fallback] + Status 在右下`。
 - **Badge**：props `tone`（`primary·secondary·success·warning·danger·neutral`，默认 primary）`·dot`；结构 `[dot? + 文字]`，纯样式件。
-- **Toolbar**：分段条家族、roving 焦点；`ToolbarButton` props `active·disabled`，可以用 `render` 把别的控件托管成 toolbar 项（如把 `ToggleGroup` 里的 `ToolbarButton` 写成 `render={<Toggle/>}`）；另有 `ToolbarLink`；手机端换行不横滚。
+- **Toolbar**：分段条家族、roving 焦点；`ToolbarButton` props `active·disabled`，可以用 `render` 把别的控件托管成 toolbar 项（如把 `ToggleGroup` 里的 `ToolbarButton` 写成 `render={<Toggle/>}`）；另有 `ToolbarLink`；竖分隔**定高**，不随换行后所在行的行高伸缩；手机端换行不横滚。
 - **ScrollArea**：结构 `Root > Viewport + Scrollbar > Thumb`；**高度上限（max-height）挂在 Viewport 上，不挂 Root**。`variant`（`panel·popup`）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体来包 children、给弹层用（见上文「锚定弹层的滚动」「滚动条」）。
 - **Separator**：props `orientation`（`horizontal·vertical`）`·label`；无标签时就是 BaseSeparator，有标签时结构是 `线 + 文字/标记 + 线`；放在会收缩的 flex 里要加 `flex:0 0`。
 - **Panel**：props `title·meta` + 主题专属的装饰开关；结构 `外框? > section > header[marker 在左? + title + meta 在右] + body + footer?`，header 为空时（`:empty`）隐藏。

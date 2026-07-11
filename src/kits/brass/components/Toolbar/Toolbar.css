@@ -12,8 +12,9 @@
 
 .brass-toolbar__sep {
   flex: 0 0 1px;
-  align-self: stretch;
+  align-self: center;
   width: 1px;
+  height: 24px;
   margin: var(--brass-space-1) var(--brass-space-1);
   background: var(--brass-line);
 }

@@ -89,7 +89,7 @@
 }
 
 .nova-toolbar__sep.nova-separator {
-  align-self: stretch;
-  height: auto;
+  align-self: center;
+  height: 26px;
   margin: 3px var(--nova-space-1);
 }

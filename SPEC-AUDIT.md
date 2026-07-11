@@ -345,7 +345,7 @@
 - **代码**：`.riot-separator--vertical { width: var(--riot-stroke); align-self: stretch; }` —— 无 `flex: 0 0`
 - **影响**：演示页把竖向 separator 摆在 `.riot-row`（flex）里，窄容器下会被压扁
 
-- [x] 已修（码）—— `.riot-separator--vertical` 补 `flex: 0 0 var(--riot-stroke)`，浏览器实测 demo 两处 `.riot-row` 里计算值 `0 0 2.5px`、不再可压。同族清点：nova/abyss 竖向块本有 `flex: 0 0 1px`，brass/bauhaus 的 toolbar `__sep` 有守卫，nova/abyss 的 toolbar 分隔是 Separator 组件复合（守卫继承）——唯 riot 自绘 `.riot-toolbar__sep` 同缺，一并补上。
+- [x] 已修（码）—— `.riot-separator--vertical` 补 `flex: 0 0 var(--riot-stroke)`，浏览器实测 demo 两处 `.riot-row` 里计算值 `0 0 2.5px`、不再可压；riot 自绘 `.riot-toolbar__sep` 同缺主轴守卫，一并补。**用户追问揪出交叉轴同族病**（首轮清点只量了主轴）：toolbar 竖分隔 `align-self: stretch` 的高度跟着换行后所在行走，断行点把 sep 和矮个子 link 分到同一行时缩水——宽度扫描（1440→360 步 20）实测 nova 26→16、abyss 26→18（还垫了 `min-height` 18 的地板假兜底，地板不是锁）、brass 24→12、bauhaus 34→19，riot 定高 20 免疫。四套统一改定高＋`align-self: center`（26/26/24/34 钉今日桌面像素，单点值写立即数），abyss 死 token `-toolbar-sep-min-h` 摘除；全宽度重扫五套恒定。spec 回写 §6.1 Toolbar：「竖分隔**定高**，不随换行后所在行的行高伸缩」。
 
 ## A17. RIOT 把 `.riot-input__icon` 定义在 theme 层，并让别的组件借用 ✅
 
