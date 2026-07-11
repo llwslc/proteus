@@ -508,6 +508,42 @@
 
 - [ ] 已改
 
+### B 类追加：包装层硬编码／收窄全量清点（2026-07-11，用户问「还有哪些值是控件写了默认值、或参数小于 Base UI」）
+
+扫描器过五套全部 TSX 的 Base 原语字面量属性＋逐控件核 props 面。**输入系全部 `extends` Base UI 完整 props＋`{...props}` 全量转发，无收窄**；spec 已钉的硬编码（Tooltip `closeOnClick=false`、Select `alignItemWithTrigger=false`、sideOffset 族、菜单/NavMenu 的 `side/align`）全部对上。存量四条：
+
+## B5. NavigationMenu `collisionPadding={16}` 五套同值、spec 未钉 ✅
+
+- 五套一字不差,其余弹层全吃库默认 `5`(NavMenu 下拉是两列宽板,碰撞余量更大合理)
+- **建议**:按「各 kit 同值数字钉进 spec」规则,写进 §6.1 NavigationMenu 条目
+
+- [ ] 已改
+
+## B6. 子菜单 `side` 三种写法混用 ✅
+
+- nova/abyss/riot 写 `side="right"`(物理),bauhaus 写 `side="inline-end"`(逻辑,恰是库默认拼法),brass 不写(落库默认 `inline-end`)
+- LTR 下渲染全同;kit-structure §5 组成对齐没查 side 属性(盲区)
+- **建议**:统一多数派 `right`,或全删落库默认;顺手给 §5 补 side/align 检查
+
+- [ ] 已改
+
+## B7. present-vs-absent 两处(A22 同病) ✅
+
+- bauhaus 的 Combobox/Autocomplete 多写 `side="bottom" align="start"`——`align` 库默认是 `center`,今日弹层宽=锚宽(`--anchor-width`)差异不可见,属**潜伏分歧**;其余四套不写
+- bauhaus 的 Menubar 反而少写 `side="bottom"`(值=库默认,纯在场性)
+- **建议**:各处对齐多数派(CB/AC 删 bauhaus 两属性;Menubar 给 bauhaus 补 side)
+
+- [ ] 已改
+
+## B8. `side` 类型收窄:Tooltip/Popover/PreviewCard 少两档 ✅
+
+- 我们的 `side?: "top"|"bottom"|"left"|"right"`;Base UI `Side` 另有 `inline-start`/`inline-end`(RTL 逻辑向)
+- **建议**:保持收窄(RTL 轴整体未做、放开=未测表面);若按 B2「忠实转发」精神也可照抄全集
+
+- [ ] 已裁
+
+> 查过判合法、不入账:riot 模态(Dialog/Drawer)Close 用 `variant="icon"`(带框)、其余四套 `icon-ghost`——spec 三件套行只说「复用 Button 的变体」未钉哪个,且 riot 自己的 Popover close 仍守 spec 钉死的 icon-ghost,是有意的模态专属选择。Toast 内部按钮变体的跨套差异同理(内部组合、皮肤声音)。
+
 ## B3. AlertDialog 没有右上角 Close ✅
 
 - **位置**：`prompt/components/components.md:147`
