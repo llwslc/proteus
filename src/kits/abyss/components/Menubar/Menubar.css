@@ -26,3 +26,11 @@
   height: var(--abyss-menubar-trigger-h);
   min-width: var(--abyss-menubar-trigger-min-w);
 }
+
+@media (max-width: 768px) {
+  .abyss-menubar {
+    max-width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}

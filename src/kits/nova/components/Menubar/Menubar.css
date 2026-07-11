@@ -53,3 +53,11 @@
   background: var(--nova-primary);
   color: var(--nova-on-primary);
 }
+
+@media (max-width: 768px) {
+  .nova-menubar {
+    max-width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}

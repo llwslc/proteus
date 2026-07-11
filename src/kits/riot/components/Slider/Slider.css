@@ -15,7 +15,8 @@
   color: var(--riot-paper);
   font-family: var(--riot-font-mono);
   font-size: var(--riot-fs-11);
-  transform: rotate(2deg);
+  --riot-value-tilt: 2deg;
+  transform: rotate(var(--riot-value-tilt));
 }
 .riot-slider__control {
   display: flex;
@@ -51,7 +52,8 @@
   background: var(--riot-secondary);
   border: var(--riot-stroke-bold) solid var(--riot-ink);
   box-shadow: var(--riot-shadow-sm);
-  transform: rotate(-6deg);
+  --riot-thumb-tilt: -6deg;
+  transform: rotate(var(--riot-thumb-tilt));
 }
 .riot-slider__thumb:focus-visible {
   outline: var(--riot-stroke) solid var(--riot-primary);

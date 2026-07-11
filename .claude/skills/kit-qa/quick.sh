@@ -26,7 +26,7 @@ for g in $RUN; do
   case $g in
     tsc) npx tsc --noEmit >/tmp/kq-tsc.log 2>&1; rc=$?;;
     prompt-lint) bash .claude/skills/prompt-lint/check.sh >/tmp/kq-$g.log 2>&1; rc=$?;;
-    kit-lint) for k in $(ls src/kits); do node .claude/skills/kit-lint/check.cjs "$k" >>/tmp/kq-$g.log 2>&1 || rc=1; done; rc=${rc:-0};;
+    kit-lint) : >/tmp/kq-$g.log; for k in src/kits/*/; do k=$(basename "$k"); bash .claude/skills/kit-lint/check.sh "$k" >>/tmp/kq-$g.log 2>&1 || rc=1; done; rc=${rc:-0};;
     kit-visual) GATE_PORT=${GATE_PORT:-5273} node .claude/skills/$g/check.cjs >/tmp/kq-$g.log 2>&1; rc=$?;;
     fingerprint) GATE_PORT=${GATE_PORT:-5273} node .claude/skills/kit-qa/fingerprint.cjs >/tmp/kq-$g.log 2>&1; rc=$?; [ $rc != 0 ] && sed -n '1,12p' /tmp/kq-$g.log;;
     *) node .claude/skills/$g/check.cjs >/tmp/kq-$g.log 2>&1; rc=$?;;

@@ -8,7 +8,8 @@
 .riot-alert__popup[data-starting-style],
 .riot-alert__popup[data-ending-style] {
   opacity: 0;
-  transform: translateY(-14px) rotate(1.2deg);
+  --riot-alert-exit-tilt: 1.2deg;
+  transform: translateY(-14px) rotate(var(--riot-alert-exit-tilt));
 }
 .riot-alert__surface {
   position: relative;

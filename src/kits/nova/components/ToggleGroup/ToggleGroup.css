@@ -52,3 +52,11 @@
 .nova-togglegroup__btn[data-disabled] {
   opacity: var(--nova-disabled-opacity);
 }
+
+@media (max-width: 768px) {
+  .nova-togglegroup {
+    max-width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}

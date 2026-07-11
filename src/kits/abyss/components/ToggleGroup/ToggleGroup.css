@@ -26,3 +26,11 @@
   height: var(--abyss-togglegroup-h);
   min-width: var(--abyss-togglegroup-min-w);
 }
+
+@media (max-width: 768px) {
+  .abyss-togglegroup {
+    max-width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}

@@ -847,7 +847,7 @@
 - **代码**：`Panel.css:12,17,39`、`Toast.css:39`、`Slider.css:18,54`、`Dialog.css:11`、`AlertDialog.css:11`
 - **可争论**：胶带 / 订书钉 / 图钉属于「母题装饰」，角度或可豁免；但 `Slider.css:54` 的 thumb（−6°）和 `Panel.css:39` 的 meta（2.5°）是控件部件，不是装饰。spec 没写豁免条款
 
-- [ ] 已处理
+- [x] 已处理（码）—— 8 处角度全部改「同规则内赋值＋消费」的姿态/出场变量（照 `--riot-toast-tilt` 自家惯用法，零继承风险）：`--riot-value/thumb/staple/meta-tilt` ＋ 三处 `*-exit-tilt`。渲染恒等由 hero 逐元素 dump `diff=0` 与 var 替换语义保证。追坑：指纹在 riot hero 偶发抖动把二分耍成抛硬币——根因是探针没等 `document.fonts.ready`（每套先手机宽 reload 再缩桌面，大字号展示体的字体交换越过 0.25px 量化线）；探针已修，三连跑稳定
 
 ## E2. RIOT 折叠内容缩进 40px，公式算出 42px ⚠️
 
@@ -861,7 +861,7 @@
 - **位置**：`src/kits/brass/App.css:26,168` —— `font-size: 20px`、`font-weight: 700`，而 `--brass-fs-20` / `--brass-fw-700` 都存在
 - **备注**：demo 层非强制 token 化，所以只是整洁性问题
 
-- [ ] 已处理
+- [x] 已处理（码）—— App.css 两处裸值换 `--brass-fs-20` / `--brass-fw-700`
 
 ## E4. PRISM 列表项 hover 不转 `bright` ⚠️
 
@@ -885,7 +885,7 @@
 - **代码**：info→圆、warning→三角、danger→方，都是三原形；**success→对勾**，不是
 - **备注**：4 个 tone 只有 3 个三原形，可能是不得已的妥协
 
-- [ ] 已处理
+- [x] 已处理（文）—— 图记句写实：info 圆、warning 三角、danger 方（三原形），success 对勾
 
 ## E10. `popup-h = control-h × 7` 是拿不相干的 token 当代理 ✅（追问 A2 的值时发现）—— 已修
 
@@ -929,7 +929,7 @@
 - **判定**：不是本次 spec 缺口的一部分（§8 从未规定这两个控件），但是**真实的跨 kit 能力差**。要么把横滚兜底补进 nova / abyss，要么在 §8 里明确「Menubar、ToggleGroup 手机态横滚」
 - **备注**：本条纯属修 A20 时顺带发现，未列入原 52 条
 
-- [ ] 已处理
+- [x] 已处理（码＋文，用户裁决）—— 核实 nova/abyss 确实仍无兜底；四文件各补单个手机 `@media` 横滚块（镜 brass seg 语义：`max-width:100%` + `overflow-x:auto` + `nowrap`）；§6.1 ToggleGroup 条目与 Menu 家族行各加「手机端横向滚动不换行」
 
 ## E7. `kit-parity` 的 7 条 advisory gap ⚠️
 

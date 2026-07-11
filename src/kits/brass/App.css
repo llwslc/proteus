@@ -23,7 +23,7 @@
   gap: var(--brass-space-2);
 }
 .brass-logo__mark {
-  font-size: 20px;
+  font-size: var(--brass-fs-20);
   color: var(--brass-primary);
 }
 .brass-logo__text {
@@ -165,7 +165,7 @@
 .brass-hero__stat-n {
   font-family: var(--brass-font-mono);
   font-size: var(--brass-fs-20);
-  font-weight: 700;
+  font-weight: var(--brass-fw-700);
   color: var(--brass-text-bright);
 }
 
