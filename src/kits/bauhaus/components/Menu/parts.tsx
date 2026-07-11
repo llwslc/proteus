@@ -46,7 +46,7 @@ export function MenuSub({
         </span>
       </BaseMenu.SubmenuTrigger>
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="bauhaus-lift" side="inline-end" align="start" sideOffset={12}>
+        <BaseMenu.Positioner className="bauhaus-lift" side="right" align="start" sideOffset={12}>
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

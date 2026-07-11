@@ -20,7 +20,7 @@ export function Menu({ trigger, children }: MenuProps) {
         </span>
       </BaseMenu.Trigger>
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu-tier" sideOffset={6} align="start">
+        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu-tier" sideOffset={6} side="bottom" align="start">
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

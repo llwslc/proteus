@@ -69,6 +69,12 @@ const propVal = (s, p) => {
   if (new RegExp('[\\s<]' + p + '\\s*(?:/?>|\\s)').test(s) && !new RegExp('\\b' + p + '\\s*=').test(s)) return 'true';
   return null;
 };
+const propVals = (s, p) => {
+  const re = new RegExp('\\b' + p + '\\s*=\\s*(?:\\{\\s*(true|false)\\s*\\}|"([^"]*)"|\'([^\']*)\')', 'g');
+  const vals = [];
+  for (const m of s.matchAll(re)) vals.push(m[1] ?? m[2] ?? m[3]);
+  return vals.sort().join(',') || '<unset>';
+};
 const sideOf = (s) => {
   if (!/\bItemIndicator\b/.test(s)) return null;
   const ti = s.search(/ItemText|item-text|list-item__text/);
@@ -82,6 +88,13 @@ for (const c of shared) {
   const sides = KITS.map((k) => [k, sideOf(tsx[k])]).filter(([, v]) => v);
   if (sides.length && new Set(sides.map(([, v]) => v)).size > 1) {
     out(`  FAIL ${c}: selected-indicator side differs — ${sides.map(([k, v]) => k + ':' + v).join(', ')}`); fail++;
+  }
+  for (const p of ['side', 'align']) {
+    const vals = KITS.map((k) => [k, propVals(tsx[k], p)]);
+    if (vals.every(([, v]) => v === '<unset>')) continue;
+    if (new Set(vals.map(([, v]) => v)).size > 1) {
+      out(`  FAIL ${c}.${p} (all literal occurrences): ${vals.map(([k, v]) => k + ':' + v).join('  ')} — same wiring in every kit; absent counts as a value`); fail++;
+    }
   }
   for (const p of BEHAV) {
     const vals = KITS.map((k) => [k, propVal(tsx[k], p)]);

@@ -30,7 +30,7 @@ export function Autocomplete({
         />
       </BaseAutocomplete.InputGroup>
       <BaseAutocomplete.Portal>
-        <BaseAutocomplete.Positioner className="bauhaus-lift" sideOffset={6} side="bottom" align="start">
+        <BaseAutocomplete.Positioner className="bauhaus-lift" sideOffset={6}>
           <BaseAutocomplete.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-autocomplete__popup">
             <BaseAutocomplete.Empty className="bauhaus-autocomplete__empty">{emptyText}</BaseAutocomplete.Empty>
             <ScrollArea variant="popup">
