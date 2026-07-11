@@ -11,6 +11,7 @@
   text-decoration: none;
 }
 .riot-toolbar__sep {
+  flex: 0 0 var(--riot-stroke);
   width: var(--riot-stroke);
   height: 20px;
   margin: 0 var(--riot-space-1);

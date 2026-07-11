@@ -8,6 +8,7 @@
   height: var(--riot-stroke);
 }
 .riot-separator--vertical {
+  flex: 0 0 var(--riot-stroke);
   width: var(--riot-stroke);
   align-self: stretch;
 }

@@ -101,6 +101,17 @@ for (const k of KITS) {
   const themeCls = new Set();
   for (const f of cp.execSync(`find src/kits/${k}/theme -name '*.css'`).toString().trim().split('\n').filter(Boolean))
     for (const m of read(f).matchAll(defRe)) themeCls.add(m[1]);
+  const exempt = new Set(fs.existsSync(__dirname + '/theme-block-exempt.txt')
+    ? read(__dirname + '/theme-block-exempt.txt').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#')) : []);
+  const compBlocks = new Set(compSets[k].filter((c) => c !== 'icons').map((c) => c.toLowerCase()));
+  compBlocks.add('navmenu'); compBlocks.add('otp');
+  for (const cls of themeCls) {
+    const blk = cls.slice(k.length + 1).split('__')[0].split('--')[0].replace(/-/g, '');
+    if (compBlocks.has(blk) && !exempt.has(cls)) {
+      out(`  FAIL ${k}: theme/ defines component-block class .${cls} — a component block lives in its own CSS; share via a non-component-named primitive`);
+      fail++;
+    }
+  }
   const defByComp = {};
   for (const c of compSets[k]) {
     if (c === 'icons') continue;

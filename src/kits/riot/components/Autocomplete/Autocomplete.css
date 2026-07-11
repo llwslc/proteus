@@ -1,6 +1,40 @@
 .riot-autocomplete__field {
   width: 100%;
 }
+.riot-autocomplete__control {
+  display: flex;
+  align-items: center;
+  gap: var(--riot-space-2);
+  height: var(--riot-control-h);
+  padding: 0 var(--riot-space-3);
+  box-shadow: var(--riot-shadow-hard);
+}
+.riot-autocomplete__control:focus-within {
+  --riot-surface-border: var(--riot-primary);
+}
+
+.riot-autocomplete__lead {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--riot-text-dim);
+  font-size: var(--riot-fs-18);
+}
+
+.riot-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--riot-font);
+  font-size: var(--riot-fs-15);
+  color: var(--riot-text);
+}
+.riot-autocomplete__input::placeholder {
+  color: var(--riot-text-mute);
+}
+
 .riot-autocomplete__positioner {
   z-index: var(--riot-z-dropdown);
 }

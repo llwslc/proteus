@@ -25,13 +25,13 @@ export function Combobox({
   return (
     <BaseCombobox.Root items={items} defaultValue={defaultValue} name={name}>
       <div className="riot-field riot-combobox__field">
-        <BaseCombobox.InputGroup className="riot-surface riot-input riot-combobox__control">
-          <span className="riot-input__icon">
+        <BaseCombobox.InputGroup className="riot-surface riot-combobox__control">
+          <span className="riot-combobox__lead">
             <SearchIcon />
           </span>
           <BaseCombobox.Input
             id={inputId}
-            className="riot-input__control"
+            className="riot-combobox__input"
             placeholder={placeholder}
             aria-label={label ?? placeholder}
           />

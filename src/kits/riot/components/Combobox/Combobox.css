@@ -1,6 +1,40 @@
 .riot-combobox__field {
   width: 100%;
 }
+.riot-combobox__control {
+  display: flex;
+  align-items: center;
+  gap: var(--riot-space-2);
+  height: var(--riot-control-h);
+  padding: 0 var(--riot-space-3);
+  box-shadow: var(--riot-shadow-hard);
+}
+.riot-combobox__control:focus-within {
+  --riot-surface-border: var(--riot-primary);
+}
+
+.riot-combobox__lead {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--riot-text-dim);
+  font-size: var(--riot-fs-18);
+}
+
+.riot-combobox__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--riot-font);
+  font-size: var(--riot-fs-15);
+  color: var(--riot-text);
+}
+.riot-combobox__input::placeholder {
+  color: var(--riot-text-mute);
+}
+
 .riot-combobox__control[data-popup-open] {
   --riot-surface-border: var(--riot-primary);
 }

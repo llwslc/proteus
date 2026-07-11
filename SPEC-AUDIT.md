@@ -345,7 +345,7 @@
 - **代码**：`.riot-separator--vertical { width: var(--riot-stroke); align-self: stretch; }` —— 无 `flex: 0 0`
 - **影响**：演示页把竖向 separator 摆在 `.riot-row`（flex）里，窄容器下会被压扁
 
-- [ ] 已修
+- [x] 已修（码）—— `.riot-separator--vertical` 补 `flex: 0 0 var(--riot-stroke)`，浏览器实测 demo 两处 `.riot-row` 里计算值 `0 0 2.5px`、不再可压。同族清点：nova/abyss 竖向块本有 `flex: 0 0 1px`，brass/bauhaus 的 toolbar `__sep` 有守卫，nova/abyss 的 toolbar 分隔是 Separator 组件复合（守卫继承）——唯 riot 自绘 `.riot-toolbar__sep` 同缺，一并补上。
 
 ## A17. RIOT 把 `.riot-input__icon` 定义在 theme 层，并让别的组件借用 ✅
 
@@ -362,7 +362,7 @@
 
 - **为什么门禁没抓到**：`kit-structure §6` 把 `theme/effects.css` 整体当作主题层白名单，不看里面定义的是不是组件块名
 
-- [ ] 已修
+- [x] 已修（码）—— `.riot-input` 七块规则从 `theme/effects.css` 搬回 `Input.css`；Combobox/Autocomplete 停借 `riot-input*`，各得自有类 `__control`/`__lead`/`__input`（命名对齐 abyss），声明只复制真会生效的子集（丢 `:has(:disabled)`/`:has([data-invalid])` 两条——这俩组件的 API 无此态、纯死规则）。像素回归：三个输入场 computed+rect 全字段零 diff。门禁补上本条的盲区：kit-structure §6 新增「theme 层禁定义/引用组件块名类」检查，`theme-block-exempt.txt` 冻结存量 36 条（四套 menu 族＝§6.1 钦定共享、nova/abyss separator、abyss switch、brass tabs——待逐案裁决，名单只准划掉不准新增），修前红（riot-input）修后绿。
 
 ## A18. ABYSS 输入框聚焦档位低于 spec ✅
 
