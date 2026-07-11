@@ -12,10 +12,10 @@ RUN=""; SKIP_NOTE=""
 
 has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync"
 if has '\.tsx?$'; then
-  RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode"
+  RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode fingerprint"
 fi
 if has 'src/kits/.*\.css$'; then
-  RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual"
+  RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint"
   SKIP_NOTE="css 改动只跑了 kit-visual 这一个动态门——弹层/动效/状态类改动请自点 kit-submenu-gap / kit-anim-sync / kit-states / kit-interact,收官跑全量 check.sh"
 fi
 RUN=$(echo "$RUN" | tr ' ' '\n' | sort -u | grep -v '^$')
@@ -28,6 +28,7 @@ for g in $RUN; do
     prompt-lint) bash .claude/skills/prompt-lint/check.sh >/tmp/kq-$g.log 2>&1; rc=$?;;
     kit-lint) for k in $(ls src/kits); do node .claude/skills/kit-lint/check.cjs "$k" >>/tmp/kq-$g.log 2>&1 || rc=1; done; rc=${rc:-0};;
     kit-visual) GATE_PORT=${GATE_PORT:-5273} node .claude/skills/$g/check.cjs >/tmp/kq-$g.log 2>&1; rc=$?;;
+    fingerprint) GATE_PORT=${GATE_PORT:-5273} node .claude/skills/kit-qa/fingerprint.cjs >/tmp/kq-$g.log 2>&1; rc=$?; [ $rc != 0 ] && sed -n '1,12p' /tmp/kq-$g.log;;
     *) node .claude/skills/$g/check.cjs >/tmp/kq-$g.log 2>&1; rc=$?;;
   esac
   if [ "$rc" = 0 ]; then printf "  PASS  %s\n" "$g"; else printf "  FAIL  %s  (日志 /tmp/kq-%s.log)\n" "$g" "$g"; fail=1; fi

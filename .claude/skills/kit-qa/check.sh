@@ -47,5 +47,10 @@ done
 run theme-doc-sync node "${SKILLS}/theme-doc-sync/check.cjs"
 
 echo
-if [ "$fail" -eq 0 ]; then echo "kit-qa: ALL PASS"; else echo "kit-qa: FAILURES above — fix or document each"; fi
+if [ "$fail" -eq 0 ]; then
+  echo "kit-qa: ALL PASS"
+  node "${SKILLS}/kit-qa/fingerprint.cjs" --update >/dev/null 2>&1 && echo "render baseline refreshed"
+else
+  echo "kit-qa: FAILURES above — fix or document each"
+fi
 exit $fail
