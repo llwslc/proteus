@@ -533,7 +533,7 @@
 - bauhaus 的 Menubar 反而少写 `side="bottom"`(值=库默认,纯在场性)
 - **建议**:各处对齐多数派(CB/AC 删 bauhaus 两属性;Menubar 给 bauhaus 补 side)
 
-- [x] 已改(码,两轮)——首版按多数派统一硬编码;**被用户推翻:「应该是透传+默认值的形式」(B2 Toast 模板)**。终版:spec 未钉的定位参数不写死在原语上——Combobox/Autocomplete/Menu/MenubarMenu 四组件×五套 props 加 `side·align`(类型照 Popover 物理四向+三档),默认值=今日渲染(CB/AC `bottom/center`,Menu/MenubarMenu `bottom/start`),Positioner 喂变量;Tooltip/Popover/PreviewCard 本就是此形态,这四个是掉队者。spec 钉死的不变量(closeOnClick/alignItemWithTrigger/NavMenu align+collisionPadding/子菜单向右)留硬编码。§6.1 Combobox 与 Menu 家族行的 props 面同步写实。实测两弹层与场零偏差、八型缝原样;kit-api 管五套 props+默认值一致,kit-structure §5 管剩余字面量(子菜单 right·start ×5 均匀)。
+- [x] 已改(码,两轮)——首版按多数派统一硬编码;**被用户推翻:「应该是透传+默认值的形式」(B2 Toast 模板)**。终版:spec 未钉的定位参数不写死在原语上——Combobox/Autocomplete/Menu/MenubarMenu 四组件×五套 props 加 `side·align`(类型照 Popover 物理四向+三档),默认值=今日渲染(CB/AC `bottom/center`,Menu/MenubarMenu `bottom/start`),Positioner 喂变量;Tooltip/Popover/PreviewCard 本就是此形态,这四个是掉队者。spec 钉死的不变量(closeOnClick/alignItemWithTrigger/NavMenu align+collisionPadding/子菜单向右)留硬编码。§6.1 Combobox 与 Menu 家族行的 props 面同步写实。实测两弹层与场零偏差、八型缝原样;kit-api 管五套 props+默认值一致,kit-structure §5 管剩余字面量(子菜单 right·start ×5 均匀)。**扫尾(2026-07-12,用户抓出我跑偏去修 spec 括号):锚定家族补齐最后两个掉队者——Tooltip 加 `align`(默认 center)、Select 加 `side·align`(默认 bottom·center),至此锚定弹层 API 一个声口;合法例外=ContextMenu(贴指针)与 NavigationMenu(左对齐+collisionPadding 为 spec 钉死契约)。**
 
 ## B8. `side` 类型收窄:Tooltip/Popover/PreviewCard 少两档 ✅
 

@@ -9,6 +9,7 @@ export interface TooltipProps {
   side?: "top" | "bottom" | "left" | "right";
   sideOffset?: number;
   delay?: number;
+  align?: "start" | "center" | "end";
 }
 
 export function Tooltip({
@@ -17,6 +18,7 @@ export function Tooltip({
   side = "top",
   sideOffset = 10,
   delay = 200,
+  align = "center",
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const touch = useRef(false);
@@ -47,7 +49,7 @@ export function Tooltip({
             className="abyss-elevation abyss-tooltip__pos"
             side={side}
             sideOffset={sideOffset}
-          >
+           align={align}>
             <BaseTooltip.Popup className="abyss-aura-pop abyss-tooltip__popup">
               <span className="abyss-frame abyss-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="abyss-connector" />

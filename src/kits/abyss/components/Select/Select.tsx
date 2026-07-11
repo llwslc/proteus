@@ -15,6 +15,8 @@ export interface SelectOption {
 export interface SelectProps<Value extends string = string> {
   items: Array<SelectOption & { value: Value }>;
   placeholder?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
   className?: string;
   value?: Value | null;
   defaultValue?: Value | null;
@@ -34,6 +36,8 @@ export function Select<Value extends string = string>({
   disabled,
   name,
   id,
+  side = "bottom",
+  align = "center",
 }: SelectProps<Value>) {
   const autoId = useId();
   return (
@@ -71,7 +75,7 @@ export function Select<Value extends string = string>({
           className="abyss-elevation abyss-select__positioner"
           sideOffset={6}
           alignItemWithTrigger={false}
-        >
+         side={side} align={align}>
           <BaseSelect.Popup className="abyss-frame abyss-aura-pop abyss-select__popup">
             <ScrollArea variant="popup">
               {items.map((it) => (

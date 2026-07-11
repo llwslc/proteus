@@ -9,6 +9,7 @@ export interface TooltipProps {
   side?: "top" | "bottom" | "left" | "right";
   sideOffset?: number;
   delay?: number;
+  align?: "start" | "center" | "end";
 }
 
 export function Tooltip({
@@ -17,6 +18,7 @@ export function Tooltip({
   side = "top",
   sideOffset = 10,
   delay = 200,
+  align = "center",
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
 
@@ -34,7 +36,7 @@ export function Tooltip({
           render={children}
         />
         <BaseTooltip.Portal>
-          <BaseTooltip.Positioner className="bauhaus-lift--sm" side={side} sideOffset={sideOffset}>
+          <BaseTooltip.Positioner className="bauhaus-lift--sm" side={side} sideOffset={sideOffset} align={align}>
             <BaseTooltip.Popup
               className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-tooltip"
             >

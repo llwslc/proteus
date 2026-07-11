@@ -9,6 +9,7 @@ export interface TooltipProps {
   side?: "top" | "bottom" | "left" | "right";
   sideOffset?: number;
   delay?: number;
+  align?: "start" | "center" | "end";
 }
 
 export function Tooltip({
@@ -17,6 +18,7 @@ export function Tooltip({
   side = "top",
   sideOffset = 10,
   delay = 200,
+  align = "center",
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const touch = useRef(false);
@@ -43,7 +45,7 @@ export function Tooltip({
           onPointerDown={onTouchToggle}
         />
         <BaseTooltip.Portal>
-          <BaseTooltip.Positioner className="brass-lift brass-lift--sm" side={side} sideOffset={sideOffset}>
+          <BaseTooltip.Positioner className="brass-lift brass-lift--sm" side={side} sideOffset={sideOffset} align={align}>
             <BaseTooltip.Popup className="brass-plate brass-pop brass-popup brass-tooltip">
               {content}
               <BaseTooltip.Arrow className="brass-connector" />

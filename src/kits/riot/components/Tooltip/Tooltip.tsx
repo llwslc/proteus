@@ -9,9 +9,10 @@ export interface TooltipProps {
   side?: "top" | "bottom" | "left" | "right";
   sideOffset?: number;
   delay?: number;
+  align?: "start" | "center" | "end";
 }
 
-export function Tooltip({ content, children, side = "top", sideOffset = 10, delay = 200 }: TooltipProps) {
+export function Tooltip({ content, children, side = "top", sideOffset = 10, delay = 200, align = "center" }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const touch = useRef(false);
   const onTouchToggle = (event: PointerEvent<HTMLElement>) => {
@@ -37,7 +38,7 @@ export function Tooltip({ content, children, side = "top", sideOffset = 10, dela
             className="riot-lift riot-lift--sm riot-tooltip__positioner"
             side={side}
             sideOffset={sideOffset}
-          >
+           align={align}>
             <BaseTooltip.Popup className="riot-pop riot-tooltip__popup">
               <span className="riot-surface riot-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="riot-connector" />

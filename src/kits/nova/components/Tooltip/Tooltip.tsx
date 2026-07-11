@@ -9,6 +9,7 @@ export interface TooltipProps {
   side?: "top" | "bottom" | "left" | "right";
   sideOffset?: number;
   delay?: number;
+  align?: "start" | "center" | "end";
 }
 
 export function Tooltip({
@@ -17,6 +18,7 @@ export function Tooltip({
   side = "top",
   sideOffset = 10,
   delay = 200,
+  align = "center",
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const touch = useRef(false);
@@ -49,7 +51,7 @@ export function Tooltip({
             className="nova-elevation nova-tooltip__positioner"
             side={side}
             sideOffset={sideOffset}
-          >
+           align={align}>
             <BaseTooltip.Popup className="nova-anim-pop nova-tooltip__popup">
               <span className="nova-surface nova-tooltip__surface">{content}</span>
               <BaseTooltip.Arrow className="nova-connector" />
