@@ -362,7 +362,7 @@
 
 - **为什么门禁没抓到**：`kit-structure §6` 把 `theme/effects.css` 整体当作主题层白名单，不看里面定义的是不是组件块名
 
-- [x] 已修（码）—— `.riot-input` 七块规则从 `theme/effects.css` 搬回 `Input.css`；Combobox/Autocomplete 停借 `riot-input*`，各得自有类 `__control`/`__lead`/`__input`（命名对齐 abyss），声明只复制真会生效的子集（丢 `:has(:disabled)`/`:has([data-invalid])` 两条——这俩组件的 API 无此态、纯死规则）。像素回归：三个输入场 computed+rect 全字段零 diff。门禁补上本条的盲区：kit-structure §6 新增「theme 层禁定义/引用组件块名类」检查，`theme-block-exempt.txt` 冻结存量 36 条（四套 menu 族＝§6.1 钦定共享、nova/abyss separator、abyss switch、brass tabs——待逐案裁决，名单只准划掉不准新增），修前红（riot-input）修后绿。
+- [x] 已修（码，两轮）—— 首版把配方复制进 Combobox/Autocomplete 各一份，**被用户打回：「同一份代码到处复制?」**——A17 的病在**名字**（共享配方顶着组件块名 `riot-input` 住 theme 层），不在共享本身；§4.3 本来就要求重复块抽 effects.css，nova 的 `field__control/lead/input` 就是正确示范。终版照 nova：配方一份进 `effects.css` 挂非组件名 `riot-field__control/lead/input`，Input/Combobox/Autocomplete 三家复合；Input 专属状态（`:has(:disabled)`/`:has([data-invalid])`）留在 `Input.css` 挂自己的 `riot-input` 钩子类；Combobox 保留 `__control` 挂 `[data-popup-open]` 变体，Autocomplete 连自有 control 类都不再需要。像素回归：三个输入场对 A17 手术前原始基线 computed+rect 零 diff，旧类零残留。门禁补上本条的盲区：kit-structure §6 新增「theme 层禁定义/引用组件块名类」检查，`theme-block-exempt.txt` 冻结存量 36 条（四套 menu 族＝§6.1 钦定共享、nova/abyss separator、abyss switch、brass tabs——待逐案裁决，名单只准划掉不准新增），修前红（riot-input）修后绿。
 
 ## A18. ABYSS 输入框聚焦档位低于 spec ✅
 

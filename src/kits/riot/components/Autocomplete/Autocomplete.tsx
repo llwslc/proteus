@@ -23,13 +23,13 @@ export function Autocomplete({
   return (
     <BaseAutocomplete.Root items={items} defaultValue={defaultValue}>
       <div className="riot-field riot-autocomplete__field">
-        <BaseAutocomplete.InputGroup className="riot-surface riot-autocomplete__control">
-          <span className="riot-autocomplete__lead">
+        <BaseAutocomplete.InputGroup className="riot-surface riot-field__control">
+          <span className="riot-field__lead">
             <BoltIcon />
           </span>
           <BaseAutocomplete.Input
             id={inputId}
-            className="riot-autocomplete__input"
+            className="riot-field__input"
             placeholder={placeholder}
             aria-label={label ?? placeholder}
           />

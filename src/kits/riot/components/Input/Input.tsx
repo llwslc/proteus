@@ -12,9 +12,9 @@ export interface InputProps extends ComponentPropsWithoutRef<typeof BaseInput> {
 export function Input({ className, icon, id, ...props }: InputProps) {
   const autoId = useId();
   return (
-    <div className={cx("riot-surface", "riot-input", className)}>
-      {icon ? <span className="riot-input__icon">{icon}</span> : null}
-      <BaseInput id={id ?? autoId} className="riot-input__control" {...props} />
+    <div className={cx("riot-surface", "riot-field__control", "riot-input", className)}>
+      {icon ? <span className="riot-field__lead">{icon}</span> : null}
+      <BaseInput id={id ?? autoId} className="riot-field__input" {...props} />
     </div>
   );
 }
@@ -41,9 +41,9 @@ export function Field({
       {label != null ? (
         <BaseField.Label className="riot-cap riot-field__label">{label}</BaseField.Label>
       ) : null}
-      <div className="riot-surface riot-input">
-        {icon ? <span className="riot-input__icon">{icon}</span> : null}
-        <BaseField.Control className={cx("riot-input__control", className)} {...control} />
+      <div className="riot-surface riot-field__control riot-input">
+        {icon ? <span className="riot-field__lead">{icon}</span> : null}
+        <BaseField.Control className={cx("riot-field__input", className)} {...control} />
       </div>
       {description != null ? (
         <BaseField.Description className="riot-text riot-field__desc">
