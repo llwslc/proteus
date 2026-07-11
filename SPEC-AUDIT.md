@@ -345,7 +345,7 @@
 - **代码**：`.riot-separator--vertical { width: var(--riot-stroke); align-self: stretch; }` —— 无 `flex: 0 0`
 - **影响**：演示页把竖向 separator 摆在 `.riot-row`（flex）里，窄容器下会被压扁
 
-- [x] 已修（码）—— `.riot-separator--vertical` 补 `flex: 0 0 var(--riot-stroke)`，浏览器实测 demo 两处 `.riot-row` 里计算值 `0 0 2.5px`、不再可压；riot 自绘 `.riot-toolbar__sep` 同缺主轴守卫，一并补。**用户追问揪出交叉轴同族病**（首轮清点只量了主轴）：toolbar 竖分隔 `align-self: stretch` 的高度跟着换行后所在行走，断行点把 sep 和矮个子 link 分到同一行时缩水——宽度扫描（1440→360 步 20）实测 nova 26→16、abyss 26→18（还垫了 `min-height` 18 的地板假兜底，地板不是锁）、brass 24→12、bauhaus 34→19，riot 定高 20 免疫。四套统一改定高＋`align-self: center`（26/26/24/34 钉今日桌面像素，单点值写立即数），abyss 死 token `-toolbar-sep-min-h` 摘除；全宽度重扫五套恒定。spec 回写 §6.1 Toolbar：「竖分隔**定高**，不随换行后所在行的行高伸缩」。
+- [x] 已修（码）—— `.riot-separator--vertical` 补 `flex: 0 0 var(--riot-stroke)`，浏览器实测 demo 两处 `.riot-row` 里计算值 `0 0 2.5px`、不再可压；riot 自绘 `.riot-toolbar__sep` 同缺主轴守卫，一并补。**用户追问揪出交叉轴同族病**（首轮清点只量了主轴）：toolbar 竖分隔 `align-self: stretch` 的高度跟着换行后所在行走，断行点把 sep 和矮个子 link 分到同一行时缩水——宽度扫描（1440→360 步 20）实测 nova 26→16、abyss 26→18（还垫了 `min-height` 18 的地板假兜底，地板不是锁）、brass 24→12、bauhaus 34→19，riot 定高 20 免疫。首版修法把 sep 高度钉成定值（26/26/24/34）——**被用户打回：钉的是代理**（sep 高度本是行高的导出值）。真根因是 toolbar 项不等高：分段条家族「各钮等高」契约早就有，link 没跟上（nova 21 / abyss 18 / brass 20 / bauhaus 19 对按钮 32/34/32/34；riot 的 link 复合 `riot-seg__btn` 天然等高、免疫）。终版：四套 `toolbar__link` 定高**引按钮同一个高度 token**（`-toolbar-btn-h`/`-seg-h`，等高结构性成立），sep 回归 `stretch` 原设计；abyss 的 `min-height: 18` 假地板连同死 token 摘除。验证：四套 link 文字 centerY 与基线逐位相同（盒长高、字没动），宽度扫描（1440→360 步 20）五套 sep 全程恒定 26/26/24/34/20。spec 回写 §6.1 Toolbar：「`ToolbarLink` **与钮等高**（引按钮同一个高度 token）」。
 
 ## A17. RIOT 把 `.riot-input__icon` 定义在 theme 层，并让别的组件借用 ✅
 

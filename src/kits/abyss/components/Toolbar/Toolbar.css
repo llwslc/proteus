@@ -47,6 +47,7 @@
 .abyss-toolbar__link {
   display: inline-flex;
   align-items: center;
+  height: var(--abyss-toolbar-btn-h);
   gap: var(--abyss-space-2);
   padding: 0 var(--abyss-space-3);
   color: var(--abyss-text-dim);
@@ -65,7 +66,7 @@
 }
 
 .abyss-toolbar__sep.abyss-separator {
-  align-self: center;
-  height: 26px;
+  align-self: stretch;
+  height: auto;
   margin: 4px var(--abyss-space-1);
 }

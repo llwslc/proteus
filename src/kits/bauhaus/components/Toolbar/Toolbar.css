@@ -15,14 +15,14 @@
 }
 .bauhaus-toolbar__sep {
   flex: 0 0 var(--bauhaus-stroke);
-  align-self: center;
-  height: 34px;
+  align-self: stretch;
   margin: 0 var(--bauhaus-space-1);
   background: var(--bauhaus-ink);
 }
 .bauhaus-toolbar__link {
   display: inline-flex;
   align-items: center;
+  height: var(--bauhaus-seg-h);
   gap: var(--bauhaus-space-2);
   padding: 0 var(--bauhaus-space-3);
   color: var(--bauhaus-text-dim);

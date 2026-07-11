@@ -12,9 +12,8 @@
 
 .brass-toolbar__sep {
   flex: 0 0 1px;
-  align-self: center;
+  align-self: stretch;
   width: 1px;
-  height: 24px;
   margin: var(--brass-space-1) var(--brass-space-1);
   background: var(--brass-line);
 }
@@ -22,6 +21,7 @@
 .brass-toolbar__link {
   display: inline-flex;
   align-items: center;
+  height: var(--brass-seg-h);
   gap: var(--brass-space-2);
   padding: 0 var(--brass-space-3);
   color: var(--brass-text-dim);

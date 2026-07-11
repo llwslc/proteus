@@ -68,6 +68,7 @@
 .nova-toolbar__link {
   display: inline-flex;
   align-items: center;
+  height: var(--nova-toolbar-btn-h);
   gap: var(--nova-space-2);
   padding: 0 var(--nova-space-3);
   color: var(--nova-text-dim);
@@ -89,7 +90,7 @@
 }
 
 .nova-toolbar__sep.nova-separator {
-  align-self: center;
-  height: 26px;
+  align-self: stretch;
+  height: auto;
   margin: 3px var(--nova-space-1);
 }
