@@ -10,6 +10,8 @@ export interface AutocompleteProps {
   defaultValue?: string;
   emptyText?: string;
   label?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Autocomplete({
@@ -18,6 +20,8 @@ export function Autocomplete({
   defaultValue,
   emptyText = "No matching command",
   label,
+  side = "bottom",
+  align = "center",
 }: AutocompleteProps) {
   const inputId = useId();
   return (
@@ -39,6 +43,8 @@ export function Autocomplete({
         <BaseAutocomplete.Positioner
           className="nova-elevation nova-autocomplete__positioner"
           sideOffset={6}
+          side={side}
+          align={align}
         >
           <BaseAutocomplete.Popup className="nova-surface nova-anim-pop nova-autocomplete__popup">
             <BaseAutocomplete.Empty className="nova-autocomplete__empty">

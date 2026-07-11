@@ -15,18 +15,20 @@ export function Menubar({ children }: MenubarProps) {
 export interface MenubarMenuProps {
   label: ReactNode;
   children: ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
-export function MenubarMenu({ label, children }: MenubarMenuProps) {
+export function MenubarMenu({ label, children, side = "bottom", align = "start" }: MenubarMenuProps) {
   return (
     <BaseMenu.Root>
       <BaseMenu.Trigger className="riot-seg__btn riot-menubar__trigger">{label}</BaseMenu.Trigger>
       <BaseMenu.Portal>
         <BaseMenu.Positioner
           className="riot-lift riot-menu-tier"
-          side="bottom"
-          align="start"
           sideOffset={6}
+          side={side}
+          align={align}
         >
           <BaseMenu.Popup className="riot-surface riot-popup riot-pop riot-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>

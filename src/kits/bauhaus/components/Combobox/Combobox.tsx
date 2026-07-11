@@ -11,6 +11,8 @@ export interface ComboboxProps {
   emptyText?: string;
   label?: string;
   name?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Combobox({
@@ -20,6 +22,8 @@ export function Combobox({
   emptyText = "No matches",
   label,
   name,
+  side = "bottom",
+  align = "center",
 }: ComboboxProps) {
   const inputId = useId();
   return (
@@ -39,7 +43,7 @@ export function Combobox({
         </BaseCombobox.Trigger>
       </BaseCombobox.InputGroup>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="bauhaus-lift" sideOffset={6}>
+        <BaseCombobox.Positioner className="bauhaus-lift" sideOffset={6} side={side} align={align}>
           <BaseCombobox.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-combobox__popup">
             <BaseCombobox.Empty className="bauhaus-combobox__empty">{emptyText}</BaseCombobox.Empty>
             <ScrollArea variant="popup">

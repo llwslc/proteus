@@ -15,9 +15,11 @@ export function Menubar({ children }: MenubarProps) {
 export interface MenubarMenuProps {
   label: ReactNode;
   children: ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
-export function MenubarMenu({ label, children }: MenubarMenuProps) {
+export function MenubarMenu({ label, children, side = "bottom", align = "start" }: MenubarMenuProps) {
   return (
     <BaseMenu.Root>
       <span className="abyss-menubar__triggerwrap">
@@ -26,9 +28,9 @@ export function MenubarMenu({ label, children }: MenubarMenuProps) {
       <BaseMenu.Portal>
         <BaseMenu.Positioner
           className="abyss-elevation abyss-menu-tier"
-          side="bottom"
-          align="start"
           sideOffset={6}
+          side={side}
+          align={align}
         >
           <BaseMenu.Popup className="abyss-aura-pop abyss-frame abyss-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>

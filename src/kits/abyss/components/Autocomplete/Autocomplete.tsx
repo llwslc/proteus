@@ -10,6 +10,8 @@ export interface AutocompleteProps {
   defaultValue?: string;
   emptyText?: string;
   label?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Autocomplete({
@@ -18,6 +20,8 @@ export function Autocomplete({
   defaultValue,
   emptyText = "No such name is known",
   label,
+  side = "bottom",
+  align = "center",
 }: AutocompleteProps) {
   const inputId = useId();
   return (
@@ -39,6 +43,8 @@ export function Autocomplete({
         <BaseAutocomplete.Positioner
           className="abyss-elevation abyss-autocomplete__positioner"
           sideOffset={6}
+          side={side}
+          align={align}
         >
           <BaseAutocomplete.Popup className="abyss-aura-pop abyss-frame abyss-autocomplete__popup">
             <BaseAutocomplete.Empty className="abyss-autocomplete__empty">

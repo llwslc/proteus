@@ -15,14 +15,16 @@ export function Menubar({ children }: MenubarProps) {
 export interface MenubarMenuProps {
   label: ReactNode;
   children: ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
-export function MenubarMenu({ label, children }: MenubarMenuProps) {
+export function MenubarMenu({ label, children, side = "bottom", align = "start" }: MenubarMenuProps) {
   return (
     <Menu.Root>
       <Menu.Trigger className="brass-seg__btn">{label}</Menu.Trigger>
       <Menu.Portal>
-        <Menu.Positioner className="brass-lift brass-menu-tier" side="bottom" align="start" sideOffset={6}>
+        <Menu.Positioner className="brass-lift brass-menu-tier" sideOffset={6} side={side} align={align}>
           <Menu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </Menu.Popup>

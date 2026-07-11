@@ -9,6 +9,8 @@ export interface AutocompleteProps {
   defaultValue?: string;
   emptyText?: string;
   label?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Autocomplete({
@@ -17,6 +19,8 @@ export function Autocomplete({
   defaultValue,
   emptyText = "No matches",
   label,
+  side = "bottom",
+  align = "center",
 }: AutocompleteProps) {
   const inputId = useId();
   return (
@@ -30,7 +34,7 @@ export function Autocomplete({
         />
       </BaseAutocomplete.InputGroup>
       <BaseAutocomplete.Portal>
-        <BaseAutocomplete.Positioner className="bauhaus-lift" sideOffset={6}>
+        <BaseAutocomplete.Positioner className="bauhaus-lift" sideOffset={6} side={side} align={align}>
           <BaseAutocomplete.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list bauhaus-autocomplete__popup">
             <BaseAutocomplete.Empty className="bauhaus-autocomplete__empty">{emptyText}</BaseAutocomplete.Empty>
             <ScrollArea variant="popup">

@@ -11,6 +11,8 @@ export interface AutocompleteProps {
   defaultValue?: string;
   emptyText?: string;
   label?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Autocomplete({
@@ -19,6 +21,8 @@ export function Autocomplete({
   defaultValue,
   emptyText = "No suggestions",
   label,
+  side = "bottom",
+  align = "center",
 }: AutocompleteProps) {
   const inputId = useId();
   return (
@@ -38,7 +42,7 @@ export function Autocomplete({
         </BaseAutocomplete.Clear>
       </BaseAutocomplete.InputGroup>
       <BaseAutocomplete.Portal>
-        <BaseAutocomplete.Positioner className="brass-lift" sideOffset={6}>
+        <BaseAutocomplete.Positioner className="brass-lift" sideOffset={6} side={side} align={align}>
           <BaseAutocomplete.Popup className="brass-plate brass-pop brass-popup brass-popup-list brass-autocomplete__popup">
             <BaseAutocomplete.Empty className="brass-text brass-autocomplete__empty">
               {emptyText}

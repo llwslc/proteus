@@ -11,6 +11,8 @@ export interface ComboboxProps {
   emptyText?: string;
   label?: string;
   name?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Combobox({
@@ -20,6 +22,8 @@ export function Combobox({
   emptyText = "No matching omen",
   label,
   name,
+  side = "bottom",
+  align = "center",
 }: ComboboxProps) {
   const inputId = useId();
   return (
@@ -44,7 +48,7 @@ export function Combobox({
         </BaseCombobox.InputGroup>
       </div>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="abyss-elevation abyss-combobox__positioner" sideOffset={6}>
+        <BaseCombobox.Positioner className="abyss-elevation abyss-combobox__positioner" sideOffset={6} side={side} align={align}>
           <BaseCombobox.Popup className="abyss-aura-pop abyss-combobox__popup">
             <span className="abyss-frame abyss-combobox__tablet" aria-hidden />
             <BaseCombobox.Empty className="abyss-combobox__empty">

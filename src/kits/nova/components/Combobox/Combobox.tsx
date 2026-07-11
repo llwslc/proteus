@@ -11,6 +11,8 @@ export interface ComboboxProps {
   emptyText?: string;
   label?: string;
   name?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Combobox({
@@ -20,6 +22,8 @@ export function Combobox({
   emptyText = "No matching signal",
   label,
   name,
+  side = "bottom",
+  align = "center",
 }: ComboboxProps) {
   const inputId = useId();
   return (
@@ -47,6 +51,8 @@ export function Combobox({
         <BaseCombobox.Positioner
           className="nova-elevation nova-combobox__positioner"
           sideOffset={6}
+          side={side}
+          align={align}
         >
           <BaseCombobox.Popup className="nova-surface nova-anim-pop nova-combobox__popup">
             <BaseCombobox.Empty className="nova-combobox__empty">

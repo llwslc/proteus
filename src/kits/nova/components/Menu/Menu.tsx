@@ -8,9 +8,11 @@ import "./Menu.css";
 export interface MenuProps {
   trigger: ReactNode;
   children: ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
-export function Menu({ trigger, children }: MenuProps) {
+export function Menu({ trigger, children, side = "bottom", align = "start" }: MenuProps) {
   return (
     <BaseMenu.Root>
       <BaseMenu.Trigger
@@ -23,9 +25,9 @@ export function Menu({ trigger, children }: MenuProps) {
       <BaseMenu.Portal>
         <BaseMenu.Positioner
           className="nova-elevation nova-menu-tier"
-          side="bottom"
-          align="start"
           sideOffset={6}
+          side={side}
+          align={align}
         >
           <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu-pane">
             <ScrollArea variant="popup">{children}</ScrollArea>

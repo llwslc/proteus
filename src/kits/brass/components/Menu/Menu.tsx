@@ -8,9 +8,11 @@ import "./Menu.css";
 export interface MenuProps {
   trigger: ReactNode;
   children: ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
-export function Menu({ trigger, children }: MenuProps) {
+export function Menu({ trigger, children, side = "bottom", align = "start" }: MenuProps) {
   return (
     <BaseMenu.Root>
       <BaseMenu.Trigger
@@ -22,7 +24,7 @@ export function Menu({ trigger, children }: MenuProps) {
         }
       />
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="brass-lift brass-menu-tier" side="bottom" align="start" sideOffset={6}>
+        <BaseMenu.Positioner className="brass-lift brass-menu-tier" sideOffset={6} side={side} align={align}>
           <BaseMenu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

@@ -8,9 +8,11 @@ import "./Menu.css";
 export interface MenuProps {
   trigger: ReactNode;
   children: ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
-export function Menu({ trigger, children }: MenuProps) {
+export function Menu({ trigger, children, side = "bottom", align = "start" }: MenuProps) {
   return (
     <BaseMenu.Root>
       <BaseMenu.Trigger render={<Button variant="ghost" className="bauhaus-menu__trigger" />}>
@@ -20,7 +22,7 @@ export function Menu({ trigger, children }: MenuProps) {
         </span>
       </BaseMenu.Trigger>
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu-tier" sideOffset={6} side="bottom" align="start">
+        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu-tier" sideOffset={6} side={side} align={align}>
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

@@ -11,6 +11,8 @@ export interface ComboboxProps {
   emptyText?: string;
   label?: string;
   name?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Combobox({
@@ -20,6 +22,8 @@ export function Combobox({
   emptyText = "No such clipping",
   label,
   name,
+  side = "bottom",
+  align = "center",
 }: ComboboxProps) {
   const inputId = useId();
   return (
@@ -44,7 +48,7 @@ export function Combobox({
         </BaseCombobox.InputGroup>
       </div>
       <BaseCombobox.Portal>
-        <BaseCombobox.Positioner className="riot-lift riot-combobox__positioner" sideOffset={6}>
+        <BaseCombobox.Positioner className="riot-lift riot-combobox__positioner" sideOffset={6} side={side} align={align}>
           <BaseCombobox.Popup className="riot-surface riot-popup riot-pop riot-combobox__popup">
             <BaseCombobox.Empty className="riot-combobox__empty">{emptyText}</BaseCombobox.Empty>
             <ScrollArea variant="popup">

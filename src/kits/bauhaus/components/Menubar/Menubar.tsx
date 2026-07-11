@@ -7,14 +7,16 @@ import "./Menubar.css";
 export interface MenubarMenuProps {
   label: ReactNode;
   children: ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
-export function MenubarMenu({ label, children }: MenubarMenuProps) {
+export function MenubarMenu({ label, children, side = "bottom", align = "start" }: MenubarMenuProps) {
   return (
     <BaseMenu.Root>
       <BaseMenu.Trigger className="bauhaus-seg__btn bauhaus-menubar__trigger">{label}</BaseMenu.Trigger>
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu-tier" sideOffset={6} side="bottom" align="start">
+        <BaseMenu.Positioner className="bauhaus-lift bauhaus-menu-tier" sideOffset={6} side={side} align={align}>
           <BaseMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

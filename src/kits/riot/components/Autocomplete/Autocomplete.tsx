@@ -10,6 +10,8 @@ export interface AutocompleteProps {
   defaultValue?: string;
   emptyText?: string;
   label?: string;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
 }
 
 export function Autocomplete({
@@ -18,6 +20,8 @@ export function Autocomplete({
   defaultValue,
   emptyText = "Nothing on the wall",
   label,
+  side = "bottom",
+  align = "center",
 }: AutocompleteProps) {
   const inputId = useId();
   return (
@@ -36,7 +40,7 @@ export function Autocomplete({
         </BaseAutocomplete.InputGroup>
       </div>
       <BaseAutocomplete.Portal>
-        <BaseAutocomplete.Positioner className="riot-lift riot-autocomplete__positioner" sideOffset={6}>
+        <BaseAutocomplete.Positioner className="riot-lift riot-autocomplete__positioner" sideOffset={6} side={side} align={align}>
           <BaseAutocomplete.Popup className="riot-surface riot-popup riot-pop riot-autocomplete__popup">
             <BaseAutocomplete.Empty className="riot-autocomplete__empty">
               {emptyText}
