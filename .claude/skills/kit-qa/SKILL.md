@@ -50,3 +50,13 @@ separately before committing.
 Each gate prints `PASS`/`FAIL` with its RESULT line; failures also dump the first
 offending lines. A non-zero exit means at least one gate failed — fix it, or, for a
 deliberate skin exception, document it (see audit-respect-intentional-exceptions).
+
+## quick 模式（按改动挑门）
+
+```
+sh .claude/skills/kit-qa/quick.sh [base]   # 默认比对 HEAD 的未提交改动
+```
+
+按 diff 范围选门：prompt/** → prompt-lint+theme-doc-sync；*.ts(x) → tsc+kit-api+kit-structure+kit-naming+kit-deadcode（秒级）；src/kits/**.css → 再加 kit-lint+kit-visual，并提示自点区域动态门（弹层→kit-submenu-gap、动效→kit-anim-sync、状态→kit-states、交互→kit-interact）。
+
+**全量 `check.sh`（约 11 分钟）仍是硬线**：收官/验收一个改动批次前、动过 theme 原语或共享配方、或 quick 判不准归属时，必须跑全量。quick 绿≠验收绿。
