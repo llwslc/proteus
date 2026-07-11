@@ -42,7 +42,7 @@
 定义在 `global.css`。
 
 - `body::before`：一层大尺度的平涂构成——左下角一个大群青正圆、右上角一个原黄方块，alpha 都压得很低（`.07`–`.09`），再加一道朱红对角 bar 给动势；不模糊、不加噪点。
-- `::selection` = `warning` 原黄底 + `ink` 字；滚动条走标准细条（`scrollbar-width: thin`），轨道是浅纸 `paper-raised`、thumb 是 `primary` 蓝。
+- `::selection` = `warning` 原黄底 + `on-warning` 字；滚动条走标准细条（`scrollbar-width: thin`），轨道是浅纸 `paper-raised`、thumb 是 `primary` 蓝。
 
 ## 5. 动效个性
 

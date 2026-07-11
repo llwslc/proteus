@@ -9,7 +9,7 @@
 - 「文字强调选中」用于列表、Tab、NavMenu，把文字转荧光 `primary`；Tab、NavMenu 另配一道 `stroke-bold` 粗细的记号笔实色横杠随激活项走。
 - 悬停：分段控件和触发条用 `tint` 荧光 wash 纯底；带硬影的按钮整块上浮一步、硬影随之加深（press 的反向），ghost 按钮盖 `tint` wash、文字转 `bright`；图标和动作按钮的文字转荧光 `primary`，菜单触发器转 `bright` 纯黑；列表项盖一道荧光记号笔涂划。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 荧光橙外环）；分段控件和触发条用 `inset 0 0 0 2.5px primary`；输入框聚焦时整框 border 升荧光。
-- 危险态：`danger` 血红实填、前景反白，border 仍黑；静止态红字红图标。
+- 危险态：`danger` 血红实填、前景取 `on-fill` 复印黑，border 仍黑；静止态红字红图标。
 
 ## 2. 组件皮肤决定
 
@@ -19,7 +19,7 @@
 - Radio 是 `ink` 圆框；选中 = 荧光 `primary` 实心圆点盖章；行标签同 Switch。
 - ToggleGroup：不画外箱体——chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
 - Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
-- Select：列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。
+- Select：弹层带 `shadow-hard` 盒影；列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。
 - Combobox：列表项皮肤同 Select。
 - Autocomplete：列表项的记号笔同 Select。
 - Progress：右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示，条填充流动。
@@ -34,7 +34,7 @@
 - Dialog 撕边纸面、顶边贴胶带。
 - AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
-- Toast 锚在右下角**乱堆**：每条按各自 `--riot-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
+- Toast 锚在右下角**乱堆**，条子带 `shadow-hard` 盒影：每条按各自 `--riot-toast-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
 - Avatar：兜底是 Anton 字母压在荧光块上、方形硬裁。
 - Toolbar：chip 同 ToggleGroup。
 - ScrollArea 自绘条：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽），常显不做悬停隐藏；panel 型坐在 `surface-inset` 纸灰可见轨上，popup 型轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。

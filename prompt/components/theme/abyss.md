@@ -13,7 +13,7 @@
 
 ## 2. 组件皮肤决定
 
-- Switch 是一只眼睛：`.abyss-eye` 里含 sclera（眼白）、iris（虹膜）、pupil（瞳孔）、lid（眼睑）几个 SVG，选中时 iris 和 pupil 沿 `scaleY(0.06→1)` 从一条缝睁开成圆 + 辉光；没有轨道滑块。
+- Switch 是一只眼睛：`.abyss-switch__thumb` 里含 sclera（眼白）、iris（虹膜）、pupil（瞳孔）、lid（眼睑）几个 SVG，选中时 iris 和 pupil 沿 `scaleY(0.06→1)` 从一条缝睁开成圆 + 辉光；没有轨道滑块。
 - Checkbox／勾记：按 `stroke-dashoffset` 一笔笔描出（inscribe）。
 - ToggleGroup：外箱体走 `.abyss-frame` 横条。
 - OtpField：光标闪动。

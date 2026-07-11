@@ -13,7 +13,7 @@
 - 文本是暖褐色的羊皮纸色：`text #d8ceb4`、`-bright #f3edda`（最亮）、`-dim #8d9079`（偏暗）、`-mute #565a4b`（最弱）。
 - 五个强调色家族，每个都配一个 `-soft` 浅档、再按需配一个 `-deep` 暗档：主强调是 glow 深渊青 `#46e8b8`；gold 鎏金 `#cda94a` 用于注脚和警示；ichor 灵液紫 `#9176ff` 是次强调；blood 血红 `#d24059` 表示危险；success 生苔绿 `#7ad99a` 表示成功。
 - alpha 透明阶梯：glow 这一族配 `-soft .12`、`-a30`、`-a55`、`-a70` 四档，外加两条点亮用的渐变 `glow-wash` / `-strong`；其余四族各配一个中强档 `gold-a50` / `ichor-a50` / `blood-a55` / `success-a50`；偏暗的两族（blood、ichor）各配一个亮化的文字档 `blood-text` / `ichor-text`——这两种深色当文字用时必须改用这个亮档。
-- 表面：`surface .84` 是半透明面底，`surface-popup .97` 是几乎不透的浮层底，`inset #06100d` 是凹陷底；`scrim .72` 是压在模态背后的半透背板；`thumb-glint` 是旋钮上的高光。石材质感的做法 = 一层颗粒噪点瓦片 `stone-grain` 叠在填充的最顶层，再加一道凿边 `bevel`——凿边就是上沿亮、下沿暗的那 1px 内边线，造出被凿过的立体感；像面板、弹层、模态这些石板面统一引用这套质感。
+- 表面：`surface .84` 是半透明面底，`surface-popup #09110f` 是不透明的浮层底，`inset #06100d` 是凹陷底；`scrim .72` 是压在模态背后的半透背板；`thumb-glint` 是旋钮上的高光。石材质感的做法 = 一层颗粒噪点瓦片 `stone-grain` 叠在填充的最顶层，再加一道凿边 `bevel`——凿边就是上沿亮、下沿暗的那 1px 内边线，造出被凿过的立体感；像面板、弹层、模态这些石板面统一引用这套质感。
 - 辉光全部 token 化：`aura` 是 10px 的 a30 辉光，`aura-strong` 是 16px 的 a55 辉光，`aura-mark` 是标记专用的辉光 8px a55，另有 `aura-gold` / `-strong` 两档金色辉光；投影式辉光（drop-shadow）有 `glow-focus` / `-popup` / `-modal` 三档；文字辉光是 `text-aura`；纯矩形的投影有 `shadow-pop` / `-modal` / `-sm` 三档。
 
 ## 2. 字体与排版
@@ -27,8 +27,8 @@
 ## 3. 几何与描边
 
 - 造型只用**圆角矩形**，不用 clip-path。半径分五档 `--abyss-round-2 / 3 / 4 / 5 / 6`，按角色挑：嵌套项、chip 用 round-2，默认控件用 round-3，容器和弹层用 round-4，模态和超大框用 round-5，滚动条轨道用 round-6 转胶囊；组件不裸写 radius。
-- 全套统一一个 frame 原语 `.abyss-frame::before`：用一层 `inset: 0`、1.5px 墨线 border + radius 的伪元素来画边框；输入变量是 `--abyss-frame-fill / -ink / -round / -bevel`。`--double` 变体会再加一圈 `inset: 4px` 的内圈细线，做出双线框。
-- `#abyss-edge`：内联一个 SVG 滤镜，由 feTurbulence `0.013 0.018` 加 feDisplacementMap 组成（即扰动 + 位移）；frame、分隔线、连接线、指示条统一挂上它——于是所有线条都呈现手绘的颤动感。
+- 全套统一一个 frame 原语 `.abyss-frame::before`：用一层 `inset: 0`、1.5px 墨线 border + radius 的伪元素来画边框；输入变量是 `--abyss-frame-fill / -ink / -round / -bevel / -etch`（`-etch` 换颤动滤镜档，默认 `url(#abyss-edge)`）。`--double` 变体会再加一圈 `inset: 4px` 的内圈细线，做出双线框。
+- `#abyss-edge`：内联一个 SVG 滤镜，由 feTurbulence `0.013 0.018` 加 feDisplacementMap 组成（即扰动 + 位移）；frame、分隔线、连接线、指示条统一挂上它——于是所有线条都呈现手绘的颤动感；另有柔化档 `#abyss-edge-soft`（scale 2，对主档的 3.4）。
 - 浮层抬升用另一个原语 `.abyss-elevation`，挂在 positioner 和模态 popup 上，且它不带 `#abyss-edge` 颤动滤镜：用两层 drop-shadow 叠出来——一层是阴影、一层是辉光；输入变量是 `--abyss-overlay-shadow / -glow`；默认取 `shadow-pop + glow-popup`，模态走 `shadow-modal + glow-modal`，另有小档与按 tone 重染档。
 - 边框轻重：页内静止态用 `ink / ink-strong` 灰墨；浮层用 `glow-a55` 的亮辉；状态升级走 glow 阶梯，从 a30 升到 a55 再到 glow 实色；错误态 frame 墨线改取 `blood`、`Error` 文字同走 `blood`。
 

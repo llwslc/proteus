@@ -578,8 +578,8 @@
 - **风险**：照 spec 从零重建会**复现已修的 bug**。这正是「设计活在代码里、spec 陈旧」的典型
 - **备注**：`theme-doc-sync` 门禁没抓到，因为它只核 `` `name #hex` `` 这种带完整名字的引用，`.97` 这种 alpha 描述不在它的检查面上
 
-- [ ] 已回写（nova）
-- [ ] 已回写（abyss）
+- [x] 已回写（nova）—— 「`.97` 几乎不透」改「`#070e18` 不透明」，hex 照 tokens 逐字
+- [x] 已回写（abyss）—— 同式改「`#09110f` 不透明」
 
 ## C3. BRASS 的 `fw-600` 槽不存在 ✅
 
@@ -588,7 +588,7 @@
 - **代码**：只有 `--brass-fw-400` 和 `--brass-fw-700`，**无 `fw-600`**，也无任何消费者
 - **附带**：`typography.css:1` 的 `@import` 仍在拉 `Domine:wght@400;500;600;700` —— 500 和 600 两档字重白下载
 
-- [ ] 已回写
+- [x] 已回写 —— 字重档改 `fw-400 / 700`；typography 的 @import 多拉 500/600 属代码侧微瑕，未动
 
 ## C4. BRASS 有第三条强调渐变，spec 只记了两条 ⚠️
 
@@ -596,7 +596,7 @@
 - **spec**：`prompt/theme/brass.md:15` ——「**两条**复用的强调渐变」（`accent-surface`、`accent-fill`）
 - **代码**：另有 `--brass-secondary-surface`（`180deg #7d6531→#5a461f→#382a13`），被 `Button.css:98` 的 secondary 变体消费
 
-- [ ] 已回写
+- [x] 已回写 —— 「两条」改「三条」，补 `secondary-surface`（`180deg #7d6531 → #5a461f → #382a13`，secondary 按钮暗铜板），停点照 tokens 逐字
 
 ## C5. BRASS 的 `surface-raised` 用途记错 ⚠️
 
@@ -604,7 +604,7 @@
 - **spec**：`prompt/theme/brass.md:18` ——「**步进钮**的底部渐变取 `surface-raised`」
 - **代码**：NumberField 步进钮是 `background: transparent`（`NumberField.css:59`）；`surface-raised` 实际是 base/ghost Button（`Button.css:3,108`）与 Select（`Select.css:3`）的 plate-fill
 
-- [ ] 已回写
+- [x] 已回写 —— 「步进钮的底部渐变」改「升起件的板填充」（附渐变端点）；首稿写了 base/ghost 按钮与 Select 被 prompt-lint 层规拦下——风格 root 不点控件名，消费者归代码
 
 ## C6. BRASS 的拉丝竖纹混合模式不是 multiply ⚠️
 
@@ -612,7 +612,7 @@
 - **spec**：`prompt/theme/brass.md:45` ——「走 multiply 混合」
 - **代码**：根 `::before` 是 `mix-blend-mode: overlay`（`::after` 才是 overlay）
 
-- [ ] 已回写
+- [x] 已回写 —— multiply 改 overlay，与 global.css 对齐
 
 ## C7. BRASS 的 `plate` 并不兼作页底渐变末端色 ⚠️
 
@@ -620,7 +620,7 @@
 - **spec**：「`plate` 同时兼作整页页底渐变的末端色」
 - **代码**：整页竖直渐变是 `base → base-raised`，末端是 `base-raised`（`global.css:19`，且与同文件 `brass.md:43` 自相矛盾）；`plate` 只作面板渐变末端
 
-- [ ] 已回写
+- [x] 已回写 —— 「plate 兼作整页页底渐变末端色」从句删除（整页渐变实为 base → base-raised，:43 行本来就写对了）
 
 ## C8. BRASS 的 `.brass-plate` 有第 5 个输入变量 ⚠️
 
@@ -628,7 +628,7 @@
 - **spec**：`prompt/theme/brass.md:32` 只列 4 个（`fill / bezel / round / bevel`），且把内缩钉死为 `2px`
 - **代码**：另有 `--brass-plate-edge`，被 `Checkbox.css:6` 覆盖为 `1px`
 
-- [ ] 已回写
+- [x] 已回写 —— 内缩改「`--brass-plate-edge`（默认 `2px`）」，输入变量列表补 `-edge`；谁覆盖成 1px 是消费者自由、不列举
 
 ## C9. ABYSS 的 frame 原语有第 5 个输入变量 + 第 2 个滤镜 ⚠️
 
@@ -636,7 +636,7 @@
 - **spec**：`prompt/theme/abyss.md:30` 逐字列了 4 个输入变量（`-fill / -ink / -round / -bevel`）；`:31` 只提 `#abyss-edge` 一个滤镜
 - **代码**：另有 `--abyss-frame-etch`（默认 `url(#abyss-edge)`，被 `Button.css:126` 覆盖）与 `#abyss-edge-soft` 滤镜（scale 2 vs 3.4 的柔化档）
 
-- [ ] 已回写
+- [x] 已回写 —— 输入变量补 `-etch`（默认 `url(#abyss-edge)`）；墨线行补柔化档 `#abyss-edge-soft`（scale 2 对 3.4，照 App.tsx 实值）
 
 ## C10. ABYSS 的 `.abyss-eye` 类不存在 ✅
 
@@ -645,7 +645,7 @@
 - **代码**：眼睛和四个部件**全部实现了**，但挂在 `.abyss-switch__thumb` 上，子部件是 `.abyss-switch__sclera / __iris / __pupil / __lid`。**`.abyss-eye` 全仓不存在**
 - **判定**：只是 spec 引了个错名字，实现没问题
 
-- [ ] 已回写
+- [x] 已回写 —— `.abyss-eye` 改 `.abyss-switch__thumb`（真实类名），部件描述不动
 
 ## C11. RIOT 的 `--riot-surface-tilt` 不存在 ✅
 
@@ -662,7 +662,7 @@
 - **spec**：「Toast 锚在右下角乱堆：每条按各自 `--riot-tilt` 歪一个不同角度」
 - **代码**：`Toast.css:19-34` 用的是 `--riot-toast-tilt`（−3 / 2.5 / −1.5 / 3.5deg），不是 `--riot-tilt`
 
-- [ ] 已回写
+- [x] 已回写 —— Toast 行 `--riot-tilt` 改 `--riot-toast-tilt`
 
 ## C13. RIOT 的 tilt 实际幅度远小于 spec 声称 ✅
 
@@ -671,7 +671,7 @@
 - **代码**：全仓仅 4 处 `--riot-tilt` 赋值，全在面板网格：`−1.2° / 0.9° / −0.5° / 1.3°` —— 最大 1.3°，**全部小于 2°**
 - **备注**：Toast 的 `−3 / 2.5 / −1.5 / 3.5deg` 落在区间内，但那是另一个变量（见 C12）
 
-- [ ] 已回写
+- [x] 已回写 —— 「约 ±2°–6°」改「±0.5°–1.3°」（App 网格四处赋值实测域；Toast 的 ±3.5° 在另一变量、C12 已分开）
 
 ## C14. RIOT 的半调网点不在 `body::before`、不走 screen 混合 ⚠️
 
@@ -680,7 +680,7 @@
 - **代码**：网点（两层 radial-gradient）在 `body` 自身 background 上、无 screen 混合；`body::before`（`:18-27`）只有 feTurbulence 噪粒
 - **判定**：效果都在，层位与混合模式与描述不符
 
-- [ ] 已回写
+- [x] 已回写 —— 改写实：网点（两层 radial-gradient）铺 body 自身背景，`body::before` 只有 feTurbulence 噪粒，screen 混合删除
 
 ## C15. RIOT 的弹层其实没有投影 ✅
 
@@ -690,7 +690,7 @@
 - **实际有影的**：Dialog / AlertDialog（`cast-modal`）、Select（`shadow-hard`）、Toast（`shadow-hard`）
 - **实际无影的**：Menu / Menubar / ContextMenu / Combobox / Autocomplete / Tooltip / Popover / PreviewCard —— 只有粗黑边
 
-- [ ] 已回写
+- [x] 已回写 —— 风格 root 改「模态 `cast-modal`，锚定弹层默认 `none` 只留粗黑边，带影弹层由控件皮各自上盒影档」（层规：root 不点控件名）；`shadow-hard` 落进皮文档 Select 与 Toast 两行。「默认取 cast-clip」谎言删除
 
 ## C16. PRISM 与 RIOT 的 `::selection` 字色是 `on-warning` 不是 `ink` ✅
 
@@ -699,8 +699,8 @@
 - **代码**：两套都用 `--<kit>-on-warning`
 - **判定**：**代码是对的**——`on-warning` 正是为「压在荧光黄实填上」定义的反色前景档。两处值都与 `ink` 极接近（bauhaus `#16140f` vs `#141414`；riot `#17130d` vs `#0d0d0d`），所以肉眼看不出来。该改的是文档
 
-- [ ] 已回写（bauhaus）
-- [ ] 已回写（riot）
+- [x] 已回写（bauhaus）—— `ink` 字改 `on-warning` 字
+- [x] 已回写（riot）—— 同式
 
 ## C17. NavigationMenu 下拉的**手机态**在 spec 里完全没定义 ✅
 
@@ -825,7 +825,7 @@
 - **裁决点**：「反白」是指字面的白，还是泛指「反色前景（knockout）」？如果是前者，DNA 那行就得为 danger 单开一档；如果是后者，控件皮那句该改成「前景取 `on-fill`」
 - **备注**：其余四套各自有 danger 专属前景（nova `on-danger`、abyss `blood-text`、brass `text-bright`），只有 riot 复用通用 `on-fill`。所以这条**不是**代码 bug，但确实是五套里唯一没给 danger 单开前景档的
 
-- [ ] 已裁决
+- [x] 已裁决（改控件皮文档）—— 「前景反白」是「反色前景」的误写，改「前景取 `on-fill` 复印黑」，与 DNA 行一致；riot 不为 danger 单开前景档是它自己的声音（四套各有专档），不动代码
 
 ## D2. PRISM 的 ScrollArea thumb「圆角」与 DNA 的 `r-control: 0` 冲突 ⚠️
 
@@ -835,7 +835,7 @@
 - **代码**：`ScrollArea.css:26` → `border-radius: var(--bauhaus-r-control)` = `0`，跟的是 DNA
 - **判定**：代码没错，控件皮文档那个「圆角」是笔误
 
-- [ ] 已裁决
+- [x] 已裁决（改控件皮文档）—— 「圆角」删除（thumb 实为 `r-control: 0` 直角，DNA 正确、皮文档笔误）
 
 ---
 
