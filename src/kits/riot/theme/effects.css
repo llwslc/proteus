@@ -3,6 +3,16 @@
   inherits: false;
   initial-value: 0deg;
 }
+@property --riot-btn-tilt {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --riot-toast-tilt {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -2deg;
+}
 
 .riot-surface {
   position: relative;

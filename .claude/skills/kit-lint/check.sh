@@ -121,6 +121,11 @@ run "native pseudo vs Base UI [data-*] (:checked / list-item :hover|:disabled / 
 f=$(node .claude/skills/kit-lint/scroll-strip.cjs "$ROOT" 2>/dev/null)
 run "full-width ::before/::after on a scroll container (line scrolls away on overflow)" "$f"
 
+# 13. a custom property consumed in transform that can INHERIT into a nested consumer
+#   (the A8 tilt-doubling class) — needs @property{inherits:false} or a :root constant
+f=$(node .claude/skills/kit-lint/inherit-transform.cjs "$ROOT" 2>/dev/null)
+run "inheritable custom property inside transform (nested double-apply — A8)" "$f"
+
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"
 exit $FAIL
