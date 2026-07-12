@@ -155,6 +155,8 @@
 .bauhaus-collapse-marker {
   flex: 0 0 auto;
   display: inline-flex;
+  justify-content: center;
+  width: 14px;
   color: var(--bauhaus-primary);
   transition: transform var(--bauhaus-dur-slow) var(--bauhaus-ease);
 }
@@ -183,7 +185,7 @@
   height: 0;
 }
 .bauhaus-collapse-content {
-  padding: 0 var(--bauhaus-space-4) var(--bauhaus-space-4) calc(var(--bauhaus-space-4) + var(--bauhaus-space-6));
+  padding: 0 var(--bauhaus-space-4) var(--bauhaus-space-4) calc(var(--bauhaus-space-4) + 14px + var(--bauhaus-space-3));
 }
 
 .bauhaus-modal {

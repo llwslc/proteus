@@ -288,7 +288,7 @@
   height: 0;
 }
 .riot-collapse-content {
-  padding: 0 var(--riot-space-4) var(--riot-space-4) calc(var(--riot-space-4) + var(--riot-space-6));
+  padding: 0 var(--riot-space-4) var(--riot-space-4) calc(var(--riot-space-4) + 14px + var(--riot-space-3));
   font-family: var(--riot-font);
 }
 

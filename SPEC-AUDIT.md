@@ -856,7 +856,7 @@
 
 - **五套渲染实测（2026-07-12，量「title 距行首」vs「内容左衬」）**：nova 35/35 差 0 ✓、abyss 47/47 差 0 ✓、brass 41.33/40 差 −1.33、bauhaus 41.33/40 差 −1.33、riot 42.26/40 差 −2.26——审计原只抓到 riot 的源码近似，实为**三套同病**（.33 的零头来自 em 制标记宽）；nova/abyss 精确对齐。测量陷阱备案：Base UI 面板的首个子元素是全出血 DIV，量它会把五套全冤枉，要量 `content.left + paddingLeft` vs `title.left`
 
-- [ ] 已处理（brass/bauhaus/riot 内容衬对齐 title 起点——待用户裁修码方向）
+- [x] 已处理（码，用户裁决「统一改」）—— 五套内容衬统一「公式直写」`calc(space-4 + 标记定宽 + space-3)`：nova `7px`、abyss `var(--abyss-fs-19)`（sigil 本就 1em 制、全 token 零字面量）、brass/bauhaus 标记先定宽 `14px`（title 右移 0.67px 亚像素）、riot `14px`。复测五套差 0/0/0/0/−0.26px（riot 残差为触发器行内次像素累积，不可见）。指纹红名单恰为 brass/bauhaus 手风琴＋折叠件、riot 折叠件 ×双宽（nova/abyss 一处不沾＝calc≡原字面量实证），基线已刷。魔法数 35/47/凑数 space-6 全数消灭，公式所写即所得
 
 ## E3. BRASS 演示层裸写字号字重 ⚠️
 
@@ -949,7 +949,7 @@
 
 其中 `drawer__body / padding` 已单列为 A4，`navmenu__list / overflow-x` 已单列为 A3。其余 5 条需逐条判是活 bug 还是合理分歧。
 
-- [x] 已逐条判（对拍照片呈用户）—— **活 bug 实锤并修**：nova `radio__control` 缺 flex，长标签挤压 22→11px（四套稳住），补 `flex: 0 0 auto` 后复测 22→22 ✓；同族同修 nova `numberfield__btn`、nova/abyss `panel__meta`、brass `combobox__clear`（多数派声明为基线，静息零像素变化、指纹无痕）。**判合理分歧不动**：riot `radio__control` 的 padding——五套计算值全 0，纯声明在场性、永无渲染差。备案：Combobox 的 Clear 只在**选中值**时挂载（输入过滤文本不算），对拍要先真选一项
+- [x] 已逐条判（对拍照片呈用户）—— **活 bug 实锤并修**：nova `radio__control` 缺 flex，长标签挤压 22→11px（四套稳住），补 `flex: 0 0 auto` 后复测 22→22 ✓；同族同修 nova `numberfield__btn`、nova/abyss `panel__meta`、brass `combobox__clear`（多数派声明为基线，静息零像素变化、指纹无痕）。**riot `radio__control` 的 padding**：初判合理分歧（五套计算值全 0），用户裁「也直接改掉」——补 `padding: 0` 声明镜四套，kit-parity 顾问清零。备案：Combobox 的 Clear 只在**选中值**时挂载（输入过滤文本不算），对拍要先真选一项
 
 ---
 

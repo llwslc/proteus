@@ -419,6 +419,8 @@
 .brass-collapse-marker {
   flex: 0 0 auto;
   display: inline-flex;
+  justify-content: center;
+  width: 14px;
   color: var(--brass-primary);
   transition: transform var(--brass-dur-slow) var(--brass-ease);
 }
@@ -447,5 +449,5 @@
   height: 0;
 }
 .brass-collapse-content {
-  padding: 0 var(--brass-space-4) var(--brass-space-4) calc(var(--brass-space-4) + var(--brass-space-6));
+  padding: 0 var(--brass-space-4) var(--brass-space-4) calc(var(--brass-space-4) + 14px + var(--brass-space-3));
 }

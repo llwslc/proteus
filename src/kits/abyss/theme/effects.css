@@ -75,7 +75,7 @@
   height: 0;
 }
 .abyss-disclosure__content {
-  padding: 0 var(--abyss-space-4) var(--abyss-space-4) 47px;
+  padding: 0 var(--abyss-space-4) var(--abyss-space-4) calc(var(--abyss-space-4) + var(--abyss-fs-19) + var(--abyss-space-3));
 }
 
 @keyframes abyss-breathe {
