@@ -70,7 +70,7 @@
   background: none;
 }
 .brass-scrollarea--popup .brass-scrollarea__viewport {
-  max-height: min(var(--available-height), var(--brass-popup-h));
+  max-height: min(calc(var(--available-height) - 12px), var(--brass-popup-h));
   padding: 0;
 }
 .brass-scrollarea--popup .brass-scrollarea__viewport[data-has-overflow-y] {

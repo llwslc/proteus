@@ -27,7 +27,7 @@
 }
 
 .bauhaus-scrollarea--popup .bauhaus-scrollarea__viewport {
-  max-height: min(var(--available-height), var(--bauhaus-popup-h));
+  max-height: min(calc(var(--available-height) - 12px), var(--bauhaus-popup-h));
 }
 .bauhaus-scrollarea--popup .bauhaus-scrollarea__viewport[data-has-overflow-y] {
   padding-right: var(--bauhaus-space-4);

@@ -205,6 +205,7 @@ const SELECT_ITEMS = [
   { label: "Dagon's Trench", value: "dagon" },
   { label: "Carcosa [sealed]", value: "carcosa", disabled: true },
 ];
+const SELECT_ITEMS_SHORT = SELECT_ITEMS.slice(0, 3);
 
 const COMBOBOX_ITEMS = [
   "Y'ha-nthlei",
@@ -815,7 +816,7 @@ function Demo() {
                   <span className="abyss-cap">Bearing</span>
                   <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
                   <span className="abyss-cap">Uncharted</span>
-                  <Select items={SELECT_ITEMS} placeholder="Unsounded…" />
+                  <Select items={SELECT_ITEMS_SHORT} placeholder="Unsounded…" />
                 </div>
               </Panel>
             </div>

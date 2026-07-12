@@ -114,6 +114,7 @@ const WEIGHTS = [
   { label: "Heavy", value: "heavy" },
   { label: "Black", value: "black", disabled: true },
 ];
+const WEIGHTS_SHORT = WEIGHTS.slice(0, 3);
 
 const FORMS = [
   "Circle",
@@ -490,7 +491,7 @@ function Demo() {
                 <span className="bauhaus-cap">Type weight</span>
                 <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
                 <span className="bauhaus-cap">Display weight</span>
-                <Select items={WEIGHTS} placeholder="Grade" />
+                <Select items={WEIGHTS_SHORT} placeholder="Grade" />
               </div>
             </Panel>
 

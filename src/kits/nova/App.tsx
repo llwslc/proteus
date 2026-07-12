@@ -164,6 +164,7 @@ const SELECT_ITEMS = [
   { label: "Ross 128b", value: "ross128" },
   { label: "Gliese 581g [locked]", value: "gliese", disabled: true },
 ];
+const SELECT_ITEMS_SHORT = SELECT_ITEMS.slice(0, 3);
 
 const COMBOBOX_ITEMS = [
   "Proxima Centauri",
@@ -685,7 +686,7 @@ function Demo() {
                   <span className="nova-cap">Destination</span>
                   <Select items={SELECT_ITEMS} defaultValue="proxima" />
                   <span className="nova-cap">Fallback Route</span>
-                  <Select items={SELECT_ITEMS} placeholder="Awaiting lock…" />
+                  <Select items={SELECT_ITEMS_SHORT} placeholder="Awaiting lock…" />
                 </div>
               </Panel>
             </div>

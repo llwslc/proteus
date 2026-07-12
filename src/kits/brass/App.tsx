@@ -101,6 +101,7 @@ const PRESSURE = [
   { label: "Banked", value: "banked" },
   { label: "Sealed", value: "sealed", disabled: true },
 ];
+const PRESSURE_SHORT = PRESSURE.slice(0, 3);
 
 const FUEL_PARTS = [
   "Anthracite",
@@ -494,7 +495,7 @@ function Demo() {
                 <span className="brass-cap">Boiler pressure</span>
                 <Select items={PRESSURE} placeholder="Pressure band" defaultValue="nominal" />
                 <span className="brass-cap">Standby boiler</span>
-                <Select items={PRESSURE} placeholder="Awaiting steam…" />
+                <Select items={PRESSURE_SHORT} placeholder="Awaiting steam…" />
               </div>
             </Panel>
 

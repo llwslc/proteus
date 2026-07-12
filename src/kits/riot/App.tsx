@@ -116,6 +116,7 @@ const WEIGHTS = [
   { label: "Heavy", value: "heavy" },
   { label: "Black", value: "black", disabled: true },
 ];
+const WEIGHTS_SHORT = WEIGHTS.slice(0, 3);
 
 const FORMS = [
   "Riot",
@@ -528,7 +529,7 @@ function Demo() {
                 <span className="riot-cap">Type weight</span>
                 <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
                 <span className="riot-cap">Masthead cut</span>
-                <Select items={WEIGHTS} placeholder="Cut" />
+                <Select items={WEIGHTS_SHORT} placeholder="Cut" />
               </div>
             </Panel>
 

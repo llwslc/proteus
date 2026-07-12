@@ -76,7 +76,7 @@
   display: none;
 }
 .nova-scrollarea--popup .nova-scrollarea__viewport {
-  max-height: min(var(--available-height), var(--nova-popup-h));
+  max-height: min(calc(var(--available-height) - 8px), var(--nova-popup-h));
   padding: 0;
   mask-image: none;
 }

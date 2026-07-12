@@ -913,7 +913,7 @@
 - **判定**：五套共有，程度随框厚递增。框最厚的 riot 恰好越线，首项被切 1px（是项的盒边，不是文字）。四套的弹层顶边框同样在屏幕外，只是没切到内容
 - **可选修法**：夹取改为 `min(calc(var(--available-height) - 2 * <框厚>), popup-h)`——但这要改 `§4.2` 的公式并让五套同步，属 spec 级改动，不该只动 riot（那会让它往另一个方向偏）
 
-- [ ] 已裁决
+- [x] 已裁决并修（码＋文，用户拍板「直接改」）—— 五套 clamp 各扣自身竖向框厚（实测箱子自重：nova/abyss `8px`、brass/bauhaus `12px`、riot `14px`——恰为审计框厚 ×2）：`min(calc(var(--available-height) − Npx), popup-h)`。窗高 260 复测：五套弹层顶 ≥0、首项零切割、底 ≤260（修前顶 −2/−6/−8、riot 首项切 1px）；nova/abyss/brass 因「装得下了」被 Base UI 改判开在下方——机制生效的旁证。§4.2 公式同步：「min(calc(available-height − 自身竖向框厚), popup-h)——框厚＝边框与内衬的上下合计，各 kit 自扣（框厚不同则值不同）」。kit-equality 7 行检查照常绿（宽裕窗口下扣减不触边）。**顺带（用户提出）**：demo 第二个 Select 换 3 项短列表（各 kit 切自家清单前三），覆盖「不满 7 行、无滚动条」形态（实测溢出标记 false、不可滚），app.md select 行同步钉形。
 
 ## E8. NOVA / ABYSS 的 Menubar、ToggleGroup 没有手机横滚兜底 ✅（修 A20 时发现）
 

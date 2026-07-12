@@ -112,7 +112,7 @@
   display: none;
 }
 .abyss-scrollarea--popup .abyss-scrollarea__viewport {
-  max-height: min(var(--available-height), var(--abyss-popup-h));
+  max-height: min(calc(var(--available-height) - 8px), var(--abyss-popup-h));
   mask-image: none;
 }
 .abyss-scrollarea--popup .abyss-scrollarea__viewport[data-has-overflow-y] {
