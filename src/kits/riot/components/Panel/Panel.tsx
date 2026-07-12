@@ -19,8 +19,8 @@ export function Panel({ title, meta, children, tape, stapled, id, wide, classNam
       {tape ? <span className={`riot-tape riot-tape--${tape}`} aria-hidden /> : null}
       {stapled ? (
         <>
-          <i className="riot-staple riot-panel__staple--l" aria-hidden />
-          <i className="riot-staple riot-panel__staple--r" aria-hidden />
+          <i className="riot-staple riot-panel__staple riot-panel__staple--l" aria-hidden />
+          <i className="riot-staple riot-panel__staple riot-panel__staple--r" aria-hidden />
         </>
       ) : null}
       <section className="riot-surface riot-surface--torn riot-panel__sheet">

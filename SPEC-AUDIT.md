@@ -960,7 +960,8 @@
 `kit-deadcode` 查的是「CSS 定义了但没人用」。反方向没人管：`.tsx` 挂上一个类，`.css` 里没有任何规则消费它，prop 就是死的。
 **检查**：抽出各组件 `.tsx` 里出现的所有 `<kit>-*` 与 `is-*` 类名，逐个确认至少有一条 CSS 规则匹配。
 
-- [x] **已建（2026-07-12）**：织入 `kit-deadcode`（死代码之家：死类／死 keyframe／死间接层／用而未定义，四查合一）。首扫 51 处，分诊出**真 bug 一条**——riot 的 `.riot-menu__trigger` 在 CSS 里从不存在，导致「打开转 chevron」的规则没有宿主，独立 Menu 的 chevron 从来不转（违反 §6.1）；其余 50 处是零规则死钩子（样式来自兄弟类或父元素），全部从 tsx 摘除。像素证据：不含类名的几何＋计算样式对拍（stash 前后双跑）5/5 全同。
+- [x] **已建（2026-07-12，两版）**：**静态版作废**——「tsx 用了、css 没定义 = 死类」这个前提是错的：§3 白纸黑字「子部件用 `.<kit>-<块>__<part>`，同一个部件跨 kit 用同一个名字」，部件类名是**契约**（门禁、kit-states 全靠它定位元素），没样式不等于死；我照静态版删了 50 个「死钩子」，收官全量当场红——`kit-submenu-gap` 说 brass 的 select 缝量不出来，因为我删掉了它定位用的 `brass-select__trigger`。改跨 kit 共识版（「≥3 套给这个部件上了皮、唯独这套没有」）仍有 9 条假阳性：皮由**同元素上的原语类**给（`brass-plate`／`bauhaus-text`／`riot-seg__btn`），查类定义根本判不出元素有没有皮。50 处删除全部回滚。
+- [x] **终版（行为门，织入 `kit-interact`）**：真 bug 的形状是**状态规则缺失**，那就直接驱动验证——§6.1 钉了「Select／NavigationMenu 的 chevron 打开转 180°、独立 Menu 的触发器带一个会旋转的 chevron」，门禁开四类触发器，比对**触发器整棵子树**的 transform（旋转可能挂在图标包裹层而非 svg 上）。riot 的 Menu chevron 从不旋转即被点名；补规则后五套四类全绿。fail-on-broken：摘掉修复即红、精确点名。
 ## F2. hover 权重压过 open/selected —— 对应 A6、A7
 
 `kit-interact` 已有这条检查，但只覆盖分段控件（ToggleGroup / Toolbar）。

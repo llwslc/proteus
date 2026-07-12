@@ -54,7 +54,7 @@ export function Popover({
                 {title}
               </BasePopover.Title>
             ) : null}
-            <div className="bauhaus-text">{children}</div>
+            <div className="bauhaus-text bauhaus-popover__body">{children}</div>
           </BasePopover.Popup>
           <BasePopover.Arrow className="bauhaus-connector" />
         </BasePopover.Positioner>

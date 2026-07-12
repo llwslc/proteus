@@ -14,7 +14,7 @@ export function Input({ className, icon, id, ...props }: InputProps) {
   return (
     <span className="nova-input-glow">
       <span
-        className={cx("nova-input-wrap", icon ? "" : "", className)}
+        className={cx("nova-input-wrap", icon ? "nova-input-wrap--icon" : "", className)}
       >
         {icon ? <span className="nova-input__icon">{icon}</span> : null}
         <BaseInput
@@ -47,13 +47,13 @@ export function Field({
   return (
     <BaseField.Root className={cx("nova-field", rootClassName)} invalid={error != null}>
       {label != null ? (
-        <BaseField.Label className="nova-cap">{label}</BaseField.Label>
+        <BaseField.Label className="nova-cap nova-field__label">{label}</BaseField.Label>
       ) : null}
       <span className="nova-input-glow">
         <span
           className={cx(
             "nova-input-wrap",
-            icon ? "" : "",
+            icon ? "nova-input-wrap--icon" : "",
           )}
         >
           {icon ? <span className="nova-input__icon">{icon}</span> : null}

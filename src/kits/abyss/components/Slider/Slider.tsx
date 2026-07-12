@@ -14,7 +14,7 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       {(label != null || showValue) && (
         <div className="abyss-slider__head">
           {label != null ? (
-            <span className="abyss-cap">{label}</span>
+            <span className="abyss-cap abyss-slider__label">{label}</span>
           ) : (
             <span />
           )}

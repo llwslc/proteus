@@ -22,7 +22,7 @@ export interface NavigationMenuProps {
 
 export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
   return (
-    <BaseNav.Root>
+    <BaseNav.Root className="brass-navmenu">
       <BaseNav.List className="brass-navmenu__list">
         {items.map((item, i) =>
           item.links ? (

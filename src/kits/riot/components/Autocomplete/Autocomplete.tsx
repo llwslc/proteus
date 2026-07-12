@@ -46,10 +46,10 @@ export function Autocomplete({
               {emptyText}
             </BaseAutocomplete.Empty>
             <ScrollArea variant="popup">
-              <BaseAutocomplete.List>
+              <BaseAutocomplete.List className="riot-autocomplete__list">
                 {(item: string) => (
                   <BaseAutocomplete.Item key={item} value={item} className="riot-list-item">
-                    <span className="riot-autocomplete__item-text">{item}</span>
+                    <span className="riot-autocomplete__item-text riot-list-item__text">{item}</span>
                   </BaseAutocomplete.Item>
                 )}
               </BaseAutocomplete.List>

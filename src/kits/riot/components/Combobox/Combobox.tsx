@@ -52,10 +52,10 @@ export function Combobox({
           <BaseCombobox.Popup className="riot-surface riot-popup riot-pop riot-combobox__popup">
             <BaseCombobox.Empty className="riot-combobox__empty">{emptyText}</BaseCombobox.Empty>
             <ScrollArea variant="popup">
-              <BaseCombobox.List>
+              <BaseCombobox.List className="riot-combobox__list">
                 {(item: string) => (
                   <BaseCombobox.Item key={item} value={item} className="riot-list-item">
-                    <span className="riot-combobox__item-text">{item}</span>
+                    <span className="riot-combobox__item-text riot-list-item__text">{item}</span>
                     <span className="riot-combobox__indicator">
                       <BaseCombobox.ItemIndicator>
                         <CheckIcon />

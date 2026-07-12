@@ -21,7 +21,7 @@ export function Progress({
       {(label != null || showValue) && (
         <div className="abyss-progress__head">
           {label != null ? (
-            <BaseProgress.Label className="abyss-cap">
+            <BaseProgress.Label className="abyss-cap abyss-progress__label">
               {label}
             </BaseProgress.Label>
           ) : (

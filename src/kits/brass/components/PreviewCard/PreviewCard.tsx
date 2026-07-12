@@ -30,7 +30,7 @@ export function PreviewCard({
       <BasePreviewCard.Portal>
         <BasePreviewCard.Positioner className="brass-lift brass-lift--sm" side={side} align={align} sideOffset={sideOffset}>
           <BasePreviewCard.Popup className="brass-plate brass-pop brass-popup brass-preview">
-            <div>{children}</div>
+            <div className="brass-preview__body">{children}</div>
             <BasePreviewCard.Arrow className="brass-connector" />
           </BasePreviewCard.Popup>
         </BasePreviewCard.Positioner>

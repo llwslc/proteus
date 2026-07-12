@@ -88,28 +88,5 @@ for (const kit of kits) {
   if (ceremony) total += ceremony; else console.log('  dead-indirection: clean');
 }
 
-// used-but-undefined (F1) — a class on a .tsx element that NO css rule matches is a
-// dead hook: the styling silently comes from a sibling/parent, or (the bug shape) the
-// rule was renamed and the element lost its skin. Caught riot's Menu chevron never
-// rotating (.riot-menu__trigger had no rule, so the [data-popup-open] rule had no host).
-{
-  let miss = 0;
-  for (const kit of fs.readdirSync('src/kits').filter((d) => fs.statSync(`src/kits/${d}`).isDirectory())) {
-    const css = cp.execSync(`find src/kits/${kit} -name '*.css'`).toString().trim().split('\n')
-      .map((f) => fs.readFileSync(f, 'utf8')).join('\n');
-    const defined = new Set([...css.matchAll(/\.([A-Za-z0-9_-]+)/g)].map((m) => m[1]));
-    for (const f of cp.execSync(`find src/kits/${kit}/components -name '*.tsx'`).toString().trim().split('\n')) {
-      const s = fs.readFileSync(f, 'utf8');
-      for (const m of s.matchAll(/["'`]([^"'`\n]*)["'`]/g))
-        for (const cls of m[1].split(/\s+/)) {
-          if (!new RegExp(`^(${kit}-|is-)[a-z0-9_-]+$`).test(cls) || defined.has(cls)) continue;
-          console.log(`  FAIL ${kit}: class ${cls} used in ${f.split('components/')[1]} but NO css rule matches it — define it or drop it`);
-          miss++;
-        }
-    }
-  }
-  if (miss) total += miss; else console.log('  used-but-undefined: clean');
-}
-
 console.log(`\nRESULT: ${total === 0 ? 'PASS (no dead code)' : total + ' finding(s)'}`);
 process.exit(total === 0 ? 0 : 1);

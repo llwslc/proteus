@@ -249,6 +249,30 @@ const setKit = async (page, kit) => {
       await cdp.detach().catch(() => {});
       if (drift.length) out.push(`HIGH  ${kit}  ${drift.length} selected control(s) change look on hover — selected/open fill loses to :hover; wrap the hover disabled-guard in :where() so it can't out-specify [data-pressed]: ${[...new Set(drift)].join(', ')}`);
     } catch (e) { out.push(`WARN  ${kit}  selected-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    // open-state chevron: §6.1 pins the Select / NavigationMenu chevron to flip 180° on
+    // open, and the standalone Menu trigger to carry a rotating chevron. A missing state
+    // rule is invisible to every static gate — riot's Menu chevron never rotated because
+    // .riot-menu__trigger had no rule at all, so the [data-popup-open] rule had no host.
+    // Judge the TRIGGER SUBTREE's transforms (the rotation may sit on the icon wrapper,
+    // not the svg), before vs after opening.
+    for (const [panel, trig] of [['select', `.${kit}-select__trigger`], ['menu', `.${kit}-menu__trigger`],
+                                 ['combobox', `.${kit}-combobox__trigger`], ['navmenu', `.${kit}-navmenu__trigger`]]) {
+      try {
+        const sel = `#${panel} ${trig}`;
+        await page.evaluate((id) => document.getElementById(id).scrollIntoView({ block: 'center' }), panel);
+        await page.waitForTimeout(150);
+        const snap = (s) => { const t = document.querySelector(s); return t ? [t, ...t.querySelectorAll('*')].map((e) => getComputedStyle(e).transform).join('|') : null; };
+        const before = await page.evaluate(snap, sel);
+        if (before === null) continue;
+        await page.click(sel);
+        await page.waitForTimeout(450);
+        const after = await page.evaluate(snap, sel);
+        if (before === after) out.push(`HIGH  ${kit}  ${panel}: the trigger's chevron does not rotate on open (§6.1) — no transform anywhere in the trigger subtree changed; the [data-popup-open] rule is missing or its host class has no rule`);
+        await page.keyboard.press('Escape');
+        await page.waitForTimeout(200);
+      } catch (e) { out.push(`WARN  ${kit}  ${panel}-chevron: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    }
+
     for (const corner of ['tl', 'tr', 'bl', 'br']) {
       try {
         // press-displacement: a press transform that MOVES the button (un-tilt slam,

@@ -14,7 +14,7 @@ export function Progress({ className, label, showValue = true, ...props }: Progr
       {(label != null || showValue) && (
         <div className="riot-progress__head">
           {label != null ? (
-            <BaseProgress.Label className="riot-cap">{label}</BaseProgress.Label>
+            <BaseProgress.Label className="riot-cap riot-progress__label">{label}</BaseProgress.Label>
           ) : (
             <span />
           )}

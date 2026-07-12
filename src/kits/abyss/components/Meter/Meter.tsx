@@ -24,7 +24,7 @@ export function Meter({
       {(label != null || showValue) && (
         <div className="abyss-meter__head">
           {label != null ? (
-            <BaseMeter.Label className="abyss-cap">
+            <BaseMeter.Label className="abyss-cap abyss-meter__label">
               {label}
             </BaseMeter.Label>
           ) : (
