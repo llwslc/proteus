@@ -48,6 +48,45 @@ for (const kit of kits) {
   console.log(`\n=== ${kit} ===`);
   if (!findings.length) console.log('  clean');
   else { findings.forEach((f) => console.log('  ' + f)); total += findings.length; }
+}// dead indirection — a custom property assigned and consumed ONLY inside one
+// rule block (self-dealing alias, no boundary crossed): inline the literal.
+// Cross-boundary forms (input-var overrides, nth→base like --riot-toast-tilt)
+// have >1 block and pass. tokens.css (:root) definitions always cross.
+{
+  let ceremony = 0;
+  for (const kit of fs.readdirSync('src/kits').filter((d) => fs.statSync(`src/kits/${d}`).isDirectory())) {
+    const assigns = new Map(), consumes = new Map();
+    const files = cp.execSync(`find src/kits/${kit} -name '*.css'`).toString().trim().split('\n');
+    for (const f of files) {
+      if (f.endsWith('tokens.css')) continue;
+      const s = fs.readFileSync(f, 'utf8');
+      for (const m of s.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+        const key = f + ':' + m.index;
+        for (const am of m[2].matchAll(new RegExp('(--' + kit + '-[\\w-]+)\\s*:', 'g'))) {
+          if (!assigns.has(am[1])) assigns.set(am[1], new Set());
+          assigns.get(am[1]).add(key);
+        }
+        for (const cm of m[2].matchAll(new RegExp('var\\(\\s*(--' + kit + '-[\\w-]+)', 'g'))) {
+          if (!consumes.has(cm[1])) consumes.set(cm[1], new Set());
+          consumes.get(cm[1]).add(key);
+        }
+      }
+    }
+    // tokens.css 定义的名字在别处赋值也算跨界:并入 root 块
+    const rootDefs = new Set();
+    const tok = `src/kits/${kit}/theme/tokens.css`;
+    if (fs.existsSync(tok)) for (const m of fs.readFileSync(tok, 'utf8').matchAll(new RegExp('(--' + kit + '-[\\w-]+)\\s*:', 'g'))) rootDefs.add(m[1]);
+    for (const [prop, aBlocks] of assigns) {
+      if (rootDefs.has(prop)) continue;
+      const all = new Set([...aBlocks, ...(consumes.get(prop) || [])]);
+      if (all.size === 1 && consumes.has(prop)) {
+        console.log(`  FAIL ${kit}: ${prop} assigned+consumed in ONE rule only (dead indirection) — inline the literal (${[...all][0].split(kit + '/')[1].split(':')[0]})`);
+        ceremony++;
+      }
+    }
+  }
+  if (ceremony) total += ceremony; else console.log('  dead-indirection: clean');
 }
+
 console.log(`\nRESULT: ${total === 0 ? 'PASS (no dead code)' : total + ' finding(s)'}`);
 process.exit(total === 0 ? 0 : 1);
