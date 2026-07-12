@@ -15,7 +15,7 @@ export function Meter({ className, label, showValue = true, tone = "primary", ..
       {(label != null || showValue) && (
         <div className="riot-meter__head">
           {label != null ? (
-            <BaseMeter.Label className="riot-cap riot-meter__label">{label}</BaseMeter.Label>
+            <BaseMeter.Label className="riot-cap">{label}</BaseMeter.Label>
           ) : (
             <span />
           )}

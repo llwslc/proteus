@@ -32,7 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         "bauhaus-btn",
         `bauhaus-btn--${variant}`,
         size !== "md" && `bauhaus-btn--${size}`,
-        upright && "bauhaus-btn--upright",
+        upright && "",
         className,
       )}
       {...props}

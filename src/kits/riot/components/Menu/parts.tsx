@@ -22,7 +22,7 @@ export function MenuItem({
   return (
     <Menu.Item
       className={cx(
-        "riot-list-item riot-menu__item",
+        "riot-list-item",
         tone === "danger" && "riot-menu__item--danger",
         className,
       )}
@@ -30,7 +30,7 @@ export function MenuItem({
       {...props}
     >
       <span className="riot-menu__icon">{icon}</span>
-      <span className="riot-menu__label riot-list-item__text">{children}</span>
+      <span className="riot-menu__label">{children}</span>
       {shortcut ? <kbd className="riot-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.Item>
   );
@@ -51,9 +51,9 @@ export function MenuSub({
 }) {
   return (
     <Menu.SubmenuRoot>
-      <Menu.SubmenuTrigger className="riot-list-item riot-menu__item">
+      <Menu.SubmenuTrigger className="riot-list-item">
         <span className="riot-menu__icon">{icon}</span>
-        <span className="riot-menu__label riot-list-item__text">{label}</span>
+        <span className="riot-menu__label">{label}</span>
         <span className="riot-menu__arrow">
           <ChevronRightIcon />
         </span>

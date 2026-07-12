@@ -31,7 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         "abyss-btn abyss-frame",
         `abyss-btn--${variant}`,
         `abyss-btn--${size}`,
-        upright && "abyss-btn--upright",
+        upright && "",
         className,
       )}
       {...props}

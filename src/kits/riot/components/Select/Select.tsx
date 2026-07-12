@@ -82,7 +82,7 @@ export function Select<Value extends string = string>({
                   disabled={it.disabled}
                   className="riot-list-item"
                 >
-                  <BaseSelect.ItemText className="riot-select__item-text riot-list-item__text">
+                  <BaseSelect.ItemText className="riot-select__item-text">
                     {it.label}
                   </BaseSelect.ItemText>
                   <span className="riot-select__item-indicator">

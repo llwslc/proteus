@@ -29,7 +29,7 @@ export function ScrollAreaViewport({ className, ...props }: React.ComponentProps
 }
 
 export function ScrollAreaContent({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Content>) {
-  return <BaseScrollArea.Content className={cx("nova-scrollarea__content", className)} {...props} />;
+  return <BaseScrollArea.Content className={className} {...props} />;
 }
 
 export function ScrollAreaScrollbar({ className, ...props }: React.ComponentProps<typeof BaseScrollArea.Scrollbar>) {

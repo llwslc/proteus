@@ -1,6 +1,9 @@
 .riot-menu__trigger-chevron {
   font-size: var(--riot-fs-13);
 }
+.riot-menu__trigger[data-popup-open] .riot-menu__trigger-chevron {
+  transform: rotate(180deg);
+}
 .riot-menu__icon:empty {
   display: none;
 }

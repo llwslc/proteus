@@ -21,7 +21,7 @@ export function Popover({ trigger, title, children, side = "bottom", align = "ce
       <BasePopover.Trigger render={trigger} />
       <BasePopover.Portal>
         <BasePopover.Positioner className="brass-lift" side={side} align={align} sideOffset={sideOffset}>
-          <BasePopover.Popup className={cx("brass-plate brass-pop brass-popup brass-popover brass-popover__popup", className)}>
+          <BasePopover.Popup className={cx("brass-plate brass-pop brass-popup brass-popover", className)}>
             {title != null ? (
               <BasePopover.Title className="brass-h3 brass-popover__title">{title}</BasePopover.Title>
             ) : null}

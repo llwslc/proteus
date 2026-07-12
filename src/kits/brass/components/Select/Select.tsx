@@ -51,7 +51,7 @@ export function Select<Value extends string = string>({
     >
       <BaseSelect.Trigger
         id={id ?? autoId}
-        className={cx("brass-plate", "brass-select", "brass-select__trigger", className)}
+        className={cx("brass-plate", "brass-select", "", className)}
       >
         <BaseSelect.Value className="brass-select__value">
           {(val) => {

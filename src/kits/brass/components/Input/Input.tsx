@@ -43,7 +43,7 @@ export function Field({
   return (
     <BaseField.Root className={cx("brass-field", rootClassName)} invalid={error != null}>
       {label != null ? (
-        <BaseField.Label className="brass-cap brass-field__label">
+        <BaseField.Label className="brass-cap">
           {label}
         </BaseField.Label>
       ) : null}

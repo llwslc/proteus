@@ -24,7 +24,7 @@ export interface ToolbarButtonProps extends ComponentPropsWithoutRef<typeof Base
 export function ToolbarButton({ className, active, children, ...props }: ToolbarButtonProps) {
   return (
     <BaseToolbar.Button
-      className={cx("brass-seg__btn", "brass-toolbar__btn", className, active ? "is-active" : "")}
+      className={cx("brass-seg__btn", "", className, active ? "is-active" : "")}
       {...props}
     >
       {children}
