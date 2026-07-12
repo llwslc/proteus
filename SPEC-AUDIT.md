@@ -847,7 +847,7 @@
 - **代码**：`Panel.css:12,17,39`、`Toast.css:39`、`Slider.css:18,54`、`Dialog.css:11`、`AlertDialog.css:11`
 - **可争论**：胶带 / 订书钉 / 图钉属于「母题装饰」，角度或可豁免；但 `Slider.css:54` 的 thumb（−6°）和 `Panel.css:39` 的 meta（2.5°）是控件部件，不是装饰。spec 没写豁免条款
 
-- [x] 已处理（码）—— 8 处角度全部改「同规则内赋值＋消费」的姿态/出场变量（照 `--riot-toast-tilt` 自家惯用法，零继承风险）：`--riot-value/thumb/staple/meta-tilt` ＋ 三处 `*-exit-tilt`。渲染恒等由 hero 逐元素 dump `diff=0` 与 var 替换语义保证。追坑：指纹在 riot hero 偶发抖动把二分耍成抛硬币——根因是探针没等 `document.fonts.ready`（每套先手机宽 reload 再缩桌面，大字号展示体的字体交换越过 0.25px 量化线）；探针已修，三连跑稳定
+- [x] 已处理（文，两轮裁决）—— 首版把 8 处角度套成「同规则赋值＋消费」的变量，**被用户推翻：「纯属为了 token 而 token」**——变量没跨任何边界（规则→规则/组件→原语），是仪式不是机制；Toast 原有的 `--riot-toast-tilt`（nth 赋值、基础规则消费）才是真机制、保留。终判：病在 spec 那句「组件不裸写 radius 与角度」扩权——radius 走 token 阶梯、剪报 tilt 走 `--riot-tilt` 机制是真禁令，姿态角/进出场角是一次性值，按 token-scope 规矩就近写立即数。八处回退为立即数，spec 句改「组件不裸写 radius；母题件与部件的姿态角、进出场的角是一次性值，就近写立即数」。（首版过程中揪出的指纹字体竞态与 registry.ts 假 kit 两个探针 bug 仍然成立、保留）
 
 ## E2. RIOT 折叠内容缩进 40px，公式算出 42px ⚠️
 

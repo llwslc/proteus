@@ -36,8 +36,7 @@
 .riot-toast[data-starting-style],
 .riot-toast[data-ending-style] {
   opacity: 0;
-  --riot-toast-exit-tilt: 8deg;
-  transform: translateX(60px) rotate(var(--riot-toast-exit-tilt));
+  transform: translateX(60px) rotate(8deg);
 }
 .riot-toast__surface {
   display: flex;

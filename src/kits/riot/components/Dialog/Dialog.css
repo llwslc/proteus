@@ -8,8 +8,7 @@
 .riot-dialog__popup[data-starting-style],
 .riot-dialog__popup[data-ending-style] {
   opacity: 0;
-  --riot-dialog-exit-tilt: -1.2deg;
-  transform: translateY(-14px) rotate(var(--riot-dialog-exit-tilt));
+  transform: translateY(-14px) rotate(-1.2deg);
 }
 .riot-dialog__surface {
   position: relative;
