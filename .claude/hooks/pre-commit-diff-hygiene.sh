@@ -22,4 +22,19 @@ case "$CMD" in
       exit 2
     } ;;
 esac
+
+# Format guard. src/ was 179 files of drift because nothing enforced `npm run format` —
+# without this the repo rots straight back into a command nobody dares run. --ignore-unknown
+# skips extensions prettier has no parser for; .prettierignore keeps it off docs and .claude/.
+if [ -x node_modules/.bin/prettier ]; then
+  STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+  if [ -n "$STAGED" ]; then
+    BAD=$(printf '%s\n' "$STAGED" | xargs node_modules/.bin/prettier --list-different --ignore-unknown 2>/dev/null)
+    if [ -n "$BAD" ]; then
+      printf '%s\n' "$BAD" >&2
+      echo "prettier: the staged files above are not formatted — run \`npm run format\`" >&2
+      exit 2
+    fi
+  fi
+fi
 exit 0
