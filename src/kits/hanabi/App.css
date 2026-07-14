@@ -101,6 +101,7 @@
 }
 
 .hanabi-sidebar__link {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,11 +111,33 @@
   font-size: var(--hanabi-fs-13);
   color: var(--hanabi-text);
   text-decoration: none;
-  transition: background var(--hanabi-dur) var(--hanabi-ease-out);
+  transition:
+    background var(--hanabi-dur) var(--hanabi-ease-out),
+    color var(--hanabi-dur) var(--hanabi-ease-out);
 }
-.hanabi-sidebar__link:hover {
+.hanabi-sidebar__link::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 3px;
+  height: 0;
+  border-radius: var(--hanabi-r-pill);
+  background: var(--hanabi-primary);
+  transition: height var(--hanabi-dur) var(--hanabi-ease-snap);
+}
+.hanabi-sidebar__link:hover,
+.hanabi-sidebar__link:focus-visible {
   background: var(--hanabi-primary-wash);
   color: var(--hanabi-primary-deep);
+}
+.hanabi-sidebar__link:hover::before,
+.hanabi-sidebar__link:focus-visible::before {
+  height: 14px;
+}
+.hanabi-sidebar__link:focus-visible {
+  outline: none;
 }
 
 .hanabi-sidebar__meta {
