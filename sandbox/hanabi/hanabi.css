@@ -1720,6 +1720,176 @@ hr.divider {
   }
 }
 
+/* ============ 控件战斗语汇 ============ */
+.tab,
+.step-btn,
+.sel-btn {
+  position: relative;
+}
+.lockon {
+  position: relative;
+  display: block;
+}
+.modal-title {
+  z-index: 1;
+}
+
+.btn:focus-visible,
+.skill:focus-visible,
+.tab:focus-visible,
+.step-btn:focus-visible,
+.sel-btn:focus-visible,
+.ult:focus-visible {
+  outline: none;
+}
+.skill:focus-visible::after,
+.tab:focus-visible::after,
+.step-btn:focus-visible::after,
+.sel-btn:focus-visible::after,
+.ult:focus-visible::after,
+.lockon:focus-within::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+}
+.btn:focus-visible::after,
+.skill:focus-visible::after,
+.tab:focus-visible::after,
+.step-btn:focus-visible::after,
+.sel-btn:focus-visible::after,
+.ult:focus-visible::after,
+.lockon:focus-within::after {
+  background:
+    linear-gradient(var(--pink) 0 0) left 0 top 0 / 13px 3px,
+    linear-gradient(var(--pink) 0 0) left 0 top 0 / 3px 13px,
+    linear-gradient(var(--pink) 0 0) right 0 top 0 / 13px 3px,
+    linear-gradient(var(--pink) 0 0) right 0 top 0 / 3px 13px,
+    linear-gradient(var(--pink) 0 0) left 0 bottom 0 / 13px 3px,
+    linear-gradient(var(--pink) 0 0) left 0 bottom 0 / 3px 13px,
+    linear-gradient(var(--pink) 0 0) right 0 bottom 0 / 13px 3px,
+    linear-gradient(var(--pink) 0 0) right 0 bottom 0 / 3px 13px;
+  background-repeat: no-repeat;
+  animation: lock-snap 0.18s ease-out;
+}
+@keyframes lock-snap {
+  from {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+.range::-webkit-slider-thumb {
+  background-image:
+    radial-gradient(circle, var(--pink) 0 3.2px, transparent 3.8px),
+    linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink)),
+    linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink));
+  background-size:
+    100% 100%,
+    2px 4px,
+    2px 4px,
+    4px 2px,
+    4px 2px;
+  background-position:
+    center,
+    center top 2px,
+    center bottom 2px,
+    left 2px center,
+    right 2px center;
+  background-repeat: no-repeat;
+}
+.range::-moz-range-thumb {
+  background-image:
+    radial-gradient(circle, var(--pink) 0 3.2px, transparent 3.8px),
+    linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink)),
+    linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink));
+  background-size:
+    100% 100%,
+    2px 4px,
+    2px 4px,
+    4px 2px,
+    4px 2px;
+  background-position:
+    center,
+    center top 2px,
+    center bottom 2px,
+    left 2px center,
+    right 2px center;
+  background-repeat: no-repeat;
+}
+
+.progress .fill::after {
+  content: "✦";
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 9px;
+  line-height: 1;
+  color: #fff;
+}
+.progress .sp-cells i,
+.hpbar .sp-cells i {
+  opacity: 0.14;
+}
+
+.btn.flash,
+.btn.primary.flash {
+  background-image: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.8) 46%,
+    transparent 58%
+  );
+  background-size: 240% 100%;
+  background-repeat: no-repeat;
+  animation: slash-flash 0.32s ease-out;
+}
+@keyframes slash-flash {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -60% 0;
+  }
+}
+
+.check .box {
+  position: relative;
+}
+.check .box::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(45deg, transparent 38%, #fff 48%, transparent 58%);
+  opacity: 0;
+  pointer-events: none;
+}
+.check input:checked + .box::after {
+  animation: check-slash 0.38s ease-out;
+}
+@keyframes check-slash {
+  0% {
+    opacity: 1;
+    transform: translate(-11px, 11px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(11px, -11px);
+  }
+}
+
+dialog.modal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12px;
+  right: 12px;
+  height: 6px;
+  border-radius: 0 0 4px 4px;
+  background: repeating-linear-gradient(-45deg, var(--gold) 0 9px, var(--ink) 9px 18px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

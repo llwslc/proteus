@@ -86,7 +86,12 @@
               >
               <span class="num" id="hp-num">3000</span>
             </div>
-            <div class="hpbar"><div class="fill" id="hp-fill"></div></div>
+            <div class="hpbar">
+              <div class="fill" id="hp-fill"></div>
+              <span class="sp-cells" aria-hidden="true"
+                ><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+              ></span>
+            </div>
             <div class="gauge-lbl" style="margin-top: 10px">
               <span class="lbl" style="margin: 0">韧性<span class="jp">BREAK</span></span>
             </div>
@@ -156,13 +161,14 @@
             <label class="lbl" for="callsign"
               >指挥官代号<span class="jp">CALLSIGN</span></label
             >
-            <input
-              class="input"
-              id="callsign"
-              type="text"
-              placeholder="例：小春"
-              maxlength="12"
-            />
+            <span class="lockon"
+              ><input
+                class="input"
+                id="callsign"
+                type="text"
+                placeholder="例：小春"
+                maxlength="12"
+            /></span>
           </div>
           <div>
             <span class="lbl" id="lbl-diff"
@@ -249,7 +255,7 @@
           <hr class="divider" />
           <div>
             <label class="lbl" for="bgm">BGM 音量<span class="jp">MUSIC</span></label>
-            <div class="sliderrow">
+            <div class="sliderrow lockon">
               <input class="range" id="bgm" type="range" min="0" max="100" value="70" />
               <span class="slider-val" data-val-for="bgm">70</span>
             </div>
@@ -258,7 +264,7 @@
             <label class="lbl" for="danmaku"
               >弹幕密度<span class="jp">DANMAKU</span></label
             >
-            <div class="sliderrow">
+            <div class="sliderrow lockon">
               <input
                 class="range"
                 id="danmaku"
@@ -350,6 +356,9 @@
               aria-label="好感度"
             >
               <div class="fill" id="trust-fill"></div>
+              <span class="sp-cells" aria-hidden="true"
+                ><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+              ></span>
             </div>
           </div>
           <div>
@@ -812,6 +821,14 @@
         }, 480);
       });
       paintFoe();
+
+      $$(".btn.primary").forEach((b) =>
+        b.addEventListener("pointerdown", () => {
+          b.classList.remove("flash");
+          void b.offsetWidth;
+          b.classList.add("flash");
+        }),
+      );
     </script>
   </body>
 </html>
