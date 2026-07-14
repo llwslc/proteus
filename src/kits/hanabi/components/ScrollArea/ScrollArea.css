@@ -1,0 +1,48 @@
+.hanabi-scrollarea {
+  position: relative;
+}
+
+.hanabi-scrollarea__viewport {
+  max-height: var(--hanabi-scrollarea-h);
+  overscroll-behavior: contain;
+  outline: none;
+}
+
+.hanabi-scrollarea__bar {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: var(--hanabi-scrollbar);
+  padding: 1px;
+  background: var(--hanabi-surface-inset);
+  border-radius: var(--hanabi-r-pill);
+  opacity: 0;
+  transition: opacity var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-scrollarea__bar[data-hovering],
+.hanabi-scrollarea__bar[data-scrolling] {
+  opacity: 1;
+}
+
+.hanabi-scrollarea__thumb {
+  width: 100%;
+  background: var(--hanabi-tone-deep);
+  border-radius: var(--hanabi-r-pill);
+}
+
+.hanabi-scrollarea--popup .hanabi-scrollarea__viewport {
+  max-height: min(calc(var(--available-height) - 12px), var(--hanabi-popup-h));
+}
+.hanabi-scrollarea--popup .hanabi-scrollarea__viewport[data-has-overflow-y] {
+  padding-right: var(--hanabi-space-4);
+}
+.hanabi-scrollarea--popup .hanabi-scrollarea__bar {
+  opacity: 1;
+  width: 4px;
+  margin: var(--hanabi-space-1) var(--hanabi-space-1) var(--hanabi-space-1) 0;
+  padding: 0;
+  background: transparent;
+}
+.hanabi-scrollarea--popup .hanabi-scrollarea__thumb {
+  background: var(--hanabi-primary);
+}

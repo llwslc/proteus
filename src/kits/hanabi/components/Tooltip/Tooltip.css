@@ -1,0 +1,15 @@
+.hanabi-tooltip {
+  max-width: var(--hanabi-tooltip-w);
+  padding: 6px var(--hanabi-space-3);
+  background: var(--hanabi-ink);
+  border-radius: var(--hanabi-r-field);
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-13);
+  line-height: var(--hanabi-lh-135);
+  color: var(--hanabi-text-invert);
+  outline: none;
+}
+
+.hanabi-tooltip__arrow {
+  --hanabi-connector-fill: var(--hanabi-ink);
+}

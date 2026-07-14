@@ -50,25 +50,39 @@
 }
 
 .hanabi-connector {
-  display: flex;
+  width: 16px;
+  height: 9px;
+  background: var(--hanabi-ink);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
-.hanabi-connector svg {
-  display: block;
+.hanabi-connector::before {
+  content: "";
+  position: absolute;
+  inset: 0 3px 3.5px;
+  background: var(--hanabi-connector-fill, var(--hanabi-surface));
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 .hanabi-connector[data-side="top"] {
   bottom: -8px;
-  rotate: 180deg;
 }
 .hanabi-connector[data-side="bottom"] {
   top: -8px;
+  rotate: 180deg;
 }
 .hanabi-connector[data-side="left"] {
-  right: -13px;
-  rotate: 90deg;
+  right: -12px;
+  rotate: -90deg;
 }
 .hanabi-connector[data-side="right"] {
-  left: -13px;
-  rotate: -90deg;
+  left: -12px;
+  rotate: 90deg;
+}
+
+.hanabi-popup {
+  background: var(--hanabi-surface-popup);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-control);
+  outline: none;
 }
 
 .hanabi-backdrop {

@@ -129,6 +129,7 @@
   --hanabi-list-item-h: 36px;
   --hanabi-popup-h: calc(var(--hanabi-list-item-h) * 7);
   --hanabi-scrollarea-h: 200px;
+  --hanabi-scrollbar: 8px;
   --hanabi-avatar-sm: 34px;
   --hanabi-avatar-md: 46px;
   --hanabi-avatar-lg: 64px;

@@ -1,0 +1,27 @@
+.hanabi-popover {
+  position: relative;
+  width: var(--hanabi-popover-w);
+  max-width: calc(100vw - var(--hanabi-space-6));
+  padding: var(--hanabi-space-5) var(--hanabi-space-4) var(--hanabi-space-4);
+}
+
+.hanabi-popover__title {
+  position: absolute;
+  top: -13px;
+  left: 12px;
+  margin: 0;
+  font-size: var(--hanabi-fs-12);
+  padding: 2px 10px;
+}
+
+.hanabi-popover__close {
+  position: absolute;
+  top: var(--hanabi-space-2);
+  right: var(--hanabi-space-2);
+}
+
+.hanabi-popover__body {
+  font-size: var(--hanabi-fs-14);
+  line-height: var(--hanabi-lh-160);
+  color: var(--hanabi-text);
+}

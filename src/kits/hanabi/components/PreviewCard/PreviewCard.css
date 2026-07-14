@@ -1,0 +1,5 @@
+.hanabi-preview {
+  width: var(--hanabi-preview-w);
+  max-width: calc(100vw - var(--hanabi-space-6));
+  padding: var(--hanabi-space-4);
+}
