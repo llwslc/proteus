@@ -1,0 +1,106 @@
+.hanabi-navmenu {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.hanabi-navmenu__list {
+  display: flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hanabi-navmenu__trigger {
+  height: var(--hanabi-navmenu-trigger-h);
+  text-decoration: none;
+}
+
+.hanabi-navmenu__chevron {
+  display: inline-flex;
+  font-size: var(--hanabi-fs-12);
+  transition: rotate var(--hanabi-dur) var(--hanabi-ease-snap);
+}
+.hanabi-navmenu__trigger[data-popup-open] .hanabi-navmenu__chevron {
+  rotate: 180deg;
+}
+
+.hanabi-navmenu__positioner {
+  width: var(--positioner-width);
+  height: var(--positioner-height);
+}
+
+.hanabi-navmenu__popup {
+  width: var(--popup-width);
+  height: var(--popup-height);
+  transition:
+    width var(--hanabi-dur-slow) var(--hanabi-ease-out),
+    height var(--hanabi-dur-slow) var(--hanabi-ease-out),
+    opacity var(--hanabi-dur-pop) var(--hanabi-ease),
+    transform var(--hanabi-dur-pop) var(--hanabi-ease);
+}
+
+.hanabi-navmenu__viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hanabi-navmenu__content {
+  width: calc(var(--hanabi-navmenu-col-w) * 2 + var(--hanabi-space-1) * 3);
+  padding: var(--hanabi-space-1);
+}
+
+.hanabi-navmenu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(var(--hanabi-navmenu-col-w), 1fr));
+  gap: var(--hanabi-space-1);
+}
+
+.hanabi-navmenu__link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: var(--hanabi-space-2) var(--hanabi-space-3);
+  border-radius: var(--hanabi-r-chip);
+  text-decoration: none;
+  transition: background var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-navmenu__link:hover,
+.hanabi-navmenu__link:focus-visible {
+  background: var(--hanabi-primary-wash);
+  outline: none;
+}
+
+.hanabi-navmenu__link-label {
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-14);
+  font-weight: var(--hanabi-fw-700);
+  color: var(--hanabi-text);
+}
+.hanabi-navmenu__link:hover .hanabi-navmenu__link-label {
+  color: var(--hanabi-primary-deep);
+}
+
+.hanabi-navmenu__link-desc {
+  font-size: var(--hanabi-fs-13);
+  line-height: var(--hanabi-lh-135);
+  color: var(--hanabi-text-dim);
+}
+
+@media (max-width: 768px) {
+  .hanabi-navmenu__list {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .hanabi-navmenu__content {
+    width: calc(var(--hanabi-navmenu-col-w) + var(--hanabi-space-1) * 2);
+  }
+  .hanabi-navmenu__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

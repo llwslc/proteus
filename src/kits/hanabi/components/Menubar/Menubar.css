@@ -1,0 +1,16 @@
+.hanabi-menubar {
+  max-width: 100%;
+}
+
+.hanabi-menubar__trigger {
+  height: var(--hanabi-menubar-trigger-h);
+}
+
+@media (max-width: 768px) {
+  .hanabi-menubar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+}
