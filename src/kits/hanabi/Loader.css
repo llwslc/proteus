@@ -1,0 +1,99 @@
+.hanabi-loader {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #edf4fa;
+  color: #22304f;
+}
+
+.demo-loader-stage .hanabi-loader {
+  min-height: 220px;
+  background: transparent;
+}
+
+.hanabi-loader__stage {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: grid;
+  place-items: center;
+}
+
+.hanabi-loader__burst {
+  position: absolute;
+  inset: -30px;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0 9deg,
+    rgba(34, 48, 79, 0.08) 9deg 11deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 30%, #000 55%, transparent 78%);
+  mask: radial-gradient(circle, transparent 30%, #000 55%, transparent 78%);
+  animation: hanabi-loader-turn 7s linear infinite;
+}
+
+.hanabi-loader__spark {
+  width: 64px;
+  height: 64px;
+  fill: #ff4d8d;
+  stroke: #22304f;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  filter: drop-shadow(3px 3px 0 #c3d2ed);
+  animation: hanabi-loader-jelly 1.4s cubic-bezier(0.3, 1.6, 0.5, 1) infinite;
+}
+
+.hanabi-loader__spark-sm {
+  position: absolute;
+  color: #ffc53d;
+  font-size: 15px;
+  animation: hanabi-loader-blink 1.4s ease-in-out infinite;
+}
+.hanabi-loader__spark-sm--a {
+  top: 8px;
+  right: 14px;
+}
+.hanabi-loader__spark-sm--b {
+  bottom: 12px;
+  left: 8px;
+  animation-delay: 0.7s;
+  color: #2fc0e8;
+}
+
+.hanabi-loader__label {
+  font-family: "DotGothic16", ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: #8fa6d4;
+}
+
+@keyframes hanabi-loader-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes hanabi-loader-jelly {
+  0%,
+  100% {
+    scale: 0.82;
+    rotate: 0deg;
+  }
+  50% {
+    scale: 1.08;
+    rotate: 45deg;
+  }
+}
+
+@keyframes hanabi-loader-blink {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}

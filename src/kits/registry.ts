@@ -46,6 +46,13 @@ export const KITS: KitDef[] = [
     app: () => import("./riot"),
     loader: () => import("./riot/Loader"),
   },
+  {
+    id: "hanabi",
+    label: "HANABI",
+    tag: "Anime · Cel",
+    app: () => import("./hanabi"),
+    loader: () => import("./hanabi/Loader"),
+  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;

@@ -95,3 +95,10 @@ export const SparkIcon = (p: IconProps) => (
     <path d="M12 3.5c.7 3.8 2.4 5.6 6.5 6.3-4.1 1-5.8 2.8-6.5 7-.7-4.2-2.4-6-6.5-7 4.1-.7 5.8-2.5 6.5-6.3Z" />
   </svg>
 );
+
+export const ClockIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 7.5V12l3 2.5" />
+  </svg>
+);
