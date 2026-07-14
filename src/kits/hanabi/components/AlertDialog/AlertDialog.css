@@ -1,0 +1,27 @@
+.hanabi-alert {
+  width: min(var(--hanabi-alert-w), 100%);
+  margin: auto;
+  padding: var(--hanabi-pad-modal);
+  padding-top: 34px;
+}
+
+.hanabi-alert__sigil {
+  font-size: var(--hanabi-fs-12);
+  margin-right: 6px;
+}
+
+.hanabi-alert--danger {
+  --hanabi-hazard-tone: var(--hanabi-danger);
+  --hanabi-plate-fill: var(--hanabi-danger);
+}
+
+.hanabi-alert--warning {
+  --hanabi-hazard-tone: var(--hanabi-warning);
+  --hanabi-plate-fill: var(--hanabi-warning);
+  --hanabi-plate-color: var(--hanabi-on-warning);
+}
+
+.hanabi-alert--primary {
+  --hanabi-hazard-tone: var(--hanabi-primary);
+  --hanabi-plate-fill: var(--hanabi-primary);
+}

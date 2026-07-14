@@ -57,7 +57,12 @@ export function MenuSub({
         </span>
       </BaseMenu.SubmenuTrigger>
       <BaseMenu.Portal>
-        <BaseMenu.Positioner className="hanabi-lift" side="right" align="start" sideOffset={12}>
+        <BaseMenu.Positioner
+          className="hanabi-lift"
+          side="right"
+          align="start"
+          sideOffset={12}
+        >
           <BaseMenu.Popup className="hanabi-pop hanabi-popup hanabi-popup-list">
             <ScrollArea variant="popup">{children}</ScrollArea>
           </BaseMenu.Popup>

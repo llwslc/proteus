@@ -45,7 +45,10 @@ export function Field({
   ...control
 }: FieldProps) {
   return (
-    <BaseField.Root className={cx("hanabi-fieldroot", rootClassName)} invalid={error != null}>
+    <BaseField.Root
+      className={cx("hanabi-fieldroot", rootClassName)}
+      invalid={error != null}
+    >
       {label != null ? (
         <BaseField.Label className="hanabi-cap hanabi-fieldroot__label">
           {label}
@@ -53,7 +56,10 @@ export function Field({
       ) : null}
       <div className="hanabi-field hanabi-lockon hanabi-lockon--within hanabi-input">
         {icon ? <span className="hanabi-input__icon">{icon}</span> : null}
-        <BaseField.Control className={cx("hanabi-input__control", className)} {...control} />
+        <BaseField.Control
+          className={cx("hanabi-input__control", className)}
+          {...control}
+        />
       </div>
       {description != null ? (
         <BaseField.Description className="hanabi-fieldroot__desc">

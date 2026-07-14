@@ -44,7 +44,9 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
                     >
                       <span className="hanabi-navmenu__link-label">{link.label}</span>
                       {link.description != null && (
-                        <span className="hanabi-navmenu__link-desc">{link.description}</span>
+                        <span className="hanabi-navmenu__link-desc">
+                          {link.description}
+                        </span>
                       )}
                     </BaseNav.Link>
                   ))}

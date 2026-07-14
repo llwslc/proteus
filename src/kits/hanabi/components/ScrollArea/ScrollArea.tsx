@@ -2,7 +2,9 @@ import { ScrollArea as BaseScrollArea } from "@base-ui/react/scroll-area";
 import { cx } from "../cx";
 import "./ScrollArea.css";
 
-export interface ScrollAreaProps extends React.ComponentProps<typeof BaseScrollArea.Root> {
+export interface ScrollAreaProps extends React.ComponentProps<
+  typeof BaseScrollArea.Root
+> {
   variant?: "panel" | "popup";
 }
 
@@ -63,7 +65,10 @@ export function ScrollAreaScrollbar({
   ...props
 }: React.ComponentProps<typeof BaseScrollArea.Scrollbar>) {
   return (
-    <BaseScrollArea.Scrollbar className={cx("hanabi-scrollarea__bar", className)} {...props} />
+    <BaseScrollArea.Scrollbar
+      className={cx("hanabi-scrollarea__bar", className)}
+      {...props}
+    />
   );
 }
 
@@ -72,6 +77,9 @@ export function ScrollAreaThumb({
   ...props
 }: React.ComponentProps<typeof BaseScrollArea.Thumb>) {
   return (
-    <BaseScrollArea.Thumb className={cx("hanabi-scrollarea__thumb", className)} {...props} />
+    <BaseScrollArea.Thumb
+      className={cx("hanabi-scrollarea__thumb", className)}
+      {...props}
+    />
   );
 }

@@ -51,7 +51,11 @@ export function Autocomplete({
             <ScrollArea variant="popup">
               <BaseAutocomplete.List className="hanabi-autocomplete__list">
                 {(item: string) => (
-                  <BaseAutocomplete.Item key={item} value={item} className="hanabi-list-item">
+                  <BaseAutocomplete.Item
+                    key={item}
+                    value={item}
+                    className="hanabi-list-item"
+                  >
                     <span className="hanabi-list-item__text">{item}</span>
                   </BaseAutocomplete.Item>
                 )}

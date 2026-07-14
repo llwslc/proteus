@@ -1,0 +1,12 @@
+.hanabi-dialog {
+  width: min(var(--hanabi-dialog-w), 100%);
+  margin: auto;
+  padding: var(--hanabi-pad-modal);
+  padding-top: 34px;
+}
+
+.hanabi-modal__sigil {
+  color: var(--hanabi-warning);
+  font-size: var(--hanabi-fs-12);
+  margin-right: 6px;
+}

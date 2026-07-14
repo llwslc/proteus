@@ -51,12 +51,21 @@ export function Select<Value extends string = string>({
     >
       <BaseSelect.Trigger
         id={id ?? autoId}
-        className={cx("hanabi-field", "hanabi-lockon", "hanabi-select__trigger", className)}
+        className={cx(
+          "hanabi-field",
+          "hanabi-lockon",
+          "hanabi-select__trigger",
+          className,
+        )}
       >
         <BaseSelect.Value className="hanabi-select__value">
           {(val) => {
             const found = items.find((i) => i.value === val);
-            return found ? found.label : <span className="hanabi-select__ph">{placeholder}</span>;
+            return found ? (
+              found.label
+            ) : (
+              <span className="hanabi-select__ph">{placeholder}</span>
+            );
           }}
         </BaseSelect.Value>
         <BaseSelect.Icon className="hanabi-select__icon">

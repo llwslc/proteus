@@ -15,7 +15,9 @@ export interface MenuProps {
 export function Menu({ trigger, children, side = "bottom", align = "start" }: MenuProps) {
   return (
     <BaseMenu.Root>
-      <BaseMenu.Trigger render={<Button variant="ghost" className="hanabi-menu__trigger" />}>
+      <BaseMenu.Trigger
+        render={<Button variant="ghost" className="hanabi-menu__trigger" />}
+      >
         <span className="hanabi-menu__trigger-label">{trigger}</span>
         <span className="hanabi-menu__trigger-chevron">
           <ChevronDownIcon />

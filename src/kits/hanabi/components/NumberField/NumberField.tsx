@@ -5,8 +5,9 @@ import { cx } from "../cx";
 import { PlusIcon, MinusIcon } from "../icons";
 import "./NumberField.css";
 
-export interface NumberFieldProps
-  extends ComponentPropsWithoutRef<typeof BaseNumberField.Root> {}
+export interface NumberFieldProps extends ComponentPropsWithoutRef<
+  typeof BaseNumberField.Root
+> {}
 
 export function NumberField({
   className,
