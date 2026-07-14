@@ -1,16 +1,29 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HANABI // 花火作戦 —— 二次元控件主题（自由发挥稿）</title>
+    <title>HANABI // 花火作戦 —— アニメ調コントロールテーマ（フリープレイ稿）</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./hanabi.css" />
+    <style>
+      :root {
+        --display: "Dela Gothic One", "Noto Sans JP", sans-serif;
+        --body: "Noto Sans JP", sans-serif;
+        --pixel: "DotGothic16", "Noto Sans JP", monospace;
+      }
+      .card-title,
+      .modal-title {
+        font-family: var(--display);
+        font-weight: 400;
+        letter-spacing: 1px;
+      }
+    </style>
   </head>
   <body>
     <header class="topbar">
@@ -45,55 +58,55 @@
         <p class="eyebrow">CEL-SHADED CONTROL THEME</p>
         <h1>花火作戦、<em>開始</em>。</h1>
         <p class="sub">
-          二次元风格控件主题：墨蓝描线、平涂填色、冷紫色调阶影——每个控件都是一张赛璐璐。页面上的每次操作都会累积右上角的连击。
+          アニメ調のコントロールテーマ。藍墨の主線、ベタ塗り、青紫の落ち影——ここにあるコントロールはぜんぶセル画です。操作するたびに右上のコンボが伸びます。
         </p>
         <div class="cta">
-          <button class="btn primary big" data-open-dialog>▶ 出击</button>
-          <button class="btn big">翻阅图鉴</button>
+          <button class="btn primary big" data-open-dialog>▶ 出撃</button>
+          <button class="btn big">図鑑を見る</button>
         </div>
       </div>
     </section>
 
     <main class="grid">
       <section class="card" aria-labelledby="t-sortie">
-        <h2 class="card-title plate" id="t-sortie">作战部署</h2>
+        <h2 class="card-title plate" id="t-sortie">作戦配備</h2>
         <span class="screen-code">SCREEN S-01 // SORTIE</span>
         <div class="stack">
           <div>
             <label class="lbl" for="callsign"
-              >指挥官代号<span class="jp">CALLSIGN</span></label
+              >指揮官コード<span class="jp">CALLSIGN</span></label
             >
             <input
               class="input"
               id="callsign"
               type="text"
-              placeholder="例：小春"
+              placeholder="例：こはる"
               maxlength="12"
             />
           </div>
           <div>
             <span class="lbl" id="lbl-diff"
-              >作战难度<span class="jp">DIFFICULTY</span></span
+              >作戦難易度<span class="jp">DIFFICULTY</span></span
             >
             <div class="chiprow" role="radiogroup" aria-labelledby="lbl-diff">
               <label class="chip"
-                ><input type="radio" name="diff" /><span>演习</span></label
+                ><input type="radio" name="diff" /><span>演習</span></label
               >
               <label class="chip"
-                ><input type="radio" name="diff" checked /><span>标准</span></label
+                ><input type="radio" name="diff" checked /><span>標準</span></label
               >
               <label class="chip"
-                ><input type="radio" name="diff" /><span>噩梦</span></label
+                ><input type="radio" name="diff" /><span>悪夢</span></label
               >
             </div>
           </div>
           <div>
-            <span class="lbl" id="lbl-squad">出击编队<span class="jp">SQUAD</span></span>
+            <span class="lbl" id="lbl-squad">出撃編成<span class="jp">SQUAD</span></span>
             <div class="row" role="group" aria-labelledby="lbl-squad">
               <label class="check"
                 ><input type="checkbox" checked /><span class="box"
                   ><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7-8" /></svg></span
-                >前锋</label
+                >前衛</label
               >
               <label class="check"
                 ><input type="checkbox" checked /><span class="box"
@@ -103,51 +116,61 @@
               <label class="check"
                 ><input type="checkbox" /><span class="box"
                   ><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7-8" /></svg></span
-                >后勤</label
+                >後衛</label
               >
             </div>
           </div>
           <div>
-            <span class="lbl" id="lbl-sweep">连战次数<span class="jp">SWEEP</span></span>
+            <span class="lbl" id="lbl-sweep">連戦回数<span class="jp">SWEEP</span></span>
             <div class="stepper" role="group" aria-labelledby="lbl-sweep">
-              <button class="step-btn" data-step="-1" aria-label="减少连战次数">−</button>
+              <button class="step-btn" data-step="-1" aria-label="連戦回数を減らす">
+                −
+              </button>
               <span class="step-val" id="sweep-val">×2</span>
-              <button class="step-btn" data-step="1" aria-label="增加连战次数">＋</button>
-              <span class="step-hint" id="sweep-hint">共消耗 AP 40</span>
+              <button class="step-btn" data-step="1" aria-label="連戦回数を増やす">
+                ＋
+              </button>
+              <span class="step-hint" id="sweep-hint">合計消費 AP 40</span>
             </div>
           </div>
           <hr class="divider" />
           <div class="footrow">
-            <button class="btn primary" data-open-dialog>▶ 出击</button>
-            <button class="btn">存为预案</button>
-            <button class="btn" disabled>联动出击</button>
-            <button class="info" aria-label="联动出击说明">
-              ?<span class="tipbox" role="tooltip">通关第 4 章后解锁联动出击</span>
+            <button class="btn primary" data-open-dialog>▶ 出撃</button>
+            <button class="btn">プリセット保存</button>
+            <button class="btn" disabled>連携出撃</button>
+            <button class="info" aria-label="連携出撃について">
+              ?<span class="tipbox" role="tooltip">連携出撃は第4章クリアで解放</span>
             </button>
           </div>
         </div>
       </section>
 
       <section class="card" aria-labelledby="t-config">
-        <h2 class="card-title plate" id="t-config">系统设定</h2>
+        <h2 class="card-title plate" id="t-config">システム設定</h2>
         <span class="screen-code">SCREEN S-02 // CONFIG</span>
         <div class="stack">
           <div class="switchrow">
-            <span class="txt">自动战斗<small>由队长 AI 接管普通关卡</small></span>
+            <span class="txt"
+              >オート戦闘<small>通常ステージはリーダーAIにおまかせ</small></span
+            >
             <label class="switch"
               ><input type="checkbox" checked /><span class="track"></span
               ><span class="knob"></span
             ></label>
           </div>
           <div class="switchrow">
-            <span class="txt">剧情语音<small>播放角色对白配音</small></span>
+            <span class="txt"
+              >ストーリーボイス<small>キャラクターボイスを再生</small></span
+            >
             <label class="switch"
               ><input type="checkbox" /><span class="track"></span
               ><span class="knob"></span
             ></label>
           </div>
           <div class="switchrow off">
-            <span class="txt">云同步<small>维护中，暂时无法开启</small></span>
+            <span class="txt"
+              >クラウド同期<small>メンテナンス中につき利用できません</small></span
+            >
             <label class="switch"
               ><input type="checkbox" disabled /><span class="track"></span
               ><span class="knob"></span
@@ -155,7 +178,7 @@
           </div>
           <hr class="divider" />
           <div>
-            <label class="lbl" for="bgm">BGM 音量<span class="jp">MUSIC</span></label>
+            <label class="lbl" for="bgm">BGM音量<span class="jp">MUSIC</span></label>
             <div class="sliderrow">
               <input class="range" id="bgm" type="range" min="0" max="100" value="70" />
               <span class="slider-val" data-val-for="bgm">70</span>
@@ -163,7 +186,7 @@
           </div>
           <div>
             <label class="lbl" for="danmaku"
-              >弹幕密度<span class="jp">DANMAKU</span></label
+              >弾幕密度<span class="jp">DANMAKU</span></label
             >
             <div class="sliderrow">
               <input
@@ -178,7 +201,7 @@
             </div>
           </div>
           <div>
-            <span class="lbl" id="lbl-quality">画质<span class="jp">QUALITY</span></span>
+            <span class="lbl" id="lbl-quality">画質<span class="jp">QUALITY</span></span>
             <div class="sel" id="quality">
               <button
                 class="sel-btn"
@@ -186,14 +209,14 @@
                 aria-expanded="false"
                 aria-labelledby="lbl-quality"
               >
-                <span class="sel-val">高清 · 60fps</span><span class="arrow">▼</span>
+                <span class="sel-val">高画質 · 60fps</span><span class="arrow">▼</span>
               </button>
               <ul class="sel-pop" role="listbox" tabindex="-1">
-                <li class="sel-opt" role="option">流畅 <small>30fps</small></li>
+                <li class="sel-opt" role="option">軽量 <small>30fps</small></li>
                 <li class="sel-opt" role="option" aria-selected="true">
-                  高清 <small>60fps</small>
+                  高画質 <small>60fps</small>
                 </li>
-                <li class="sel-opt" role="option">极致 <small>120fps</small></li>
+                <li class="sel-opt" role="option">最高 <small>120fps</small></li>
               </ul>
             </div>
           </div>
@@ -201,7 +224,7 @@
       </section>
 
       <section class="card" aria-labelledby="t-status">
-        <h2 class="card-title plate" id="t-status">战况面板</h2>
+        <h2 class="card-title plate" id="t-status">戦況パネル</h2>
         <span class="screen-code">SCREEN S-03 // STATUS</span>
         <div class="stack">
           <div class="leader">
@@ -227,18 +250,18 @@
               </svg>
             </div>
             <div class="leader-meta">
-              <span class="leader-name">结衣<span class="en">YUI · LEADER</span></span>
+              <span class="leader-name">結衣<span class="en">YUI · LEADER</span></span>
               <span class="row"
                 ><span class="badge r5">★5</span
                 ><span class="badge" style="background: var(--cyan-wash)"
-                  >支援型</span
+                  >支援タイプ</span
                 ></span
               >
             </div>
           </div>
           <div class="vn">
-            <span class="vn-tab">结衣</span>
-            <p>指挥官，弹药装填完毕。随时可以出发哦！</p>
+            <span class="vn-tab">結衣</span>
+            <p>指揮官、弾薬装填よし。いつでも行けますよ！</p>
             <span class="adv" aria-hidden="true">▼</span>
           </div>
           <hr class="divider" />
@@ -246,7 +269,8 @@
             <div class="gauge-lbl">
               <span class="lbl" style="margin: 0"
                 >好感度<span class="jp">TRUST</span></span
-              ><span class="num" id="trust-num">62%</span>
+              >
+              <span class="num" id="trust-num">62%</span>
             </div>
             <div
               class="progress"
@@ -262,8 +286,9 @@
           <div>
             <div class="gauge-lbl">
               <span class="lbl" style="margin: 0"
-                >SP 充能<span class="jp">SKILL POINT</span></span
-              ><span class="num" style="color: #0e94b8" id="sp-num">60 / 100</span>
+                >SPチャージ<span class="jp">SKILL POINT</span></span
+              >
+              <span class="num" style="color: #0e94b8" id="sp-num">60 / 100</span>
             </div>
             <div
               class="sp"
@@ -271,7 +296,7 @@
               aria-valuenow="60"
               aria-valuemin="0"
               aria-valuemax="100"
-              aria-label="SP 充能"
+              aria-label="SPチャージ"
             >
               <div class="fill" id="sp-fill"></div>
               <span class="sp-cells" aria-hidden="true"
@@ -280,21 +305,22 @@
             </div>
           </div>
           <div>
-            <span class="lbl">今日掉落预览<span class="jp">DROPS</span></span>
+            <span class="lbl">本日のドロップ<span class="jp">DROPS</span></span>
             <div class="row">
-              <span class="badge r3">★3 芯片</span><span class="badge r4">★4 模块</span
-              ><span class="badge r5">★5 核心</span>
+              <span class="badge r3">★3 チップ</span
+              ><span class="badge r4">★4 モジュール</span
+              ><span class="badge r5">★5 コア</span>
             </div>
           </div>
         </div>
       </section>
 
       <section class="card" aria-labelledby="t-comm">
-        <h2 class="card-title plate" id="t-comm">通信频道</h2>
+        <h2 class="card-title plate" id="t-comm">通信チャンネル</h2>
         <span class="screen-code">SCREEN S-04 // COMM</span>
         <div class="stack">
           <div>
-            <span class="lbl" id="lbl-team">编队切换<span class="jp">TEAM</span></span>
+            <span class="lbl" id="lbl-team">編成切替<span class="jp">TEAM</span></span>
             <div class="tabs" role="tablist" aria-labelledby="lbl-team">
               <button
                 class="tab"
@@ -303,7 +329,7 @@
                 aria-controls="team-a"
                 id="tab-a"
               >
-                队伍 A
+                チームA
               </button>
               <button
                 class="tab"
@@ -313,7 +339,7 @@
                 id="tab-b"
                 tabindex="-1"
               >
-                队伍 B
+                チームB
               </button>
               <button
                 class="tab"
@@ -323,18 +349,18 @@
                 id="tab-c"
                 tabindex="-1"
               >
-                队伍 C
+                チームC
               </button>
             </div>
             <div class="tabpanel" role="tabpanel" id="team-a" aria-labelledby="tab-a">
               <div class="member">
-                <span class="dot">結</span>结衣<span class="role">支援 · LV.80</span>
+                <span class="dot">結</span>結衣<span class="role">支援 · LV.80</span>
               </div>
               <div class="member">
-                <span class="dot c">凛</span>小凛<span class="role">前锋 · LV.76</span>
+                <span class="dot c">凛</span>凛<span class="role">前衛 · LV.76</span>
               </div>
               <div class="member">
-                <span class="dot g">花</span>花梨<span class="role">后勤 · LV.71</span>
+                <span class="dot g">花</span>花梨<span class="role">後衛 · LV.71</span>
               </div>
             </div>
             <div
@@ -345,7 +371,7 @@
               hidden
             >
               <div class="member">
-                <span class="dot c">雪</span>初雪<span class="role">前锋 · LV.68</span>
+                <span class="dot c">雪</span>初雪<span class="role">前衛 · LV.68</span>
               </div>
               <div class="member">
                 <span class="dot">茜</span>茜里<span class="role">支援 · LV.64</span>
@@ -359,16 +385,16 @@
               hidden
             >
               <div class="member">
-                <span class="dot g">灯</span>小灯<span class="role">后勤 · LV.52</span>
+                <span class="dot g">灯</span>灯<span class="role">後衛 · LV.52</span>
               </div>
             </div>
           </div>
           <hr class="divider" />
           <div class="footrow">
-            <button class="btn soft" id="claim">领取补给</button>
-            <button class="btn" id="ping">呼叫队长</button>
-            <button class="info" aria-label="补给说明">
-              ?<span class="tipbox" role="tooltip">补给每日 05:00 刷新</span>
+            <button class="btn soft" id="claim">補給を受け取る</button>
+            <button class="btn" id="ping">リーダーを呼ぶ</button>
+            <button class="info" aria-label="補給について">
+              ?<span class="tipbox" role="tooltip">補給は毎日 05:00 にリセット</span>
             </button>
           </div>
         </div>
@@ -376,27 +402,26 @@
     </main>
 
     <footer>
-      HANABI // CEL-SHADED THEME · 自由发挥稿 001 · すべてのコントロールはセル画です
+      HANABI // CEL-SHADED THEME · フリープレイ稿 001 · すべてのコントロールはセル画です
       <span class="heart">♥</span>
     </footer>
 
     <dialog class="modal" id="sortie-dialog" aria-labelledby="dlg-title">
-      <h3 class="modal-title plate" id="dlg-title">出击确认</h3>
+      <h3 class="modal-title plate" id="dlg-title">出撃確認</h3>
       <div class="modal-body">
         <p>
-          即将消耗
-          <span class="ap">AP 20</span
-          >，向〈花火湾〉发起进攻。出击后无法撤回，掉落将实时结算。
+          <span class="ap">AP 20</span>
+          を消費して〈花火湾〉へ出撃します。出撃後のキャンセルはできません。ドロップは即時精算されます。
         </p>
         <div class="modal-squad">
-          <span class="badge r5">结衣</span>
-          <span class="badge r4">小凛</span>
+          <span class="badge r5">結衣</span>
+          <span class="badge r4">凛</span>
           <span class="badge r3">花梨</span>
         </div>
       </div>
       <div class="modal-foot">
-        <button class="btn" data-close-dialog>取消</button>
-        <button class="btn primary" id="confirm-sortie">▶ 出击</button>
+        <button class="btn" data-close-dialog>キャンセル</button>
+        <button class="btn primary" id="confirm-sortie">▶ 出撃</button>
       </div>
     </dialog>
 
@@ -435,7 +460,7 @@
         b.addEventListener("click", () => {
           sweep = Math.min(9, Math.max(1, sweep + +b.dataset.step));
           $("#sweep-val").textContent = "×" + sweep;
-          $("#sweep-hint").textContent = "共消耗 AP " + sweep * 20;
+          $("#sweep-hint").textContent = "合計消費 AP " + sweep * 20;
         }),
       );
 
@@ -539,13 +564,15 @@
       });
       $("#confirm-sortie").addEventListener("click", () => {
         dlg.close();
-        toast("作战开始！", "目标〈花火湾〉· 预计 12 分钟", "pink", "▶");
+        toast("作戦開始！", "目標〈花火湾〉・推定 12 分", "pink", "▶");
         comboHit(10, true);
       });
 
-      $("#claim").addEventListener("click", () => toast("补给已领取", "★4 强化模块 ×1"));
+      $("#claim").addEventListener("click", () =>
+        toast("補給GET", "★4 強化モジュール ×1"),
+      );
       $("#ping").addEventListener("click", () =>
-        toast("结衣", "收到！马上就位。", "pink", "♥"),
+        toast("結衣", "了解、すぐ配置につきます！", "pink", "♥"),
       );
 
       requestAnimationFrame(() =>
