@@ -31,7 +31,7 @@
 
 ## 3. 几何与描边
 
-- 造型 = **圆角赛璐璐 + 斜切铭牌**。半径阶梯按角色：`r-modal 18px`（模态、面板超大外框）、`r-control 12px`（默认控件框、浮层）、`r-field 8px`（按钮、输入位）、`r-chip 6px`（铭牌、徽章、嵌套项、菜单行）、`r-pill 999px`（chip 药丸、轨道、旋钮、状态点）。斜切统一走 `--hanabi-skew -8deg`（铭牌、图记块、徽章的倾角），文字随牌同斜；组件不裸写 radius 与斜角。
+- 造型 = **圆角赛璐璐 + 斜切铭牌**。半径阶梯按角色：`r-modal 18px`（模态、面板超大外框）、`r-control 12px`（默认控件框、浮层）、`r-field 8px`（按钮、输入位）、`r-chip 6px`（铭牌、章记、嵌套项、列表行）、`r-pill 999px`（chip 药丸、轨道、旋钮、状态点）。斜切统一走 `--hanabi-skew -8deg`（铭牌、图记块、章记的倾角），文字随牌同斜；组件不裸写 radius 与斜角。
 - 描线恒为 `2px` 实线 `ink`——赛璐璐线稿等宽，轻重分档用**色**不用宽：静止 chrome 档 = `ink`，hover／focus 升档转 `primary`，语义变体按 tone 换色；细分隔是 `2px dashed tone` 的虚线（缝纫线）。组件不裸写描边色宽。
 - 描边走 frame 原语 `.hanabi-surface`：`cel` 平涂自身背景 + `ink` 2px border + `border-radius`，纯圆角矩形直接 border 画、无 clip-path；输入变量 `--hanabi-surface-fill / -border / -r / -shadow`。高光条是独立配方 `.hanabi-gloss`（`::before` 左上白圆条，`hi` 色），贴在按钮、旋钮、填充上——赛璐璐的受光面。
 - 抬升：浮层影走 `cast`（drop-shadow 挂 elevation 层、随圆角形状），面内控件影走 `shadow-*` 盒影挂元素自己；输入变量 `--hanabi-overlay-shadow`，无 glow 槽。
