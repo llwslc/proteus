@@ -1,0 +1,40 @@
+.hanabi-toolbar {
+  max-width: 100%;
+}
+
+.hanabi-toolbar .hanabi-seg__btn {
+  height: var(--hanabi-toolbar-btn-h);
+  min-width: var(--hanabi-toolbar-btn-min-w);
+}
+
+.hanabi-toolbar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+}
+
+.hanabi-toolbar__sep {
+  width: 0;
+  height: calc(var(--hanabi-toolbar-btn-h) - 8px);
+  border-left: var(--hanabi-line-w) solid var(--hanabi-tone);
+  flex: 0 0 auto;
+}
+
+.hanabi-toolbar__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hanabi-space-1);
+  height: var(--hanabi-toolbar-btn-h);
+  padding: 0 var(--hanabi-space-2);
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-13);
+  font-weight: var(--hanabi-fw-700);
+  color: var(--hanabi-primary-deep);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: var(--hanabi-r-chip);
+}
+.hanabi-toolbar__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

@@ -45,6 +45,16 @@
 
   --hanabi-line-w: 2px;
 
+  --hanabi-lockon:
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 3px 13px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 3px 13px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 3px 13px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 3px 13px;
+
   --hanabi-shadow-sm: 2px 2px 0 var(--hanabi-tone);
   --hanabi-shadow: 4px 4px 0 var(--hanabi-tone);
   --hanabi-shadow-lift: 6px 6px 0 var(--hanabi-tone);

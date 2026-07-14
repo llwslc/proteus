@@ -1,0 +1,91 @@
+.hanabi-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.hanabi-checkbox__box {
+  position: relative;
+  width: var(--hanabi-checkbox-box);
+  height: var(--hanabi-checkbox-box);
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-chip);
+  box-shadow: var(--hanabi-shadow-sm);
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--hanabi-dur) var(--hanabi-ease-out);
+}
+
+.hanabi-checkbox__box::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(45deg, transparent 38%, #fff 48%, transparent 58%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hanabi-checkbox:hover .hanabi-checkbox__box:where(:not([data-disabled])) {
+  background: var(--hanabi-primary-wash);
+}
+
+.hanabi-checkbox__box[data-checked],
+.hanabi-checkbox__box[data-indeterminate] {
+  background: var(--hanabi-accent-surface);
+  animation: hanabi-box-pop 0.25s var(--hanabi-ease);
+}
+
+.hanabi-checkbox:hover .hanabi-checkbox__box[data-checked]:where(:not([data-disabled])),
+.hanabi-checkbox:hover
+  .hanabi-checkbox__box[data-indeterminate]:where(:not([data-disabled])) {
+  background: var(--hanabi-primary-deep);
+}
+
+.hanabi-checkbox__box[data-checked]::after {
+  animation: hanabi-check-slash 0.38s var(--hanabi-ease-out);
+}
+
+.hanabi-checkbox__box:focus-visible {
+  outline: var(--hanabi-line-w) solid var(--hanabi-primary);
+  outline-offset: 2px;
+}
+
+.hanabi-checkbox__box[data-disabled] {
+  background: var(--hanabi-disabled-fill);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.hanabi-checkbox__box[data-disabled][data-checked] {
+  background: var(--hanabi-tone-deep);
+  animation: none;
+}
+
+.hanabi-checkbox:has(.hanabi-checkbox__box[data-disabled]) {
+  cursor: not-allowed;
+  opacity: var(--hanabi-disabled-opacity);
+}
+
+.hanabi-checkbox__mark {
+  display: block;
+  width: 14px;
+  height: 14px;
+  color: var(--hanabi-on-fill);
+}
+
+.hanabi-checkbox__stroke {
+  stroke-dasharray: 18;
+  stroke-dashoffset: 18;
+  animation: hanabi-check-draw 0.18s 0.05s var(--hanabi-ease-out) forwards;
+}
+
+@keyframes hanabi-check-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,0 +1,12 @@
+.hanabi-togglegroup {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .hanabi-togglegroup {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+}

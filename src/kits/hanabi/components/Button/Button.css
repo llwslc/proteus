@@ -1,0 +1,177 @@
+.hanabi-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hanabi-space-2);
+  height: var(--hanabi-control-h);
+  padding: 0 var(--hanabi-space-4);
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-field);
+  box-shadow: var(--hanabi-shadow);
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-14);
+  font-weight: var(--hanabi-fw-700);
+  color: var(--hanabi-text);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition:
+    translate var(--hanabi-dur) var(--hanabi-ease-out),
+    box-shadow var(--hanabi-dur) var(--hanabi-ease-out),
+    background var(--hanabi-dur) var(--hanabi-ease-out);
+}
+
+.hanabi-btn::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 9px;
+  width: min(30px, 26%);
+  height: 3px;
+  border-radius: var(--hanabi-r-pill);
+  background: var(--hanabi-hi);
+  pointer-events: none;
+}
+
+.hanabi-btn::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  background-repeat: no-repeat;
+}
+
+.hanabi-btn:where(:not(:disabled)):hover {
+  translate: -1px -1px;
+  box-shadow: var(--hanabi-shadow-lift);
+}
+
+.hanabi-btn:where(:not(:disabled)):active {
+  translate: 3px 3px;
+  box-shadow: var(--hanabi-shadow-press);
+  transition-duration: 0s;
+}
+
+.hanabi-btn:focus-visible {
+  outline: none;
+}
+.hanabi-btn:focus-visible::after {
+  background: var(--hanabi-lockon);
+  background-repeat: no-repeat;
+  animation: hanabi-lock-snap 0.18s var(--hanabi-ease-out);
+}
+
+.hanabi-btn:disabled {
+  background: var(--hanabi-disabled-fill);
+  color: var(--hanabi-text-mute);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.hanabi-btn:disabled::before {
+  display: none;
+}
+
+.hanabi-btn__icon {
+  display: inline-flex;
+  font-size: var(--hanabi-fs-16);
+  line-height: var(--hanabi-lh-100);
+}
+
+.hanabi-btn--primary {
+  background: var(--hanabi-accent-surface);
+  color: var(--hanabi-on-fill);
+}
+.hanabi-btn--primary:where(:not(:disabled)):hover {
+  background: var(--hanabi-primary-deep);
+}
+.hanabi-btn--primary:where(:not(:disabled)):active {
+  background-image: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.8) 46%,
+    transparent 58%
+  );
+  background-size: 240% 100%;
+  background-repeat: no-repeat;
+  animation: hanabi-slash-flash 0.32s var(--hanabi-ease-out);
+}
+
+.hanabi-btn--danger {
+  background: var(--hanabi-danger);
+  color: var(--hanabi-on-fill);
+}
+.hanabi-btn--danger:where(:not(:disabled)):hover {
+  background: var(--hanabi-danger-deep);
+}
+
+.hanabi-btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.hanabi-btn--ghost::before {
+  display: none;
+}
+.hanabi-btn--ghost:where(:not(:disabled)):hover {
+  background: var(--hanabi-primary-wash);
+  color: var(--hanabi-text-bright);
+  translate: none;
+  box-shadow: none;
+}
+.hanabi-btn--ghost:where(:not(:disabled)):active {
+  translate: 1px 1px;
+  box-shadow: none;
+}
+
+.hanabi-btn--icon {
+  width: var(--hanabi-button-icon);
+  padding: 0;
+}
+.hanabi-btn--icon .hanabi-btn__icon {
+  font-size: var(--hanabi-fs-16);
+}
+
+.hanabi-btn--icon-ghost {
+  width: var(--hanabi-button-icon-ghost);
+  height: var(--hanabi-button-icon-ghost);
+  padding: 0;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--hanabi-text-dim);
+  border-radius: var(--hanabi-r-chip);
+}
+.hanabi-btn--icon-ghost::before {
+  display: none;
+}
+.hanabi-btn--icon-ghost .hanabi-btn__icon {
+  font-size: var(--hanabi-fs-14);
+}
+.hanabi-btn--icon-ghost:where(:not(:disabled)):hover {
+  background: var(--hanabi-primary-wash);
+  color: var(--hanabi-primary-deep);
+  translate: none;
+  box-shadow: none;
+}
+.hanabi-btn--icon-ghost:where(:not(:disabled)):active {
+  translate: 1px 1px;
+  box-shadow: none;
+}
+
+.hanabi-btn--sm {
+  height: var(--hanabi-button-h-sm);
+  padding: 0 var(--hanabi-space-3);
+  font-size: var(--hanabi-fs-13);
+}
+.hanabi-btn--sm::before {
+  top: 3px;
+  height: 2px;
+}
+
+.hanabi-btn--lg {
+  height: var(--hanabi-button-h-lg);
+  padding: 0 var(--hanabi-space-6);
+  font-size: var(--hanabi-fs-16);
+  border-radius: var(--hanabi-r-control);
+}

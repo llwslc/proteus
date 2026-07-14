@@ -267,6 +267,16 @@
 .hanabi-seg {
   display: inline-flex;
   align-items: center;
+  gap: var(--hanabi-space-2);
+  width: fit-content;
+}
+.hanabi-seg--wrap {
+  flex-wrap: wrap;
+}
+
+.hanabi-seg__btn {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
   gap: var(--hanabi-space-1);
   height: var(--hanabi-togglegroup-h);
@@ -284,28 +294,31 @@
   color: var(--hanabi-text);
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
   transition:
     background var(--hanabi-dur) var(--hanabi-ease-out),
     color var(--hanabi-dur) var(--hanabi-ease-out);
 }
-.hanabi-seg:where(:not([data-disabled], :disabled)):hover {
+.hanabi-seg__btn:where(
+    :not([data-disabled], :disabled, [data-pressed], .is-active, [data-popup-open])
+  ):hover {
   background: var(--hanabi-primary-wash);
 }
-.hanabi-seg[data-pressed],
-.hanabi-seg[data-active],
-.hanabi-seg[aria-pressed="true"] {
+.hanabi-seg__btn[data-pressed],
+.hanabi-seg__btn.is-active,
+.hanabi-seg__btn[data-popup-open] {
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
 }
-.hanabi-seg[data-pressed]::before,
-.hanabi-seg[data-active]::before,
-.hanabi-seg[aria-pressed="true"]::before {
+.hanabi-seg__btn[data-pressed]::before,
+.hanabi-seg__btn.is-active::before,
+.hanabi-seg__btn[data-popup-open]::before {
   content: "✦";
   font-size: 10px;
   color: var(--hanabi-warning);
 }
-.hanabi-seg[data-disabled],
-.hanabi-seg:disabled {
+.hanabi-seg__btn[data-disabled],
+.hanabi-seg__btn:disabled {
   opacity: var(--hanabi-disabled-opacity);
   cursor: not-allowed;
   box-shadow: none;
@@ -344,15 +357,7 @@
   inset: -7px;
   pointer-events: none;
   z-index: 2;
-  background:
-    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 13px 3px,
-    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 3px 13px,
-    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 13px 3px,
-    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 3px 13px,
-    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 13px 3px,
-    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 3px 13px,
-    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 13px 3px,
-    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 3px 13px;
+  background: var(--hanabi-lockon);
   background-repeat: no-repeat;
   animation: hanabi-lock-snap 0.18s var(--hanabi-ease-out);
 }

@@ -1,0 +1,71 @@
+.hanabi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--hanabi-badge-h);
+  padding: 0 10px;
+  transform: skew(var(--hanabi-skew));
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-chip);
+  box-shadow: var(--hanabi-shadow-sm);
+  font-family: var(--hanabi-font-mono);
+  font-size: var(--hanabi-fs-12);
+  letter-spacing: var(--hanabi-ls-1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.hanabi-badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--hanabi-r-pill);
+  flex: 0 0 auto;
+}
+
+.hanabi-badge--primary {
+  background: var(--hanabi-primary-wash);
+  color: var(--hanabi-primary-deep);
+}
+.hanabi-badge--primary .hanabi-badge__dot {
+  background: var(--hanabi-primary);
+}
+
+.hanabi-badge--secondary {
+  background: var(--hanabi-secondary-wash);
+  color: var(--hanabi-secondary-deep);
+}
+.hanabi-badge--secondary .hanabi-badge__dot {
+  background: var(--hanabi-secondary);
+}
+
+.hanabi-badge--success {
+  background: var(--hanabi-success-wash);
+  color: var(--hanabi-success-deep);
+}
+.hanabi-badge--success .hanabi-badge__dot {
+  background: var(--hanabi-success);
+}
+
+.hanabi-badge--warning {
+  background: var(--hanabi-warning);
+  color: var(--hanabi-on-warning);
+}
+.hanabi-badge--warning .hanabi-badge__dot {
+  background: var(--hanabi-warning-deep);
+}
+
+.hanabi-badge--danger {
+  background: var(--hanabi-danger-wash);
+  color: var(--hanabi-danger-deep);
+}
+.hanabi-badge--danger .hanabi-badge__dot {
+  background: var(--hanabi-danger);
+}
+
+.hanabi-badge--neutral {
+  background: var(--hanabi-surface);
+  color: var(--hanabi-text-dim);
+}
+.hanabi-badge--neutral .hanabi-badge__dot {
+  background: var(--hanabi-tone-deep);
+}

@@ -1,0 +1,14 @@
+.hanabi-checkboxgroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-3);
+}
+
+.hanabi-checkboxgroup__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-3);
+  margin-left: var(--hanabi-space-3);
+  padding-left: var(--hanabi-space-4);
+  border-left: var(--hanabi-line-w) dashed var(--hanabi-tone);
+}

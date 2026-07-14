@@ -1,0 +1,57 @@
+.hanabi-panel {
+  position: relative;
+  isolation: isolate;
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-modal);
+  box-shadow: var(--hanabi-shadow-lift);
+  padding: var(--hanabi-space-7) var(--hanabi-space-5) var(--hanabi-space-5);
+  min-width: 0;
+}
+
+.hanabi-panel--wide {
+  grid-column: 1 / -1;
+}
+
+.hanabi-panel__head:empty {
+  display: none;
+}
+
+.hanabi-panel__title {
+  position: absolute;
+  top: -14px;
+  left: 16px;
+  z-index: 1;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hanabi-space-1);
+}
+
+.hanabi-panel__marker {
+  color: var(--hanabi-warning);
+  font-size: var(--hanabi-fs-12);
+  line-height: var(--hanabi-lh-100);
+}
+
+.hanabi-panel__meta {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  color: var(--hanabi-text-mute);
+}
+.hanabi-panel__meta::before {
+  content: "// ";
+}
+
+.hanabi-panel__body {
+  min-width: 0;
+}
+
+.hanabi-panel .hanabi-panel {
+  border-radius: var(--hanabi-r-control);
+  box-shadow: var(--hanabi-shadow-sm);
+}
+.hanabi-panel .hanabi-panel .hanabi-panel__title {
+  --hanabi-plate-fill: var(--hanabi-secondary);
+}

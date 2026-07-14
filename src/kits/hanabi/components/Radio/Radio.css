@@ -1,0 +1,62 @@
+.hanabi-radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hanabi-space-3);
+}
+
+.hanabi-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.hanabi-radio__control {
+  position: relative;
+  width: var(--hanabi-radio-box);
+  height: var(--hanabi-radio-box);
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-pill);
+  box-shadow: var(--hanabi-shadow-sm);
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--hanabi-dur) var(--hanabi-ease-out);
+}
+
+.hanabi-radio:hover .hanabi-radio__control:where(:not([data-disabled])) {
+  background: var(--hanabi-primary-wash);
+}
+
+.hanabi-radio__control:focus-visible {
+  outline: var(--hanabi-line-w) solid var(--hanabi-primary);
+  outline-offset: 2px;
+}
+
+.hanabi-radio__control[data-disabled] {
+  background: var(--hanabi-disabled-fill);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.hanabi-radio:has(.hanabi-radio__control[data-disabled]) {
+  cursor: not-allowed;
+  opacity: var(--hanabi-disabled-opacity);
+}
+
+.hanabi-radio__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--hanabi-r-pill);
+  background: radial-gradient(circle at 32% 30%, #fff 0 2.2px, var(--hanabi-primary) 3px);
+  animation: hanabi-box-pop 0.25s var(--hanabi-ease);
+}
+
+.hanabi-radio__control[data-disabled] .hanabi-radio__dot {
+  background: var(--hanabi-tone-deep);
+  animation: none;
+}
