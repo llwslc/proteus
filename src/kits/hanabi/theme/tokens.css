@@ -1,0 +1,164 @@
+:root {
+  --hanabi-base: #edf4fa;
+  --hanabi-surface: #ffffff;
+  --hanabi-surface-popup: #ffffff;
+  --hanabi-surface-modal: #ffffff;
+  --hanabi-surface-inset: #e8f0f9;
+  --hanabi-surface-zone: #eef5fb;
+  --hanabi-surface-zone-hover: #e4eefa;
+  --hanabi-scrim: rgba(34, 48, 79, 0.5);
+
+  --hanabi-ink: #22304f;
+  --hanabi-tone: #c3d2ed;
+  --hanabi-tone-deep: #8fa6d4;
+
+  --hanabi-primary: #ff4d8d;
+  --hanabi-primary-deep: #e82f73;
+  --hanabi-primary-wash: #ffe3ee;
+  --hanabi-secondary: #2fc0e8;
+  --hanabi-secondary-deep: #1a9fc4;
+  --hanabi-secondary-wash: #dff6fc;
+  --hanabi-success: #2fbf71;
+  --hanabi-success-deep: #1f9d57;
+  --hanabi-success-wash: #def7e8;
+  --hanabi-warning: #ffc53d;
+  --hanabi-warning-deep: #e3a81f;
+  --hanabi-warning-wash: #fff3d6;
+  --hanabi-danger: #e83b3b;
+  --hanabi-danger-deep: #c42a2a;
+  --hanabi-danger-wash: #ffe1e1;
+
+  --hanabi-accent-surface: var(--hanabi-primary);
+  --hanabi-accent-fill: var(--hanabi-primary);
+
+  --hanabi-text: #22304f;
+  --hanabi-text-bright: #111d38;
+  --hanabi-text-dim: #4a5878;
+  --hanabi-text-mute: #8fa6d4;
+  --hanabi-text-invert: #ffffff;
+  --hanabi-on-fill: #ffffff;
+  --hanabi-on-warning: #22304f;
+
+  --hanabi-track: #f2f7fc;
+  --hanabi-disabled-fill: #e3eaf5;
+  --hanabi-hi: rgba(255, 255, 255, 0.8);
+
+  --hanabi-line-w: 2px;
+
+  --hanabi-shadow-sm: 2px 2px 0 var(--hanabi-tone);
+  --hanabi-shadow: 4px 4px 0 var(--hanabi-tone);
+  --hanabi-shadow-lift: 6px 6px 0 var(--hanabi-tone);
+  --hanabi-shadow-press: 1px 1px 0 var(--hanabi-tone);
+  --hanabi-shadow-modal: 8px 8px 0 var(--hanabi-tone);
+  --hanabi-cast: drop-shadow(6px 6px 0 var(--hanabi-tone));
+  --hanabi-cast-modal: drop-shadow(8px 8px 0 var(--hanabi-tone));
+
+  --hanabi-font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+  --hanabi-font-display: "Dela Gothic One", "Noto Sans JP", sans-serif;
+  --hanabi-font-mono: "DotGothic16", "Noto Sans JP", monospace;
+
+  --hanabi-fs-12: 12px;
+  --hanabi-fs-13: 13px;
+  --hanabi-fs-14: 14px;
+  --hanabi-fs-16: 16px;
+  --hanabi-fs-22: 22px;
+  --hanabi-fs-40: 40px;
+
+  --hanabi-ls-1: 0.02em;
+  --hanabi-ls-2: 0.08em;
+  --hanabi-ls-3: 0.16em;
+
+  --hanabi-lh-100: 1;
+  --hanabi-lh-135: 1.35;
+  --hanabi-lh-160: 1.6;
+
+  --hanabi-fw-400: 400;
+  --hanabi-fw-500: 500;
+  --hanabi-fw-700: 700;
+  --hanabi-fw-900: 900;
+
+  --hanabi-dur: 0.13s;
+  --hanabi-dur-slow: 0.28s;
+  --hanabi-dur-pop: 0.16s;
+  --hanabi-dur-stripe: 1.2s;
+  --hanabi-ease: cubic-bezier(0.2, 1.4, 0.4, 1);
+  --hanabi-ease-out: cubic-bezier(0.3, 1, 0.4, 1);
+  --hanabi-ease-snap: cubic-bezier(0.3, 1.6, 0.5, 1);
+
+  --hanabi-r-modal: 18px;
+  --hanabi-r-control: 12px;
+  --hanabi-r-field: 8px;
+  --hanabi-r-chip: 6px;
+  --hanabi-r-pill: 999px;
+  --hanabi-skew: -8deg;
+
+  --hanabi-control-h: 38px;
+  --hanabi-disabled-opacity: 0.45;
+  --hanabi-pad-modal: 24px 26px;
+
+  --hanabi-space-1: 4px;
+  --hanabi-space-2: 8px;
+  --hanabi-space-3: 12px;
+  --hanabi-space-4: 16px;
+  --hanabi-space-5: 20px;
+  --hanabi-space-6: 24px;
+  --hanabi-space-7: 28px;
+
+  --hanabi-dialog-w: 460px;
+  --hanabi-alert-w: 440px;
+  --hanabi-drawer-w: 420px;
+  --hanabi-drawer-h: 460px;
+  --hanabi-drawer-w-cap: 80%;
+  --hanabi-drawer-h-cap: 60%;
+  --hanabi-navmenu-col-w: 210px;
+  --hanabi-popover-w: 300px;
+  --hanabi-preview-w: 286px;
+  --hanabi-tooltip-w: 240px;
+  --hanabi-overlay-gap: 10px;
+  --hanabi-toast-w: 360px;
+  --hanabi-list-item-h: 36px;
+  --hanabi-popup-h: calc(var(--hanabi-list-item-h) * 7);
+  --hanabi-scrollarea-h: 200px;
+  --hanabi-avatar-sm: 34px;
+  --hanabi-avatar-md: 46px;
+  --hanabi-avatar-lg: 64px;
+
+  --hanabi-autocomplete-min-w: 240px;
+  --hanabi-badge-h: 22px;
+  --hanabi-button-h-sm: 30px;
+  --hanabi-button-h-lg: 48px;
+  --hanabi-button-icon: 38px;
+  --hanabi-button-icon-ghost: 24px;
+  --hanabi-checkbox-box: 22px;
+  --hanabi-combobox-min-w: 240px;
+  --hanabi-contextmenu-min-h: 132px;
+  --hanabi-gauge-h: 14px;
+  --hanabi-menu-min-w: 210px;
+  --hanabi-menubar-trigger-h: 32px;
+  --hanabi-navmenu-trigger-h: 38px;
+  --hanabi-number-field-stepper: 34px;
+  --hanabi-number-field-w: 66px;
+  --hanabi-otp-cell-w: 40px;
+  --hanabi-otp-cell-h: 50px;
+  --hanabi-otp-cell-w-sm: 34px;
+  --hanabi-otp-cell-h-sm: 44px;
+  --hanabi-radio-box: 22px;
+  --hanabi-select-min-w: 190px;
+  --hanabi-slider-control-h: 26px;
+  --hanabi-slider-thumb: 24px;
+  --hanabi-switch-w: 50px;
+  --hanabi-switch-h: 28px;
+  --hanabi-switch-thumb: 18px;
+  --hanabi-toast-close: 22px;
+  --hanabi-togglegroup-h: 32px;
+  --hanabi-togglegroup-min-w: 44px;
+  --hanabi-toolbar-btn-h: 32px;
+  --hanabi-toolbar-btn-min-w: 32px;
+
+  --hanabi-z-dropdown: 1200;
+  --hanabi-z-menu: 1250;
+  --hanabi-z-tooltip: 1300;
+  --hanabi-z-backdrop: 1400;
+  --hanabi-z-overlay: 1401;
+  --hanabi-z-toast: 1500;
+}

@@ -1,0 +1,421 @@
+.hanabi-surface {
+  position: relative;
+  isolation: isolate;
+  background: var(--hanabi-surface-fill, var(--hanabi-surface));
+  border: var(--hanabi-line-w) solid var(--hanabi-surface-border, var(--hanabi-ink));
+  border-radius: var(--hanabi-surface-r, var(--hanabi-r-control));
+  box-shadow: var(--hanabi-surface-shadow, none);
+}
+
+.hanabi-gloss {
+  position: relative;
+}
+.hanabi-gloss::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 9px;
+  width: min(34px, 30%);
+  height: 3px;
+  border-radius: var(--hanabi-r-pill);
+  background: var(--hanabi-hi);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hanabi-lift {
+  position: relative;
+  z-index: var(--hanabi-z-dropdown);
+  filter: var(--hanabi-overlay-shadow, var(--hanabi-cast));
+}
+.hanabi-lift--sm {
+  z-index: var(--hanabi-z-tooltip);
+}
+.hanabi-lift--menu {
+  z-index: var(--hanabi-z-menu);
+}
+.hanabi-lift--modal {
+  filter: var(--hanabi-cast-modal);
+}
+
+.hanabi-pop {
+  transition:
+    opacity var(--hanabi-dur-pop) var(--hanabi-ease),
+    transform var(--hanabi-dur-pop) var(--hanabi-ease);
+}
+.hanabi-pop[data-starting-style],
+.hanabi-pop[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
+}
+
+.hanabi-connector {
+  display: flex;
+}
+.hanabi-connector svg {
+  display: block;
+}
+.hanabi-connector[data-side="top"] {
+  bottom: -8px;
+  rotate: 180deg;
+}
+.hanabi-connector[data-side="bottom"] {
+  top: -8px;
+}
+.hanabi-connector[data-side="left"] {
+  right: -13px;
+  rotate: 90deg;
+}
+.hanabi-connector[data-side="right"] {
+  left: -13px;
+  rotate: -90deg;
+}
+
+.hanabi-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--hanabi-z-backdrop);
+  background:
+    radial-gradient(circle, rgba(255, 77, 141, 0.14) 1.4px, transparent 1.8px) 0 0 / 14px
+      14px,
+    var(--hanabi-scrim);
+  transition: opacity var(--hanabi-dur-slow) var(--hanabi-ease-out);
+}
+.hanabi-backdrop[data-starting-style],
+.hanabi-backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.hanabi-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  z-index: var(--hanabi-z-overlay);
+  display: grid;
+  overflow: auto;
+  padding: var(--hanabi-space-5);
+}
+
+.hanabi-popup-list {
+  padding: var(--hanabi-space-1);
+}
+.hanabi-popup-list:empty {
+  padding: 0;
+}
+
+.hanabi-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  min-height: var(--hanabi-list-item-h);
+  padding: 0 var(--hanabi-space-3);
+  border-radius: var(--hanabi-r-chip);
+  font-size: var(--hanabi-fs-14);
+  color: var(--hanabi-text);
+  cursor: pointer;
+  user-select: none;
+}
+.hanabi-list-item[data-highlighted] {
+  background: var(--hanabi-item-color, var(--hanabi-primary-wash));
+}
+.hanabi-list-item[data-disabled] {
+  opacity: var(--hanabi-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.hanabi-menu-sep {
+  height: 0;
+  border: 0;
+  border-top: var(--hanabi-line-w) dashed var(--hanabi-tone);
+  margin: var(--hanabi-space-1) var(--hanabi-space-2);
+}
+
+.hanabi-modal {
+  position: relative;
+  isolation: isolate;
+  background: var(--hanabi-surface-modal);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-modal);
+  box-shadow: var(--hanabi-shadow-modal);
+}
+
+.hanabi-hazard {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  right: 12px;
+  height: 6px;
+  border-radius: 0 0 4px 4px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--hanabi-hazard-tone, var(--hanabi-warning)) 0 9px,
+    var(--hanabi-ink) 9px 18px
+  );
+  pointer-events: none;
+}
+
+.hanabi-plate {
+  display: inline-block;
+  transform: skew(var(--hanabi-skew));
+  background: var(--hanabi-plate-fill, var(--hanabi-primary));
+  color: var(--hanabi-plate-color, var(--hanabi-on-fill));
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-chip);
+  box-shadow: var(--hanabi-shadow-sm);
+  font-family: var(--hanabi-font-display);
+  font-weight: var(--hanabi-fw-400);
+  font-size: var(--hanabi-fs-13);
+  letter-spacing: var(--hanabi-ls-1);
+  padding: 3px 12px;
+  white-space: nowrap;
+}
+
+.hanabi-modal-title {
+  position: absolute;
+  top: -14px;
+  left: 16px;
+  z-index: 1;
+  margin: 0;
+}
+
+.hanabi-modal-body {
+  font-size: var(--hanabi-fs-14);
+  line-height: var(--hanabi-lh-160);
+  color: var(--hanabi-text);
+}
+
+.hanabi-modal-desc {
+  margin: 0 0 var(--hanabi-space-3);
+  font-size: var(--hanabi-fs-13);
+  line-height: var(--hanabi-lh-160);
+  color: var(--hanabi-text-dim);
+}
+
+.hanabi-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--hanabi-space-3);
+  margin-top: var(--hanabi-space-5);
+}
+
+.hanabi-modal-close {
+  position: absolute;
+  top: var(--hanabi-space-3);
+  right: var(--hanabi-space-3);
+}
+
+.hanabi-marker {
+  display: inline-block;
+  color: var(--hanabi-marker-color, var(--hanabi-primary));
+  flex: 0 0 auto;
+}
+
+.hanabi-collapse-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  width: 100%;
+  padding: var(--hanabi-space-2) var(--hanabi-space-3);
+  background: none;
+  border: 0;
+  border-radius: var(--hanabi-r-chip);
+  font-family: var(--hanabi-font);
+  font-size: var(--hanabi-fs-14);
+  font-weight: var(--hanabi-fw-700);
+  color: var(--hanabi-text);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-collapse-trigger:hover {
+  background: var(--hanabi-primary-wash);
+}
+
+.hanabi-collapse-marker {
+  width: 14px;
+  font-size: var(--hanabi-fs-12);
+  line-height: var(--hanabi-lh-100);
+}
+
+.hanabi-collapse-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.hanabi-collapse-chevron {
+  color: var(--hanabi-primary);
+  transition: rotate var(--hanabi-dur) var(--hanabi-ease-snap);
+}
+.hanabi-collapse-trigger[data-panel-open] .hanabi-collapse-chevron {
+  rotate: 180deg;
+}
+
+.hanabi-collapse-panel {
+  overflow: hidden;
+}
+
+.hanabi-collapse-content {
+  padding: var(--hanabi-space-1) var(--hanabi-space-3) var(--hanabi-space-3);
+  margin-left: calc(var(--hanabi-space-3) + 14px + var(--hanabi-space-2));
+  font-size: var(--hanabi-fs-14);
+  line-height: var(--hanabi-lh-160);
+  color: var(--hanabi-text-dim);
+}
+
+.hanabi-seg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hanabi-space-1);
+  height: var(--hanabi-togglegroup-h);
+  min-width: var(--hanabi-togglegroup-min-w);
+  padding: 0 var(--hanabi-space-3);
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-pill);
+  box-shadow: var(--hanabi-shadow-sm);
+  font-family: var(--hanabi-font-display);
+  font-weight: var(--hanabi-fw-400);
+  font-size: var(--hanabi-fs-12);
+  letter-spacing: var(--hanabi-ls-1);
+  text-transform: uppercase;
+  color: var(--hanabi-text);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background var(--hanabi-dur) var(--hanabi-ease-out),
+    color var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-seg:where(:not([data-disabled], :disabled)):hover {
+  background: var(--hanabi-primary-wash);
+}
+.hanabi-seg[data-pressed],
+.hanabi-seg[data-active],
+.hanabi-seg[aria-pressed="true"] {
+  background: var(--hanabi-accent-surface);
+  color: var(--hanabi-on-fill);
+}
+.hanabi-seg[data-pressed]::before,
+.hanabi-seg[data-active]::before,
+.hanabi-seg[aria-pressed="true"]::before {
+  content: "✦";
+  font-size: 10px;
+  color: var(--hanabi-warning);
+}
+.hanabi-seg[data-disabled],
+.hanabi-seg:disabled {
+  opacity: var(--hanabi-disabled-opacity);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.hanabi-field {
+  display: flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  background: var(--hanabi-surface);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-field);
+  box-shadow: inset 2px 2px 0 rgba(195, 210, 237, 0.55);
+  transition:
+    border-color var(--hanabi-dur) var(--hanabi-ease-out),
+    box-shadow var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-field:focus-within {
+  border-color: var(--hanabi-primary);
+  box-shadow: inset 2px 2px 0 var(--hanabi-primary-wash);
+}
+
+.hanabi-lockon {
+  position: relative;
+}
+.hanabi-lockon:focus-visible {
+  outline: none;
+}
+.hanabi-lockon--within:focus-within {
+  outline: none;
+}
+.hanabi-lockon:focus-visible::after,
+.hanabi-lockon--within:focus-within::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 top 0 / 3px 13px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 top 0 / 3px 13px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) left 0 bottom 0 / 3px 13px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 13px 3px,
+    linear-gradient(var(--hanabi-primary) 0 0) right 0 bottom 0 / 3px 13px;
+  background-repeat: no-repeat;
+  animation: hanabi-lock-snap 0.18s var(--hanabi-ease-out);
+}
+
+@keyframes hanabi-lock-snap {
+  from {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+@keyframes hanabi-stripe-flow {
+  to {
+    background-position: -36px 0;
+  }
+}
+
+@keyframes hanabi-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(20deg);
+  }
+}
+
+@keyframes hanabi-box-pop {
+  50% {
+    transform: scale(1.25) rotate(-6deg);
+  }
+}
+
+@keyframes hanabi-check-slash {
+  0% {
+    opacity: 1;
+    transform: translate(-11px, 11px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(11px, -11px);
+  }
+}
+
+@keyframes hanabi-slash-flash {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -60% 0;
+  }
+}
+
+@keyframes hanabi-gauge-scan {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: calc(100% - 32%);
+  }
+  100% {
+    left: 0;
+  }
+}

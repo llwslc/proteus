@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;900&display=swap");
+
+.hanabi-h1 {
+  font-family: var(--hanabi-font-display);
+  font-weight: var(--hanabi-fw-400);
+  font-size: var(--hanabi-fs-40);
+  line-height: var(--hanabi-lh-100);
+  letter-spacing: var(--hanabi-ls-1);
+  color: var(--hanabi-text-bright);
+}
+
+.hanabi-h1--accent {
+  color: var(--hanabi-primary);
+  text-shadow: 4px 4px 0 var(--hanabi-tone);
+}
+
+.hanabi-h2 {
+  font-family: var(--hanabi-font-display);
+  font-weight: var(--hanabi-fw-400);
+  font-size: var(--hanabi-fs-22);
+  line-height: var(--hanabi-lh-135);
+  color: var(--hanabi-text-bright);
+}
+
+.hanabi-h3 {
+  font-family: var(--hanabi-font);
+  font-weight: var(--hanabi-fw-900);
+  font-size: var(--hanabi-fs-14);
+  line-height: var(--hanabi-lh-135);
+  letter-spacing: var(--hanabi-ls-2);
+  text-transform: uppercase;
+  color: var(--hanabi-text-bright);
+}
+
+.hanabi-text {
+  font-family: var(--hanabi-font);
+  font-weight: var(--hanabi-fw-400);
+  font-size: var(--hanabi-fs-14);
+  line-height: var(--hanabi-lh-160);
+  color: var(--hanabi-text);
+}
+
+.hanabi-cap {
+  font-family: var(--hanabi-font-mono);
+  font-weight: var(--hanabi-fw-400);
+  font-size: var(--hanabi-fs-13);
+  letter-spacing: var(--hanabi-ls-2);
+  text-transform: uppercase;
+  color: var(--hanabi-text-dim);
+}
