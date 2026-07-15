@@ -76,6 +76,7 @@ export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
           <BaseNav.Popup className="hanabi-surface hanabi-pop hanabi-popup hanabi-navmenu__popup">
             <BaseNav.Viewport className="hanabi-navmenu__viewport" />
           </BaseNav.Popup>
+          <BaseNav.Arrow className="hanabi-connector" />
         </BaseNav.Positioner>
       </BaseNav.Portal>
     </BaseNav.Root>

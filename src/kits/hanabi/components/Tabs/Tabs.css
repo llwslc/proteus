@@ -16,7 +16,7 @@
   justify-content: center;
   padding: var(--hanabi-space-2) var(--hanabi-space-4) calc(var(--hanabi-space-2) + 1px);
   transform: skew(var(--hanabi-skew));
-  translate: 0 2px;
+  translate: 0 -2px;
   background: var(--hanabi-base);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-bottom: 0;
@@ -42,8 +42,8 @@
 .hanabi-tabs__tab[data-active] {
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
-  translate: 0 0;
-  padding-bottom: calc(var(--hanabi-space-2) + 3px);
+  translate: 0 2px;
+  padding-bottom: calc(var(--hanabi-space-2) + 1px);
 }
 
 .hanabi-tabs__tab:focus-visible {
