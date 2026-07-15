@@ -39,7 +39,7 @@
 - Menu：列表项皮肤复用 Select；图标 `dim` 随高亮转 `bright`；快捷键 DotGothic16 `mute` 靠右；子菜单 chevron ▸；danger 项红字红图标、高亮盖 `danger-wash`（换色走 `--hanabi-item-color`）。
 - Menubar：chip 同 ToggleGroup；菜单弹层复用 Menu 皮。
 - NavigationMenu：触发器 chip 同 ToggleGroup 未选态、chevron 随开合翻转；下拉链接 = `r-chip` 行，label 正文 `fw-700` + 描述 `dim` fs-13，悬停盖 wash；morph 接 Base UI 尺寸变量。
-- ContextMenu：投放区 = `2px dashed tone-deep` 虚线箱 + `cel-inset` 底 + 右下角一撮 `primary` 半调网点；菜单皮复用 Menu。
+- ContextMenu：投放区 = `2px dashed tone-deep` 虚线箱 + `surface-zone` 底（hover 升 `surface-zone-hover`）+ 右下角一撮 `primary` 半调网点；菜单皮复用 Menu。
 - Dialog：`cel` 面 + `ink` 框 + `shadow-modal` 影 + `r-modal`；顶缘内侧一条 6px `warning`×`ink` 警戒斜纹带（左右各让 12px）；标题做成骑左上角的 `primary` 斜切铭牌（display 体白字）；backdrop = `scrim` + `primary` 半调网点。
 - AlertDialog：Dialog 基底按 `tone` 重染——警戒带、题牌、确认钮同取 tone（danger 红×墨纹带、warning 金×墨、primary 粉×墨），题牌白字（warning 取 `on-warning`）。
 - Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + 该侧 `cast` 影，其余三边贴屏不描；题牌与警戒带同 Dialog；body 自滚动。
@@ -47,7 +47,7 @@
 - Avatar：正圆 `ink` 框 + 外围一圈 `cel` 白隙 + `primary` 外环；fallback = display 体单字压 `primary-wash` 底；status 点右下角 `ink` 描边小圆，online `success`、busy `danger`、away `warning`、offline `tone-deep`。
 - Badge：斜切小铭牌（`skew` + `r-chip` + `shadow-sm`）、DotGothic16 字——primary `primary-wash` 底粉字、secondary `secondary-wash` 底青字、success `success-wash` 底绿字、warning `warning` 金底墨字、danger `danger-wash` 底红字、neutral `cel` 底 `dim` 字；dot = 前缀实心圆点取本 tone 主色。
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`primary-deep` 字 + 悬停下划线。
-- ScrollArea：panel 型走标准细条皮（thumb `tone-deep` 圆条、轨透明）；popup 型自绘常驻条——thumb `primary` 圆条（宽 4px、离框 `space-1`）、轨透明，充当弹层列表的溢出提示，`data-has-overflow-y` 时列表 `padding-right` 让位。
+- ScrollArea 自绘条：thumb 是 `tone-deep` 圆条；panel 型悬停显、坐在 `surface-inset` 药丸轨上（thumb 内缩 1px），popup 型常显——thumb 换 `primary`、宽 4px、轨透明、整条离框 `space-1`，充当弹层列表的溢出提示，`data-has-overflow-y` 时列表 `padding-right` 让位。
 - Separator：`2px dashed tone` 缝纫虚线；带 label 版 = 线 + `.hanabi-cap` 文字（前缀 ✦）+ 线；竖向为实线 `tone`。
 - Panel：赛璐璐卡——`cel` 面 + `ink` 框 + `shadow-lift` + `r-modal`；title 做成骑顶缘左侧的 `primary` 斜切铭牌（display 体白字、`shadow-sm`），meta 是右上角 DotGothic16 `mute` 的 `// XXX` 屏幕码；嵌套 Panel 降为 `r-control` + `shadow-sm`、题牌换 `secondary` 水色。
 - 占位图标是 2px 圆头描线的简笔线形（`icons.tsx` 统一 `1em`、`currentColor`）。
