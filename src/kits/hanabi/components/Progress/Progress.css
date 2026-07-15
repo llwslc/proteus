@@ -22,10 +22,19 @@
   position: relative;
   height: var(--hanabi-gauge-h);
   background: var(--hanabi-track);
-  border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
   box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
   overflow: hidden;
+}
+
+.hanabi-progress__track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-pill);
+  pointer-events: none;
 }
 
 .hanabi-progress__track::after {

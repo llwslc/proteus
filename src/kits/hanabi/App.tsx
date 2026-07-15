@@ -541,13 +541,13 @@ function Demo() {
             <Panel id="combobox" title="Combobox" meta="CBX">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">スキル検索</span>
-                <Combobox items={SKILLS} placeholder="スキル…" />
+                <Combobox items={SKILLS} placeholder="スキル…" emptyText="該当なし" />
               </div>
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">隊員を呼ぶ</span>
-                <Autocomplete items={MEMBERS} placeholder="名前…" />
+                <Autocomplete items={MEMBERS} placeholder="名前…" emptyText="該当なし" />
               </div>
             </Panel>
 

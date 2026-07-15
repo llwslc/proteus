@@ -43,6 +43,7 @@
 .hanabi-checkbox__box[data-checked],
 .hanabi-checkbox__box[data-indeterminate] {
   background: var(--hanabi-accent-surface);
+  box-shadow: inset 0 -2px 0 var(--hanabi-primary-shade);
   animation: hanabi-box-pop 0.25s var(--hanabi-ease);
 }
 

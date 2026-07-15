@@ -92,6 +92,14 @@
   border-color: var(--hanabi-ink);
 }
 .hanabi-btn--primary:where(:not(:disabled)):active {
+  box-shadow: inset 0 -2px 0 var(--hanabi-primary-shade);
+}
+
+.hanabi-btn__flash {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
   background-image: linear-gradient(
     115deg,
     transparent 32%,
@@ -100,8 +108,7 @@
   );
   background-size: 240% 100%;
   background-repeat: no-repeat;
-  box-shadow: inset 0 -2px 0 var(--hanabi-primary-shade);
-  animation: hanabi-slash-flash 0.32s var(--hanabi-ease-out);
+  animation: hanabi-slash-flash 0.32s var(--hanabi-ease-out) both;
 }
 
 .hanabi-btn--danger {

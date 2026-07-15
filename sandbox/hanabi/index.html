@@ -700,6 +700,14 @@
         arena.append(d);
         setTimeout(() => d.remove(), 1000);
       }
+      document.querySelectorAll(".btn.primary").forEach((b) => {
+        b.addEventListener("click", () => {
+          b.classList.remove("flash");
+          void b.offsetWidth;
+          b.classList.add("flash");
+        });
+      });
+
       function flashArena() {
         arena.classList.remove("flash");
         void arena.offsetWidth;

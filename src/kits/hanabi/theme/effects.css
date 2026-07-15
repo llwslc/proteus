@@ -53,18 +53,18 @@
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 .hanabi-connector[data-side="top"] {
-  bottom: -8px;
+  bottom: -6px;
 }
 .hanabi-connector[data-side="bottom"] {
-  top: -8px;
+  top: -6px;
   rotate: 180deg;
 }
 .hanabi-connector[data-side="left"] {
-  right: -12px;
+  right: -10px;
   rotate: -90deg;
 }
 .hanabi-connector[data-side="right"] {
-  left: -12px;
+  left: -10px;
   rotate: 90deg;
 }
 .hanabi-popup {
@@ -180,6 +180,12 @@
   pointer-events: none;
 }
 
+.hanabi-plate::selection,
+.hanabi-plate ::selection {
+  background: var(--hanabi-ink);
+  color: var(--hanabi-on-fill);
+}
+
 .hanabi-plate {
   display: inline-block;
   transform: skew(var(--hanabi-skew));
@@ -192,14 +198,14 @@
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-13);
   letter-spacing: var(--hanabi-ls-1);
-  padding: 3px 12px;
+  padding: 2px 12px 4px;
   white-space: nowrap;
 }
 
 .hanabi-modal-title {
   position: absolute;
   top: -14px;
-  left: 16px;
+  left: 10px;
   z-index: 1;
   margin: 0;
 }
@@ -310,9 +316,9 @@
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-pill);
   box-shadow: var(--hanabi-shadow-sm);
-  font-family: var(--hanabi-font-display);
-  font-weight: var(--hanabi-fw-400);
-  font-size: var(--hanabi-fs-12);
+  font-family: var(--hanabi-font);
+  font-weight: var(--hanabi-fw-700);
+  font-size: var(--hanabi-fs-13);
   letter-spacing: var(--hanabi-ls-1);
   text-transform: uppercase;
   color: var(--hanabi-text);
@@ -386,13 +392,24 @@
   background-repeat: no-repeat;
   animation: hanabi-lock-snap 0.18s var(--hanabi-ease-out);
 }
+.hanabi-lockon--within:focus-within::after {
+  animation: none;
+}
+.hanabi-lockon--within[data-popup-open]::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  z-index: 2;
+  background: var(--hanabi-lockon);
+  background-repeat: no-repeat;
+}
 
 @keyframes hanabi-connector-in {
-  0%,
-  50% {
+  from {
     opacity: 0;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
@@ -412,7 +429,7 @@
 
 @keyframes hanabi-stripe-flow {
   to {
-    background-position: -36px 0;
+    background-position: -25.4558px 0;
   }
 }
 

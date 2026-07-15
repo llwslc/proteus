@@ -7,21 +7,21 @@
   z-index: 1;
   display: flex;
   gap: var(--hanabi-space-2);
-  padding-left: var(--hanabi-space-3);
-  margin-bottom: calc(-1 * var(--hanabi-line-w));
+  padding: 0 var(--hanabi-space-3);
 }
 
 .hanabi-tabs__tab {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: var(--hanabi-menubar-trigger-h);
-  padding: 0 var(--hanabi-space-4);
+  padding: var(--hanabi-space-2) var(--hanabi-space-4)
+    calc(var(--hanabi-space-2) + 2px);
   transform: skew(var(--hanabi-skew));
   translate: 0 2px;
   background: var(--hanabi-base);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
-  border-radius: var(--hanabi-r-field) var(--hanabi-r-field) 0 0;
+  border-bottom: 0;
+  border-radius: var(--hanabi-r-fold) var(--hanabi-r-fold) 0 0;
   font-family: var(--hanabi-font);
   font-size: var(--hanabi-fs-13);
   font-weight: var(--hanabi-fw-700);
@@ -32,7 +32,8 @@
   transition:
     background var(--hanabi-dur) var(--hanabi-ease-out),
     color var(--hanabi-dur) var(--hanabi-ease-out),
-    translate var(--hanabi-dur) var(--hanabi-ease-out);
+    translate var(--hanabi-dur) var(--hanabi-ease-out),
+    padding var(--hanabi-dur) var(--hanabi-ease-out);
 }
 
 .hanabi-tabs__tab:where(:not([data-disabled], [data-active])):hover {
@@ -43,7 +44,7 @@
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
   translate: 0 0;
-  border-bottom-color: transparent;
+  padding-bottom: calc(var(--hanabi-space-2) + 4px);
 }
 
 .hanabi-tabs__tab:focus-visible {
@@ -58,18 +59,18 @@
 
 .hanabi-tabs__indicator {
   position: absolute;
-  bottom: calc(-1 * var(--hanabi-line-w) - 1px);
-  left: calc(var(--active-tab-left) - 4px);
-  width: calc(var(--active-tab-width) + 8px);
-  height: 4px;
-  border-radius: var(--hanabi-r-pill);
-  background: var(--hanabi-accent-fill);
+  bottom: -2px;
+  left: var(--active-tab-left);
+  width: var(--active-tab-width);
+  height: 2px;
+  background: var(--hanabi-accent-surface);
   transition:
     left var(--hanabi-dur-slow) var(--hanabi-ease-snap),
     width var(--hanabi-dur-slow) var(--hanabi-ease-snap);
 }
 
 .hanabi-tabs__panel {
+  position: relative;
   background: var(--hanabi-surface);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-control);

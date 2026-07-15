@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;900&display=swap");
 
 .hanabi-h1 {
+  margin: 0;
   font-family: var(--hanabi-font-display);
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-40);
@@ -15,6 +16,7 @@
 }
 
 .hanabi-h2 {
+  margin: 0;
   font-family: var(--hanabi-font-display);
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-22);
@@ -23,6 +25,7 @@
 }
 
 .hanabi-h3 {
+  margin: 0;
   font-family: var(--hanabi-font);
   font-weight: var(--hanabi-fw-900);
   font-size: var(--hanabi-fs-14);
@@ -33,6 +36,7 @@
 }
 
 .hanabi-text {
+  margin: 0;
   font-family: var(--hanabi-font);
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-14);
@@ -41,6 +45,7 @@
 }
 
 .hanabi-cap {
+  margin: 0;
   font-family: var(--hanabi-font-mono);
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-13);

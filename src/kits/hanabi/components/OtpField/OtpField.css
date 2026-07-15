@@ -27,6 +27,7 @@
 }
 
 .hanabi-otp__cell:focus {
+  transition: none;
   border-color: var(--hanabi-primary);
   box-shadow:
     inset 2px 2px 0 var(--hanabi-primary-wash),

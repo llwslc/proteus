@@ -43,6 +43,7 @@
   stroke-width: 2;
   stroke-linejoin: round;
   filter: drop-shadow(3px 3px 0 #c3d2ed);
+  translate: -1px 6px;
   animation: hanabi-loader-jelly 1.4s cubic-bezier(0.3, 1.6, 0.5, 1) infinite;
 }
 

@@ -1,3 +1,7 @@
+.hanabi-collapsible .hanabi-collapse-content {
+  padding-top: 0;
+}
+
 .hanabi-collapsible {
   width: 100%;
   background: var(--hanabi-surface);

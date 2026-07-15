@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { Button as BaseButton } from "@base-ui/react/button";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cx } from "../cx";
@@ -25,6 +25,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   ref,
 ) {
   void upright;
+  const [flashKey, setFlashKey] = useState(0);
   return (
     <BaseButton
       ref={ref}
@@ -35,9 +36,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         className,
       )}
       {...props}
+      onPointerDown={(e) => {
+        props.onPointerDown?.(e);
+        if (variant === "primary" && !e.defaultPrevented) setFlashKey((k) => k + 1);
+      }}
     >
       {icon ? <span className="hanabi-btn__icon">{icon}</span> : null}
       {children}
+      {flashKey > 0 && (
+        <span key={flashKey} className="hanabi-btn__flash" aria-hidden="true" />
+      )}
     </BaseButton>
   );
 });

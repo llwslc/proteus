@@ -18,7 +18,7 @@
 - Checkbox：`r-chip` 圆角方框 + 微阶影带；勾选 = `primary` 填 + 白勾描线动画（stroke-dashoffset 画出）+ `box-pop` 果冻弹 + 一道 45° 斩击白闪掠过（`check-slash`）；indeterminate = 白粗横杠；hover 盖 wash。
 - CheckboxGroup：父子竖排，items 左缩进，引导线是 `2px dashed tone` 缝纫虚线。
 - Radio：`ink` 描线正圆 + 微阶影带；选中 = `primary` 实心圆芯 + 左上白高光点，`box-pop` 弹入；行标签走 `.hanabi-cap`。
-- ToggleGroup：分段条家族——不画外箱体，chip 药丸散排（`r-pill`）、各带 `ink` 框 + `shadow-sm`，文字 display 体；选中态见 §1「分段选中」。
+- ToggleGroup：分段条家族——不画外箱体，chip 药丸散排（`r-pill`）、各带 `ink` 框 + `shadow-sm`，文字正文体 `fw-700`；选中态见 §1「分段选中」。
 - Slider：轨 `r-pill` `ink` 框 + inset 阶影，indicator `primary` 平涂；thumb 是**准星**——白圆 `ink` 框 + `primary` 中心点 + 上下左右四根 `ink` 刻度线，hover 放大一步，拖动中锁定框常亮；数值走 DotGothic16 `primary-deep`。
 - NumberField：`减·输入·加` 三连——步进钮是 `cel` 方钮（display 体符号、`shadow-sm`、hover 盖 wash），中间输入位 mono 体居中；到界的步进钮按禁用态置灰。
 - Input/Field：`cel` 底 + `ink` 框 + inset `tone` 阶影（纸下垫着的凹感）；聚焦见 §1；描述行 `dim`、错误行 `danger` 红字，错误态整框 border 转 `danger`。
@@ -30,7 +30,7 @@
 - Form：竖排间距 `space-4`。
 - Progress：血条解剖——`r-pill` 轨凹嵌（`ink` 框 + 左上 inset 阶影），indicator `primary` 平涂 + 顶部白高光线 + 推进端一枚白 ✦ 压条；轨上叠十等分 `ink` 分格刻度（alpha 极低）；不定态 = 斜纹段左右巡游。
 - Meter：轨与分格同 Progress，填充改 tone／tone-deep 相间**斜纹**并以 `stripe-flow` 流动，按 `tone` 重染。
-- Tabs：斜切折页 chip（`skew`、上圆角 `r-field`）一排贴在 content 箱顶缘，未选 `base` 底、沉 2px，选中 `primary` 填白字并落座（translate 归零、border-bottom 转透明、盖住箱顶线成开口）；content 箱 = `surface` 面 + `ink` 框 + `shadow` 阶影带、衬 `space-4`；选中指示 = `4px` 圆头 `accent-fill` 粉条卡在落座槽缝（两端各出 4px），随 `--active-tab-*` 移动；不画全宽底轨。
+- Tabs：斜切折页 chip（`skew`、上圆角 `r-fold`、无 border-bottom）一排贴在 content 箱顶缘（列衬 `0 space-3`、chip 距 `space-2`），未选 `base` 底、沉 2px，选中 `primary` 填白字并落座（translate 归零、padding-bottom 多 2px 盖住箱顶线成开口）；content 箱 = `surface` 面 + `ink` 框 + `shadow` 阶影带、衬 `space-4`；选中指示 = 2px `accent-surface` 贴合条压在开口缝上，随 `--active-tab-*` 移动；不画全宽底轨。
 - Accordion：折叠配方——trigger 行 marker 是 `primary` ✦（定宽）、title 正文体 `fw-700`、chevron `primary` ▼ 开态翻转；panel content 按缩进公式对齐 title；trigger hover 盖 wash。
 - Collapsible：复用 Accordion 折叠皮。
 - Tooltip：反色小牌——`ink` 墨蓝底 + `text-invert` 白字（fs-13）、`r-field` 圆角、无框线，connector 三角同 `ink` 填。
@@ -42,7 +42,7 @@
 - ContextMenu：投放区 = `2px dashed tone-deep` 虚线箱 + `surface-zone` 底（hover 升 `surface-zone-hover`）+ 右下角一撮 `primary` 半调网点；菜单皮复用 Menu。
 - Dialog：`cel` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；顶缘内侧一条 6px `warning`×`ink` 警戒斜纹带（左右各让 12px）；标题做成骑左上角的 `primary` 斜切铭牌（display 体白字）；backdrop = `scrim` + `primary` 半调网点。
 - AlertDialog：Dialog 基底按 `tone` 重染——警戒带、题牌、确认钮同取 tone（danger 红×墨纹带、warning 金×墨、primary 粉×墨），题牌白字（warning 取 `on-warning`）。
-- Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题牌与警戒带同 Dialog；body 自滚动。
+- Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题牌与警戒带同 Dialog，上、下向省略警戒带；body 自滚动、行距 `space-4`。
 - Toast：锚右下角、竖排整列常显、条间距 `space-3`；条 = `cel` 面 + `ink` 框 + `shadow`，左端一枚斜切图记块承载 tone——info `secondary` 水色 ✦、success `success` 绿 ★、warning `warning` 金 ⚠（`on-warning` 墨字）、danger `danger` 红 !，块内符号反色；滑入自右、`ease` 果冻落位；手机端横向撑满、边距 `space-4`。
 - Avatar：正圆 `ink` 框 + 外围一圈 `cel` 白隙 + `primary` 外环；fallback = display 体单字压 `primary-wash` 底；status 点右下角 `ink` 描边小圆，online `success`、busy `danger`、away `warning`、offline `tone-deep`。
 - Badge：斜切小铭牌（`skew` + `r-chip` + 微阶影带）、DotGothic16 字——primary `primary-wash` 底粉字、secondary `secondary-wash` 底青字、success `success-wash` 底绿字、warning `warning` 金底墨字、danger `danger-wash` 底红字、neutral `cel` 底 `dim` 字；dot = 前缀实心圆点取本 tone 主色。

@@ -3,7 +3,7 @@
   align-items: center;
   gap: var(--hanabi-space-2);
   height: var(--hanabi-badge-h);
-  padding: 0 var(--hanabi-space-2);
+  padding: 0 var(--hanabi-space-2) 2px;
   transform: skew(var(--hanabi-skew));
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-radius: var(--hanabi-r-chip);

@@ -15,10 +15,9 @@
 .hanabi-switch[data-checked] {
   background: repeating-linear-gradient(
     -45deg,
-    var(--hanabi-primary) 0 8px,
-    var(--hanabi-primary-deep) 8px 16px
+    var(--hanabi-primary) 0 9px,
+    var(--hanabi-primary-deep) 9px 18px
   );
-  background-size: 200% 100%;
   animation: hanabi-stripe-flow var(--hanabi-dur-stripe) linear infinite;
   box-shadow: none;
 }
@@ -34,6 +33,9 @@
   cursor: not-allowed;
   animation: none;
   opacity: var(--hanabi-disabled-opacity);
+}
+.hanabi-switch[data-disabled][data-checked] {
+  background: var(--hanabi-primary-wash);
 }
 
 .hanabi-switch__thumb {
