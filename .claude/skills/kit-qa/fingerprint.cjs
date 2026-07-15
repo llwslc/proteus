@@ -39,6 +39,7 @@ const UPDATE = process.argv.includes('--update');
           const parts = [];
           const walk = (el, depth) => {
             if (depth > 14 || parts.length > 900) return;
+            if (el.tagName === 'STYLE' || el.tagName === 'SCRIPT') return;
             const r = el.getBoundingClientRect();
             const c = getComputedStyle(el);
             const q = (n) => Math.round(n * 4) / 4;

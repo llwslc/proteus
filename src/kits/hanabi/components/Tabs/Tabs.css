@@ -7,7 +7,8 @@
   z-index: 1;
   display: flex;
   gap: var(--hanabi-space-2);
-  padding: 0 var(--hanabi-space-3);
+  padding: 0 var(--hanabi-space-3) var(--hanabi-line-w);
+  margin-bottom: calc(-1 * var(--hanabi-line-w));
 }
 
 .hanabi-tabs__tab {
@@ -16,7 +17,7 @@
   justify-content: center;
   padding: var(--hanabi-space-2) var(--hanabi-space-4) calc(var(--hanabi-space-2) + 1px);
   transform: skew(var(--hanabi-skew));
-  translate: 0 -2px;
+  translate: 0 0;
   background: var(--hanabi-base);
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-bottom: 0;
@@ -31,8 +32,7 @@
   transition:
     background var(--hanabi-dur) var(--hanabi-ease-out),
     color var(--hanabi-dur) var(--hanabi-ease-out),
-    translate var(--hanabi-dur) var(--hanabi-ease-out),
-    padding var(--hanabi-dur) var(--hanabi-ease-out);
+    translate var(--hanabi-dur) var(--hanabi-ease-out);
 }
 
 .hanabi-tabs__tab:where(:not([data-disabled], [data-active])):hover {
@@ -42,8 +42,7 @@
 .hanabi-tabs__tab[data-active] {
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
-  translate: 0 2px;
-  padding-bottom: calc(var(--hanabi-space-2) + 1px);
+  translate: 0 var(--hanabi-line-w);
 }
 
 .hanabi-tabs__tab:focus-visible {
@@ -85,6 +84,5 @@
   .hanabi-tabs__list {
     overflow-x: auto;
     scrollbar-width: none;
-    padding-bottom: 2px;
   }
 }

@@ -34,7 +34,6 @@ export function Popover({
           align={align}
           sideOffset={sideOffset}
         >
-          <BasePopover.Arrow className="hanabi-connector" />
           <BasePopover.Popup
             className={cx(
               "hanabi-surface",
@@ -56,6 +55,7 @@ export function Popover({
               </BasePopover.Title>
             ) : null}
             <div className="hanabi-popover__body">{children}</div>
+            <BasePopover.Arrow className="hanabi-connector" />
           </BasePopover.Popup>
         </BasePopover.Positioner>
       </BasePopover.Portal>
