@@ -4,3 +4,7 @@
   gap: var(--hanabi-space-4);
   min-width: 0;
 }
+
+.hanabi-form > button {
+  align-self: flex-end;
+}

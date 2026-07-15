@@ -390,7 +390,7 @@ function Demo() {
               <h1 className="hanabi-h1 hanabi-hero__title">
                 A <span className="hanabi-h1--accent">cel-shaded</span> interface kit
                 <br />
-                inked, flat-filled, ready to sortie
+                inked, flat-filled, ready to sortie
               </h1>
               <p className="hanabi-text hanabi-hero__desc">
                 Navy ink outlines, flat fills, cool-violet stepped shadows and one gloss

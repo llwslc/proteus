@@ -281,7 +281,7 @@
 }
 
 .hanabi-collapse-content {
-  padding: var(--hanabi-space-1) var(--hanabi-space-3) var(--hanabi-space-3);
+  padding: var(--hanabi-space-1) var(--hanabi-space-3) var(--hanabi-space-3) 0;
   margin-left: calc(var(--hanabi-space-3) + 14px + var(--hanabi-space-2));
   font-size: var(--hanabi-fs-14);
   line-height: var(--hanabi-lh-160);

@@ -157,8 +157,8 @@
   overflow: hidden;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 250px;
-  gap: var(--hanabi-space-6);
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: var(--hanabi-space-5);
   align-items: center;
   padding: 30px 28px;
   margin-bottom: 26px;
@@ -191,6 +191,7 @@
 .hanabi-hero__title {
   font-size: clamp(28px, 4.4vw, 46px);
   line-height: 1.15;
+  text-wrap: balance;
   animation: hanabi-seat 0.4s 0.06s var(--hanabi-ease) backwards;
 }
 
@@ -397,6 +398,9 @@
   flex-direction: column;
   gap: var(--hanabi-space-4);
   min-width: 0;
+}
+.hanabi-stack > .hanabi-cap {
+  margin-bottom: calc(-1 * var(--hanabi-space-2));
 }
 
 .hanabi-link {

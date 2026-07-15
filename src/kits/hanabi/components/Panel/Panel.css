@@ -1,7 +1,7 @@
 .hanabi-panel {
   position: relative;
   isolation: isolate;
-  padding: 42px var(--hanabi-space-5) var(--hanabi-space-5);
+  padding: 46px var(--hanabi-space-5) var(--hanabi-space-5);
   min-width: 0;
 }
 
@@ -45,6 +45,7 @@
   position: absolute;
   top: 24px;
   right: 14px;
+  line-height: var(--hanabi-lh-100);
   color: var(--hanabi-text-mute);
 }
 .hanabi-panel__meta::before {

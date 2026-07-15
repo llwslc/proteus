@@ -45,7 +45,7 @@
   --hanabi-disabled-fill: #e3eaf5;
   --hanabi-hi: rgba(255, 255, 255, 0.8);
   --hanabi-tone-soft: #dbe4f4;
-  --hanabi-cell-line: var(--hanabi-cell-line);
+  --hanabi-cell-line: rgba(34, 48, 79, 0.14);
 
   --hanabi-line-w: 2px;
 
@@ -133,6 +133,7 @@
   --hanabi-popup-h: calc(var(--hanabi-list-item-h) * 7);
   --hanabi-scrollarea-h: 200px;
   --hanabi-scrollbar: 8px;
+  --hanabi-avatar-ring: 5px;
   --hanabi-avatar-sm: 34px;
   --hanabi-avatar-md: 46px;
   --hanabi-avatar-lg: 64px;
@@ -142,7 +143,7 @@
   --hanabi-button-h-sm: 30px;
   --hanabi-button-h-lg: 48px;
   --hanabi-button-icon: 38px;
-  --hanabi-button-icon-ghost: 24px;
+  --hanabi-button-icon-ghost: 28px;
   --hanabi-checkbox-box: 22px;
   --hanabi-combobox-min-w: 240px;
   --hanabi-contextmenu-min-h: 132px;
