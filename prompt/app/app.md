@@ -32,9 +32,9 @@
 
 两栏网格；组标题通栏分隔——主题标记 + 组名 + 一句副题，每组从新行起，不留半行空位。
 
-跨度规则：演示内容横向铺开的面板通栏，其余单栏、逐行配对（通栏跨满两栏 `grid-column: 1 / -1`）。锚点 id 与通栏跨度怎么落地（Panel 自带 prop，或外层 section 容器）由 theme 定。`·` 分行，`|` 同行：
+跨度规则：演示内容横向铺开的面板通栏，其余单栏、逐行配对（通栏跨满两栏 `grid-column: 1 / -1`）。锚点 id 与通栏跨度怎么落地（Panel 自带 prop，或外层 section 容器）由 theme 定。
 
-同行配对按**语义亲缘**，即开关类、勾选类、单选类、选择器、数值、文本等：
+同行配对按**语义亲缘**，即开关类、勾选类、单选类、选择器、数值、文本等；`·` 分行，`|` 同行：
 
 - **Inputs**：button[通栏] · switch|toggle · checkbox|checkbox-group · radio|select · combobox|autocomplete · slider|number · input|otp
 - **Forms**：fieldset|form
