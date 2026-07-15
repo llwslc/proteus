@@ -20,4 +20,4 @@
 
 ## 4. 外壳
 
-- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；左缘留一道 `stroke-bold` 透明竖轨。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底、左竖轨转 `primary`；键盘焦点去原生 outline。
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底；键盘焦点行内容硬切右移 8px、行首露出一枚 7px `primary` 实心方块——基本形滑移，去原生 outline。

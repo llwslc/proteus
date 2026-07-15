@@ -105,28 +105,38 @@
   padding: 0 var(--bauhaus-space-3) var(--bauhaus-space-2);
 }
 .bauhaus-sidebar__link {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--bauhaus-space-2) var(--bauhaus-space-3);
-  border-left: var(--bauhaus-stroke-bold) solid transparent;
+  padding-left: calc(var(--bauhaus-space-3) + var(--bauhaus-stroke-bold));
   font-family: var(--bauhaus-font);
   font-size: var(--bauhaus-fs-15);
   color: var(--bauhaus-text-dim);
   text-decoration: none;
   transition:
     color var(--bauhaus-dur) var(--bauhaus-ease),
-    background var(--bauhaus-dur) var(--bauhaus-ease),
-    border-color var(--bauhaus-dur) var(--bauhaus-ease);
+    background var(--bauhaus-dur) var(--bauhaus-ease);
 }
 .bauhaus-sidebar__link:hover,
 .bauhaus-sidebar__link:focus-visible {
   background: var(--bauhaus-tint-soft);
-  border-left-color: var(--bauhaus-primary);
   color: var(--bauhaus-text-bright);
 }
 .bauhaus-sidebar__link:focus-visible {
   outline: none;
+  padding-left: calc(var(--bauhaus-space-3) + var(--bauhaus-stroke-bold) + 8px);
+}
+.bauhaus-sidebar__link:focus-visible::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 7px;
+  height: 7px;
+  background: var(--bauhaus-primary);
 }
 .bauhaus-sidebar__meta {
   font-family: var(--bauhaus-font-mono);

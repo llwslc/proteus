@@ -20,4 +20,4 @@
 
 ## 4. 外壳
 
-- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；左缘留一道 2px 透明竖轨。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底、左竖轨转 `primary`；键盘焦点去原生 outline。
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底；键盘焦点在行首亮起一枚 7px 黄铜铆钉（直接取 `rivet` 铆钉配方，`ease-detent` 棘轮落位），去原生 outline。

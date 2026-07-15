@@ -20,4 +20,4 @@
 
 ## 4. 外壳
 
-- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；左缘留一道 2px 透明竖轨。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text`、盖 `tint-faint` 底、左竖轨转 `line-strong`；键盘焦点去原生 outline、左竖轨再升 `primary`。
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text`、盖 `tint-faint` 底；键盘焦点再转 `primary` + `glow-text` 辉光，行面浮出 `tint-soft` 横向扫描线纹理——CRT 目标行，去原生 outline。

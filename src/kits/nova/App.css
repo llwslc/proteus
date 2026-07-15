@@ -126,27 +126,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 12px;
+  padding: 6px 12px 6px 14px;
   color: var(--nova-text-dim);
   font-size: 13.5px;
   letter-spacing: 0.04em;
   text-decoration: none;
   cursor: pointer;
-  border-left: 2px solid transparent;
   transition:
     color var(--nova-dur) var(--nova-ease),
-    background var(--nova-dur) var(--nova-ease),
-    border-color var(--nova-dur) var(--nova-ease);
+    background var(--nova-dur) var(--nova-ease);
 }
 .nova-sidebar__link:hover,
 .nova-sidebar__link:focus-visible {
   color: var(--nova-text);
   background: var(--nova-tint-faint);
-  border-left-color: var(--nova-line-strong);
 }
 .nova-sidebar__link:focus-visible {
   outline: none;
-  border-left-color: var(--nova-primary);
+  color: var(--nova-primary);
+  text-shadow: var(--nova-glow-text);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, var(--nova-tint-soft) 2px 3px),
+    var(--nova-tint-faint);
 }
 .nova-sidebar__link span {
   font-family: var(--nova-font-mono);

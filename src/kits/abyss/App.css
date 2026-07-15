@@ -215,26 +215,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 12px;
+  padding: 6px 12px 6px 14px;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
   font-size: 14px;
   text-decoration: none;
-  border-left: 2px solid transparent;
   transition:
     color var(--abyss-dur) var(--abyss-ease),
-    background var(--abyss-dur) var(--abyss-ease),
-    border-color var(--abyss-dur) var(--abyss-ease);
+    background var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-sidebar__link:hover,
 .abyss-sidebar__link:focus-visible {
   color: var(--abyss-text-bright);
   background: var(--abyss-glow-soft);
-  border-left-color: var(--abyss-glow-a55);
 }
 .abyss-sidebar__link:focus-visible {
   outline: none;
-  border-left-color: var(--abyss-glow);
+  background:
+    radial-gradient(150px 120% at 0% 50%, var(--abyss-glow-a30), transparent 74%),
+    var(--abyss-glow-soft);
+  text-shadow: var(--abyss-text-aura);
 }
 .abyss-sidebar__link span {
   font-family: var(--abyss-font-mono);

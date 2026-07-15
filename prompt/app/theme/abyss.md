@@ -20,4 +20,4 @@
 
 ## 4. 外壳
 
-- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；左缘留一道 2px 透明竖轨。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `glow-soft` 幽辉底、左竖轨转 `glow-a55`；键盘焦点去原生 outline、左竖轨再升 `glow`。
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `glow-soft` 幽辉底；键盘焦点再自左缘渗开一团 `glow-a30` 墨晕、字挂 `text-aura` 微辉，去原生 outline。

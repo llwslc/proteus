@@ -24,4 +24,4 @@
 
 ## 5. 外壳
 
-- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-dim`、靠右）；左缘留一道 `stroke-bold` 透明竖轨。rest 取 `text-mute`；hover 与键盘焦点砸 `#191716` 墨底 + `text-invert` 反白、左竖轨转 `primary`；键盘焦点去原生 outline。
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-dim`、靠右）。rest 取 `text-mute`；hover 砸 `#191716` 墨戳底 + `text-invert` 反白；键盘焦点改盖 `marker` 荧光记号笔横划（行尾 80% 后提笔渐隐）+ `text-bright` 复印黑，去原生 outline。
