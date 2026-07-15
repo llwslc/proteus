@@ -19,9 +19,16 @@
   overflow: hidden;
   width: calc(var(--riot-scrollbar) - 4px);
   background: var(--riot-surface-inset);
+  opacity: 0;
+  transition: opacity var(--riot-dur) var(--riot-ease);
+}
+.riot-scrollarea__scrollbar[data-hovering],
+.riot-scrollarea__scrollbar[data-scrolling] {
+  opacity: 1;
 }
 .riot-scrollarea--popup .riot-scrollarea__scrollbar {
   background: transparent;
+  opacity: 1;
 }
 .riot-scrollarea__thumb {
   flex: 1;
