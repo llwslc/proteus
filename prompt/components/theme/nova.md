@@ -22,13 +22,13 @@
 - Tabs：大写 Orbitron、渐变 hover、辉光下划线；切换时内容淡入。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤；打开时转 primary、chevron 翻转。
-- AlertDialog 按 `tone` 整体重染，tone 取 danger、warning、primary：扫描光、标题、tick、边框都随 tone 变，表面顶部再加一道 tone 色的径向渐变（约 20%）。
+- AlertDialog：按 `tone` 整体重染，tone 取 danger、warning、primary——扫描光、标题、tick、边框都随 tone 变，表面顶部再加一道 tone 色的径向渐变（约 20%）。
 - Drawer：只在朝屏内那一条边描一道 `line-strong` 细线，内沿再叠一道霓虹光边（`primary` 渐变 + 辉光）。
 - Toast：锚在**右上角**、向下堆叠；左缘一道光束；tone 承载在 accent 输入变量（`--nova-toast-accent`）上，光束、边框、辉光、标题随之换色；手机端横向撑满，边距 `space-3`。
 - Avatar：兜底是深表面渐变底 + `primary` 字。
 - Badge：点 pulse。
 - Toolbar：箱体同 ToggleGroup。
-- ScrollArea 自绘条：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
+- ScrollArea：自绘条——thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
 - Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）。
 - 弹层列表的内衬取 `space-1`。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。

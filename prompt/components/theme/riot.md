@@ -13,12 +13,12 @@
 
 ## 2. 组件皮肤决定
 
-- Button 默认微旋 `-4deg` 斜钉，hover 保持斜，摁下甩正砸落，`:active` 挂透明 `::after`（`inset -16px`）兜住位移后的命中；`upright` 去掉的就是这个微旋；secondary = 荧光粉 `secondary` 实填、`on-fill` 黑字；锚定弹层的触发钮一律加 `upright`。
-- Switch 是一道盗改的电闸：关态 = `track` 纸灰轨 + `ink` 粗黑框 + `ink` 黑方块旋钮靠左；选中后轨道转荧光 `primary` 橙、旋钮走 `steps` 硬切滑到右；旋钮是方块；行标签走 `font-tag` 注记体（`.riot-tag`，`fs-18`），像涂鸦标语。
-- Checkbox 是 `ink` 粗黑方框 + 硬偏移影；勾选 = 荧光 `secondary` 粉的手画叉 `✗`，indeterminate = 一道粗横杠；勾上的标签盖一道荧光橙删除线；行标签同 Switch。
-- Radio 是 `ink` 圆框；选中 = 荧光 `primary` 实心圆点盖章；行标签同 Switch。
+- Button：默认微旋 `-4deg` 斜钉，hover 保持斜，摁下甩正砸落，`:active` 挂透明 `::after`（`inset -16px`）兜住位移后的命中；`upright` 去掉的就是这个微旋；secondary = 荧光粉 `secondary` 实填、`on-fill` 黑字；锚定弹层的触发钮一律加 `upright`。
+- Switch：一道盗改的电闸——关态 = `track` 纸灰轨 + `ink` 粗黑框 + `ink` 黑方块旋钮靠左；选中后轨道转荧光 `primary` 橙、旋钮走 `steps` 硬切滑到右；旋钮是方块；行标签走 `font-tag` 注记体（`.riot-tag`，`fs-18`），像涂鸦标语。
+- Checkbox：`ink` 粗黑方框 + 硬偏移影；勾选 = 荧光 `secondary` 粉的手画叉 `✗`，indeterminate = 一道粗横杠；勾上的标签盖一道荧光橙删除线；行标签同 Switch。
+- Radio：`ink` 圆框；选中 = 荧光 `primary` 实心圆点盖章；行标签同 Switch。
 - ToggleGroup：不画外箱体——chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
-- Slider 是一条撕开的胶带：`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
+- Slider：一条撕开的胶带——`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
 - Select：弹层带 `shadow-hard` 盒影；列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。
 - Combobox：列表项皮肤同 Select。
 - Autocomplete：列表项的记号笔同 Select。
@@ -31,14 +31,14 @@
 - Menu：列表项的记号笔同 Select；危险项高亮时记号笔转 `danger` 红、字与图标转黑（换色走 `--riot-marker-color`）。
 - Menubar：chip 同 ToggleGroup。
 - NavigationMenu：触发器 Anton 大写、hover 与打开转荧光 `primary`、chevron 随开合翻转；下拉链接的记号笔同 Select。
-- Dialog 撕边纸面、顶边贴胶带。
-- AlertDialog 按 `tone` 重染，tone 取 danger／warning／primary：贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
+- Dialog：撕边纸面、顶边贴胶带。
+- AlertDialog：按 `tone` 重染，tone 取 danger／warning／primary——贴角胶带与标题底的记号笔划带同取 tone 半透——danger 血红、warning 荧光黄、primary 荧光橙。
 - Drawer：只在朝屏内那条边描一道 `stroke-heavy` 撕开的粗黑边，其余三边贴屏不描；纸面、直角同模态。
-- Toast 锚在右下角**乱堆**，条子带 `shadow-hard` 盒影：每条按各自 `--riot-toast-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
+- Toast：锚在右下角**乱堆**，条子带 `shadow-hard` 盒影——每条按各自 `--riot-toast-tilt` 歪一个不同角度、层层拍上去像一叠钉歪的剪报，新的在最前、整条露全，旧的在底下按各自角度探出边角；tone 由贴角那条胶带承载——success／warning／danger 取 tone 半透、info 取默认胶带；纸面正文（标题／描述／关闭）；手机端横向撑满，边距 `space-4`。
 - Avatar：兜底是 Anton 字母压在荧光块上、方形硬裁。
 - Toolbar：chip 同 ToggleGroup。
-- ScrollArea 自绘条：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
-- Panel 是一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）：斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。
+- ScrollArea：自绘条——thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
+- Panel：一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）——斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。
 - 占位图标是粗糙的手绘线形。
 - 剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。
 - 标记与招牌就近挂 `.riot-jitter` 微抖。

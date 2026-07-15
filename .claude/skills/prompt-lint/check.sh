@@ -231,6 +231,30 @@ PYEOF
 if [ "$ORDER_OK" = 1 ]; then echo "  -> clean"; else printf '%s\n' "$ORDER_OUT"; fail=1; fi
 
 echo
+echo "## skin-doc §2 lead — 行首=裸控件名+全角冒号（\`- <Name>：\`），修饰词进冒号后"
+LEAD_OUT=$(python3 - <<'PYEOF'
+import pathlib, re, sys
+comp = pathlib.Path("prompt/components/components.md").read_text()
+sec = comp.split("## 6. 组件")[1].split("## 6.1")[0]
+canon = set()
+for m in re.finditer(r"[A-Z][A-Za-z/]+", sec):
+    n = m.group(0)
+    if n not in ("Base", "UI"): canon.add(n)
+bad = 0
+for p in sorted(pathlib.Path("prompt/components/theme").glob("*.md")):
+    body = p.read_text().split("## 2. 组件皮肤决定", 1)
+    if len(body) < 2: continue
+    for ln, line in enumerate(body[1].split("\n"), 1):
+        m = re.match(r"- ([A-Z][A-Za-z/]+)(.?)", line)
+        if not m or m.group(1) not in canon: continue
+        if m.group(2) != "：":
+            print(f"  {p}: `- {m.group(1)}{m.group(2)}…` 行首非「控件名：」"); bad = 1
+sys.exit(bad)
+PYEOF
+) && LEAD_OK=1 || LEAD_OK=0
+if [ "$LEAD_OK" = 1 ]; then echo "  -> clean"; else printf '%s\n' "$LEAD_OUT"; fail=1; fi
+
+echo
 echo "## REVIEW — emphasis mix in a bullet block (heuristic, never fails; eyeball each)"
 echo "   bold must mark ONE consistent thing per peer set; a block with both '- **' and"
 echo "   '- plain' leads is a CANDIDATE — most are fine (bold font/term vs plain prose);"
