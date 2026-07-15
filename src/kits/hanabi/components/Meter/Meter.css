@@ -69,11 +69,18 @@
   inset-block: 0;
   left: 0;
   border-radius: var(--hanabi-r-pill) 3px 3px var(--hanabi-r-pill);
+  overflow: hidden;
+  transition: width var(--hanabi-dur-slow) var(--hanabi-ease-out);
+}
+.hanabi-meter__indicator::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  right: -27px;
   background: repeating-linear-gradient(
     -45deg,
     var(--hanabi-meter-stripe) 0 9px,
     var(--hanabi-meter-stripe-2) 9px 18px
   );
   animation: hanabi-stripe-flow var(--hanabi-dur-stripe) linear infinite;
-  transition: width var(--hanabi-dur-slow) var(--hanabi-ease-out);
 }

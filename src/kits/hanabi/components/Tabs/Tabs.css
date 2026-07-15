@@ -8,6 +8,7 @@
   display: flex;
   gap: var(--hanabi-space-2);
   padding: 0 var(--hanabi-space-3);
+  margin-bottom: calc(-1 * var(--hanabi-line-w));
 }
 
 .hanabi-tabs__tab {
@@ -22,6 +23,7 @@
   border: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-bottom: 0;
   border-radius: var(--hanabi-r-fold) var(--hanabi-r-fold) 0 0;
+  position: relative;
   font-family: var(--hanabi-font);
   font-size: var(--hanabi-fs-13);
   font-weight: var(--hanabi-fw-700);
@@ -41,6 +43,7 @@
 }
 
 .hanabi-tabs__tab[data-active] {
+  z-index: 2;
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
   translate: 0 0;
@@ -59,10 +62,11 @@
 
 .hanabi-tabs__indicator {
   position: absolute;
-  bottom: -2px;
+  z-index: 3;
+  bottom: 0;
   left: var(--active-tab-left);
   width: var(--active-tab-width);
-  height: 2px;
+  height: var(--hanabi-line-w);
   background: var(--hanabi-accent-surface);
   transition:
     left var(--hanabi-dur-slow) var(--hanabi-ease-snap),

@@ -209,7 +209,7 @@
 .hanabi-modal-title {
   position: absolute;
   top: -14px;
-  left: 10px;
+  left: 16px;
   z-index: 1;
   margin: 0;
 }
@@ -347,11 +347,6 @@
 }
 .hanabi-seg__btn[data-pressed]::before,
 .hanabi-seg__btn.is-active::before,
-.hanabi-seg__btn[data-popup-open]::before {
-  content: "✦";
-  font-size: 10px;
-  color: var(--hanabi-warning);
-}
 .hanabi-seg__btn[data-disabled],
 .hanabi-seg__btn:disabled {
   opacity: var(--hanabi-disabled-opacity);
@@ -433,7 +428,7 @@
 
 @keyframes hanabi-stripe-flow {
   to {
-    background-position: -25.4558px 0;
+    transform: translateX(-25.4558px);
   }
 }
 
@@ -477,9 +472,9 @@
 
 @keyframes hanabi-gauge-scan {
   from {
-    left: -34%;
+    transform: translateX(-100%);
   }
   to {
-    left: 100%;
+    transform: translateX(250%);
   }
 }

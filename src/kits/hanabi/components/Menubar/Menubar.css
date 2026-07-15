@@ -5,9 +5,6 @@
 .hanabi-menubar__trigger {
   height: var(--hanabi-menubar-trigger-h);
 }
-.hanabi-menubar__trigger[data-popup-open]::before {
-  content: none;
-}
 
 @media (max-width: 768px) {
   .hanabi-menubar {

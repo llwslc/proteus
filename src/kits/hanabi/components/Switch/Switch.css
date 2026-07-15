@@ -13,13 +13,21 @@
 }
 
 .hanabi-switch[data-checked] {
+  background: var(--hanabi-primary);
+  box-shadow: none;
+  overflow: hidden;
+}
+.hanabi-switch[data-checked]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  right: -26px;
   background: repeating-linear-gradient(
     -45deg,
     var(--hanabi-primary) 0 9px,
     var(--hanabi-primary-deep) 9px 18px
   );
   animation: hanabi-stripe-flow var(--hanabi-dur-stripe) linear infinite;
-  box-shadow: none;
 }
 
 .hanabi-switch:focus-visible {

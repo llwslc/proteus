@@ -30,7 +30,7 @@
 - Form：竖排间距 `space-4`。
 - Progress：血条解剖——`r-pill` 轨凹嵌（`ink` 框 + 左上 inset 阶影），indicator `primary` 平涂 + 顶部白高光线 + 推进端一枚白 ✦ 压条；轨上叠十等分 `ink` 分格刻度（alpha 极低）；不定态 = 斜纹段左右巡游。
 - Meter：轨与分格同 Progress，填充改 tone／tone-deep 相间**斜纹**并以 `stripe-flow` 流动，按 `tone` 重染。
-- Tabs：斜切折页 chip（`skew`、上圆角 `r-fold`、无 border-bottom）一排贴在 content 箱顶缘（列衬 `0 space-3`、chip 距 `space-2`），未选 `base` 底、沉 2px，选中 `primary` 填白字并落座（translate 归零、padding-bottom 多 2px 盖住箱顶线成开口）；content 箱 = `surface` 面 + `ink` 框 + `shadow` 阶影带、衬 `space-4`；选中指示 = 2px `accent-surface` 贴合条压在开口缝上，随 `--active-tab-*` 移动；不画全宽底轨。
+- Tabs：斜切折页 chip（`skew`、上圆角 `r-fold`、无 border-bottom）一排咬在 content 箱顶缘（列下压一线宽压住箱顶边、chip 距 `space-2`），未选 `base` 底、沉 2px 坐箱边上呈闭合，选中 `primary` 填白字并提层落座（translate 归零、盖住箱顶线成开口、与 body 连成一体）；content 箱 = `surface` 面 + `ink` 框 + `shadow` 阶影带、衬 `space-4`；选中指示 = `line-w` `accent-surface` 贴合条压在开口缝上，随 `--active-tab-*` 移动；不画全宽底轨。
 - Accordion：折叠配方——trigger 行 marker 是 `primary` ✦（定宽）、title 正文体 `fw-700`、chevron `primary` ▼ 开态翻转；panel content 按缩进公式对齐 title；trigger hover 盖 wash。
 - Collapsible：复用 Accordion 折叠皮。
 - Tooltip：反色小牌——`ink` 墨蓝底 + `text-invert` 白字（fs-13）、`r-field` 圆角、无框线，connector 三角同 `ink` 填。

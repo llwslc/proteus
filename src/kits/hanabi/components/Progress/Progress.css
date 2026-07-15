@@ -81,7 +81,8 @@
 }
 
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator {
-  width: 34%;
+  width: 40%;
+  left: 0;
   animation: hanabi-gauge-scan 1.5s linear infinite;
 }
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator::after {
