@@ -75,6 +75,6 @@ const UPDATE = process.argv.includes('--update');
     console.log('\n有意的改动 → 跑相应动态门验收后 --update 刷基线;无意的 → 这就是回归。');
     process.exit(1);
   }
-  console.log('RESULT: PASS (静息渲染与基线逐面板一致 — 5 kits × 2 宽)');
+  console.log(`RESULT: PASS (静息渲染与基线逐面板一致 — ${Object.keys(out).length} kits × 2 宽)`);
   process.exit(0);
 })().catch((e) => { console.error(e); process.exit(1); });
