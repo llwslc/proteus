@@ -10,3 +10,6 @@
   box-shadow: var(--hanabi-shadow-sm);
   padding: var(--hanabi-space-1);
 }
+.hanabi-collapsible[data-disabled] {
+  opacity: var(--hanabi-disabled-opacity);
+}

@@ -333,6 +333,30 @@ const setKit = async (page, kit) => {
       if (restyled.length) out.push(`HIGH  ${kit}  ${restyled.length} disabled control(s) restyle on hover — guard :hover with :not(:disabled):not([data-disabled]): ${[...new Set(restyled)].join(', ')}`);
     } catch (e) { out.push(`WARN  ${kit}  disabled-hover: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     try {
+      // a DISABLED control must not run animations — a decoration moved onto a ::before/::after
+      // overlay keeps animating when only the HOST got `animation: none` (the switch-stripes class);
+      // sweep every visible disabled element + descendants + rendered pseudos for a live animation.
+      await setKit(d, kit);
+      await d.emulateMedia({ reducedMotion: null });
+      const animating = await d.evaluate(() => {
+        const hits = [];
+        for (const root of document.querySelectorAll(':disabled, [data-disabled]')) {
+          const rr = root.getBoundingClientRect();
+          if (rr.width < 2 || rr.height < 2) continue;
+          for (const el of [root, ...root.querySelectorAll('*')]) {
+            for (const pseudo of [null, '::before', '::after']) {
+              const c = getComputedStyle(el, pseudo);
+              if (pseudo && c.content === 'none') continue;
+              if (c.animationName !== 'none' && c.animationPlayState !== 'paused' && parseFloat(c.animationDuration) > 0)
+                hits.push(((el.getAttribute('class') || el.tagName) + (pseudo || '')).replace(/[a-z0-9]+-/, '').slice(0, 30));
+            }
+          }
+        }
+        return [...new Set(hits)];
+      });
+      if (animating.length) out.push(`HIGH  ${kit}  ${animating.length} disabled element(s) still ANIMATE — a pseudo overlay ignores the host's animation:none; suppress the pseudo too (content:none, or animation:none on the pseudo): ${animating.join(', ')}`);
+    } catch (e) { out.push(`WARN  ${kit}  disabled-anim: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+    try {
       // a SELECTED/open segmented control (ToggleGroup toggle, Toolbar button) must KEEP its look on hover —
       // the selected fill must not lose to an over-specific :hover (components.md §5). Force :hover via CDP (real
       // hover is flaky headless) and disable motion so the read is the settled value, not a mid-fade sample.

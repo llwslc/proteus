@@ -10,7 +10,7 @@
 - 悬停：分段控件和触发条盖 `primary-wash` 实色浅底；凸面控件描线点亮转 `primary`、高光条拉长一截；ghost 按钮盖 `primary-wash`、文字转 `bright`；图标和动作按钮的文字转 `primary`，菜单触发器转 `bright`；列表项盖 `primary-wash` 圆角行底。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整控件 2px `primary` 外环（offset 2px）；其余按钮、字段、触发条、分段钮走四角锁定框（theme §3 战斗语汇），输入框聚焦时整框 border 同时转 `primary`、inset 阶影转 `primary-wash`。
 - 危险态：`danger` 红实填、前景 `on-fill` 白，描线仍 `ink`；静止态红字红图标。
-- 禁用+选中（Switch、Checkbox、Radio）：保持 `primary` 实填，斜纹与入场动画随禁用去掉，靠 `disabled-opacity` 整体变灰。
+- 禁用+选中／数值填充（Switch、Checkbox、Radio、Slider）：保持 `primary` 实填，斜纹与入场动画随禁用去掉，靠 `disabled-opacity` 整体变灰。
 
 ## 2. 组件皮肤决定
 

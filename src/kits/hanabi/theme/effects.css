@@ -265,8 +265,11 @@
   cursor: pointer;
   transition: background var(--hanabi-dur) var(--hanabi-ease-out);
 }
-.hanabi-collapse-trigger:hover {
+.hanabi-collapse-trigger:where(:not([data-disabled])):hover {
   background: var(--hanabi-primary-wash);
+}
+.hanabi-collapse-trigger[data-disabled] {
+  cursor: not-allowed;
 }
 
 .hanabi-collapse-marker {

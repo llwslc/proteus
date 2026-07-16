@@ -101,20 +101,12 @@
 .hanabi-slider[data-disabled] .hanabi-slider__control {
   cursor: not-allowed;
 }
-.hanabi-slider[data-disabled] .hanabi-slider__indicator {
-  background: var(--hanabi-tone-deep);
-}
 .hanabi-slider[data-disabled] .hanabi-slider__thumb {
-  background-image:
-    radial-gradient(circle, var(--hanabi-tone-deep) 0 3.2px, transparent 3.8px),
-    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
-    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
-    linear-gradient(var(--hanabi-ink), var(--hanabi-ink)),
-    linear-gradient(var(--hanabi-ink), var(--hanabi-ink));
   box-shadow: none;
   scale: none;
 }
 .hanabi-slider[data-disabled] .hanabi-slider__head,
-.hanabi-slider[data-disabled] .hanabi-slider__track {
+.hanabi-slider[data-disabled] .hanabi-slider__track,
+.hanabi-slider[data-disabled] .hanabi-slider__thumb {
   opacity: var(--hanabi-disabled-opacity);
 }

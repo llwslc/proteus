@@ -59,6 +59,9 @@
 .brass-checkbox__indicator svg {
   animation: brass-stamp var(--brass-dur) var(--brass-ease-detent);
 }
+.brass-checkbox[data-disabled] .brass-checkbox__indicator svg {
+  animation: none;
+}
 @keyframes brass-stamp {
   from {
     transform: scale(0.4);

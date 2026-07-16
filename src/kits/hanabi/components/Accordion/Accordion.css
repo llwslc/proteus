@@ -5,6 +5,9 @@
 .hanabi-accordion__item {
   padding: var(--hanabi-space-1) 0;
 }
+.hanabi-accordion__item[data-disabled] {
+  opacity: var(--hanabi-disabled-opacity);
+}
 .hanabi-accordion__item + .hanabi-accordion__item {
   border-top: var(--hanabi-line-w) dashed var(--hanabi-tone);
 }
