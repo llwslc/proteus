@@ -30,7 +30,7 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-collapsible__trigger:hover .abyss-collapsible__rune {
+.abyss-collapsible__trigger:where(:not([data-disabled])):hover .abyss-collapsible__rune {
   color: var(--abyss-text);
   transform: rotate(60deg);
 }
@@ -49,7 +49,7 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-collapsible__trigger:hover .abyss-collapsible__chevron {
+.abyss-collapsible__trigger:where(:not([data-disabled])):hover .abyss-collapsible__chevron {
   color: var(--abyss-text);
 }
 .abyss-collapsible__trigger[data-panel-open] .abyss-collapsible__chevron {

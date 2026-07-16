@@ -49,7 +49,7 @@
   text-align: left;
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-disclosure__trigger:hover {
+.abyss-disclosure__trigger:where(:not([data-disabled])):hover {
   color: var(--abyss-text-bright);
 }
 .abyss-disclosure__trigger[data-panel-open] {

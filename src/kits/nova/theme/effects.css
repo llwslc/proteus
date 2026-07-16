@@ -236,7 +236,7 @@
   color: var(--nova-text-dim);
   transition: transform var(--nova-dur) var(--nova-ease);
 }
-.nova-disclosure__trigger:hover {
+.nova-disclosure__trigger:where(:not([data-disabled])):hover {
   color: var(--nova-text-bright);
 }
 .nova-disclosure__trigger[data-panel-open] {

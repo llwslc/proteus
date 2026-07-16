@@ -34,7 +34,7 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-accordion__trigger:hover .abyss-accordion__sigil {
+.abyss-accordion__trigger:where(:not([data-disabled])):hover .abyss-accordion__sigil {
   color: var(--abyss-text);
   transform: rotate(30deg);
 }
@@ -53,7 +53,7 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-accordion__trigger:hover .abyss-accordion__chevron {
+.abyss-accordion__trigger:where(:not([data-disabled])):hover .abyss-accordion__chevron {
   color: var(--abyss-text);
 }
 .abyss-accordion__trigger[data-panel-open] .abyss-accordion__chevron {

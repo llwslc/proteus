@@ -10,6 +10,7 @@ export interface CollapsibleProps {
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -19,6 +20,7 @@ export function Collapsible({
   defaultOpen,
   open,
   onOpenChange,
+  disabled,
   className,
 }: CollapsibleProps) {
   return (
@@ -26,6 +28,7 @@ export function Collapsible({
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
+      disabled={disabled}
       className={cx("riot-surface riot-collapsible", className)}
     >
       <BaseCollapsible.Trigger className="riot-collapse-trigger">

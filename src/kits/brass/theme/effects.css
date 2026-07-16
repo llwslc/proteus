@@ -421,7 +421,7 @@
   color: var(--brass-text);
   transition: color var(--brass-dur) var(--brass-ease);
 }
-.brass-collapse-trigger:hover {
+.brass-collapse-trigger:where(:not([data-disabled])):hover {
   color: var(--brass-text-bright);
 }
 .brass-collapse-marker {

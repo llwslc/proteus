@@ -1,3 +1,6 @@
 .riot-collapsible {
   overflow: hidden;
 }
+.riot-collapsible[data-disabled] {
+  opacity: var(--riot-disabled-opacity);
+}
