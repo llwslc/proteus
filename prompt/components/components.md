@@ -136,7 +136,7 @@
 - **Progress**：props `label·showValue`；结构 `Root > head[label + Value 在右] + Track > Indicator`，Indicator 从左满宽推进。
 - **Meter**：同 Progress，加 props `tone`（`primary·success·warning·danger`），按 tone 重染。
 - **Tabs**：props `items·defaultValue`；结构 `Root > List[Tab* + Indicator] + Panel*`。有一条选中指示，跟随 Base UI 的 `--active-tab-*` 移到当前 tab；**这条指示长什么样、放哪条边，由 theme 定。** tab 状态 +selected；手机端横向滚动不换行、滚动条隐藏。
-- **Accordion**：props `items·openMultiple`（默认 false）`·defaultValue`；用 §4.3 的折叠配方 `trigger[marker 在左 + title + chevron 在右] + panel > content`；**content 向左缩进，对齐 title 的起点**——缩进**公式直写** `calc(trigger 左内距 + marker 宽 + gap)`、引同一来源的值，marker 定宽（em 派生宽不进对齐链）；状态 +panel-open，指示物旋转。
+- **Accordion**：props `items·openMultiple`（默认 false）`·defaultValue`；用 §4.3 的折叠配方 `trigger[marker 在左 + title + chevron 在右] + panel > content`；**content 向左缩进，对齐 title 的起点**——缩进**公式直写** `calc(trigger 左内距 + marker 宽 + gap)`、引同一来源的值，marker 定宽（em 派生宽不进对齐链）；状态 +panel-open，指示物旋转；panel 高度过渡动画开合，时长各 kit 取自家时长档、落在 `0.15s`–`0.5s`。
 - **Collapsible**：props `title·defaultOpen`；折叠配方、缩进与状态同 Accordion。
 
 **浮层**

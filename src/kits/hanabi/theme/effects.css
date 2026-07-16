@@ -293,6 +293,12 @@
 
 .hanabi-collapse-panel {
   overflow: hidden;
+  height: var(--collapsible-panel-height, var(--accordion-panel-height));
+  transition: height var(--hanabi-dur-slow) var(--hanabi-ease-out);
+}
+.hanabi-collapse-panel[data-starting-style],
+.hanabi-collapse-panel[data-ending-style] {
+  height: 0;
 }
 
 .hanabi-collapse-content {

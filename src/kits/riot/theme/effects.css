@@ -296,7 +296,7 @@
 .riot-collapse-panel {
   overflow: hidden;
   height: var(--collapsible-panel-height, var(--accordion-panel-height));
-  transition: height var(--riot-dur) var(--riot-ease);
+  transition: height var(--riot-dur-slow) var(--riot-ease);
 }
 .riot-collapse-panel[data-starting-style],
 .riot-collapse-panel[data-ending-style] {

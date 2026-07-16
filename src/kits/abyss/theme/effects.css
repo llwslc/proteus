@@ -68,7 +68,7 @@
   z-index: 1;
   height: var(--accordion-panel-height, var(--collapsible-panel-height));
   overflow: hidden;
-  transition: height var(--abyss-dur-slow) var(--abyss-ease);
+  transition: height var(--abyss-dur) var(--abyss-ease);
 }
 .abyss-disclosure__panel[data-starting-style],
 .abyss-disclosure__panel[data-ending-style] {
