@@ -54,17 +54,17 @@
 
 - button：三行，以 2 条 Separator 分隔 —— ① 五枚 `primary`（带前导图标）、`secondary`、`danger`、`ghost`、`disabled`；② 三枚尺寸 `sm`、`md`、`lg`；③ 五枚图标钮 `icon`、`icon`、`icon` + `disabled`、`icon-ghost`、`icon-ghost`。
 - switch：四行「caption + Switch」—— 开（`defaultChecked`）、关、`disabled` 且开、`disabled` 且关。
-- toggle：两个 ToggleGroup，各 3 项；单选组默认选第 1、末项 `disabled`，多选组（`multiple`）默认选前 2。
+- toggle：两个 ToggleGroup；单选组 3 项、默认选第 1、末项 `disabled`，多选组（`multiple`）4 项、默认选前 2 与末项、末项 `disabled`（禁用+选中）。
 - checkbox：四枚独立 Checkbox —— 勾选、未勾、`disabled` 且勾选、`disabled` 且未勾。
-- checkbox-group：一个带父级全选的 CheckboxGroup，3 项均可选、默认勾 1，父级呈 indeterminate；禁用态见 checkbox 面板。
-- radio：一个 RadioGroup，4 项，默认选第 1，第 4 项 `disabled`。
-- select：两行「caption + Select」——① 12 项、末项 `disabled`、默认选第 2；② `3` 项（① 的前三）、无默认值、显 `placeholder`。
+- checkbox-group：一个带父级全选的 CheckboxGroup，3 项均可选、默认勾 1，父级呈 indeterminate；另一小组 2 项整组 `disabled`、默认勾 1（父级禁用+indeterminate）；条目禁用态见 checkbox 面板。
+- radio：一个 RadioGroup，4 项，默认选第 1，第 4 项 `disabled`；另一组 2 项，默认选末项且该项 `disabled`（禁用+选中）。
+- select：三行「caption + Select」——① 12 项、末项 `disabled`、默认选第 2；② `3` 项（① 的前三）、无默认值、显 `placeholder`；③ 同 ② 清单、默认选第 2、整个 `disabled`（禁用+有值）。
 - combobox：「caption + Combobox」，可过滤列表 12 项，无默认值。
 - autocomplete：「caption + Autocomplete」，建议列表 12 项，无默认值。
 - slider：三个 Slider —— ① label + 默认值 62；② `disabled`、值 40；③ `showValue={false}`、值 75。
-- number：「caption + NumberField」，`defaultValue` 7、`min` 0、`max` 12、`step` 1。
-- input：四个字段 —— ① label + 默认值 + placeholder + `description` 辅助行；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`。
-- otp：两行「caption + OtpField」——① `length` 6、`splitAt` 3、预填 3 位（值随 theme 换）；② 同构造加 `mask`。
+- number：两行「caption + NumberField」——① `defaultValue` 7、`min` 0、`max` 12、`step` 1；② `defaultValue` 12（=`max`，到界步进钮呈禁用）。
+- input：五个字段 —— ① label + 默认值 + placeholder + `description` 辅助行；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`；⑤ label + 非法默认值 + 静态 `error`（静息即呈报错态）。
+- otp：三行「caption + OtpField」——① `length` 6、`splitAt` 3、预填 3 位（值随 theme 换）；② 同构造加 `mask`；③ 同构造加 `disabled`。
 
 **Forms**
 
@@ -76,8 +76,8 @@
 - progress：四条 Progress —— ① 动画递增、满即复位；② 静态 67；③ 满 100；④ 不定态（`value` 空、不显数值）。
 - meter：四条 Meter —— `primary` 88、`success` 70、`warning` 52、`danger` 23。
 - tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
-- accordion：两组，各带一行 cap 小标点明开合语义（如 One at a time / Open together）——① 3 项单开、默认展开第 1、末项 `disabled`；② 2 项 `openMultiple`、默认全开；每项 = 标题 + 一段正文。
-- collapsible：三个 Collapsible —— ① `defaultOpen`；② 关；③ 关、`disabled`。
+- accordion：两组，各带一行 cap 小标点明开合语义（如 One at a time / Open together）——① 3 项单开、默认展开第 1、末项 `disabled`；② 2 项 `openMultiple`、默认全开、末项 `disabled`（禁用+展开）；每项 = 标题 + 一段正文。
+- collapsible：四个 Collapsible —— ① `defaultOpen`；② 关；③ 关、`disabled`；④ `defaultOpen`+`disabled`（禁用+展开）。
 
 **Overlays**
 
@@ -85,9 +85,9 @@
 - popover：一个 Popover，trigger = `ghost` Button，内容 = 标题 + 一段正文。
 - preview：「caption + 内联文本」内嵌 PreviewCard，trigger 为内联链接；卡片 = Avatar（图片、status online）+ 名 + handle + 一段简介 + 一行 2 个 Badge（`primary` 带 dot、`neutral`）。
 - menu：trigger = `ghost` Button（内联标签 + 翻转 chevron）；12 个 MenuItem + 1 个 MenuSeparator，全部带图标，前 3 项带快捷键，第 4 项 `disabled`，分隔后末项 `tone="danger"`。
-- menubar：3 个菜单 —— ① 2 项 + 分隔 + 1 个 `danger` 项；② 2 项（带快捷键）；③ 2 项 + 1 个子菜单，子菜单 = 3 项 + 分隔 + 1 项。
+- menubar：3 个菜单 —— ① 2 项 + 1 个 `disabled` 项 + 分隔 + 1 个 `danger` 项；② 2 项（带快捷键）；③ 2 项 + 1 个子菜单，子菜单 = 3 项 + 分隔 + 1 项。
 - navmenu：与顶栏主导航同数据 —— 3 个条目：2 个下拉组各 4 条链接（label + 描述），加 1 个纯链接。
-- context：trigger = 文本投放区；3 个 MenuItem + 1 分隔，前 2 带快捷键，分隔后第 3 项 `danger`。
+- context：trigger = 文本投放区；4 个 MenuItem + 1 分隔，前 2 带快捷键，第 3 项 `disabled`，分隔后末项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` 三种 tone 的 AlertDialog；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。

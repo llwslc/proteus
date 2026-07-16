@@ -288,6 +288,7 @@ const ACCORDION_MULTI = [
   },
   {
     value: "m2",
+    disabled: true,
     title: "Med Deck",
     content: "Cryo pods four through nine recalibrated after the last jump.",
   },
@@ -654,10 +655,13 @@ function Demo() {
                       Scan
                     </Toggle>
                   </ToggleGroup>
-                  <ToggleGroup defaultValue={["shields", "weapons"]} multiple>
+                  <ToggleGroup defaultValue={["shields", "weapons", "cloak"]} multiple>
                     <Toggle value="shields">Shields</Toggle>
                     <Toggle value="weapons">Weapons</Toggle>
                     <Toggle value="sensors">Sensors</Toggle>
+                    <Toggle value="cloak" disabled>
+                      Cloak
+                    </Toggle>
                   </ToggleGroup>
                 </div>
               </Panel>
@@ -676,24 +680,43 @@ function Demo() {
 
             <div className="nova-section" id="checkbox-group">
               <Panel title="Checkbox Group" meta="CHG">
-                <CheckboxGroup
-                  parentLabel="All channels"
-                  defaultValue={["relay"]}
-                  items={CHECKGROUP_ITEMS}
-                />
+                <div className="demo-stack">
+                  <CheckboxGroup
+                    parentLabel="All channels"
+                    defaultValue={["relay"]}
+                    items={CHECKGROUP_ITEMS}
+                  />
+                  <CheckboxGroup
+                    defaultValue={["r2"]}
+                    parentLabel="Aux channels (sealed)"
+                    disabled
+                    items={[
+                      { label: "Relay-2", value: "r2" },
+                      { label: "Siren", value: "siren" },
+                    ]}
+                  />
+                </div>
               </Panel>
             </div>
 
             <div className="nova-section" id="radio">
               <Panel title="Radio Group" meta="RDO">
-                <RadioGroup defaultValue="impulse">
-                  <Radio value="impulse">Impulse Drive</Radio>
-                  <Radio value="warp">Warp Field</Radio>
-                  <Radio value="jump">Jump Gate</Radio>
-                  <Radio value="tow" disabled>
-                    Tow Cable (offline)
-                  </Radio>
-                </RadioGroup>
+                <div className="demo-stack">
+                  <RadioGroup defaultValue="impulse">
+                    <Radio value="impulse">Impulse Drive</Radio>
+                    <Radio value="warp">Warp Field</Radio>
+                    <Radio value="jump">Jump Gate</Radio>
+                    <Radio value="tow" disabled>
+                      Tow Cable (offline)
+                    </Radio>
+                  </RadioGroup>
+                  <RadioGroup defaultValue="auto">
+                    <Radio value="manual">Manual override</Radio>
+                    <Radio value="auto" disabled>
+                      Autopilot (locked in)
+                    </Radio>
+                  </RadioGroup>
+                </div>
               </Panel>
             </div>
 
@@ -704,6 +727,8 @@ function Demo() {
                   <Select items={SELECT_ITEMS} defaultValue="proxima" />
                   <span className="nova-cap">Fallback Route</span>
                   <Select items={SELECT_ITEMS_SHORT} placeholder="Awaiting lock…" />
+                  <span className="nova-cap">Home Port</span>
+                  <Select items={SELECT_ITEMS_SHORT} defaultValue="proxima" disabled />
                 </div>
               </Panel>
             </div>
@@ -746,6 +771,10 @@ function Demo() {
                   <div className="demo-row">
                     <NumberField defaultValue={7} min={0} max={12} step={1} />
                   </div>
+                  <span className="nova-cap">Docking Bays</span>
+                  <div className="demo-row">
+                    <NumberField defaultValue={12} min={0} max={12} step={1} />
+                  </div>
                 </div>
               </Panel>
             </div>
@@ -762,6 +791,7 @@ function Demo() {
                   <Input icon={<SearchIcon />} placeholder="Search registry…" />
                   <AccessCodeField />
                   <Field label="Locked Channel" defaultValue="NX-CLASSIFIED" disabled />
+                  <Field label="Beacon ID" defaultValue="NX-Ø1?" error="Unrecognized characters in the ID." />
                 </div>
               </Panel>
             </div>
@@ -773,6 +803,8 @@ function Demo() {
                   <OtpField length={6} splitAt={3} defaultValue="427" />
                   <span className="nova-cap">Cipher key</span>
                   <OtpField length={6} splitAt={3} defaultValue="427" mask />
+                  <span className="nova-cap">Revoked code</span>
+                  <OtpField length={6} splitAt={3} defaultValue="427" disabled />
                 </div>
               </Panel>
             </div>
@@ -844,6 +876,9 @@ function Demo() {
                   </Collapsible>
                   <Collapsible title="Sealed Compartment" disabled>
                     Quartermaster hold. Opens under clearance level 5 at the next port.
+                  </Collapsible>
+                  <Collapsible title="Quarantine Report" defaultOpen disabled>
+                    Bay 3 sealed pending inspection. Held open under quartermaster order.
                   </Collapsible>
                 </div>
               </Panel>
@@ -970,6 +1005,7 @@ function Demo() {
                     <MenuItem icon={<CopyIcon />} shortcut="⌘O">
                       Open Log
                     </MenuItem>
+                    <MenuItem disabled>Black Box</MenuItem>
                     <MenuSeparator />
                     <MenuItem icon={<TrashIcon />} tone="danger">
                       Jettison
@@ -1008,6 +1044,7 @@ function Demo() {
                 <ContextMenu trigger="Right-click anywhere in this zone">
                   <MenuItem shortcut="⌘C">Copy Coordinates</MenuItem>
                   <MenuItem shortcut="⌘B">Ping Beacon</MenuItem>
+                  <MenuItem disabled>Decrypt</MenuItem>
                   <MenuSeparator />
                   <MenuItem tone="danger">Purge Node</MenuItem>
                 </ContextMenu>

@@ -504,10 +504,13 @@ function Demo() {
                     Right
                   </Toggle>
                 </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["fill", "ink"]}>
+                <ToggleGroup multiple defaultValue={["fill", "ink", "glue"]}>
                   <Toggle value="fill">Fill</Toggle>
                   <Toggle value="ink">Ink</Toggle>
                   <Toggle value="tape">Tape</Toggle>
+                  <Toggle value="glue" disabled>
+                    Glue
+                  </Toggle>
                 </ToggleGroup>
               </div>
             </Panel>
@@ -521,26 +524,45 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="checkbox-group" title="Checkbox Group" meta="CHG" stapled>
-              <CheckboxGroup
-                defaultValue={["grid"]}
-                parentLabel="All guides"
-                items={[
-                  { label: "Grid", value: "grid" },
-                  { label: "Baseline", value: "baseline" },
-                  { label: "Margins", value: "margins" },
-                ]}
-              />
+              <div className="riot-stack">
+                <CheckboxGroup
+                  defaultValue={["grid"]}
+                  parentLabel="All guides"
+                  items={[
+                    { label: "Grid", value: "grid" },
+                    { label: "Baseline", value: "baseline" },
+                    { label: "Margins", value: "margins" },
+                  ]}
+                />
+                <CheckboxGroup
+                  defaultValue={["spray"]}
+                  parentLabel="Confiscated"
+                  disabled
+                  items={[
+                    { label: "Spraycan", value: "spray" },
+                    { label: "Wheatpaste", value: "paste" },
+                  ]}
+                />
+              </div>
             </Panel>
 
             <Panel id="radio" title="Radio Group" meta="RDO" tape="tl">
-              <RadioGroup defaultValue="left">
-                <Radio value="left">Left align</Radio>
-                <Radio value="center">Center</Radio>
-                <Radio value="justify">Justify</Radio>
-                <Radio value="optical" disabled>
-                  Optical (offline)
-                </Radio>
-              </RadioGroup>
+              <div className="riot-stack">
+                <RadioGroup defaultValue="left">
+                  <Radio value="left">Left align</Radio>
+                  <Radio value="center">Center</Radio>
+                  <Radio value="justify">Justify</Radio>
+                  <Radio value="optical" disabled>
+                    Optical (offline)
+                  </Radio>
+                </RadioGroup>
+                <RadioGroup defaultValue="xerox">
+                  <Radio value="hand">Hand-set</Radio>
+                  <Radio value="xerox" disabled>
+                    Xerox (jammed on)
+                  </Radio>
+                </RadioGroup>
+              </div>
             </Panel>
             <Panel id="select" title="Select" meta="SEL" tape="br">
               <div className="riot-stack">
@@ -548,6 +570,8 @@ function Demo() {
                 <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
                 <span className="riot-cap">Masthead cut</span>
                 <Select items={WEIGHTS_SHORT} placeholder="Cut" />
+                <span className="riot-cap">Dead press</span>
+                <Select items={WEIGHTS_SHORT} defaultValue="regular" disabled />
               </div>
             </Panel>
 
@@ -575,6 +599,8 @@ function Demo() {
               <div className="riot-stack">
                 <span className="riot-cap">Print run</span>
                 <NumberField defaultValue={7} min={0} max={12} step={1} />
+                <span className="riot-cap">Full run</span>
+                <NumberField defaultValue={12} min={0} max={12} step={1} />
               </div>
             </Panel>
 
@@ -589,6 +615,7 @@ function Demo() {
                 <Input icon={<SearchIcon />} placeholder="Search clippings…" />
                 <AccessKeyField />
                 <Field label="Locked layer" defaultValue="RIOT-1977" disabled />
+                <Field label="Serial" defaultValue="R!OT-##" error="Serial won't scan." />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP" tape="br">
@@ -597,6 +624,8 @@ function Demo() {
                 <OtpField length={6} splitAt={3} defaultValue="977" />
                 <span className="riot-cap">Dead drop</span>
                 <OtpField length={6} splitAt={3} defaultValue="977" mask />
+                <span className="riot-cap">Burned code</span>
+                <OtpField length={6} splitAt={3} defaultValue="977" disabled />
               </div>
             </Panel>
           </div>
@@ -720,6 +749,7 @@ function Demo() {
                     },
                     {
                       value: "fold",
+                      disabled: true,
                       title: "Fold",
                       content: "Fold twice, crease it with a thumbnail.",
                     },
@@ -742,6 +772,11 @@ function Demo() {
                 <Collapsible title="Locked box" disabled>
                   <p className="riot-text">
                     Label masters. Ask the desk for the key.
+                  </p>
+                </Collapsible>
+                <Collapsible title="Editor's note" defaultOpen disabled>
+                  <p className="riot-text">
+                    Stapled to the wall. Don't touch.
                   </p>
                 </Collapsible>
               </div>
@@ -866,6 +901,7 @@ function Demo() {
                 <MenubarMenu label="Cut">
                   <MenuItem>Scissors</MenuItem>
                   <MenuItem>Razor</MenuItem>
+                  <MenuItem disabled>Chainsaw</MenuItem>
                   <MenuSeparator />
                   <MenuItem tone="danger">Shred</MenuItem>
                 </MenubarMenu>
@@ -898,6 +934,7 @@ function Demo() {
               >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                <MenuItem disabled>Rip down</MenuItem>
                 <MenuSeparator />
                 <MenuItem tone="danger">Delete</MenuItem>
               </ContextMenu>

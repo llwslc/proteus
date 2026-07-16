@@ -466,10 +466,13 @@ function Demo() {
                     Cool
                   </Toggle>
                 </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["intake", "exhaust"]}>
+                <ToggleGroup multiple defaultValue={["intake", "exhaust", "safety"]}>
                   <Toggle value="intake">Intake</Toggle>
                   <Toggle value="exhaust">Exhaust</Toggle>
                   <Toggle value="purge">Purge</Toggle>
+                  <Toggle value="safety" disabled>
+                    Safety
+                  </Toggle>
                 </ToggleGroup>
               </div>
             </Panel>
@@ -483,26 +486,45 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
-              <CheckboxGroup
-                defaultValue={["pressure"]}
-                parentLabel="All gauges"
-                items={[
-                  { label: "Pressure", value: "pressure" },
-                  { label: "Temperature", value: "temp" },
-                  { label: "Flow rate", value: "flow" },
-                ]}
-              />
+              <div className="brass-stack">
+                <CheckboxGroup
+                  defaultValue={["pressure"]}
+                  parentLabel="All gauges"
+                  items={[
+                    { label: "Pressure", value: "pressure" },
+                    { label: "Temperature", value: "temp" },
+                    { label: "Flow rate", value: "flow" },
+                  ]}
+                />
+                <CheckboxGroup
+                  defaultValue={["vacuum"]}
+                  parentLabel="Sealed gauges"
+                  disabled
+                  items={[
+                    { label: "Vacuum", value: "vacuum" },
+                    { label: "Draught", value: "draught" },
+                  ]}
+                />
+              </div>
             </Panel>
 
             <Panel id="radio" title="Radio Group" meta="RDO">
-              <RadioGroup defaultValue="low">
-                <Radio value="low">Low draught</Radio>
-                <Radio value="nominal">Nominal</Radio>
-                <Radio value="high">Forced</Radio>
-                <Radio value="sealed" disabled>
-                  Sealed (offline)
-                </Radio>
-              </RadioGroup>
+              <div className="brass-stack">
+                <RadioGroup defaultValue="low">
+                  <Radio value="low">Low draught</Radio>
+                  <Radio value="nominal">Nominal</Radio>
+                  <Radio value="high">Forced</Radio>
+                  <Radio value="sealed" disabled>
+                    Sealed (offline)
+                  </Radio>
+                </RadioGroup>
+                <RadioGroup defaultValue="governor">
+                  <Radio value="hand">Hand brake</Radio>
+                  <Radio value="governor" disabled>
+                    Governor (locked)
+                  </Radio>
+                </RadioGroup>
+              </div>
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
               <div className="brass-stack">
@@ -514,6 +536,8 @@ function Demo() {
                 />
                 <span className="brass-cap">Standby boiler</span>
                 <Select items={PRESSURE_SHORT} placeholder="Awaiting steam…" />
+                <span className="brass-cap">Retired boiler</span>
+                <Select items={PRESSURE_SHORT} defaultValue="nominal" disabled />
               </div>
             </Panel>
 
@@ -541,6 +565,8 @@ function Demo() {
               <div className="brass-stack">
                 <span className="brass-cap">Boiler PSI</span>
                 <NumberField defaultValue={7} min={0} max={12} step={1} />
+                <span className="brass-cap">Max PSI</span>
+                <NumberField defaultValue={12} min={0} max={12} step={1} />
               </div>
             </Panel>
 
@@ -555,6 +581,7 @@ function Demo() {
                 <Input icon={<Search />} placeholder="Search registry…" />
                 <IgnitionCodeField />
                 <Field label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
+                <Field label="Plate number" defaultValue="BR-77½?" error="Not a valid plate stamping." />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
@@ -563,6 +590,8 @@ function Demo() {
                 <OtpField length={6} splitAt={3} defaultValue="835" />
                 <span className="brass-cap">Sealed cipher</span>
                 <OtpField length={6} splitAt={3} defaultValue="835" mask />
+                <span className="brass-cap">Expired code</span>
+                <OtpField length={6} splitAt={3} defaultValue="835" disabled />
               </div>
             </Panel>
           </div>
@@ -681,6 +710,7 @@ function Demo() {
                     },
                     {
                       value: "lamps",
+                      disabled: true,
                       title: "Lamps",
                       content: "Oil lamps trimmed, lenses polished for the night run.",
                     },
@@ -704,6 +734,11 @@ function Demo() {
                 <Collapsible title="Sealed drawings" disabled>
                   <p className="brass-text">
                     Patent drawings under wax seal until the office grants release.
+                  </p>
+                </Collapsible>
+                <Collapsible title="Standing orders" defaultOpen disabled>
+                  <p className="brass-text">
+                    Posted by the yard master. Amendments require the seal.
                   </p>
                 </Collapsible>
               </div>
@@ -813,6 +848,7 @@ function Demo() {
                 <MenubarMenu label="Engine">
                   <MenuItem>Start</MenuItem>
                   <MenuItem>Reverse</MenuItem>
+                  <MenuItem disabled>Cold start</MenuItem>
                   <MenuSeparator />
                   <MenuItem tone="danger">Shut down</MenuItem>
                 </MenubarMenu>
@@ -847,6 +883,7 @@ function Demo() {
               >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘L">Lubricate</MenuItem>
+                <MenuItem disabled>Overhaul</MenuItem>
                 <MenuSeparator />
                 <MenuItem tone="danger">Decommission</MenuItem>
               </ContextMenu>

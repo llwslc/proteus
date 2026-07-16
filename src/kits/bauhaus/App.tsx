@@ -458,10 +458,13 @@ function Demo() {
                     Right
                   </Toggle>
                 </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["fill", "stroke"]}>
+                <ToggleGroup multiple defaultValue={["fill", "stroke", "frame"]}>
                   <Toggle value="fill">Fill</Toggle>
                   <Toggle value="stroke">Stroke</Toggle>
                   <Toggle value="grid">Grid</Toggle>
+                  <Toggle value="frame" disabled>
+                    Frame
+                  </Toggle>
                 </ToggleGroup>
               </div>
             </Panel>
@@ -475,26 +478,45 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
-              <CheckboxGroup
-                defaultValue={["grid"]}
-                parentLabel="All guides"
-                items={[
-                  { label: "Grid", value: "grid" },
-                  { label: "Baseline", value: "baseline" },
-                  { label: "Margins", value: "margins" },
-                ]}
-              />
+              <div className="bauhaus-stack">
+                <CheckboxGroup
+                  defaultValue={["grid"]}
+                  parentLabel="All guides"
+                  items={[
+                    { label: "Grid", value: "grid" },
+                    { label: "Baseline", value: "baseline" },
+                    { label: "Margins", value: "margins" },
+                  ]}
+                />
+                <CheckboxGroup
+                  defaultValue={["diag"]}
+                  parentLabel="Locked guides"
+                  disabled
+                  items={[
+                    { label: "Diagonals", value: "diag" },
+                    { label: "Curves", value: "curves" },
+                  ]}
+                />
+              </div>
             </Panel>
 
             <Panel id="radio" title="Radio Group" meta="RDO">
-              <RadioGroup defaultValue="left">
-                <Radio value="left">Left align</Radio>
-                <Radio value="center">Center</Radio>
-                <Radio value="justify">Justify</Radio>
-                <Radio value="optical" disabled>
-                  Optical (offline)
-                </Radio>
-              </RadioGroup>
+              <div className="bauhaus-stack">
+                <RadioGroup defaultValue="left">
+                  <Radio value="left">Left align</Radio>
+                  <Radio value="center">Center</Radio>
+                  <Radio value="justify">Justify</Radio>
+                  <Radio value="optical" disabled>
+                    Optical (offline)
+                  </Radio>
+                </RadioGroup>
+                <RadioGroup defaultValue="metric">
+                  <Radio value="manual">Manual kerning</Radio>
+                  <Radio value="metric" disabled>
+                    Metric (locked)
+                  </Radio>
+                </RadioGroup>
+              </div>
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
               <div className="bauhaus-stack">
@@ -502,6 +524,8 @@ function Demo() {
                 <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
                 <span className="bauhaus-cap">Display weight</span>
                 <Select items={WEIGHTS_SHORT} placeholder="Grade" />
+                <span className="bauhaus-cap">Archive weight</span>
+                <Select items={WEIGHTS_SHORT} defaultValue="regular" disabled />
               </div>
             </Panel>
 
@@ -529,6 +553,8 @@ function Demo() {
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Grid columns</span>
                 <NumberField defaultValue={7} min={0} max={12} step={1} />
+                <span className="bauhaus-cap">Max columns</span>
+                <NumberField defaultValue={12} min={0} max={12} step={1} />
               </div>
             </Panel>
 
@@ -543,6 +569,7 @@ function Demo() {
                 <Input icon={<Search />} placeholder="Search elements…" />
                 <AccessKeyField />
                 <Field label="Locked layer" defaultValue="BAUHAUS-1919" disabled />
+                <Field label="Plate code" defaultValue="BH•19??" error="Code breaks the plate grammar." />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
@@ -551,6 +578,8 @@ function Demo() {
                 <OtpField length={6} splitAt={3} defaultValue="919" />
                 <span className="bauhaus-cap">Sealed code</span>
                 <OtpField length={6} splitAt={3} defaultValue="919" mask />
+                <span className="bauhaus-cap">Retired code</span>
+                <OtpField length={6} splitAt={3} defaultValue="919" disabled />
               </div>
             </Panel>
           </div>
@@ -684,6 +713,7 @@ function Demo() {
                     },
                     {
                       value: "ratio",
+                      disabled: true,
                       title: "Ratio",
                       content: "Golden-section plates anchor the poster diagonals.",
                     },
@@ -708,6 +738,11 @@ function Demo() {
                 <Collapsible title="Master plates" disabled>
                   <p className="bauhaus-text">
                     Locked for print. Request access from the workshop lead.
+                  </p>
+                </Collapsible>
+                <Collapsible title="House rules" defaultOpen disabled>
+                  <p className="bauhaus-text">
+                    The grid is law. Exceptions go through the workshop lead.
                   </p>
                 </Collapsible>
               </div>
@@ -822,6 +857,7 @@ function Demo() {
                 <MenubarMenu label="Object">
                   <MenuItem>Group</MenuItem>
                   <MenuItem>Ungroup</MenuItem>
+                  <MenuItem disabled>Merge</MenuItem>
                   <MenuSeparator />
                   <MenuItem tone="danger">Delete</MenuItem>
                 </MenubarMenu>
@@ -856,6 +892,7 @@ function Demo() {
               >
                 <MenuItem shortcut="⌘I">Inspect</MenuItem>
                 <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                <MenuItem disabled>Detach</MenuItem>
                 <MenuSeparator />
                 <MenuItem tone="danger">Delete</MenuItem>
               </ContextMenu>

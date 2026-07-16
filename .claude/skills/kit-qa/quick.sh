@@ -12,7 +12,7 @@ RUN=""; SKIP_NOTE=""
 
 has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync"
 if has '\.tsx?$'; then
-  RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode fingerprint"
+  RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode kit-demo-states fingerprint"
 fi
 if has 'src/kits/.*\.css$'; then
   RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint"

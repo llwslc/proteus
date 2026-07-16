@@ -491,10 +491,13 @@ function Demo() {
                     後衛
                   </Toggle>
                 </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["bgm", "se"]}>
+                <ToggleGroup multiple defaultValue={["bgm", "se", "vib"]}>
                   <Toggle value="bgm">BGM</Toggle>
                   <Toggle value="se">SE</Toggle>
                   <Toggle value="voice">ボイス</Toggle>
+                  <Toggle value="vib" disabled>
+                    振動
+                  </Toggle>
                 </ToggleGroup>
               </div>
             </Panel>
@@ -508,26 +511,45 @@ function Demo() {
               </div>
             </Panel>
             <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
-              <CheckboxGroup
-                defaultValue={["aim"]}
-                parentLabel="全ガイド表示"
-                items={[
-                  { label: "照準線", value: "aim" },
-                  { label: "弾道表示", value: "trajectory" },
-                  { label: "危険域", value: "hazard" },
-                ]}
-              />
+              <div className="hanabi-stack">
+                <CheckboxGroup
+                  defaultValue={["aim"]}
+                  parentLabel="全ガイド表示"
+                  items={[
+                    { label: "照準線", value: "aim" },
+                    { label: "弾道表示", value: "trajectory" },
+                    { label: "危険域", value: "hazard" },
+                  ]}
+                />
+                <CheckboxGroup
+                  defaultValue={["orbit"]}
+                  parentLabel="封印ガイド"
+                  disabled
+                  items={[
+                    { label: "軌道予測", value: "orbit" },
+                    { label: "敵性表示", value: "enemy" },
+                  ]}
+                />
+              </div>
             </Panel>
 
             <Panel id="radio" title="Radio Group" meta="RDO">
-              <RadioGroup defaultValue="drill">
-                <Radio value="drill">演習</Radio>
-                <Radio value="standard">標準</Radio>
-                <Radio value="nightmare">悪夢</Radio>
-                <Radio value="abyss" disabled>
-                  深淵（未開放）
-                </Radio>
-              </RadioGroup>
+              <div className="hanabi-stack">
+                <RadioGroup defaultValue="drill">
+                  <Radio value="drill">演習</Radio>
+                  <Radio value="standard">標準</Radio>
+                  <Radio value="nightmare">悪夢</Radio>
+                  <Radio value="abyss" disabled>
+                    深淵（未開放）
+                  </Radio>
+                </RadioGroup>
+                <RadioGroup defaultValue="auto">
+                  <Radio value="manual">手動照準</Radio>
+                  <Radio value="auto" disabled>
+                    自動追尾（固定）
+                  </Radio>
+                </RadioGroup>
+              </div>
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
               <div className="hanabi-stack">
@@ -535,6 +557,8 @@ function Demo() {
                 <Select items={ARMAMENTS} placeholder="装備…" defaultValue="ren" />
                 <span className="hanabi-cap">副装備</span>
                 <Select items={ARMAMENTS_SHORT} placeholder="未選択" />
+                <span className="hanabi-cap">封印装備</span>
+                <Select items={ARMAMENTS_SHORT} defaultValue="ren" disabled />
               </div>
             </Panel>
 
@@ -562,6 +586,8 @@ function Demo() {
               <div className="hanabi-stack">
                 <span className="hanabi-cap">出撃人数</span>
                 <NumberField defaultValue={7} min={0} max={12} step={1} />
+                <span className="hanabi-cap">出撃上限</span>
+                <NumberField defaultValue={12} min={0} max={12} step={1} />
               </div>
             </Panel>
 
@@ -576,6 +602,7 @@ function Demo() {
                 <Input icon={<SearchIcon />} placeholder="装備を検索…" />
                 <AccessKeyField />
                 <Field label="ロック済み" defaultValue="HANABI-873" disabled />
+                <Field label="識別コード" defaultValue="HNB-8７3" error="使用できない文字が含まれています。" />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
@@ -584,6 +611,8 @@ function Demo() {
                 <OtpField length={6} splitAt={3} defaultValue="873" />
                 <span className="hanabi-cap">秘匿コード</span>
                 <OtpField length={6} splitAt={3} defaultValue="873" mask />
+                <span className="hanabi-cap">失効コード</span>
+                <OtpField length={6} splitAt={3} defaultValue="873" disabled />
               </div>
             </Panel>
           </div>
@@ -712,6 +741,7 @@ function Demo() {
                     },
                     {
                       value: "promise",
+                      disabled: true,
                       title: "約束",
                       content: "全員で帰ること。それが花火小隊の第一条。",
                     },
@@ -734,6 +764,11 @@ function Demo() {
                 <Collapsible title="機密資料" disabled>
                   <p className="hanabi-text">
                     第4章クリアで開示。司令部の封印付き。
+                  </p>
+                </Collapsible>
+                <Collapsible title="隊規" defaultOpen disabled>
+                  <p className="hanabi-text">
+                    全員で帰ること。司令部の封印付きで掲示中。
                   </p>
                 </Collapsible>
               </div>
@@ -842,6 +877,7 @@ function Demo() {
                 <MenubarMenu label="部隊">
                   <MenuItem>招集</MenuItem>
                   <MenuItem>解散</MenuItem>
+                  <MenuItem disabled>再編成</MenuItem>
                   <MenuSeparator />
                   <MenuItem tone="danger">除名</MenuItem>
                 </MenubarMenu>
@@ -874,6 +910,7 @@ function Demo() {
               >
                 <MenuItem shortcut="⌘I">偵察</MenuItem>
                 <MenuItem shortcut="⌘D">複製</MenuItem>
+                <MenuItem disabled>増援要請</MenuItem>
                 <MenuSeparator />
                 <MenuItem tone="danger">削除</MenuItem>
               </ContextMenu>

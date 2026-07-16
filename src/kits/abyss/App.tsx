@@ -325,6 +325,7 @@ const ACCORDION_MULTI = [
   },
   {
     value: "m2",
+    disabled: true,
     title: "Hull Whispers",
     content: "Rivets tick as the pressure leans in — the plating answers politely.",
   },
@@ -787,10 +788,13 @@ function Demo() {
                       Deep
                     </Toggle>
                   </ToggleGroup>
-                  <ToggleGroup defaultValue={["wards", "sigils"]} multiple>
+                  <ToggleGroup defaultValue={["wards", "sigils", "seals"]} multiple>
                     <Toggle value="wards">Wards</Toggle>
                     <Toggle value="sigils">Sigils</Toggle>
                     <Toggle value="omens">Omens</Toggle>
+                    <Toggle value="seals" disabled>
+                      Seals
+                    </Toggle>
                   </ToggleGroup>
                 </div>
               </Panel>
@@ -809,24 +813,43 @@ function Demo() {
 
             <div className="abyss-section" id="checkbox-group">
               <Panel title="Checkbox Group" meta="CHG">
-                <CheckboxGroup
-                  parentLabel="All currents"
-                  defaultValue={["echo"]}
-                  items={CHECKGROUP_ITEMS}
-                />
+                <div className="demo-stack">
+                  <CheckboxGroup
+                    parentLabel="All currents"
+                    defaultValue={["echo"]}
+                    items={CHECKGROUP_ITEMS}
+                  />
+                  <CheckboxGroup
+                    defaultValue={["undertow"]}
+                    parentLabel="Drowned currents"
+                    disabled
+                    items={[
+                      { label: "Undertow", value: "undertow" },
+                      { label: "Stillwater", value: "still" },
+                    ]}
+                  />
+                </div>
               </Panel>
             </div>
 
             <div className="abyss-section" id="radio">
               <Panel title="Radio Group" meta="RDO">
-                <RadioGroup defaultValue="tide">
-                  <Radio value="tide">Walk the tide</Radio>
-                  <Radio value="deep">Descend the deep</Radio>
-                  <Radio value="gate">Pass the gate</Radio>
-                  <Radio value="sealed" disabled>
-                    The sealed road
-                  </Radio>
-                </RadioGroup>
+                <div className="demo-stack">
+                  <RadioGroup defaultValue="tide">
+                    <Radio value="tide">Walk the tide</Radio>
+                    <Radio value="deep">Descend the deep</Radio>
+                    <Radio value="gate">Pass the gate</Radio>
+                    <Radio value="sealed" disabled>
+                      The sealed road
+                    </Radio>
+                  </RadioGroup>
+                  <RadioGroup defaultValue="current">
+                    <Radio value="oar">By oar</Radio>
+                    <Radio value="current" disabled>
+                      The current (holds you)
+                    </Radio>
+                  </RadioGroup>
+                </div>
               </Panel>
             </div>
 
@@ -837,6 +860,8 @@ function Demo() {
                   <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
                   <span className="abyss-cap">Uncharted</span>
                   <Select items={SELECT_ITEMS_SHORT} placeholder="Unsounded…" />
+                  <span className="abyss-cap">Last Mooring</span>
+                  <Select items={SELECT_ITEMS_SHORT} defaultValue="yhanthlei" disabled />
                 </div>
               </Panel>
             </div>
@@ -876,6 +901,10 @@ function Demo() {
                   <div className="demo-row">
                     <NumberField defaultValue={7} min={0} max={12} step={1} />
                   </div>
+                  <span className="abyss-cap">Full Fathoms</span>
+                  <div className="demo-row">
+                    <NumberField defaultValue={12} min={0} max={12} step={1} />
+                  </div>
                 </div>
               </Panel>
             </div>
@@ -892,6 +921,7 @@ function Demo() {
                   <Input icon={<SearchIcon />} placeholder="Search the codex…" />
                   <AccessCodeField />
                   <Field label="Sealed Verse" defaultValue="VERSE-SEALED" disabled />
+                  <Field label="Warded Verse" defaultValue="R'LYEH-∅" error="The verse rejects these letters." />
                 </div>
               </Panel>
             </div>
@@ -903,6 +933,8 @@ function Demo() {
                   <OtpField length={6} splitAt={3} defaultValue="130" />
                   <span className="abyss-cap">Veiled litany</span>
                   <OtpField length={6} splitAt={3} defaultValue="130" mask />
+                  <span className="abyss-cap">Spent litany</span>
+                  <OtpField length={6} splitAt={3} defaultValue="130" disabled />
                 </div>
               </Panel>
             </div>
@@ -977,6 +1009,9 @@ function Demo() {
                   </Collapsible>
                   <Collapsible title="The Warded Chest" disabled>
                     Bound in salt-iron. What sleeps inside is listed on no manifest.
+                  </Collapsible>
+                  <Collapsible title="The Open Grave" defaultOpen disabled>
+                    It stays open. What goes in does not come back.
                   </Collapsible>
                 </div>
               </Panel>
@@ -1104,6 +1139,7 @@ function Demo() {
                     <MenuItem icon={<CopyIcon />} shortcut="⌘O">
                       Open Codex
                     </MenuItem>
+                    <MenuItem disabled>Forbidden Rite</MenuItem>
                     <MenuSeparator />
                     <MenuItem icon={<TrashIcon />} tone="danger">
                       Cast Out
@@ -1142,6 +1178,7 @@ function Demo() {
                 <ContextMenu trigger="Right-click anywhere in these depths">
                   <MenuItem shortcut="⌘C">Mark Bearing</MenuItem>
                   <MenuItem shortcut="⌘B">Sound Beacon</MenuItem>
+                  <MenuItem disabled>Raise the Deep</MenuItem>
                   <MenuSeparator />
                   <MenuItem tone="danger">Banish Node</MenuItem>
                 </ContextMenu>
