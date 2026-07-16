@@ -703,6 +703,7 @@ function Demo() {
                     {
                       value: "print",
                       title: "Print",
+      disabled: true,
                       content: "One xerox machine, stolen after hours.",
                     },
                   ]}
@@ -733,7 +734,7 @@ function Demo() {
                     Pressed in a squat with a borrowed machine. Side A only.
                   </p>
                 </Collapsible>
-                <Collapsible title="Supplies">
+                <Collapsible title="Supplies" disabled>
                   <p className="riot-text">
                     Two markers, a stapler, a stack of newsprint.
                   </p>

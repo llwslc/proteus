@@ -663,6 +663,7 @@ function Demo() {
                     },
                     {
                       value: "linkage",
+      disabled: true,
                       title: "Linkage",
                       content: "Walschaerts gear adjusted to spec.",
                     },
@@ -694,7 +695,7 @@ function Demo() {
                     Last overhaul 14 days ago. Next inspection due at 2,000 running hours.
                   </p>
                 </Collapsible>
-                <Collapsible title="Spares inventory">
+                <Collapsible title="Spares inventory" disabled>
                   <p className="brass-text">
                     Two spare injectors, one gauge glass, half a ton of firebricks in the
                     tender.

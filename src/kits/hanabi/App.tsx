@@ -694,6 +694,7 @@ function Demo() {
                     },
                     {
                       value: "supply",
+      disabled: true,
                       title: "補給",
                       content: "弾薬は多めに、撤収は素早く。甘味は士気に直結する。",
                     },
@@ -725,7 +726,7 @@ function Demo() {
                     連携出撃は第4章で解放。補給は毎日 05:00 にリセットされる。
                   </p>
                 </Collapsible>
-                <Collapsible title="整備記録">
+                <Collapsible title="整備記録" disabled>
                   <p className="hanabi-text">
                     準星スライダーの調整済み。刀光の角度は 115 度で固定。
                   </p>

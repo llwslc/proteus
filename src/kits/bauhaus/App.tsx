@@ -665,6 +665,7 @@ function Demo() {
                     },
                     {
                       value: "type",
+      disabled: true,
                       title: "Type",
                       content:
                         "Geometric sans throughout, heavy display for the headline.",
@@ -698,7 +699,7 @@ function Demo() {
                     baseline.
                   </p>
                 </Collapsible>
-                <Collapsible title="Material list">
+                <Collapsible title="Material list" disabled>
                   <p className="bauhaus-text">
                     Two stencils, one straightedge, three pots of primary ink and a ream
                     of paper.

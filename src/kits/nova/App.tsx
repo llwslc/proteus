@@ -273,6 +273,7 @@ const ACCORDION_ITEMS = [
   },
   {
     value: "a3",
+    disabled: true,
     title: "Life Support",
     content:
       "Atmospheric recyclers operating at peak. O₂ saturation 20.9%, CO₂ scrubbed below threshold. Crew of 6 supported indefinitely.",
@@ -838,7 +839,7 @@ function Demo() {
                     All subsystems reporting nominal. Last anomaly cleared 14 jump cycles
                     ago.
                   </Collapsible>
-                  <Collapsible title="Cargo Manifest">
+                  <Collapsible title="Cargo Manifest" disabled>
                     6 containers · 2 sealed · 1 flagged for inspection at the next port.
                   </Collapsible>
                 </div>

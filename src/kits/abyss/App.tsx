@@ -310,6 +310,7 @@ const ACCORDION_ITEMS = [
   },
   {
     value: "a3",
+    disabled: true,
     title: "The Dreaming",
     content:
       "It does not sleep so much as wait. Pressure nominal, salt saturation rising, the dreamer's pulse measured once every long tide.",
@@ -970,7 +971,7 @@ function Demo() {
                     All currents reading true. The last omen passed fourteen tides ago and
                     the water has been quiet since.
                   </Collapsible>
-                  <Collapsible title="The Hold">
+                  <Collapsible title="The Hold" disabled>
                     Six reliquaries · two sealed · one marked for rites at the next low
                     tide.
                   </Collapsible>
