@@ -25,6 +25,7 @@
 }
 
 .hanabi-popover__body {
+  padding-right: var(--hanabi-space-7);
   font-size: var(--hanabi-fs-14);
   line-height: var(--hanabi-lh-160);
   color: var(--hanabi-text);

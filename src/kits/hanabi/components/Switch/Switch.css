@@ -46,6 +46,9 @@
   background: var(--hanabi-primary);
   animation: none;
 }
+.hanabi-switch[data-disabled][data-checked]::before {
+  content: none;
+}
 
 .hanabi-switch__thumb {
   position: absolute;

@@ -61,6 +61,6 @@
 }
 
 .hanabi-radio__control[data-disabled] .hanabi-radio__dot {
-  background: var(--hanabi-tone-deep);
+  background: var(--hanabi-primary);
   animation: none;
 }

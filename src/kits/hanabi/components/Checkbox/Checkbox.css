@@ -67,9 +67,17 @@
   box-shadow: none;
   cursor: not-allowed;
 }
-.hanabi-checkbox__box[data-disabled][data-checked] {
-  background: var(--hanabi-tone-deep);
+.hanabi-checkbox__box[data-disabled][data-checked],
+.hanabi-checkbox__box[data-disabled][data-indeterminate] {
+  background: var(--hanabi-primary);
   animation: none;
+}
+.hanabi-checkbox__box[data-disabled][data-checked]::after {
+  animation: none;
+}
+.hanabi-checkbox__box[data-disabled] .hanabi-checkbox__stroke {
+  animation: none;
+  stroke-dashoffset: 0;
 }
 
 .hanabi-checkbox:has(.hanabi-checkbox__box[data-disabled]) {

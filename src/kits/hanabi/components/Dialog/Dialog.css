@@ -2,7 +2,7 @@
   width: min(var(--hanabi-dialog-w), 100%);
   margin: auto;
   padding: var(--hanabi-pad-modal);
-  padding-top: 34px;
+  padding-top: 40px;
 }
 
 .hanabi-modal__sigil {
