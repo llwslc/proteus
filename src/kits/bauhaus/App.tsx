@@ -699,10 +699,15 @@ function Demo() {
                     baseline.
                   </p>
                 </Collapsible>
-                <Collapsible title="Material list" disabled>
+                <Collapsible title="Material list">
                   <p className="bauhaus-text">
                     Two stencils, one straightedge, three pots of primary ink and a ream
                     of paper.
+                  </p>
+                </Collapsible>
+                <Collapsible title="Master plates" disabled>
+                  <p className="bauhaus-text">
+                    Locked for print. Request access from the workshop lead.
                   </p>
                 </Collapsible>
               </div>

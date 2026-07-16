@@ -726,9 +726,14 @@ function Demo() {
                     連携出撃は第4章で解放。補給は毎日 05:00 にリセットされる。
                   </p>
                 </Collapsible>
-                <Collapsible title="整備記録" disabled>
+                <Collapsible title="整備記録">
                   <p className="hanabi-text">
                     準星スライダーの調整済み。刀光の角度は 115 度で固定。
+                  </p>
+                </Collapsible>
+                <Collapsible title="機密資料" disabled>
+                  <p className="hanabi-text">
+                    第4章クリアで開示。司令部の封印付き。
                   </p>
                 </Collapsible>
               </div>

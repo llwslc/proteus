@@ -734,9 +734,14 @@ function Demo() {
                     Pressed in a squat with a borrowed machine. Side A only.
                   </p>
                 </Collapsible>
-                <Collapsible title="Supplies" disabled>
+                <Collapsible title="Supplies">
                   <p className="riot-text">
                     Two markers, a stapler, a stack of newsprint.
+                  </p>
+                </Collapsible>
+                <Collapsible title="Locked box" disabled>
+                  <p className="riot-text">
+                    Label masters. Ask the desk for the key.
                   </p>
                 </Collapsible>
               </div>

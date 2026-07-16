@@ -839,8 +839,11 @@ function Demo() {
                     All subsystems reporting nominal. Last anomaly cleared 14 jump cycles
                     ago.
                   </Collapsible>
-                  <Collapsible title="Cargo Manifest" disabled>
+                  <Collapsible title="Cargo Manifest">
                     6 containers · 2 sealed · 1 flagged for inspection at the next port.
+                  </Collapsible>
+                  <Collapsible title="Sealed Compartment" disabled>
+                    Quartermaster hold. Opens under clearance level 5 at the next port.
                   </Collapsible>
                 </div>
               </Panel>

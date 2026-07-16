@@ -77,7 +77,7 @@
 - meter：四条 Meter —— `primary` 88、`success` 70、`warning` 52、`danger` 23。
 - tabs：3 个 tab，默认第 1 激活、末 tab `disabled`，每 tab 内容为一段正文。
 - accordion：两组，各带一行 cap 小标点明开合语义（如 One at a time / Open together）——① 3 项单开、默认展开第 1、末项 `disabled`；② 2 项 `openMultiple`、默认全开；每项 = 标题 + 一段正文。
-- collapsible：两个 Collapsible —— ① `defaultOpen`；② 关、`disabled`。
+- collapsible：三个 Collapsible —— ① `defaultOpen`；② 关；③ 关、`disabled`。
 
 **Overlays**
 

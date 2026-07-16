@@ -971,9 +971,12 @@ function Demo() {
                     All currents reading true. The last omen passed fourteen tides ago and
                     the water has been quiet since.
                   </Collapsible>
-                  <Collapsible title="The Hold" disabled>
+                  <Collapsible title="The Hold">
                     Six reliquaries · two sealed · one marked for rites at the next low
                     tide.
+                  </Collapsible>
+                  <Collapsible title="The Warded Chest" disabled>
+                    Bound in salt-iron. What sleeps inside is listed on no manifest.
                   </Collapsible>
                 </div>
               </Panel>

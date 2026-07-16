@@ -695,10 +695,15 @@ function Demo() {
                     Last overhaul 14 days ago. Next inspection due at 2,000 running hours.
                   </p>
                 </Collapsible>
-                <Collapsible title="Spares inventory" disabled>
+                <Collapsible title="Spares inventory">
                   <p className="brass-text">
                     Two spare injectors, one gauge glass, half a ton of firebricks in the
                     tender.
+                  </p>
+                </Collapsible>
+                <Collapsible title="Sealed drawings" disabled>
+                  <p className="brass-text">
+                    Patent drawings under wax seal until the office grants release.
                   </p>
                 </Collapsible>
               </div>
