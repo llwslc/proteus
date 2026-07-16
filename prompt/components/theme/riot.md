@@ -8,7 +8,7 @@
 - 「分段选中」用于 ToggleGroup、Toolbar、Menubar = `ink` 黑实块盖章 + 荧光 `primary` 字，像砸了个墨戳；未选是纸底 + `ink` 黑框。
 - 「文字强调选中」用于列表、Tab、NavMenu，把文字转荧光 `primary`；Tab、NavMenu 另配一道 `stroke-bold` 粗细的记号笔实色横杠随激活项走。
 - 悬停：分段控件和触发条用 `tint` 荧光 wash 纯底；带硬影的按钮整块上浮一步、硬影随之加深（press 的反向），ghost 按钮盖 `tint` wash、文字转 `bright`；图标和动作按钮的文字转荧光 `primary`，菜单触发器转 `bright` 纯黑；列表项盖一道荧光记号笔涂划。
-- 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 荧光橙外环）；分段控件和触发条用 `inset 0 0 0 2.5px primary`；输入框聚焦时整框 border 升荧光。
+- 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 荧光橙外环）；分段控件和触发条用 `inset 0 0 0 2px primary`；输入框聚焦时整框 border 升荧光。
 - 危险态：`danger` 血红实填、前景取 `on-fill` 复印黑，border 仍黑；静止态红字红图标。
 
 ## 2. 组件皮肤决定

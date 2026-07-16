@@ -40,8 +40,8 @@
   --riot-scrim: rgba(10, 10, 10, 0.6);
 
   --riot-ink: #0d0d0d;
-  --riot-stroke-hair: 1.5px;
-  --riot-stroke: 2.5px;
+  --riot-stroke-hair: 1px;
+  --riot-stroke: 2px;
   --riot-stroke-bold: 3px;
   --riot-stroke-heavy: 4px;
   --riot-torn-bleed: 2px;
