@@ -961,12 +961,6 @@ function Demo() {
                   <MenuSeparator />
                   <MenuItem tone="danger">削除</MenuItem>
                 </ContextMenu>
-                <ContextMenu
-                  disabled
-                  trigger={<span className="hanabi-cap">右クリック：封鎖区画</span>}
-                >
-                  <MenuItem>使用不可</MenuItem>
-                </ContextMenu>
               </div>
             </Panel>
 

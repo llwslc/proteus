@@ -1103,9 +1103,6 @@ function Demo() {
                     <MenuSeparator />
                     <MenuItem tone="danger">Purge Node</MenuItem>
                   </ContextMenu>
-                  <ContextMenu disabled trigger="Right-click: channel sealed">
-                    <MenuItem>Unavailable</MenuItem>
-                  </ContextMenu>
                 </div>
               </Panel>
             </div>

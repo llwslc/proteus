@@ -19,7 +19,3 @@
   outline: var(--bauhaus-stroke) solid var(--bauhaus-primary);
   outline-offset: calc(-1 * var(--bauhaus-stroke));
 }
-
-.bauhaus-context__zone[data-disabled] {
-  opacity: var(--bauhaus-disabled-opacity);
-}

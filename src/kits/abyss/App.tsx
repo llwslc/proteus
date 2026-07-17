@@ -1240,9 +1240,6 @@ function Demo() {
                     <MenuSeparator />
                     <MenuItem tone="danger">Banish Node</MenuItem>
                   </ContextMenu>
-                  <ContextMenu disabled trigger="Right-click: the depths refuse">
-                    <MenuItem>Unavailable</MenuItem>
-                  </ContextMenu>
                 </div>
               </Panel>
             </div>

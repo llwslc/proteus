@@ -952,12 +952,6 @@ function Demo() {
                   <MenuSeparator />
                   <MenuItem tone="danger">Delete</MenuItem>
                 </ContextMenu>
-                <ContextMenu
-                  disabled
-                  trigger={<span className="bauhaus-cap">Right-click: plane locked</span>}
-                >
-                  <MenuItem>Unavailable</MenuItem>
-                </ContextMenu>
               </div>
             </Panel>
 

@@ -52,13 +52,10 @@ const { pw, CHROME, port, urlOf, DESKTOP, kitsOf, setKit } = require("../lib/gat
     audited += A.count;
 
     // B — context-menu zone is keyboard-reachable and Shift+F10 opens it
-    const zone = page.locator(`.${kit}-context__zone:not([data-disabled])`).first();
-    const dzone = page.locator(`.${kit}-context__zone[data-disabled]`).first();
-    if (!(await zone.count())) fails.push(`${kit}: no enabled context zone found`);
+    const zone = page.locator(`.${kit}-context__zone`).first();
+    if (!(await zone.count())) fails.push(`${kit}: no context zone found`);
     else {
       if ((await zone.getAttribute("tabindex")) !== "0") fails.push(`${kit}: ctx zone tabindex != 0`);
-      if ((await dzone.count()) && (await dzone.getAttribute("tabindex")) !== "-1")
-        fails.push(`${kit}: disabled ctx zone still in tab order`);
       await zone.scrollIntoViewIfNeeded();
       await zone.focus();
       await page.keyboard.press("Shift+F10");

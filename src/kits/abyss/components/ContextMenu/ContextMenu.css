@@ -53,7 +53,3 @@
 .abyss-context__zone:focus-visible::before {
   opacity: 1;
 }
-
-.abyss-context__zone[data-disabled] {
-  opacity: var(--abyss-disabled-opacity);
-}

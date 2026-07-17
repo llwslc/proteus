@@ -25,7 +25,3 @@
   outline: none;
   filter: var(--brass-glow-focus);
 }
-
-.brass-context__zone[data-disabled] {
-  opacity: var(--brass-disabled-opacity);
-}
