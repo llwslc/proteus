@@ -1,34 +1,22 @@
 import { OTPFieldPreview as BaseOtp } from "@base-ui/react/otp-field";
+import { cx } from "../cx";
 import { useId } from "react";
 import "./OtpField.css";
 
-export interface OtpFieldProps {
-  length?: number;
-  name?: string;
-  defaultValue?: string;
-  value?: string;
-  onValueChange?: (value: string) => void;
-  mask?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-
+export interface OtpFieldProps extends Omit<
+  React.ComponentProps<typeof BaseOtp.Root>,
+  "children"
+> {
   splitAt?: number;
   label?: string;
 }
 
 export function OtpField({
   length = 6,
-  name,
-  defaultValue,
-  value,
-  onValueChange,
-  mask,
-  disabled,
-  readOnly,
-  required,
   splitAt,
   label,
+  className,
+  ...props
 }: OtpFieldProps) {
   const id = useId();
   return (
@@ -36,16 +24,9 @@ export function OtpField({
       role="group"
       aria-label={label}
       id={id}
-      name={name}
       length={length}
-      defaultValue={defaultValue}
-      value={value}
-      onValueChange={onValueChange ? (v) => onValueChange(v) : undefined}
-      mask={mask}
-      disabled={disabled}
-      readOnly={readOnly}
-      required={required}
-      className="nova-otp"
+      className={cx("nova-otp", className)}
+      {...props}
     >
       {Array.from({ length }, (_, i) => (
         <span className="nova-otp__slot-wrap" key={i}>

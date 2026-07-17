@@ -111,7 +111,7 @@
 
 ## 6.1 逐组件结构
 
-每个组件记四项跨 kit 必须一致的东西：类型集（变体、尺寸、tone）、自定义 props、骨架、状态。**类型集和 props 名跨 kit 逐字一致；字形、装饰、填充、光效都属于 theme。** 交互件的状态统一覆盖 rest、hover、focus-visible、disabled，再加它自己的开态（`active·checked·selected·open` 取其一），配色按 §5；下面只补每个组件的专属处。变体、尺寸列表里第一项标「（默认）」即缺省值。表单类控件的 `disabled·readOnly·required` 与受控三件（`value·defaultValue·onValueChange`）为通用透传，条目里不逐个列。
+每个组件记四项跨 kit 必须一致的东西：类型集（变体、尺寸、tone）、自定义 props、骨架、状态。**类型集和 props 名跨 kit 逐字一致；字形、装饰、填充、光效都属于 theme。** 交互件的状态统一覆盖 rest、hover、focus-visible、disabled，再加它自己的开态（`active·checked·selected·open` 取其一），配色按 §5；下面只补每个组件的专属处。变体、尺寸列表里第一项标「（默认）」即缺省值。wrapper 只显式声明自有参数；其余 Base UI 参数结构透传——interface `extends Omit<ComponentProps<typeof Base.Root>, 截获键>`、rest 展开落 Root。截获（重映射或钉死）的键必须 Omit：`items` 归一化、自管开合的 `open·onOpenChange`、单选钉死的 `multiple` 一类。通用状态与受控参数（`disabled·readOnly·required·value·defaultValue·onValueChange`）随透传而来，条目里不逐个列。无 Base 落点的纯摆设件（Panel、Badge）除外。
 
 **输入**
 

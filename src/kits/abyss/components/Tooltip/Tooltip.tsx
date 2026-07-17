@@ -3,8 +3,10 @@ import { useRef, useState } from "react";
 import type { PointerEvent, ReactElement, ReactNode } from "react";
 import "./Tooltip.css";
 
-export interface TooltipProps {
-  disabled?: boolean;
+export interface TooltipProps extends Omit<
+  React.ComponentProps<typeof BaseTooltip.Root>,
+  "open" | "onOpenChange" | "children"
+> {
   content: ReactNode;
   children: ReactElement;
   side?: "top" | "bottom" | "left" | "right";
@@ -14,13 +16,13 @@ export interface TooltipProps {
 }
 
 export function Tooltip({
-  disabled,
   content,
   children,
   side = "top",
   sideOffset = 10,
   delay = 200,
   align = "center",
+  ...props
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const touch = useRef(false);
@@ -32,7 +34,6 @@ export function Tooltip({
   return (
     <BaseTooltip.Provider delay={delay}>
       <BaseTooltip.Root
-        disabled={disabled}
         open={open}
         onOpenChange={(next) => {
           if (touch.current && !next) {
@@ -41,6 +42,7 @@ export function Tooltip({
           }
           setOpen(next);
         }}
+        {...props}
       >
         <BaseTooltip.Trigger
           render={children}

@@ -10,7 +10,10 @@ export interface TabItem {
   disabled?: boolean;
 }
 
-export interface TabsProps {
+export interface TabsProps extends Omit<
+  React.ComponentProps<typeof BaseTabs.Root>,
+  "children" | "className" | "value" | "defaultValue" | "onValueChange"
+> {
   items: TabItem[];
   defaultValue?: string;
   value?: string;
@@ -24,6 +27,7 @@ export function Tabs({
   value,
   onValueChange,
   className,
+  ...props
 }: TabsProps) {
   return (
     <BaseTabs.Root
@@ -35,6 +39,7 @@ export function Tabs({
           ? (v: unknown) => onValueChange(v == null ? "" : String(v))
           : undefined
       }
+      {...props}
     >
       <BaseTabs.List className="nova-tabs__list">
         {items.map((it) => (

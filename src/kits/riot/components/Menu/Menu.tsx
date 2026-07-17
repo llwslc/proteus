@@ -5,16 +5,25 @@ import { Button } from "../Button";
 import { ChevronDownIcon } from "../icons";
 import "./Menu.css";
 
-export interface MenuProps {
+export interface MenuProps extends Omit<
+  React.ComponentProps<typeof BaseMenu.Root>,
+  "children"
+> {
   trigger: ReactNode;
   children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
   align?: "start" | "center" | "end";
 }
 
-export function Menu({ trigger, children, side = "bottom", align = "start" }: MenuProps) {
+export function Menu({
+  trigger,
+  children,
+  side = "bottom",
+  align = "start",
+  ...props
+}: MenuProps) {
   return (
-    <BaseMenu.Root>
+    <BaseMenu.Root {...props}>
       <BaseMenu.Trigger
         render={
           <Button variant="ghost" upright className="riot-menu__trigger">

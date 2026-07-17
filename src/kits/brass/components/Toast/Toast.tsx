@@ -61,10 +61,11 @@ function ToastList({
 
 type SwipeDirection = "up" | "down" | "left" | "right";
 
-export interface ToastProviderProps {
+export interface ToastProviderProps extends Omit<
+  React.ComponentProps<typeof BaseToast.Provider>,
+  "children"
+> {
   children: ReactNode;
-  timeout?: number;
-  limit?: number;
   swipeDirection?: SwipeDirection | SwipeDirection[];
 }
 
@@ -73,9 +74,10 @@ export function ToastProvider({
   timeout = 5000,
   limit = 4,
   swipeDirection = "right",
+  ...props
 }: ToastProviderProps) {
   return (
-    <BaseToast.Provider timeout={timeout} limit={limit}>
+    <BaseToast.Provider timeout={timeout} limit={limit} {...props}>
       {children}
       <BaseToast.Portal>
         <BaseToast.Viewport className="brass-toast__viewport">

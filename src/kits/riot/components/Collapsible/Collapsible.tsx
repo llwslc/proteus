@@ -4,32 +4,20 @@ import type { ReactNode } from "react";
 import { ChevronDownIcon } from "../icons";
 import "./Collapsible.css";
 
-export interface CollapsibleProps {
+export interface CollapsibleProps extends Omit<
+  React.ComponentProps<typeof BaseCollapsible.Root>,
+  "children" | "className" | "title"
+> {
   title: ReactNode;
   children: ReactNode;
-  defaultOpen?: boolean;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-  disabled?: boolean;
   className?: string;
 }
 
-export function Collapsible({
-  title,
-  children,
-  defaultOpen,
-  open,
-  onOpenChange,
-  disabled,
-  className,
-}: CollapsibleProps) {
+export function Collapsible({ title, children, className, ...props }: CollapsibleProps) {
   return (
     <BaseCollapsible.Root
-      defaultOpen={defaultOpen}
-      open={open}
-      onOpenChange={onOpenChange}
-      disabled={disabled}
       className={cx("riot-surface riot-collapsible", className)}
+      {...props}
     >
       <BaseCollapsible.Trigger className="riot-collapse-trigger">
         <span className="riot-collapse-marker" aria-hidden />

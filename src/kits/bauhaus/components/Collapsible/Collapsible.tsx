@@ -4,32 +4,20 @@ import { cx } from "../cx";
 import { ChevronDown, SquareFill } from "../icons";
 import "./Collapsible.css";
 
-export interface CollapsibleProps {
+export interface CollapsibleProps extends Omit<
+  React.ComponentProps<typeof BaseCollapsible.Root>,
+  "children" | "className" | "title"
+> {
   title: ReactNode;
   children: ReactNode;
-  defaultOpen?: boolean;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-  disabled?: boolean;
   className?: string;
 }
 
-export function Collapsible({
-  title,
-  children,
-  defaultOpen,
-  open,
-  onOpenChange,
-  disabled,
-  className,
-}: CollapsibleProps) {
+export function Collapsible({ title, children, className, ...props }: CollapsibleProps) {
   return (
     <BaseCollapsible.Root
       className={cx("bauhaus-surface", "bauhaus-collapsible", className)}
-      defaultOpen={defaultOpen}
-      open={open}
-      onOpenChange={onOpenChange}
-      disabled={disabled}
+      {...props}
     >
       <BaseCollapsible.Trigger className="bauhaus-collapse-trigger">
         <span className="bauhaus-collapse-marker">

@@ -4,8 +4,10 @@ import { ScrollArea } from "../ScrollArea";
 import { cx } from "../cx";
 import "./ContextMenu.css";
 
-export interface ContextMenuProps {
-  disabled?: boolean;
+export interface ContextMenuProps extends Omit<
+  React.ComponentProps<typeof BaseContextMenu.Root>,
+  "children"
+> {
   trigger: ReactNode;
   children: ReactNode;
   className?: string;
@@ -16,9 +18,10 @@ export function ContextMenu({
   trigger,
   children,
   className,
+  ...props
 }: ContextMenuProps) {
   return (
-    <BaseContextMenu.Root disabled={disabled}>
+    <BaseContextMenu.Root disabled={disabled} {...props}>
       <BaseContextMenu.Trigger
         data-disabled={disabled || undefined}
         tabIndex={disabled ? -1 : 0}

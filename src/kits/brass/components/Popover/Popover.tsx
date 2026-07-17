@@ -5,7 +5,10 @@ import { cx } from "../cx";
 import { Close } from "../icons";
 import "./Popover.css";
 
-export interface PopoverProps {
+export interface PopoverProps extends Omit<
+  React.ComponentProps<typeof BasePopover.Root>,
+  "children"
+> {
   trigger: ReactElement;
   title?: ReactNode;
   children: ReactNode;
@@ -23,9 +26,10 @@ export function Popover({
   align = "center",
   sideOffset = 10,
   className,
+  ...props
 }: PopoverProps) {
   return (
-    <BasePopover.Root>
+    <BasePopover.Root {...props}>
       <BasePopover.Trigger render={trigger} />
       <BasePopover.Portal>
         <BasePopover.Positioner

@@ -3,8 +3,10 @@ import { useState } from "react";
 import type { ReactElement, ReactNode } from "react";
 import "./Tooltip.css";
 
-export interface TooltipProps {
-  disabled?: boolean;
+export interface TooltipProps extends Omit<
+  React.ComponentProps<typeof BaseTooltip.Root>,
+  "open" | "onOpenChange" | "children"
+> {
   content: ReactNode;
   children: ReactElement;
   side?: "top" | "bottom" | "left" | "right";
@@ -14,19 +16,19 @@ export interface TooltipProps {
 }
 
 export function Tooltip({
-  disabled,
   content,
   children,
   side = "top",
   sideOffset = 10,
   delay = 200,
   align = "center",
+  ...props
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <BaseTooltip.Provider>
-      <BaseTooltip.Root open={open} onOpenChange={setOpen} disabled={disabled}>
+      <BaseTooltip.Root open={open} onOpenChange={setOpen} {...props}>
         <BaseTooltip.Trigger
           delay={delay}
           closeOnClick={false}

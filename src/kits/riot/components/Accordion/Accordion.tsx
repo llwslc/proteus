@@ -11,7 +11,10 @@ export interface AccordionItem {
   disabled?: boolean;
 }
 
-export interface AccordionProps {
+export interface AccordionProps extends Omit<
+  React.ComponentProps<typeof BaseAccordion.Root>,
+  "children" | "className" | "multiple" | "defaultValue"
+> {
   items: AccordionItem[];
   openMultiple?: boolean;
   defaultValue?: string[];
@@ -23,12 +26,14 @@ export function Accordion({
   openMultiple = false,
   defaultValue,
   className,
+  ...props
 }: AccordionProps) {
   return (
     <BaseAccordion.Root
       className={cx("riot-accordion", className)}
       multiple={openMultiple}
       defaultValue={defaultValue}
+      {...props}
     >
       {items.map((it) => (
         <BaseAccordion.Item

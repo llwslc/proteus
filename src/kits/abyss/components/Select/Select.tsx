@@ -12,7 +12,17 @@ export interface SelectOption {
   disabled?: boolean;
 }
 
-export interface SelectProps<Value extends string = string> {
+export interface SelectProps<Value extends string = string> extends Omit<
+  React.ComponentProps<typeof BaseSelect.Root>,
+  | "items"
+  | "value"
+  | "defaultValue"
+  | "onValueChange"
+  | "children"
+  | "id"
+  | "className"
+  | "multiple"
+> {
   items: Array<SelectOption & { value: Value }>;
   placeholder?: string;
   side?: "top" | "bottom" | "left" | "right";
@@ -21,10 +31,6 @@ export interface SelectProps<Value extends string = string> {
   value?: Value | null;
   defaultValue?: Value | null;
   onValueChange?: (value: Value | null) => void;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  name?: string;
   id?: string;
 }
 
@@ -35,13 +41,11 @@ export function Select<Value extends string = string>({
   value,
   defaultValue,
   onValueChange,
-  disabled,
-  readOnly,
-  required,
   name,
   id,
   side = "bottom",
   align = "center",
+  ...props
 }: SelectProps<Value>) {
   const autoId = useId();
   return (
@@ -50,10 +54,8 @@ export function Select<Value extends string = string>({
       value={value}
       defaultValue={defaultValue}
       onValueChange={onValueChange}
-      disabled={disabled}
-      readOnly={readOnly}
-      required={required}
       name={name ?? autoId}
+      {...props}
     >
       <span className={cx("abyss-select__field", className)}>
         <BaseSelect.Trigger

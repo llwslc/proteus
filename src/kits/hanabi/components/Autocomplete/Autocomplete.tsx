@@ -1,4 +1,5 @@
 import { Autocomplete as BaseAutocomplete } from "@base-ui/react/autocomplete";
+import { cx } from "../cx";
 import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { SearchIcon } from "../icons";
@@ -6,30 +7,28 @@ import "./Autocomplete.css";
 
 export type AutocompleteItem = string | { label: string; disabled?: boolean };
 
-export interface AutocompleteProps {
+export interface AutocompleteProps extends Omit<
+  React.ComponentProps<typeof BaseAutocomplete.Root>,
+  "items" | "children" | "className"
+> {
   items: AutocompleteItem[];
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
   placeholder?: string;
-  defaultValue?: string;
   emptyText?: string;
   label?: string;
+  className?: string;
   side?: "top" | "bottom" | "left" | "right";
   align?: "start" | "center" | "end";
 }
 
 export function Autocomplete({
   items,
-  disabled,
-  readOnly,
-  required,
   placeholder = "Search…",
-  defaultValue,
   emptyText = "No matches",
   label,
+  className,
   side = "bottom",
   align = "center",
+  ...props
 }: AutocompleteProps) {
   const inputId = useId();
   const labels = items.map((it) => (typeof it === "string" ? it : it.label));
@@ -37,14 +36,13 @@ export function Autocomplete({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseAutocomplete.Root
-      items={labels}
-      disabled={disabled}
-      readOnly={readOnly}
-      required={required}
-      defaultValue={defaultValue}
-    >
-      <BaseAutocomplete.InputGroup className="hanabi-field hanabi-lockon hanabi-lockon--within hanabi-autocomplete">
+    <BaseAutocomplete.Root items={labels} {...props}>
+      <BaseAutocomplete.InputGroup
+        className={cx(
+          "hanabi-field hanabi-lockon hanabi-lockon--within hanabi-autocomplete",
+          className,
+        )}
+      >
         <span className="hanabi-autocomplete__glyph">
           <SearchIcon />
         </span>

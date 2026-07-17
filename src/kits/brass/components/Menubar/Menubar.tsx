@@ -1,18 +1,30 @@
 import type { ReactNode } from "react";
 import { Menubar as BaseMenubar } from "@base-ui/react/menubar";
+import { cx } from "../cx";
 import { ScrollArea } from "../ScrollArea";
 import { Menu } from "@base-ui/react/menu";
 import "./Menubar.css";
 
-export interface MenubarProps {
+export interface MenubarProps extends Omit<
+  React.ComponentProps<typeof BaseMenubar>,
+  "children" | "className"
+> {
   children: ReactNode;
+  className?: string;
 }
 
-export function Menubar({ children }: MenubarProps) {
-  return <BaseMenubar className="brass-seg">{children}</BaseMenubar>;
+export function Menubar({ children, className, ...props }: MenubarProps) {
+  return (
+    <BaseMenubar className={cx("brass-seg", className)} {...props}>
+      {children}
+    </BaseMenubar>
+  );
 }
 
-export interface MenubarMenuProps {
+export interface MenubarMenuProps extends Omit<
+  React.ComponentProps<typeof Menu.Root>,
+  "children"
+> {
   label: ReactNode;
   children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
@@ -24,9 +36,10 @@ export function MenubarMenu({
   children,
   side = "bottom",
   align = "start",
+  ...props
 }: MenubarMenuProps) {
   return (
-    <Menu.Root>
+    <Menu.Root {...props}>
       <Menu.Trigger className="brass-seg__btn">{label}</Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner

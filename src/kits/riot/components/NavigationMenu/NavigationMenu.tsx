@@ -1,4 +1,5 @@
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
+import { cx } from "../cx";
 import type { MouseEvent, ReactNode } from "react";
 import { ChevronDownIcon } from "../icons";
 import "./NavigationMenu.css";
@@ -16,14 +17,23 @@ export interface NavMenuItem {
   disabled?: boolean;
 }
 
-export interface NavigationMenuProps {
+export interface NavigationMenuProps extends Omit<
+  React.ComponentProps<typeof BaseNav.Root>,
+  "children" | "className"
+> {
   items: NavMenuItem[];
   onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  className?: string;
 }
 
-export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
+export function NavigationMenu({
+  items,
+  onLinkClick,
+  className,
+  ...props
+}: NavigationMenuProps) {
   return (
-    <BaseNav.Root className="riot-navmenu">
+    <BaseNav.Root className={cx("riot-navmenu", className)} {...props}>
       <BaseNav.List className="riot-navmenu__list">
         {items.map((item) =>
           item.links ? (

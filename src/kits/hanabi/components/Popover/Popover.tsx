@@ -5,27 +5,31 @@ import { Button } from "../Button";
 import { XIcon } from "../icons";
 import "./Popover.css";
 
-export interface PopoverProps {
+export interface PopoverProps extends Omit<
+  React.ComponentProps<typeof BasePopover.Root>,
+  "children"
+> {
   trigger: ReactElement;
   title?: ReactNode;
+  children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
   align?: "start" | "center" | "end";
   sideOffset?: number;
   className?: string;
-  children: ReactNode;
 }
 
 export function Popover({
   trigger,
   title,
+  children,
   side = "bottom",
   align = "center",
   sideOffset = 10,
   className,
-  children,
+  ...props
 }: PopoverProps) {
   return (
-    <BasePopover.Root>
+    <BasePopover.Root {...props}>
       <BasePopover.Trigger render={trigger} />
       <BasePopover.Portal>
         <BasePopover.Positioner

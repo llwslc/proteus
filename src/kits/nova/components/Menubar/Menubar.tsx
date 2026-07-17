@@ -1,18 +1,30 @@
 import { Menubar as BaseMenubar } from "@base-ui/react/menubar";
+import { cx } from "../cx";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
 import type { ReactNode } from "react";
 import "./Menubar.css";
 
-export interface MenubarProps {
+export interface MenubarProps extends Omit<
+  React.ComponentProps<typeof BaseMenubar>,
+  "children" | "className"
+> {
   children: ReactNode;
+  className?: string;
 }
 
-export function Menubar({ children }: MenubarProps) {
-  return <BaseMenubar className="nova-surface nova-menubar">{children}</BaseMenubar>;
+export function Menubar({ children, className, ...props }: MenubarProps) {
+  return (
+    <BaseMenubar className={cx("nova-surface nova-menubar", className)} {...props}>
+      {children}
+    </BaseMenubar>
+  );
 }
 
-export interface MenubarMenuProps {
+export interface MenubarMenuProps extends Omit<
+  React.ComponentProps<typeof BaseMenu.Root>,
+  "children"
+> {
   label: ReactNode;
   children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
@@ -24,9 +36,10 @@ export function MenubarMenu({
   children,
   side = "bottom",
   align = "start",
+  ...props
 }: MenubarMenuProps) {
   return (
-    <BaseMenu.Root>
+    <BaseMenu.Root {...props}>
       <span className="nova-menubar__triggerwrap">
         <BaseMenu.Trigger className="nova-menubar__trigger">{label}</BaseMenu.Trigger>
       </span>

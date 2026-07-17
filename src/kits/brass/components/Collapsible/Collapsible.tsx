@@ -4,33 +4,18 @@ import { cx } from "../cx";
 import { Gear, ChevronDown } from "../icons";
 import "./Collapsible.css";
 
-export interface CollapsibleProps {
+export interface CollapsibleProps extends Omit<
+  React.ComponentProps<typeof BaseCollapsible.Root>,
+  "children" | "className" | "title"
+> {
   title: ReactNode;
   children: ReactNode;
-  defaultOpen?: boolean;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-  disabled?: boolean;
   className?: string;
 }
 
-export function Collapsible({
-  title,
-  children,
-  defaultOpen,
-  open,
-  onOpenChange,
-  disabled,
-  className,
-}: CollapsibleProps) {
+export function Collapsible({ title, children, className, ...props }: CollapsibleProps) {
   return (
-    <BaseCollapsible.Root
-      defaultOpen={defaultOpen}
-      open={open}
-      onOpenChange={onOpenChange}
-      disabled={disabled}
-      className={cx("brass-collapsible", className)}
-    >
+    <BaseCollapsible.Root className={cx("brass-collapsible", className)} {...props}>
       <BaseCollapsible.Trigger className="brass-collapse-trigger">
         <span className="brass-collapse-marker">
           <Gear />

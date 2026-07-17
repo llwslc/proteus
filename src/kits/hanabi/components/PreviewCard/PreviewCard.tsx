@@ -3,7 +3,10 @@ import { useState } from "react";
 import type { ReactElement, ReactNode } from "react";
 import "./PreviewCard.css";
 
-export interface PreviewCardProps {
+export interface PreviewCardProps extends Omit<
+  React.ComponentProps<typeof BasePreviewCard.Root>,
+  "open" | "onOpenChange" | "children"
+> {
   trigger: ReactElement;
   children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
@@ -17,10 +20,11 @@ export function PreviewCard({
   side = "top",
   align = "center",
   sideOffset = 10,
+  ...props
 }: PreviewCardProps) {
   const [open, setOpen] = useState(false);
   return (
-    <BasePreviewCard.Root open={open} onOpenChange={setOpen}>
+    <BasePreviewCard.Root open={open} onOpenChange={setOpen} {...props}>
       <BasePreviewCard.Trigger
         render={trigger}
         onPointerDown={(event) => {

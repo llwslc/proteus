@@ -4,33 +4,18 @@ import { cx } from "../cx";
 import { ChevronDownIcon } from "../icons";
 import "./Collapsible.css";
 
-export interface CollapsibleProps {
+export interface CollapsibleProps extends Omit<
+  React.ComponentProps<typeof BaseCollapsible.Root>,
+  "children" | "className" | "title"
+> {
   title: ReactNode;
   children: ReactNode;
-  defaultOpen?: boolean;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-  disabled?: boolean;
   className?: string;
 }
 
-export function Collapsible({
-  title,
-  children,
-  defaultOpen,
-  open,
-  onOpenChange,
-  disabled,
-  className,
-}: CollapsibleProps) {
+export function Collapsible({ title, children, className, ...props }: CollapsibleProps) {
   return (
-    <BaseCollapsible.Root
-      className={cx("hanabi-collapsible", className)}
-      defaultOpen={defaultOpen}
-      open={open}
-      onOpenChange={onOpenChange}
-      disabled={disabled}
-    >
+    <BaseCollapsible.Root className={cx("hanabi-collapsible", className)} {...props}>
       <BaseCollapsible.Trigger className="hanabi-collapse-trigger">
         <span className="hanabi-marker hanabi-collapse-marker">✦</span>
         <span className="hanabi-collapse-title">{title}</span>

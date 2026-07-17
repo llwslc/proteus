@@ -1,56 +1,38 @@
-import { OTPFieldPreview as OtpFieldBase } from "@base-ui/react/otp-field";
+import { OTPFieldPreview as BaseOtp } from "@base-ui/react/otp-field";
+import { cx } from "../cx";
 import { Fragment, useId } from "react";
 import "./OtpField.css";
 
-export interface OtpFieldProps {
-  length?: number;
-  name?: string;
-  defaultValue?: string;
-  value?: string;
-  onValueChange?: (value: string) => void;
-  mask?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
+export interface OtpFieldProps extends Omit<
+  React.ComponentProps<typeof BaseOtp.Root>,
+  "children"
+> {
   splitAt?: number;
   label?: string;
 }
 
 export function OtpField({
   length = 6,
-  name,
-  defaultValue,
-  value,
-  onValueChange,
-  mask,
-  disabled,
-  readOnly,
-  required,
   splitAt,
   label,
+  className,
+  ...props
 }: OtpFieldProps) {
   const id = useId();
   return (
-    <OtpFieldBase.Root
+    <BaseOtp.Root
       role="group"
       aria-label={label}
       id={id}
-      name={name}
       length={length}
-      defaultValue={defaultValue}
-      value={value}
-      onValueChange={onValueChange ? (v) => onValueChange(v) : undefined}
-      mask={mask}
-      disabled={disabled}
-      readOnly={readOnly}
-      required={required}
-      className="brass-otp"
+      className={cx("brass-otp", className)}
+      {...props}
     >
       <div className="brass-otp__cells">
         {Array.from({ length }, (_, i) => (
           <Fragment key={i}>
             <div className="brass-plate brass-otp__cell">
-              <OtpFieldBase.Input className="brass-otp__input" />
+              <BaseOtp.Input className="brass-otp__input" />
             </div>
             {splitAt != null && i + 1 === splitAt && i + 1 < length ? (
               <span className="brass-otp__divider" aria-hidden="true" />
@@ -58,6 +40,6 @@ export function OtpField({
           </Fragment>
         ))}
       </div>
-    </OtpFieldBase.Root>
+    </BaseOtp.Root>
   );
 }

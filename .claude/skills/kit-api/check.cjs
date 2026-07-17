@@ -140,6 +140,26 @@ for (const c of comps) {
   }
 }
 
+// STRUCTURAL PASSTHROUGH — a Base-UI-backed wrapper must extend the primitive's
+// props (interface extends ComponentProps<typeof Base.X>, usually with Omit for
+// intercepted keys) so unowned Base UI props flow through structurally; a
+// hand-enumerated closed interface silently subsets Base UI (the OtpField
+// onValueComplete class). DOM-only presentational comps have no Base target.
+const DOM_ONLY = new Set(['Badge']);
+for (const c of comps) {
+  if (DOM_ONLY.has(c)) continue;
+  for (const k of KITS) {
+    const f = `${KITROOT}/${k}/components/${c}/${c}.tsx`;
+    if (!fs.existsSync(f)) continue;
+    const s = fs.readFileSync(f, 'utf8');
+    if (!/@base-ui\/react/.test(s)) continue;
+    if (!/ComponentProps(WithoutRef)?</.test(s)) {
+      out.push(`FAIL ${c}: ${k} wrapper is a CLOSED interface (no ComponentProps extends) — Base UI props cannot pass through`);
+      fails++;
+    }
+  }
+}
+
 out.forEach((l) => console.log('  ' + l));
 console.log(`\nRESULT: ${fails ? `${fails} API PARITY FAIL` : `PASS (wrapper APIs aligned across ${KITS.length} kits, ${comps.length} components; exempt: ${[...SKIP].join('/')})`}`);
 process.exit(fails ? 1 : 0);

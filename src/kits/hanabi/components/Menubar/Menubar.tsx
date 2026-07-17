@@ -1,10 +1,14 @@
 import { Menubar as BaseMenubar } from "@base-ui/react/menubar";
+import { cx } from "../cx";
 import { ScrollArea } from "../ScrollArea";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import type { ReactNode } from "react";
 import "./Menubar.css";
 
-export interface MenubarMenuProps {
+export interface MenubarMenuProps extends Omit<
+  React.ComponentProps<typeof BaseMenu.Root>,
+  "children"
+> {
   label: ReactNode;
   children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
@@ -16,9 +20,10 @@ export function MenubarMenu({
   children,
   side = "bottom",
   align = "start",
+  ...props
 }: MenubarMenuProps) {
   return (
-    <BaseMenu.Root>
+    <BaseMenu.Root {...props}>
       <BaseMenu.Trigger className="hanabi-seg__btn hanabi-menubar__trigger">
         {label}
       </BaseMenu.Trigger>
@@ -38,10 +43,18 @@ export function MenubarMenu({
   );
 }
 
-export interface MenubarProps {
+export interface MenubarProps extends Omit<
+  React.ComponentProps<typeof BaseMenubar>,
+  "children" | "className"
+> {
   children: ReactNode;
+  className?: string;
 }
 
-export function Menubar({ children }: MenubarProps) {
-  return <BaseMenubar className="hanabi-seg hanabi-menubar">{children}</BaseMenubar>;
+export function Menubar({ children, className, ...props }: MenubarProps) {
+  return (
+    <BaseMenubar className={cx("hanabi-seg hanabi-menubar", className)} {...props}>
+      {children}
+    </BaseMenubar>
+  );
 }

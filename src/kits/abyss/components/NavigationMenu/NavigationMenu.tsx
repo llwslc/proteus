@@ -1,4 +1,5 @@
 import { NavigationMenu as BaseNav } from "@base-ui/react/navigation-menu";
+import { cx } from "../cx";
 import type { MouseEvent, ReactNode } from "react";
 import { ChevronDownIcon, SigilIcon } from "../icons";
 import "./NavigationMenu.css";
@@ -16,18 +17,27 @@ export interface NavMenuItem {
   disabled?: boolean;
 }
 
-export interface NavigationMenuProps {
+export interface NavigationMenuProps extends Omit<
+  React.ComponentProps<typeof BaseNav.Root>,
+  "children" | "className"
+> {
   items: NavMenuItem[];
   onLinkClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  className?: string;
 }
 
 function MarkerSigil() {
   return <SigilIcon className="abyss-navmenu__mark" aria-hidden />;
 }
 
-export function NavigationMenu({ items, onLinkClick }: NavigationMenuProps) {
+export function NavigationMenu({
+  items,
+  onLinkClick,
+  className,
+  ...props
+}: NavigationMenuProps) {
   return (
-    <BaseNav.Root className="abyss-navmenu">
+    <BaseNav.Root className={cx("abyss-navmenu", className)} {...props}>
       <BaseNav.List className="abyss-navmenu__list">
         {items.map((item) =>
           item.links ? (

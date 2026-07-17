@@ -3,8 +3,10 @@ import type { ReactNode } from "react";
 import { cx } from "../cx";
 import "./Separator.css";
 
-export interface SeparatorProps {
-  orientation?: "horizontal" | "vertical";
+export interface SeparatorProps extends Omit<
+  React.ComponentProps<typeof BaseSeparator>,
+  "className"
+> {
   label?: ReactNode;
   className?: string;
 }
@@ -13,6 +15,7 @@ export function Separator({
   orientation = "horizontal",
   label,
   className,
+  ...props
 }: SeparatorProps) {
   if (label != null) {
     return (
@@ -34,6 +37,7 @@ export function Separator({
   return (
     <BaseSeparator
       orientation={orientation}
+      {...props}
       className={cx("hanabi-separator", `hanabi-separator--${orientation}`, className)}
     />
   );

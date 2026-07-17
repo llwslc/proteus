@@ -1,4 +1,5 @@
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
+import { cx } from "../cx";
 import { ScrollArea } from "../ScrollArea";
 import { useId } from "react";
 import { Check, ChevronDown, Close } from "../icons";
@@ -6,32 +7,28 @@ import "./Combobox.css";
 
 export type ComboboxItem = string | { label: string; disabled?: boolean };
 
-export interface ComboboxProps {
+export interface ComboboxProps extends Omit<
+  React.ComponentProps<typeof BaseCombobox.Root>,
+  "items" | "children" | "className"
+> {
   items: ComboboxItem[];
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
   placeholder?: string;
-  defaultValue?: string;
   emptyText?: string;
   label?: string;
-  name?: string;
+  className?: string;
   side?: "top" | "bottom" | "left" | "right";
   align?: "start" | "center" | "end";
 }
 
 export function Combobox({
   items,
-  disabled,
-  readOnly,
-  required,
   placeholder = "Search…",
-  defaultValue,
   emptyText = "No matches",
   label,
-  name,
+  className,
   side = "bottom",
   align = "center",
+  ...props
 }: ComboboxProps) {
   const inputId = useId();
   const labels = items.map((it) => (typeof it === "string" ? it : it.label));
@@ -39,15 +36,10 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root
-      items={labels}
-      disabled={disabled}
-      readOnly={readOnly}
-      required={required}
-      defaultValue={defaultValue}
-      name={name}
-    >
-      <BaseCombobox.InputGroup className="bauhaus-surface bauhaus-combobox">
+    <BaseCombobox.Root items={labels} {...props}>
+      <BaseCombobox.InputGroup
+        className={cx("bauhaus-surface bauhaus-combobox", className)}
+      >
         <BaseCombobox.Input
           id={inputId}
           aria-label={label ?? placeholder}
