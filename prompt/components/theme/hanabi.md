@@ -5,7 +5,7 @@
 填 components.md §5 留的空。
 
 - 「点亮表面」用于 Button primary、Checkbox = 实色 `primary` 粉平涂 + `on-fill` 白前景（含箭头、占位符、数值），保留 `ink` 描线与高光条；hover 加深到 `primary-deep`（Switch 开态是斜纹皮，见 §2 Switch 行）。
-- 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实色 `primary` 填 chip + `on-fill` 白字 + 前缀一枚 `warning` 金 ✦；未选是 `cel` 白底 + `ink` 框。
+- 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实色 `primary` 填 chip + `on-fill` 白字 + 前缀一枚 `warning` 金 ✦；未选是 `cel` 白底 + `ink` 框；Menubar 触发 chip 的打开态只复用填色、不带 ✦（开态非选中）。
 - 「文字强调选中」用于列表，把文字转 `primary-deep` + `fw-700`；Tab 的选中由舌片形态自证（见 §2 Tabs 行）。
 - 悬停：分段控件和触发条盖 `primary-wash` 实色浅底；凸面控件描线点亮转 `primary`、高光条拉长一截；ghost 按钮盖 `primary-wash`、文字转 `bright`；图标和动作按钮的文字转 `primary`，菜单触发器转 `bright`；列表项盖 `primary-wash` 圆角行底。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整控件 2px `primary` 外环（offset 2px）；其余按钮、字段、触发条、分段钮走四角锁定框（theme §3 战斗语汇），输入框聚焦时整框 border 同时转 `primary`、inset 阶影转 `primary-wash`。

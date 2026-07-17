@@ -271,7 +271,7 @@ PRISM 的 primary 蓝在纸面约 6.04:1，焦点环比 Riot/Hanabi 稳定；suc
 `src/kits/hanabi/theme/effects.css:353-359` 选择了 `[data-pressed]::before` 和 `.is-active::before`，却没有 `content` 或定位/绘制规则。结果 ToggleGroup、Menubar、Toolbar 的选中态只有粉底，没有规范要求的警告色 `✦` 提示。
 
 > **结论：属实且病灶比描述更乱——当前代码里 `[data-pressed]::before`/`.is-active::before` 被混在**禁用规则组**的选择器列表里（吃了 disabled-opacity），`✦` 的 content/绘制规则不存在。皮文档 §1「分段选中…前缀一枚 `warning` 金 ✦」是钉死条款——真 bug 未修：补 ✦ 绘制并把误入禁用组的两个伪元素选择器拆出来。
-> **→ 2026-07-17 已修。**两个伪元素选择器拆出禁用组，✦ 绘制补齐（`content:"✦"` + `warning` 金，覆盖 `data-pressed`/`.is-active`/`data-popup-open` 三态＝ToggleGroup/Toolbar/Menubar 全家），截图验证选中带 ✦、禁用+选中 ✦ 随整体变灰。
+> **→ 2026-07-17 已修，07-18 勘误一处。**两个伪元素选择器拆出禁用组，✦ 绘制补齐（`content:"✦"` + `warning` 金，覆盖 `data-pressed`/`.is-active`＝按下与激活态），截图验证选中带 ✦、禁用+选中 ✦ 随整体变灰。当日曾多加 `data-popup-open`（菜单开态）一档——与 10f08a3 判例「菜单打开≠选中、开态星根除」冲突，次日撤销；皮文档 §1 补「Menubar 打开态只复用填色、不带 ✦」从句。
 
 #### H-04 — Medium — Combo/FEVER 逻辑与文案不一致
 

@@ -350,9 +350,8 @@
   color: var(--hanabi-on-fill);
   box-shadow: inset 0 -3px 0 var(--hanabi-primary-shade);
 }
-.hanabi-seg__btn[data-pressed]::before,
-.hanabi-seg__btn.is-active::before,
-.hanabi-seg__btn[data-popup-open]::before {
+.hanabi-seg__btn[data-pressed]:not([data-popup-open])::before,
+.hanabi-seg__btn.is-active::before {
   content: "✦";
   color: var(--hanabi-warning);
 }
