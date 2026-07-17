@@ -90,7 +90,7 @@
 - **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；普通按钮必有可见的悬停反馈，**形式由 theme 定**；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**形变使命中盒移动超过 `1px` 时，`:active` 同时挂透明伪元素光环兜住命中盒——实按在钮上的点不因形变丢 click，**光环尺寸盖过自家位移、由 theme 定**。
 - **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的（如 NumberField 步进钮夹着输入框）落在整组上、不只中间那块；**提示的具体形式和效果由 theme 定**。
-- **禁用**：shell 全局一条 `pointer-events: none`；hover／highlight 态一律 `:not([data-disabled])` 收口；`opacity: var(--<kit>-disabled-opacity)`，整行只 dim 一层、不叠两遍。
+- **禁用**：shell 全局一条 `pointer-events: none`；hover／highlight 态一律 `:not([data-disabled])` 收口；`opacity: var(--<kit>-disabled-opacity)` 挂控件根、一次合成，整行只 dim 一层、不叠两遍。
 
 ## 6. 组件
 
