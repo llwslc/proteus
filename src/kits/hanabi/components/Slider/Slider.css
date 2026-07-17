@@ -102,11 +102,17 @@
   cursor: not-allowed;
 }
 .hanabi-slider[data-disabled] .hanabi-slider__thumb {
+  background-image:
+    radial-gradient(circle, var(--hanabi-primary-light) 0 3.2px, transparent 3.8px),
+    linear-gradient(var(--hanabi-tone-deep), var(--hanabi-tone-deep)),
+    linear-gradient(var(--hanabi-tone-deep), var(--hanabi-tone-deep)),
+    linear-gradient(var(--hanabi-tone-deep), var(--hanabi-tone-deep)),
+    linear-gradient(var(--hanabi-tone-deep), var(--hanabi-tone-deep));
+  border-color: var(--hanabi-tone-deep);
   box-shadow: none;
   scale: none;
 }
 .hanabi-slider[data-disabled] .hanabi-slider__head,
-.hanabi-slider[data-disabled] .hanabi-slider__track,
-.hanabi-slider[data-disabled] .hanabi-slider__thumb {
+.hanabi-slider[data-disabled] .hanabi-slider__track {
   opacity: var(--hanabi-disabled-opacity);
 }
