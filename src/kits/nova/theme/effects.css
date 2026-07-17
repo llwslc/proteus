@@ -168,7 +168,7 @@
     color-mix(in srgb, var(--nova-title-color, var(--nova-primary)) 55%, transparent);
 }
 .nova-modal-desc {
-  margin: 0 0 var(--nova-space-5);
+  margin: 0 0 var(--nova-space-7);
   color: var(--nova-text-dim);
   font-size: var(--nova-fs-14);
   line-height: var(--nova-lh-160);
@@ -182,7 +182,7 @@
   display: flex;
   justify-content: flex-end;
   gap: var(--nova-space-3);
-  margin-top: var(--nova-space-6);
+  margin-top: var(--nova-space-7);
 }
 
 .nova-btn.nova-modal-x {

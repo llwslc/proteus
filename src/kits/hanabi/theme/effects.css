@@ -222,7 +222,7 @@
 }
 
 .hanabi-modal-desc {
-  margin: 0 0 var(--hanabi-space-5);
+  margin: 0 0 var(--hanabi-space-6);
   font-size: var(--hanabi-fs-13);
   line-height: var(--hanabi-lh-160);
   color: var(--hanabi-text-dim);
@@ -232,7 +232,7 @@
   display: flex;
   justify-content: flex-end;
   gap: var(--hanabi-space-3);
-  margin-top: var(--hanabi-space-5);
+  margin-top: var(--hanabi-space-6);
 }
 
 .hanabi-btn.hanabi-modal-close {

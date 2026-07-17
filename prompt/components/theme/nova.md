@@ -32,3 +32,4 @@
 - Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）。
 - 弹层列表的内衬取 `space-1`。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。
+- 模态体内间距三档（成对/同级/分段）= `8/20/28`。

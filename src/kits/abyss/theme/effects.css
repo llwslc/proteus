@@ -204,7 +204,7 @@
     color-mix(in srgb, var(--abyss-title-color, var(--abyss-glow)) 45%, transparent);
 }
 .abyss-modal-desc {
-  margin: 0 0 var(--abyss-space-5);
+  margin: 0 0 var(--abyss-space-7);
   color: var(--abyss-text-dim);
   font-size: var(--abyss-fs-15);
   line-height: var(--abyss-lh-165);
@@ -218,7 +218,7 @@
   display: flex;
   justify-content: flex-end;
   gap: var(--abyss-space-3);
-  margin-top: var(--abyss-space-6);
+  margin-top: var(--abyss-space-7);
 }
 
 .abyss-menu-tier {
