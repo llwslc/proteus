@@ -162,28 +162,26 @@ function HeroCombo() {
   const [fever, setFever] = useState(false);
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout> | undefined;
+    let idleTimer: ReturnType<typeof setTimeout> | undefined;
+    let feverTimer: ReturnType<typeof setTimeout> | undefined;
     const onHit = (event: PointerEvent) => {
       const target = event.target as Element | null;
-      if (!target) return;
-      const interactive = target.closest(
-        'button, label, input, a, [role="tab"], [role="option"], [role="menuitem"]',
-      );
-      if (!interactive) return;
-      const modal = target.closest(".hanabi-modal-actions");
-      setCombo((c) => c + (modal ? 10 : 1));
-      if (modal) setFever(true);
+      const confirm = target?.closest('.hanabi-modal-actions [data-combo="confirm"]');
+      setCombo((c) => c + (confirm ? 10 : 1));
       setPop((p) => p + 1);
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        setCombo(0);
-        setFever(false);
-      }, 5000);
+      if (confirm) {
+        setFever(true);
+        clearTimeout(feverTimer);
+        feverTimer = setTimeout(() => setFever(false), 600);
+      }
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => setCombo(0), 5000);
     };
     document.addEventListener("pointerdown", onHit);
     return () => {
       document.removeEventListener("pointerdown", onHit);
-      clearTimeout(timer);
+      clearTimeout(idleTimer);
+      clearTimeout(feverTimer);
     };
   }, []);
 
@@ -558,25 +556,46 @@ function Demo() {
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
               <div className="hanabi-stack">
-                <span className="hanabi-cap">主装備</span>
-                <Select items={ARMAMENTS} placeholder="装備…" defaultValue="ren" />
-                <span className="hanabi-cap">副装備</span>
-                <Select items={ARMAMENTS_SHORT} placeholder="未選択" />
-                <span className="hanabi-cap">封印装備</span>
-                <Select items={ARMAMENTS_SHORT} defaultValue="ren" disabled />
+                <label className="hanabi-cap" htmlFor="sel-1">
+                  主装備
+                </label>
+                <Select
+                  items={ARMAMENTS}
+                  placeholder="装備…"
+                  defaultValue="ren"
+                  id="sel-1"
+                />
+                <label className="hanabi-cap" htmlFor="sel-2">
+                  副装備
+                </label>
+                <Select items={ARMAMENTS_SHORT} placeholder="未選択" id="sel-2" />
+                <label className="hanabi-cap" htmlFor="sel-3">
+                  封印装備
+                </label>
+                <Select items={ARMAMENTS_SHORT} defaultValue="ren" disabled id="sel-3" />
               </div>
             </Panel>
 
             <Panel id="combobox" title="Combobox" meta="CBX">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">スキル検索</span>
-                <Combobox items={SKILLS} placeholder="スキル…" emptyText="該当なし" />
+                <Combobox
+                  items={SKILLS}
+                  placeholder="スキル…"
+                  emptyText="該当なし"
+                  label="スキル検索"
+                />
               </div>
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">隊員を呼ぶ</span>
-                <Autocomplete items={MEMBERS} placeholder="名前…" emptyText="該当なし" />
+                <Autocomplete
+                  items={MEMBERS}
+                  placeholder="名前…"
+                  emptyText="該当なし"
+                  label="隊員を呼ぶ"
+                />
               </div>
             </Panel>
 
@@ -589,10 +608,14 @@ function Demo() {
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">
               <div className="hanabi-stack">
-                <span className="hanabi-cap">出撃人数</span>
-                <NumberField defaultValue={7} min={0} max={12} step={1} />
-                <span className="hanabi-cap">出撃上限</span>
-                <NumberField defaultValue={12} min={0} max={12} step={1} />
+                <label className="hanabi-cap" htmlFor="num-1">
+                  出撃人数
+                </label>
+                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                <label className="hanabi-cap" htmlFor="num-2">
+                  出撃上限
+                </label>
+                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
               </div>
             </Panel>
 
@@ -604,7 +627,11 @@ function Demo() {
                   defaultValue="花火小隊"
                   description="作戦簿にこの名前で記載されます。"
                 />
-                <Input icon={<SearchIcon />} placeholder="装備を検索…" />
+                <Input
+                  icon={<SearchIcon />}
+                  placeholder="装備を検索…"
+                  aria-label="装備を検索"
+                />
                 <AccessKeyField />
                 <Field label="ロック済み" defaultValue="HANABI-873" disabled />
                 <Field
@@ -617,11 +644,23 @@ function Demo() {
             <Panel id="otp" title="OTP Field" meta="OTP">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">認証コード</span>
-                <OtpField length={6} splitAt={3} defaultValue="873" />
+                <OtpField length={6} splitAt={3} defaultValue="873" label="認証コード" />
                 <span className="hanabi-cap">秘匿コード</span>
-                <OtpField length={6} splitAt={3} defaultValue="873" mask />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="873"
+                  mask
+                  label="秘匿コード"
+                />
                 <span className="hanabi-cap">失効コード</span>
-                <OtpField length={6} splitAt={3} defaultValue="873" disabled />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="873"
+                  disabled
+                  label="失効コード"
+                />
               </div>
             </Panel>
           </div>
@@ -939,7 +978,9 @@ function Demo() {
                 actions={
                   <>
                     <DialogClose>キャンセル</DialogClose>
-                    <DialogClose variant="secondary">出撃</DialogClose>
+                    <DialogClose variant="secondary" data-combo="confirm">
+                      出撃
+                    </DialogClose>
                   </>
                 }
               >
@@ -956,7 +997,9 @@ function Demo() {
                   actions={
                     <>
                       <AlertDialogClose>中止</AlertDialogClose>
-                      <AlertDialogClose variant="danger">消去</AlertDialogClose>
+                      <AlertDialogClose variant="danger" data-combo="confirm">
+                        消去
+                      </AlertDialogClose>
                     </>
                   }
                 />
@@ -968,7 +1011,9 @@ function Demo() {
                   actions={
                     <>
                       <AlertDialogClose>中止</AlertDialogClose>
-                      <AlertDialogClose variant="primary">初期化</AlertDialogClose>
+                      <AlertDialogClose variant="primary" data-combo="confirm">
+                        初期化
+                      </AlertDialogClose>
                     </>
                   }
                 />
@@ -980,7 +1025,9 @@ function Demo() {
                   actions={
                     <>
                       <AlertDialogClose>中止</AlertDialogClose>
-                      <AlertDialogClose variant="primary">適用</AlertDialogClose>
+                      <AlertDialogClose variant="primary" data-combo="confirm">
+                        適用
+                      </AlertDialogClose>
                     </>
                   }
                 />
@@ -1142,7 +1189,7 @@ function Demo() {
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarLink href="#">
+                <ToolbarLink href="#toolbar">
                   <SignalIcon />
                   通信良好
                 </ToolbarLink>
@@ -1160,7 +1207,7 @@ function Demo() {
                         ["09:27", "凛、突撃開始"],
                         ["09:35", "クリティカル！ 撃破 +1"],
                         ["09:48", "花梨、補給線を確保"],
-                        ["10:02", "韧性ゲージ、破碎"],
+                        ["10:02", "靭性ゲージ、破砕"],
                         ["10:15", "必殺・花火大輪、発動"],
                         ["10:16", "9999 ダメージを記録"],
                         ["10:30", "残敵掃討中"],

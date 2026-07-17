@@ -40,7 +40,6 @@
 .hanabi-radio__control[data-disabled] {
   background: var(--hanabi-disabled-fill);
   box-shadow: none;
-  cursor: not-allowed;
 }
 
 .hanabi-radio:has(.hanabi-radio__control[data-disabled]) {

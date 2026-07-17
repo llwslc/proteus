@@ -22,7 +22,10 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       <BaseSlider.Control className="bauhaus-slider__control">
         <BaseSlider.Track className="bauhaus-slider__track">
           <BaseSlider.Indicator className="bauhaus-slider__indicator" />
-          <BaseSlider.Thumb className="bauhaus-slider__thumb" />
+          <BaseSlider.Thumb
+            className="bauhaus-slider__thumb"
+            getAriaLabel={typeof label === "string" ? () => label : undefined}
+          />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

@@ -45,7 +45,7 @@ export function Popover({
           >
             <BasePopover.Close
               className="hanabi-popover__close"
-              render={<Button variant="icon-ghost" />}
+              render={<Button variant="icon-ghost" aria-label="Close" />}
             >
               <XIcon />
             </BasePopover.Close>

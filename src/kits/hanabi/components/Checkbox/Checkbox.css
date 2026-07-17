@@ -65,7 +65,6 @@
 .hanabi-checkbox__box[data-disabled] {
   background: var(--hanabi-disabled-fill);
   box-shadow: none;
-  cursor: not-allowed;
 }
 .hanabi-checkbox__box[data-disabled][data-checked],
 .hanabi-checkbox__box[data-disabled][data-indeterminate] {

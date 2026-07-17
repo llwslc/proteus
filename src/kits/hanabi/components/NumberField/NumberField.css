@@ -39,7 +39,6 @@
   background: var(--hanabi-disabled-fill);
   color: var(--hanabi-text-mute);
   box-shadow: none;
-  cursor: not-allowed;
 }
 
 .hanabi-numberfield__input {

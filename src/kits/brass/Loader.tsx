@@ -2,7 +2,7 @@ import "./Loader.css";
 
 export default function Loader() {
   return (
-    <div className="brass-loader" role="status" aria-label="Loading">
+    <div className="brass-loader" role="status" aria-label="Loading BRASS">
       <div className="brass-loader__gears">
         <svg
           className="brass-loader__gear brass-loader__gear--a"

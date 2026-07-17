@@ -425,7 +425,7 @@ function ToolbarDemo() {
         </ToolbarButton>
       </ToolbarGroup>
       <ToolbarSeparator />
-      <ToolbarLink href="#">
+      <ToolbarLink href="#toolbar">
         <EyeIcon />
         <span className="demo-toolbar__label">Watch</span>
       </ToolbarLink>
@@ -861,12 +861,27 @@ function Demo() {
             <div className="abyss-section" id="select">
               <Panel title="Select" meta="SEL">
                 <div className="demo-stack">
-                  <span className="abyss-cap">Bearing</span>
-                  <Select items={SELECT_ITEMS} defaultValue="yhanthlei" />
-                  <span className="abyss-cap">Uncharted</span>
-                  <Select items={SELECT_ITEMS_SHORT} placeholder="Unsounded…" />
-                  <span className="abyss-cap">Last Mooring</span>
-                  <Select items={SELECT_ITEMS_SHORT} defaultValue="yhanthlei" disabled />
+                  <label className="abyss-cap" htmlFor="sel-1">
+                    Bearing
+                  </label>
+                  <Select items={SELECT_ITEMS} defaultValue="yhanthlei" id="sel-1" />
+                  <label className="abyss-cap" htmlFor="sel-2">
+                    Uncharted
+                  </label>
+                  <Select
+                    items={SELECT_ITEMS_SHORT}
+                    placeholder="Unsounded…"
+                    id="sel-2"
+                  />
+                  <label className="abyss-cap" htmlFor="sel-3">
+                    Last Mooring
+                  </label>
+                  <Select
+                    items={SELECT_ITEMS_SHORT}
+                    defaultValue="yhanthlei"
+                    disabled
+                    id="sel-3"
+                  />
                 </div>
               </Panel>
             </div>
@@ -875,7 +890,11 @@ function Demo() {
               <Panel title="Combobox" meta="CBX">
                 <div className="demo-stack">
                   <span className="abyss-cap">Sound the depths</span>
-                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
+                  <Combobox
+                    items={COMBOBOX_ITEMS}
+                    placeholder="Type to filter…"
+                    label="Sound the depths"
+                  />
                 </div>
               </Panel>
             </div>
@@ -884,7 +903,11 @@ function Demo() {
               <Panel title="Autocomplete" meta="ACP">
                 <div className="demo-stack">
                   <span className="abyss-cap">Speak a rite</span>
-                  <Autocomplete items={AUTOCOMPLETE_ITEMS} placeholder="Speak a rite…" />
+                  <Autocomplete
+                    items={AUTOCOMPLETE_ITEMS}
+                    placeholder="Speak a rite…"
+                    label="Speak a rite"
+                  />
                 </div>
               </Panel>
             </div>
@@ -902,13 +925,17 @@ function Demo() {
             <div className="abyss-section" id="number">
               <Panel title="Number Field" meta="NUM">
                 <div className="demo-stack">
-                  <span className="abyss-cap">Fathom Mark</span>
+                  <label className="abyss-cap" htmlFor="num-1">
+                    Fathom Mark
+                  </label>
                   <div className="demo-row">
-                    <NumberField defaultValue={7} min={0} max={12} step={1} />
+                    <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
                   </div>
-                  <span className="abyss-cap">Full Fathoms</span>
+                  <label className="abyss-cap" htmlFor="num-2">
+                    Full Fathoms
+                  </label>
                   <div className="demo-row">
-                    <NumberField defaultValue={12} min={0} max={12} step={1} />
+                    <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
                   </div>
                 </div>
               </Panel>
@@ -923,7 +950,11 @@ function Demo() {
                     placeholder="Speak your name"
                     description="The name the tide answers to."
                   />
-                  <Input icon={<SearchIcon />} placeholder="Search the codex…" />
+                  <Input
+                    icon={<SearchIcon />}
+                    placeholder="Search the codex…"
+                    aria-label="Search the codex"
+                  />
                   <AccessCodeField />
                   <Field label="Sealed Verse" defaultValue="VERSE-SEALED" disabled />
                   <Field
@@ -939,11 +970,28 @@ function Demo() {
               <Panel title="OTP Field" meta="OTP">
                 <div className="demo-stack">
                   <span className="abyss-cap">Litany code</span>
-                  <OtpField length={6} splitAt={3} defaultValue="130" />
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="130"
+                    label="Litany code"
+                  />
                   <span className="abyss-cap">Veiled litany</span>
-                  <OtpField length={6} splitAt={3} defaultValue="130" mask />
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="130"
+                    mask
+                    label="Veiled litany"
+                  />
                   <span className="abyss-cap">Spent litany</span>
-                  <OtpField length={6} splitAt={3} defaultValue="130" disabled />
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="130"
+                    disabled
+                    label="Spent litany"
+                  />
                 </div>
               </Panel>
             </div>

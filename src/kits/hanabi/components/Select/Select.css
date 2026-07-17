@@ -24,7 +24,6 @@
   background: var(--hanabi-disabled-fill);
   box-shadow: none;
   opacity: var(--hanabi-disabled-opacity);
-  cursor: not-allowed;
 }
 
 .hanabi-select__value {

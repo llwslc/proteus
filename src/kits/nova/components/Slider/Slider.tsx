@@ -24,7 +24,10 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       <BaseSlider.Control className="nova-slider__control">
         <BaseSlider.Track className="nova-slider__track">
           <BaseSlider.Indicator className="nova-slider__indicator" />
-          <BaseSlider.Thumb className="nova-slider__thumb" />
+          <BaseSlider.Thumb
+            className="nova-slider__thumb"
+            getAriaLabel={typeof label === "string" ? () => label : undefined}
+          />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

@@ -22,7 +22,10 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       <BaseSlider.Control className="hanabi-slider__control">
         <BaseSlider.Track className="hanabi-slider__track">
           <BaseSlider.Indicator className="hanabi-slider__indicator" />
-          <BaseSlider.Thumb className="hanabi-slider__thumb" />
+          <BaseSlider.Thumb
+            className="hanabi-slider__thumb"
+            getAriaLabel={typeof label === "string" ? () => label : undefined}
+          />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

@@ -54,7 +54,6 @@
 
 .hanabi-tabs__tab[data-disabled] {
   opacity: var(--hanabi-disabled-opacity);
-  cursor: not-allowed;
 }
 
 .hanabi-tabs__panel {

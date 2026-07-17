@@ -21,6 +21,20 @@ export function ContextMenu({
     <BaseContextMenu.Root disabled={disabled}>
       <BaseContextMenu.Trigger
         data-disabled={disabled || undefined}
+        tabIndex={disabled ? -1 : 0}
+        onKeyDown={(e) => {
+          if ((e.shiftKey && e.key === "F10") || e.key === "ContextMenu") {
+            e.preventDefault();
+            const r = e.currentTarget.getBoundingClientRect();
+            e.currentTarget.dispatchEvent(
+              new MouseEvent("contextmenu", {
+                bubbles: true,
+                clientX: r.left + r.width / 2,
+                clientY: r.top + r.height / 2,
+              }),
+            );
+          }
+        }}
         className={cx("abyss-context__zone", className)}
       >
         {trigger}

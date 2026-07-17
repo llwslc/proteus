@@ -368,7 +368,7 @@ function ToolbarDemo() {
         </ToolbarButton>
       </ToolbarGroup>
       <ToolbarSeparator />
-      <ToolbarLink href="#">
+      <ToolbarLink href="#toolbar">
         <SignalIcon />
         <span className="demo-toolbar__label">Synced</span>
       </ToolbarLink>
@@ -728,12 +728,27 @@ function Demo() {
             <div className="nova-section" id="select">
               <Panel title="Select" meta="SEL">
                 <div className="demo-stack">
-                  <span className="nova-cap">Destination</span>
-                  <Select items={SELECT_ITEMS} defaultValue="proxima" />
-                  <span className="nova-cap">Fallback Route</span>
-                  <Select items={SELECT_ITEMS_SHORT} placeholder="Awaiting lock…" />
-                  <span className="nova-cap">Home Port</span>
-                  <Select items={SELECT_ITEMS_SHORT} defaultValue="proxima" disabled />
+                  <label className="nova-cap" htmlFor="sel-1">
+                    Destination
+                  </label>
+                  <Select items={SELECT_ITEMS} defaultValue="proxima" id="sel-1" />
+                  <label className="nova-cap" htmlFor="sel-2">
+                    Fallback Route
+                  </label>
+                  <Select
+                    items={SELECT_ITEMS_SHORT}
+                    placeholder="Awaiting lock…"
+                    id="sel-2"
+                  />
+                  <label className="nova-cap" htmlFor="sel-3">
+                    Home Port
+                  </label>
+                  <Select
+                    items={SELECT_ITEMS_SHORT}
+                    defaultValue="proxima"
+                    disabled
+                    id="sel-3"
+                  />
                 </div>
               </Panel>
             </div>
@@ -742,7 +757,11 @@ function Demo() {
               <Panel title="Combobox" meta="CBX">
                 <div className="demo-stack">
                   <span className="nova-cap">Filter star systems</span>
-                  <Combobox items={COMBOBOX_ITEMS} placeholder="Type to filter…" />
+                  <Combobox
+                    items={COMBOBOX_ITEMS}
+                    placeholder="Type to filter…"
+                    label="Filter star systems"
+                  />
                 </div>
               </Panel>
             </div>
@@ -754,6 +773,7 @@ function Demo() {
                   <Autocomplete
                     items={AUTOCOMPLETE_ITEMS}
                     placeholder="Type a command…"
+                    label="Command palette"
                   />
                 </div>
               </Panel>
@@ -772,13 +792,17 @@ function Demo() {
             <div className="nova-section" id="number">
               <Panel title="Number Field" meta="NUM">
                 <div className="demo-stack">
-                  <span className="nova-cap">Jump Coordinates</span>
+                  <label className="nova-cap" htmlFor="num-1">
+                    Jump Coordinates
+                  </label>
                   <div className="demo-row">
-                    <NumberField defaultValue={7} min={0} max={12} step={1} />
+                    <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
                   </div>
-                  <span className="nova-cap">Docking Bays</span>
+                  <label className="nova-cap" htmlFor="num-2">
+                    Docking Bays
+                  </label>
                   <div className="demo-row">
-                    <NumberField defaultValue={12} min={0} max={12} step={1} />
+                    <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
                   </div>
                 </div>
               </Panel>
@@ -793,7 +817,11 @@ function Demo() {
                     placeholder="Enter callsign"
                     description="Broadcast on all fleet channels."
                   />
-                  <Input icon={<SearchIcon />} placeholder="Search registry…" />
+                  <Input
+                    icon={<SearchIcon />}
+                    placeholder="Search registry…"
+                    aria-label="Search registry"
+                  />
                   <AccessCodeField />
                   <Field label="Locked Channel" defaultValue="NX-CLASSIFIED" disabled />
                   <Field
@@ -809,11 +837,28 @@ function Demo() {
               <Panel title="OTP Field" meta="OTP">
                 <div className="demo-stack">
                   <span className="nova-cap">Authorization code</span>
-                  <OtpField length={6} splitAt={3} defaultValue="427" />
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="427"
+                    label="Authorization code"
+                  />
                   <span className="nova-cap">Cipher key</span>
-                  <OtpField length={6} splitAt={3} defaultValue="427" mask />
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="427"
+                    mask
+                    label="Cipher key"
+                  />
                   <span className="nova-cap">Revoked code</span>
-                  <OtpField length={6} splitAt={3} defaultValue="427" disabled />
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="427"
+                    disabled
+                    label="Revoked code"
+                  />
                 </div>
               </Panel>
             </div>

@@ -15,6 +15,7 @@ RUN="$RUN eslint format-check"
 if has '\.tsx?$'; then
   RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode kit-demo-states fingerprint"
 fi
+has 'App\.tsx$|components/.*\.tsx$' && RUN="$RUN kit-a11y"
 if has 'src/kits/.*\.css$'; then
   RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint"
   SKIP_NOTE="css 改动只跑了 kit-visual 这一个动态门——弹层/动效/状态类改动请自点 kit-submenu-gap / kit-anim-sync / kit-states / kit-interact,收官跑全量 check.sh"

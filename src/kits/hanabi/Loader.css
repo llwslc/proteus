@@ -42,9 +42,13 @@
   stroke: #22304f;
   stroke-width: 2;
   stroke-linejoin: round;
-  filter: drop-shadow(3px 3px 0 #c3d2ed);
   translate: -1px 6px;
   animation: hanabi-loader-jelly 1.4s cubic-bezier(0.3, 1.6, 0.5, 1) infinite;
+}
+
+.hanabi-loader__spark-shade {
+  fill: #c3d2ed;
+  stroke: #c3d2ed;
 }
 
 .hanabi-loader__spark-sm {
@@ -68,7 +72,7 @@
   font-family: "DotGothic16", ui-monospace, monospace;
   font-size: 13px;
   letter-spacing: 0.16em;
-  color: #8fa6d4;
+  color: #4e6390;
 }
 
 @keyframes hanabi-loader-turn {

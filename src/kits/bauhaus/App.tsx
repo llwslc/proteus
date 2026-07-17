@@ -527,25 +527,49 @@ function Demo() {
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
               <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Type weight</span>
-                <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
-                <span className="bauhaus-cap">Display weight</span>
-                <Select items={WEIGHTS_SHORT} placeholder="Grade" />
-                <span className="bauhaus-cap">Archive weight</span>
-                <Select items={WEIGHTS_SHORT} defaultValue="regular" disabled />
+                <label className="bauhaus-cap" htmlFor="sel-1">
+                  Type weight
+                </label>
+                <Select
+                  items={WEIGHTS}
+                  placeholder="Weight"
+                  defaultValue="regular"
+                  id="sel-1"
+                />
+                <label className="bauhaus-cap" htmlFor="sel-2">
+                  Display weight
+                </label>
+                <Select items={WEIGHTS_SHORT} placeholder="Grade" id="sel-2" />
+                <label className="bauhaus-cap" htmlFor="sel-3">
+                  Archive weight
+                </label>
+                <Select
+                  items={WEIGHTS_SHORT}
+                  defaultValue="regular"
+                  disabled
+                  id="sel-3"
+                />
               </div>
             </Panel>
 
             <Panel id="combobox" title="Combobox" meta="CBX">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Filter forms</span>
-                <Combobox items={FORMS} placeholder="Search forms…" />
+                <Combobox
+                  items={FORMS}
+                  placeholder="Search forms…"
+                  label="Filter forms"
+                />
               </div>
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Pick a pigment</span>
-                <Autocomplete items={PIGMENTS} placeholder="Pigment…" />
+                <Autocomplete
+                  items={PIGMENTS}
+                  placeholder="Pigment…"
+                  label="Pick a pigment"
+                />
               </div>
             </Panel>
 
@@ -558,10 +582,14 @@ function Demo() {
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">
               <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Grid columns</span>
-                <NumberField defaultValue={7} min={0} max={12} step={1} />
-                <span className="bauhaus-cap">Max columns</span>
-                <NumberField defaultValue={12} min={0} max={12} step={1} />
+                <label className="bauhaus-cap" htmlFor="num-1">
+                  Grid columns
+                </label>
+                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                <label className="bauhaus-cap" htmlFor="num-2">
+                  Max columns
+                </label>
+                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
               </div>
             </Panel>
 
@@ -573,7 +601,11 @@ function Demo() {
                   defaultValue="Red Blue Yellow"
                   description="Printed on the catalogue plate."
                 />
-                <Input icon={<Search />} placeholder="Search elements…" />
+                <Input
+                  icon={<Search />}
+                  placeholder="Search elements…"
+                  aria-label="Search elements"
+                />
                 <AccessKeyField />
                 <Field label="Locked layer" defaultValue="BAUHAUS-1919" disabled />
                 <Field
@@ -586,11 +618,23 @@ function Demo() {
             <Panel id="otp" title="OTP Field" meta="OTP">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Access code</span>
-                <OtpField length={6} splitAt={3} defaultValue="919" />
+                <OtpField length={6} splitAt={3} defaultValue="919" label="Access code" />
                 <span className="bauhaus-cap">Sealed code</span>
-                <OtpField length={6} splitAt={3} defaultValue="919" mask />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="919"
+                  mask
+                  label="Sealed code"
+                />
                 <span className="bauhaus-cap">Retired code</span>
-                <OtpField length={6} splitAt={3} defaultValue="919" disabled />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="919"
+                  disabled
+                  label="Retired code"
+                />
               </div>
             </Panel>
           </div>
@@ -1122,7 +1166,7 @@ function Demo() {
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarLink href="#">
+                <ToolbarLink href="#toolbar">
                   <Dot />
                   Saved
                 </ToolbarLink>

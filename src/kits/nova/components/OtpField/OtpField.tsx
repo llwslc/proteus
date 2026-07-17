@@ -14,6 +14,7 @@ export interface OtpFieldProps {
   required?: boolean;
 
   splitAt?: number;
+  label?: string;
 }
 
 export function OtpField({
@@ -27,10 +28,13 @@ export function OtpField({
   readOnly,
   required,
   splitAt,
+  label,
 }: OtpFieldProps) {
   const id = useId();
   return (
     <BaseOtp.Root
+      role="group"
+      aria-label={label}
       id={id}
       name={name}
       length={length}

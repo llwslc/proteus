@@ -36,7 +36,6 @@
   opacity: var(--hanabi-disabled-opacity);
 }
 .hanabi-input__control:disabled {
-  cursor: not-allowed;
   color: var(--hanabi-text-dim);
 }
 

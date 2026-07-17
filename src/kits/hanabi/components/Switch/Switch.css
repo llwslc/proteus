@@ -38,7 +38,6 @@
 .hanabi-switch[data-disabled] {
   background: var(--hanabi-disabled-fill);
   box-shadow: none;
-  cursor: not-allowed;
   animation: none;
   opacity: var(--hanabi-disabled-opacity);
 }

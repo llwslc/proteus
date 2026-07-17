@@ -571,25 +571,45 @@ function Demo() {
             </Panel>
             <Panel id="select" title="Select" meta="SEL" tape="br">
               <div className="riot-stack">
-                <span className="riot-cap">Type weight</span>
-                <Select items={WEIGHTS} placeholder="Weight" defaultValue="regular" />
-                <span className="riot-cap">Masthead cut</span>
-                <Select items={WEIGHTS_SHORT} placeholder="Cut" />
-                <span className="riot-cap">Dead press</span>
-                <Select items={WEIGHTS_SHORT} defaultValue="regular" disabled />
+                <label className="riot-cap" htmlFor="sel-1">
+                  Type weight
+                </label>
+                <Select
+                  items={WEIGHTS}
+                  placeholder="Weight"
+                  defaultValue="regular"
+                  id="sel-1"
+                />
+                <label className="riot-cap" htmlFor="sel-2">
+                  Masthead cut
+                </label>
+                <Select items={WEIGHTS_SHORT} placeholder="Cut" id="sel-2" />
+                <label className="riot-cap" htmlFor="sel-3">
+                  Dead press
+                </label>
+                <Select
+                  items={WEIGHTS_SHORT}
+                  defaultValue="regular"
+                  disabled
+                  id="sel-3"
+                />
               </div>
             </Panel>
 
             <Panel id="combobox" title="Combobox" meta="CBX" stapled>
               <div className="riot-stack">
                 <span className="riot-cap">Filter the zine</span>
-                <Combobox items={FORMS} placeholder="Search…" />
+                <Combobox items={FORMS} placeholder="Search…" label="Filter the zine" />
               </div>
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP" tape="tr">
               <div className="riot-stack">
                 <span className="riot-cap">Pick a pigment</span>
-                <Autocomplete items={PIGMENTS} placeholder="Pigment…" />
+                <Autocomplete
+                  items={PIGMENTS}
+                  placeholder="Pigment…"
+                  label="Pick a pigment"
+                />
               </div>
             </Panel>
 
@@ -602,10 +622,14 @@ function Demo() {
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM" stapled>
               <div className="riot-stack">
-                <span className="riot-cap">Print run</span>
-                <NumberField defaultValue={7} min={0} max={12} step={1} />
-                <span className="riot-cap">Full run</span>
-                <NumberField defaultValue={12} min={0} max={12} step={1} />
+                <label className="riot-cap" htmlFor="num-1">
+                  Print run
+                </label>
+                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                <label className="riot-cap" htmlFor="num-2">
+                  Full run
+                </label>
+                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
               </div>
             </Panel>
 
@@ -617,7 +641,11 @@ function Demo() {
                   defaultValue="NO FUTURE"
                   description="Shout it in cut-out caps."
                 />
-                <Input icon={<SearchIcon />} placeholder="Search clippings…" />
+                <Input
+                  icon={<SearchIcon />}
+                  placeholder="Search clippings…"
+                  aria-label="Search clippings"
+                />
                 <AccessKeyField />
                 <Field label="Locked layer" defaultValue="RIOT-1977" disabled />
                 <Field label="Serial" defaultValue="R!OT-##" error="Serial won't scan." />
@@ -626,11 +654,23 @@ function Demo() {
             <Panel id="otp" title="OTP Field" meta="OTP" tape="br">
               <div className="riot-stack">
                 <span className="riot-cap">Access code</span>
-                <OtpField length={6} splitAt={3} defaultValue="977" />
+                <OtpField length={6} splitAt={3} defaultValue="977" label="Access code" />
                 <span className="riot-cap">Dead drop</span>
-                <OtpField length={6} splitAt={3} defaultValue="977" mask />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="977"
+                  mask
+                  label="Dead drop"
+                />
                 <span className="riot-cap">Burned code</span>
-                <OtpField length={6} splitAt={3} defaultValue="977" disabled />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="977"
+                  disabled
+                  label="Burned code"
+                />
               </div>
             </Panel>
           </div>
@@ -1156,7 +1196,7 @@ function Demo() {
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarLink href="#">
+                <ToolbarLink href="#toolbar">
                   <Dot />
                   Saved
                 </ToolbarLink>

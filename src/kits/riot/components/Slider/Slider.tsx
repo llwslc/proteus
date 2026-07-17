@@ -24,7 +24,10 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       <BaseSlider.Control className="riot-slider__control">
         <BaseSlider.Track className="riot-slider__track">
           <BaseSlider.Indicator className="riot-slider__indicator" />
-          <BaseSlider.Thumb className="riot-slider__thumb" />
+          <BaseSlider.Thumb
+            className="riot-slider__thumb"
+            getAriaLabel={typeof label === "string" ? () => label : undefined}
+          />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

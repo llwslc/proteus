@@ -2,7 +2,7 @@ import "./Loader.css";
 
 export default function Loader() {
   return (
-    <div className="bauhaus-loader" role="status" aria-label="Loading">
+    <div className="bauhaus-loader" role="status" aria-label="Loading PRISM">
       <div className="bauhaus-loader__forms">
         <span className="bauhaus-loader__form bauhaus-loader__form--square" />
         <span className="bauhaus-loader__form bauhaus-loader__form--circle" />

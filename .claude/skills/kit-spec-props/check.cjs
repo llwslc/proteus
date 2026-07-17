@@ -33,7 +33,7 @@ specProps['Menubar'] = new Set(['label', 'side', 'align']);
 specProps['ContextMenu'] = new Set(['trigger']);
 // 组件→interface 名(缺省 <Comp>Props;多 interface 取并集)
 const IFACE = { Toast: ['ToastProviderProps'], Menubar: ['MenubarMenuProps'], 'Input/Field': ['InputProps', 'FieldProps'] };
-const ALLOW = new Set(['children', 'className', 'rootClassName', 'value', 'defaultValue', 'onValueChange', 'open', 'onOpenChange', 'name', 'id', 'disabled']);
+const ALLOW = new Set(['children', 'className', 'rootClassName', 'value', 'defaultValue', 'onValueChange', 'open', 'onOpenChange', 'name', 'id', 'disabled', 'readOnly', 'required']);
 let bad = 0;
 const kits = fs.readdirSync('src/kits').filter((d) => fs.statSync(`src/kits/${d}`).isDirectory());
 for (const [comp, props] of Object.entries(specProps)) {

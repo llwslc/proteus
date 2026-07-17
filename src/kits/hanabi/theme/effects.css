@@ -140,7 +140,6 @@
 }
 .hanabi-list-item[data-disabled] {
   opacity: var(--hanabi-disabled-opacity);
-  cursor: not-allowed;
 }
 .hanabi-list-item[data-selected] {
   color: var(--hanabi-primary-deep);
@@ -267,10 +266,6 @@
 .hanabi-collapse-trigger:where(:not([data-disabled])):hover {
   background: var(--hanabi-primary-wash);
 }
-.hanabi-collapse-trigger[data-disabled] {
-  cursor: not-allowed;
-}
-
 .hanabi-collapse-marker {
   width: 14px;
   font-size: var(--hanabi-fs-12);
@@ -357,10 +352,13 @@
 }
 .hanabi-seg__btn[data-pressed]::before,
 .hanabi-seg__btn.is-active::before,
+.hanabi-seg__btn[data-popup-open]::before {
+  content: "✦";
+  color: var(--hanabi-warning);
+}
 .hanabi-seg__btn[data-disabled],
 .hanabi-seg__btn:disabled {
   opacity: var(--hanabi-disabled-opacity);
-  cursor: not-allowed;
   box-shadow: none;
 }
 

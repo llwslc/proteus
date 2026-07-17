@@ -535,29 +535,49 @@ function Demo() {
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
               <div className="brass-stack">
-                <span className="brass-cap">Boiler pressure</span>
+                <label className="brass-cap" htmlFor="sel-1">
+                  Boiler pressure
+                </label>
                 <Select
                   items={PRESSURE}
                   placeholder="Pressure band"
                   defaultValue="nominal"
+                  id="sel-1"
                 />
-                <span className="brass-cap">Standby boiler</span>
-                <Select items={PRESSURE_SHORT} placeholder="Awaiting steam…" />
-                <span className="brass-cap">Retired boiler</span>
-                <Select items={PRESSURE_SHORT} defaultValue="nominal" disabled />
+                <label className="brass-cap" htmlFor="sel-2">
+                  Standby boiler
+                </label>
+                <Select items={PRESSURE_SHORT} placeholder="Awaiting steam…" id="sel-2" />
+                <label className="brass-cap" htmlFor="sel-3">
+                  Retired boiler
+                </label>
+                <Select
+                  items={PRESSURE_SHORT}
+                  defaultValue="nominal"
+                  disabled
+                  id="sel-3"
+                />
               </div>
             </Panel>
 
             <Panel id="combobox" title="Combobox" meta="CBX">
               <div className="brass-stack">
                 <span className="brass-cap">Filter feedstock</span>
-                <Combobox items={FUEL_PARTS} placeholder="Search fuel…" />
+                <Combobox
+                  items={FUEL_PARTS}
+                  placeholder="Search fuel…"
+                  label="Filter feedstock"
+                />
               </div>
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP">
               <div className="brass-stack">
                 <span className="brass-cap">Fuel by name</span>
-                <Autocomplete items={FUELS} placeholder="Fuel type…" />
+                <Autocomplete
+                  items={FUELS}
+                  placeholder="Fuel type…"
+                  label="Fuel by name"
+                />
               </div>
             </Panel>
 
@@ -570,10 +590,14 @@ function Demo() {
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">
               <div className="brass-stack">
-                <span className="brass-cap">Boiler PSI</span>
-                <NumberField defaultValue={7} min={0} max={12} step={1} />
-                <span className="brass-cap">Max PSI</span>
-                <NumberField defaultValue={12} min={0} max={12} step={1} />
+                <label className="brass-cap" htmlFor="num-1">
+                  Boiler PSI
+                </label>
+                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                <label className="brass-cap" htmlFor="num-2">
+                  Max PSI
+                </label>
+                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
               </div>
             </Panel>
 
@@ -585,7 +609,11 @@ function Demo() {
                   defaultValue="HMS Aurora"
                   description="As stamped on the maker's plate."
                 />
-                <Input icon={<Search />} placeholder="Search registry…" />
+                <Input
+                  icon={<Search />}
+                  placeholder="Search registry…"
+                  aria-label="Search registry"
+                />
                 <IgnitionCodeField />
                 <Field label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
                 <Field
@@ -598,11 +626,28 @@ function Demo() {
             <Panel id="otp" title="OTP Field" meta="OTP">
               <div className="brass-stack">
                 <span className="brass-cap">Ignition code</span>
-                <OtpField length={6} splitAt={3} defaultValue="835" />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="835"
+                  label="Ignition code"
+                />
                 <span className="brass-cap">Sealed cipher</span>
-                <OtpField length={6} splitAt={3} defaultValue="835" mask />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="835"
+                  mask
+                  label="Sealed cipher"
+                />
                 <span className="brass-cap">Expired code</span>
-                <OtpField length={6} splitAt={3} defaultValue="835" disabled />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="835"
+                  disabled
+                  label="Expired code"
+                />
               </div>
             </Panel>
           </div>
@@ -1111,7 +1156,7 @@ function Demo() {
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
-                <ToolbarLink href="#">
+                <ToolbarLink href="#toolbar">
                   <Bolt />
                   Live
                 </ToolbarLink>
