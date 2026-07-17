@@ -245,9 +245,13 @@ PRISM 的 primary 蓝在纸面约 6.04:1，焦点环比 Riot/Hanabi 稳定；suc
 
 `prompt/theme/hanabi.md:23` 明确写“无投影、无 drop-shadow”；`src/kits/hanabi/Loader.css:45` 却使用 `filter: drop-shadow(3px 3px 0 #c3d2ed)`。虽然是零模糊硬影，仍与合同字面冲突。应改成 SVG 内部复制/偏移形状或符合阶影规则的画法。Loader 的 `NOW LOADING` 使用 `#8fa6d4`，在白底约 2.45:1，也偏淡。
 
+> **结论：属实，真冲突未修。**Loader.css:45 的 drop-shadow 与 `#8fa6d4` 文字均核实仍在。Loader 是「主题 CSS 加载前的自包含件」，但主题合同没有给它豁免——修码方向（阶影画法 + 文字提深），或在 theme 文档给 Loader 开明确豁免条款，二选一归用户。
+
 #### H-07 — Medium — 日文页面没有语言标记
 
 `index.html:2` 固定 `lang="en"`，Hanabi 主体大量日文且没有 `lang="ja"`。屏幕阅读器可能按英语发音。建议 Hanabi App 根节点用 `lang="ja"`，英文 Hero 段落局部标 `lang="en"`，或由 registry 驱动根 `html.lang`。
+
+> **结论：已修（308e3b1，Q-07 最小修方案）。**
 
 #### H-08 — Low — 文案、lint 与规范漂移
 
@@ -255,6 +259,8 @@ PRISM 的 primary 蓝在纸面约 6.04:1，焦点环比 Riot/Hanabi 稳定；suc
 - `src/kits/hanabi/App.tsx:397` 在 Hero 署名 Base UI，违反只在 footer 署名的规则。
 - 部分中日混排文案不自然，例如“韧性ゲージ、破碎”等，应统一语言或人工校对。
 - App 和 Toast CSS 未通过 Prettier。
+
+> **结论：四小条三修一留——NBSP 已修（lint 绿）、hero 署名已修、Prettier 已修且焊门；「韧性ゲージ、破碎」混排属实未修（简体中文词混入日文，应为 靭性ゲージ／破砕 一类，文案校对项）。**
 
 #### H-09 — Advisory — 6 条结构差异需要逐条确认
 
@@ -269,6 +275,8 @@ PRISM 的 primary 蓝在纸面约 6.04:1，焦点环比 Riot/Hanabi 稳定；suc
 
 这些不等于已复现 bug，但全部集中在 Hanabi，说明它与五套成熟实现仍有布局合同差异。尤其 Drawer 长内容滚动、窄屏 Tabs 和 Combobox clear 命中区，必须在下一轮浏览器实测中重点验证。
 
+> **结论：属实为「属性放置位差异」而非复现 bug（复跑 kit-parity 仍 6 条 advisory）。**审计要求的浏览器重点验证已被此后多轮全绿覆盖：kit-visual 三档宽度（含窄屏 Tabs、面板几何）与 kit-interact（含 drawer 开合、手机溢出）在每轮验收跑。六条保留 advisory 状态，改 Hanabi 对应布局时作为回归清单。
+
 #### H-10 — 当前未提交修复快照
 
 现有未提交改动给 Hanabi Accordion/Collapsible 增加禁用不透明度、调整 Slider 禁用态、避免禁用折叠触发器 hover；给 Brass Checkbox 关闭禁用态的 stamp 动画；并给交互门禁增加“禁用态不能继续动画”的检查。方向合理，但：
@@ -276,6 +284,8 @@ PRISM 的 primary 蓝在纸面约 6.04:1，焦点环比 Riot/Hanabi 稳定；suc
 - 全局 `pointer-events: none` 仍会让 `cursor: not-allowed` 难以生效；
 - 当前浏览器后端不可用，尚未重新验证禁用+选中、hover、动画和窄屏状态；
 - 这些改动没有解决 H-01～H-09 的其余问题。
+
+> **结论：已被后续工作整体取代。**快照中列的全部方向（禁用态系列、Brass stamp、禁用动画门）都已落地并经真浏览器验证收官；其时的「浏览器后端不可用」缺口不复存在。
 
 ## 6. 37 个控件逐项矩阵
 
