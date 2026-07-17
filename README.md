@@ -13,7 +13,7 @@ npm run build     # type-check + production build
 npm run preview   # serve the production build
 ```
 
-Requires Node ^18.18.0 || ^20.9.0 || >=21.1.0 (pinned in `engines`; ESLint 9 and typescript-eslint 8 set the floor).
+Requires Node ^20.19.0 || >=22.12.0 (pinned in `engines`; Vite 8 sets the floor).
 
 ## Stack
 
