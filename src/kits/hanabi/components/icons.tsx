@@ -94,7 +94,7 @@ export const SignalIcon = (p: IconProps) => (
 );
 
 export const SparkIcon = (p: IconProps) => (
-  <svg {...base("4.5 2.5 15 15.3", p)}>
+  <svg {...base("5.5 3.5 13 13.3", p)} fill="currentColor" stroke="none">
     <path d="M12 3.5c.7 3.8 2.4 5.6 6.5 6.3-4.1 1-5.8 2.8-6.5 7-.7-4.2-2.4-6-6.5-7 4.1-.7 5.8-2.5 6.5-6.3Z" />
   </svg>
 );
