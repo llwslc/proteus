@@ -64,6 +64,7 @@
 
 .hanabi-clock {
   font-family: var(--hanabi-font-mono);
+  letter-spacing: var(--hanabi-ls-2);
   font-size: var(--hanabi-fs-13);
   color: var(--hanabi-text-dim);
 }
@@ -144,6 +145,7 @@
 
 .hanabi-sidebar__meta {
   font-family: var(--hanabi-font-mono);
+  letter-spacing: var(--hanabi-ls-2);
   font-size: 11px;
   color: var(--hanabi-text-mute);
 }
@@ -204,6 +206,7 @@
 
 .hanabi-hero__code {
   font-family: var(--hanabi-font-mono);
+  letter-spacing: var(--hanabi-ls-2);
   font-size: var(--hanabi-fs-13);
   color: var(--hanabi-primary-deep);
   background: var(--hanabi-primary-wash);
@@ -429,6 +432,7 @@
 
 .hanabi-preview__handle {
   font-family: var(--hanabi-font-mono);
+  letter-spacing: var(--hanabi-ls-2);
   font-size: var(--hanabi-fs-12);
   color: var(--hanabi-text-mute);
 }
