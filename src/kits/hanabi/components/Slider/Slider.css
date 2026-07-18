@@ -14,6 +14,7 @@
 
 .hanabi-slider__value {
   font-family: var(--hanabi-font-mono);
+  letter-spacing: var(--hanabi-ls-2);
   font-size: var(--hanabi-fs-13);
   color: var(--hanabi-primary-deep);
 }
