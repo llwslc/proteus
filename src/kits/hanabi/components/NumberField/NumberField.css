@@ -52,7 +52,7 @@
   border-radius: var(--hanabi-r-field);
   box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
   font-family: var(--hanabi-font-mono);
-  letter-spacing: var(--hanabi-ls-2);
+  letter-spacing: var(--hanabi-ls-1);
   font-size: var(--hanabi-fs-16);
   color: var(--hanabi-text);
   outline: none;

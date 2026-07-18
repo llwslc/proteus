@@ -6,7 +6,7 @@
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-40);
   line-height: var(--hanabi-lh-100);
-  letter-spacing: var(--hanabi-ls-3);
+  letter-spacing: var(--hanabi-ls-2);
   color: var(--hanabi-text-bright);
 }
 
@@ -30,7 +30,7 @@
   font-weight: var(--hanabi-fw-900);
   font-size: var(--hanabi-fs-14);
   line-height: var(--hanabi-lh-135);
-  letter-spacing: var(--hanabi-ls-2);
+  letter-spacing: var(--hanabi-ls-1);
   text-transform: uppercase;
   color: var(--hanabi-text-bright);
 }
@@ -49,7 +49,7 @@
   font-family: var(--hanabi-font-mono);
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-13);
-  letter-spacing: var(--hanabi-ls-2);
+  letter-spacing: var(--hanabi-ls-1);
   text-transform: uppercase;
   color: var(--hanabi-text-dim);
 }
