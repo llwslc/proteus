@@ -451,10 +451,10 @@
  },
  "hanabi": {
   "desktop": {
-   "__header": "d097d3308acb",
+   "__header": "59c9a7663eb2",
    "__hero": "76ba5acb63dc",
    "__footer": "d48a686c30e5",
-   "button": "981fe759a46c",
+   "button": "0f4a49be8ae1",
    "switch": "aa368a37ab79",
    "toggle": "02cece11915b",
    "checkbox": "2268da6cbccb",
@@ -487,7 +487,7 @@
    "toast": "9defc8b3fc04",
    "avatar": "259194a66e57",
    "badge": "64635ea2e76f",
-   "toolbar": "9cf399693866",
+   "toolbar": "a76e195b0d64",
    "scroll": "6f2e61e38786",
    "typography": "abeb07099218",
    "separator": "4fd9ff96db6c",
@@ -495,10 +495,10 @@
    "loader": "b3af4179adb9"
   },
   "phone": {
-   "__header": "9515419670e4",
+   "__header": "b07a3997b7e1",
    "__hero": "1828b2b0660d",
    "__footer": "3920dd837dad",
-   "button": "ec54da2df358",
+   "button": "54775e0c790f",
    "switch": "6e70cffac82e",
    "toggle": "4b8d68c3f240",
    "checkbox": "343a5775f79b",
@@ -531,7 +531,7 @@
    "toast": "fbf8004b371d",
    "avatar": "d3e27d88261b",
    "badge": "30e6f4621319",
-   "toolbar": "8bc330262654",
+   "toolbar": "77e949fb4d90",
    "scroll": "1578bc22172f",
    "typography": "a8f7f58cc5ae",
    "separator": "895aba66e500",

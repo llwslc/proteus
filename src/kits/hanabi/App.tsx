@@ -64,12 +64,18 @@ import {
   useToast,
 } from "./components";
 import {
+  BladeIcon,
   BoltIcon,
   ClockIcon,
   CopyIcon,
+  FireworkIcon,
+  HeartIcon,
+  RocketIcon,
   SearchIcon,
+  ShieldIcon,
   SignalIcon,
   SparkIcon,
+  TargetIcon,
   TrashIcon,
   XIcon,
 } from "./components/icons";
@@ -350,7 +356,7 @@ function Demo() {
     <div className="hanabi-app" lang="ja">
       <header className="hanabi-header">
         <div className="hanabi-logo">
-          <SparkIcon className="hanabi-logo__mark" aria-hidden="true" />
+          <FireworkIcon className="hanabi-logo__mark" aria-hidden="true" />
           <span className="hanabi-logo__text">
             <span className="hanabi-logo__accent">//</span>HANABI
           </span>
@@ -432,7 +438,7 @@ function Demo() {
             <Panel id="button" title="Button" meta="BTN" wide>
               <div className="hanabi-stack">
                 <div className="hanabi-row">
-                  <Button icon={<SparkIcon />}>出撃</Button>
+                  <Button icon={<RocketIcon />}>出撃</Button>
                   <Button variant="secondary">編成を見る</Button>
                   <Button variant="danger">撤退</Button>
                   <Button variant="ghost">あとで</Button>
@@ -450,7 +456,7 @@ function Demo() {
                     <CopyIcon />
                   </Button>
                   <Button variant="icon" aria-label="索敵">
-                    <SearchIcon />
+                    <TargetIcon />
                   </Button>
                   <Button variant="icon" disabled aria-label="封印">
                     <XIcon />
@@ -458,8 +464,8 @@ function Demo() {
                   <Button variant="icon-ghost" aria-label="火花">
                     <SparkIcon />
                   </Button>
-                  <Button variant="icon-ghost" aria-label="充電">
-                    <BoltIcon />
+                  <Button variant="icon-ghost" aria-label="応援">
+                    <HeartIcon />
                   </Button>
                 </div>
               </div>
@@ -896,17 +902,17 @@ function Demo() {
                 <MenuItem icon={<CopyIcon />} shortcut="⌘D">
                   複製
                 </MenuItem>
-                <MenuItem icon={<SearchIcon />} shortcut="⌘L">
+                <MenuItem icon={<TargetIcon />} shortcut="⌘L">
                   索敵
                 </MenuItem>
-                <MenuItem icon={<SparkIcon />} shortcut="⌘R">
+                <MenuItem icon={<FireworkIcon />} shortcut="⌘R">
                   散開
                 </MenuItem>
                 <MenuItem icon={<XIcon />} disabled>
                   ラスタライズ
                 </MenuItem>
                 <MenuItem icon={<BoltIcon />}>チャージ</MenuItem>
-                <MenuItem icon={<SparkIcon />}>隊列を組む</MenuItem>
+                <MenuItem icon={<ShieldIcon />}>隊列を組む</MenuItem>
                 <MenuItem icon={<CopyIcon />}>左右反転</MenuItem>
                 <MenuItem icon={<SearchIcon />}>90° 回転</MenuItem>
                 <MenuItem icon={<SparkIcon />}>ガイドに吸着</MenuItem>
@@ -1175,8 +1181,8 @@ function Demo() {
                 </BaseToggleGroup>
                 <ToolbarSeparator />
                 <ToolbarGroup aria-label="効果">
-                  <ToolbarButton aria-label="火花">
-                    <SparkIcon />
+                  <ToolbarButton aria-label="斬撃">
+                    <BladeIcon />
                   </ToolbarButton>
                   <ToolbarButton disabled aria-label="充電">
                     <BoltIcon />

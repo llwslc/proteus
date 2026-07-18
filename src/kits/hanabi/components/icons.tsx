@@ -106,3 +106,58 @@ export const ClockIcon = (p: IconProps) => (
     <path d="M12 7.5V12l3 2.5" />
   </svg>
 );
+
+export const FireworkIcon = (p: IconProps) => (
+  <svg {...base("2.5 2.5 18.5 18.5", p)}>
+    <path d="M12 10V5M12 14v5M10 12H5M14 12h5M10.4 10.4 7 7M13.6 13.6 17 17M13.6 10.4 17 7M10.4 13.6 7 17" />
+    <g fill="currentColor" stroke="none">
+      <circle cx="12" cy="12" r="1.4" />
+      <circle cx="12" cy="3.6" r=".9" />
+      <circle cx="12" cy="20.4" r=".9" />
+      <circle cx="3.6" cy="12" r=".9" />
+      <circle cx="20.4" cy="12" r=".9" />
+      <circle cx="5.5" cy="5.5" r=".9" />
+      <circle cx="18.5" cy="18.5" r=".9" />
+      <circle cx="18.5" cy="5.5" r=".9" />
+      <circle cx="5.5" cy="18.5" r=".9" />
+    </g>
+  </svg>
+);
+
+export const ShieldIcon = (p: IconProps) => (
+  <svg {...base("3.5 2 17 19", p)}>
+    <path d="M12 3.2l7.5 2.8v5.5c0 4.8-7.5 8.8-7.5 8.8s-7.5-4-7.5-8.8V6z" />
+    <path d="M9 11.5l2.2 2.2 4-4.4" />
+  </svg>
+);
+
+export const TargetIcon = (p: IconProps) => (
+  <svg {...base("1 1 22 22", p)}>
+    <circle cx="12" cy="12" r="6.3" />
+    <path d="M12 2v3.4M12 18.6V22M2 12h3.4M18.6 12H22" />
+    <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+export const HeartIcon = (p: IconProps) => (
+  <svg {...base("3 3.5 18.5 17.5", p)}>
+    <path d="M12 20.3S3.8 15 3.8 9.2C3.8 6.4 5.8 4.7 8 4.7c1.7 0 3.2 1.1 4 2.4.8-1.3 2.3-2.4 4-2.4 2.2 0 4.2 1.7 4.2 4.5 0 5.8-8.2 11.1-8.2 11.1Z" />
+  </svg>
+);
+
+export const RocketIcon = (p: IconProps) => (
+  <svg {...base("5 2 14 18", p)}>
+    <path d="M12 3c2.5 2 3.8 5 3.8 8.5L12 15l-3.8-3.5C8.2 8 9.5 5 12 3Z" />
+    <circle cx="12" cy="9" r="1.4" />
+    <path d="M8.5 13.5 6 16l2.5.3M15.5 13.5 18 16l-2.5.3M10.5 16v3M13.5 16v3" />
+  </svg>
+);
+
+export const BladeIcon = (p: IconProps) => (
+  <svg {...base("2.5 2.5 19 18", p)}>
+    <path d="M20.5 3.5 10 14" />
+    <path d="M8.2 12.2 11.8 15.8" />
+    <path d="M10 14 5 19l-1.5.5.5-1.5z" />
+    <path d="M18 4.5 19.5 6" />
+  </svg>
+);
