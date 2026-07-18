@@ -6,7 +6,7 @@
   font-weight: var(--hanabi-fw-400);
   font-size: var(--hanabi-fs-40);
   line-height: var(--hanabi-lh-100);
-  letter-spacing: var(--hanabi-ls-1);
+  letter-spacing: var(--hanabi-ls-3);
   color: var(--hanabi-text-bright);
 }
 

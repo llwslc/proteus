@@ -81,8 +81,9 @@
   --hanabi-fs-22: 22px;
   --hanabi-fs-40: 40px;
 
-  --hanabi-ls-1: 0.02em;
-  --hanabi-ls-2: 0.08em;
+  --hanabi-ls-1: 0.5px;
+  --hanabi-ls-2: 1px;
+  --hanabi-ls-3: 2px;
 
   --hanabi-lh-100: 1;
   --hanabi-lh-135: 1.35;
