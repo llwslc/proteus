@@ -4,13 +4,14 @@ type IconProps = SVGProps<SVGSVGElement>;
 
 const base = (viewBox: string, props: IconProps) => {
   const [, , w, h] = viewBox.split(" ").map(Number);
+  const s = 0.75 / Math.max(w, h);
   return {
-    width: `${w / 24}em`,
-    height: `${h / 24}em`,
+    width: `${(w * s).toFixed(3)}em`,
+    height: `${(h * s).toFixed(3)}em`,
     viewBox,
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: 1.7,
+    strokeWidth: Number((1.7 / 24 / s).toFixed(2)),
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
     "aria-hidden": true,

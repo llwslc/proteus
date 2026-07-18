@@ -20,7 +20,8 @@
 ## 2. 架构与文件布局
 
 - 每个组件放在 `src/kits/<kit>/components/<Component>/`，里面是 `<Component>.tsx` + `<Component>.css` + 目录 barrel `index.ts`（`index.ts` 才是真正的导入目标）；`components/index.ts` 这个顶层 barrel 再统一导出。改导出时三处都要动：`.tsx`、目录 barrel、顶层 barrel。
-- 共享基建：`components/cx.ts` 合并 className；`components/icons.tsx` 放内联 SVG，统一用 `base()` 设成 `1em` 尺寸、`currentColor` 取色、统一描边；内部 `Button` 可当触发器，并 `forwardRef`。
+- 共享基建：`components/cx.ts` 合并 className；`components/icons.tsx` 放内联 SVG，`base(viewBox)` 统一 `currentColor` 取色、圆/方端描边；**viewBox 贴合墨迹、上下左右零留白**（图标即纯墨迹）；**较大边归一到每套一个 OPT `em`（≈该套图标较大边中位数）使全套图标视觉大小一致，`strokeWidth` 随归一缩放反比补偿令渲染线粗恒定**；内部 `Button` 可当触发器，并 `forwardRef`。
+- 图标的**盒、间距、居中归消费方**，不烘焙进图标：纯图标钮在固定长宽内 flex 居中、菜单／列表给固定图标槽（`width` = 图标字号）＋居中、前导图标靠 `gap` 与文字分隔（图标零留白故左右视觉对称）；要额外留白或改尺寸的消费方（如状态点）自行在 `svg` 上设。
 - 主题四件套：`theme/{tokens,effects,global,typography}.css`。
 
 ## 3. token 契约

@@ -4,14 +4,15 @@ type IconProps = SVGProps<SVGSVGElement> & { children?: ReactNode };
 
 function base(viewBox: string, { children, ...props }: IconProps) {
   const [, , w, h] = viewBox.split(" ").map(Number);
+  const s = 0.75 / Math.max(w, h);
   return (
     <svg
       viewBox={viewBox}
-      width={`${w / 24}em`}
-      height={`${h / 24}em`}
+      width={`${(w * s).toFixed(3)}em`}
+      height={`${(h * s).toFixed(3)}em`}
       fill="none"
       stroke="currentColor"
-      strokeWidth={2}
+      strokeWidth={Number((2 / 24 / s).toFixed(2))}
       strokeLinecap="square"
       strokeLinejoin="miter"
       aria-hidden="true"
