@@ -15,7 +15,7 @@
 - 每家族配 `-wash` 实色浅底档（悬停、tone 底），平涂不透明：`primary-wash #ffe3ee`、`secondary-wash #dff6fc`、`success-wash #def7e8`、`danger-wash #ffe1e1`；warning 本身是亮色，直接实填不设 wash 档。量表斜纹的亮相间档 `-light`：`primary-light #ff8ab4`、`success-light #6fd7a0`、`warning-light #ffd97a`、`danger-light #f07a7a`（secondary 不上量表、不设）。
 - 阶影：`tone #c3d2ed` 是赛璐璐的冷紫蓝影色——白面、cel 面上的底边阶影带和凹面 inset 阶影都用它，不用灰不用黑；`tone-deep #8fa6d4` 是更深一档的注记、辅助色；`tone-soft #dbe4f4` 是嵌进白面里的 inset 阶影色（凹面用）。实填面的阶影带换本家族 `-shade` 深档：`primary-shade #bf245b`、`secondary-shade #127392`、`success-shade #157945`、`warning-shade #c28d12`、`danger-shade #a32222`。
 - 文本是墨蓝，不用纯黑：`text #22304f`（=描线色）、`-bright #111d38`、`-dim #4a5878`、`-mute #486db9`；反色前景 `text-invert #ffffff`。
-- 对比：浅底强调正文字／焦点走 `-shade` 深档达标；`text-mute` 压深达标。签名应援粉实填（钮／Tab／段）的白字归填充反色前景。
+- 对比：浅底强调正文、焦点取更深一档 `-shade` 达标；`text-mute` 压深达标；签名应援粉实填的白字归填充反色前景。
 - 两档反色前景（压实填上的字色）：`on-fill #ffffff` 压 primary、secondary、success、danger 实填；`on-warning #22304f` 压星光金。
 - 两条复用的强调填充，都是平涂：`accent-surface` = 实色 `primary`，点亮激活表面；`accent-fill` = 实色 `primary`，方向与选中指示。
 - alpha 只给盖不了实色的三处：`scrim` = `ink` 的 `.5` 背板（另叠 primary 网点，见氛围层）；高光条 `hi` = 白 `.8`；分格刻度线 `cell-line` = `ink` 的 `.14`（要同时压在轨底与填充上）。其余悬停、tone 底一律走 `-wash` 实色档，赛璐璐拒绝半透明涂色。
