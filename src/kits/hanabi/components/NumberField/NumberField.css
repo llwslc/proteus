@@ -29,7 +29,6 @@
 }
 .hanabi-numberfield__btn:where(:not(:disabled)):hover {
   background: var(--hanabi-primary-wash);
-  border-color: var(--hanabi-primary);
 }
 .hanabi-numberfield__btn:where(:not(:disabled)):active {
   scale: 0.96;
