@@ -133,7 +133,7 @@
 
       .utility-bar {
         display: grid;
-        grid-template-columns: 1fr auto auto;
+        grid-template-columns: 1fr auto;
         align-items: center;
         gap: 28px;
         min-height: 34px;
@@ -156,12 +156,12 @@
         width: 18px;
         height: 5px;
         content: "";
-        background: var(--safety);
+        background: var(--success);
       }
 
       .masthead {
         display: grid;
-        grid-template-columns: 210px minmax(0, 1fr) auto;
+        grid-template-columns: 210px minmax(0, 1fr);
         align-items: stretch;
         min-height: 76px;
         border-bottom: var(--line) solid var(--graphite);
@@ -182,7 +182,7 @@
         font-size: 2rem;
         font-weight: 700;
         line-height: 1;
-        background: var(--safety);
+        background: var(--navy);
         place-items: center;
       }
 
@@ -207,20 +207,10 @@
         letter-spacing: 0.09em;
       }
 
-      .facility-id {
-        display: flex;
-        align-items: center;
-        padding: 0 clamp(18px, 3vw, 40px);
-        color: var(--graphite-soft);
-        font-family: var(--font-mono);
-        font-size: 0.66rem;
-        letter-spacing: 0.07em;
-        text-transform: uppercase;
-      }
-
       .mast-nav {
         display: flex;
         align-items: stretch;
+        justify-content: flex-end;
       }
 
       .mast-nav a {
@@ -259,37 +249,14 @@
         min-width: 0;
         padding: clamp(42px, 6vw, 86px);
         overflow: hidden;
-        background:
-          linear-gradient(
-            90deg,
-            transparent calc(100% - 1px),
-            var(--grout) calc(100% - 1px)
-          ),
-          linear-gradient(var(--grout) 1px, transparent 1px),
-          linear-gradient(90deg, var(--grout) 1px, transparent 1px), var(--ceramic-bright);
-        background-size:
-          auto,
-          48px 48px,
-          48px 48px,
-          auto;
+        background: var(--ceramic-bright);
         border-right: var(--line) solid var(--graphite);
-      }
-
-      .hero-copy::after {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 9px;
-        height: 46%;
-        content: "";
-        background: var(--safety);
       }
 
       .system-label,
       .depth-label {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
         margin: 0;
         color: var(--pool-deep);
         font-family: var(--font-mono);
@@ -297,14 +264,6 @@
         font-weight: 600;
         letter-spacing: 0.09em;
         text-transform: uppercase;
-      }
-
-      .system-label::before,
-      .depth-label::before {
-        width: 26px;
-        height: 2px;
-        content: "";
-        background: var(--safety);
       }
 
       h1,
@@ -349,14 +308,12 @@
       }
 
       .control-button {
-        position: relative;
         display: inline-flex;
         min-height: 43px;
         align-items: center;
         justify-content: center;
         gap: 9px;
-        padding: 9px 17px 9px 21px;
-        overflow: hidden;
+        padding: 9px 17px;
         color: var(--white);
         font-family: var(--font-display);
         font-size: 0.92rem;
@@ -367,30 +324,14 @@
         cursor: pointer;
         background: var(--navy);
         border: var(--line) solid var(--navy-deep);
-        border-left: 5px solid var(--safety);
         transition:
           color var(--fast),
           background var(--fast),
           border-color var(--fast);
       }
 
-      .control-button::after {
-        position: absolute;
-        right: -36px;
-        bottom: 0;
-        width: 36px;
-        height: 3px;
-        content: "";
-        background: var(--pool-light);
-        transition: right var(--normal) var(--ease);
-      }
-
       .control-button:hover:not(:disabled) {
         background: var(--pool-deep);
-      }
-
-      .control-button:hover:not(:disabled)::after {
-        right: 0;
       }
 
       .control-button:active:not(:disabled) {
@@ -421,7 +362,7 @@
 
       .control-button--small {
         min-height: 34px;
-        padding: 6px 11px 6px 15px;
+        padding: 6px 11px;
         font-size: 0.76rem;
       }
 
@@ -430,7 +371,6 @@
         cursor: not-allowed;
         background: #c8d0cd;
         border-color: #9aa8a5;
-        border-left-color: #879592;
       }
 
       .hero-meta {
@@ -489,28 +429,6 @@
           48px 48px,
           48px 48px,
           auto;
-      }
-
-      .pool-plan::before,
-      .pool-plan::after {
-        position: absolute;
-        z-index: 2;
-        width: 22px;
-        height: 90px;
-        content: "";
-        border: 5px solid var(--steel);
-        border-top: 0;
-        border-bottom: 0;
-      }
-
-      .pool-plan::before {
-        top: 27%;
-        left: 30px;
-      }
-
-      .pool-plan::after {
-        right: 30px;
-        bottom: 20%;
       }
 
       .deck-data {
@@ -647,7 +565,6 @@
         font-family: var(--font-mono);
         text-align: right;
         background: rgba(0, 43, 61, 0.92);
-        border-left: 5px solid var(--safety);
       }
 
       .timing-block strong {
@@ -674,24 +591,8 @@
       .section-rail {
         position: relative;
         padding: clamp(34px, 5vw, 68px) 30px;
-        background:
-          linear-gradient(var(--grout) 1px, transparent 1px),
-          linear-gradient(90deg, var(--grout) 1px, transparent 1px), var(--ceramic);
-        background-size:
-          48px 48px,
-          48px 48px,
-          auto;
+        background: var(--ceramic);
         border-right: var(--line) solid var(--graphite);
-      }
-
-      .section-rail::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 8px;
-        height: 120px;
-        content: "";
-        background: var(--pool-deep);
       }
 
       .section-code {
@@ -738,17 +639,6 @@
         padding: clamp(20px, 3vw, 30px);
         background: var(--ceramic-bright);
         border: var(--line) solid var(--steel);
-        box-shadow: 0 13px 28px rgba(0, 43, 61, 0.07);
-      }
-
-      .specimen::before {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        height: 3px;
-        content: "";
-        background: linear-gradient(90deg, var(--steel), var(--white) 50%, var(--steel));
       }
 
       .specimen--wide {
@@ -758,8 +648,6 @@
       .spec-heading {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 18px;
         margin-bottom: 24px;
         padding-bottom: 12px;
         border-bottom: var(--line) solid var(--grout);
@@ -772,14 +660,6 @@
         font-weight: 700;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-      }
-
-      .spec-code {
-        color: var(--pool-deep);
-        font-family: var(--font-mono);
-        font-size: 0.56rem;
-        font-weight: 600;
-        letter-spacing: 0.07em;
       }
 
       .control-stack {
@@ -1041,15 +921,6 @@
 
       .switch-slot::before {
         position: absolute;
-        inset: auto 0 0;
-        height: 3px;
-        content: "";
-        background: var(--steel);
-        transition: background var(--fast);
-      }
-
-      .switch-slot::after {
-        position: absolute;
         top: 3px;
         left: 3px;
         width: 25px;
@@ -1062,11 +933,11 @@
           transform var(--normal) var(--ease);
       }
 
-      .native-control:checked + .switch-slot::before {
-        background: var(--pool);
+      .native-control:checked + .switch-slot {
+        background: var(--pool-pale);
       }
 
-      .native-control:checked + .switch-slot::after {
+      .native-control:checked + .switch-slot::before {
         background: var(--safety);
         transform: translateX(41px);
       }
@@ -1114,7 +985,6 @@
         padding: 6px;
         background: var(--ceramic-bright);
         border: var(--line) solid var(--graphite);
-        border-top: 4px solid var(--safety);
         box-shadow: 0 18px 38px rgba(0, 43, 61, 0.22);
         animation: lift-in var(--normal) var(--ease);
       }
@@ -1446,24 +1316,10 @@
         color: var(--white);
       }
 
-      .tab[aria-selected="true"]::after {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 5px;
-        content: "";
-        background: var(--safety);
-      }
-
       .tab-panel {
         min-height: 145px;
         padding: 26px;
-        background:
-          linear-gradient(90deg, var(--grout) 1px, transparent 1px), var(--ceramic-bright);
-        background-size:
-          48px 100%,
-          auto;
+        background: var(--ceramic-bright);
         border: var(--line) solid var(--graphite);
         border-top: 0;
       }
@@ -1532,8 +1388,7 @@
         font-size: 0.72rem;
         cursor: help;
         background: var(--navy);
-        border: 0;
-        border-left: 5px solid var(--safety);
+        border: var(--line) solid var(--navy-deep);
         place-items: center;
       }
 
@@ -1549,7 +1404,6 @@
         line-height: 1.4;
         pointer-events: none;
         background: var(--navy-deep);
-        border-top: 3px solid var(--safety);
         box-shadow: 0 10px 24px rgba(0, 43, 61, 0.24);
         opacity: 0;
         transform: translateY(5px);
@@ -1584,7 +1438,6 @@
         color: var(--graphite);
         background: var(--ceramic-bright);
         border: var(--line) solid var(--graphite);
-        border-left: 10px solid var(--safety);
         box-shadow: 0 32px 90px rgba(0, 26, 38, 0.4);
       }
 
@@ -1593,14 +1446,7 @@
       }
 
       .rule-dialog::backdrop {
-        background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-          rgba(0, 43, 61, 0.78);
-        background-size:
-          48px 48px,
-          48px 48px,
-          auto;
+        background: rgba(0, 43, 61, 0.78);
       }
 
       .dialog-bar {
@@ -1633,7 +1479,6 @@
         font-size: 3rem;
         font-weight: 800;
         background: var(--pool-deep);
-        border-bottom: 8px solid var(--safety);
         place-items: center;
       }
 
@@ -1672,7 +1517,6 @@
         width: min(430px, calc(100% - 32px));
         color: var(--white);
         background: var(--navy-deep);
-        border-top: 4px solid var(--safety);
         box-shadow: 0 22px 55px rgba(0, 26, 38, 0.32);
         opacity: 0;
         transform: translateX(calc(100% + 40px));
@@ -1741,7 +1585,6 @@
         padding: 18px clamp(20px, 4vw, 50px);
         color: var(--white);
         background: var(--navy-deep);
-        border-left: 9px solid var(--safety);
       }
 
       .footer-brand {
@@ -1798,11 +1641,15 @@
 
       @media (max-width: 1050px) {
         .masthead {
-          grid-template-columns: 210px 1fr;
+          grid-template-columns: 1fr;
         }
 
         .mast-nav {
           display: none;
+        }
+
+        .brand {
+          border-right: 0;
         }
 
         .hero {
@@ -1844,12 +1691,8 @@
           padding-inline: 14px;
         }
 
-        .utility-bar span:nth-child(2) {
-          display: none;
-        }
-
         .masthead {
-          grid-template-columns: 168px 1fr;
+          grid-template-columns: 1fr;
           min-height: 66px;
         }
 
@@ -1860,12 +1703,6 @@
         .brand-word {
           padding-inline: 10px;
           font-size: 1.45rem;
-        }
-
-        .facility-id {
-          justify-content: flex-end;
-          padding-inline: 14px;
-          text-align: right;
         }
 
         .hero-copy {
@@ -1902,14 +1739,6 @@
 
         .water-basin {
           min-height: 400px;
-        }
-
-        .pool-plan::before {
-          left: 2px;
-        }
-
-        .pool-plan::after {
-          right: 2px;
         }
 
         .section-body {
@@ -1971,7 +1800,6 @@
     <div class="facility">
       <div class="utility-bar">
         <span class="open-state">Facility open / Deck clear</span>
-        <span>Municipal aquatics department</span>
         <span id="localTime">07:30</span>
       </div>
 
@@ -1980,7 +1808,6 @@
           <span class="brand-number">50</span>
           <span class="brand-word">Lido <small>Facility 07</small></span>
         </a>
-        <div class="facility-id">Aquatics interface / Revision 02</div>
         <nav class="mast-nav" aria-label="Specimen navigation">
           <a href="#entry">Entry</a>
           <a href="#lanes">Lanes</a>
@@ -2057,10 +1884,7 @@
           <div class="section-body">
             <div class="spec-grid">
               <article class="specimen">
-                <div class="spec-heading">
-                  <h3>Instruction buttons</h3>
-                  <span class="spec-code">GATE / 01</span>
-                </div>
+                <div class="spec-heading"><h3>Instruction buttons</h3></div>
                 <div class="control-stack">
                   <div class="button-row">
                     <button class="control-button" type="button">Book lane</button>
@@ -2102,10 +1926,7 @@
               </article>
 
               <article class="specimen">
-                <div class="spec-heading">
-                  <h3>Recessed field</h3>
-                  <span class="spec-code">LOCKER / 12</span>
-                </div>
+                <div class="spec-heading"><h3>Recessed field</h3></div>
                 <label class="field" for="lockerCode">
                   <span class="field-label"><strong>1.20 M</strong> Locker code</span>
                   <span class="input-channel">
@@ -2124,10 +1945,7 @@
               </article>
 
               <article class="specimen">
-                <div class="spec-heading">
-                  <h3>Tile selections</h3>
-                  <span class="spec-code">ACCESS / A</span>
-                </div>
+                <div class="spec-heading"><h3>Tile selections</h3></div>
                 <div class="choice-list">
                   <label class="choice">
                     <input class="native-control" type="checkbox" checked />
@@ -2181,10 +1999,7 @@
               </article>
 
               <article class="specimen">
-                <div class="spec-heading">
-                  <h3>Lane gate</h3>
-                  <span class="spec-code">CHANNEL / ON</span>
-                </div>
+                <div class="spec-heading"><h3>Lane gate</h3></div>
                 <div class="control-stack">
                   <label class="switch-row">
                     <span class="switch-copy"
@@ -2215,10 +2030,7 @@
               </article>
 
               <article class="specimen specimen--wide">
-                <div class="spec-heading">
-                  <h3>Lane assignment</h3>
-                  <span class="spec-code">LIST / 04</span>
-                </div>
+                <div class="spec-heading"><h3>Lane assignment</h3></div>
                 <div class="select" id="laneSelect">
                   <button
                     class="select-trigger"
@@ -2288,10 +2100,7 @@
           <div class="section-body">
             <div class="spec-grid">
               <article class="specimen specimen--wide">
-                <div class="spec-heading">
-                  <h3>Lane-rope slider</h3>
-                  <span class="spec-code">PACE / 100 M</span>
-                </div>
+                <div class="spec-heading"><h3>Lane-rope slider</h3></div>
                 <div class="range-header">
                   <span class="depth-label">Target pace</span>
                   <output class="range-value" id="paceValue" for="paceRange"
@@ -2314,10 +2123,7 @@
               </article>
 
               <article class="specimen">
-                <div class="spec-heading">
-                  <h3>Session progress</h3>
-                  <span class="spec-code">16 / 24</span>
-                </div>
+                <div class="spec-heading"><h3>Session progress</h3></div>
                 <div class="progress-copy">
                   <strong>800 M</strong><span>of 1,200 m</span>
                 </div>
@@ -2337,10 +2143,7 @@
               </article>
 
               <article class="specimen">
-                <div class="spec-heading">
-                  <h3>Water-quality meter</h3>
-                  <span class="spec-code">CHEM / 08:00</span>
-                </div>
+                <div class="spec-heading"><h3>Water-quality meter</h3></div>
                 <div class="meter-layout">
                   <div
                     class="water-meter"
@@ -2366,10 +2169,7 @@
               </article>
 
               <article class="specimen specimen--wide">
-                <div class="spec-heading">
-                  <h3>Starting-block tabs</h3>
-                  <span class="spec-code">BLOCK / A–C</span>
-                </div>
+                <div class="spec-heading"><h3>Starting-block tabs</h3></div>
                 <div class="tabs">
                   <div class="tab-list" role="tablist" aria-label="Pool schedule">
                     <button
@@ -2462,10 +2262,7 @@
 
           <div class="section-body">
             <article class="specimen">
-              <div class="spec-heading">
-                <h3>Feedback & overlays</h3>
-                <span class="spec-code">GUARD / ACTIVE</span>
-              </div>
+              <div class="spec-heading"><h3>Feedback & overlays</h3></div>
               <div class="feedback-grid">
                 <div class="feedback-cell">
                   <div>
