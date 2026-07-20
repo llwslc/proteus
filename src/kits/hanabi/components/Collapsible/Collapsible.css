@@ -9,6 +9,13 @@
   border-radius: var(--hanabi-r-control);
   box-shadow: var(--hanabi-shadow-sm);
   padding: var(--hanabi-space-1);
+  transition: border-color var(--hanabi-dur) var(--hanabi-ease-out);
+}
+.hanabi-collapsible:has(.hanabi-collapse-trigger:where(:not([data-disabled])):hover) {
+  border-color: var(--hanabi-primary);
+}
+.hanabi-collapsible .hanabi-collapse-trigger:where(:not([data-disabled])):hover {
+  background: none;
 }
 .hanabi-collapsible[data-disabled] {
   opacity: var(--hanabi-disabled-opacity);

@@ -32,12 +32,13 @@
   white-space: nowrap;
   transition:
     background var(--hanabi-dur) var(--hanabi-ease-out),
+    border-color var(--hanabi-dur) var(--hanabi-ease-out),
     color var(--hanabi-dur) var(--hanabi-ease-out),
     translate var(--hanabi-dur) var(--hanabi-ease-out);
 }
 
 .hanabi-tabs__tab:where(:not([data-disabled], [data-active])):hover {
-  background: var(--hanabi-primary-wash);
+  border-color: var(--hanabi-primary);
 }
 
 .hanabi-tabs__tab[data-active] {

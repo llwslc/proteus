@@ -49,7 +49,7 @@
 }
 
 .hanabi-btn:where(:not(:disabled)):hover {
-  background: var(--hanabi-primary-wash);
+  border-color: var(--hanabi-primary);
 }
 .hanabi-btn:where(:not(:disabled)):hover::before {
   width: min(48px, 42%);

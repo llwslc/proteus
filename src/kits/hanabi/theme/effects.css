@@ -342,7 +342,7 @@
 .hanabi-seg__btn:where(
     :not([data-disabled], :disabled, [data-pressed], .is-active, [data-popup-open])
   ):hover {
-  background: var(--hanabi-primary-wash);
+  border-color: var(--hanabi-primary);
 }
 .hanabi-seg__btn[data-pressed],
 .hanabi-seg__btn.is-active,
