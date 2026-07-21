@@ -16,9 +16,9 @@
 
 代码却给 Collapsible 加了整框卡片、Accordion 没有：hanabi `.hanabi-collapsible` = `border: ink 实线 + shadow-sm`（整框卡片），其 Accordion 走 `dashed tone` 行分隔、无整框；brass `.brass-collapsible` = `border: 1px line + surface-zone 底`（整框卡片），其 Accordion 只有 `border-top/bottom`、无整框盒。共享的「折叠皮」（trigger/marker/chevron/panel）是兑现的，越界的只有**根容器框**。
 
-根因是治理空白：「Collapsible 是不是一张有框卡片」这层，契约层与皮肤层一个字都没写，skin 各自拍——brass/hanabi 画框，nova/abyss/bauhaus/riot 不画（六套不统一正是此空白的表现）。
+其余四套都兑现「同 Accordion」：nova／abyss 的 Collapsible 根与各自 Accordion item 画同款框（`nova-surface`／`abyss-frame`、变量同值——Collapsible 恰是一张 Accordion item 卡），bauhaus／riot 两侧皆无框。违约的 brass 与 hanabi 病还不同：brass 皮肤文档无 Collapsible 条目（真治理空白，`kit-spec-coverage` 以 WARN 挂账）；hanabi 皮肤文档 `:37` 后半句自己写着「唯 hover 例外——独立卡片，外层卡片框转 `primary`」——皮肤层与契约「同 Accordion」正面相抵（spec 对 spec 冲突，非无人 governed）。
 
-待你拍：Collapsible 到底是「独立卡片」还是「同 Accordion 无框」？定卡片 → 回写 spec 明写「Collapsible = 带框卡片、区别于 Accordion 无框行」并让 6 套统一画框；定无框 → 改 brass/hanabi 去掉 Collapsible 根框、真「同 Accordion」。
+待你拍：Collapsible 是「独立卡片」还是「同 Accordion」？定卡片 → 契约 `:143` 改明写「Collapsible = 带框卡片」、bauhaus/riot 补框、brass 补条目；定同 Accordion → 改 brass/hanabi 去掉根框、hanabi.md:37 删「独立卡片」从句。
 
 ## 3. 本轮全量对账：范围·方法·边界（诚实标注，别当「全查过了」）
 
@@ -55,8 +55,7 @@
 
 - **已确认并修掉**：hanabi `primary-deep` 当文字色的笔误 → `primary-shade`，5 处（见 §4）。
 - **已确认、待拍板**：§2 Collapsible 容器框违反「同 Accordion」（brass + hanabi）。
-- **候选、待议**：nova `panel-scan` 有动效而 spec 未述（§5）；brass／riot Fieldset、riot／abyss／bauhaus Badge 的独立根框无条目可依（§5）；abyss 全文缺 Progress 条目（§5）。
-- **结构性根因**：皮肤规格 §2 只收全局语法推导不出的独创决定，而其收录章程无处成文、各套回写纪律悬殊（hanabi 37/37 全覆盖，abyss 仅 25 条）；独创决定一旦落在没有条目的控件上就无人 governed——这是本类漂移的源头，不补覆盖还会再犯。
+- **结构性根因**：皮肤规格 §2 只收全局语法推导不出的独创决定，而其收录章程无处成文、各套回写纪律悬殊（hanabi 37/37 全覆盖，abyss 仅 25 条）；独创决定一旦落在没有条目的控件上就无人 governed——§5 的候选（panel-scan、Fieldset/Badge、abyss Progress）已于第四趟全部入册（§8），完整性现由 `kit-spec-coverage` 门盯（§9）。
 
 **仍未覆盖（下一步）**：交互与动效的运行时一致性（部分已由动态门覆盖）。app 层规格与 props 契约两轴已于第四趟补跑，见 §8。
 
