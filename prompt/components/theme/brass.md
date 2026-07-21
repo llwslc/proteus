@@ -23,6 +23,7 @@
 - Progress：黄铜灯丝填充 + 刻度记，灯丝流动；不定态的滑块走 `left` 位移。
 - Meter：压力表——横轨分成 success → warning → danger 三个色区，填充走 `accent-fill`，端部带刻度记。
 - Tabs：渐变 hover、黄铜下划线。
+- Collapsible：整框成箱——`line` 描边 + `round-md` + `surface-zone` 底。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤；开启态转 primary、chevron 翻转。
 - Dialog：标题配一个齿轮 cartouche 图记，`brass-rotate` 自转。
