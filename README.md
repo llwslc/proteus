@@ -2,6 +2,8 @@
 
 Re-skinnable React component kits built on [**Base UI**](https://base-ui.com) (`@base-ui/react`) — the same 37 accessible controls under radically different design languages, one kit per language. Named for the shape-shifting sea god: one contract, any face. The kit roster lives in `src/kits/registry.ts`; the visual directions (built and candidate) are cataloged in `prompt/theme/README.md`.
 
+Live showcase: **<https://llwslc.github.io/proteus/>**
+
 A thin shell switches between kits (floating pill, bottom-centre); each kit is lazy-loaded on demand and a switch persists the choice then does a full `location.reload()`, so only one kit's CSS is ever loaded and the ambient worlds never collide (selectors are unscoped by design).
 
 ## Run
