@@ -173,6 +173,12 @@ hits=$(grep -HnE "$why" $FILES 2>/dev/null || true)
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
 
 echo
+echo "## layer-ownership narration — the doc's location names the layer; placement cites a FILE (App.css), never 「App 层/组件层/demo 装置」"
+own='App 层|组件层|kit 层|demo 装置'
+hits=$(grep -HnE "$own" $FILES 2>/dev/null || true)
+if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
+
+echo
 echo "## exclusive-conditional — state 「当X，做Y」 directly, not 「仅当X才Y / 只有X才Y / X时才Y」"
 # the objectionable form is 「…才 <动作>」 and 「只有…才」. skips 才是(强调)/刚才/方才/才能,
 # and 只在…描(空间范围，无 才) is left alone. curated 动词 list — grow as new ones surface.
