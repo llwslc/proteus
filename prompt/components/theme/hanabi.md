@@ -19,7 +19,7 @@
 - Switch：药丸电门——关态 `track` 白轨 + `ink` 框 + inset `tone` 阶影，旋钮白圆 + 高光点靠左；开态轨道转 `primary`／`primary-deep` 相间斜纹并以 `stripe-flow` 流动，旋钮 `ease-snap` 滑到右端。
 - Checkbox：`r-chip` 圆角方框 + 微阶影带；勾选 = `primary` 填 + 白勾描线动画（stroke-dashoffset 画出）+ `box-pop` 果冻弹 + 一道 45° 斩击白闪掠过（`check-slash`）；indeterminate = 白粗横杠；hover 盖 wash。
 - CheckboxGroup：父子竖排，items 左缩进，引导线是 `2px dashed tone` 缝纫虚线。
-- Radio：`ink` 描线正圆 + 微阶影带；选中 = `primary` 实心圆芯 + 左上白高光点，`box-pop` 弹入；行标签走 `.hanabi-cap`。
+- Radio：`ink` 描线正圆 + 微阶影带；选中 = `primary` 实心圆芯 + 左上白高光点，`box-pop` 弹入。
 - ToggleGroup：分段条家族——不画外箱体，chip 药丸散排（`r-pill`）、各带 `ink` 框 + `shadow-sm`，文字正文体 `fw-700`；选中态见 §1「分段选中」。
 - Slider：轨 `r-pill` `ink` 框 + inset 阶影，indicator `primary` 平涂；thumb 是**准星**——白圆 `ink` 框 + `primary` 中心点 + 上下左右四根 `ink` 刻度线，hover 放大一步，拖动与键盘焦点点亮 2px `primary` 锁定环；数值走 DotGothic16 `primary-shade`。
 - NumberField：`减·输入·加` 三连——步进钮是 `cel` 方钮（display 体符号、`shadow-sm`、hover 描线转 `primary`），中间输入位 mono 体居中；到界的步进钮按禁用态置灰。
