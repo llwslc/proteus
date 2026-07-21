@@ -45,3 +45,11 @@
 - **nova／abyss／brass／bauhaus：本轴无候选**（所点名 token 均落在各自控件代码里）。
 
 本趟边界：只核了「spec 点名的 token 是否被该控件用到」；**仍未核**「有没有用在 spec 说的那个属性／状态上」以及结构／尺寸／效果声明——留下一趟。
+
+## 6. 逐属性核·第二趟：状态轴／动效轴／覆盖轴（全 6 套）
+
+- **状态轴：干净，无漂移**。核「spec 说某态用某 token，码里那个态的规则是否真用它」，3 个候选逐条读后全是误报——riot `stroke-bold` 是宽度 token（3px）挂在 indicator 上、非选中态色；hanabi Menu `danger-wash` 经 `--hanabi-item-color` 间接实现（spec 自己就写明了这条间接）；hanabi Toolbar `primary-shade` 是 rest 字色、hover 是下划线，两者都对。
+- **动效轴：基本干净，一处候选**。各套 keyframe 与 spec 双向比对，「spec 未点名」的绝大多数其实**被散文描述过**（abyss「自转的 sigil」「开启一记钥匙转启」、riot「`.riot-jitter` 微抖」、hanabi「白勾描线动画」「不定态＝斜纹段左右巡游」）——命名与否不构成漂移。**唯 nova `panel-scan`**（Panel 上 6s 无限循环的纵向扫光）在 nova 的 Panel 条目里毫无描述（该条只写了「对角两枚 L 形辉光角框」），属「码有动效、spec 未述」候选。
+- **覆盖轴（新发现，是 §3 漂移的结构性根因）**：皮肤规格的标题是「组件皮肤决定」，**只收录超出默认／共享配方的决定**，所以「无条目」本身不等于失控。但各套覆盖悬殊——hanabi **50 条（37/37 全覆盖）**、riot 39、brass 29、bauhaus 28、nova 26、abyss 25。**当某套确实为某控件做了独特视觉决定、而该控件又恰好没有条目时，这个决定就无人 governed**：§3 的 Collapsible 正是此类（brass 给它整框卡片 + `surface-zone` 底，而 brass 文档里根本没有 Collapsible 条目）。把「码里有独立根框」与「无条目」交叉，同类候选还有 brass Fieldset、riot Fieldset、riot／abyss／bauhaus Badge。另：**abyss 全文没有 Progress 条目**，而其余五套都有。
+
+本趟边界：结构／尺寸／几何声明（间距、尺寸、对齐公式）与 app 层规格尚未核，留下一趟。
