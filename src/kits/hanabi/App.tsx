@@ -958,7 +958,9 @@ function Demo() {
               <div className="hanabi-stack">
                 <ContextMenu
                   trigger={
-                    <span className="hanabi-cap">右クリックで作戦メニューを開く</span>
+                    <div className="hanabi-context__zone">
+                      <span className="hanabi-cap">右クリックで作戦メニューを開く</span>
+                    </div>
                   }
                 >
                   <MenuItem shortcut="⌘I">偵察</MenuItem>

@@ -18,6 +18,10 @@
 
 - 顶栏 `abyss-drop` 下滑；hero 文案按 `abyss-rise` 分档错开；面板进视口时自暗水里浮出——`blur` 由浊转清、缓缓上浮微放大，`dur-slow` 慢速、`ease` 收，错开一拍，像自渊底升起。
 
-## 4. 外壳
+## 4. 面板特例
+
+- context 面板的投放区（App 层装置，`context__zone`）：`inset` 底 + `round-4` + `1px dashed ink-strong` 内描（offset −3）+ 底下一层 `glow-soft` 椭圆辉雾；hover 字转 `text`、雾满亮；开菜单字转 `glow`、描线转 `glow-a55`。
+
+## 5. 外壳
 
 - 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `glow-soft` 幽辉底；键盘焦点再自左缘渗开一团 `glow-a30` 墨晕、字挂 `text-aura` 微辉，去原生 outline。

@@ -976,7 +976,11 @@ function Demo() {
               <div className="riot-stack">
                 <ContextMenu
                   trigger={
-                    <span className="riot-cap">Right-click the wall to open actions</span>
+                    <div className="riot-context__zone">
+                      <span className="riot-cap">
+                        Right-click the wall to open actions
+                      </span>
+                    </div>
                   }
                 >
                   <MenuItem shortcut="⌘I">Inspect</MenuItem>

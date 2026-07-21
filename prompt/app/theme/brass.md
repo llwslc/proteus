@@ -18,6 +18,10 @@
 
 - 顶栏 `brass-drop` 下滑、机械落定；hero 文案按 `brass-rise` 分档错开；面板进视口时逐个落定——全程用 `ease-detent` 收一记微过冲的回弹，像仪表归位。
 
-## 4. 外壳
+## 4. 面板特例
+
+- context 面板的投放区（App 层装置，`context__zone`）：plate 凹面——`surface-inset` 填 + `bevel-inset` + `bezel-dim` + `round-md`；hover bezel 升 `bezel`，开菜单转 `bezel-strong` 并挂 `glow-focus`。
+
+## 5. 外壳
 
 - 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底；键盘焦点在行首亮起一枚 7px 黄铜铆钉（直接取 `rivet` 铆钉配方，`ease-detent` 棘轮落位），去原生 outline。

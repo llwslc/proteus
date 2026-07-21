@@ -18,6 +18,10 @@
 
 - 顶栏下滑；hero 文案 `bauhaus-slide` 块面滑移、分档错开；面板进视口时逐块推上；`ease-out` 锐利落定、不回弹——硬挺如构成。
 
-## 4. 外壳
+## 4. 面板特例
+
+- context 面板的投放区（App 层装置，`context__zone`）：`rgba(26,79,214,.07)` 浅蓝底 + `stroke` dashed `ink` 框 + `r-control`；开菜单底转 `rgba(26,79,214,.16)`。
+
+## 5. 外壳
 
 - 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text-bright`、盖 `tint-soft` 底；键盘焦点行内容硬切右移 8px、行首露出一枚 7px `primary` 实心方块——基本形滑移，去原生 outline。

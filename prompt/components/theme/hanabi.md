@@ -41,7 +41,7 @@
 - Menu：列表项皮肤复用 Select；图标 `dim` 随高亮转 `bright`；快捷键 DotGothic16 `mute` 靠右；子菜单 chevron ▸；danger 项红字红图标、高亮盖 `danger-wash`（换色走 `--hanabi-item-color`）。
 - Menubar：chip 同 ToggleGroup；菜单弹层复用 Menu 皮。
 - NavigationMenu：触发器 chip 同 ToggleGroup 未选态、chevron 随开合翻转；下拉 = `cel` 面 + `ink` 框 + `shadow`，connector 三角指向激活触发器、随 morph 移动；链接 = `r-chip` 行，label 正文 `fw-700` + 描述 `dim` fs-13，悬停盖 wash；morph 接 Base UI 尺寸变量。
-- ContextMenu：投放区 = `2px dashed tone-deep` 虚线箱 + `surface-zone` 底（hover 升 `surface-zone-hover`）+ 右下角一撮 `primary` 半调网点；菜单皮复用 Menu。
+- ContextMenu：菜单皮复用 Menu。
 - Dialog：`cel` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；标题做成骑左上角的 `primary` 斜切铭牌（正文 `fw-900` 白字）、body 顶部让位到 close 之下；backdrop = `scrim` + `primary` 半调网点。
 - AlertDialog：Dialog 基底按 `tone` 重染——题牌与确认钮同取 tone（danger 红、warning 金、primary 粉），题牌白字（warning 取 `on-warning`）、题牌前缀一枚 tone 图记 ⚠。
 - Drawer：面板 = `cel` 面 + `r-modal` 只圆朝屏内两角，朝屏内那条边 `ink` 描线 + `shadow-lg` 底边阶影带，其余三边贴屏不描；题头 = h2 字号的正文体标题（`fs-22` `fw-900` `bright`，和文不走展示体；前缀 `primary` ✦ `fs-16`），不用铭牌、不画线；body 自滚动、行距 `space-4`。

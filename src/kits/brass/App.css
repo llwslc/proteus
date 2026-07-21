@@ -290,6 +290,42 @@
   flex-direction: column;
   gap: var(--brass-space-3);
 }
+
+:root {
+  --brass-contextmenu-min-h: 132px;
+}
+.brass-context__zone {
+  --brass-plate-fill: var(--brass-surface-inset);
+  --brass-plate-bevel: var(--brass-bevel-inset);
+  --brass-plate-bezel: var(--brass-bezel-dim);
+  --brass-plate-round: var(--brass-round-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--brass-contextmenu-min-h);
+  padding: var(--brass-space-6) var(--brass-space-4);
+  text-align: center;
+  cursor: context-menu;
+  user-select: none;
+  transition: filter var(--brass-dur) var(--brass-ease);
+}
+.brass-context__zone:hover {
+  --brass-plate-bezel: var(--brass-bezel);
+}
+.brass-context__zone[data-popup-open] {
+  --brass-plate-bezel: var(--brass-bezel-strong);
+  filter: var(--brass-glow-focus);
+}
+
+.brass-context__zone:focus-visible {
+  outline: none;
+  filter: var(--brass-glow-focus);
+}
+
+.brass-context__zone[data-disabled] {
+  opacity: var(--brass-disabled-opacity);
+}
+
 .demo-loader-stage {
   position: relative;
   transform: translateZ(0);

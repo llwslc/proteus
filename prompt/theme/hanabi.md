@@ -20,7 +20,7 @@
 - 两条复用的强调填充，都是平涂：`accent-surface` = 实色 `primary`，点亮激活表面；`accent-fill` = 实色 `primary`，方向与选中指示。
 - alpha 只给盖不了实色的三处：`scrim` = `ink` 的 `.5` 背板（另叠 primary 网点，见氛围层）；高光条 `hi` = 白 `.8`；分格刻度线 `cell-line` = `ink` 的 `.14`（要同时压在轨底与填充上）。其余悬停、tone 底一律走 `-wash` 实色档，赛璐璐拒绝半透明涂色。
 - 中性与效果色：`track #f2f7fc` 是未填充轨道底（关态轨同）；禁用底 `disabled-fill #e3eaf5`。
-- 表面：`surface-modal` 取赛璐璐白；`surface-zone #eef5fb` 是投放区底，hover 升 `surface-zone-hover #e4eefa`。
+- 表面：`surface-modal` 取赛璐璐白。
 - 描边与影：全局描线恒为 `ink #22304f`；影**画在物体自己身上**——凸面走底边阶影带（inset 零模糊、零偏移的 tone 横带贴内底缘），分档：`shadow-sm inset 0 -3px`（chip、铭牌、步进钮小件）、`shadow inset 0 -4px`（按钮、弹层、条目件）、`shadow-lg inset 0 -6px`（卡片、面板、模态）、微件 `-2px` 就近写（旋钮、badge、圆标）；实填面的带换本家族 `-shade` 档；凹面（输入位、轨道、量表、投放区）走左上 inset `tone-soft` 阶影。**无投影、无 drop-shadow**——赛璐璐的影是画上去的分带，光是画上去的高光条，无辉光。选中提示取 `primary`。
 
 ## 2. 字体与排版

@@ -937,9 +937,11 @@ function Demo() {
               <div className="brass-stack">
                 <ContextMenu
                   trigger={
-                    <span className="brass-cap">
-                      Right-click the plate to open the works
-                    </span>
+                    <div className="brass-plate brass-context__zone">
+                      <span className="brass-cap">
+                        Right-click the plate to open the works
+                      </span>
+                    </div>
                   }
                 >
                   <MenuItem shortcut="⌘I">Inspect</MenuItem>

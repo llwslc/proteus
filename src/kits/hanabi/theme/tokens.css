@@ -3,8 +3,6 @@
   --hanabi-surface: #ffffff;
   --hanabi-surface-modal: #ffffff;
   --hanabi-surface-inset: #e8f0f9;
-  --hanabi-surface-zone: #eef5fb;
-  --hanabi-surface-zone-hover: #e4eefa;
   --hanabi-scrim: rgba(34, 48, 79, 0.5);
 
   --hanabi-ink: #22304f;
@@ -147,7 +145,6 @@
   --hanabi-button-icon-ghost: 28px;
   --hanabi-checkbox-box: 22px;
   --hanabi-combobox-min-w: 240px;
-  --hanabi-contextmenu-min-h: 132px;
   --hanabi-gauge-h: 14px;
   --hanabi-menu-min-w: 210px;
   --hanabi-menubar-trigger-h: 32px;

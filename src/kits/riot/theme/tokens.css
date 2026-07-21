@@ -36,7 +36,6 @@
   --riot-surface-popup: var(--riot-paper);
   --riot-surface-modal: #f2eede;
   --riot-surface-inset: #d3c9b0;
-  --riot-surface-zone: rgba(255, 77, 10, 0.07);
   --riot-scrim: rgba(10, 10, 10, 0.6);
 
   --riot-ink: #0d0d0d;
@@ -182,7 +181,6 @@
   --riot-tooltip-w: 240px;
   --riot-popover-w: 288px;
   --riot-preview-w: 320px;
-  --riot-contextmenu-min-h: 132px;
   --riot-dialog-w: 460px;
   --riot-alert-w: 440px;
   --riot-drawer-w: 420px;

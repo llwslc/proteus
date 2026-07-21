@@ -1100,7 +1100,13 @@ function Demo() {
             <div className="nova-section" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <div className="demo-stack">
-                  <ContextMenu trigger="Right-click anywhere in this zone">
+                  <ContextMenu
+                    trigger={
+                      <div className="nova-context__zone">
+                        Right-click anywhere in this zone
+                      </div>
+                    }
+                  >
                     <MenuItem shortcut="⌘C">Copy Coordinates</MenuItem>
                     <MenuItem shortcut="⌘B">Ping Beacon</MenuItem>
                     <MenuItem disabled>Decrypt</MenuItem>

@@ -944,9 +944,11 @@ function Demo() {
               <div className="bauhaus-stack">
                 <ContextMenu
                   trigger={
-                    <span className="bauhaus-cap">
-                      Right-click the plane to open actions
-                    </span>
+                    <div className="bauhaus-context__zone">
+                      <span className="bauhaus-cap">
+                        Right-click the plane to open actions
+                      </span>
+                    </div>
                   }
                 >
                   <MenuItem shortcut="⌘I">Inspect</MenuItem>

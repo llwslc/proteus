@@ -1,5 +1,3 @@
 {
- "brass": ["Collapsible"],
- "abyss": ["ContextMenu"],
- "nova": ["ContextMenu"]
+ "brass": ["Collapsible"]
 }

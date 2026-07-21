@@ -17,7 +17,7 @@
 - 黄铜的 alpha 阶梯：`tint-soft .09 · tint .14 · line .18 · tint-active .26 · line-strong .40`。新的黄铜 alpha 先并进这条阶梯，不另造。
 - 另立的几个 alpha 家族：success 的 `-wash .12`；warning 的 `-wash .12`；danger 的 `-fill .50 / -wash .12`。
 - 中性与效果色：`off #2c2519` 是关态轨道，呈发蓝褐的钢色；`track #221c12` 是未填充的轨道；金属扫光 `sheen .55`；关态旋钮的金属渐变 `thumb-top #6a5f49 / -bottom #312a1d`；`surface-raised`（`180deg #2a2215 → #1c160e`）是升起件的板填充。
-- 表面：`surface .82`、`surface-popup .975`；`surface-modal` 走一条 165deg 的深色渐变；`surface-inset #100c06` 是凹陷的井底；`surface-zone` 是右键投放区的底色；`scrim .66`。
+- 表面：`surface .82`、`surface-popup .975`；`surface-modal` 走一条 165deg 的深色渐变；`surface-inset #100c06` 是凹陷的井底；`surface-zone` 是圈住成组内容的箱底；`scrim .66`。
 - 辉光与阴影：文字辉光 `glow-text` 是暖琥珀色；一组 drop-shadow `glow-focus / -popup / -active / -trigger / -modal` 走黄铜灯晕；焦点描边环 `ring-focus`（暗色底座 + 亮铜外圈），`-recessed` 是它再叠一层 `bevel-inset`、给凹陷式控件用；矩形投影 `shadow-popup / -modal`，硬机加工感的投影 `shadow-ink`，旋钮的微影 `shadow-thumb`。
 
 ## 2. 字体与排版

@@ -11,8 +11,6 @@
   );
   --nova-surface-inset: #0a1a29;
   --nova-surface-raised: rgba(12, 24, 38, 0.96);
-  --nova-surface-zone: rgba(7, 14, 24, 0.5);
-  --nova-surface-zone-hover: rgba(11, 24, 40, 0.6);
 
   --nova-primary: #2de2ff;
   --nova-primary-deep: #119cb8;
@@ -150,7 +148,6 @@
   --nova-combobox-min-w: 240px;
   --nova-combobox-icon: 22px;
   --nova-combobox-glyph: 18px;
-  --nova-contextmenu-min-h: 132px;
   --nova-menu-min-w: 210px;
   --nova-menubar-trigger-h: 32px;
   --nova-meter-track-h: 16px;

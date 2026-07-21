@@ -18,6 +18,10 @@
 
 - 顶栏 `nova-drop` 下滑；hero 的 eyebrow／标题／描述／数据条按 `nova-rise` 分档错开（延时 0.08～0.42s）；面板进视口时 `is-visible` 逐个渐入。
 
-## 4. 外壳
+## 4. 面板特例
+
+- context 面板的投放区（App 层装置，`context__zone`）：`-45deg` 细斜纹（`tint-faint`）叠半透暗底（`rgba(7,14,24,.5)`，hover 深至 `rgba(11,24,40,.6)`）+ `clip-9` 切角 + `1px dashed line` 内描；开菜单描线转 `primary`；字 `text-dim` 居中、`ls-4` 撑开。
+
+## 5. 外壳
 
 - 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text`、盖 `tint-faint` 底；键盘焦点再转 `primary` + `glow-text` 辉光，行面浮出 `tint-soft` 横向扫描线纹理——CRT 目标行，去原生 outline。

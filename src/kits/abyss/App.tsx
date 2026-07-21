@@ -1236,7 +1236,13 @@ function Demo() {
             <div className="abyss-section" id="context">
               <Panel title="Context Menu" meta="CTX">
                 <div className="demo-stack">
-                  <ContextMenu trigger="Right-click anywhere in these depths">
+                  <ContextMenu
+                    trigger={
+                      <div className="abyss-context__zone">
+                        Right-click anywhere in these depths
+                      </div>
+                    }
+                  >
                     <MenuItem shortcut="⌘C">Mark Bearing</MenuItem>
                     <MenuItem shortcut="⌘B">Sound Beacon</MenuItem>
                     <MenuItem disabled>Raise the Deep</MenuItem>

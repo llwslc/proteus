@@ -17,7 +17,7 @@
 - 青色的 alpha 阶梯（同一个青、不同透明度）：`tint-faint .05 · tint-soft .08 · highlight .14 · line .22 · tint-active .30 · primary-a40 .40 · line-strong .55`。新的青色半透明值先并进这条阶梯，不另造。
 - 另外单立的 alpha 家族：`secondary-fill .55`；danger 一组 `-fill .55 / -wash .12 / -text #ffd9dc`。
 - 中性与效果色：`off` 是关态轨道色，呈蓝灰；`track` 是未填充的轨道色；`ghost-hover` 给 ghost 按钮悬停；白扫光 `sheen .6 / sheen-soft .14`（高光斜扫用）；关态旋钮的金属渐变 `thumb-idle-top / -bottom`；深表面渐变 `surface-deep-top / -bottom`。
-- 表面：`surface .72` 是半透明的面板底；`surface-popup #070e18` 是不透明的浮层底；`surface-modal` 走 `160deg` 的深色渐变；`surface-inset #0a1a29` 是凹陷的暗底；`surface-raised` 给步进钮的底；`surface-zone / -hover` 给右键投放区的底；`scrim .66` 是模态背后的半透明遮罩。
+- 表面：`surface .72` 是半透明的面板底；`surface-popup #070e18` 是不透明的浮层底；`surface-modal` 走 `160deg` 的深色渐变；`surface-inset #0a1a29` 是凹陷的暗底；`surface-raised` 给步进钮的底；`scrim .66` 是模态背后的半透明遮罩。
 - 辉光与阴影：文字辉光 `glow-text`；一组 drop-shadow 形态的辉光 `glow-focus / -popup / -active / -trigger / -modal`；辉光半径统一用 `--nova-glow-r` 8px；矩形投影 `shadow-popup / -modal`；影子的墨色 `shadow-ink`；旋钮的微投影 `shadow-thumb`。
 
 ## 2. 字体与排版

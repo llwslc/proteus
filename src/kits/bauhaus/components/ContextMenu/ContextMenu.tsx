@@ -1,14 +1,12 @@
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu";
 import { ScrollArea } from "../ScrollArea";
-import type { ReactNode } from "react";
-import { cx } from "../cx";
-import "./ContextMenu.css";
+import type { ReactElement, ReactNode } from "react";
 
 export interface ContextMenuProps extends Omit<
   React.ComponentProps<typeof BaseContextMenu.Root>,
   "children"
 > {
-  trigger: ReactNode;
+  trigger: ReactElement;
   children: ReactNode;
   className?: string;
 }
@@ -23,6 +21,8 @@ export function ContextMenu({
   return (
     <BaseContextMenu.Root disabled={disabled} {...props}>
       <BaseContextMenu.Trigger
+        render={trigger}
+        className={className}
         data-disabled={disabled || undefined}
         tabIndex={disabled ? -1 : 0}
         onKeyDown={(e) => {
@@ -38,10 +38,7 @@ export function ContextMenu({
             );
           }
         }}
-        className={cx("bauhaus-context__zone", className)}
-      >
-        {trigger}
-      </BaseContextMenu.Trigger>
+      />
       <BaseContextMenu.Portal>
         <BaseContextMenu.Positioner className="bauhaus-lift bauhaus-menu-tier">
           <BaseContextMenu.Popup className="bauhaus-surface bauhaus-pop bauhaus-popup bauhaus-popup-list">
