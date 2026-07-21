@@ -35,3 +35,13 @@
 查了（覆盖）——轴 A｜spec 跨组件等价声明：把 `components.md` + 6 套 `theme/<kit>.md` 里所有「复用／同 X／共用／皮同」逐条抓出对码，**除 §3 的 Collapsible↔Accordion 外全部兑现**（list 项皮 Select↔Combobox↔Autocomplete↔Menu 共用 `list-item`；分段 chip ToggleGroup↔Menubar↔NavMenu↔Toolbar 共用 `seg__btn`；字段皮 Select↔Input 共用 `field`；浮层面 PreviewCard↔Popover、riot Popover↔Tooltip 共用 `surface`／`pop`／`lift`；Menu/parts 共用——均到位）。轴 B｜根容器框治理：37 组件 × 6 套脚本比对根块画不画框、跨套是否一致，唯一被等价声明约束又违约的是 Collapsible；Button／Badge／Checkbox／Switch／Fieldset／ScrollArea／Toast 的跨套框差异 = 各套自有皮肤、无等价声明约束、非漂移，已排除。
 
 没查（边界，未覆盖，下一趟）——逐属性核每个单控件的每句视觉声明：每处「hover 盖 X」「某 token 名值」「某阶影档」是否与码一字不差，这是比本轮大一个量级的逐条全量核，本轮未做；交互态／动效／响应式的 spec↔码一致亦不在本轮（部分另有动态门覆盖）。
+
+## 5. 逐属性核·第一趟：token 引用轴（全 6 套已跑）
+
+方法：脚本抽出每套 `components/theme/<kit>.md` 每个控件行点名的 token／类／效果，核验它是否真落在该控件自身 CSS／TSX 或它复用的共享 `effects` 配方里；漏的逐条读确认真伪。
+
+- **hanabi `primary-deep` 误当文字色 → 已回写 spec 为 `primary-shade`（本提交已修）**：spec 5 处（§9 列表选中文字、`:24` Slider 数值、`:27` OtpField filled、`:28` Select 选中项、`:51` Toolbar 链接）写「文字 `primary-deep`」，但代码这些文字**一律用 `primary-shade`**（`#bf245b` 深粉；`primary-deep #e82f73` 只做 hover 加深的**实填**、从不做文字）。代码一致且合理（深色文字更可读、`-shade` 本就属阶影／深色家族），判 spec 笔误、改 deep→shade；`§7`／`:19` 的 `primary-deep` 是实填、正确、保留。
+- **demo 层内容样式被写进组件皮（非码漂移，记一笔）**：riot Switch「标签走 `.riot-tag`」、hanabi PreviewCard「身份行 `.hanabi-cap`」——两个 class 都在**排版层定义、demo 层施加**（组件本身不渲染 label／身份行、内容由消费方传），组件皮文档把 demo 施加的内容 class 归给了组件。代码正确，属**层分离**小瑕（组件皮 ⊥ demo）；要更严可把这类内容样式的描述挪去 app 层。
+- **nova／abyss／brass／bauhaus：本轴无候选**（所点名 token 均落在各自控件代码里）。
+
+本趟边界：只核了「spec 点名的 token 是否被该控件用到」；**仍未核**「有没有用在 spec 说的那个属性／状态上」以及结构／尺寸／效果声明——留下一趟。
