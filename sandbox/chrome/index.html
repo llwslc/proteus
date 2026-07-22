@@ -643,9 +643,11 @@ strong{font-weight:700}
       ?'<svg viewBox="0 0 20 20"><path d="M10 3v14M3 10h14"/></svg>'
       :'<svg viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9"/></svg>';
     t.innerHTML='<span class="toast__orb" aria-hidden="true">'+icon+'</span>'
-      +'<span class="toast__body"><span class="toast__title">'+title+'</span><br><span class="toast__msg">'+msg+'</span></span>'
+      +'<span class="toast__body"><span class="toast__title"></span><br><span class="toast__msg"></span></span>'
       +'<button class="toast__close" type="button" aria-label="关闭通知">×</button>'
       +'<span class="toast__life" aria-hidden="true"><i style="animation-duration:4.2s"></i></span>';
+    t.querySelector(".toast__title").textContent=title;
+    t.querySelector(".toast__msg").textContent=msg;
     toaster.appendChild(t);
     while(toaster.children.length>3)toaster.firstElementChild.remove();
     var gone=false;
