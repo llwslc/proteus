@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOTEM / Folk Interface Loom</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Work+Sans:wght@500;700&display=swap');
+:root{--bone:#d8c39e;--ochre:#b76832;--indigo:#173c4c;--red:#a84232;--ink:#27271f}*{box-sizing:border-box}
+body{margin:0;background:var(--indigo);color:var(--ink);font-family:"Work Sans",sans-serif}.loom{min-height:100vh;width:min(1400px,100%);margin:auto;background:var(--bone);position:relative;overflow:hidden;background-image:repeating-linear-gradient(0deg,#0000000b 0 1px,transparent 1px 4px)}
+.border{height:54px;background:repeating-linear-gradient(45deg,var(--red) 0 18px,var(--bone) 18px 36px,var(--indigo) 36px 54px,var(--ochre) 54px 72px);border-bottom:8px solid var(--ink)}.border.bottom{border-top:8px solid;border-bottom:0}
+nav{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:3px solid;font-size:11px;letter-spacing:3px}nav a{color:inherit;text-decoration:none}
+.hero{display:grid;grid-template-columns:.85fr 1.15fr;min-height:720px}.copy{padding:clamp(45px,8vw,110px);display:flex;flex-direction:column;justify-content:center;border-right:3px solid}.copy small{letter-spacing:4px;color:var(--red)}h1{font:clamp(70px,10vw,140px)/.76 Rye,serif;margin:26px 0;color:var(--indigo);text-shadow:5px 5px 0 var(--ochre)}.copy p{font-size:14px;line-height:1.7;max-width:440px}.copy button{align-self:start;border:3px solid;background:var(--red);color:var(--bone);padding:12px 20px;font-weight:700;cursor:pointer;box-shadow:5px 5px 0 var(--ink)}
+.totem-stage{display:grid;place-items:center;position:relative;background:linear-gradient(90deg,#0000000b 1px,transparent 1px),linear-gradient(#0000000b 1px,transparent 1px);background-size:32px 32px}.totem{width:min(420px,75%);display:grid;grid-template-columns:repeat(5,1fr);border:8px solid var(--ink);box-shadow:14px 14px 0 var(--red);transition:.7s}.tile{aspect-ratio:1;border:2px solid var(--ink);background:var(--bone);position:relative;transition:.45s}.tile:nth-child(3n){background:var(--red)}.tile:nth-child(4n){background:var(--ochre)}.tile:nth-child(5n){background:var(--indigo)}.tile:after{content:"";position:absolute;inset:16%;background:var(--ink);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}.tile:nth-child(even):after{clip-path:polygon(0 0,100% 0,50% 100%)}.mask{position:absolute;width:48%;height:58%;left:26%;top:21%;background:var(--bone);border:4px solid;border-radius:50% 50% 30% 30%;z-index:2}.mask:before,.mask:after{content:"";position:absolute;top:28%;width:23%;height:18%;background:var(--ink);clip-path:polygon(0 0,100% 50%,0 100%)}.mask:before{left:14%}.mask:after{right:14%;transform:scaleX(-1)}.mask i{position:absolute;bottom:15%;left:30%;width:40%;height:13%;background:var(--red)}
+.turned .totem{transform:rotate(90deg) scale(.82)}.turned .tile{transform:rotate(-90deg)}.legend{position:absolute;bottom:22px;right:25px;font-size:10px;letter-spacing:2px}.legend i{display:inline-block;width:10px;height:10px;background:var(--red);margin-right:8px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.copy{border-right:0;border-bottom:3px solid}.totem-stage{min-height:600px}h1{font-size:80px}}
+</style>
+</head>
+<body><main class="loom" id="loom"><div class="border"></div><nav><span>TOTEM / FOLK INTERFACE LOOM</span><span>WOVEN STATE №12</span><a href="../">THEME ATLAS ↗</a></nav><section class="hero"><article class="copy"><small>SHAPE · RHYTHM · MEMORY</small><h1>Craft has a pulse.</h1><p>A tactile component language assembled from woodcut marks, woven bands and symbols that feel passed from hand to hand.</p><button id="turn">TURN THE PATTERN</button></article><div class="totem-stage"><div class="totem" id="totem"><div class="mask"><i></i></div></div><span class="legend"><i></i>HAND-WOVEN / DIGITAL THREAD</span></div></section><div class="border bottom"></div></main>
+<script>
+const totem=document.querySelector("#totem");for(let i=0;i<35;i++){const t=document.createElement("i");t.className="tile";totem.append(t)}document.querySelector("#turn").onclick=()=>document.querySelector("#loom").classList.toggle("turned");
+</script></body></html>

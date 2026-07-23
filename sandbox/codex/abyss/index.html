@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABYSS / The Living Grimoire</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap');
+:root{--void:#030a08;--ink:#0a1713;--teal:#3ee7c0;--vellum:#e4d2a8;--amber:#dc9b4b}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--vellum);background:radial-gradient(circle at 50% 45%,#143029 0,#07110e 44%,#010403 100%);font-family:"IM Fell English",serif;overflow-x:hidden}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.nav{height:68px;display:flex;justify-content:space-between;align-items:center;padding:0 5vw;border-bottom:1px solid #856f424d;font-size:12px;letter-spacing:2px}.nav a{color:inherit;text-decoration:none}
+.book{width:min(1180px,94vw);margin:5vh auto;display:grid;grid-template-columns:1fr 1fr;min-height:690px;filter:drop-shadow(0 35px 50px #000);perspective:1200px}.page{position:relative;padding:60px clamp(30px,5vw,76px);background-color:#d8c79e;color:#28271f;background-image:radial-gradient(#725b3530 1px,transparent 1px),linear-gradient(90deg,#b99a6520,transparent 15%,transparent 85%,#8d724238);background-size:9px 9px,100% 100%;border:1px solid #7d6843}
+.page.left{border-radius:12px 2px 2px 12px;box-shadow:inset -25px 0 40px #543d263b}.page.right{border-radius:2px 12px 12px 2px;box-shadow:inset 25px 0 40px #543d263b}.page:before{content:"";position:absolute;inset:17px;border:1px solid #6b4f2c80;pointer-events:none}.folio{font-size:11px;text-align:center;letter-spacing:4px;color:#6d5937}
+h1{font:700 clamp(52px,8vw,110px)/.75 "Cormorant Garamond";margin:65px 0 25px;letter-spacing:-5px}.drop:first-letter{float:left;font:700 68px/.7 "Cormorant Garamond";margin:11px 9px 0 0;color:#6f211b}.drop{font-size:16px;line-height:1.7}
+.sigil{display:grid;place-items:center;margin:15px auto 28px;width:min(330px,80%);aspect-ratio:1;position:relative;cursor:pointer}.sigil svg{width:100%;overflow:visible;filter:drop-shadow(0 0 5px #054e42)}.ring{fill:none;stroke:#423d2d;stroke-width:2}.rune{fill:none;stroke:#195f52;stroke-width:1.5}.eye{fill:#06100d;stroke:#236e5f;stroke-width:3}.pupil{fill:var(--teal);filter:drop-shadow(0 0 8px var(--teal));transform-origin:center;transform:scaleY(.12);transition:.8s cubic-bezier(.2,.8,.2,1)}.awake .pupil{transform:scaleY(1)}.awake .sigil{animation:breathe 2.7s ease-in-out infinite}
+.whisper{text-align:center;font-style:italic;color:#665336;min-height:42px}.rites{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:28px}.rite{border:1px solid #745f3c;background:#0000;padding:11px;font:italic 14px "IM Fell English";cursor:pointer;color:#302b20}.rite:hover,.rite.active{background:#183d34;color:#dcd0ab}
+.seal{position:absolute;right:35px;bottom:35px;width:70px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;color:#6b201d;border:4px double #6b201d;transform:rotate(-10deg);font-weight:bold}
+@keyframes breathe{50%{filter:drop-shadow(0 0 26px #35e5bd99)}}@media(max-width:760px){.book{grid-template-columns:1fr}.page.left{border-radius:12px 12px 0 0}.page.right{border-radius:0 0 12px 12px}.page{min-height:620px}}
+</style>
+</head>
+<body>
+<nav class="nav"><span>THE NINTH ARCHIVE</span><span>folio xiii · forbidden</span><a href="../">RETURN TO ATLAS ↗</a></nav>
+<main class="book" id="book">
+  <section class="page left">
+    <div class="folio">LIBER PROFUNDIS</div>
+    <h1>What sleeps<br>below, listens.</h1>
+    <p class="drop">Beneath the nameless sea, language grows teeth. The Abyss system gathers antique typography, ritual states, and living symbols into an interface that never feels entirely inert.</p>
+    <div class="rites"><button class="rite active">Vellum / warm</button><button class="rite">Ink / wet</button><button class="rite">Omen / amber</button><button class="rite">Depth / IX</button></div>
+    <span class="seal">ABYSS<br>IX</span>
+  </section>
+  <section class="page right">
+    <div class="folio">THE WATCHER'S MARK</div>
+    <div class="sigil" id="sigil" role="button" tabindex="0" aria-label="Open the abyssal eye">
+      <svg viewBox="0 0 360 360"><circle class="ring" cx="180" cy="180" r="155"/><circle class="rune" cx="180" cy="180" r="123"/><path class="rune" d="M180 20v55M180 285v55M20 180h55M285 180h55M69 69l39 39M252 252l39 39M291 69l-39 39M108 252l-39 39"/><path class="eye" d="M55 180q125-125 250 0-125 125-250 0Z"/><ellipse class="pupil" cx="180" cy="180" rx="34" ry="63"/><circle cx="167" cy="162" r="8" fill="#d8c79e"/></svg>
+    </div>
+    <p class="whisper" id="whisper">“Touch the sign, and permit it to return the gaze.”</p>
+    <div class="rites"><button class="rite" data-word="The tide remembers your true name.">TIDE</button><button class="rite" data-word="All doors open inward below.">GATE</button><button class="rite" data-word="A green star moves beneath the ink.">STAR</button><button class="rite" data-word="Do not count the final bell.">BELL</button></div>
+  </section>
+</main>
+<script>
+const book=document.querySelector("#book"),sigil=document.querySelector("#sigil"),whisper=document.querySelector("#whisper");
+function wake(){book.classList.toggle("awake");whisper.textContent=book.classList.contains("awake")?"“It has always been awake.”":"“Touch the sign, and permit it to return the gaze.”"}
+sigil.onclick=wake;sigil.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();wake()}};
+document.querySelectorAll("[data-word]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-word]").forEach(x=>x.classList.remove("active"));b.classList.add("active");whisper.textContent=`“${b.dataset.word}”`});
+</script>
+</body>
+</html>

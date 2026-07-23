@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRISM / Bauhaus Kit</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap');
+:root{--paper:#f1ead4;--black:#10100f;--red:#e43b2f;--blue:#1959a7;--yellow:#f5c928}*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--black);font-family:"Space Mono",monospace}.page{min-height:100vh;display:grid;grid-template-columns:80px 1fr;border:12px solid var(--black);overflow:hidden}.rail{border-right:5px solid var(--black);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 0}.rail b{font:28px "Archivo Black";writing-mode:vertical-rl}.rail span{font-size:10px;transform:rotate(-90deg);white-space:nowrap;margin-bottom:45px}
+main{display:grid;grid-template-rows:auto 1fr auto}nav{display:flex;justify-content:space-between;align-items:center;border-bottom:5px solid var(--black);padding:14px 22px;font-size:11px;font-weight:bold}nav a{color:inherit;text-decoration:none;border-bottom:4px solid var(--red)}
+.composition{position:relative;min-height:680px;overflow:hidden}.title{position:absolute;z-index:4;top:10%;left:7%;font:clamp(68px,15vw,220px)/.72 "Archivo Black";letter-spacing:-.08em;text-transform:uppercase}.title span{display:block;margin-left:17vw;color:var(--paper);-webkit-text-stroke:5px var(--black);text-shadow:10px 10px 0 var(--red)}
+.circle{position:absolute;width:min(38vw,500px);aspect-ratio:1;border-radius:50%;background:var(--blue);right:7%;top:6%;border:5px solid var(--black);box-shadow:14px 14px 0 var(--black);transition:.7s cubic-bezier(.2,.8,.2,1)}.square{position:absolute;width:24vw;height:24vw;min-width:180px;min-height:180px;background:var(--yellow);bottom:-7vw;left:16%;border:5px solid var(--black);transform:rotate(17deg);transition:.7s cubic-bezier(.2,.8,.2,1)}.bar{position:absolute;width:60vw;height:64px;background:var(--red);right:-10vw;bottom:18%;border:5px solid var(--black);transform:rotate(-20deg);transition:.7s}
+.caption{position:absolute;right:5%;bottom:5%;width:260px;z-index:5;background:var(--paper);border:5px solid var(--black);padding:15px;box-shadow:8px 8px 0 var(--black)}.caption b{font:22px "Archivo Black";display:block}.caption p{font-size:10px;line-height:1.6}.caption button{width:100%;background:var(--black);color:var(--paper);border:0;padding:12px;font:700 11px "Space Mono";cursor:pointer}
+.modules{border-top:5px solid var(--black);display:grid;grid-template-columns:2fr 1fr 1fr}.module{padding:20px;border-right:5px solid var(--black);min-height:120px}.module:last-child{border:0}.module small{display:block}.module strong{font:32px "Archivo Black"}.module:nth-child(2){background:var(--red)}.module:nth-child(3){background:var(--blue);color:white}.shift .circle{transform:translate(-22vw,28vh) scale(.7);background:var(--red)}.shift .square{transform:translate(38vw,-26vh) rotate(105deg);background:var(--blue)}.shift .bar{transform:rotate(17deg) translateY(-220px);background:var(--yellow)}
+@media(max-width:700px){.page{grid-template-columns:1fr;border-width:7px}.rail{display:none}.composition{min-height:670px}.title{font-size:74px;top:8%;left:5%}.title span{margin-left:0}.circle{width:280px;top:30%;right:-30px}.caption{right:15px;bottom:20px}.modules{grid-template-columns:1fr}.module{border-right:0;border-bottom:5px solid}.shift .circle{transform:translate(-50px,220px) scale(.6)}}
+</style>
+</head>
+<body><div class="page" id="page">
+<aside class="rail"><b>PRISM</b><span>FORM FOLLOWS FEELING</span></aside>
+<main><nav><span>BAUHAUS SYSTEM / DESSAU 2026</span><span>RED · BLUE · YELLOW</span><a href="../">INDEX ↗</a></nav>
+<section class="composition"><div class="title">Less<span>but better.</span></div><div class="circle"></div><div class="square"></div><div class="bar"></div>
+<article class="caption"><b>COMPOSITION №04</b><p>A loud, modular kit built from the only ingredients that matter: scale, color, rhythm and type.</p><button id="shuffle">RECOMPOSE →</button></article></section>
+<footer class="modules"><div class="module"><small>01 / TYPOGRAPHY</small><strong>ARCHIVO BLACK</strong></div><div class="module"><small>02 / RATIO</small><strong>3:4</strong></div><div class="module"><small>03 / GRID</small><strong>08</strong></div></footer>
+</main></div><script>document.querySelector("#shuffle").onclick=()=>document.querySelector("#page").classList.toggle("shift")</script></body></html>

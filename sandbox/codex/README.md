@@ -1,26 +1,29 @@
-# Kit Candidate Component Library
+# Codex Theme Atlas
 
-15 套候选视觉方向，共用同一套组件结构和交互。页面把主题宣传页的视觉冲击力与组件库的真实可用性放在同一个体验里，既能快速判断方向，也能横向比较主题对产品控件的影响。
+`index.html` is the atlas and preview switcher for every visual direction in
+`prompt/theme/README.md`. Each theme is an independent page with its own layout,
+components, artwork, motion, and interaction model.
 
-组件矩阵包含：
+## Independent routes
 
-- Actions：按钮、图标按钮、徽标与标签
-- Forms：文本框、选择器、文本域、复选框、单选、开关、滑杆和校验状态
-- Navigation：页签、面包屑、分页和分段控件
-- Feedback：提醒、进度与 Toast
-- Data display：指标卡、头像组和数据表格
-- Overlay：原生 Dialog
-
-每套主题拥有独立的 Hero 构图、内联 SVG 标志插画、排版、边框、材质、阴影、组件形状和动效语言；切换主题时不改变组件信息架构。SVG 主视觉覆盖水墨笔触、洛可可卷草、夜花、Pulp 放射印刷、民艺图腾、陶器、液态铬、街机迷宫、1-bit 窗口等 15 套图形系统，并配有路径绘制、花朵绽放、图层抬升、像素步进和日冕呼吸等主题动效。
-
-## 文件
-
-- `index.html`：主题宣传区、完整组件矩阵与设计令牌
-- `styles.css`：基础组件样式、响应式布局与 15 套主题令牌
-- `app.js`：主题切换、搜索、页签、Toast、Dialog 等交互
-
-纯静态实现，无框架、无依赖、无构建步骤。用任意静态文件服务器启动本目录即可。
-
-## 独立实验主题
-
-- [`reliquary/`](reliquary/)：RELIQUARY / 未来圣骸。完全独立的生物机械组件系统，包含可解封 SVG 圣骸、Canvas 粒子场、鼠标视差、结构剖面、真实组件实验室、四类动效语法与可选合成声音反馈。
+- `nova/` — tactical neon radar and threat controls
+- `abyss/` — living grimoire and waking eye sigil
+- `brass/` — mechanical pressure works and master valve
+- `prism/` — recomposable Bauhaus poster system
+- `riot/` — punk xerox collage and impact states
+- `hanabi/` — elastic anime cel spark interface
+- `sumi/` — animated ink scroll and blooming ink drops
+- `ormolu/` — gilded Rococo salon with drawing curtains
+- `nocturne/` — moonlit botanical specimen and bloom states
+- `pulp/` — distressed paperback cover and print stamp
+- `totem/` — rotating woven folk pattern
+- `kiln/` — shapeable clay vessel and firing state
+- `chrome/` — liquid Y2K portal and gel media controls
+- `arcade/` — playable CRT maze with score tracking
+- `bitmap/` — draggable 1-bit desktop interface
+- `mochi/` — squishable, biteable clay pastry
+- `scribble/` — draggable notebook notes and stickers
+- `axon/` — isometric exploded component drawing
+- `corona/` — interactive eclipse phase observatory
+- `reliquary/` — living future-relic containment console
+- `gazette/` — editorial broadsheet and compact edition
