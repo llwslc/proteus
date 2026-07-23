@@ -126,9 +126,9 @@
     <div class="landing-head">
       <div>
         <h1>Theme Atlas <span>· 主题图集</span></h1>
-        <p>15 套完全独立的组件主题世界 · 点卡片进入,右下实时预览,可切 PC / 手机视口。</p>
+        <p>21 套完全独立的组件主题世界 · 点卡片进入,右下实时预览,可切 PC / 手机视口。</p>
       </div>
-      <span class="count" id="gridCount">15 WORLDS</span>
+      <span class="count" id="gridCount">21 WORLDS</span>
     </div>
     <div class="grid" id="grid"></div>
   </section>
@@ -170,6 +170,12 @@
 (function(){
   "use strict";
   var THEMES=[
+    {id:"nova",code:"NOVA",name:"科幻霓虹 HUD / Sci-fi neon"},
+    {id:"abyss",code:"ABYSS",name:"克苏鲁深渊魔典 / Eldritch grimoire"},
+    {id:"brass",code:"BRASS",name:"蒸汽朋克 / Steampunk"},
+    {id:"prism",code:"PRISM",name:"包豪斯构成 / Bauhaus"},
+    {id:"riot",code:"RIOT",name:"朋克剪报 / Punk zine"},
+    {id:"hanabi",code:"HANABI",name:"二次元赛璐璐 / Anime cel"},
     {id:"sumi",code:"SUMI",name:"水墨禅 / Zen ink"},
     {id:"ormolu",code:"ORMOLU",name:"洛可可宫廷 / Rococo"},
     {id:"nocturne",code:"NOCTURNE",name:"暗夜花园 / Dark botanical"},
@@ -181,9 +187,9 @@
     {id:"bitmap",code:"BITMAP",name:"1-bit 位图 / One-bit dither"},
     {id:"mochi",code:"MOCHI",name:"软陶泡芙 / Claymorphic squish"},
     {id:"scribble",code:"SCRIBBLE",name:"手账涂鸦 / Notebook doodle"},
-    {id:"corona",code:"CORONA",name:"日蚀玻璃 / Eclipse glass"},
     {id:"axon",code:"AXON",name:"轴测蓝图 / Isometric blueprint"},
-    {id:"qalam",code:"QALAM",name:"纳斯塔利克书斋 / Nastaliq modern"},
+    {id:"corona",code:"CORONA",name:"日蚀玻璃 / Eclipse glass"},
+    {id:"reliquary",code:"RELIQUARY",name:"未来圣骸 / Future reliquary"},
     {id:"gazette",code:"GAZETTE",name:"报章排印 / Broadsheet"}
   ];
   var $=function(s){return document.querySelector(s)};
@@ -200,7 +206,7 @@
     var thumb=document.createElement("div"); thumb.className="thumb";
     var f=document.createElement("iframe");
     f.setAttribute("scrolling","no"); f.setAttribute("tabindex","-1"); f.setAttribute("loading","lazy");
-    f.title=t.code+" 预览"; f.setAttribute("data-src",t.id+"/index.html");
+    f.title=t.code+" 预览"; f.setAttribute("data-src",t.id+".html");
     var load=document.createElement("span"); load.className="tload"; load.textContent=t.code;
     thumb.appendChild(f); thumb.appendChild(load);
     var meta=document.createElement("div"); meta.className="card-meta";
@@ -265,11 +271,11 @@
     active=i; var t=THEMES[i];
     body.setAttribute("data-mode","detail");
     frameWrap.classList.add("loading");
-    stageFrame.src=t.id+"/index.html";
+    stageFrame.src=t.id+".html";
     $("#curIdx").textContent=pad(i);
     $("#curCode").textContent=t.code;
     $("#curName").textContent=t.name;
-    $("#openBtn").href=t.id+"/index.html";
+    $("#openBtn").href=t.id+".html";
     var items=sideList.children;
     for(var k=0;k<items.length;k++) items[k].classList.toggle("on",k===i);
     applyVp(vp);
