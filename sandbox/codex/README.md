@@ -1,20 +1,33 @@
 # Codex Theme Atlas
 
 `index.html` is the single, scrollable atlas and preview switcher for every
-visual direction in `prompt/theme/README.md`. Each theme is an independent page
-with its own layout, artwork, motion, interaction model, and full component
-library.
+visual direction in `prompt/theme/README.md`.
 
-Every theme includes:
+The themes deliberately do not share a specimen-page information architecture.
+Each one is a different working product whose native task determines its
+controls, data, hierarchy, and interaction:
 
-- a distinctive campaign-style hero and signature interaction
-- primary, secondary, destructive, disabled, and icon actions
-- text inputs, selects, toggles or checks, and range controls
-- tabs, breadcrumbs, pagination, alerts, and progress
-- metrics, a themed data table, and a confirmation overlay
-
-RELIQUARY keeps its larger multi-section anatomy, component, motion, and
-material laboratory.
+- NOVA — orbital command and fleet operations
+- ABYSS — ritual composer and forbidden bestiary
+- BRASS — live engine hall and machinery ledger
+- PRISM — direct-manipulation composition editor
+- RIOT — cut-and-paste zine publishing desk
+- HANABI — hero roster, skill loadout, and mission launcher
+- SUMI — scroll inspection and collection accession desk
+- ORMOLU — guest registry, seating plan, and evening run-sheet
+- NOCTURNE — conservatory climate and specimen record
+- PULP — detective evidence board and incident log
+- TOTEM — paintable pattern loom and workshop queue
+- KILN — pottery work order and firing workflow
+- CHROME — liquid social-media desktop and player
+- ARCADE — playable cabinet and operator service mode
+- BITMAP — one-bit desktop, Finder, and control panel
+- MOCHI — custom bakery box builder and order queue
+- SCRIBBLE — draggable weekly notebook and focus log
+- AXON — layer-aware CAD drawing and component schedule
+- CORONA — eclipse observation and capture array
+- RELIQUARY — living artifact anatomy and component laboratory
+- GAZETTE — live newsroom, story editor, and press workflow
 
 ## Independent routes
 
