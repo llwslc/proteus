@@ -389,49 +389,28 @@ body.mist-on .mist{opacity:1}
 .switch-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 2px}
 .switch-row .txt{letter-spacing:.05em}
 .switch-row .cap{display:block;font-size:13px;color:var(--bone-3)}
-.switch{position:relative;display:inline-block;flex:none}
+.switch{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:58px;height:40px;cursor:pointer}
 .switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:2}
-.switch .track{
-  display:block;width:62px;height:30px;border-radius:16px;
-  border:1px solid var(--brass-line);
-  background:
-    radial-gradient(1.4px 1.4px at 17px 9px,rgba(233,204,138,.5),transparent 60%),
-    radial-gradient(1.1px 1.1px at 31px 21px,rgba(233,204,138,.32),transparent 60%),
-    radial-gradient(1.5px 1.5px at 45px 12px,rgba(233,204,138,.42),transparent 60%),
-    linear-gradient(180deg,var(--night-deep),var(--night-2));
-  box-shadow:inset 0 2px 6px rgba(8,4,12,.7);
-  transition:background .45s ease,box-shadow .45s ease,border-color .45s ease;
-  position:relative;
-}
-.switch .knob{
-  position:absolute;top:3px;left:3px;width:24px;height:24px;
-  display:grid;place-items:center;
-  transition:transform .42s cubic-bezier(.3,.9,.3,1.18);
-}
-.switch .knob-moon{
-  position:absolute;width:17px;height:17px;
-  transition:opacity .3s ease,transform .42s ease;
-  filter:drop-shadow(0 1px 2px rgba(8,4,12,.6));
-}
-.switch .knob-full{
-  position:absolute;width:22px;height:22px;
-  transform:scale(.2);opacity:0;
-  transition:transform .5s cubic-bezier(.3,.9,.3,1.1),opacity .3s ease;
-  pointer-events:none;filter:drop-shadow(0 0 7px rgba(233,204,138,.6));
-}
-.switch input:checked + .track{
-  background:
-    radial-gradient(1.5px 1.5px at 18px 9px,rgba(233,204,138,.95),transparent 60%),
-    radial-gradient(1.3px 1.3px at 34px 21px,rgba(233,204,138,.7),transparent 60%),
-    radial-gradient(1.6px 1.6px at 49px 12px,rgba(233,204,138,.85),transparent 60%),
-    linear-gradient(180deg,var(--wine-2),var(--wine-deep));
-  border-color:var(--brass);
-  box-shadow:inset 0 2px 6px rgba(8,4,12,.5),0 0 18px rgba(233,204,138,.3);
-}
-.switch input:checked + .track .knob{transform:translateX(32px)}
-.switch input:checked + .track .knob-moon{opacity:0;transform:scale(.4) rotate(40deg)}
-.switch input:checked + .track .knob-full{opacity:1;transform:scale(1)}
-.switch input:focus-visible + .track{outline:2px solid var(--brass);outline-offset:3px}
+.switch .bloom{position:relative;width:54px;height:38px;line-height:0;
+  filter:drop-shadow(0 1px 2px rgba(8,4,12,.55));transition:filter .5s ease}
+.switch .bloom svg{display:block;overflow:visible}
+.bloom-stem{fill:none;stroke:#6E5A2E;stroke-width:1.5;stroke-linecap:round}
+.bloom-sepals path{fill:url(#leafGrad);stroke:#5a4a24;stroke-width:.5;opacity:.92}
+.bud{fill:url(#petalGrad);stroke:#8A6B3A;stroke-width:.7;
+  transform-box:fill-box;transform-origin:50% 90%;transform:scale(1);opacity:1;
+  transition:transform .5s cubic-bezier(.4,0,.4,1),opacity .35s ease}
+.bud-fold{fill:none;stroke:#C69A4E;stroke-width:.5;opacity:.5;transition:opacity .3s ease}
+.pet{fill:url(#petalGradLit);stroke:#8A6B3A;stroke-width:.55;
+  transform-box:fill-box;transform-origin:50% 100%;transform:scale(.12);
+  transition:transform .58s cubic-bezier(.2,1,.3,1.32)}
+.bloom-core{transform-box:fill-box;transform-origin:center;transform:scale(0);opacity:0;
+  transition:transform .5s cubic-bezier(.2,1,.3,1.4) .1s,opacity .3s ease .1s}
+.switch input:checked + .bloom .bud{transform:scale(.16);opacity:0}
+.switch input:checked + .bloom .bud-fold{opacity:0}
+.switch input:checked + .bloom .pet{transform:scale(1)}
+.switch input:checked + .bloom .bloom-core{transform:scale(1);opacity:1}
+.switch input:checked + .bloom{filter:drop-shadow(0 0 7px rgba(233,204,138,.55))}
+.switch input:focus-visible + .bloom{filter:drop-shadow(0 0 9px rgba(233,204,138,.8))}
 
 .gauge-wrap{text-align:center;margin-bottom:10px}
 .gauge-svg{width:min(250px,100%);height:auto;display:block;margin:0 auto}
@@ -891,24 +870,10 @@ input[type="range"].flame::-moz-range-thumb{
       <stop offset="42%" stop-color="#7E2244"/>
       <stop offset="1" stop-color="#380F20"/>
     </radialGradient>
-    <radialGradient id="moonGrad" cx="38%" cy="34%" r="72%">
-      <stop offset="0" stop-color="#FBEFCB"/>
-      <stop offset="55%" stop-color="#E9CC8A"/>
-      <stop offset="1" stop-color="#B4893E"/>
-    </radialGradient>
     <g id="berry">
       <circle r="6.7" fill="url(#berryGrad)" stroke="#C69A4E" stroke-width=".7"/>
       <ellipse cx="-2" cy="-2.5" rx="2.3" ry="1.6" fill="#F7ECD6" opacity=".92" transform="rotate(-28 -2 -2.5)"/>
       <circle cx="2.4" cy="2.7" r="1.5" fill="#2a0a16" opacity=".26"/>
-    </g>
-    <g id="moonFull">
-      <circle r="7" fill="url(#moonGrad)" stroke="#8A6B3A" stroke-width=".5"/>
-      <circle cx="2.4" cy="-1.7" r="1.3" fill="#7a5a22" opacity=".14"/>
-      <circle cx="-2" cy="2.1" r="1.7" fill="#7a5a22" opacity=".12"/>
-      <circle cx="1.4" cy="2.6" r=".8" fill="#7a5a22" opacity=".1"/>
-    </g>
-    <g id="crescent">
-      <path d="M2 -6.4 A 6.4 6.4 0 1 0 2 6.4 A 4.9 4.9 0 1 1 2 -6.4 Z" fill="#CFC3A2" stroke="#8A6B3A" stroke-width=".6"/>
     </g>
     <g id="sprig">
       <path d="M6 50 C 12 34, 15 22, 27 13 C 35 8, 44 8, 50 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1085,14 +1050,14 @@ input[type="range"].flame::-moz-range-thumb{
         <span class="txt">暖灯 <span class="cap">整夜供一豆铜色的火。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="warmLamp" aria-label="暖灯">
-          <span class="track" aria-hidden="true"><span class="knob"><svg class="knob-moon" viewBox="-8 -8 16 16"><use href="#crescent"/></svg><svg class="knob-full" viewBox="-9 -9 18 18"><use href="#moonFull"/></svg></span></span>
+          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 54 38"><path class="bloom-stem" d="M27 36 C 27 32,27 30,27 26"/><g transform="translate(27,20)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
         </label>
       </div>
       <div class="switch-row">
         <span class="txt">夜雾 <span class="cap">湿一湿蕨类的旧脾气。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="nightMist" aria-label="夜雾">
-          <span class="track" aria-hidden="true"><span class="knob"><svg class="knob-moon" viewBox="-8 -8 16 16"><use href="#crescent"/></svg><svg class="knob-full" viewBox="-9 -9 18 18"><use href="#moonFull"/></svg></span></span>
+          <span class="bloom" aria-hidden="true"><svg viewBox="0 0 54 38"><path class="bloom-stem" d="M27 36 C 27 32,27 30,27 26"/><g transform="translate(27,20)"><g class="bloom-sepals"><g transform="rotate(36)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(108)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(180)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(252)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g><g transform="rotate(324)"><path d="M0 2 C -2.2 -3,-2.2 -9,0 -11.4 C 2.2 -9,2.2 -3,0 2 Z"/></g></g><g class="bloom-petals"><g transform="rotate(0)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(72)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(144)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(216)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g><g transform="rotate(288)"><path class="pet" d="M0 0 C -3 -3,-3.2 -7.6,0 -10 C 3.2 -7.6,3 -3,0 0 Z"/></g></g><path class="bud" d="M0 3 C -4.6 -2,-3.7 -12,0 -15.2 C 3.7 -12,4.6 -2,0 3 Z"/><path class="bud-fold" d="M0 2 C -1.6 -4,-1.2 -10,0 -14 M0 2 C 1.6 -4,1.2 -10,0 -14"/><g class="bloom-core"><circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/><g fill="#7A2440"><circle cy="-1.6" r=".75"/><circle cx="1.5" cy=".6" r=".75"/><circle cx="-1.5" cy=".6" r=".75"/></g></g></g></svg></span>
         </label>
       </div>
     </div>
