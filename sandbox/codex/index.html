@@ -5,7 +5,515 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="KIT Theme Atlas：21 套完全独立的组件主题与视觉世界。">
   <title>KIT / Theme Atlas</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow: hidden;
+  color: #e8e8e2;
+  background: #090b0d;
+  font-family: Inter, "Avenir Next", "PingFang SC", Arial, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid #a9ff55;
+  outline-offset: 2px;
+}
+
+.atlas {
+  display: grid;
+  grid-template-columns: 268px 1fr;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.atlas-sidebar {
+  position: relative;
+  z-index: 20;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-width: 0;
+  min-height: 0;
+  border-right: 1px solid #30343a;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    #101318;
+  background-size: 100% 42px;
+}
+
+.atlas-brand {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 11px;
+  align-items: center;
+  min-height: 68px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #30343a;
+}
+
+.atlas-mark {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  border: 1px solid #6a7078;
+  color: #090b0d;
+  background: #e8e8e2;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.atlas-brand div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.atlas-brand strong {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.atlas-brand small {
+  color: #7f858e;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.atlas-brand button {
+  display: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #30343a;
+  color: #e8e8e2;
+  background: transparent;
+  font-size: 21px;
+}
+
+.atlas-search {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin: 12px;
+  padding: 0 10px;
+  border: 1px solid #30343a;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.atlas-search > span {
+  color: #9ba2aa;
+  font-size: 17px;
+}
+
+.atlas-search input {
+  min-width: 0;
+  height: 38px;
+  border: 0;
+  outline: 0;
+  color: #e8e8e2;
+  background: transparent;
+  font-size: 10px;
+}
+
+.atlas-search input::placeholder {
+  color: #646a72;
+}
+
+.atlas-search kbd {
+  padding: 3px 5px;
+  border: 1px solid #30343a;
+  color: #717780;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 6px;
+}
+
+.theme-directory {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 8px 18px;
+  scrollbar-color: #59616b transparent;
+  scrollbar-width: thin;
+}
+
+.directory-group > span {
+  display: block;
+  padding: 16px 9px 8px;
+  color: #666d76;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+  letter-spacing: 0.15em;
+}
+
+.theme-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 27px 1fr;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 5px 8px;
+  border: 0;
+  color: #899099;
+  background: transparent;
+  text-align: left;
+  transition:
+    color 0.18s ease,
+    background-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.theme-link:hover {
+  color: #e8e8e2;
+  background: rgba(255, 255, 255, 0.035);
+  transform: translateX(2px);
+}
+
+.theme-link[aria-current="true"] {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(201, 255, 111, 0.1), transparent);
+}
+
+.theme-link[aria-current="true"]::before {
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  left: 0;
+  width: 2px;
+  background: #c9ff6f;
+  box-shadow: 0 0 10px rgba(201, 255, 111, 0.55);
+  content: "";
+}
+
+.theme-link > span:first-child {
+  color: #60666f;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+}
+
+.theme-link > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.theme-link strong,
+.theme-link small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-link strong {
+  font-size: 9px;
+  letter-spacing: 0.09em;
+}
+
+.theme-link small {
+  font-size: 7px;
+}
+
+.theme-empty {
+  margin: 30px 12px;
+  color: #717780;
+  font-size: 10px;
+  text-align: center;
+}
+
+.atlas-sidebar > footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-top: 1px solid #30343a;
+  color: #666d76;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 6px;
+  letter-spacing: 0.1em;
+}
+
+.preview-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100dvh;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.preview-toolbar {
+  display: grid;
+  grid-template-columns: auto minmax(220px, 1fr) auto auto;
+  gap: 24px;
+  align-items: center;
+  min-height: 68px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #30343a;
+  background: #0c0f13;
+}
+
+.menu-button {
+  display: none;
+  gap: 3px;
+  place-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #30343a;
+  background: transparent;
+}
+
+.menu-button i {
+  display: block;
+  width: 14px;
+  height: 1px;
+  background: #c9ccd0;
+}
+
+.active-direction {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.active-direction > span {
+  color: #7b828b;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+}
+
+.active-direction > i {
+  width: 26px;
+  height: 1px;
+  background: #40454d;
+}
+
+.active-direction > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.active-direction strong {
+  font-family: Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 0.09em;
+}
+
+.active-direction small {
+  overflow: hidden;
+  color: #717780;
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.direction-tags {
+  display: flex;
+  gap: 5px;
+}
+
+.direction-tags span {
+  padding: 5px 7px;
+  border: 1px solid #30343a;
+  color: #747b84;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 6px;
+  letter-spacing: 0.07em;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.toolbar-actions button,
+.toolbar-actions a {
+  display: grid;
+  place-items: center;
+  min-width: 38px;
+  height: 38px;
+  border: 1px solid #30343a;
+  color: #b6bbc1;
+  background: #11151a;
+  font-size: 10px;
+}
+
+.toolbar-actions a {
+  padding: 0 11px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 6px;
+  letter-spacing: 0.08em;
+}
+
+.toolbar-actions button:hover,
+.toolbar-actions a:hover {
+  border-color: #6a717b;
+  color: #fff;
+}
+
+.preview-frame-wrap {
+  position: relative;
+  min-height: 0;
+  height: auto;
+  background: #050607;
+}
+
+.preview-frame-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #050607;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.preview-loading {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  color: #8a9199;
+  background: #090b0d;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+  letter-spacing: 0.14em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.preview-loading.is-visible {
+  opacity: 1;
+}
+
+.preview-loading i {
+  justify-self: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #30343a;
+  border-top-color: #a9ff55;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  z-index: 15;
+  inset: 0;
+  display: none;
+  border: 0;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1020px) {
+  .atlas {
+    grid-template-columns: 230px 1fr;
+  }
+
+  .direction-tags {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .atlas {
+    display: block;
+  }
+
+  .atlas-sidebar {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(310px, 88vw);
+    transform: translateX(-105%);
+    transition: transform 0.3s ease;
+  }
+
+  .atlas-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .atlas-brand button,
+  .menu-button {
+    display: grid;
+  }
+
+  .sidebar-backdrop.is-open {
+    display: block;
+  }
+
+  .preview-toolbar {
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    padding: 8px 10px;
+  }
+
+  .toolbar-actions button {
+    display: none;
+  }
+
+  .toolbar-actions a {
+    min-width: 42px;
+    padding: 0 7px;
+  }
+
+  .active-direction > i,
+  .active-direction > span {
+    display: none;
+  }
+}
+
+  </style>
 </head>
 <body>
   <div class="atlas">
@@ -44,17 +552,164 @@
         <div class="toolbar-actions">
           <button id="previousTheme" type="button" aria-label="上一主题">←</button>
           <button id="nextTheme" type="button" aria-label="下一主题">→</button>
-          <a id="openStandalone" href="nova/" target="_blank" rel="noopener">OPEN ↗</a>
+          <a id="openStandalone" href="nova.html" target="_blank" rel="noopener">OPEN ↗</a>
         </div>
       </header>
 
       <div class="preview-frame-wrap">
         <div class="preview-loading" id="previewLoading"><i></i><span>ENTERING WORLD</span></div>
-        <iframe id="themePreview" title="主题预览" src="nova/" scrolling="yes"></iframe>
+        <iframe id="themePreview" title="主题预览" src="nova.html" scrolling="yes"></iframe>
       </div>
     </main>
   </div>
 
-  <script src="app.js"></script>
+  <script>
+const themes = [
+  { id: "nova", name: "NOVA", direction: "科幻霓虹 HUD / Sci-fi neon", tags: ["HUD", "NEON", "TACTICAL"] },
+  { id: "abyss", name: "ABYSS", direction: "克苏鲁深渊魔典 / Eldritch grimoire", tags: ["GRIMOIRE", "ELDRITCH", "INK"] },
+  { id: "brass", name: "BRASS", direction: "蒸汽朋克 / Steampunk", tags: ["BRASS", "STEAM", "GAUGE"] },
+  { id: "prism", name: "PRISM", direction: "包豪斯构成 / Bauhaus", tags: ["BAUHAUS", "PRIMARY", "GRID"] },
+  { id: "riot", name: "RIOT", direction: "朋克剪报 / Punk zine", tags: ["ZINE", "COLLAGE", "NOISE"] },
+  { id: "hanabi", name: "HANABI", direction: "二次元赛璐璐 / Anime cel", tags: ["ANIME", "CEL", "SPARK"] },
+  { id: "sumi", name: "SUMI", direction: "水墨禅 / Zen ink", tags: ["INK", "PAPER", "ZEN"] },
+  { id: "ormolu", name: "ORMOLU", direction: "洛可可宫廷 / Rococo", tags: ["ROCOCO", "GILT", "SILK"] },
+  { id: "nocturne", name: "NOCTURNE", direction: "暗夜花园 / Dark botanical", tags: ["BOTANICAL", "VELVET", "NIGHT"] },
+  { id: "pulp", name: "PULP", direction: "复古廉价小说 / Pulp paperback", tags: ["PAPERBACK", "STAMP", "HALFTONE"] },
+  { id: "totem", name: "TOTEM", direction: "民艺图腾 / Folk craft", tags: ["FOLK", "WEAVE", "WOODCUT"] },
+  { id: "kiln", name: "KILN", direction: "陶土侘寂 / Wabi-sabi", tags: ["CLAY", "KILN", "WABI-SABI"] },
+  { id: "chrome", name: "CHROME", direction: "千禧液态铬 / Y2K aero", tags: ["Y2K", "LIQUID", "AERO"] },
+  { id: "arcade", name: "ARCADE", direction: "8-bit 街机 / Retro arcade", tags: ["8-BIT", "CRT", "PLAYABLE"] },
+  { id: "bitmap", name: "BITMAP", direction: "1-bit 位图 / One-bit dither", tags: ["1-BIT", "DITHER", "DESKTOP"] },
+  { id: "mochi", name: "MOCHI", direction: "软陶泡芙 / Claymorphic squish", tags: ["CLAY", "SQUISH", "SWEET"] },
+  { id: "scribble", name: "SCRIBBLE", direction: "手账涂鸦 / Notebook doodle", tags: ["NOTEBOOK", "DOODLE", "STICKER"] },
+  { id: "axon", name: "AXON", direction: "轴测蓝图 / Isometric blueprint", tags: ["BLUEPRINT", "ISOMETRIC", "MEASURE"] },
+  { id: "corona", name: "CORONA", direction: "日蚀玻璃 / Eclipse glass", tags: ["ECLIPSE", "GLASS", "ORBIT"] },
+  { id: "reliquary", name: "RELIQUARY", direction: "未来圣骸 / Future reliquary", tags: ["BIORELIC", "LIVING", "ARCHIVE"] },
+  { id: "gazette", name: "GAZETTE", direction: "报章排印 / Broadsheet", tags: ["NEWS", "TYPE", "EDITORIAL"] },
+];
+
+const directory = document.querySelector("#themeDirectory");
+const search = document.querySelector("#themeSearch");
+const preview = document.querySelector("#themePreview");
+const loading = document.querySelector("#previewLoading");
+const sidebar = document.querySelector("#sidebar");
+const backdrop = document.querySelector("#sidebarBackdrop");
+let activeIndex = 0;
+
+function pad(index) {
+  return String(index + 1).padStart(2, "0");
+}
+
+function createThemeButton(theme, index) {
+  const button = document.createElement("button");
+  button.className = "theme-link";
+  button.type = "button";
+  button.dataset.themeId = theme.id;
+  button.setAttribute("aria-current", String(index === activeIndex));
+  button.innerHTML = `<span>${pad(index)}</span><span><strong>${theme.name}</strong><small>${theme.direction.split(" / ")[0]}</small></span>`;
+  button.addEventListener("click", () => selectTheme(index));
+  return button;
+}
+
+function renderDirectory(query = "") {
+  const normalized = query.trim().toLowerCase();
+  directory.replaceChildren();
+  const matches = themes
+    .map((theme, index) => ({ theme, index }))
+    .filter(({ theme }) => `${theme.name} ${theme.direction} ${theme.tags.join(" ")}`.toLowerCase().includes(normalized));
+
+  const section = document.createElement("section");
+  section.className = "directory-group";
+  const label = document.createElement("span");
+  label.textContent = `ALL DIRECTIONS / ${String(matches.length).padStart(2, "0")}`;
+  section.append(label);
+  matches.forEach(({ theme, index }) => section.append(createThemeButton(theme, index)));
+  directory.append(section);
+
+  if (!matches.length) {
+    section.remove();
+    const empty = document.createElement("p");
+    empty.className = "theme-empty";
+    empty.textContent = "No matching world";
+    directory.append(empty);
+  }
+}
+
+function selectTheme(index, preserveHash = false) {
+  activeIndex = (index + themes.length) % themes.length;
+  const theme = themes[activeIndex];
+  loading.classList.add("is-visible");
+  preview.src = `${theme.id}.html`;
+  preview.title = `${theme.name} / ${theme.direction}`;
+  document.querySelector("#activeIndex").textContent = pad(activeIndex);
+  document.querySelector("#activeName").textContent = theme.name;
+  document.querySelector("#activeDirection").textContent = theme.direction;
+  document.querySelector("#atlasCount").textContent = `${pad(activeIndex)} / ${themes.length}`;
+  document.querySelector("#openStandalone").href = `${theme.id}.html`;
+  document.querySelector("#directionTags").replaceChildren(...theme.tags.map((tag) => {
+    const span = document.createElement("span");
+    span.textContent = tag;
+    return span;
+  }));
+  document.title = `${theme.name} / KIT Theme Atlas`;
+
+  document.querySelectorAll(".theme-link").forEach((item) => {
+    item.setAttribute("aria-current", String(item.dataset.themeId === theme.id));
+  });
+  directory.querySelector(`[data-theme-id="${theme.id}"]`)?.scrollIntoView({ block: "nearest" });
+
+  if (!preserveHash) history.replaceState(null, "", `#${theme.id}`);
+  localStorage.setItem("kit-atlas-theme", theme.id);
+  closeSidebar();
+}
+
+function openSidebar() {
+  sidebar.classList.add("is-open");
+  backdrop.classList.add("is-open");
+}
+
+function closeSidebar() {
+  sidebar.classList.remove("is-open");
+  backdrop.classList.remove("is-open");
+}
+
+search.addEventListener("input", () => renderDirectory(search.value));
+preview.addEventListener("load", () => loading.classList.remove("is-visible"));
+document.querySelector("#previousTheme").addEventListener("click", () => selectTheme(activeIndex - 1));
+document.querySelector("#nextTheme").addEventListener("click", () => selectTheme(activeIndex + 1));
+document.querySelector("#openSidebar").addEventListener("click", openSidebar);
+document.querySelector("#closeSidebar").addEventListener("click", closeSidebar);
+backdrop.addEventListener("click", closeSidebar);
+
+document.addEventListener("keydown", (event) => {
+  const typing = document.activeElement instanceof HTMLInputElement;
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    openSidebar();
+    search.focus();
+    search.select();
+    return;
+  }
+  if (event.key === "Escape") {
+    closeSidebar();
+    return;
+  }
+  if (!typing && ["ArrowLeft", "ArrowRight"].includes(event.key)) {
+    event.preventDefault();
+    selectTheme(activeIndex + (event.key === "ArrowRight" ? 1 : -1));
+  }
+});
+
+window.addEventListener("hashchange", () => {
+  const index = themes.findIndex((theme) => theme.id === location.hash.slice(1).toLowerCase());
+  if (index >= 0) selectTheme(index, true);
+});
+
+renderDirectory();
+const requested = location.hash.slice(1).toLowerCase() || localStorage.getItem("kit-atlas-theme") || "nova";
+const initialIndex = themes.findIndex((theme) => theme.id === requested);
+selectTheme(initialIndex >= 0 ? initialIndex : 0, initialIndex >= 0);
+
+  </script>
 </body>
 </html>
