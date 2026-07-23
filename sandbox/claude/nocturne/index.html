@@ -329,26 +329,29 @@ body.mist-on .mist{opacity:1}
 .choice--radio .mark{
   border-radius:50%;
   border:1px solid var(--brass-line);
-  background:radial-gradient(circle at 40% 34%,rgba(42,24,54,.72),rgba(10,6,16,.92));
-  box-shadow:inset 0 1px 4px rgba(0,0,0,.6);
+  background:#0b0610;overflow:hidden;
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.65);
 }
-.choice--radio .mark::before{   /* gilt sepal ring that draws tighter when picked */
-  content:"";position:absolute;inset:-4px;border-radius:50%;
-  border:1px solid transparent;transition:border-color .4s ease,inset .4s ease;
+.choice--radio .moon{   /* full moon: gold disc + faint craters */
+  position:absolute;inset:1.5px;border-radius:50%;
+  background:
+    radial-gradient(2.4px 2.4px at 63% 40%,rgba(120,90,40,.5),transparent 62%),
+    radial-gradient(2.8px 2.8px at 42% 64%,rgba(120,90,40,.42),transparent 62%),
+    radial-gradient(1.8px 1.8px at 56% 66%,rgba(120,90,40,.4),transparent 62%),
+    radial-gradient(circle at 37% 31%,#FBEFCB,#E9CC8A 52%,#AE8238);
 }
-.choice--radio .berry{
-  position:absolute;width:25px;height:25px;left:50%;top:50%;
-  transform:translate(-50%,-50%) scale(0);
-  transition:transform .5s cubic-bezier(.25,1.4,.35,1);
-  pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.55));
+.choice--radio .moon::after{   /* night shadow that wanes off when picked */
+  content:"";position:absolute;inset:-1px;border-radius:50%;
+  background:radial-gradient(circle at 42% 34%,#241636,#0a0510);
+  transition:transform .6s cubic-bezier(.4,0,.3,1);
 }
 .choice--radio input:hover + .mark{border-color:var(--brass)}
+.choice--radio input:hover + .mark .moon::after{transform:translateX(14%)}
 .choice--radio input:checked + .mark{
   border-color:var(--brass-bright);
-  box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 16px rgba(233,204,138,.4);
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 15px rgba(233,204,138,.42);
 }
-.choice--radio input:checked + .mark::before{border-color:rgba(198,154,78,.45)}
-.choice--radio input:checked + .mark .berry{transform:translate(-50%,-50%) scale(1)}
+.choice--radio input:checked + .mark .moon::after{transform:translateX(118%)}
 
 .choice--check .mark{
   border:1px solid var(--brass-line);border-radius:2px;
@@ -865,16 +868,6 @@ input[type="range"].flame::-moz-range-thumb{
     <g id="tendril">
       <path d="M0 0 C 10 -7, 22 -7, 25 2 C 27 9, 19 14, 13 10 C 8 7, 10 1, 15 2" fill="none" stroke="#C69A4E" stroke-width="1.2" opacity=".75"/>
     </g>
-    <radialGradient id="berryGrad" cx="35%" cy="29%" r="80%">
-      <stop offset="0" stop-color="#C74E6C"/>
-      <stop offset="42%" stop-color="#7E2244"/>
-      <stop offset="1" stop-color="#380F20"/>
-    </radialGradient>
-    <g id="berry">
-      <circle r="6.7" fill="url(#berryGrad)" stroke="#C69A4E" stroke-width=".7"/>
-      <ellipse cx="-2" cy="-2.5" rx="2.3" ry="1.6" fill="#F7ECD6" opacity=".92" transform="rotate(-28 -2 -2.5)"/>
-      <circle cx="2.4" cy="2.7" r="1.5" fill="#2a0a16" opacity=".26"/>
-    </g>
     <g id="sprig">
       <path d="M6 50 C 12 34, 15 22, 27 13 C 35 8, 44 8, 50 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       <g transform="translate(12.7,32.3) rotate(-5) scale(.72)"><path d="M0 0 C 4 -6, 13 -6, 18 0 C 13 6, 4 6, 0 0 Z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M2 0 C 7 -2, 13 -2, 16 0" fill="none" stroke="currentColor" stroke-width="0.8" opacity=".7"/></g>
@@ -1012,17 +1005,17 @@ input[type="range"].flame::-moz-range-thumb{
       <legend>今夜当值花种</legend>
       <label class="choice choice--radio">
         <input type="radio" name="duty" value="颠茄" checked>
-        <span class="mark" aria-hidden="true"><svg class="berry" viewBox="-9 -9 18 18"><use href="#berry"/></svg></span>
+        <span class="mark" aria-hidden="true"><span class="moon"></span></span>
         <span class="txt">颠茄 <span class="cap">茄科旧族,紫黑披风,守北墙。</span></span>
       </label>
       <label class="choice choice--radio">
         <input type="radio" name="duty" value="夜来香">
-        <span class="mark" aria-hidden="true"><svg class="berry" viewBox="-9 -9 18 18"><use href="#berry"/></svg></span>
+        <span class="mark" aria-hidden="true"><span class="moon"></span></span>
         <span class="txt">夜来香 <span class="cap">香气当更鼓用,响到寅时。</span></span>
       </label>
       <label class="choice choice--radio">
         <input type="radio" name="duty" value="月见草">
-        <span class="mark" aria-hidden="true"><svg class="berry" viewBox="-9 -9 18 18"><use href="#berry"/></svg></span>
+        <span class="mark" aria-hidden="true"><span class="moon"></span></span>
         <span class="txt">月见草 <span class="cap">只肯对月亮开,脾气最好。</span></span>
       </label>
     </fieldset>
@@ -1061,7 +1054,7 @@ input[type="range"].flame::-moz-range-thumb{
         </label>
       </div>
     </div>
-    <p class="plate-note"><svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><use href="#sprig" stroke-width="3"/></svg>拣选各有其记——乌浆果坐镇、朱勾入册、一轮圆月拨灯。</p>
+    <p class="plate-note"><svg viewBox="0 0 56 56" fill="none" aria-hidden="true"><use href="#sprig" stroke-width="3"/></svg>拣选各有其记——满月为当值、朱勾以入册、花开则拨灯。</p>
   </article>
 
   <article class="plate velvet reveal" aria-labelledby="pl4">
