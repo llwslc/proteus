@@ -316,38 +316,57 @@ body.mist-on .mist{opacity:1}
   padding:8px 2px;
   position:relative;
 }
-.choice input{position:absolute;opacity:0;width:28px;height:28px;margin:0;left:-3px;top:4px;cursor:pointer}
+.choice input{position:absolute;opacity:0;width:28px;height:28px;margin:0;left:-4px;top:3px;cursor:pointer}
 .choice .mark{
-  flex:none;position:relative;top:3px;
-  width:20px;height:20px;
-  border:1px solid var(--brass-line);
-  background:rgba(18,10,24,.5);
+  flex:none;position:relative;top:2px;
+  width:24px;height:24px;
   display:inline-grid;place-items:center;
-  transition:border-color .3s ease,box-shadow .3s ease;
+  transition:border-color .3s ease,box-shadow .35s ease,background .35s ease;
 }
-.choice--radio .mark{border-radius:50%}
-.choice input:hover + .mark{border-color:var(--brass)}
-.choice input:focus-visible + .mark{outline:2px solid var(--brass);outline-offset:3px}
+.choice .floret{
+  position:absolute;width:30px;height:30px;left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(0) rotate(-55deg);
+  transition:transform .55s cubic-bezier(.2,1,.3,1.35);
+  pointer-events:none;
+  filter:drop-shadow(0 0 5px rgba(233,204,138,.35));
+}
+.choice input:focus-visible + .mark{outline:2px solid var(--brass);outline-offset:4px}
+
+.choice--radio .mark{
+  border-radius:50%;
+  border:1px solid var(--brass-line);
+  background:radial-gradient(circle at 40% 34%,rgba(42,24,54,.75),rgba(12,7,18,.9));
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.55);
+}
 .choice--radio .mark::before{
-  content:"";width:10px;height:10px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,var(--wine-3),var(--wine-2) 70%);
-  box-shadow:0 0 10px rgba(147,48,79,.8);
-  transform:scale(0);
-  transition:transform .5s cubic-bezier(.2,.9,.3,1.2);
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid transparent;
+  transition:border-color .4s ease;
 }
-.choice--radio input:checked + .mark{border-color:var(--brass);box-shadow:0 0 14px rgba(233,204,138,.18)}
-.choice--radio input:checked + .mark::before{transform:scale(1)}
-.choice--check .mark svg{
-  width:13px;height:13px;color:var(--brass-bright);
-  transform:scale(0) rotate(-30deg);
-  transition:transform .45s cubic-bezier(.2,.9,.3,1.25);
+.choice--radio input:hover + .mark{border-color:var(--brass)}
+.choice--radio input:checked + .mark{
+  border-color:var(--brass);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.4),0 0 18px rgba(233,204,138,.3);
 }
+.choice--radio input:checked + .mark::before{border-color:rgba(198,154,78,.4)}
+.choice--radio input:checked + .mark .floret{transform:translate(-50%,-50%) scale(1) rotate(0)}
+
+.choice--check .mark{
+  border:1px solid var(--brass-line);border-radius:3px;
+  background:rgba(18,10,24,.5);
+}
+.choice--check .mark::before{
+  content:"";position:absolute;inset:2px;border:1px solid rgba(198,154,78,.25);
+  border-radius:1px;pointer-events:none;transition:border-color .35s ease;
+}
+.choice--check input:hover + .mark{border-color:var(--brass)}
 .choice--check input:checked + .mark{
   border-color:var(--brass);
   background:linear-gradient(180deg,var(--wine-2),var(--wine-deep));
-  box-shadow:0 0 14px rgba(233,204,138,.15);
+  box-shadow:0 0 16px rgba(233,204,138,.22);
 }
-.choice--check input:checked + .mark svg{transform:scale(1) rotate(0deg)}
+.choice--check input:checked + .mark::before{border-color:rgba(233,204,138,.55)}
+.choice--check input:checked + .mark .floret{transform:translate(-50%,-50%) scale(1) rotate(0)}
 .choice .txt{color:var(--bone);letter-spacing:.05em}
 .choice .cap{display:block;font-size:13px;color:var(--bone-3);letter-spacing:.04em}
 .choice-live{
@@ -360,28 +379,47 @@ body.mist-on .mist{opacity:1}
 .switch-row .txt{letter-spacing:.05em}
 .switch-row .cap{display:block;font-size:13px;color:var(--bone-3)}
 .switch{position:relative;display:inline-block;flex:none}
-.switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:2}
 .switch .track{
-  display:block;width:54px;height:28px;border-radius:15px;
+  display:block;width:62px;height:30px;border-radius:16px;
   border:1px solid var(--brass-line);
-  background:linear-gradient(180deg,var(--night-deep),var(--night-2));
+  background:
+    radial-gradient(1.4px 1.4px at 17px 9px,rgba(233,204,138,.5),transparent 60%),
+    radial-gradient(1.1px 1.1px at 31px 21px,rgba(233,204,138,.32),transparent 60%),
+    radial-gradient(1.5px 1.5px at 45px 12px,rgba(233,204,138,.42),transparent 60%),
+    linear-gradient(180deg,var(--night-deep),var(--night-2));
   box-shadow:inset 0 2px 6px rgba(8,4,12,.7);
-  transition:background .4s ease,box-shadow .4s ease,border-color .4s ease;
+  transition:background .45s ease,box-shadow .45s ease,border-color .45s ease;
   position:relative;
 }
-.switch .track::after{
-  content:"";position:absolute;top:3px;left:3px;
-  width:20px;height:20px;border-radius:50%;
-  background:radial-gradient(circle at 34% 30%,#EFE6D8,var(--brass) 62%,var(--brass-dim));
-  box-shadow:0 2px 6px rgba(8,4,12,.6);
-  transition:transform .35s cubic-bezier(.3,.9,.3,1.1);
+.switch .knob{
+  position:absolute;top:3px;left:3px;width:24px;height:24px;
+  display:grid;place-items:center;
+  transition:transform .42s cubic-bezier(.3,.9,.3,1.18);
+}
+.switch .knob-moon{
+  position:absolute;width:17px;height:17px;
+  transition:opacity .3s ease,transform .42s ease;
+  filter:drop-shadow(0 1px 2px rgba(8,4,12,.6));
+}
+.switch .knob-bloom{
+  position:absolute;width:30px;height:30px;
+  transform:scale(0) rotate(-65deg);opacity:0;
+  transition:transform .55s cubic-bezier(.2,1,.3,1.4),opacity .3s ease;
+  pointer-events:none;filter:drop-shadow(0 0 6px rgba(233,204,138,.45));
 }
 .switch input:checked + .track{
-  background:linear-gradient(180deg,var(--wine-2),var(--wine-deep));
+  background:
+    radial-gradient(1.5px 1.5px at 18px 9px,rgba(233,204,138,.95),transparent 60%),
+    radial-gradient(1.3px 1.3px at 34px 21px,rgba(233,204,138,.7),transparent 60%),
+    radial-gradient(1.6px 1.6px at 49px 12px,rgba(233,204,138,.85),transparent 60%),
+    linear-gradient(180deg,var(--wine-2),var(--wine-deep));
   border-color:var(--brass);
-  box-shadow:inset 0 2px 6px rgba(8,4,12,.5),0 0 16px rgba(233,204,138,.22);
+  box-shadow:inset 0 2px 6px rgba(8,4,12,.5),0 0 18px rgba(233,204,138,.3);
 }
-.switch input:checked + .track::after{transform:translateX(26px)}
+.switch input:checked + .track .knob{transform:translateX(32px)}
+.switch input:checked + .track .knob-moon{opacity:0;transform:scale(.4) rotate(40deg)}
+.switch input:checked + .track .knob-bloom{opacity:1;transform:scale(1) rotate(0)}
 .switch input:focus-visible + .track{outline:2px solid var(--brass);outline-offset:3px}
 
 .gauge-wrap{text-align:center;margin-bottom:10px}
@@ -837,6 +875,31 @@ input[type="range"].flame::-moz-range-thumb{
     <g id="tendril">
       <path d="M0 0 C 10 -7, 22 -7, 25 2 C 27 9, 19 14, 13 10 C 8 7, 10 1, 15 2" fill="none" stroke="#C69A4E" stroke-width="1.2" opacity=".75"/>
     </g>
+    <g id="floret">
+      <g stroke="#C69A4E" stroke-width=".5" stroke-linejoin="round">
+        <path fill="url(#petalGradLit)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="url(#petalGradLit)" transform="rotate(72)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="url(#petalGradLit)" transform="rotate(144)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="url(#petalGradLit)" transform="rotate(216)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="url(#petalGradLit)" transform="rotate(288)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+      </g>
+      <circle r="2.9" fill="#E9CC8A" stroke="#8A6B3A" stroke-width=".5"/>
+      <g fill="#7A2440"><circle cy="-1.7" r=".7"/><circle cx="1.6" cy=".6" r=".7"/><circle cx="-1.6" cy=".6" r=".7"/></g>
+    </g>
+    <g id="floretGold">
+      <g stroke="#8A6B3A" stroke-width=".5" stroke-linejoin="round">
+        <path fill="#DFC078" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="#DFC078" transform="rotate(72)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="#DFC078" transform="rotate(144)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="#DFC078" transform="rotate(216)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+        <path fill="#DFC078" transform="rotate(288)" d="M0 0 C -3.4 -3.6,-3.6 -8.6,0 -11.2 C 3.6 -8.6,3.4 -3.6,0 0 Z"/>
+      </g>
+      <circle r="2.9" fill="#6B1E38" stroke="#E9CC8A" stroke-width=".6"/>
+      <g fill="#E9CC8A"><circle cy="-1.7" r=".6"/><circle cx="1.6" cy=".6" r=".6"/><circle cx="-1.6" cy=".6" r=".6"/></g>
+    </g>
+    <g id="crescent">
+      <path d="M2 -6.4 A 6.4 6.4 0 1 0 2 6.4 A 4.9 4.9 0 1 1 2 -6.4 Z" fill="#EFE6D8" stroke="#8A6B3A" stroke-width=".6"/>
+    </g>
     <g id="sprig">
       <path d="M6 50 C 12 34, 15 22, 27 13 C 35 8, 44 8, 50 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       <g transform="translate(12.7,32.3) rotate(-5) scale(.72)"><path d="M0 0 C 4 -6, 13 -6, 18 0 C 13 6, 4 6, 0 0 Z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M2 0 C 7 -2, 13 -2, 16 0" fill="none" stroke="currentColor" stroke-width="0.8" opacity=".7"/></g>
@@ -974,17 +1037,17 @@ input[type="range"].flame::-moz-range-thumb{
       <legend>今夜当值花种</legend>
       <label class="choice choice--radio">
         <input type="radio" name="duty" value="颠茄" checked>
-        <span class="mark" aria-hidden="true"></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floret"/></svg></span>
         <span class="txt">颠茄 <span class="cap">茄科旧族,紫黑披风,守北墙。</span></span>
       </label>
       <label class="choice choice--radio">
         <input type="radio" name="duty" value="夜来香">
-        <span class="mark" aria-hidden="true"></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floret"/></svg></span>
         <span class="txt">夜来香 <span class="cap">香气当更鼓用,响到寅时。</span></span>
       </label>
       <label class="choice choice--radio">
         <input type="radio" name="duty" value="月见草">
-        <span class="mark" aria-hidden="true"></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floret"/></svg></span>
         <span class="txt">月见草 <span class="cap">只肯对月亮开,脾气最好。</span></span>
       </label>
     </fieldset>
@@ -993,17 +1056,17 @@ input[type="range"].flame::-moz-range-thumb{
       <legend>入册项</legend>
       <label class="choice choice--check">
         <input type="checkbox" checked>
-        <span class="mark" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5 L 5.5 11 L 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floretGold"/></svg></span>
         <span class="txt">花期</span>
       </label>
       <label class="choice choice--check">
         <input type="checkbox">
-        <span class="mark" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5 L 5.5 11 L 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floretGold"/></svg></span>
         <span class="txt">香气</span>
       </label>
       <label class="choice choice--check">
         <input type="checkbox">
-        <span class="mark" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5 L 5.5 11 L 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floretGold"/></svg></span>
         <span class="txt">毒性 <span class="cap">记了就别再用手碰。</span></span>
       </label>
     </fieldset>
@@ -1012,14 +1075,14 @@ input[type="range"].flame::-moz-range-thumb{
         <span class="txt">暖灯 <span class="cap">整夜供一豆铜色的火。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="warmLamp" aria-label="暖灯">
-          <span class="track" aria-hidden="true"></span>
+          <span class="track" aria-hidden="true"><span class="knob"><svg class="knob-moon" viewBox="-8 -8 16 16"><use href="#crescent"/></svg><svg class="knob-bloom" viewBox="-13 -13 26 26"><use href="#floret"/></svg></span></span>
         </label>
       </div>
       <div class="switch-row">
         <span class="txt">夜雾 <span class="cap">湿一湿蕨类的旧脾气。</span></span>
         <label class="switch">
           <input type="checkbox" role="switch" id="nightMist" aria-label="夜雾">
-          <span class="track" aria-hidden="true"></span>
+          <span class="track" aria-hidden="true"><span class="knob"><svg class="knob-moon" viewBox="-8 -8 16 16"><use href="#crescent"/></svg><svg class="knob-bloom" viewBox="-13 -13 26 26"><use href="#floret"/></svg></span></span>
         </label>
       </div>
     </div>
@@ -1204,12 +1267,12 @@ input[type="range"].flame::-moz-range-thumb{
     <div class="modal-list">
       <label class="choice choice--check">
         <input type="checkbox" id="mChk1" checked>
-        <span class="mark" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5 L 5.5 11 L 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floretGold"/></svg></span>
         <span class="txt">巡灯一遍 <span class="cap">从南翼到垂枝亭,不落一盏。</span></span>
       </label>
       <label class="choice choice--check">
         <input type="checkbox" id="mChk2">
-        <span class="mark" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5 L 5.5 11 L 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="mark" aria-hidden="true"><svg class="floret" viewBox="-13 -13 26 26"><use href="#floretGold"/></svg></span>
         <span class="txt">记露水三钱 <span class="cap">寅时前封瓶,迟了就散。</span></span>
       </label>
     </div>
