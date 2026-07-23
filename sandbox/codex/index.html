@@ -2,66 +2,409 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kit / Candidate Theme Gallery</title>
-  <style>
-    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#0d0f12;color:#f3f0e7;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    button,a{font:inherit;color:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:300px minmax(0,1fr);height:100vh;overflow:hidden}
-    aside{display:flex;flex-direction:column;min-height:0;border-right:1px solid #30343a;background:#12151a}
-    .brand{padding:24px;border-bottom:1px solid #30343a}.brand-top{display:flex;align-items:center;justify-content:space-between}.brand-mark{display:grid;place-items:center;width:40px;height:40px;background:#f3f0e7;color:#111;font-weight:950}.brand small,.brand p{color:#7e8792}.brand small{font:10px ui-monospace,monospace;letter-spacing:.14em}.brand h1{margin:22px 0 6px;font-size:25px;letter-spacing:-.04em}.brand p{margin:0;font-size:12px;line-height:1.55}
-    .theme-list{flex:1;overflow:auto;padding:10px;scrollbar-width:thin;scrollbar-color:#535b66 transparent}.theme-button{display:grid;grid-template-columns:32px 1fr auto;gap:9px;align-items:center;width:100%;padding:10px;border:1px solid transparent;background:transparent;text-align:left}.theme-button:hover{background:#191d23}.theme-button[aria-current=true]{border-color:#555d68;background:#f3f0e7;color:#111}.theme-button .n{font:9px ui-monospace,monospace;color:#737d88}.theme-button[aria-current=true] .n{color:#666}.theme-button strong{display:block;font-size:11px;letter-spacing:.12em}.theme-button em{display:block;margin-top:3px;color:#737d88;font-size:9px;font-style:normal}.theme-button .arrow{font-size:14px;opacity:0}.theme-button[aria-current=true] .arrow{opacity:1}
-    .rail-foot{display:flex;justify-content:space-between;padding:15px 20px;border-top:1px solid #30343a;color:#707985;font:9px ui-monospace,monospace}
-    main{display:flex;flex-direction:column;min-width:0;background:#090b0e}.toolbar{display:flex;align-items:center;justify-content:space-between;height:58px;padding:0 18px;border-bottom:1px solid #30343a;background:#111419}.current{display:flex;align-items:center;gap:10px}.current i{width:7px;height:7px;border-radius:50%;background:#b6ff6c;box-shadow:0 0 12px #b6ff6c}.current span{font:10px ui-monospace,monospace;letter-spacing:.12em}.tools{display:flex;gap:7px}.tools button,.open{height:32px;padding:0 11px;border:1px solid #353b43;background:#171b20;text-decoration:none;font:9px ui-monospace,monospace;letter-spacing:.08em}.tools button.active{color:#111;background:#f3f0e7}.open{display:inline-flex;align-items:center}.tools button:hover,.open:hover{border-color:#8d98a5}
-    .viewport{display:grid;flex:1;min-height:0;padding:18px;overflow:auto;background:radial-gradient(circle at 50% 0,#20252c,#0b0d10 65%)}.frame-wrap{position:relative;width:100%;height:100%;min-height:560px;margin:auto;border:1px solid #39404a;background:white;box-shadow:0 35px 90px #000;transition:width .35s ease,height .35s ease}.frame-wrap.tablet{width:min(820px,100%)}.frame-wrap.mobile{width:min(420px,100%);height:780px}.frame-wrap::before{position:absolute;z-index:3;top:-8px;left:50%;width:38px;height:4px;border-radius:4px;background:#454d58;content:"";transform:translateX(-50%)}iframe{display:block;width:100%;height:100%;border:0;background:#fff}
-    .loading{position:absolute;inset:0;display:grid;place-items:center;background:#111;color:#77818d;font:10px ui-monospace,monospace;letter-spacing:.15em}.loading.hide{display:none}
-    @media(max-width:760px){.shell{display:block;height:auto;overflow:visible}aside{position:sticky;z-index:20;top:0;height:auto;border-right:0;border-bottom:1px solid #30343a}.brand{padding:12px 15px}.brand h1,.brand p{display:none}.brand-top{justify-content:flex-start;gap:12px}.brand-mark{width:32px;height:32px}.theme-list{display:flex;gap:5px;padding:7px 10px;overflow-x:auto}.theme-button{flex:0 0 auto;width:auto;grid-template-columns:20px auto;padding:8px 10px;border-color:#2d3239}.theme-button em,.theme-button .arrow{display:none}.rail-foot{display:none}main{min-height:calc(100vh - 106px)}.toolbar{position:sticky;z-index:19;top:106px}.tools button{display:none}.tools button[data-size=mobile]{display:block}.viewport{height:calc(100vh - 164px);padding:8px}.frame-wrap{min-height:100%;height:100%}.frame-wrap.mobile{height:100%}}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KIT 候选主题组件库：15 套完整视觉方向，一套真实组件语言。">
+  <title>SUMI — KIT Candidate Themes</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="shell">
-    <aside>
-      <header class="brand">
-        <div class="brand-top"><span class="brand-mark">K</span><small>15 / CANDIDATE DIRECTIONS</small></div>
-        <h1>Kit Theme Gallery</h1>
-        <p>15 套独立产品场景与交互模型，不共享组件骨架。选择主题，在右侧直接操作特色控件。</p>
-      </header>
-      <nav class="theme-list" aria-label="候选主题"></nav>
-      <footer class="rail-foot"><span>← → SWITCH</span><span>PURE HTML</span></footer>
-    </aside>
-    <main>
-      <header class="toolbar">
-        <div class="current"><i></i><span id="currentLabel">SUMI / 水墨禅</span></div>
-        <div class="tools">
-          <button class="active" data-size="desktop">DESKTOP</button>
-          <button data-size="tablet">TABLET</button>
-          <button data-size="mobile">MOBILE</button>
-          <a class="open" id="openTheme" target="_blank" rel="noopener">OPEN ↗</a>
+  <div class="app" id="app" data-theme="sumi">
+    <div class="page-material" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#overview" aria-label="KIT 候选主题首页">
+        <span class="brand-mark">K</span>
+        <span class="brand-copy">
+          <strong>KIT</strong>
+          <small>Candidate themes</small>
+        </span>
+      </a>
+
+      <div class="current-theme">
+        <span id="topThemeIndex">01 / 15</span>
+        <strong id="topThemeName">SUMI</strong>
+        <i></i>
+        <span id="topThemeDirection">水墨禅</span>
+      </div>
+
+      <nav class="topnav" aria-label="页面导航">
+        <a href="#overview">Overview</a>
+        <a href="#components">Components</a>
+        <a href="#foundations">Foundations</a>
+      </nav>
+
+      <button class="theme-trigger" id="openPicker" type="button" aria-expanded="false" aria-controls="themePicker">
+        <span class="trigger-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        All themes
+        <kbd>⌘K</kbd>
+      </button>
+    </header>
+
+    <aside class="theme-picker" id="themePicker" aria-hidden="true" aria-label="选择候选主题">
+      <header>
+        <div>
+          <span>THEME INDEX</span>
+          <h2>Choose a direction</h2>
         </div>
+        <button class="picker-close" id="closePicker" type="button" aria-label="关闭主题选择器">×</button>
       </header>
-      <section class="viewport">
-        <div class="frame-wrap" id="frameWrap">
-          <div class="loading" id="loading">LOADING THEME 01…</div>
-          <iframe id="themeFrame" title="主题预览"></iframe>
+      <label class="picker-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="themeSearch" type="search" placeholder="搜索名称、风格或关键词…" autocomplete="off">
+        <kbd>ESC</kbd>
+      </label>
+      <nav class="picker-list" id="themeList" aria-label="15 套候选主题"></nav>
+      <footer>
+        <span>15 directions</span>
+        <span>One component system</span>
+      </footer>
+    </aside>
+    <button class="picker-backdrop" id="pickerBackdrop" type="button" aria-label="关闭主题选择器" tabindex="-1"></button>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            <span class="candidate-pill">CANDIDATE <b id="heroIndex">01</b></span>
+            <span class="theme-genre" id="themeGenre">ZEN INK</span>
+          </div>
+
+          <div class="hero-title">
+            <p id="themeKicker">A quiet system of paper and ink</p>
+            <h1 id="themeName">SUMI</h1>
+            <h2 id="themeDirection">水墨禅</h2>
+          </div>
+
+          <p class="hero-description" id="themeDescription">
+            让界面像一张正在呼吸的宣纸：焦墨建立秩序，朱印只在最重要的动作上落下。
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#components">Explore components <span>↓</span></a>
+            <button class="button button-secondary" id="nextTheme" type="button">Next direction <span>→</span></button>
+          </div>
+
+          <dl class="hero-proof">
+            <div><dt>42</dt><dd>Components</dd></div>
+            <div><dt>16</dt><dd>Interaction states</dd></div>
+            <div><dt>AA</dt><dd>Contrast target</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero-stage" aria-label="当前主题的组件组合预览">
+          <div class="stage-grid" aria-hidden="true"></div>
+          <div class="stage-orbit orbit-one" aria-hidden="true"></div>
+          <div class="stage-orbit orbit-two" aria-hidden="true"></div>
+          <span class="stage-coordinate coordinate-top">KIT / <b id="stageCode">S-01</b></span>
+          <span class="stage-coordinate coordinate-bottom" id="stageMotion">BRUSH REVEAL · 640MS</span>
+          <span class="stage-glyph" id="themeGlyph" aria-hidden="true">墨</span>
+
+          <article class="product-card">
+            <header class="product-card-header">
+              <div class="product-identity">
+                <span class="product-icon">K</span>
+                <span><strong>Component review</strong><small>Candidate workspace</small></span>
+              </div>
+              <button class="icon-button" type="button" aria-label="更多选项">•••</button>
+            </header>
+
+            <div class="product-tabs" role="tablist" aria-label="预览页签">
+              <button role="tab" aria-selected="true" data-product-tab="overview">Overview</button>
+              <button role="tab" aria-selected="false" data-product-tab="tokens">Tokens</button>
+              <button role="tab" aria-selected="false" data-product-tab="activity">Activity <i></i></button>
+            </div>
+
+            <div class="product-panel" id="productPanel">
+              <div class="product-panel-heading">
+                <span class="panel-symbol">Aa</span>
+                <div><strong>Theme foundation</strong><p>Review the core visual language before publishing.</p></div>
+                <span class="status-badge">READY</span>
+              </div>
+
+              <label class="field">
+                <span>Package name</span>
+                <div class="field-control">
+                  <input type="text" value="@kit/candidate-theme" aria-label="Package name">
+                  <span>✓</span>
+                </div>
+              </label>
+
+              <div class="product-options">
+                <label class="mini-choice"><input type="radio" name="density" checked><span></span><i><b>Comfortable</b><small>Recommended</small></i></label>
+                <label class="mini-choice"><input type="radio" name="density"><span></span><i><b>Compact</b><small>Dense data</small></i></label>
+              </div>
+
+              <div class="product-progress">
+                <div><span>Component coverage</span><strong>84%</strong></div>
+                <div class="progress-track"><i></i></div>
+              </div>
+            </div>
+
+            <footer class="product-card-footer">
+              <span>Updated just now</span>
+              <div>
+                <button class="button button-quiet button-small" type="button">Save draft</button>
+                <button class="button button-primary button-small" type="button" data-toast="Theme candidate published">Publish <span>↗</span></button>
+              </div>
+            </footer>
+          </article>
+
+          <div class="floating-token floating-token-one">
+            <span class="token-preview token-accent"></span>
+            <div><small>ACCENT</small><strong id="floatingAccent">#A33A2B</strong></div>
+          </div>
+          <div class="floating-token floating-token-two">
+            <span class="radius-shape"></span>
+            <div><small>RADIUS</small><strong id="floatingRadius">0 PX</strong></div>
+          </div>
         </div>
       </section>
+
+      <nav class="theme-rail" id="themeRail" aria-label="快速切换主题"></nav>
+
+      <section class="manifesto">
+        <div class="section-label"><span>01</span> DIRECTION</div>
+        <blockquote id="themeStatement">
+          “克制不是空白，而是让每个动作都有落笔的理由。”
+        </blockquote>
+        <div class="manifesto-details">
+          <div><span>PALETTE</span><strong id="paletteLabel">Paper · Ink · Vermilion</strong></div>
+          <div><span>TYPOGRAPHY</span><strong id="typeLabel">Brush · Ming</strong></div>
+          <div><span>GEOMETRY</span><strong id="shapeLabel">Asymmetric · Open</strong></div>
+          <div><span>MOTION</span><strong id="motionLabel">Slow brush reveal</strong></div>
+        </div>
+      </section>
+
+      <section class="component-showcase" id="components">
+        <header class="showcase-heading">
+          <div class="section-label"><span>02</span> COMPONENTS</div>
+          <div>
+            <p>Built for real interfaces</p>
+            <h2>A system you can actually use.</h2>
+          </div>
+          <p>相同的信息结构，在每套候选方向里拥有完整的形状、材质、状态与交互表达。</p>
+        </header>
+
+        <div class="component-grid">
+          <article class="showcase-card action-studio">
+            <header class="card-heading">
+              <div><span>01 / ACTIONS</span><h3>Buttons with hierarchy</h3></div>
+              <span class="availability">6 VARIANTS</span>
+            </header>
+            <div class="button-gallery">
+              <div><button class="button button-primary" type="button" data-toast="Primary action complete">Create project <span>↗</span></button><small>Primary</small></div>
+              <div><button class="button button-secondary" type="button">Preview theme</button><small>Secondary</small></div>
+              <div><button class="button button-quiet" type="button">View details</button><small>Quiet</small></div>
+              <div><button class="button button-danger" type="button">Remove</button><small>Danger</small></div>
+              <div><button class="button button-primary is-loading" type="button"><i></i>Publishing</button><small>Loading</small></div>
+              <div><button class="button button-primary" type="button" disabled>Unavailable</button><small>Disabled</small></div>
+            </div>
+            <div class="icon-action-row">
+              <button class="icon-button" type="button" aria-label="添加">＋</button>
+              <button class="icon-button" type="button" aria-label="收藏">♡</button>
+              <button class="icon-button is-selected" type="button" aria-label="已固定">◆</button>
+              <span></span>
+              <button class="chip is-selected" type="button">Design <b>×</b></button>
+              <button class="chip" type="button">Engineering <b>＋</b></button>
+            </div>
+          </article>
+
+          <article class="showcase-card form-studio">
+            <header class="card-heading">
+              <div><span>02 / FORMS</span><h3>Inputs that communicate</h3></div>
+              <span class="availability">8 STATES</span>
+            </header>
+            <div class="form-demo">
+              <label class="field">
+                <span>Project name <b>Required</b></span>
+                <div class="field-control"><input type="text" value="Theme exploration" aria-label="Project name"><span>✓</span></div>
+                <small>Use a concise, recognizable name.</small>
+              </label>
+              <label class="field field-error">
+                <span>Release tag</span>
+                <div class="field-control"><input type="text" value="candidate" aria-label="Release tag"><span>!</span></div>
+                <small>Use semantic versioning, for example v0.15.</small>
+              </label>
+              <label class="field">
+                <span>Review group</span>
+                <select aria-label="Review group">
+                  <option>Design systems · 7 people</option>
+                  <option>Product design · 12 people</option>
+                  <option>Engineering · 18 people</option>
+                </select>
+              </label>
+            </div>
+            <div class="choice-demo">
+              <label class="switch"><input type="checkbox" checked><span></span><i><b>Motion</b><small>Expressive transitions</small></i></label>
+              <label class="switch"><input type="checkbox"><span></span><i><b>High contrast</b><small>Sharper surfaces</small></i></label>
+            </div>
+          </article>
+
+          <article class="showcase-card navigation-studio">
+            <header class="card-heading">
+              <div><span>03 / NAVIGATION</span><h3>Move with confidence</h3></div>
+            </header>
+            <div class="large-tabs" role="tablist" aria-label="组件页签">
+              <button role="tab" aria-selected="true" data-showcase-tab="overview">Overview</button>
+              <button role="tab" aria-selected="false" data-showcase-tab="guidelines">Guidelines</button>
+              <button role="tab" aria-selected="false" data-showcase-tab="code">Code</button>
+            </div>
+            <div class="tab-content" id="showcaseTabPanel">
+              <span>01</span>
+              <div><strong>Purpose before decoration</strong><p>Every visual choice maps back to hierarchy, state or brand voice.</p></div>
+            </div>
+            <div class="segmented" role="group" aria-label="布局选择">
+              <button class="is-active" type="button" aria-pressed="true">Grid</button>
+              <button type="button" aria-pressed="false">List</button>
+              <button type="button" aria-pressed="false">Compare</button>
+            </div>
+          </article>
+
+          <article class="showcase-card feedback-studio">
+            <header class="card-heading">
+              <div><span>04 / FEEDBACK</span><h3>States with a voice</h3></div>
+            </header>
+            <div class="alert alert-success">
+              <span>✓</span><div><strong>Tokens synchronized</strong><p>12 semantic values updated successfully.</p></div><button type="button" aria-label="关闭">×</button>
+            </div>
+            <div class="alert alert-info">
+              <span>i</span><div><strong>Candidate ready</strong><p>Invite reviewers when the component audit is complete.</p></div>
+            </div>
+            <button class="button button-secondary toast-demo" type="button" data-toast="Reviewer invitation sent">Show notification <span>↗</span></button>
+          </article>
+
+          <article class="showcase-card data-studio">
+            <header class="card-heading">
+              <div><span>05 / DATA DISPLAY</span><h3>Dense, never dull</h3></div>
+              <button class="button button-secondary button-small" type="button">Filter <span>⌄</span></button>
+            </header>
+            <div class="metric-row">
+              <div><span>Components</span><strong>42</strong><small><b>+8</b> this iteration</small></div>
+              <div><span>Coverage</span><strong>84<sup>%</sup></strong><small>Target 90%</small></div>
+              <div><span>Open issues</span><strong>06</strong><small><b>−3</b> this week</small></div>
+            </div>
+            <div class="data-table-wrap">
+              <table>
+                <thead><tr><th>Component</th><th>Status</th><th>Owner</th><th>Updated</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td><span class="component-name"><i>Bt</i><b>Button<small>Actions</small></b></span></td><td><span class="status-badge status-success">STABLE</span></td><td><span class="avatar">YL</span> Yun Li</td><td>2 min ago</td><td><button class="row-more" type="button" aria-label="Button options">•••</button></td></tr>
+                  <tr><td><span class="component-name"><i>In</i><b>Text field<small>Forms</small></b></span></td><td><span class="status-badge status-review">REVIEW</span></td><td><span class="avatar avatar-two">MK</span> M. Kim</td><td>1 hour ago</td><td><button class="row-more" type="button" aria-label="Text field options">•••</button></td></tr>
+                  <tr><td><span class="component-name"><i>Md</i><b>Dialog<small>Overlay</small></b></span></td><td><span class="status-badge">DRAFT</span></td><td><span class="avatar avatar-three">QT</span> Q. Tao</td><td>Yesterday</td><td><button class="row-more" type="button" aria-label="Dialog options">•••</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="showcase-card overlay-studio">
+            <header class="card-heading">
+              <div><span>06 / OVERLAY</span><h3>Focused moments</h3></div>
+            </header>
+            <div class="dialog-preview">
+              <span class="dialog-preview-icon">◆</span>
+              <div><strong>Publish candidate?</strong><p>Invite the review group and create a versioned release.</p></div>
+              <button class="icon-button" type="button" aria-label="关闭">×</button>
+              <footer>
+                <button class="button button-quiet button-small" type="button">Cancel</button>
+                <button class="button button-primary button-small" id="openDialog" type="button">Open dialog</button>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="foundations" id="foundations">
+        <header class="showcase-heading">
+          <div class="section-label"><span>03</span> FOUNDATIONS</div>
+          <div>
+            <p>Everything has a reason</p>
+            <h2>Tokens with character.</h2>
+          </div>
+          <p>语义保持稳定，具体值随主题变化。这样产品可以换一种性格，而不用换一套逻辑。</p>
+        </header>
+
+        <div class="foundation-grid">
+          <article class="palette-card">
+            <header><span>COLOR SYSTEM</span><strong id="paletteCount">05 roles</strong></header>
+            <div class="color-stack">
+              <div class="color-card color-canvas"><span>Canvas</span><strong id="tokenCanvas">#F1EEE4</strong></div>
+              <div class="color-card color-surface"><span>Surface</span><strong id="tokenSurface">#FAF7EE</strong></div>
+              <div class="color-card color-ink"><span>Ink</span><strong id="tokenInk">#171613</strong></div>
+              <div class="color-card color-accent"><span>Accent</span><strong id="tokenAccent">#A33A2B</strong></div>
+              <div class="color-card color-highlight"><span>Highlight</span><strong id="tokenHighlight">#D3B45B</strong></div>
+            </div>
+          </article>
+
+          <article class="type-card">
+            <header><span>TYPE SYSTEM</span><strong id="typePair">Brush / Ming</strong></header>
+            <div class="type-specimen">
+              <span id="typeGlyph">墨</span>
+              <div><strong id="typeThemeName">SUMI</strong><p id="typeSample">形随意生，秩序留白。</p></div>
+            </div>
+            <div class="type-scale">
+              <span><b>Display</b><i>64 / 0.92</i></span>
+              <span><b>Heading</b><i>32 / 1.08</i></span>
+              <span><b>Body</b><i>16 / 1.65</i></span>
+              <span><b>Label</b><i>12 / 1.20</i></span>
+            </div>
+          </article>
+
+          <article class="shape-card">
+            <header><span>SHAPE & MOTION</span><strong id="shapeName">Open geometry</strong></header>
+            <div class="shape-demo">
+              <i></i><i></i><i></i>
+              <span id="shapeRadius">R 00</span>
+            </div>
+            <label class="motion-control">
+              <span>Expression <output id="rangeOutput">64%</output></span>
+              <input id="expressionRange" type="range" min="0" max="100" value="64">
+              <small><i>Quiet</i><i>Expressive</i></small>
+            </label>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing">
+        <span class="closing-index" id="closingIndex">01 / 15</span>
+        <div>
+          <p>One system. Fifteen distinct voices.</p>
+          <h2 id="closingTitle">Make space for the essential.</h2>
+        </div>
+        <button class="button button-primary" id="closingNextTheme" type="button">See next direction <span>→</span></button>
+        <span class="closing-glyph" id="closingGlyph" aria-hidden="true">墨</span>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="#overview"><span class="brand-mark">K</span><span class="brand-copy"><strong>KIT</strong><small>Candidate themes</small></span></a>
+      <p>15 complete art directions for one production-ready component system.</p>
+      <span>2026 / EXPLORATION 01</span>
+    </footer>
+
+    <dialog class="dialog" id="demoDialog">
+      <form method="dialog">
+        <header>
+          <span class="dialog-icon">◆</span>
+          <button class="icon-button" value="cancel" aria-label="关闭对话框">×</button>
+        </header>
+        <span class="candidate-pill">RELEASE CANDIDATE</span>
+        <h2>Publish this direction?</h2>
+        <p>The package will be available to seven reviewers. You can continue refining tokens after publishing.</p>
+        <label class="switch dialog-switch"><input type="checkbox" checked><span></span><i><b>Notify reviewers</b><small>Send a release summary by email</small></i></label>
+        <footer>
+          <button class="button button-quiet" value="cancel">Cancel</button>
+          <button class="button button-primary" value="publish" data-toast="Candidate published successfully">Publish theme <span>↗</span></button>
+        </footer>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span>✓</span>
+      <div><strong>Done</strong><p id="toastMessage">Action completed</p></div>
+      <button type="button" aria-label="关闭通知">×</button>
+      <i></i>
+    </div>
   </div>
-  <script>
-    const themes=[
-      ["sumi","SUMI","水墨禅","墨池工作台"],["ormolu","ORMOLU","洛可可宫廷","镜厅席位簿"],["nocturne","NOCTURNE","暗夜花园","夜花培育室"],
-      ["pulp","PULP","复古廉价小说","封面印刷床"],["totem","TOTEM","民艺图腾","织纹步进机"],["kiln","KILN","陶土侘寂","拉坯烧成室"],
-      ["chrome","CHROME","千禧液态铬","Liquid Player"],["arcade","ARCADE","8-bit 街机","可玩迷宫柜"],["bitmap","BITMAP","1-bit 位图","像素桌面系统"],
-      ["mochi","MOCHI","软陶泡芙","泡芙装配台"],["scribble","SCRIBBLE","手账涂鸦","手账作战本"],["axon","AXON","轴测蓝图","爆炸装配图"],
-      ["corona","CORONA","日蚀玻璃","日食观测台"],["qalam","QALAM","纳斯塔利克书斋","书法装帧室"],["gazette","GAZETTE","报章排印","晚报排版台"]
-    ];
-    const nav=document.querySelector(".theme-list"),frame=document.querySelector("#themeFrame"),wrap=document.querySelector("#frameWrap"),loading=document.querySelector("#loading"),label=document.querySelector("#currentLabel"),open=document.querySelector("#openTheme");
-    themes.forEach((t,i)=>{const b=document.createElement("button");b.className="theme-button";b.dataset.id=t[0];b.innerHTML=`<span class="n">${String(i+1).padStart(2,"0")}</span><span><strong>${t[1]}</strong><em>${t[2]} · ${t[3]}</em></span><span class="arrow">→</span>`;b.onclick=()=>select(i);nav.appendChild(b)});
-    let active=0;
-    function select(i){active=(i+themes.length)%themes.length;const t=themes[active],src=`themes/${t[0]}.html`;document.querySelectorAll(".theme-button").forEach((b,n)=>b.setAttribute("aria-current",n===active));label.textContent=`${t[1]} / ${t[3]}`;loading.textContent=`LOADING THEME ${String(active+1).padStart(2,"0")}…`;loading.classList.remove("hide");frame.src=src;open.href=src;history.replaceState(null,"",`#${t[0]}`)}
-    frame.addEventListener("load",()=>loading.classList.add("hide"));
-    document.querySelectorAll("[data-size]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-size]").forEach(x=>x.classList.remove("active"));b.classList.add("active");wrap.className=`frame-wrap ${b.dataset.size==="desktop"?"":b.dataset.size}`});
-    addEventListener("keydown",e=>{if(e.key==="ArrowLeft")select(active-1);if(e.key==="ArrowRight")select(active+1)});
-    const initial=themes.findIndex(t=>`#${t[0]}`===location.hash);select(initial<0?0:initial);
-  </script>
+
+  <script src="app.js"></script>
 </body>
 </html>
