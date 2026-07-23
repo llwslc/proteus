@@ -23,7 +23,7 @@
       <header class="brand">
         <div class="brand-top"><span class="brand-mark">K</span><small>15 / CANDIDATE DIRECTIONS</small></div>
         <h1>Kit Theme Gallery</h1>
-        <p>每个方向都是一张完整、独立的控件画布。选择主题，在右侧直接比较整体语言。</p>
+        <p>15 套独立产品场景与交互模型，不共享组件骨架。选择主题，在右侧直接操作特色控件。</p>
       </header>
       <nav class="theme-list" aria-label="候选主题"></nav>
       <footer class="rail-foot"><span>← → SWITCH</span><span>PURE HTML</span></footer>
@@ -48,16 +48,16 @@
   </div>
   <script>
     const themes=[
-      ["sumi","SUMI","水墨禅"],["ormolu","ORMOLU","洛可可宫廷"],["nocturne","NOCTURNE","暗夜花园"],
-      ["pulp","PULP","复古廉价小说"],["totem","TOTEM","民艺图腾"],["kiln","KILN","陶土侘寂"],
-      ["chrome","CHROME","千禧液态铬"],["arcade","ARCADE","8-bit 街机"],["bitmap","BITMAP","1-bit 位图"],
-      ["mochi","MOCHI","软陶泡芙"],["scribble","SCRIBBLE","手账涂鸦"],["axon","AXON","轴测蓝图"],
-      ["corona","CORONA","日蚀玻璃"],["qalam","QALAM","纳斯塔利克书斋"],["gazette","GAZETTE","报章排印"]
+      ["sumi","SUMI","水墨禅","墨池工作台"],["ormolu","ORMOLU","洛可可宫廷","镜厅席位簿"],["nocturne","NOCTURNE","暗夜花园","夜花培育室"],
+      ["pulp","PULP","复古廉价小说","封面印刷床"],["totem","TOTEM","民艺图腾","织纹步进机"],["kiln","KILN","陶土侘寂","拉坯烧成室"],
+      ["chrome","CHROME","千禧液态铬","Liquid Player"],["arcade","ARCADE","8-bit 街机","可玩迷宫柜"],["bitmap","BITMAP","1-bit 位图","像素桌面系统"],
+      ["mochi","MOCHI","软陶泡芙","泡芙装配台"],["scribble","SCRIBBLE","手账涂鸦","手账作战本"],["axon","AXON","轴测蓝图","爆炸装配图"],
+      ["corona","CORONA","日蚀玻璃","日食观测台"],["qalam","QALAM","纳斯塔利克书斋","书法装帧室"],["gazette","GAZETTE","报章排印","晚报排版台"]
     ];
     const nav=document.querySelector(".theme-list"),frame=document.querySelector("#themeFrame"),wrap=document.querySelector("#frameWrap"),loading=document.querySelector("#loading"),label=document.querySelector("#currentLabel"),open=document.querySelector("#openTheme");
-    themes.forEach((t,i)=>{const b=document.createElement("button");b.className="theme-button";b.dataset.id=t[0];b.innerHTML=`<span class="n">${String(i+1).padStart(2,"0")}</span><span><strong>${t[1]}</strong><em>${t[2]}</em></span><span class="arrow">→</span>`;b.onclick=()=>select(i);nav.appendChild(b)});
+    themes.forEach((t,i)=>{const b=document.createElement("button");b.className="theme-button";b.dataset.id=t[0];b.innerHTML=`<span class="n">${String(i+1).padStart(2,"0")}</span><span><strong>${t[1]}</strong><em>${t[2]} · ${t[3]}</em></span><span class="arrow">→</span>`;b.onclick=()=>select(i);nav.appendChild(b)});
     let active=0;
-    function select(i){active=(i+themes.length)%themes.length;const t=themes[active],src=`themes/${t[0]}.html`;document.querySelectorAll(".theme-button").forEach((b,n)=>b.setAttribute("aria-current",n===active));label.textContent=`${t[1]} / ${t[2]}`;loading.textContent=`LOADING THEME ${String(active+1).padStart(2,"0")}…`;loading.classList.remove("hide");frame.src=src;open.href=src;history.replaceState(null,"",`#${t[0]}`)}
+    function select(i){active=(i+themes.length)%themes.length;const t=themes[active],src=`themes/${t[0]}.html`;document.querySelectorAll(".theme-button").forEach((b,n)=>b.setAttribute("aria-current",n===active));label.textContent=`${t[1]} / ${t[3]}`;loading.textContent=`LOADING THEME ${String(active+1).padStart(2,"0")}…`;loading.classList.remove("hide");frame.src=src;open.href=src;history.replaceState(null,"",`#${t[0]}`)}
     frame.addEventListener("load",()=>loading.classList.add("hide"));
     document.querySelectorAll("[data-size]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-size]").forEach(x=>x.classList.remove("active"));b.classList.add("active");wrap.className=`frame-wrap ${b.dataset.size==="desktop"?"":b.dataset.size}`});
     addEventListener("keydown",e=>{if(e.key==="ArrowLeft")select(active-1);if(e.key==="ArrowRight")select(active+1)});

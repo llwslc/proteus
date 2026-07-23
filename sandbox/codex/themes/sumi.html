@@ -1,8 +1,146 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SUMI — 水墨禅</title>
-<style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#eeeae0;color:#171614}body{font-family:"Songti SC","STSong","YuMincho",serif;background-image:repeating-linear-gradient(87deg,transparent 0 8px,#685d4810 9px),repeating-linear-gradient(1deg,transparent 0 4px,#685d4809 5px)}button,input,select{font:inherit;color:inherit}.app{display:grid;grid-template-columns:92px 1fr;min-height:100vh}.rail{display:flex;flex-direction:column;align-items:center;border-right:1px solid #17161444;padding:24px 0}.seal{display:grid;place-items:center;width:48px;height:48px;border:4px double #f4e9d8;background:#a6382b;color:#f4e9d8;font-weight:700}.rail nav{display:flex;flex:1;gap:30px;align-items:center;writing-mode:vertical-rl;margin:40px 0}.rail a{color:#655f56;font-size:12px;letter-spacing:.25em;text-decoration:none}.rail a.active{color:#171614;border-right:2px solid #a6382b}.rail small{font:9px ui-monospace,monospace;writing-mode:vertical-rl;color:#777}
-.page{padding:28px clamp(24px,5vw,70px) 48px}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid #17161455}.top .brand{font:10px ui-monospace,monospace;letter-spacing:.18em}.top .weather{display:flex;gap:18px;color:#6c665d;font-size:11px}.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:7vw;align-items:center;min-height:480px}.hero-copy{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}.hero h1{margin:0;font-size:clamp(72px,10vw,150px);font-weight:400;line-height:.8;writing-mode:vertical-rl;letter-spacing:.06em}.intro{padding-top:20px}.intro .kicker{color:#a6382b;font:10px ui-monospace,monospace;letter-spacing:.18em}.intro h2{margin:18px 0 14px;font-size:34px;font-weight:400}.intro p{max-width:390px;color:#625d55;line-height:1.9}.brush-button{position:relative;min-width:190px;margin-top:22px;padding:14px 20px;border:0;background:#171614;color:#eeeae0;text-align:left;cursor:pointer}.brush-button:after{position:absolute;right:-20px;top:0;width:25px;height:100%;background:linear-gradient(90deg,#171614,transparent);content:""}.brush-button:hover{background:#a6382b}
-.ink-stage{position:relative;min-height:390px}.enso{position:absolute;top:50%;left:50%;width:min(31vw,340px);aspect-ratio:1;border:clamp(14px,2vw,28px) solid #171614;border-right-color:transparent;border-radius:46% 54% 49% 51%;transform:translate(-50%,-50%) rotate(-28deg);filter:drop-shadow(8px 13px 13px #17161422)}.enso:after{position:absolute;right:-12%;bottom:2%;width:18%;height:5%;border-radius:50%;background:#171614;content:"";transform:rotate(20deg)}.poem{position:absolute;right:2%;top:14%;font-size:13px;line-height:2.3;writing-mode:vertical-rl;letter-spacing:.2em}.red-dot{position:absolute;right:17%;bottom:18%;width:50px;height:50px;border:4px double #eeeae0;background:#a6382b;color:white;text-align:center;line-height:42px}
-.components{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:18px}.panel{position:relative;min-height:250px;padding:22px;border-top:2px solid #171614;border-bottom:1px solid #17161455;background:#f4f1e988}.panel:before{position:absolute;top:-5px;left:0;width:42px;height:8px;background:#171614;content:"";transform:skewX(-28deg)}.panel h3{margin:0 0 20px;font:11px ui-monospace,monospace;letter-spacing:.15em}.field{margin:15px 0}.field label{display:block;margin-bottom:7px;color:#6e685e;font-size:11px}.field input[type=text],.field select{width:100%;padding:10px 4px;border:0;border-bottom:1px solid #171614;background:transparent;outline:none}.field input:focus{border-bottom-color:#a6382b}.checks{display:flex;gap:15px;flex-wrap:wrap}.check{display:flex;gap:7px;align-items:center;font-size:12px}.check input{appearance:none;width:17px;height:17px;border:1px solid #171614;border-radius:50%}.check input:checked{box-shadow:inset 0 0 0 4px #eeeae0;background:#171614}.switch{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px dashed #17161444}.switch button{position:relative;width:46px;height:22px;border:0;border-radius:50%;background:#aaa59b;cursor:pointer}.switch button:after{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#eeeae0;content:"";transition:.25s}.switch button[aria-pressed=true]{background:#171614}.switch button[aria-pressed=true]:after{left:27px;background:#a6382b}.range{width:100%;accent-color:#a6382b}.stat-row{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;margin:17px 0;font:10px ui-monospace,monospace}.bar{height:5px;background:#17161418}.bar i{display:block;height:100%;background:#171614}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:23px}.actions button{padding:11px;border:1px solid #171614;background:transparent;cursor:pointer}.actions button.primary{background:#171614;color:#eeeae0}.actions button:hover{border-color:#a6382b;color:#a6382b}.toast{position:fixed;right:24px;bottom:24px;padding:13px 18px;background:#171614;color:#eeeae0;opacity:0;transform:translateY(12px);transition:.3s}.toast.show{opacity:1;transform:none}
-@media(max-width:800px){.app{grid-template-columns:1fr}.rail{display:none}.page{padding:20px}.hero{grid-template-columns:1fr}.ink-stage{min-height:340px}.enso{width:260px}.components{grid-template-columns:1fr}.hero h1{font-size:86px}.hero-copy{grid-template-columns:90px 1fr}}
-</style></head><body><div class="app"><aside class="rail"><div class="seal">墨</div><nav><a class="active" href="#">静观</a><a href="#">器物</a><a href="#">日课</a><a href="#">藏书</a></nav><small>SUMI / 01</small></aside><main class="page"><header class="top"><span class="brand">KIT / SUMI PRACTICE</span><div class="weather"><span>薄曇 18°</span><span>甲辰 · 七月</span></div></header><section class="hero"><div class="hero-copy"><h1>余白</h1><div class="intro"><p class="kicker">間 · THE BEAUTY BETWEEN</p><h2>一笔，一息，一方天地</h2><p>界面不必填满。让内容像墨落宣纸，有浓淡、有停顿，也有未说完的余韵。</p><button class="brush-button toast-btn">开始今日练习　→</button></div></div><div class="ink-stage"><div class="enso"></div><div class="poem">山静似太古<br>日长如小年</div><div class="red-dot">壹</div></div></section><section class="components"><article class="panel"><h3>01 / 书写参数</h3><div class="field"><label>题签</label><input type="text" value="松风入怀" aria-label="题签"></div><div class="field"><label>纸张</label><select aria-label="纸张"><option>熟宣 · 暖白</option><option>生宣 · 本白</option><option>麻纸 · 灰黄</option></select></div><div class="checks"><label class="check"><input type="radio" name="ink" checked>焦墨</label><label class="check"><input type="radio" name="ink">淡墨</label><label class="check"><input type="radio" name="ink">朱砂</label></div></article><article class="panel"><h3>02 / 墨色状态</h3><div class="stat-row"><span>含水</span><div class="bar"><i style="width:64%"></i></div><b>64</b></div><div class="stat-row"><span>锋颖</span><div class="bar"><i style="width:82%"></i></div><b>82</b></div><div class="stat-row"><span>飞白</span><div class="bar"><i style="width:38%"></i></div><b>38</b></div><div class="field"><label>笔势 <output id="rangeOut">47</output></label><input class="range" type="range" value="47" oninput="rangeOut.value=this.value"></div></article><article class="panel"><h3>03 / 练习设置</h3><div class="switch"><span>呼吸引导</span><button aria-pressed="true" data-toggle></button></div><div class="switch"><span>纸纹反馈</span><button aria-pressed="false" data-toggle></button></div><div class="switch"><span>落款提醒</span><button aria-pressed="true" data-toggle></button></div><div class="actions"><button>存为草稿</button><button class="primary toast-btn">完成落款</button></div></article></section></main></div><div class="toast">墨迹已收入今日册页</div><script>document.querySelectorAll("[data-toggle]").forEach(b=>b.onclick=()=>b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true"));document.querySelectorAll(".toast-btn").forEach(b=>b.onclick=()=>{const t=document.querySelector(".toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)})</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-signature" content="ink-canvas,brush-rack,inkstone,seal-matrix,vertical-composition">
+  <title>SUMI — 墨池工作台</title>
+  <style>
+    :root{--paper:#eee9dc;--ink:#171714;--cinnabar:#a73326;--soft:#c9c2b2}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#d8d1c1;color:var(--ink);font-family:"Songti SC","Noto Serif CJK SC",serif}
+    button,input{font:inherit}
+    button{color:inherit;cursor:pointer}
+    body:before{position:fixed;inset:0;pointer-events:none;content:"";opacity:.35;background-image:repeating-linear-gradient(87deg,transparent 0 7px,#756d5e10 8px 9px),radial-gradient(circle at 18% 17%,#fff8 0 1px,transparent 2px);mix-blend-mode:multiply}
+    .studio{display:grid;grid-template-columns:92px minmax(420px,1fr) 260px;min-height:100vh;padding:22px;gap:18px}
+    .brush-rack{display:flex;flex-direction:column;align-items:center;border-right:1px solid #5c5548;padding-right:18px}
+    .mon{font:9px ui-monospace,monospace;letter-spacing:.18em}
+    .seal-logo{display:grid;place-items:center;width:52px;height:52px;border:2px solid var(--cinnabar);color:var(--cinnabar);font-size:22px;line-height:1;transform:rotate(-2deg)}
+    .brushes{display:flex;flex-direction:column;gap:20px;margin:38px 0}
+    .brush{position:relative;width:38px;height:86px;border:0;background:transparent}
+    .brush:before{position:absolute;top:0;left:16px;width:7px;height:55px;border-radius:4px;background:linear-gradient(90deg,#7b4c28,#c28a52,#6a3d22);content:""}
+    .brush:after{position:absolute;bottom:0;left:10px;width:19px;height:35px;border-radius:60% 60% 85% 85%;background:#28251f;content:"";clip-path:polygon(15% 0,85% 0,100% 58%,50% 100%,0 58%)}
+    .brush:nth-child(2):after{left:13px;width:13px}.brush:nth-child(3):after{left:7px;width:25px}
+    .brush[aria-pressed=true]:after{background:var(--cinnabar)}.brush span{position:absolute;top:24px;right:39px;writing-mode:vertical-rl;font-size:10px;opacity:0;transition:.2s}.brush:hover span,.brush[aria-pressed=true] span{opacity:1}
+    .paper{position:relative;min-height:720px;overflow:hidden;background:var(--paper);box-shadow:0 18px 50px #51493d38}
+    .paper:after{position:absolute;inset:0;pointer-events:none;content:"";background:linear-gradient(90deg,#4a43360a 1px,transparent 1px),linear-gradient(#fff4,#fff0 14%,#574c3d09);background-size:31px 100%,100% 100%;mix-blend-mode:multiply}
+    canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;z-index:1}
+    .vertical-title{position:absolute;z-index:2;top:46px;right:39px;margin:0;writing-mode:vertical-rl;font-size:38px;font-weight:500;letter-spacing:.12em;pointer-events:none}
+    .vertical-title small{font-size:12px;color:#71695c;margin-top:12px;letter-spacing:.25em}
+    .prompt{position:absolute;z-index:2;left:28px;bottom:24px;display:flex;align-items:center;gap:9px;color:#777062;font-size:11px;pointer-events:none;transition:.25s}
+    .prompt i{width:28px;height:1px;background:currentColor}
+    .prompt.hide{opacity:0}
+    .controls{display:flex;flex-direction:column;min-width:0}
+    .controls header{padding:4px 0 22px;border-bottom:1px solid #7d7465}
+    .controls h1{margin:9px 0 4px;font-size:22px;font-weight:500}.controls header p{margin:0;color:#746c5f;font-size:11px}
+    .section{padding:22px 0;border-bottom:1px solid #aaa191}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:11px}.section-title span:last-child{color:#847b6d}
+    .inkstone{position:relative;width:132px;height:82px;margin:auto;border:1px solid #4d493f;border-radius:52% 48% 44% 56%;background:#332f28;box-shadow:inset 0 0 0 8px #5a554c,inset 0 0 28px #000}
+    .inkstone:after{position:absolute;inset:14px;border-radius:inherit;background:radial-gradient(circle at 38% 32%,#4f4d45,#080808 58%);content:""}
+    .ink-dots{position:absolute;z-index:2;inset:0;display:flex;align-items:center;justify-content:center;gap:8px}
+    .ink-dots button{width:13px;height:13px;padding:0;border:1px solid #eee;border-radius:50%;background:#111}.ink-dots button:nth-child(2){opacity:.72}.ink-dots button:nth-child(3){opacity:.45}.ink-dots button.active{outline:2px solid var(--cinnabar);outline-offset:3px}
+    .range-labels{display:flex;justify-content:space-between;margin-bottom:8px;color:#71695d;font-size:9px}
+    input[type=range]{width:100%;height:2px;appearance:none;background:#777063;accent-color:var(--cinnabar)}
+    input[type=range]::-webkit-slider-thumb{width:18px;height:18px;appearance:none;border:1px solid #494338;border-radius:50%;background:var(--paper)}
+    .seals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .seals button{aspect-ratio:1;border:1px solid var(--cinnabar);background:transparent;color:var(--cinnabar);font-size:17px}
+    .seals button:hover,.seals button.active{background:var(--cinnabar);color:var(--paper)}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:20px}
+    .actions button{padding:12px;border:1px solid #514a3f;background:transparent;font-size:10px;letter-spacing:.16em}
+    .actions .primary{background:var(--ink);color:var(--paper)}
+    @media(max-width:900px){.studio{grid-template-columns:70px 1fr}.controls{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.controls header,.actions{grid-column:1/-1}.section{border-bottom:0}.paper{min-height:620px}}
+    @media(max-width:600px){.studio{display:block;padding:10px}.brush-rack{position:absolute;z-index:4;top:22px;left:21px;border:0;padding:0}.brushes{display:none}.brush-rack .mon{display:none}.paper{min-height:68vh}.controls{display:block;padding:16px}.vertical-title{font-size:30px}.section{border-bottom:1px solid #aaa191}}
+  </style>
+</head>
+<body>
+  <div class="studio">
+    <aside class="brush-rack">
+      <div class="seal-logo">墨</div>
+      <div class="brushes" aria-label="选择笔锋">
+        <button class="brush" data-brush="4" aria-pressed="false" title="游丝"><span>游丝</span></button>
+        <button class="brush" data-brush="9" aria-pressed="true" title="中锋"><span>中锋</span></button>
+        <button class="brush" data-brush="18" aria-pressed="false" title="泼墨"><span>泼墨</span></button>
+      </div>
+      <span class="mon">乙巳 · 夏</span>
+    </aside>
+
+    <main class="paper" id="paper">
+      <canvas id="inkCanvas" aria-label="可书写的水墨画布"></canvas>
+      <h2 class="vertical-title">山中一夜雨<small>试笔 · 听松</small></h2>
+      <div class="prompt" id="prompt"><i></i>按住并移动笔锋，或轻点落墨</div>
+    </main>
+
+    <aside class="controls">
+      <header>
+        <div class="mon">SUMI / INK LAB №01</div>
+        <h1>墨池工作台</h1>
+        <p>调墨、选锋、试纸，最后钤下一方印。</p>
+      </header>
+
+      <section class="section">
+        <div class="section-title"><span>墨色</span><span id="inkName">焦墨</span></div>
+        <div class="inkstone">
+          <div class="ink-dots">
+            <button class="active" data-alpha=".88" data-name="焦墨" aria-label="焦墨"></button>
+            <button data-alpha=".55" data-name="宿墨" aria-label="宿墨"></button>
+            <button data-alpha=".28" data-name="淡墨" aria-label="淡墨"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title"><span>水分</span><span id="wetValue">62%</span></div>
+        <div class="range-labels"><span>枯</span><span>润</span><span>泼</span></div>
+        <input id="wetness" type="range" min="8" max="100" value="62" aria-label="笔锋水分">
+      </section>
+
+      <section class="section">
+        <div class="section-title"><span>藏书印</span><span>点击后落印</span></div>
+        <div class="seals" id="sealPicker">
+          <button data-seal="山">山</button><button data-seal="無">無</button><button data-seal="松">松</button><button data-seal="一">一</button>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button id="clearInk">洗砚</button>
+        <button class="primary" id="dryInk">收笔 · 定墨</button>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const canvas=document.querySelector("#inkCanvas");
+    const paper=document.querySelector("#paper");
+    const ctx=canvas.getContext("2d");
+    const prompt=document.querySelector("#prompt");
+    let size=9,alpha=.88,wet=.62,drawing=false,last=null,sealed=false;
+
+    function fit(){
+      const r=paper.getBoundingClientRect(),d=devicePixelRatio||1;
+      const snapshot=canvas.width?canvas.toDataURL():null;
+      canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);
+      ctx.setTransform(d,0,0,d,0,0);
+      if(snapshot){const img=new Image();img.onload=()=>ctx.drawImage(img,0,0,r.width,r.height);img.src=snapshot}
+    }
+    fit();addEventListener("resize",fit);
+
+    function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
+    function dab(p,velocity=1){
+      const radius=size*(.7+wet*.7)*(1+Math.random()*.22);
+      ctx.save();ctx.globalAlpha=alpha*(.62+Math.random()*.32);ctx.fillStyle="#11110f";
+      ctx.beginPath();ctx.ellipse(p.x+(Math.random()-.5)*wet*4,p.y+(Math.random()-.5)*wet*4,radius,radius*(.45+velocity*.22),Math.random()*.25,0,Math.PI*2);ctx.fill();
+      if(wet>.65){ctx.globalAlpha=alpha*.08;ctx.beginPath();ctx.arc(p.x,p.y,radius*1.9,0,Math.PI*2);ctx.fill()}
+      ctx.restore();
+    }
+    canvas.addEventListener("pointerdown",e=>{drawing=true;last=point(e);canvas.setPointerCapture(e.pointerId);dab(last);prompt.classList.add("hide")});
+    canvas.addEventListener("pointermove",e=>{if(!drawing)return;const p=point(e),dx=p.x-last.x,dy=p.y-last.y,dist=Math.hypot(dx,dy),steps=Math.max(1,Math.ceil(dist/(size*.35)));for(let i=1;i<=steps;i++)dab({x:last.x+dx*i/steps,y:last.y+dy*i/steps},Math.min(1,dist/20));last=p});
+    canvas.addEventListener("pointerup",()=>{drawing=false;last=null});
+
+    document.querySelectorAll(".brush").forEach(b=>b.onclick=()=>{size=+b.dataset.brush;document.querySelectorAll(".brush").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+    document.querySelectorAll(".ink-dots button").forEach(b=>b.onclick=()=>{alpha=+b.dataset.alpha;document.querySelector("#inkName").textContent=b.dataset.name;document.querySelectorAll(".ink-dots button").forEach(x=>x.classList.toggle("active",x===b))});
+    document.querySelector("#wetness").oninput=e=>{wet=e.target.value/100;document.querySelector("#wetValue").textContent=e.target.value+"%"};
+    document.querySelectorAll(".seals button").forEach(b=>b.onclick=()=>{const r=canvas.getBoundingClientRect();ctx.save();ctx.translate(r.width*.76,r.height*.76);ctx.rotate(-.05);ctx.strokeStyle="#a73326";ctx.fillStyle="#a73326";ctx.lineWidth=2;ctx.globalAlpha=.86;ctx.strokeRect(-22,-22,44,44);ctx.font="30px serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(b.dataset.seal,0,1);ctx.restore();sealed=true;document.querySelectorAll(".seals button").forEach(x=>x.classList.toggle("active",x===b))});
+    document.querySelector("#clearInk").onclick=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);sealed=false;prompt.classList.remove("hide")};
+    document.querySelector("#dryInk").onclick=e=>{e.currentTarget.textContent=sealed?"已装裱 · 朱印在":"已定墨 · 待落印";paper.animate([{filter:"contrast(1)"},{filter:"contrast(1.2) sepia(.12)"},{filter:"contrast(1)"}],{duration:700})};
+  </script>
+</body>
+</html>

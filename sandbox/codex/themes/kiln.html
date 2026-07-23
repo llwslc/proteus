@@ -1,6 +1,109 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KILN — 陶土侘寂</title>
-<style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#e3dac8;color:#292722}body{font-family:"Avenir Next","Segoe UI",sans-serif;background-image:radial-gradient(circle,#594a3812 0 1px,transparent 1.3px),linear-gradient(110deg,transparent 42%,#fff3 50%,transparent 57%);background-size:7px 7px,340px 100%}button,input,select{font:inherit;color:inherit}.app{display:grid;grid-template-columns:1fr 68px;min-height:100vh}.side{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0;border-left:1px solid #39352e44}.side b{font-family:Georgia,serif;font-size:24px;font-weight:400;writing-mode:vertical-rl}.side nav{display:flex;gap:25px;writing-mode:vertical-rl}.side a{color:#746e64;font-size:10px;letter-spacing:.2em;text-decoration:none}.side a.active{color:#ba6745}.side small{font:8px ui-monospace,monospace;writing-mode:vertical-rl}.content{padding:25px clamp(24px,5vw,72px) 45px}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid #29272233}.top span{font:9px ui-monospace,monospace;letter-spacing:.16em}.top nav{display:flex;gap:22px}.top a{color:#746e64;font-size:11px;text-decoration:none}.hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:center;min-height:450px}.copy .kicker{color:#ba6745;font:9px ui-monospace,monospace;letter-spacing:.18em}.copy h1{margin:14px 0;font-family:"Iowan Old Style",Palatino,serif;font-size:clamp(60px,8.5vw,125px);font-weight:400;line-height:.82;letter-spacing:-.055em}.copy p{max-width:450px;color:#6c665c;line-height:1.8}.clay-button{padding:13px 22px;border:0;border-radius:18px 24px 16px 27px;background:#b96745;color:#f0e6d4;box-shadow:inset 5px 6px 10px #fff3,inset -7px -8px 12px #6d352827,0 11px 20px #5f4c3928;cursor:pointer}.clay-button:active{transform:translateY(5px);box-shadow:inset 6px 7px 12px #6d35282f}.shelf{position:relative;min-height:380px}.shelf:after{position:absolute;right:4%;bottom:35px;left:2%;height:15px;border-radius:50%;background:#493e3232;content:"";filter:blur(10px)}.pot{position:absolute;bottom:55px;box-shadow:inset -20px -10px 30px #4e2d2225,0 25px 25px #4d40332a}.pot:before{position:absolute;top:-10px;left:20%;width:60%;height:22px;border-radius:50%;background:#322f29;content:""}.p1{left:8%;width:38%;height:250px;border-radius:45% 50% 37% 43% / 26% 25% 10% 12%;background:linear-gradient(115deg,#8e432f,#c67650 50%,#8d422f)}.p2{right:6%;width:29%;height:185px;border-radius:49% 46% 35% 43% / 19% 22% 9% 10%;background:linear-gradient(120deg,#292722,#696257)}.p3{right:31%;width:18%;height:115px;border-radius:50% 47% 23% 20%;background:linear-gradient(115deg,#e8ddc8,#b7a894)}.mark{position:absolute;z-index:2;left:23%;bottom:142px;color:#eadac0;font-family:Georgia,serif;font-size:55px;opacity:.55}
-.collection{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:18px}.panel{min-height:255px;padding:22px;border:0;border-radius:34px 24px 40px 20px;background:#eee5d4a8;box-shadow:0 22px 35px #5f4b3620,inset 0 1px #fff8}.panel:nth-child(2){transform:translateY(14px);border-radius:23px 42px 21px 36px}.panel h2{margin:0 0 20px;font-family:"Iowan Old Style",Georgia,serif;font-size:21px;font-weight:400}.field{margin:13px 0}.field label{display:block;margin-bottom:6px;color:#777064;font-size:10px}.field input,.field select{width:100%;padding:11px 5px;border:0;border-bottom:1px solid #71695d;background:transparent;outline:none}.field input:focus{border-color:#b96745}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:8px 12px;border:0;border-radius:18px 23px 16px 26px;background:#d5c8b3;color:#625a4f;cursor:pointer}.chip.active{background:#292722;color:#e8decb}.toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #29272222}.toggle button{position:relative;width:47px;height:23px;border:0;border-radius:50%;background:#b9ac98;cursor:pointer;box-shadow:inset 3px 4px 8px #6455462c}.toggle button:after{position:absolute;top:3px;left:4px;width:17px;height:17px;border-radius:45% 55% 48% 52%;background:#eae0cd;content:"";transition:.25s}.toggle button[aria-pressed=true]{background:#b96745}.toggle button[aria-pressed=true]:after{left:26px}.firing{display:flex;align-items:flex-end;justify-content:space-around;height:105px;padding-top:15px}.firing i{display:block;width:18%;border-radius:50% 50% 8px 8px;background:#b96745}.firing i:nth-child(2){background:#8d8071}.firing i:nth-child(3){background:#292722}.labels{display:flex;justify-content:space-around;color:#756d61;font:8px ui-monospace,monospace}.toast{position:fixed;right:25px;bottom:25px;padding:13px 18px;border-radius:21px 32px 18px 28px;background:#292722;color:#e9deca;opacity:0;transform:translateY(15px);transition:.3s}.toast.show{opacity:1;transform:none}
-@media(max-width:800px){.app{display:block}.side{display:none}.content{padding:20px}.top nav{display:none}.hero{grid-template-columns:1fr}.collection{grid-template-columns:1fr}.panel:nth-child(2){transform:none}.copy h1{font-size:70px}}
-</style></head><body><div class="app"><main class="content"><header class="top"><span>KILN / OBJECTS SHAPED BY TIME</span><nav><a href="#">Collection</a><a href="#">Journal</a><a href="#">Studio</a></nav></header><section class="hero"><div class="copy"><div class="kicker">OBJECTS / FIRE / TIME · BATCH 06</div><h1>Perfectly unfinished</h1><p>保留指印、釉裂和微微偏心的轮廓。控件像手捏陶器，不追求机器般精确，却在每次触碰中保留温度。</p><button class="clay-button toast-btn">查看本次窑藏　→</button></div><div class="shelf"><div class="pot p1"></div><div class="pot p2"></div><div class="pot p3"></div><span class="mark">火</span></div></section><section class="collection"><article class="panel"><h2>Clay composition</h2><div class="field"><label>器物名称</label><input value="Smoke Vessel No. 06"></div><div class="field"><label>土料</label><select><option>赤陶 · 细砂</option><option>黑陶 · 粗砾</option><option>白陶 · 长石</option></select></div><div class="chips"><button class="chip active">生釉</button><button class="chip">烟熏</button><button class="chip">无釉</button></div></article><article class="panel"><h2>Firing controls</h2><div class="toggle"><span>保留指痕</span><button data-toggle aria-pressed="true"></button></div><div class="toggle"><span>自然落灰</span><button data-toggle aria-pressed="true"></button></div><div class="toggle"><span>匣钵保护</span><button data-toggle aria-pressed="false"></button></div><div class="field"><label>窑温 · <output id="heat">1220</output>°C</label><input type="range" min="900" max="1350" value="1220" oninput="heat.value=this.value" style="accent-color:#b96745"></div></article><article class="panel"><h2>Firing profile</h2><div class="firing"><i style="height:38%"></i><i style="height:72%"></i><i style="height:96%"></i><i style="height:55%"></i></div><div class="labels"><span>DRY</span><span>RISE</span><span>SOAK</span><span>COOL</span></div><button class="clay-button toast-btn" style="width:100%;margin-top:22px">封窑烧制</button></article></section></main><aside class="side"><b>窑 · KILN</b><nav><a class="active" href="#">器物</a><a href="#">火候</a><a href="#">土料</a></nav><small>WABI-SABI / 06</small></aside></div><div class="toast">本次烧制已加入窑程</div><script>document.querySelectorAll("[data-toggle]").forEach(b=>b.onclick=()=>b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true"));document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active")});document.querySelectorAll(".toast-btn").forEach(b=>b.onclick=()=>{let t=document.querySelector(".toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1700)})</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-signature" content="throwing-wheel,vessel-profile,kiln-arc,glaze-test-tiles,pyrometric-cones,firing-log">
+  <title>KILN — 拉坯与烧成</title>
+  <style>
+    :root{--smoke:#282825;--oat:#ded2b8;--terra:#b55e3d;--clay:#9c6549;--glaze:#596f68;--spin:0s;--shoulder:38%;--belly:46%;--foot:28%}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#b8ab91;color:var(--smoke);font-family:"Iowan Old Style","Songti SC",serif}
+    button,input{font:inherit;color:inherit}button{cursor:pointer}
+    body{background-image:radial-gradient(circle at 30% 10%,#f4ead2,transparent 42%),repeating-linear-gradient(91deg,transparent 0 15px,#4a40330a 16px 17px)}
+    .atelier{display:grid;grid-template-columns:minmax(450px,1.25fr) 360px;min-height:100vh}
+    .wheel-room{position:relative;display:grid;place-items:center;min-height:100vh;overflow:hidden;padding:50px;background:#d9ccb0}
+    .wheel-room:before{position:absolute;left:6%;top:5%;width:140px;height:170px;border-radius:44% 56% 40% 60%;background:#c6b697;box-shadow:25px 20px 50px #7c6e5744;content:"";transform:rotate(-11deg)}
+    .title{position:absolute;z-index:4;top:34px;left:44px}.title small{font:9px ui-monospace,monospace;letter-spacing:.16em}.title h1{margin:8px 0 0;font-size:34px;font-weight:400}.title h1 em{color:var(--terra);font-style:normal}
+    .shelf{position:absolute;right:8%;top:9%;width:140px;height:10px;background:#67584a;box-shadow:0 8px 12px #5b4d3d44}.shelf:before,.shelf:after{position:absolute;bottom:10px;width:44px;background:#8b6754;content:""}.shelf:before{left:9px;height:54px;border-radius:48% 48% 12px 12px}.shelf:after{right:8px;height:72px;border-radius:20% 20% 45% 45%}
+    .wheel-assembly{position:relative;width:480px;height:620px}
+    .vessel-wrap{position:absolute;z-index:3;left:50%;bottom:182px;width:280px;height:350px;transform:translateX(-50%);filter:drop-shadow(25px 30px 22px #5a4e3f48)}
+    .vessel{position:absolute;left:50%;bottom:0;width:100%;height:100%;overflow:hidden;background:linear-gradient(90deg,#805139,#b87957 18%,#c88e68 48%,#9d6044 83%,#744732);clip-path:polygon(calc(50% - var(--foot)) 100%,calc(50% + var(--foot)) 100%,calc(50% + var(--belly)) 74%,calc(50% + var(--belly)) 45%,calc(50% + var(--shoulder)) 20%,67% 6%,63% 0,37% 0,33% 6%,calc(50% - var(--shoulder)) 20%,calc(50% - var(--belly)) 45%,calc(50% - var(--belly)) 74%);transform:translateX(-50%);transition:clip-path .3s;animation:turn var(--spin) linear infinite}
+    .vessel:before{position:absolute;inset:0;content:"";background:repeating-linear-gradient(0deg,transparent 0 11px,#43291f20 12px 13px),linear-gradient(to bottom,var(--glaze) 0 34%,transparent 35%);mix-blend-mode:multiply}
+    .vessel:after{position:absolute;left:32%;top:-2px;width:36%;height:20px;border:5px solid #67422f;border-radius:50%;background:#332820;content:"";box-shadow:inset 0 5px 7px #111}
+    @keyframes turn{to{filter:hue-rotate(2deg);transform:translateX(-50%) scaleX(.985)}}
+    .glaze-drips{position:absolute;z-index:4;top:30%;left:14%;right:14%;display:flex;justify-content:space-around;pointer-events:none}.glaze-drips i{width:14px;height:var(--drop);border-radius:0 0 12px 12px;background:var(--glaze);opacity:.82}
+    .wheel-disc{position:absolute;z-index:2;left:50%;bottom:135px;width:390px;height:80px;border:10px solid #4c4238;border-radius:50%;background:radial-gradient(ellipse,#9d8f78 0 36%,#685b4d 38% 56%,#3b3732 58%);transform:translateX(-50%);box-shadow:0 16px 0 #4f493f,0 30px 40px #63574677}
+    .pedestal{position:absolute;left:50%;bottom:20px;width:170px;height:150px;background:linear-gradient(90deg,#4a443d,#70675b,#3b3935);clip-path:polygon(15% 0,85% 0,100% 100%,0 100%);transform:translateX(-50%)}
+    .foot-pedal{position:absolute;z-index:4;left:55%;bottom:16px;width:115px;height:34px;border:0;border-radius:50%;background:#393835;color:#d6c7ab;font-size:10px;transform:rotate(-7deg);box-shadow:7px 10px 0 #72634f}.foot-pedal.on{transform:rotate(-7deg) translateY(7px);box-shadow:3px 3px 0 #72634f}
+    .profile-controls{position:absolute;left:34px;bottom:35px;width:190px;padding:18px;border-left:1px solid #6e6252;background:#d7c9abbb;backdrop-filter:blur(4px)}
+    .profile-controls h3{margin:0 0 14px;font-size:12px;font-weight:400}.profile-row{display:grid;grid-template-columns:46px 1fr;gap:9px;align-items:center;margin:12px 0;font-size:9px}.profile-row input{width:100%;accent-color:var(--terra)}
+    .control-room{padding:28px 26px;background:var(--smoke);color:var(--oat)}
+    .control-room header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid #6c6154}.control-room h2{margin:0;font-size:25px;font-weight:400}.batch{padding:7px 9px;border:1px solid #8b7b66;font:9px ui-monospace,monospace}
+    .label{margin:24px 0 12px;color:#a99a84;font:9px ui-monospace,monospace;letter-spacing:.17em}
+    .kiln-dial{position:relative;width:250px;height:135px;margin:12px auto 0;overflow:hidden;border-radius:250px 250px 0 0;background:repeating-conic-gradient(from 270deg at 50% 100%,#b65f3e 0 2deg,transparent 2deg 10deg);border:1px solid #81705b;border-bottom:0}
+    .kiln-dial:before{position:absolute;left:28px;right:28px;bottom:-72px;height:145px;border-radius:50%;background:var(--smoke);content:""}.needle{position:absolute;z-index:3;left:50%;bottom:0;width:44%;height:2px;background:var(--terra);transform-origin:left center;transform:rotate(var(--needle,-35deg));transition:.25s}.needle:after{position:absolute;left:-7px;top:-7px;width:16px;height:16px;border-radius:50%;background:#b65f3e;content:""}
+    .temp{position:absolute;z-index:4;left:50%;bottom:9px;transform:translateX(-50%);font:24px ui-monospace,monospace}.kiln-range{width:100%;margin-top:12px;accent-color:var(--terra)}
+    .cones{display:flex;justify-content:space-between;align-items:flex-end;height:86px;padding:0 10px}.cone{position:relative;width:42px;height:70px;border:0;background:#88715d;clip-path:polygon(48% 0,100% 100%,0 100%);opacity:.55}.cone span{position:absolute;left:50%;bottom:7px;color:#241f1c;font:900 10px ui-monospace,monospace;transform:translateX(-50%)}.cone.active{background:var(--terra);opacity:1;transform:rotate(6deg);transform-origin:bottom}
+    .tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.tile{position:relative;aspect-ratio:.72;border:4px solid #716454;border-radius:45% 40% 10% 12%;background:var(--tile);box-shadow:inset 0 12px 12px #fff2}.tile:after{position:absolute;left:50%;bottom:5px;width:4px;height:4px;border-radius:50%;background:#292620;content:"";transform:translateX(-50%)}.tile.active{outline:2px solid var(--oat);outline-offset:4px}
+    .log{position:relative;padding-left:28px}.log:before{position:absolute;left:7px;top:3px;bottom:3px;width:1px;background:#6d6152;content:""}.log-row{position:relative;display:grid;grid-template-columns:55px 1fr;gap:12px;margin:12px 0;color:#a99d8c;font-size:10px}.log-row:before{position:absolute;left:-25px;top:2px;width:9px;height:9px;border:1px solid #82725d;border-radius:50%;background:var(--smoke);content:""}.log-row.hot:before{background:var(--terra);box-shadow:0 0 8px var(--terra)}.log-row strong{color:var(--oat);font-family:ui-monospace,monospace}
+    .fire{width:100%;margin-top:22px;padding:14px;border:1px solid var(--terra);background:var(--terra);color:#201d1a;letter-spacing:.16em;font:10px ui-monospace,monospace}.fire.firing{color:#f2dcc4;box-shadow:0 0 30px #b55e3d66}
+    @media(max-width:920px){.atelier{grid-template-columns:1fr}.wheel-room{min-height:760px}.control-room{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}.control-room header,.fire{grid-column:1/-1}}
+    @media(max-width:600px){.wheel-room{min-height:720px;padding:20px}.wheel-assembly{transform:scale(.72);transform-origin:center}.profile-controls{left:15px;bottom:15px}.control-room{display:block}.title{left:20px}.shelf{display:none}}
+  </style>
+</head>
+<body>
+  <main class="atelier">
+    <section class="wheel-room">
+      <header class="title"><small>KILN / WABI-SABI STUDIO</small><h1>土与火，<em>留一处不圆满</em></h1></header>
+      <div class="shelf"></div>
+      <div class="wheel-assembly">
+        <div class="vessel-wrap">
+          <div class="vessel" id="vessel"></div>
+          <div class="glaze-drips"><i style="--drop:38px"></i><i style="--drop:18px"></i><i style="--drop:53px"></i><i style="--drop:27px"></i><i style="--drop:45px"></i></div>
+        </div>
+        <div class="wheel-disc"></div><div class="pedestal"></div>
+        <button class="foot-pedal" id="pedal">踩下转盘</button>
+      </div>
+      <aside class="profile-controls">
+        <h3>手捏器形 / PROFILE</h3>
+        <label class="profile-row"><span>肩线</span><input data-profile="--shoulder" type="range" min="24" max="45" value="38"></label>
+        <label class="profile-row"><span>腹围</span><input data-profile="--belly" type="range" min="33" max="49" value="46"></label>
+        <label class="profile-row"><span>圈足</span><input data-profile="--foot" type="range" min="18" max="38" value="28"></label>
+      </aside>
+    </section>
+
+    <aside class="control-room">
+      <header><div><div class="label" style="margin:0 0 7px">FIRING CONTROL</div><h2>窑火记录</h2></div><div class="batch">BATCH 08—乙</div></header>
+
+      <section>
+        <div class="label">窑温 / TEMPERATURE</div>
+        <div class="kiln-dial"><i class="needle" id="needle"></i><output class="temp" id="tempOut">980°</output></div>
+        <input class="kiln-range" id="kilnTemp" type="range" min="760" max="1280" value="980">
+      </section>
+
+      <section>
+        <div class="label">测温锥 / PYROMETRIC CONE</div>
+        <div class="cones"><button class="cone" data-cone="04"><span>04</span></button><button class="cone active" data-cone="6"><span>6</span></button><button class="cone" data-cone="8"><span>8</span></button><button class="cone" data-cone="10"><span>10</span></button></div>
+      </section>
+
+      <section>
+        <div class="label">试釉片 / GLAZE LIBRARY</div>
+        <div class="tiles">
+          <button class="tile active" style="--tile:#596f68" data-glaze="#596f68" aria-label="苔青釉"></button><button class="tile" style="--tile:#b16445" data-glaze="#b16445" aria-label="赤陶釉"></button>
+          <button class="tile" style="--tile:#d1c3a4" data-glaze="#d1c3a4" aria-label="米白釉"></button><button class="tile" style="--tile:#313c3c" data-glaze="#313c3c" aria-label="窑烟釉"></button><button class="tile" style="--tile:#8c725e" data-glaze="#8c725e" aria-label="土灰釉"></button>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">烧成日志 / FIRING LOG</div>
+        <div class="log" id="log">
+          <div class="log-row"><strong>08:10</strong><span>坯体入窑，气孔全开</span></div>
+          <div class="log-row"><strong>10:45</strong><span>石英转换，缓升温</span></div>
+          <div class="log-row hot"><strong>13:20</strong><span>等待点火</span></div>
+        </div>
+      </section>
+      <button class="fire" id="fire">点火 · BEGIN FIRING</button>
+    </aside>
+  </main>
+
+  <script>
+    document.querySelectorAll("[data-profile]").forEach(r=>r.oninput=()=>document.documentElement.style.setProperty(r.dataset.profile,r.value+"%"));
+    const pedal=document.querySelector("#pedal");pedal.onclick=()=>{pedal.classList.toggle("on");document.documentElement.style.setProperty("--spin",pedal.classList.contains("on")?".16s":"0s");pedal.textContent=pedal.classList.contains("on")?"松脚停轮":"踩下转盘"};
+    const temp=document.querySelector("#kilnTemp");temp.oninput=()=>{const n=(temp.value-760)/520*120-60;document.querySelector("#needle").style.setProperty("--needle",n+"deg");document.querySelector("#tempOut").value=temp.value+"°"};
+    document.querySelectorAll(".cone").forEach(c=>c.onclick=()=>document.querySelectorAll(".cone").forEach(x=>x.classList.toggle("active",x===c)));
+    document.querySelectorAll(".tile").forEach(t=>t.onclick=()=>{document.documentElement.style.setProperty("--glaze",t.dataset.glaze);document.querySelectorAll(".tile").forEach(x=>x.classList.toggle("active",x===t))});
+    document.querySelector("#fire").onclick=e=>{e.currentTarget.classList.toggle("firing");e.currentTarget.textContent=e.currentTarget.classList.contains("firing")?"烧成中 · 980°C ↗":"点火 · BEGIN FIRING";if(e.currentTarget.classList.contains("firing")){const row=document.createElement("div");row.className="log-row hot";row.innerHTML="<strong>NOW</strong><span>还原焰进入，釉面开始流动</span>";document.querySelector("#log").appendChild(row)}};
+  </script>
+</body>
+</html>

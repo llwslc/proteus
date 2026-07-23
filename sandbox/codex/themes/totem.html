@@ -1,6 +1,105 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOTEM — 民艺图腾</title>
-<style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#d8c298;color:#213347}body{font-family:Futura,"Avenir Next",sans-serif;background-image:repeating-linear-gradient(0deg,transparent 0 5px,#593d2810 6px),repeating-linear-gradient(90deg,transparent 0 7px,#593d2810 8px)}button,input,select{font:inherit;color:inherit}.woven{height:18px;background:repeating-linear-gradient(45deg,#253e61 0 14px,#eee2c9 14px 28px,#a54c2b 28px 42px,#d0a52c 42px 56px)}.app{min-height:calc(100vh - 36px);border-right:18px solid #253e61;border-left:18px solid #253e61}.top{display:flex;justify-content:space-between;align-items:center;padding:18px 30px;border-bottom:5px solid #253e61}.mark{display:flex;align-items:center;gap:12px}.mark b{display:grid;place-items:center;width:42px;height:42px;border:4px solid #213347;background:conic-gradient(#a54c2b 0 25%,#eee2c9 0 50%,#d0a52c 0 75%,#253e61 0);color:#213347}.mark span{font-family:Rockwell,serif;font-size:22px;font-weight:900;letter-spacing:.15em}.top nav{display:flex;gap:22px}.top a{color:#435066;font-size:10px;font-weight:800;letter-spacing:.1em;text-decoration:none}.hero{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;padding:42px 7vw}.hero .kicker{font-size:10px;font-weight:900;letter-spacing:.2em}.hero h1{margin:12px 0;font-family:Rockwell,"Roboto Slab",serif;font-size:clamp(58px,8vw,116px);font-weight:900;line-height:.8;text-transform:uppercase;text-shadow:6px 6px #eee2c9,10px 10px #a54c2b}.hero p{max-width:480px;line-height:1.7}.carved{padding:13px 22px;border:5px solid #213347;background:#a54c2b;color:#eee2c9;font-weight:900;letter-spacing:.08em;box-shadow:7px 7px 0 #253e61;cursor:pointer}.carved:hover{background:#253e61}.totem-art{position:relative;display:flex;justify-content:center;align-items:center;min-height:360px}.pillar{position:relative;width:160px;height:330px;border:8px solid #213347;background:linear-gradient(#253e61 0 18%,#eee2c9 18% 23%,#a54c2b 23% 47%,#d0a52c 47% 52%,#253e61 52% 73%,#eee2c9 73%);box-shadow:18px 18px #2133472c}.pillar:before{position:absolute;top:30px;left:30px;width:30px;height:30px;border:7px solid #eee2c9;border-radius:50%;box-shadow:55px 0 0 -7px #a54c2b,55px 0 0 0 #eee2c9;content:""}.pillar:after{position:absolute;right:25px;bottom:28px;left:25px;height:50px;background:repeating-linear-gradient(45deg,#a54c2b 0 15px,#eee2c9 15px 30px);content:""}.wing{position:absolute;width:100px;height:170px;border:7px solid #213347;background:repeating-linear-gradient(0deg,#a54c2b 0 25px,#d0a52c 25px 50px,#eee2c9 50px 75px);clip-path:polygon(0 0,100% 20%,70% 100%,0 80%)}.w1{left:calc(50% - 175px);transform:rotate(-7deg)}.w2{right:calc(50% - 175px);transform:scaleX(-1) rotate(-7deg)}
-.controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;padding:0 4vw 40px}.panel{min-height:260px;border:5px solid #213347;background:#e7d5b2;box-shadow:7px 8px #21334722}.panel h2{margin:0;padding:10px 15px;background:#253e61;color:#eee2c9;font-family:Rockwell,serif;font-size:15px;letter-spacing:.1em}.inside{padding:18px}.pattern-options{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.pattern{aspect-ratio:1;border:4px solid #213347;background:conic-gradient(#a54c2b 0 25%,#eee2c9 0 50%,#d0a52c 0 75%,#253e61 0);cursor:pointer}.pattern:nth-child(2){background:repeating-linear-gradient(45deg,#253e61 0 8px,#eee2c9 8px 16px)}.pattern:nth-child(3){background:radial-gradient(circle,#a54c2b 0 28%,#d0a52c 29% 45%,#253e61 46%)}.pattern:nth-child(4){background:linear-gradient(135deg,#a54c2b 50%,#253e61 51%)}.pattern.active{outline:4px solid #a54c2b;outline-offset:2px}.field{margin:14px 0}.field label{display:block;margin-bottom:5px;font-size:10px;font-weight:900}.field input,.field select{width:100%;padding:10px;border:3px solid #213347;background:#eee2c9}.stepper{display:grid;grid-template-columns:40px 1fr 40px;border:3px solid #213347}.stepper button{border:0;background:#a54c2b;color:#eee2c9;font-weight:900;cursor:pointer}.stepper output{padding:8px;text-align:center;font-weight:900}.toggle{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:3px solid #213347}.toggle button{width:50px;height:24px;border:3px solid #213347;background:#eee2c9;cursor:pointer}.toggle button:after{display:block;width:15px;height:15px;background:#253e61;content:"";transform:translate(1px,1px);transition:.2s}.toggle button[aria-pressed=true]:after{background:#a54c2b;transform:translate(26px,1px) rotate(45deg)}.rhythm{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;align-items:end;height:90px}.rhythm i{display:block;background:#253e61}.rhythm i:nth-child(3n){background:#a54c2b}.legend{display:flex;justify-content:space-between;margin-top:12px;font-size:9px}.toast{position:fixed;right:25px;bottom:25px;padding:13px 18px;border:5px solid #213347;background:#d0a52c;font-weight:900;opacity:0;transform:translateY(20px);transition:.25s}.toast.show{opacity:1;transform:none}
-@media(max-width:800px){.top nav{display:none}.hero{grid-template-columns:1fr}.controls{grid-template-columns:1fr;padding:0 20px 30px}.hero h1{font-size:64px}}
-</style></head><body><div class="woven"></div><main class="app"><header class="top"><div class="mark"><b>◆</b><span>TOTEM</span></div><nav><a href="#">MAKERS</a><a href="#">PATTERNS</a><a href="#">STORIES</a><a href="#">ARCHIVE</a></nav></header><section class="hero"><div><div class="kicker">HAND / EARTH / RHYTHM · 05</div><h1>Made in pattern</h1><p>边饰像织物一样展开，控件带着木刻的粗粝边缘。重复不是复制，而是手工留下的节奏与偏差。</p><button class="carved toast-btn">加入制作圆环　◆</button></div><div class="totem-art"><i class="wing w1"></i><div class="pillar"></div><i class="wing w2"></i></div></section><section class="controls"><article class="panel"><h2>01 · CHOOSE A MOTIF</h2><div class="inside"><div class="pattern-options"><button class="pattern active" aria-label="四象纹"></button><button class="pattern" aria-label="编织纹"></button><button class="pattern" aria-label="日轮纹"></button><button class="pattern" aria-label="山形纹"></button></div><div class="field"><label>作品名称</label><input value="Four Winds / 四方风"></div><div class="field"><label>基底材料</label><select><option>赭石木板</option><option>靛蓝织布</option><option>骨白陶片</option></select></div></div></article><article class="panel"><h2>02 · SET THE RHYTHM</h2><div class="inside"><div class="field"><label>重复单元</label><div class="stepper"><button onclick="step(-1)">−</button><output id="count">12</output><button onclick="step(1)">＋</button></div></div><div class="toggle"><span>镜像对称</span><button data-toggle aria-pressed="true"></button></div><div class="toggle"><span>保留刀痕</span><button data-toggle aria-pressed="true"></button></div><div class="toggle"><span>边饰连续</span><button data-toggle aria-pressed="false"></button></div></div></article><article class="panel"><h2>03 · RHYTHM MAP</h2><div class="inside"><div class="rhythm"><i style="height:35%"></i><i style="height:60%"></i><i style="height:90%"></i><i style="height:50%"></i><i style="height:75%"></i><i style="height:42%"></i><i style="height:88%"></i><i style="height:58%"></i></div><div class="legend"><span>赭石 / EARTH</span><span>靛蓝 / NIGHT</span></div><button class="carved toast-btn" style="width:100%;margin-top:22px">刻下图样</button></div></article></section></main><div class="woven"></div><div class="toast">图样已收入工坊</div><script>let n=12;function step(x){n=Math.max(1,Math.min(24,n+x));count.value=n}document.querySelectorAll("[data-toggle]").forEach(b=>b.onclick=()=>b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true"));document.querySelectorAll(".pattern").forEach(b=>b.onclick=()=>{document.querySelectorAll(".pattern").forEach(x=>x.classList.remove("active"));b.classList.add("active")});document.querySelectorAll(".toast-btn").forEach(b=>b.onclick=()=>{let t=document.querySelector(".toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1600)})</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-signature" content="interactive-loom,motif-stamps,dye-bowls,rhythm-sequencer,wood-shuttle,pattern-wheel">
+  <title>TOTEM — 民艺织纹机</title>
+  <style>
+    :root{--ochre:#b8642b;--indigo:#173c55;--bone:#e9dfbd;--vermilion:#a93424;--wood:#5c321f;--dye:#173c55;--tempo:1.2s}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#b95d2f;color:#281b13;font-family:Trebuchet MS,"Noto Sans SC",sans-serif}
+    button,input{font:inherit;color:inherit}button{cursor:pointer}
+    body{background-image:repeating-linear-gradient(0deg,#00000012 0 2px,transparent 2px 8px),linear-gradient(110deg,#aa5029,#d0833a)}
+    .workshop{display:grid;grid-template-columns:270px minmax(520px,1fr);min-height:100vh}
+    .tool-wall{padding:22px;border-right:8px solid var(--wood);background:var(--bone);box-shadow:inset -12px 0 #d0bd8a}
+    .brand{display:grid;grid-template-columns:58px 1fr;gap:13px;align-items:center;padding-bottom:18px;border-bottom:5px solid var(--wood)}
+    .brand-mark{display:grid;place-items:center;width:58px;height:58px;background:var(--indigo);color:var(--bone);font:900 27px Georgia,serif;clip-path:polygon(50% 0,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%)}
+    .brand h1{margin:0;font:900 22px Georgia,serif;text-transform:uppercase}.brand p{margin:5px 0 0;font-size:9px;letter-spacing:.16em}
+    .tool-title{display:flex;justify-content:space-between;margin:24px 0 10px;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.tool-title span{color:#756145}
+    .motifs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.motif{aspect-ratio:1;border:3px solid var(--wood);background:#d9c897;display:grid;place-items:center}.motif.active{background:var(--indigo);color:var(--bone);box-shadow:4px 4px 0 var(--ochre)}
+    .glyph{width:36px;height:36px;background:currentColor;clip-path:var(--shape)}.diamond{--shape:polygon(50% 0,100% 50%,50% 100%,0 50%,50% 68%,68% 50%,50% 32%,32% 50%)}.bird{--shape:polygon(0 44%,34% 20%,50% 43%,66% 20%,100% 44%,66% 55%,66% 90%,50% 68%,34% 90%,34% 55%)}.sun{--shape:polygon(50% 0,61% 30%,85% 15%,70% 39%,100% 50%,70% 61%,85% 85%,61% 70%,50% 100%,39% 70%,15% 85%,30% 61%,0 50%,30% 39%,15% 15%,39% 30%)}
+    .dye-bowls{display:flex;gap:12px}.dye{position:relative;width:62px;height:48px;border:3px solid var(--wood);border-radius:50%;background:var(--color);box-shadow:inset 0 7px 0 #fff3,0 5px 0 var(--wood)}.dye.active:after{position:absolute;inset:-8px;border:3px dashed var(--wood);border-radius:50%;content:""}
+    .wheel-wrap{display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center}.pattern-wheel{position:relative;width:96px;height:96px;border:6px solid var(--wood);border-radius:50%;background:conic-gradient(var(--indigo) 0 45deg,var(--bone) 45deg 90deg,var(--ochre) 90deg 135deg,var(--bone) 135deg 180deg,var(--vermilion) 180deg 225deg,var(--bone) 225deg 270deg,var(--indigo) 270deg 315deg,var(--bone) 315deg);transition:transform .5s}
+    .pattern-wheel:after{position:absolute;inset:29px;border:6px solid var(--wood);border-radius:50%;background:var(--bone);content:""}.wheel-buttons{display:grid;gap:7px}.wheel-buttons button{padding:8px;border:2px solid var(--wood);background:transparent;font-size:9px;font-weight:bold}.wheel-buttons button:hover{background:var(--ochre);color:white}
+    .loom-stage{position:relative;display:grid;place-items:center;min-height:100vh;padding:28px;background:radial-gradient(circle,#db9a4a,#a64d28 75%)}
+    .loom{position:relative;width:min(820px,92%);padding:52px 58px 82px;border:28px solid var(--wood);border-left-width:42px;border-right-width:42px;background:#8c4d2d;box-shadow:inset 0 0 0 7px #2c1c13,18px 26px 0 #71381f}
+    .loom:before,.loom:after{position:absolute;left:-70px;right:-70px;height:34px;border:7px solid #2b1b12;border-radius:18px;background:linear-gradient(#805133,#4a2c1d);content:""}.loom:before{top:-58px}.loom:after{bottom:-58px}
+    .warp{position:relative;padding:14px;background:var(--bone);box-shadow:inset 0 0 0 5px var(--indigo)}
+    .warp:before{position:absolute;inset:0;pointer-events:none;content:"";background:repeating-linear-gradient(90deg,transparent 0 calc(8.333% - 1px),#63452b55 calc(8.333% - 1px) 8.333%);z-index:3}
+    .woven-grid{display:grid;grid-template-columns:repeat(12,1fr);aspect-ratio:12/8;border:2px solid var(--wood);background:#d7c795}
+    .thread{position:relative;border:1px solid #72533630;background:var(--cell,#e9dfbd);transition:transform .12s,background .2s}.thread:hover{z-index:4;outline:3px solid #fff;transform:scale(1.12)}.thread:after{position:absolute;inset:16%;background:currentColor;content:"";clip-path:var(--stamp,polygon(0 45%,100% 45%,100% 55%,0 55%));opacity:var(--marked,0)}.thread.marked{--marked:1;color:var(--dye)}
+    .border-band{height:28px;background:repeating-linear-gradient(45deg,var(--indigo) 0 14px,var(--bone) 14px 28px,var(--vermilion) 28px 42px,var(--bone) 42px 56px);border:2px solid var(--wood)}.border-band.top{margin-bottom:7px}.border-band.bottom{margin-top:7px;transform:scaleX(-1)}.border-band.bottom.unmirrored{transform:none}
+    .shuttle{position:absolute;z-index:5;left:8%;bottom:30px;width:190px;height:34px;border:4px solid #2a180f;border-radius:70% 12px 70% 12px;background:linear-gradient(#c18043,#704324);box-shadow:6px 7px 0 #3f2618;animation:weave var(--tempo) steps(4) infinite alternate}.shuttle:after{position:absolute;left:50%;top:50%;width:74px;height:12px;border-radius:10px;background:var(--dye);content:"";transform:translate(-50%,-50%)}
+    @keyframes weave{to{left:calc(92% - 190px)}}
+    .counter{position:absolute;right:26px;top:20px;padding:9px 13px;border:4px solid var(--wood);background:var(--bone);font:900 12px ui-monospace,monospace;transform:rotate(1deg)}
+    .rhythm-board{position:absolute;left:50%;bottom:18px;width:min(620px,75%);padding:10px 14px;border:5px solid var(--wood);background:var(--bone);transform:translateX(-50%);box-shadow:7px 7px 0 #71361f}
+    .rhythm-head{display:flex;justify-content:space-between;margin-bottom:7px;font-size:9px;font-weight:bold;letter-spacing:.12em}.steps{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.step{height:28px;border:2px solid var(--wood);background:#d2bf87;font-weight:bold}.step.on{background:var(--vermilion);color:white}.step.play{outline:3px solid var(--indigo);outline-offset:2px}
+    .speed{display:flex;align-items:center;gap:10px;margin-top:16px}.speed input{flex:1;accent-color:var(--vermilion)}.speed span{font:9px ui-monospace,monospace}
+    @media(max-width:900px){.workshop{grid-template-columns:230px 1fr}.loom{width:96%;padding:40px 30px 70px;border-width:22px 28px}.rhythm-board{width:85%}}
+    @media(max-width:650px){.workshop{display:block}.tool-wall{border:0;border-bottom:8px solid var(--wood)}.loom-stage{min-height:720px;padding:10px}.loom{padding:30px 15px 72px;border-width:18px 20px}.rhythm-board{width:92%}.thread:hover{transform:none}.shuttle{width:125px}@keyframes weave{to{left:calc(92% - 125px)}}}
+  </style>
+</head>
+<body>
+  <main class="workshop">
+    <aside class="tool-wall">
+      <header class="brand"><div class="brand-mark">ᚲ</div><div><h1>Totem Loom</h1><p>FOLK PATTERN WORKSHOP</p></div></header>
+
+      <div class="tool-title"><b>刻版纹样</b><span>01 / 03</span></div>
+      <div class="motifs" id="motifs">
+        <button class="motif active" data-shape="polygon(50% 0,100% 50%,50% 100%,0 50%,50% 68%,68% 50%,50% 32%,32% 50%)"><i class="glyph diamond"></i></button>
+        <button class="motif" data-shape="polygon(0 44%,34% 20%,50% 43%,66% 20%,100% 44%,66% 55%,66% 90%,50% 68%,34% 90%,34% 55%)"><i class="glyph bird"></i></button>
+        <button class="motif" data-shape="polygon(50% 0,61% 30%,85% 15%,70% 39%,100% 50%,70% 61%,85% 85%,61% 70%,50% 100%,39% 70%,15% 85%,30% 61%,0 50%,30% 39%,15% 15%,39% 30%)"><i class="glyph sun"></i></button>
+      </div>
+
+      <div class="tool-title"><b>染缸</b><span>选一色</span></div>
+      <div class="dye-bowls" id="dyes">
+        <button class="dye active" style="--color:#173c55" data-color="#173c55" aria-label="靛蓝"></button>
+        <button class="dye" style="--color:#a93424" data-color="#a93424" aria-label="朱砂"></button>
+        <button class="dye" style="--color:#b8642b" data-color="#b8642b" aria-label="赭石"></button>
+      </div>
+
+      <div class="tool-title"><b>边饰转轮</b><span>旋转</span></div>
+      <div class="wheel-wrap">
+        <div class="pattern-wheel" id="patternWheel"></div>
+        <div class="wheel-buttons"><button data-turn="-45">逆一格</button><button data-turn="45">顺一格</button><button id="mirrorBand">镜像边饰</button></div>
+      </div>
+
+      <div class="tool-title"><b>梭速</b><span id="speedOut">中速</span></div>
+      <label class="speed"><span>慢</span><input id="speed" type="range" min="5" max="22" value="12"><span>快</span></label>
+    </aside>
+
+    <section class="loom-stage">
+      <div class="counter">已织 <output id="wovenCount">00</output> 格</div>
+      <div class="loom">
+        <div class="warp">
+          <div class="border-band top" id="topBand"></div>
+          <div class="woven-grid" id="wovenGrid" aria-label="可点击的织纹网格"></div>
+          <div class="border-band bottom" id="bottomBand"></div>
+        </div>
+        <div class="shuttle" id="shuttle"></div>
+      </div>
+
+      <div class="rhythm-board">
+        <div class="rhythm-head"><span>踏板节奏 / PEDAL RHYTHM</span><span id="beatOut">1—3—5—7</span></div>
+        <div class="steps" id="steps">
+          <button class="step on">1</button><button class="step">2</button><button class="step on">3</button><button class="step">4</button>
+          <button class="step on">5</button><button class="step">6</button><button class="step on">7</button><button class="step">8</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const grid=document.querySelector("#wovenGrid");let shape=document.querySelector(".motif.active").dataset.shape,dye="#173c55",count=0;
+    for(let i=0;i<96;i++){const cell=document.createElement("button");cell.className="thread";cell.setAttribute("aria-label","织格 "+(i+1));cell.onclick=()=>{cell.classList.toggle("marked");cell.style.setProperty("--stamp",shape);cell.style.setProperty("--dye",dye);count=document.querySelectorAll(".thread.marked").length;document.querySelector("#wovenCount").value=String(count).padStart(2,"0")};grid.appendChild(cell)}
+    document.querySelectorAll(".motif").forEach(b=>b.onclick=()=>{shape=b.dataset.shape;document.querySelectorAll(".motif").forEach(x=>x.classList.toggle("active",x===b))});
+    document.querySelectorAll(".dye").forEach(b=>b.onclick=()=>{dye=b.dataset.color;document.documentElement.style.setProperty("--dye",dye);document.querySelectorAll(".dye").forEach(x=>x.classList.toggle("active",x===b))});
+    let turn=0;document.querySelectorAll("[data-turn]").forEach(b=>b.onclick=()=>{turn+=+b.dataset.turn;document.querySelector("#patternWheel").style.transform=`rotate(${turn}deg)`});
+    document.querySelector("#mirrorBand").onclick=()=>document.querySelector("#bottomBand").classList.toggle("unmirrored");
+    document.querySelectorAll(".step").forEach(b=>b.onclick=()=>{b.classList.toggle("on");document.querySelector("#beatOut").textContent=[...document.querySelectorAll(".step.on")].map(x=>x.textContent).join("—")||"休止"});
+    const speed=document.querySelector("#speed");speed.oninput=()=>{const seconds=(2.7-speed.value/10).toFixed(1);document.documentElement.style.setProperty("--tempo",seconds+"s");document.querySelector("#speedOut").textContent=speed.value<10?"慢速":speed.value>17?"疾速":"中速"};
+    let beat=0;setInterval(()=>{const all=[...document.querySelectorAll(".step")];all.forEach(x=>x.classList.remove("play"));all[beat++%8].classList.add("play")},450);
+  </script>
+</body>
+</html>

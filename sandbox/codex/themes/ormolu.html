@@ -1,7 +1,121 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ORMOLU — 洛可可宫廷</title>
-<style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#f4eedf;color:#4d4034}body{font-family:Baskerville,"Times New Roman",serif;background:radial-gradient(ellipse at 20% 0,#fffaf0,transparent 32%),radial-gradient(ellipse at 90% 30%,#d7a6ac55,transparent 28%),#f4eedf}button,input,select{font:inherit;color:inherit}.court{min-height:100vh;padding:18px}.frame{min-height:calc(100vh - 36px);border:1px solid #a98645;outline:5px double #b7924f;outline-offset:-11px;background:#ffffff38}.mast{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 32px;border-bottom:1px solid #c3a669}.mast nav{display:flex;gap:24px}.mast a{color:#75695c;font-size:11px;text-decoration:none}.mast a:hover{color:#a27b34}.monogram{position:relative;display:grid;place-items:center;width:74px;height:74px;border:4px double #b28c47;border-radius:50%;background:#e7ede2;color:#a27b34;font-size:35px;font-style:italic;box-shadow:0 8px 25px #7d60372a}.monogram:before,.monogram:after{position:absolute;width:60px;height:1px;background:#b28c47;content:""}.monogram:before{right:70px}.monogram:after{left:70px}.mast .right{justify-self:end}.hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:4vw;align-items:center;min-height:440px;padding:44px 7vw}.copy{text-align:center}.eyebrow{color:#9b7c45;font-size:10px;letter-spacing:.22em}.copy h1{margin:12px 0 4px;font-family:Didot,"Bodoni 72",serif;font-size:clamp(60px,8vw,118px);font-weight:400;font-style:italic;line-height:.86;color:#74634d}.copy h2{margin:16px 0;font-size:20px;font-weight:400;letter-spacing:.08em}.copy p{max-width:480px;margin:0 auto;color:#756d64;line-height:1.7}.ribbon{display:inline-flex;align-items:center;gap:20px;margin-top:25px;padding:12px 25px;border:1px solid #a98645;border-radius:999px;background:linear-gradient(#fff9ec,#e8d5ba);box-shadow:inset 0 1px white,0 8px 18px #6a52301c;cursor:pointer}.ribbon:hover{background:#a98645;color:white}
-.portrait{position:relative;display:grid;place-items:center;min-height:350px}.cartouche{position:relative;width:min(32vw,330px);height:350px;border:9px double #b28c47;border-radius:48% 48% 34% 34% / 38% 38% 22% 22%;background:radial-gradient(circle at 50% 30%,#f6d8dc,#9caa92 75%);box-shadow:inset 0 0 0 10px #fff8e7aa,0 30px 50px #6e57352f}.cartouche:before,.cartouche:after{position:absolute;top:32%;width:90px;height:140px;border:7px double #b28c47;border-radius:50%;content:""}.cartouche:before{left:-76px;transform:rotate(-25deg)}.cartouche:after{right:-76px;transform:rotate(25deg)}.cameo{position:absolute;inset:46px 60px;border-radius:50% 50% 42% 42%;background:linear-gradient(145deg,#fff8e8 0 45%,#d99da8 46%);box-shadow:inset 0 0 20px #80643840}.cameo:after{position:absolute;right:25%;bottom:18%;width:47%;height:58%;border-radius:55% 50% 45% 45%;background:#5d6953;content:"";filter:drop-shadow(7px 5px #a77e3d55)}.portrait-label{position:absolute;bottom:8px;padding:8px 25px;border:1px solid #a98645;border-radius:50%;background:#f8efdc;font-size:11px;font-style:italic}
-.suite{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;padding:0 4vw 42px}.card{position:relative;padding:28px;border:3px double #b69a67;background:#fff9edaa;box-shadow:0 15px 30px #73562d18}.card:before,.card:after{position:absolute;width:20px;height:20px;border-color:#a98645;content:""}.card:before{top:7px;left:7px;border-top:1px solid;border-left:1px solid}.card:after{right:7px;bottom:7px;border-right:1px solid;border-bottom:1px solid}.card h3{margin:0 0 20px;text-align:center;font-family:Didot,serif;font-size:20px;font-weight:400}.field{margin:14px 0}.field label{display:block;margin-bottom:6px;color:#877967;font-size:11px}.field input,.field select{width:100%;padding:11px 14px;border:1px solid #b69a67;border-radius:999px;background:#f9f3e8;outline:none}.field input:focus{box-shadow:0 0 0 3px #d6a8ae55}.segmented{display:flex;padding:4px;border:1px solid #b69a67;border-radius:999px}.segmented button{flex:1;padding:8px;border:0;border-radius:999px;background:transparent;cursor:pointer}.segmented button.active{background:#99a88f;color:white}.toggle{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #cbb78d}.toggle button{width:49px;height:24px;border:1px solid #a98645;border-radius:50%;background:#e7d7be;cursor:pointer}.toggle button[aria-pressed=true]{background:#99a88f;box-shadow:inset 25px 0 #fff}.toggle button[aria-pressed=false]{box-shadow:inset -25px 0 #fff}.meter{display:flex;align-items:center;gap:12px;margin:15px 0}.meter span{width:65px;font-size:11px}.meter div{flex:1;height:9px;border:1px solid #a98645;border-radius:10px;padding:2px}.meter i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#9eab91,#d29ca6)}.actions{display:flex;gap:9px;margin-top:21px}.actions button{flex:1;padding:10px;border:1px solid #a98645;border-radius:999px;background:#f9f0dd;cursor:pointer}.actions .gold{color:white;background:linear-gradient(#c6a662,#987235)}.toast{position:fixed;right:30px;bottom:30px;padding:14px 24px;border:3px double #a98645;border-radius:999px;background:#fff8e9;opacity:0;transition:.3s}.toast.show{opacity:1}
-@media(max-width:800px){.mast nav{display:none}.hero{grid-template-columns:1fr;padding:35px 25px}.portrait{min-height:380px}.cartouche{width:270px}.suite{grid-template-columns:1fr;padding:0 22px 30px}}
-</style></head><body><div class="court"><div class="frame"><header class="mast"><nav><a href="#">Le Salon</a><a href="#">Collections</a><a href="#">Atelier</a></nav><div class="monogram">O</div><nav class="right"><a href="#">Journal</a><a href="#">Invitations</a></nav></header><section class="hero"><div class="copy"><div class="eyebrow">MAISON D’INTERFACES · PARIS MMXXVI</div><h1>Ormolu</h1><h2>La belle interface</h2><p>一套为优雅仪式而生的宫廷控件。鼠尾草丝绸、胭脂花瓣与旧金卷草，让每一次操作都有从容的开场。</p><button class="ribbon toast-btn">揭开今日帷幕 <span>✦</span></button></div><div class="portrait"><div class="cartouche"><div class="cameo"></div></div><span class="portrait-label">Portrait de l’Interface, № 07</span></div></section><section class="suite"><article class="card"><h3>Votre invitation</h3><div class="field"><label>宾客称谓</label><input value="Madame Élodie" aria-label="宾客称谓"></div><div class="field"><label>厅室</label><select><option>绿丝厅 · Salon de Sauge</option><option>镜廊 · Galerie des Glaces</option></select></div><div class="segmented"><button class="active">晨宴</button><button>午茶</button><button>夜舞</button></div></article><article class="card"><h3>Préférences</h3><div class="toggle"><span>金箔高光</span><button data-toggle aria-pressed="true"></button></div><div class="toggle"><span>丝绸动效</span><button data-toggle aria-pressed="true"></button></div><div class="toggle"><span>花体首字</span><button data-toggle aria-pressed="false"></button></div><div class="actions"><button>恢复</button><button class="gold toast-btn">保存偏好</button></div></article><article class="card"><h3>Étiquette</h3><div class="meter"><span>华丽度</span><div><i style="width:88%"></i></div><b>88</b></div><div class="meter"><span>留白</span><div><i style="width:54%"></i></div><b>54</b></div><div class="meter"><span>礼仪感</span><div><i style="width:96%"></i></div><b>96</b></div><div class="field"><label>卷草密度</label><input type="range" min="0" max="100" value="72" style="accent-color:#a98645"></div></article></section></div></div><div class="toast">Votre choix est enregistré ✦</div><script>document.querySelectorAll("[data-toggle]").forEach(b=>b.onclick=()=>b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true"));document.querySelectorAll(".segmented button").forEach(b=>b.onclick=()=>{b.parentElement.querySelectorAll("button").forEach(x=>x.classList.remove("active"));b.classList.add("active")});document.querySelectorAll(".toast-btn").forEach(b=>b.onclick=()=>{let t=document.querySelector(".toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1700)})</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-signature" content="salon-seating,folding-fan-palette,wax-seal,invitation-curtain,guest-counter">
+  <title>ORMOLU — 宫廷席位簿</title>
+  <style>
+    :root{--ivory:#f5ecdc;--sage:#8c9b80;--gold:#b38a3e;--rose:#c77886;--ink:#3f3a35}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#b4bba9;color:var(--ink);font-family:Georgia,"Songti SC",serif}
+    button{font:inherit;color:inherit;cursor:pointer}
+    body{background-image:radial-gradient(ellipse at 50% -20%,#f7f0db99,transparent 50%),repeating-linear-gradient(90deg,#ffffff0a 0 2px,transparent 2px 8px)}
+    .palace{min-height:100vh;padding:24px}
+    .cornice{height:34px;border:1px solid var(--gold);border-bottom:5px double var(--gold);background:linear-gradient(90deg,transparent,#fff8,transparent);position:relative}
+    .cornice:after{position:absolute;inset:7px 15%;border-top:1px solid var(--gold);border-radius:50%;content:""}
+    .masthead{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 28px;color:#f8f0e1;background:#667260}
+    .masthead p{margin:0;font-size:10px;letter-spacing:.2em}.masthead p:last-child{text-align:right}
+    .monogram{display:grid;place-items:center;width:62px;height:62px;border:1px solid #d9bd7b;border-radius:50% 50% 45% 45%;font-size:27px;font-style:italic;box-shadow:0 0 0 5px #667260,0 0 0 6px #d9bd7b}
+    .stage{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(420px,1.45fr) minmax(260px,.8fr);gap:20px;max-width:1420px;margin:20px auto 0}
+    .wing{position:relative;padding:24px 20px;background:var(--ivory);box-shadow:0 16px 35px #4b514936}
+    .wing:before,.wing:after{position:absolute;width:28px;height:28px;border-color:var(--gold);content:""}
+    .wing:before{top:7px;left:7px;border-top:2px solid;border-left:2px solid;border-radius:18px 0}.wing:after{right:7px;bottom:7px;border-right:2px solid;border-bottom:2px solid;border-radius:0 18px}
+    .eyebrow{text-align:center;color:#806b43;font-size:9px;letter-spacing:.22em;text-transform:uppercase}.wing h2{text-align:center;margin:9px 0 4px;font-weight:400;font-size:22px}.flourish{text-align:center;color:var(--gold);letter-spacing:.5em}
+    .invitation{position:relative;min-height:500px;perspective:1000px;overflow:hidden;background:#dfcfbd}
+    .curtain{position:absolute;z-index:4;top:0;bottom:0;width:51%;background:linear-gradient(90deg,#a7455f,#d48194 48%,#8b334b);transition:transform 1s cubic-bezier(.7,0,.2,1);box-shadow:inset -15px 0 25px #5d1e3466}
+    .curtain:after{position:absolute;inset:0;content:"";background:repeating-linear-gradient(90deg,transparent 0 18px,#fff1 20px 22px)}
+    .curtain.left{left:0}.curtain.right{right:0;transform:scaleX(-1)}.invitation.open .curtain.left{transform:translateX(-94%) skewY(2deg)}.invitation.open .curtain.right{transform:scaleX(-1) translateX(-94%) skewY(2deg)}
+    .letter{position:absolute;inset:24px;padding:42px 42px 80px;border:1px solid #bc9551;outline:6px double #bc9551;outline-offset:-15px;background:var(--ivory);text-align:center}
+    .letter:before,.letter:after{position:absolute;left:50%;width:78%;height:38px;border:1px solid var(--gold);border-width:1px 0;border-radius:50%;content:"";transform:translateX(-50%)}.letter:before{top:22px}.letter:after{bottom:22px}
+    .letter h1{margin:48px 0 4px;color:#3d4938;font-size:clamp(34px,5vw,72px);font-weight:400;font-style:italic;line-height:.9}.letter h1:first-letter{color:var(--rose);font-size:1.35em}
+    .letter .date{margin:26px 0 8px;color:#8b6b31;letter-spacing:.22em}.letter p{max-width:480px;margin:10px auto;line-height:1.7}
+    .wax{position:absolute;z-index:5;left:50%;bottom:42px;display:grid;place-items:center;width:68px;height:68px;border:0;border-radius:50% 46% 52% 43%;background:radial-gradient(circle at 35% 28%,#e5909e,#9d3f56 65%);color:#f5c7cf;font-size:25px;box-shadow:0 6px 10px #511c2d66,inset 0 0 0 5px #7f3148;transform:translateX(-50%) rotate(-7deg)}
+    .wax.pressed{animation:press .55s ease}.open-toggle{position:absolute;z-index:7;top:18px;left:50%;padding:8px 22px;border:1px solid #e5ca8d;border-radius:99px;background:#5f6959;color:#fff;transform:translateX(-50%);font-size:10px;letter-spacing:.16em}
+    @keyframes press{50%{transform:translateX(-50%) scale(.8) rotate(5deg)}}
+    .fan{position:relative;width:235px;height:125px;margin:22px auto 5px;overflow:hidden}
+    .fan button{position:absolute;bottom:-67px;left:92px;width:52px;height:185px;border:1px solid #a17d43;border-radius:70% 70% 8px 8px;transform-origin:50% 100%;box-shadow:inset 0 0 0 4px #fff4}
+    .fan button:nth-child(1){background:#8c9b80;transform:rotate(-42deg)}.fan button:nth-child(2){background:#c77886;transform:rotate(-21deg)}.fan button:nth-child(3){background:#d4b363;transform:rotate(0)}.fan button:nth-child(4){background:#748d99;transform:rotate(21deg)}.fan button:nth-child(5){background:#a77973;transform:rotate(42deg)}
+    .fan button.active{filter:brightness(1.2);box-shadow:inset 0 0 0 5px #fff9}
+    .fan-pin{width:20px;height:20px;margin:-10px auto 20px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px #e6d0a4}
+    .guest-stepper{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;margin:20px auto;width:180px;border:1px solid #ab8a53}
+    .guest-stepper button{height:42px;border:0;background:#e6d5b8;font-size:20px}.guest-stepper output{text-align:center;font-size:23px}
+    .ribbon-options{display:flex;justify-content:center;gap:8px}.ribbon-options button{padding:7px 10px;border:1px solid #ae8c51;background:transparent;font-size:9px}.ribbon-options button.active{background:#667260;color:#fff}
+    .ballroom{position:relative;height:340px;margin:18px 0 12px}
+    .table{position:absolute;left:50%;top:50%;display:grid;place-items:center;width:160px;height:220px;border:9px double #b38a3e;border-radius:50%;background:radial-gradient(ellipse,#faf1df,#dbc8a9);transform:translate(-50%,-50%);text-align:center;color:#735e36}
+    .table span{font-style:italic}.chair{position:absolute;left:50%;top:50%;width:36px;height:42px;border:1px solid #8e6c35;border-radius:50% 50% 8px 8px;background:#cfb278;transform:translate(-50%,-50%) rotate(calc(var(--i)*45deg)) translateY(-144px);transform-origin:center 144px}
+    .chair:after{position:absolute;inset:7px;border:1px solid #fff8;border-radius:inherit;content:""}
+    .chair.taken{background:var(--rose);color:white}.chair strong{position:absolute;left:50%;top:50%;font-size:9px;transform:translate(-50%,-50%) rotate(calc(var(--i)*-45deg))}
+    .legend{display:flex;justify-content:center;gap:18px;color:#74644d;font-size:9px}.legend i{display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:50%;background:#cfb278}.legend i.taken{background:var(--rose)}
+    .finalize{display:block;width:100%;margin-top:22px;padding:13px;border:1px solid var(--gold);background:#667260;color:white;letter-spacing:.18em;font-size:10px}
+    @media(max-width:1050px){.stage{grid-template-columns:1fr 1fr}.invitation{grid-column:1/-1;grid-row:1}.wing{min-height:500px}}
+    @media(max-width:680px){.palace{padding:8px}.masthead{padding:10px}.masthead p{display:none}.stage{display:block}.wing{margin-top:10px;min-height:auto}.invitation{height:580px}.letter{padding:38px 22px 80px}.letter h1{margin-top:70px}.ballroom{height:320px}}
+  </style>
+</head>
+<body>
+  <div class="palace">
+    <div class="cornice"></div>
+    <header class="masthead">
+      <p>MAISON DE LUMIÈRE · PARIS</p>
+      <div class="monogram">O</div>
+      <p>SALON BOOK · 18 MAI 1898</p>
+    </header>
+
+    <main class="stage">
+      <aside class="wing">
+        <div class="eyebrow">Palette de la soirée</div>
+        <h2>折扇配色</h2><div class="flourish">❧</div>
+        <div class="fan" id="fan">
+          <button data-color="#8c9b80" aria-label="鼠尾草绿"></button><button data-color="#c77886" aria-label="胭脂粉"></button><button data-color="#d4b363" aria-label="旧金"></button><button data-color="#748d99" aria-label="雾蓝"></button><button data-color="#a77973" aria-label="陶玫瑰"></button>
+        </div><div class="fan-pin"></div>
+
+        <div class="eyebrow">Nombre d'invités</div>
+        <div class="guest-stepper"><button id="guestMinus">−</button><output id="guestCount">12</output><button id="guestPlus">+</button></div>
+
+        <div class="eyebrow">Code vestimentaire</div>
+        <div class="ribbon-options" id="dressCode"><button class="active">丝缎</button><button>蕾丝</button><button>天鹅绒</button></div>
+      </aside>
+
+      <section class="invitation" id="invitation">
+        <button class="open-toggle" id="openCurtain">揭开请柬</button>
+        <div class="curtain left"></div><div class="curtain right"></div>
+        <article class="letter">
+          <div class="eyebrow">Sous le patronage de la Comtesse</div>
+          <h1>Le Salon<br>des Camélias</h1>
+          <div class="date">18 · MAI · 1898</div>
+          <p>谨邀阁下莅临山茶花夜宴。弦乐于九时奏响，镜厅随后开启。</p>
+          <button class="wax" id="waxSeal" aria-label="按下蜡封">L</button>
+        </article>
+      </section>
+
+      <aside class="wing">
+        <div class="eyebrow">Plan de table</div>
+        <h2>镜厅席位</h2><div class="flourish">❦</div>
+        <div class="ballroom" id="ballroom">
+          <div class="table"><span>Table<br>Camélia</span></div>
+          <button class="chair taken" style="--i:0"><strong>A</strong></button><button class="chair" style="--i:1"><strong>B</strong></button>
+          <button class="chair taken" style="--i:2"><strong>C</strong></button><button class="chair" style="--i:3"><strong>D</strong></button>
+          <button class="chair" style="--i:4"><strong>E</strong></button><button class="chair" style="--i:5"><strong>F</strong></button>
+          <button class="chair" style="--i:6"><strong>G</strong></button><button class="chair taken" style="--i:7"><strong>H</strong></button>
+        </div>
+        <div class="legend"><span><i></i>可入席</span><span><i class="taken"></i>已留名</span></div>
+        <button class="finalize" id="finalize">誊入金边席位簿</button>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const invitation=document.querySelector("#invitation");
+    document.querySelector("#openCurtain").onclick=e=>{invitation.classList.toggle("open");e.currentTarget.textContent=invitation.classList.contains("open")?"合上帷幕":"揭开请柬"};
+    document.querySelector("#waxSeal").onclick=e=>{e.currentTarget.classList.remove("pressed");void e.currentTarget.offsetWidth;e.currentTarget.classList.add("pressed");e.currentTarget.textContent=e.currentTarget.textContent==="L"?"✓":"L"};
+    document.querySelectorAll("#fan button").forEach(b=>b.onclick=()=>{document.documentElement.style.setProperty("--rose",b.dataset.color);document.querySelectorAll("#fan button").forEach(x=>x.classList.toggle("active",x===b));b.classList.add("active")});
+    let guests=12;
+    const guestCount=document.querySelector("#guestCount");
+    document.querySelector("#guestMinus").onclick=()=>guestCount.value=guests=Math.max(2,guests-1);
+    document.querySelector("#guestPlus").onclick=()=>guestCount.value=guests=Math.min(24,guests+1);
+    document.querySelectorAll("#dressCode button").forEach(b=>b.onclick=()=>document.querySelectorAll("#dressCode button").forEach(x=>x.classList.toggle("active",x===b)));
+    document.querySelectorAll(".chair").forEach(c=>c.onclick=()=>c.classList.toggle("taken"));
+    document.querySelector("#finalize").onclick=e=>{const count=document.querySelectorAll(".chair.taken").length;e.currentTarget.textContent=`席位簿已誊清 · ${count} 席留名`;e.currentTarget.animate([{letterSpacing:".18em"},{letterSpacing:".32em"},{letterSpacing:".18em"}],{duration:700})};
+  </script>
+</body>
+</html>
