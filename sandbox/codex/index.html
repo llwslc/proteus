@@ -762,17 +762,29 @@ input:focus-visible {
   background-size: 16px 16px;
 }
 
-.preview-viewport {
+.preview-device {
   position: relative;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.preview-viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   background: #050607;
+  transform-origin: top left;
   transition:
     width 180ms ease,
     height 180ms ease,
-    border-radius 180ms ease;
+    border-radius 180ms ease,
+    transform 180ms ease;
 }
 
 .theme-preview {
@@ -815,17 +827,26 @@ input:focus-visible {
 }
 
 .detail-view[data-viewport="mobile"] .preview-stage {
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 24px;
+  overflow: hidden;
+}
+
+.detail-view[data-viewport="mobile"] .preview-device {
+  flex: 0 0 auto;
+  width: 390px;
+  height: min(844px, 100%);
 }
 
 .detail-view[data-viewport="mobile"] .preview-viewport {
   width: 390px;
-  height: 844px;
-  border: 1px solid #555b63;
+  height: 100%;
+  border: 0;
   border-radius: 28px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
+  box-shadow:
+    inset 0 0 0 1px #555b63,
+    0 24px 70px rgba(0, 0, 0, 0.48);
 }
 
 .fullscreen-controls {
@@ -851,17 +872,26 @@ input:focus-visible {
 }
 
 .detail-view.is-fullscreen .preview-stage {
-  align-items: stretch;
-  justify-content: stretch;
   padding: 0;
 }
 
-.detail-view.is-fullscreen .preview-viewport {
+.detail-view.is-fullscreen[data-viewport="pc"] .preview-stage {
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.detail-view.is-fullscreen[data-viewport="pc"] .preview-viewport {
   width: 100%;
   height: 100%;
   border: 0;
   border-radius: 0;
   box-shadow: none;
+}
+
+.detail-view.is-fullscreen[data-viewport="mobile"] .preview-stage {
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .detail-view.is-fullscreen .fullscreen-controls {
@@ -1059,18 +1089,16 @@ input:focus-visible {
     padding: 16px;
   }
 
-  .detail-view[data-viewport="mobile"] .preview-viewport {
+  .detail-view[data-viewport="mobile"] .preview-device {
     width: min(390px, 100%);
-    height: auto;
-    aspect-ratio: 390 / 844;
+  }
+
+  .detail-view[data-viewport="mobile"] .preview-viewport {
     border-radius: 22px;
   }
 
-  .detail-view.is-fullscreen .preview-viewport {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
-    border-radius: 0;
+  .detail-view.is-fullscreen[data-viewport="mobile"] .preview-stage {
+    padding: 0;
   }
 }
 
@@ -1226,11 +1254,13 @@ input:focus-visible {
       </header>
 
       <div class="preview-stage" id="previewStage">
-        <div class="preview-viewport" id="previewViewport">
-          <iframe class="theme-preview" id="themePreview" title="主题预览"></iframe>
-          <div class="preview-loading" id="previewLoading" aria-live="polite">
-            <i aria-hidden="true"></i>
-            <span>正在进入主题世界</span>
+        <div class="preview-device" id="previewDevice">
+          <div class="preview-viewport" id="previewViewport">
+            <iframe class="theme-preview" id="themePreview" title="主题预览"></iframe>
+            <div class="preview-loading" id="previewLoading" aria-live="polite">
+              <i aria-hidden="true"></i>
+              <span>正在进入主题世界</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1281,13 +1311,20 @@ const openSidebarButton = document.querySelector("#openSidebar");
 const fullscreenButton = document.querySelector("#fullscreenToggle");
 const fullscreenExit = document.querySelector("#fullscreenExit");
 const toolbar = document.querySelector("#previewToolbar");
+const previewStageElement = document.querySelector("#previewStage");
+const previewDevice = document.querySelector("#previewDevice");
+const previewViewport = document.querySelector("#previewViewport");
 const maximumThumbnailLoads = 5;
+const mobileViewportWidth = 390;
+const mobileViewportMaxHeight = 844;
 const thumbnailQueue = [];
 let activeThumbnailLoads = 0;
 let activeIndex = 0;
 let directoryMatches = [];
 let fullscreen = false;
 let lastPreviewId = "";
+let previewGeometryFrame = 0;
+let previewResizeObserver = null;
 
 function createElement(tagName, className, text) {
   const element = document.createElement(tagName);
@@ -1322,6 +1359,41 @@ function safeStorageSet(key, value) {
   } catch {
     return;
   }
+}
+
+function clearPreviewGeometry() {
+  previewDevice.style.removeProperty("width");
+  previewDevice.style.removeProperty("height");
+  previewViewport.style.removeProperty("width");
+  previewViewport.style.removeProperty("height");
+  previewViewport.style.removeProperty("transform");
+}
+
+function updatePreviewGeometry() {
+  previewGeometryFrame = 0;
+  if (detailView.hidden || detailView.dataset.viewport !== "mobile") {
+    clearPreviewGeometry();
+    return;
+  }
+
+  const stageStyle = getComputedStyle(previewStageElement);
+  const horizontalPadding = (parseFloat(stageStyle.paddingLeft) || 0) + (parseFloat(stageStyle.paddingRight) || 0);
+  const verticalPadding = (parseFloat(stageStyle.paddingTop) || 0) + (parseFloat(stageStyle.paddingBottom) || 0);
+  const availableWidth = Math.max(1, previewStageElement.clientWidth - horizontalPadding);
+  const availableHeight = Math.max(1, previewStageElement.clientHeight - verticalPadding);
+  const scale = Math.min(1, availableWidth / mobileViewportWidth);
+  const logicalHeight = Math.max(1, Math.min(mobileViewportMaxHeight, availableHeight / scale));
+
+  previewDevice.style.width = `${mobileViewportWidth * scale}px`;
+  previewDevice.style.height = `${logicalHeight * scale}px`;
+  previewViewport.style.width = `${mobileViewportWidth}px`;
+  previewViewport.style.height = `${logicalHeight}px`;
+  previewViewport.style.transform = `scale(${scale})`;
+}
+
+function schedulePreviewGeometry() {
+  if (previewGeometryFrame) cancelAnimationFrame(previewGeometryFrame);
+  previewGeometryFrame = requestAnimationFrame(updatePreviewGeometry);
 }
 
 function updateThumbnailScale(stage) {
@@ -1495,12 +1567,14 @@ function setViewport(mode, persist = true) {
   document.querySelector("#pcViewport").setAttribute("aria-pressed", String(nextMode === "pc"));
   document.querySelector("#mobileViewport").setAttribute("aria-pressed", String(nextMode === "mobile"));
   if (persist) safeStorageSet("kit-atlas-viewport", nextMode);
+  schedulePreviewGeometry();
 }
 
 function setFullscreen(enabled, options = {}) {
   fullscreen = Boolean(enabled);
   detailView.classList.toggle("is-fullscreen", fullscreen);
   fullscreenButton.setAttribute("aria-pressed", String(fullscreen));
+  schedulePreviewGeometry();
   if (fullscreen && options.moveFocus !== false) {
     fullscreenExit.focus();
   } else if (!fullscreen && options.restoreFocus) {
@@ -1538,6 +1612,7 @@ function showTheme(index, options = {}) {
   updateActiveTheme(theme, activeIndex);
   loadThemePreview(theme);
   closeSidebar();
+  schedulePreviewGeometry();
   if (options.focusToolbar) toolbar.focus({ preventScroll: true });
 }
 
@@ -1675,7 +1750,13 @@ document.addEventListener("keydown", (event) => {
 window.addEventListener("hashchange", routeFromHash);
 window.addEventListener("resize", () => {
   if (window.innerWidth > 760) closeSidebar();
+  schedulePreviewGeometry();
 });
+
+if ("ResizeObserver" in window) {
+  previewResizeObserver = new ResizeObserver(schedulePreviewGeometry);
+  previewResizeObserver.observe(previewStageElement);
+}
 
 renderCards();
 renderDirectory();
