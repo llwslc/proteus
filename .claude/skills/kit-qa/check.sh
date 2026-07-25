@@ -57,7 +57,10 @@ for d in "$SKILLS"/kit-*/; do
   case " $PK_BROWSER " in
     *" $g "*) run "${g}${KIT:+:$KIT}" $bin "$PORT" $KIT; continue ;;
   esac
-  if [ "$g" = "kit-a11y" ]; then run "${g}${KIT:+:$KIT}" $bin $KIT "$PORT"; continue; fi
+  if [ "$g" = "kit-a11y" ]; then                                  # a11y arg order is (kit, port)
+    if [ -n "$KIT" ]; then run "${g}:$KIT" $bin "$KIT" "$PORT"; else run "$g" $bin; fi
+    continue
+  fi
   run "$g" $bin                                                    # cross-kit → always full
 done
 run theme-doc-sync node "${SKILLS}/theme-doc-sync/check.cjs"

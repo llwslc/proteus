@@ -20,14 +20,46 @@ const safeSet = (key: string, value: string) => {
     return;
   }
 };
+const safeRemove = (key: string) => {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    return;
+  }
+};
 
 export function Shell() {
-  const kit = resolveKit(safeGet("kit"));
+  const params = new URLSearchParams(location.search);
+  if (params.get("embed") === "1")
+    return <EmbedApp kitId={resolveKit(params.get("kit"))} />;
+  return <FullShell />;
+}
+
+function EmbedApp({ kitId }: { kitId: string }) {
+  const Active = APPS[kitId];
+  const KitLoader = LOADERS[kitId];
+  return (
+    <Suspense fallback={<div className="shell-boot" />}>
+      <Suspense fallback={<KitLoader />}>
+        <Active />
+      </Suspense>
+    </Suspense>
+  );
+}
+
+function FullShell() {
+  const stored = safeGet("kit");
+  const entered = stored != null;
+  const kit = resolveKit(stored);
+  const active = KITS.find((k) => k.id === kit) ?? KITS[0];
   const Active = APPS[kit];
   const KitLoader = LOADERS[kit];
+
   const [open, setOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
-  const active = KITS.find((k) => k.id === kit) ?? KITS[0];
+  const [vp, setVp] = useState(() =>
+    safeGet("shell-vp") === "mobile" ? "mobile" : "pc",
+  );
   const menuRef = useRef<HTMLUListElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -47,30 +79,57 @@ export function Shell() {
     if (!open) return;
     const el =
       menuRef.current?.querySelector<HTMLButtonElement>(".is-active") ??
-      menuRef.current?.querySelector<HTMLButtonElement>("button");
+      menuRef.current?.querySelector<HTMLButtonElement>("button[role='option']");
     el?.focus();
   }, [open]);
 
+  const enter = (id: string) => {
+    safeSet("kit", id);
+    location.reload();
+  };
+  const goHome = () => {
+    safeRemove("kit");
+    location.reload();
+  };
   const switchKit = (id: string) => {
     if (id === kit) {
       setOpen(false);
       return;
     }
-    safeSet("kit", id);
-    location.reload();
+    enter(id);
+  };
+  const stepKit = (dir: number) => {
+    const i = KITS.findIndex((k) => k.id === kit);
+    enter(KITS[(i + dir + KITS.length) % KITS.length].id);
+  };
+  const setViewport = (m: string) => {
+    setVp(m);
+    safeSet("shell-vp", m);
   };
 
-  const closeAndRefocus = () => {
-    setOpen(false);
-    triggerRef.current?.focus();
-  };
-
-  const onSwitchKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Escape" && open) {
-      event.preventDefault();
-      closeAndRefocus();
-    }
-  };
+  useEffect(() => {
+    if (!entered) return;
+    const onKey = (event: globalThis.KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const tag = (target?.tagName ?? "").toLowerCase();
+      if (tag === "input" || tag === "textarea" || target?.isContentEditable) return;
+      if (event.key === "Escape") {
+        if (overlay) return;
+        if (open) {
+          setOpen(false);
+          triggerRef.current?.focus();
+          return;
+        }
+        goHome();
+      } else if (event.key === "ArrowLeft") {
+        stepKit(-1);
+      } else if (event.key === "ArrowRight") {
+        stepKit(1);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [entered, overlay, open, kit]);
 
   const onMenuKeyDown = (event: KeyboardEvent) => {
     const options = Array.from(
@@ -92,31 +151,70 @@ export function Shell() {
   };
 
   return (
-    <>
-      <Suspense fallback={<div className="shell-boot" />}>
-        <Suspense fallback={<KitLoader />}>
-          <Active />
+    <div className="shell" data-view={entered ? "kit" : "home"} data-vp={vp}>
+      {!entered ? (
+        <section className="shell-home">
+          <header className="shell-home__head">
+            <h1 className="shell-home__title">Base UI Theme Kits</h1>
+            <p className="shell-home__sub">
+              七套完全独立的可换肤组件世界 · 点一套进入全屏预览
+            </p>
+          </header>
+          <div className="shell-home__grid">
+            {KITS.map((k, i) => (
+              <button
+                key={k.id}
+                type="button"
+                className="shell-home__card"
+                onClick={() => enter(k.id)}
+              >
+                <span className="shell-home__idx">{String(i + 1).padStart(2, "0")}</span>
+                <span className="shell-home__label">{k.label}</span>
+                <span className="shell-home__tag">{k.tag}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      ) : vp === "mobile" ? (
+        <div className="shell-stage">
+          <div className="shell-phone">
+            <iframe
+              className="shell-phone__frame"
+              title={active.label}
+              src={`?embed=1&kit=${kit}`}
+            />
+          </div>
+        </div>
+      ) : (
+        <Suspense fallback={<div className="shell-boot" />}>
+          <Suspense fallback={<KitLoader />}>
+            <Active />
+          </Suspense>
         </Suspense>
-      </Suspense>
+      )}
+
       <div
         className="shell-switch"
         data-open={open || undefined}
         data-overlay={overlay || undefined}
-        onKeyDown={onSwitchKeyDown}
       >
         <button
           type="button"
           className="shell-switch__scrim"
-          aria-label="Close kit menu"
+          aria-label="关闭主题菜单"
           onClick={() => setOpen(false)}
         />
         <ul
           ref={menuRef}
           className="shell-switch__menu"
           role="listbox"
-          aria-label="Component kit"
+          aria-label="切换主题"
           onKeyDown={onMenuKeyDown}
         >
+          <li className="shell-switch__help" aria-hidden="true">
+            <kbd>←</kbd>
+            <kbd>→</kbd> 切换主题 · <kbd>Esc</kbd> 回主页
+          </li>
           {KITS.map((k) => (
             <li key={k.id}>
               <button
@@ -146,7 +244,25 @@ export function Shell() {
             ▴
           </span>
         </button>
+        <div className="shell-switch__vp" role="group" aria-label="预览视口">
+          <button
+            type="button"
+            className={vp === "pc" ? "is-on" : ""}
+            aria-pressed={vp === "pc"}
+            onClick={() => setViewport("pc")}
+          >
+            PC
+          </button>
+          <button
+            type="button"
+            className={vp === "mobile" ? "is-on" : ""}
+            aria-pressed={vp === "mobile"}
+            onClick={() => setViewport("mobile")}
+          >
+            Mobile
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
