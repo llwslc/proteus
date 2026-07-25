@@ -1,0 +1,10 @@
+.nocturne-togglegroup {
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .nocturne-togglegroup {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}

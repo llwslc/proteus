@@ -1,0 +1,15 @@
+.nocturne-tooltip {
+  max-width: var(--nocturne-tooltip-w);
+  padding: var(--nocturne-space-2) var(--nocturne-space-3);
+  border: var(--nocturne-line-w) solid var(--nocturne-line-strong);
+  border-radius: var(--nocturne-r-mark);
+  background: var(--nocturne-surface-raised);
+  color: var(--nocturne-text);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-13);
+  letter-spacing: 0.02em;
+  box-shadow: var(--nocturne-shadow);
+}
+.nocturne-tooltip__arrow {
+  color: var(--nocturne-line-strong);
+}

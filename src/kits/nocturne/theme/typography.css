@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Tangerine:wght@400;700&family=Courier+Prime:wght@400;700&display=swap");
+
+.nocturne-h1 {
+  margin: 0;
+  font-family: var(--nocturne-font-display);
+  font-weight: var(--nocturne-fw-600);
+  font-size: var(--nocturne-fs-34);
+  line-height: var(--nocturne-lh-145);
+  letter-spacing: var(--nocturne-ls-8);
+  text-indent: var(--nocturne-ls-8);
+  color: var(--nocturne-text-bright);
+}
+
+.nocturne-h1--accent {
+  color: var(--nocturne-primary-lit);
+  text-shadow: 0 0 24px var(--nocturne-glow-strong);
+}
+
+.nocturne-h2 {
+  margin: 0;
+  font-family: var(--nocturne-font-display);
+  font-weight: var(--nocturne-fw-600);
+  font-size: var(--nocturne-fs-22);
+  line-height: var(--nocturne-lh-145);
+  letter-spacing: var(--nocturne-ls-5);
+  text-indent: var(--nocturne-ls-5);
+  color: var(--nocturne-text-bright);
+}
+
+.nocturne-h3 {
+  margin: 0;
+  font-family: var(--nocturne-font-display);
+  font-weight: var(--nocturne-fw-600);
+  font-size: var(--nocturne-fs-13);
+  line-height: var(--nocturne-lh-145);
+  letter-spacing: var(--nocturne-ls-5);
+  text-indent: var(--nocturne-ls-5);
+  text-transform: uppercase;
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-text {
+  margin: 0;
+  font-family: var(--nocturne-font);
+  font-weight: var(--nocturne-fw-400);
+  font-size: var(--nocturne-fs-15);
+  line-height: var(--nocturne-lh-180);
+  color: var(--nocturne-text);
+}
+
+.nocturne-cap {
+  margin: 0;
+  font-family: var(--nocturne-font-display);
+  font-weight: var(--nocturne-fw-600);
+  font-size: var(--nocturne-fs-12);
+  letter-spacing: var(--nocturne-ls-3);
+  text-indent: var(--nocturne-ls-3);
+  text-transform: uppercase;
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-script {
+  margin: 0;
+  font-family: var(--nocturne-font-hand-en);
+  font-weight: var(--nocturne-fw-700);
+  color: var(--nocturne-primary-lit);
+  line-height: var(--nocturne-lh-100);
+}
+
+.nocturne-hand {
+  margin: 0;
+  font-family: var(--nocturne-font-hand-cn);
+  color: var(--nocturne-primary-lit);
+  letter-spacing: var(--nocturne-ls-1);
+}

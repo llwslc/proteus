@@ -1,0 +1,43 @@
+.nocturne-autocomplete {
+  min-width: var(--nocturne-autocomplete-min-w);
+  height: var(--nocturne-control-h);
+}
+.nocturne-autocomplete__glyph {
+  display: inline-flex;
+  flex: none;
+  color: var(--nocturne-text-mute);
+  font-size: var(--nocturne-fs-17);
+}
+.nocturne-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: none;
+  color: var(--nocturne-text);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-15);
+}
+.nocturne-autocomplete__input:focus {
+  outline: none;
+}
+.nocturne-autocomplete__input::placeholder {
+  color: var(--nocturne-text-mute);
+  opacity: 1;
+}
+.nocturne-autocomplete__popup {
+  min-width: var(--anchor-width);
+}
+.nocturne-autocomplete__empty {
+  padding: var(--nocturne-space-3);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-13);
+  color: var(--nocturne-text-mute);
+  text-align: center;
+}
+.nocturne-autocomplete__empty:empty {
+  padding: 0;
+}
+.nocturne-autocomplete__list:empty {
+  padding: 0;
+}

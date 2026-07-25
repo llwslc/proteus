@@ -1,0 +1,10 @@
+.nocturne-accordion {
+  display: flex;
+  flex-direction: column;
+}
+.nocturne-accordion__item + .nocturne-accordion__item {
+  border-top: 0;
+}
+.nocturne-accordion__header {
+  margin: 0;
+}

@@ -1,0 +1,117 @@
+.nocturne-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--nocturne-switch-w);
+  height: var(--nocturne-switch-h);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.nocturne-switch__bloom {
+  width: var(--nocturne-switch-w);
+  height: var(--nocturne-switch-h);
+  line-height: 0;
+  filter: drop-shadow(0 1px 2px var(--nocturne-cast));
+  transition: filter var(--nocturne-dur-slow) var(--nocturne-ease-out);
+}
+.nocturne-switch__bloom svg {
+  display: block;
+  overflow: visible;
+}
+
+.nocturne-switch__branch {
+  fill: none;
+  stroke: var(--nocturne-primary-deep);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  transition: stroke var(--nocturne-dur) var(--nocturne-ease-out);
+}
+.nocturne-switch__leaf path {
+  fill: var(--nocturne-primary-deep);
+  stroke: var(--nocturne-vein);
+  stroke-width: 0.5;
+}
+.nocturne-switch__sepals path {
+  fill: var(--nocturne-primary-deep);
+  stroke: var(--nocturne-vein);
+  stroke-width: 0.5;
+  opacity: 0.92;
+}
+.nocturne-switch__sepals {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.76);
+  transition: transform var(--nocturne-dur-slow) var(--nocturne-ease);
+}
+.nocturne-switch__bud {
+  fill: var(--nocturne-secondary);
+  stroke: var(--nocturne-primary-deep);
+  stroke-width: 0.7;
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  transition:
+    transform var(--nocturne-dur-slow) var(--nocturne-ease),
+    opacity var(--nocturne-dur) var(--nocturne-ease-out);
+}
+.nocturne-switch__fold {
+  fill: none;
+  stroke: var(--nocturne-primary);
+  stroke-width: 0.5;
+  opacity: 0.5;
+  transition: opacity var(--nocturne-dur) var(--nocturne-ease-out);
+}
+.nocturne-switch__pet {
+  fill: var(--nocturne-secondary-lit);
+  stroke: var(--nocturne-primary-deep);
+  stroke-width: 0.55;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scale(0.12);
+  transition: transform var(--nocturne-dur-slow) cubic-bezier(0.2, 1, 0.3, 1.32);
+}
+.nocturne-switch__eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  opacity: 0;
+  transition:
+    transform var(--nocturne-dur-slow) cubic-bezier(0.2, 1, 0.3, 1.4) 0.1s,
+    opacity var(--nocturne-dur) var(--nocturne-ease-out) 0.1s;
+}
+.nocturne-switch__eye-disc {
+  fill: var(--nocturne-primary-lit);
+  stroke: var(--nocturne-primary-deep);
+  stroke-width: 0.5;
+}
+.nocturne-switch__eye-dots {
+  fill: var(--nocturne-secondary);
+}
+
+.nocturne-switch[data-checked] .nocturne-switch__bud {
+  transform: scale(0.16);
+  opacity: 0;
+}
+.nocturne-switch[data-checked] .nocturne-switch__fold {
+  opacity: 0;
+}
+.nocturne-switch[data-checked] .nocturne-switch__pet {
+  transform: scale(1);
+}
+.nocturne-switch[data-checked] .nocturne-switch__sepals {
+  transform: scale(1);
+}
+.nocturne-switch[data-checked] .nocturne-switch__eye {
+  transform: scale(1);
+  opacity: 1;
+}
+.nocturne-switch[data-checked] .nocturne-switch__branch {
+  stroke: var(--nocturne-primary);
+}
+.nocturne-switch[data-checked] .nocturne-switch__bloom {
+  filter: drop-shadow(0 0 8px var(--nocturne-glow-strong));
+}

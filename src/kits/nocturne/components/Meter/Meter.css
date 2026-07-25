@@ -1,0 +1,52 @@
+.nocturne-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-3);
+}
+.nocturne-meter__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--nocturne-space-3);
+}
+.nocturne-meter__label {
+  color: var(--nocturne-primary);
+}
+.nocturne-meter__value {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-13);
+  color: var(--nocturne-primary-lit);
+}
+.nocturne-meter__track {
+  position: relative;
+  height: 6px;
+  border: var(--nocturne-line-w) solid var(--nocturne-line);
+  background: var(--nocturne-surface-inset);
+}
+.nocturne-meter__indicator {
+  height: inherit;
+}
+.nocturne-meter--primary .nocturne-meter__indicator {
+  background: linear-gradient(
+    90deg,
+    var(--nocturne-primary-deep),
+    var(--nocturne-primary-lit)
+  );
+}
+.nocturne-meter--success .nocturne-meter__indicator {
+  background: linear-gradient(
+    90deg,
+    var(--nocturne-success-deep),
+    var(--nocturne-success)
+  );
+}
+.nocturne-meter--warning .nocturne-meter__indicator {
+  background: linear-gradient(
+    90deg,
+    var(--nocturne-warning-deep),
+    var(--nocturne-warning)
+  );
+}
+.nocturne-meter--danger .nocturne-meter__indicator {
+  background: linear-gradient(90deg, var(--nocturne-danger-deep), var(--nocturne-danger));
+}

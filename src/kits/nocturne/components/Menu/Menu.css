@@ -1,0 +1,39 @@
+.nocturne-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nocturne-space-2);
+}
+.nocturne-menu__trigger-chevron {
+  display: inline-flex;
+  transition: transform var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-menu__trigger[data-popup-open] .nocturne-menu__trigger-chevron {
+  transform: rotate(180deg);
+}
+.nocturne-menu__icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--nocturne-text-mute);
+  font-size: var(--nocturne-fs-17);
+}
+.nocturne-list-item[data-highlighted] .nocturne-menu__icon {
+  color: var(--nocturne-text-bright);
+}
+.nocturne-menu__shortcut {
+  flex: none;
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-12);
+  color: var(--nocturne-text-mute);
+}
+.nocturne-menu__chevron {
+  display: inline-flex;
+  flex: none;
+  color: var(--nocturne-text-mute);
+}
+.nocturne-list-item--danger {
+  --nocturne-item-color: var(--nocturne-danger-wash);
+  color: var(--nocturne-danger);
+}
+.nocturne-list-item--danger .nocturne-menu__icon {
+  color: var(--nocturne-danger);
+}

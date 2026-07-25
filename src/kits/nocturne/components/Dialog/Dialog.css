@@ -1,0 +1,49 @@
+.nocturne-dialog {
+  width: min(var(--nocturne-dialog-w), 100%);
+  max-height: min(84vh, 720px);
+  overflow: auto;
+  padding: 52px var(--nocturne-pad-modal) 34px;
+  text-align: center;
+  transform-origin: center;
+}
+.nocturne-dialog__vine {
+  max-width: 320px;
+  margin: 0 auto var(--nocturne-space-5);
+}
+.nocturne-dialog__vine svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.nocturne-dialog__branch {
+  fill: none;
+  stroke: var(--nocturne-primary);
+  stroke-width: 1.4;
+  opacity: 0.8;
+  stroke-dasharray: 1;
+  animation: nocturne-branch-grow var(--nocturne-dur-draw) var(--nocturne-ease) both;
+}
+.nocturne-dialog__leaf path {
+  fill: var(--nocturne-primary-deep);
+  stroke: var(--nocturne-primary);
+  stroke-width: 0.5;
+}
+.nocturne-dialog__petal {
+  fill: var(--nocturne-secondary-lit);
+  stroke: var(--nocturne-primary-deep);
+  stroke-width: 0.5;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: nocturne-petal-open var(--nocturne-dur-slow) var(--nocturne-ease) 0.5s both;
+}
+.nocturne-dialog__core {
+  fill: var(--nocturne-primary-lit);
+  stroke: var(--nocturne-primary-deep);
+  stroke-width: 0.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nocturne-core-in var(--nocturne-dur) var(--nocturne-ease) 0.9s both;
+}
+.nocturne-modal-body {
+  text-align: center;
+}

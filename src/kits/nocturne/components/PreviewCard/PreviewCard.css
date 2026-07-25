@@ -1,0 +1,32 @@
+.nocturne-preview {
+  width: var(--nocturne-preview-w);
+  max-width: calc(100vw - var(--nocturne-space-6));
+  padding: var(--nocturne-space-5);
+}
+.nocturne-preview__head {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  margin-bottom: var(--nocturne-space-3);
+}
+.nocturne-preview__ident {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nocturne-preview__title {
+  color: var(--nocturne-text-bright);
+}
+.nocturne-preview__handle {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-12);
+  color: var(--nocturne-text-mute);
+}
+.nocturne-preview__desc {
+  margin-bottom: var(--nocturne-space-4);
+  font-size: var(--nocturne-fs-13);
+}
+.nocturne-preview__footer {
+  display: flex;
+  gap: var(--nocturne-space-2);
+}

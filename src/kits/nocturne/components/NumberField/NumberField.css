@@ -1,0 +1,47 @@
+.nocturne-numberfield {
+  width: fit-content;
+}
+.nocturne-numberfield__group {
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--nocturne-control-h);
+  border: var(--nocturne-line-w) solid var(--nocturne-line);
+  background: var(--nocturne-surface-inset);
+}
+.nocturne-numberfield__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nocturne-number-field-stepper);
+  border: 0;
+  background: var(--nocturne-surface);
+  color: var(--nocturne-primary-lit);
+  font-size: var(--nocturne-fs-17);
+  cursor: pointer;
+  transition: background var(--nocturne-dur) var(--nocturne-ease-out);
+}
+.nocturne-numberfield__btn:first-child {
+  border-right: var(--nocturne-line-w) solid var(--nocturne-line);
+}
+.nocturne-numberfield__btn:last-child {
+  border-left: var(--nocturne-line-w) solid var(--nocturne-line);
+}
+.nocturne-numberfield__btn:where(:not(:disabled)):hover {
+  background: var(--nocturne-primary-wash);
+}
+.nocturne-numberfield__btn:disabled {
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: not-allowed;
+}
+.nocturne-numberfield__input {
+  width: var(--nocturne-number-field-w);
+  border: 0;
+  background: none;
+  color: var(--nocturne-text);
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-15);
+  text-align: center;
+}
+.nocturne-numberfield__input:focus {
+  outline: none;
+}
