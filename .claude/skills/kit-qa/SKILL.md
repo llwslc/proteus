@@ -5,7 +5,9 @@ description: One command that runs the whole theme-kit gate suite (every .claude
 
 # kit-qa
 
-Run: `sh .claude/skills/kit-qa/check.sh [port]` (port default 5273).
+Run: `sh .claude/skills/kit-qa/check.sh [port] [kit]` (port default 5273).
+
+Pass a **`[kit]`** to scope the per-kit gates (visual / interact / glyph-center / anim-sync / a11y / lint / distinct) to that one kit — editing one kit no longer re-renders the other six in those gates. The cross-kit gates (equality, submenu-gap, api, structure, naming, parity, fingerprint, theme-doc-sync) always run full — they compare kits against each other and are meaningless scoped, so a scoped pass still loads all kits for those. Use the scope during iteration; **omit `[kit]` for the full sweep** before accepting a kit, after touching a shared primitive, or at final signoff.
 
 The dynamic gates drive the real page, so **the dev server must be up** on that port first (`npm run dev`). The runner curl-checks it and bails early if not.
 
