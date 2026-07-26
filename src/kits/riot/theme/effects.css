@@ -429,7 +429,7 @@
   }
 }
 .riot-jitter {
-  animation: riot-jitter var(--riot-dur-sweep) steps(4, jump-none) infinite;
+  animation: riot-jitter var(--riot-dur-jitter) steps(4, jump-none) infinite;
 }
 
 .riot-viewport {

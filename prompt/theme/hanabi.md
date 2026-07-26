@@ -50,7 +50,7 @@
 
 ## 5. 动效个性
 
-- 时长 `dur .13s / -slow .28s / -pop .16s`；缓动 `ease (0.2, 1.4, 0.4, 1)` 果冻弹（弹层、勾选 pop），`ease-out (0.3, 1, 0.4, 1)` 给填充推进，`ease-snap (0.3, 1.6, 0.5, 1)` 给旋钮滑动回弹。
+- 时长 `dur .13s / -slow .28s / -pop .16s / -sweep 1.5s`；缓动 `ease (0.2, 1.4, 0.4, 1)` 果冻弹（弹层、勾选 pop），`ease-out (0.3, 1, 0.4, 1)` 给填充推进，`ease-snap (0.3, 1.6, 0.5, 1)` 给旋钮滑动回弹。
 - 按压：押し込み——`scale(0.97)`、阶影带压薄到 `-2px`，实填件填色加深到 `-deep`；`:active` 挂透明光环（`inset -8px`）兜住命中盒。
 - 悬停：描线点亮——border 转 `primary`、高光条拉长一截；实填件填色加深到 `-deep`；分段控件和触发条盖 wash 见控件皮 §1。
 - 共享动效（`effects.css`）：浮层开合走 `.hanabi-pop` = 淡入 + `translateY(-6px)` 落位 + `scale(.97)` 回正；锁定框 `lock-snap` 从 `scale(1.18)` 收拢；`stripe-flow` 斜纹滚动给开态轨道与充能条；`twinkle` 给 ✦ 火花明灭；无辉光、无脉动光。

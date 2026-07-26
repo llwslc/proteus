@@ -118,7 +118,8 @@
 
   --riot-dur: 0.1s;
   --riot-dur-slow: 0.26s;
-  --riot-dur-sweep: 1.2s;
+  --riot-dur-jitter: 1.2s;
+  --riot-dur-sweep: 1.5s;
   --riot-ease: steps(3, jump-none);
   --riot-ease-out: cubic-bezier(0.2, 0, 0, 1);
   --riot-control-h: 42px;

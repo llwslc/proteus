@@ -39,7 +39,7 @@
 .brass-progress__indicator[data-indeterminate] {
   width: 40%;
   transition: none;
-  animation: brass-progress-slide 1.5s linear infinite;
+  animation: brass-progress-slide var(--brass-dur-sweep) linear infinite;
 }
 @keyframes brass-progress-slide {
   from {

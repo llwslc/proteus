@@ -84,7 +84,7 @@
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator {
   width: 40%;
   left: 0;
-  animation: hanabi-progress-sweep 1.5s linear infinite;
+  animation: hanabi-progress-sweep var(--hanabi-dur-sweep) linear infinite;
 }
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator::after {
   content: none;

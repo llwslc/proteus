@@ -93,6 +93,7 @@
   --hanabi-dur-slow: 0.28s;
   --hanabi-dur-pop: 0.16s;
   --hanabi-dur-stripe: 1.2s;
+  --hanabi-dur-sweep: 1.5s;
   --hanabi-ease: cubic-bezier(0.2, 1.4, 0.4, 1);
   --hanabi-ease-out: cubic-bezier(0.3, 1, 0.4, 1);
   --hanabi-ease-snap: cubic-bezier(0.3, 1.6, 0.5, 1);

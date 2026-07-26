@@ -36,7 +36,7 @@
   position: absolute;
   left: 0;
   width: 40%;
-  animation: bauhaus-progress-slide 1.5s linear infinite;
+  animation: bauhaus-progress-slide var(--bauhaus-dur-sweep) linear infinite;
 }
 @keyframes bauhaus-progress-slide {
   from {

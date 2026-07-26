@@ -61,6 +61,7 @@
 
   --bauhaus-dur: 0.16s;
   --bauhaus-dur-slow: 0.34s;
+  --bauhaus-dur-sweep: 1.5s;
   --bauhaus-ease: cubic-bezier(0.2, 0, 0, 1);
   --bauhaus-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --bauhaus-control-h: 40px;
