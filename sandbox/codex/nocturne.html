@@ -10,424 +10,1521 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Italianno&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-    --theme-bg:#0d080e;--theme-surface:#181017;--theme-surface-2:#2a141d;
-    --theme-ink:#f3e7d2;--theme-muted:#c4b49a;--theme-accent:#c5a45d;
-    --theme-accent-2:#743047;--theme-danger:#a33847;--theme-line:#8a7143;
-    --theme-shadow:rgba(0,0,0,.42);--theme-radius:4px;--theme-display:"Cormorant Garamond", "Noto Serif SC", serif;
-    --theme-body:"Cormorant Garamond", "Noto Serif SC", serif;--theme-mono:"Cormorant Garamond", "Noto Serif SC", serif;
-    --theme-on-accent:#080808;
-    --theme-on-accent-2:#fffdf7;
-    --theme-on-danger:#fffdf7;}
+      --night:#0c0710;
+      --night-soft:#160d17;
+      --velvet:#24111c;
+      --wine:#722d46;
+      --wine-bright:#a94a68;
+      --brass:#c6a15b;
+      --brass-pale:#e3cb8d;
+      --bone:#f3e8d1;
+      --muted:#c8b99f;
+      --leaf:#293728;
+      --line:rgba(198,161,91,.58);
+      --shadow:rgba(0,0,0,.52);
+      --level:58;
+      --display:"Cormorant Garamond","Noto Serif SC",serif;
+      --body:"Cormorant Garamond","Noto Serif SC",serif;
+      --script:"Italianno",cursive;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-width:0;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 50% -8%,rgba(114,45,70,.22),transparent 29rem),
+        linear-gradient(180deg,#120a13 0,var(--night) 32%,#080509 100%);
+      color:var(--bone);
+      font-family:var(--body);
+      line-height:1.65;
+      text-rendering:optimizeLegibility;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      pointer-events:none;
+      opacity:.26;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%238c7448' stroke-opacity='.38' stroke-width='1.1'%3E%3Cpath d='M130 270c-8-58-59-75-69-125S90 65 130-10m0 280c8-58 59-75 69-125s-29-80-69-155'/%3E%3Cpath d='M79 181c-35 3-53-15-54-39 31-2 51 11 54 39Zm102 0c35 3 53-15 54-39-31-2-51 11-54 39ZM78 84c-24-9-33-28-26-46 23 8 36 24 26 46Zm104 0c24-9 33-28 26-46-23 8-36 24-26 46Z'/%3E%3Cpath d='M130 117c-18-23-42-20-50-5 11 20 34 22 50 5Zm0 0c18-23 42-20 50-5-11 20-34 22-50 5Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-size:260px 260px;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:30;
+      pointer-events:none;
+      opacity:.105;
+      mix-blend-mode:soft-light;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='v'%3E%3CfeTurbulence baseFrequency='.52' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23v)'/%3E%3C/svg%3E");
+    }
+    button,input{font:inherit;color:inherit}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed}
+    [hidden]{display:none!important}
+    :focus-visible{outline:2px solid var(--brass-pale);outline-offset:5px}
+    .shell{width:min(calc(100% - 48px),1180px);margin-inline:auto}
+    .skip-link{
+      position:fixed;
+      left:16px;
+      top:12px;
+      z-index:200;
+      padding:10px 14px;
+      background:var(--bone);
+      color:var(--night);
+      transform:translateY(-180%);
+    }
+    .skip-link:focus{transform:none}
 
-  :root{
-    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
-    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
-    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
-    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
-    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
-    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
-  button,input{font:inherit;color:inherit}
-  button{cursor:pointer}
-  button:disabled{cursor:not-allowed}
-  [hidden]{display:none!important}
-  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
-  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
-  .skip-link:focus{transform:none}
-  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
-  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
-  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
-  .worldbar-mark{color:var(--accent)}
-  .worldbar-state{color:var(--muted);text-align:right}
-  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
-  .hero-copy{min-width:0;position:relative;z-index:2}
-  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
-  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
-  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
-  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
-  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
-  .action:active{transform:translateY(1px) scale(.99)}
-  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
-  .action.quiet{background:transparent}
-  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
-  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
-  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
-  .artifact{position:absolute;inset:0;display:grid;place-items:center}
-  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
-  .artifact-caption span{color:var(--accent)}
-  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
-  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
-  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
-  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
-  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
-  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
-  .module.wide{grid-column:1/-1}
-  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
-  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
-  .button-rack{margin-top:0}
-  .field{display:grid;gap:9px;margin-top:18px}
-  .field:first-of-type{margin-top:0}
-  .field-label,.legend{font-weight:700;font-size:.88rem}
-  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
-  .text-input::placeholder{color:var(--muted);opacity:.78}
-  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
-  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
-  .choice input{position:absolute;width:1px;height:1px;opacity:0}
-  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
-  .choice input:checked+.choice-mark{border-color:var(--accent)}
-  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
-  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
-  .check .choice-mark{border-radius:5px}
-  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
-  .check input:checked+.choice-mark{background:var(--accent)}
-  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
-  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
-  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
-  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
-  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
-  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
-  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
-  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
-  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
-  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
-  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
-  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
-  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
-  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
-  .select{position:relative}
-  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
-  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
-  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
-  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
-  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
-  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
-  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
-  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
-  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
-  .tab-panel{padding:22px 0 2px}
-  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
-  .tab-panel p{margin:0;color:var(--muted)}
-  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
-  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
-  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
-  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
-  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
-  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
-  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
-  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
-  .measure-copy{color:var(--muted)}
-  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
-  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
-  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
-  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
-  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
-  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
-  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
-  .modal p{margin:0;color:var(--muted)}
-  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
-  body.modal-open{overflow:hidden}
-  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
-  .toast.is-visible{transform:none;opacity:1}
-  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
-  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
-  @media(max-width:760px){
-    .shell{width:min(100% - 32px,1180px)}
-    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
-    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
-    h1{font-size:clamp(3rem,15vw,5.4rem)}
-    .art-stage{min-height:430px}
-    .controls-intro{grid-template-columns:1fr;padding-top:64px}
-    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
-    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
-    .artifact-caption{left:17px;right:17px}
-  }
-  @media(max-width:420px){
-    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
-    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
-  }
-  @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  }
+    .nightbar{
+      border-bottom:1px solid var(--line);
+      background:rgba(9,5,10,.86);
+      backdrop-filter:blur(12px);
+    }
+    .nightbar-inner{
+      min-height:46px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      font-size:.69rem;
+      font-weight:600;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .nightbar-mark{color:var(--brass-pale)}
+    .nightbar-state{color:var(--muted);text-align:right}
+    .nightbar-state::before{content:"✦";color:var(--brass);margin-right:9px}
 
-      body{background-image:radial-gradient(circle at 50% -5%,rgba(197,164,93,.11),transparent 26%),radial-gradient(circle at 12% 62%,rgba(116,48,71,.14),transparent 30%),radial-gradient(circle at 88% 72%,rgba(116,48,71,.12),transparent 28%),linear-gradient(180deg,#100a11,#09060a)}
-      body::before{opacity:.34;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%238a7143' stroke-opacity='.34' stroke-width='1'%3E%3Cpath d='M90 180C78 139 33 139 27 92S64 42 90 0M90 180c12-41 57-41 63-88S116 42 90 0'/%3E%3Cpath d='M55 132c-22-2-31-15-31-29 17 2 30 11 31 29Zm70 0c22-2 31-15 31-29-17 2-30 11-31 29ZM48 67c-15-8-19-21-14-32 14 7 22 18 14 32Zm84 0c15-8 19-21 14-32-14 7-22 18-14 32Z'/%3E%3Ccircle cx='90' cy='90' r='9'/%3E%3Cpath d='m90 76 8 8-8 8-8-8 8-8Z'/%3E%3C/g%3E%3C/svg%3E");background-size:180px 180px}
-      body::after{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.12;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.62' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-      h1{font-weight:500;letter-spacing:-.045em;text-shadow:0 3px 26px rgba(197,164,93,.12)}
-      .lede{font-size:clamp(1.05rem,1.65vw,1.28rem)}
-      .lede::first-letter{font:500 2.4em/.8 var(--font-display);color:var(--accent);float:left;margin:.08em .12em 0 0}
-      .worldbar,.module,.art-stage{border:1px solid rgba(197,164,93,.72);border-radius:2px;background:linear-gradient(145deg,rgba(36,18,28,.94),rgba(18,12,18,.97));box-shadow:inset 0 0 0 5px #110b11,inset 0 0 0 6px rgba(197,164,93,.2),0 22px 55px var(--shadow)}
-      .worldbar::after{content:"❦";position:absolute;left:50%;bottom:-11px;translate:-50% 0;padding:0 9px;background:var(--bg);color:var(--accent);font-size:1rem}
-      .module::before,.module::after{content:"❧";position:absolute;top:9px;color:var(--accent);font:400 1.15rem/1 "Italianno",cursive;opacity:.9}.module::before{left:13px}.module::after{right:13px;transform:scaleX(-1)}
-      .module-title{text-align:center;font-weight:500}.module-kicker{text-align:center}.module-kicker,.eyebrow{font-style:italic;font-weight:600}
-      .action{border:1px solid rgba(197,164,93,.78);border-radius:50% 6px/22% 6px;background:linear-gradient(180deg,rgba(66,28,42,.88),rgba(37,16,26,.96));box-shadow:inset 0 0 0 3px #160d14,inset 0 0 0 4px rgba(197,164,93,.2),0 8px 18px rgba(0,0,0,.28)}
-      .action:hover{box-shadow:inset 0 0 0 3px #160d14,inset 0 0 0 4px rgba(197,164,93,.4),0 9px 24px rgba(197,164,93,.12)}
-      .action.primary{background:linear-gradient(135deg,#8b6a30,#e1c77c 48%,#9b7737)}
-      .action.secondary{background:linear-gradient(135deg,#4b1b2d,#873650 55%,#4b1b2d)}
-      .action.quiet{background:rgba(13,8,14,.5)}
-      .text-input,.select-trigger{border:1px solid rgba(197,164,93,.65);border-radius:2px;background:linear-gradient(180deg,#2b1721,#1d1018);box-shadow:inset 0 0 0 3px #120b11,inset 0 0 0 4px rgba(197,164,93,.14)}
-      .select-list{border:1px solid var(--accent);background:#170e16;box-shadow:inset 0 0 0 4px #0d080e,0 20px 40px rgba(0,0,0,.55)}
-      .select-option{border-radius:1px;font-style:italic}
-      .choice-mark{border:1px solid var(--accent);border-radius:68% 10% 68% 10%;background:#21121a;transform:rotate(45deg);box-shadow:inset 0 0 0 3px #120b11}
-      .choice input:checked+.choice-mark::after{background:var(--accent);box-shadow:0 0 10px rgba(197,164,93,.58);transform:translate(-50%,-50%) rotate(-45deg)}
-      .check .choice-mark{border-radius:2px;transform:none}.check input:checked+.choice-mark::after{transform:translate(-50%,-65%) rotate(-45deg)}
-      .toggle-track{border:1px solid var(--accent);border-radius:3px;background:linear-gradient(90deg,#1c1017,#371725);box-shadow:inset 0 0 0 3px #0e090e}
-      .toggle-track::before{content:"";position:absolute;left:7px;right:7px;top:50%;height:1px;background:var(--accent);opacity:.38}
-      .toggle-track::after{border-radius:68% 12% 68% 12%;background:linear-gradient(135deg,#64243b,#a3435e);transform:rotate(45deg);box-shadow:0 0 0 1px #c5a45d,0 3px 8px #000}
-      .toggle input:checked+.toggle-track::after{transform:translateX(28px) rotate(135deg);background:linear-gradient(135deg,#ead692,#a98742);box-shadow:0 0 12px rgba(197,164,93,.55)}
-      .range{height:5px;border:0;border-radius:0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-      .range::-webkit-slider-thumb{width:25px;height:25px;border:1px solid var(--accent);border-radius:68% 10% 68% 10%;background:var(--accent-2);transform:rotate(45deg);box-shadow:0 0 0 3px #130b11,0 0 14px rgba(197,164,93,.32)}
-      .progress-track{height:15px;border:1px solid rgba(197,164,93,.55);border-radius:2px;background:#100a0f;box-shadow:inset 0 0 0 3px #080508}
-      .progress-fill{background:repeating-linear-gradient(90deg,#693047 0 12px,#c5a45d 12px 14px,#8d3b55 14px 26px);box-shadow:0 0 14px rgba(116,48,71,.55)}
-      .tabs{justify-content:center;border-bottom-color:rgba(197,164,93,.38)}.tab{font-family:var(--font-display);font-style:italic;font-size:1rem}.tab[aria-selected="true"]{color:var(--accent)}
-      .gauge{background:repeating-conic-gradient(from -4deg,var(--accent) 0 7deg,#512236 7deg 14deg,#160d14 14deg 21deg);box-shadow:inset 0 0 0 12px #120b11,0 0 0 1px var(--accent),0 0 28px rgba(197,164,93,.13)}
-      .gauge::before{inset:27%;background:#170e16;border:1px solid var(--accent)}
-      .gauge::after{content:"";position:absolute;inset:11%;border:1px solid rgba(197,164,93,.38);border-radius:50%;z-index:1}
-      .art-stage{background:radial-gradient(circle at 50% 38%,rgba(232,185,90,.13),transparent 24%),radial-gradient(ellipse at 50% 70%,rgba(116,48,71,.2),transparent 42%),linear-gradient(180deg,#21111e,#0b070c);overflow:hidden}
-      .nocturne-frame{position:absolute;width:min(62%,300px);height:72%;border:5px double var(--accent);border-radius:48% 48% 7px 7px/24% 24% 4px 4px;box-shadow:inset 0 0 0 8px rgba(8,5,8,.82),inset 0 0 55px rgba(197,164,93,.08),0 0 0 8px rgba(10,6,10,.72),0 22px 40px rgba(0,0,0,.52);display:grid;place-items:center;z-index:3}
-      .nocturne-frame::before,.nocturne-frame::after{content:"✦";position:absolute;top:-20px;width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--accent);border-radius:50%;background:#140c13;color:var(--accent);font-size:.7rem}.nocturne-frame::before{left:-19px}.nocturne-frame::after{right:-19px}
-      .nocturne-moon{position:absolute;top:11%;width:48%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 42% 38%,#f3dfaa,#c29448 58%,#56371d 72%);box-shadow:0 0 28px rgba(226,188,104,.28);opacity:.86}
-      .nocturne-moon::after{content:"";position:absolute;inset:-2% -12% 2% 12%;border-radius:50%;background:#1a0f18}
-      .nocturne-stem{position:absolute;left:50%;top:45%;width:2px;height:35%;background:linear-gradient(#c5a45d,#665533);transform:translateX(-50%)}
-      .nocturne-stem::before,.nocturne-stem::after{content:"";position:absolute;width:42px;height:21px;border:1px solid #7f7846;border-radius:80% 0 80% 0;background:#273222}.nocturne-stem::before{left:-40px;top:34%;transform:rotate(24deg)}.nocturne-stem::after{right:-40px;top:58%;transform:scaleX(-1) rotate(24deg)}
-      .nocturne-rose{position:absolute;left:50%;top:45%;width:132px;height:132px;translate:-50% -50%;z-index:4;filter:drop-shadow(0 9px 14px rgba(0,0,0,.5))}
-      .nocturne-rose span{--turn:0deg;position:absolute;left:50%;top:50%;width:43px;height:72px;transform-origin:50% 92%;border-radius:72% 12% 70% 16%;background:radial-gradient(circle at 36% 24%,#b2566c,#6f243e 54%,#31101f 90%);border:1px solid rgba(197,164,93,.28);transform:translate(-50%,-91%) rotate(var(--turn)) scale(.72,.46);animation:nocturneBloom 6s ease-in-out infinite}
-      .nocturne-rose span:nth-child(1){--turn:0deg}.nocturne-rose span:nth-child(2){--turn:45deg}.nocturne-rose span:nth-child(3){--turn:90deg}.nocturne-rose span:nth-child(4){--turn:135deg}.nocturne-rose span:nth-child(5){--turn:180deg}.nocturne-rose span:nth-child(6){--turn:225deg}.nocturne-rose span:nth-child(7){--turn:270deg}.nocturne-rose span:nth-child(8){--turn:315deg}
-      .nocturne-rose b{position:absolute;left:50%;top:50%;width:32px;height:32px;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,#dfc577 0 9%,#9d4059 12% 42%,#39101f 72%);box-shadow:0 0 15px rgba(197,164,93,.3)}
-      .nocturne-script{position:absolute;bottom:9%;font:400 2rem/1 "Italianno",cursive;color:var(--accent);text-shadow:0 0 16px rgba(197,164,93,.24)}
-      .nocturne-vines{position:absolute;inset:4%;width:92%;height:86%;color:#81774c;opacity:.72;z-index:1}
-      .nocturne-vines .vine-path{stroke-dasharray:480;stroke-dashoffset:0;animation:nocturneTrace 8s ease-in-out infinite}
-      .nocturne-vines .leaf{transform-box:fill-box;transform-origin:center;animation:nocturneLeaf 5s ease-in-out infinite}.nocturne-vines .leaf:nth-child(even){animation-delay:-2.5s}
-      .artifact.is-awake .nocturne-rose span{animation:nocturneAwake .9s cubic-bezier(.2,1.55,.3,1) both}.artifact.is-awake .nocturne-frame{filter:drop-shadow(0 0 18px rgba(197,164,93,.23))}
-      @keyframes nocturneBloom{0%,100%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(.72,.46)}50%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(.92,.82)}}
-      @keyframes nocturneAwake{0%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(.2,.15)}100%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(1,.92)}}
-      @keyframes nocturneTrace{0%,100%{stroke-dashoffset:480;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}}
-      @keyframes nocturneLeaf{50%{transform:scale(1.12) rotate(5deg);filter:brightness(1.25)}}
-    .action.primary{color:var(--on-accent)}
-    .action.secondary{color:var(--on-accent-2)}
-    .action.danger{color:var(--on-danger)}
+    .gate{padding:clamp(68px,9vw,132px) 0 112px}
+    .gate-heading{text-align:center;position:relative;z-index:2}
+    .gate-script{
+      margin:0 0 -16px;
+      color:var(--brass);
+      font:400 clamp(2.4rem,5vw,4.6rem)/1 var(--script);
+      transform:rotate(-3deg);
+    }
+    h1{margin:0}
+    h1 .latin{
+      display:block;
+      color:var(--bone);
+      font:500 clamp(4.1rem,11vw,9.8rem)/.76 var(--display);
+      letter-spacing:.045em;
+      text-shadow:0 8px 45px rgba(114,45,70,.38);
+    }
+    h1 .chinese{
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      margin-top:28px;
+      color:var(--muted);
+      font:500 clamp(1.15rem,2.4vw,1.65rem)/1 var(--display);
+      letter-spacing:.34em;
+    }
+    h1 .chinese::before,h1 .chinese::after{content:"";width:46px;height:1px;background:var(--brass)}
+    .gate-plan{
+      position:relative;
+      display:grid;
+      grid-template-columns:minmax(0,.72fr) minmax(420px,1.42fr) minmax(0,.82fr);
+      gap:34px;
+      align-items:center;
+      margin-top:68px;
+    }
+    .gate-plan::before{
+      content:"";
+      position:absolute;
+      left:8%;
+      right:8%;
+      top:50%;
+      height:1px;
+      z-index:-1;
+      background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);
+    }
+    .gate-note,.gate-invitation{position:relative;z-index:2}
+    .gate-note{
+      align-self:end;
+      margin-bottom:66px;
+      padding:24px 4px 24px 25px;
+      border-left:1px solid var(--brass);
+    }
+    .gate-note::before{content:"";position:absolute;left:-4px;top:0;width:7px;height:7px;transform:rotate(45deg);background:var(--brass)}
+    .folio-number{display:block;color:var(--brass);font-size:.68rem;font-weight:700;letter-spacing:.18em}
+    .gate-note p{margin:12px 0 0;color:var(--muted);font-size:1.02rem}
+    .gate-note em{display:block;margin-top:20px;color:var(--brass-pale);font:400 1.85rem/1 var(--script)}
+    .gate-invitation{
+      align-self:start;
+      margin-top:70px;
+      padding:28px 26px;
+      background:linear-gradient(135deg,rgba(38,17,29,.92),rgba(15,9,16,.96));
+      clip-path:polygon(0 12px,12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px));
+      box-shadow:inset 0 0 0 1px var(--line),inset 0 0 0 7px rgba(12,7,16,.86);
+    }
+    .gate-invitation::before{content:"❦";display:block;color:var(--brass);font-size:1.35rem;text-align:center}
+    .gate-invitation p{margin:10px 0 22px;color:var(--muted)}
+    .invitation-action{
+      width:100%;
+      min-height:48px;
+      border:1px solid var(--brass);
+      background:transparent;
+      color:var(--bone);
+      font-weight:700;
+      transition:background .2s,color .2s,transform .2s;
+    }
+    .invitation-action + .invitation-action{margin-top:10px}
+    .invitation-action.primary{background:var(--brass);color:#110b10}
+    .invitation-action:hover{transform:translateY(-2px);background:var(--bone);color:var(--night)}
+
+    .orangerie{
+      position:relative;
+      min-height:620px;
+      overflow:hidden;
+      isolation:isolate;
+      border:1px solid var(--brass);
+      border-radius:48% 48% 3px 3px/25% 25% 3px 3px;
+      background:
+        linear-gradient(90deg,transparent 49.8%,rgba(198,161,91,.35) 50%,transparent 50.2%),
+        radial-gradient(circle at 50% 36%,rgba(227,203,141,.15),transparent 24%),
+        linear-gradient(180deg,rgba(45,22,37,.94),rgba(12,8,14,.98));
+      box-shadow:
+        inset 0 0 0 8px var(--night),
+        inset 0 0 0 9px rgba(198,161,91,.4),
+        inset 0 0 70px rgba(0,0,0,.68),
+        0 28px 80px rgba(0,0,0,.55);
+    }
+    .orangerie::before,.orangerie::after{
+      content:"";
+      position:absolute;
+      top:11%;
+      bottom:8%;
+      width:43%;
+      border:1px solid rgba(198,161,91,.28);
+      border-radius:50% 50% 2px 2px/22% 22% 2px 2px;
+    }
+    .orangerie::before{left:5%}.orangerie::after{right:5%}
+    .orangerie-ribs{position:absolute;inset:0;width:100%;height:100%;color:rgba(198,161,91,.34)}
+    .orangerie-ribs path{fill:none;stroke:currentColor;stroke-width:1}
+    .moon{
+      position:absolute;
+      left:50%;
+      top:21%;
+      width:152px;
+      aspect-ratio:1;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:radial-gradient(circle at 40% 38%,#f3dda1,#c6a15b 56%,#725b31);
+      box-shadow:0 0 38px rgba(227,203,141,.32),0 0 90px rgba(114,45,70,.25);
+    }
+    .moon::after{
+      content:"";
+      position:absolute;
+      width:88%;
+      aspect-ratio:1;
+      left:44%;
+      top:-6%;
+      border-radius:50%;
+      background:#1a101b;
+      box-shadow:-11px 8px 24px rgba(0,0,0,.18);
+    }
+    .living-flower{
+      position:absolute;
+      left:50%;
+      top:55%;
+      width:238px;
+      aspect-ratio:1;
+      transform:translate(-50%,-50%);
+      filter:drop-shadow(0 18px 18px rgba(0,0,0,.52));
+    }
+    .living-flower .petal{
+      --turn:0deg;
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:58px;
+      height:122px;
+      transform-origin:50% 92%;
+      transform:translate(-50%,-92%) rotate(var(--turn)) scale(.7,.44);
+      border:1px solid rgba(227,203,141,.22);
+      border-radius:78% 10% 68% 16%;
+      background:
+        radial-gradient(circle at 34% 22%,rgba(238,130,157,.58),transparent 27%),
+        linear-gradient(145deg,#a94a68,#66233d 56%,#2f1020);
+      animation:nightBloom 7s ease-in-out infinite;
+    }
+    .living-flower .petal:nth-child(1){--turn:0deg}
+    .living-flower .petal:nth-child(2){--turn:30deg}
+    .living-flower .petal:nth-child(3){--turn:60deg}
+    .living-flower .petal:nth-child(4){--turn:90deg}
+    .living-flower .petal:nth-child(5){--turn:120deg}
+    .living-flower .petal:nth-child(6){--turn:150deg}
+    .living-flower .petal:nth-child(7){--turn:180deg}
+    .living-flower .petal:nth-child(8){--turn:210deg}
+    .living-flower .petal:nth-child(9){--turn:240deg}
+    .living-flower .petal:nth-child(10){--turn:270deg}
+    .living-flower .petal:nth-child(11){--turn:300deg}
+    .living-flower .petal:nth-child(12){--turn:330deg}
+    .living-flower .heart{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:56px;
+      aspect-ratio:1;
+      translate:-50% -50%;
+      border-radius:50%;
+      background:repeating-radial-gradient(circle,#e0c77f 0 3px,#8b3752 4px 8px,#351221 9px 13px);
+      box-shadow:0 0 24px rgba(227,203,141,.28);
+    }
+    .living-flower.is-awake .petal{animation:awakenPetal 1.05s cubic-bezier(.2,1.5,.3,1) both}
+    .flower-stem{
+      position:absolute;
+      left:50%;
+      top:60%;
+      width:2px;
+      height:260px;
+      transform:translateX(-50%);
+      background:linear-gradient(var(--brass),#334433);
+      z-index:-1;
+    }
+    .flower-stem::before,.flower-stem::after{
+      content:"";
+      position:absolute;
+      width:82px;
+      height:38px;
+      background:#293728;
+      border:1px solid rgba(198,161,91,.6);
+    }
+    .flower-stem::before{left:-81px;top:87px;border-radius:100% 0 100% 0;transform:rotate(11deg)}
+    .flower-stem::after{left:1px;top:136px;border-radius:0 100% 0 100%;transform:rotate(-8deg)}
+    .bloom-seal{
+      position:absolute;
+      left:50%;
+      bottom:27px;
+      z-index:4;
+      min-width:156px;
+      min-height:46px;
+      transform:translateX(-50%);
+      border:1px solid var(--brass);
+      border-radius:50%;
+      background:var(--wine);
+      color:var(--bone);
+      font-style:italic;
+      font-weight:700;
+      box-shadow:0 0 0 5px var(--night),0 0 0 6px rgba(198,161,91,.44);
+    }
+    .bloom-seal:hover{background:var(--brass);color:var(--night)}
+    @keyframes nightBloom{
+      0%,100%{transform:translate(-50%,-92%) rotate(var(--turn)) scale(.7,.44)}
+      48%,62%{transform:translate(-50%,-92%) rotate(var(--turn)) scale(.92,.84)}
+    }
+    @keyframes awakenPetal{
+      0%{transform:translate(-50%,-92%) rotate(var(--turn)) scale(.14,.1)}
+      100%{transform:translate(-50%,-92%) rotate(var(--turn)) scale(1,.92)}
+    }
+
+    .night-divider{
+      height:68px;
+      display:grid;
+      place-items:center;
+      border-block:1px solid rgba(198,161,91,.28);
+      color:var(--brass);
+      background:rgba(16,9,16,.72);
+      font:400 1.8rem/1 var(--script);
+      letter-spacing:.06em;
+    }
+    .night-divider::before,.night-divider::after{content:"— ❦ —";margin:0 24px}
+
+    .control-atlas{padding:104px 0 120px}
+    .atlas-heading{
+      display:grid;
+      grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
+      gap:56px;
+      align-items:end;
+      margin-bottom:70px;
+    }
+    .atlas-heading .script{margin:0;color:var(--brass);font:400 2.3rem/1 var(--script)}
+    .atlas-heading h2{margin:5px 0 0;font:500 clamp(3.2rem,7vw,6.2rem)/.86 var(--display);letter-spacing:-.035em}
+    .atlas-heading > p{margin:0 0 5px;color:var(--muted);font-size:1.08rem}
+    .section-kicker{
+      margin:0 0 10px;
+      color:var(--brass);
+      font-size:.67rem;
+      font-weight:700;
+      letter-spacing:.19em;
+      text-transform:uppercase;
+    }
+    .section-title{margin:0;font:500 clamp(2rem,4vw,3.35rem)/.95 var(--display)}
+    .section-copy{margin:14px 0 0;color:var(--muted)}
+
+    .ritual-rail{
+      position:relative;
+      padding:40px clamp(22px,4vw,54px) 52px;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(90deg,transparent,rgba(39,17,29,.7) 11%,rgba(39,17,29,.7) 89%,transparent);
+    }
+    .ritual-rail::before{
+      content:"";
+      position:absolute;
+      left:5%;
+      right:5%;
+      top:128px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--brass),transparent);
+    }
+    .ritual-head{text-align:center;margin-bottom:34px}
+    .ritual-buttons{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:start}
+    .ritual-button{
+      position:relative;
+      z-index:1;
+      min-height:66px;
+      border:0;
+      transition:transform .2s,filter .2s,box-shadow .2s;
+      font-weight:700;
+    }
+    .ritual-button:hover:not(:disabled){transform:translateY(-5px);filter:brightness(1.1)}
+    .ritual-button:active:not(:disabled){transform:translateY(1px)}
+    .ritual-button.gate-key{
+      color:#130d12;
+      background:linear-gradient(135deg,#8d6a32,#ead592 48%,#9a7438);
+      clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,9px 100%,0 50%);
+      box-shadow:0 9px 20px rgba(0,0,0,.32);
+    }
+    .ritual-button.wine-seal{
+      color:var(--bone);
+      border-radius:50%;
+      background:radial-gradient(circle,#98435f,#6a263f 64%,#351221);
+      box-shadow:0 0 0 4px var(--night),0 0 0 5px var(--brass),0 9px 20px rgba(0,0,0,.4);
+    }
+    .ritual-button.paper-tag{
+      color:#28131d;
+      background:var(--bone);
+      clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%,7px 50%);
+      transform:rotate(-1.4deg);
+    }
+    .ritual-button.thorn-warning{
+      color:var(--bone);
+      border:1px solid var(--wine-bright);
+      background:#421827;
+    }
+    .ritual-button.thorn-warning::before,.ritual-button.thorn-warning::after{
+      content:"✦";
+      position:absolute;
+      top:50%;
+      color:var(--wine-bright);
+      transform:translateY(-50%) rotate(45deg);
+    }
+    .ritual-button.thorn-warning::before{left:-8px}.ritual-button.thorn-warning::after{right:-8px}
+    .ritual-button.withered{
+      color:#756a5d;
+      border:1px dashed #645846;
+      background:rgba(25,17,21,.72);
+      text-decoration:line-through;
+      transform:rotate(1.1deg);
+    }
+
+    .field-lab{
+      display:grid;
+      grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+      gap:0;
+      margin-top:112px;
+      border:1px solid var(--line);
+      background:rgba(14,8,14,.7);
+    }
+    .label-desk{
+      position:relative;
+      padding:clamp(30px,5vw,58px);
+      background:
+        linear-gradient(rgba(198,161,91,.06) 1px,transparent 1px) 0 0/100% 34px,
+        linear-gradient(135deg,rgba(41,20,32,.94),rgba(17,10,17,.98));
+    }
+    .label-desk::after{
+      content:"HERBARIUM · IX";
+      position:absolute;
+      right:-39px;
+      top:48%;
+      z-index:2;
+      padding:7px 17px;
+      color:var(--night);
+      background:var(--brass);
+      font-size:.63rem;
+      font-weight:800;
+      letter-spacing:.15em;
+      transform:rotate(90deg);
+    }
+    .specimen-field{display:grid;gap:9px;margin-top:30px}
+    .specimen-label{font-style:italic;font-weight:700}
+    .name-entry{
+      width:100%;
+      min-height:56px;
+      padding:9px 2px;
+      border:0;
+      border-bottom:1px solid var(--brass);
+      background:transparent;
+      color:var(--bone);
+      font:400 1.5rem/1.2 var(--script);
+    }
+    .name-entry::placeholder{color:#9e8d78;opacity:1}
+    .drawer-select{position:relative;margin-top:8px}
+    .drawer-pull{
+      width:100%;
+      min-height:58px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:13px;
+      padding:8px 13px 8px 8px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,#311625,#1d1019);
+      text-align:left;
+      box-shadow:inset 0 -6px 0 rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.22);
+    }
+    .drawer-number{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border:1px solid var(--brass);
+      color:var(--brass-pale);
+      font-size:.72rem;
+      letter-spacing:.08em;
+    }
+    .drawer-pull::after{content:"↴";color:var(--brass);font-size:1.25rem}
+    .drawer-stack{
+      position:absolute;
+      z-index:40;
+      left:14px;
+      right:14px;
+      top:calc(100% + 7px);
+      margin:0;
+      padding:7px;
+      list-style:none;
+      border:1px solid var(--brass);
+      background:#140b13;
+      box-shadow:10px 13px 0 rgba(0,0,0,.4);
+    }
+    .drawer-option{
+      display:grid;
+      grid-template-columns:26px 1fr;
+      gap:10px;
+      align-items:center;
+      padding:11px 12px;
+      border-left:3px solid transparent;
+      color:var(--muted);
+      cursor:pointer;
+    }
+    .drawer-option::before{content:"✧";color:var(--brass)}
+    .drawer-option.is-active,.drawer-option[aria-selected="true"]{
+      border-left-color:var(--brass);
+      background:var(--bone);
+      color:#21131b;
+      transform:translateX(5px);
+    }
+
+    .moon-rituals{
+      position:relative;
+      padding:clamp(30px,5vw,58px);
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 78% 15%,rgba(198,161,91,.12),transparent 16rem),
+        linear-gradient(145deg,#120a12,#21101b);
+    }
+    .moon-rituals::after{
+      content:"";
+      position:absolute;
+      width:230px;
+      aspect-ratio:1;
+      right:-110px;
+      bottom:-120px;
+      border:1px solid rgba(198,161,91,.2);
+      border-radius:50%;
+      box-shadow:0 0 0 28px rgba(198,161,91,.035),0 0 0 56px rgba(198,161,91,.025);
+    }
+    .phase-group{border:0;margin:27px 0 0;padding:0}
+    .phase-legend{padding:0;font-weight:700;font-style:italic}
+    .phase-orbit{
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:20px;
+      padding-top:14px;
+    }
+    .phase-orbit::before{
+      content:"";
+      position:absolute;
+      left:11%;
+      right:11%;
+      top:47px;
+      border-top:1px dashed rgba(198,161,91,.45);
+    }
+    .phase-option{position:relative;display:grid;justify-items:center;gap:10px;cursor:pointer;text-align:center}
+    .phase-option input,.pressed-specimen input,.pull-lamp input{
+      position:absolute;
+      width:1px;
+      height:1px;
+      opacity:0;
+    }
+    .phase-disc{
+      position:relative;
+      z-index:1;
+      width:68px;
+      aspect-ratio:1;
+      border-radius:50%;
+      border:1px solid var(--brass);
+      background:#120b13;
+      box-shadow:0 0 0 7px #160d17;
+      transition:transform .25s,box-shadow .25s;
+    }
+    .phase-disc.crescent::after{
+      content:"";
+      position:absolute;
+      inset:8px;
+      border-radius:50%;
+      background:var(--brass-pale);
+      box-shadow:14px -5px 0 0 #120b13;
+    }
+    .phase-disc.full{background:radial-gradient(circle at 38% 35%,#f0dda6,#b8904b)}
+    .phase-disc.new::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;color:#786038}
+    .phase-option input:checked + .phase-disc{
+      transform:translateY(-8px) scale(1.08);
+      box-shadow:0 0 0 7px #160d17,0 0 30px rgba(227,203,141,.34);
+    }
+    .phase-option input:focus-visible + .phase-disc{outline:2px solid var(--bone);outline-offset:7px}
+    .phase-name{font-size:.84rem;color:var(--muted)}
+    .phase-option input:checked ~ .phase-name{color:var(--brass-pale);font-style:italic}
+
+    .pressed-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .pressed-specimen{position:relative;cursor:pointer}
+    .paper-pocket{
+      min-width:128px;
+      min-height:62px;
+      display:grid;
+      grid-template-columns:36px 1fr;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border:1px solid #76684f;
+      background:#261822;
+      color:var(--muted);
+      transform:rotate(-1deg);
+      transition:background .2s,color .2s,transform .2s;
+    }
+    .paper-pocket::before{
+      content:"";
+      width:30px;
+      height:38px;
+      background:
+        radial-gradient(ellipse at 50% 27%,#542035 0 7px,transparent 8px),
+        radial-gradient(ellipse at 28% 45%,#542035 0 7px,transparent 8px),
+        radial-gradient(ellipse at 72% 45%,#542035 0 7px,transparent 8px),
+        linear-gradient(90deg,transparent 48%,#79603b 49% 52%,transparent 53%);
+      opacity:.46;
+      filter:grayscale(1);
+    }
+    .pressed-specimen input:checked + .paper-pocket{
+      background:var(--bone);
+      color:#25131c;
+      transform:translateY(-4px) rotate(1deg);
+      box-shadow:5px 7px 0 rgba(0,0,0,.32);
+    }
+    .pressed-specimen input:checked + .paper-pocket::before{opacity:1;filter:none}
+    .pressed-specimen input:focus-visible + .paper-pocket{outline:2px solid var(--brass-pale);outline-offset:5px}
+
+    .lamp-bench{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-top:32px}
+    .lamp-copy strong,.lamp-copy small{display:block}
+    .lamp-copy small{margin-top:4px;color:var(--muted)}
+    .pull-lamp{
+      position:relative;
+      width:96px;
+      height:142px;
+      flex:0 0 96px;
+      display:grid;
+      justify-items:center;
+      cursor:pointer;
+    }
+    .lamp-shade{
+      position:relative;
+      z-index:2;
+      width:92px;
+      height:51px;
+      clip-path:polygon(22% 0,78% 0,100% 100%,0 100%);
+      border-bottom:3px solid var(--brass);
+      background:linear-gradient(90deg,#3d1729,#7a2e49,#3d1729);
+      transition:filter .3s,background .3s;
+    }
+    .lamp-glow{
+      position:absolute;
+      top:35px;
+      width:114px;
+      height:75px;
+      clip-path:polygon(28% 0,72% 0,100% 100%,0 100%);
+      background:linear-gradient(rgba(227,203,141,.45),transparent);
+      opacity:0;
+      transition:opacity .3s;
+    }
+    .pull-chain{position:absolute;top:50px;width:1px;height:63px;background:repeating-linear-gradient(var(--brass) 0 3px,transparent 3px 6px);transition:height .22s}
+    .pull-chain::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:-14px;
+      width:18px;
+      height:26px;
+      transform:translateX(-50%);
+      clip-path:polygon(50% 0,100% 60%,77% 100%,23% 100%,0 60%);
+      background:var(--brass);
+    }
+    .pull-lamp input:checked ~ .lamp-shade{background:linear-gradient(90deg,#6a2841,#c05b76,#6a2841);filter:drop-shadow(0 8px 18px rgba(227,203,141,.3))}
+    .pull-lamp input:checked ~ .lamp-glow{opacity:1}
+    .pull-lamp input:checked ~ .pull-chain{height:78px}
+    .pull-lamp input:focus-visible ~ .lamp-shade{outline:2px solid var(--bone);outline-offset:6px}
+
+    .growth-house{
+      display:grid;
+      grid-template-columns:minmax(0,1.55fr) minmax(210px,.72fr) minmax(220px,.73fr);
+      gap:24px;
+      align-items:stretch;
+      margin-top:112px;
+    }
+    .branch-console{
+      position:relative;
+      min-height:480px;
+      padding:42px 42px 32px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(150deg,rgba(38,17,29,.94),rgba(13,8,14,.98));
+    }
+    .branch-console::before{
+      content:"";
+      position:absolute;
+      inset:10px;
+      pointer-events:none;
+      border:1px solid rgba(198,161,91,.18);
+    }
+    .branch-value{
+      position:absolute;
+      right:30px;
+      top:34px;
+      min-width:88px;
+      padding:8px 12px;
+      color:#21121a;
+      background:var(--bone);
+      font:600 1.05rem/1 var(--display);
+      text-align:center;
+      transform:rotate(2deg);
+      box-shadow:5px 6px 0 rgba(0,0,0,.3);
+    }
+    .branch-scene{position:relative;height:260px;margin-top:40px}
+    .branch-svg{position:absolute;inset:20px 0 0;width:100%;height:200px;overflow:visible}
+    .branch-svg path{fill:none;stroke:#7c6a3d;stroke-width:3;stroke-linecap:round}
+    .branch-svg .thin{stroke:#374534;stroke-width:2}
+    .branch-input{
+      position:absolute;
+      inset:30px 0 18px;
+      z-index:12;
+      width:100%;
+      height:190px;
+      opacity:.001;
+      cursor:ew-resize;
+    }
+    .branch-bud{
+      --x:10%;
+      --y:60%;
+      position:absolute;
+      z-index:3;
+      left:var(--x);
+      top:var(--y);
+      width:28px;
+      height:36px;
+      transform:translate(-50%,-50%) rotate(-14deg) scale(.62);
+      border:1px solid #80653a;
+      border-radius:70% 10% 70% 10%;
+      background:#332018;
+      opacity:.68;
+      transition:transform .48s cubic-bezier(.2,1.6,.3,1),background .35s,opacity .35s,box-shadow .35s;
+    }
+    .branch-bud::before,.branch-bud::after{
+      content:"";
+      position:absolute;
+      width:21px;
+      height:29px;
+      bottom:2px;
+      border:1px solid rgba(198,161,91,.4);
+      border-radius:70% 10% 70% 10%;
+      background:#4d1c31;
+      transform-origin:50% 100%;
+      transition:transform .48s cubic-bezier(.2,1.5,.3,1);
+    }
+    .branch-bud::before{left:-8px;transform:rotate(-12deg)}
+    .branch-bud::after{right:-8px;transform:rotate(102deg)}
+    .branch-bud.is-open{
+      opacity:1;
+      transform:translate(-50%,-50%) rotate(-45deg) scale(1);
+      background:var(--wine-bright);
+      box-shadow:0 0 18px rgba(169,74,104,.34);
+    }
+    .branch-bud.is-open::before{transform:rotate(-68deg)}
+    .branch-bud.is-open::after{transform:rotate(158deg)}
+    .moth-marker{
+      position:absolute;
+      z-index:8;
+      left:calc(var(--level) * 1%);
+      top:32px;
+      width:30px;
+      height:18px;
+      transform:translateX(-50%);
+      transition:left .32s ease;
+    }
+    .moth-marker::before,.moth-marker::after{
+      content:"";
+      position:absolute;
+      top:0;
+      width:17px;
+      height:14px;
+      border:1px solid var(--brass);
+      background:rgba(227,203,141,.34);
+      animation:mothWing .8s ease-in-out infinite alternate;
+    }
+    .moth-marker::before{right:50%;border-radius:100% 18% 100% 18%;transform-origin:right center}
+    .moth-marker::after{left:50%;border-radius:18% 100% 18% 100%;transform-origin:left center}
+    @keyframes mothWing{to{transform:scaleX(.42) rotate(12deg)}}
+    .branch-hint{position:absolute;left:0;right:0;bottom:2px;display:flex;justify-content:space-between;color:var(--muted);font-size:.72rem;letter-spacing:.1em}
+
+    .trellis-progress,.bouquet-meter{
+      position:relative;
+      min-height:480px;
+      padding:34px 24px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:rgba(19,10,18,.9);
+    }
+    .trellis-progress{display:flex;flex-direction:column;align-items:center}
+    .trellis{
+      position:relative;
+      width:142px;
+      height:300px;
+      margin-top:20px;
+      border:1px solid rgba(198,161,91,.45);
+      border-radius:70px 70px 0 0;
+      box-shadow:inset 0 0 0 7px var(--night);
+    }
+    .trellis::before,.trellis::after{content:"";position:absolute;background:rgba(198,161,91,.24)}
+    .trellis::before{left:50%;top:8%;bottom:0;width:1px}
+    .trellis::after{left:8%;right:8%;top:49%;height:1px}
+    .climbing-vine{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px)}
+    .climbing-vine path{
+      fill:none;
+      stroke:var(--brass);
+      stroke-width:3;
+      stroke-linecap:round;
+      stroke-dasharray:100;
+      stroke-dashoffset:calc(100 - var(--level));
+      transition:stroke-dashoffset .45s ease;
+    }
+    .trellis-leaf{
+      --lx:50%;
+      --ly:80%;
+      position:absolute;
+      left:var(--lx);
+      top:var(--ly);
+      width:34px;
+      height:18px;
+      border:1px solid #6f6a3f;
+      border-radius:100% 0 100% 0;
+      background:#202a20;
+      opacity:.18;
+      transform:scale(.45) rotate(var(--lr,0deg));
+      transition:.4s cubic-bezier(.2,1.5,.3,1);
+    }
+    .trellis-leaf.is-open{opacity:1;transform:scale(1) rotate(var(--lr,0deg));background:#344934}
+    .progress-caption{margin-top:auto;text-align:center}
+    .progress-caption strong{display:block;color:var(--brass-pale);font:500 2rem/1 var(--display)}
+    .progress-caption span{color:var(--muted);font-size:.78rem}
+
+    .bouquet-meter{display:flex;flex-direction:column;align-items:center}
+    .bouquet{
+      position:relative;
+      width:170px;
+      height:285px;
+      margin-top:25px;
+    }
+    .bouquet::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:26px;
+      width:118px;
+      height:96px;
+      transform:translateX(-50%);
+      clip-path:polygon(8% 0,92% 0,72% 100%,28% 100%);
+      background:linear-gradient(90deg,#2b1421,#743047,#2b1421);
+      border-top:1px solid var(--brass);
+    }
+    .bouquet-stems{position:absolute;left:50%;bottom:100px;width:1px;height:142px;background:var(--brass);box-shadow:-31px 12px #6e663d,-15px -7px #6e663d,17px 7px #6e663d,33px 17px #6e663d}
+    .bouquet-flower{
+      --fx:50%;
+      --fy:12%;
+      position:absolute;
+      left:var(--fx);
+      top:var(--fy);
+      width:50px;
+      aspect-ratio:1;
+      transform:translate(-50%,-50%) scale(.35) rotate(-18deg);
+      opacity:.25;
+      transition:transform .48s cubic-bezier(.2,1.6,.3,1),opacity .35s,filter .35s;
+    }
+    .bouquet-flower::before{
+      content:"✿";
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      color:var(--wine-bright);
+      font-size:3.25rem;
+      line-height:1;
+    }
+    .bouquet-flower::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:9px;
+      aspect-ratio:1;
+      translate:-50% -50%;
+      border-radius:50%;
+      background:var(--brass-pale);
+    }
+    .bouquet-flower.is-open{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0);filter:drop-shadow(0 0 12px rgba(169,74,104,.4))}
+    .meter-tag{margin-top:auto;text-align:center}
+    .meter-tag strong{display:block;font:500 1.85rem/1 var(--display);color:var(--brass-pale)}
+    .meter-tag span{font-size:.78rem;color:var(--muted)}
+
+    .herbarium{
+      display:grid;
+      grid-template-columns:280px minmax(0,1fr);
+      gap:36px;
+      margin-top:112px;
+      align-items:start;
+    }
+    .herbarium-intro{grid-column:1/-1;display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:end}
+    .herbarium-intro .section-copy{max-width:42rem}
+    .specimen-index{
+      display:grid;
+      gap:14px;
+      padding:24px 18px 24px 0;
+      border-right:1px solid var(--line);
+    }
+    .specimen-tab{
+      position:relative;
+      min-height:112px;
+      padding:18px 20px 18px 44px;
+      border:1px solid #65563f;
+      background:#20131c;
+      color:var(--muted);
+      text-align:left;
+      transform:translateX(0) rotate(-.5deg);
+      transition:transform .25s,background .25s,color .25s,box-shadow .25s;
+    }
+    .specimen-tab::before{
+      content:"";
+      position:absolute;
+      left:15px;
+      top:16px;
+      width:13px;
+      aspect-ratio:1;
+      border-radius:50%;
+      background:#0d080e;
+      box-shadow:inset 0 0 0 3px var(--brass);
+    }
+    .specimen-tab::after{
+      content:"";
+      position:absolute;
+      right:-15px;
+      top:50%;
+      width:28px;
+      height:42px;
+      transform:translateY(-50%);
+      clip-path:polygon(0 0,100% 18%,100% 82%,0 100%);
+      background:#4e1d31;
+    }
+    .specimen-tab span{display:block;color:var(--brass);font-size:.64rem;letter-spacing:.16em}
+    .specimen-tab strong{display:block;margin-top:7px;font:500 1.35rem/1 var(--display)}
+    .specimen-tab small{display:block;margin-top:7px;font-style:italic}
+    .specimen-tab[aria-selected="true"]{
+      z-index:2;
+      background:var(--bone);
+      color:#29141e;
+      transform:translateX(26px) rotate(1deg);
+      box-shadow:-12px 14px 0 rgba(0,0,0,.28);
+    }
+    .specimen-tab[aria-selected="true"]::after{background:var(--brass)}
+    .specimen-case{
+      position:relative;
+      min-height:462px;
+      padding:12px;
+      border:1px solid var(--brass);
+      background:linear-gradient(145deg,#21101b,#0e090f);
+      box-shadow:18px 22px 0 rgba(0,0,0,.2);
+    }
+    .specimen-case::before{content:"";position:absolute;inset:20px;border:1px solid rgba(198,161,91,.25);pointer-events:none}
+    .specimen-panel{
+      min-height:436px;
+      display:grid;
+      grid-template-columns:minmax(220px,.75fr) minmax(0,1.25fr);
+      gap:42px;
+      align-items:center;
+      padding:42px;
+      animation:folioReveal .45s ease both;
+    }
+    .pressed-plate{
+      position:relative;
+      min-height:328px;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      color:#303b2c;
+      background:
+        linear-gradient(rgba(94,70,45,.08) 1px,transparent 1px) 0 0/100% 26px,
+        #e7dbc1;
+      box-shadow:inset 0 0 0 8px #d7c7a7,inset 0 0 0 9px #8d744b;
+    }
+    .pressed-plate::before{content:"";position:absolute;width:2px;height:220px;background:#75623c;transform:rotate(7deg)}
+    .pressed-plate::after{content:"❦";font-size:8rem;color:#5d694e;transform:rotate(-6deg);filter:drop-shadow(5px 6px 0 rgba(92,62,47,.12))}
+    .plate-label{
+      position:absolute;
+      left:20px;
+      right:20px;
+      bottom:18px;
+      padding-top:7px;
+      border-top:1px solid #806846;
+      color:#3a2b24;
+      font-size:.66rem;
+      font-weight:700;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+    }
+    .specimen-story .script{margin:0;color:var(--brass);font:400 2.15rem/1 var(--script)}
+    .specimen-story h3{margin:9px 0 0;font:500 clamp(2rem,4vw,3.4rem)/.95 var(--display)}
+    .specimen-story p{color:var(--muted)}
+    .annotation{position:relative;display:inline-flex;margin-top:20px}
+    .annotation-button{
+      min-height:44px;
+      padding:8px 16px;
+      border:1px solid var(--brass);
+      background:transparent;
+      color:var(--bone);
+      font-style:italic;
+    }
+    .floating-note{
+      position:absolute;
+      left:50%;
+      bottom:calc(100% + 13px);
+      width:220px;
+      padding:12px 15px;
+      color:#26141d;
+      background:var(--bone);
+      box-shadow:6px 8px 0 rgba(0,0,0,.32);
+      transform:translate(-50%,8px) rotate(-2deg);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:.2s;
+      font-size:.79rem;
+    }
+    .floating-note::after{content:"";position:absolute;left:50%;top:100%;border:8px solid transparent;border-top-color:var(--bone);transform:translateX(-50%)}
+    .annotation:hover .floating-note,.annotation:focus-within .floating-note{opacity:1;visibility:visible;transform:translate(-50%,0) rotate(-2deg)}
+    @keyframes folioReveal{from{opacity:0;transform:translateY(13px) rotateX(-4deg)}to{opacity:1;transform:none}}
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:38px 0 48px;
+      color:var(--muted);
+      font-size:.72rem;
+      font-weight:600;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .footer-inner{display:flex;justify-content:space-between;gap:24px}
+    .footer-inner em{color:var(--brass);font:400 1.5rem/1 var(--script);letter-spacing:0;text-transform:none}
+    .noscript{margin:24px auto;padding:14px 16px;border:1px solid var(--line);color:var(--muted);background:var(--night-soft)}
+
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:grid;
+      place-items:center;
+      padding:16px;
+      background:rgba(5,3,6,.82);
+      backdrop-filter:blur(9px);
+    }
+    .conservatory-modal{
+      position:relative;
+      width:min(100%,540px);
+      max-height:calc(100vh - 32px);
+      overflow:auto;
+      padding:86px 48px 42px;
+      border:1px solid var(--brass);
+      border-radius:48% 48% 3px 3px/22% 22% 3px 3px;
+      background:
+        radial-gradient(circle at 50% 20%,rgba(198,161,91,.17),transparent 13rem),
+        linear-gradient(180deg,#2a1422,#120b13);
+      box-shadow:inset 0 0 0 8px #0b070c,inset 0 0 0 9px rgba(198,161,91,.32),0 35px 110px #000;
+      text-align:center;
+    }
+    .conservatory-modal::before{content:"✦";position:absolute;left:50%;top:34px;color:var(--brass);font-size:1.5rem;transform:translateX(-50%)}
+    .conservatory-modal .script{margin:0;color:var(--brass);font:400 2rem/1 var(--script)}
+    .conservatory-modal h2{margin:8px 0 14px;font:500 2.5rem/1 var(--display)}
+    .conservatory-modal p{margin:0;color:var(--muted)}
+    .modal-actions{display:flex;justify-content:center;gap:12px;margin-top:30px}
+    .modal-action{min-height:46px;padding:9px 18px;border:1px solid var(--brass);background:transparent}
+    .modal-action.confirm{background:var(--brass);color:var(--night);font-weight:700}
+    body.modal-open{overflow:hidden}
+
+    .moth-message{
+      position:fixed;
+      z-index:120;
+      left:24px;
+      bottom:24px;
+      max-width:min(390px,calc(100vw - 32px));
+      padding:16px 22px 16px 58px;
+      color:#28151e;
+      background:var(--bone);
+      clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+      box-shadow:10px 12px 0 rgba(0,0,0,.38);
+      font-weight:700;
+      transform:translateY(34px) rotate(-2deg);
+      opacity:0;
+      pointer-events:none;
+      transition:.3s;
+    }
+    .moth-message::before{content:"✦";position:absolute;left:19px;top:50%;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--wine);color:var(--brass-pale);transform:translateY(-50%)}
+    .moth-message.is-visible{opacity:1;transform:translateY(0) rotate(-2deg)}
+
+    @media(max-width:960px){
+      .gate-plan{grid-template-columns:minmax(0,.65fr) minmax(390px,1.35fr);gap:28px}
+      .gate-invitation{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
+      .gate-invitation::before,.gate-invitation p{grid-column:1/-1}
+      .gate-invitation .invitation-action + .invitation-action{margin-top:0}
+      .growth-house{grid-template-columns:1fr 1fr}
+      .branch-console{grid-column:1/-1}
+    }
+    @media(max-width:760px){
+      .shell{width:min(calc(100% - 32px),1180px)}
+      .nightbar-inner{min-height:62px;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px}
+      .nightbar-state{text-align:left}
+      .gate{padding:64px 0 82px}
+      .gate-script{margin-bottom:-5px;font-size:2.5rem}
+      h1 .latin{font-size:clamp(3rem,16vw,4.6rem);letter-spacing:0}
+      h1 .chinese{margin-top:22px;font-size:1rem;letter-spacing:.24em}
+      h1 .chinese::before,h1 .chinese::after{width:25px}
+      .gate-plan{grid-template-columns:1fr;margin-top:46px}
+      .gate-plan::before{display:none}
+      .orangerie{order:1;min-height:560px}
+      .gate-invitation{order:2;display:block;margin:0}
+      .gate-invitation .invitation-action + .invitation-action{margin-top:10px}
+      .gate-note{order:3;margin:0}
+      .night-divider{font-size:1.25rem}.night-divider::before{display:none}
+      .control-atlas{padding:78px 0 88px}
+      .atlas-heading{grid-template-columns:1fr;gap:26px;margin-bottom:52px}
+      .ritual-rail{padding-inline:20px}
+      .ritual-rail::before{display:none}
+      .ritual-buttons{grid-template-columns:1fr}
+      .ritual-button{min-height:58px}
+      .field-lab{grid-template-columns:1fr;margin-top:80px}
+      .label-desk{border-bottom:1px solid var(--line)}
+      .label-desk::after{right:14px;top:-16px;transform:none}
+      .phase-disc{width:58px}
+      .pressed-row{display:grid;grid-template-columns:1fr 1fr}
+      .paper-pocket{min-width:0}
+      .growth-house{grid-template-columns:1fr;margin-top:80px}
+      .branch-console,.trellis-progress,.bouquet-meter{grid-column:auto;min-height:440px}
+      .branch-console{padding:36px 22px 26px}
+      .branch-value{position:relative;top:auto;right:auto;display:block;width:max-content;margin:18px 0 0 auto}
+      .branch-scene{margin-top:26px}
+      .herbarium{grid-template-columns:1fr;gap:22px;margin-top:80px}
+      .herbarium-intro{grid-template-columns:1fr;gap:15px}
+      .specimen-index{grid-template-columns:repeat(3,1fr);gap:8px;padding:0 0 18px;border-right:0;border-bottom:1px solid var(--line)}
+      .specimen-tab{min-height:126px;padding:15px 10px 15px;border-radius:0;text-align:center}
+      .specimen-tab::before{position:static;display:block;margin:0 auto 8px}
+      .specimen-tab::after{right:50%;top:auto;bottom:-14px;width:35px;height:20px;transform:translateX(50%);clip-path:polygon(0 0,100% 0,50% 100%)}
+      .specimen-tab strong{font-size:1.05rem}
+      .specimen-tab small{font-size:.68rem}
+      .specimen-tab[aria-selected="true"]{transform:translateY(10px) rotate(1deg);box-shadow:7px 8px 0 rgba(0,0,0,.28)}
+      .specimen-panel{grid-template-columns:1fr;gap:28px;padding:28px;min-height:0}
+      .pressed-plate{min-height:280px}
+      .footer-inner{flex-direction:column}
+    }
+    @media(max-width:420px){
+      .orangerie{min-height:520px}
+      .moon{width:126px}
+      .living-flower{width:205px}
+      .living-flower .petal{width:50px;height:105px}
+      .phase-orbit{gap:5px}
+      .phase-name{font-size:.75rem}
+      .pressed-row{grid-template-columns:1fr}
+      .lamp-bench{align-items:center}
+      .branch-console{min-height:420px}
+      .branch-scene{height:240px;margin-top:24px}
+      .branch-svg{height:170px}
+      .specimen-index{gap:5px}
+      .specimen-tab{padding-inline:5px}
+      .specimen-tab span{letter-spacing:.08em}
+      .specimen-panel{padding:21px}
+      .modal-actions{flex-direction:column}
+      .modal-action{width:100%}
+      .conservatory-modal{padding:76px 28px 32px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#controls">跳到控件展区</a>
-  <header class="worldbar shell">
-    <div class="worldbar-inner">
-      <span class="worldbar-mark">NOCTURNE CONSERVATORY</span>
-      <span class="worldbar-state">MIDNIGHT HERBARIUM · LAMP VII BURNING</span>
+  <a class="skip-link" href="#controls">跳到夜园器具</a>
+
+  <header class="nightbar">
+    <div class="shell nightbar-inner">
+      <span class="nightbar-mark">NOCTURNE · PRIVATE CONSERVATORY</span>
+      <span class="nightbar-state">子夜零时 · 第七盏月灯仍亮</span>
     </div>
   </header>
 
   <main>
-    <section class="hero shell" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">09 / NOCTURNE · Dark botanical</p>
-        <h1 id="hero-title">让花园在午夜盛开</h1>
-        <p class="lede">一座只在午夜开门的私家温室。循着黄铜画框与酒红花影，让每一次触碰都唤醒一枝沉睡的植物。</p>
-        <div class="actions">
-          <button class="action primary" type="button" data-scroll-controls>开启夜园</button>
-          <button class="action secondary" type="button" data-awaken aria-pressed="false">唤醒月下玫瑰</button>
-        </div>
-      </div>
-      <div class="art-stage">
-        <div class="artifact" aria-label="暗夜花园招牌装置">
+    <section class="gate shell" aria-labelledby="hero-title">
+      <header class="gate-heading">
+        <p class="gate-script">The garden keeps its own hours</p>
+        <h1 id="hero-title">
+          <span class="latin">NOCTURNE</span>
+          <span class="chinese">暗夜花园</span>
+        </h1>
+      </header>
 
+      <div class="gate-plan">
+        <aside class="gate-note">
+          <span class="folio-number">FOLIO IX / 私藏花谱</span>
+          <p>白昼只看见锁上的铁门。午夜以后，酒红花枝沿黄铜骨架爬满整座温室。</p>
+          <em>Rosa dormit, luna vigilat.</em>
+        </aside>
 
-      <svg class="nocturne-vines" viewBox="0 0 480 520" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="2">
-          <path class="vine-path" d="M235 485C164 447 112 387 101 307S133 151 58 76"/>
-          <path class="vine-path" d="M245 485c71-38 123-98 134-178S347 151 422 76"/>
-          <path d="M102 307c-43-8-65-35-63-69 38 6 61 29 63 69Zm276 0c43-8 65-35 63-69-38 6-61 29-63 69Z"/>
-          <path d="M118 201c-39-18-50-49-39-80 33 15 50 43 39 80Zm244 0c39-18 50-49 39-80-33 15-50 43-39 80Z"/>
-        </g>
-        <g class="leaf" fill="#293528" stroke="#8a7143">
-          <path d="M104 358c-38 2-60-17-64-45 35-2 59 12 64 45Z"/>
-          <path d="M376 358c38 2 60-17 64-45-35-2-59 12-64 45Z"/>
-          <path d="M83 137c-28-7-40-27-34-48 27 6 41 23 34 48Z"/>
-          <path d="M397 137c28-7 40-27 34-48-27 6-41 23-34 48Z"/>
-        </g>
-      </svg>
-      <div class="nocturne-frame" aria-hidden="true">
-        <div class="nocturne-moon"></div>
-        <div class="nocturne-stem"></div>
-        <div class="nocturne-rose"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><b></b></div>
-        <em class="nocturne-script">Rosa noctis</em>
-      </div>
-      <div class="artifact-caption"><span>HERBARIUM IX</span><strong>月下酒红玫瑰</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell controls-intro" id="controls">
-      <div>
-        <p class="module-kicker">NIGHT GARDEN COLLECTION / NOCTURNE</p>
-        <h2>夜园器具</h2>
-      </div>
-      <p>每件控件都从「暗夜花园」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
-    </section>
-
-    <div class="shell controls-grid">
-      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
-        <p class="module-kicker">RITUAL / 五种夜间仪式</p>
-        <h3 class="module-title" id="buttons-title">夜间仪式</h3>
-        <div class="button-rack">
-          <button class="action primary" type="button" data-progress>开启夜园</button>
-          <button class="action secondary" type="button" data-open-modal>打开玻璃花房</button>
-          <button class="action quiet" type="button" data-awaken aria-pressed="false">唤醒月下玫瑰</button>
-          <button class="action danger" type="button" data-toast>摇响夜园铃</button>
-          <button class="action" type="button" disabled>花期尚未到</button>
-        </div>
-      </section>
-
-      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
-        <p class="module-kicker">HERBARIUM / 花名与花房</p>
-        <h3 class="module-title" id="input-title">写入识别信息</h3>
-        <label class="field">
-          <span class="field-label">花名签</span>
-          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="写下一朵花的秘密名字">
-        </label>
-        <div class="field">
-          <span class="field-label" id="select-label-nocturne">当前花房</span>
-          <div class="select" data-select>
-            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-nocturne select-value-nocturne">
-              <span id="select-value-nocturne" class="select-value">镜廊温室</span>
-            </button>
-            <ul class="select-list" role="listbox" aria-labelledby="select-label-nocturne" hidden>
-              <li class="select-option" role="option" tabindex="-1" data-value="镜廊温室" aria-selected="true">镜廊温室</li><li class="select-option" role="option" tabindex="-1" data-value="暗酒红花圃" aria-selected="false">暗酒红花圃</li><li class="select-option" role="option" tabindex="-1" data-value="旧宅西翼" aria-selected="false">旧宅西翼</li>
-            </ul>
+        <div class="orangerie" aria-label="月下温室与缓慢绽放的酒红夜花">
+          <svg class="orangerie-ribs" viewBox="0 0 520 620" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M38 620V184C38 76 138 14 260 14s222 62 222 170v436M260 14v606M38 316h444M104 75c68 70 89 165 89 545M416 75c-68 70-89 165-89 545"/>
+            <path d="M15 590c85-52 117-99 102-172-8-42 13-72 54-91M505 590c-85-52-117-99-102-172 8-42-13-72-54-91"/>
+          </svg>
+          <div class="moon" aria-hidden="true"></div>
+          <div class="flower-stem" aria-hidden="true"></div>
+          <div class="living-flower" data-artifact aria-hidden="true">
+            <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+            <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+            <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+            <b class="heart"></b>
           </div>
+          <button class="bloom-seal" type="button" data-bloom aria-pressed="false">唤醒 Rosa Noctis</button>
+        </div>
+
+        <aside class="gate-invitation">
+          <p>这不是供人参观的花园，而是一套会回应触碰的夜间仪式。每件器具都有自己的材料、姿态与脾气。</p>
+          <button class="invitation-action primary" type="button" data-scroll-controls>接受午夜请柬</button>
+          <button class="invitation-action" type="button" data-open-modal>登记一枝夜花</button>
+        </aside>
+      </div>
+    </section>
+
+    <div class="night-divider" aria-hidden="true">Instrumenta horti nocturni</div>
+
+    <section class="control-atlas shell" id="controls" aria-labelledby="atlas-title">
+      <header class="atlas-heading">
+        <div>
+          <p class="script">The keeper's instruments</p>
+          <h2 id="atlas-title">夜园器具</h2>
+        </div>
+        <p>开门、定月相、压存标本、牵引花藤。这里没有通用控制面板，只有园丁真正会摸到的器物。</p>
+      </header>
+
+      <section class="ritual-rail" aria-labelledby="ritual-title">
+        <header class="ritual-head">
+          <p class="section-kicker">I · FIVE RITUALS / 五种动作</p>
+          <h3 class="section-title" id="ritual-title">黄铜藤架上的五枚指令</h3>
+        </header>
+        <div class="ritual-buttons">
+          <button class="ritual-button gate-key" type="button" data-progress>推进一夜</button>
+          <button class="ritual-button wine-seal" type="button" data-open-modal>登记夜花</button>
+          <button class="ritual-button paper-tag" type="button" data-bloom aria-pressed="false">催开花冠</button>
+          <button class="ritual-button thorn-warning" type="button" data-toast>敲闭园钟</button>
+          <button class="ritual-button withered" type="button" disabled>晨光封园</button>
         </div>
       </section>
 
-      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
-        <p class="module-kicker">MOON PHASE / 月相与灯火</p>
-        <h3 class="module-title" id="choice-title">安排夜间仪式</h3>
-        <fieldset class="choice-set">
-          <legend class="legend">选择一种月相</legend>
+      <section class="field-lab" aria-label="花谱登记与月相仪式">
+        <div class="label-desk">
+          <p class="section-kicker">II · HERBARIUM DESK / 花谱台</p>
+          <h3 class="section-title">给未知花朵命名</h3>
+          <p class="section-copy">墨迹留在骨白签纸上；黄铜抽屉保存它被发现的地点。</p>
 
-        <label class="choice">
-          <input type="radio" name="mode" value="新月巡园" checked>
-          <span class="choice-mark" aria-hidden="true"></span><span>新月巡园</span>
-        </label>
-        <label class="choice">
-          <input type="radio" name="mode" value="弦月采集">
-          <span class="choice-mark" aria-hidden="true"></span><span>弦月采集</span>
-        </label>
-        <label class="choice">
-          <input type="radio" name="mode" value="满月绽放">
-          <span class="choice-mark" aria-hidden="true"></span><span>满月绽放</span>
-        </label>
-        </fieldset>
-        <fieldset class="choice-set">
-          <legend class="legend">园丁札记</legend>
-          <label class="choice check"><input type="checkbox" value="压存花瓣" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>压存花瓣</span></label>
-          <label class="choice check"><input type="checkbox" value="寄出花笺" data-check><span class="choice-mark" aria-hidden="true"></span><span>寄出花笺</span></label>
-        </fieldset>
-        <div class="switch-row">
-          <span class="switch-copy"><strong>保持月灯</strong><small>让花朵在离开后继续呼吸</small></span>
-          <label class="toggle">
-            <input type="checkbox" data-switch aria-label="保持月灯">
-            <span class="toggle-track" aria-hidden="true"></span>
+          <label class="specimen-field">
+            <span class="specimen-label">花名签 · handwritten label</span>
+            <input class="name-entry" type="text" autocomplete="off" data-persist-input placeholder="写下只在夜里使用的名字">
           </label>
-        </div>
-      </section>
 
-      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
-        <p class="module-kicker">BLOOM / 花期刻度</p>
-        <h3 class="module-title" id="range-title">月下花期</h3>
-        <div class="range-row">
-          <input class="range" id="range-nocturne" type="range" min="0" max="100" value="64" aria-label="月下花期" data-range>
-          <output class="range-output" for="range-nocturne">64%</output>
-        </div>
-        <div class="progress-label"><span>绽放进度</span><output data-progress-output>64%</output></div>
-        <div class="progress-track" role="progressbar" aria-label="绽放进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
-          <div class="progress-fill"></div>
-        </div>
-      </section>
-
-      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
-        <p class="module-kicker">FIELD NOTES / 夜园札记</p>
-        <h3 class="module-title" id="tabs-title">三页夜园札记</h3>
-        <div class="tabs" role="tablist" aria-label="现场记录">
-          <button class="tab" type="button" role="tab" id="tab-nocturne-0" aria-controls="panel-nocturne-0" aria-selected="true" tabindex="0">花谱</button><button class="tab" type="button" role="tab" id="tab-nocturne-1" aria-controls="panel-nocturne-1" aria-selected="false" tabindex="-1">温室</button><button class="tab" type="button" role="tab" id="tab-nocturne-2" aria-controls="panel-nocturne-2" aria-selected="false" tabindex="-1">夜宴</button>
-        </div>
-
-        <div class="tab-panel" role="tabpanel" id="panel-nocturne-0" aria-labelledby="tab-nocturne-0">
-          <h4>夜花已经编号</h4><p>第九号酒红玫瑰已压入骨白纸页，黄铜标签仍带着温度。</p>
-        </div>
-        <div class="tab-panel" role="tabpanel" id="panel-nocturne-1" aria-labelledby="tab-nocturne-1" hidden>
-          <h4>玻璃仍留着雾</h4><p>两侧缠枝沿画框向上攀爬，中央月灯保持最幽微的暖光。</p>
-        </div>
-        <div class="tab-panel" role="tabpanel" id="panel-nocturne-2" aria-labelledby="tab-nocturne-2" hidden>
-          <h4>午夜宴席尚未散场</h4><p>骨白瓷杯旁落着三片花瓣，最后一位宾客刚穿过西翼回廊。</p>
-        </div>
-      </section>
-
-      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
-        <p class="module-kicker">VITAL SIGNS / 花园气息</p>
-        <h3 class="module-title" id="measure-title">读取花园气息</h3>
-        <div class="measure-layout">
-          <div class="gauge" role="meter" aria-label="月下花期" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
-            <span class="gauge-value">64%</span>
+          <div class="specimen-field">
+            <span class="specimen-label" id="place-label">发现地点 · cabinet drawer</span>
+            <div class="drawer-select" data-select>
+              <button class="drawer-pull" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="place-label place-value">
+                <span class="drawer-number">IX</span>
+                <span class="drawer-value" id="place-value">月门温室</span>
+              </button>
+              <ul class="drawer-stack" role="listbox" aria-labelledby="place-label" hidden>
+                <li class="drawer-option" role="option" tabindex="-1" data-value="月门温室" aria-selected="true">月门温室</li>
+                <li class="drawer-option" role="option" tabindex="-1" data-value="暗酒红花圃" aria-selected="false">暗酒红花圃</li>
+                <li class="drawer-option" role="option" tabindex="-1" data-value="旧宅西翼" aria-selected="false">旧宅西翼</li>
+              </ul>
+            </div>
           </div>
-          <div class="measure-copy">
-            <strong>月下花期正处于适宜绽放的区间</strong>
-            <p>调整花期会同时改变绽放条、花冠量表与月下玫瑰；它们共用同一份夜园状态。</p>
-            <span class="tooltip-wrap">
-              <button class="action quiet" type="button" aria-describedby="tip-nocturne">靠近看花签</button>
-              <span class="tooltip-bubble" role="tooltip" id="tip-nocturne">花签会在靠近或键盘聚焦时显出墨迹。</span>
+        </div>
+
+        <div class="moon-rituals">
+          <p class="section-kicker">III · LUNAR RITES / 月相仪式</p>
+          <h3 class="section-title">让今晚服从一种月相</h3>
+
+          <fieldset class="phase-group">
+            <legend class="phase-legend">月相选择</legend>
+            <div class="phase-orbit">
+              <label class="phase-option">
+                <input type="radio" name="phase" value="新月巡园" checked>
+                <span class="phase-disc new" aria-hidden="true"></span>
+                <span class="phase-name">新月巡园</span>
+              </label>
+              <label class="phase-option">
+                <input type="radio" name="phase" value="弦月采集">
+                <span class="phase-disc crescent" aria-hidden="true"></span>
+                <span class="phase-name">弦月采集</span>
+              </label>
+              <label class="phase-option">
+                <input type="radio" name="phase" value="满月绽放">
+                <span class="phase-disc full" aria-hidden="true"></span>
+                <span class="phase-name">满月绽放</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="phase-group">
+            <legend class="phase-legend">压花标本</legend>
+            <div class="pressed-row">
+              <label class="pressed-specimen">
+                <input type="checkbox" value="压存花瓣" data-check checked>
+                <span class="paper-pocket">压存花瓣</span>
+              </label>
+              <label class="pressed-specimen">
+                <input type="checkbox" value="寄出花笺" data-check>
+                <span class="paper-pocket">寄出花笺</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="lamp-bench">
+            <span class="lamp-copy">
+              <strong>月灯拉链</strong>
+              <small>向下拉，让温室在离开后继续发光。</small>
             </span>
+            <label class="pull-lamp">
+              <input type="checkbox" data-switch aria-label="点亮月灯">
+              <span class="lamp-shade" aria-hidden="true"></span>
+              <span class="lamp-glow" aria-hidden="true"></span>
+              <span class="pull-chain" aria-hidden="true"></span>
+            </label>
           </div>
         </div>
       </section>
-    </div>
+
+      <section class="growth-house" aria-label="花藤刻度、攀援进度与花束量表">
+        <div class="branch-console">
+          <p class="section-kicker">IV · VINE CALIBRATION / 花藤刻度</p>
+          <h3 class="section-title">不是推一颗球，而是催开一整枝花</h3>
+          <p class="section-copy">拖过藤枝或使用方向键；每跨过一道刻度，就有一枚花苞打开。</p>
+          <output class="branch-value" for="bloom-range">58% · 半绽</output>
+
+          <div class="branch-scene">
+            <svg class="branch-svg" viewBox="0 0 620 200" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M7 151C90 137 98 69 180 79s96 82 176 45 115-99 257-62"/>
+              <path class="thin" d="M82 125 62 87M154 78l-5-43m86 62 25-38m81 67-9 45m72-70 23-45m75 24 11 43m57-59 34-26"/>
+            </svg>
+            <i class="branch-bud" data-threshold="10" style="--x:10%;--y:55%"></i>
+            <i class="branch-bud" data-threshold="22" style="--x:23%;--y:27%"></i>
+            <i class="branch-bud" data-threshold="34" style="--x:36%;--y:46%"></i>
+            <i class="branch-bud" data-threshold="46" style="--x:49%;--y:61%"></i>
+            <i class="branch-bud" data-threshold="58" style="--x:61%;--y:42%"></i>
+            <i class="branch-bud" data-threshold="70" style="--x:73%;--y:19%"></i>
+            <i class="branch-bud" data-threshold="82" style="--x:84%;--y:23%"></i>
+            <i class="branch-bud" data-threshold="94" style="--x:94%;--y:11%"></i>
+            <span class="moth-marker" aria-hidden="true"></span>
+            <input class="branch-input" id="bloom-range" type="range" min="0" max="100" value="58" aria-label="夜花绽放程度" data-range>
+            <div class="branch-hint"><span>合苞</span><span>盛放</span></div>
+          </div>
+        </div>
+
+        <div class="trellis-progress" role="progressbar" aria-label="攀援进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="58">
+          <p class="section-kicker">CLIMB / 攀援</p>
+          <div class="trellis" aria-hidden="true">
+            <svg class="climbing-vine" viewBox="0 0 120 280" preserveAspectRatio="none">
+              <path pathLength="100" d="M61 278C18 248 25 205 74 185s39-70-8-86S24 42 61 5"/>
+            </svg>
+            <i class="trellis-leaf" data-threshold="18" style="--lx:27%;--ly:78%;--lr:-28deg"></i>
+            <i class="trellis-leaf" data-threshold="32" style="--lx:66%;--ly:62%;--lr:18deg"></i>
+            <i class="trellis-leaf" data-threshold="48" style="--lx:31%;--ly:48%;--lr:-24deg"></i>
+            <i class="trellis-leaf" data-threshold="64" style="--lx:63%;--ly:32%;--lr:22deg"></i>
+            <i class="trellis-leaf" data-threshold="82" style="--lx:36%;--ly:17%;--lr:-16deg"></i>
+          </div>
+          <div class="progress-caption">
+            <strong data-progress-output>58%</strong>
+            <span data-progress-copy>藤梢离穹顶还有一段夜色</span>
+          </div>
+        </div>
+
+        <div class="bouquet-meter" role="meter" aria-label="夜花活力" aria-valuemin="0" aria-valuemax="100" aria-valuenow="58">
+          <p class="section-kicker">VITALITY / 活力</p>
+          <div class="bouquet" aria-hidden="true">
+            <span class="bouquet-stems"></span>
+            <i class="bouquet-flower" data-threshold="16" style="--fx:18%;--fy:36%"></i>
+            <i class="bouquet-flower" data-threshold="34" style="--fx:36%;--fy:18%"></i>
+            <i class="bouquet-flower" data-threshold="52" style="--fx:51%;--fy:8%"></i>
+            <i class="bouquet-flower" data-threshold="70" style="--fx:68%;--fy:19%"></i>
+            <i class="bouquet-flower" data-threshold="88" style="--fx:84%;--fy:39%"></i>
+          </div>
+          <div class="meter-tag">
+            <strong data-meter-output>3 / 5</strong>
+            <span data-meter-copy>三枝夜花仍有温度</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="herbarium" aria-labelledby="herbarium-title">
+        <header class="herbarium-intro">
+          <div>
+            <p class="section-kicker">V · SPECIMEN CABINET / 标本匣</p>
+            <h3 class="section-title" id="herbarium-title">抽出一册，不是划过一条线</h3>
+          </div>
+          <p class="section-copy">三张骨白目录卡插在标本柜侧面。选中的卡会被抽出，右侧画框才显出对应的压花记录。</p>
+        </header>
+
+        <div class="specimen-index" role="tablist" aria-label="夜花标本目录">
+          <button class="specimen-tab" type="button" role="tab" id="tab-rose" aria-controls="panel-rose" aria-selected="true" tabindex="0">
+            <span>IX–01</span><strong>酒红玫瑰</strong><small>Rosa noctis</small>
+          </button>
+          <button class="specimen-tab" type="button" role="tab" id="tab-fern" aria-controls="panel-fern" aria-selected="false" tabindex="-1">
+            <span>IX–02</span><strong>月脉蕨</strong><small>Filix lunae</small>
+          </button>
+          <button class="specimen-tab" type="button" role="tab" id="tab-datura" aria-controls="panel-datura" aria-selected="false" tabindex="-1">
+            <span>IX–03</span><strong>夜宴曼陀罗</strong><small>Datura convivii</small>
+          </button>
+        </div>
+
+        <div class="specimen-case">
+          <article class="specimen-panel" role="tabpanel" id="panel-rose" aria-labelledby="tab-rose">
+            <figure class="pressed-plate">
+              <figcaption class="plate-label">Collected 00:17 · West glasshouse</figcaption>
+            </figure>
+            <div class="specimen-story">
+              <p class="script">Rosa noctis</p>
+              <h3>它只把名字交给夜色</h3>
+              <p>第九号标本在月灯亮起后缓慢展开。花瓣呈暗酒红，叶脉留有黄铜粉末，触碰时会短暂恢复温度。</p>
+              <span class="annotation">
+                <button class="annotation-button" type="button" aria-describedby="rose-note">靠近看馆员批注</button>
+                <span class="floating-note" role="tooltip" id="rose-note">批注：别在天亮前剪断主茎；它会记住拿剪刀的人。</span>
+              </span>
+            </div>
+          </article>
+
+          <article class="specimen-panel" role="tabpanel" id="panel-fern" aria-labelledby="tab-fern" hidden>
+            <figure class="pressed-plate">
+              <figcaption class="plate-label">Collected 01:42 · Mirror corridor</figcaption>
+            </figure>
+            <div class="specimen-story">
+              <p class="script">Filix lunae</p>
+              <h3>银色叶脉会记录脚步</h3>
+              <p>每经过一位访客，蕨叶就多出一道苍白分叉。回廊无人时，它们会把白昼的脚步逐一擦去。</p>
+              <span class="annotation">
+                <button class="annotation-button" type="button" aria-describedby="fern-note">靠近看馆员批注</button>
+                <span class="floating-note" role="tooltip" id="fern-note">批注：今晚的第十三道叶脉，没有对应的访客姓名。</span>
+              </span>
+            </div>
+          </article>
+
+          <article class="specimen-panel" role="tabpanel" id="panel-datura" aria-labelledby="tab-datura" hidden>
+            <figure class="pressed-plate">
+              <figcaption class="plate-label">Collected 03:06 · Banquet border</figcaption>
+            </figure>
+            <div class="specimen-story">
+              <p class="script">Datura convivii</p>
+              <h3>最后一位宾客离开才开花</h3>
+              <p>花冠像一只倒悬的骨白酒杯。闭园钟响过三次后，它会替空下来的座位保留一小团暖光。</p>
+              <span class="annotation">
+                <button class="annotation-button" type="button" aria-describedby="datura-note">靠近看馆员批注</button>
+                <span class="floating-note" role="tooltip" id="datura-note">批注：不要饮用花杯里的露水，它尝起来像被遗忘的名字。</span>
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
   </main>
 
-  <footer><div class="shell">NOCTURNE / 有些花，只把名字交给夜色。</div></footer>
-  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+  <footer>
+    <div class="shell footer-inner">
+      <span>NOCTURNE · PRIVATE HERBARIUM · FOLIO IX</span>
+      <em>Some flowers prefer witnesses to sunlight.</em>
+    </div>
+  </footer>
+
+  <noscript><p class="shell noscript">夜园的文字与标本仍可阅读；启用 JavaScript 后，花藤、抽屉、月灯与标本匣会回应操作。</p></noscript>
 
   <div class="modal-backdrop" data-modal-backdrop hidden>
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-nocturne">
-      <p class="module-kicker">CONFIRM / NOCTURNE</p>
-      <h2 id="modal-title-nocturne">确认剪下这枝花？</h2>
-      <p>夜园会记下当前月相、花房与灯火，并把这次采集写入本机花谱。</p>
+    <section class="conservatory-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <p class="script">A private entry in the keeper's hand</p>
+      <h2 id="modal-title">把这枝花写进私藏花谱？</h2>
+      <p>当前花名、发现地点、月相与绽放程度会留在这台设备上。夜园不会把它交给白昼。</p>
       <div class="modal-actions">
-        <button class="action quiet" type="button" data-close-modal>再等一夜</button>
-        <button class="action primary" type="button" data-confirm-modal>收入花谱</button>
+        <button class="modal-action" type="button" data-close-modal>让它继续生长</button>
+        <button class="modal-action confirm" type="button" data-confirm-modal>压入第九册</button>
       </div>
     </section>
   </div>
-  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <div class="moth-message" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
 
   <script>
     (() => {
       "use strict";
+
       const root = document.documentElement;
-      const storageKey = "codex-sandbox-nocturne";
-      const artifact = document.querySelector(".artifact");
+      const storageKey = "codex-sandbox-nocturne-v2";
+      const artifact = document.querySelector("[data-artifact]");
       const range = document.querySelector("[data-range]");
-      const rangeOutput = document.querySelector(".range-output");
-      const progressOutput = document.querySelector("[data-progress-output]");
+      const rangeOutput = document.querySelector(".branch-value");
       const progressbar = document.querySelector('[role="progressbar"]');
-      const gauge = document.querySelector('[role="meter"]');
-      const gaugeValue = document.querySelector(".gauge-value");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressCopy = document.querySelector("[data-progress-copy]");
+      const meter = document.querySelector('[role="meter"]');
+      const meterOutput = document.querySelector("[data-meter-output]");
+      const meterCopy = document.querySelector("[data-meter-copy]");
       const switchInput = document.querySelector("[data-switch]");
       const textInput = document.querySelector("[data-persist-input]");
       const toast = document.querySelector("[data-toast-box]");
       const modalBackdrop = document.querySelector("[data-modal-backdrop]");
       const modal = modalBackdrop.querySelector('[role="dialog"]');
-      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const bloomButtons = Array.from(document.querySelectorAll("[data-bloom]"));
       const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
       const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
-      let toastTimer = 0;
-      let lastFocus = null;
-      let state = {};
+      const branchBuds = Array.from(document.querySelectorAll(".branch-bud"));
+      const trellisLeaves = Array.from(document.querySelectorAll(".trellis-leaf"));
+      const bouquetFlowers = Array.from(document.querySelectorAll(".bouquet-flower"));
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let lastFocus = null;
+      let toastTimer = 0;
+      let state = {};
 
       try {
         state = JSON.parse(localStorage.getItem(storageKey) || "{}");
@@ -436,24 +1533,24 @@
       }
 
       const save = () => {
-        const selectedRadio = document.querySelector('input[name="mode"]:checked');
-        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
-        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const chosenPhase = document.querySelector('input[name="phase"]:checked');
+        const chosenPlace = document.querySelector('.drawer-option[aria-selected="true"]');
         const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const tab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
         const next = {
-          range: Number(range.value),
+          level: Number(range.value),
           awake: artifact.classList.contains("is-awake"),
-          enabled: switchInput.checked,
-          text: textInput.value,
-          mode: selectedRadio ? selectedRadio.value : "",
+          lamp: switchInput.checked,
+          name: textInput.value,
+          phase: chosenPhase ? chosenPhase.value : "",
+          place: chosenPlace ? chosenPlace.dataset.value : "",
           checks,
-          place: selectedOption ? selectedOption.dataset.value : "",
-          tab: Math.max(selectedTab, 0),
+          tab: Math.max(tab, 0),
         };
         try {
           localStorage.setItem(storageKey, JSON.stringify(next));
         } catch {
-          /* Local files may deny storage; the live page still works. */
+          /* The page remains interactive when storage is unavailable. */
         }
       };
 
@@ -461,24 +1558,32 @@
         window.clearTimeout(toastTimer);
         toast.textContent = message;
         toast.classList.add("is-visible");
-        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
-      };
-
-      const setLevel = (value, shouldSave = true) => {
-        const numeric = Math.max(0, Math.min(100, Number(value)));
-        range.value = String(numeric);
-        root.style.setProperty("--level", String(numeric));
-        rangeOutput.textContent = String(numeric) + "%";
-        progressOutput.textContent = String(numeric) + "%";
-        progressbar.setAttribute("aria-valuenow", String(numeric));
-        gauge.setAttribute("aria-valuenow", String(numeric));
-        gaugeValue.textContent = String(numeric) + "%";
-        if (shouldSave) save();
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2800);
       };
 
       const setAwake = (awake, shouldSave = true) => {
         artifact.classList.toggle("is-awake", awake);
-        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        bloomButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const level = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(level);
+        root.style.setProperty("--level", String(level));
+        const phase = level < 34 ? "合苞" : level < 67 ? "半绽" : "盛放";
+        rangeOutput.textContent = String(level) + "% · " + phase;
+        progressbar.setAttribute("aria-valuenow", String(level));
+        progressOutput.textContent = String(level) + "%";
+        progressCopy.textContent = level >= 100 ? "藤梢已经抵达温室穹顶" : level >= 67 ? "藤梢正在攀过最后一道拱肋" : "藤梢离穹顶还有一段夜色";
+        meter.setAttribute("aria-valuenow", String(level));
+        const openFlowers = bouquetFlowers.filter((flower) => level >= Number(flower.dataset.threshold)).length;
+        meterOutput.textContent = String(openFlowers) + " / " + String(bouquetFlowers.length);
+        const countNames = ["零", "一", "二", "三", "四", "五"];
+        meterCopy.textContent = openFlowers === 0 ? "花束仍在沉睡" : countNames[openFlowers] + "枝夜花仍有温度";
+        [...branchBuds, ...trellisLeaves, ...bouquetFlowers].forEach((item) => {
+          item.classList.toggle("is-open", level >= Number(item.dataset.threshold));
+        });
         if (shouldSave) save();
       };
 
@@ -495,40 +1600,44 @@
       };
 
       document.querySelectorAll("[data-select]").forEach((select) => {
-        const trigger = select.querySelector(".select-trigger");
-        const value = select.querySelector(".select-value");
-        const list = select.querySelector(".select-list");
-        const options = Array.from(select.querySelectorAll(".select-option"));
+        const trigger = select.querySelector(".drawer-pull");
+        const value = select.querySelector(".drawer-value");
+        const list = select.querySelector(".drawer-stack");
+        const options = Array.from(select.querySelectorAll(".drawer-option"));
         let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
 
-        const choose = (index, focusTrigger = true, shouldSave = true) => {
-          activeIndex = Math.max(0, Math.min(options.length - 1, index));
-          options.forEach((option, optionIndex) => {
-            const selected = optionIndex === activeIndex;
-            option.setAttribute("aria-selected", String(selected));
-            option.classList.toggle("is-active", selected);
-          });
-          value.textContent = options[activeIndex].dataset.value;
+        const markActive = () => {
+          options.forEach((option, index) => option.classList.toggle("is-active", index === activeIndex));
+        };
+
+        const close = (restoreFocus = false) => {
           list.hidden = true;
           trigger.setAttribute("aria-expanded", "false");
-          if (focusTrigger) trigger.focus();
+          if (restoreFocus) trigger.focus();
+        };
+
+        const choose = (index, restoreFocus = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            option.setAttribute("aria-selected", String(optionIndex === activeIndex));
+          });
+          markActive();
+          value.textContent = options[activeIndex].dataset.value;
+          close(restoreFocus);
           if (shouldSave) save();
         };
 
         const open = (index = activeIndex) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
           list.hidden = false;
           trigger.setAttribute("aria-expanded", "true");
-          activeIndex = Math.max(0, Math.min(options.length - 1, index));
-          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          markActive();
           options[activeIndex].focus();
         };
 
         trigger.addEventListener("click", () => {
           if (list.hidden) open();
-          else {
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
-          }
+          else close();
         });
         trigger.addEventListener("keydown", (event) => {
           if (event.key === "ArrowDown" || event.key === "ArrowUp") {
@@ -536,11 +1645,11 @@
             open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
           }
         });
-        options.forEach((option, optionIndex) => {
-          option.addEventListener("click", () => choose(optionIndex));
+        options.forEach((option, index) => {
+          option.addEventListener("click", () => choose(index));
           option.addEventListener("pointermove", () => {
-            activeIndex = optionIndex;
-            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+            activeIndex = index;
+            markActive();
           });
         });
         list.addEventListener("keydown", (event) => {
@@ -548,30 +1657,25 @@
             event.preventDefault();
             const delta = event.key === "ArrowDown" ? 1 : -1;
             activeIndex = (activeIndex + delta + options.length) % options.length;
-            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            markActive();
             options[activeIndex].focus();
           } else if (event.key === "Home" || event.key === "End") {
             event.preventDefault();
             activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            markActive();
             options[activeIndex].focus();
           } else if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
             choose(activeIndex);
           } else if (event.key === "Escape") {
             event.preventDefault();
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
-            trigger.focus();
+            close(true);
           } else if (event.key === "Tab") {
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
+            close();
           }
         });
         document.addEventListener("pointerdown", (event) => {
-          if (!select.contains(event.target)) {
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
-          }
+          if (!select.contains(event.target)) close();
         });
 
         const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
@@ -584,6 +1688,7 @@
         document.body.classList.add("modal-open");
         modal.querySelector("button").focus();
       };
+
       const closeModal = () => {
         modalBackdrop.hidden = true;
         document.body.classList.remove("modal-open");
@@ -612,41 +1717,46 @@
         }
       });
 
+      bloomButtons.forEach((button) => button.addEventListener("click", () => {
+        const awake = !artifact.classList.contains("is-awake");
+        setAwake(awake);
+        announce(awake ? "Rosa Noctis 已经完全展开。" : "夜花重新把秘密合进花苞。");
+      }));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => {
+        document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      }));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 92 ? 8 : Number(range.value) + 12;
+        setLevel(next);
+        announce("藤枝越过一道夜间刻度：" + String(next) + "%。");
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => {
+        announce("闭园钟已经响过：请清点花谱、月灯与仍未归位的剪刀。");
+      }));
       document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
       document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
       document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
         closeModal();
-        announce("花枝已收入花谱，并写入本机。");
         setAwake(true);
+        announce("新标本已压入私藏花谱第九册。");
       }));
-      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("夜园铃已经响起：请复核花期与灯火。")));
-      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
-      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
-        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
-        setLevel(next);
-        announce("花期推进到 " + String(next) + "%。");
-      }));
-      awakenButtons.forEach((button) => button.addEventListener("click", () => {
-        const next = !artifact.classList.contains("is-awake");
-        setAwake(next);
-        announce(next ? "月下玫瑰已经醒来。" : "月下玫瑰重新合拢。");
-      }));
+
       range.addEventListener("input", () => setLevel(range.value));
       switchInput.addEventListener("change", () => {
         setAwake(switchInput.checked);
-        announce(switchInput.checked ? "保持月灯已经开启。" : "保持月灯已经关闭。");
+        announce(switchInput.checked ? "拉链落下，月灯把暖光留在温室里。" : "拉链归位，月灯正在熄灭。");
       });
       textInput.addEventListener("input", save);
-      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+      document.querySelectorAll('input[name="phase"],[data-check]').forEach((input) => input.addEventListener("change", save));
 
       tabButtons.forEach((button, index) => {
         button.addEventListener("click", () => activateTab(index));
         button.addEventListener("keydown", (event) => {
-          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+          if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "ArrowLeft" || event.key === "ArrowUp" || event.key === "Home" || event.key === "End") {
             event.preventDefault();
             let next = index;
-            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
-            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + tabButtons.length) % tabButtons.length;
             if (event.key === "Home") next = 0;
             if (event.key === "End") next = tabButtons.length - 1;
             activateTab(next, true);
@@ -654,21 +1764,20 @@
         });
       });
 
-      if (Number.isFinite(state.range)) setLevel(state.range, false);
-      else setLevel(64, false);
-      if (typeof state.text === "string") textInput.value = state.text;
-      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
-      if (typeof state.mode === "string") {
-        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
-        if (radio) radio.checked = true;
+      if (typeof state.name === "string") textInput.value = state.name;
+      if (typeof state.lamp === "boolean") switchInput.checked = state.lamp;
+      if (typeof state.phase === "string") {
+        const phase = Array.from(document.querySelectorAll('input[name="phase"]')).find((input) => input.value === state.phase);
+        if (phase) phase.checked = true;
       }
       if (Array.isArray(state.checks)) {
         document.querySelectorAll("[data-check]").forEach((input) => {
           input.checked = state.checks.includes(input.value);
         });
       }
+      setLevel(Number.isFinite(state.level) ? state.level : 58, false);
       activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
-      setAwake(Boolean(state.awake || state.enabled), false);
+      setAwake(Boolean(state.awake || state.lamp), false);
     })();
   </script>
 </body>
