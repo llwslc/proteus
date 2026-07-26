@@ -43,7 +43,7 @@
   transition: none;
   animation:
     nova-progress-stripes var(--nova-dur-stripe) linear infinite,
-    nova-progress-sweep var(--nova-dur-sweep) linear infinite;
+    nova-progress-sweep 1.5s linear infinite;
 }
 @keyframes nova-progress-stripes {
   to {
