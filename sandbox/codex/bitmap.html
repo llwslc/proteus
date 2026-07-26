@@ -7,610 +7,272 @@
   <title>BITMAP · 1-bit 位图</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{
-    --theme-bg:#f7f7ed;--theme-surface:#ffffff;--theme-surface-2:#d9d9d1;
-    --theme-ink:#000000;--theme-muted:#333333;--theme-accent:#000000;
-    --theme-accent-2:#ffffff;--theme-danger:#000000;--theme-line:#000000;
-    --theme-shadow:rgba(0,0,0,.28);--theme-radius:0px;--theme-display:"Silkscreen", monospace;
-    --theme-body:"VT323", monospace;--theme-mono:"Silkscreen", monospace;
-    --theme-on-accent:#fffdf7;
-    --theme-on-accent-2:#080808;
-    --theme-on-danger:#fffdf7;}
+      --bg:#f7f7ef;--surface:#ffffff;--surface2:#d8d8d0;--ink:#000000;--muted:#333333;
+      --accent:#000000;--accent2:#ffffff;--danger:#000000;--on-accent:#ffffff;
+      --display:Silkscreen, monospace;--body:Silkscreen, monospace;--mono:Silkscreen, monospace;--level:58;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.62;text-rendering:optimizeLegibility}
+    body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none}
+    button,input{font:inherit;color:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed}[hidden]{display:none!important}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+    .shell{width:min(calc(100% - 48px),1180px);margin-inline:auto}
+    .skip-link{position:fixed;left:16px;top:10px;z-index:200;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+    .skip-link:focus{transform:none}
+    .world-status{position:relative;z-index:4;border-bottom:1px solid color-mix(in srgb,var(--ink) 32%,transparent);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px)}
+    .status-inner{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:20px;font:600 .68rem/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+    .status-code{color:var(--accent)}.status-state{text-align:right;color:var(--muted)}
+    .hero{position:relative}.hero-copy{min-width:0}.hero-kicker,.zone-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--mono);letter-spacing:.15em;text-transform:uppercase}
+    .hero-title{margin:0;font:700 clamp(3.8rem,8vw,7.8rem)/.88 var(--display);letter-spacing:-.045em;overflow-wrap:anywhere}
+    .hero-tagline{margin:24px 0 0;font:600 clamp(1.25rem,2.2vw,1.85rem)/1.2 var(--display)}
+    .hero-description{max-width:44rem;margin:18px 0 0;color:var(--muted);font-size:1.02rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .hero-action{min-height:48px;padding:10px 18px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);font-weight:700;transition:transform .2s,filter .2s}
+    .hero-action.alt{background:transparent;color:var(--ink)}.hero-action:hover{transform:translateY(-3px);filter:brightness(1.06)}
+    .hero-art{min-width:0}.signature{position:relative;min-height:580px;display:grid;place-items:center;overflow:hidden;isolation:isolate}
+    .signature::after{content:"BITMAP / 15";position:absolute;right:18px;bottom:13px;color:var(--accent);font:600 .65rem var(--mono);letter-spacing:.13em}
+    .art-core{position:relative;width:100%;min-height:520px;display:grid;place-items:center}
+    .art-readout{color:var(--accent);font:600 .7rem/1.5 var(--mono);letter-spacing:.1em;text-align:center}
+    .signature.is-awake .art-core{animation:signatureAwake .7s cubic-bezier(.2,1.4,.3,1) both}
 
-  :root{
-    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
-    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
-    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
-    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
-    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
-    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
-  button,input{font:inherit;color:inherit}
-  button{cursor:pointer}
-  button:disabled{cursor:not-allowed}
-  [hidden]{display:none!important}
-  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
-  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
-  .skip-link:focus{transform:none}
-  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
-  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
-  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
-  .worldbar-mark{color:var(--accent)}
-  .worldbar-state{color:var(--muted);text-align:right}
-  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
-  .hero-copy{min-width:0;position:relative;z-index:2}
-  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
-  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
-  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
-  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
-  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
-  .action:active{transform:translateY(1px) scale(.99)}
-  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
-  .action.quiet{background:transparent}
-  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
-  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
-  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
-  .artifact{position:absolute;inset:0;display:grid;place-items:center}
-  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
-  .artifact-caption span{color:var(--accent)}
-  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
-  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
-  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
-  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
-  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
-  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
-  .module.wide{grid-column:1/-1}
-  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
-  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
-  .button-rack{margin-top:0}
-  .field{display:grid;gap:9px;margin-top:18px}
-  .field:first-of-type{margin-top:0}
-  .field-label,.legend{font-weight:700;font-size:.88rem}
-  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
-  .text-input::placeholder{color:var(--muted);opacity:.78}
-  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
-  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
-  .choice input{position:absolute;width:1px;height:1px;opacity:0}
-  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
-  .choice input:checked+.choice-mark{border-color:var(--accent)}
-  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
-  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
-  .check .choice-mark{border-radius:5px}
-  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
-  .check input:checked+.choice-mark{background:var(--accent)}
-  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
-  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
-  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
-  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
-  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
-  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
-  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
-  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
-  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
-  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
-  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
-  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
-  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
-  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
-  .select{position:relative}
-  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
-  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
-  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
-  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
-  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
-  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
-  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
-  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
-  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
-  .tab-panel{padding:22px 0 2px}
-  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
-  .tab-panel p{margin:0;color:var(--muted)}
-  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
-  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
-  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
-  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
-  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
-  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
-  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
-  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
-  .measure-copy{color:var(--muted)}
-  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
-  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
-  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
-  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
-  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
-  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
-  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
-  .modal p{margin:0;color:var(--muted)}
-  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
-  body.modal-open{overflow:hidden}
-  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
-  .toast.is-visible{transform:none;opacity:1}
-  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
-  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
-  @media(max-width:760px){
-    .shell{width:min(100% - 32px,1180px)}
-    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
-    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
-    h1{font-size:clamp(3rem,15vw,5.4rem)}
-    .art-stage{min-height:430px}
-    .controls-intro{grid-template-columns:1fr;padding-top:64px}
-    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
-    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
-    .artifact-caption{left:17px;right:17px}
-  }
-  @media(max-width:420px){
-    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
-    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
-  }
-  @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  }
+    .control-world{padding:110px 0 130px}.control-intro{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;align-items:end;margin-bottom:76px}
+    .control-intro h2{margin:0;font:700 clamp(3rem,6vw,5.8rem)/.9 var(--display);letter-spacing:-.035em}.control-intro p{margin:0;color:var(--muted);font-size:1.05rem}
+    .zone{position:relative;padding:clamp(26px,4vw,48px);border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);background:color-mix(in srgb,var(--surface) 92%,transparent)}
+    .zone-title{margin:0;font:650 clamp(1.8rem,3.4vw,3rem)/1 var(--display)}.zone-copy{margin:12px 0 0;color:var(--muted)}
+    .command-zone{margin-top:0}.commands{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:32px}
+    .command{position:relative;min-height:60px;padding:10px 13px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);font-weight:700;transition:transform .18s,filter .18s,box-shadow .18s}
+    .command.secondary{background:var(--accent2);color:var(--ink)}.command.quiet{background:var(--surface2);color:var(--ink)}.command.danger{background:var(--danger);color:#fff}.command:disabled{opacity:.38;filter:grayscale(1);transform:none!important}
+    .command:hover:not(:disabled){transform:translateY(-3px);filter:brightness(1.08)}.command:active:not(:disabled){transform:translateY(1px) scale(.98)}
 
+    .settings-zone{padding:0;background:transparent;border:0}.identity-deck,.choice-deck{padding:clamp(28px,4vw,46px);border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);background:color-mix(in srgb,var(--surface) 92%,transparent)}
+    .field{display:grid;gap:9px;margin-top:28px}.field-label,.legend{font-weight:700;font-size:.88rem}
+    .field-input,.select-trigger{width:100%;min-height:52px;padding:11px 14px;border:1px solid color-mix(in srgb,var(--ink) 45%,transparent);background:var(--surface2);color:var(--ink)}
+    .field-input::placeholder{color:var(--muted);opacity:.82}
+    .custom-select{position:relative}.select-trigger{display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left}.select-trigger::after{content:"⌄";color:var(--accent);font-weight:800}
+    .select-popover{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 7px);margin:0;padding:7px;list-style:none;border:1px solid var(--accent);background:var(--surface);box-shadow:12px 14px 0 color-mix(in srgb,var(--ink) 25%,transparent)}
+    .select-option{padding:10px 12px;border:1px solid transparent;cursor:pointer}.select-option.is-active,.select-option[aria-selected=true]{background:var(--accent);color:var(--on-accent);transform:translateX(5px)}
+    .choice-group{border:0;margin:27px 0 0;padding:0}.choice-row{display:flex;flex-wrap:wrap;gap:13px;margin-top:13px}
+    .choice{position:relative;display:inline-flex;align-items:center;gap:9px;cursor:pointer}.choice input{position:absolute;width:1px;height:1px;opacity:0}
+    .choice-mark{position:relative;width:27px;height:27px;flex:0 0 27px;border:2px solid var(--accent);background:var(--surface2);transition:transform .2s,background .2s}
+    .choice input:checked+.choice-mark{background:var(--accent)}.choice input:checked+.choice-mark::after{content:"";position:absolute;inset:29%;background:var(--on-accent)}
+    .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent2);outline-offset:4px}.check-choice .choice-mark{transform:rotate(-2deg)}
+    .switch-line{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-top:30px}.switch-copy strong,.switch-copy small{display:block}.switch-copy small{margin-top:4px;color:var(--muted)}
+    .world-switch{position:relative;width:72px;height:40px;flex:0 0 72px;display:flex;align-items:center;padding:4px;border:1px solid var(--accent);background:var(--surface2);cursor:pointer}
+    .world-switch input{position:absolute;width:1px;height:1px;opacity:0}.switch-object{width:30px;height:30px;background:var(--accent);transition:transform .28s cubic-bezier(.2,1.45,.3,1),background .2s}
+    .world-switch input:checked+.switch-object{transform:translateX(32px);background:var(--accent2)}.world-switch input:focus-visible+.switch-object{outline:3px solid var(--accent2);outline-offset:4px}
 
-      *{image-rendering:pixelated}.worldbar,.module,.art-stage{border:2px solid #000;box-shadow:6px 6px 0 #000}.module::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(135deg,#000 0 2px,#fff 2px 4px)}
-      .action,.text-input,.select-trigger{border:2px solid #000;box-shadow:3px 3px 0 #000;font-family:var(--font-display);font-size:.65rem}.action:active{transform:translate(3px,3px);box-shadow:none}.primary{background:#000;color:#fff}.secondary{background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/4px 4px;color:#000;text-shadow:1px 1px #fff,-1px -1px #fff}.quiet{background:#fff}
-      .choice-mark{border:2px solid #000;border-radius:0}.choice input:checked+.choice-mark{background:#000}.choice input:checked+.choice-mark::after{background:#fff;border-radius:0}
-      .toggle-track{border:2px solid #000;border-radius:0;background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/4px 4px}.toggle-track::after{border:2px solid #000;border-radius:0;background:#fff}
-      .range{height:24px;background:repeating-linear-gradient(90deg,#000 0 2px,transparent 2px 9px)}.range::-webkit-slider-thumb{border:2px solid #000;border-radius:0;background:#fff;box-shadow:3px 3px 0 #000}
-      .progress-track{border:2px solid #000;border-radius:0;background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/4px 4px}.progress-fill{background:#000}
-      .gauge{border-radius:0;border:2px solid #000;background:conic-gradient(#000 calc(var(--level,64)*1%),repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/4px 4px 0)}
-      .art-stage{background:#fff;overflow:hidden}.bitmap-window{position:absolute;width:72%;height:66%;border:2px solid #000;background:#fff;box-shadow:7px 7px 0 #000}
-      .bitmap-title{height:34px;background:repeating-linear-gradient(135deg,#000 0 2px,#fff 2px 4px);border-bottom:2px solid #000;color:#fff;text-shadow:2px 0 #000,-2px 0 #000;padding:6px 8px;font:.65rem var(--font-display)}.bitmap-title b{float:right;background:#fff;color:#000;text-shadow:none;border:2px solid #000;width:21px;height:21px;text-align:center;line-height:15px;margin-top:-1px}
-      .bitmap-canvas{position:absolute;inset:46px 20px 20px;background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/6px 6px;overflow:hidden}.bitmap-canvas::before{content:"";position:absolute;inset:17%;background:#fff;border:2px dashed #000;animation:bitmapAnts .5s steps(2) infinite}.bitmap-canvas i{position:absolute;width:36%;height:46%;left:32%;top:24%;background:#000;clip-path:polygon(38% 0,62% 0,62% 30%,100% 30%,100% 70%,62% 70%,62% 100%,38% 100%,38% 70%,0 70%,0 30%,38% 30%)}.bitmap-scroll{position:absolute;right:4px;top:38px;bottom:4px;width:13px;border:1px solid #000;background:#fff}.bitmap-scroll b{display:block;height:28%;background:#000}
-      .bitmap-cursor{position:absolute;right:9%;bottom:17%;font-size:3rem;color:#000;filter:drop-shadow(3px 3px #fff)}
-      .artifact.is-awake .bitmap-window{animation:bitmapPop .28s steps(3)}@keyframes bitmapAnts{50%{border-style:dotted}}@keyframes bitmapPop{0%{transform:scale(.2)}100%{transform:scale(1)}}
-    .action.primary{color:var(--on-accent)}
-    .action.secondary{color:var(--on-accent-2)}
-    .action.danger{color:var(--on-danger)}
+    .range-deck,.progress-deck,.meter-deck{padding:clamp(27px,3vw,40px);border:1px solid color-mix(in srgb,var(--ink) 30%,transparent);background:color-mix(in srgb,var(--surface) 92%,transparent)}
+    .range-head{display:flex;justify-content:space-between;gap:20px;align-items:start}.range-output{flex:0 0 auto;padding:7px 10px;background:var(--accent);color:var(--on-accent);font:700 .8rem var(--mono)}
+    .range-canvas{position:relative;height:220px;margin-top:30px;display:flex;align-items:center;justify-content:space-between;gap:5px;padding:20px;overflow:hidden}
+    .range-input{position:absolute;inset:0;z-index:10;width:100%;height:100%;opacity:.001;cursor:ew-resize}
+    .level-token{position:relative;z-index:2;display:block;transition:transform .3s,background .3s,opacity .3s,filter .3s}.range-cursor{position:absolute;z-index:4;left:calc(var(--level)*1%);top:50%;transform:translate(-50%,-50%);transition:left .3s}
+    .range-labels{display:flex;justify-content:space-between;color:var(--muted);font:600 .66rem var(--mono);letter-spacing:.09em}
+    .progress-deck,.meter-deck{display:flex;flex-direction:column;align-items:center}.progress-visual{position:relative;width:150px;height:280px;margin:26px auto;display:flex;flex-direction:column-reverse;overflow:hidden}
+    .progress-token{display:block;flex:1;width:100%;transition:.3s}.progress-value,.meter-value{margin-top:auto;color:var(--accent);font:700 1.55rem var(--display);text-align:center}.measure-label{color:var(--muted);font-size:.78rem;text-align:center}
+    .meter-visual{width:170px;height:270px;margin:28px auto;display:flex;align-items:end;justify-content:center;gap:8px}.meter-token{display:block;width:25px;height:calc(35px + var(--i)*22px);transition:.35s}
+
+    .tabs{align-self:start}.tab{width:100%;min-height:90px;padding:14px;border:1px solid color-mix(in srgb,var(--ink) 45%,transparent);background:var(--surface2);color:var(--ink);text-align:left;transition:transform .24s,background .24s,color .24s}
+    .tab span{display:block;color:var(--accent);font:600 .64rem var(--mono);letter-spacing:.12em}.tab strong{display:block;margin-top:7px;font:650 1.15rem var(--display)}.tab[aria-selected=true]{background:var(--accent);color:var(--on-accent)}
+    .panel-stage{position:relative;min-height:430px;padding:clamp(30px,5vw,58px);border:1px solid color-mix(in srgb,var(--ink) 32%,transparent);background:color-mix(in srgb,var(--surface) 94%,transparent);overflow:hidden}
+    .tab-panel{animation:panelIn .38s ease both}.panel-index{color:var(--accent);font:600 .7rem var(--mono);letter-spacing:.14em}.tab-panel h3{margin:15px 0 0;font:650 clamp(2rem,4vw,3.3rem)/1 var(--display)}.tab-panel p{max-width:43rem;color:var(--muted)}
+    .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}.tooltip-button{min-height:43px;padding:8px 14px;border:1px solid var(--accent);background:transparent}
+    .tooltip-note{position:absolute;left:50%;bottom:calc(100% + 12px);width:220px;padding:11px 13px;background:var(--ink);color:var(--bg);transform:translate(-50%,8px);opacity:0;visibility:hidden;transition:.18s;pointer-events:none;font-size:.78rem}
+    .tooltip-wrap:hover .tooltip-note,.tooltip-wrap:focus-within .tooltip-note{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+    footer{border-top:1px solid color-mix(in srgb,var(--ink) 35%,transparent);padding:38px 0 48px;color:var(--muted);font:600 .68rem var(--mono);letter-spacing:.12em;text-transform:uppercase}
+    .noscript{margin:20px auto;padding:13px;border:1px solid var(--accent);background:var(--surface)}
+    .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(8px)}
+    .world-modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:clamp(30px,5vw,48px);border:2px solid var(--accent);background:var(--surface);box-shadow:0 34px 100px rgba(0,0,0,.45)}
+    .world-modal h2{margin:0;font:650 2.3rem/1 var(--display)}.world-modal p{color:var(--muted)}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+    .modal-action{min-height:45px;padding:8px 15px;border:1px solid var(--accent);background:transparent}.modal-action.confirm{background:var(--accent);color:var(--on-accent);font-weight:700}
+    body.modal-open{overflow:hidden}.toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--accent);background:var(--ink);color:var(--bg);box-shadow:10px 12px 0 rgba(0,0,0,.25);font-weight:700;transform:translateY(28px);opacity:0;pointer-events:none;transition:.25s}.toast.is-visible{transform:none;opacity:1}
+    @keyframes spin{to{transform:rotate(360deg)}}@keyframes steam{50%{transform:translate(15px,-20px);opacity:.25}}@keyframes morph{50%{border-radius:42% 58% 38% 62%/61% 42% 58% 39%}}@keyframes inkDraw{from{stroke-dasharray:1200;stroke-dashoffset:1200}to{stroke-dasharray:1200;stroke-dashoffset:0}}@keyframes signatureAwake{0%{filter:brightness(.75);transform:scale(.96)}70%{filter:brightness(1.28);transform:scale(1.025)}100%{filter:none;transform:none}}@keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    body{background-image:radial-gradient(circle,#000 0 1px,transparent 1px);background-size:8px 8px;background-position:calc(100% - 14px) 14px}body::after{display:none}
+
+    .hero{display:grid;align-items:center;min-height:760px;padding-block:84px;gap:clamp(34px,7vw,90px)}
+    .settings-zone{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:0;margin-top:90px}
+    .motion-zone{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(190px,.7fr) minmax(190px,.75fr);gap:20px;margin-top:90px}
+    .range-deck{min-height:420px}.progress-deck,.meter-deck{min-height:420px}
+    .archive-zone{display:grid;grid-template-columns:260px minmax(0,1fr);gap:30px;margin-top:90px}
+  .hero{grid-template-columns:1fr 1fr}.control-world{border:2px solid var(--ink);padding:12px}.control-intro{border:2px solid var(--ink)}.settings-zone,.motion-zone,.archive-zone{margin-top:16px}.motion-zone{grid-template-columns:1.5fr .75fr .75fr}.archive-zone{grid-template-columns:220px 1fr}
+
+      *{border-radius:0!important;image-rendering:pixelated}.signature{border:3px solid #000;background:#fff;box-shadow:8px 8px 0 #000}.bitmap-window{width:82%;margin:auto;border:3px solid #000;background:#fff}.bitmap-window header{display:flex;justify-content:space-between;padding:6px;background:repeating-linear-gradient(90deg,#000 0 6px,#fff 6px 12px);color:#fff;text-shadow:2px 0 #000}.pixel-canvas{display:grid;grid-template-columns:repeat(8,1fr);width:82%;aspect-ratio:1;margin:18px;background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/16px 16px}.pixel-cell:nth-child(3n){background:#000}.bitmap-window footer{border-top:3px solid #000;padding:7px}.pixel-hand{position:absolute;right:8%;bottom:8%;font-style:normal;font-size:4rem}
+      .command{border:3px solid #000;background:#fff;color:#000;box-shadow:4px 4px 0 #000}.command.primary{background:#000;color:#fff}.command.secondary{background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/8px 8px}.command.danger{background:#000;color:#fff}.choice-mark{border:3px solid #000}.choice input:checked+.choice-mark{background:#000}.switch-object{border:3px solid #000;background:#fff}.world-switch input:checked+.switch-object{transform:translateX(36px);background:#000}
+      .range-canvas{border:3px solid #000;background:repeating-linear-gradient(90deg,#fff 0 12px,#000 12px 15px)}.level-token{width:16px;height:28px;background:#fff;border:2px solid #000}.level-token.is-on{background:#000}.range-cursor{width:24px;height:54px;background:#000;border:5px solid #fff;outline:3px solid #000}.progress-visual{border:3px solid #000;background:repeating-linear-gradient(135deg,#000 0 4px,#fff 4px 8px)}.progress-token{height:10%;background:#fff}.progress-token.is-on{background:#000}.meter-token{border:3px solid #000;background:#fff}.meter-token.is-on{background:repeating-conic-gradient(#000 0 25%,#fff 0 50%) 0/8px 8px}.tab{border:3px solid #000;background:#fff;box-shadow:4px 4px 0 #000}.tab[aria-selected=true]{background:#000;color:#fff;transform:translate(10px,-4px)}
+
+    .visual-arcade .hero-title,.visual-onebit .hero-title{font-size:clamp(2.2rem,5.5vw,5rem);line-height:1.05;letter-spacing:0}.visual-arcade .zone-title,.visual-onebit .zone-title{font-size:clamp(1.25rem,2vw,2rem);line-height:1.35}.visual-arcade .hero-description,.visual-onebit .hero-description{font-size:.76rem;line-height:1.8}
+    @media(max-width:760px){
+      .shell{width:min(calc(100% - 32px),1180px)}.status-inner{min-height:62px;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px}.status-state{text-align:left}
+      .hero{grid-template-columns:1fr!important;min-height:0;padding-block:60px;gap:38px;text-align:left!important}.hero-copy,.hero-art{order:initial!important}.hero-title{font-size:clamp(2.8rem,15vw,5rem);letter-spacing:-.03em}.hero-actions{align-items:stretch}.hero-action{flex:1 1 100%}.signature{min-height:480px}.art-core{min-height:440px}
+      .control-world{padding:80px 0 90px}.control-intro{grid-template-columns:1fr;gap:22px;margin-bottom:52px}.control-intro h2{font-size:clamp(2.8rem,14vw,4.6rem)}
+      .zone{padding:25px 19px}.commands{grid-template-columns:1fr}.settings-zone{grid-template-columns:1fr!important;transform:none!important}.identity-deck,.choice-deck{min-height:0!important;padding:28px 20px}
+      .motion-zone{grid-template-columns:minmax(0,1fr)!important;min-width:0}.range-deck,.progress-deck,.meter-deck{min-width:0;width:100%}.range-deck{grid-column:auto!important;min-height:410px}.progress-deck,.meter-deck{min-height:390px}.range-head{display:block}.range-output{display:inline-block;margin-top:13px}.range-canvas{height:210px;min-width:0;padding:14px}.level-token{min-width:0}
+      .archive-zone{grid-template-columns:1fr!important}.tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;border:0!important}.tab{min-height:112px;padding:10px 7px;text-align:center;writing-mode:horizontal-tb!important}.tab[aria-selected=true]{transform:translateY(9px)!important}.tab strong{font-size:.92rem}.panel-stage{min-height:380px;padding:28px 21px}
+      .tooltip-note{left:0;max-width:calc(100vw - 70px);transform:translateY(8px)}.tooltip-wrap:hover .tooltip-note,.tooltip-wrap:focus-within .tooltip-note{transform:none}
+      .modal-actions{flex-direction:column}.modal-action{width:100%}.toast{right:16px;bottom:16px}
+      .visual-radar .radar-disc{width:92%}.visual-grimoire .stone-sigil{width:94%}.visual-engine .gearbox{transform:scale(.78)}.visual-bauhaus .hero-art{position:static}.visual-bauhaus .signature{min-height:470px}.visual-zine .xerox-flyer{width:90%;height:400px}.visual-zine .xerox-flyer span{font-size:3.4rem}.visual-anime .heroine-mark{transform:scale(.8)}.visual-rococo .rococo-mirror{width:72%;height:410px}.visual-paperback .pulp-book{width:92%;height:470px}.visual-aero .chrome-blob{width:86%;height:330px}.visual-arcade .pixel-maze{gap:15px;padding:24px}.visual-onebit .bitmap-window{width:92%}.visual-claymorph .mochi-bun{width:88%;height:310px}.visual-notebook .doodle-page{width:90%;height:420px;padding:32px}.visual-blueprint .axon-cube{transform:scale(.82)}.visual-eclipse .eclipse-disc{width:88%}.visual-relic .relic-spine{transform:scale(.84)}.visual-newspaper .front-page{width:96%}.visual-newspaper .news-columns{grid-template-columns:1fr}
+    }
+    @media(max-width:420px){
+      .hero-title{font-size:clamp(2.45rem,14vw,4rem)}.signature{min-height:430px}.art-core{min-height:400px}.choice-row{display:grid;grid-template-columns:1fr}.switch-line{align-items:flex-start}.world-switch{margin-top:4px}.tabs{grid-template-columns:1fr!important}.tab{min-height:76px}.tab[aria-selected=true]{transform:translateX(8px)!important}.range-canvas{height:190px}.progress-visual{height:250px}.meter-visual{height:240px}
+      .visual-arcade .hero-title,.visual-onebit .hero-title{font-size:2rem}.visual-bauhaus .bauhaus-stage{height:390px}.visual-paperback .pulp-book strong{font-size:3rem}.visual-folk .mask{width:180px}.visual-clay .clay-pot{width:190px;height:250px}.visual-eclipse .baily{transform:rotate(calc(var(--i)*36deg)) translateY(-135px)}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
-<body>
+<body class="layout-desktop visual-onebit">
   <a class="skip-link" href="#controls">跳到控件展区</a>
-  <header class="worldbar shell">
-    <div class="worldbar-inner">
-      <span class="worldbar-mark">BITMAP SYSTEM 1.0</span>
-      <span class="worldbar-state">MEMORY 640K · DISK A: READY</span>
-    </div>
-  </header>
-
+  <header class="world-status"><div class="shell status-inner"><span class="status-code">BITMAP / 15</span><span class="status-state">SYSTEM 1-BIT · 512K FREE · 15:15</span></div></header>
   <main>
-    <section class="hero shell" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">14 / BITMAP · One-bit dither</p>
-        <h1 id="hero-title">世界只有黑与白</h1>
-        <p class="lede">没有灰色，只有足够聪明的点阵。拖动方钮、打开窗格，让一枚像素承担一枚像素该做的事。</p>
-        <div class="actions">
-          <button class="action primary" type="button" data-scroll-controls>OPEN.EXE</button>
-          <button class="action secondary" type="button" data-awaken aria-pressed="false">SAVE TO DISK</button>
-        </div>
-      </div>
-      <div class="art-stage">
-        <div class="artifact" aria-label="1-bit 位图招牌装置">
+    <section class="hero shell hero-copy-first" aria-labelledby="bitmap-title">
+    <div class="hero-copy">
+      <p class="hero-kicker">15 / UNTITLED-15.BMP</p>
+      <h1 class="hero-title" id="bitmap-title">BLACK / WHITE</h1>
+      <p class="hero-tagline">只有一位深度，也足够表达全部状态。</p>
+      <p class="hero-description">窗口硬弹、像素滚动条、抖动灰阶与反白选择构成操作。滑块是矩形滚动块，tab 是重叠窗口标题，不做下划线。</p>
+      <div class="hero-actions"><button class="hero-action" type="button" data-scroll-controls>[ OPEN ]</button><button class="hero-action alt" type="button" data-awaken aria-pressed="false">[ PRINT ]</button></div>
+    </div><div class="hero-art"><div class="signature" aria-label="1-bit 位图招牌装置"><div class="art-core">
+      <div class="bitmap-window"><header>UNTITLED.BMP <b>□</b></header>
+        <div class="pixel-canvas"><i class="pixel-cell" style="--i:1" ></i><i class="pixel-cell" style="--i:2" ></i><i class="pixel-cell" style="--i:3" ></i><i class="pixel-cell" style="--i:4" ></i><i class="pixel-cell" style="--i:5" ></i><i class="pixel-cell" style="--i:6" ></i><i class="pixel-cell" style="--i:7" ></i><i class="pixel-cell" style="--i:8" ></i><i class="pixel-cell" style="--i:9" ></i><i class="pixel-cell" style="--i:10" ></i><i class="pixel-cell" style="--i:11" ></i><i class="pixel-cell" style="--i:12" ></i><i class="pixel-cell" style="--i:13" ></i><i class="pixel-cell" style="--i:14" ></i><i class="pixel-cell" style="--i:15" ></i><i class="pixel-cell" style="--i:16" ></i><i class="pixel-cell" style="--i:17" ></i><i class="pixel-cell" style="--i:18" ></i><i class="pixel-cell" style="--i:19" ></i><i class="pixel-cell" style="--i:20" ></i><i class="pixel-cell" style="--i:21" ></i><i class="pixel-cell" style="--i:22" ></i><i class="pixel-cell" style="--i:23" ></i><i class="pixel-cell" style="--i:24" ></i><i class="pixel-cell" style="--i:25" ></i><i class="pixel-cell" style="--i:26" ></i><i class="pixel-cell" style="--i:27" ></i><i class="pixel-cell" style="--i:28" ></i><i class="pixel-cell" style="--i:29" ></i><i class="pixel-cell" style="--i:30" ></i><i class="pixel-cell" style="--i:31" ></i><i class="pixel-cell" style="--i:32" ></i><i class="pixel-cell" style="--i:33" ></i><i class="pixel-cell" style="--i:34" ></i><i class="pixel-cell" style="--i:35" ></i><i class="pixel-cell" style="--i:36" ></i><i class="pixel-cell" style="--i:37" ></i><i class="pixel-cell" style="--i:38" ></i><i class="pixel-cell" style="--i:39" ></i><i class="pixel-cell" style="--i:40" ></i><i class="pixel-cell" style="--i:41" ></i><i class="pixel-cell" style="--i:42" ></i><i class="pixel-cell" style="--i:43" ></i><i class="pixel-cell" style="--i:44" ></i><i class="pixel-cell" style="--i:45" ></i><i class="pixel-cell" style="--i:46" ></i><i class="pixel-cell" style="--i:47" ></i><i class="pixel-cell" style="--i:48" ></i><i class="pixel-cell" style="--i:49" ></i><i class="pixel-cell" style="--i:50" ></i><i class="pixel-cell" style="--i:51" ></i><i class="pixel-cell" style="--i:52" ></i><i class="pixel-cell" style="--i:53" ></i><i class="pixel-cell" style="--i:54" ></i><i class="pixel-cell" style="--i:55" ></i><i class="pixel-cell" style="--i:56" ></i><i class="pixel-cell" style="--i:57" ></i><i class="pixel-cell" style="--i:58" ></i><i class="pixel-cell" style="--i:59" ></i><i class="pixel-cell" style="--i:60" ></i><i class="pixel-cell" style="--i:61" ></i><i class="pixel-cell" style="--i:62" ></i><i class="pixel-cell" style="--i:63" ></i><i class="pixel-cell" style="--i:64" ></i></div><aside></aside><footer>64 × 64 / 1-BIT</footer>
+      </div><i class="pixel-hand">☝</i></div></div></div></section>
+    <section class="control-world shell" id="controls" aria-labelledby="bitmap-controls">
+      <header class="control-intro"><div><p class="hero-kicker">BITMAP / CONTROL LANGUAGE</p><h2 id="bitmap-controls">One-bit dither</h2></div><p>窗口硬弹、像素滚动条、抖动灰阶与反白选择构成操作。滑块是矩形滚动块，tab 是重叠窗口标题，不做下划线。</p></header>
 
-      <div class="bitmap-window" aria-hidden="true"><div class="bitmap-title">UNTITLED.BMP <b>□</b></div><div class="bitmap-canvas"><i></i><span></span></div><div class="bitmap-scroll"><b></b></div></div>
-      <div class="bitmap-cursor" aria-hidden="true">☝</div>
-      <div class="artifact-caption"><span>640 × 480</span><strong>SELECTED AREA</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell controls-intro" id="controls">
-      <div>
-        <p class="module-kicker">CONTROL COLLECTION / BITMAP</p>
-        <h2>世界内控件</h2>
-      </div>
-      <p>每件控件都从「1-bit 位图」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
-    </section>
-
-    <div class="shell controls-grid">
-      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
-        <p class="module-kicker">ACTION / 五种动作</p>
-        <h3 class="module-title" id="buttons-title">行动指令</h3>
-        <div class="button-rack">
-          <button class="action primary" type="button" data-progress>OPEN.EXE</button>
-          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
-          <button class="action quiet" type="button" data-awaken aria-pressed="false">SAVE TO DISK</button>
-          <button class="action danger" type="button" data-toast>触发警示</button>
-          <button class="action" type="button" disabled>权限未开放</button>
-        </div>
-      </section>
-
-      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
-        <p class="module-kicker">IDENTITY / 输入与选择</p>
-        <h3 class="module-title" id="input-title">写入识别信息</h3>
-        <label class="field">
-          <span class="field-label">识别铭牌</span>
-          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="UNTITLED_01">
-        </label>
+    <section class="settings-zone" aria-label="新建一个位图文件">
+      <div class="identity-deck">
+        <p class="zone-kicker">II / IDENTITY & LOCATION</p>
+        <h3 class="zone-title">新建一个位图文件</h3>
+        <label class="field"><span class="field-label">FILE NAME</span><input class="field-input" type="text" autocomplete="off" data-text placeholder="UNTITLED.BMP"></label>
         <div class="field">
-          <span class="field-label" id="select-label-bitmap">当前区域</span>
-          <div class="select" data-select>
-            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-bitmap select-value-bitmap">
-              <span id="select-value-bitmap" class="select-value">DESKTOP</span>
-            </button>
-            <ul class="select-list" role="listbox" aria-labelledby="select-label-bitmap" hidden>
-              <li class="select-option" role="option" tabindex="-1" data-value="DESKTOP" aria-selected="true">DESKTOP</li><li class="select-option" role="option" tabindex="-1" data-value="DISK A:" aria-selected="false">DISK A:</li><li class="select-option" role="option" tabindex="-1" data-value="CONTROL PANEL" aria-selected="false">CONTROL PANEL</li>
+          <span class="field-label" id="bitmap-select-label">PATTERN</span>
+          <div class="custom-select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="bitmap-select-label bitmap-select-value"><span class="select-value" id="bitmap-select-value">50% CHECKER</span></button>
+            <ul class="select-popover" role="listbox" aria-labelledby="bitmap-select-label" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="50% CHECKER" aria-selected="true">50% CHECKER</li><li class="select-option" role="option" tabindex="-1" data-value="25% DITHER" aria-selected="false">25% DITHER</li><li class="select-option" role="option" tabindex="-1" data-value="ZEBRA LINES" aria-selected="false">ZEBRA LINES</li>
             </ul>
           </div>
         </div>
-      </section>
-
-      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
-        <p class="module-kicker">STATE / 单选、复选与开关</p>
-        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
-        <fieldset class="choice-set">
-          <legend class="legend">选择一种模式</legend>
-
-        <label class="choice">
-          <input type="radio" name="mode" value="NORMAL MODE" checked>
-          <span class="choice-mark" aria-hidden="true"></span><span>NORMAL MODE</span>
-        </label>
-        <label class="choice">
-          <input type="radio" name="mode" value="DITHER MODE">
-          <span class="choice-mark" aria-hidden="true"></span><span>DITHER MODE</span>
-        </label>
-        <label class="choice">
-          <input type="radio" name="mode" value="INVERT MODE">
-          <span class="choice-mark" aria-hidden="true"></span><span>INVERT MODE</span>
-        </label>
+      </div>
+      <div class="choice-deck">
+        <p class="zone-kicker">III / WORLD STATES</p>
+        <fieldset class="choice-group">
+          <legend class="legend">TOOL</legend>
+          <div class="choice-row"><label class="choice"><input type="radio" name="bitmap-mode" value="PENCIL" checked><span class="choice-mark" aria-hidden="true"></span><span>PENCIL</span></label><label class="choice"><input type="radio" name="bitmap-mode" value="FILL" ><span class="choice-mark" aria-hidden="true"></span><span>FILL</span></label><label class="choice"><input type="radio" name="bitmap-mode" value="SELECT" ><span class="choice-mark" aria-hidden="true"></span><span>SELECT</span></label></div>
         </fieldset>
-        <fieldset class="choice-set">
+        <fieldset class="choice-group">
           <legend class="legend">附加记录</legend>
-          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
-          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+          <div class="choice-row"><label class="choice check-choice"><input type="checkbox" value="SNAP GRID" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>SNAP GRID</span></label><label class="choice check-choice"><input type="checkbox" value="SHOW RULER" data-check ><span class="choice-mark" aria-hidden="true"></span><span>SHOW RULER</span></label></div>
         </fieldset>
-        <div class="switch-row">
-          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
-          <label class="toggle">
-            <input type="checkbox" data-switch aria-label="持续唤醒">
-            <span class="toggle-track" aria-hidden="true"></span>
-          </label>
+        <div class="switch-line">
+          <span class="switch-copy"><strong>INVERT SCREEN</strong><small>交换纸白与纯黑像素。</small></span>
+          <label class="world-switch"><input type="checkbox" data-switch aria-label="INVERT SCREEN"><span class="switch-object" aria-hidden="true"></span></label>
         </div>
-      </section>
-
-      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
-        <p class="module-kicker">CALIBRATION / 连续量</p>
-        <h3 class="module-title" id="range-title">DISK USAGE</h3>
-        <div class="range-row">
-          <input class="range" id="range-bitmap" type="range" min="0" max="100" value="64" aria-label="DISK USAGE" data-range>
-          <output class="range-output" for="range-bitmap">64 KB</output>
-        </div>
-        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
-        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
-          <div class="progress-fill"></div>
-        </div>
-      </section>
-
-      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
-        <p class="module-kicker">ARCHIVE / 标签页</p>
-        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
-        <div class="tabs" role="tablist" aria-label="现场记录">
-          <button class="tab" type="button" role="tab" id="tab-bitmap-0" aria-controls="panel-bitmap-0" aria-selected="true" tabindex="0">FILE</button><button class="tab" type="button" role="tab" id="tab-bitmap-1" aria-controls="panel-bitmap-1" aria-selected="false" tabindex="-1">EDIT</button><button class="tab" type="button" role="tab" id="tab-bitmap-2" aria-controls="panel-bitmap-2" aria-selected="false" tabindex="-1">VIEW</button>
-        </div>
-
-        <div class="tab-panel" role="tabpanel" id="panel-bitmap-0" aria-labelledby="tab-bitmap-0">
-          <h4>DOCUMENT IS READY</h4><p>1 PAGE, 3840 BYTES. LAST SAVED AT 09:42:16.</p>
-        </div>
-        <div class="tab-panel" role="tabpanel" id="panel-bitmap-1" aria-labelledby="tab-bitmap-1" hidden>
-          <h4>SELECTION ACTIVE</h4><p>THE DASHED BORDER IS MOVING. PRESS DELETE TO CLEAR 0 PIXELS.</p>
-        </div>
-        <div class="tab-panel" role="tabpanel" id="panel-bitmap-2" aria-labelledby="tab-bitmap-2" hidden>
-          <h4>ZOOM SET TO 100%</h4><p>EVERY PIXEL MAPS TO ONE DISPLAY CELL. ANTIALIASING IS OFF.</p>
-        </div>
-      </section>
-
-      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
-        <p class="module-kicker">MEASURE / 量表与反馈</p>
-        <h3 class="module-title" id="measure-title">读取当前状态</h3>
-        <div class="measure-layout">
-          <div class="gauge" role="meter" aria-label="DISK USAGE" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
-            <span class="gauge-value">64 KB</span>
-          </div>
-          <div class="measure-copy">
-            <strong>DISK USAGE保持在可控区间</strong>
-            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
-            <span class="tooltip-wrap">
-              <button class="action quiet" type="button" aria-describedby="tip-bitmap">悬停查看注记</button>
-              <span class="tooltip-bubble" role="tooltip" id="tip-bitmap">注记会在悬停或键盘聚焦时出现。</span>
-            </span>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer><div class="shell">BITMAP / 1 BIT IS ENOUGH IF EVERY DOT KNOWS ITS PLACE.</div></footer>
-  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
-
-  <div class="modal-backdrop" data-modal-backdrop hidden>
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-bitmap">
-      <p class="module-kicker">CONFIRM / BITMAP</p>
-      <h2 id="modal-title-bitmap">确认执行这项动作？</h2>
-      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
-      <div class="modal-actions">
-        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
-        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
       </div>
     </section>
-  </div>
-  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
 
+    <section class="archive-zone" aria-labelledby="bitmap-archive">
+      <div class="tabs" role="tablist" aria-label="三扇重叠的系统窗口">
+        <button class="tab" type="button" role="tab" id="bitmap-tab-0" aria-controls="bitmap-panel-0" aria-selected="true" tabindex="0"><span>01</span><strong>IMAGE</strong></button><button class="tab" type="button" role="tab" id="bitmap-tab-1" aria-controls="bitmap-panel-1" aria-selected="false" tabindex="-1"><span>02</span><strong>TOOLS</strong></button><button class="tab" type="button" role="tab" id="bitmap-tab-2" aria-controls="bitmap-panel-2" aria-selected="false" tabindex="-1"><span>03</span><strong>INFO</strong></button>
+      </div>
+      <div class="panel-stage">
+        <article class="tab-panel" role="tabpanel" id="bitmap-panel-0" aria-labelledby="bitmap-tab-0" ><span class="panel-index">BITMAP / 01</span><h3>IMAGE</h3><p>画布由 64 × 64 个明确的黑白像素组成。</p><span class="tooltip-wrap"><button class="tooltip-button" type="button" aria-describedby="bitmap-tip-0">读取边注</button><span class="tooltip-note" role="tooltip" id="bitmap-tip-0">只有一位深度，也足够表达全部状态。</span></span></article><article class="tab-panel" role="tabpanel" id="bitmap-panel-1" aria-labelledby="bitmap-tab-1" hidden><span class="panel-index">BITMAP / 02</span><h3>TOOLS</h3><p>铅笔、油漆桶与手指光标都只有一位深度。</p><span class="tooltip-wrap"><button class="tooltip-button" type="button" aria-describedby="bitmap-tip-1">读取边注</button><span class="tooltip-note" role="tooltip" id="bitmap-tip-1">只有一位深度，也足够表达全部状态。</span></span></article><article class="tab-panel" role="tabpanel" id="bitmap-panel-2" aria-labelledby="bitmap-tab-2" hidden><span class="panel-index">BITMAP / 03</span><h3>INFO</h3><p>文件未压缩，所有灰色都来自有序抖动。</p><span class="tooltip-wrap"><button class="tooltip-button" type="button" aria-describedby="bitmap-tip-2">读取边注</button><span class="tooltip-note" role="tooltip" id="bitmap-tip-2">只有一位深度，也足够表达全部状态。</span></span></article>
+      </div>
+    </section>
+
+    <section class="zone command-zone" aria-labelledby="bitmap-commands">
+      <p class="zone-kicker">I / COMMAND OBJECTS</p>
+      <h3 class="zone-title" id="bitmap-commands">五枚像素方钮</h3>
+      <div class="commands"><button class="command primary" type="button" data-progress>[ OPEN ]</button><button class="command secondary" type="button" data-open-modal>[ SAVE ]</button><button class="command quiet" type="button" data-awaken aria-pressed="false">[ PRINT ]</button><button class="command danger" type="button" data-toast>[ DELETE ]</button><button class="command disabled" type="button" disabled>[ BUSY ]</button></div>
+    </section>
+
+    <section class="motion-zone" aria-label="拖动一块真正的方形滚动块">
+      <div class="range-deck">
+        <div class="range-head"><div><p class="zone-kicker">IV / VARIABLE INSTRUMENT</p><h3 class="zone-title">拖动一块真正的方形滚动块</h3></div><output class="range-output" for="bitmap-range">58%</output></div>
+        <div class="range-canvas"><i class="level-token" style="--i:1" data-threshold="8"></i><i class="level-token" style="--i:2" data-threshold="17"></i><i class="level-token" style="--i:3" data-threshold="25"></i><i class="level-token" style="--i:4" data-threshold="33"></i><i class="level-token" style="--i:5" data-threshold="42"></i><i class="level-token" style="--i:6" data-threshold="50"></i><i class="level-token" style="--i:7" data-threshold="58"></i><i class="level-token" style="--i:8" data-threshold="67"></i><i class="level-token" style="--i:9" data-threshold="75"></i><i class="level-token" style="--i:10" data-threshold="83"></i><i class="level-token" style="--i:11" data-threshold="92"></i><i class="level-token" style="--i:12" data-threshold="100"></i><i class="range-cursor" aria-hidden="true"></i><input class="range-input" id="bitmap-range" type="range" min="0" max="100" value="58" aria-label="ZOOM LEVEL" data-range></div>
+        <div class="range-labels"><span>1×</span><span>16×</span></div>
+      </div>
+      <div class="progress-deck" role="progressbar" aria-label="ANTS SELECT" aria-valuemin="0" aria-valuemax="100" aria-valuenow="58">
+        <p class="zone-kicker">ANTS SELECT</p><div class="progress-visual" aria-hidden="true"><i class="progress-token" style="--i:1" data-threshold="10"></i><i class="progress-token" style="--i:2" data-threshold="20"></i><i class="progress-token" style="--i:3" data-threshold="30"></i><i class="progress-token" style="--i:4" data-threshold="40"></i><i class="progress-token" style="--i:5" data-threshold="50"></i><i class="progress-token" style="--i:6" data-threshold="60"></i><i class="progress-token" style="--i:7" data-threshold="70"></i><i class="progress-token" style="--i:8" data-threshold="80"></i><i class="progress-token" style="--i:9" data-threshold="90"></i><i class="progress-token" style="--i:10" data-threshold="100"></i></div><strong class="progress-value">58%</strong><span class="measure-label">ANTS SELECT</span>
+      </div>
+      <div class="meter-deck" role="meter" aria-label="MEMORY BLOCKS" aria-valuemin="0" aria-valuemax="100" aria-valuenow="58">
+        <p class="zone-kicker">MEMORY BLOCKS</p><div class="meter-visual" aria-hidden="true"><i class="meter-token" style="--i:1" data-threshold="20"></i><i class="meter-token" style="--i:2" data-threshold="40"></i><i class="meter-token" style="--i:3" data-threshold="60"></i><i class="meter-token" style="--i:4" data-threshold="80"></i><i class="meter-token" style="--i:5" data-threshold="100"></i></div><strong class="meter-value">3 / 5</strong><span class="measure-label">MEMORY BLOCKS</span>
+      </div>
+    </section>
+    </section>
+  </main>
+  <footer><div class="shell">BITMAP OS · NO ANTIALIASING / NO APOLOGIES</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作选择器、状态装置、弹层与本机保存。</p></noscript>
+  <div class="modal-backdrop" data-modal-backdrop hidden><section class="world-modal" role="dialog" aria-modal="true" aria-labelledby="bitmap-modal-title"><p class="zone-kicker">BITMAP / CONFIRM</p><h2 id="bitmap-modal-title">SAVE CHANGES TO DISK?</h2><p>文件名、图案与工具会写入本机 1-bit 状态。</p><div class="modal-actions"><button class="modal-action" type="button" data-close-modal>返回</button><button class="modal-action confirm" type="button" data-confirm-modal>确认</button></div></section></div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
   <script>
     (() => {
       "use strict";
-      const root = document.documentElement;
-      const storageKey = "codex-sandbox-bitmap";
-      const artifact = document.querySelector(".artifact");
-      const range = document.querySelector("[data-range]");
-      const rangeOutput = document.querySelector(".range-output");
-      const progressOutput = document.querySelector("[data-progress-output]");
-      const progressbar = document.querySelector('[role="progressbar"]');
-      const gauge = document.querySelector('[role="meter"]');
-      const gaugeValue = document.querySelector(".gauge-value");
-      const switchInput = document.querySelector("[data-switch]");
-      const textInput = document.querySelector("[data-persist-input]");
-      const toast = document.querySelector("[data-toast-box]");
-      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
-      const modal = modalBackdrop.querySelector('[role="dialog"]');
-      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
-      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
-      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
-      let toastTimer = 0;
-      let lastFocus = null;
-      let state = {};
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      try {
-        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
-      } catch {
-        state = {};
-      }
-
-      const save = () => {
-        const selectedRadio = document.querySelector('input[name="mode"]:checked');
-        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
-        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
-        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
-        const next = {
-          range: Number(range.value),
-          awake: artifact.classList.contains("is-awake"),
-          enabled: switchInput.checked,
-          text: textInput.value,
-          mode: selectedRadio ? selectedRadio.value : "",
-          checks,
-          place: selectedOption ? selectedOption.dataset.value : "",
-          tab: Math.max(selectedTab, 0),
-        };
-        try {
-          localStorage.setItem(storageKey, JSON.stringify(next));
-        } catch {
-          /* Local files may deny storage; the live page still works. */
-        }
+      const root=document.documentElement;
+      const storageKey="codex-sandbox-bitmap-cold";
+      const signature=document.querySelector(".signature");
+      const range=document.querySelector("[data-range]");
+      const rangeOutput=document.querySelector(".range-output");
+      const progressbar=document.querySelector('[role="progressbar"]');
+      const progressValue=document.querySelector(".progress-value");
+      const meter=document.querySelector('[role="meter"]');
+      const meterValue=document.querySelector(".meter-value");
+      const switchInput=document.querySelector("[data-switch]");
+      const textInput=document.querySelector("[data-text]");
+      const toast=document.querySelector("[data-toast-box]");
+      const modalBackdrop=document.querySelector("[data-modal-backdrop]");
+      const modal=modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons=Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons=Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels=Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      const thresholdItems=Array.from(document.querySelectorAll("[data-threshold]"));
+      const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let state={};let lastFocus=null;let toastTimer=0;
+      try{state=JSON.parse(localStorage.getItem(storageKey)||"{}")}catch{state={}}
+      const save=()=>{
+        const selectedMode=document.querySelector('input[name="bitmap-mode"]:checked');
+        const selectedOption=document.querySelector('.select-option[aria-selected="true"]');
+        const checks=Array.from(document.querySelectorAll("[data-check]:checked"),input=>input.value);
+        const tab=tabButtons.findIndex(button=>button.getAttribute("aria-selected")==="true");
+        const next={level:Number(range.value),awake:signature.classList.contains("is-awake"),enabled:switchInput.checked,text:textInput.value,mode:selectedMode?selectedMode.value:"",place:selectedOption?selectedOption.dataset.value:"",checks,tab:Math.max(tab,0)};
+        try{localStorage.setItem(storageKey,JSON.stringify(next))}catch{/* state remains live */}
       };
-
-      const announce = (message) => {
-        window.clearTimeout(toastTimer);
-        toast.textContent = message;
-        toast.classList.add("is-visible");
-        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      const announce=(message)=>{window.clearTimeout(toastTimer);toast.textContent=message;toast.classList.add("is-visible");toastTimer=window.setTimeout(()=>toast.classList.remove("is-visible"),2700)};
+      const setAwake=(awake,shouldSave=true)=>{signature.classList.toggle("is-awake",awake);awakenButtons.forEach(button=>button.setAttribute("aria-pressed",String(awake)));if(shouldSave)save()};
+      const setLevel=(value,shouldSave=true)=>{
+        const level=Math.max(0,Math.min(100,Number(value)));range.value=String(level);root.style.setProperty("--level",String(level));rangeOutput.textContent=String(level)+"%";
+        progressbar.setAttribute("aria-valuenow",String(level));progressValue.textContent=String(level)+"%";meter.setAttribute("aria-valuenow",String(level));
+        const activeMeter=document.querySelectorAll(".meter-token.is-on").length;thresholdItems.forEach(item=>item.classList.toggle("is-on",level>=Number(item.dataset.threshold)));
+        const nextMeter=document.querySelectorAll(".meter-token.is-on").length;meterValue.textContent=String(nextMeter)+" / 5";if(shouldSave)save()
       };
-
-      const setLevel = (value, shouldSave = true) => {
-        const numeric = Math.max(0, Math.min(100, Number(value)));
-        range.value = String(numeric);
-        root.style.setProperty("--level", String(numeric));
-        rangeOutput.textContent = String(numeric) + " KB";
-        progressOutput.textContent = String(numeric) + "%";
-        progressbar.setAttribute("aria-valuenow", String(numeric));
-        gauge.setAttribute("aria-valuenow", String(numeric));
-        gaugeValue.textContent = String(numeric) + " KB";
-        if (shouldSave) save();
-      };
-
-      const setAwake = (awake, shouldSave = true) => {
-        artifact.classList.toggle("is-awake", awake);
-        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
-        if (shouldSave) save();
-      };
-
-      const activateTab = (index, focus = false, shouldSave = true) => {
-        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
-        tabButtons.forEach((button, buttonIndex) => {
-          const active = buttonIndex === safeIndex;
-          button.setAttribute("aria-selected", String(active));
-          button.tabIndex = active ? 0 : -1;
-          tabPanels[buttonIndex].hidden = !active;
-        });
-        if (focus) tabButtons[safeIndex].focus();
-        if (shouldSave) save();
-      };
-
-      document.querySelectorAll("[data-select]").forEach((select) => {
-        const trigger = select.querySelector(".select-trigger");
-        const value = select.querySelector(".select-value");
-        const list = select.querySelector(".select-list");
-        const options = Array.from(select.querySelectorAll(".select-option"));
-        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
-
-        const choose = (index, focusTrigger = true, shouldSave = true) => {
-          activeIndex = Math.max(0, Math.min(options.length - 1, index));
-          options.forEach((option, optionIndex) => {
-            const selected = optionIndex === activeIndex;
-            option.setAttribute("aria-selected", String(selected));
-            option.classList.toggle("is-active", selected);
-          });
-          value.textContent = options[activeIndex].dataset.value;
-          list.hidden = true;
-          trigger.setAttribute("aria-expanded", "false");
-          if (focusTrigger) trigger.focus();
-          if (shouldSave) save();
-        };
-
-        const open = (index = activeIndex) => {
-          list.hidden = false;
-          trigger.setAttribute("aria-expanded", "true");
-          activeIndex = Math.max(0, Math.min(options.length - 1, index));
-          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
-          options[activeIndex].focus();
-        };
-
-        trigger.addEventListener("click", () => {
-          if (list.hidden) open();
-          else {
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
-          }
-        });
-        trigger.addEventListener("keydown", (event) => {
-          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-            event.preventDefault();
-            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
-          }
-        });
-        options.forEach((option, optionIndex) => {
-          option.addEventListener("click", () => choose(optionIndex));
-          option.addEventListener("pointermove", () => {
-            activeIndex = optionIndex;
-            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
-          });
-        });
-        list.addEventListener("keydown", (event) => {
-          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-            event.preventDefault();
-            const delta = event.key === "ArrowDown" ? 1 : -1;
-            activeIndex = (activeIndex + delta + options.length) % options.length;
-            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
-            options[activeIndex].focus();
-          } else if (event.key === "Home" || event.key === "End") {
-            event.preventDefault();
-            activeIndex = event.key === "Home" ? 0 : options.length - 1;
-            options[activeIndex].focus();
-          } else if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            choose(activeIndex);
-          } else if (event.key === "Escape") {
-            event.preventDefault();
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
-            trigger.focus();
-          } else if (event.key === "Tab") {
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
-          }
-        });
-        document.addEventListener("pointerdown", (event) => {
-          if (!select.contains(event.target)) {
-            list.hidden = true;
-            trigger.setAttribute("aria-expanded", "false");
-          }
-        });
-
-        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
-        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      const activateTab=(index,focus=false,shouldSave=true)=>{const safe=Math.max(0,Math.min(tabButtons.length-1,index));tabButtons.forEach((button,i)=>{const active=i===safe;button.setAttribute("aria-selected",String(active));button.tabIndex=active?0:-1;tabPanels[i].hidden=!active});if(focus)tabButtons[safe].focus();if(shouldSave)save()};
+      document.querySelectorAll("[data-select]").forEach(select=>{
+        const trigger=select.querySelector(".select-trigger"),value=select.querySelector(".select-value"),list=select.querySelector(".select-popover"),options=Array.from(select.querySelectorAll(".select-option"));let activeIndex=Math.max(0,options.findIndex(option=>option.getAttribute("aria-selected")==="true"));
+        const mark=()=>options.forEach((option,i)=>option.classList.toggle("is-active",i===activeIndex));
+        const close=(focus=false)=>{list.hidden=true;trigger.setAttribute("aria-expanded","false");if(focus)trigger.focus()};
+        const choose=(index,focus=true,shouldSave=true)=>{activeIndex=Math.max(0,Math.min(options.length-1,index));options.forEach((option,i)=>option.setAttribute("aria-selected",String(i===activeIndex)));mark();value.textContent=options[activeIndex].dataset.value;close(focus);if(shouldSave)save()};
+        const open=(index=activeIndex)=>{activeIndex=Math.max(0,Math.min(options.length-1,index));list.hidden=false;trigger.setAttribute("aria-expanded","true");mark();options[activeIndex].focus()};
+        trigger.addEventListener("click",()=>list.hidden?open():close());trigger.addEventListener("keydown",event=>{if(event.key==="ArrowDown"||event.key==="ArrowUp"){event.preventDefault();open(event.key==="ArrowDown"?activeIndex:Math.max(0,activeIndex-1))}});
+        options.forEach((option,index)=>{option.addEventListener("click",()=>choose(index));option.addEventListener("pointermove",()=>{activeIndex=index;mark()})});
+        list.addEventListener("keydown",event=>{if(event.key==="ArrowDown"||event.key==="ArrowUp"){event.preventDefault();activeIndex=(activeIndex+(event.key==="ArrowDown"?1:-1)+options.length)%options.length;mark();options[activeIndex].focus()}else if(event.key==="Home"||event.key==="End"){event.preventDefault();activeIndex=event.key==="Home"?0:options.length-1;mark();options[activeIndex].focus()}else if(event.key==="Enter"||event.key===" "){event.preventDefault();choose(activeIndex)}else if(event.key==="Escape"){event.preventDefault();close(true)}else if(event.key==="Tab")close()});
+        document.addEventListener("pointerdown",event=>{if(!select.contains(event.target))close()});const stored=options.findIndex(option=>option.dataset.value===state.place);choose(stored>=0?stored:0,false,false)
       });
-
-      const openModal = () => {
-        lastFocus = document.activeElement;
-        modalBackdrop.hidden = false;
-        document.body.classList.add("modal-open");
-        modal.querySelector("button").focus();
-      };
-      const closeModal = () => {
-        modalBackdrop.hidden = true;
-        document.body.classList.remove("modal-open");
-        if (lastFocus instanceof HTMLElement) lastFocus.focus();
-      };
-
-      modalBackdrop.addEventListener("pointerdown", (event) => {
-        if (event.target === modalBackdrop) closeModal();
-      });
-      modal.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          closeModal();
-        }
-        if (event.key === "Tab") {
-          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
-          const first = focusable[0];
-          const last = focusable[focusable.length - 1];
-          if (event.shiftKey && document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-          } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-          }
-        }
-      });
-
-      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
-      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
-      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
-        closeModal();
-        announce("动作已经确认，状态已写入本机。");
-        setAwake(true);
-      }));
-      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
-      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
-      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
-        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
-        setLevel(next);
-        announce("状态推进到 " + String(next) + "%。");
-      }));
-      awakenButtons.forEach((button) => button.addEventListener("click", () => {
-        const next = !artifact.classList.contains("is-awake");
-        setAwake(next);
-        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
-      }));
-      range.addEventListener("input", () => setLevel(range.value));
-      switchInput.addEventListener("change", () => {
-        setAwake(switchInput.checked);
-        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
-      });
-      textInput.addEventListener("input", save);
-      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
-
-      tabButtons.forEach((button, index) => {
-        button.addEventListener("click", () => activateTab(index));
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
-            event.preventDefault();
-            let next = index;
-            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
-            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
-            if (event.key === "Home") next = 0;
-            if (event.key === "End") next = tabButtons.length - 1;
-            activateTab(next, true);
-          }
-        });
-      });
-
-      if (Number.isFinite(state.range)) setLevel(state.range, false);
-      else setLevel(64, false);
-      if (typeof state.text === "string") textInput.value = state.text;
-      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
-      if (typeof state.mode === "string") {
-        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
-        if (radio) radio.checked = true;
-      }
-      if (Array.isArray(state.checks)) {
-        document.querySelectorAll("[data-check]").forEach((input) => {
-          input.checked = state.checks.includes(input.value);
-        });
-      }
-      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
-      setAwake(Boolean(state.awake || state.enabled), false);
-    })();
-  </script>
+      const openModal=()=>{lastFocus=document.activeElement;modalBackdrop.hidden=false;document.body.classList.add("modal-open");modal.querySelector("button").focus()};
+      const closeModal=()=>{modalBackdrop.hidden=true;document.body.classList.remove("modal-open");if(lastFocus instanceof HTMLElement)lastFocus.focus()};
+      modalBackdrop.addEventListener("pointerdown",event=>{if(event.target===modalBackdrop)closeModal()});
+      modal.addEventListener("keydown",event=>{if(event.key==="Escape"){event.preventDefault();closeModal()}if(event.key==="Tab"){const focusable=Array.from(modal.querySelectorAll("button:not(:disabled)")),first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}}});
+      document.querySelectorAll("[data-scroll-controls]").forEach(button=>button.addEventListener("click",()=>document.querySelector("#controls").scrollIntoView({behavior:reduceMotion?"auto":"smooth"})));
+      awakenButtons.forEach(button=>button.addEventListener("click",()=>{const next=!signature.classList.contains("is-awake");setAwake(next);announce(next?"BITMAP 的招牌装置已进入活动态。":"BITMAP 的招牌装置已经复位。")}));
+      document.querySelectorAll("[data-progress]").forEach(button=>button.addEventListener("click",()=>{const next=Number(range.value)>=92?8:Number(range.value)+12;setLevel(next);announce("ZOOM LEVEL推进到 "+String(next)+"%。")}));
+      document.querySelectorAll("[data-toast]").forEach(button=>button.addEventListener("click",()=>announce("PLEASE WAIT... PIXEL HOURGLASS ACTIVE")));
+      document.querySelectorAll("[data-open-modal]").forEach(button=>button.addEventListener("click",openModal));document.querySelectorAll("[data-close-modal]").forEach(button=>button.addEventListener("click",closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach(button=>button.addEventListener("click",()=>{closeModal();setAwake(true);announce("SAVE CHANGES TO DISK? 已确认。")}));
+      range.addEventListener("input",()=>setLevel(range.value));switchInput.addEventListener("change",()=>{setAwake(switchInput.checked);announce(switchInput.checked?"INVERT SCREEN已经开启。":"INVERT SCREEN已经关闭。")});textInput.addEventListener("input",save);document.querySelectorAll('input[name="bitmap-mode"],[data-check]').forEach(input=>input.addEventListener("change",save));
+      tabButtons.forEach((button,index)=>{button.addEventListener("click",()=>activateTab(index));button.addEventListener("keydown",event=>{if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp","Home","End"].includes(event.key)){event.preventDefault();let next=index;if(event.key==="ArrowRight"||event.key==="ArrowDown")next=(index+1)%tabButtons.length;if(event.key==="ArrowLeft"||event.key==="ArrowUp")next=(index-1+tabButtons.length)%tabButtons.length;if(event.key==="Home")next=0;if(event.key==="End")next=tabButtons.length-1;activateTab(next,true)}})});
+      if(typeof state.text==="string")textInput.value=state.text;if(typeof state.enabled==="boolean")switchInput.checked=state.enabled;if(typeof state.mode==="string"){const mode=Array.from(document.querySelectorAll('input[name="bitmap-mode"]')).find(input=>input.value===state.mode);if(mode)mode.checked=true}if(Array.isArray(state.checks))document.querySelectorAll("[data-check]").forEach(input=>input.checked=state.checks.includes(input.value));
+      setLevel(Number.isFinite(state.level)?state.level:58,false);activateTab(Number.isInteger(state.tab)?state.tab:0,false,false);setAwake(Boolean(state.awake||state.enabled),false)
+    })();</script>
 </body>
 </html>
