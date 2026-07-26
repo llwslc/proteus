@@ -1,3 +1,618 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOTEM / Pattern Loom</title><style>
-@import url('https://fonts.googleapis.com/css2?family=Rye&family=Work+Sans:wght@500;700&display=swap');:root{--bone:#d8c39e;--ochre:#b76832;--indigo:#173c4c;--red:#a84232;--ink:#27271f}*{box-sizing:border-box}body{margin:0;background:var(--indigo);color:var(--ink);font-family:"Work Sans"}button,input,select{font:inherit}.loom{max-width:1400px;margin:auto;background:var(--bone);min-height:100vh}.border{height:45px;background:repeating-linear-gradient(45deg,var(--red) 0 18px,var(--bone) 18px 36px,var(--indigo) 36px 54px,var(--ochre) 54px 72px);border-bottom:6px solid}.nav{height:65px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:3px solid}.nav a{color:inherit}.hero{min-height:570px;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:5vw}.hero h1{font:clamp(65px,10vw,135px)/.76 Rye;color:var(--indigo);text-shadow:5px 5px var(--ochre);margin:20px 0}.hero p{max-width:500px;line-height:1.7}.totem{width:380px;display:grid;grid-template-columns:repeat(5,1fr);border:7px solid;box-shadow:14px 14px var(--red);margin:auto}.totem i{aspect-ratio:1;border:2px solid;background:var(--bone);position:relative}.totem i:nth-child(3n){background:var(--red)}.totem i:nth-child(4n){background:var(--ochre)}.totem i:nth-child(5n){background:var(--indigo)}.totem i:after{content:"";position:absolute;inset:18%;background:var(--ink);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}.workshop{border-top:7px solid;padding:75px 4vw 100px}.workshop h2{font:clamp(45px,7vw,85px) Rye;color:var(--indigo)}.bench{display:grid;grid-template-columns:230px 1fr 290px;gap:18px}.palette,.pattern-editor,.order{border:5px solid;background:#e2cca7;padding:18px;box-shadow:8px 8px var(--red)}.palette button{width:52px;height:52px;border:4px solid;margin:4px}.motif{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:18px}.motif button{width:auto;aspect-ratio:1;background:var(--bone);font-size:30px}.grid{display:grid;grid-template-columns:repeat(12,1fr);border:4px solid}.cell{aspect-ratio:1;border:1px solid #0005;background:var(--bone);cursor:pointer}.cell.indigo{background:var(--indigo)}.cell.red{background:var(--red)}.cell.ochre{background:var(--ochre)}.cell.ink{background:var(--ink)}.pattern-editor footer{display:flex;justify-content:space-between;margin-top:12px}.btn{border:4px solid;background:var(--bone);padding:9px 13px;font-weight:bold;box-shadow:4px 4px}.btn.hot{background:var(--red);color:white}.order label{display:block;font-size:10px;letter-spacing:2px;margin:13px 0}.order input,.order select{display:block;width:100%;border:4px solid;background:var(--bone);padding:9px;margin-top:5px}.order input[type=range]{padding:0;accent-color:var(--indigo)}.queue{margin-top:35px;display:grid;grid-template-columns:repeat(3,1fr);border:4px solid}.job{padding:18px;border-right:4px solid}.job:last-child{border:0}.job b{display:block;font:22px Rye;color:var(--indigo)}@media(max-width:850px){.hero,.bench{grid-template-columns:1fr}.queue{grid-template-columns:1fr}.totem{width:320px}}
-</style></head><body><main class="loom"><div class="border"></div><header class="nav"><b>TOTEM / COMMUNITY LOOM</b><span>WORKSHOP 03 · 128 ROWS</span><a href="index.html">ATLAS ↗</a></header><section class="hero"><article><small>SHAPE · RHYTHM · MEMORY</small><h1>WEAVE THE SYSTEM.</h1><p>A real pattern editor and workshop order queue. Pick dye, paint the loom grid, choose the fibre and send a piece into production.</p></article><div class="totem" id="totem"></div></section><section class="workshop"><h2>Pattern loom / River & Ember</h2><div class="bench"><aside class="palette"><h3>DYE BATHS</h3><button style="background:var(--indigo)" data-color="indigo"></button><button style="background:var(--red)" data-color="red"></button><button style="background:var(--ochre)" data-color="ochre"></button><button style="background:var(--ink)" data-color="ink"></button><h3>MOTIF STAMPS</h3><div class="motif"><button>◆</button><button>▲</button><button>✦</button><button>╳</button><button>●</button><button>◇</button></div></aside><article class="pattern-editor"><div class="grid" id="grid"></div><footer><span id="rowCount">ROW 01 / 12</span><div><button class="btn" id="mirror">MIRROR</button><button class="btn" id="clear">CLEAR</button></div></footer></article><aside class="order"><h3>WORK ORDER</h3><label>PIECE NAME<input value="River & Ember"></label><label>FIBRE<select><option>Indigo wool</option><option>Ochre linen</option></select></label><label>LENGTH / 7M<input type="range" min="1" max="12" value="7"></label><label><input type="checkbox" checked> Mirror border band</label><label><input type="checkbox"> Natural dye only</label><button class="btn hot" id="weave">SEND TO LOOM</button></aside></div><div class="queue"><article class="job"><small>LOOM 01 / ACTIVE</small><b>Sun Ladder</b><span>84% · Ochre linen</span></article><article class="job"><small>LOOM 02 / QUEUED</small><b>River & Ember</b><span id="queueState">Awaiting order</span></article><article class="job"><small>FINISHING / TODAY</small><b>Night Bird</b><span>Wash & fringe</span></article></div></section><div class="border"></div></main><script>const totem=document.querySelector("#totem");for(let i=0;i<35;i++)totem.append(Object.assign(document.createElement("i"),{}));const grid=document.querySelector("#grid");let color="indigo";for(let i=0;i<96;i++){const c=document.createElement("button");c.className="cell";c.onclick=()=>c.className="cell "+color;grid.append(c)}document.querySelectorAll("[data-color]").forEach(b=>b.onclick=()=>color=b.dataset.color);document.querySelector("#clear").onclick=()=>grid.querySelectorAll(".cell").forEach(c=>c.className="cell");document.querySelector("#mirror").onclick=()=>{const cells=[...grid.children];for(let r=0;r<8;r++)for(let c=0;c<6;c++)cells[r*12+11-c].className=cells[r*12+c].className};document.querySelector("#weave").onclick=()=>document.querySelector("#queueState").textContent="Queued · 7m indigo wool";</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>TOTEM · 民艺图腾</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&family=Noto+Sans+SC:wght@400;500;700;900&family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#e0d0aa;--theme-surface:#eee0bd;--theme-surface-2:#c78d52;
+    --theme-ink:#2a251e;--theme-muted:#5f5545;--theme-accent:#b8412c;
+    --theme-accent-2:#213f62;--theme-danger:#9b2d25;--theme-line:#2f3028;
+    --theme-shadow:rgba(61,45,27,.22);--theme-radius:5px;--theme-display:"Rye", "Noto Serif SC", serif;
+    --theme-body:"Noto Sans SC", sans-serif;--theme-mono:"Roboto Slab", serif;
+    --theme-on-accent:#fffdf7;
+    --theme-on-accent-2:#fffdf7;
+    --theme-on-danger:#fffdf7;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+
+      body{background-image:repeating-linear-gradient(0deg,rgba(45,48,40,.045) 0 1px,transparent 1px 5px),repeating-linear-gradient(90deg,rgba(45,48,40,.025) 0 1px,transparent 1px 7px)}
+      .worldbar,.module,.art-stage{border:4px solid var(--line);box-shadow:inset 0 0 0 5px #e7d6af,inset 0 0 0 8px var(--accent2),0 14px 35px var(--shadow)}
+      .module::before{content:"◆ ◇ ◆ ◇ ◆";position:absolute;top:10px;right:16px;color:var(--accent);font-size:.65rem;letter-spacing:.35em}
+      .action,.text-input,.select-trigger{border:3px solid var(--line);clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,10px 100%,0 50%)}.primary{background:var(--accent);color:#fff1d0}.secondary{background:var(--accent2);color:#fff1d0}
+      .choice-mark{border:3px solid var(--line);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border-radius:0}.choice input:checked+.choice-mark::after{border-radius:0;transform:translate(-50%,-50%) rotate(45deg)}
+      .toggle-track{border:3px solid var(--line);border-radius:4px;background:repeating-linear-gradient(90deg,var(--accent2) 0 9px,#e8d7b0 9px 13px)}.toggle-track::after{border:2px solid var(--line);border-radius:2px;background:var(--accent)}
+      .progress-track{border:3px solid var(--line);background:#efe1bd}.progress-fill{background:repeating-linear-gradient(90deg,var(--accent) 0 16px,var(--accent2) 16px 24px,#e9c46a 24px 32px)}
+      .art-stage{background:repeating-linear-gradient(45deg,rgba(33,63,98,.12) 0 7px,transparent 7px 15px),#d7ba83;overflow:hidden}
+      .totem-rays{position:absolute;width:72%;aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(var(--accent2) 0 8deg,transparent 8deg 18deg,var(--accent) 18deg 23deg,transparent 23deg 36deg);animation:totemTurn 24s steps(20) infinite}
+      .totem-mask{position:absolute;width:min(45%,230px);height:62%;background:var(--accent);clip-path:polygon(50% 0,90% 18%,100% 70%,50% 100%,0 70%,10% 18%);z-index:1;border:0;filter:drop-shadow(9px 11px 0 var(--accent2))}
+      .totem-mask::before{content:"";position:absolute;inset:7%;background:#e7d4aa;clip-path:polygon(50% 0,92% 20%,86% 72%,50% 100%,14% 72%,8% 20%)}
+      .totem-mask i{position:absolute;top:32%;width:28%;height:18%;background:var(--accent2);clip-path:polygon(0 20%,100% 0,72% 100%,18% 80%);z-index:2}.totem-mask i:first-child{left:15%}.totem-mask i:nth-child(2){right:15%;transform:scaleX(-1)}
+      .totem-mask span{position:absolute;left:42%;top:49%;width:16%;height:19%;background:var(--accent);clip-path:polygon(50% 0,100% 100%,0 100%);z-index:2}.totem-mask b{position:absolute;left:27%;right:27%;bottom:19%;height:8%;background:repeating-linear-gradient(90deg,var(--accent2) 0 10px,#e7d4aa 10px 14px);z-index:2}
+      .artifact.is-awake .totem-rays{animation-duration:2.2s}@keyframes totemTurn{to{transform:rotate(1turn)}}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">THE FIRESIDE COMMON</span>
+      <span class="worldbar-state">第六织带 · 鼓点与炉火同步</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">10 / TOTEM · Folk craft</p>
+        <h1 id="hero-title">让纹样记住故事</h1>
+        <p class="lede">赭石、靛蓝与骨白在织线里相遇。每一次选择都是一道重复的节拍，最终拼成属于共同体的图腾。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>加入围舞</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">转动纹样</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="民艺图腾招牌装置">
+
+      <div class="totem-mask" aria-hidden="true"><i></i><i></i><span></span><b></b></div>
+      <div class="totem-rays" aria-hidden="true"></div>
+      <div class="artifact-caption"><span>纹样 VI</span><strong>火种守望者</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">CONTROL COLLECTION / TOTEM</p>
+        <h2>世界内控件</h2>
+      </div>
+      <p>每件控件都从「民艺图腾」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">ACTION / 五种动作</p>
+        <h3 class="module-title" id="buttons-title">行动指令</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>加入围舞</button>
+          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">转动纹样</button>
+          <button class="action danger" type="button" data-toast>触发警示</button>
+          <button class="action" type="button" disabled>权限未开放</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">IDENTITY / 输入与选择</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">识别铭牌</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="刻下你的部落称号">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-totem">当前区域</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-totem select-value-totem">
+              <span id="select-value-totem" class="select-value">赭石火塘</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-totem" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="赭石火塘" aria-selected="true">赭石火塘</li><li class="select-option" role="option" tabindex="-1" data-value="靛蓝织屋" aria-selected="false">靛蓝织屋</li><li class="select-option" role="option" tabindex="-1" data-value="朱砂谷仓" aria-selected="false">朱砂谷仓</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">STATE / 单选、复选与开关</p>
+        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种模式</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="晨火步" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>晨火步</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="河流步">
+          <span class="choice-mark" aria-hidden="true"></span><span>河流步</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="归巢步">
+          <span class="choice-mark" aria-hidden="true"></span><span>归巢步</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">附加记录</legend>
+          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
+          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="持续唤醒">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">CALIBRATION / 连续量</p>
+        <h3 class="module-title" id="range-title">围舞节拍</h3>
+        <div class="range-row">
+          <input class="range" id="range-totem" type="range" min="0" max="100" value="64" aria-label="围舞节拍" data-range>
+          <output class="range-output" for="range-totem">64 拍</output>
+        </div>
+        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">ARCHIVE / 标签页</p>
+        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-totem-0" aria-controls="panel-totem-0" aria-selected="true" tabindex="0">歌</button><button class="tab" type="button" role="tab" id="tab-totem-1" aria-controls="panel-totem-1" aria-selected="false" tabindex="-1">纹</button><button class="tab" type="button" role="tab" id="tab-totem-2" aria-controls="panel-totem-2" aria-selected="false" tabindex="-1">路</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-totem-0" aria-labelledby="tab-totem-0">
+          <h4>领唱已经起调</h4><p>第一句从火塘边传出，第二句会由最远处的人接住。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-totem-1" aria-labelledby="tab-totem-1" hidden>
+          <h4>织带完成第六次重复</h4><p>鸟、种子与河流保持对称，中心只留一枚朱砂太阳。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-totem-2" aria-labelledby="tab-totem-2" hidden>
+          <h4>脚印朝向山口</h4><p>三段节拍对应三处路标，归来时从反方向读起。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">MEASURE / 量表与反馈</p>
+        <h3 class="module-title" id="measure-title">读取当前状态</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="围舞节拍" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64 拍</span>
+          </div>
+          <div class="measure-copy">
+            <strong>围舞节拍保持在可控区间</strong>
+            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-totem">悬停查看注记</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-totem">注记会在悬停或键盘聚焦时出现。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">TOTEM / 被反复讲述的故事，终会长成纹样。</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-totem">
+      <p class="module-kicker">CONFIRM / TOTEM</p>
+      <h2 id="modal-title-totem">确认执行这项动作？</h2>
+      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
+        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-totem";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + " 拍";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + " 拍";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("动作已经确认，状态已写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("状态推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>

@@ -1,7 +1,625 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BRASS / Atmospheric Works</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Roboto+Slab:wght@400;700&family=Share+Tech+Mono&display=swap');
-:root{--iron:#171512;--brass:#c58c3e;--gold:#e0c17d;--copper:#9d4e29;--green:#538277;--cream:#e6d4aa}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#44382d,#141311 55%);color:var(--cream);font-family:"Roboto Slab"}button,input,select{font:inherit}.bar{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:5px ridge var(--brass);background:#1a1713;position:sticky;top:0;z-index:10}.bar b{font:28px "IM Fell English SC";color:var(--gold)}.bar a{color:inherit;font:10px "Share Tech Mono"}.hero{min-height:700px;padding:50px 5vw;display:grid;grid-template-columns:1fr 1.2fr;align-items:center}.copy h1{font:clamp(65px,10vw,140px)/.76 "IM Fell English SC";color:var(--gold);margin:20px 0}.copy p{max-width:500px;color:#b2a184;line-height:1.7}.plate{font:10px "Share Tech Mono";letter-spacing:3px;color:var(--green)}.engine{height:560px;border:8px ridge var(--brass);background:#201c18;position:relative;box-shadow:inset 0 0 60px #000,20px 30px 40px #0007;display:grid;place-items:center}.boiler{width:180px;height:330px;border-radius:80px 80px 20px 20px;background:linear-gradient(90deg,#55331e,#c57837,#e0a05a,#6d3c20);border:6px ridge var(--brass);position:relative}.boiler:before{content:"";position:absolute;left:35px;right:35px;top:-60px;height:70px;background:#a95b2d;border:5px ridge var(--brass)}.gauge{position:absolute;width:150px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#e4d0a1 0 58%,#34251b 59% 65%,#bb843f 66%);top:70px;left:-115px}.needle{position:absolute;width:45%;height:4px;background:#8a221b;top:50%;right:50%;transform-origin:right;transform:rotate(-35deg);transition:1s}.hub{position:absolute;width:18px;height:18px;border-radius:50%;background:#392519;left:calc(50% - 9px);top:calc(50% - 9px)}.gear{position:absolute;border:16px dotted var(--brass);border-radius:50%;width:145px;height:145px;right:-95px;bottom:60px;animation:turn 12s linear infinite}.steam{position:absolute;top:5%;right:12%;font-size:80px;opacity:.25;filter:blur(5px)}.master{border:5px ridge var(--brass);background:#2b2017;color:var(--gold);padding:13px 20px;cursor:pointer}.running .needle{transform:rotate(38deg)}.running .gear{animation-duration:2s}.running .steam{opacity:.8}.works{padding:85px 4vw;background:#12110f;border-top:8px ridge var(--brass)}.works h2{font:clamp(48px,7vw,90px) "IM Fell English SC";color:var(--gold);text-align:center}.floor{max-width:1250px;margin:auto;display:grid;grid-template-columns:270px 1fr 300px;gap:18px}.cabinet{border:6px ridge #8d6133;background:#211c17;padding:20px;box-shadow:inset 0 0 30px #000}.cabinet h3{font:24px "IM Fell English SC";color:var(--gold);border-bottom:1px solid #71502f;padding-bottom:10px}.valve{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #60462e;padding:13px 0;font:11px "Share Tech Mono"}.valve input{appearance:none;width:48px;height:25px;border:4px ridge var(--brass);border-radius:20px;background:#100e0c;position:relative}.valve input:after{content:"";position:absolute;width:15px;height:15px;border-radius:50%;background:#76512d;left:2px;top:1px}.valve input:checked:after{left:24px;background:var(--green);box-shadow:0 0 8px var(--green)}.schematic{height:320px;border:1px solid #694c31;position:relative;background:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:25px 25px}.pipe{position:absolute;border:9px solid var(--copper);border-left:0;width:68%;height:55%;left:10%;top:20%;border-radius:0 70px 70px 0}.station{position:absolute;width:70px;height:70px;border-radius:50%;border:6px ridge var(--brass);background:#24201a;display:grid;place-items:center;font:10px "Share Tech Mono"}.s1{left:5%;top:38%}.s2{right:15%;top:10%}.s3{right:15%;bottom:8%}.flow{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);left:21%;top:48%;animation:flow 3s linear infinite}.control-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.field{font:9px "Share Tech Mono";color:#ac926b}.field input,.field select{display:block;width:100%;margin-top:6px;border:3px inset #765632;background:#100f0d;color:var(--cream);padding:9px}.field input[type=range]{padding:0;accent-color:var(--copper)}.log{font:11px/1.7 "Share Tech Mono";color:#9b8768}.log li{border-bottom:1px solid #543d29;padding:8px}.log b{color:var(--green)}.ledger{max-width:1250px;margin:35px auto 0;border:6px ridge #8d6133;background:#211c17;padding:20px}.ledger table{width:100%;border-collapse:collapse;font:11px "Share Tech Mono"}.ledger th,.ledger td{text-align:left;padding:11px;border-bottom:1px solid #60452d}.ok{color:var(--green)}dialog{background:#211a14;color:var(--cream);border:8px ridge var(--brass);padding:35px;width:min(460px,90vw)}dialog::backdrop{background:#000c}dialog h3{font:36px "IM Fell English SC";color:var(--gold)}.buttons{display:flex;gap:10px;flex-wrap:wrap}.buttons button{border:4px ridge var(--brass);background:#2b2017;color:var(--cream);padding:10px 15px}.buttons .hot{background:var(--copper)}@keyframes turn{to{transform:rotate(360deg)}}@keyframes flow{to{left:72%}}@media(max-width:900px){.hero,.floor{grid-template-columns:1fr}.engine{height:500px}.cabinet{min-height:auto}}
-</style></head><body><header class="bar"><b>BRASS ATMOSPHERIC WORKS</b><span class="plate">SHIFT 03 / PRESSURE NOMINAL</span><a href="index.html">ATLAS ↗</a></header><main><section class="hero"><article class="copy"><span class="plate">PATENT №01887–B</span><h1>MAKE THE FUTURE BY HAND.</h1><p>A live mechanical works, not a gallery of button specimens. Open the feed lines, set the governor, route steam through the floor and sign the service ledger.</p><button class="master" id="master">ENGAGE THE WORKS</button></article><div class="engine" id="engine"><span class="steam">☁</span><div class="boiler"><div class="gauge"><i class="needle"></i><i class="hub"></i></div><i class="gear"></i></div></div></section>
-<section class="works"><h2>ENGINE HALL / №7</h2><div class="floor"><aside class="cabinet"><h3>Valve Cabinet</h3><label class="valve">MAIN FEED<input type="checkbox" checked></label><label class="valve">CONDENSER<input type="checkbox" checked></label><label class="valve">AUXILIARY<input type="checkbox"></label><label class="valve">SAFETY VENT<input type="checkbox"></label><button class="master" id="vent">VENT PRESSURE</button></aside><article class="cabinet"><h3>Steam Routing Diagram</h3><div class="schematic"><i class="pipe"></i><i class="flow"></i><span class="station s1">BOILER</span><span class="station s2">DRIVE</span><span class="station s3">RETURN</span></div><div class="control-grid"><label class="field">GOVERNOR / <output id="rpm">1240</output> RPM<input id="governor" type="range" min="600" max="1800" value="1240"></label><label class="field">OUTPUT SHAFT<select><option>LINE A / EAST</option><option>LINE B / NORTH</option></select></label><label class="field">ENGINEER<input value="A. FINCH"></label><button class="master" id="service">LOG SERVICE</button></div></article><aside class="cabinet"><h3>Shift Log</h3><ol class="log" id="log"><li><b>08:42</b> Main feed stable</li><li><b>08:31</b> Turbine at 1,240 RPM</li><li><b>08:14</b> Copper junction sealed</li></ol><div class="gauge" style="position:relative;left:auto;top:auto;margin:25px auto"><i class="needle"></i><i class="hub"></i></div></aside></div><section class="ledger"><h3 class="plate">MACHINERY LEDGER / INSTALLATIONS</h3><table><thead><tr><th>WORKS №</th><th>INSTRUMENT</th><th>ENGINEER</th><th>PRESSURE</th><th>STATE</th></tr></thead><tbody><tr><td>B–007</td><td>Atmospheric turbine</td><td>A. Finch</td><td>76 PSI</td><td class="ok">NOMINAL</td></tr><tr><td>B–012</td><td>Auxiliary condenser</td><td>M. Bell</td><td>42 PSI</td><td>STANDBY</td></tr></tbody></table><div class="buttons" style="margin-top:18px"><button id="certify">CERTIFY SHIFT</button><button class="hot" id="shutdown">ORDER SHUTDOWN</button></div></section></section></main>
-<dialog id="shutdownDialog"><span class="plate">MASTER AUTHORITY</span><h3>Order a complete shutdown?</h3><p>All feed valves will close and the turbine will coast to rest.</p><div class="buttons"><button data-close>KEEP RUNNING</button><button class="hot" data-confirm>SHUT DOWN</button></div></dialog><script>const engine=document.querySelector("#engine"),master=document.querySelector("#master"),dlg=document.querySelector("#shutdownDialog");master.onclick=()=>{engine.classList.toggle("running");master.textContent=engine.classList.contains("running")?"WORKS ENGAGED":"ENGAGE THE WORKS"};document.querySelector("#governor").oninput=e=>document.querySelector("#rpm").value=e.target.value;document.querySelector("#service").onclick=()=>{const li=document.createElement("li");li.innerHTML="<b>NOW</b> Service entry signed";document.querySelector("#log").prepend(li)};document.querySelector("#vent").onclick=()=>engine.classList.remove("running");document.querySelector("#shutdown").onclick=()=>dlg.showModal();document.querySelector("[data-close]").onclick=()=>dlg.close();document.querySelector("[data-confirm]").onclick=()=>{engine.classList.remove("running");dlg.close()};</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>BRASS · 蒸汽朋克</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Libre+Baskerville:wght@400;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#171512;--theme-surface:#2a241d;--theme-surface-2:#3a3024;
+    --theme-ink:#f4e4bd;--theme-muted:#c7b287;--theme-accent:#dba63c;
+    --theme-accent-2:#4fa58e;--theme-danger:#c65d3c;--theme-line:#8d6830;
+    --theme-shadow:rgba(219,166,60,.2);--theme-radius:10px;--theme-display:"Cinzel", "Noto Serif SC", serif;
+    --theme-body:"Libre Baskerville", "Noto Serif SC", serif;--theme-mono:"Roboto Mono", monospace;
+    --theme-on-accent:#080808;
+    --theme-on-accent-2:#080808;
+    --theme-on-danger:#080808;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+
+      body{background-image:radial-gradient(circle at 18% 15%,rgba(219,166,60,.08),transparent 28%),linear-gradient(90deg,transparent 49.8%,rgba(219,166,60,.025) 50%,transparent 50.2%)}
+      body::before{opacity:.24;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E")}
+      .worldbar,.module,.art-stage{border:4px ridge #b88434;box-shadow:inset 0 0 0 2px #3b2c18,inset 0 0 24px rgba(219,166,60,.08),0 14px 35px rgba(0,0,0,.28)}
+      .worldbar::before,.module::before,.worldbar::after,.module::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe09a,#9a641c 55%,#2b1b0c);box-shadow:0 1px 2px #000}
+      .worldbar::before,.module::before{left:7px;top:7px}.worldbar::after,.module::after{right:7px;bottom:7px}
+      .action,.text-input,.select-trigger{border:3px outset #b98537;background-image:linear-gradient(180deg,rgba(255,255,255,.08),transparent 48%,rgba(0,0,0,.14))}
+      .action:active{border-style:inset}.primary{color:#20170b;text-shadow:0 1px rgba(255,255,255,.35)}
+      .toggle-track{border:3px inset #9f7330;background:#211b15}.toggle-track::after{background:linear-gradient(135deg,#ffdc85,#8d581b);border:2px solid #53310d}
+      .range::-webkit-slider-thumb{border:5px double #5f3f15;background:radial-gradient(circle,#e0b75c,#8c5f20)}
+      .progress-track{border:2px inset #89662f}.progress-fill{background:repeating-linear-gradient(135deg,#c8892b 0 8px,#f2c765 8px 16px)}
+      .art-stage{background:radial-gradient(circle at 50% 45%,#51412b,#211c17 62%,#11100e);overflow:hidden}
+      .brass-gauge{position:absolute;width:min(55%,260px);aspect-ratio:1;border:12px ridge #bd8732;border-radius:50%;background:radial-gradient(circle,#e4d2a9 0 62%,#6b4920 63% 68%,#22170d 69%);box-shadow:0 18px 28px #080603,0 0 0 3px #241507}
+      .brass-gauge::before{content:"";position:absolute;inset:18%;border-radius:50%;background:repeating-conic-gradient(from 225deg,#392616 0 1deg,transparent 1deg 12deg);mask:radial-gradient(circle,transparent 0 70%,#000 71%)}
+      .brass-gauge span{position:absolute;width:7px;height:34%;left:calc(50% - 3px);bottom:50%;background:linear-gradient(#843523,#3f130d);transform-origin:50% 100%;transform:rotate(calc(-55deg + var(--level, .64)*110deg));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+      .brass-gauge span::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:#5b3512;bottom:-11px;left:-7px;border:3px solid #d0a04a}
+      .brass-gauge b{position:absolute;left:0;right:0;bottom:20%;text-align:center;color:#49341e;font:700 .7rem var(--font-mono)}
+      .brass-gear{position:absolute;border:10px dotted #a66f23;border-radius:50%;box-shadow:inset 0 0 0 5px #513311}.gear-a{width:130px;height:130px;left:5%;top:9%;animation:gearTurn 14s linear infinite}.gear-b{width:92px;height:92px;right:7%;bottom:14%;animation:gearTurn 9s linear reverse infinite}
+      .steam{position:absolute;right:12%;top:8%;display:flex;gap:10px}.steam i{width:12px;height:82px;border-radius:50%;border-left:5px solid rgba(244,228,189,.12);filter:blur(2px);animation:steamRise 3s ease-in-out infinite}.steam i:nth-child(2){animation-delay:.8s}.steam i:nth-child(3){animation-delay:1.5s}
+      .artifact.is-awake .brass-gear{animation-duration:2s}@keyframes gearTurn{to{transform:rotate(1turn)}}@keyframes steamRise{50%{transform:translateY(-18px) scaleX(1.6);opacity:.25}}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">BELLWEATHER AETHER WORKS</span>
+      <span class="worldbar-state">锅炉室 B · 蒸汽压处于公差内</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">03 / BRASS · Steampunk</p>
+        <h1 id="hero-title">让黄铜替你思考</h1>
+        <p class="lede">来自贝尔韦瑟工坊的以太调度台。拨动阀门、分配动力，在齿轮吻合的咔哒声里启动下一段旅程。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>注入蒸汽</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">校准压力表</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="蒸汽朋克招牌装置">
+
+      <div class="brass-gear gear-a" aria-hidden="true"></div>
+      <div class="brass-gear gear-b" aria-hidden="true"></div>
+      <div class="brass-gauge" aria-hidden="true"><span></span><i></i><b>PSI</b></div>
+      <div class="steam" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="artifact-caption"><span>MK IV</span><strong>以太压力核心</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">CONTROL COLLECTION / BRASS</p>
+        <h2>世界内控件</h2>
+      </div>
+      <p>每件控件都从「蒸汽朋克」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">ACTION / 五种动作</p>
+        <h3 class="module-title" id="buttons-title">行动指令</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>注入蒸汽</button>
+          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">校准压力表</button>
+          <button class="action danger" type="button" data-toast>触发警示</button>
+          <button class="action" type="button" disabled>权限未开放</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">IDENTITY / 输入与选择</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">识别铭牌</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="刻入机械批号">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-brass">当前区域</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-brass select-value-brass">
+              <span id="select-value-brass" class="select-value">飞艇主机舱</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-brass" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="飞艇主机舱" aria-selected="true">飞艇主机舱</li><li class="select-option" role="option" tabindex="-1" data-value="东塔传动室" aria-selected="false">东塔传动室</li><li class="select-option" role="option" tabindex="-1" data-value="铜绿冷凝站" aria-selected="false">铜绿冷凝站</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">STATE / 单选、复选与开关</p>
+        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种模式</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="巡航齿比" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>巡航齿比</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="攀升齿比">
+          <span class="choice-mark" aria-hidden="true"></span><span>攀升齿比</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="紧急逆转">
+          <span class="choice-mark" aria-hidden="true"></span><span>紧急逆转</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">附加记录</legend>
+          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
+          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="持续唤醒">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">CALIBRATION / 连续量</p>
+        <h3 class="module-title" id="range-title">锅炉安全压力</h3>
+        <div class="range-row">
+          <input class="range" id="range-brass" type="range" min="0" max="100" value="64" aria-label="锅炉安全压力" data-range>
+          <output class="range-output" for="range-brass">64 PSI</output>
+        </div>
+        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">ARCHIVE / 标签页</p>
+        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-brass-0" aria-controls="panel-brass-0" aria-selected="true" tabindex="0">锅炉</button><button class="tab" type="button" role="tab" id="tab-brass-1" aria-controls="panel-brass-1" aria-selected="false" tabindex="-1">齿轮</button><button class="tab" type="button" role="tab" id="tab-brass-2" aria-controls="panel-brass-2" aria-selected="false" tabindex="-1">航程</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-brass-0" aria-labelledby="tab-brass-0">
+          <h4>火室燃烧均匀</h4><p>三号炉膛温度稳定，铜管里没有听见异常水锤。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-brass-1" aria-labelledby="tab-brass-1" hidden>
+          <h4>主轴啮合完成</h4><p>十二枚黄铜齿轮已归零，差速机构保持每分 80 转。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-brass-2" aria-labelledby="tab-brass-2" hidden>
+          <h4>晨雾适合启航</h4><p>气囊浮力足以越过东塔，预计十七点抵达云港。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">MEASURE / 量表与反馈</p>
+        <h3 class="module-title" id="measure-title">读取当前状态</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="锅炉安全压力" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64 PSI</span>
+          </div>
+          <div class="measure-copy">
+            <strong>锅炉安全压力保持在可控区间</strong>
+            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-brass">悬停查看注记</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-brass">注记会在悬停或键盘聚焦时出现。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">BRASS / 每一枚铆钉都签过工程师的名字。</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-brass">
+      <p class="module-kicker">CONFIRM / BRASS</p>
+      <h2 id="modal-title-brass">确认执行这项动作？</h2>
+      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
+        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-brass";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + " PSI";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + " PSI";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("动作已经确认，状态已写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("状态推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>

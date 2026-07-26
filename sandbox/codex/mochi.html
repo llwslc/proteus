@@ -1,3 +1,619 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MOCHI / Soft Bakery</title><style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@600;800&display=swap');:root{--cream:#fff1e3;--brown:#523b35;--pink:#ee86a5;--blue:#83cde0;--yellow:#f4cb69;--mint:#8bd4bc}*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--brown);font-family:Nunito}button,input,select{font:inherit}.nav{height:68px;margin:16px 3vw;border-radius:25px;box-shadow:8px 8px 16px #d8bfac,-7px -7px 16px white;display:flex;align-items:center;justify-content:space-between;padding:0 22px}.nav a{color:inherit}.hero{min-height:550px;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:4vw}.hero h1{font:800 clamp(70px,11vw,150px)/.74 "Baloo 2";letter-spacing:-.07em;text-shadow:0 8px white,0 13px #e8cfc0}.hero h1 span{display:block;color:var(--pink)}.mochi{width:360px;height:310px;border-radius:48% 48% 40% 40%;background:linear-gradient(145deg,#ffafc4,#dc6f91);box-shadow:inset 20px 20px 30px #ffd7e2,inset -20px -25px 30px #ad4d6c,16px 22px 30px #9c6a7460;margin:auto;position:relative;transition:.3s}.mochi:before,.mochi:after{content:"";position:absolute;top:45%;width:26px;height:35px;border-radius:50%;background:var(--brown);box-shadow:inset 7px 7px white}.mochi:before{left:29%}.mochi:after{right:29%}.squish{transform:scaleX(1.17) scaleY(.72) translateY(55px)}.bakery{padding:75px 4vw 110px}.bakery h2{font:800 clamp(48px,7vw,90px) "Baloo 2"}.counter{display:grid;grid-template-columns:1fr 330px;gap:25px}.builder{border-radius:38px;box-shadow:10px 10px 22px #d4baa7,-8px -8px 20px white;padding:25px}.flavours{display:flex;gap:12px}.flavour{width:70px;height:70px;border:0;border-radius:50%;box-shadow:inset 8px 8px 12px #fff8,5px 7px 12px #a8897855}.flavour.active{outline:5px solid white;box-shadow:0 0 0 8px var(--brown)}.order-line{display:grid;grid-template-columns:120px 1fr auto;align-items:center;padding:15px;border-bottom:2px dashed #d5bba8}.order-line input{width:70px;border:0;border-radius:99px;padding:8px;text-align:center;box-shadow:inset 3px 3px 7px #d5bca9}.box{border-radius:35px;background:#f6ddca;box-shadow:inset 6px 6px 12px #d3b9a7;padding:22px}.box label{display:block;margin:12px 0;font-weight:bold}.box input,.box select{width:100%;border:0;border-radius:99px;padding:11px;box-shadow:inset 4px 4px 8px #d4baa7}.pill{border:0;border-radius:99px;background:var(--cream);color:inherit;padding:12px 18px;font-weight:bold;box-shadow:5px 5px 10px #d4baa7,-4px -4px 10px white;margin:5px}.pill.hot{background:var(--pink);color:white}.queue{margin-top:35px;display:flex;gap:15px;overflow:auto}.ticket{min-width:250px;border-radius:25px;background:#f9e6d6;padding:18px;box-shadow:6px 8px 14px #d0b5a3}.ticket b{font:25px "Baloo 2";display:block}.ticket span{display:inline-block;border-radius:99px;background:var(--mint);padding:5px 9px;font-size:10px}@media(max-width:800px){.hero,.counter{grid-template-columns:1fr}.mochi{width:300px}.flavours{flex-wrap:wrap}}
-</style></head><body><header class="nav"><b>MOCHI LAB ◡̈ / ORDER COUNTER</b><span>DAILY FRESH · 48 BAKED</span><a href="index.html">ATLAS ↗</a></header><main><section class="hero"><article><small>SOFT BAKERY OPERATING SYSTEM</small><h1>BUILD A<span>SOFTER BITE.</span></h1><p>Configure a box, choose flavours, adjust quantities and send a real order into the bakery queue.</p><button class="pill hot" id="poke">POKE THE MOCHI</button></article><div class="mochi" id="mochi"></div></section><section class="bakery"><h2>Build today's box</h2><div class="counter"><article class="builder"><h3>1. CHOOSE FLAVOURS</h3><div class="flavours"><button class="flavour active" style="background:var(--pink)" data-flavour="Strawberry cloud"></button><button class="flavour" style="background:var(--mint)" data-flavour="Matcha cream"></button><button class="flavour" style="background:var(--yellow)" data-flavour="Mango custard"></button><button class="flavour" style="background:var(--blue)" data-flavour="Soda sparkle"></button></div><h3>2. FILL THE BOX</h3><div class="order-line"><b id="flavourName">Strawberry</b><span>Soft pink shell / berry center</span><input type="number" min="0" value="6"></div><div class="order-line"><b>Matcha</b><span>Green tea shell / cream center</span><input type="number" min="0" value="4"></div><div class="order-line"><b>Mango</b><span>Yellow shell / custard center</span><input type="number" min="0" value="2"></div><p><button class="pill">+ ADD FLAVOUR</button><button class="pill">RANDOM MIX ✦</button></p></article><aside class="box"><h3>3. PACK & SEND</h3><label>BOX STYLE<select><option>Soft pink / 12</option><option>Sky blue / 12</option></select></label><label>NAME ON FLAG<input value="For Mina ♡"></label><label><input type="checkbox" checked> Rainbow sprinkles</label><label><input type="checkbox"> Extra cold pack</label><hr><b>12 PIECES　¥2,480</b><button class="pill hot" id="order">SEND TO BAKERY</button></aside></div><div class="queue" id="queue"><article class="ticket"><small>ORDER #1041</small><b>Matcha mix / 06</b><span>READY</span></article><article class="ticket"><small>ORDER #1042</small><b>Cloudberry / 12</b><span>COOLING</span></article></div></section></main><script>const m=document.querySelector("#mochi");function poke(){m.classList.add("squish");setTimeout(()=>m.classList.remove("squish"),350)}m.onclick=poke;document.querySelector("#poke").onclick=poke;document.querySelectorAll(".flavour").forEach(f=>f.onclick=()=>{document.querySelectorAll(".flavour").forEach(x=>x.classList.remove("active"));f.classList.add("active");document.querySelector("#flavourName").textContent=f.dataset.flavour});document.querySelector("#order").onclick=()=>{const t=document.createElement("article");t.className="ticket";t.innerHTML="<small>ORDER #1043</small><b>Custom mix / 12</b><span>QUEUED</span>";document.querySelector("#queue").append(t);document.querySelector("#order").textContent="ORDER QUEUED ✓"};</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>MOCHI · 软陶泡芙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#f7efe4;--theme-surface:#fff8ef;--theme-surface-2:#f3d9dc;
+    --theme-ink:#49372f;--theme-muted:#78645a;--theme-accent:#f39ab5;
+    --theme-accent-2:#87cde0;--theme-danger:#d96b78;--theme-line:#e0cfc0;
+    --theme-shadow:rgba(117,76,55,.18);--theme-radius:32px;--theme-display:"Baloo 2", "M PLUS Rounded 1c", sans-serif;
+    --theme-body:"M PLUS Rounded 1c", sans-serif;--theme-mono:"Baloo 2", sans-serif;
+    --theme-on-accent:#080808;
+    --theme-on-accent-2:#080808;
+    --theme-on-danger:#080808;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+
+      body{background-image:radial-gradient(circle at 12% 12%,rgba(243,154,181,.18) 0 5px,transparent 6px),radial-gradient(circle at 83% 18%,rgba(135,205,224,.2) 0 4px,transparent 5px);background-size:110px 110px,130px 130px}
+      .worldbar,.module,.art-stage{border:0;box-shadow:10px 12px 24px rgba(124,87,67,.13),-8px -8px 20px rgba(255,255,255,.82),inset 4px 4px 8px rgba(255,255,255,.66),inset -5px -6px 10px rgba(154,106,80,.08)}
+      .module::after{content:"";position:absolute;right:18px;top:15px;width:12px;height:12px;border-radius:50%;background:#ffd36f;box-shadow:16px 6px 0 #87cde0,7px 18px 0 #f39ab5}
+      .action,.text-input,.select-trigger{border:0;border-radius:999px;box-shadow:7px 8px 14px rgba(113,74,53,.16),-5px -5px 12px #fff,inset 3px 4px 5px rgba(255,255,255,.7),inset -4px -5px 8px rgba(140,95,70,.09)}.action:active{transform:scale(.92,.84);box-shadow:inset 5px 7px 12px rgba(118,76,54,.22)}.primary{background:var(--accent);color:#4b302c}.secondary{background:var(--accent2)}.quiet{background:#ffe080}
+      .choice-mark{border:0;box-shadow:inset 3px 4px 7px rgba(119,78,55,.18),3px 3px 6px #fff;background:#f1e2d5}.toggle-track{border:0;background:#ead8ca;box-shadow:inset 4px 5px 8px rgba(114,73,52,.2)}.toggle-track::after{background:#fff4e6;box-shadow:4px 5px 8px rgba(112,73,51,.2),inset -4px -5px 7px rgba(150,100,70,.08)}
+      .progress-track{border:0;background:#ead8cb;box-shadow:inset 4px 5px 8px rgba(113,73,53,.16)}.progress-fill{background:linear-gradient(90deg,#f39ab5,#ffd86f,#87cde0);box-shadow:inset 0 3px 4px rgba(255,255,255,.5)}
+      .gauge{box-shadow:10px 12px 20px rgba(116,76,55,.15),-8px -8px 18px #fff,inset 0 0 0 10px rgba(255,255,255,.5)}
+      .art-stage{background:#f8e9dc;overflow:hidden}
+      .mochi-puff{position:absolute;width:min(55%,280px);aspect-ratio:1;background:radial-gradient(circle at 35% 25%,#ffd9e3,#f29ab6 62%,#df7e9b);border-radius:46% 54% 48% 52%/51% 43% 57% 49%;box-shadow:inset 16px 18px 18px rgba(255,255,255,.5),inset -16px -18px 20px rgba(146,75,95,.15),0 22px 28px rgba(105,64,54,.18);animation:mochiBreathe 4s ease-in-out infinite}
+      .mochi-puff::before{content:"";position:absolute;left:21%;right:21%;top:-13%;height:38%;background:#fff4e9;border-radius:50% 50% 38% 40%;box-shadow:inset -7px -9px 10px rgba(150,105,80,.08)}.mochi-puff::after{content:"";position:absolute;right:-4%;top:36%;width:21%;height:25%;background:var(--bg);border-radius:50% 0 0 50%;box-shadow:inset 6px 0 7px rgba(110,70,50,.08)}
+      .mochi-puff i{position:absolute;top:47%;width:16px;height:22px;background:#49372f;border-radius:50%;z-index:2}.mochi-puff i:first-child{left:32%}.mochi-puff i:nth-child(2){right:32%}.mochi-puff span{position:absolute;left:43%;top:61%;width:14%;height:8%;border-bottom:4px solid #49372f;border-radius:50%;z-index:2}.mochi-puff b{position:absolute;left:22%;top:62%;width:18px;height:10px;background:#e9819d;border-radius:50%;box-shadow:145px 0 #e9819d}
+      .mochi-cream{position:absolute;width:48%;height:18%;bottom:16%;background:#fff7ed;border-radius:50%;filter:drop-shadow(0 9px 8px rgba(92,57,42,.12))}
+      .mochi-sprinkles{position:absolute;inset:0}.mochi-sprinkles i{position:absolute;width:16px;height:5px;border-radius:5px;background:#ffd35f;transform:rotate(var(--r));left:var(--x);top:var(--y)}.mochi-sprinkles i:nth-child(1){--x:15%;--y:23%;--r:30deg}.mochi-sprinkles i:nth-child(2){--x:76%;--y:18%;--r:-20deg;background:#87cde0}.mochi-sprinkles i:nth-child(3){--x:83%;--y:62%;--r:44deg}.mochi-sprinkles i:nth-child(4){--x:12%;--y:70%;--r:-45deg;background:#f39ab5}.mochi-sprinkles i:nth-child(5){--x:70%;--y:82%;--r:10deg;background:#f39ab5}.mochi-sprinkles i:nth-child(6){--x:25%;--y:84%;--r:-5deg;background:#87cde0}
+      .artifact.is-awake .mochi-puff{animation:mochiSquish .75s cubic-bezier(.2,1.6,.4,1)}@keyframes mochiBreathe{50%{transform:translateY(-6px) scale(1.02)}}@keyframes mochiSquish{35%{transform:scale(1.12,.72)}65%{transform:scale(.92,1.12)}}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">MOCHI PUFF KITCHEN</span>
+      <span class="worldbar-state">OVEN WARM · 12 PUFFS FEELING HAPPY</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">15 / MOCHI · Claymorphic squish</p>
+        <h1 id="hero-title">捏一下，心情会回弹</h1>
+        <p class="lede">奶油色厨房里刚出炉一批软陶泡芙。每个控件都胖乎乎、没有锐角，还带一点按下去会瘪的勇气。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>捏一颗泡芙</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">撒上糖针</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="软陶泡芙招牌装置">
+
+      <div class="mochi-puff" aria-hidden="true"><i></i><i></i><span></span><b></b></div>
+      <div class="mochi-cream" aria-hidden="true"></div>
+      <div class="mochi-sprinkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="artifact-caption"><span>BAKE 12</span><strong>草莓云朵泡芙</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">CONTROL COLLECTION / MOCHI</p>
+        <h2>世界内控件</h2>
+      </div>
+      <p>每件控件都从「软陶泡芙」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">ACTION / 五种动作</p>
+        <h3 class="module-title" id="buttons-title">行动指令</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>捏一颗泡芙</button>
+          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">撒上糖针</button>
+          <button class="action danger" type="button" data-toast>触发警示</button>
+          <button class="action" type="button" disabled>权限未开放</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">IDENTITY / 输入与选择</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">识别铭牌</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="给新口味取个软软的名字">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-mochi">当前区域</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-mochi select-value-mochi">
+              <span id="select-value-mochi" class="select-value">奶油工作台</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-mochi" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="奶油工作台" aria-selected="true">奶油工作台</li><li class="select-option" role="option" tabindex="-1" data-value="马卡龙烤箱" aria-selected="false">马卡龙烤箱</li><li class="select-option" role="option" tabindex="-1" data-value="可可冷却架" aria-selected="false">可可冷却架</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">STATE / 单选、复选与开关</p>
+        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种模式</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="草莓云朵" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>草莓云朵</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="蓝莓牛奶">
+          <span class="choice-mark" aria-hidden="true"></span><span>蓝莓牛奶</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="焦糖星星">
+          <span class="choice-mark" aria-hidden="true"></span><span>焦糖星星</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">附加记录</legend>
+          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
+          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="持续唤醒">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">CALIBRATION / 连续量</p>
+        <h3 class="module-title" id="range-title">松软蓬度</h3>
+        <div class="range-row">
+          <input class="range" id="range-mochi" type="range" min="0" max="100" value="64" aria-label="松软蓬度" data-range>
+          <output class="range-output" for="range-mochi">64%</output>
+        </div>
+        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">ARCHIVE / 标签页</p>
+        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-mochi-0" aria-controls="panel-mochi-0" aria-selected="true" tabindex="0">面团</button><button class="tab" type="button" role="tab" id="tab-mochi-1" aria-controls="panel-mochi-1" aria-selected="false" tabindex="-1">糖霜</button><button class="tab" type="button" role="tab" id="tab-mochi-2" aria-controls="panel-mochi-2" aria-selected="false" tabindex="-1">装盒</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-mochi-0" aria-labelledby="tab-mochi-0">
+          <h4>今天的手感刚刚好</h4><p>轻压会留下浅浅指窝，松手后又慢慢鼓成圆脸。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-mochi-1" aria-labelledby="tab-mochi-1" hidden>
+          <h4>粉色糖霜正在滴边</h4><p>不用追求整齐，让每一滴停在它喜欢的位置。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-mochi-2" aria-labelledby="tab-mochi-2" hidden>
+          <h4>十二颗泡芙排好队</h4><p>蓝、粉、黄依次坐进纸托，缺角那颗留给烘焙师。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">MEASURE / 量表与反馈</p>
+        <h3 class="module-title" id="measure-title">读取当前状态</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="松软蓬度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64%</span>
+          </div>
+          <div class="measure-copy">
+            <strong>松软蓬度保持在可控区间</strong>
+            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-mochi">悬停查看注记</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-mochi">注记会在悬停或键盘聚焦时出现。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">MOCHI / 今天也给自己留一颗最圆的。</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-mochi">
+      <p class="module-kicker">CONFIRM / MOCHI</p>
+      <h2 id="modal-title-mochi">确认执行这项动作？</h2>
+      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
+        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-mochi";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + "%";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + "%";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("动作已经确认，状态已写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("状态推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>

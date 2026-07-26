@@ -1,39 +1,623 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NOVA / Orbital Command</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap');
-:root{--void:#02090f;--panel:#071822;--cyan:#25f1e6;--pink:#ff3ea8;--red:#ff4e55;--text:#daf8fa;--muted:#7198a2}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--void);color:var(--text);font-family:"IBM Plex Mono",monospace;background-image:linear-gradient(#0d2c3545 1px,transparent 1px),linear-gradient(90deg,#0d2c3545 1px,transparent 1px);background-size:48px 48px}body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;background:repeating-linear-gradient(0deg,transparent 0 3px,#0004 4px)}
-button,input,select,textarea{font:inherit}.cut{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}.hud{border:1px solid #1d5a67;background:#06141dcc}.topbar{height:64px;position:sticky;top:0;z-index:20;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid #21626e;background:#030c12ed;backdrop-filter:blur(12px);padding:0 24px}.brand{font:900 24px "Barlow Condensed";letter-spacing:3px}.brand b{color:var(--cyan)}.nav{display:flex;justify-content:center;gap:25px}.nav a,.atlas-link{color:var(--muted);font-size:9px;letter-spacing:2px;text-decoration:none}.nav a:hover{color:var(--cyan)}.link-state{color:var(--cyan);font-size:8px}.link-state:before{content:"●";margin-right:8px;filter:drop-shadow(0 0 5px var(--cyan))}
-.command{min-height:760px;display:grid;grid-template-columns:minmax(360px,.82fr) minmax(520px,1.18fr);gap:14px;padding:18px}.mission-copy{padding:clamp(35px,6vw,85px);display:flex;flex-direction:column;justify-content:center;position:relative}.eyebrow{color:var(--pink);font-size:9px;letter-spacing:4px}.mission-copy h1{font:900 clamp(78px,12vw,180px)/.68 "Barlow Condensed";letter-spacing:-.06em;margin:34px 0}.mission-copy h1 span{color:transparent;-webkit-text-stroke:1px var(--cyan);display:block;margin-left:12%}.mission-copy p{max-width:500px;color:#8eb4bc;font-size:11px;line-height:1.8}.mission-actions{display:flex;gap:10px;margin-top:26px}.cmd{border:1px solid var(--cyan);background:#09262d;color:var(--cyan);padding:12px 17px;font-size:9px;letter-spacing:1px;cursor:pointer}.cmd.primary{background:var(--cyan);color:#031014}.cmd.danger{border-color:var(--red);color:var(--red)}.mission-id{position:absolute;right:18px;bottom:15px;font-size:8px;color:#53747c}
-.orbit-view{position:relative;min-height:720px;display:grid;place-items:center;overflow:hidden}.radar{width:min(70%,570px);aspect-ratio:1;border:1px solid #286773;border-radius:50%;position:relative;background:repeating-radial-gradient(circle,#25f1e608 0 1px,transparent 2px 72px);box-shadow:inset 0 0 70px #000,0 0 35px #25f1e611}.radar:before,.radar:after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px solid #286773}.radar:after{transform:rotate(90deg)}.sweep{position:absolute;inset:5%;border-radius:50%;background:conic-gradient(from 0deg,#25f1e644,transparent 17%);animation:sweep 5s linear infinite}.orbit{position:absolute;border:1px dashed #286773;border-radius:50%;inset:17%;transform:rotate(22deg)}.orbit.o2{inset:31%;transform:rotate(-34deg)}.craft{position:absolute;width:12px;height:12px;background:var(--cyan);box-shadow:0 0 14px var(--cyan);border-radius:50%;cursor:pointer}.c1{left:16%;top:42%}.c2{right:18%;top:24%;background:var(--pink);box-shadow:0 0 14px var(--pink)}.c3{right:27%;bottom:19%}.reticle{position:absolute;left:50%;top:50%;width:70px;height:70px;border:1px solid var(--cyan);transform:translate(-50%,-50%) rotate(45deg);animation:pulse 2s infinite}.radar-data{position:absolute;inset:20px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}.radar-data div{display:flex;justify-content:space-between;font-size:8px;color:#6e949c}.alert-strip{position:absolute;right:20px;bottom:20px;border-left:3px solid var(--pink);background:#1e0a18;padding:13px 17px;font-size:8px;line-height:1.7}
-.ops{padding:90px clamp(18px,5vw,72px);background:#02080d}.section-head{display:flex;align-items:end;justify-content:space-between;max-width:1320px;margin:0 auto 30px}.section-head h2{font:900 clamp(48px,7vw,90px)/.84 "Barlow Condensed";margin:8px 0}.section-head p{max-width:430px;color:var(--muted);font-size:10px;line-height:1.8}.ops-layout{max-width:1320px;margin:auto;display:grid;grid-template-columns:270px 1fr 320px;gap:12px}.fleet-list,.vector-console,.signal-log{min-height:560px;padding:18px}.panel-title{display:flex;justify-content:space-between;border-bottom:1px solid #23505a;padding-bottom:10px;margin-bottom:13px;font-size:8px;letter-spacing:2px;color:#668a92}.panel-title b{color:var(--cyan)}.unit{width:100%;border:0;border-left:2px solid transparent;background:transparent;color:#78969d;text-align:left;padding:13px 10px;display:grid;grid-template-columns:30px 1fr auto;gap:8px;cursor:pointer}.unit strong{display:block;color:#d8f5f6;font-size:9px}.unit small{font-size:7px}.unit span{font-size:8px}.unit.active{background:#25f1e60d;border-color:var(--cyan)}.unit.active span{color:var(--cyan)}
-.vector-map{height:300px;position:relative;border:1px solid #1e4650;background:linear-gradient(30deg,transparent 48%,#1a4b5655 49% 50%,transparent 51%),linear-gradient(-30deg,transparent 48%,#1a4b5655 49% 50%,transparent 51%);background-size:55px 95px;overflow:hidden}.trajectory{position:absolute;width:70%;height:50%;border-top:2px solid var(--cyan);border-radius:50%;left:12%;top:47%;transform:rotate(-11deg);filter:drop-shadow(0 0 5px var(--cyan))}.target{position:absolute;right:20%;top:29%;width:46px;height:46px;border:1px solid var(--pink);transform:rotate(45deg);display:grid;place-items:center}.target:after{content:"";width:7px;height:7px;background:var(--pink)}.vector-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.field{display:block;color:#6d9299;font-size:8px;letter-spacing:1px}.field input,.field select{display:block;width:100%;border:1px solid #244d56;background:#020a0f;color:white;padding:10px;margin-top:6px;font-size:9px}.field.wide{grid-column:1/-1}.field input[type=range]{padding:0;accent-color:var(--cyan)}.toggle{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1c4149;padding:12px 0;font-size:8px}.toggle input{appearance:none;width:38px;height:18px;border:1px solid #37626b;position:relative}.toggle input:after{content:"";position:absolute;width:10px;height:10px;top:3px;left:3px;background:#526a70}.toggle input:checked:after{left:23px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
-.log-line{font-size:8px;line-height:1.7;padding:10px 0;border-bottom:1px solid #173943;color:#718e95}.log-line time{color:#4c6970;margin-right:8px}.log-line b{color:var(--cyan)}.log-line.warn b{color:var(--pink)}.comms{margin-top:17px;border-top:1px solid #24505a;padding-top:15px}.comms textarea{width:100%;height:80px;resize:none;border:1px solid #24505a;background:#02090e;color:#bfe6e8;padding:10px;font-size:9px}.comms .cmd{width:100%;margin-top:8px}
-.ledger{padding:85px clamp(18px,5vw,72px) 110px;background:#06131b}.metric-row{max-width:1320px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #23505a}.metric{padding:20px;border-right:1px solid #23505a}.metric:last-child{border:0}.metric span{font-size:7px;color:#668890}.metric b{display:block;font:700 36px "Barlow Condensed"}.mission-table{max-width:1320px;width:100%;margin:18px auto 0;border-collapse:collapse;font-size:8px}.mission-table th,.mission-table td{text-align:left;padding:13px;border-bottom:1px solid #1e424b}.mission-table th{color:#668890}.state{color:var(--cyan)}.dialog{border:1px solid var(--cyan);background:#06141c;color:white;padding:30px;width:min(480px,90vw);box-shadow:0 0 80px #25f1e633}.dialog::backdrop{background:#01070be8;backdrop-filter:blur(8px)}.dialog h3{font:700 38px "Barlow Condensed";margin:8px 0}.dialog p{font-size:10px;color:#88a6ac;line-height:1.7}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}@keyframes sweep{to{transform:rotate(360deg)}}@keyframes pulse{50%{box-shadow:0 0 25px #25f1e688;transform:translate(-50%,-50%) rotate(135deg)}}@media(max-width:950px){.command{grid-template-columns:1fr}.ops-layout{grid-template-columns:1fr}.orbit-view{min-height:600px}.fleet-list,.signal-log{min-height:auto}.nav{display:none}}@media(max-width:600px){.topbar{padding:0 12px}.command{padding:8px}.orbit-view{min-height:500px}.section-head{display:block}.metric-row{grid-template-columns:1fr 1fr}.vector-controls{grid-template-columns:1fr}.field.wide{grid-column:auto}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>NOVA · 科幻霓虹 HUD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#030912;--theme-surface:#081521;--theme-surface-2:#0d2230;
+    --theme-ink:#e9fbff;--theme-muted:#8eb0bc;--theme-accent:#20f6ff;
+    --theme-accent-2:#ff37c7;--theme-danger:#ff4d5f;--theme-line:#1c7182;
+    --theme-shadow:rgba(32,246,255,.22);--theme-radius:0px;--theme-display:"Orbitron", "Noto Sans SC", sans-serif;
+    --theme-body:"Noto Sans SC", sans-serif;--theme-mono:"IBM Plex Mono", monospace;
+    --theme-on-accent:#080808;
+    --theme-on-accent-2:#080808;
+    --theme-on-danger:#080808;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+
+      body{background-image:linear-gradient(rgba(32,246,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(32,246,255,.035) 1px,transparent 1px);background-size:42px 42px}
+      body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(110,240,255,.025) 4px);mix-blend-mode:screen;z-index:20}
+      .worldbar,.module,.art-stage{clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+      .worldbar::before,.module::before{content:"";position:absolute;left:0;top:0;width:48px;height:2px;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+      .action,.text-input,.select-trigger{clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px)}
+      .primary{box-shadow:0 0 22px rgba(32,246,255,.22),inset 0 0 18px rgba(32,246,255,.08)}
+      .toggle-track{border-radius:0;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+      .toggle-track::after{border-radius:0;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%)}
+      .progress-fill{background:repeating-linear-gradient(90deg,var(--accent) 0 18px,transparent 18px 22px)}
+      .art-stage{background:radial-gradient(circle at 50% 42%,rgba(32,246,255,.14),transparent 48%),linear-gradient(145deg,#06111d,#02070d)}
+      .nova-grid{position:absolute;inset:10%;border:1px solid rgba(32,246,255,.25);background:linear-gradient(rgba(32,246,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(32,246,255,.09) 1px,transparent 1px);background-size:26px 26px;transform:perspective(500px) rotateX(60deg) translateY(30%);transform-origin:center bottom}
+      .nova-radar{position:absolute;width:min(58%,290px);aspect-ratio:1;border:1px solid var(--accent);border-radius:50%;box-shadow:0 0 34px rgba(32,246,255,.18),inset 0 0 40px rgba(32,246,255,.08)}
+      .nova-radar::before,.nova-radar::after{content:"";position:absolute;inset:17%;border:1px solid rgba(32,246,255,.42);border-radius:50%}.nova-radar::after{inset:34%}
+      .nova-radar i{position:absolute;inset:50% 0 auto 0;height:1px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+      .nova-radar b{position:absolute;left:50%;top:50%;width:48%;height:48%;transform-origin:0 0;background:conic-gradient(from -4deg,rgba(32,246,255,.45),transparent 35deg);animation:novaScan 4s linear infinite}
+      .nova-radar em{position:absolute;left:68%;top:27%;width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 13px var(--accent2);animation:pulse 1.4s ease-in-out infinite}
+      .nova-coordinates{position:absolute;right:7%;top:9%;font:500 .68rem/1.7 var(--font-mono);color:var(--accent);text-align:right}
+      .artifact.is-awake .nova-radar{filter:brightness(1.6)} @keyframes novaScan{to{transform:rotate(1turn)}}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
 </head>
 <body>
-<header class="topbar"><div class="brand"><b>NOVA</b> / COMMAND</div><nav class="nav"><a href="#mission">MISSION</a><a href="#operations">OPERATIONS</a><a href="#ledger">LEDGER</a></nav><div><span class="link-state">LINK STABLE</span>　<a class="atlas-link" href="index.html">ATLAS ↗</a></div></header>
-<main>
-  <section class="command" id="mission">
-    <article class="mission-copy hud cut"><span class="eyebrow">ORBITAL DEFENCE GRID / N–07</span><h1>DIRECT<span>THE VOID.</span></h1><p>You are not browsing a specimen sheet. This is the live command surface for the Polaris survey wing: acquire a contact, plot a vector, arm a payload and transmit.</p><div class="mission-actions"><button class="cmd primary" id="deepScan">RUN DEEP SCAN</button><a class="cmd" href="#operations">OPEN OPS DECK ↓</a></div><span class="mission-id">MISSION UT 07:42:18 / AUTHORITY IV</span></article>
-    <div class="orbit-view hud cut"><div class="radar"><i class="sweep"></i><i class="orbit"></i><i class="orbit o2"></i><button class="craft c1" data-contact="POLARIS / N–014" aria-label="Polaris contact"></button><button class="craft c2" data-contact="UNKNOWN / RED" aria-label="Unknown contact"></button><button class="craft c3" data-contact="CALYPSO / N–032" aria-label="Calypso contact"></button><i class="reticle"></i><div class="radar-data"><div><span>RANGE / 12.4 AU</span><span>AZ / 287.6°</span></div><div><span id="contactReadout">TARGET / NONE</span><span>ΔV / 07.2</span></div></div></div><div class="alert-strip"><b id="scanState">PASSIVE ARRAY</b><br>3 known contacts / 1 unclassified</div></div>
-  </section>
-  <section class="ops" id="operations">
-    <header class="section-head"><div><span class="eyebrow">02 / OPERATOR WORKSPACE</span><h2>PLOT. ARM. TRANSMIT.</h2></div><p>The component language is embedded in one continuous task: select a ship, inspect its vector, configure its payload and send a command.</p></header>
-    <div class="ops-layout">
-      <aside class="fleet-list hud cut"><div class="panel-title"><b>FLEET</b><span>3 / 3 ONLINE</span></div><button class="unit active" data-unit="POLARIS"><span>N1</span><div><strong>POLARIS</strong><small>Survey / N–014</small></div><span>98%</span></button><button class="unit" data-unit="CALYPSO"><span>N3</span><div><strong>CALYPSO</strong><small>Relay / N–032</small></div><span>74%</span></button><button class="unit" data-unit="VANTAGE"><span>N7</span><div><strong>VANTAGE</strong><small>Guard / N–077</small></div><span>88%</span></button><div class="panel-title" style="margin-top:25px"><b>SUBSYSTEMS</b><span>07</span></div><label class="toggle">AUTONOMOUS NAV<input type="checkbox" checked></label><label class="toggle">STEALTH ENVELOPE<input type="checkbox"></label><label class="toggle">RETURN FAILSAFE<input type="checkbox" checked></label></aside>
-      <article class="vector-console hud cut"><div class="panel-title"><b id="unitTitle">POLARIS / VECTOR</b><span>EDIT MODE</span></div><div class="vector-map"><i class="trajectory"></i><i class="target"></i></div><div class="vector-controls"><label class="field">DESTINATION<select><option>KEPLER GATE / K–09</option><option>TERMINUS / T–12</option></select></label><label class="field">BURN PROFILE<select><option>LOW SIGNATURE</option><option>INTERCEPT</option></select></label><label class="field wide">THRUST LIMIT / <output id="thrustOut">72%</output><input id="thrust" type="range" value="72"></label><button class="cmd">SAVE VECTOR</button><button class="cmd danger" id="armPayload">ARM PAYLOAD</button></div></article>
-      <aside class="signal-log hud cut"><div class="panel-title"><b>LIVE SIGNAL LOG</b><span>AUTO</span></div><div id="log"><div class="log-line"><time>07:42:04</time><b>POLARIS</b> handshake confirmed</div><div class="log-line"><time>07:41:52</time><b>CALYPSO</b> relay aligned</div><div class="log-line warn"><time>07:40:18</time><b>UNKNOWN</b> vector drift detected</div><div class="log-line"><time>07:39:44</time><b>VANTAGE</b> patrol resumed</div></div><div class="comms"><div class="panel-title"><b>COMMAND BURST</b><span>ENCRYPTED</span></div><textarea id="message">Hold position. Continue passive observation.</textarea><button class="cmd primary" id="transmit">TRANSMIT TO <span>POLARIS</span></button></div></aside>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">NOVA DEEP-RANGE COMMAND</span>
+      <span class="worldbar-state">ORBITAL ARRAY 07 · LINK STABLE</span>
     </div>
-  </section>
-  <section class="ledger" id="ledger"><header class="section-head"><div><span class="eyebrow">03 / MISSION LEDGER</span><h2>SECTOR NINE / LIVE</h2></div></header><div class="metric-row"><div class="metric"><span>CONTACTS</span><b id="contactCount">03</b></div><div class="metric"><span>LOCK QUALITY</span><b>98.4%</b></div><div class="metric"><span>MISSION CLOCK</span><b>07:42</b></div><div class="metric"><span>FUEL RESERVE</span><b>68%</b></div></div><table class="mission-table"><thead><tr><th>UNIT</th><th>ROLE</th><th>VECTOR</th><th>PAYLOAD</th><th>STATE</th></tr></thead><tbody><tr><td>N–014 / POLARIS</td><td>SURVEY</td><td>K–09</td><td>PASSIVE</td><td class="state">ACTIVE</td></tr><tr><td>N–032 / CALYPSO</td><td>RELAY</td><td>T–12</td><td>COMMS</td><td>HOLD</td></tr><tr><td>N–077 / VANTAGE</td><td>GUARD</td><td>PATROL</td><td>ARMED</td><td class="state">ACTIVE</td></tr></tbody></table></section>
-</main>
-<dialog class="dialog" id="payloadDialog"><span class="eyebrow">RESTRICTED / PAYLOAD</span><h3>Arm the Vektor–7 array?</h3><p>The selected unit will leave passive observation and enter an active intercept posture.</p><div class="dialog-actions"><button class="cmd" data-close>CANCEL</button><button class="cmd danger" data-confirm>CONFIRM ARM</button></div></dialog>
-<script>
-const q=s=>document.querySelector(s),qa=s=>document.querySelectorAll(s),log=q("#log");q("#thrust").oninput=e=>q("#thrustOut").value=e.target.value+"%";qa(".craft").forEach(x=>x.onclick=()=>q("#contactReadout").textContent="TARGET / "+x.dataset.contact);q("#deepScan").onclick=()=>{q("#scanState").textContent="ACTIVE SCAN / SWEEPING";q("#contactCount").textContent="09";setTimeout(()=>q("#scanState").textContent="SCAN COMPLETE / 9 CONTACTS",1200)};qa(".unit").forEach(x=>x.onclick=()=>{qa(".unit").forEach(y=>y.classList.remove("active"));x.classList.add("active");q("#unitTitle").textContent=x.dataset.unit+" / VECTOR";q("#transmit span").textContent=x.dataset.unit});q("#transmit").onclick=()=>{const d=document.createElement("div");d.className="log-line";d.innerHTML=`<time>NOW</time><b>${q("#transmit span").textContent}</b> command burst accepted`;log.prepend(d)};const dlg=q("#payloadDialog");q("#armPayload").onclick=()=>dlg.showModal();qa("[data-close]").forEach(x=>x.onclick=()=>dlg.close());q("[data-confirm]").onclick=()=>{q("#armPayload").textContent="PAYLOAD ARMED";dlg.close()};
-</script>
-</body></html>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">01 / NOVA · Sci-fi neon</p>
+        <h1 id="hero-title">把未知锁进坐标</h1>
+        <p class="lede">一座为深空测绘员点亮的战术界面。校准航线、筛选回波，让每一次跃迁都有清晰的落点。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>建立航线</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">唤醒雷达</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="科幻霓虹 HUD招牌装置">
+
+      <div class="nova-grid" aria-hidden="true"></div>
+      <div class="nova-radar" aria-hidden="true"><i></i><b></b><em></em></div>
+      <div class="nova-coordinates" aria-hidden="true">RA 19H 51M<br>DEC +08° 12′</div>
+      <div class="artifact-caption"><span>DEEP SCAN</span><strong>SECTOR N–17</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">CONTROL COLLECTION / NOVA</p>
+        <h2>世界内控件</h2>
+      </div>
+      <p>每件控件都从「科幻霓虹 HUD」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">ACTION / 五种动作</p>
+        <h3 class="module-title" id="buttons-title">行动指令</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>建立航线</button>
+          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">唤醒雷达</button>
+          <button class="action danger" type="button" data-toast>触发警示</button>
+          <button class="action" type="button" disabled>权限未开放</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">IDENTITY / 输入与选择</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">识别铭牌</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="输入轨道识别码">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-nova">当前区域</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-nova select-value-nova">
+              <span id="select-value-nova" class="select-value">近地轨道 / LEO</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-nova" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="近地轨道 / LEO" aria-selected="true">近地轨道 / LEO</li><li class="select-option" role="option" tabindex="-1" data-value="拉格朗日 L2" aria-selected="false">拉格朗日 L2</li><li class="select-option" role="option" tabindex="-1" data-value="柯伊伯前哨" aria-selected="false">柯伊伯前哨</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">STATE / 单选、复选与开关</p>
+        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种模式</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="静默巡航" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>静默巡航</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="主动测绘">
+          <span class="choice-mark" aria-hidden="true"></span><span>主动测绘</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="警戒锁定">
+          <span class="choice-mark" aria-hidden="true"></span><span>警戒锁定</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">附加记录</legend>
+          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
+          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="持续唤醒">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">CALIBRATION / 连续量</p>
+        <h3 class="module-title" id="range-title">跃迁稳定度</h3>
+        <div class="range-row">
+          <input class="range" id="range-nova" type="range" min="0" max="100" value="64" aria-label="跃迁稳定度" data-range>
+          <output class="range-output" for="range-nova">64%</output>
+        </div>
+        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">ARCHIVE / 标签页</p>
+        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-nova-0" aria-controls="panel-nova-0" aria-selected="true" tabindex="0">星图</button><button class="tab" type="button" role="tab" id="tab-nova-1" aria-controls="panel-nova-1" aria-selected="false" tabindex="-1">遥测</button><button class="tab" type="button" role="tab" id="tab-nova-2" aria-controls="panel-nova-2" aria-selected="false" tabindex="-1">船员</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-nova-0" aria-labelledby="tab-nova-0">
+          <h4>轨道已经校准</h4><p>七条航线完成折算，最近跃迁窗将在 04:18 开启。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-nova-1" aria-labelledby="tab-nova-1" hidden>
+          <h4>回波保持清晰</h4><p>阵列噪声低于阈值，深空信标正以 8.4 GHz 回传。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-nova-2" aria-labelledby="tab-nova-2" hidden>
+          <h4>值守单元在线</h4><p>导航、观测与工程席位已经完成交叉确认。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">MEASURE / 量表与反馈</p>
+        <h3 class="module-title" id="measure-title">读取当前状态</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="跃迁稳定度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64%</span>
+          </div>
+          <div class="measure-copy">
+            <strong>跃迁稳定度保持在可控区间</strong>
+            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-nova">悬停查看注记</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-nova">注记会在悬停或键盘聚焦时出现。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">NOVA / 让每一个黑暗象限都有可读坐标。</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-nova">
+      <p class="module-kicker">CONFIRM / NOVA</p>
+      <h2 id="modal-title-nova">确认执行这项动作？</h2>
+      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
+        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-nova";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + "%";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + "%";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("动作已经确认，状态已写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("状态推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>

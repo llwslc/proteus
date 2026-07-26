@@ -1,3 +1,620 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CORONA / Eclipse Array</title><style>
-@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Space+Mono:wght@400;700&display=swap');:root{--void:#05090d;--white:#edf3f4;--gold:#e4a341;--cyan:#4ecaca}*{box-sizing:border-box}body{margin:0;background:var(--void);color:var(--white);font-family:"Space Mono"}button,input,select{font:inherit}.nav{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:1px solid #fff3;background:#05090de8;position:sticky;top:0;z-index:10}.nav a{color:inherit}.hero{min-height:620px;display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;padding:5vw;background:radial-gradient(circle at 70% 45%,#173a3c,transparent 30%)}.hero h1{font:clamp(60px,9vw,125px)/.82 Michroma;letter-spacing:-.06em}.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px white;margin-left:8%}.hero p{max-width:470px;color:#90a4a8;font-size:12px;line-height:1.8}.eclipse{height:530px;display:grid;place-items:center;position:relative}.orbit{width:470px;aspect-ratio:1;border:1px solid #fff5;border-radius:50%;display:grid;place-items:center;position:relative}.orbit:after{content:"";position:absolute;inset:12%;border:1px dashed #fff3;border-radius:50%}.sun{width:230px;aspect-ratio:1;border-radius:50%;background:var(--gold);box-shadow:0 0 25px #fff,0 0 80px var(--gold);position:relative;overflow:hidden;z-index:2}.moon{position:absolute;width:100%;aspect-ratio:1;border-radius:50%;background:#020305;left:78%;transition:.1s}.array{padding:75px 4vw 105px;background:linear-gradient(#081219,#03070a)}.array h2{font:clamp(44px,6vw,82px) Michroma}.console{display:grid;grid-template-columns:240px 1fr 310px;gap:16px}.targets,.live,.capture{border:1px solid #fff3;border-radius:20px;background:#ffffff09;padding:20px}.targets button{width:100%;border:0;border-bottom:1px solid #fff2;background:transparent;color:#809599;text-align:left;padding:12px;font-size:9px}.targets button.active{color:var(--gold);border-left:3px solid var(--gold)}.feed{height:360px;border:1px solid #fff3;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#e4a341 0 16%,#020305 17% 20%,#e4a341aa 21%,transparent 28%)}.reticle{position:absolute;inset:18%;border:1px solid var(--cyan);border-radius:50%}.feed-data{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.readout{border:1px solid #fff2;padding:11px}.readout small{color:#809599}.readout b{display:block;color:var(--gold)}.capture label{display:block;font-size:8px;letter-spacing:2px;margin:13px 0}.capture input,.capture select{display:block;width:100%;border:1px solid #fff3;border-radius:10px;background:#03080d;color:white;padding:9px}.capture input[type=range]{accent-color:var(--gold)}.capture label.inline{font-size:10px}.arm{border:1px solid var(--gold);border-radius:12px;background:transparent;color:var(--gold);padding:11px;width:100%}.timeline{margin-top:35px;border-top:1px solid #fff3;position:relative}.contact{display:grid;grid-template-columns:120px 1fr auto;padding:14px;border-bottom:1px solid #fff2;font-size:10px}.contact time{color:var(--gold)}.contact span{color:var(--cyan)}.armed .feed{box-shadow:0 0 50px #e4a34155}.armed .arm{background:var(--gold);color:#05090d}@media(max-width:850px){.hero,.console{grid-template-columns:1fr}.orbit{width:370px}.targets{display:flex;overflow:auto}.targets button{min-width:160px}}
-</style></head><body><header class="nav"><b>CORONA OBSERVATORY / ARRAY 04</b><span>UT 19:32:08 · 36°N 115°W</span><a href="index.html">ATLAS ↗</a></header><main><section class="hero"><article><small>ECLIPSE OBSERVATION NETWORK</small><h1>CAPTURE<span>THE INTERVAL.</span></h1><p>Track the contact sequence, tune the solar instrument and arm a real totality capture plan.</p><label>DEMONSTRATE PHASE / <output id="phaseOut">22%</output><input id="phase" type="range" value="22"></label></article><div class="eclipse"><div class="orbit"><div class="sun"><i class="moon" id="moon"></i></div></div></div></section><section class="array" id="array"><h2>Observation console</h2><div class="console"><aside class="targets"><h3>TARGET QUEUE</h3><button class="active" data-target="SOL / LUNA TRANSIT">SOL / LUNA TRANSIT<br>C2 IN 01:42</button><button data-target="AR 3947 / SUNSPOT">AR 3947<br>MERIDIAN</button><button data-target="PROMINENCE NE">PROMINENCE NE<br>ACTIVE</button></aside><article class="live"><h3 id="targetName">SOL / LUNA TRANSIT</h3><div class="feed"><i class="reticle"></i></div><div class="feed-data"><div class="readout"><small>MAGNITUDE</small><b>0.982</b></div><div class="readout"><small>ALTITUDE</small><b>+32.8°</b></div><div class="readout"><small>TRACK LOCK</small><b>99.4%</b></div></div></article><aside class="capture"><h3>CAPTURE PLAN</h3><label>FILTER<select><option>H–ALPHA / 656.3 nm</option><option>WHITE LIGHT</option></select></label><label>EXPOSURE / 77<input type="range" value="77"></label><label>CADENCE<select><option>12 FPS / BURST</option><option>1 FPS / LONG</option></select></label><label class="inline"><input type="checkbox" checked> Auto-track lunar limb</label><label class="inline"><input type="checkbox" checked> Bracket diamond ring</label><label class="inline"><input type="checkbox"> Stream to archive</label><button class="arm" id="arm">ARM TOTALITY CAPTURE</button></aside></div><div class="timeline"><div class="contact"><time>19:30:42</time><b>C1 / FIRST CONTACT</b><span>RECORDED</span></div><div class="contact"><time>20:47:18</time><b>C2 / TOTALITY BEGINS</b><span>IN 01:42</span></div><div class="contact"><time>20:49:04</time><b>MAXIMUM ECLIPSE</b><span>QUEUED</span></div><div class="contact"><time>20:50:51</time><b>C3 / DIAMOND RING</b><span>QUEUED</span></div></div></section></main><script>const phase=document.querySelector("#phase");phase.oninput=e=>{const v=+e.target.value;document.querySelector("#phaseOut").value=v+"%";document.querySelector("#moon").style.left=100-v*1.02+"%"};phase.oninput({target:phase});document.querySelectorAll("[data-target]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-target]").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelector("#targetName").textContent=b.dataset.target});document.querySelector("#arm").onclick=()=>{document.querySelector("#array").classList.toggle("armed");document.querySelector("#arm").textContent=document.querySelector("#array").classList.contains("armed")?"CAPTURE ARMED / T–01:42":"ARM TOTALITY CAPTURE"};</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>CORONA · 日蚀玻璃</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#05080a;--theme-surface:rgba(17,25,29,.72);--theme-surface-2:rgba(32,45,49,.62);
+    --theme-ink:#edf5f3;--theme-muted:#9fb2b2;--theme-accent:#e9a83a;
+    --theme-accent-2:#35c7c2;--theme-danger:#ef5a4c;--theme-line:rgba(222,244,241,.26);
+    --theme-shadow:rgba(233,168,58,.18);--theme-radius:18px;--theme-display:"Exo 2", "Noto Sans SC", sans-serif;
+    --theme-body:"Exo 2", "Noto Sans SC", sans-serif;--theme-mono:"Space Mono", monospace;
+    --theme-on-accent:#080808;
+    --theme-on-accent-2:#edf5f3;
+    --theme-on-danger:#080808;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+
+      body{background-image:radial-gradient(circle at 68% 18%,rgba(233,168,58,.09),transparent 24%),radial-gradient(circle at 12% 72%,rgba(53,199,194,.07),transparent 30%)}
+      .worldbar,.module,.art-stage{border:1px solid rgba(255,255,255,.24);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 22px 55px rgba(0,0,0,.35),0 0 28px rgba(233,168,58,.05);backdrop-filter:blur(16px)}
+      .worldbar::after,.module::after{content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(130deg,rgba(255,255,255,.08),transparent 35%)}
+      .action,.text-input,.select-trigger{border:1px solid rgba(255,255,255,.28);box-shadow:inset 0 1px rgba(255,255,255,.1),0 8px 20px rgba(0,0,0,.22);backdrop-filter:blur(10px)}.primary{background:linear-gradient(135deg,#ffd078,#c78320)}.secondary{background:rgba(53,199,194,.14);border-color:rgba(53,199,194,.55)}
+      .choice-mark{border:1px solid rgba(255,255,255,.45);box-shadow:0 0 12px rgba(53,199,194,.1)}.toggle-track{border:1px solid rgba(255,255,255,.32);background:#080d10}.toggle-track::after{background:radial-gradient(circle at 35% 30%,#fff,#d89a32 32%,#2a1705 65%);box-shadow:0 0 12px var(--accent)}
+      .progress-track{border:1px solid rgba(255,255,255,.2);background:#070a0c}.progress-fill{background:linear-gradient(90deg,#5e3510,var(--accent),#fff7c4);box-shadow:0 0 14px var(--accent)}
+      .gauge{box-shadow:inset 0 0 0 8px #080b0d,0 0 28px rgba(233,168,58,.2)}
+      .art-stage{background:radial-gradient(circle at 50% 48%,rgba(233,168,58,.11),transparent 40%),rgba(8,13,15,.76);overflow:hidden}
+      .corona-disc{position:absolute;width:min(56%,280px);aspect-ratio:1;border-radius:50%;background:#020303;box-shadow:0 0 0 3px #ffe7a3,0 0 16px 5px var(--accent),0 0 65px 18px rgba(233,168,58,.32),0 0 110px 25px rgba(53,199,194,.08);animation:coronaBreathe 4s ease-in-out infinite}
+      .corona-disc::before{content:"";position:absolute;inset:-23%;border-radius:50%;background:repeating-conic-gradient(from 3deg,rgba(255,194,72,.48) 0 1deg,transparent 1.5deg 8deg);mask:radial-gradient(circle,transparent 0 61%,#000 62% 68%,transparent 69%)}.corona-disc i{position:absolute;inset:44%;border-radius:50%;background:#111;box-shadow:0 0 0 1px #444}.corona-disc span{position:absolute;inset:-1%;border-radius:50%;background:#050607;transform:translateX(calc((1 - var(--level,.64))*46%));transition:transform .6s ease}
+      .corona-orbit{position:absolute;width:80%;height:48%;border:1px solid rgba(53,199,194,.42);border-radius:50%;transform:rotate(-16deg)}.corona-orbit i{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2)}.corona-orbit i:nth-child(1){left:10%;top:13%}.corona-orbit i:nth-child(2){right:5%;top:35%}.corona-orbit i:nth-child(3){left:46%;bottom:-4px}
+      .corona-beads{position:absolute;width:min(59%,294px);aspect-ratio:1}.corona-beads i{position:absolute;width:7px;height:7px;border-radius:50%;background:#fff2b4;box-shadow:0 0 12px #fff,0 0 20px var(--accent)}.corona-beads i:nth-child(1){right:-2px;top:48%}.corona-beads i:nth-child(2){right:4%;top:21%}.corona-beads i:nth-child(3){right:22%;top:3%}.corona-beads i:nth-child(4){left:48%;top:-3px}.corona-beads i:nth-child(5){left:9%;top:19%}.corona-beads i:nth-child(6){left:3%;bottom:23%}.corona-beads i:nth-child(7){right:10%;bottom:17%}
+      .corona-coordinate{position:absolute;right:7%;top:8%;font:400 .62rem/1.7 var(--font-mono);color:var(--accent2);text-align:right}
+      .artifact.is-awake .corona-disc{animation:coronaFlash .8s ease}@keyframes coronaBreathe{50%{box-shadow:0 0 0 3px #ffe7a3,0 0 22px 7px var(--accent),0 0 78px 25px rgba(233,168,58,.38)}}@keyframes coronaFlash{50%{filter:brightness(1.8);transform:scale(1.04)}}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">CORONA OBSERVATORY</span>
+      <span class="worldbar-state">UMBRA CONTACT T−00:04:12 · FILTER LOCKED</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">18 / CORONA · Eclipse glass</p>
+        <h1 id="hero-title">在暗影边缘读光</h1>
+        <p class="lede">一座为日全食设计的玻璃观测台。推进食分、锁定坐标，等待贝利珠在黑曜石边缘逐颗闪现。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>推进食分</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">点亮金环</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="日蚀玻璃招牌装置">
+
+      <div class="corona-disc" aria-hidden="true"><i></i><span></span></div>
+      <div class="corona-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="corona-beads" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="corona-coordinate" aria-hidden="true">AZ 284.6°<br>ALT 37.2°</div>
+      <div class="artifact-caption"><span>UMBRA 02</span><strong>第二接触观测盘</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">CONTROL COLLECTION / CORONA</p>
+        <h2>世界内控件</h2>
+      </div>
+      <p>每件控件都从「日蚀玻璃」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">ACTION / 五种动作</p>
+        <h3 class="module-title" id="buttons-title">行动指令</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>推进食分</button>
+          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">点亮金环</button>
+          <button class="action danger" type="button" data-toast>触发警示</button>
+          <button class="action" type="button" disabled>权限未开放</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">IDENTITY / 输入与选择</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">识别铭牌</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="输入观测站坐标">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-corona">当前区域</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-corona select-value-corona">
+              <span id="select-value-corona" class="select-value">阿塔卡马台站</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-corona" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="阿塔卡马台站" aria-selected="true">阿塔卡马台站</li><li class="select-option" role="option" tabindex="-1" data-value="高原移动阵列" aria-selected="false">高原移动阵列</li><li class="select-option" role="option" tabindex="-1" data-value="轨道观测舱" aria-selected="false">轨道观测舱</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">STATE / 单选、复选与开关</p>
+        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种模式</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="偏食追踪" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>偏食追踪</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="全食锁定">
+          <span class="choice-mark" aria-hidden="true"></span><span>全食锁定</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="日冕采样">
+          <span class="choice-mark" aria-hidden="true"></span><span>日冕采样</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">附加记录</legend>
+          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
+          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="持续唤醒">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">CALIBRATION / 连续量</p>
+        <h3 class="module-title" id="range-title">当前食分</h3>
+        <div class="range-row">
+          <input class="range" id="range-corona" type="range" min="0" max="100" value="64" aria-label="当前食分" data-range>
+          <output class="range-output" for="range-corona">64%</output>
+        </div>
+        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">ARCHIVE / 标签页</p>
+        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-corona-0" aria-controls="panel-corona-0" aria-selected="true" tabindex="0">食相</button><button class="tab" type="button" role="tab" id="tab-corona-1" aria-controls="panel-corona-1" aria-selected="false" tabindex="-1">光谱</button><button class="tab" type="button" role="tab" id="tab-corona-2" aria-controls="panel-corona-2" aria-selected="false" tabindex="-1">坐标</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-corona-0" aria-labelledby="tab-corona-0">
+          <h4>第二接触即将发生</h4><p>月影边缘与太阳盘仅差 0.8%，环境照度正在快速下降。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-corona-1" aria-labelledby="tab-corona-1" hidden>
+          <h4>日冕铁线清晰可见</h4><p>530.3 nm 绿色发射线稳定，流线向东北方向延伸。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-corona-2" aria-labelledby="tab-corona-2" hidden>
+          <h4>观测轴锁定</h4><p>方位角 284.6°，仰角 37.2°，自动跟踪误差低于一角秒。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">MEASURE / 量表与反馈</p>
+        <h3 class="module-title" id="measure-title">读取当前状态</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="当前食分" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64%</span>
+          </div>
+          <div class="measure-copy">
+            <strong>当前食分保持在可控区间</strong>
+            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-corona">悬停查看注记</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-corona">注记会在悬停或键盘聚焦时出现。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">CORONA / 最深的暗，恰好勾出最细的光。</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-corona">
+      <p class="module-kicker">CONFIRM / CORONA</p>
+      <h2 id="modal-title-corona">确认执行这项动作？</h2>
+      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
+        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-corona";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + "%";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + "%";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("动作已经确认，状态已写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("状态推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>

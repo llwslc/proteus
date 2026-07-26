@@ -1,3 +1,619 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ARCADE / Neon Maze Cabinet</title><style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');:root{--dark:#05050b;--blue:#25b9ff;--pink:#ff366f;--yellow:#ffe83c;--cyan:#28f4c7;--white:#f3f5de}*{box-sizing:border-box}body{margin:0;background:#17121e;color:var(--white);font-family:"Press Start 2P"}.cabinet{max-width:1100px;margin:auto;background:#080812;border-left:16px ridge #3a3349;border-right:16px ridge #3a3349;padding:14px}.marquee{border:7px solid var(--yellow);background:var(--pink);padding:20px;text-align:center;font-size:clamp(28px,6vw,62px);color:var(--yellow);text-shadow:5px 5px #34205e;box-shadow:inset 0 0 15px white}.score{display:flex;justify-content:space-around;padding:18px;color:var(--cyan);font-size:9px;text-align:center}.score b{display:block;color:white;margin-top:8px}.screen{height:570px;border:15px solid #292530;border-radius:35px;background:#020205;position:relative;overflow:hidden;box-shadow:inset 0 0 70px #15105a}.screen:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,#0007 4px);z-index:8}.game{width:484px;height:484px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;grid-template-columns:repeat(11,44px);background:#03030b;border:4px solid var(--blue)}.cell{width:44px;height:44px;position:relative}.wall{background:var(--blue);box-shadow:inset 0 0 0 6px #171061}.dot:after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:var(--yellow);left:19px;top:19px}.player,.ghost{position:absolute;width:30px;height:30px;left:7px;top:7px;z-index:4}.player{border-radius:50%;background:var(--yellow);clip-path:polygon(0 0,100% 0,55% 50%,100% 100%,0 100%);transition:.08s}.ghost{background:var(--pink);border-radius:50% 50% 10% 10%}.overlay{position:absolute;z-index:9;inset:0;background:#020205e8;display:grid;place-items:center;text-align:center;color:var(--yellow)}.started .overlay{display:none}.controls{padding:25px;display:flex;justify-content:space-between;align-items:center}.start{border:6px outset #ff5c86;border-radius:50%;background:var(--pink);color:white;width:80px;height:80px;font:8px "Press Start 2P"}.controls a{color:var(--cyan);font-size:8px}.operator{max-width:1100px;margin:auto;background:#090914;border:10px solid #312b3d;padding:50px 4vw 80px}.operator h1{color:var(--yellow);font-size:clamp(25px,5vw,48px);line-height:1.5}.floor{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{border:5px solid var(--blue);padding:20px;background:#05050b;box-shadow:0 0 14px #25b9ff55}.panel h2{font-size:12px;color:var(--cyan)}.panel label{display:block;font:22px VT323;margin:12px 0}.panel input,.panel select{width:100%;accent-color:var(--pink);background:#05050b;color:white;border:3px solid var(--blue);padding:8px}.highscores{width:100%;border-collapse:collapse;font:23px VT323}.highscores th,.highscores td{text-align:left;border-bottom:3px solid #2c2860;padding:9px}.highscores th{color:var(--cyan)}.diagnostic{display:flex;justify-content:space-between;border-bottom:3px solid #25214f;padding:11px;font:19px VT323}.ok{color:var(--cyan)}@media(max-width:700px){.game{transform:translate(-50%,-50%) scale(.72)}.screen{height:430px}.floor{grid-template-columns:1fr}.cabinet{border-width:5px}}
-</style></head><body><main class="cabinet" id="cabinet"><div class="marquee">NEON MAZE</div><div class="score"><span>1UP<b id="score">000000</b></span><span>HIGH SCORE<b>009900</b></span><span>LIVES<b>♥ ♥ ♥</b></span></div><section class="screen"><div class="game" id="game"><i class="player" id="player"></i></div><div class="overlay" id="start"><div>▶ PRESS START<br><small>ARROW KEYS TO MOVE</small></div></div></section><div class="controls"><button class="start" id="coin">START</button><span>JOYSTICK / ARROW KEYS</span><a href="index.html">EXIT ↗</a></div></main><section class="operator"><h1>CABINET OPERATOR / SERVICE MODE</h1><div class="floor"><article class="panel"><h2>GAME CONFIGURATION</h2><label>DIFFICULTY<select><option>NORMAL / 3 LIVES</option><option>HARD / 1 LIFE</option></select></label><label>MASTER VOLUME<input type="range" value="72"></label><label>CRT BRIGHTNESS<input type="range" value="84"></label><label><input type="checkbox" checked> ATTRACT MODE</label><label><input type="checkbox" checked> FREE PLAY</label><button class="start" id="reset">RESET</button></article><article class="panel"><h2>CABINET DIAGNOSTICS</h2><div class="diagnostic"><span>VIDEO SYNC</span><b class="ok">PASS</b></div><div class="diagnostic"><span>JOYSTICK</span><b class="ok">PASS</b></div><div class="diagnostic"><span>COIN CHUTE</span><b>FREE</b></div><div class="diagnostic"><span>SPEAKER L/R</span><b class="ok">PASS</b></div><h2>HIGH SCORE TABLE</h2><table class="highscores"><tr><th>RANK</th><th>PLAYER</th><th>SCORE</th></tr><tr><td>01</td><td>COD3X</td><td>009900</td></tr><tr><td>02</td><td>NE0N</td><td>008420</td></tr></table></article></div></section><script>const map=["11111111111","10000010001","10111010101","10001000101","11101110101","10000000101","10101111101","10100010001","10111010111","10000000001","11111111111"],game=document.querySelector("#game"),p=document.querySelector("#player");let x=1,y=1,s=0,on=false;map.forEach((r,yy)=>[...r].forEach((v,xx)=>{const c=document.createElement("i");c.className="cell "+(v==="1"?"wall":"dot");c.dataset.p=`${xx},${yy}`;game.append(c)}));const g=document.createElement("i");g.className="ghost";g.style.cssText="left:359px;top:227px";game.append(g);function start(){on=true;document.querySelector("#cabinet").classList.add("started")}function move(dx,dy){if(!on||map[y+dy]?.[x+dx]!=="0")return;x+=dx;y+=dy;p.style.left=7+x*44+"px";p.style.top=7+y*44+"px";const d=document.querySelector(`[data-p='${x},${y}']`);if(d.classList.contains("dot")){d.classList.remove("dot");document.querySelector("#score").textContent=String(s+=10).padStart(6,"0")}}document.querySelector("#start").onclick=start;document.querySelector("#coin").onclick=start;addEventListener("keydown",e=>{const m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(m){e.preventDefault();move(...m)}});document.querySelector("#reset").onclick=()=>location.reload();</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>ARCADE · 8-bit 街机</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#07070d;--theme-surface:#11111c;--theme-surface-2:#1b1b2b;
+    --theme-ink:#f7f2dc;--theme-muted:#aaa8c2;--theme-accent:#28e8ff;
+    --theme-accent-2:#ffdc31;--theme-danger:#ff3b56;--theme-line:#5552b8;
+    --theme-shadow:rgba(40,232,255,.2);--theme-radius:0px;--theme-display:"Press Start 2P", monospace;
+    --theme-body:"IBM Plex Mono", monospace;--theme-mono:"Press Start 2P", monospace;
+    --theme-on-accent:#080808;
+    --theme-on-accent-2:#ffffff;
+    --theme-on-danger:#080808;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+
+      body{image-rendering:pixelated;background-image:linear-gradient(rgba(50,48,90,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(50,48,90,.15) 1px,transparent 1px);background-size:16px 16px}
+      body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px),radial-gradient(ellipse,transparent 55%,rgba(0,0,0,.55));z-index:20}
+      .worldbar,.module,.art-stage{border:4px solid var(--accent);box-shadow:4px 0 var(--accent2),-4px 0 #ff3b56,0 4px #ff3b56,0 -4px var(--accent2),0 0 25px rgba(40,232,255,.12)}
+      .action,.text-input,.select-trigger{border:4px solid #f7f2dc;box-shadow:4px 4px 0 #5552b8;font-family:var(--font-mono);font-size:.62rem}.action:active{transform:translate(4px,4px);box-shadow:none}.primary{background:var(--danger)}.secondary{background:#4e48c4}.quiet{background:#171724}
+      .choice-mark{border:3px solid #fff;border-radius:0}.choice input:checked+.choice-mark::after{border-radius:0;background:var(--accent2);box-shadow:4px 0 var(--accent2),0 4px var(--accent2)}
+      .toggle-track{border:3px solid #fff;border-radius:0;background:#292647}.toggle-track::after{border-radius:0;background:var(--danger);box-shadow:3px 3px 0 #7e182c}
+      .progress-track{height:18px;border:3px solid #fff;border-radius:0;background:#101019}.progress-fill{background:repeating-linear-gradient(90deg,var(--danger) 0 14px,transparent 14px 17px)}
+      .gauge{border-radius:0;border:4px solid #fff;background:conic-gradient(var(--accent2) calc(var(--level,64)*1%),#242338 0);image-rendering:pixelated}
+      .art-stage{background:#05050b;overflow:hidden}
+      .arcade-screen{position:absolute;inset:10% 8% 16%;border:8px solid #3330a1;box-shadow:inset 0 0 0 4px #1b1969;background:#080810;overflow:hidden}
+      .maze{position:absolute;inset:14px;background:repeating-linear-gradient(90deg,var(--accent) 0 3px,transparent 3px 42px),repeating-linear-gradient(0deg,var(--accent) 0 3px,transparent 3px 42px);clip-path:polygon(0 0,100% 0,100% 20%,20% 20%,20% 42%,80% 42%,80% 62%,38% 62%,38% 82%,100% 82%,100% 100%,0 100%,0 72%,20% 72%,20% 52%,0 52%)}
+      .arcade-screen::after{content:"· · · · · · · · · · · · · · · · ·";position:absolute;left:7%;right:7%;top:46%;color:var(--accent2);font:1.2rem var(--font-mono);letter-spacing:.5em;white-space:nowrap}
+      .player{position:absolute;width:20px;height:20px;background:var(--accent2);border-radius:50%;left:12%;top:45%;clip-path:polygon(0 0,100% 0,52% 50%,100% 100%,0 100%);animation:arcadeChomp .45s steps(2) infinite}.ghost{position:absolute;width:22px;height:22px;background:var(--danger);border-radius:50% 50% 0 0;right:22%;top:45%;box-shadow:7px 0 0 var(--danger)}.ghost-b{right:12%;background:var(--accent);box-shadow:7px 0 var(--accent)}.cherry{position:absolute;right:8%;bottom:12%;color:var(--danger);font-size:1.4rem}
+      .arcade-score{position:absolute;top:5%;left:10%;color:#fff;font:.6rem var(--font-mono)}
+      .artifact.is-awake .player{animation:arcadeRun 1.6s steps(8) both}@keyframes arcadeChomp{50%{clip-path:circle()}}@keyframes arcadeRun{to{left:72%}}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">PIXEL PALACE</span>
+      <span class="worldbar-state">1UP · HI-SCORE 008420 · CREDIT 03</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">13 / ARCADE · Retro arcade</p>
+        <h1 id="hero-title">投币，闯进下一关</h1>
+        <p class="lede">摇杆已经归中，荧光迷宫正在等待。吃掉沿途光点、保住最后一格能量，然后按下 START。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>PRESS START</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">投入金币</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="8-bit 街机招牌装置">
+
+      <div class="arcade-screen" aria-hidden="true"><div class="maze"></div><i class="player"></i><i class="ghost ghost-a"></i><i class="ghost ghost-b"></i><b class="cherry">◆</b></div>
+      <div class="arcade-score" aria-hidden="true">1UP&nbsp;&nbsp;002480</div>
+      <div class="artifact-caption"><span>STAGE 03</span><strong>NEON MAZE</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">CONTROL COLLECTION / ARCADE</p>
+        <h2>世界内控件</h2>
+      </div>
+      <p>每件控件都从「8-bit 街机」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">ACTION / 五种动作</p>
+        <h3 class="module-title" id="buttons-title">行动指令</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>PRESS START</button>
+          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">投入金币</button>
+          <button class="action danger" type="button" data-toast>触发警示</button>
+          <button class="action" type="button" disabled>权限未开放</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">IDENTITY / 输入与选择</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">识别铭牌</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="ENTER 3-LETTER NAME">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-arcade">当前区域</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-arcade select-value-arcade">
+              <span id="select-value-arcade" class="select-value">NEON MAZE</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-arcade" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="NEON MAZE" aria-selected="true">NEON MAZE</li><li class="select-option" role="option" tabindex="-1" data-value="GHOST TUNNEL" aria-selected="false">GHOST TUNNEL</li><li class="select-option" role="option" tabindex="-1" data-value="BONUS STAGE" aria-selected="false">BONUS STAGE</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">STATE / 单选、复选与开关</p>
+        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种模式</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="1 PLAYER" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>1 PLAYER</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="2 PLAYERS">
+          <span class="choice-mark" aria-hidden="true"></span><span>2 PLAYERS</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="TIME ATTACK">
+          <span class="choice-mark" aria-hidden="true"></span><span>TIME ATTACK</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">附加记录</legend>
+          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
+          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="持续唤醒">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">CALIBRATION / 连续量</p>
+        <h3 class="module-title" id="range-title">PLAYER ENERGY</h3>
+        <div class="range-row">
+          <input class="range" id="range-arcade" type="range" min="0" max="100" value="64" aria-label="PLAYER ENERGY" data-range>
+          <output class="range-output" for="range-arcade">64 HP</output>
+        </div>
+        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">ARCHIVE / 标签页</p>
+        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-arcade-0" aria-controls="panel-arcade-0" aria-selected="true" tabindex="0">SCORE</button><button class="tab" type="button" role="tab" id="tab-arcade-1" aria-controls="panel-arcade-1" aria-selected="false" tabindex="-1">LIVES</button><button class="tab" type="button" role="tab" id="tab-arcade-2" aria-controls="panel-arcade-2" aria-selected="false" tabindex="-1">MAP</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-arcade-0" aria-labelledby="tab-arcade-0">
+          <h4>HI-SCORE 已刷新</h4><p>连续吃点奖励进入 x4，下一枚樱桃价值 800 分。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-arcade-1" aria-labelledby="tab-arcade-1" hidden>
+          <h4>还剩三次机会</h4><p>蓝色鬼影暂时休眠，碰到闪烁能量块即可反击。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-arcade-2" aria-labelledby="tab-arcade-2" hidden>
+          <h4>隐藏通道已开启</h4><p>从左侧边界穿出，会在迷宫另一端重新出现。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">MEASURE / 量表与反馈</p>
+        <h3 class="module-title" id="measure-title">读取当前状态</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="PLAYER ENERGY" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64 HP</span>
+          </div>
+          <div class="measure-copy">
+            <strong>PLAYER ENERGY保持在可控区间</strong>
+            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-arcade">悬停查看注记</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-arcade">注记会在悬停或键盘聚焦时出现。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">ARCADE / INSERT COIN TO CONTINUE.</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-arcade">
+      <p class="module-kicker">CONFIRM / ARCADE</p>
+      <h2 id="modal-title-arcade">确认执行这项动作？</h2>
+      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
+        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-arcade";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + " HP";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + " HP";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("动作已经确认，状态已写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("状态推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>

@@ -1,3 +1,616 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Gazette / Newsroom</title><style>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;800&family=Playfair+Display:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');:root{--paper:#e8e3d6;--ink:#151515;--blue:#234d78}*{box-sizing:border-box}body{margin:0;background:#8d8b85;color:var(--ink);font-family:"Source Serif 4"}.paper{width:min(1320px,96vw);margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 50px #333;padding:18px 4vw}.utility{border-top:4px solid;border-bottom:1px solid;padding:7px 0;display:flex;justify-content:space-between;font:800 9px "Libre Franklin";letter-spacing:2px}.utility a{color:inherit}.mast{font:900 clamp(65px,10vw,125px)/.8 "Playfair Display";text-align:center;border-bottom:8px double;margin:15px 0;padding-bottom:15px}.front{display:grid;grid-template-columns:1.3fr .7fr;gap:25px}.lead{border-right:1px solid;padding-right:25px}.kicker{font:800 9px "Libre Franklin";color:var(--blue);letter-spacing:2px}.lead h1{font:900 clamp(50px,7vw,90px)/.84 "Playfair Display";letter-spacing:-.05em;margin:12px 0}.stand{font-size:19px;font-weight:600}.columns{columns:3;column-rule:1px solid;column-gap:20px;text-align:justify;font-size:13px}.quote{font:700 42px/1 "Playfair Display";border-top:8px solid;padding-top:15px}.graphic{height:260px;background:var(--blue);color:var(--paper);display:grid;place-items:center;font:900 110px "Playfair Display";margin-top:20px}.newsroom{margin:65px -4vw 0;padding:65px 4vw 90px;border-top:10px double;background:#f1ece0}.newsroom h2{font:900 clamp(48px,7vw,86px)/.85 "Playfair Display";margin:0 0 30px}.desk{display:grid;grid-template-columns:220px 1fr 290px;border-top:4px solid}.budget,.editor,.wire{padding:20px;border-right:1px solid}.wire{border:0}.budget button{display:block;width:100%;border:0;border-bottom:1px solid;background:transparent;text-align:left;padding:11px;font:800 10px "Libre Franklin"}.budget button.active{background:var(--ink);color:var(--paper)}.editor input,.editor textarea,.editor select{width:100%;border:1px solid;background:var(--paper);padding:9px;margin:7px 0;font:15px "Source Serif 4"}.editor textarea{height:130px}.headline-input{font:700 28px "Playfair Display"!important}.checks{display:flex;gap:15px;font-size:12px}.publish{border:0;background:var(--ink);color:var(--paper);padding:11px 18px;font:800 10px "Libre Franklin"}.publish.blue{background:var(--blue)}.wire-item{border-bottom:1px solid;padding:11px 0;font-size:12px}.wire-item time{color:var(--blue);font:800 9px "Libre Franklin"}.story-budget{width:100%;border-collapse:collapse;margin-top:30px}.story-budget th,.story-budget td{text-align:left;border-bottom:1px solid;padding:11px}.story-budget th{font:800 9px "Libre Franklin"}.state{color:var(--blue);font-weight:bold}dialog{background:var(--paper);border-top:10px double;border-bottom:4px solid;padding:30px;width:min(480px,90vw)}dialog::backdrop{background:#111c}dialog h3{font:700 40px "Playfair Display"}@media(max-width:850px){.front,.desk{grid-template-columns:1fr}.lead,.budget,.editor{border-right:0;border-bottom:1px solid}.columns{columns:2}}
-</style></head><body><main class="paper"><header><div class="utility"><span>VOL. CCVI · NO. 17,482</span><span>FRIDAY, JULY 24, 2026</span><a href="index.html">ATLAS ↗</a></div><div class="mast">The Gazette</div></header><section class="front"><article class="lead"><span class="kicker">DESIGN / SPECIAL REPORT</span><h1>Typography Declares Its Independence</h1><p class="stand">After years trapped in rounded cards, the written word has returned to the front page.</p><p class="columns">At precisely nine this morning, the grid stopped apologising. Headlines expanded across five columns, rules became visible again, and information remembered that hierarchy can be both useful and beautiful. The Gazette treats typography not as content poured into containers, but as architecture. Hairline rules organise without decoration. Ink blue marks action without shouting. Every hover earns its underline. Every column carries a clear measure and a deliberate rag. This is not nostalgia. It is a working editorial machine, built for subjects with consequences and readers with curiosity.</p></article><aside><blockquote class="quote">“The page found its voice when the boxes went quiet.”</blockquote><div class="graphic">Aa</div><h2>Why one blue is enough</h2></aside></section><section class="newsroom"><span class="kicker">LIVE PRODUCT / EDITORIAL WORKFLOW</span><h2>The city desk is open.</h2><div class="desk"><aside class="budget"><h3>DESKS / 24 STORIES</h3><button class="active" data-story="Typography Declares Its Independence">FRONT PAGE / LEAD</button><button data-story="Why One Blue Is Enough">OPINION / BLUE INK</button><button data-story="Drop Caps Return">CULTURE / TYPE</button><button data-story="Twelve Columns, Zero Confusion">DATA / GRID</button></aside><article class="editor"><span class="kicker">STORY EDITOR / TYPE-LEAD</span><input class="headline-input" id="headline" value="Typography Declares Its Independence"><select><option>Design & Culture</option><option>Opinion</option></select><textarea>After years trapped in rounded cards, the written word has returned to the front page.</textarea><div class="checks"><label><input type="checkbox" checked> City edition</label><label><input type="checkbox"> Legal review</label><label><input type="checkbox" checked> Homepage lead</label></div><p><button class="publish">SAVE PROOF</button> <button class="publish blue" id="publish">SEND TO PRESS</button></p></article><aside class="wire"><h3>LIVE NEWSWIRE</h3><div class="wire-item"><time>14:32</time><br><b>Copy desk clears lead headline</b></div><div class="wire-item"><time>14:18</time><br><b>Photo desk supplies final crop</b></div><div class="wire-item"><time>13:47</time><br><b>Source confirms paragraph four</b></div><div class="wire-item"><time>13:15</time><br><b>City edition closes in 42 min</b></div></aside></div><table class="story-budget"><thead><tr><th>SLUG</th><th>HEADLINE</th><th>DESK</th><th>WORDS</th><th>STATE</th></tr></thead><tbody><tr><td>TYPE-LEAD</td><td>Typography Declares Independence</td><td>Culture</td><td>1,240</td><td class="state" id="pressState">READY</td></tr><tr><td>BLUE-INK</td><td>Why one blue is enough</td><td>Opinion</td><td>860</td><td>PROOF</td></tr></tbody></table></section></main><dialog id="pressDialog"><span class="kicker">FINAL CITY EDITION</span><h3>Release the front page?</h3><p>The edition will be locked and transmitted to the pressroom.</p><button class="publish" data-close>HOLD</button> <button class="publish blue" id="confirm">PRINT NOW</button></dialog><script>document.querySelectorAll("[data-story]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-story]").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelector("#headline").value=b.dataset.story});const d=document.querySelector("#pressDialog");document.querySelector("#publish").onclick=()=>d.showModal();document.querySelector("[data-close]").onclick=()=>d.close();document.querySelector("#confirm").onclick=()=>{document.querySelector("#pressState").textContent="ON PRESS";d.close()};</script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GAZETTE · 报章排印</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Libre+Baskerville:wght@400;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#e8e3d7;--theme-surface:#f2eee4;--theme-surface-2:#ded8ca;
+    --theme-ink:#171717;--theme-muted:#4b4a46;--theme-accent:#193e69;
+    --theme-accent-2:#193e69;--theme-danger:#7e1f1b;--theme-line:#272727;
+    --theme-shadow:rgba(20,20,20,.14);--theme-radius:0px;--theme-display:"Libre Baskerville", "Noto Serif SC", serif;
+    --theme-body:"Libre Baskerville", "Noto Serif SC", serif;--theme-mono:"IBM Plex Mono", monospace;
+    --theme-on-accent:#fffdf7;
+    --theme-on-accent-2:#fffdf7;
+    --theme-on-danger:#fffdf7;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+
+      body{background-image:radial-gradient(rgba(20,20,20,.16) .45px,transparent .6px);background-size:4px 4px}
+      body::before{opacity:.13;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.6' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+      .worldbar{border-width:3px 0 1px;background:transparent;box-shadow:none}.module{border-width:3px 0 1px;background:rgba(242,238,228,.72);box-shadow:none}.module::after{content:"✛";position:absolute;right:0;top:10px;color:var(--accent);font-size:.7rem}
+      .controls-grid{column-gap:34px}.module-title{font-family:var(--font-display);letter-spacing:-.03em}.module-kicker{border-bottom:1px solid var(--ink);padding-bottom:8px}
+      .action,.text-input,.select-trigger{border:1px solid var(--ink);border-radius:0;box-shadow:none}.action{font-family:var(--font-body)}.action:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}.primary{background:var(--ink);color:var(--surface)}.secondary{background:var(--accent);color:#fff}
+      .choice-mark{border:1px solid var(--ink);border-radius:0}.toggle-track{border:1px solid var(--ink);border-radius:0;background:var(--surface)}.toggle-track::after{border-radius:0;background:var(--ink)}
+      .progress-track{border:1px solid var(--ink);border-radius:0;background:transparent}.progress-fill{background:var(--accent)}
+      .gauge{border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level,64)*1%),transparent 0);border:1px solid var(--ink)}
+      .art-stage{background:#f2eee4;border:1px solid var(--ink);box-shadow:8px 10px 0 rgba(23,23,23,.18);overflow:hidden}
+      .gazette-paper{position:absolute;width:78%;height:78%;border:1px solid #171717;background:#eee9dc;padding:5%;box-shadow:0 12px 28px rgba(0,0,0,.17);transform:rotate(-1deg)}
+      .gazette-mast{font:700 clamp(2.2rem,7vw,4.5rem)/.9 "UnifrakturCook",serif;text-align:center;color:#111}.gazette-rule{height:7px;border-block:3px double #111;margin:4% 0}.gazette-paper strong{font:700 clamp(1.8rem,5vw,3.2rem)/.95 var(--font-display);letter-spacing:-.045em}.gazette-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:5%;height:32%}.gazette-columns i{display:block;background:repeating-linear-gradient(0deg,#242424 0 1px,transparent 1px 6px)}.gazette-mark{position:absolute;right:5%;top:7%;font-size:2rem;color:var(--accent)}
+      .artifact.is-awake .gazette-paper{filter:blur(.25px);text-shadow:.6px 0 rgba(25,62,105,.35)}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">The Daily Gazette</span>
+      <span class="worldbar-state">LATE CITY EDITION · MONDAY, JULY 27 · PRICE 2¢</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">20 / GAZETTE · Broadsheet</p>
+        <h1 id="hero-title">今日头条，由你定稿</h1>
+        <p class="lede">一张以栏线、字号和油墨建立秩序的城市晨报。几乎没有多余动效，重要性只由版位与事实决定。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>送往印刷</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">校对头版</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="报章排印招牌装置">
+
+      <div class="gazette-paper" aria-hidden="true"><div class="gazette-mast">The Gazette</div><div class="gazette-rule"></div><strong>NEW BRIDGE<br>OPENS AT DAWN</strong><div class="gazette-columns"><i></i><i></i><i></i></div></div>
+      <div class="gazette-mark" aria-hidden="true">✛</div>
+      <div class="artifact-caption"><span>LATE CITY</span><strong>头版校样 · 07</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">CONTROL COLLECTION / GAZETTE</p>
+        <h2>世界内控件</h2>
+      </div>
+      <p>每件控件都从「报章排印」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">ACTION / 五种动作</p>
+        <h3 class="module-title" id="buttons-title">行动指令</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>送往印刷</button>
+          <button class="action secondary" type="button" data-open-modal>开启确认舱</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">校对头版</button>
+          <button class="action danger" type="button" data-toast>触发警示</button>
+          <button class="action" type="button" disabled>权限未开放</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">IDENTITY / 输入与选择</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">识别铭牌</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="输入新闻标题">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-gazette">当前区域</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-gazette select-value-gazette">
+              <span id="select-value-gazette" class="select-value">头版主栏</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-gazette" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="头版主栏" aria-selected="true">头版主栏</li><li class="select-option" role="option" tabindex="-1" data-value="第二版折页" aria-selected="false">第二版折页</li><li class="select-option" role="option" tabindex="-1" data-value="晚市增刊" aria-selected="false">晚市增刊</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">STATE / 单选、复选与开关</p>
+        <h3 class="module-title" id="choice-title">配置运行姿态</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种模式</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="城市要闻" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>城市要闻</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="国际电讯">
+          <span class="choice-mark" aria-hidden="true"></span><span>国际电讯</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="文化副刊">
+          <span class="choice-mark" aria-hidden="true"></span><span>文化副刊</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">附加记录</legend>
+          <label class="choice check"><input type="checkbox" value="记录轨迹" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>记录轨迹</span></label>
+          <label class="choice check"><input type="checkbox" value="发送回执" data-check><span class="choice-mark" aria-hidden="true"></span><span>发送回执</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>持续唤醒</strong><small>允许装置保留活动状态</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="持续唤醒">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">CALIBRATION / 连续量</p>
+        <h3 class="module-title" id="range-title">版面付印度</h3>
+        <div class="range-row">
+          <input class="range" id="range-gazette" type="range" min="0" max="100" value="64" aria-label="版面付印度" data-range>
+          <output class="range-output" for="range-gazette">64%</output>
+        </div>
+        <div class="progress-label"><span>同步进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="同步进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">ARCHIVE / 标签页</p>
+        <h3 class="module-title" id="tabs-title">三份现场记录</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-gazette-0" aria-controls="panel-gazette-0" aria-selected="true" tabindex="0">头条</button><button class="tab" type="button" role="tab" id="tab-gazette-1" aria-controls="panel-gazette-1" aria-selected="false" tabindex="-1">社论</button><button class="tab" type="button" role="tab" id="tab-gazette-2" aria-controls="panel-gazette-2" aria-selected="false" tabindex="-1">电讯</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-gazette-0" aria-labelledby="tab-gazette-0">
+          <h4>新桥于黎明开放</h4><p>市民在第一班电车之前穿过河面，桥塔钟声持续了整整三分钟。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-gazette-1" aria-labelledby="tab-gazette-1" hidden>
+          <h4>城市需要更多树荫</h4><p>编辑部认为，新的道路计划必须同时计算行人与夏日温度。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-gazette-2" aria-labelledby="tab-gazette-2" hidden>
+          <h4>远洋邮轮平安靠港</h4><p>船上携回十二袋邮件，以及一张来自南半球的新星图。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">MEASURE / 量表与反馈</p>
+        <h3 class="module-title" id="measure-title">读取当前状态</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="版面付印度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64%</span>
+          </div>
+          <div class="measure-copy">
+            <strong>版面付印度保持在可控区间</strong>
+            <p>拖动上方滑杆会同时改变进度条、量表和招牌装置。所有数值都使用同一份状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-gazette">悬停查看注记</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-gazette">注记会在悬停或键盘聚焦时出现。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">GAZETTE / All the news that fits the measure.</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-gazette">
+      <p class="module-kicker">CONFIRM / GAZETTE</p>
+      <h2 id="modal-title-gazette">确认执行这项动作？</h2>
+      <p>装置会记录当前选择，并把本次操作写入本机状态。你随时可以返回修改。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>暂不执行</button>
+        <button class="action primary" type="button" data-confirm-modal>确认执行</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-gazette";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + "%";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + "%";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("动作已经确认，状态已写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("警示已送达：请复核当前参数。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("状态推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "招牌装置已经唤醒。" : "招牌装置已经归于静止。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "持续唤醒已经开启。" : "持续唤醒已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>
