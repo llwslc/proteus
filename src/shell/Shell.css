@@ -36,28 +36,80 @@
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 .shell-home__card {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: baseline;
-  gap: 4px 12px;
-  padding: 20px 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   border: 1px solid rgba(232, 228, 220, 0.12);
   border-radius: 14px;
   background: #131318;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
+  overflow: hidden;
   transition:
     border-color 0.2s ease,
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
-.shell-home__card:hover {
+.shell-home__card:hover,
+.shell-home__card:focus-within {
   border-color: rgba(216, 195, 154, 0.5);
   transform: translateY(-3px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
 }
-.shell-home__card:focus-visible {
+
+.shell-home__thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0a0a0d;
+  border-bottom: 1px solid rgba(232, 228, 220, 0.12);
+}
+.shell-home__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 800px;
+  border: 0;
+  transform: scale(var(--s, 0.2));
+  transform-origin: top left;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.shell-home__thumb.is-loaded .shell-home__frame {
+  opacity: 1;
+}
+.shell-home__tload {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #5b5954;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  background: repeating-linear-gradient(115deg, #111116 0 12px, #141419 12px 24px);
+  transition: opacity 0.4s ease;
+}
+.shell-home__thumb.is-loaded .shell-home__tload {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.shell-home__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 14px 16px 16px;
+}
+.shell-home__hit {
+  position: absolute;
+  inset: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.shell-home__hit:focus-visible {
   outline: 2px solid #d8c39a;
   outline-offset: 2px;
 }

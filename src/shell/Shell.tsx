@@ -131,6 +131,23 @@ function FullShell() {
     return () => window.removeEventListener("keydown", onKey);
   }, [entered, overlay, open, kit]);
 
+  useEffect(() => {
+    if (entered) return;
+    const thumbs = Array.from(
+      document.querySelectorAll<HTMLElement>(".shell-home__thumb"),
+    );
+    if (thumbs.length === 0) return;
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries)
+        (entry.target as HTMLElement).style.setProperty(
+          "--s",
+          String(entry.contentRect.width / 1280),
+        );
+    });
+    thumbs.forEach((t) => ro.observe(t));
+    return () => ro.disconnect();
+  }, [entered]);
+
   const onMenuKeyDown = (event: KeyboardEvent) => {
     const options = Array.from(
       menuRef.current?.querySelectorAll<HTMLButtonElement>('button[role="option"]') ?? [],
@@ -157,22 +174,42 @@ function FullShell() {
           <header className="shell-home__head">
             <h1 className="shell-home__title">Base UI Theme Kits</h1>
             <p className="shell-home__sub">
-              Seven independent, fully re-skinnable component worlds — pick one to open
-              full-screen
+              {KITS.length} independent, fully re-skinnable component worlds — pick one to
+              open full-screen
             </p>
           </header>
           <div className="shell-home__grid">
             {KITS.map((k, i) => (
-              <button
-                key={k.id}
-                type="button"
-                className="shell-home__card"
-                onClick={() => enter(k.id)}
-              >
-                <span className="shell-home__idx">{String(i + 1).padStart(2, "0")}</span>
-                <span className="shell-home__label">{k.label}</span>
-                <span className="shell-home__tag">{k.tag}</span>
-              </button>
+              <div key={k.id} className="shell-home__card">
+                <span className="shell-home__thumb" aria-hidden="true">
+                  <iframe
+                    className="shell-home__frame"
+                    title=""
+                    tabIndex={-1}
+                    loading="lazy"
+                    src={`?embed=1&kit=${k.id}`}
+                    onLoad={(e) =>
+                      e.currentTarget
+                        .closest(".shell-home__thumb")
+                        ?.classList.add("is-loaded")
+                    }
+                  />
+                  <span className="shell-home__tload">{k.label}</span>
+                </span>
+                <span className="shell-home__meta">
+                  <span className="shell-home__idx">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="shell-home__label">{k.label}</span>
+                  <span className="shell-home__tag">{k.tag}</span>
+                </span>
+                <button
+                  type="button"
+                  className="shell-home__hit"
+                  aria-label={`Open ${k.label} — ${k.tag}`}
+                  onClick={() => enter(k.id)}
+                />
+              </div>
             ))}
           </div>
         </section>
