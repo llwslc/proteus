@@ -39,14 +39,13 @@
 .brass-progress__indicator[data-indeterminate] {
   width: 40%;
   transition: none;
-  animation: brass-progress-slide var(--brass-dur-sweep) var(--brass-ease) infinite;
+  animation: brass-progress-slide var(--brass-dur-sweep) linear infinite;
 }
 @keyframes brass-progress-slide {
-  0%,
-  100% {
-    transform: translateX(0);
+  from {
+    transform: translateX(-100%);
   }
-  50% {
-    transform: translateX(150%);
+  to {
+    transform: translateX(250%);
   }
 }

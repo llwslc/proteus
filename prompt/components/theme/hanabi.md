@@ -30,7 +30,7 @@
 - Autocomplete：列表项皮肤复用 Select（无勾选指示）。
 - Fieldset：legend 走 `.hanabi-cap` + 前缀 `primary` ✦，框是 `2px dashed tone` 虚线圆角箱。
 - Form：竖排间距 `space-4`。
-- Progress：血条解剖——`r-pill` 轨凹嵌（`ink` 框 + 左上 inset 阶影），indicator `primary` 平涂 + 顶部白高光线 + 推进端一枚白 ✦ 压条；轨上叠十等分 `ink` 分格刻度（alpha 极低）；不定态 = 斜纹段左右巡游。
+- Progress：血条解剖——`r-pill` 轨凹嵌（`ink` 框 + 左上 inset 阶影），indicator `primary` 平涂 + 顶部白高光线 + 推进端一枚白 ✦ 压条；轨上叠十等分 `ink` 分格刻度（alpha 极低）；不定态 = 斜纹段连续单向扫掠。
 - Meter：轨与分格同 Progress，填充改 tone／tone-deep 相间**斜纹**并以 `stripe-flow` 流动，按 `tone` 重染。
 - Tabs：斜切折页 chip（`skew`、上圆角 `r-fold`、无 border-bottom）一排咬在 content 箱顶缘（列下压一线宽压住箱顶边、chip 距 `space-2`），未选 `base` 底、坐箱顶线上呈闭合（translate 归零、无悬空缝）、hover 描线转 `primary`，选中 `primary` 填白字、顶部加高 `4px`（列 `flex-end` 底对齐、比未选高出一截）、沉一线宽落进面板（盖住箱顶线成开口、与 body 连成一体）；content 箱 = `surface` 面 + `ink` 框 + `shadow` 阶影带、衬 `space-4`；不设选中指示条、不画全宽底轨。
 - Accordion：折叠配方——trigger 行 marker 是 `primary` ✦（定宽）、title 正文体 `fw-700`、chevron `primary` ▼ 开态翻转；panel content 按缩进公式对齐 title；trigger hover 盖 wash。

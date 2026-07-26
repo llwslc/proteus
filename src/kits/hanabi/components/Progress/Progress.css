@@ -84,18 +84,17 @@
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator {
   width: 40%;
   left: 0;
-  animation: hanabi-progress-bounce 1.5s var(--hanabi-ease-out) infinite;
+  animation: hanabi-progress-sweep 1.5s linear infinite;
 }
 .hanabi-progress[data-indeterminate] .hanabi-progress__indicator::after {
   content: none;
 }
 
-@keyframes hanabi-progress-bounce {
-  0%,
-  100% {
-    transform: translateX(0);
+@keyframes hanabi-progress-sweep {
+  from {
+    transform: translateX(-100%);
   }
-  50% {
-    transform: translateX(150%);
+  to {
+    transform: translateX(250%);
   }
 }

@@ -43,7 +43,7 @@
   transition: none;
   animation:
     nova-progress-stripes var(--nova-dur-stripe) linear infinite,
-    nova-progress-sweep var(--nova-dur-sweep) var(--nova-ease) infinite;
+    nova-progress-sweep var(--nova-dur-sweep) linear infinite;
 }
 @keyframes nova-progress-stripes {
   to {
@@ -53,11 +53,10 @@
   }
 }
 @keyframes nova-progress-sweep {
-  0%,
-  100% {
-    transform: translateX(0);
+  from {
+    transform: translateX(-100%);
   }
-  50% {
-    transform: translateX(150%);
+  to {
+    transform: translateX(250%);
   }
 }

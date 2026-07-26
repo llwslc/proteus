@@ -47,14 +47,14 @@
   content: none;
 }
 .nocturne-progress__indicator[data-indeterminate] {
-  width: 34% !important;
-  animation: nocturne-prog-rove 1.4s var(--nocturne-ease) infinite alternate;
+  width: 40%;
+  animation: nocturne-prog-sweep 1.5s linear infinite;
 }
-@keyframes nocturne-prog-rove {
+@keyframes nocturne-prog-sweep {
   from {
-    margin-left: 0;
+    transform: translateX(-100%);
   }
   to {
-    margin-left: 66%;
+    transform: translateX(250%);
   }
 }

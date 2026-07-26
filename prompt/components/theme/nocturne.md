@@ -29,7 +29,7 @@
 - Autocomplete：列表项皮肤复用 Select（无勾选指示）。
 - Fieldset：legend 走 `.nocturne-cap` + 前缀 `primary` 小花，框是 `1px` `line-faint` 细线直角箱。
 - Form：竖排间距 `space-4`。
-- Progress：月光蒸馏——`r-rail` 轨凹嵌（`line` 框 + `track` 底），indicator 酒红竖向渐变平涂 + 一层 `glow`；推进端骑一朵五瓣花随进度前移、到满绽开。
+- Progress：月光蒸馏——`r-rail` 轨凹嵌（`line` 框 + `track` 底），indicator 酒红竖向渐变平涂 + 一层 `glow`；推进端骑一朵五瓣花随进度前移、到满绽开；不定态则收成同色扫掠段、不挂花。
 - Meter：轨同 Progress，填充改本 `tone`／`tone-deep` 竖向渐变，按 `tone` 重染，无推进端花。
 - Tabs：黄铜书线页签——一排 display 体大字距 tab 咬在 `line` 底线上，未选 `dim` 字、hover 转 `bright`，选中 `primary-lit` 字 + 底缘一条亮金指示条（两端渐隐）随 Base UI `--active-tab-*` 移动；content 区衬 `space-4`、不画外框。
 - Accordion：折叠配方——trigger 行 marker 是 `primary` 小花（定宽）、title display 体 `fw-600`、chevron `primary-lit` ▾ 开态翻转；panel content 按缩进公式对齐 title；trigger hover 盖 `drape`。

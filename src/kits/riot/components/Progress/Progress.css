@@ -48,14 +48,13 @@
   position: absolute;
   left: 0;
   width: 40%;
-  animation: riot-progress-bounce var(--riot-dur-sweep) var(--riot-ease-out) infinite;
+  animation: riot-progress-sweep var(--riot-dur-sweep) linear infinite;
 }
-@keyframes riot-progress-bounce {
-  0%,
-  100% {
-    transform: translateX(0);
+@keyframes riot-progress-sweep {
+  from {
+    transform: translateX(-100%);
   }
-  50% {
-    transform: translateX(150%);
+  to {
+    transform: translateX(250%);
   }
 }

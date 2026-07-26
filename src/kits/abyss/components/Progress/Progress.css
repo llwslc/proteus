@@ -34,14 +34,13 @@
 }
 .abyss-progress__track[data-indeterminate] .abyss-progress__indicator {
   width: 40%;
-  animation: abyss-creep var(--abyss-dur-sweep) var(--abyss-ease) infinite;
+  animation: abyss-creep var(--abyss-dur-sweep) linear infinite;
 }
 @keyframes abyss-creep {
-  0%,
-  100% {
-    transform: translateX(0);
+  from {
+    transform: translateX(-100%);
   }
-  50% {
-    transform: translateX(150%);
+  to {
+    transform: translateX(250%);
   }
 }

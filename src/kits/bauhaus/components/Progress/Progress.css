@@ -36,15 +36,14 @@
   position: absolute;
   left: 0;
   width: 40%;
-  animation: bauhaus-progress-slide var(--bauhaus-dur-sweep) var(--bauhaus-ease) infinite;
+  animation: bauhaus-progress-slide var(--bauhaus-dur-sweep) linear infinite;
 }
 @keyframes bauhaus-progress-slide {
-  0%,
-  100% {
-    transform: translateX(0);
+  from {
+    transform: translateX(-100%);
   }
-  50% {
-    transform: translateX(150%);
+  to {
+    transform: translateX(250%);
   }
 }
 @media (prefers-reduced-motion: reduce) {
