@@ -53,13 +53,6 @@ export const KITS: KitDef[] = [
     app: () => import("./hanabi"),
     loader: () => import("./hanabi/Loader"),
   },
-  {
-    id: "nocturne",
-    label: "NOCTURNE",
-    tag: "Dark · Botanical",
-    app: () => import("./nocturne"),
-    loader: () => import("./nocturne/Loader"),
-  },
 ];
 
 export const DEFAULT_KIT = KITS[0].id;

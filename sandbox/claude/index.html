@@ -216,7 +216,6 @@
     {id:"hanabi",code:"HANABI",name:"二次元赛璐璐 / Anime cel"},
     {id:"sumi",code:"SUMI",name:"水墨禅 / Zen ink"},
     {id:"ormolu",code:"ORMOLU",name:"洛可可宫廷 / Rococo"},
-    {id:"nocturne",code:"NOCTURNE",name:"暗夜花园 / Dark botanical"},
     {id:"pulp",code:"PULP",name:"复古廉价小说 / Pulp paperback"},
     {id:"totem",code:"TOTEM",name:"民艺图腾 / Folk craft"},
     {id:"kiln",code:"KILN",name:"陶土侘寂 / Wabi-sabi"},
@@ -371,7 +370,7 @@
     else if(e.key==="Escape"){ if(isFs()) exitFs(); else if(side.classList.contains("open")) closeSide(); else home(); }
   });
 
-  // deep link: /#nocturne opens that theme directly
+  // deep link: /#abyss opens that theme directly
   var h=location.hash.replace("#","");
   var idx=THEMES.map(function(t){return t.id}).indexOf(h);
   if(idx>=0) enter(idx);
