@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>NOCTURNE · 暗夜花园</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Italianno&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+    --theme-bg:#0d080e;--theme-surface:#181017;--theme-surface-2:#2a141d;
+    --theme-ink:#f3e7d2;--theme-muted:#c4b49a;--theme-accent:#c5a45d;
+    --theme-accent-2:#743047;--theme-danger:#a33847;--theme-line:#8a7143;
+    --theme-shadow:rgba(0,0,0,.42);--theme-radius:4px;--theme-display:"Cormorant Garamond", "Noto Serif SC", serif;
+    --theme-body:"Cormorant Garamond", "Noto Serif SC", serif;--theme-mono:"Cormorant Garamond", "Noto Serif SC", serif;
+    --theme-on-accent:#080808;
+    --theme-on-accent-2:#fffdf7;
+    --theme-on-danger:#fffdf7;}
+
+  :root{
+    --bg:var(--theme-bg);--surface:var(--theme-surface);--surface-2:var(--theme-surface-2);
+    --ink:var(--theme-ink);--muted:var(--theme-muted);--accent:var(--theme-accent);
+    --accent-2:var(--theme-accent-2);--danger:var(--theme-danger);--line:var(--theme-line);
+    --shadow:var(--theme-shadow);--radius:var(--theme-radius);--font-display:var(--theme-display);
+    --font-body:var(--theme-body);--font-mono:var(--theme-mono);--on-accent:var(--theme-on-accent);
+    --on-accent-2:var(--theme-on-accent-2);--on-danger:var(--theme-on-danger);--level:64;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-width:0;overflow-x:hidden;background-color:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;text-rendering:optimizeLegibility}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  button:disabled{cursor:not-allowed}
+  [hidden]{display:none!important}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--ink);color:var(--bg);transform:translateY(-180%)}
+  .skip-link:focus{transform:none}
+  .shell{width:min(100% - 48px,1180px);margin-inline:auto}
+  .worldbar{position:relative;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-height:44px}
+  .worldbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 16px;font:600 .68rem/1.3 var(--font-mono);letter-spacing:.11em;text-transform:uppercase}
+  .worldbar-mark{color:var(--accent)}
+  .worldbar-state{color:var(--muted);text-align:right}
+  .hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:clamp(36px,7vw,88px);align-items:center;min-height:min(740px,calc(100vh - 74px));padding-block:72px}
+  .hero-copy{min-width:0;position:relative;z-index:2}
+  .eyebrow,.module-kicker{margin:0 0 14px;color:var(--accent);font:600 .7rem/1.4 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+  h1{margin:0;max-width:11ch;font:800 clamp(3.15rem,7.5vw,7rem)/.92 var(--font-display);letter-spacing:-.055em;overflow-wrap:anywhere}
+  .lede{max-width:43rem;margin:28px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem)}
+  .actions,.button-rack{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .action{position:relative;isolation:isolate;min-height:48px;padding:11px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);font-weight:700;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,background .18s ease}
+  .action:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .action:active{transform:translateY(1px) scale(.99)}
+  .action.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+  .action.secondary{background:var(--accent-2);color:var(--on-accent-2);border-color:var(--accent-2)}
+  .action.quiet{background:transparent}
+  .action.danger{background:var(--danger);color:var(--on-danger);border-color:var(--danger)}
+  .action:disabled{opacity:.38;filter:grayscale(.5);transform:none;box-shadow:none}
+  .art-stage{position:relative;display:grid;place-items:center;min-height:520px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);isolation:isolate}
+  .artifact{position:absolute;inset:0;display:grid;place-items:center}
+  .artifact-caption{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font:600 .66rem/1.3 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;z-index:8}
+  .artifact-caption span{color:var(--accent)}
+  .artifact-caption strong{font:700 .76rem/1.3 var(--font-body);letter-spacing:.06em;text-align:right}
+  .controls-intro{display:grid;grid-template-columns:.45fr 1fr;gap:30px;align-items:end;padding:88px 0 30px;border-top:1px solid var(--line)}
+  .controls-intro h2{margin:0;font:700 clamp(2.2rem,5vw,4.4rem)/1 var(--font-display);letter-spacing:-.035em}
+  .controls-intro p{margin:0;color:var(--muted);max-width:46rem}
+  .controls-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:0 0 88px}
+  .module{position:relative;min-width:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 42px var(--shadow)}
+  .module.wide{grid-column:1/-1}
+  .module-title{margin:0 0 22px;font:700 clamp(1.35rem,2.7vw,2rem)/1.05 var(--font-display);letter-spacing:-.025em}
+  .module-copy{color:var(--muted);margin:-10px 0 22px;font-size:.93rem}
+  .button-rack{margin-top:0}
+  .field{display:grid;gap:9px;margin-top:18px}
+  .field:first-of-type{margin-top:0}
+  .field-label,.legend{font-weight:700;font-size:.88rem}
+  .text-input,.select-trigger{width:100%;min-height:48px;padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius)}
+  .text-input::placeholder{color:var(--muted);opacity:.78}
+  .choice-set{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .choice{position:relative;display:inline-flex;align-items:center;gap:9px;padding:9px 0;cursor:pointer}
+  .choice input{position:absolute;width:1px;height:1px;opacity:0}
+  .choice-mark{position:relative;width:22px;height:22px;flex:0 0 22px;border:2px solid var(--line);border-radius:50%;background:var(--surface-2);transition:background .18s,transform .18s}
+  .choice input:checked+.choice-mark{border-color:var(--accent)}
+  .choice input:checked+.choice-mark::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:var(--accent)}
+  .choice input:focus-visible+.choice-mark{outline:3px solid var(--accent);outline-offset:3px}
+  .check .choice-mark{border-radius:5px}
+  .check input:checked+.choice-mark::after{width:10px;height:6px;border:0;border-left:3px solid var(--bg);border-bottom:3px solid var(--bg);background:transparent;border-radius:0;transform:translate(-50%,-65%) rotate(-45deg)}
+  .check input:checked+.choice-mark{background:var(--accent)}
+  .switch-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px}
+  .switch-copy strong,.switch-copy small{display:block}.switch-copy small{color:var(--muted);margin-top:2px}
+  .toggle{position:relative;display:inline-flex;flex:0 0 auto;cursor:pointer}
+  .toggle input{position:absolute;opacity:0;width:1px;height:1px}
+  .toggle-track{position:relative;width:62px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .toggle-track::after{content:"";position:absolute;width:24px;height:24px;left:4px;top:4px;border-radius:50%;background:var(--muted);transition:transform .25s cubic-bezier(.2,1.4,.3,1),background .2s}
+  .toggle input:checked+.toggle-track{background:color-mix(in srgb,var(--accent) 28%,var(--surface-2))}
+  .toggle input:checked+.toggle-track::after{transform:translateX(28px);background:var(--accent)}
+  .toggle input:focus-visible+.toggle-track{outline:3px solid var(--accent);outline-offset:3px}
+  .range-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .range{width:100%;height:8px;appearance:none;background:var(--surface-2);border:1px solid var(--line);border-radius:999px}
+  .range::-webkit-slider-thumb{appearance:none;width:25px;height:25px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line),0 3px 8px var(--shadow)}
+  .range::-moz-range-thumb{width:21px;height:21px;border:3px solid var(--surface);border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--line)}
+  .range-output{min-width:64px;text-align:right;font:600 .78rem var(--font-mono);color:var(--accent)}
+  .select{position:relative}
+  .select-trigger{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;cursor:pointer}
+  .select-trigger::after{content:"⌄";font:700 1.1rem var(--font-mono);transition:transform .18s}
+  .select-trigger[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .select-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 8px);margin:0;padding:7px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 34px rgba(0,0,0,.25)}
+  .select-option{padding:10px 12px;border-radius:var(--radius);cursor:pointer}
+  .select-option[aria-selected="true"],.select-option.is-active{background:var(--accent);color:var(--bg)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:700}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+  .tab-panel{padding:22px 0 2px}
+  .tab-panel h4{margin:0 0 8px;font:700 1.2rem var(--font-display)}
+  .tab-panel p{margin:0;color:var(--muted)}
+  .progress-label{display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;font-weight:700}
+  .progress-label output{font:600 .78rem var(--font-mono);color:var(--accent)}
+  .progress-track{height:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .progress-fill{height:100%;width:calc(var(--level) * 1%);background:var(--accent);transition:width .35s ease}
+  .measure-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+  .gauge{position:relative;width:148px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--level) * 1%),var(--surface-2) 0);box-shadow:inset 0 0 0 12px var(--surface)}
+  .gauge::before{content:"";position:absolute;inset:24%;border-radius:inherit;background:var(--surface);border:1px solid var(--line)}
+  .gauge-value{position:absolute;inset:0;display:grid;place-items:center;font:700 1rem var(--font-mono);z-index:2}
+  .measure-copy{color:var(--muted)}
+  .measure-copy strong{display:block;color:var(--ink);font:700 1.2rem var(--font-display);margin-bottom:8px}
+  .tooltip-wrap{position:relative;display:inline-flex;margin-top:22px}
+  .tooltip-bubble{position:absolute;left:50%;bottom:calc(100% + 12px);width:max-content;max-width:230px;transform:translate(-50%,8px);padding:8px 11px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:.78rem;opacity:0;visibility:hidden;pointer-events:none;transition:.18s}
+  .tooltip-wrap:hover .tooltip-bubble,.tooltip-wrap:focus-within .tooltip-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.68);backdrop-filter:blur(6px)}
+  .modal{width:min(100%,520px);max-height:calc(100vh - 32px);overflow:auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+  .modal h2{margin:0 0 12px;font:700 2rem/1 var(--font-display)}
+  .modal p{margin:0;color:var(--muted)}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:28px}
+  body.modal-open{overflow:hidden}
+  .toast{position:fixed;z-index:120;right:24px;bottom:24px;max-width:min(390px,calc(100vw - 32px));padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink);color:var(--bg);box-shadow:0 18px 50px rgba(0,0,0,.35);font-weight:700;transform:translateY(24px);opacity:0;pointer-events:none;transition:.24s}
+  .toast.is-visible{transform:none;opacity:1}
+  .noscript{margin:0;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font:600 .72rem/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:760px){
+    .shell{width:min(100% - 32px,1180px)}
+    .worldbar{margin-top:10px}.worldbar-inner{align-items:flex-start;flex-direction:column;gap:4px}.worldbar-state{text-align:left}
+    .hero{grid-template-columns:1fr;min-height:0;padding-block:58px;gap:46px}
+    h1{font-size:clamp(3rem,15vw,5.4rem)}
+    .art-stage{min-height:430px}
+    .controls-intro{grid-template-columns:1fr;padding-top:64px}
+    .controls-grid{grid-template-columns:1fr}.module.wide{grid-column:auto}
+    .measure-layout{grid-template-columns:1fr}.gauge{width:132px}
+    .artifact-caption{left:17px;right:17px}
+  }
+  @media(max-width:420px){
+    .actions,.button-rack{align-items:stretch}.actions .action,.button-rack .action{flex:1 1 100%}
+    .module{padding:22px 18px}.tabs{overflow-x:auto}.tab{flex:0 0 auto}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+
+      body{background-image:radial-gradient(circle at 50% -5%,rgba(197,164,93,.11),transparent 26%),radial-gradient(circle at 12% 62%,rgba(116,48,71,.14),transparent 30%),radial-gradient(circle at 88% 72%,rgba(116,48,71,.12),transparent 28%),linear-gradient(180deg,#100a11,#09060a)}
+      body::before{opacity:.34;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%238a7143' stroke-opacity='.34' stroke-width='1'%3E%3Cpath d='M90 180C78 139 33 139 27 92S64 42 90 0M90 180c12-41 57-41 63-88S116 42 90 0'/%3E%3Cpath d='M55 132c-22-2-31-15-31-29 17 2 30 11 31 29Zm70 0c22-2 31-15 31-29-17 2-30 11-31 29ZM48 67c-15-8-19-21-14-32 14 7 22 18 14 32Zm84 0c15-8 19-21 14-32-14 7-22 18-14 32Z'/%3E%3Ccircle cx='90' cy='90' r='9'/%3E%3Cpath d='m90 76 8 8-8 8-8-8 8-8Z'/%3E%3C/g%3E%3C/svg%3E");background-size:180px 180px}
+      body::after{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.12;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.62' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+      h1{font-weight:500;letter-spacing:-.045em;text-shadow:0 3px 26px rgba(197,164,93,.12)}
+      .lede{font-size:clamp(1.05rem,1.65vw,1.28rem)}
+      .lede::first-letter{font:500 2.4em/.8 var(--font-display);color:var(--accent);float:left;margin:.08em .12em 0 0}
+      .worldbar,.module,.art-stage{border:1px solid rgba(197,164,93,.72);border-radius:2px;background:linear-gradient(145deg,rgba(36,18,28,.94),rgba(18,12,18,.97));box-shadow:inset 0 0 0 5px #110b11,inset 0 0 0 6px rgba(197,164,93,.2),0 22px 55px var(--shadow)}
+      .worldbar::after{content:"❦";position:absolute;left:50%;bottom:-11px;translate:-50% 0;padding:0 9px;background:var(--bg);color:var(--accent);font-size:1rem}
+      .module::before,.module::after{content:"❧";position:absolute;top:9px;color:var(--accent);font:400 1.15rem/1 "Italianno",cursive;opacity:.9}.module::before{left:13px}.module::after{right:13px;transform:scaleX(-1)}
+      .module-title{text-align:center;font-weight:500}.module-kicker{text-align:center}.module-kicker,.eyebrow{font-style:italic;font-weight:600}
+      .action{border:1px solid rgba(197,164,93,.78);border-radius:50% 6px/22% 6px;background:linear-gradient(180deg,rgba(66,28,42,.88),rgba(37,16,26,.96));box-shadow:inset 0 0 0 3px #160d14,inset 0 0 0 4px rgba(197,164,93,.2),0 8px 18px rgba(0,0,0,.28)}
+      .action:hover{box-shadow:inset 0 0 0 3px #160d14,inset 0 0 0 4px rgba(197,164,93,.4),0 9px 24px rgba(197,164,93,.12)}
+      .action.primary{background:linear-gradient(135deg,#8b6a30,#e1c77c 48%,#9b7737)}
+      .action.secondary{background:linear-gradient(135deg,#4b1b2d,#873650 55%,#4b1b2d)}
+      .action.quiet{background:rgba(13,8,14,.5)}
+      .text-input,.select-trigger{border:1px solid rgba(197,164,93,.65);border-radius:2px;background:linear-gradient(180deg,#2b1721,#1d1018);box-shadow:inset 0 0 0 3px #120b11,inset 0 0 0 4px rgba(197,164,93,.14)}
+      .select-list{border:1px solid var(--accent);background:#170e16;box-shadow:inset 0 0 0 4px #0d080e,0 20px 40px rgba(0,0,0,.55)}
+      .select-option{border-radius:1px;font-style:italic}
+      .choice-mark{border:1px solid var(--accent);border-radius:68% 10% 68% 10%;background:#21121a;transform:rotate(45deg);box-shadow:inset 0 0 0 3px #120b11}
+      .choice input:checked+.choice-mark::after{background:var(--accent);box-shadow:0 0 10px rgba(197,164,93,.58);transform:translate(-50%,-50%) rotate(-45deg)}
+      .check .choice-mark{border-radius:2px;transform:none}.check input:checked+.choice-mark::after{transform:translate(-50%,-65%) rotate(-45deg)}
+      .toggle-track{border:1px solid var(--accent);border-radius:3px;background:linear-gradient(90deg,#1c1017,#371725);box-shadow:inset 0 0 0 3px #0e090e}
+      .toggle-track::before{content:"";position:absolute;left:7px;right:7px;top:50%;height:1px;background:var(--accent);opacity:.38}
+      .toggle-track::after{border-radius:68% 12% 68% 12%;background:linear-gradient(135deg,#64243b,#a3435e);transform:rotate(45deg);box-shadow:0 0 0 1px #c5a45d,0 3px 8px #000}
+      .toggle input:checked+.toggle-track::after{transform:translateX(28px) rotate(135deg);background:linear-gradient(135deg,#ead692,#a98742);box-shadow:0 0 12px rgba(197,164,93,.55)}
+      .range{height:5px;border:0;border-radius:0;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+      .range::-webkit-slider-thumb{width:25px;height:25px;border:1px solid var(--accent);border-radius:68% 10% 68% 10%;background:var(--accent-2);transform:rotate(45deg);box-shadow:0 0 0 3px #130b11,0 0 14px rgba(197,164,93,.32)}
+      .progress-track{height:15px;border:1px solid rgba(197,164,93,.55);border-radius:2px;background:#100a0f;box-shadow:inset 0 0 0 3px #080508}
+      .progress-fill{background:repeating-linear-gradient(90deg,#693047 0 12px,#c5a45d 12px 14px,#8d3b55 14px 26px);box-shadow:0 0 14px rgba(116,48,71,.55)}
+      .tabs{justify-content:center;border-bottom-color:rgba(197,164,93,.38)}.tab{font-family:var(--font-display);font-style:italic;font-size:1rem}.tab[aria-selected="true"]{color:var(--accent)}
+      .gauge{background:repeating-conic-gradient(from -4deg,var(--accent) 0 7deg,#512236 7deg 14deg,#160d14 14deg 21deg);box-shadow:inset 0 0 0 12px #120b11,0 0 0 1px var(--accent),0 0 28px rgba(197,164,93,.13)}
+      .gauge::before{inset:27%;background:#170e16;border:1px solid var(--accent)}
+      .gauge::after{content:"";position:absolute;inset:11%;border:1px solid rgba(197,164,93,.38);border-radius:50%;z-index:1}
+      .art-stage{background:radial-gradient(circle at 50% 38%,rgba(232,185,90,.13),transparent 24%),radial-gradient(ellipse at 50% 70%,rgba(116,48,71,.2),transparent 42%),linear-gradient(180deg,#21111e,#0b070c);overflow:hidden}
+      .nocturne-frame{position:absolute;width:min(62%,300px);height:72%;border:5px double var(--accent);border-radius:48% 48% 7px 7px/24% 24% 4px 4px;box-shadow:inset 0 0 0 8px rgba(8,5,8,.82),inset 0 0 55px rgba(197,164,93,.08),0 0 0 8px rgba(10,6,10,.72),0 22px 40px rgba(0,0,0,.52);display:grid;place-items:center;z-index:3}
+      .nocturne-frame::before,.nocturne-frame::after{content:"✦";position:absolute;top:-20px;width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--accent);border-radius:50%;background:#140c13;color:var(--accent);font-size:.7rem}.nocturne-frame::before{left:-19px}.nocturne-frame::after{right:-19px}
+      .nocturne-moon{position:absolute;top:11%;width:48%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 42% 38%,#f3dfaa,#c29448 58%,#56371d 72%);box-shadow:0 0 28px rgba(226,188,104,.28);opacity:.86}
+      .nocturne-moon::after{content:"";position:absolute;inset:-2% -12% 2% 12%;border-radius:50%;background:#1a0f18}
+      .nocturne-stem{position:absolute;left:50%;top:45%;width:2px;height:35%;background:linear-gradient(#c5a45d,#665533);transform:translateX(-50%)}
+      .nocturne-stem::before,.nocturne-stem::after{content:"";position:absolute;width:42px;height:21px;border:1px solid #7f7846;border-radius:80% 0 80% 0;background:#273222}.nocturne-stem::before{left:-40px;top:34%;transform:rotate(24deg)}.nocturne-stem::after{right:-40px;top:58%;transform:scaleX(-1) rotate(24deg)}
+      .nocturne-rose{position:absolute;left:50%;top:45%;width:132px;height:132px;translate:-50% -50%;z-index:4;filter:drop-shadow(0 9px 14px rgba(0,0,0,.5))}
+      .nocturne-rose span{--turn:0deg;position:absolute;left:50%;top:50%;width:43px;height:72px;transform-origin:50% 92%;border-radius:72% 12% 70% 16%;background:radial-gradient(circle at 36% 24%,#b2566c,#6f243e 54%,#31101f 90%);border:1px solid rgba(197,164,93,.28);transform:translate(-50%,-91%) rotate(var(--turn)) scale(.72,.46);animation:nocturneBloom 6s ease-in-out infinite}
+      .nocturne-rose span:nth-child(1){--turn:0deg}.nocturne-rose span:nth-child(2){--turn:45deg}.nocturne-rose span:nth-child(3){--turn:90deg}.nocturne-rose span:nth-child(4){--turn:135deg}.nocturne-rose span:nth-child(5){--turn:180deg}.nocturne-rose span:nth-child(6){--turn:225deg}.nocturne-rose span:nth-child(7){--turn:270deg}.nocturne-rose span:nth-child(8){--turn:315deg}
+      .nocturne-rose b{position:absolute;left:50%;top:50%;width:32px;height:32px;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,#dfc577 0 9%,#9d4059 12% 42%,#39101f 72%);box-shadow:0 0 15px rgba(197,164,93,.3)}
+      .nocturne-script{position:absolute;bottom:9%;font:400 2rem/1 "Italianno",cursive;color:var(--accent);text-shadow:0 0 16px rgba(197,164,93,.24)}
+      .nocturne-vines{position:absolute;inset:4%;width:92%;height:86%;color:#81774c;opacity:.72;z-index:1}
+      .nocturne-vines .vine-path{stroke-dasharray:480;stroke-dashoffset:0;animation:nocturneTrace 8s ease-in-out infinite}
+      .nocturne-vines .leaf{transform-box:fill-box;transform-origin:center;animation:nocturneLeaf 5s ease-in-out infinite}.nocturne-vines .leaf:nth-child(even){animation-delay:-2.5s}
+      .artifact.is-awake .nocturne-rose span{animation:nocturneAwake .9s cubic-bezier(.2,1.55,.3,1) both}.artifact.is-awake .nocturne-frame{filter:drop-shadow(0 0 18px rgba(197,164,93,.23))}
+      @keyframes nocturneBloom{0%,100%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(.72,.46)}50%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(.92,.82)}}
+      @keyframes nocturneAwake{0%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(.2,.15)}100%{transform:translate(-50%,-91%) rotate(var(--turn)) scale(1,.92)}}
+      @keyframes nocturneTrace{0%,100%{stroke-dashoffset:480;opacity:.25}45%,70%{stroke-dashoffset:0;opacity:1}}
+      @keyframes nocturneLeaf{50%{transform:scale(1.12) rotate(5deg);filter:brightness(1.25)}}
+    .action.primary{color:var(--on-accent)}
+    .action.secondary{color:var(--on-accent-2)}
+    .action.danger{color:var(--on-danger)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">跳到控件展区</a>
+  <header class="worldbar shell">
+    <div class="worldbar-inner">
+      <span class="worldbar-mark">NOCTURNE CONSERVATORY</span>
+      <span class="worldbar-state">MIDNIGHT HERBARIUM · LAMP VII BURNING</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">09 / NOCTURNE · Dark botanical</p>
+        <h1 id="hero-title">让花园在午夜盛开</h1>
+        <p class="lede">一座只在午夜开门的私家温室。循着黄铜画框与酒红花影，让每一次触碰都唤醒一枝沉睡的植物。</p>
+        <div class="actions">
+          <button class="action primary" type="button" data-scroll-controls>开启夜园</button>
+          <button class="action secondary" type="button" data-awaken aria-pressed="false">唤醒月下玫瑰</button>
+        </div>
+      </div>
+      <div class="art-stage">
+        <div class="artifact" aria-label="暗夜花园招牌装置">
+
+
+      <svg class="nocturne-vines" viewBox="0 0 480 520" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <path class="vine-path" d="M235 485C164 447 112 387 101 307S133 151 58 76"/>
+          <path class="vine-path" d="M245 485c71-38 123-98 134-178S347 151 422 76"/>
+          <path d="M102 307c-43-8-65-35-63-69 38 6 61 29 63 69Zm276 0c43-8 65-35 63-69-38 6-61 29-63 69Z"/>
+          <path d="M118 201c-39-18-50-49-39-80 33 15 50 43 39 80Zm244 0c39-18 50-49 39-80-33 15-50 43-39 80Z"/>
+        </g>
+        <g class="leaf" fill="#293528" stroke="#8a7143">
+          <path d="M104 358c-38 2-60-17-64-45 35-2 59 12 64 45Z"/>
+          <path d="M376 358c38 2 60-17 64-45-35-2-59 12-64 45Z"/>
+          <path d="M83 137c-28-7-40-27-34-48 27 6 41 23 34 48Z"/>
+          <path d="M397 137c28-7 40-27 34-48-27 6-41 23-34 48Z"/>
+        </g>
+      </svg>
+      <div class="nocturne-frame" aria-hidden="true">
+        <div class="nocturne-moon"></div>
+        <div class="nocturne-stem"></div>
+        <div class="nocturne-rose"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><b></b></div>
+        <em class="nocturne-script">Rosa noctis</em>
+      </div>
+      <div class="artifact-caption"><span>HERBARIUM IX</span><strong>月下酒红玫瑰</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell controls-intro" id="controls">
+      <div>
+        <p class="module-kicker">NIGHT GARDEN COLLECTION / NOCTURNE</p>
+        <h2>夜园器具</h2>
+      </div>
+      <p>每件控件都从「暗夜花园」自己的形状、材料与动作里生长出来。用键盘或指针试一遍，状态会在本机保留。</p>
+    </section>
+
+    <div class="shell controls-grid">
+      <section class="module wide" data-sheet="A–01" aria-labelledby="buttons-title">
+        <p class="module-kicker">RITUAL / 五种夜间仪式</p>
+        <h3 class="module-title" id="buttons-title">夜间仪式</h3>
+        <div class="button-rack">
+          <button class="action primary" type="button" data-progress>开启夜园</button>
+          <button class="action secondary" type="button" data-open-modal>打开玻璃花房</button>
+          <button class="action quiet" type="button" data-awaken aria-pressed="false">唤醒月下玫瑰</button>
+          <button class="action danger" type="button" data-toast>摇响夜园铃</button>
+          <button class="action" type="button" disabled>花期尚未到</button>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–02" aria-labelledby="input-title">
+        <p class="module-kicker">HERBARIUM / 花名与花房</p>
+        <h3 class="module-title" id="input-title">写入识别信息</h3>
+        <label class="field">
+          <span class="field-label">花名签</span>
+          <input class="text-input" type="text" autocomplete="off" data-persist-input placeholder="写下一朵花的秘密名字">
+        </label>
+        <div class="field">
+          <span class="field-label" id="select-label-nocturne">当前花房</span>
+          <div class="select" data-select>
+            <button class="select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select-label-nocturne select-value-nocturne">
+              <span id="select-value-nocturne" class="select-value">镜廊温室</span>
+            </button>
+            <ul class="select-list" role="listbox" aria-labelledby="select-label-nocturne" hidden>
+              <li class="select-option" role="option" tabindex="-1" data-value="镜廊温室" aria-selected="true">镜廊温室</li><li class="select-option" role="option" tabindex="-1" data-value="暗酒红花圃" aria-selected="false">暗酒红花圃</li><li class="select-option" role="option" tabindex="-1" data-value="旧宅西翼" aria-selected="false">旧宅西翼</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="A–03" aria-labelledby="choice-title">
+        <p class="module-kicker">MOON PHASE / 月相与灯火</p>
+        <h3 class="module-title" id="choice-title">安排夜间仪式</h3>
+        <fieldset class="choice-set">
+          <legend class="legend">选择一种月相</legend>
+
+        <label class="choice">
+          <input type="radio" name="mode" value="新月巡园" checked>
+          <span class="choice-mark" aria-hidden="true"></span><span>新月巡园</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="弦月采集">
+          <span class="choice-mark" aria-hidden="true"></span><span>弦月采集</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="mode" value="满月绽放">
+          <span class="choice-mark" aria-hidden="true"></span><span>满月绽放</span>
+        </label>
+        </fieldset>
+        <fieldset class="choice-set">
+          <legend class="legend">园丁札记</legend>
+          <label class="choice check"><input type="checkbox" value="压存花瓣" data-check checked><span class="choice-mark" aria-hidden="true"></span><span>压存花瓣</span></label>
+          <label class="choice check"><input type="checkbox" value="寄出花笺" data-check><span class="choice-mark" aria-hidden="true"></span><span>寄出花笺</span></label>
+        </fieldset>
+        <div class="switch-row">
+          <span class="switch-copy"><strong>保持月灯</strong><small>让花朵在离开后继续呼吸</small></span>
+          <label class="toggle">
+            <input type="checkbox" data-switch aria-label="保持月灯">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–01" aria-labelledby="range-title">
+        <p class="module-kicker">BLOOM / 花期刻度</p>
+        <h3 class="module-title" id="range-title">月下花期</h3>
+        <div class="range-row">
+          <input class="range" id="range-nocturne" type="range" min="0" max="100" value="64" aria-label="月下花期" data-range>
+          <output class="range-output" for="range-nocturne">64%</output>
+        </div>
+        <div class="progress-label"><span>绽放进度</span><output data-progress-output>64%</output></div>
+        <div class="progress-track" role="progressbar" aria-label="绽放进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section class="module" data-sheet="B–02" aria-labelledby="tabs-title">
+        <p class="module-kicker">FIELD NOTES / 夜园札记</p>
+        <h3 class="module-title" id="tabs-title">三页夜园札记</h3>
+        <div class="tabs" role="tablist" aria-label="现场记录">
+          <button class="tab" type="button" role="tab" id="tab-nocturne-0" aria-controls="panel-nocturne-0" aria-selected="true" tabindex="0">花谱</button><button class="tab" type="button" role="tab" id="tab-nocturne-1" aria-controls="panel-nocturne-1" aria-selected="false" tabindex="-1">温室</button><button class="tab" type="button" role="tab" id="tab-nocturne-2" aria-controls="panel-nocturne-2" aria-selected="false" tabindex="-1">夜宴</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-nocturne-0" aria-labelledby="tab-nocturne-0">
+          <h4>夜花已经编号</h4><p>第九号酒红玫瑰已压入骨白纸页，黄铜标签仍带着温度。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-nocturne-1" aria-labelledby="tab-nocturne-1" hidden>
+          <h4>玻璃仍留着雾</h4><p>两侧缠枝沿画框向上攀爬，中央月灯保持最幽微的暖光。</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-nocturne-2" aria-labelledby="tab-nocturne-2" hidden>
+          <h4>午夜宴席尚未散场</h4><p>骨白瓷杯旁落着三片花瓣，最后一位宾客刚穿过西翼回廊。</p>
+        </div>
+      </section>
+
+      <section class="module wide" data-sheet="C–01" aria-labelledby="measure-title">
+        <p class="module-kicker">VITAL SIGNS / 花园气息</p>
+        <h3 class="module-title" id="measure-title">读取花园气息</h3>
+        <div class="measure-layout">
+          <div class="gauge" role="meter" aria-label="月下花期" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <span class="gauge-value">64%</span>
+          </div>
+          <div class="measure-copy">
+            <strong>月下花期正处于适宜绽放的区间</strong>
+            <p>调整花期会同时改变绽放条、花冠量表与月下玫瑰；它们共用同一份夜园状态。</p>
+            <span class="tooltip-wrap">
+              <button class="action quiet" type="button" aria-describedby="tip-nocturne">靠近看花签</button>
+              <span class="tooltip-bubble" role="tooltip" id="tip-nocturne">花签会在靠近或键盘聚焦时显出墨迹。</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="shell">NOCTURNE / 有些花，只把名字交给夜色。</div></footer>
+  <noscript><p class="shell noscript">关键内容已经静态呈现；启用 JavaScript 后可操作下拉、标签、模态与状态保存。</p></noscript>
+
+  <div class="modal-backdrop" data-modal-backdrop hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-nocturne">
+      <p class="module-kicker">CONFIRM / NOCTURNE</p>
+      <h2 id="modal-title-nocturne">确认剪下这枝花？</h2>
+      <p>夜园会记下当前月相、花房与灯火，并把这次采集写入本机花谱。</p>
+      <div class="modal-actions">
+        <button class="action quiet" type="button" data-close-modal>再等一夜</button>
+        <button class="action primary" type="button" data-confirm-modal>收入花谱</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast-box></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const root = document.documentElement;
+      const storageKey = "codex-sandbox-nocturne";
+      const artifact = document.querySelector(".artifact");
+      const range = document.querySelector("[data-range]");
+      const rangeOutput = document.querySelector(".range-output");
+      const progressOutput = document.querySelector("[data-progress-output]");
+      const progressbar = document.querySelector('[role="progressbar"]');
+      const gauge = document.querySelector('[role="meter"]');
+      const gaugeValue = document.querySelector(".gauge-value");
+      const switchInput = document.querySelector("[data-switch]");
+      const textInput = document.querySelector("[data-persist-input]");
+      const toast = document.querySelector("[data-toast-box]");
+      const modalBackdrop = document.querySelector("[data-modal-backdrop]");
+      const modal = modalBackdrop.querySelector('[role="dialog"]');
+      const awakenButtons = Array.from(document.querySelectorAll("[data-awaken]"));
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      let toastTimer = 0;
+      let lastFocus = null;
+      let state = {};
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      try {
+        state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch {
+        state = {};
+      }
+
+      const save = () => {
+        const selectedRadio = document.querySelector('input[name="mode"]:checked');
+        const selectedOption = document.querySelector('.select-option[aria-selected="true"]');
+        const selectedTab = tabButtons.findIndex((button) => button.getAttribute("aria-selected") === "true");
+        const checks = Array.from(document.querySelectorAll("[data-check]:checked"), (input) => input.value);
+        const next = {
+          range: Number(range.value),
+          awake: artifact.classList.contains("is-awake"),
+          enabled: switchInput.checked,
+          text: textInput.value,
+          mode: selectedRadio ? selectedRadio.value : "",
+          checks,
+          place: selectedOption ? selectedOption.dataset.value : "",
+          tab: Math.max(selectedTab, 0),
+        };
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(next));
+        } catch {
+          /* Local files may deny storage; the live page still works. */
+        }
+      };
+
+      const announce = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+      };
+
+      const setLevel = (value, shouldSave = true) => {
+        const numeric = Math.max(0, Math.min(100, Number(value)));
+        range.value = String(numeric);
+        root.style.setProperty("--level", String(numeric));
+        rangeOutput.textContent = String(numeric) + "%";
+        progressOutput.textContent = String(numeric) + "%";
+        progressbar.setAttribute("aria-valuenow", String(numeric));
+        gauge.setAttribute("aria-valuenow", String(numeric));
+        gaugeValue.textContent = String(numeric) + "%";
+        if (shouldSave) save();
+      };
+
+      const setAwake = (awake, shouldSave = true) => {
+        artifact.classList.toggle("is-awake", awake);
+        awakenButtons.forEach((button) => button.setAttribute("aria-pressed", String(awake)));
+        if (shouldSave) save();
+      };
+
+      const activateTab = (index, focus = false, shouldSave = true) => {
+        const safeIndex = Math.max(0, Math.min(tabButtons.length - 1, index));
+        tabButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === safeIndex;
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+          tabPanels[buttonIndex].hidden = !active;
+        });
+        if (focus) tabButtons[safeIndex].focus();
+        if (shouldSave) save();
+      };
+
+      document.querySelectorAll("[data-select]").forEach((select) => {
+        const trigger = select.querySelector(".select-trigger");
+        const value = select.querySelector(".select-value");
+        const list = select.querySelector(".select-list");
+        const options = Array.from(select.querySelectorAll(".select-option"));
+        let activeIndex = Math.max(0, options.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+
+        const choose = (index, focusTrigger = true, shouldSave = true) => {
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => {
+            const selected = optionIndex === activeIndex;
+            option.setAttribute("aria-selected", String(selected));
+            option.classList.toggle("is-active", selected);
+          });
+          value.textContent = options[activeIndex].dataset.value;
+          list.hidden = true;
+          trigger.setAttribute("aria-expanded", "false");
+          if (focusTrigger) trigger.focus();
+          if (shouldSave) save();
+        };
+
+        const open = (index = activeIndex) => {
+          list.hidden = false;
+          trigger.setAttribute("aria-expanded", "true");
+          activeIndex = Math.max(0, Math.min(options.length - 1, index));
+          options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+          options[activeIndex].focus();
+        };
+
+        trigger.addEventListener("click", () => {
+          if (list.hidden) open();
+          else {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            open(event.key === "ArrowDown" ? activeIndex : Math.max(0, activeIndex - 1));
+          }
+        });
+        options.forEach((option, optionIndex) => {
+          option.addEventListener("click", () => choose(optionIndex));
+          option.addEventListener("pointermove", () => {
+            activeIndex = optionIndex;
+            options.forEach((item, itemIndex) => item.classList.toggle("is-active", itemIndex === activeIndex));
+          });
+        });
+        list.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeIndex = (activeIndex + delta + options.length) % options.length;
+            options.forEach((option, optionIndex) => option.classList.toggle("is-active", optionIndex === activeIndex));
+            options[activeIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeIndex = event.key === "Home" ? 0 : options.length - 1;
+            options[activeIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choose(activeIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+            trigger.focus();
+          } else if (event.key === "Tab") {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("pointerdown", (event) => {
+          if (!select.contains(event.target)) {
+            list.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        const storedIndex = options.findIndex((option) => option.dataset.value === state.place);
+        choose(storedIndex >= 0 ? storedIndex : 0, false, false);
+      });
+
+      const openModal = () => {
+        lastFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("modal-open");
+        modal.querySelector("button").focus();
+      };
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocus instanceof HTMLElement) lastFocus.focus();
+      };
+
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+      modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+        }
+        if (event.key === "Tab") {
+          const focusable = Array.from(modal.querySelectorAll("button:not(:disabled)"));
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+      document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", closeModal));
+      document.querySelectorAll("[data-confirm-modal]").forEach((button) => button.addEventListener("click", () => {
+        closeModal();
+        announce("花枝已收入花谱，并写入本机。");
+        setAwake(true);
+      }));
+      document.querySelectorAll("[data-toast]").forEach((button) => button.addEventListener("click", () => announce("夜园铃已经响起：请复核花期与灯火。")));
+      document.querySelectorAll("[data-scroll-controls]").forEach((button) => button.addEventListener("click", () => document.querySelector("#controls").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })));
+      document.querySelectorAll("[data-progress]").forEach((button) => button.addEventListener("click", () => {
+        const next = Number(range.value) >= 96 ? 12 : Number(range.value) + 8;
+        setLevel(next);
+        announce("花期推进到 " + String(next) + "%。");
+      }));
+      awakenButtons.forEach((button) => button.addEventListener("click", () => {
+        const next = !artifact.classList.contains("is-awake");
+        setAwake(next);
+        announce(next ? "月下玫瑰已经醒来。" : "月下玫瑰重新合拢。");
+      }));
+      range.addEventListener("input", () => setLevel(range.value));
+      switchInput.addEventListener("change", () => {
+        setAwake(switchInput.checked);
+        announce(switchInput.checked ? "保持月灯已经开启。" : "保持月灯已经关闭。");
+      });
+      textInput.addEventListener("input", save);
+      document.querySelectorAll('input[name="mode"],[data-check]').forEach((input) => input.addEventListener("change", save));
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            let next = index;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(next, true);
+          }
+        });
+      });
+
+      if (Number.isFinite(state.range)) setLevel(state.range, false);
+      else setLevel(64, false);
+      if (typeof state.text === "string") textInput.value = state.text;
+      if (typeof state.enabled === "boolean") switchInput.checked = state.enabled;
+      if (typeof state.mode === "string") {
+        const radio = Array.from(document.querySelectorAll('input[name="mode"]')).find((input) => input.value === state.mode);
+        if (radio) radio.checked = true;
+      }
+      if (Array.isArray(state.checks)) {
+        document.querySelectorAll("[data-check]").forEach((input) => {
+          input.checked = state.checks.includes(input.value);
+        });
+      }
+      activateTab(Number.isInteger(state.tab) ? state.tab : 0, false, false);
+      setAwake(Boolean(state.awake || state.enabled), false);
+    })();
+  </script>
+</body>
+</html>
