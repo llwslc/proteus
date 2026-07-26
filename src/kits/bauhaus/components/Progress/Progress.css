@@ -34,15 +34,17 @@
 }
 .bauhaus-progress[data-indeterminate] .bauhaus-progress__indicator {
   position: absolute;
+  left: 0;
   width: 40%;
   animation: bauhaus-progress-slide var(--bauhaus-dur-sweep) var(--bauhaus-ease) infinite;
 }
 @keyframes bauhaus-progress-slide {
-  from {
-    left: -40%;
+  0%,
+  100% {
+    transform: translateX(0);
   }
-  to {
-    left: 100%;
+  50% {
+    transform: translateX(150%);
   }
 }
 @media (prefers-reduced-motion: reduce) {

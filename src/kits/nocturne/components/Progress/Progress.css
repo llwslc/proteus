@@ -43,6 +43,9 @@
   filter: drop-shadow(0 0 6px var(--nocturne-glow-strong));
   pointer-events: none;
 }
+.nocturne-progress__indicator[data-indeterminate]::after {
+  content: none;
+}
 .nocturne-progress__indicator[data-indeterminate] {
   width: 34% !important;
   animation: nocturne-prog-rove 1.4s var(--nocturne-ease) infinite alternate;

@@ -463,12 +463,3 @@
     background-position: -60% 0;
   }
 }
-
-@keyframes hanabi-gauge-scan {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(250%);
-  }
-}

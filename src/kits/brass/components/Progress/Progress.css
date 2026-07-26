@@ -37,13 +37,16 @@
   transition: width var(--brass-dur) var(--brass-ease);
 }
 .brass-progress__indicator[data-indeterminate] {
-  width: 38%;
-  margin-left: -38%;
+  width: 40%;
   transition: none;
   animation: brass-progress-slide var(--brass-dur-sweep) var(--brass-ease) infinite;
 }
 @keyframes brass-progress-slide {
-  to {
-    margin-left: 100%;
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(150%);
   }
 }

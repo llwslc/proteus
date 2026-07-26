@@ -43,3 +43,19 @@
     transform: translateX(33.94px);
   }
 }
+
+.riot-progress__indicator[data-indeterminate] {
+  position: absolute;
+  left: 0;
+  width: 40%;
+  animation: riot-progress-bounce var(--riot-dur-sweep) var(--riot-ease-out) infinite;
+}
+@keyframes riot-progress-bounce {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(150%);
+  }
+}
