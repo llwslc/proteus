@@ -35,6 +35,37 @@ export function Shell() {
   return <FullShell />;
 }
 
+function DeviceIcon({ mode }: { mode: string }) {
+  return mode === "mobile" ? (
+    <svg
+      viewBox="0 0 16 16"
+      width="15"
+      height="15"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      aria-hidden="true"
+    >
+      <rect x="4.5" y="1.5" width="7" height="13" rx="1.6" />
+      <line x1="7" y1="12.4" x2="9" y2="12.4" />
+    </svg>
+  ) : (
+    <svg
+      viewBox="0 0 16 16"
+      width="15"
+      height="15"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      aria-hidden="true"
+    >
+      <rect x="1.5" y="2.5" width="13" height="9" rx="1.2" />
+      <line x1="5.5" y1="14" x2="10.5" y2="14" />
+      <line x1="8" y1="11.5" x2="8" y2="14" />
+    </svg>
+  );
+}
+
 function EmbedApp({ kitId }: { kitId: string }) {
   const Active = APPS[kitId];
   const KitLoader = LOADERS[kitId];
@@ -48,9 +79,8 @@ function EmbedApp({ kitId }: { kitId: string }) {
 }
 
 function FullShell() {
-  const stored = safeGet("kit");
-  const entered = stored != null;
-  const kit = resolveKit(stored);
+  const [entered, setEntered] = useState(() => safeGet("kit") != null);
+  const kit = resolveKit(safeGet("kit"));
   const active = KITS.find((k) => k.id === kit) ?? KITS[0];
   const Active = APPS[kit];
   const KitLoader = LOADERS[kit];
@@ -89,7 +119,8 @@ function FullShell() {
   };
   const goHome = () => {
     safeRemove("kit");
-    location.reload();
+    setOpen(false);
+    setEntered(false);
   };
   const switchKit = (id: string) => {
     if (id === kit) {
@@ -174,8 +205,8 @@ function FullShell() {
           <header className="shell-home__head">
             <h1 className="shell-home__title">Base UI Theme Kits</h1>
             <p className="shell-home__sub">
-              {KITS.length} independent, fully re-skinnable component worlds — pick one to
-              open full-screen
+              Independent, fully re-skinnable component worlds — pick one to open
+              full-screen
             </p>
           </header>
           <div className="shell-home__grid">
@@ -269,35 +300,30 @@ function FullShell() {
             </li>
           ))}
         </ul>
-        <button
-          ref={triggerRef}
-          type="button"
-          className="shell-switch__trigger"
-          aria-haspopup="listbox"
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span className="shell-switch__label">{active.label}</span>
-          <span className="shell-switch__chev" aria-hidden="true">
-            ▴
-          </span>
-        </button>
-        <div className="shell-switch__vp" role="group" aria-label="Preview viewport">
+        <div className="shell-switch__bar">
           <button
+            ref={triggerRef}
             type="button"
-            className={vp === "pc" ? "is-on" : ""}
-            aria-pressed={vp === "pc"}
-            onClick={() => setViewport("pc")}
+            className="shell-switch__trigger"
+            aria-haspopup="listbox"
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
           >
-            PC
+            <span className="shell-switch__label">{active.label}</span>
+            <span className="shell-switch__chev" aria-hidden="true">
+              ▴
+            </span>
           </button>
           <button
             type="button"
-            className={vp === "mobile" ? "is-on" : ""}
+            className="shell-switch__device"
+            aria-label={
+              vp === "mobile" ? "Switch to PC preview" : "Switch to mobile preview"
+            }
             aria-pressed={vp === "mobile"}
-            onClick={() => setViewport("mobile")}
+            onClick={() => setViewport(vp === "pc" ? "mobile" : "pc")}
           >
-            Mobile
+            <DeviceIcon mode={vp} />
           </button>
         </div>
       </div>

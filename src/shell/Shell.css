@@ -33,7 +33,17 @@
   margin: 0 auto;
   display: grid;
   gap: clamp(12px, 1.4vw, 18px);
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 860px) {
+  .shell-home__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 500px) {
+  .shell-home__grid {
+    grid-template-columns: 1fr;
+  }
 }
 .shell-home__card {
   position: relative;
@@ -189,23 +199,30 @@
   cursor: default;
 }
 
+.shell-switch__bar {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(8, 10, 14, 0.66);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
 .shell-switch__trigger {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 8px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  background: rgba(8, 10, 14, 0.66);
-  backdrop-filter: blur(14px) saturate(1.2);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 0;
+  background: transparent;
   color: #fff;
   cursor: pointer;
 }
 .shell-switch__trigger:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.8);
-  outline-offset: 2px;
+  outline-offset: -2px;
 }
 .shell-switch__chev {
   font-size: 10px;
@@ -216,37 +233,30 @@
   transform: rotate(180deg);
 }
 
-.shell-switch__vp {
-  display: inline-flex;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(8, 10, 14, 0.66);
-  backdrop-filter: blur(14px) saturate(1.2);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-.shell-switch__vp button {
-  padding: 5px 14px;
+.shell-switch__device {
+  display: grid;
+  place-items: center;
+  width: 40px;
   border: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
   background: transparent;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.55);
   cursor: pointer;
   transition:
     background 0.15s ease,
     color 0.15s ease;
 }
-.shell-switch__vp button:hover {
+.shell-switch__device svg {
+  display: block;
+}
+.shell-switch__device:hover {
   color: #fff;
 }
-.shell-switch__vp button.is-on {
-  background: rgba(255, 255, 255, 0.16);
+.shell-switch__device[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.14);
   color: #fff;
 }
-.shell-switch__vp button:focus-visible {
+.shell-switch__device:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.8);
   outline-offset: -2px;
 }
