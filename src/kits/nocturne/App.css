@@ -285,7 +285,7 @@
 }
 .nocturne-grouprule__sub {
   text-transform: none;
-  font-family: var(--nocturne-font-hand-cn);
+  font-family: var(--nocturne-font-hand-en);
   letter-spacing: var(--nocturne-ls-1);
   color: var(--nocturne-primary);
 }

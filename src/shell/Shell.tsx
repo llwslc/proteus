@@ -157,7 +157,8 @@ function FullShell() {
           <header className="shell-home__head">
             <h1 className="shell-home__title">Base UI Theme Kits</h1>
             <p className="shell-home__sub">
-              七套完全独立的可换肤组件世界 · 点一套进入全屏预览
+              Seven independent, fully re-skinnable component worlds — pick one to open
+              full-screen
             </p>
           </header>
           <div className="shell-home__grid">
@@ -201,19 +202,19 @@ function FullShell() {
         <button
           type="button"
           className="shell-switch__scrim"
-          aria-label="关闭主题菜单"
+          aria-label="Close theme menu"
           onClick={() => setOpen(false)}
         />
         <ul
           ref={menuRef}
           className="shell-switch__menu"
           role="listbox"
-          aria-label="切换主题"
+          aria-label="Switch theme"
           onKeyDown={onMenuKeyDown}
         >
           <li className="shell-switch__help" aria-hidden="true">
             <kbd>←</kbd>
-            <kbd>→</kbd> 切换主题 · <kbd>Esc</kbd> 回主页
+            <kbd>→</kbd> switch theme · <kbd>Esc</kbd> home
           </li>
           {KITS.map((k) => (
             <li key={k.id}>
@@ -244,7 +245,7 @@ function FullShell() {
             ▴
           </span>
         </button>
-        <div className="shell-switch__vp" role="group" aria-label="预览视口">
+        <div className="shell-switch__vp" role="group" aria-label="Preview viewport">
           <button
             type="button"
             className={vp === "pc" ? "is-on" : ""}

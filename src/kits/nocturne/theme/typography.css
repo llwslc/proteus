@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Tangerine:wght@400;700&family=Courier+Prime:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@400;500;600;700&family=Tangerine:wght@400;700&family=Courier+Prime:wght@400;700&display=swap");
 
 .nocturne-h1 {
   margin: 0;
@@ -65,11 +65,4 @@
   font-weight: var(--nocturne-fw-700);
   color: var(--nocturne-primary-lit);
   line-height: var(--nocturne-lh-100);
-}
-
-.nocturne-hand {
-  margin: 0;
-  font-family: var(--nocturne-font-hand-cn);
-  color: var(--nocturne-primary-lit);
-  letter-spacing: var(--nocturne-ls-1);
 }

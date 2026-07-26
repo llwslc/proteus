@@ -23,12 +23,12 @@
 
 ## 2. 字体与排版
 
-- 字体：display（展示体）用 **Cormorant Garamond**，正文用 **Noto Serif SC**，拉丁手写用 **Tangerine**（学名、题词），中文手写用 **Ma Shan Zheng**（旁注、题记），数值与码位（mono 槽）用打字机体 **Courier Prime**。
+- 字体：display（展示体）用 **Cormorant Garamond**，正文用 **Noto Serif SC**，手写体用 **Tangerine**（拉丁草书：学名、题词、旁注），数值与码位（mono 槽）用打字机体 **Courier Prime**。
 - 尺度各档：字号 `fs-11 / 12 / 13 / 15 / 17 / 22 / 34`，字距用整数 px（`ls-1 1px`、`ls-3 3px`、`ls-5 5px`、`ls-8 8px`），行高 `lh-100 / 145 / 180`，字重 `fw-400 / 600 / 700`。
 - 大字距是本套的招牌排法：题字、码位、标签一律拉开字距并补等量 `text-indent` 保持居中。
 - 三档标题：`h1` = display · fs-34 · fw-600 · ls-8；`h2` = display · fs-22 · fw-600 · ls-5；`h3` = display · fs-13 · fw-600 · ls-5 · 大写 · dim。正文 `text` = Noto Serif SC · fs-15 · lh-180 · text。修饰类 `h1--accent` = 强调词转 `primary-lit` + 一圈 `glow-strong` 文字辉光。
 - 字段标签 caption 有独立类 **`.nocturne-cap`**：display 体 · fs-12 · ls-3 · 大写 · dim，组件统一引用。
-- `.nocturne-script` = Tangerine 拉丁手写，`.nocturne-hand` = Ma Shan Zheng 中文手写，供题词与旁注引用。
+- `.nocturne-script` = Tangerine 拉丁草书，供题词与旁注引用。
 
 ## 3. 几何与描边
 

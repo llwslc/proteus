@@ -61,7 +61,10 @@
     var(--nocturne-secondary-deep)
   );
 }
+.nocturne-panel .nocturne-panel {
+  padding-top: 54px;
+}
 .nocturne-panel .nocturne-panel .nocturne-panel__title {
-  top: 14px;
+  top: 16px;
   transform: translate(-50%, 0);
 }

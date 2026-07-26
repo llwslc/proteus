@@ -83,75 +83,85 @@ import {
 
 const NAV = [
   {
-    label: "夜园",
+    label: "Garden",
     links: [
-      { label: "入园点灯", href: "#inputs", description: "园中令与手记" },
-      { label: "观焰读温", href: "#feedback", description: "仪表与量器" },
-      { label: "轻声一唤", href: "#overlays", description: "更铃与通信" },
-      { label: "名牌勋记", href: "#display", description: "题签一览" },
+      {
+        label: "Light the Lamp",
+        href: "#inputs",
+        description: "Warrants and the register",
+      },
+      { label: "Read the Flame", href: "#feedback", description: "Gauges and meters" },
+      { label: "Ring for Aid", href: "#overlays", description: "Bells and dispatches" },
+      { label: "Plaques & Marks", href: "#display", description: "Labels at a glance" },
     ],
   },
   {
-    label: "夜册",
+    label: "Register",
     links: [
-      { label: "全部器物", href: "#inputs", description: "三十七株" },
-      { label: "线与活字", href: "#foundations", description: "黄铜笔画" },
-      { label: "登记书页", href: "#forms", description: "夜册册页" },
-      { label: "台座画框", href: "#foundations", description: "铭牌之型" },
+      { label: "All Instruments", href: "#inputs", description: "Thirty-seven blooms" },
+      { label: "Line & Letter", href: "#foundations", description: "Brass strokes" },
+      { label: "Log Pages", href: "#forms", description: "Night-register leaves" },
+      { label: "Plates & Plaques", href: "#foundations", description: "The frame set" },
     ],
   },
-  { label: "园规", href: "#hero" },
+  { label: "Garden Rule", href: "#hero" },
   {
-    label: "毒草小间",
+    label: "Poison Cabinet",
     disabled: true,
-    links: [{ label: "封缄卷宗", href: "#display", description: "凭看守人印方启" }],
+    links: [
+      {
+        label: "Sealed Files",
+        href: "#display",
+        description: "Opened by warden's seal only",
+      },
+    ],
   },
 ];
 
 const HOUSES = [
-  { label: "南翼暖房", value: "south" },
-  { label: "月光回廊", value: "corridor" },
-  { label: "毒草小间", value: "poison" },
-  { label: "垂枝亭", value: "pavilion" },
-  { label: "北墙花圃", value: "north" },
-  { label: "温室穹顶", value: "dome" },
-  { label: "苔阶水房", value: "moss" },
-  { label: "夜露井台", value: "well" },
-  { label: "藤蔓长廊", value: "vine" },
-  { label: "菌伞暗室", value: "fungus" },
-  { label: "标本阁", value: "herbarium" },
-  { label: "封缄花房", value: "sealed", disabled: true },
+  { label: "South Conservatory", value: "south" },
+  { label: "Moonlit Gallery", value: "gallery" },
+  { label: "Poison Cabinet", value: "poison" },
+  { label: "Weeping Arbor", value: "arbor" },
+  { label: "North Bed", value: "north" },
+  { label: "Glasshouse Dome", value: "dome" },
+  { label: "Moss Cistern", value: "moss" },
+  { label: "Dew Well", value: "well" },
+  { label: "Vine Corridor", value: "vine" },
+  { label: "Fungus Cellar", value: "fungus" },
+  { label: "Herbarium", value: "herbarium" },
+  { label: "Sealed Hothouse", value: "sealed", disabled: true },
 ];
 const HOUSES_SHORT = HOUSES.slice(0, 3);
 
 const FLOWERS = [
-  "颠茄",
-  "夜来香",
-  "月见草",
-  "曼陀罗",
-  "彼岸花",
-  "夜合欢",
-  "含羞草",
-  "毒芹",
-  "乌头",
-  "铃兰",
-  "月光菊",
-  { label: "断肠草", disabled: true },
+  "Belladonna",
+  "Night Jasmine",
+  "Evening Primrose",
+  "Datura",
+  "Spider Lily",
+  "Silk Tree",
+  "Mimosa",
+  "Hemlock",
+  "Aconite",
+  "Lily of the Valley",
+  "Moonflower",
+  { label: "Heartbreak Grass", disabled: true },
 ];
 
 const KEEPERS = [
-  "守灯人",
-  "看守人",
-  "拾露女",
-  "夜巡者",
-  "司花令",
-  "更铃匠",
-  "采药翁",
-  "记册生",
-  "温室匠",
-  "垂枝客",
-  "月下丞",
-  { label: "封缄使", disabled: true },
+  "Lampkeeper",
+  "Warden",
+  "Dew Gatherer",
+  "Night Warden",
+  "Bloom Marshal",
+  "Bell Ringer",
+  "Herbalist",
+  "Registrar",
+  "Glasshouse Hand",
+  "Arbor Tender",
+  "Moon Clerk",
+  { label: "Sealbearer", disabled: true },
 ];
 
 function Clock() {
@@ -160,7 +170,7 @@ function Clock() {
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
-  return <span className="nocturne-clock">{now.toLocaleTimeString("zh-CN")}</span>;
+  return <span className="nocturne-clock">{now.toLocaleTimeString("en-US")}</span>;
 }
 
 function HeroLamp() {
@@ -265,8 +275,8 @@ function HeroLamp() {
           strokeWidth=".8"
         />
       </svg>
-      <span className="nocturne-hand nocturne-lamp-stage__hand">
-        花在夜里，替灯把光看住。
+      <span className="nocturne-script nocturne-lamp-stage__hand">
+        Flowers keep the light
       </span>
     </div>
   );
@@ -280,10 +290,10 @@ function DistillBars() {
   }, []);
   return (
     <div className="nocturne-stack">
-      <Progress label="月光蒸馏" value={val} />
-      <Progress label="温针校读" value={67} />
-      <Progress label="满釜封瓶" value={100} />
-      <Progress label="静置中…" showValue={false} value={null} />
+      <Progress label="Moonlight distilling" value={val} />
+      <Progress label="Temperature read" value={67} />
+      <Progress label="Flask sealed" value={100} />
+      <Progress label="Settling…" showValue={false} value={null} />
     </div>
   );
 }
@@ -294,11 +304,11 @@ function SpecNameField() {
   const touched = code.length > 0;
   return (
     <Field
-      label="标本名"
-      placeholder="六字以上…"
+      label="Specimen name"
+      placeholder="Six characters or more…"
       value={code}
       onChange={(e) => setCode(e.target.value)}
-      error={touched && !valid ? "标本名太短，记不进夜册。" : undefined}
+      error={touched && !valid ? "Too short for the register." : undefined}
     />
   );
 }
@@ -410,7 +420,7 @@ function Demo() {
   }, []);
 
   return (
-    <div className="nocturne-app" lang="zh-CN">
+    <div className="nocturne-app" lang="en">
       <header className="nocturne-header">
         <div className="nocturne-logo">
           <FlowerIcon className="nocturne-logo__mark" aria-hidden="true" />
@@ -485,38 +495,42 @@ function Demo() {
             </div>
           </section>
 
-          <GroupRule id="inputs" label="Inputs" sub="一钮一诺，落笔即存。" />
+          <GroupRule
+            id="inputs"
+            label="Inputs"
+            sub="A vow per switch, a stroke per record."
+          />
           <div className="nocturne-grid">
             <Panel id="button" title="Button" meta="BTN" wide>
               <div className="nocturne-stack">
                 <div className="nocturne-row">
-                  <Button icon={<SproutIcon />}>登记新芽</Button>
-                  <Button variant="secondary">翻阅图版</Button>
-                  <Button variant="danger">销去记录</Button>
-                  <Button variant="ghost">悄声离开</Button>
-                  <Button disabled>天未黑 · 不可开园</Button>
+                  <Button icon={<SproutIcon />}>Register bloom</Button>
+                  <Button variant="secondary">Browse plates</Button>
+                  <Button variant="danger">Erase record</Button>
+                  <Button variant="ghost">Slip out</Button>
+                  <Button disabled>Not yet dusk</Button>
                 </div>
                 <Separator />
                 <div className="nocturne-row">
-                  <Button size="sm">短押</Button>
-                  <Button size="md">标准</Button>
-                  <Button size="lg">点灯</Button>
+                  <Button size="sm">Tap</Button>
+                  <Button size="md">Standard</Button>
+                  <Button size="lg">Light it</Button>
                 </div>
                 <Separator />
                 <div className="nocturne-row">
-                  <Button variant="icon" aria-label="誊抄">
+                  <Button variant="icon" aria-label="Copy">
                     <CopyIcon />
                   </Button>
-                  <Button variant="icon" aria-label="钤印">
+                  <Button variant="icon" aria-label="Seal">
                     <KeyIcon />
                   </Button>
-                  <Button variant="icon" disabled aria-label="封缄">
+                  <Button variant="icon" disabled aria-label="Locked">
                     <XIcon />
                   </Button>
-                  <Button variant="icon-ghost" aria-label="拾花">
+                  <Button variant="icon-ghost" aria-label="Pick">
                     <FlowerIcon />
                   </Button>
-                  <Button variant="icon-ghost" aria-label="收露">
+                  <Button variant="icon-ghost" aria-label="Gather dew">
                     <DropIcon />
                   </Button>
                 </div>
@@ -526,19 +540,19 @@ function Demo() {
             <Panel id="switch" title="Switch" meta="SWT">
               <div className="nocturne-stack">
                 <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">暖灯长供</span>
+                  <span className="nocturne-cap">Keep lamp lit</span>
                   <Switch defaultChecked />
                 </label>
                 <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">夜雾轻洒</span>
+                  <span className="nocturne-cap">Night mist</span>
                   <Switch />
                 </label>
                 <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">露水自封</span>
+                  <span className="nocturne-cap">Seal the dew</span>
                   <Switch disabled defaultChecked />
                 </label>
                 <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">毒草上锁</span>
+                  <span className="nocturne-cap">Lock poison bed</span>
                   <Switch disabled />
                 </label>
               </div>
@@ -546,18 +560,18 @@ function Demo() {
             <Panel id="toggle" title="Toggle Group" meta="TGL">
               <div className="nocturne-stack">
                 <ToggleGroup defaultValue={["night"]}>
-                  <Toggle value="night">夜巡</Toggle>
-                  <Toggle value="dawn">晨收</Toggle>
+                  <Toggle value="night">Rounds</Toggle>
+                  <Toggle value="dawn">Harvest</Toggle>
                   <Toggle value="rest" disabled>
-                    歇园
+                    Rest
                   </Toggle>
                 </ToggleGroup>
                 <ToggleGroup multiple defaultValue={["lamp", "mist", "seal"]}>
-                  <Toggle value="lamp">灯</Toggle>
-                  <Toggle value="mist">雾</Toggle>
-                  <Toggle value="dew">露</Toggle>
+                  <Toggle value="lamp">Lamp</Toggle>
+                  <Toggle value="mist">Mist</Toggle>
+                  <Toggle value="dew">Dew</Toggle>
                   <Toggle value="seal" disabled>
-                    印
+                    Seal
                   </Toggle>
                 </ToggleGroup>
               </div>
@@ -565,30 +579,30 @@ function Demo() {
 
             <Panel id="checkbox" title="Checkbox" meta="CHK">
               <div className="nocturne-stack">
-                <Checkbox defaultChecked label="花期" />
-                <Checkbox label="香气" />
-                <Checkbox disabled defaultChecked label="毒性已录" />
-                <Checkbox disabled label="封缄" />
+                <Checkbox defaultChecked label="Bloom period" />
+                <Checkbox label="Scent" />
+                <Checkbox disabled defaultChecked label="Toxicity logged" />
+                <Checkbox disabled label="Sealed" />
               </div>
             </Panel>
             <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
               <div className="nocturne-stack">
                 <CheckboxGroup
                   defaultValue={["bloom"]}
-                  parentLabel="全项入册"
+                  parentLabel="Catalogue all"
                   items={[
-                    { label: "花期", value: "bloom" },
-                    { label: "香气", value: "scent" },
-                    { label: "毒性", value: "toxin" },
+                    { label: "Bloom period", value: "bloom" },
+                    { label: "Scent", value: "scent" },
+                    { label: "Toxicity", value: "toxin" },
                   ]}
                 />
                 <CheckboxGroup
                   defaultValue={["orbit"]}
-                  parentLabel="封缄项"
+                  parentLabel="Sealed fields"
                   disabled
                   items={[
-                    { label: "月相记录", value: "orbit" },
-                    { label: "夜露采量", value: "dew" },
+                    { label: "Moon phase", value: "orbit" },
+                    { label: "Dew yield", value: "dew" },
                   ]}
                 />
               </div>
@@ -596,87 +610,82 @@ function Demo() {
 
             <Panel id="radio" title="Radio Group" meta="RDO">
               <div className="nocturne-stack">
-                <span className="nocturne-cap">今夜当值花种</span>
+                <span className="nocturne-cap">Bloom on duty tonight</span>
                 <RadioGroup defaultValue="belladonna">
-                  <Radio value="belladonna">颠茄</Radio>
-                  <Radio value="cestrum">夜来香</Radio>
-                  <Radio value="oenothera">月见草</Radio>
+                  <Radio value="belladonna">Belladonna</Radio>
+                  <Radio value="jasmine">Night Jasmine</Radio>
+                  <Radio value="primrose">Evening Primrose</Radio>
                   <Radio value="sealed" disabled>
-                    断肠草（未开放）
+                    Heartbreak Grass (locked)
                   </Radio>
                 </RadioGroup>
-                <span className="nocturne-cap">灯焰模式（封缄）</span>
+                <span className="nocturne-cap">Flame mode (sealed)</span>
                 <RadioGroup disabled defaultValue="steady">
-                  <Radio value="flicker">随风摇曳</Radio>
-                  <Radio value="steady">长明固定</Radio>
+                  <Radio value="flicker">Flickering</Radio>
+                  <Radio value="steady">Steady (fixed)</Radio>
                 </RadioGroup>
               </div>
             </Panel>
             <Panel id="select" title="Select" meta="SEL">
               <div className="nocturne-stack">
                 <label className="nocturne-cap" htmlFor="sel-1">
-                  今夜巡至
+                  Rounds tonight
                 </label>
                 <Select
                   items={HOUSES}
-                  placeholder="择一暖房…"
-                  defaultValue="corridor"
+                  placeholder="Pick a house…"
+                  defaultValue="gallery"
                   id="sel-1"
                 />
                 <label className="nocturne-cap" htmlFor="sel-2">
-                  次巡
+                  Second round
                 </label>
-                <Select items={HOUSES_SHORT} placeholder="未择" id="sel-2" />
+                <Select items={HOUSES_SHORT} placeholder="Unchosen" id="sel-2" />
                 <label className="nocturne-cap" htmlFor="sel-3">
-                  封缄暖房
+                  Sealed house
                 </label>
-                <Select
-                  items={HOUSES_SHORT}
-                  defaultValue="corridor"
-                  disabled
-                  id="sel-3"
-                />
+                <Select items={HOUSES_SHORT} defaultValue="gallery" disabled id="sel-3" />
               </div>
             </Panel>
 
             <Panel id="combobox" title="Combobox" meta="CBX">
               <div className="nocturne-stack">
-                <span className="nocturne-cap">检索花种</span>
+                <span className="nocturne-cap">Search blooms</span>
                 <Combobox
                   items={FLOWERS}
-                  placeholder="花名…"
-                  emptyText="园中无此株"
-                  label="检索花种"
+                  placeholder="Flower name…"
+                  emptyText="No such bloom in the garden"
+                  label="Search blooms"
                 />
               </div>
             </Panel>
             <Panel id="autocomplete" title="Autocomplete" meta="ACP">
               <div className="nocturne-stack">
-                <span className="nocturne-cap">唤一位守园人</span>
+                <span className="nocturne-cap">Call a keeper</span>
                 <Autocomplete
                   items={KEEPERS}
-                  placeholder="名号…"
-                  emptyText="园中无此人"
-                  label="唤一位守园人"
+                  placeholder="Name…"
+                  emptyText="No such keeper in the garden"
+                  label="Call a keeper"
                 />
               </div>
             </Panel>
 
             <Panel id="slider" title="Slider" meta="SLD">
               <div className="nocturne-stack">
-                <Slider label="灯焰高低" defaultValue={62} />
-                <Slider label="夜雾浓度" defaultValue={40} disabled />
-                <Slider label="露水收量" defaultValue={75} showValue={false} />
+                <Slider label="Lamp flame" defaultValue={62} />
+                <Slider label="Mist density" defaultValue={40} disabled />
+                <Slider label="Dew collected" defaultValue={75} showValue={false} />
               </div>
             </Panel>
             <Panel id="number" title="Number Field" meta="NUM">
               <div className="nocturne-stack">
                 <label className="nocturne-cap" htmlFor="num-1">
-                  当值人数
+                  Keepers on duty
                 </label>
                 <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
                 <label className="nocturne-cap" htmlFor="num-2">
-                  当值上限
+                  Duty cap
                 </label>
                 <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
               </div>
@@ -685,55 +694,60 @@ function Demo() {
             <Panel id="input" title="Text Field" meta="TXT">
               <div className="nocturne-stack">
                 <Field
-                  label="园圃名"
-                  placeholder="颠茄夜园"
-                  defaultValue="颠茄夜园"
-                  description="夜册以此名登记入档。"
+                  label="Garden name"
+                  placeholder="Belladonna Night Garden"
+                  defaultValue="Belladonna Night Garden"
+                  description="The register files it under this name."
                 />
                 <Input
                   icon={<SearchIcon />}
-                  placeholder="检索标本…"
-                  aria-label="检索标本"
+                  placeholder="Search specimens…"
+                  aria-label="Search specimens"
                 />
                 <SpecNameField />
-                <Field label="已封缄" defaultValue="夜册 217" disabled />
+                <Field label="Sealed" defaultValue="Register 217" disabled />
                 <Field
-                  label="标本编号"
-                  defaultValue="夜册 2１7"
-                  error="含不可入册的字符。"
+                  label="Specimen no."
+                  defaultValue="Register 2１7"
+                  error="Contains a character the register won't take."
                 />
               </div>
             </Panel>
             <Panel id="otp" title="OTP Field" meta="OTP">
               <div className="nocturne-stack">
-                <span className="nocturne-cap">入园暗记</span>
-                <OtpField length={6} splitAt={3} defaultValue="217" label="入园暗记" />
-                <span className="nocturne-cap">幽缄暗记</span>
+                <span className="nocturne-cap">Entry cipher</span>
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="217"
+                  label="Entry cipher"
+                />
+                <span className="nocturne-cap">Hidden cipher</span>
                 <OtpField
                   length={6}
                   splitAt={3}
                   defaultValue="217"
                   mask
-                  label="幽缄暗记"
+                  label="Hidden cipher"
                 />
-                <span className="nocturne-cap">失效暗记</span>
+                <span className="nocturne-cap">Voided cipher</span>
                 <OtpField
                   length={6}
                   splitAt={3}
                   defaultValue="217"
                   disabled
-                  label="失效暗记"
+                  label="Voided cipher"
                 />
               </div>
             </Panel>
           </div>
 
-          <GroupRule id="forms" label="Forms" sub="夜册登记，笔笔在案。" />
+          <GroupRule id="forms" label="Forms" sub="The night register, entry by entry." />
           <div className="nocturne-grid">
             <Panel id="fieldset" title="Fieldset" meta="FLD">
-              <Fieldset legend="守园人">
-                <Field label="名号" defaultValue="守灯人" />
-                <Field label="当值" defaultValue="南翼暖房" />
+              <Fieldset legend="Keeper">
+                <Field label="Name" defaultValue="Lampkeeper" />
+                <Field label="On duty" defaultValue="South Conservatory" />
               </Fieldset>
             </Panel>
             <Panel id="form" title="Form" meta="FRM">
@@ -741,32 +755,39 @@ function Demo() {
                 onSubmit={(e) => {
                   e.preventDefault();
                   toast.add({
-                    title: "已入册",
-                    description: "夜册收讫，标本已归档。",
+                    title: "Filed",
+                    description: "The register received the specimen.",
                     type: "success",
                   });
                 }}
               >
-                <Field label="标本名" placeholder="如：颠茄 · 亥时初绽" />
-                <Field label="入园暗记" type="password" placeholder="暗记…" />
+                <Field
+                  label="Specimen name"
+                  placeholder="e.g. Belladonna · first dusk bloom"
+                />
+                <Field label="Entry cipher" type="password" placeholder="Cipher…" />
                 <Button type="submit" variant="primary">
-                  登记入册
+                  File to register
                 </Button>
               </Form>
             </Panel>
           </div>
 
-          <GroupRule id="feedback" label="Feedback" sub="焰高焰低，一望便知。" />
+          <GroupRule
+            id="feedback"
+            label="Feedback"
+            sub="Flame high or low, told at a glance."
+          />
           <div className="nocturne-grid">
             <Panel id="progress" title="Progress" meta="PRG">
               <DistillBars />
             </Panel>
             <Panel id="meter" title="Meter" meta="MTR">
               <div className="nocturne-stack">
-                <Meter label="暖房温度" value={88} />
-                <Meter label="花开进度" value={70} tone="success" />
-                <Meter label="夜露损耗" value={52} tone="warning" />
-                <Meter label="毒性浓度" value={23} tone="danger" />
+                <Meter label="Greenhouse temp" value={88} />
+                <Meter label="Bloom progress" value={70} tone="success" />
+                <Meter label="Dew loss" value={52} tone="warning" />
+                <Meter label="Toxicity" value={23} tone="danger" />
               </div>
             </Panel>
 
@@ -776,28 +797,34 @@ function Demo() {
                 items={[
                   {
                     value: "belladonna",
-                    label: "颠茄",
+                    label: "Belladonna",
                     content: (
                       <p className="nocturne-text">
-                        本园以它命名。紫黑花冠垂如小钟，浆果亮得不怀好意；美人与毒物同名，是茄科给夜里人的第一课。
+                        The garden is named for it. A blackish-purple corolla hangs like a
+                        small bell, the berries gleam a little too brightly — beauty and
+                        poison under one name.
                       </p>
                     ),
                   },
                   {
-                    value: "cestrum",
-                    label: "夜来香",
+                    value: "jasmine",
+                    label: "Night Jasmine",
                     content: (
                       <p className="nocturne-text">
-                        白日装作寻常灌木，入夜香气便漫过半座园子。看守人拿它当更鼓：香到浓时，是子时。
+                        A plain shrub by day; after dark its scent floods half the garden.
+                        The keeper reads it like a watch-drum: when the scent is thickest,
+                        it is midnight.
                       </p>
                     ),
                   },
                   {
-                    value: "oenothera",
-                    label: "月见草",
+                    value: "primrose",
+                    label: "Evening Primrose",
                     content: (
                       <p className="nocturne-text">
-                        只肯对月亮开花的性子，园里数它脾气最好。月圆前后开得最勤，记录页也写得最满。
+                        It opens only for the moon, the easiest temper in the garden. It
+                        blooms most around the full moon, and its record page fills up the
+                        fullest too.
                       </p>
                     ),
                     disabled: true,
@@ -808,43 +835,48 @@ function Demo() {
 
             <Panel id="accordion" title="Accordion" meta="ACC">
               <div className="nocturne-stack">
-                <span className="nocturne-cap">一次只开一册</span>
+                <span className="nocturne-cap">One at a time</span>
                 <Accordion
                   defaultValue={["duty"]}
                   items={[
                     {
                       value: "duty",
-                      title: "当值",
-                      content: "子夜零时点灯，从南翼巡到垂枝亭，一盏不落。",
+                      title: "On duty",
+                      content:
+                        "Light the lamp at midnight, walk from the south wing to the weeping arbor, miss none.",
                     },
                     {
                       value: "register",
-                      title: "入册",
-                      content: "落笔即存档，编入《夜册》卷七，标本号顺次往下。",
+                      title: "Register",
+                      content:
+                        "Filed the moment you write it — entered in the Night Register, volume seven.",
                     },
                     {
                       value: "seal",
                       disabled: true,
-                      title: "封缄",
-                      content: "毒草小间凭看守人印方可入，记了就别再用手碰。",
+                      title: "Seal",
+                      content:
+                        "The poison cabinet opens by warden's seal only; once logged, touch it no more.",
                     },
                   ]}
                 />
-                <span className="nocturne-cap">可同时展开</span>
+                <span className="nocturne-cap">Open together</span>
                 <Accordion
                   openMultiple
                   defaultValue={["lamp", "vow"]}
                   items={[
                     {
                       value: "lamp",
-                      title: "灯房",
-                      content: "整夜供一豆铜色的火，焰拨高一分，温针便挪一寸。",
+                      title: "Lamp room",
+                      content:
+                        "One bead of brass flame all night; nudge the flame up a notch, the needle moves an inch.",
                     },
                     {
                       value: "vow",
                       disabled: true,
-                      title: "园誓",
-                      content: "天将明，请替花把灯熄了。这是夜园的头一条。",
+                      title: "Garden vow",
+                      content:
+                        "By first light, put out the lamp for the flowers. It is the garden's first rule.",
                     },
                   ]}
                 />
@@ -852,58 +884,69 @@ function Demo() {
             </Panel>
             <Panel id="collapsible" title="Collapsible" meta="CLP">
               <div className="nocturne-stack">
-                <Collapsible title="夜巡手记" defaultOpen>
+                <Collapsible title="Night-round notes" defaultOpen>
                   <p className="nocturne-text">
-                    连夜巡园的记录，寅时前封瓶，迟了露水就散。
+                    Records of the nightly rounds. Seal the flask before the small hours,
+                    or the dew scatters.
                   </p>
                 </Collapsible>
-                <Collapsible title="灯焰记录">
+                <Collapsible title="Flame log">
                   <p className="nocturne-text">
-                    灯芯拨到三分，足够看清叶脉，不惊动收拢的花。
+                    Trim the wick to a third — enough to read the leaf veins without
+                    waking the folded blooms.
                   </p>
                 </Collapsible>
-                <Collapsible title="封缄卷宗" disabled>
-                  <p className="nocturne-text">凭看守人印方启，进门先屏一口气。</p>
+                <Collapsible title="Sealed files" disabled>
+                  <p className="nocturne-text">
+                    Opened by warden's seal only; hold your breath at the door.
+                  </p>
                 </Collapsible>
-                <Collapsible title="园规" defaultOpen disabled>
-                  <p className="nocturne-text">天将明，请替花把灯熄了，封缄掲示中。</p>
+                <Collapsible title="Garden rule" defaultOpen disabled>
+                  <p className="nocturne-text">
+                    By first light, put out the lamp for the flowers — posted under seal.
+                  </p>
                 </Collapsible>
               </div>
             </Panel>
           </div>
 
-          <GroupRule id="overlays" label="Overlays" sub="轻声一唤，支应即来。" />
+          <GroupRule
+            id="overlays"
+            label="Overlays"
+            sub="Ring once, and aid comes quietly."
+          />
           <div className="nocturne-grid">
             <Panel id="tooltip" title="Tooltip" meta="TIP">
               <div className="nocturne-row">
-                <Tooltip content="拨高灯焰" side="top">
-                  <Button variant="ghost">拨焰</Button>
+                <Tooltip content="Raise the flame" side="top">
+                  <Button variant="ghost">Flame</Button>
                 </Tooltip>
-                <Tooltip content="洒一层夜雾" side="bottom">
-                  <Button variant="ghost">夜雾</Button>
+                <Tooltip content="Lay a night mist" side="bottom">
+                  <Button variant="ghost">Mist</Button>
                 </Tooltip>
-                <Tooltip content="收一盏露水" side="left">
-                  <Button variant="ghost">收露</Button>
+                <Tooltip content="Gather a dram of dew" side="left">
+                  <Button variant="ghost">Dew</Button>
                 </Tooltip>
-                <Tooltip content="钤看守人印" side="right">
-                  <Button variant="ghost">钤印</Button>
+                <Tooltip content="Press the warden's seal" side="right">
+                  <Button variant="ghost">Seal</Button>
                 </Tooltip>
               </div>
             </Panel>
             <Panel id="popover" title="Popover" meta="POP">
               <Popover
-                trigger={<Button variant="ghost">南翼近况</Button>}
-                title="南翼暖房"
+                trigger={<Button variant="ghost">South wing</Button>}
+                title="South Conservatory"
               >
-                茄属旧族的祖宅，常年酒红帷幔。今夜颠茄当值，子时前后开得最盛。
+                The old family seat of the nightshades, wine drapes year-round. Belladonna
+                is on duty tonight and blooms fullest around midnight.
               </Popover>
             </Panel>
 
             <Panel id="preview" title="Preview Card" meta="PVW" wide>
               <div className="nocturne-stack">
-                <span className="nocturne-cap">悬停守灯人</span>
+                <span className="nocturne-cap">Hover the keeper</span>
                 <p className="nocturne-text">
-                  今夜夜巡由{" "}
+                  Tonight's rounds are led by{" "}
                   <PreviewCard
                     trigger={
                       <a
@@ -911,86 +954,87 @@ function Demo() {
                         className="nocturne-link"
                         onClick={(e) => e.preventDefault()}
                       >
-                        @守灯人
+                        @lampkeeper
                       </a>
                     }
                   >
                     <div className="nocturne-preview__head">
                       <Avatar status="online">
                         <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="" />
-                        <AvatarFallback>守</AvatarFallback>
+                        <AvatarFallback>L</AvatarFallback>
                       </Avatar>
                       <span className="nocturne-preview__ident">
                         <span className="nocturne-h3 nocturne-preview__title">
-                          守灯人
+                          Lampkeeper
                         </span>
-                        <span className="nocturne-preview__handle">@keeper</span>
+                        <span className="nocturne-preview__handle">@lampkeeper</span>
                       </span>
                     </div>
                     <p className="nocturne-text nocturne-preview__desc">
-                      提一盏铜灯，替花把光看到天明。口癖是「让花自己待一会儿」。
+                      Carries a brass lamp and keeps the light for the flowers till dawn.
+                      Fond of saying, "let the flower be a while."
                     </p>
                     <div className="nocturne-preview__footer">
                       <Badge tone="primary" dot>
-                        亥时三刻
+                        Third watch
                       </Badge>
-                      <Badge tone="neutral">南翼暖房</Badge>
+                      <Badge tone="neutral">South wing</Badge>
                     </div>
                   </PreviewCard>{" "}
-                  执灯。
+                  bearing the lamp.
                 </p>
               </div>
             </Panel>
 
             <Panel id="menu" title="Menu" meta="MNU">
-              <Menu trigger="园中令">
+              <Menu trigger="Garden warrant">
                 <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                  誊抄一份
+                  Copy a leaf
                 </MenuItem>
                 <MenuItem icon={<KeyIcon />} shortcut="⌘L">
-                  钤看守人印
+                  Press the seal
                 </MenuItem>
                 <MenuItem icon={<BellIcon />} shortcut="⌘R">
-                  摇一记更铃
+                  Ring the bell
                 </MenuItem>
                 <MenuItem icon={<XIcon />} disabled>
-                  封缄归档
+                  Seal and file
                 </MenuItem>
-                <MenuItem icon={<FlameIcon />}>拨高灯焰</MenuItem>
-                <MenuItem icon={<LeafIcon />}>拢一拢枝叶</MenuItem>
-                <MenuItem icon={<CopyIcon />}>左右对植</MenuItem>
-                <MenuItem icon={<MoonIcon />}>对月转向</MenuItem>
-                <MenuItem icon={<FlowerIcon />}>吸附花藤</MenuItem>
-                <MenuItem icon={<DropIcon />}>收一盏露</MenuItem>
-                <MenuItem icon={<VialIcon />}>起釜蒸馏</MenuItem>
+                <MenuItem icon={<FlameIcon />}>Raise the flame</MenuItem>
+                <MenuItem icon={<LeafIcon />}>Gather the sprays</MenuItem>
+                <MenuItem icon={<CopyIcon />}>Plant a mirror pair</MenuItem>
+                <MenuItem icon={<MoonIcon />}>Turn to the moon</MenuItem>
+                <MenuItem icon={<FlowerIcon />}>Snap to the vine</MenuItem>
+                <MenuItem icon={<DropIcon />}>Gather a dram of dew</MenuItem>
+                <MenuItem icon={<VialIcon />}>Set the still</MenuItem>
                 <MenuSeparator />
                 <MenuItem icon={<TrashIcon />} tone="danger">
-                  销去记录
+                  Erase record
                 </MenuItem>
               </Menu>
             </Panel>
             <Panel id="menubar" title="Menubar" meta="MBR">
               <Menubar>
-                <MenubarMenu label="花圃">
-                  <MenuItem>点灯</MenuItem>
-                  <MenuItem>熄灯</MenuItem>
-                  <MenuItem disabled>移栽</MenuItem>
+                <MenubarMenu label="Bed">
+                  <MenuItem>Light</MenuItem>
+                  <MenuItem>Douse</MenuItem>
+                  <MenuItem disabled>Transplant</MenuItem>
                   <MenuSeparator />
-                  <MenuItem tone="danger">拔除</MenuItem>
+                  <MenuItem tone="danger">Uproot</MenuItem>
                 </MenubarMenu>
-                <MenubarMenu label="次第">
-                  <MenuItem shortcut="⌘]">提到前排</MenuItem>
-                  <MenuItem shortcut="⌘[">退到后排</MenuItem>
+                <MenubarMenu label="Order">
+                  <MenuItem shortcut="⌘]">Bring forward</MenuItem>
+                  <MenuItem shortcut="⌘[">Send backward</MenuItem>
                 </MenubarMenu>
-                <MenubarMenu label="排布">
-                  <MenuItem>齐左墙</MenuItem>
-                  <MenuItem>齐右墙</MenuItem>
-                  <MenuSub label="分栽">
-                    <MenuItem>上畦</MenuItem>
-                    <MenuItem>中畦</MenuItem>
-                    <MenuItem>下畦</MenuItem>
+                <MenubarMenu label="Arrange">
+                  <MenuItem>Align to left wall</MenuItem>
+                  <MenuItem>Align to right wall</MenuItem>
+                  <MenuSub label="Distribute">
+                    <MenuItem>Top bed</MenuItem>
+                    <MenuItem>Middle bed</MenuItem>
+                    <MenuItem>Bottom bed</MenuItem>
                     <MenuSeparator />
-                    <MenuItem>复位</MenuItem>
+                    <MenuItem>Reset</MenuItem>
                   </MenuSub>
                 </MenubarMenu>
               </Menubar>
@@ -1004,76 +1048,80 @@ function Demo() {
                 <ContextMenu
                   trigger={
                     <div className="nocturne-context__zone">
-                      <span className="nocturne-cap">右键唤起园中令</span>
+                      <span className="nocturne-cap">
+                        Right-click for the garden warrant
+                      </span>
                     </div>
                   }
                 >
-                  <MenuItem shortcut="⌘I">查看标本</MenuItem>
-                  <MenuItem shortcut="⌘D">誊抄一份</MenuItem>
-                  <MenuItem disabled>移栽别处</MenuItem>
+                  <MenuItem shortcut="⌘I">Inspect specimen</MenuItem>
+                  <MenuItem shortcut="⌘D">Copy a leaf</MenuItem>
+                  <MenuItem disabled>Transplant</MenuItem>
                   <MenuSeparator />
-                  <MenuItem tone="danger">销去记录</MenuItem>
+                  <MenuItem tone="danger">Erase record</MenuItem>
                 </ContextMenu>
               </div>
             </Panel>
 
             <Panel id="dialog" title="Dialog" meta="DLG">
               <Dialog
-                trigger={<Button variant="secondary">启开夜册</Button>}
-                title="今夜值守单"
-                description="签押之前，请核对今夜要做的两件小事。落笔即入册，改夜再签，花不催人。"
+                trigger={<Button variant="secondary">Open the register</Button>}
+                title="Tonight's Watch"
+                description="Before you sign, check the two small tasks for tonight. A stroke files it; sign another night, the flowers won't rush you."
                 actions={
                   <>
-                    <DialogClose>改夜再说</DialogClose>
+                    <DialogClose>Another night</DialogClose>
                     <DialogClose variant="secondary" data-combo="confirm">
-                      签押
+                      Sign
                     </DialogClose>
                   </>
                 }
               >
-                <p className="nocturne-text">当值：3 人 · 巡灯一遍 · 记露水三钱</p>
+                <p className="nocturne-text">
+                  On duty: 3 · Walk the lamps · Log three drams of dew
+                </p>
               </Dialog>
             </Panel>
             <Panel id="alert" title="Alert Dialog" meta="ALT">
               <div className="nocturne-row">
                 <AlertDialog
                   tone="danger"
-                  trigger={<Button variant="ghost">销去记录</Button>}
-                  title="销去今夜记录？"
-                  description="夜册中今夜的一切生长都将抹去，此举无法挽回。"
+                  trigger={<Button variant="ghost">Erase record</Button>}
+                  title="Erase tonight's record?"
+                  description="Everything grown tonight will be wiped from the register. This cannot be undone."
                   actions={
                     <>
-                      <AlertDialogClose>中止</AlertDialogClose>
+                      <AlertDialogClose>Cancel</AlertDialogClose>
                       <AlertDialogClose variant="danger" data-combo="confirm">
-                        销去
+                        Erase
                       </AlertDialogClose>
                     </>
                   }
                 />
                 <AlertDialog
                   tone="warning"
-                  trigger={<Button variant="ghost">复位花圃</Button>}
-                  title="复位花圃排布？"
-                  description="所有花株回到初始畦位，确认后执行。"
+                  trigger={<Button variant="ghost">Reset beds</Button>}
+                  title="Reset the bed layout?"
+                  description="Every plant returns to its starting bed. Confirm to proceed."
                   actions={
                     <>
-                      <AlertDialogClose>中止</AlertDialogClose>
+                      <AlertDialogClose>Cancel</AlertDialogClose>
                       <AlertDialogClose variant="primary" data-combo="confirm">
-                        复位
+                        Reset
                       </AlertDialogClose>
                     </>
                   }
                 />
                 <AlertDialog
                   tone="primary"
-                  trigger={<Button variant="ghost">采用此单</Button>}
-                  title="采用这份值守单？"
-                  description="当前值守单将被这份新单替换。"
+                  trigger={<Button variant="ghost">Apply watch</Button>}
+                  title="Apply this watch sheet?"
+                  description="The current watch sheet is replaced by this new one."
                   actions={
                     <>
-                      <AlertDialogClose>中止</AlertDialogClose>
+                      <AlertDialogClose>Cancel</AlertDialogClose>
                       <AlertDialogClose variant="primary" data-combo="confirm">
-                        采用
+                        Apply
                       </AlertDialogClose>
                     </>
                   }
@@ -1085,29 +1133,29 @@ function Demo() {
               <div className="nocturne-row">
                 {(
                   [
-                    ["top", "上"],
-                    ["bottom", "下"],
-                    ["left", "左"],
-                    ["right", "右"],
+                    ["top", "Top"],
+                    ["bottom", "Bottom"],
+                    ["left", "Left"],
+                    ["right", "Right"],
                   ] as const
                 ).map(([side, label]) => (
                   <Drawer
                     key={side}
                     side={side}
                     trigger={<Button variant="ghost">{label}</Button>}
-                    title="暖房调度"
-                    description="调这间暖房的灯焰与夜雾。"
-                    actions={<DrawerClose variant="secondary">合上</DrawerClose>}
+                    title="Greenhouse controls"
+                    description="Adjust this greenhouse's flame and mist."
+                    actions={<DrawerClose variant="secondary">Close</DrawerClose>}
                   >
                     <label className="nocturne-row nocturne-row--between">
-                      <span className="nocturne-cap">暖灯长供</span>
+                      <span className="nocturne-cap">Keep lamp lit</span>
                       <Switch defaultChecked />
                     </label>
                     <label className="nocturne-row nocturne-row--between">
-                      <span className="nocturne-cap">夜雾轻洒</span>
+                      <span className="nocturne-cap">Night mist</span>
                       <Switch />
                     </label>
-                    <Slider label="灯焰高低" defaultValue={50} />
+                    <Slider label="Lamp flame" defaultValue={50} />
                   </Drawer>
                 ))}
               </div>
@@ -1118,122 +1166,131 @@ function Demo() {
                   size="sm"
                   variant="ghost"
                   onClick={() =>
-                    toast.add({ title: "更铃一声", description: "子时已到，灯焰如常。" })
+                    toast.add({
+                      title: "Bell rung",
+                      description: "Midnight; the flames burn as usual.",
+                    })
                   }
                 >
-                  更铃
+                  Bell
                 </Button>
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={() => {
                     const id = toast.add({
-                      title: "露水收讫",
-                      description: "今夜得露三钱，封入青瓷小瓶。",
+                      title: "Dew gathered",
+                      description: "Three drams tonight, sealed in a celadon vial.",
                       type: "success",
                       actionProps: {
-                        children: "收讫",
+                        children: "Received",
                         onClick: () => toast.close(id),
                       },
                     });
                   }}
                 >
-                  收露
+                  Dew
                 </Button>
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={() =>
                     toast.add({
-                      title: "夜雾偏浓",
-                      description: "垂枝亭湿气过重，蕨类要独处。",
+                      title: "Mist too thick",
+                      description:
+                        "The weeping arbor is damp; the ferns want to be left alone.",
                       type: "warning",
                     })
                   }
                 >
-                  夜雾
+                  Mist
                 </Button>
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={() =>
                     toast.add({
-                      title: "毒草警示",
-                      description: "毒草小间已开缄，记了就别再用手碰。",
+                      title: "Poison warning",
+                      description:
+                        "The poison cabinet is unsealed; once logged, touch it no more.",
                       type: "danger",
                     })
                   }
                 >
-                  毒草
+                  Poison
                 </Button>
               </div>
             </Panel>
           </div>
 
-          <GroupRule id="display" label="Display" sub="名牌与勋记，各安其位。" />
+          <GroupRule
+            id="display"
+            label="Display"
+            sub="Plaques and marks, each in its place."
+          />
           <div className="nocturne-grid">
             <Panel id="avatar" title="Avatar" meta="AVT">
               <div className="nocturne-row">
                 <Avatar status="online">
                   <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="" />
-                  <AvatarFallback>守</AvatarFallback>
+                  <AvatarFallback>L</AvatarFallback>
                 </Avatar>
                 <Avatar size="sm" status="busy">
-                  <AvatarFallback>看</AvatarFallback>
+                  <AvatarFallback>W</AvatarFallback>
                 </Avatar>
                 <Avatar status="away">
-                  <AvatarFallback>拾</AvatarFallback>
+                  <AvatarFallback>D</AvatarFallback>
                 </Avatar>
                 <Avatar size="lg" status="offline">
-                  <AvatarFallback>巡</AvatarFallback>
+                  <AvatarFallback>N</AvatarFallback>
                 </Avatar>
               </div>
             </Panel>
             <Panel id="badge" title="Badge" meta="BDG">
               <div className="nocturne-row">
                 <Badge tone="primary" dot>
-                  当值
+                  On duty
                 </Badge>
-                <Badge tone="success">已入册</Badge>
-                <Badge tone="warning">夜雾</Badge>
+                <Badge tone="success">Filed</Badge>
+                <Badge tone="warning">Mist</Badge>
                 <Badge tone="danger" dot>
-                  毒性
+                  Toxic
                 </Badge>
-                <Badge tone="secondary">帷幔</Badge>
-                <Badge tone="neutral">草稿</Badge>
+                <Badge tone="secondary">Drape</Badge>
+                <Badge tone="neutral">Draft</Badge>
               </div>
             </Panel>
 
             <Panel id="toolbar" title="Toolbar" meta="TBR">
-              <Toolbar aria-label="夜巡工具">
+              <Toolbar aria-label="Night-round tools">
                 <BaseToggleGroup
                   className="nocturne-toolbar__group"
                   defaultValue={["lamp"]}
-                  aria-label="灯焰"
+                  aria-label="Flame"
                 >
                   <ToolbarButton render={<BaseToggle />} value="lamp">
-                    点灯
+                    Light
                   </ToolbarButton>
                   <ToolbarButton render={<BaseToggle />} value="mist">
-                    洒雾
+                    Mist
                   </ToolbarButton>
                   <ToolbarButton render={<BaseToggle />} value="dew">
-                    收露
+                    Dew
                   </ToolbarButton>
                 </BaseToggleGroup>
                 <ToolbarSeparator />
-                <ToolbarGroup aria-label="工具">
-                  <ToolbarButton aria-label="落笔">
+                <ToolbarGroup aria-label="Tools">
+                  <ToolbarButton aria-label="Write">
                     <FeatherIcon />
                   </ToolbarButton>
-                  <ToolbarButton disabled aria-label="拨焰">
+                  <ToolbarButton disabled aria-label="Trim flame">
                     <FlameIcon />
                   </ToolbarButton>
                 </ToolbarGroup>
                 <ToolbarSeparator />
                 <ToolbarLink href="#toolbar">
                   <BellIcon />
-                  更铃如常
+                  Bell as usual
                 </ToolbarLink>
               </Toolbar>
             </Panel>
@@ -1243,18 +1300,18 @@ function Demo() {
                   <ScrollAreaContent>
                     <ol className="nocturne-scroll-list">
                       {[
-                        ["亥初", "点灯入园，自南翼起巡"],
-                        ["亥正", "颠茄初绽，浆果转亮"],
-                        ["子初", "夜来香浓，权当更鼓"],
-                        ["子正", "记露水三钱，封青瓷瓶"],
-                        ["丑初", "月见草对月尽开"],
-                        ["丑正", "垂枝亭夜雾偏浓，闭亭"],
-                        ["寅初", "起釜蒸馏，月光凝盏"],
-                        ["寅正", "毒草小间钤印复核"],
-                        ["卯初", "拨低灯焰，叶脉转暗"],
-                        ["卯正", "露水将散，赶封末瓶"],
-                        ["辰初", "残花登记入册"],
-                        ["辰正", "天将明，替花熄灯"],
+                        ["21:00", "Lamp lit, rounds begin at the south wing"],
+                        ["21:30", "Belladonna opens, berries brightening"],
+                        ["23:00", "Night jasmine thick, serving as the watch-drum"],
+                        ["00:00", "Three drams of dew logged, sealed in celadon"],
+                        ["01:00", "Evening primrose fully open to the moon"],
+                        ["01:30", "Weeping arbor too damp, arbor closed"],
+                        ["03:00", "Set the still; moonlight condenses to a cup"],
+                        ["03:30", "Poison cabinet counter-checked under seal"],
+                        ["05:00", "Trim the flame low, leaf veins dimming"],
+                        ["05:30", "Dew about to scatter, seal the last vial"],
+                        ["07:00", "Spent blooms filed to the register"],
+                        ["07:30", "First light; put out the lamp for the flowers"],
                       ].map(([time, msg]) => (
                         <li key={time} className="nocturne-text">
                           <span className="nocturne-cap">{time}</span> {msg}
@@ -1270,15 +1327,22 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="foundations" label="Foundations" sub="一线黄铜，画尽满园。" />
+          <GroupRule
+            id="foundations"
+            label="Foundations"
+            sub="One brass line draws the whole garden."
+          />
           <div className="nocturne-grid">
             <Panel id="typography" title="Typography" meta="TYP" wide>
               <div className="nocturne-stack">
-                <h2 className="nocturne-h1">暗夜花园</h2>
-                <h3 className="nocturne-h2">子夜零时，铜灯次第亮起</h3>
+                <h2 className="nocturne-h1">The Night Garden</h2>
+                <h3 className="nocturne-h2">
+                  At midnight the brass lamps light one by one
+                </h3>
                 <span className="nocturne-h3">Section Sub-Label</span>
                 <p className="nocturne-text">
-                  正文用 Noto Serif SC。数值与码位以打字机体刻录——那是夜册的记账笔迹。
+                  Body text is Noto Serif. Values and codes are struck in a typewriter
+                  face — the ledger hand of the night register.
                 </p>
                 <span className="nocturne-cap">Field Caption · 217</span>
               </div>
@@ -1286,31 +1350,36 @@ function Demo() {
 
             <Panel id="separator" title="Separator" meta="SEP">
               <div className="nocturne-stack">
-                <span className="nocturne-cap">素线</span>
+                <span className="nocturne-cap">Plain rule</span>
                 <Separator />
-                <span className="nocturne-cap">带题</span>
-                <Separator label="第二畦" />
-                <span className="nocturne-cap">竖线</span>
+                <span className="nocturne-cap">Labelled</span>
+                <Separator label="Second bed" />
+                <span className="nocturne-cap">Vertical</span>
                 <div className="nocturne-row">
-                  <span className="nocturne-text">灯</span>
+                  <span className="nocturne-text">Lamp</span>
                   <Separator orientation="vertical" />
-                  <span className="nocturne-text">雾</span>
+                  <span className="nocturne-text">Mist</span>
                   <Separator orientation="vertical" />
-                  <span className="nocturne-text">露</span>
+                  <span className="nocturne-text">Dew</span>
                 </div>
               </div>
             </Panel>
             <Panel id="panel" title="Panel" meta="PNL">
               <p className="nocturne-text nocturne-panel-note">
-                包住每一区的黄铜画框：细线压边、酒红铭牌、四角缠枝——层层都能嵌套。
+                The brass frame that wraps every section: hairline edging, a wine plaque,
+                corner sprays — nesting all the way down.
               </p>
-              <Panel title="嵌套画框" meta="SUB">
-                <span className="nocturne-cap">框中之框</span>
+              <Panel title="Nested Frame" meta="SUB">
+                <span className="nocturne-cap">A frame within a frame</span>
               </Panel>
             </Panel>
           </div>
 
-          <GroupRule id="signature" label="Signature" sub="幽光一豆，替你看到天明。" />
+          <GroupRule
+            id="signature"
+            label="Signature"
+            sub="One bead of light, kept till dawn."
+          />
           <div className="nocturne-grid">
             <Panel id="loader" title="Loader" meta="LDR" wide>
               <div className="demo-loader-stage">
