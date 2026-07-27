@@ -28,10 +28,10 @@
     .card{position:relative;min-width:0;background:var(--panel);border:1px solid var(--line);transition:transform .2s,border-color .2s,box-shadow .2s}
     .card:hover{transform:translateY(-5px);border-color:#59616c;box-shadow:0 20px 50px rgba(0,0,0,.34)}
     .card:focus-within{border-color:var(--accent)}
-    .thumb{position:relative;aspect-ratio:1.32;overflow:hidden;background:#101319;border-bottom:1px solid var(--line)}
+    .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:#101319;border-bottom:1px solid var(--line)}
     .thumb::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,#101319 18%,#20252d 48%,#101319 78%);background-size:220% 100%;animation:shimmer 1.4s linear infinite}
     .thumb.is-loaded::before{display:none}
-    .thumb iframe{position:absolute;left:0;top:0;width:1180px;height:740px;border:0;transform-origin:0 0;pointer-events:none;background:#fff;opacity:0;transition:opacity .3s}
+    .thumb iframe{position:absolute;left:0;top:0;width:1280px;height:800px;border:0;transform-origin:0 0;pointer-events:none;background:#fff;opacity:0;transition:opacity .3s}
     .thumb.is-loaded iframe{opacity:1}
     .card-body{min-height:122px;padding:17px}
     .card-index{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted)}
@@ -80,11 +80,6 @@
     .detail.is-full .sidebar,.detail.is-full .detail-bar{display:none}
     .detail.is-full .detail-main{grid-template-rows:1fr}
     .detail.is-full .frame[data-viewport="mobile"]{height:min(844px,calc(100% - 24px))}
-    .full-controls{display:none}
-    .detail.is-full .full-controls{display:block;position:absolute;inset:0;z-index:6;pointer-events:none}
-    .full-tool{position:absolute;pointer-events:auto;width:44px;height:44px;border:1px solid rgba(255,255,255,.24);border-radius:50%;background:rgba(8,10,12,.48);color:rgba(255,255,255,.62);backdrop-filter:blur(8px);transition:.18s}
-    .full-tool:hover{background:rgba(8,10,12,.8);color:#fff}.full-exit{right:18px;top:18px}.full-prev{left:18px;top:50%;transform:translateY(-50%)}.full-next{right:18px;top:50%;transform:translateY(-50%)}
-
     @media(max-width:1080px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.detail-bar{gap:8px}.tool{padding:0 9px}.tool-label{display:none}}
     @media(max-width:760px){
       .shell{width:min(100% - 32px,1280px)}.home-header{padding-top:36px}.home-intro{grid-template-columns:1fr}.home-rule{justify-content:flex-start}.grid{grid-template-columns:1fr;gap:16px;padding-top:24px}
@@ -92,7 +87,7 @@
       .drawer-button{display:inline-grid;place-items:center}.detail-bar{padding-inline:10px}.desktop-only{display:none}.current small{display:none}
       .frame[data-viewport="mobile"]{height:min(844px,calc(100% - 16px));border-width:6px;border-radius:26px}
     }
-    @media(max-width:420px){.frame[data-viewport="mobile"]{width:100%;height:100%;border:0;border-radius:0}.detail-bar{gap:6px}.tool{min-width:36px;padding:0 8px}}
+    @media(max-width:420px){.detail-bar{gap:6px}.tool{min-width:36px;padding:0 8px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
@@ -140,11 +135,6 @@
       <div class="preview">
         <div class="loading" data-loading>LOADING THEME</div>
         <div class="frame" data-frame data-viewport="pc"><iframe title="主题预览" data-preview></iframe></div>
-        <div class="full-controls">
-          <button class="full-tool full-exit" type="button" aria-label="退出全屏" data-full-exit>×</button>
-          <button class="full-tool full-prev" type="button" aria-label="上一主题" data-prev>←</button>
-          <button class="full-tool full-next" type="button" aria-label="下一主题" data-next>→</button>
-        </div>
       </div>
     </div>
   </section>
@@ -192,7 +182,7 @@
       let viewport = "pc";
       let activeThumbs = 0;
       const thumbQueue = [];
-      const maxThumbs = 4;
+      const maxThumbs = 5;
 
       try {
         viewport = localStorage.getItem("codex-atlas-viewport") === "mobile" ? "mobile" : "pc";
@@ -210,7 +200,7 @@
       const resizeThumb = (thumb) => {
         const iframe = thumb.querySelector("iframe");
         if (!iframe) return;
-        iframe.style.transform = "scale(" + String(thumb.clientWidth / 1180) + ")";
+        iframe.style.transform = "scale(" + String(thumb.clientWidth / 1280) + ")";
       };
 
       const loadNextThumbs = () => {
@@ -238,7 +228,7 @@
           }
         });
         loadNextThumbs();
-      }, { rootMargin: "320px 0px" });
+      }, { rootMargin: "0px", threshold: 0.01 });
 
       THEMES.forEach((theme, index) => {
         const card = make("article", "card");
@@ -382,7 +372,6 @@
         if (currentIndex >= 0) window.open(THEMES[currentIndex].id + ".html", "_blank", "noopener");
       });
       document.querySelector("[data-fullscreen]").addEventListener("click", () => detail.classList.add("is-full"));
-      document.querySelector("[data-full-exit]").addEventListener("click", () => detail.classList.remove("is-full"));
       search.addEventListener("input", renderList);
       search.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
@@ -401,7 +390,13 @@
       document.addEventListener("keydown", (event) => {
         const inputFocused = document.activeElement === search;
         if (event.key === "/" && !inputFocused && currentIndex >= 0) {
+          if (detail.classList.contains("is-full")) return;
           event.preventDefault();
+          if (mobileLayout.matches) {
+            detail.classList.add("drawer-open");
+            drawerButton.setAttribute("aria-expanded", "true");
+            syncDrawerA11y();
+          }
           search.focus();
           return;
         }
