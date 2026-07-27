@@ -305,7 +305,10 @@
     closeSide();
     if(location.hash!=="#"+t.id) history.replaceState(null,"","#"+t.id);
   }
-  stageFrame.addEventListener("load",function(){ frameWrap.classList.remove("loading"); });
+  stageFrame.addEventListener("load",function(){
+    frameWrap.classList.remove("loading");
+    try{ stageFrame.contentDocument.addEventListener("keydown",onKey,true); }catch(_){}
+  });
 
   function home(){ exitFs(); body.setAttribute("data-mode","grid"); history.replaceState(null,"","#"); }
   $("#home").addEventListener("click",home);
@@ -343,15 +346,35 @@
     }
   });
 
-  document.addEventListener("keydown",function(e){
+  // ---- keys: one handler for the index and the preview document ----
+  var TYPING="input,textarea,select,[contenteditable=true]",
+      ARROW_HOST=TYPING+",[role=slider],[role=spinbutton],[role=tab],[role=option],[role=radio],[role=combobox],[role=listbox],[role=menu],[role=menuitem]";
+  function frameLayerOpen(){
+    var d=null; try{ d=stageFrame.contentDocument; }catch(_){}
+    if(!d) return false;
+    if(d.querySelector('[aria-haspopup="listbox"][aria-expanded="true"]')) return true;
+    return [].some.call(d.querySelectorAll("dialog[open],[role=dialog]"),function(el){
+      if(el.hasAttribute("hidden")) return false;
+      var r=el.getBoundingClientRect(), s=d.defaultView.getComputedStyle(el);
+      return r.width>0 && r.height>0 && s.visibility!=="hidden" && s.opacity!=="0" && s.pointerEvents!=="none";
+    });
+  }
+  function onKey(e){
     if(body.getAttribute("data-mode")!=="detail") return;
-    var tg=(e.target.tagName||"").toLowerCase();
-    if(tg==="input"||tg==="textarea"||e.target.isContentEditable) return;
+    var t=e.target;
+    if(!t.closest || t.closest(TYPING)) return;
     if(e.key==="/"){ if(isFs()) return; e.preventDefault(); side.classList.add("open"); sideSearch.focus(); sideSearch.select(); return; }
-    if(e.key==="ArrowLeft") $("#prevBtn").click();
-    else if(e.key==="ArrowRight") $("#nextBtn").click();
-    else if(e.key==="Escape"){ if(isFs()) exitFs(); else if(side.classList.contains("open")) closeSide(); else home(); }
-  });
+    if(e.key==="ArrowLeft"||e.key==="ArrowRight"){
+      if(t.closest(ARROW_HOST)) return;
+      e.preventDefault(); e.stopPropagation();
+      $(e.key==="ArrowLeft"?"#prevBtn":"#nextBtn").click();
+    }else if(e.key==="Escape"){
+      if(t.ownerDocument!==document && frameLayerOpen()) return;
+      e.stopPropagation();
+      if(isFs()) exitFs(); else if(side.classList.contains("open")) closeSide(); else home();
+    }
+  }
+  document.addEventListener("keydown",onKey);
 
   // deep link: /#nocturne opens that theme directly
   var h=location.hash.replace("#","");
