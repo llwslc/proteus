@@ -371,6 +371,26 @@
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
     }
   </style>
+  <style>
+    /* COMPONENT LIBRARY PASS: typewriter mechanics, explicit component groups */
+    .typewriter-bank{min-height:0;grid-template-columns:repeat(6,minmax(0,1fr));align-items:stretch;gap:10px;padding:22px}
+    .type-key,.type-key:nth-child(n){min-height:82px;padding:8px;border:3px solid #090806;border-radius:5px;background:#292720;transform:none}
+    .type-key::before{display:none}.type-key span{position:static;min-height:58px;margin:0;display:grid;place-items:center;border:2px solid #777269;border-radius:4px;background:#4a4842;box-shadow:inset 0 0 0 2px #27251f,0 4px 0 #111}
+    .type-key:hover span{translate:0 2px;box-shadow:inset 0 0 0 2px #27251f,0 2px 0 #111}
+    .lamp-pull{width:80px;height:42px;border:3px solid var(--paper);background:#232019;transform:none!important}
+    .lamp-pull::before{left:4px;top:4px;width:32px;height:28px;background:var(--yellow);transition:translate .25s}.lamp-pull::after{left:13px;top:12px;width:14px;height:14px;border:0;border-radius:0;background:var(--red);transition:translate .25s}
+    .lamp-pull[aria-checked=false]::before,.lamp-pull[aria-checked=false]::after{translate:37px 0}
+    .carriage-lever{height:38px}.carriage-lever::-webkit-slider-runnable-track{height:8px;border:2px solid var(--black);background:linear-gradient(90deg,var(--red) 0 var(--carriage),var(--old-paper) var(--carriage))}
+    .carriage-lever::-moz-range-track{height:8px;border:2px solid var(--black);background:var(--old-paper)}.carriage-lever::-webkit-slider-thumb{width:20px;height:30px;margin-top:-13px;border:3px solid var(--black);background:var(--yellow);box-shadow:none}.carriage-lever::-moz-range-thumb{width:17px;height:26px;border:3px solid var(--black)}
+    .chapter-book{min-height:0;padding:0;overflow:visible}.page-marks{position:static;width:auto;height:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+    .bookmark,.bookmark:nth-child(n){position:static;width:auto;min-height:82px;padding:14px;border-width:0 2px 3px 0;clip-path:none;text-align:left}
+    .bookmark:last-child{border-right:0}.bookmark[aria-selected=true],.bookmark:nth-child(2)[aria-selected=true]{right:auto;transform:none;box-shadow:inset 0 -9px rgba(23,19,14,.55)}
+    .chapter-copy{max-width:none;min-height:410px;padding:50px 58px}
+    @media(max-width:760px){
+      .typewriter-bank{grid-template-columns:1fr 1fr;padding:14px}.type-key:first-child{grid-column:1/-1}
+      .chapter-book{min-height:0;padding:0}.page-marks{position:static;width:auto;height:auto}.bookmark,.bookmark:nth-child(n){position:static;width:auto;min-width:0;min-height:75px;padding:10px;transform:none}.chapter-copy{min-height:430px;padding:36px 20px}
+    }
+  </style>
 </head>
 <body>
   <a class="skip-copy" href="#desk">Skip the cover</a>
@@ -432,7 +452,7 @@
     </section>
 
     <section class="leaf" data-page="P. 12" aria-labelledby="shift-title">
-      <div class="leaf-title"><b>03</b><div><h2 id="shift-title">Night shift</h2><p class="deck">A dangling lamp pull and a typewriter carriage—not a round thumb on a capsule.</p></div></div>
+      <div class="leaf-title"><b>03</b><div><h2 id="shift-title">Night shift</h2><p class="deck">A compact lamp switch and bounded carriage range keep their typewriter character without losing control anatomy.</p></div></div>
       <div class="night-shift">
         <div class="lamp-station">
           <div class="lamp-shade" aria-hidden="true"></div>

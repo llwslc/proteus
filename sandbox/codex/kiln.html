@@ -357,6 +357,26 @@
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
     }
   </style>
+  <style>
+    /* COMPONENT LIBRARY PASS: studio controls with clay-and-tool detailing */
+    .tool-rack{min-height:0;grid-template-columns:repeat(6,minmax(0,1fr));align-items:stretch;gap:10px;padding:20px;background:var(--wet)}
+    .potter-tool,.potter-tool:nth-child(n){min-height:82px;padding:14px 10px 14px 50px;border:3px solid var(--char);background:var(--chalk);text-align:left}
+    .potter-tool::before{left:15px;top:16px;width:9px;height:48px;translate:none;rotate:0deg;border-radius:4px;background:var(--tool,var(--clay));border:2px solid var(--char)}.potter-tool::after{left:27px;bottom:24px;width:24px;height:24px;translate:-50%;clip-path:var(--shape);border:2px solid var(--char);background:var(--tool,var(--clay))}.potter-tool span{color:var(--char);text-shadow:none}
+    .potter-tool:hover::before{rotate:4deg}.potter-tool:hover::after{translate:-50% -2px}
+    .damper-switch{width:98px;height:50px;border:4px solid var(--char);border-radius:5px;background:#5b3126;box-shadow:inset 0 0 0 3px #6f675b;overflow:visible}
+    .damper-switch::before{left:5px;top:5px;width:38px;height:32px;translate:0;border:2px solid var(--char);background:var(--fire);transform:none;rotate:0deg;transition:translate .25s}.damper-switch::after{left:50%;right:auto;bottom:-27px;translate:-50%;padding:0;color:var(--chalk);background:transparent;white-space:nowrap}
+    .damper-switch[aria-checked=true]::before{rotate:0deg;translate:43px 0}
+    .rib-range{height:38px;bottom:95px}.rib-range::-webkit-slider-runnable-track{height:9px;border:2px solid var(--char);background:linear-gradient(90deg,var(--clay) 0 var(--pressure),var(--chalk) var(--pressure))}
+    .rib-range::-moz-range-track{height:9px;background:var(--chalk)}.rib-range::-webkit-slider-thumb{width:22px;height:30px;margin-top:-12px;transform:skewX(-8deg);box-shadow:4px 4px 0 rgba(35,35,31,.2)}.rib-range::-moz-range-thumb{width:18px;height:26px}
+    .shard-gallery{min-height:0;display:grid;grid-template-rows:auto minmax(370px,auto);gap:14px;padding:18px;overflow:visible}
+    .shard-tabs{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.ceramic-shard,.ceramic-shard:nth-child(n){position:static;width:auto;height:84px;min-height:84px;padding:14px;translate:none;rotate:0deg;clip-path:none;border-radius:18px 18px 5px 5px;filter:none}
+    .ceramic-shard[aria-selected=true]{transform:none;outline:0;box-shadow:inset 0 -9px var(--fire)}
+    .gallery-pedestal{position:static;width:auto;min-height:370px;translate:none;padding:52px 42px;clip-path:none;border:4px solid var(--wet)}
+    @media(max-width:760px){
+      .tool-rack{grid-template-columns:1fr 1fr;padding:14px}.potter-tool:first-child{grid-column:1/-1}
+      .shard-gallery{min-height:0;padding:12px}.ceramic-shard,.ceramic-shard:nth-child(n){width:auto;min-width:0;height:72px;min-height:72px;padding:9px;font-size:.57rem}.gallery-pedestal{width:auto;min-height:390px;padding:45px 22px 30px}
+    }
+  </style>
 </head>
 <body>
   <a class="skip-apron" href="#workshop">Skip to the wheel</a>
@@ -365,7 +385,7 @@
   </header>
   <main class="workshop" id="workshop">
     <section class="display-plinth" aria-labelledby="kiln-title">
-      <div class="hero-copy"><span class="batch-tag">Working ceramics studio</span><h1 id="kiln-title">KILN</h1><p>Controls shaped by the studio: tools have handles, settings leave grooves, and sections arrive as fragments around a wheel.</p></div>
+      <div class="hero-copy"><span class="batch-tag">Working ceramics studio</span><h1 id="kiln-title">KILN</h1><p>Controls shaped by the studio: buttons keep tool handles, settings leave grooves, and section tabs line up on a clay shelf.</p></div>
       <div class="hero-vessel" aria-hidden="true"><div class="maker-cut">KILN<br>06</div></div>
     </section>
 
@@ -436,7 +456,7 @@
     </section>
 
     <section class="studio-bay" aria-labelledby="gallery-title">
-      <header class="bay-heading"><b>04</b><h2 id="gallery-title">Shard gallery</h2><p>Three sections are fragments mounted around a display pedestal, not a repainted navigation bar.</p></header>
+      <header class="bay-heading"><b>04</b><h2 id="gallery-title">Shard gallery</h2><p>Three soft-clay tabs share a shelf above the display pedestal, with the active shard visibly fired.</p></header>
       <div class="bay-floor">
         <div class="shard-gallery">
           <div class="shard-tabs" role="tablist" aria-label="Ceramic studies">

@@ -363,6 +363,23 @@
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
     }
   </style>
+  <style>
+    /* COMPONENT LIBRARY PASS: woven material on recognizable controls */
+    .tassel-commands{min-height:0;grid-template-columns:repeat(6,minmax(0,1fr));align-items:stretch;gap:10px;padding:20px;border-top-width:12px}
+    .tassel,.tassel:nth-child(n){min-height:80px;padding:16px 12px 14px 18px;border:4px solid var(--night);background:var(--color,var(--clay));text-align:left}
+    .tassel::before{left:12px;right:12px;top:12px;width:auto;height:8px;background:repeating-linear-gradient(90deg,var(--night) 0 6px,var(--bone) 6px 12px)}.tassel::after{display:none}.tassel span{margin-top:19px}.tassel:hover::before{height:8px;width:auto}
+    .pedal-switch{width:96px;height:48px;border:4px solid var(--bone);background:#0f2021}.pedal-switch::before{left:5px;top:5px;width:38px;height:30px;background:var(--clay);transform:none;rotate:0deg;transition:translate .25s}.pedal-switch::after{left:12px;bottom:12px;width:24px;height:15px;border:0;background:var(--sun);box-shadow:none;transform:none;transition:translate .25s}
+    .pedal-switch[aria-checked=true]::before,.pedal-switch[aria-checked=true]::after{rotate:0deg;bottom:auto;transform:none;translate:43px 0}
+    .shuttle-range{height:38px;bottom:58px}.shuttle-range::-webkit-slider-runnable-track{height:8px;border:2px solid var(--night);background:linear-gradient(90deg,var(--indigo) 0 var(--shuttle),var(--bone) var(--shuttle))}
+    .shuttle-range::-moz-range-track{height:8px;border:2px solid var(--night);background:var(--bone)}.shuttle-range::-webkit-slider-thumb{width:28px;height:24px;margin-top:-10px;border:4px solid var(--night);box-shadow:0 4px 0 var(--wood)}.shuttle-range::-moz-range-thumb{width:24px;height:20px;border:4px solid var(--night)}
+    .story-totem{min-height:0;grid-template-columns:210px minmax(0,1fr)}.mask-pole{gap:8px;padding:24px;background:var(--sand)}
+    .story-mask,.story-mask:nth-child(n){width:100%;min-height:72px;margin:0;padding:13px 16px;border-width:4px;text-align:left;font-size:1.05rem}.story-mask::before{display:inline;margin:0 11px 0 0;letter-spacing:.15em}.story-mask[aria-selected=true]{width:100%;box-shadow:inset 8px 0 var(--bone)}
+    .story-cloth{min-height:390px;padding:52px}
+    @media(max-width:760px){
+      .tassel-commands{grid-template-columns:1fr 1fr;padding:14px}.tassel:first-child{grid-column:1/-1}
+      .story-totem{display:block}.mask-pole{grid-template-columns:repeat(3,minmax(0,1fr));padding:12px}.story-mask,.story-mask:nth-child(n){width:100%;min-width:0;min-height:68px;margin:0;padding:8px;font-size:.8rem}.story-mask::before{display:block;margin:0 0 5px}.story-mask[aria-selected=true]{width:100%;box-shadow:inset 0 -7px var(--bone)}.story-cloth{min-height:410px;padding:38px 22px}
+    }
+  </style>
 </head>
 <body>
   <a class="skip-knot" href="#ground">Skip to the weaving ground</a>

@@ -1182,6 +1182,30 @@
       *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
     }
   </style>
+  <style>
+    /* COMPONENT LIBRARY PASS: nocturnal editorial character, no exemptions */
+    .ritual-rail{padding:34px clamp(20px,4vw,46px) 42px}.ritual-rail::before{top:116px;opacity:.4}
+    .ritual-buttons{grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;align-items:stretch}
+    .ritual-button,.ritual-button.gate-key,.ritual-button.wine-seal,.ritual-button.paper-tag,.ritual-button.thorn-warning,.ritual-button.withered{min-height:64px;border:1px solid var(--brass);border-radius:0;clip-path:none;transform:none;padding:10px 13px;text-align:left;box-shadow:inset 0 -3px rgba(0,0,0,.25)}
+    .ritual-button.gate-key{border-left-width:9px}.ritual-button.wine-seal{border-top-width:9px;background:var(--wine)}.ritual-button.paper-tag{border-right-width:9px}.ritual-button.thorn-warning{border-bottom-width:9px}.ritual-button.withered{text-decoration:none}
+    .ritual-button:hover:not(:disabled){transform:translateY(-2px)}.ritual-button.thorn-warning::before,.ritual-button.thorn-warning::after{display:none}
+    .pull-lamp{width:94px;height:46px;flex:0 0 94px;display:block;border:2px solid var(--brass);border-radius:3px;background:var(--night);overflow:visible}
+    .lamp-shade{position:absolute;left:5px;top:5px;width:38px;height:32px;clip-path:none;border:1px solid var(--brass);border-radius:2px;background:var(--wine);transition:translate .25s,background .25s}.lamp-glow,.pull-chain{display:none}
+    .pull-lamp input:checked~.lamp-shade{translate:44px 0;background:var(--brass);filter:none}.pull-lamp input:focus-visible~.lamp-shade{outline:2px solid var(--bone);outline-offset:5px}
+    .branch-scene{height:290px;padding-bottom:58px}.branch-input{inset:auto 0 5px;width:100%;height:38px;opacity:1;appearance:none;background:transparent;cursor:ew-resize}
+    .branch-input::-webkit-slider-runnable-track{height:8px;border:1px solid var(--brass);background:linear-gradient(90deg,var(--wine-bright) 0 calc(var(--level)*1%),#2a2025 calc(var(--level)*1%))}
+    .branch-input::-moz-range-track{height:8px;border:1px solid var(--brass);background:#2a2025}.branch-input::-webkit-slider-thumb{appearance:none;width:20px;height:28px;margin-top:-11px;border:2px solid var(--brass);border-radius:70% 10% 70% 10%;background:var(--wine-bright)}
+    .branch-input::-moz-range-thumb{width:17px;height:24px;border:2px solid var(--brass);border-radius:70% 10% 70% 10%;background:var(--wine-bright)}
+    .branch-hint{bottom:-19px}
+    .herbarium{grid-template-columns:240px minmax(0,1fr);gap:24px}.herbarium-intro{grid-template-columns:240px 1fr;gap:24px}
+    .specimen-index{gap:9px;padding:15px 14px 15px 0}.specimen-tab{min-height:88px;padding:14px 16px 14px 42px;transform:none}.specimen-tab::after{right:-10px;width:18px;height:32px}.specimen-tab strong{font-size:1.2rem}.specimen-tab small{margin-top:4px}
+    .specimen-tab[aria-selected=true]{transform:none;box-shadow:inset 6px 0 var(--brass),-4px 5px 0 rgba(0,0,0,.25)}
+    @media(max-width:760px){
+      .ritual-buttons{grid-template-columns:1fr 1fr}.ritual-button:first-child{grid-column:1/-1}
+      .herbarium{grid-template-columns:1fr}.herbarium-intro{grid-template-columns:1fr}.specimen-index{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:0 0 12px}
+      .specimen-tab{min-width:0;min-height:92px;padding:10px 6px;text-align:center}.specimen-tab::before{position:static;display:block;margin:0 auto 6px}.specimen-tab::after{right:50%;top:auto;bottom:-9px;width:24px;height:14px;transform:translateX(50%);clip-path:polygon(0 0,100% 0,50% 100%)}.specimen-tab strong{font-size:.96rem}.specimen-tab small{font-size:.62rem}.specimen-tab[aria-selected=true]{transform:none;box-shadow:inset 0 -6px var(--brass),4px 5px 0 rgba(0,0,0,.25)}
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#controls">跳到夜园器具</a>
@@ -1242,7 +1266,7 @@
           <p class="script">The keeper's instruments</p>
           <h2 id="atlas-title">夜园器具</h2>
         </div>
-        <p>开门、定月相、压存标本、牵引花藤。这里没有通用控制面板，只有园丁真正会摸到的器物。</p>
+        <p>开门、定月相、压存标本、牵引花藤。每种状态保留夜园气质，同时明确属于按钮、选项、开关与调节器。</p>
       </header>
 
       <section class="ritual-rail" aria-labelledby="ritual-title">
@@ -1343,8 +1367,8 @@
       <section class="growth-house" aria-label="花藤刻度、攀援进度与花束量表">
         <div class="branch-console">
           <p class="section-kicker">IV · VINE CALIBRATION / 花藤刻度</p>
-          <h3 class="section-title">不是推一颗球，而是催开一整枝花</h3>
-          <p class="section-copy">拖过藤枝或使用方向键；每跨过一道刻度，就有一枚花苞打开。</p>
+          <h3 class="section-title">沿花藤刻度调节绽放</h3>
+          <p class="section-copy">拖动清晰的刻度轨道或使用方向键；每跨过一道刻度，就有一枚花苞打开。</p>
           <output class="branch-value" for="bloom-range">58% · 半绽</output>
 
           <div class="branch-scene">
@@ -1405,9 +1429,9 @@
         <header class="herbarium-intro">
           <div>
             <p class="section-kicker">V · SPECIMEN CABINET / 标本匣</p>
-            <h3 class="section-title" id="herbarium-title">抽出一册，不是划过一条线</h3>
+            <h3 class="section-title" id="herbarium-title">标本目录与记录页</h3>
           </div>
-          <p class="section-copy">三张骨白目录卡插在标本柜侧面。选中的卡会被抽出，右侧画框才显出对应的压花记录。</p>
+          <p class="section-copy">三张骨白目录卡组成相邻的标签导航；明确的选中态控制右侧压花记录。</p>
         </header>
 
         <div class="specimen-index" role="tablist" aria-label="夜花标本目录">

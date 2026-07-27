@@ -64,6 +64,34 @@
     }
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
   </style>
+  <style>
+    /* COMPONENT LIBRARY PASS: tactical hardware, recognizable controls */
+    .command-bus{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:18px;border:1px solid rgba(88,255,245,.38);background:#061222}
+    .cmd{min-height:58px;padding:11px 14px;clip-path:none;border-radius:2px;box-shadow:inset 0 -3px rgba(0,17,20,.34);letter-spacing:.035em}
+    .cmd:hover:not(:disabled){translate:0 -2px}.cmd:active:not(:disabled){translate:0 1px;box-shadow:inset 0 2px rgba(0,17,20,.34)}
+    .breaker{border-style:solid;background:rgba(3,8,18,.35)}
+    .reactor-switch{width:78px;height:40px}.breaker-track{clip-path:none;border-radius:3px}.breaker-handle{left:5px;top:5px;width:32px;height:30px;clip-path:polygon(0 0,74% 0,100% 50%,74% 100%,0 100%)}
+    .reactor-switch input:checked~.breaker-handle{translate:36px 0}
+    .warp-lane{min-height:270px;padding:36px 30px 78px;clip-path:none;border:1px solid rgba(88,255,245,.26)}
+    .warp-lane input{inset:auto 30px 27px;width:calc(100% - 60px);height:34px;opacity:1;appearance:none;background:transparent;cursor:ew-resize}
+    .warp-lane input::-webkit-slider-runnable-track{height:8px;border:1px solid var(--cyan);background:linear-gradient(90deg,var(--cyan) 0 var(--power),#102c3e var(--power))}
+    .warp-lane input::-moz-range-track{height:8px;border:1px solid var(--cyan);background:#102c3e}
+    .warp-lane input::-webkit-slider-thumb{appearance:none;width:22px;height:28px;margin-top:-11px;border:2px solid #001114;border-radius:0;background:var(--magenta);clip-path:polygon(0 0,70% 0,100% 50%,70% 100%,0 100%)}
+    .warp-lane input::-moz-range-thumb{width:18px;height:24px;border:2px solid #001114;border-radius:0;background:var(--magenta)}
+    .sector-stage{min-height:0;padding:32px;overflow:visible}.sector-stage>header{position:static;margin-bottom:22px}
+    .orbit-console{position:static;width:100%;aspect-ratio:auto;translate:none;border-radius:0;background:rgba(7,20,38,.82);display:grid;grid-template-columns:210px minmax(0,1fr);place-items:stretch}
+    .orbit-console>[role=tablist]{display:grid;align-content:start;gap:8px;padding:16px;border-right:1px solid rgba(88,255,245,.3)}
+    .sector-node,.sector-node:nth-child(n){position:static;width:100%;min-height:66px;translate:none;clip-path:none;text-align:left}
+    .sector-node[aria-selected=true]{box-shadow:inset 4px 0 var(--magenta)}
+    .sector-panel{width:auto;min-height:300px;padding:38px;text-align:left;place-content:center start}.sector-panel button{justify-self:start}
+    @media(max-width:760px){
+      .command-bus{grid-template-columns:1fr 1fr;padding:12px}.cmd:first-child{grid-column:1/-1}
+      .warp-lane input{left:16px;right:16px;width:calc(100% - 32px)}
+      .sector-stage{min-height:0;padding:18px}.sector-stage>header{padding:0}.orbit-console{width:100%;display:block}
+      .orbit-console>[role=tablist]{grid-template-columns:repeat(3,minmax(0,1fr));padding:10px;border-right:0;border-bottom:1px solid rgba(88,255,245,.3)}
+      .sector-node,.sector-node:nth-child(n){min-width:0;min-height:62px;padding:8px}.sector-node b{font-size:.53rem}.sector-panel{width:auto;min-height:330px;padding:26px 18px}
+    }
+  </style>
 </head>
 <body>
   <a class="skip" href="#bridge">跳到舰桥控件</a>
@@ -144,7 +172,7 @@
             <button class="sector-node node-b" type="button" role="tab" id="nova-telemetry" aria-controls="nova-panel-telemetry" aria-selected="false" tabindex="-1"><b>02 / EAST</b><strong>遥测</strong></button>
             <button class="sector-node node-c" type="button" role="tab" id="nova-threat" aria-controls="nova-panel-threat" aria-selected="false" tabindex="-1"><b>03 / WEST</b><strong>威胁</strong></button>
           </div>
-          <article class="sector-panel" role="tabpanel" id="nova-panel-orbit" aria-labelledby="nova-orbit"><p class="micro">SECTOR 01</p><h4>ORBIT</h4><p>主航道稳定在误差阈值内，三颗信标保持相位同步。</p><span class="tip-shell"><button type="button" aria-describedby="nova-tip">读取坐标注</button><span class="tip" role="tooltip" id="nova-tip">轨道节点不是一排 tab，而是雷达周围的方向坐标。</span></span></article>
+          <article class="sector-panel" role="tabpanel" id="nova-panel-orbit" aria-labelledby="nova-orbit"><p class="micro">SECTOR 01</p><h4>ORBIT</h4><p>主航道稳定在误差阈值内，三颗信标保持相位同步。</p><span class="tip-shell"><button type="button" aria-describedby="nova-tip">读取坐标注</button><span class="tip" role="tooltip" id="nova-tip">战术标签轨标记三个扇区，青色与洋红状态清楚区分当前坐标。</span></span></article>
           <article class="sector-panel" role="tabpanel" id="nova-panel-telemetry" aria-labelledby="nova-telemetry" hidden><p class="micro">SECTOR 02</p><h4>TELEMETRY</h4><p>七组深空回波沿阵列边缘进入缓存，没有民用识别码。</p><span class="tip-shell"><button type="button" aria-describedby="nova-tip-2">读取坐标注</button><span class="tip" role="tooltip" id="nova-tip-2">按方向键绕雷达切换相邻扇区。</span></span></article>
           <article class="sector-panel" role="tabpanel" id="nova-panel-threat" aria-labelledby="nova-threat" hidden><p class="micro">SECTOR 03</p><h4>THREAT</h4><p>品红目标已越过警戒环，等待舰桥下达截击指令。</p><span class="tip-shell"><button type="button" aria-describedby="nova-tip-3">读取坐标注</button><span class="tip" role="tooltip" id="nova-tip-3">扇区选择与页面状态都会保存到本机。</span></span></article>
         </div>

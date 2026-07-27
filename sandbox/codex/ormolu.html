@@ -480,6 +480,27 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
   </style>
+  <style>
+    /* COMPONENT LIBRARY PASS: salon hardware arranged as a usable library */
+    .bell-pulls{min-height:0;grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;gap:12px;padding:20px;background:rgba(255,250,240,.58);border:1px solid var(--gold)}
+    .pull,.pull:nth-child(n){min-height:82px;translate:none;padding:15px 14px 15px 58px;border:2px solid var(--gold);background:var(--porcelain);text-align:left;box-shadow:0 5px 0 rgba(90,31,50,.13)}
+    .pull::before{left:16px;top:17px;width:3px;height:46px;background:var(--gold)}.pull::after{left:28px;top:26px;width:24px;height:28px;translate:-50%;clip-path:polygon(50% 0,100% 38%,78% 100%,22% 100%,0 38%)}
+    .pull span{margin:0}.pull:hover,.pull:active{translate:0 -2px}
+    .tassel-switch{width:94px;height:46px;border:2px solid var(--gold);border-radius:4px;background:var(--cream)}
+    .tassel-switch::before{left:5px;top:5px;width:38px;height:32px;background:var(--rose);transition:translate .25s}.tassel-switch::after{content:"✦";left:5px;top:5px;width:38px;height:32px;display:grid;place-items:center;background:transparent;clip-path:none;color:white;transition:translate .25s}
+    .tassel-switch[aria-checked=true]::before,.tassel-switch[aria-checked=true]::after{height:32px;top:5px;translate:42px 0}.tassel-switch span{bottom:-25px}
+    .fan-slider{height:38px}.fan-slider::-webkit-slider-runnable-track{height:7px;border:1px solid var(--gold);background:linear-gradient(90deg,var(--rose) 0 var(--grace),#ead9bd var(--grace))}
+    .fan-slider::-moz-range-track{height:7px;border:1px solid var(--gold);background:#ead9bd}.fan-slider::-webkit-slider-thumb{width:18px;height:28px;margin-top:-12px;border:3px double var(--gold);border-radius:2px;background:#fff4d2}.fan-slider::-moz-range-thumb{width:15px;height:24px;border-radius:2px}
+    .vanity-stage{min-height:0;display:grid;grid-template-columns:190px minmax(0,1fr);gap:22px;padding:24px;overflow:visible}
+    .vanity-stage>[role=tablist]{display:grid;align-content:center;gap:9px}.medallion,.medallion:nth-of-type(n){position:static;width:100%;height:84px;min-height:84px;translate:none;rotate:0deg;border-width:3px;border-radius:18px 5px 18px 5px;display:grid;grid-template-columns:34px 1fr;place-items:center;text-align:left;box-shadow:none}
+    .medallion::before{font-size:1.1rem}.medallion[aria-selected=true]{transform:none;box-shadow:inset 5px 0 var(--bright-gold)}
+    .vanity-reflection{position:static;width:auto;min-height:360px;translate:none;padding:50px 42px;border-radius:28px 28px 8px 8px}
+    @media(max-width:760px){
+      .bell-pulls{grid-template-columns:1fr 1fr;padding:12px}.pull:first-child{grid-column:1/-1}
+      .vanity-stage{display:block;padding:14px}.vanity-stage>[role=tablist]{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:14px}
+      .medallion,.medallion:nth-of-type(n){width:100%;min-width:0;height:72px;min-height:72px;display:block;padding:10px;font-size:.58rem}.medallion::before{margin-bottom:4px}.vanity-reflection{width:auto;min-height:380px;padding:46px 22px 30px}
+    }
+  </style>
 </head>
 <body>
   <a class="skip-ribbon" href="#main">Skip to the collection</a>
@@ -502,7 +523,7 @@
     <section class="chapter" aria-labelledby="commands-title">
       <div class="chapter-heading">
         <div><span class="roman">I · service</span><h2 id="commands-title">Call the house</h2></div>
-        <p>Five bell pulls, five different obligations. Their hierarchy is felt in material and weight rather than a repeated pill silhouette.</p>
+        <p>Five bell-pull buttons share a comparable frame; material, weight and trim establish their individual obligations.</p>
       </div>
       <div class="bell-pulls" aria-label="Command variants">
         <button class="pull rose" data-command="Summon"><span>Summon</span></button>
@@ -577,7 +598,7 @@
     <section class="chapter" aria-labelledby="vanity-title">
       <div class="chapter-heading">
         <div><span class="roman">IV · cabinet</span><h2 id="vanity-title">Three reflections</h2></div>
-        <p>The sections are framed portraits placed around a working mirror—no navigation rail, no underline pretending to be architecture.</p>
+        <p>Three framed portrait tabs form a clear salon rail beside the working mirror; the active frame remains visibly lit.</p>
       </div>
       <div class="vanity-stage">
         <div role="tablist" aria-label="Vanity reflections">

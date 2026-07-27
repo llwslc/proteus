@@ -214,6 +214,25 @@
     }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important; } }
   </style>
+  <style>
+    /* COMPONENT LIBRARY PASS: one-bit controls, not oversized desktop props */
+    .toolbar{min-height:0;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px;padding:22px}
+    .tool-icon{min-height:86px;display:grid;grid-template-columns:42px 1fr;align-items:center;gap:12px;padding:10px;border:4px solid var(--black);background:var(--white);text-align:left;box-shadow:5px 5px 0 var(--black)}
+    .tool-icon::before{width:34px;height:34px;margin:0;border-width:3px;box-shadow:none}.tool-icon:hover::before{transform:none;box-shadow:none}.tool-icon:hover{translate:-2px -2px;box-shadow:7px 7px 0 var(--black)}
+    .dip-switch{width:94px;height:48px;border-width:5px;background:var(--black)}
+    .dip-switch::before{content:"OFF";left:7px;right:auto;top:13px;width:36px;text-align:center}.dip-switch::after{left:auto;right:5px;top:5px;width:36px;height:28px;border-width:4px;box-shadow:none;transition:translate .25s}
+    .dip-switch[aria-checked=true]::before{content:"ON"}.dip-switch[aria-checked=true]::after{top:5px;translate:-42px 0}
+    .pixel-range{height:38px;bottom:49px}.pixel-range::-webkit-slider-runnable-track{height:9px;border:3px solid var(--black);background:linear-gradient(90deg,var(--black) 0 var(--pixel),var(--white) var(--pixel))}
+    .pixel-range::-moz-range-track{height:9px;border:3px solid var(--black);background:var(--white)}.pixel-range::-webkit-slider-thumb{width:20px;height:28px;margin-top:-12px;clip-path:polygon(0 0,100% 0,70% 60%,100% 100%,55% 76%,25% 100%);filter:none}.pixel-range::-moz-range-thumb{width:17px;height:24px}
+    .window-stack{min-height:0;display:grid;grid-template-rows:auto minmax(350px,auto);gap:12px;padding:14px;overflow:visible}
+    .window-stack>[role=tablist]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.stack-tab,.stack-tab:nth-child(n){position:static;width:auto;min-height:96px;padding:0;transform:none;box-shadow:4px 4px 0 var(--black)}
+    .stack-tab[aria-selected=true]{z-index:auto;transform:none;box-shadow:inset 0 -8px var(--black),4px 4px 0 var(--black)}.stack-tab .window-icon{height:48px;font-size:2.2rem}.stack-tab .fake-label{padding:7px}
+    .active-document{position:static;width:auto;min-height:350px;translate:none;padding:48px 34px 34px;pointer-events:auto}
+    @media(max-width:760px){
+      .toolbar{grid-template-columns:1fr 1fr;padding:14px}.tool-icon{min-height:82px}
+      .window-stack{min-height:0;padding:10px}.stack-tab,.stack-tab:nth-child(n){width:auto;min-width:0;min-height:88px}.stack-tab .fake-bar{font-size:.48rem}.stack-tab .fake-label{font-size:.52rem}.stack-tab .window-icon{height:40px;font-size:1.8rem}.active-document{width:auto;min-height:380px;padding:42px 18px 28px}
+    }
+  </style>
 </head>
 <body>
   <a class="skip-file" href="#desktop">Skip boot window</a>
@@ -226,7 +245,7 @@
     </section>
 
     <section class="os-window" aria-labelledby="tools-title">
-      <header class="window-head"><b>01</b><h2 id="tools-title">Tool palette</h2><p>Six commands are desktop tools with distinct bit patterns, not the same button in six coats.</p></header>
+      <header class="window-head"><b>01</b><h2 id="tools-title">Tool palette</h2><p>Six commands share a dependable button geometry while one-bit icons and patterns distinguish their jobs.</p></header>
       <div class="window-pane"><div class="toolbar" aria-label="Command variants">
         <button class="tool-icon" data-tool="Create">Create</button><button class="tool-icon" data-tool="Inspect">Inspect</button><button class="tool-icon" data-tool="Pattern">Pattern</button><button class="tool-icon" data-tool="Invert">Invert</button><button class="tool-icon" data-tool="Archive">Archive</button><button class="tool-icon" disabled>Locked</button>
       </div></div>
@@ -260,7 +279,7 @@
     </section>
 
     <section class="os-window" aria-labelledby="windows-title">
-      <header class="window-head"><b>04</b><h2 id="windows-title">Window stack</h2><p>Three tabs are complete overlapping windows. Selection changes their z-order and active document.</p></header>
+      <header class="window-head"><b>04</b><h2 id="windows-title">Document tabs</h2><p>Three aligned document tabs select the active one-bit window and keep its state visible.</p></header>
       <div class="window-pane">
         <div class="window-stack">
           <div role="tablist" aria-label="Open documents">
