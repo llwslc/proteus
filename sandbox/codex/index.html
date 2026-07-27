@@ -345,9 +345,65 @@
         if (currentIndex >= 0) showTheme(currentIndex + delta);
       };
 
+      const previewLayerOpen = () => {
+        const documentInside = preview.contentDocument;
+        if (!documentInside) return false;
+        if (documentInside.querySelector('[aria-haspopup="listbox"][aria-expanded="true"]')) return true;
+        return [...documentInside.querySelectorAll('dialog[open],[role="dialog"]')].some((layer) => {
+          const rect = layer.getBoundingClientRect();
+          const style = documentInside.defaultView.getComputedStyle(layer);
+          return rect.width > 0 && rect.height > 0 && style.visibility !== "hidden";
+        });
+      };
+
+      const previewConsumesArrow = (target) => {
+        if (!(target instanceof preview.contentWindow.Element)) return false;
+        return Boolean(target.closest([
+          'input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"])',
+          "textarea",
+          "select",
+          '[contenteditable="true"]',
+          '[role="slider"]',
+          '[role="spinbutton"]',
+          '[role="tab"]',
+          '[role="option"]',
+          '[role="radio"]',
+          '[role="combobox"]',
+          '[role="listbox"]',
+          '[role="menu"]',
+          '[role="menuitem"]',
+          '[role="treeitem"]',
+          '[role="gridcell"]',
+        ].join(",")));
+      };
+
+      const handlePreviewKeydown = (event) => {
+        if (currentIndex < 0) return;
+        if (event.key === "Escape") {
+          if (previewLayerOpen()) return;
+          event.preventDefault();
+          event.stopPropagation();
+          if (detail.classList.contains("is-full")) detail.classList.remove("is-full");
+          else if (detail.classList.contains("drawer-open")) closeDrawer();
+          else showHome();
+          return;
+        }
+        if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && !previewConsumesArrow(event.target)) {
+          event.preventDefault();
+          event.stopPropagation();
+          moveTheme(event.key === "ArrowLeft" ? -1 : 1);
+        }
+      };
+
       preview.addEventListener("load", () => {
         loading.hidden = true;
         preview.style.visibility = "visible";
+        try {
+          preview.contentWindow.removeEventListener("keydown", handlePreviewKeydown, true);
+          preview.contentWindow.addEventListener("keydown", handlePreviewKeydown, true);
+        } catch {
+          /* Cross-origin previews keep their own keyboard handling. */
+        }
       });
       window.addEventListener("resize", () => document.querySelectorAll(".thumb.is-loaded").forEach(resizeThumb));
       window.addEventListener("hashchange", () => {
