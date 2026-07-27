@@ -161,6 +161,7 @@ body.mist-on .mist{opacity:1}
 
 .plate{
   position:relative;
+  display:flex;flex-direction:column;
   border:1px solid var(--brass-line);
   box-shadow:var(--frame-shadow);
   padding:52px 38px 34px;
@@ -212,7 +213,7 @@ body.mist-on .mist{opacity:1}
   font-family:var(--hand-cn);
   text-align:center;color:var(--brass);
   font-size:17px;letter-spacing:.1em;
-  margin:30px 0 0;
+  margin:auto 0 0;padding-top:30px;
 }
 .plate-note svg{width:15px;height:15px;vertical-align:-2px;margin-right:8px;color:var(--brass-dim)}
 
@@ -417,7 +418,7 @@ body.mist-on .mist{opacity:1}
 
 .gauge-wrap{text-align:center;margin-bottom:10px}
 .gauge-svg{width:min(250px,100%);height:auto;display:block;margin:0 auto}
-.gauge-read{margin-top:-40px}
+.gauge-read{margin-top:-14px}
 .gauge-read .val{
   font-size:38px;font-weight:500;color:var(--brass-bright);
   letter-spacing:.04em;line-height:1.1;
@@ -453,33 +454,37 @@ body.mist-on .mist{opacity:1}
   80%{transform:scale(.985,1.02)}
 }
 .wick-rack{flex:none;display:flex;align-items:center;padding-bottom:4px}
-.wick-scale{width:12px;height:136px;display:block;margin-left:-2px;color:var(--brass-line)}
+.wick-rail{position:relative;flex:none;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 150'><defs><linearGradient id='c' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23D6B478'/><stop offset='1' stop-color='%237A5E30'/></linearGradient></defs><g stroke='%235E4622' stroke-width='.8'><rect x='2' y='.9' width='26' height='6.4' rx='2.4' fill='url(%23c)'/><rect x='2' y='142.7' width='26' height='6.4' rx='2.4' fill='url(%23c)'/></g></svg>") center/30px 150px no-repeat}
+.wick-scale{width:12px;height:126px;display:block;margin-left:-2px;color:var(--brass-line)}
 
 input[type="range"].wick-key{
   -webkit-appearance:none;appearance:none;
   writing-mode:vertical-lr;direction:rtl;
-  width:30px;height:150px;background:transparent;margin:0;
+  width:30px;height:150px;background:transparent;margin:0;display:block;
   --v:62;
-  --fill:calc(7px + (100% - 14px) * var(--v) / 100);
+  --fill:calc(12px + (100% - 24px) * var(--v) / 100);
 }
 input[type="range"].wick-key::-webkit-slider-runnable-track{
-  width:5px;border-radius:3px;
-  background:linear-gradient(to top,#C0741C 0,#F2C14E var(--fill),var(--night-4) var(--fill),var(--night-3) 100%);
-  box-shadow:inset 0 0 0 1px rgba(198,154,78,.34),0 0 9px -1px rgba(242,193,78,.45);
+  width:6px;border-radius:3px;
+  border:1px solid rgba(198,154,78,.42);
+  background:linear-gradient(to top,rgba(192,116,28,.8) 0,rgba(242,193,78,.5) var(--fill),rgba(18,10,24,.8) var(--fill),rgba(18,10,24,.6) 100%);
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.55);
 }
 input[type="range"].wick-key::-webkit-slider-thumb{
   -webkit-appearance:none;appearance:none;
-  width:26px;height:14px;margin-left:-10.5px;border:0;border-radius:0;
-  background:transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 14'><defs><linearGradient id='k' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23F3DCA6'/><stop offset='.5' stop-color='%23C69A4E'/><stop offset='1' stop-color='%238A6B3A'/></linearGradient></defs><rect x='.6' y='3.2' width='24.8' height='7.6' rx='2' fill='url(%23k)' stroke='%235E4622' stroke-width='.7'/><g stroke='%235E4622' stroke-width='.6' opacity='.5'><path d='M6 4.6V9.4M9.5 4.6V9.4M13 4.6V9.4M16.5 4.6V9.4M20 4.6V9.4'/></g></svg>") center/contain no-repeat;
+  width:24px;height:24px;margin-left:-8px;border:0;border-radius:50%;
+  background:transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><defs><radialGradient id='g' cx='.38' cy='.32' r='.8'><stop offset='0' stop-color='%23F3DCA6'/><stop offset='.55' stop-color='%23C69A4E'/><stop offset='1' stop-color='%237A5E30'/></radialGradient></defs><circle cx='12' cy='12' r='10.4' fill='url(%23g)' stroke='%235E4622' stroke-width='1'/><circle cx='12' cy='12' r='9.1' fill='none' stroke='%235E4622' stroke-width='1.7' stroke-dasharray='1.15 2.05' opacity='.5'/><circle cx='12' cy='12' r='4.6' fill='none' stroke='%235E4622' stroke-width='.8' opacity='.55'/><circle cx='12' cy='12' r='1.4' fill='%235E4622' opacity='.65'/></svg>") center/contain no-repeat;
   filter:drop-shadow(0 1px 3px rgba(8,4,12,.7));
 }
 input[type="range"].wick-key::-moz-range-track{
-  width:5px;border-radius:3px;
-  background:linear-gradient(to top,#C0741C 0,#F2C14E var(--fill),var(--night-4) var(--fill),var(--night-3) 100%);
+  width:6px;border-radius:3px;
+  border:1px solid rgba(198,154,78,.42);
+  background:linear-gradient(to top,rgba(192,116,28,.8) 0,rgba(242,193,78,.5) var(--fill),rgba(18,10,24,.8) var(--fill),rgba(18,10,24,.6) 100%);
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.55);
 }
 input[type="range"].wick-key::-moz-range-thumb{
-  width:26px;height:14px;border:0;border-radius:0;
-  background:transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 14'><defs><linearGradient id='k' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23F3DCA6'/><stop offset='.5' stop-color='%23C69A4E'/><stop offset='1' stop-color='%238A6B3A'/></linearGradient></defs><rect x='.6' y='3.2' width='24.8' height='7.6' rx='2' fill='url(%23k)' stroke='%235E4622' stroke-width='.7'/><g stroke='%235E4622' stroke-width='.6' opacity='.5'><path d='M6 4.6V9.4M9.5 4.6V9.4M13 4.6V9.4M16.5 4.6V9.4M20 4.6V9.4'/></g></svg>") center/contain no-repeat;
+  width:24px;height:24px;border:0;border-radius:50%;
+  background:transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><defs><radialGradient id='g' cx='.38' cy='.32' r='.8'><stop offset='0' stop-color='%23F3DCA6'/><stop offset='.55' stop-color='%23C69A4E'/><stop offset='1' stop-color='%237A5E30'/></radialGradient></defs><circle cx='12' cy='12' r='10.4' fill='url(%23g)' stroke='%235E4622' stroke-width='1'/><circle cx='12' cy='12' r='9.1' fill='none' stroke='%235E4622' stroke-width='1.7' stroke-dasharray='1.15 2.05' opacity='.5'/><circle cx='12' cy='12' r='4.6' fill='none' stroke='%235E4622' stroke-width='.8' opacity='.55'/><circle cx='12' cy='12' r='1.4' fill='%235E4622' opacity='.65'/></svg>") center/contain no-repeat;
   filter:drop-shadow(0 1px 3px rgba(8,4,12,.7));
 }
 
@@ -510,7 +515,7 @@ input[type="range"].wick-key::-moz-range-thumb{
 .prog-bloom svg{width:100%;height:100%;display:block}
 .prog-actions{margin-top:20px;display:flex;gap:14px;flex-wrap:wrap}
 
-.dropdown{position:relative;max-width:420px;margin:0 auto}
+.dropdown{position:relative;width:100%;max-width:420px;margin:0 auto}
 .dropdown.open{z-index:30}
 .drop-trigger{
   width:100%;
@@ -564,7 +569,7 @@ input[type="range"].wick-key::-moz-range-thumb{
 .drop-live{margin:16px auto 0;max-width:420px;font-size:14px;color:var(--bone-3);letter-spacing:.06em;text-align:center}
 .drop-live b{color:var(--brass-bright);font-weight:500}
 
-.tabs{max-width:760px;margin:0 auto}
+.tabs{width:100%;max-width:760px;margin:0 auto}
 .tablist{
   display:flex;justify-content:center;gap:6px;
   border-bottom:1px solid rgba(198,154,78,.3);
@@ -819,7 +824,6 @@ input[type="range"].wick-key::-moz-range-thumb{
   .plaque{max-width:calc(100% - 48px);white-space:normal;text-align:center}
   .modal{padding:52px 22px 30px}
   .tab{padding:10px 14px 12px}
-  .gauge-read{margin-top:-34px}
 }
 </style>
 </head>
@@ -881,6 +885,11 @@ input[type="range"].wick-key::-moz-range-thumb{
       <stop offset="0" stop-color="#FFF4D6"/>
       <stop offset=".5" stop-color="#F2C14E"/>
       <stop offset="1" stop-color="#C0741C"/>
+    </radialGradient>
+    <radialGradient id="flameCore" cx="50%" cy="78%" r="58%">
+      <stop offset="0" stop-color="#FFFDF2"/>
+      <stop offset=".55" stop-color="#FFE9A8"/>
+      <stop offset="1" stop-color="#FFE9A8" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
       <stop offset="0" stop-color="#F2C14E" stop-opacity=".34"/>
@@ -1128,9 +1137,12 @@ input[type="range"].wick-key::-moz-range-thumb{
           <ellipse cx="52" cy="16" rx="19" ry="3.4" fill="rgba(18,10,24,.5)" stroke="rgba(198,154,78,.4)" stroke-width="1.1"/>
           <g class="wick-flame"><g class="wick-lick">
             <path d="M52 96 C 43 87, 39 76, 43 63 C 45 56, 49 51, 52 44 C 55 51, 59 56, 61 63 C 65 76, 61 87, 52 96 Z" fill="url(#flameGrad)"/>
-            <path d="M52 94 C 47 89, 45 82, 47 74 C 48 70, 50 67, 52 63 C 54 67, 56 70, 57 74 C 59 82, 57 89, 52 94 Z" fill="#7A2440" opacity=".42"/>
+            <path d="M52 93 C 48 89, 46 83, 48 76 C 49 71, 51 68, 52 65 C 53 68, 55 71, 56 76 C 58 83, 56 89, 52 93 Z" fill="url(#flameCore)"/>
+            <path d="M49.4 95 C 48.8 92.4, 48.9 90, 50.2 88.2 C 51 87.1, 51.6 86.2, 52 85.2 C 52.4 86.2, 53 87.1, 53.8 88.2 C 55.1 90, 55.2 92.4, 54.6 95 Z" fill="#5C1A2E" opacity=".5"/>
           </g></g>
-          <rect x="42" y="92" width="20" height="5" rx="1" fill="url(#brassGrad)" stroke="#5E4622" stroke-width=".7"/>
+          <path d="M50.6 97 L50.9 88.6 C 51 87.7, 53 87.7, 53.1 88.6 L53.4 97 Z" fill="#2E1712"/>
+          <path d="M50.9 88.7 C 51.6 88, 52.4 88, 53.1 88.7" stroke="#F2C14E" stroke-width="1" stroke-linecap="round" opacity=".9"/>
+          <rect x="42" y="92" width="20" height="8" rx="1" fill="url(#brassGrad)" stroke="#5E4622" stroke-width=".7"/>
           <path d="M30 100 L74 100 L71 108 L33 108 Z" fill="url(#brassGrad)" stroke="#5E4622" stroke-width=".8"/>
           <path d="M34 108 C 26 118, 25 134, 36 141 L68 141 C 79 134, 78 118, 70 108 Z" fill="url(#oilGrad)" stroke="#8A6B3A" stroke-width="1"/>
           <path d="M38 113 C 34 120, 34 129, 38 135" stroke="rgba(255,244,214,.13)" stroke-width="1.8" stroke-linecap="round"/>
@@ -1138,10 +1150,10 @@ input[type="range"].wick-key::-moz-range-thumb{
           <rect x="26" y="151" width="52" height="5" rx="2" fill="url(#brassGrad)" stroke="#5E4622" stroke-width=".8"/>
         </svg>
         <div class="wick-rack">
-          <input type="range" class="wick-key" id="flame" min="0" max="100" value="62" aria-label="灯焰高低">
-          <svg class="wick-scale" viewBox="0 0 12 136" aria-hidden="true">
+          <div class="wick-rail"><input type="range" class="wick-key" id="flame" min="0" max="100" value="62" aria-label="灯焰高低"></div>
+          <svg class="wick-scale" viewBox="0 0 12 126" aria-hidden="true">
             <g stroke="currentColor" stroke-width="1">
-              <path d="M0 .5 H11 M0 34.25 H6 M0 68 H11 M0 101.75 H6 M0 135.5 H11"/>
+              <path d="M0 .5 H11 M0 31.75 H6 M0 63 H11 M0 94.25 H6 M0 125.5 H11"/>
             </g>
           </svg>
         </div>
@@ -1375,7 +1387,7 @@ input[type="range"].wick-key::-moz-range-thumb{
 
   bloomAll(document);
 
-  function bloomIcon(size){
+  function bloomIcon(){
     var svg=el("svg",{viewBox:"-16 -16 32 32",fill:"none"});
     var g=el("g",{});
     g.setAttribute("class","f5");
