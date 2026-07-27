@@ -234,7 +234,7 @@
         const card = make("article", "card");
         const thumb = make("div", "thumb");
         const iframe = document.createElement("iframe");
-        iframe.dataset.src = theme.id + ".html" + (theme.id === "nocturne" ? "?atlas-thumbnail=1" : "");
+        iframe.dataset.src = theme.id + ".html";
         iframe.loading = "lazy";
         iframe.tabIndex = -1;
         iframe.title = theme.code + " 实时缩略图";
