@@ -106,17 +106,6 @@
   .detail[data-fs="1"]{grid-template-columns:1fr}
   .detail[data-fs="1"] .side,.detail[data-fs="1"] .side-backdrop{display:none}
   .detail[data-fs="1"] .bar{display:none}
-  .fs-exit,.fs-nav{position:fixed;z-index:40;display:none;cursor:pointer;
-    border:1px solid var(--line);background:rgba(12,12,15,.62);backdrop-filter:blur(7px);
-    color:var(--dim);font-family:var(--mono);letter-spacing:.1em;opacity:.26;
-    transition:opacity .2s,color .2s,border-color .2s,background .2s}
-  .fs-exit{top:14px;right:14px;height:32px;padding:0 14px;border-radius:8px;font-size:11px;align-items:center}
-  .fs-nav{top:50%;transform:translateY(-50%);width:40px;height:58px;border-radius:11px;font-size:22px;
-    align-items:center;justify-content:center}
-  .fs-prev{left:14px}
-  .fs-next{right:14px}
-  .fs-exit:hover,.fs-nav:hover{opacity:1;color:var(--ink);border-color:var(--accent);background:rgba(12,12,15,.92)}
-  .detail[data-fs="1"] .fs-exit,.detail[data-fs="1"] .fs-nav{display:inline-flex}
 
   .viewport{position:relative;flex:1;min-height:0;overflow:auto;background:
     radial-gradient(120% 90% at 50% 0%,#101015,transparent 60%),#0a0a0d}
@@ -198,10 +187,6 @@
         </div>
       </div>
     </main>
-
-    <button class="fs-nav fs-prev" id="fsPrev" type="button" aria-label="上一主题">&#8249;</button>
-    <button class="fs-nav fs-next" id="fsNext" type="button" aria-label="下一主题">&#8250;</button>
-    <button class="fs-exit" id="fsExit" type="button" aria-label="退出全屏">&#10005;&nbsp; 退出全屏 · Esc</button>
   </div>
 
 <script>
@@ -336,9 +321,6 @@
   function exitFs(){ $("#detail").removeAttribute("data-fs"); }
   function isFs(){ return $("#detail").getAttribute("data-fs")==="1"; }
   $("#fsBtn").addEventListener("click",enterFs);
-  $("#fsExit").addEventListener("click",exitFs);
-  $("#fsPrev").addEventListener("click",function(){ $("#prevBtn").click(); });
-  $("#fsNext").addEventListener("click",function(){ $("#nextBtn").click(); });
 
   // ---- sidebar search: filter by code, name or id ----
   var sideSearch=$("#sideSearch");
