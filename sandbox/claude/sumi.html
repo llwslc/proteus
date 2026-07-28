@@ -415,7 +415,7 @@ footer{
 .rv{opacity:0;transform:translateY(26px);transition:opacity .95s ease,transform .95s cubic-bezier(.19,.7,.22,1)}
 .rv.on{opacity:1;transform:none}
 
-.seal-svg text{font-family:var(--f-brush);font-size:42px}
+.seal-svg text{font-family:var(--f-brush);font-size:42px;writing-mode:horizontal-tb;letter-spacing:.04em}
 
 @media (max-width:720px){
   .hero{min-height:92svh;padding-bottom:10vh}
@@ -497,8 +497,8 @@ footer{
           <g filter="url(#fltSeal)" mask="url(#sealMottle)">
             <rect x="8" y="8" width="104" height="104" rx="7" fill="var(--shu)"/>
             <rect x="15" y="15" width="90" height="90" rx="4" fill="none" stroke="#F1EBDD" stroke-width="2" opacity=".9"/>
-            <text x="60" y="52" text-anchor="middle" fill="#F1EBDD">YO</text>
-            <text x="60" y="96" text-anchor="middle" font-size="30" fill="#F1EBDD">HAKU</text>
+            <text x="60" y="54" text-anchor="middle" textLength="46" lengthAdjust="spacingAndGlyphs" fill="#F1EBDD">YO</text>
+            <text x="60" y="97" text-anchor="middle" font-size="32" textLength="70" lengthAdjust="spacingAndGlyphs" fill="#F1EBDD">HAKU</text>
           </g>
         </svg>
       </div>
