@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>页边社 Marginalia · SCRIBBLE 手账涂鸦方向稿</title>
+<title>Marginalia · SCRIBBLE notebook doodle study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Long+Cang&family=Ma+Shan+Zheng&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
 <style>
 :root{
   --desk:#DCE1E9;
@@ -23,8 +23,8 @@
   --hi-p-soft:#FFD9E8;
   --red:#BE3A3A;
   --coffee:#8B5A2B;
-  --f-hand:'Caveat','Ma Shan Zheng',cursive;
-  --f-note:'Patrick Hand','Long Cang',cursive;
+  --f-hand:'Caveat',cursive;
+  --f-note:'Patrick Hand',cursive;
   --f-body:'Nunito','PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;
   --wave-b:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='8' viewBox='0 0 18 8'><path d='M0 4 Q4.5 0 9 4 T18 4' fill='none' stroke='%231B3C9C' stroke-width='1.8' stroke-linecap='round'/></svg>");
   --wave-r:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='8' viewBox='0 0 18 8'><path d='M0 4 Q4.5 0 9 4 T18 4' fill='none' stroke='%23BE3A3A' stroke-width='1.8' stroke-linecap='round'/></svg>");
@@ -327,7 +327,7 @@ dialog.modal[open] .modal-paper{animation:tearIn .42s cubic-bezier(.3,1.2,.5,1)}
     <symbol id="st-ok" viewBox="0 0 48 48">
       <circle cx="24" cy="24" r="21" fill="#fff" stroke="#1B3C9C" stroke-width="2.6"/>
       <circle cx="24" cy="24" r="16.5" fill="none" stroke="#1B3C9C" stroke-width="1.3" opacity=".55"/>
-      <text x="24" y="31.5" text-anchor="middle" font-family="'Ma Shan Zheng','Caveat',cursive" font-size="21" fill="#1B3C9C" transform="rotate(-8 24 24)">好</text>
+      <text x="24" y="31.5" text-anchor="middle" font-family="'Caveat',cursive" font-size="15" font-weight="700" letter-spacing="1" fill="#1B3C9C" transform="rotate(-8 24 24)">DONE</text>
     </symbol>
     <symbol id="st-cup" viewBox="0 0 48 48">
       <circle cx="24" cy="24" r="21.5" fill="#fff" stroke="rgba(139,90,43,.35)" stroke-width="1.5"/>
@@ -376,41 +376,41 @@ dialog.modal[open] .modal-paper{animation:tearIn .42s cubic-bezier(.3,1.2,.5,1)}
     <rect width="100%" height="100%" fill="url(#coilPat)"/>
   </svg>
 
-  <button class="dogear" id="dogear" aria-label="折个页角"></button>
+  <button class="dogear" id="dogear" aria-label="Fold the page corner"></button>
 
   <header class="top">
-    <a class="logo" href="#top" aria-label="页边社 首页">
-      <b>页边社</b><i>Marginalia</i>
+    <a class="logo" href="#top" aria-label="Marginalia home">
+      <b>Marginalia</b><i>Notebook Co.</i>
     </a>
-    <nav class="nav" aria-label="页内导航">
-      <a class="wavy-link" href="#sec-buttons">本子</a>
-      <a class="wavy-link" href="#sec-notes">贴纸盒</a>
-      <a class="wavy-link" href="#footer">关于这页</a>
+    <nav class="nav" aria-label="In-page navigation">
+      <a class="wavy-link" href="#sec-buttons">The notebook</a>
+      <a class="wavy-link" href="#sec-notes">Sticker box</a>
+      <a class="wavy-link" href="#footer">About this page</a>
     </nav>
   </header>
 
   <section class="hero" id="top">
     <div>
-      <span class="eyebrow">SCRIBBLE · 手账涂鸦 · 方向稿 06</span>
-      <h1>先<span class="hl">写下来</span>,<br>再变好看。</h1>
-      <p class="lead">页边社是一本永远摊开的横线本:待办、灵感、涂改和咖啡渍,原样都收着。</p>
-      <p class="lead">不用排版,不用对齐——笔到哪儿,这一页就长到哪儿。</p>
+      <span class="eyebrow">SCRIBBLE · notebook doodle · study 06</span>
+      <h1>Write it <span class="hl">down first</span>,<br>make it pretty later.</h1>
+      <p class="lead">Marginalia is a ruled notebook that never closes: to-dos, ideas, corrections and coffee rings, all kept exactly as they landed.</p>
+      <p class="lead">No layout, no alignment — the page grows wherever the pen goes.</p>
       <div class="cta-row">
-        <button class="btn btn--ink" id="ctaMain">翻开这一页</button>
-        <button class="btn btn--frame" id="ctaDoodle" data-wob="btn">先随便涂涂</button>
+        <button class="btn btn--ink" id="ctaMain">Open this page</button>
+        <button class="btn btn--frame" id="ctaDoodle" data-wob="btn">Just doodle first</button>
         <span class="arrow-note" aria-hidden="true">
           <svg viewBox="0 0 110 84"><path d="M6 76 C 14 40,38 16,84 12" fill="none" stroke="#1B3C9C" stroke-width="2.4" stroke-linecap="round"/><path d="M72 6 L86 12 L74 22" fill="none" stroke="#1B3C9C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <em>从这儿开始</em>
+          <em>start here</em>
         </span>
       </div>
     </div>
     <aside class="pin-card">
       <svg class="clip" aria-hidden="true"><use href="#clip-sym"/></svg>
-      <h3>本周目标</h3>
+      <h3>This week</h3>
       <ul>
-        <li class="did">把 13 个控件都涂一遍</li>
-        <li>咖啡不超过 9 杯</li>
-        <li>框歪了就歪着吧</li>
+        <li class="did">Doodle all 13 controls</li>
+        <li>Keep coffee under 9 cups</li>
+        <li>Let the crooked boxes stay crooked</li>
       </ul>
     </aside>
     <svg class="stain" aria-hidden="true"><use href="#stain-sym"/></svg>
@@ -422,94 +422,94 @@ dialog.modal[open] .modal-paper{animation:tearIn .42s cubic-bezier(.3,1.2,.5,1)}
   <div class="grid">
 
     <section class="sec pre" id="sec-buttons" data-wob="sec" aria-labelledby="h-buttons">
-      <div class="sec-h"><h2 class="sec-title" id="h-buttons">圆珠笔<span class="hl">戳一下</span></h2><span class="sec-tag">BUTTONS</span></div>
-      <p class="note-line">主意有轻重,笔也分粗细:蓝笔是正事,荧光笔是重点,铅笔没水就算了。</p>
+      <div class="sec-h"><h2 class="sec-title" id="h-buttons">Ballpoint <span class="hl">poke</span></h2><span class="sec-tag">BUTTONS</span></div>
+      <p class="note-line">Ideas carry different weights, and so do pens: blue is for business, the highlighter is for what matters, and the pencil is out of lead anyway.</p>
       <div class="btn-row">
-        <button class="btn btn--ink" data-toast="记下了。">记下来</button>
-        <button class="btn btn--frame" data-wob="btn" data-toast="圈好了,回头再看。">圈个重点</button>
-        <button class="btn btn--hi" data-toast="这条涂上荧光了。">涂上荧光</button>
-        <button class="btn btn--pencil" disabled>铅笔(没水了)</button>
-        <button class="btn btn--icon" data-tip="盖个今日印" data-toast-star="盖上了,今天也在写。" aria-label="盖个今日印">
+        <button class="btn btn--ink" data-toast="Noted.">Note it down</button>
+        <button class="btn btn--frame" data-wob="btn" data-toast="Circled — come back to it later.">Circle it</button>
+        <button class="btn btn--hi" data-toast="Highlighted this one.">Highlight it</button>
+        <button class="btn btn--pencil" disabled>Pencil (out of lead)</button>
+        <button class="btn btn--icon" data-tip="Stamp today" data-toast-star="Stamped — still writing today." aria-label="Stamp today">
           <svg aria-hidden="true"><use href="#st-ok"/></svg>
         </button>
-        <span class="btn-note">↑ 这支真的没水了</span>
+        <span class="btn-note">↑ this one really is out of lead</span>
       </div>
     </section>
 
     <section class="sec pre" id="sec-inputs" data-wob="sec" aria-labelledby="h-inputs">
-      <div class="sec-h"><h2 class="sec-title" id="h-inputs">填空题</h2><span class="sec-tag">INPUTS</span></div>
+      <div class="sec-h"><h2 class="sec-title" id="h-inputs">Fill in the blanks</h2><span class="sec-tag">INPUTS</span></div>
       <div class="field">
-        <label for="inName">这本手账的主人</label>
-        <input id="inName" type="text" placeholder="把名字写在横线上" autocomplete="off">
+        <label for="inName">Whose notebook is this</label>
+        <input id="inName" type="text" placeholder="Write your name on the line" autocomplete="off">
       </div>
       <div class="field error">
-        <label for="inDate">今天的日期</label>
-        <input id="inDate" type="text" value="七月三十二日,晴" aria-invalid="true" aria-describedby="dateErr" autocomplete="off">
+        <label for="inDate">Today's date</label>
+        <input id="inDate" type="text" value="July 32nd, clear" aria-invalid="true" aria-describedby="dateErr" autocomplete="off">
         <p class="err-note" id="dateErr">
           <svg viewBox="0 0 30 22" aria-hidden="true"><path d="M3 18 C 8 8,16 5,27 6" fill="none" stroke="#BE3A3A" stroke-width="2" stroke-linecap="round"/><path d="M20 2 L28 6 L21 12" fill="none" stroke="#BE3A3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          红笔批:没有 32 号啦,改一下。
+          Red pen: there is no 32nd — fix it.
         </p>
       </div>
       <div class="note">
         <svg class="clip" aria-hidden="true"><use href="#clip-sym"/></svg>
-        <span class="note-title">便利贴 · 想到就记</span>
-        <label class="sr" for="inNote">随手记两笔</label>
-        <textarea id="inNote" rows="3" placeholder="随手记两笔,贴在这页上……"></textarea>
+        <span class="note-title">Sticky note · jot it when it hits</span>
+        <label class="sr" for="inNote">Jot a couple of lines</label>
+        <textarea id="inNote" rows="3" placeholder="Jot a couple of lines and stick them on this page…"></textarea>
       </div>
     </section>
 
     <section class="sec pre" id="sec-choices" data-wob="sec" aria-labelledby="h-choices">
-      <div class="sec-h"><h2 class="sec-title" id="h-choices">勾勾<span class="hl-p">画画</span></h2><span class="sec-tag">RADIO · CHECKBOX · SWITCH</span></div>
+      <div class="sec-h"><h2 class="sec-title" id="h-choices">Tick and <span class="hl-p">scribble</span></h2><span class="sec-tag">RADIO · CHECKBOX · SWITCH</span></div>
       <fieldset style="border:0">
-        <legend class="choice-h">今天用哪支笔</legend>
+        <legend class="choice-h">Which pen today</legend>
         <label class="opt"><input type="radio" name="pen" value="ink" checked>
           <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path class="ring" d="M12 3.2 C7 3,3.4 6.8,3.6 11.8 C3.8 16.6,7.6 20.6,12.4 20.4 C17.2 20.2,20.6 16.4,20.4 11.6 C20.2 7.4,17.6 4.2,14 3.4"/><circle class="blob" cx="12" cy="12" r="5"/></svg>
-          <span class="txt">圆珠蓝,写正事</span></label>
+          <span class="txt">Ballpoint blue, for business</span></label>
         <label class="opt"><input type="radio" name="pen" value="pencil">
           <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path class="ring" d="M12 3.2 C7 3,3.4 6.8,3.6 11.8 C3.8 16.6,7.6 20.6,12.4 20.4 C17.2 20.2,20.6 16.4,20.4 11.6 C20.2 7.4,17.6 4.2,14 3.4"/><circle class="blob" cx="12" cy="12" r="5"/></svg>
-          <span class="txt">铅笔灰,先打草稿</span></label>
+          <span class="txt">Pencil grey, for drafts</span></label>
         <label class="opt"><input type="radio" name="pen" value="pink">
           <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path class="ring" d="M12 3.2 C7 3,3.4 6.8,3.6 11.8 C3.8 16.6,7.6 20.6,12.4 20.4 C17.2 20.2,20.6 16.4,20.4 11.6 C20.2 7.4,17.6 4.2,14 3.4"/><circle class="blob" cx="12" cy="12" r="5"/></svg>
-          <span class="txt">荧光粉,只涂重点</span></label>
+          <span class="txt">Highlighter pink, for the good bits</span></label>
       </fieldset>
       <fieldset style="border:0">
-        <legend class="choice-h">今天要做</legend>
+        <legend class="choice-h">To do today</legend>
         <label class="opt ck"><input type="checkbox" checked>
           <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path class="box" d="M6.5 4 C4.8 4.4,4 5.6,4 8 L4 17 C4 19.4,5.2 20.2,7.5 20 L17 19.8 C19.2 19.6,20.2 18.6,20 16.5 L19.8 7 C19.6 4.8,18.4 3.8,16 4"/><path class="tick ck-path" d="M6 12.5 L10.5 17.5 L19 5.5"/></svg>
-          <span class="txt">给窗台的薄荷浇水</span></label>
+          <span class="txt">Water the mint on the sill</span></label>
         <label class="opt ck"><input type="checkbox">
           <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path class="box" d="M6.5 4 C4.8 4.4,4 5.6,4 8 L4 17 C4 19.4,5.2 20.2,7.5 20 L17 19.8 C19.2 19.6,20.2 18.6,20 16.5 L19.8 7 C19.6 4.8,18.4 3.8,16 4"/><path class="tick ck-path" d="M6 12.5 L10.5 17.5 L19 5.5"/></svg>
-          <span class="txt">回小林的信(拖了三天)</span></label>
+          <span class="txt">Reply to Lin's letter (three days late)</span></label>
         <label class="opt ck"><input type="checkbox" checked>
           <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path class="box" d="M6.5 4 C4.8 4.4,4 5.6,4 8 L4 17 C4 19.4,5.2 20.2,7.5 20 L17 19.8 C19.2 19.6,20.2 18.6,20 16.5 L19.8 7 C19.6 4.8,18.4 3.8,16 4"/><path class="tick ck-path" d="M6 12.5 L10.5 17.5 L19 5.5"/></svg>
-          <span class="txt">把这页的框涂完</span></label>
+          <span class="txt">Finish inking the boxes on this page</span></label>
       </fieldset>
-      <p class="choice-h">本子的小习惯</p>
+      <p class="choice-h">Notebook habits</p>
       <div class="sw-row">
         <button class="sw" id="swFold" role="switch" aria-checked="true" aria-labelledby="swFoldName"></button>
-        <div><div class="sw-name" id="swFoldName">写完自动折个角</div><div class="sw-note" data-on="开着呢,明天好找" data-off="关了,自己记页数">开着呢,明天好找</div></div>
+        <div><div class="sw-name" id="swFoldName">Auto-fold the corner when done</div><div class="sw-note" data-on="On — easy to find tomorrow" data-off="Off — remember the page number yourself">On — easy to find tomorrow</div></div>
       </div>
       <div class="sw-row">
         <button class="sw" id="swCoffee" role="switch" aria-checked="false" aria-labelledby="swCoffeeName"></button>
-        <div><div class="sw-name" id="swCoffeeName">低因咖啡模式</div><div class="sw-note" data-on="开了,今晚睡得着" data-off="关着,来真的">关着,来真的</div></div>
+        <div><div class="sw-name" id="swCoffeeName">Decaf mode</div><div class="sw-note" data-on="On — you will sleep tonight" data-off="Off — the real stuff">Off — the real stuff</div></div>
       </div>
     </section>
 
     <section class="sec pre" id="sec-scales" data-wob="sec" aria-labelledby="h-scales">
-      <div class="sec-h"><h2 class="sec-title" id="h-scales">刻度与<span class="hl">浓度</span></h2><span class="sec-tag">SLIDER · METER · PROGRESS</span></div>
+      <div class="sec-h"><h2 class="sec-title" id="h-scales">Scales and <span class="hl">strength</span></h2><span class="sec-tag">SLIDER · METER · PROGRESS</span></div>
       <div class="slider-block">
-        <div class="slider-lab"><label for="pressure">荧光笔下手轻重</label><output id="pressureOut" for="pressure">62 分力</output></div>
+        <div class="slider-lab"><label for="pressure">Highlighter pressure</label><output id="pressureOut" for="pressure">62 pressure</output></div>
         <div class="slider" id="sliderBox">
           <svg aria-hidden="true">
             <path class="sl-base" id="slBase" d=""/>
             <path class="sl-fill" id="slFill" d=""/>
           </svg>
           <div class="sl-thumb" id="slThumb"></div>
-          <input type="range" id="pressure" min="0" max="100" value="62" aria-label="荧光笔下手轻重">
+          <input type="range" id="pressure" min="0" max="100" value="62" aria-label="Highlighter pressure">
         </div>
       </div>
       <div class="gauge-wrap">
-        <svg class="gauge" viewBox="0 0 200 128" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="灵感浓度" id="gaugeSvg">
+        <svg class="gauge" viewBox="0 0 200 128" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-label="Idea strength" id="gaugeSvg">
           <path d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="#98A0AB" stroke-width="2" stroke-dasharray="1 8" stroke-linecap="round"/>
           <path id="gaugeArc" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="#FF9EC4" stroke-width="9" stroke-linecap="round" stroke-dasharray="251.33" stroke-dashoffset="95.5"/>
           <g id="gaugeNeedle" transform="rotate(111.6 100 110)">
@@ -518,10 +518,10 @@ dialog.modal[open] .modal-paper{animation:tearIn .42s cubic-bezier(.3,1.2,.5,1)}
           </g>
           <text id="gaugeVal" x="100" y="95" text-anchor="middle" font-family="Caveat,cursive" font-weight="700" font-size="32" fill="#1B3C9C">62%</text>
         </svg>
-        <span class="gauge-cap">← 灵感浓度,跟手劲一起涨</span>
+        <span class="gauge-cap">← idea strength, rising with your grip</span>
       </div>
       <div class="progress-block">
-        <div class="progress-lab"><span id="pgLabel">这一页写满了多少</span><output id="pgOut">38%</output></div>
+        <div class="progress-lab"><span id="pgLabel">How full this page is</span><output id="pgOut">38%</output></div>
         <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38" aria-labelledby="pgLabel" id="pgBar">
           <svg aria-hidden="true" id="pgSvg">
             <path class="pg-base" id="pgBase" d=""/>
@@ -530,86 +530,86 @@ dialog.modal[open] .modal-paper{animation:tearIn .42s cubic-bezier(.3,1.2,.5,1)}
         </div>
         <span class="progress-note" aria-hidden="true">
           <svg viewBox="0 0 70 54"><path d="M8 8 C 26 10,44 24,52 44" fill="none" stroke="#1B3C9C" stroke-width="2.2" stroke-linecap="round"/><path d="M40 40 L53 46 L56 32" fill="none" stroke="#1B3C9C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <em>波浪爬到头就算写满</em>
+          <em>full when the wave reaches the end</em>
         </span>
         <div class="pg-btn-row">
-          <button class="btn btn--frame" id="pgAdd" data-wob="btn">再写一行</button>
-          <span class="btn-note" id="pgHint">每写一行,波浪往前爬一段</span>
+          <button class="btn btn--frame" id="pgAdd" data-wob="btn">Write another line</button>
+          <span class="btn-note" id="pgHint">Each line pushes the wave a little further</span>
         </div>
       </div>
     </section>
 
     <section class="sec pre tabs" id="sec-tabs" data-wob="sec" aria-labelledby="h-tabs">
-      <div class="sec-h"><h2 class="sec-title" id="h-tabs">索引耳</h2><span class="sec-tag">TABS</span></div>
-      <div role="tablist" aria-label="手账分页">
-        <button class="tab" role="tab" id="tab-todo" aria-controls="panel-todo" aria-selected="true">待办</button>
-        <button class="tab" role="tab" id="tab-idea" aria-controls="panel-idea" aria-selected="false" tabindex="-1">灵感</button>
-        <button class="tab" role="tab" id="tab-log" aria-controls="panel-log" aria-selected="false" tabindex="-1">流水账</button>
+      <div class="sec-h"><h2 class="sec-title" id="h-tabs">Index tabs</h2><span class="sec-tag">TABS</span></div>
+      <div role="tablist" aria-label="Notebook sections">
+        <button class="tab" role="tab" id="tab-todo" aria-controls="panel-todo" aria-selected="true">To-do</button>
+        <button class="tab" role="tab" id="tab-idea" aria-controls="panel-idea" aria-selected="false" tabindex="-1">Ideas</button>
+        <button class="tab" role="tab" id="tab-log" aria-controls="panel-log" aria-selected="false" tabindex="-1">Day log</button>
       </div>
       <div class="tabpanel" role="tabpanel" id="panel-todo" aria-labelledby="tab-todo" tabindex="0">
         <span class="tab-arrow" aria-hidden="true">
-          <em>换一页看看</em>
+          <em>try another page</em>
           <svg viewBox="0 0 60 50"><path d="M52 44 C 44 24,30 12,10 10" fill="none" stroke="#1B3C9C" stroke-width="2.2" stroke-linecap="round"/><path d="M20 4 L8 10 L18 20" fill="none" stroke="#1B3C9C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         <ul>
-          <li>把上周的便利贴挪到这页</li>
-          <li><span class="hl">给薄荷浇水</span>,顺便掐两片泡水</li>
-          <li>问小林要那家豆子的名字</li>
+          <li>Move last week's sticky notes onto this page</li>
+          <li><span class="hl">Water the mint</span>, and pinch two leaves for tea</li>
+          <li>Ask Lin for the name of that coffee bean</li>
         </ul>
       </div>
       <div class="tabpanel" role="tabpanel" id="panel-idea" aria-labelledby="tab-idea" tabindex="0" hidden>
         <ul>
-          <li>把进度条画成<span class="hl-p">波浪线</span>,写满就涨潮</li>
-          <li>贴纸拍下去的时候,应该「啪」一声</li>
-          <li>框歪一点,反而像今天的字</li>
+          <li>Draw the progress bar as a <span class="hl-p">wavy line</span> — full means high tide</li>
+          <li>A sticker should go “thwack” when it lands</li>
+          <li>A slightly crooked box matches today's handwriting</li>
         </ul>
       </div>
       <div class="tabpanel" role="tabpanel" id="panel-log" aria-labelledby="tab-log" tabindex="0" hidden>
         <ul>
-          <li><span class="time">07:40</span>咖啡第 1 杯,页角折好</li>
-          <li><span class="time">10:12</span>框画歪了,挺好,留着</li>
-          <li><span class="time">16:05</span>咖啡第 3 杯,<span class="hl">杯底印在页脚了</span></li>
+          <li><span class="time">07:40</span>Coffee no. 1, corner folded</li>
+          <li><span class="time">10:12</span>Drew the box crooked. Good. Keeping it</li>
+          <li><span class="time">16:05</span>Coffee no. 3, <span class="hl">ring printed in the footer</span></li>
         </ul>
       </div>
     </section>
 
     <section class="sec pre" id="sec-notes" data-wob="sec" aria-labelledby="h-notes">
-      <div class="sec-h"><h2 class="sec-title" id="h-notes">小纸条</h2><span class="sec-tag">SELECT · TOOLTIP</span></div>
-      <p class="note-line">贴纸盒抽一张,批注浮一句——都是从本子边上长出来的小纸片。</p>
-      <label class="choice-h" id="ddLabel">从贴纸盒里挑一张</label>
+      <div class="sec-h"><h2 class="sec-title" id="h-notes">Little slips</h2><span class="sec-tag">SELECT · TOOLTIP</span></div>
+      <p class="note-line">Pull one from the sticker box, float a note in the margin — every slip grows off the edge of the notebook.</p>
+      <label class="choice-h" id="ddLabel">Pick one from the sticker box</label>
       <div class="dd" id="dd">
         <button class="dd-btn" id="ddBtn" data-wob="btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ddLabel ddBtnText">
           <svg class="cur-ico" id="ddCurIco" aria-hidden="true"><use href="#st-star"/></svg>
-          <span id="ddBtnText">星星,给得意的一页</span>
+          <span id="ddBtnText">Star, for a page you are proud of</span>
           <svg class="vee" aria-hidden="true"><use href="#vee-sym"/></svg>
         </button>
         <ul class="dd-pop" id="ddPop" role="listbox" aria-labelledby="ddLabel" tabindex="-1" hidden>
-          <li role="option" data-v="st-star" aria-selected="true"><svg aria-hidden="true"><use href="#st-star"/></svg>星星,给得意的一页<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-          <li role="option" data-v="st-heart" aria-selected="false"><svg aria-hidden="true"><use href="#st-heart"/></svg>爱心,给想留住的<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-          <li role="option" data-v="st-ok" aria-selected="false"><svg aria-hidden="true"><use href="#st-ok"/></svg>「好」印章,给办完的<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-          <li role="option" data-v="st-cup" aria-selected="false"><svg aria-hidden="true"><use href="#st-cup"/></svg>咖啡杯,给续命的<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+          <li role="option" data-v="st-star" aria-selected="true"><svg aria-hidden="true"><use href="#st-star"/></svg>Star, for a page you are proud of<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+          <li role="option" data-v="st-heart" aria-selected="false"><svg aria-hidden="true"><use href="#st-heart"/></svg>Heart, for what you want to keep<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+          <li role="option" data-v="st-ok" aria-selected="false"><svg aria-hidden="true"><use href="#st-ok"/></svg>The DONE stamp, for what is finished<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+          <li role="option" data-v="st-cup" aria-selected="false"><svg aria-hidden="true"><use href="#st-cup"/></svg>Coffee cup, for staying alive<svg class="sel-tick" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 26 L20 36 L38 12" fill="none" stroke="#1B3C9C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
         </ul>
       </div>
       <div class="preview-row">
         <svg class="big" id="stPreview" aria-hidden="true"><use href="#st-star"/></svg>
-        <span class="preview-cap" id="stPreviewCap">挑好了就「啪」地拍在这儿</span>
+        <span class="preview-cap" id="stPreviewCap">Pick one and it lands here with a thwack</span>
       </div>
       <div class="tip-demo-row">
-        <span class="tip-word" tabindex="0" data-tip="批注:悬停就浮出来的小纸条">把鼠标搁在这句上</span>
-        <button class="btn btn--icon" data-tip="给这页贴颗心" data-toast-heart="贴上了,这页值得。" aria-label="给这页贴颗心">
+        <span class="tip-word" tabindex="0" data-tip="Margin note: a slip that floats up on hover">Rest the pointer on this line</span>
+        <button class="btn btn--icon" data-tip="Stick a heart on this page" data-toast-heart="Stuck on — this page earned it." aria-label="Stick a heart on this page">
           <svg aria-hidden="true"><use href="#st-heart"/></svg>
         </button>
       </div>
     </section>
 
     <section class="sec pre span2" id="sec-overlays" data-wob="sec" aria-labelledby="h-overlays">
-      <div class="sec-h"><h2 class="sec-title" id="h-overlays">撕一页,<span class="hl-p">拍张贴纸</span></h2><span class="sec-tag">MODAL · TOAST</span></div>
-      <p class="note-line">大事撕一页下来当面说,小事拍张贴纸提醒一声。</p>
+      <div class="sec-h"><h2 class="sec-title" id="h-overlays">Tear a page, <span class="hl-p">slap a sticker</span></h2><span class="sec-tag">MODAL · TOAST</span></div>
+      <p class="note-line">Big things get a page torn out and said to your face; small things get a sticker as a reminder.</p>
       <div class="ov-row">
-        <button class="btn btn--ink" id="openModal">撕下这一页</button>
-        <button class="btn btn--frame" data-wob="btn" data-toast="记下了,写在页边。">记一笔</button>
-        <button class="btn btn--frame" data-wob="btn" data-toast-star="贴纸「啪」地拍上了。">拍张贴纸</button>
-        <button class="btn btn--frame" data-wob="btn" data-toast-red="红笔提醒:咖啡第 4 杯了。">红笔提醒</button>
+        <button class="btn btn--ink" id="openModal">Tear out this page</button>
+        <button class="btn btn--frame" data-wob="btn" data-toast="Noted, in the margin.">Jot a line</button>
+        <button class="btn btn--frame" data-wob="btn" data-toast-star="The sticker landed with a thwack.">Slap a sticker</button>
+        <button class="btn btn--frame" data-wob="btn" data-toast-red="Red pen: that is coffee no. 4.">Red-pen reminder</button>
       </div>
     </section>
 
@@ -617,21 +617,21 @@ dialog.modal[open] .modal-paper{animation:tearIn .42s cubic-bezier(.3,1.2,.5,1)}
 
   <footer class="footer" id="footer">
     <div class="crawl-divider" aria-hidden="true"></div>
-    <p>本方向稿由
-      <span class="tape-fix"><span class="tape-old" aria-hidden="true">订书钉工坊</span><span class="tape-new">页边社</span><span class="sr">页边社</span></span>
-      出品——胶带和订书钉都没动,夹东西全靠回形针。</p>
-    <p class="fine">PROTEUS · SCRIBBLE 手账涂鸦 · 方向稿第 06 号 · 写于 2026 年 7 月,咖啡三杯半</p>
+    <p>This study comes from
+      <span class="tape-fix"><span class="tape-old" aria-hidden="true">Staple Works</span><span class="tape-new">Marginalia</span><span class="sr">Marginalia</span></span>
+      — no tape and no staples were used; everything is held together with paper clips.</p>
+    <p class="fine">PROTEUS · SCRIBBLE notebook doodle · study no. 06 · written July 2026, three and a half cups of coffee</p>
     <svg class="stain" aria-hidden="true"><use href="#stain-sym"/></svg>
   </footer>
 </main>
 
 <dialog class="modal" id="tearModal" aria-labelledby="tearTitle">
   <div class="modal-paper">
-    <h2 class="modal-title" id="tearTitle"><svg aria-hidden="true"><use href="#st-heart"/></svg>撕下这一页?</h2>
-    <p class="modal-body">撕下来就寄给小林了——对方会看到整页的涂改、箭头,还有右下角那圈咖啡渍。手账就是这样才算数。</p>
+    <h2 class="modal-title" id="tearTitle"><svg aria-hidden="true"><use href="#st-heart"/></svg>Tear out this page?</h2>
+    <p class="modal-body">Tear it out and it goes to Lin — they will see every correction, every arrow, and the coffee ring in the bottom right corner. That is what makes a notebook count.</p>
     <div class="modal-actions">
-      <button class="btn btn--frame" id="modalCancel" data-wob="btn">再想想</button>
-      <button class="btn btn--ink" id="modalSend">寄出去</button>
+      <button class="btn btn--frame" id="modalCancel" data-wob="btn">Think again</button>
+      <button class="btn btn--ink" id="modalSend">Send it</button>
     </div>
   </div>
 </dialog>
@@ -767,7 +767,7 @@ $$('[data-toast-red]').forEach(b => b.addEventListener('click', () => toast(b.da
 /* hero CTAs + sticker slap */
 $('#ctaMain').addEventListener('click', () => {
   $('#sec-buttons').scrollIntoView({behavior: RM ? 'auto' : 'smooth', block: 'start'});
-  toast('翻到控件这一页了。');
+  toast('Turned to the controls page.');
 });
 const layer = $('#stickerLayer');
 const pool = ['#st-star', '#st-heart', '#st-ok', '#st-cup', '#st-check'];
@@ -787,7 +787,7 @@ $('#ctaDoodle').addEventListener('click', () => {
 });
 
 /* dogear */
-$('#dogear').addEventListener('click', () => toast('角折好了,明天从这儿接着写。'));
+$('#dogear').addEventListener('click', () => toast('Corner folded — pick up here tomorrow.'));
 
 /* switches */
 $$('.sw').forEach(sw => {
@@ -831,7 +831,7 @@ function layoutSlider(){
 function setSlider(v){
   slFill.style.strokeDashoffset = `${slLen * (1 - v / 100)}`;
   slThumb.style.left = `calc(12px + ${(v / 100)} * (100% - 24px))`;
-  slOut.textContent = `${v} 分力`;
+  slOut.textContent = `${v} pressure`;
   gaugeArc.style.strokeDashoffset = `${ARC * (1 - v / 100)}`;
   gaugeNeedle.setAttribute('transform', `rotate(${(v / 100 * 180).toFixed(1)} 100 110)`);
   gaugeVal.textContent = `${v}%`;
@@ -870,10 +870,10 @@ function setProgress(v, instant){
   pgBar.setAttribute('aria-valuenow', String(v));
 }
 $('#pgAdd').addEventListener('click', () => {
-  if(pgFull){ pgFull = false; setProgress(8); $('#pgHint').textContent = '新的一页,慢慢写'; toast('翻开新的一页。'); return; }
+  if(pgFull){ pgFull = false; setProgress(8); $('#pgHint').textContent = 'A new page. Take your time'; toast('Opened a new page.'); return; }
   const nv = Math.min(100, pgVal + 9);
   setProgress(nv);
-  if(nv >= 100){ pgFull = true; $('#pgHint').textContent = '写满了!再点就翻新页'; toast('这一页写满了,贴颗星。', 'star'); }
+  if(nv >= 100){ pgFull = true; $('#pgHint').textContent = 'Full! Click again for a new page'; toast('This page is full. Have a star.', 'star'); }
 });
 
 const roLayout = new ResizeObserver(() => { clearTimeout(window._slt); window._slt = setTimeout(() => { layoutSlider(); layoutProgress(); }, 100); });
@@ -934,7 +934,7 @@ function ddPick(i){
   pv.classList.remove('slap-in');
   void pv.getBoundingClientRect();
   pv.classList.add('slap-in');
-  $('#stPreviewCap').textContent = '「啪」——' + opt.textContent.trim();
+  $('#stPreviewCap').textContent = 'Thwack — ' + opt.textContent.trim();
   ddClose(true);
 }
 ddBtn.addEventListener('click', () => ddPop.hidden ? ddOpen() : ddClose());
@@ -962,7 +962,7 @@ $('#openModal').addEventListener('click', () => {
   $$('[data-wob]', modal).forEach(el => drawWob(el));
 });
 $('#modalCancel').addEventListener('click', () => modal.close());
-$('#modalSend').addEventListener('click', () => { modal.close(); toast('这一页寄出去了,贴纸也一起。', 'star'); });
+$('#modalSend').addEventListener('click', () => { modal.close(); toast('The page is on its way, sticker and all.', 'star'); });
 modal.addEventListener('click', e => { if(e.target === modal) modal.close(); });
 
 })();
