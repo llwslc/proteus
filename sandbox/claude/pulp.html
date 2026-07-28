@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>千面奇案 · 排案台 CASEPRESS —— PULP 自由稿</title>
+<title>THOUSAND FACES · CASEPRESS — PULP study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&amp;family=Noto+Serif+SC:wght@500;700;900&amp;family=Oswald:wght@400;500;600&amp;family=Special+Elite&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&amp;family=Oswald:wght@400;500;600&amp;family=Special+Elite&amp;display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,9 +16,9 @@
   --mustard:#D9A81F;--mustard-lift:#E5BE4E;
   --teal:#1C4A52;--teal-deep:#12333A;
   --mx:2px;--my:1px;--pox:6px;--poy:5px;
-  --f-slab:'Alfa Slab One','Noto Serif SC',serif;
-  --f-body:'Oswald','Noto Serif SC','Songti SC',serif;
-  --f-type:'Special Elite','Noto Serif SC',serif;
+  --f-slab:'Alfa Slab One',serif;
+  --f-body:'Oswald',serif;
+  --f-type:'Special Elite',serif;
 }
 body.night{--mx:5px;--my:3px;--pox:11px;--poy:9px}
 html{scroll-behavior:smooth}
@@ -96,7 +96,7 @@ button{font:inherit;color:inherit}
 .chop{position:absolute;right:64px;bottom:60px;width:156px;height:156px;transform:rotate(-13deg);opacity:.95;pointer-events:none}
 .chop circle{fill:none;stroke:var(--brick)}
 .chop text{fill:var(--brick)}
-.chop .chop__cn{font-family:'Noto Serif SC',serif;font-weight:900}
+.chop .chop__t{font-family:var(--f-slab);font-weight:400}
 .regmark{position:absolute;width:20px;height:20px;stroke:var(--ink);opacity:.5;fill:none}
 .regmark--tl{left:16px;top:16px}
 .regmark--tr{right:16px;top:16px}
@@ -399,9 +399,9 @@ button{font:inherit;color:inherit}
 
 <div class="masthead">
   <div class="masthead__in">
-    <span class="masthead__line--l">中华邮字第一〇三号 · 本刊逢朔日出版 · 逢凶案加印</span>
-    <span class="postmark" aria-hidden="true">千面社<br>投递讫<br>7 · 1</span>
-    <span>零售每册三分 · 批发另议 · 概不赊欠</span>
+    <span class="masthead__line--l">Postal registration no. 103 · published on the first of the month · reprinted whenever there is a murder</span>
+    <span class="postmark" aria-hidden="true">T.F. PRESS<br>DELIVERED<br>7 · 1</span>
+    <span>Three cents a copy retail · wholesale by arrangement · no credit, ever</span>
   </div>
 </div>
 
@@ -411,37 +411,37 @@ button{font:inherit;color:inherit}
     <svg class="regmark regmark--tr" aria-hidden="true"><use href="#reg"/></svg>
     <svg class="regmark regmark--bl" aria-hidden="true"><use href="#reg"/></svg>
     <svg class="regmark regmark--br" aria-hidden="true"><use href="#reg"/></svg>
-    <p class="hero__kicker">第一三七期 · 一九五六年七月 · 雨</p>
-    <h1 class="hero__title misreg" data-text="千面奇案">千面奇案</h1>
+    <p class="hero__kicker">Issue one hundred and thirty-seven · July 1956 · rain</p>
+    <h1 class="hero__title misreg" data-text="THOUSAND FACES">THOUSAND FACES</h1>
     <p class="hero__latin">Pulp Gazette · Strange Cases · 3&cent;</p>
     <div class="hero__copy">
-      <p>本刊专载离奇命案、街角怪谈,与印刷厂死不认账的错版。</p>
-      <p>纸会黄,墨会歪;唯有凶手,每月一日准时抵达。</p>
+      <p>This magazine prints strange murders, street-corner tales, and misprints the pressroom will deny to your face.</p>
+      <p>The paper yellows and the ink runs crooked. Only the killer arrives on time, the first of every month.</p>
     </div>
     <div class="tix">
       <div class="tix__in">
-        <p class="tix__name">排案台 CASEPRESS 柒号机<small>千面社排字房全套机关,可扳、可按、可盖章</small></p>
+        <p class="tix__name">CASEPRESS No. 7<small>the full works from the Thousand Faces composing room — throw it, press it, stamp it</small></p>
         <span class="tix__perf" aria-hidden="true"></span>
-        <span class="tix__no">机 No.7<br>验讫</span>
+        <span class="tix__no">PRESS No.7<br>PASSED</span>
       </div>
     </div>
     <div class="hero__cta">
-      <button class="btn btn--primary" type="button" data-open-modal>领取订阅票</button>
-      <button class="btn btn--teal" type="button" data-toast>发一份号外</button>
-      <button class="btn btn--ghost" type="button" id="cta-toc">翻到目录</button>
+      <button class="btn btn--primary" type="button" data-open-modal>Claim a subscription ticket</button>
+      <button class="btn btn--teal" type="button" data-toast>Run an extra</button>
+      <button class="btn btn--ghost" type="button" id="cta-toc">Turn to the contents</button>
     </div>
     <div class="star" aria-hidden="true">
       <span class="star__a"></span><span class="star__b"></span>
-      <span class="star__t">每册<br>3&cent;</span>
+      <span class="star__t">EACH<br>3&cent;</span>
     </div>
     <svg class="chop" viewBox="0 0 170 170" aria-hidden="true">
       <g filter="url(#mottle)">
         <circle cx="85" cy="85" r="76" stroke-width="5"/>
         <circle cx="85" cy="85" r="56" stroke-width="2"/>
-        <text class="chop__cn" font-size="13" letter-spacing="3">
-          <textPath href="#chopArc">千面奇案发行处 · 一九五六 · 铅字未冷 ·</textPath>
+        <text class="chop__t" font-size="11" letter-spacing="1.6">
+          <textPath href="#chopArc">THOUSAND FACES CIRCULATION OFFICE · 1956 · THE TYPE IS STILL WARM ·</textPath>
         </text>
-        <text class="chop__cn" x="85" y="96" text-anchor="middle" font-size="28">验讫</text>
+        <text class="chop__t" x="85" y="94" text-anchor="middle" font-size="21">PASSED</text>
       </g>
     </svg>
   </div>
@@ -453,63 +453,63 @@ button{font:inherit;color:inherit}
     <section class="plate" id="plate-buttons">
       <header class="plate__head">
         <span class="plate__kicker">Press Room · Buttons</span>
-        <span class="plate__folio">第 贰 页</span>
+        <span class="plate__folio">Page II</span>
       </header>
-      <h2 class="plate__title misreg" data-text="印制操作">印制操作</h2>
-      <p class="plate__lead">印一版少一版,按之前想清楚。</p>
+      <h2 class="plate__title misreg" data-text="Press operations">Press operations</h2>
+      <p class="plate__lead">Every plate you run is one you cannot run again. Think before you press.</p>
       <div class="btnrow">
-        <button class="btn btn--primary" type="button" data-toast-msg="头版已开印,砖红色版先行。">开印头版</button>
-        <button class="btn btn--plate" type="button" data-toast-msg="套色加印:芥末版慢半拍,歪得体面。">套色加印</button>
-        <button class="btn btn--teal" type="button" data-toast-msg="墨青夜版付梓,给失眠的读者。">墨青夜版</button>
-        <button class="btn btn--ghost" type="button" data-toast-msg="白印一版:不上墨,留给检查官。">白印一版</button>
-        <button class="btn" type="button" disabled>铅字告罄</button>
+        <button class="btn btn--primary" type="button" data-toast-msg="The front page is on the press; the brick-red plate goes first.">Run the front page</button>
+        <button class="btn btn--plate" type="button" data-toast-msg="Second colour: the mustard plate runs half a beat late and misregisters respectably.">Add a colour</button>
+        <button class="btn btn--teal" type="button" data-toast-msg="The ink-blue night edition goes to press, for readers who do not sleep.">Night edition</button>
+        <button class="btn btn--ghost" type="button" data-toast-msg="One blank impression: no ink, saved for the censor.">Blank impression</button>
+        <button class="btn" type="button" disabled>Out of type</button>
       </div>
-      <p class="caption">「铅字告罄」键已被排字房锁死,墨都省下了。</p>
+      <p class="caption">The composing room locked the “out of type” key. Saves ink.</p>
     </section>
 
     <section class="plate plate--teal" id="plate-input">
       <header class="plate__head">
         <span class="plate__kicker">Tip-off Desk · Text Input</span>
-        <span class="plate__folio">第 叁 页</span>
+        <span class="plate__folio">Page III</span>
       </header>
-      <h2 class="plate__title misreg" data-text="线索投递">线索投递</h2>
-      <p class="plate__lead">检举信一律打字机誊清,字迹潦草者按废纸收购。</p>
+      <h2 class="plate__title misreg" data-text="Tip-offs">Tip-offs</h2>
+      <p class="plate__lead">All tip-offs must be typed. Anything scrawled is bought by weight as scrap.</p>
       <div class="field">
-        <label class="field__label" for="tip-input">检举信正文</label>
+        <label class="field__label" for="tip-input">Body of the tip-off</label>
         <div class="field__row">
-          <input class="input" id="tip-input" type="text" placeholder="例:三号码头,绿雨衣,左手无名指缺一节……">
-          <button class="btn btn--teal" type="button" id="tip-send">投函</button>
+          <input class="input" id="tip-input" type="text" placeholder="e.g. Pier 3, green raincoat, half a ring finger missing on the left hand…">
+          <button class="btn btn--teal" type="button" id="tip-send">Post it</button>
         </div>
-        <p class="field__help">每封线索抵稿费两角;查实,再加三角。<span class="mini-stamp" id="tip-stamp" aria-hidden="true">收讫</span></p>
+        <p class="field__help">Every tip pays twenty cents; thirty more if it checks out.<span class="mini-stamp" id="tip-stamp" aria-hidden="true">RECEIVED</span></p>
       </div>
     </section>
 
     <section class="plate plate--mustard" id="plate-radio">
       <header class="plate__head">
         <span class="plate__kicker">Cover Stock · Radio</span>
-        <span class="plate__folio">第 肆 页</span>
+        <span class="plate__folio">Page IV</span>
       </header>
-      <h2 class="plate__title misreg" data-text="封面用纸">封面用纸</h2>
-      <p class="plate__lead">纸定一种,悔改无门;印坏了算天意。</p>
+      <h2 class="plate__title misreg" data-text="Cover stock">Cover stock</h2>
+      <p class="plate__lead">Pick one stock and there is no going back. If it prints badly, call it fate.</p>
       <fieldset style="border:0">
-        <legend class="field__label" style="padding:0">本期封面选纸</legend>
+        <legend class="field__label" style="padding:0">Cover stock for this issue</legend>
         <label class="opt opt--radio">
           <input type="radio" name="stock" value="news" checked>
           <span class="box" aria-hidden="true"></span>
-          <span class="opt__t"><b><span class="swatch" style="background:var(--paper)"></span>米黄新闻纸</b>
-          <span class="opt__d">便宜,三个月准发黄,黄得有味道。</span></span>
+          <span class="opt__t"><b><span class="swatch" style="background:var(--paper)"></span>Cream newsprint</b>
+          <span class="opt__d">Cheap. Yellows within three months, and yellows well.</span></span>
         </label>
         <label class="opt opt--radio">
           <input type="radio" name="stock" value="dowling">
           <span class="box" aria-hidden="true"></span>
-          <span class="opt__t"><b><span class="swatch" style="background:var(--mustard)"></span>芥末道林纸</b>
-          <span class="opt__d">体面,每令涨三厘,账房已在骂。</span></span>
+          <span class="opt__t"><b><span class="swatch" style="background:var(--mustard)"></span>Mustard wove</b>
+          <span class="opt__d">Respectable. Three mills more per ream, and the bookkeeper is already swearing.</span></span>
         </label>
         <label class="opt opt--radio">
           <input type="radio" name="stock" value="art">
           <span class="box" aria-hidden="true"></span>
-          <span class="opt__t"><b><span class="swatch" style="background:var(--brick)"></span>砖红铜版纸</b>
-          <span class="opt__d">血案专用,油墨吃得深,凶气重。</span></span>
+          <span class="opt__t"><b><span class="swatch" style="background:var(--brick)"></span>Brick-red coated</b>
+          <span class="opt__d">For blood cases only. Drinks the ink deep and looks like murder.</span></span>
         </label>
       </fieldset>
     </section>
@@ -517,61 +517,61 @@ button{font:inherit;color:inherit}
     <section class="plate" id="plate-check">
       <header class="plate__head">
         <span class="plate__kicker">Newsstand Extras · Checkbox</span>
-        <span class="plate__folio">第 伍 页</span>
+        <span class="plate__folio">Page V</span>
       </header>
-      <h2 class="plate__title misreg" data-text="加印配货">加印配货</h2>
-      <p class="plate__lead">报摊老板说:附赠品越邪门,卖得越快。</p>
+      <h2 class="plate__title misreg" data-text="Reprints and inserts">Reprints and inserts</h2>
+      <p class="plate__lead">The newsstand man says the stranger the giveaway, the faster it sells.</p>
       <label class="opt opt--check">
         <input type="checkbox" checked>
         <span class="box" aria-hidden="true"></span>
-        <span class="opt__t"><b>附赠凶宅地图贴纸</b>
-        <span class="opt__d">一版十二枚,揭下即贴,房东勿怪。</span></span>
+        <span class="opt__t"><b>Murder-house map stickers</b>
+        <span class="opt__d">Twelve to a sheet, peel and stick. Landlords, do not blame us.</span></span>
       </label>
       <label class="opt opt--check">
         <input type="checkbox">
         <span class="box" aria-hidden="true"></span>
-        <span class="opt__t"><b>加印「号外」插页</b>
-        <span class="opt__d">留白一页,案子一到,连夜套红。</span></span>
+        <span class="opt__t"><b>An “extra” insert page</b>
+        <span class="opt__d">One page left blank; the night a case breaks, we overprint it in red.</span></span>
       </label>
       <label class="opt opt--check">
         <input type="checkbox">
         <span class="box" aria-hidden="true"></span>
-        <span class="opt__t"><b>捆绑《毒理学入门》</b>
-        <span class="opt__d">工具书,纯属巧合,概不担责。</span></span>
+        <span class="opt__t"><b>Bundle in “Toxicology for Beginners”</b>
+        <span class="opt__d">A reference book. Any resemblance is coincidence and we accept no liability.</span></span>
       </label>
       <label class="opt opt--check">
         <input type="checkbox" checked>
         <span class="box" aria-hidden="true"></span>
-        <span class="opt__t"><b>夹带蟑螂药广告</b>
-        <span class="opt__d">广告主预付了半年,毒性与本刊无关。</span></span>
+        <span class="opt__t"><b>Slip in the roach-powder advert</b>
+        <span class="opt__d">The advertiser paid six months up front. Its toxicity is no business of ours.</span></span>
       </label>
     </section>
 
     <section class="plate plate--teal" id="plate-switch">
       <header class="plate__head">
         <span class="plate__kicker">Night Shift · Switch</span>
-        <span class="plate__folio">第 陆 页</span>
+        <span class="plate__folio">Page VI</span>
       </header>
-      <h2 class="plate__title misreg" data-text="夜班排字">夜班排字</h2>
-      <p class="plate__lead">夜班师傅手抖,全页套色再歪两毫——扳下去,整份报纸跟着晃。</p>
+      <h2 class="plate__title misreg" data-text="Night shift">Night shift</h2>
+      <p class="plate__lead">The night compositor’s hands shake and the whole page slips another two mils out of register. Throw the lever and the entire paper sways with it.</p>
       <label class="switch">
         <input type="checkbox" id="night" role="switch">
         <span class="lever" aria-hidden="true"></span>
-        <span class="switch__t"><b>夜班排字机</b>
-        <span class="switch__state" id="night-state">日班 · 版面勉强对齐</span></span>
+        <span class="switch__t"><b>Night composing machine</b>
+        <span class="switch__state" id="night-state">Day shift · the forme is more or less aligned</span></span>
       </label>
     </section>
 
     <section class="plate plate--mustard" id="plate-slider">
       <header class="plate__head">
         <span class="plate__kicker">Ink Well · Slider</span>
-        <span class="plate__folio">第 柒 页</span>
+        <span class="plate__folio">Page VII</span>
       </header>
-      <h2 class="plate__title misreg" data-text="油墨浓度">油墨浓度</h2>
-      <p class="plate__lead">低了读者骂,高了糊成一团黑,凶手都认不出自己。</p>
-      <label class="field__label" for="ink-range">本期给墨量</label>
+      <h2 class="plate__title misreg" data-text="Ink density">Ink density</h2>
+      <p class="plate__lead">Too little and readers complain; too much and it smears to black, until the killer cannot recognise himself.</p>
+      <label class="field__label" for="ink-range">Ink for this issue</label>
       <input class="range" id="ink-range" type="range" min="0" max="100" value="62" style="--pct:62%">
-      <div class="scale" aria-hidden="true"><span>白纸</span><span>淡</span><span>浓</span><span>糊</span></div>
+      <div class="scale" aria-hidden="true"><span>Blank</span><span>Thin</span><span>Heavy</span><span>Smeared</span></div>
       <div class="inkread">
         <output for="ink-range" id="ink-val">62%</output>
         <div class="inkbar" id="ink-bar" aria-hidden="true"></div>
@@ -581,88 +581,88 @@ button{font:inherit;color:inherit}
     <section class="plate" id="plate-select">
       <header class="plate__head">
         <span class="plate__kicker">Serial Rack · Select</span>
-        <span class="plate__folio">第 捌 页</span>
+        <span class="plate__folio">Page VIII</span>
       </header>
-      <h2 class="plate__title misreg" data-text="连载栏目">连载栏目</h2>
-      <p class="plate__lead">下期只排得下一部连载,其余作者请继续催稿电报。</p>
-      <p class="field__label" id="dd-label">排入下期的连载</p>
+      <h2 class="plate__title misreg" data-text="The serial">The serial</h2>
+      <p class="plate__lead">There is room for one serial next issue. The other writers may keep sending telegrams.</p>
+      <p class="field__label" id="dd-label">Serial set for next issue</p>
       <div class="dd" id="dd">
         <button class="dd__btn" id="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="dd-label dd-btn">
-          <span id="dd-current">《雾都绞刑架》连载其九</span>
+          <span id="dd-current">“The Foggy Gallows”, part nine</span>
           <span class="caret" aria-hidden="true"></span>
         </button>
         <ul class="dd__pop" id="dd-pop" role="listbox" aria-labelledby="dd-label" tabindex="-1">
           <li class="dd__perf" aria-hidden="true"></li>
-          <li class="dd__opt" role="option" id="dd-opt-0" aria-selected="true">《雾都绞刑架》连载其九<em>页 12</em></li>
-          <li class="dd__opt" role="option" id="dd-opt-1" aria-selected="false">《码头十三号》大结局<em>页 20</em></li>
-          <li class="dd__opt" role="option" id="dd-opt-2" aria-selected="false">《绿衣女幽灵》新连载<em>页 27</em></li>
-          <li class="dd__opt" role="option" id="dd-opt-3" aria-selected="false">《毒理学入门》专栏<em>页 33</em></li>
-          <li class="dd__opt" role="option" id="dd-opt-4" aria-selected="false">《退稿信选登》编辑消遣<em>页 38</em></li>
+          <li class="dd__opt" role="option" id="dd-opt-0" aria-selected="true">“The Foggy Gallows”, part nine<em>p. 12</em></li>
+          <li class="dd__opt" role="option" id="dd-opt-1" aria-selected="false">“Pier Thirteen”, final instalment<em>p. 20</em></li>
+          <li class="dd__opt" role="option" id="dd-opt-2" aria-selected="false">“The Woman in Green”, new serial<em>p. 27</em></li>
+          <li class="dd__opt" role="option" id="dd-opt-3" aria-selected="false">“Toxicology for Beginners”, column<em>p. 33</em></li>
+          <li class="dd__opt" role="option" id="dd-opt-4" aria-selected="false">“Selected Rejection Letters”, editorial amusement<em>p. 38</em></li>
         </ul>
       </div>
-      <p class="caption" id="dd-note">大结局要留到月底,先吊足报摊的胃口。</p>
+      <p class="caption" id="dd-note">Hold the finale for the end of the month; let the newsstand suffer first.</p>
     </section>
 
     <section class="plate plate--teal" id="plate-progress">
       <header class="plate__head">
         <span class="plate__kicker">Press Run · Progress</span>
-        <span class="plate__folio">第 玖 页</span>
+        <span class="plate__folio">Page IX</span>
       </header>
-      <h2 class="plate__title misreg" data-text="付印进度">付印进度</h2>
-      <p class="plate__lead">机器一响,黄金万两;机器一停,全社喝风。</p>
-      <div class="prog" role="progressbar" aria-label="第一三七期付印进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="prog">
+      <h2 class="plate__title misreg" data-text="Press run">Press run</h2>
+      <p class="plate__lead">While the press runs, the money runs; when it stops, the whole house lives on air.</p>
+      <div class="prog" role="progressbar" aria-label="Press run for issue 137" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="prog">
         <div class="prog__fill" id="prog-fill"></div>
       </div>
       <div class="prog__meta">
-        <span id="prog-status">静候上机。</span>
+        <span id="prog-status">Waiting to go on the press.</span>
         <span class="prog__pct" id="prog-pct">0%</span>
       </div>
       <div class="prog__acts">
-        <button class="btn btn--primary btn--chip" type="button" id="prog-start">上机开印</button>
-        <button class="btn btn--ghost btn--chip" type="button" id="prog-reset">回炉重排</button>
+        <button class="btn btn--primary btn--chip" type="button" id="prog-start">Start the run</button>
+        <button class="btn btn--ghost btn--chip" type="button" id="prog-reset">Melt it down and reset</button>
       </div>
     </section>
 
     <section class="plate plate--wide plate--mustard" id="plate-tabs">
       <header class="plate__head">
         <span class="plate__kicker">This Issue · Tabs</span>
-        <span class="plate__folio">第 拾 页起</span>
+        <span class="plate__folio">From page X</span>
       </header>
-      <h2 class="plate__title misreg" data-text="本期内容">本期内容</h2>
-      <p class="plate__lead">翻页有声,概不退换。</p>
+      <h2 class="plate__title misreg" data-text="In this issue">In this issue</h2>
+      <p class="plate__lead">Pages turn with a sound. No refunds, no exchanges.</p>
       <div class="tabs">
-        <div class="tabs__list" role="tablist" aria-label="本期栏目">
-          <button class="tab" role="tab" id="tab-0" aria-selected="true" aria-controls="page-0" type="button">社论</button>
-          <button class="tab" role="tab" id="tab-1" aria-selected="false" aria-controls="page-1" tabindex="-1" type="button">连载</button>
-          <button class="tab" role="tab" id="tab-2" aria-selected="false" aria-controls="page-2" tabindex="-1" type="button">读者来信</button>
+        <div class="tabs__list" role="tablist" aria-label="Sections in this issue">
+          <button class="tab" role="tab" id="tab-0" aria-selected="true" aria-controls="page-0" type="button">Editorial</button>
+          <button class="tab" role="tab" id="tab-1" aria-selected="false" aria-controls="page-1" tabindex="-1" type="button">Serial</button>
+          <button class="tab" role="tab" id="tab-2" aria-selected="false" aria-controls="page-2" tabindex="-1" type="button">Letters</button>
         </div>
         <div class="tabs__panelwrap">
           <div class="tabpage" role="tabpanel" id="page-0" aria-labelledby="tab-0" tabindex="0">
-            <div class="runhead"><span>千面奇案 · 第一三七期</span><span>页 拾</span></div>
-            <h3>论错版之美</h3>
-            <p>有读者来信,责问本刊套色屡屡跑偏,红的不在脸上,青的不在天上。本刊郑重回复:三分钱一册,您还想要对得齐的人生吗?</p>
-            <p>错版留着别扔。五十年后,它是文物;五十年内,它是本刊的签名。</p>
-            <p class="sig">—— 主笔 · 铅字未冷时</p>
+            <div class="runhead"><span>THOUSAND FACES · issue 137</span><span>p. X</span></div>
+            <h3>On the beauty of a misprint</h3>
+            <p>A reader writes to complain that our colours keep wandering — the red is off the face, the blue is off the sky. We reply, in all seriousness: three cents a copy, and you still expect a life that lines up?</p>
+            <p>Keep the misprints. In fifty years they are artefacts; until then they are our signature.</p>
+            <p class="sig">— the editor, while the type is still warm</p>
           </div>
           <div class="tabpage" role="tabpanel" id="page-1" aria-labelledby="tab-1" tabindex="0" hidden>
-            <div class="runhead"><span>千面奇案 · 第一三七期</span><span>页 拾贰</span></div>
-            <h3>雾都绞刑架 · 第九章 雨夜</h3>
-            <p>雨点砸在码头的铁皮棚上,像排字房赶工的键响。她收起绿雨衣,只留一句:「绞刑架上少了一个人,名单上就多了一个你。」</p>
-            <p>灯灭。桌上的怀表,停在差一刻十二点。</p>
-            <p class="sig">欲知后事,且看下期——下期若印得出来。</p>
+            <div class="runhead"><span>THOUSAND FACES · issue 137</span><span>p. XII</span></div>
+            <h3>The Foggy Gallows · chapter nine, a night of rain</h3>
+            <p>Rain hammered the tin roof over the pier like a composing room working late. She folded away the green raincoat and left one line behind: “One man short on the gallows means one more name on the list, and it is yours.”</p>
+            <p>The lamp went out. On the table the pocket watch had stopped at a quarter to twelve.</p>
+            <p class="sig">To be continued next issue — if next issue gets printed.</p>
           </div>
           <div class="tabpage" role="tabpanel" id="page-2" aria-labelledby="tab-2" tabindex="0" hidden>
-            <div class="runhead"><span>千面奇案 · 第一三七期</span><span>页 拾伍</span></div>
-            <h3>读者来信两封</h3>
+            <div class="runhead"><span>THOUSAND FACES · issue 137</span><span>p. XV</span></div>
+            <h3>Two letters from readers</h3>
             <div class="letter">
-              <p>「贵刊第一三五期第九页的血迹,印到了第十页。请问这算赠品吗?」</p>
-              <footer>—— 城南 · 一位账房先生</footer>
+              <p>“The bloodstain on page nine of your issue 135 printed through onto page ten. Does that count as a free gift?”</p>
+              <footer>— a bookkeeper, south side of town</footer>
             </div>
             <div class="letter">
-              <p>「照着贵刊《毒理学入门》配了药,蟑螂没死,房东搬走了。多谢。」</p>
-              <footer>—— 不留地址</footer>
+              <p>“I mixed the recipe from your ‘Toxicology for Beginners’. The roaches lived. The landlord moved out. Thank you.”</p>
+              <footer>— no address given</footer>
             </div>
-            <p class="sig">编辑按:来信一律不退,邮票充作稿费。</p>
+            <p class="sig">Editor’s note: letters are not returned; the stamps count as payment.</p>
           </div>
         </div>
       </div>
@@ -671,12 +671,12 @@ button{font:inherit;color:inherit}
     <section class="plate" id="plate-gauge">
       <header class="plate__head">
         <span class="plate__kicker">Shiver Meter · Gauge</span>
-        <span class="plate__folio">第 拾陆 页</span>
+        <span class="plate__folio">Page XVI</span>
       </header>
-      <h2 class="plate__title misreg" data-text="惊悚指数">惊悚指数</h2>
-      <p class="plate__lead">编辑部人手一台的老仪表,指针也套色,也歪。</p>
+      <h2 class="plate__title misreg" data-text="Shock index">Shock index</h2>
+      <p class="plate__lead">Every desk in the office has one of these old meters. Even the needle prints in two colours, and it is crooked too.</p>
       <div class="gaugebox">
-        <svg class="gauge" viewBox="0 0 220 132" role="img" aria-label="惊悚指数表,当前五十五悚">
+        <svg class="gauge" viewBox="0 0 220 132" role="img" aria-label="Shock index meter, currently fifty-five shocks">
           <path class="arc arc--ghost-r" d="M24 112 A 86 86 0 0 1 196 112"/>
           <path class="arc arc--ghost-t" d="M24 112 A 86 86 0 0 1 196 112"/>
           <path class="arc arc--z1" d="M24 112 A 86 86 0 0 1 67 37.5"/>
@@ -689,12 +689,12 @@ button{font:inherit;color:inherit}
             <circle class="gauge__hubdot" cx="110" cy="112" r="3"/>
           </g>
         </svg>
-        <p class="gauge__read">本期实测 <b id="gauge-read">55</b> 悚 · <span id="gauge-zone">见血</span></p>
+        <p class="gauge__read">Measured this issue: <b id="gauge-read">55</b> shocks · <span id="gauge-zone">Blood drawn</span></p>
         <div class="gauge__zones">
-          <button class="btn btn--chip zone-btn" type="button" data-val="18" data-zone="微凉"><span class="swatch" style="background:var(--teal)"></span>微凉</button>
-          <button class="btn btn--chip zone-btn" type="button" data-val="55" data-zone="见血" aria-pressed="true"><span class="swatch" style="background:var(--mustard)"></span>见血</button>
-          <button class="btn btn--chip zone-btn" type="button" data-val="92" data-zone="断头台"><span class="swatch" style="background:var(--brick)"></span>断头台</button>
-          <button class="btn btn--teal btn--chip" type="button" id="case-close">结案盖章</button>
+          <button class="btn btn--chip zone-btn" type="button" data-val="18" data-zone="A chill"><span class="swatch" style="background:var(--teal)"></span>A chill</button>
+          <button class="btn btn--chip zone-btn" type="button" data-val="55" data-zone="Blood drawn" aria-pressed="true"><span class="swatch" style="background:var(--mustard)"></span>Blood drawn</button>
+          <button class="btn btn--chip zone-btn" type="button" data-val="92" data-zone="The scaffold"><span class="swatch" style="background:var(--brick)"></span>The scaffold</button>
+          <button class="btn btn--teal btn--chip" type="button" id="case-close">Stamp the case closed</button>
         </div>
       </div>
     </section>
@@ -702,19 +702,19 @@ button{font:inherit;color:inherit}
     <section class="plate plate--teal" id="plate-dispatch">
       <header class="plate__head">
         <span class="plate__kicker">Dispatch · Overlays</span>
-        <span class="plate__folio">第 拾柒 页</span>
+        <span class="plate__folio">Page XVII</span>
       </header>
-      <h2 class="plate__title misreg" data-text="发行处">发行处</h2>
-      <p class="plate__lead">订票、号外、批注,发行处一并办理,概不排队。</p>
+      <h2 class="plate__title misreg" data-text="Circulation office">Circulation office</h2>
+      <p class="plate__lead">Tickets, extras and annotations are all handled here, and nobody queues.</p>
       <div class="btnrow">
-        <button class="btn btn--primary" type="button" data-open-modal>领取订阅票</button>
-        <button class="btn btn--teal" type="button" data-toast>再发一份号外</button>
+        <button class="btn btn--primary" type="button" data-open-modal>Claim a subscription ticket</button>
+        <button class="btn btn--teal" type="button" data-toast>Run another extra</button>
       </div>
-      <p class="field__label" style="margin-top:22px">排字房黑话(悬停或聚焦看批注)</p>
+      <p class="field__label" style="margin-top:22px">Composing-room slang (hover or focus for the note)</p>
       <div class="termrow">
-        <button class="term" type="button" data-tip="色版没对齐。本刊风格,非事故。">跑版</button>
-        <button class="term" type="button" data-tip="纸太糙,吸墨如酒鬼。">吃墨</button>
-        <button class="term" type="button" data-tip="铅字排反,工钱扣一半。">倒栽字</button>
+        <button class="term" type="button" data-tip="The colour plates are off. House style, not an accident.">off-register</button>
+        <button class="term" type="button" data-tip="The stock is too rough and drinks ink like a drunk.">ink-hungry</button>
+        <button class="term" type="button" data-tip="A sort set upside down. Half a day’s wages gone.">upside-down sort</button>
       </div>
     </section>
 
@@ -722,10 +722,10 @@ button{font:inherit;color:inherit}
 </main>
 
 <footer class="colophon">
-  <p class="end misreg" data-text="全 案 终">全 案 终</p>
-  <p>千面奇案 · 第一三七期 · 印讫<br>
-  排案台 CASEPRESS 柒号机承印 · 由铅、油墨与酒精驱动<br>
-  版偏非罪,乃风格;翻印必究,盖章为凭。</p>
+  <p class="end misreg" data-text="C A S E   C L O S E D">C A S E   C L O S E D</p>
+  <p>THOUSAND FACES · issue 137 · printed<br>
+  Printed on CASEPRESS No. 7 · driven by lead, ink and alcohol<br>
+  A crooked plate is not a crime, it is a style. Reprinting will be prosecuted; the stamp is the proof.</p>
   <div class="regs" aria-hidden="true">
     <svg><use href="#reg"/></svg>
     <svg><use href="#reg"/></svg>
@@ -738,33 +738,33 @@ button{font:inherit;color:inherit}
     <div class="modal-card" id="modal-card" role="dialog" aria-modal="true" aria-labelledby="m-title" tabindex="-1">
       <header class="m-head">
         <div>
-          <p class="m-kicker">千面奇案 · 发行处存根联</p>
-          <h2 class="m-title" id="m-title">全年订阅票</h2>
+          <p class="m-kicker">THOUSAND FACES · circulation office stub</p>
+          <h2 class="m-title" id="m-title">Annual subscription ticket</h2>
         </div>
-        <button class="m-x" type="button" id="m-x" aria-label="关闭订阅票">✕</button>
+        <button class="m-x" type="button" id="m-x" aria-label="Close the subscription ticket">✕</button>
       </header>
       <div class="m-body">
-        <p class="m-note">凭票每月一日至报摊取书,风雨无阻;凶案脱期,顺延一日。</p>
+        <p class="m-note">Present this at the newsstand on the first of every month, rain or shine. If a murder runs late, so do we, by one day.</p>
         <ul class="m-rows">
-          <li><span>订期</span><span>全年十二册,含年终增刊</span></li>
-          <li><span>取书处</span><span>三号码头 · 老周报摊</span></li>
-          <li><span>票价</span><span>三角六分(七五折,再还价加钱)</span></li>
-          <li><span>附赠</span><span>凶宅地图贴纸一版</span></li>
+          <li><span>Term</span><span>Twelve issues a year, year-end supplement included</span></li>
+          <li><span>Pick-up</span><span>Pier 3 · Old Joe’s newsstand</span></li>
+          <li><span>Price</span><span>Thirty-six cents (a quarter off; haggle further and it goes up)</span></li>
+          <li><span>Free with it</span><span>One sheet of murder-house map stickers</span></li>
         </ul>
-        <span class="stamp m-stamp" id="m-stamp" aria-hidden="true">已验票</span>
+        <span class="stamp m-stamp" id="m-stamp" aria-hidden="true">TICKET CHECKED</span>
       </div>
       <footer class="m-stub">
-        <span class="m-stub__no">票根 No.137 · 存根勿丢<br>丢票补办,手续费一分</span>
+        <span class="m-stub__no">Stub No.137 · do not lose it<br>Replacements cost one cent</span>
         <span class="m-stub__acts">
-          <button class="btn btn--primary btn--chip" type="button" id="m-tear">撕下票根</button>
-          <button class="btn btn--ghost btn--chip" type="button" id="m-refund">退票</button>
+          <button class="btn btn--primary btn--chip" type="button" id="m-tear">Tear off the stub</button>
+          <button class="btn btn--ghost btn--chip" type="button" id="m-refund">Refund it</button>
         </span>
       </footer>
     </div>
   </div>
 </div>
 
-<div class="toasts" id="toasts" role="region" aria-live="polite" aria-label="号外"></div>
+<div class="toasts" id="toasts" role="region" aria-live="polite" aria-label="Extras"></div>
 
 <script>
 (function(){
@@ -773,11 +773,11 @@ button{font:inherit;color:inherit}
 
   var toastRoot=$('#toasts');
   var extras=[
-    '号外!三号码头再添一案,加印已排上。',
-    '排字房失火,已用隔夜茶扑灭。',
-    '第七版排到一半,凶手临时改了主意。',
-    '加印一万册,纸行同意赊账到月底。',
-    '校对师傅睡着了,本期错字照旧。'
+    'Extra! Another case at Pier 3, and the reprint is already scheduled.',
+    'Fire in the composing room, put out with yesterday’s tea.',
+    'Page seven was half set when the killer changed his mind.',
+    'Ten thousand more copies; the paper merchant will carry us to month end.',
+    'The proofreader fell asleep, so the misprints stand.'
   ];
   var extraIdx=0;
   function toast(msg,tone){
@@ -785,9 +785,9 @@ button{font:inherit;color:inherit}
     var t=document.createElement('div');
     t.className='toast'+(tone==='teal'?' toast--teal2':'');
     t.setAttribute('role','status');
-    var tag=document.createElement('span');tag.className='toast__tag';tag.textContent='号外';
+    var tag=document.createElement('span');tag.className='toast__tag';tag.textContent='EXTRA';
     var m=document.createElement('span');m.className='toast__msg';m.textContent=msg;
-    var x=document.createElement('button');x.className='toast__x';x.type='button';x.textContent='✕';x.setAttribute('aria-label','撕掉这条号外');
+    var x=document.createElement('button');x.className='toast__x';x.type='button';x.textContent='✕';x.setAttribute('aria-label','Tear off this extra');
     t.appendChild(tag);t.appendChild(m);t.appendChild(x);
     toastRoot.appendChild(t);
     var gone=false;
@@ -823,22 +823,22 @@ button{font:inherit;color:inherit}
   var tipInput=$('#tip-input'),tipStamp=$('#tip-stamp');
   $('#tip-send').addEventListener('click',function(){
     if(!tipInput.value.trim()){
-      toast('空信不收——墨比您的良心值钱。','teal');
+      toast('We do not take empty letters — ink costs more than your conscience.','teal');
       tipInput.focus();
       return;
     }
     tipStamp.classList.remove('show');
     void tipStamp.offsetWidth;
     tipStamp.classList.add('show');
-    toast('线索已入检举箱,抵稿费两角。');
+    toast('Tip filed in the box. Twenty cents against your fee.');
     tipInput.value='';
   });
 
   var night=$('#night'),nightState=$('#night-state');
   night.addEventListener('change',function(){
     document.body.classList.toggle('night',night.checked);
-    nightState.textContent=night.checked?'夜班 · 全页套色已再歪两毫':'日班 · 版面勉强对齐';
-    toast(night.checked?'夜班开工:师傅手抖,套色全线跑偏。':'日班交接:版面重新勉强对齐。','teal');
+    nightState.textContent=night.checked?'Night shift · the whole page has slipped another two mils':'Day shift · the forme is more or less aligned';
+    toast(night.checked?'Night shift on: the compositor’s hands shake and every colour wanders.':'Day shift takes over: the forme is more or less aligned again.','teal');
   });
 
   var range=$('#ink-range'),inkVal=$('#ink-val'),inkBar=$('#ink-bar');
@@ -847,7 +847,7 @@ button{font:inherit;color:inherit}
     range.style.setProperty('--pct',v+'%');
     inkVal.textContent=v+'%';
     inkBar.style.opacity=(0.15+v/100*0.85).toFixed(3);
-    range.setAttribute('aria-valuetext','给墨 '+v+'%');
+    range.setAttribute('aria-valuetext','Ink at '+v+'%');
   }
   range.addEventListener('input',ink);
   ink();
@@ -855,11 +855,11 @@ button{font:inherit;color:inherit}
   var dd=$('#dd'),ddBtn=$('#dd-btn'),ddPop=$('#dd-pop'),ddCur=$('#dd-current'),ddNote=$('#dd-note');
   var ddOpts=$$('.dd__opt',ddPop);
   var ddNotes=[
-    '大结局要留到月底,先吊足报摊的胃口。',
-    '大结局上刊,催稿电报可以停了。',
-    '新连载开张,幽灵按字数计酬。',
-    '专栏照排,律师函另盒保存。',
-    '编辑消遣,作者们请勿对号入座。'
+    'Hold the finale for the end of the month; let the newsstand suffer first.',
+    'The finale runs, and the chasing telegrams can stop.',
+    'A new serial opens; the ghost is paid by the word.',
+    'The column is set as written; the lawyers’ letters are filed separately.',
+    'Editorial amusement. Authors are asked not to recognise themselves.'
   ];
   var hot=-1;
   function ddOpen(){
@@ -946,7 +946,7 @@ button{font:inherit;color:inherit}
     progFill.classList.toggle('live',pv>0);
     progPct.textContent=Math.round(pv)+'%';
     prog.setAttribute('aria-valuenow',String(Math.round(pv)));
-    progStatus.textContent=pv<=0?'静候上机。':pv<40?'排字中,铅字纷飞……':pv<75?'校对中(校不动了)。':pv<100?'上机付印,机声如雷。':'本期印讫,搬去报摊。';
+    progStatus.textContent=pv<=0?'Waiting to go on the press.':pv<40?'Setting type, and the sorts are flying…':pv<75?'Proofreading (nothing left to correct).':pv<100?'On the press, and the noise is thunder.':'Printed, and off to the newsstand.';
   }
   $('#prog-start').addEventListener('click',function(){
     if(ptimer||pv>=100)return;
@@ -954,7 +954,7 @@ button{font:inherit;color:inherit}
       pset(pv+2.5+Math.random()*6.5);
       if(pv>=100){
         clearInterval(ptimer);ptimer=null;
-        toast('第一三七期印讫!全社收工喝酒。');
+        toast('Issue 137 is printed. The whole house knocks off for a drink.');
       }
     },240);
   });
@@ -981,7 +981,7 @@ button{font:inherit;color:inherit}
     needle.style.setProperty('--deg',(-84+v*1.68)+'deg');
     gaugeRead.textContent=v;
     gaugeZone.textContent=zone;
-    $('.gauge').setAttribute('aria-label','惊悚指数表,当前'+v+'悚,'+zone);
+    $('.gauge').setAttribute('aria-label','Shock index meter, currently '+v+' shocks, '+zone);
   }
   zoneBtns.forEach(function(b){
     b.addEventListener('click',function(){
@@ -989,18 +989,18 @@ button{font:inherit;color:inherit}
       gauge(+b.getAttribute('data-val'),b.getAttribute('data-zone'));
     });
   });
-  gauge(55,'见血');
+  gauge(55,'Blood drawn');
   $('#case-close').addEventListener('click',function(){
     var plate=$('#plate-gauge');
     var old=$('.stamp--corner',plate);
     if(old){old.parentNode.removeChild(old)}
     var s=document.createElement('span');
     s.className='stamp stamp--teal stamp--corner stamp--slam';
-    s.textContent='结案';
+    s.textContent='CLOSED';
     s.setAttribute('aria-hidden','true');
     plate.appendChild(s);
     shake(plate);
-    toast('本案已结,卷宗入柜,钥匙丢河里。','teal');
+    toast('Case closed. File in the cabinet, key in the river.','teal');
   });
 
   var modal=$('#modal'),card=$('#modal-card'),mStamp=$('#m-stamp');
@@ -1022,11 +1022,11 @@ button{font:inherit;color:inherit}
   $('#m-x').addEventListener('click',closeModal);
   $('#m-refund').addEventListener('click',function(){
     closeModal();
-    toast('退票收讫,手续费一分,恕不找零。','teal');
+    toast('Refund received. One cent handling, no change given.','teal');
   });
   $('#m-tear').addEventListener('click',function(){
     closeModal();
-    toast('票根已撕好,取书认票不认人。');
+    toast('Stub torn. The newsstand knows the ticket, not the face.');
   });
   modal.addEventListener('mousedown',function(e){
     if(e.target===modal){closeModal()}
