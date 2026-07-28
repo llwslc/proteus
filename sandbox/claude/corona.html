@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UMBRA-9 · 本影九号观测台 — CORONA 日蚀玻璃</title>
+<title>UMBRA-9 · Umbra Nine Observatory — CORONA eclipse glass</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============ CORONA tokens ============ */
 :root{
@@ -28,8 +28,8 @@
   --shadow-atmo:0 14px 50px -18px rgba(124,217,232,.16);
   --r-panel:28px;
   --r-pill:999px;
-  --font-disp:"Space Grotesk","Noto Sans SC","PingFang SC",sans-serif;
-  --font-body:"Space Grotesk","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --font-disp:"Space Grotesk",sans-serif;
+  --font-body:"Space Grotesk",sans-serif;
   --font-mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -709,7 +709,7 @@ footer{padding:26px 0 46px}
     <div class="brand">
       <span class="brand-disc" aria-hidden="true"></span>
       <span class="brand-name">UMBRA-9</span>
-      <span class="brand-sub">本影九号观测台</span>
+      <span class="brand-sub">Umbra Nine Observatory</span>
     </div>
     <div class="station-status">
       <span class="status-item status-item--sky"><span class="status-dot" aria-hidden="true"></span>SKY CLEAR · 12%</span>
@@ -728,21 +728,21 @@ footer{padding:26px 0 46px}
             <span class="arc" aria-hidden="true"></span>
             <span class="tag tag--amber">Heliophysics Survey // Node 09 // Centerline</span>
           </div>
-          <h1>日面熄灭的那一刻,<br>才看得见<span class="glow">日冕</span>。</h1>
-          <p class="hero-lede">UMBRA-9 驻守在月影中心线上,把初亏到复圆的每一次接触写进星历。</p>
-          <p class="hero-lede">食甚只有 217 秒——十四路日冕仪同时开机,而你只需要盯住一块食相盘。</p>
+          <h1>Only when the sun’s face goes out<br>can you see the <span class="glow">corona</span>.</h1>
+          <p class="hero-lede">UMBRA-9 sits on the centre line of the moon’s shadow and writes every contact, first to last, into the ephemeris.</p>
+          <p class="hero-lede">Totality lasts 217 seconds. Fourteen coronagraphs start at once, and all you have to watch is one eclipse dial.</p>
           <div class="hero-product">
-            <b>UMBRA-9</b><span>· 日全食观测控制台</span>
+            <b>UMBRA-9</b><span>· total solar eclipse control console</span>
           </div>
           <div class="hero-cta">
-            <button class="btn btn--corona" id="ctaObserve">开始观测</button>
-            <button class="btn btn--atmo" id="ctaEphem">调出星历</button>
+            <button class="btn btn--corona" id="ctaObserve">Begin observing</button>
+            <button class="btn btn--atmo" id="ctaEphem">Call up the ephemeris</button>
           </div>
         </div>
 
         <!-- 签名件:食甚盘(日冕丝流 + 轨道刻度环 + 贝利珠点串 + 金环闪现) -->
         <div class="disc-side">
-          <div class="disc-stage" role="img" aria-label="食甚盘:月影完全遮掩日面,琥珀色日冕丝流向四周展开">
+          <div class="disc-stage" role="img" aria-label="Totality dial: the moon’s shadow fully covers the sun’s face, and amber corona filaments spread outward">
             <div class="disc-glow" aria-hidden="true"></div>
             <svg id="filsvg" viewBox="0 0 480 480" aria-hidden="true">
               <g class="fils" id="fil1"></g>
@@ -764,35 +764,35 @@ footer{padding:26px 0 46px}
       </div>
 
       <!-- 食相序列:初亏 → 复圆 -->
-      <div class="phase-strip glass" role="list" aria-label="食相序列">
+      <div class="phase-strip glass" role="list" aria-label="Phase sequence">
         <div class="phase-item" role="listitem">
           <span class="eclipse" style="--occ:.08" aria-hidden="true"></span>
-          <span class="tag">C1 初亏</span><span class="phase-time">02:14:09</span>
+          <span class="tag">C1 First contact</span><span class="phase-time">02:14:09</span>
         </div>
         <div class="phase-sep" aria-hidden="true"></div>
         <div class="phase-item" role="listitem">
           <span class="eclipse" style="--occ:.55" aria-hidden="true"></span>
-          <span class="tag">偏食深入</span><span class="phase-time">02:48:30</span>
+          <span class="tag">Partial deepening</span><span class="phase-time">02:48:30</span>
         </div>
         <div class="phase-sep" aria-hidden="true"></div>
         <div class="phase-item" role="listitem">
           <span class="eclipse" style="--occ:.96" aria-hidden="true"></span>
-          <span class="tag">C2 食既</span><span class="phase-time">03:12:06</span>
+          <span class="tag">C2 Second contact</span><span class="phase-time">03:12:06</span>
         </div>
         <div class="phase-sep" aria-hidden="true"></div>
         <div class="phase-item" role="listitem">
           <span class="eclipse" style="--occ:1" aria-hidden="true"></span>
-          <span class="tag tag--amber">食甚</span><span class="phase-time">03:13:51</span>
+          <span class="tag tag--amber">Maximum</span><span class="phase-time">03:13:51</span>
         </div>
         <div class="phase-sep" aria-hidden="true"></div>
         <div class="phase-item" role="listitem">
           <span class="eclipse" style="--occ:.96" aria-hidden="true"></span>
-          <span class="tag">C3 生光</span><span class="phase-time">03:15:36</span>
+          <span class="tag">C3 Third contact</span><span class="phase-time">03:15:36</span>
         </div>
         <div class="phase-sep" aria-hidden="true"></div>
         <div class="phase-item" role="listitem">
           <span class="eclipse" style="--occ:.32" aria-hidden="true"></span>
-          <span class="tag">C4 复圆</span><span class="phase-time">04:20:44</span>
+          <span class="tag">C4 Fourth contact</span><span class="phase-time">04:20:44</span>
         </div>
       </div>
     </div>
@@ -803,62 +803,62 @@ footer{padding:26px 0 46px}
     <div class="wrap">
       <header class="sec-head">
         <span class="tag tag--cyan">CH-01 // Control Surface</span>
-        <h2>操控件</h2>
+        <h2>Controls</h2>
         <div class="beadline" aria-hidden="true"></div>
-        <p class="sec-note">全部操控件按食相规约成环——没有一个直角进入本影。</p>
+        <p class="sec-note">Every control is turned into a ring by the eclipse protocol. Not one right angle enters the umbra.</p>
       </header>
 
       <div class="cards">
         <!-- 按钮 -->
         <div class="card glass span7">
-          <div class="card-head"><h3>指令钮</h3><span class="tag">Command Ring</span></div>
+          <div class="card-head"><h3>Command buttons</h3><span class="tag">Command Ring</span></div>
           <div class="btn-row" style="gap:22px">
             <div class="btn-spec">
-              <button class="btn btn--corona" data-toast="amber" data-tt="观测已开始" data-tm="十四路日冕仪 · 已同步">开始观测</button>
+              <button class="btn btn--corona" data-toast="amber" data-tt="Observation started" data-tm="Fourteen coronagraphs · synchronised">Begin observing</button>
               <span class="tag">Corona</span>
             </div>
             <div class="btn-spec">
-              <button class="btn btn--atmo" data-toast="atmo" data-tt="大气信道已刷新" data-tm="云量 12% · 视宁度 0.8″">刷新大气</button>
+              <button class="btn btn--atmo" data-toast="atmo" data-tt="Atmospheric channel refreshed" data-tm="Cloud 12% · seeing 0.8″">Refresh atmosphere</button>
               <span class="tag">Atmosphere</span>
             </div>
             <div class="btn-spec">
-              <button class="btn btn--umbra" data-toast="atmo" data-tt="站台转入待命" data-tm="快门闭合 · 授时保持">转入待命</button>
+              <button class="btn btn--umbra" data-toast="atmo" data-tt="Station on standby" data-tm="Shutter closed · timing held">Go to standby</button>
               <span class="tag">Umbra</span>
             </div>
             <div class="btn-spec">
-              <button class="btn btn--bead" data-toast="amber" data-tt="接触时刻已调出" data-tm="C1—C4 · 全部载入">查看接触时刻</button>
+              <button class="btn btn--bead" data-toast="amber" data-tt="Contact times called up" data-tm="C1—C4 · all loaded">View contact times</button>
               <span class="tag">Bead</span>
             </div>
             <div class="btn-spec">
-              <button class="btn btn--corona" disabled>开始观测</button>
-              <span class="tag">Disabled · 等待窗口</span>
+              <button class="btn btn--corona" disabled>Begin observing</button>
+              <span class="tag">Disabled · awaiting window</span>
             </div>
           </div>
         </div>
 
         <!-- 输入 + 下拉 -->
         <div class="card glass span5">
-          <div class="card-head"><h3>登记与信道</h3><span class="tag">Intake</span></div>
+          <div class="card-head"><h3>Intake and channel</h3><span class="tag">Intake</span></div>
           <div class="field">
-            <div class="lbl"><b>观测者代号</b><span class="tag">Observer ID</span></div>
-            <input class="input" type="text" placeholder="如:VEGA-07" autocomplete="off">
+            <div class="lbl"><b>Observer code</b><span class="tag">Observer ID</span></div>
+            <input class="input" type="text" placeholder="e.g. VEGA-07" autocomplete="off">
           </div>
           <div class="field">
-            <div class="lbl"><b>观测坐标</b><span class="tag">Coordinates</span></div>
+            <div class="lbl"><b>Observation coordinates</b><span class="tag">Coordinates</span></div>
             <input class="input input--mono" type="text" placeholder="31.2304° N, 121.4737° E" autocomplete="off">
           </div>
           <div class="field">
-            <div class="lbl"><b>滤镜信道</b><span class="tag">Filter Channel</span></div>
+            <div class="lbl"><b>Filter channel</b><span class="tag">Filter Channel</span></div>
             <div class="select" id="filterSelect">
               <button class="select-btn" aria-haspopup="listbox" aria-expanded="false" id="filterBtn">
-                <span id="filterVal">日冕仪 K-CORONA</span>
+                <span id="filterVal">K-CORONA</span>
                 <span class="select-caret" aria-hidden="true"></span>
               </button>
-              <div class="menu" role="listbox" aria-label="滤镜信道" id="filterMenu" tabindex="-1">
-                <div role="option" data-v="白光 WHITE-LIGHT"><span class="dot" aria-hidden="true"></span>白光 WHITE-LIGHT<span class="mono">550nm</span></div>
-                <div role="option" data-v="氢α H-ALPHA"><span class="dot" aria-hidden="true"></span>氢α H-ALPHA<span class="mono">656nm</span></div>
-                <div role="option" data-v="日冕仪 K-CORONA" aria-selected="true"><span class="dot" aria-hidden="true"></span>日冕仪 K-CORONA<span class="mono">滤外冕</span></div>
-                <div role="option" data-v="钙K CA-II-K"><span class="dot" aria-hidden="true"></span>钙K CA-II-K<span class="mono">393nm</span></div>
+              <div class="menu" role="listbox" aria-label="Filter channel" id="filterMenu" tabindex="-1">
+                <div role="option" data-v="WHITE-LIGHT"><span class="dot" aria-hidden="true"></span>WHITE-LIGHT<span class="mono">550nm</span></div>
+                <div role="option" data-v="H-ALPHA"><span class="dot" aria-hidden="true"></span>H-ALPHA<span class="mono">656nm</span></div>
+                <div role="option" data-v="K-CORONA" aria-selected="true"><span class="dot" aria-hidden="true"></span>K-CORONA<span class="mono">outer corona</span></div>
+                <div role="option" data-v="CA-II-K"><span class="dot" aria-hidden="true"></span>CA-II-K<span class="mono">393nm</span></div>
               </div>
             </div>
           </div>
@@ -866,37 +866,37 @@ footer{padding:26px 0 46px}
 
         <!-- 单选 + 复选 -->
         <div class="card glass span7">
-          <div class="card-head"><h3>观测规约</h3><span class="tag">Protocol</span></div>
+          <div class="card-head"><h3>Observation protocol</h3><span class="tag">Protocol</span></div>
           <div class="choice-cols">
             <fieldset style="border:0;display:grid;gap:2px">
-              <legend class="tag" style="margin-bottom:10px">观测模式 · Mode</legend>
-              <label class="choice"><input type="radio" name="mode" checked><span class="choice-txt"><b>全食 TOTAL</b></span></label>
-              <label class="choice"><input type="radio" name="mode"><span class="choice-txt"><b>环食 ANNULAR</b></span></label>
-              <label class="choice"><input type="radio" name="mode"><span class="choice-txt"><b>偏食 PARTIAL</b></span></label>
+              <legend class="tag" style="margin-bottom:10px">Mode</legend>
+              <label class="choice"><input type="radio" name="mode" checked><span class="choice-txt"><b>TOTAL</b></span></label>
+              <label class="choice"><input type="radio" name="mode"><span class="choice-txt"><b>ANNULAR</b></span></label>
+              <label class="choice"><input type="radio" name="mode"><span class="choice-txt"><b>PARTIAL</b></span></label>
             </fieldset>
             <fieldset style="border:0;display:grid;gap:2px">
-              <legend class="tag" style="margin-bottom:10px">记录项 · Records</legend>
-              <label class="choice"><input type="checkbox" checked><span class="choice-txt"><b>自动标记接触时刻</b></span></label>
-              <label class="choice"><input type="checkbox"><span class="choice-txt"><b>同步站台授时</b></span></label>
-              <label class="choice"><input type="checkbox" disabled><span class="choice-txt"><b>导出原始底片</b><span class="tag">等待授权</span></span></label>
+              <legend class="tag" style="margin-bottom:10px">Records</legend>
+              <label class="choice"><input type="checkbox" checked><span class="choice-txt"><b>Auto-mark contact times</b></span></label>
+              <label class="choice"><input type="checkbox"><span class="choice-txt"><b>Sync station timing</b></span></label>
+              <label class="choice"><input type="checkbox" disabled><span class="choice-txt"><b>Export raw plates</b><span class="tag">awaiting authorisation</span></span></label>
             </fieldset>
           </div>
         </div>
 
         <!-- 开关 -->
         <div class="card glass span5">
-          <div class="card-head"><h3>仪器开关</h3><span class="tag">Instruments</span></div>
+          <div class="card-head"><h3>Instrument switches</h3><span class="tag">Instruments</span></div>
           <div class="swrow">
-            <span class="choice-txt"><b>日冕仪连拍</b><span class="tag">Coronagraph Burst</span></span>
-            <button class="sw" role="switch" aria-checked="true" aria-label="日冕仪连拍"><span class="knob" aria-hidden="true"></span></button>
+            <span class="choice-txt"><b>Coronagraph burst</b><span class="tag">Coronagraph Burst</span></span>
+            <button class="sw" role="switch" aria-checked="true" aria-label="Coronagraph burst"><span class="knob" aria-hidden="true"></span></button>
           </div>
           <div class="swrow">
-            <span class="choice-txt"><b>贝利珠捕获</b><span class="tag">Beads Capture</span></span>
-            <button class="sw" role="switch" aria-checked="false" aria-label="贝利珠捕获"><span class="knob" aria-hidden="true"></span></button>
+            <span class="choice-txt"><b>Baily beads capture</b><span class="tag">Beads Capture</span></span>
+            <button class="sw" role="switch" aria-checked="false" aria-label="Baily beads capture"><span class="knob" aria-hidden="true"></span></button>
           </div>
           <div class="swrow">
-            <span class="choice-txt"><b>授时锁定</b><span class="tag">Timelock · 站台接管</span></span>
-            <button class="sw" role="switch" aria-checked="true" aria-label="授时锁定" disabled><span class="knob" aria-hidden="true"></span></button>
+            <span class="choice-txt"><b>Time lock</b><span class="tag">Timelock · station has control</span></span>
+            <button class="sw" role="switch" aria-checked="true" aria-label="Time lock" disabled><span class="knob" aria-hidden="true"></span></button>
           </div>
         </div>
       </div>
@@ -908,15 +908,15 @@ footer{padding:26px 0 46px}
     <div class="wrap">
       <header class="sec-head">
         <span class="tag tag--cyan">CH-02 // Instrument Bay</span>
-        <h2>仪表与推进</h2>
+        <h2>Instruments and advance</h2>
         <div class="beadline" aria-hidden="true"></div>
-        <p class="sec-note">仪表读数与模拟联动:拨动食分,量表即刻跟进。</p>
+        <p class="sec-note">The readouts follow the simulation: move the magnitude and the dial keeps up at once.</p>
       </header>
 
       <div class="cards">
         <!-- 量表:食相盘 -->
         <div class="card glass span5 rows2 gauge-card">
-          <div class="card-head" style="width:100%"><h3>食相盘量表</h3><span class="tag">Eclipse Dial</span></div>
+          <div class="card-head" style="width:100%"><h3>Eclipse dial</h3><span class="tag">Eclipse Dial</span></div>
           <div class="gauge-box">
             <svg viewBox="0 0 240 240" aria-hidden="true">
               <g id="gaugeticks"></g>
@@ -934,67 +934,67 @@ footer{padding:26px 0 46px}
           </div>
           <div class="gauge-read">
             <b id="gaugeval">0.87</b>
-            <span class="tag">Magnitude · 食分</span>
+            <span class="tag">Magnitude</span>
           </div>
           <div class="gauge-foot">
             <div class="slider-wrap" style="flex:1">
-              <input type="range" id="magslider" min="0" max="1" step="0.01" value="0.87" aria-label="模拟食分">
+              <input type="range" id="magslider" min="0" max="1" step="0.01" value="0.87" aria-label="Simulated magnitude">
               <div class="beadticks" aria-hidden="true"></div>
             </div>
-            <button class="ring-help" data-tip="食分:月面直径遮蔽日面直径的比例。达到 1.000 即为全食,UMBRA-9 本次预报 1.012。" aria-label="什么是食分">?</button>
+            <button class="ring-help" data-tip="Magnitude: the fraction of the sun’s diameter covered by the moon’s. At 1.000 the eclipse is total; UMBRA-9 forecasts 1.012 for this one." aria-label="What magnitude means">?</button>
           </div>
         </div>
 
         <!-- 进度:食分推进 -->
         <div class="card glass span7" id="progcard">
-          <div class="card-head"><h3>食分推进</h3><span class="tag">Magnitude Advance</span></div>
+          <div class="card-head"><h3>Magnitude advance</h3><span class="tag">Magnitude Advance</span></div>
           <div class="prog-top">
             <span class="eclipse" id="progdisc" aria-hidden="true"></span>
             <div class="prog-meta">
               <span class="prog-val"><span id="progval">0.00</span><i>/ 1.012</i></span>
-              <span class="tag" id="progstate">Standby · 待推进</span>
+              <span class="tag" id="progstate">Standby · not advancing</span>
             </div>
           </div>
-          <div class="progress" role="progressbar" aria-label="食分推进" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progbar">
+          <div class="progress" role="progressbar" aria-label="Magnitude advance" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progbar">
             <div class="progress-fill" id="progfill"></div>
           </div>
           <div class="prog-scale"><span>C1</span><span>C2</span><span>MAX</span></div>
           <div class="prog-actions">
-            <button class="btn btn--corona" id="progplay">推进食分</button>
-            <button class="btn btn--umbra" id="progreset">复位</button>
+            <button class="btn btn--corona" id="progplay">Advance magnitude</button>
+            <button class="btn btn--umbra" id="progreset">Reset</button>
           </div>
         </div>
 
         <!-- 标签页 -->
         <div class="card glass span7">
-          <div class="card-head"><h3>观测面板</h3><span class="tag">Panels</span></div>
-          <div class="tabs" role="tablist" aria-label="观测面板">
-            <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">食甚</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">星历</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">日志</button>
+          <div class="card-head"><h3>Observation panels</h3><span class="tag">Panels</span></div>
+          <div class="tabs" role="tablist" aria-label="Observation panels">
+            <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">Totality</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">Ephemeris</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">Log</button>
           </div>
           <div class="tabpanel" role="tabpanel" id="tp1" aria-labelledby="tb1">
             <div class="stat3">
-              <div class="stat"><span class="tag">持续 Duration</span><b>217<i>s</i></b></div>
-              <div class="stat"><span class="tag">本影宽 Umbra</span><b>202<i>km</i></b></div>
-              <div class="stat"><span class="tag">太阳高度 Alt</span><b>41.6<i>°</i></b></div>
+              <div class="stat"><span class="tag">Duration</span><b>217<i>s</i></b></div>
+              <div class="stat"><span class="tag">Umbra width</span><b>202<i>km</i></b></div>
+              <div class="stat"><span class="tag">Solar altitude</span><b>41.6<i>°</i></b></div>
             </div>
           </div>
           <div class="tabpanel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden>
             <div class="ephem">
-              <div class="ephem-row"><span class="c">C1</span><span class="n">初亏 · 月缘切入日面</span><span class="t">02:14:09</span></div>
-              <div class="ephem-row"><span class="c">C2</span><span class="n">食既 · 贝利珠序列</span><span class="t">03:12:06</span></div>
-              <div class="ephem-row"><span class="c">MAX</span><span class="n">食甚 · 日冕全开</span><span class="t">03:13:51</span></div>
-              <div class="ephem-row"><span class="c">C3</span><span class="n">生光 · 金环闪现</span><span class="t">03:15:36</span></div>
-              <div class="ephem-row"><span class="c">C4</span><span class="n">复圆 · 观测归档</span><span class="t">04:20:44</span></div>
+              <div class="ephem-row"><span class="c">C1</span><span class="n">First contact · the moon’s limb cuts in</span><span class="t">02:14:09</span></div>
+              <div class="ephem-row"><span class="c">C2</span><span class="n">Second contact · Baily beads sequence</span><span class="t">03:12:06</span></div>
+              <div class="ephem-row"><span class="c">MAX</span><span class="n">Maximum · corona fully open</span><span class="t">03:13:51</span></div>
+              <div class="ephem-row"><span class="c">C3</span><span class="n">Third contact · the diamond ring flashes</span><span class="t">03:15:36</span></div>
+              <div class="ephem-row"><span class="c">C4</span><span class="n">Fourth contact · observation archived</span><span class="t">04:20:44</span></div>
             </div>
           </div>
           <div class="tabpanel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>
             <ul class="log">
-              <li><span class="t">02:14:09</span>初亏确认,月缘切入日面西侧。</li>
-              <li><span class="t">02:58:31</span>云量降至 12%,大气信道转优。</li>
-              <li><span class="t">03:11:58</span>贝利珠序列进入捕获窗口。</li>
-              <li><span class="t">03:12:06</span>食既,十四路日冕仪全部开机。</li>
+              <li><span class="t">02:14:09</span>First contact confirmed; the moon’s limb cuts in on the western side.</li>
+              <li><span class="t">02:58:31</span>Cloud down to 12%; the atmospheric channel turns good.</li>
+              <li><span class="t">03:11:58</span>Baily beads sequence enters the capture window.</li>
+              <li><span class="t">03:12:06</span>Second contact. All fourteen coronagraphs are running.</li>
             </ul>
           </div>
         </div>
@@ -1007,32 +1007,32 @@ footer{padding:26px 0 46px}
     <div class="wrap">
       <header class="sec-head">
         <span class="tag tag--cyan">CH-03 // Signal Deck</span>
-        <h2>信号与弹层</h2>
+        <h2>Signals and overlays</h2>
         <div class="beadline" aria-hidden="true"></div>
-        <p class="sec-note">弹层一律走毛玻璃信道,信号以金环与大气青分级。</p>
+        <p class="sec-note">Every overlay runs on the frosted-glass channel, and signals are graded gold ring or atmospheric blue.</p>
       </header>
 
       <div class="cards">
         <div class="card glass span4">
-          <div class="card-head"><h3>全食切换</h3><span class="tag">Modal</span></div>
-          <p class="sec-note" style="margin:0 0 18px">切换后白光通道关闭,食甚窗口内不可中途退出——需要一次确认。</p>
-          <button class="btn btn--corona" id="modalOpen">进入全食模式</button>
+          <div class="card-head"><h3>Switch to totality</h3><span class="tag">Modal</span></div>
+          <p class="sec-note" style="margin:0 0 18px">Switching closes the white-light channel, and there is no leaving during the totality window. It takes one confirmation.</p>
+          <button class="btn btn--corona" id="modalOpen">Enter totality mode</button>
         </div>
         <div class="card glass span4">
-          <div class="card-head"><h3>站台信号</h3><span class="tag">Toast</span></div>
-          <p class="sec-note" style="margin:0 0 18px">金环级即刻上屏,大气级随信道刷新。</p>
+          <div class="card-head"><h3>Station signals</h3><span class="tag">Toast</span></div>
+          <p class="sec-note" style="margin:0 0 18px">Gold-ring level goes up at once; atmospheric level follows the channel refresh.</p>
           <div class="btn-row">
-            <button class="btn btn--umbra" data-toast="amber" data-tt="C2 触点已记录" data-tm="UT 03:12:06 · 贝利珠已捕获">金环信号</button>
-            <button class="btn btn--atmo" data-toast="atmo" data-tt="大气信道更新" data-tm="云量 12% · 视宁度 0.8″">大气信号</button>
+            <button class="btn btn--umbra" data-toast="amber" data-tt="C2 contact recorded" data-tm="UT 03:12:06 · beads captured">Gold-ring signal</button>
+            <button class="btn btn--atmo" data-toast="atmo" data-tt="Atmospheric channel updated" data-tm="Cloud 12% · seeing 0.8″">Atmospheric signal</button>
           </div>
         </div>
         <div class="card glass span4">
-          <div class="card-head"><h3>坐标注记</h3><span class="tag">Tooltip</span></div>
-          <p class="sec-note" style="margin:0 0 18px">悬停任一注记,展开观测释义。</p>
+          <div class="card-head"><h3>Coordinate notes</h3><span class="tag">Tooltip</span></div>
+          <p class="sec-note" style="margin:0 0 18px">Hover any note to open its observing gloss.</p>
           <div class="chip-row">
-            <button class="chip chip--amber" data-tip="食甚时刻的最大食分。大于 1 表示月面完全覆盖日面。">MAG 1.012</button>
-            <button class="chip" data-tip="全食持续时间:从食既 C2 到生光 C3,共 217 秒。">Δt 217 s</button>
-            <button class="chip" data-tip="食甚时太阳的地平高度与方位角,决定镜筒指向。">ALT 41.6°</button>
+            <button class="chip chip--amber" data-tip="The greatest magnitude at maximum. Above 1 the moon’s disc fully covers the sun’s.">MAG 1.012</button>
+            <button class="chip" data-tip="Duration of totality: from second contact C2 to third contact C3, 217 seconds.">Δt 217 s</button>
+            <button class="chip" data-tip="The sun’s altitude and azimuth at maximum, which set where the tube points.">ALT 41.6°</button>
           </div>
         </div>
       </div>
@@ -1046,14 +1046,14 @@ footer{padding:26px 0 46px}
     <div class="beadline" aria-hidden="true"></div>
     <div class="foot-grid">
       <div class="foot-coord">
-        <span class="tag">UMBRA-9 · 中心线第 9 号观测位</span>
-        <span class="tag" style="text-transform:none">北纬 31.23° · 东经 121.47° · 海拔 4.21 km</span>
+        <span class="tag">UMBRA-9 · centre-line station no. 9</span>
+        <span class="tag" style="text-transform:none">31.23° N · 121.47° E · elevation 4.21 km</span>
       </div>
       <div class="foot-coord">
         <span class="tag tag--amber">Next Contact · 2027-08-02 UT</span>
-        <span class="tag" style="text-transform:none">从初亏到复圆,站台常亮。</span>
+        <span class="tag" style="text-transform:none">From first contact to fourth, the station stays lit.</span>
       </div>
-      <span class="foot-sign">本影之外,皆是<b>序章</b>。</span>
+      <span class="foot-sign">Outside the umbra, everything is <b>prologue</b>.</span>
     </div>
   </div>
 </footer>
@@ -1061,16 +1061,16 @@ footer{padding:26px 0 46px}
 <!-- ============ 弹窗 ============ -->
 <div class="overlay" id="overlay" aria-hidden="true">
   <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1" id="modal">
-    <button class="modal-x" id="modalClose" aria-label="关闭">✕</button>
+    <button class="modal-x" id="modalClose" aria-label="Close">✕</button>
     <div class="modal-head">
       <span class="eclipse" style="--occ:1" aria-hidden="true"></span>
-      <h3 id="modalTitle">切换至全食模式</h3>
+      <h3 id="modalTitle">Switch to totality mode</h3>
     </div>
-    <p class="modal-body">切换后,站台关闭白光通道,十四路日冕仪转入连拍。食甚窗口共 217 秒,期间无法中途退出。</p>
-    <label class="choice"><input type="checkbox" id="modalBeads" checked><span class="choice-txt"><b>同时开启贝利珠捕获</b></span></label>
+    <p class="modal-body">On switching, the station closes the white-light channel and all fourteen coronagraphs go to burst. The totality window runs 217 seconds and cannot be left partway.</p>
+    <label class="choice"><input type="checkbox" id="modalBeads" checked><span class="choice-txt"><b>Turn on Baily beads capture as well</b></span></label>
     <div class="modal-actions">
-      <button class="btn btn--umbra" id="modalCancel">保持待命</button>
-      <button class="btn btn--corona" id="modalConfirm">接通全食模式</button>
+      <button class="btn btn--umbra" id="modalCancel">Stay on standby</button>
+      <button class="btn btn--corona" id="modalConfirm">Connect totality mode</button>
     </div>
   </div>
 </div>
@@ -1182,7 +1182,7 @@ footer{padding:26px 0 46px}
     t.className = "toast" + (kind === "atmo" ? " toast--atmo" : "");
     t.innerHTML = '<span class="toast-ring" aria-hidden="true"></span>' +
       '<span class="toast-txt"><b></b><span class="tag"></span></span>' +
-      '<button class="toast-x" aria-label="关闭">✕</button>';
+      '<button class="toast-x" aria-label="Close">✕</button>';
     t.querySelector("b").textContent = title;
     t.querySelector(".tag").textContent = meta || "";
     toasts.appendChild(t);
@@ -1199,12 +1199,12 @@ footer{padding:26px 0 46px}
     b.addEventListener("click", function(){ toast(b.dataset.toast, b.dataset.tt, b.dataset.tm); });
   });
   document.getElementById("ctaObserve").addEventListener("click", function(){
-    toast("amber", "观测已开始", "十四路日冕仪 · 已同步");
+    toast("amber", "Observation started", "Fourteen coronagraphs · synchronised");
   });
   document.getElementById("ctaEphem").addEventListener("click", function(){
     var s = document.getElementById("ch02");
     s.scrollIntoView({behavior:"smooth", block:"start"});
-    toast("atmo", "星历已调出", "接触时刻 C1—C4 · 已载入");
+    toast("atmo", "Ephemeris called up", "Contact times C1—C4 · loaded");
   });
 
   /* ---- 下拉 ---- */
@@ -1226,7 +1226,7 @@ footer{padding:26px 0 46px}
       opts[i].setAttribute("aria-selected", "true");
       val.textContent = opts[i].dataset.v;
       setOpen(false); btn.focus();
-      toast("atmo", "滤镜信道已切换", opts[i].dataset.v);
+      toast("atmo", "Filter channel switched", opts[i].dataset.v);
     }
     btn.addEventListener("click", function(){ setOpen(!open); });
     btn.addEventListener("keydown", function(e){
@@ -1318,12 +1318,12 @@ footer{padding:26px 0 46px}
       last = ts;
       paint();
       if(p >= 1){
-        stop("Totality · 食甚保持");
+        stop("Totality · holding");
         if(!doneFired){
           doneFired = true;
           disc.classList.remove("is-flash"); void disc.offsetWidth;
           disc.classList.add("is-flash");
-          toast("amber", "食分推进完成", "MAG 1.012 · 金环已闪现");
+          toast("amber", "Magnitude advance complete", "MAG 1.012 · the diamond ring has flashed");
         }
         return;
       }
@@ -1333,24 +1333,24 @@ footer{padding:26px 0 46px}
       playing = false; last = 0;
       if(raf) cancelAnimationFrame(raf);
       card.classList.remove("is-playing");
-      play.textContent = p >= 1 ? "已达食甚" : "推进食分";
+      play.textContent = p >= 1 ? "Maximum reached" : "Advance magnitude";
       play.disabled = p >= 1;
-      state.textContent = label || "Paused · 已暂停";
+      state.textContent = label || "Paused";
     }
     play.addEventListener("click", function(){
       if(playing){ stop(); return; }
       playing = true; doneFired = false;
       card.classList.add("is-playing");
-      play.textContent = "暂停";
-      state.textContent = "Advancing · 月影推进中";
+      play.textContent = "Pause";
+      state.textContent = "Advancing · the shadow is moving";
       raf = requestAnimationFrame(step);
     });
     reset.addEventListener("click", function(){
       if(raf) cancelAnimationFrame(raf);
       playing = false; p = 0; last = 0; doneFired = false;
       card.classList.remove("is-playing");
-      play.disabled = false; play.textContent = "推进食分";
-      state.textContent = "Standby · 待推进";
+      play.disabled = false; play.textContent = "Advance magnitude";
+      state.textContent = "Standby · not advancing";
       disc.classList.remove("is-flash");
       paint();
     });
@@ -1375,7 +1375,7 @@ footer{padding:26px 0 46px}
     document.getElementById("modalConfirm").addEventListener("click", function(){
       var beads = document.getElementById("modalBeads").checked;
       setOpen(false);
-      toast("amber", "全食模式已接通", beads ? "日冕仪连拍 · 贝利珠捕获同启" : "日冕仪连拍 · 已就绪");
+      toast("amber", "Totality mode connected", beads ? "Coronagraph burst · beads capture on too" : "Coronagraph burst · ready");
     });
     overlay.addEventListener("click", function(e){ if(e.target === overlay) setOpen(false); });
     document.addEventListener("keydown", function(e){
