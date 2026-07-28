@@ -721,6 +721,15 @@
       background: #111519;
     }
 
+    .topbar-tools {
+      display: flex;
+      flex: 0 0 auto;
+      flex-wrap: nowrap;
+      gap: 8px;
+      align-items: center;
+      min-width: 0;
+    }
+
     .tool-button {
       display: inline-grid;
       min-width: 34px;
@@ -752,7 +761,11 @@
     }
 
     .open-button {
+      display: inline-flex;
       gap: 7px;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
       text-decoration: none;
     }
 
