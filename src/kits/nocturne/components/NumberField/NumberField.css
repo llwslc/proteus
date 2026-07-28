@@ -1,0 +1,75 @@
+.nocturne-numberfield {
+  width: fit-content;
+}
+.nocturne-numberfield[data-disabled] {
+  opacity: var(--nocturne-disabled-opacity);
+}
+
+.nocturne-numberfield__group {
+  display: flex;
+  align-items: stretch;
+  background: var(--nocturne-surface-inset);
+  border: 1px solid var(--nocturne-gilt-30);
+  border-bottom-color: var(--nocturne-gilt-50);
+  transition:
+    border-color var(--nocturne-dur) var(--nocturne-ease),
+    box-shadow var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-numberfield__group:focus-within {
+  border-color: var(--nocturne-gilt);
+  box-shadow:
+    0 0 0 1px var(--nocturne-gilt-30),
+    0 0 22px var(--nocturne-glow-12);
+}
+
+.nocturne-numberfield__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nocturne-number-field-stepper);
+  height: var(--nocturne-number-field-stepper);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--nocturne-gilt-bright);
+  font-size: var(--nocturne-fs-14);
+  cursor: pointer;
+  transition:
+    background var(--nocturne-dur-fast) var(--nocturne-ease),
+    color var(--nocturne-dur-fast) var(--nocturne-ease);
+}
+.nocturne-numberfield__btn:first-child {
+  border-right: 1px solid var(--nocturne-gilt-30);
+}
+.nocturne-numberfield__btn:last-child {
+  border-left: 1px solid var(--nocturne-gilt-30);
+}
+.nocturne-numberfield__btn:where(:not([data-disabled], :disabled)):hover {
+  background: var(--nocturne-gilt-10);
+}
+.nocturne-numberfield__btn:where(:not([data-disabled], :disabled)):active {
+  transition-duration: 0s;
+  background: var(--nocturne-gilt-10);
+  transform: translateY(1px);
+}
+.nocturne-numberfield__btn[data-disabled],
+.nocturne-numberfield__btn:disabled {
+  opacity: var(--nocturne-disabled-opacity);
+}
+.nocturne-numberfield__btn:focus-visible {
+  outline-offset: -2px;
+}
+
+.nocturne-numberfield__input {
+  width: var(--nocturne-number-field-w);
+  padding: 0 var(--nocturne-space-2);
+  background: transparent;
+  border: 0;
+  text-align: center;
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-14);
+  color: var(--nocturne-text);
+}
+.nocturne-numberfield__input:focus-visible {
+  outline: none;
+}

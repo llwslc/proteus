@@ -1,0 +1,69 @@
+.nocturne-radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-1);
+}
+
+.nocturne-radio {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-2);
+  width: fit-content;
+  cursor: pointer;
+}
+.nocturne-radio:has(.nocturne-radio__control[data-disabled]) {
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.nocturne-radio__control {
+  position: relative;
+  flex: none;
+  width: var(--nocturne-radio-box);
+  height: var(--nocturne-radio-box);
+  padding: 0;
+  overflow: hidden;
+  background: #0b0610;
+  border: 1px solid var(--nocturne-gilt-30);
+  border-radius: var(--nocturne-r-full);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  transition:
+    border-color var(--nocturne-dur) var(--nocturne-ease),
+    box-shadow var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-radio__control:where(:not([data-disabled])):hover {
+  border-color: var(--nocturne-gilt);
+}
+.nocturne-radio__control[data-checked] {
+  border-color: var(--nocturne-gilt-bright);
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.4),
+    0 0 15px var(--nocturne-glow-40);
+}
+
+.nocturne-radio__moon {
+  position: absolute;
+  inset: 1.5px;
+  border-radius: var(--nocturne-r-full);
+  background:
+    radial-gradient(2.4px 2.4px at 63% 40%, rgba(120, 90, 40, 0.5), transparent 62%),
+    radial-gradient(2.8px 2.8px at 42% 64%, rgba(120, 90, 40, 0.42), transparent 62%),
+    radial-gradient(1.8px 1.8px at 56% 66%, rgba(120, 90, 40, 0.4), transparent 62%),
+    radial-gradient(circle at 37% 31%, #fbefcb, #e9cc8a 52%, #ae8238);
+}
+
+.nocturne-radio__shade {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--nocturne-r-full);
+  background: radial-gradient(circle at 42% 34%, #241636, #0a0510);
+  transition: transform var(--nocturne-dur-slow) var(--nocturne-ease);
+}
+.nocturne-radio__control:where(:not([data-disabled], [data-checked])):hover
+  .nocturne-radio__shade {
+  transform: translateX(14%);
+}
+.nocturne-radio__control[data-checked] .nocturne-radio__shade {
+  transform: translateX(118%);
+}

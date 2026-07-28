@@ -1,0 +1,72 @@
+.nocturne-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-2);
+  width: 100%;
+}
+
+.nocturne-progress__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--nocturne-space-3);
+}
+
+.nocturne-progress__value {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-14);
+  letter-spacing: var(--nocturne-ls-1);
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-progress__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--nocturne-surface-inset);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.55);
+  margin-block: var(--nocturne-space-2);
+}
+.nocturne-progress__track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--nocturne-gilt-30);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.nocturne-progress__indicator {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--nocturne-primary-shadow),
+    var(--nocturne-primary-deep) 60%,
+    var(--nocturne-primary)
+  );
+  box-shadow: 0 0 12px var(--nocturne-primary-50);
+  transition: width var(--nocturne-dur-fast) linear;
+}
+
+.nocturne-progress__bloom {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translate(50%, -50%)
+    scale(calc(0.25 + 0.75 * var(--nocturne-progress-open, 1)));
+  filter: drop-shadow(0 0 8px var(--nocturne-glow-40));
+  z-index: 3;
+}
+
+.nocturne-progress[data-indeterminate] .nocturne-progress__track {
+  overflow: hidden;
+}
+.nocturne-progress[data-indeterminate] .nocturne-progress__indicator {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  animation: nocturne-sweep var(--nocturne-dur-sweep) linear infinite;
+}

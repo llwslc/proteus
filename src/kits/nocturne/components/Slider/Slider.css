@@ -1,0 +1,102 @@
+.nocturne-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-2);
+  width: 100%;
+}
+.nocturne-slider[data-disabled] {
+  opacity: var(--nocturne-disabled-opacity);
+}
+
+.nocturne-slider__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--nocturne-space-3);
+}
+
+.nocturne-slider__value {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-14);
+  letter-spacing: var(--nocturne-ls-1);
+  color: var(--nocturne-gilt-bright);
+}
+
+.nocturne-slider__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--nocturne-slider-control-h);
+  cursor: pointer;
+}
+
+.nocturne-slider__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--nocturne-surface-inset);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+.nocturne-slider__track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--nocturne-gilt-30);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.nocturne-slider__indicator {
+  background: linear-gradient(90deg, var(--nocturne-warning), var(--nocturne-gilt-bright));
+}
+
+.nocturne-slider__thumb {
+  display: grid;
+  place-items: center;
+  width: var(--nocturne-slider-thumb);
+  height: var(--nocturne-slider-thumb);
+  filter: drop-shadow(0 1px 3px rgba(8, 4, 12, 0.7))
+    drop-shadow(0 0 6px var(--nocturne-glow-12));
+  transition: filter var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-slider:where(:not([data-disabled])) .nocturne-slider__control:hover .nocturne-slider__thumb,
+.nocturne-slider [data-dragging].nocturne-slider__thumb,
+.nocturne-slider__thumb:focus-visible {
+  filter: drop-shadow(0 1px 3px rgba(8, 4, 12, 0.7))
+    drop-shadow(0 0 11px var(--nocturne-glow-40));
+}
+
+.nocturne-slider__thumb svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.nocturne-slider__sepals path {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scale(0.7);
+  stroke: var(--nocturne-gilt-dim);
+  stroke-width: 0.5;
+}
+
+.nocturne-slider__petal {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scale(calc(0.3 + 0.7 * var(--nocturne-slider-open, 0.5)));
+  stroke: var(--nocturne-gilt);
+  stroke-width: 0.7;
+  transition: transform var(--nocturne-dur) var(--nocturne-ease-bloom);
+}
+
+.nocturne-slider__core {
+  fill: var(--nocturne-gilt-bright);
+  stroke: var(--nocturne-gilt-dim);
+  stroke-width: 0.5;
+}
+
+.nocturne-slider__seeds circle {
+  fill: var(--nocturne-primary-deep);
+}

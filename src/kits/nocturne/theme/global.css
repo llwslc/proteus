@@ -1,0 +1,42 @@
+body {
+  background-color: var(--nocturne-bg);
+  color: var(--nocturne-text);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-16);
+  line-height: var(--nocturne-lh-180);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scrollbar-width: thin;
+  scrollbar-color: var(--nocturne-gilt-dim) transparent;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(60vw 70vh at -8% -10%, rgba(122, 36, 64, 0.22), transparent 70%),
+    radial-gradient(55vw 70vh at 108% 112%, rgba(198, 154, 78, 0.1), transparent 70%),
+    linear-gradient(180deg, var(--nocturne-bg), #190e21);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150'><g fill='none' stroke='rgba(198,154,78,0.07)' stroke-width='1'><path d='M75 47C66 56 66 68 75 76C84 68 84 56 75 47Z'/><path d='M47 75C56 66 68 66 76 75C68 84 56 84 47 75Z'/><path d='M75 74C66 84 66 94 75 103C84 94 84 84 75 74Z'/><path d='M74 75C84 66 94 66 103 75C94 84 84 84 74 75Z'/><circle cx='75' cy='75' r='3.5'/><path d='M75 30C71 36 71 41 75 45C79 41 79 36 75 30Z'/><path d='M75 105C71 111 71 116 75 120C79 116 79 111 75 105Z'/><path d='M30 75C36 71 41 71 45 75C41 79 36 79 30 75Z'/><path d='M105 75C111 71 116 71 120 75C116 79 111 79 105 75Z'/></g><g fill='rgba(122,36,64,0.16)'><circle cx='75' cy='24' r='1.6'/><circle cx='75' cy='126' r='1.6'/><circle cx='24' cy='75' r='1.6'/><circle cx='126' cy='75' r='1.6'/></g><g fill='none' stroke='rgba(198,154,78,0.05)' stroke-width='1'><path d='M0 0C10 4 16 10 20 20M150 0C140 4 134 10 130 20M0 150C10 146 16 140 20 130M150 150C140 146 134 140 130 130'/><circle r='7'/><circle cx='150' r='7'/><circle cy='150' r='7'/><circle cx='150' cy='150' r='7'/></g></svg>");
+  background-size: 150px 150px;
+}
+
+::selection {
+  background: var(--nocturne-primary-deep);
+  color: var(--nocturne-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 3px;
+}
