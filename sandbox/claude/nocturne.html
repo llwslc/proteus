@@ -335,7 +335,7 @@ body.mist-on .mist{opacity:1}
   background:#0b0610;overflow:hidden;
   box-shadow:inset 0 1px 4px rgba(0,0,0,.65);
 }
-.choice--radio .moon{   /* full moon: gold disc + faint craters */
+.choice--radio .moon{   
   position:absolute;inset:1.5px;border-radius:50%;
   background:
     radial-gradient(2.4px 2.4px at 63% 40%,rgba(120,90,40,.5),transparent 62%),
@@ -343,7 +343,7 @@ body.mist-on .mist{opacity:1}
     radial-gradient(1.8px 1.8px at 56% 66%,rgba(120,90,40,.4),transparent 62%),
     radial-gradient(circle at 37% 31%,#FBEFCB,#E9CC8A 52%,#AE8238);
 }
-.choice--radio .moon::after{   /* night shadow that wanes off when picked */
+.choice--radio .moon::after{   
   content:"";position:absolute;inset:-1px;border-radius:50%;
   background:radial-gradient(circle at 42% 34%,#241636,#0a0510);
   transition:transform .6s cubic-bezier(.4,0,.3,1);

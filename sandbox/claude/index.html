@@ -20,7 +20,6 @@
   button{background:none;border:0;cursor:pointer}
   a{text-decoration:none}
 
-  /* ---------- LANDING ---------- */
   .landing{min-height:100%;padding:44px clamp(18px,4vw,56px) 72px}
   .landing-head{max-width:1360px;margin:0 auto 30px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
   .landing-head h1{font-size:clamp(20px,2.6vw,30px);font-weight:600;letter-spacing:.14em}
@@ -48,7 +47,6 @@
   .card-meta .code{font-weight:700;letter-spacing:.1em;font-size:15px}
   .card-meta .name{color:var(--dim);font-size:12.5px;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-  /* ---------- DETAIL ---------- */
   .detail{position:fixed;inset:0;display:grid;grid-template-columns:242px 1fr;background:var(--bg)}
   body[data-mode="grid"] .detail{display:none}
   body[data-mode="detail"] .landing{display:none}
@@ -102,7 +100,6 @@
   .bar-actions .fs-btn{width:34px;padding:0}
   .bar-actions .fs-btn svg{display:block;width:15px;height:15px}
 
-  /* in-page fullscreen: theme iframe fills the index; side + header hidden */
   .detail[data-fs="1"]{grid-template-columns:1fr}
   .detail[data-fs="1"] .side,.detail[data-fs="1"] .side-backdrop{display:none}
   .detail[data-fs="1"] .bar{display:none}
@@ -222,7 +219,6 @@
   var side=$("#side"), active=-1;
   var vp=localStorage.getItem("atlas-vp")||"pc";
 
-  // ---- landing grid: live hero-cropped thumbnails ----
   THEMES.forEach(function(t,i){
     var a=document.createElement("a");
     a.className="card"; a.href="#"+t.id; a.setAttribute("data-i",i);
@@ -241,13 +237,11 @@
     grid.appendChild(a);
   });
 
-  // scale each thumbnail's 1280px iframe to fit its card width
   var ro=new ResizeObserver(function(es){
     es.forEach(function(e){ e.target.style.setProperty("--s", e.target.clientWidth/1280); });
   });
   document.querySelectorAll(".thumb").forEach(function(th){ ro.observe(th); });
 
-  // lazy-load near-viewport thumbnails, but at most a few worlds at once
   var MAX=4, running=0, queue=[];
   function pump(){
     while(running<MAX && queue.length){
@@ -269,7 +263,6 @@
   },{rootMargin:"400px"});
   document.querySelectorAll(".thumb").forEach(function(th){ io.observe(th); });
 
-  // ---- sidebar (text only, no marks) ----
   THEMES.forEach(function(t,i){
     var b=document.createElement("button"); b.className="side-item"; b.type="button";
     var idx=document.createElement("span"); idx.className="si-idx"; idx.textContent=pad(i);
@@ -280,7 +273,6 @@
     sideList.appendChild(b);
   });
 
-  // ---- viewport mode (remembered) ----
   function applyVp(m){
     vp=m; localStorage.setItem("atlas-vp",m); viewport.setAttribute("data-vp",m);
     $("#pcBtn").classList.toggle("on",m==="pc");
@@ -289,7 +281,6 @@
   $("#pcBtn").addEventListener("click",function(){ applyVp("pc"); });
   $("#mobileBtn").addEventListener("click",function(){ applyVp("mobile"); });
 
-  // ---- enter a theme (detail mode) ----
   function enter(i){
     active=i; var t=THEMES[i];
     body.setAttribute("data-mode","detail");
@@ -319,13 +310,11 @@
   $("#menuBtn").addEventListener("click",function(){ side.classList.add("open"); });
   $("#sideBackdrop").addEventListener("click",closeSide);
 
-  // ---- in-page fullscreen: iframe fills index, side + header hidden; arrows still switch, Esc exits ----
   function enterFs(){ $("#detail").setAttribute("data-fs","1"); closeSide(); }
   function exitFs(){ $("#detail").removeAttribute("data-fs"); }
   function isFs(){ return $("#detail").getAttribute("data-fs")==="1"; }
   $("#fsBtn").addEventListener("click",enterFs);
 
-  // ---- sidebar search: filter by code, name or id ----
   var sideSearch=$("#sideSearch");
   function filterSide(){
     var q=sideSearch.value.trim().toLowerCase(), hit=0, items=sideList.children;
@@ -346,7 +335,6 @@
     }
   });
 
-  // ---- keys: one handler for the index and the preview document ----
   var TYPING="input,textarea,select,[contenteditable=true]",
       ARROW_HOST=TYPING+",[role=slider],[role=spinbutton],[role=tab],[role=option],[role=radio],[role=combobox],[role=listbox],[role=menu],[role=menuitem]";
   function frameLayerOpen(){
@@ -376,7 +364,6 @@
   }
   document.addEventListener("keydown",onKey);
 
-  // deep link: /#nocturne opens that theme directly
   var h=location.hash.replace("#","");
   var idx=THEMES.map(function(t){return t.id}).indexOf(h);
   if(idx>=0) enter(idx);

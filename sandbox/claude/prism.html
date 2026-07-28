@@ -1,3 +1,4 @@
+<html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GRUNDFORM — Interface Foundry · Series PRISM</title>
@@ -6,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Jost:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================ TOKENS */
 :root{
   --paper:#EDE6D3;
   --paper-2:#E2D8BF;
@@ -26,7 +26,6 @@
   --step:steps(2,end);
 }
 
-/* ============================================================ RESET */
 *{box-sizing:border-box}
 html,body{margin:0}
 body{
@@ -47,7 +46,6 @@ a{color:inherit}
 :focus-visible{outline:var(--line-thin) solid var(--blue);outline-offset:3px}
 button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:var(--line-thin) solid var(--blue);outline-offset:3px}
 
-/* ============================================================ TYPE */
 .eyebrow{
   font-family:var(--mono);
   font-size:.72rem;
@@ -59,7 +57,6 @@ button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:var(--
 .mono{font-family:var(--mono);letter-spacing:.04em}
 h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin:0;line-height:.92;letter-spacing:-.01em}
 
-/* ============================================================ LAYOUT */
 .wrap{max-width:1200px;margin:0 auto;padding-inline:32px}
 .sec{padding-block:96px;border-top:var(--line) solid var(--ink)}
 .sec-head{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:baseline;margin-bottom:48px}
@@ -70,7 +67,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .sec-head h2{font-size:clamp(2rem,4.4vw,3.4rem)}
 .sec-head p{margin:0;max-width:34ch;color:var(--ink-soft);font-size:.98rem;flex:1 1 240px;min-width:0}
 
-/* ============================================================ TOPBAR */
 .topbar{
   display:flex;justify-content:space-between;align-items:center;gap:16px;
   padding:16px 32px;border-bottom:var(--line) solid var(--ink);
@@ -80,7 +76,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .brandmark .glyph{width:26px;height:26px;flex:0 0 auto}
 .topbar .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* ============================================================ HERO */
 .hero{padding-block:64px 88px}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px}
@@ -92,7 +87,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .hero p.lede + p.lede{color:var(--ink-soft)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
 
-/* ---- hero plate (the signature composition) ---- */
 .plate{
   position:relative;aspect-ratio:1/1;width:100%;
   border:var(--line) solid var(--ink);background:var(--paper);
@@ -125,7 +119,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 }
 .plate-cap{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
 
-/* ============================================================ PRIMARIES */
 .prim{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:var(--line) solid var(--ink);background:var(--ink)}
 .prim-card{background:var(--paper);padding:30px;display:flex;flex-direction:column;gap:18px;min-width:0}
 .prim-card:not(:last-child){border-right:var(--line) solid var(--ink)}
@@ -144,7 +137,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .prim-card h3{font-size:1.9rem}
 .prim-card p{margin:0;color:var(--ink-soft);font-size:.95rem}
 
-/* ============================================================ CATALOGUE GRID */
 .cat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
 .mod{
   border:var(--line) solid var(--ink);background:var(--paper);
@@ -163,7 +155,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .stack{display:flex;flex-direction:column;gap:16px}
 
-/* ============================================================ BUTTONS */
 .btn{
   --bt-bg:var(--ink);--bt-fg:var(--paper);
   display:inline-flex;align-items:center;gap:10px;cursor:pointer;
@@ -187,7 +178,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .btn .dot{width:11px;height:11px;background:currentColor;flex:0 0 auto}
 .btn.blue .dot,.btn.red .dot,.btn.ghost .dot,.btn.yellow .dot{border-radius:50%}
 
-/* ============================================================ FIELDS */
 .field{display:flex;flex-direction:column;gap:8px;min-width:0}
 .field label,.leg{font-family:var(--mono);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
 .inp{
@@ -200,7 +190,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .inp:focus{outline:none;box-shadow:inset 5px 0 0 0 var(--blue)}
 .inp:focus-visible{outline:none}
 
-/* radio + checkbox (native, custom-drawn) */
 .opt{display:flex;align-items:center;gap:12px;cursor:pointer;padding:4px 0;font-size:1rem}
 .opt input{position:absolute;opacity:0;width:1px;height:1px}
 .mark{width:24px;height:24px;flex:0 0 auto;border:var(--line-thin) solid var(--ink);background:var(--paper);position:relative;transition:background .1s var(--step)}
@@ -210,7 +199,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .opt input:checked ~ .mark.ci::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--blue)}
 .opt input:focus-visible ~ .mark{outline:var(--line-thin) solid var(--blue);outline-offset:3px}
 
-/* switch */
 .switch{display:inline-flex;align-items:center;gap:14px;cursor:pointer;font-size:1rem}
 .switch input{position:absolute;opacity:0;width:1px;height:1px}
 .track{width:64px;height:32px;flex:0 0 auto;border:var(--line-thin) solid var(--ink);background:var(--paper-2);position:relative;transition:background .12s var(--step)}
@@ -219,7 +207,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .switch input:checked ~ .track .knob{transform:translateX(32px)}
 .switch input:focus-visible ~ .track{outline:var(--line-thin) solid var(--blue);outline-offset:3px}
 
-/* ============================================================ SLIDER / SCALES */
 .rng{-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;cursor:pointer;margin:0}
 .rng::-webkit-slider-runnable-track{height:18px;border:var(--line-thin) solid var(--ink);background:linear-gradient(90deg,var(--red) 0 var(--val,50%),var(--paper) var(--val,50%) 100%)}
 .rng::-moz-range-track{height:18px;border:var(--line-thin) solid var(--ink);background:linear-gradient(90deg,var(--red) 0 var(--val,50%),var(--paper) var(--val,50%) 100%)}
@@ -241,7 +228,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .gauge.on .ring-fg{transition:stroke-dashoffset 1.2s var(--snap)}
 .gauge .frame{fill:none;stroke:var(--ink);stroke-width:5}
 
-/* ============================================================ DROPDOWN */
 .select{position:relative;width:100%;max-width:320px}
 .select__btn{
   display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;cursor:pointer;
@@ -266,7 +252,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .select__opt .sw.yellow{background:var(--yellow)}
 .select__opt .sw.blk{background:var(--ink)}
 
-/* ============================================================ TABS */
 .tabs__list{display:flex;flex-wrap:wrap;gap:0;border:var(--line-thin) solid var(--ink);background:var(--ink);width:max-content;max-width:100%}
 .tab{
   font-family:var(--disp);font-size:.8rem;text-transform:uppercase;letter-spacing:.02em;cursor:pointer;
@@ -280,7 +265,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .tabs__panel h3{font-size:1.15rem;margin-bottom:8px}
 .tabs__panel p{margin:0;color:var(--ink-soft)}
 
-/* ============================================================ TOOLTIP */
 .tip{position:relative;display:inline-flex}
 .tip__t{
   width:26px;height:26px;border-radius:50%;border:var(--line-thin) solid var(--ink);
@@ -296,7 +280,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .tip__box::after{content:"";position:absolute;left:50%;top:100%;translate:-50% 0;width:14px;height:14px;background:var(--ink);rotate:45deg;margin-top:-7px}
 .tip:hover .tip__box,.tip__t:focus-visible + .tip__box{opacity:1}
 
-/* ============================================================ MODAL */
 .backdrop{position:fixed;inset:0;z-index:60;background:rgba(23,20,14,.62);display:none;align-items:center;justify-content:center;padding:24px}
 .backdrop.open{display:flex}
 .modal{
@@ -310,7 +293,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .modal p{margin:0 0 26px;color:var(--ink-soft)}
 .modal .acts{display:flex;flex-wrap:wrap;gap:14px}
 
-/* ============================================================ TOAST */
 .toast-wrap{position:fixed;right:24px;bottom:24px;z-index:70;display:flex;flex-direction:column;gap:14px;width:min(340px,calc(100vw - 48px))}
 .gf-toast{
   display:flex;align-items:flex-start;gap:12px;
@@ -325,7 +307,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .gf-toast__txt b{font-weight:600}
 .gf-toast__x{border:0;background:transparent;cursor:pointer;font-family:var(--disp);font-size:1.1rem;line-height:1;color:var(--ink);padding:0 2px}
 
-/* ============================================================ FOOTER */
 .foot{border-top:var(--line) solid var(--ink);padding-block:56px 64px}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
 .foot h3{font-size:clamp(1.8rem,4vw,2.8rem);max-width:16ch}
@@ -338,7 +319,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 .foot .rule.blue{background:var(--blue);border-radius:50%}
 .colophon{border-top:var(--line-thin) solid var(--ink);margin-top:44px;padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* ============================================================ KEYFRAMES */
 @keyframes pop-in{from{transform:translateY(-8px);opacity:0}6%{opacity:1}to{transform:none;opacity:1}}
 @keyframes slam{from{transform:translateY(-24px) rotate(-2deg)}6%{opacity:1}to{transform:none}}
 @keyframes toast-in{from{transform:translateX(60px)}6%{opacity:1}to{transform:none}}
@@ -346,7 +326,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 @keyframes cut-in{from{opacity:0;transform:translateY(34px)}7%{opacity:1}to{opacity:1;transform:none}}
 @keyframes slide-in{from{opacity:0;transform:translateX(-46px)}7%{opacity:1}to{opacity:1;transform:none}}
 
-/* entrance: gated on JS + motion-allowed so no-JS / reduced-motion see final state */
 @media (prefers-reduced-motion:no-preference){
   html.js .reveal{opacity:0}
   html.js .reveal.in{animation:cut-in .6s var(--snap) both}
@@ -368,7 +347,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 @keyframes ci-in{from{transform:scale(0)}to{transform:scale(1)}}
 @keyframes ring-in{from{transform:scale(0)}to{transform:scale(1)}}
 
-/* plate shapes rest at final state when motion is reduced / JS absent */
 .plate .cx-v{transform:scaleY(1)}
 .plate .cx-h{transform:scaleX(1)}
 .plate .diag{transform:rotate(24deg) scaleX(1)}
@@ -386,7 +364,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   html.js .plate .sh-ring{transform:scale(0)}
 }
 
-/* ============================================================ RESPONSIVE */
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .plate{max-width:440px}
@@ -408,7 +385,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 }
 </style>
 
-<!-- ============================================================ TOPBAR -->
 <header class="topbar">
   <div class="brandmark">
     <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true">
@@ -422,7 +398,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   <div class="tag">Interface Foundry — Series PRISM</div>
 </header>
 
-<!-- ============================================================ HERO -->
 <section class="hero wrap">
   <div class="hero-grid">
     <div>
@@ -449,7 +424,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   </div>
 </section>
 
-<!-- ============================================================ METHOD / PRIMARIES -->
 <section class="sec wrap" id="method">
   <div class="sec-head">
     <span class="num">01 / METHOD</span>
@@ -478,7 +452,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   </div>
 </section>
 
-<!-- ============================================================ CATALOGUE -->
 <section class="sec wrap" id="catalogue">
   <div class="sec-head">
     <span class="num">02 / CATALOGUE</span>
@@ -488,7 +461,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
 
   <div class="cat">
 
-    <!-- ACTUATORS -->
     <div class="mod span2 reveal">
       <div class="mod-head"><span class="pn">Part 01 — Actuators</span><span class="form sq"></span></div>
       <h3>Buttons commit, direct, wait.</h3>
@@ -503,7 +475,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
       </div>
     </div>
 
-    <!-- FIELDS -->
     <div class="mod reveal">
       <div class="mod-head"><span class="pn">Part 02 — Fields</span><span class="form tr"></span></div>
       <h3>Name a part.</h3>
@@ -525,7 +496,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
       </div>
     </div>
 
-    <!-- CHOICES -->
     <div class="mod reveal">
       <div class="mod-head"><span class="pn">Part 03 — Choices</span><span class="form ci"></span></div>
       <h3>Squares check. Circles pick.</h3>
@@ -544,7 +514,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
       <label class="switch"><input type="checkbox" id="sw1" checked><span class="track"><span class="knob"></span></span>Snap to module</label>
     </div>
 
-    <!-- SCALES -->
     <div class="mod reveal">
       <div class="mod-head"><span class="pn">Part 04 — Scales</span><span class="form ci"></span></div>
       <h3>Set it. Fill it. Turn it.</h3>
@@ -576,7 +545,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
       </div>
     </div>
 
-    <!-- MENU -->
     <div class="mod reveal">
       <div class="mod-head"><span class="pn">Part 05 — Menu</span><span class="form sq"></span></div>
       <h3>One pick, drawn by hand.</h3>
@@ -596,7 +564,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
       <p class="note mono">SELECTED → <b id="selEcho" style="color:var(--ink)">Red — Commit press</b></p>
     </div>
 
-    <!-- PANELS -->
     <div class="mod reveal">
       <div class="mod-head"><span class="pn">Part 06 — Panels</span><span class="form tr"></span></div>
       <h3>Tabs slide the block.</h3>
@@ -622,7 +589,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
       </div>
     </div>
 
-    <!-- SIGNALS -->
     <div class="mod reveal">
       <div class="mod-head"><span class="pn">Part 07 — Signals</span><span class="form sq"></span></div>
       <h3>Confirm, notify, explain.</h3>
@@ -642,7 +608,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   </div>
 </section>
 
-<!-- ============================================================ FOOTER -->
 <footer class="foot wrap">
   <div class="foot-grid">
     <div>
@@ -673,7 +638,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   </div>
 </footer>
 
-<!-- overlays -->
 <div class="backdrop" id="backdrop">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-describedby="mDesc">
     <div class="kicker"><span class="sq"></span>Confirm — this cannot be undone</div>
@@ -695,7 +659,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   root.classList.add("js");
   var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- toast (textContent only) ---- */
   var toastWrap=document.getElementById("toasts");
   function toast(msg, tone, boldPart){
     var t=document.createElement("div");
@@ -722,7 +685,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     x.addEventListener("click",close);
   }
 
-  /* ---- buttons with data-toast / data-scroll ---- */
   document.querySelectorAll("[data-toast]").forEach(function(b){
     b.addEventListener("click",function(){ toast(b.getAttribute("data-toast"), b.getAttribute("data-tone")); });
   });
@@ -733,7 +695,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     });
   });
 
-  /* ---- stamp part: user text via textContent ---- */
   var stampBtn=document.getElementById("stampBtn");
   var pname=document.getElementById("pname");
   if(stampBtn){
@@ -744,7 +705,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     });
   }
 
-  /* ---- slider ---- */
   var rng=document.getElementById("rng1"), rngVal=document.getElementById("rngVal");
   if(rng){
     rng.addEventListener("input",function(){
@@ -753,7 +713,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     });
   }
 
-  /* ---- switch (aria) ---- */
   var sw1=document.getElementById("sw1");
   if(sw1){
     var lbl=sw1.closest(".switch");
@@ -761,7 +720,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     sw1.addEventListener("change",syncSw); syncSw();
   }
 
-  /* ---- custom dropdown ---- */
   (function(){
     var sel=document.getElementById("sel1");
     if(!sel) return;
@@ -794,7 +752,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     });
   })();
 
-  /* ---- tabs ---- */
   (function(){
     var box=document.getElementById("tabs1");
     if(!box) return;
@@ -821,7 +778,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     });
   })();
 
-  /* ---- modal ---- */
   (function(){
     var back=document.getElementById("backdrop");
     var openBtn=document.getElementById("cutBtn");
@@ -845,7 +801,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
     back.addEventListener("click",function(e){ if(e.target===back) close(); });
   })();
 
-  /* ---- reveal + plate entrance + scales fill (IntersectionObserver) ---- */
   var bar=document.getElementById("bar1"), barI=bar?bar.querySelector("i"):null, barVal=document.getElementById("barVal");
   var gauge=document.getElementById("gauge1"), gaFg=gauge?gauge.querySelector(".ring-fg"):null, gaVal=document.getElementById("gaVal");
 
@@ -896,3 +851,4 @@ h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin
   }
 })();
 </script>
+</html>

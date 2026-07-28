@@ -67,7 +67,6 @@ strong { color: var(--cocoa); }
   border-radius: 12px;
 }
 
-/* ---------- primitives ---------- */
 .puff {
   background: var(--milk);
   border-radius: var(--r-card);
@@ -182,7 +181,6 @@ strong { color: var(--cocoa); }
   box-shadow: 7px 5px 0 -1px var(--pink-deep), -2px 9px 0 -1px var(--pink);
 }
 
-/* ---------- squish press ---------- */
 .squish {
   transform-origin: 50% 100%;
   transition: transform .45s var(--spring), box-shadow .45s var(--spring);
@@ -192,7 +190,6 @@ strong { color: var(--cocoa); }
   transition-duration: .07s;
 }
 
-/* ---------- buttons ---------- */
 .btn {
   position: relative;
   display: inline-flex;
@@ -242,7 +239,6 @@ strong { color: var(--cocoa); }
 .btn-sm { font-size: 15px; padding: 10px 22px; }
 .btn-ghost.btn-sm { padding: 7px 19px; }
 
-/* ---------- nav ---------- */
 .nav {
   position: sticky;
   top: 0;
@@ -305,7 +301,6 @@ strong { color: var(--cocoa); }
 }
 .nav-links a:hover { background: var(--pink-soft); color: var(--cocoa); }
 
-/* ---------- layout ---------- */
 main {
   max-width: 1180px;
   margin: 0 auto;
@@ -453,7 +448,6 @@ section { scroll-margin-top: 110px; }
 }
 .stage-cap { font-size: 14px; color: var(--cap); }
 
-/* ---------- trays ---------- */
 .trays {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -486,7 +480,6 @@ section { scroll-margin-top: 110px; }
   gap: 18px;
 }
 
-/* ---------- form ---------- */
 .field { margin-bottom: 24px; }
 .field-label {
   display: block;
@@ -630,7 +623,6 @@ section { scroll-margin-top: 110px; }
 .switch input:checked ~ .warm-steam path { animation: rise 2.8s ease-in-out infinite; }
 .switch input:checked ~ .warm-steam path + path { animation-delay: 1.4s; }
 
-/* ---------- dropdown ---------- */
 .dd { position: relative; }
 .dd-btn {
   width: 100%;
@@ -691,7 +683,6 @@ section { scroll-margin-top: 110px; }
 .dd-item small { color: var(--cap); font-size: 12px; }
 .dd-item[aria-selected="true"] small { color: var(--cocoa-2); }
 
-/* ---------- fire ---------- */
 .fire-block { margin-bottom: 30px; }
 .fire-block:last-child { margin-bottom: 0; }
 .fire-head {
@@ -787,7 +778,6 @@ input[type="range"]:focus-visible { outline: 3px solid var(--pink-deep); outline
 }
 .prog-steam path + path { animation-delay: 1.5s; }
 
-/* ---------- tabs ---------- */
 .tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
 .tab {
   position: relative;
@@ -839,7 +829,6 @@ input[type="range"]:focus-visible { outline: 3px solid var(--pink-deep); outline
   white-space: nowrap;
 }
 
-/* ---------- service ---------- */
 .serve-block {
   display: flex;
   align-items: center;
@@ -912,7 +901,6 @@ input[type="range"]:focus-visible { outline: 3px solid var(--pink-deep); outline
   border-bottom: 3px dotted var(--pink-deep);
 }
 
-/* ---------- modal ---------- */
 .overlay {
   position: fixed;
   inset: 0;
@@ -999,7 +987,6 @@ input[type="range"]:focus-visible { outline: 3px solid var(--pink-deep); outline
   padding: 6px 28px 26px;
 }
 
-/* ---------- toast ---------- */
 .toasts {
   position: fixed;
   z-index: 120;
@@ -1061,7 +1048,6 @@ input[type="range"]:focus-visible { outline: 3px solid var(--pink-deep); outline
   to { opacity: 0; transform: translateY(-8px) scale(.9, .7); }
 }
 
-/* ---------- footer ---------- */
 footer {
   position: relative;
   max-width: 1180px;
@@ -1073,7 +1059,6 @@ footer .close-line { font-weight: 600; color: var(--cocoa-2); }
 footer .fine { font-size: 13px; color: var(--cap); margin-top: 8px; }
 footer .stamp { position: static; justify-content: center; margin-bottom: 14px; }
 
-/* ---------- responsive ---------- */
 @media (max-width: 980px) {
   .hero { grid-template-columns: 1fr; gap: 34px; padding: 56px 0 48px; }
   .t-order, .t-fire, .t-menu, .t-service { grid-column: span 12; }
@@ -1403,7 +1388,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
-  /* poke: deflate a breath */
   $$('.mochi').forEach(function (m) {
     m.addEventListener('click', function () {
       if (m.classList.contains('deflated')) return;
@@ -1417,7 +1401,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
     });
   });
 
-  /* smooth goto */
   $$('[data-goto]').forEach(function (b) {
     b.addEventListener('click', function () {
       var t = $(b.getAttribute('data-goto'));
@@ -1425,7 +1408,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
     });
   });
 
-  /* toasts */
   var toasts = $('#toasts');
   var icons = {
     pink: 'M3 8 C 3 4, 13 4, 13 8 M2 11 L14 11',
@@ -1459,7 +1441,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
     });
   });
 
-  /* dropdown listbox */
   var dd = $('#dd-tea');
   var ddBtn = $('.dd-btn', dd);
   var ddVal = $('#dd-tea-val');
@@ -1497,7 +1478,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
     if (!dd.contains(e.target)) ddClose(false);
   });
 
-  /* sweetness slider + gauge */
   var sweet = $('#sweet');
   var sweetOut = $('#sweet-out');
   var arc = $('#gauge-arc');
@@ -1525,7 +1505,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
   sweet.addEventListener('input', renderSweet);
   renderSweet();
 
-  /* steamer progress */
   var prog = $('#prog');
   var fill = $('#prog-fill');
   var read = $('#prog-read');
@@ -1545,7 +1524,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
     read.textContent = 'Basket ' + basket + ' · ' + progWord(p) + ' ' + p + '%';
   }, 130);
 
-  /* tabs */
   var tabs = $$('.tab');
   function pickTab(tab) {
     tabs.forEach(function (t) {
@@ -1567,7 +1545,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
     });
   });
 
-  /* modal */
   var overlay = $('#overlay');
   var modal = $('.modal', overlay);
   var lastFocus = null;
@@ -1604,7 +1581,6 @@ footer .stamp { position: static; justify-content: center; margin-bottom: 14px; 
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 
-  /* escape closes floaty things */
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (overlay.classList.contains('show')) { closeModal(); return; }

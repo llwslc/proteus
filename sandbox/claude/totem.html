@@ -54,7 +54,6 @@ button{font:inherit;color:inherit}
 .skip:focus{left:12px;top:12px}
 .defs-svg{position:absolute;width:0;height:0;overflow:hidden}
 
-/* 边饰带 */
 .band{border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);overflow:hidden}
 .band svg{display:block;width:100%;height:26px}
 .band .march{animation:march 2.2s steps(2) infinite}
@@ -63,7 +62,6 @@ button{font:inherit;color:inherit}
 .band--zig{background:var(--cinnabar)}
 .band--sun{background:var(--ochre)}
 
-/* HERO */
 .hero{padding:56px 0 64px;position:relative}
 .brandline{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:40px}
 .seal{
@@ -107,7 +105,6 @@ button{font:inherit;color:inherit}
   padding:4px 12px;font-size:13px;font-weight:600;letter-spacing:.14em;
 }
 
-/* 织物分块网格 */
 .plates{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:26px;padding:56px 0 72px}
 .patch{position:relative;background:var(--bone-raised);background-image:var(--weave);border:3px solid var(--ink);padding:24px 24px 28px}
 .patch::before{content:"";position:absolute;inset:7px;border:2px dashed rgba(36,28,20,.26);pointer-events:none}
@@ -127,7 +124,6 @@ button{font:inherit;color:inherit}
 .p6{grid-column:span 7}
 .p7{grid-column:span 5}
 
-/* 按钮 */
 .btn{
   display:inline-block;padding:11px 22px;cursor:pointer;
   font-weight:600;font-size:16px;letter-spacing:.1em;
@@ -160,7 +156,6 @@ button{font:inherit;color:inherit}
 .stamp--i{color:var(--indigo);transform:rotate(2deg)}
 .stamp--o{color:var(--ochre-deep);transform:rotate(-1deg)}
 
-/* 字段 */
 .field{margin-bottom:20px}
 .field label,.field .field-label{display:block;font-weight:600;font-size:15px;letter-spacing:.08em;margin-bottom:8px}
 .field input[type="text"]{
@@ -172,7 +167,6 @@ button{font:inherit;color:inherit}
 .field input[type="text"]:focus-visible{outline-offset:0;box-shadow:inset 0 -4px 0 var(--indigo)}
 .hint{font-size:13px;color:var(--ink-soft);margin-top:7px}
 
-/* 下拉 */
 .dd{position:relative}
 .dd-btn{
   width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;
@@ -198,7 +192,6 @@ button{font:inherit;color:inherit}
 .dd-pop li[aria-selected="true"]::before{background:var(--cinnabar)}
 .dd-pop li small{margin-left:auto;font-size:12px;color:var(--ink-soft)}
 
-/* 单选 · 复选 */
 .choices{display:flex;flex-direction:column;gap:12px;border:0;padding:0;margin:0}
 .choices legend{font-weight:600;font-size:15px;letter-spacing:.08em;padding:0;margin-bottom:10px}
 .choice{display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:500}
@@ -219,7 +212,6 @@ button{font:inherit;color:inherit}
 }
 .note strong{color:var(--ink)}
 
-/* 开关 */
 .switch{display:flex;align-items:center;gap:14px;cursor:pointer}
 .switch input{appearance:none;-webkit-appearance:none;margin:0;position:absolute;width:1px;height:1px;opacity:0}
 .sw-track{
@@ -239,7 +231,6 @@ button{font:inherit;color:inherit}
 .sw-label{font-weight:600}
 .sw-state{font-size:13px;color:var(--ink-soft)}
 
-/* 滑杆 */
 .slider-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
 .slider-row output{font-family:var(--slab);font-size:15px;color:var(--indigo)}
 input[type="range"]{
@@ -265,7 +256,6 @@ input[type="range"]::-moz-range-thumb{
   clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
 }
 
-/* 量表 */
 .gauge-box{margin-top:22px}
 .gauge{display:block;width:100%;max-width:280px;height:auto;margin:0 auto}
 .gauge .seg{fill:var(--bone-dim);stroke:var(--ink);stroke-width:1.5}
@@ -276,7 +266,6 @@ input[type="range"]::-moz-range-thumb{
 .gauge-read{text-align:center;font-size:14px;color:var(--ink-soft);margin-top:6px}
 .gauge-read strong{color:var(--indigo);letter-spacing:.06em}
 
-/* 进度 */
 .prog-block{margin-top:26px}
 .prog{height:24px;border:3px solid var(--ink);background:var(--bone-raised);background-image:var(--weave);position:relative;overflow:hidden}
 .prog-fill{
@@ -289,7 +278,6 @@ input[type="range"]::-moz-range-thumb{
 .prog-row output{font-family:var(--slab);font-size:15px;color:var(--indigo)}
 .prog-row .btn{padding:7px 16px;font-size:14px}
 
-/* 标签页 */
 .tablist{display:flex;gap:10px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding:0 10px}
 .tab{
   position:relative;margin-bottom:-3px;padding:9px 18px 8px;cursor:pointer;
@@ -310,7 +298,6 @@ input[type="range"]::-moz-range-thumb{
 .tab-lore strong{color:var(--ink)}
 .tab-use{margin-top:4px;font-size:13px;color:var(--ochre-deep);letter-spacing:.08em}
 
-/* 弹窗 */
 dialog{border:0;padding:0;background:transparent;max-width:none}
 dialog::backdrop{background:rgba(21,42,70,.6)}
 .dialog-card{
@@ -327,7 +314,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
 .dialog-choices{display:flex;gap:18px;flex-wrap:wrap}
 .dialog-choices .choice{gap:8px}
 
-/* toast */
 .toasts{
   position:fixed;top:16px;right:16px;z-index:90;
   display:flex;flex-direction:column;gap:12px;align-items:flex-end;
@@ -352,7 +338,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
 @keyframes toast-in{from{transform:translateY(-18px);opacity:0}to{transform:none;opacity:1}}
 @keyframes toast-out{to{transform:translateY(-12px);opacity:0}}
 
-/* tooltip */
 .tt{position:relative;display:inline-flex}
 .tt-pop{
   position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);
@@ -375,7 +360,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
   display:inline-grid;place-items:center;
 }
 
-/* 页脚 */
 .colophon{background:var(--indigo-deep);color:var(--bone);padding:34px 0 42px}
 .colophon .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline}
 .colophon strong{font-family:var(--serif);font-weight:900;font-size:20px;letter-spacing:.18em}
@@ -807,7 +791,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
   ring("raysBig","rayA",16,120,120);
   ring("diaRing","diaB",8,120,120);
 
-  /* toast */
   var toasts=document.getElementById("toasts");
   var sealChar={cinnabar:"S",indigo:"R",ochre:"B"};
   function toast(msg,tone){
@@ -832,7 +815,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
     b.addEventListener("click",function(){toast(b.dataset.toast,b.dataset.tone);});
   });
 
-  /* 下拉 */
   var ddBtn=document.getElementById("fabricBtn");
   var ddPop=document.getElementById("fabricPop");
   var ddVal=document.getElementById("fabricValue");
@@ -883,7 +865,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
     if(!ddPop.hidden&&!e.target.closest(".dd"))ddClose(false);
   });
 
-  /* 染方 */
   var dyeNote=document.getElementById("dyeNote");
   var dyeNotes={
     indigo:"<strong>Indigo, three dips</strong>: three dips, three dryings, halos of bone white.",
@@ -895,14 +876,12 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
     r.addEventListener("change",function(){dyeNote.innerHTML=dyeNotes[r.value];});
   });
 
-  /* 工序 */
   var stepsBox=document.getElementById("stepsBox");
   var stepsCount=document.getElementById("stepsCount");
   stepsBox.addEventListener("change",function(){
     stepsCount.textContent=stepsBox.querySelectorAll("input:checked").length;
   });
 
-  /* 开关 */
   var loom=document.getElementById("loomSwitch");
   var loomState=document.getElementById("loomState");
   loom.addEventListener("change",function(){
@@ -910,7 +889,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
     toast(loom.checked?"Shuttle on the loom — the treadles bite now":"Shuttle off; that is enough for today","indigo");
   });
 
-  /* 滑杆 + 量表 */
   var depth=document.getElementById("dyeDepth");
   var dyeOut=document.getElementById("dyeOut");
   var gauge=document.getElementById("vatGauge");
@@ -951,7 +929,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
   depth.addEventListener("input",function(){setVat(+depth.value);});
   setVat(62);
 
-  /* 进度 */
   var weaveBar=document.getElementById("weaveBar");
   var weaveFill=document.getElementById("weaveFill");
   var weaveOut=document.getElementById("weaveOut");
@@ -972,7 +949,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
     }
   });
 
-  /* 标签页 */
   var tabs=Array.prototype.slice.call(document.querySelectorAll("[role=tab]"));
   function pickTab(tab){
     tabs.forEach(function(t){
@@ -995,7 +971,6 @@ dialog::backdrop{background:rgba(21,42,70,.6)}
     });
   });
 
-  /* 弹窗 */
   var dlg=document.getElementById("joinDialog");
   var joinForm=document.getElementById("joinForm");
   var joinName=document.getElementById("joinName");

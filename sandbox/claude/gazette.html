@@ -11,9 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=UnifrakturMaguntia&display=swap"
     />
     <style>
-      /* ─────────────────────────────────────────────────────────────
-   THE PROTEUS GAZETTE — two plates: ink black and reflex blue
-   ───────────────────────────────────────────────────────────── */
       :root {
         --paper: #f2f0e9;
         --paper-tint: #e6e3d9;
@@ -87,7 +84,6 @@
         outline-offset: 2px;
       }
 
-      /* ── 新闻纸纹 · newsprint tooth + web fibre, over the whole sheet ── */
       .grain {
         position: absolute;
         inset: 0;
@@ -103,7 +99,6 @@
           240px 240px;
       }
 
-      /* ── 十字对版标 · registration targets, both plates ─────────── */
       .reg {
         position: relative;
         display: inline-block;
@@ -155,7 +150,6 @@
         right: 2px;
       }
 
-      /* ── 套印微移 · the blue plate, hung a hair off register ────── */
       .misreg {
         position: relative;
         isolation: isolate;
@@ -171,7 +165,6 @@
         pointer-events: none;
       }
 
-      /* ── sheet ─────────────────────────────────────────────────── */
       .sheet {
         position: relative;
         max-width: 1200px;
@@ -179,7 +172,6 @@
         padding: var(--sheet-pad);
       }
 
-      /* ── 报头 · nameplate ──────────────────────────────────────── */
       .masthead {
         padding-top: clamp(10px, 2vw, 22px);
       }
@@ -242,7 +234,6 @@
         color: var(--blue);
       }
 
-      /* ── 期号日期眉线 · folio rules ────────────────────────────── */
       .rule-heavy {
         border-top: 4px solid var(--ink);
         border-bottom: 1px solid var(--ink);
@@ -272,7 +263,6 @@
         color: var(--blue);
       }
 
-      /* ── front page ────────────────────────────────────────────── */
       .front {
         display: grid;
         grid-template-columns: minmax(0, 0.86fr) minmax(0, 2.5fr) minmax(0, 0.92fr);
@@ -342,7 +332,6 @@
         font-weight: 600;
       }
 
-      /* ── 多栏发丝分栏 · true column rules ──────────────────────── */
       .story {
         columns: 3;
         column-gap: var(--gut);
@@ -362,7 +351,6 @@
         text-indent: 0;
       }
 
-      /* ── 首字下沉 · drop cap ───────────────────────────────────── */
       .story p:first-of-type::first-letter {
         float: left;
         font-family: var(--display);
@@ -383,7 +371,6 @@
         }
       }
 
-      /* ── 引语拉出大字 · pull quote ─────────────────────────────── */
       .pull {
         column-span: all;
         margin: 1.15em 0;
@@ -419,7 +406,6 @@
         padding-top: 0.7em;
       }
 
-      /* ── rails ─────────────────────────────────────────────────── */
       .railhead {
         font-family: var(--mono);
         font-size: 0.625rem;
@@ -517,7 +503,6 @@
         font-size: 0.75rem;
       }
 
-      /* ── departments ───────────────────────────────────────────── */
       .dept {
         padding-top: clamp(34px, 4.6vw, 64px);
       }
@@ -527,7 +512,6 @@
         gap: 0.75em;
         flex-wrap: wrap;
       }
-      /* 铅字压痕 · a reversed slug, pressed into the sheet */
       .slug {
         font-family: var(--mono);
         font-size: 0.625rem;
@@ -617,7 +601,6 @@
         padding-top: 0.8em;
       }
 
-      /* ── buttons: slugs of type ────────────────────────────────── */
       .btn-row {
         display: flex;
         flex-wrap: wrap;
@@ -687,7 +670,6 @@
         transition: background 0.2s var(--ease);
       }
 
-      /* hover: the ink has not dried — a soft bloom + a bright rule */
       .btn:hover:not(:disabled) {
         filter: drop-shadow(0 0 3.5px rgba(23, 57, 154, 0.34));
       }
@@ -736,7 +718,6 @@
         margin-top: 1.2em;
       }
 
-      /* ── form furniture ────────────────────────────────────────── */
       .stack {
         display: grid;
         gap: 1.15em;
@@ -805,7 +786,6 @@
         gap: 0.45em;
       }
 
-      /* radio + checkbox: marks struck on paper */
       .choices {
         display: grid;
         gap: 0.55em;
@@ -889,7 +869,6 @@
         padding-top: 0.15em;
       }
 
-      /* switch: the carrier's gate flag */
       .switch {
         display: flex;
         align-items: center;
@@ -950,7 +929,6 @@
         padding-top: 0.15em;
       }
 
-      /* select: a self-drawn galley of routes */
       .combo {
         position: relative;
       }
@@ -1044,7 +1022,6 @@
         color: var(--paper);
       }
 
-      /* slider: a press-speed rule */
       .range-head {
         display: flex;
         justify-content: space-between;
@@ -1130,7 +1107,6 @@
         letter-spacing: 0.08em;
       }
 
-      /* tabs: the wire services */
       .tabs__list {
         display: flex;
         gap: 0;
@@ -1215,7 +1191,6 @@
         text-indent: 1.15em;
       }
 
-      /* progress: tonight's run */
       .meter-row {
         display: flex;
         justify-content: space-between;
@@ -1253,7 +1228,6 @@
         transition: width 0.5s var(--ease);
       }
 
-      /* gauge */
       .gauge {
         display: flex;
         align-items: center;
@@ -1297,7 +1271,6 @@
         background: var(--blue);
       }
 
-      /* tooltip */
       .tip-host {
         position: relative;
       }
@@ -1365,7 +1338,6 @@
         transform: translateY(0);
       }
 
-      /* modal */
       .scrim {
         position: fixed;
         inset: 0;
@@ -1433,7 +1405,6 @@
         border-top: 1px solid var(--rule);
       }
 
-      /* toast rail */
       .toasts {
         position: fixed;
         right: clamp(12px, 2vw, 26px);
@@ -1504,7 +1475,6 @@
         }
       }
 
-      /* colophon */
       .colophon {
         margin-top: clamp(40px, 5.5vw, 76px);
         border-top: 4px solid var(--ink);
@@ -1560,7 +1530,6 @@
         font-weight: 600;
       }
 
-      /* ── mobile ────────────────────────────────────────────────── */
       @media (max-width: 900px) {
         .front {
           grid-template-columns: 1fr;
@@ -1642,10 +1611,8 @@
     </style>
   </head>
   <body>
-    <!-- 新闻纸纹 · two turbulence plates: tooth and web fibre -->
     <div class="grain" aria-hidden="true"></div>
 
-    <!-- registration target, drawn once, struck on both plates -->
     <svg
       style="position: absolute; width: 0; height: 0; overflow: hidden"
       aria-hidden="true"
@@ -1693,7 +1660,6 @@
         ><svg class="plate-k"><use href="#regmark" /></svg
       ></span>
 
-      <!-- ══ 报头 ══════════════════════════════════════════════ -->
       <header class="masthead">
         <div class="ears">
           <p class="ear">
@@ -1723,7 +1689,6 @@
         </p>
       </header>
 
-      <!-- ══ 头版 ══════════════════════════════════════════════ -->
       <div class="front">
         <div class="rail-l">
           <h2 class="railhead">Index <em>16&nbsp;pp</em></h2>
@@ -1890,7 +1855,6 @@
         </div>
       </div>
 
-      <!-- ══ PAGE 2 ════════════════════════════════════════════ -->
       <section class="dept" id="composing">
         <header class="dept__head">
           <span class="slug">Page 2</span>
@@ -1964,7 +1928,6 @@
         </div>
       </section>
 
-      <!-- ══ PAGE 4 ════════════════════════════════════════════ -->
       <section class="dept" id="desk">
         <header class="dept__head">
           <span class="slug">Page 4</span>
@@ -2117,7 +2080,6 @@
         </form>
       </section>
 
-      <!-- ══ PAGE 7 ════════════════════════════════════════════ -->
       <section class="dept" id="wire">
         <header class="dept__head">
           <span class="slug">Page 7</span>
@@ -2271,7 +2233,6 @@
         </div>
       </section>
 
-      <!-- ══ PAGE 9 ════════════════════════════════════════════ -->
       <section class="dept" id="pressroom">
         <header class="dept__head">
           <span class="slug">Page 9</span>
@@ -2409,7 +2370,6 @@
         </div>
       </section>
 
-      <!-- ══ PAGE 12 ═══════════════════════════════════════════ -->
       <section class="dept" id="stop">
         <header class="dept__head">
           <span class="slug">Page 12</span>
@@ -2470,7 +2430,6 @@
         </div>
       </section>
 
-      <!-- ══ PAGE 16 ═══════════════════════════════════════════ -->
       <footer class="colophon" id="colophon">
         <div class="dept__head" style="padding-bottom: 1.2em">
           <span class="slug">Page 16</span>
@@ -2512,7 +2471,6 @@
       </footer>
     </div>
 
-    <!-- ══ modal ══ -->
     <div class="scrim" id="scrim" hidden>
       <div
         class="modal"
@@ -2560,7 +2518,6 @@
         "use strict";
         var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        /* ── toasts ── every user string enters via textContent ── */
         var rail = document.getElementById("toasts");
         function toast(message, kicker) {
           var el = document.createElement("div");
@@ -2609,7 +2566,6 @@
           },
         );
 
-        /* ── index anchors ── */
         Array.prototype.forEach.call(
           document.querySelectorAll('.index a[href^="#"]'),
           function (a) {
@@ -2625,7 +2581,6 @@
           },
         );
 
-        /* ── the route galley (self-drawn listbox) ── */
         var routes = [
           { v: "Quay Street and the docks", n: "05:10" },
           { v: "Old Town, north of the tram", n: "05:35" },
@@ -2734,7 +2689,6 @@
           }
         });
 
-        /* ── subscription card ── */
         var order = document.getElementById("order");
         var addr = document.getElementById("addr");
         var addrField = document.getElementById("f-addr");
@@ -2787,7 +2741,6 @@
           );
         });
 
-        /* ── the wire (tabs) ── */
         var tablist = document.querySelector('[role="tablist"]');
         var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
         function selectTab(tab) {
@@ -2817,7 +2770,6 @@
           });
         });
 
-        /* ── pressroom: speed, gauge, ink well ── */
         var ticksG = document.getElementById("ticks");
         var labelsG = document.getElementById("tick-labels");
         for (var t = 0; t <= 10; t++) {
@@ -2878,7 +2830,6 @@
         speed.addEventListener("input", syncPress);
         syncPress();
 
-        /* ── tonight's run ── */
         var runBar = document.getElementById("run-bar");
         var runFill = document.getElementById("run-fill");
         var runCount = document.getElementById("run-count");
@@ -2929,7 +2880,6 @@
         });
         paintRun();
 
-        /* ── stop press: bulletins from the reader's own line ── */
         var bull = document.getElementById("bull");
         function fileBulletin(kicker) {
           var text = bull.value.trim() || bull.placeholder;
@@ -2950,7 +2900,6 @@
           }
         });
 
-        /* ── modal ── */
         var scrim = document.getElementById("scrim");
         var modal = document.getElementById("modal");
         var opener = null;

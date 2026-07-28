@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Bitter:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ============================== TOKENS ============================== */
 :root{
   --iron:#1b1610;
   --iron-2:#221b13;
@@ -31,7 +30,7 @@
   --danger:#cf5236;
   --ink:#ece0c6;
   --ink-dim:#cbb78e;
-  --ink-faint:#8f8265;   /* decorative micro-labels only */
+  --ink-faint:#8f8265;   
 
   --serif:'Bitter','Georgia',serif;
   --display:'Cinzel','Times New Roman',serif;
@@ -63,7 +62,6 @@ body{
   overflow-x:hidden;
   -webkit-text-size-adjust:100%;
 }
-/* aged metal grain over everything */
 body::before{
   content:"";
   position:fixed; inset:0;
@@ -83,7 +81,6 @@ button{font-family:inherit;color:inherit}
 .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--pad)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* ============================== SHARED: PLATE ============================== */
 .plate{
   position:relative;
   border-radius:var(--r-plate);
@@ -95,7 +92,6 @@ button{font-family:inherit;color:inherit}
     0 2px 0 rgba(0,0,0,.4),
     var(--bevel-up);
 }
-/* brushed-brass streaks on the frame */
 .plate::before{
   content:"";
   position:absolute; inset:0;
@@ -108,7 +104,6 @@ button{font-family:inherit;color:inherit}
   mix-blend-mode:overlay;
   pointer-events:none;
 }
-/* verdigris patina bloom in one corner */
 .plate::after{
   content:"";
   position:absolute; inset:0;
@@ -141,7 +136,6 @@ button{font-family:inherit;color:inherit}
 .rivet.tl{top:9px;left:9px} .rivet.tr{top:9px;right:9px}
 .rivet.bl{bottom:9px;left:9px} .rivet.br{bottom:9px;right:9px}
 
-/* panel nameplate header */
 .nameplate{
   display:flex; align-items:center; gap:12px;
   margin-bottom:18px;
@@ -167,7 +161,6 @@ button{font-family:inherit;color:inherit}
   text-transform:uppercase; color:var(--copper-lite);
 }
 
-/* ============================== CONSOLE STATUS BAR ============================== */
 .statusbar{
   border-bottom:1px solid rgba(202,160,83,.22);
   background:linear-gradient(180deg, rgba(30,23,15,.9), rgba(21,15,9,.9));
@@ -186,7 +179,6 @@ button{font-family:inherit;color:inherit}
   box-shadow:0 0 8px var(--verd); vertical-align:middle; margin-right:6px}
 .live-atm{color:var(--amber)}
 
-/* ============================== HERO ============================== */
 .hero{position:relative; overflow:hidden; padding:56px 0 48px}
 .steam{position:absolute; inset:-10% -5% auto -5%; height:120%; pointer-events:none; z-index:0}
 .steam span{
@@ -234,7 +226,6 @@ button{font-family:inherit;color:inherit}
 
 .hero__ctas{display:flex; gap:14px; flex-wrap:wrap}
 
-/* hero instrument (right column) */
 .instrument{position:relative}
 .instrument__gears{position:absolute; inset:0; z-index:0; pointer-events:none; overflow:visible}
 .gauge-wrap{position:relative; z-index:1; margin:0 auto; max-width:360px}
@@ -253,7 +244,6 @@ button{font-family:inherit;color:inherit}
 .readout__status{font-size:.72rem; letter-spacing:.12em; color:var(--verd-lite)}
 .readout__status b{display:block; font-size:.92rem}
 
-/* ============================== BUTTONS ============================== */
 .btn{
   --b:var(--brass);
   display:inline-flex; align-items:center; gap:9px; justify-content:center;
@@ -286,7 +276,6 @@ button{font-family:inherit;color:inherit}
 }
 .btn__seal{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 40% 35%, #b9603a, #5f2c17);box-shadow:inset -1px -1px 1px rgba(0,0,0,.4)}
 
-/* ============================== DECK ============================== */
 .section-head{margin:8px 0 26px}
 .section-head h2{
   font-family:var(--display); font-weight:700; letter-spacing:.06em;
@@ -295,7 +284,6 @@ button{font-family:inherit;color:inherit}
 .deck{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px; margin-bottom:26px}
 .span-2{grid-column:1 / -1}
 
-/* control field rows */
 .field{margin-bottom:20px}
 .field:last-child{margin-bottom:0}
 .field > label:not(.opt), .legend{
@@ -305,7 +293,6 @@ button{font-family:inherit;color:inherit}
 }
 .grouprow{display:flex; gap:22px; flex-wrap:wrap}
 
-/* text input */
 .txt{
   width:100%; font-family:var(--serif); font-size:1rem; color:var(--ink);
   background:var(--well); border:0; border-radius:var(--r-ctl);
@@ -315,7 +302,6 @@ button{font-family:inherit;color:inherit}
 .txt::placeholder{color:var(--ink-faint)}
 .txt:focus{outline:none; box-shadow:inset 0 2px 7px rgba(0,0,0,.7), inset 0 0 0 1.5px var(--brass-lite)}
 
-/* radio + checkbox (native, styled) */
 .opt{display:flex; align-items:center; gap:11px; cursor:pointer; padding:5px 0; color:var(--ink)}
 .opt input{position:absolute; opacity:0; width:0; height:0}
 .opt__mark{
@@ -348,7 +334,6 @@ button{font-family:inherit;color:inherit}
 .opt input:focus-visible + .opt__mark{outline:2px solid var(--brass-lite); outline-offset:2px}
 .opt__txt small{display:block; color:var(--ink-dim); font-size:.8rem; letter-spacing:0; text-transform:none}
 
-/* slider — brass fader */
 .slider-row{display:flex; align-items:center; gap:14px}
 .slider{ -webkit-appearance:none; appearance:none; flex:1; height:16px; background:transparent; cursor:pointer}
 .slider:focus{outline:none}
@@ -376,7 +361,6 @@ button{font-family:inherit;color:inherit}
 .slider:focus-visible::-webkit-slider-thumb{outline:2px solid var(--brass-lite); outline-offset:2px}
 .slider-val{font-family:var(--mono); font-size:.9rem; color:var(--amber); min-width:66px; text-align:right}
 
-/* dropdown */
 .dd{position:relative}
 .dd__btn{
   width:100%; text-align:left; display:flex; align-items:center; gap:10px;
@@ -403,7 +387,6 @@ button{font-family:inherit;color:inherit}
 .dd__opt[aria-selected="true"]::before{content:"◆"; color:var(--verd-lite); font-size:.7rem}
 .dd__opt[aria-selected="false"]::before{content:""; width:.7rem; display:inline-block}
 
-/* tabs */
 .tabs__list{display:flex; gap:6px; border-bottom:2px solid var(--brass-deep); margin-bottom:18px; flex-wrap:wrap}
 .tab{
   font-family:var(--mono); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
@@ -422,7 +405,6 @@ button{font-family:inherit;color:inherit}
 .tabpanel h3{font-family:var(--display); color:var(--brass-lite); font-size:1.1rem; letter-spacing:.05em; margin-bottom:8px}
 .tabpanel p{color:var(--ink-dim); margin-bottom:14px}
 
-/* progress / mini bar */
 .bar{position:relative; height:16px; border-radius:8px; background:var(--well);
   box-shadow:inset 0 2px 5px rgba(0,0,0,.8), inset 0 0 0 1px var(--brass-deep); overflow:hidden}
 .bar__fill{height:100%; width:50%; border-radius:8px 4px 4px 8px;
@@ -431,7 +413,6 @@ button{font-family:inherit;color:inherit}
 .bar__red{position:absolute; top:-2px; bottom:-2px; left:83%; width:2px; background:var(--danger); box-shadow:0 0 6px var(--danger)}
 .barlabel{display:flex; justify-content:space-between; font-family:var(--mono); font-size:.74rem; color:var(--ink-dim); margin-bottom:7px; letter-spacing:.05em}
 
-/* ============================== VALVE LEVER (switch) ============================== */
 .valvebox{display:flex; align-items:center; gap:20px; flex-wrap:wrap}
 .valve{
   position:relative; border:0; background:transparent; cursor:pointer; padding:6px;
@@ -448,7 +429,6 @@ button{font-family:inherit;color:inherit}
 .valve.is-open ~ .valve__meta .valve__state, .valvebox .valve.is-open + .valve__meta .valve__state{color:var(--verd-lite)}
 .valve__cap{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; color:var(--ink-dim); text-transform:uppercase}
 
-/* ============================== TOOLTIP ============================== */
 [data-tip]{cursor:help}
 .tooltip{
   position:fixed; z-index:9999; max-width:230px;
@@ -461,7 +441,6 @@ button{font-family:inherit;color:inherit}
 }
 .tooltip.show{opacity:1; transform:none}
 
-/* ============================== TOAST ============================== */
 .toaster{
   position:fixed; z-index:9997; right:22px; bottom:22px;
   display:flex; flex-direction:column; gap:12px;
@@ -486,7 +465,6 @@ button{font-family:inherit;color:inherit}
 .toast__x{flex:none; background:none; border:0; color:var(--ink-faint); cursor:pointer; font-size:1.1rem; line-height:1; padding:2px 4px}
 .toast__x:hover{color:var(--brass-lite)}
 
-/* ============================== MODAL ============================== */
 .backdrop{
   position:fixed; inset:0; z-index:9990; display:none;
   align-items:center; justify-content:center; padding:20px;
@@ -506,13 +484,11 @@ button{font-family:inherit;color:inherit}
 .modal__body{color:var(--ink-dim); margin-bottom:22px}
 .modal__foot{display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap}
 
-/* ============================== MECHANISM STRIP ============================== */
 .gearstrip{display:flex; align-items:center; justify-content:center; gap:0; min-height:150px; position:relative; overflow:hidden}
 .gearstrip svg{position:absolute}
 .gear-spin-cw{animation:spin 20s linear infinite}
 .gear-spin-ccw{animation:spin 20s linear infinite reverse}
 
-/* ============================== FOOTER ============================== */
 .foot{border-top:1px solid rgba(202,160,83,.22); margin-top:20px; padding:40px 0 56px}
 .foot__grid{display:flex; justify-content:space-between; gap:28px; flex-wrap:wrap; align-items:flex-end}
 .foot__mark{font-family:var(--display); font-weight:700; letter-spacing:.1em; color:var(--brass-lite); font-size:1.2rem}
@@ -522,11 +498,9 @@ button{font-family:inherit;color:inherit}
 section.band{padding:54px 0}
 .band--alt{background:linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,0))}
 
-/* ============================== KEYFRAME: gears ============================== */
 @keyframes spin{to{transform:rotate(360deg)}}
 .gear{transform-origin:50% 50%}
 
-/* ============================== RESPONSIVE ============================== */
 @media (max-width:900px){
   .hero__grid{grid-template-columns:1fr; gap:34px}
   .instrument{order:-1}
@@ -550,7 +524,6 @@ section.band{padding:54px 0}
 </head>
 <body>
 
-<!-- ===================== STATUS BAR ===================== -->
 <div class="statusbar">
   <div class="wrap statusbar__row">
     <span class="statusbar__brand">ASHCOMBE &amp; VANE</span>
@@ -561,7 +534,6 @@ section.band{padding:54px 0}
   </div>
 </div>
 
-<!-- ===================== HERO ===================== -->
 <header class="hero">
   <div class="steam" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <div class="wrap hero__grid">
@@ -583,10 +555,8 @@ section.band{padding:54px 0}
     </div>
 
     <div class="instrument">
-      <!-- meshing gears behind the dial -->
       <div class="instrument__gears" id="heroGears" aria-hidden="true"></div>
 
-      <!-- pressure gauge -->
       <div class="gauge-wrap">
         <svg class="gauge" viewBox="0 0 240 240" role="img" aria-labelledby="gaugeTitle">
           <title id="gaugeTitle">Boiler pressure gauge, reading in atmospheres</title>
@@ -619,7 +589,6 @@ section.band{padding:54px 0}
           <circle cx="120" cy="120" r="103" fill="none" stroke="#3f2f14" stroke-width="3"/>
           <circle cx="120" cy="120" r="98" fill="url(#face)"/>
 
-          <!-- coloured pressure zones -->
           <g fill="none" stroke-width="7" stroke-linecap="butt">
             <path id="zoneGreen" stroke="#57a48c"/>
             <path id="zoneAmber" stroke="#d8993f"/>
@@ -628,7 +597,6 @@ section.band{padding:54px 0}
 
           <g id="ticks"></g>
 
-          <!-- needle -->
           <g class="needle" id="needle">
             <path d="M120,120 L116,44 Q120,36 124,44 L120,120 Z" fill="#e6cd86"/>
             <path d="M120,120 L116,44 Q120,36 124,44 L120,120 Z" fill="none" stroke="#cf5236" stroke-width="1"/>
@@ -637,12 +605,10 @@ section.band{padding:54px 0}
           <circle cx="120" cy="120" r="13" fill="url(#hub)" stroke="#2a1f0d" stroke-width="1"/>
           <circle cx="120" cy="120" r="3.4" fill="#2a1f0d"/>
 
-          <!-- maker's mark + units -->
           <text x="120" y="86" text-anchor="middle" fill="#8f8265" font-family="Space Mono, monospace" font-size="8" letter-spacing="1.5">A · V</text>
           <text x="120" y="164" text-anchor="middle" fill="#caa053" font-family="Space Mono, monospace" font-size="10" letter-spacing="2">ATM</text>
 
           <circle cx="120" cy="120" r="98" fill="url(#glass)" pointer-events="none"/>
-          <!-- redline hotspot for tooltip -->
           <path id="redlineHot" d="M120,120 L200,80 A98,98 0 0,1 178,196 Z" fill="transparent"
                 data-tip="Redline begins at 10 atmospheres. Vent before the needle crosses it."/>
         </svg>
@@ -659,7 +625,6 @@ section.band{padding:54px 0}
   </div>
 </header>
 
-<!-- ===================== CONTROL DECK ===================== -->
 <main>
 <section class="band">
   <div class="wrap">
@@ -670,7 +635,6 @@ section.band{padding:54px 0}
 
     <div class="deck">
 
-      <!-- PANEL: ACTUATORS + VALVE + SLIDER -->
       <section class="plate span-2" aria-labelledby="p1">
         <div class="plate__face">
           <div class="nameplate">
@@ -680,22 +644,18 @@ section.band{padding:54px 0}
           </div>
 
           <div class="grouprow" style="align-items:flex-start; gap:34px">
-            <!-- valve lever (the switch) -->
             <div class="field" style="margin:0">
               <span class="legend">Main steam · valve lever</span>
               <div class="valvebox">
                 <button class="valve is-open" id="valve" role="switch" aria-checked="true" aria-label="Main steam valve" data-tip="Throw the lever to admit steam. It drops into the detent when it lands.">
                   <svg viewBox="0 0 132 150" aria-hidden="true">
                     <g class="housing">
-                      <!-- quadrant guide -->
                       <path d="M66,128 m-70,0 a70,70 0 0,1 140,0" fill="none" stroke="#2a1f0d" stroke-width="14" stroke-linecap="round" transform="scale(0.62) translate(41,20)"/>
                       <rect x="10" y="120" width="112" height="24" rx="7" fill="#2a2318" stroke="#6e5324" stroke-width="1.5"/>
-                      <!-- detent notches -->
                       <circle cx="30" cy="66" r="4" fill="#150f08" stroke="#6e5324"/>
                       <circle cx="102" cy="66" r="4" fill="#150f08" stroke="#6e5324"/>
                       <text x="26" y="58" fill="#8f8265" font-family="Space Mono, monospace" font-size="8">SHUT</text>
                       <text x="92" y="58" fill="#8f8265" font-family="Space Mono, monospace" font-size="8">OPEN</text>
-                      <!-- pivot -->
                       <circle cx="66" cy="128" r="12" fill="url(#hub2)"/>
                     </g>
                     <defs>
@@ -706,7 +666,6 @@ section.band{padding:54px 0}
                         <stop offset="0%" stop-color="#f6e7b6"/><stop offset="50%" stop-color="#caa053"/><stop offset="100%" stop-color="#8a6a2c"/>
                       </linearGradient>
                     </defs>
-                    <!-- lever arm -->
                     <g class="arm">
                       <rect x="61" y="40" width="10" height="90" rx="5" fill="url(#lever)" stroke="#4c3917" stroke-width="1"/>
                       <circle cx="66" cy="40" r="13" fill="url(#lever)" stroke="#4c3917" stroke-width="1.5"/>
@@ -722,7 +681,6 @@ section.band{padding:54px 0}
               </div>
             </div>
 
-            <!-- slider -->
             <div style="flex:1; min-width:210px">
               <div class="field">
                 <label for="pslider">Working pressure — target</label>
@@ -733,7 +691,6 @@ section.band{padding:54px 0}
                 <p class="hint">The dial answers the lever: open the valve to raise the needle to target.</p>
               </div>
 
-              <!-- button variants -->
               <div class="field" style="margin-bottom:0">
                 <span class="legend">Actuators</span>
                 <div class="grouprow" style="gap:12px">
@@ -749,7 +706,6 @@ section.band{padding:54px 0}
         <i class="rivet tl"></i><i class="rivet tr"></i><i class="rivet bl"></i><i class="rivet br"></i>
       </section>
 
-      <!-- PANEL: VESSEL REGISTER (text, radio, checkbox, dropdown) -->
       <section class="plate" aria-labelledby="p2">
         <div class="plate__face">
           <div class="nameplate">
@@ -790,7 +746,6 @@ section.band{padding:54px 0}
         <i class="rivet tl"></i><i class="rivet tr"></i><i class="rivet bl"></i><i class="rivet br"></i>
       </section>
 
-      <!-- PANEL: STATIONS (tabs + progress) -->
       <section class="plate" aria-labelledby="p3">
         <div class="plate__face">
           <div class="nameplate">
@@ -835,7 +790,6 @@ section.band{padding:54px 0}
   </div>
 </section>
 
-<!-- ===================== MECHANISM STRIP ===================== -->
 <section class="band band--alt">
   <div class="wrap">
     <div class="section-head">
@@ -853,7 +807,6 @@ section.band{padding:54px 0}
 </section>
 </main>
 
-<!-- ===================== FOOTER ===================== -->
 <footer class="foot">
   <div class="wrap foot__grid">
     <div>
@@ -864,7 +817,6 @@ section.band{padding:54px 0}
   </div>
 </footer>
 
-<!-- ===================== OVERLAYS ===================== -->
 <div class="backdrop" id="backdrop">
   <div class="plate modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-describedby="mBody" id="modal">
     <div class="plate__face">
@@ -892,31 +844,25 @@ section.band{padding:54px 0}
   var $ = function(s,r){return (r||document).querySelector(s);};
   var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
 
-  /* ---------- corner rivets are in markup; generate none ---------- */
 
-  /* ---------- geometry helpers ---------- */
   function polar(cx,cy,r,deg){var a=(deg-90)*Math.PI/180; return [cx+r*Math.cos(a), cy+r*Math.sin(a)];}
-  // arc from d0 to d1 (degrees, clockwise), 0deg = up
   function arc(cx,cy,r,d0,d1){
     var p0=polar(cx,cy,r,d0), p1=polar(cx,cy,r,d1);
     var large=(d1-d0)>180?1:0;
     return "M"+p0[0].toFixed(2)+","+p0[1].toFixed(2)+" A"+r+","+r+" 0 "+large+" 1 "+p1[0].toFixed(2)+","+p1[1].toFixed(2);
   }
 
-  /* ---------- GAUGE ---------- */
-  var GMIN=0, GMAX=12, A0=-120, A1=120;               // 240deg sweep
-  function pAng(p){return A0 + (p-GMIN)/(GMAX-GMIN)*(A1-A0);}   // pressure -> angle from up
+  var GMIN=0, GMAX=12, A0=-120, A1=120;
+  function pAng(p){return A0 + (p-GMIN)/(GMAX-GMIN)*(A1-A0);}
   var CX=120, CY=120;
 
-  // zones
   $("#zoneGreen").setAttribute("d", arc(CX,CY,88, pAng(0), pAng(8)));
   $("#zoneAmber").setAttribute("d", arc(CX,CY,88, pAng(8), pAng(10)));
   $("#zoneRed").setAttribute("d",   arc(CX,CY,88, pAng(10), pAng(12)));
 
-  // ticks + numerals
   (function(){
     var g=$("#ticks"), NS="http://www.w3.org/2000/svg", frag=document.createDocumentFragment();
-    for(var i=0;i<=24;i++){                       // 0.5-atm minor ticks
+    for(var i=0;i<=24;i++){
       var pv=i*0.5, ang=pAng(pv), major=(i%2===0);
       var r1=78, r2=major?67:73;
       var a=polar(CX,CY,r1,ang), b=polar(CX,CY,r2,ang);
@@ -953,13 +899,11 @@ section.band{padding:54px 0}
     var p = state.valveOpen ? state.target : 0;
     state.current = p;
     needle.style.transform = "rotate("+pAng(p).toFixed(2)+"deg)";
-    // readout
     atmBig.textContent="";
     var big=document.createTextNode(fmt(p)+" ");
     var unit=document.createElement("span"); unit.style.fontSize=".6em"; unit.textContent="atm";
     atmBig.appendChild(big); atmBig.appendChild(unit);
     liveAtm.textContent=fmt(p);
-    // status word + colour
     var word, col;
     if(p>=10){word="REDLINE"; col="#e08a6a";}
     else if(p>=8){word="ELEVATED"; col="#e8c26a";}
@@ -968,13 +912,11 @@ section.band{padding:54px 0}
     statusWord.textContent=word;
     statusWord.parentNode.style.color=col;
     atmBig.style.color = p>=10 ? "#e08a6a" : (p>=8?"#e8c26a":"#d8993f");
-    // drum charge bar mirrors fraction
     var pct=Math.round(p/GMAX*100);
     chargeFill.style.width=pct+"%";
     chargePct.textContent=pct+"%";
   }
 
-  /* ---------- VALVE LEVER ---------- */
   var valve=$("#valve"), valveState=$("#valveState"), valveCap=$("#valveCap");
   function setValve(open, announce){
     state.valveOpen=open;
@@ -995,7 +937,6 @@ section.band{padding:54px 0}
   }
   valve.addEventListener("click", function(){ setValve(!state.valveOpen, true); });
 
-  /* ---------- SLIDER ---------- */
   var pslider=$("#pslider"), sliderVal=$("#sliderVal");
   pslider.addEventListener("input", function(){
     state.target=parseFloat(pslider.value);
@@ -1004,7 +945,6 @@ section.band{padding:54px 0}
     render();
   });
 
-  /* ---------- BUTTONS ---------- */
   function engage(){
     setValve(true, false);
     toast("Engaged", "Main valve seated at "+fmt(state.target)+" atm. Governing to target.");
@@ -1023,7 +963,6 @@ section.band{padding:54px 0}
     });
   });
 
-  /* ---------- MODAL (Vent) ---------- */
   var backdrop=$("#backdrop"), modal=$("#modal"), lastFocus=null;
   function openModal(){
     lastFocus=document.activeElement;
@@ -1056,7 +995,6 @@ section.band{padding:54px 0}
     toast("Boiler vented", "Steam released and the needle laid to zero. Re-pressure before the next run.");
   });
 
-  /* ---------- DROPDOWN ---------- */
   var APPARATUS=[
     "Boiler No. 3 — “Perseverance”",
     "Condenser bank — West gallery",
@@ -1072,7 +1010,7 @@ section.band{padding:54px 0}
       li.className="dd__opt"; li.setAttribute("role","option");
       li.setAttribute("aria-selected", i===0?"true":"false");
       li.dataset.i=i;
-      li.textContent=name;                       // textContent — safe
+      li.textContent=name;
       li.addEventListener("click", function(){ chooseAp(i); });
       ddList.appendChild(li);
     });
@@ -1104,7 +1042,6 @@ section.band{padding:54px 0}
   });
   ddBtn.addEventListener("keydown", function(e){ if((e.key==="ArrowDown")&&ddList.classList.contains("open")){ ddList.focus(); } });
 
-  /* ---------- CHECKBOX count ---------- */
   var lockCount=$("#lockCount");
   $$(".lock").forEach(function(c){
     c.addEventListener("change", function(){
@@ -1113,7 +1050,6 @@ section.band{padding:54px 0}
     });
   });
 
-  /* ---------- TABS ---------- */
   var tabs=$$('[role="tab"]');
   function selectTab(tab){
     tabs.forEach(function(t){
@@ -1136,11 +1072,10 @@ section.band{padding:54px 0}
     });
   });
 
-  /* ---------- TOOLTIP ---------- */
   var tip=$("#tooltip"), tipTarget=null;
   function showTip(el){
     var text=el.getAttribute("data-tip"); if(!text) return;
-    tip.textContent=text;                          // textContent — safe
+    tip.textContent=text;
     tip.classList.add("show");
     var r=el.getBoundingClientRect(), tr=tip.getBoundingClientRect();
     var left=r.left + r.width/2 - tr.width/2;
@@ -1162,15 +1097,14 @@ section.band{padding:54px 0}
   });
   window.addEventListener("scroll", function(){ if(tipTarget) showTip(tipTarget); }, {passive:true});
 
-  /* ---------- TOAST ---------- */
   var toaster=$("#toaster");
   function toast(title, msg){
     var t=document.createElement("div"); t.className="toast"; t.setAttribute("role","status");
     var ico=document.createElement("div"); ico.className="toast__ico";
     ico.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 L14.5 8 L20 8.7 L16 12.5 L17 18 L12 15.3 L7 18 L8 12.5 L4 8.7 L9.5 8 Z" fill="#1c0e05"/></svg>';
     var body=document.createElement("div"); body.className="toast__body";
-    var h=document.createElement("div"); h.className="toast__title"; h.textContent=title;   // safe
-    var m=document.createElement("div"); m.className="toast__msg"; m.textContent=msg;         // safe
+    var h=document.createElement("div"); h.className="toast__title"; h.textContent=title;
+    var m=document.createElement("div"); m.className="toast__msg"; m.textContent=msg;
     body.appendChild(h); body.appendChild(m);
     var x=document.createElement("button"); x.className="toast__x"; x.setAttribute("aria-label","Dismiss"); x.textContent="×";
     var kill=function(){ t.classList.add("out"); setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 300); };
@@ -1181,7 +1115,6 @@ section.band{padding:54px 0}
     setTimeout(kill, 4600);
   }
 
-  /* ---------- GEARS ---------- */
   function gearPath(cx,cy,teeth,rO,rI){
     var step=Math.PI*2/teeth, d="";
     for(var i=0;i<teeth;i++){
@@ -1223,7 +1156,6 @@ section.band{padding:54px 0}
     rim.setAttribute("fill","none"); rim.setAttribute("stroke","#2a1f0d"); rim.setAttribute("stroke-width","2");
     svg.appendChild(rim);
 
-    // spokes
     var spokes=Math.min(6, Math.max(4, Math.round(teeth/4)));
     for(var s=0;s<spokes;s++){
       var ang=s/spokes*Math.PI*2;
@@ -1244,7 +1176,6 @@ section.band{padding:54px 0}
     return svg;
   }
 
-  // hero: two meshing gears, tucked behind the dial corners
   (function(){
     var host=$("#heroGears");
     var g1=makeGear(22, 58, +1, 22, {copper:true});
@@ -1254,14 +1185,12 @@ section.band{padding:54px 0}
     host.appendChild(g1); host.appendChild(g2);
   })();
 
-  // mechanism strip: three meshing gears, centred and touching
   (function(){
     var strip=$("#gearStrip");
     var g1=makeGear(24, 66, +1, 24, {}),
         g2=makeGear(16, 46, -1, 16, {copper:true}),
         g3=makeGear(12, 36, +1, 12, {});
     [g1,g2,g3].forEach(function(g){ g.style.position="absolute"; g.style.top="50%"; });
-    // centre distances = sum of pitch radii; lay along a line, centred as a group
     var d12=g1.__pitch+g2.__pitch, d23=g2.__pitch+g3.__pitch;
     var x1=0, x2=x1+d12, x3=x2+d23;
     var mid=(x1+x3)/2;
@@ -1270,7 +1199,6 @@ section.band{padding:54px 0}
     strip.appendChild(g1); strip.appendChild(g2); strip.appendChild(g3);
   })();
 
-  // footer: a small idle pair
   (function(){
     var f=$("#footGears");
     var a=makeGear(14,20,+1,14,{}), b=makeGear(10,15,-1,10,{copper:true});
@@ -1278,7 +1206,6 @@ section.band{padding:54px 0}
     f.appendChild(a); f.appendChild(b);
   })();
 
-  /* ---------- boot ---------- */
   render();
 })();
 </script>

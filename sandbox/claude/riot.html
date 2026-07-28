@@ -8,17 +8,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Archivo+Black&family=Bungee&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
 <style>
-/* ============ TOKENS ============ */
 :root{
-  --paper:#e9e7e0;      /* photocopy gray-white — protagonist */
-  --paper-hi:#f5f3ec;   /* fresh scrap / torn highlight */
-  --paper-lo:#d7d4ca;   /* shadowed second sheet */
-  --ink:#0c0c0e;        /* dead black — protagonist */
-  --orange:#ff4a0f;     /* fluoro signal */
+  --paper:#e9e7e0;      
+  --paper-hi:#f5f3ec;   
+  --paper-lo:#d7d4ca;   
+  --ink:#0c0c0e;        
+  --orange:#ff4a0f;     
   --orange-deep:#d63b00;
-  --pink:#ff2e88;       /* fluoro signal */
+  --pink:#ff2e88;       
   --pink-deep:#d5136c;
-  --dead:#adaaa0;       /* jammed / disabled */
+  --dead:#adaaa0;       
   --dead-ink:#67645c;
   --tape:rgba(228,222,196,.62);
 
@@ -52,21 +51,18 @@ body{
 }
 img,svg{max-width:100%}
 
-/* photocopy grain — sits over everything, subtle multiply speckle */
 .grain{
   position:fixed;inset:0;z-index:9000;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode:multiply;opacity:.09;
 }
 
-/* ============ LAYOUT ============ */
 .zine{max-width:1180px;margin:0 auto;padding:0 clamp(18px,5vw,64px)}
 .band{position:relative;padding:clamp(52px,8vw,104px) 0}
 .band+.band{border-top:3px solid var(--ink)}
 .deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .band>.zine{position:relative;z-index:1}
 
-/* ============ SHARED DECORATION PARTS ============ */
 .torn{position:absolute;left:-2px;right:-2px;height:15px;background:var(--paper);pointer-events:none;z-index:2;
   -webkit-mask:var(--torn) repeat-x;mask:var(--torn) repeat-x;-webkit-mask-size:240px 100%;mask-size:240px 100%}
 .torn--t{top:-9px}
@@ -91,7 +87,6 @@ img,svg{max-width:100%}
   -webkit-mask:radial-gradient(120% 120% at 0 0,#000,transparent);mask:radial-gradient(120% 120% at 0 0,#000,transparent);
   opacity:.5;mix-blend-mode:multiply}
 
-/* ============ RANSOM COLLAGE ============ */
 .ransom{display:inline;line-height:1.34}
 .rn{display:inline-block;padding:.02em .085em;margin:.02em .008em;color:var(--ink);
   background:var(--paper-hi);box-shadow:1.5px 2px 0 rgba(0,0,0,.32);
@@ -117,7 +112,6 @@ img,svg{max-width:100%}
   75%{transform:translate(-1px,-1px)}
 }
 
-/* ============ MASTHEAD ============ */
 .mast{position:sticky;top:0;z-index:200;background:var(--ink);color:var(--paper);
   border-bottom:3px solid var(--ink)}
 .mast__in{max-width:1180px;margin:0 auto;padding:9px clamp(18px,5vw,64px);
@@ -132,7 +126,6 @@ img,svg{max-width:100%}
 .barcode{height:22px;width:96px;align-self:center;
   background:repeating-linear-gradient(90deg,var(--paper) 0 2px,transparent 2px 3px,var(--paper) 3px 4px,transparent 4px 7px,var(--paper) 7px 9px,transparent 9px 10px,var(--paper) 10px 13px,transparent 13px 14px)}
 
-/* ============ HERO ============ */
 .hero{padding-top:clamp(40px,7vw,80px);padding-bottom:clamp(56px,9vw,120px)}
 .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
   display:inline-flex;gap:8px;align-items:center;margin-bottom:22px}
@@ -160,7 +153,6 @@ img,svg{max-width:100%}
 .scrap-card .win svg{position:absolute;inset:14%;width:72%;height:72%}
 .scrap-card .cap{font-family:var(--f-type);font-size:12px;margin-top:8px;line-height:1.2}
 
-/* ============ SECTION HEADS ============ */
 .head{display:flex;align-items:baseline;gap:14px;margin-bottom:12px;flex-wrap:wrap}
 .head__no{font-family:var(--f-mono);font-size:13px;background:var(--ink);color:var(--paper);
   padding:3px 8px;letter-spacing:.05em}
@@ -169,7 +161,6 @@ img,svg{max-width:100%}
 .head__t em{font-style:normal;color:var(--orange);-webkit-text-stroke:1.4px var(--ink);text-stroke:1.4px var(--ink)}
 .head__note{font-family:var(--f-type);font-size:14px;max-width:52ch;margin:0 0 34px;line-height:1.4}
 
-/* ============ SHEET ============ */
 .sheet{position:relative;background:var(--paper);border:2px solid var(--ink);
   padding:clamp(20px,3vw,34px);box-shadow:var(--shadow)}
 .sheet--torn{border-top:0;border-bottom:0}
@@ -183,7 +174,6 @@ img,svg{max-width:100%}
 .grid--2{grid-template-columns:1fr 1fr}
 .grid--desk{grid-template-columns:1.15fr .85fr}
 
-/* ============ BUTTONS ============ */
 .btnrow{display:flex;gap:18px 20px;flex-wrap:wrap;align-items:center}
 .btn{font-family:var(--f-black);text-transform:uppercase;font-size:15px;letter-spacing:.01em;
   border:2px solid var(--ink);background:var(--paper-hi);color:var(--ink);
@@ -201,13 +191,11 @@ img,svg{max-width:100%}
 .btn--icon{padding:11px;display:inline-grid;place-items:center;width:44px;height:44px}
 .btn--icon svg{width:20px;height:20px}
 
-/* focus — fluoro, chunky */
 :focus{outline:none}
 :focus-visible{outline:3px solid var(--pink);outline-offset:3px}
 .btn--pink:focus-visible,.btn--primary:focus-visible{outline-color:var(--ink)}
 .btn--wire:focus-visible{outline-color:var(--orange)}
 
-/* ============ FIELDS ============ */
 .field{display:flex;flex-direction:column;gap:8px}
 .label{font-family:var(--f-black);text-transform:uppercase;font-size:12px;letter-spacing:.08em;
   display:inline-flex;align-items:center;gap:8px}
@@ -220,7 +208,6 @@ img,svg{max-width:100%}
 
 .count{font-family:var(--f-mono);font-size:11px;align-self:flex-end;opacity:.7}
 
-/* rubber-stamp radio + checkbox */
 .opt{display:flex;align-items:center;gap:11px;cursor:pointer;font-family:var(--f-body);
   font-weight:600;font-size:15px;padding:5px 0;user-select:none}
 .opt input{position:absolute;opacity:0;width:0;height:0}
@@ -235,7 +222,6 @@ img,svg{max-width:100%}
 .opt input:disabled~*{opacity:.42}
 .opt:has(input:disabled){cursor:not-allowed}
 
-/* switch — hard-cut slam */
 .switch{display:inline-flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
 .switch input{position:absolute;opacity:0;width:0;height:0}
 .switch .track{width:74px;height:36px;border:2.5px solid var(--ink);background:var(--paper-hi);
@@ -247,7 +233,6 @@ img,svg{max-width:100%}
 .switch input:focus-visible+.track{outline:3px solid var(--pink);outline-offset:3px}
 .switch__state{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;min-width:4ch}
 
-/* slider */
 .range{-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;cursor:pointer}
 .range::-webkit-slider-runnable-track{height:14px;background:var(--paper-hi);border:2px solid var(--ink);
   background-image:radial-gradient(var(--ink) 30%,transparent 33%);background-size:7px 7px}
@@ -265,7 +250,6 @@ img,svg{max-width:100%}
 .toneswatch b{position:absolute;right:8px;bottom:6px;font-family:var(--f-mono);font-size:11px;
   background:var(--paper);padding:1px 5px}
 
-/* ============ SELECT (self-drawn) ============ */
 .select{position:relative;font-family:var(--f-body)}
 .select__btn{width:100%;font-family:var(--f-black);text-transform:uppercase;font-size:14px;letter-spacing:.02em;
   background:var(--paper-hi);border:2px solid var(--ink);padding:13px 16px;cursor:pointer;
@@ -286,7 +270,6 @@ img,svg{max-width:100%}
 .select__opt[aria-selected="true"]::after{content:"◄ PICKED";font-family:var(--f-mono);font-size:10px;color:var(--orange)}
 .select__opt:hover[aria-selected="true"]::after,.select__opt.active[aria-selected="true"]::after{color:var(--orange)}
 
-/* ============ TABS ============ */
 .tabs__list{display:flex;gap:8px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:0;margin-bottom:0}
 .tab{font-family:var(--f-black);text-transform:uppercase;font-size:14px;letter-spacing:.02em;
   background:var(--paper-lo);border:2px solid var(--ink);border-bottom:0;padding:11px 18px;cursor:pointer;
@@ -306,7 +289,6 @@ img,svg{max-width:100%}
 .minigrid i:nth-child(4n){background:var(--ink);transform:rotate(-3deg)}
 .minigrid i:nth-child(5n){background:var(--pink)}
 
-/* ============ METER / GAUGE ============ */
 .meter{height:30px;border:2px solid var(--ink);background:var(--paper-hi);position:relative;overflow:hidden}
 .meter__fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--orange);
   background-image:radial-gradient(rgba(0,0,0,.55) 34%,transparent 37%);background-size:9px 9px;
@@ -322,7 +304,6 @@ img,svg{max-width:100%}
 .gauge__lab{font-family:var(--f-mono);font-size:12px;line-height:1.5}
 .gauge__lab b{font-family:var(--f-black);font-size:20px;display:block}
 
-/* ============ MODAL ============ */
 .scrim{position:fixed;inset:0;z-index:500;background:rgba(12,12,14,.72);
   background-image:radial-gradient(rgba(0,0,0,.4) 30%,transparent 33%);background-size:8px 8px;
   display:none;place-items:center;padding:22px}
@@ -347,7 +328,6 @@ img,svg{max-width:100%}
   100%{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);opacity:1}
 }
 
-/* ============ TOAST ============ */
 .toasts{position:fixed;top:64px;right:18px;z-index:800;display:flex;flex-direction:column;gap:12px;
   width:min(340px,calc(100vw - 36px));pointer-events:none}
 .toast{background:var(--paper-hi);border:2.5px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
@@ -364,7 +344,6 @@ img,svg{max-width:100%}
 .toast__bar.run{animation:drain 4.2s linear forwards}
 @keyframes drain{to{width:0}}
 
-/* ============ TOOLTIP ============ */
 .tip{position:fixed;z-index:900;background:var(--ink);color:var(--paper);font-family:var(--f-type);
   font-size:13px;padding:8px 11px;max-width:230px;box-shadow:4px 4px 0 var(--orange);
   pointer-events:none;display:none;transform:rotate(-1deg)}
@@ -373,7 +352,6 @@ img,svg{max-width:100%}
   border:7px solid transparent;border-top-color:var(--ink);border-bottom:0}
 .hasTip{border-bottom:2px dotted var(--ink);cursor:help}
 
-/* ============ FOOTER ============ */
 .foot{background:var(--ink);color:var(--paper);padding:clamp(40px,6vw,72px) 0 46px}
 .foot .zine{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between}
 .foot__big{font-family:var(--f-poster);text-transform:uppercase;font-size:clamp(30px,6vw,64px);line-height:.9;margin:0}
@@ -382,7 +360,6 @@ img,svg{max-width:100%}
 .foot__meta b{color:var(--orange)}
 .foot .barcode{width:150px;height:34px}
 
-/* ============ RESPONSIVE ============ */
 @media (max-width:760px){
   :root{--tilt-l:-.7deg;--tilt-r:.5deg}
   .grid--2,.grid--desk{grid-template-columns:1fr}
@@ -407,7 +384,6 @@ img,svg{max-width:100%}
 </head>
 <body>
 
-<!-- inline SVG filter for ink smear + reusable icon symbols -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="smear"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="22"/></filter>
   <symbol id="i-fist" viewBox="0 0 24 24"><path fill="currentColor" d="M7 11V6.5a1.5 1.5 0 013 0V11h1V5.5a1.5 1.5 0 013 0V11h1V6.5a1.5 1.5 0 013 0V13c0 4-2.5 7-6 7s-6-2.5-6-6.5V9.5a1.5 1.5 0 013 0V11z"/></symbol>
@@ -420,7 +396,6 @@ img,svg{max-width:100%}
 
 <div class="grain" aria-hidden="true"></div>
 
-<!-- ============ MASTHEAD ============ -->
 <header class="mast">
   <div class="mast__in">
     <div class="mast__word">STAPLE<b>GUN</b></div>
@@ -434,7 +409,6 @@ img,svg{max-width:100%}
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
 <section class="band hero">
   <div class="deco" aria-hidden="true">
     <div class="blob" style="width:260px;height:200px;background:var(--pink);left:-70px;top:34%"></div>
@@ -474,7 +448,6 @@ img,svg{max-width:100%}
   </div>
 </section>
 
-<!-- ============ THE PRESS / BUTTONS ============ -->
 <section class="band">
   <div class="deco" aria-hidden="true">
     <div class="dots-patch" style="right:2%;top:12%;transform:scaleX(-1)"></div>
@@ -503,7 +476,6 @@ img,svg{max-width:100%}
   </div>
 </section>
 
-<!-- ============ PASTE-UP / FORM CONTROLS ============ -->
 <section class="band" id="pasteup">
   <div class="deco" aria-hidden="true">
     <div class="smudge" style="width:280px;height:140px;background:var(--pink);left:-60px;top:20%;opacity:.4"></div>
@@ -584,7 +556,6 @@ img,svg{max-width:100%}
   </div>
 </section>
 
-<!-- ============ PROOF SHEET / TABS + METERS ============ -->
 <section class="band">
   <div class="deco" aria-hidden="true">
     <div class="dots-patch" style="left:1%;top:6%"></div>
@@ -651,7 +622,6 @@ img,svg{max-width:100%}
   </div>
 </section>
 
-<!-- ============ HIT THE STREET / MODAL + TOAST ============ -->
 <section class="band">
   <div class="deco" aria-hidden="true">
     <div class="smudge" style="width:360px;height:180px;background:var(--orange);left:20%;bottom:-40px;opacity:.35"></div>
@@ -676,7 +646,6 @@ img,svg{max-width:100%}
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
 <footer class="foot">
   <div class="zine">
     <div>
@@ -690,7 +659,6 @@ img,svg{max-width:100%}
   </div>
 </footer>
 
-<!-- overlays -->
 <div class="scrim" id="scrim" role="dialog" aria-modal="true" aria-labelledby="mtitle" aria-describedby="mdesc">
   <div class="modal">
     <button class="modal__x" id="modalx" aria-label="Close without sending">✕</button>
@@ -715,7 +683,6 @@ img,svg{max-width:100%}
   var $ = function(s,r){return (r||document).querySelector(s)};
   var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 
-  /* ---------- RANSOM COLLAGE ---------- */
   var STYLES = ["","rn--wob","rn--org","rn--pnk","rn--serif","rn--type","rn--block","rn--org rn--block","rn--wob rn--serif","rn--pnk rn--type"];
   var SEQ = [0,4,6,2,9,1,5,3,7,8,2,6,0,4,1,9,5,3];
   var ROT = [-6,4,-3,7,-5,2,-7,5,-2,6,-4,3,-6,5,-3,4,-7,2];
@@ -742,7 +709,6 @@ img,svg{max-width:100%}
   }
   $$(".ransom").forEach(ransomize);
 
-  /* ---------- CLOCK ---------- */
   var clock = $("#clock");
   function tick(){
     var d = new Date();
@@ -751,7 +717,6 @@ img,svg{max-width:100%}
   }
   tick(); setInterval(tick, 1000);
 
-  /* ---------- TOASTS (textContent only) ---------- */
   var toastWrap = $("#toasts");
   var MAX = 4;
   function toast(title, msg, kind){
@@ -776,12 +741,10 @@ img,svg{max-width:100%}
     });
   });
 
-  /* ---------- COVER INPUT ---------- */
   var cover = $("#cover"), ccount = $("#ccount");
   function syncCount(){ ccount.textContent = cover.value.length; }
   cover.addEventListener("input", syncCount); syncCount();
 
-  /* ---------- TONER SLIDER -> readout, swatch, gauge ---------- */
   var toner = $("#toner"), tval=$("#tval"), swatch=$("#swatch"),
       arc=$("#arc"), gval=$("#gval");
   var CIRC = 263.9;
@@ -795,14 +758,12 @@ img,svg{max-width:100%}
   }
   toner.addEventListener("input", syncToner); syncToner();
 
-  /* ---------- SWITCH label ---------- */
   var mode = $("#mode"), modelab = $("#modelab");
   mode.addEventListener("change", function(){
     modelab.textContent = mode.checked ? "LIVE" : "DRAFT";
     modelab.style.color = mode.checked ? "var(--orange-deep)" : "";
   });
 
-  /* ---------- SELECT (self-drawn listbox) ---------- */
   (function(){
     var root = $("#bind"), btn = $(".select__btn", root), pop = $(".select__pop", root),
         label = $("[data-value]", root), opts = $$(".select__opt", root), idx = 0;
@@ -831,7 +792,6 @@ img,svg{max-width:100%}
     });
   })();
 
-  /* ---------- TABS ---------- */
   (function(){
     var tabs = $$(".tab", $("#proof"));
     function select(tab){
@@ -856,7 +816,6 @@ img,svg{max-width:100%}
     });
   })();
 
-  /* ---------- RUN METER ---------- */
   (function(){
     var fill=$("#runfill"), pct=$("#runpct"), meter=$("#runmeter"),
         runbtn=$("#runbtn"), reset=$("#resetbtn"), val=0, timer=null;
@@ -866,7 +825,7 @@ img,svg{max-width:100%}
       if(val>=100) val=0;
       if(reduce){ val=100; paint(); toast("Run complete","500 copies off the drum. Go get the stapler.","org"); return; }
       timer = setInterval(function(){
-        val = Math.min(100, val + (8 + Math.floor(Math.random()*10)));  /* chunky xerox steps */
+        val = Math.min(100, val + (8 + Math.floor(Math.random()*10)));  
         paint();
         if(val>=100){ clearInterval(timer); timer=null; toast("Run complete","500 copies off the drum. Go get the stapler.","org"); }
       }, 180);
@@ -875,13 +834,12 @@ img,svg{max-width:100%}
     paint();
   })();
 
-  /* ---------- MODAL ---------- */
   (function(){
     var scrim=$("#scrim"), echo=$("#echo"), sendbtn=$("#sendbtn"),
         confirm=$("#confirm"), cancel=$("#cancel"), x=$("#modalx"), last=null;
     function open(){
       last = document.activeElement;
-      echo.textContent = (cover.value.trim() || "UNTITLED — AND PROUD OF IT");  /* textContent, never innerHTML */
+      echo.textContent = (cover.value.trim() || "UNTITLED — AND PROUD OF IT");  
       scrim.classList.add("open");
       confirm.focus();
       document.addEventListener("keydown", onKey);
@@ -911,13 +869,11 @@ img,svg{max-width:100%}
     });
   })();
 
-  /* ---------- FIRE NOTE (carries cover text via textContent) ---------- */
   $("#firebtn").addEventListener("click", function(){
     var line = cover.value.trim() || "no headline yet — write one";
-    toast("Note to the crew", line, "pnk");   /* line passed as textContent inside toast() */
+    toast("Note to the crew", line, "pnk");   
   });
 
-  /* ---------- TOOLTIP ---------- */
   (function(){
     var tip=$("#tip"), current=null;
     function show(el){

@@ -1,3 +1,4 @@
+<html lang="en">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FATHOM · Eldritch Grimoire</title>
@@ -53,7 +54,6 @@
     min-height:100vh;
   }
 
-  /* Ambient abyss: cyan pooling under the eye + vignette + stone grain */
   body::before{
     content:'';
     position:fixed;
@@ -78,7 +78,6 @@
 
   .defs{position:absolute;width:0;height:0;overflow:hidden}
 
-  /* ------- hand-drawn manuscript page frame ------- */
   .frame{position:fixed;inset:0;z-index:2;pointer-events:none}
   .frame::before,.frame::after{
     content:'';position:absolute;pointer-events:none;
@@ -104,7 +103,6 @@
 
   .wrap{position:relative;z-index:1;width:var(--shell);margin:0 auto;padding:0 30px}
 
-  /* ------- shared type ------- */
   .eyebrow{
     font-family:var(--f-ui);
     font-size:.74rem;
@@ -132,7 +130,6 @@
 
   a{color:var(--amber);text-decoration-color:var(--amber-deep);text-underline-offset:3px}
 
-  /* ------- HERO ------- */
   .hero{
     text-align:center;
     padding:clamp(40px,7vh,84px) 0 clamp(30px,5vh,54px);
@@ -178,7 +175,6 @@
   .hero-copy .plain{font-style:normal;color:var(--parch-dim)}
   .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:clamp(24px,4vh,36px)}
 
-  /* the watch — eye switch console under the sigil */
   .watch{
     margin-top:clamp(20px,3vh,30px);
     display:inline-flex;align-items:center;gap:16px;
@@ -214,7 +210,6 @@
   }
   .eye-switch:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 
-  /* ------- section scaffolding ------- */
   .section{padding:clamp(30px,6vh,58px) 0}
   .section-head{text-align:center;margin-bottom:clamp(30px,5vh,48px)}
   .section-head h2{font-size:clamp(2rem,4.6vw,3.1rem);color:var(--parch);margin-top:.5rem}
@@ -224,7 +219,6 @@
   .rule::before,.rule::after{content:'';height:1px;width:min(220px,26vw);background:linear-gradient(90deg,transparent,var(--glow-line),transparent);filter:url(#inkEdge2)}
   .rule svg{width:26px;height:26px;flex:0 0 auto;opacity:.9;filter:url(#inkEdge)}
 
-  /* ------- panel spread ------- */
   .spread{position:relative}
   .spread::before{
     content:'';position:absolute;top:8px;bottom:8px;left:50%;width:1px;
@@ -278,7 +272,6 @@
   }
   .help{font-family:var(--f-body);font-style:italic;color:var(--parch-faint);font-size:.9rem;margin:.5rem 0 0}
 
-  /* ------- buttons ------- */
   .btn{
     font-family:var(--f-ui);font-weight:600;text-transform:uppercase;letter-spacing:.16em;
     font-size:.82rem;cursor:pointer;border:0;border-radius:4px;padding:.72em 1.35em;
@@ -324,7 +317,6 @@
 
   .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 
-  /* ------- text input ------- */
   .input{
     width:100%;font-family:var(--f-body);font-size:1.05rem;color:var(--parch);
     background:linear-gradient(180deg,var(--slate-2),#081210);
@@ -335,7 +327,6 @@
   .input::placeholder{color:var(--parch-faint);font-style:italic}
   .input:focus{outline:none;box-shadow:inset 0 0 0 1.4px var(--glow), 0 0 18px rgba(57,227,202,.28), inset 0 2px 10px rgba(0,0,0,.5)}
 
-  /* ------- radios ------- */
   .choices{display:flex;flex-direction:column;gap:2px}
   .choice{
     display:flex;gap:.8em;align-items:flex-start;cursor:pointer;padding:.6em .7em;border-radius:4px;
@@ -357,7 +348,6 @@
   .choice .ctext b{display:block;font-family:var(--f-ui);font-weight:600;letter-spacing:.06em;color:var(--parch);font-size:.98rem}
   .choice .ctext span{font-family:var(--f-body);font-style:italic;color:var(--parch-faint);font-size:.9rem;line-height:1.4}
 
-  /* ------- checkbox ------- */
   .check{display:flex;gap:.75em;align-items:center;cursor:pointer;padding:.45em .2em;position:relative}
   .check input{position:absolute;opacity:0;width:0;height:0}
   .check .box{
@@ -371,7 +361,6 @@
   .check input:focus-visible ~ .box{outline:2px solid var(--amber);outline-offset:3px}
   .check .ctext{font-family:var(--f-body);color:var(--parch);font-size:1rem}
 
-  /* ------- inline lamp switch (form context) ------- */
   .lamp{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .lamp .ctext{font-family:var(--f-body);color:var(--parch);font-size:1rem}
   .mini-switch{
@@ -387,7 +376,6 @@
   .mini-switch[aria-checked="true"]::after{transform:translateX(25px);background:radial-gradient(circle at 40% 35%,var(--amber-soft),var(--amber));box-shadow:0 0 14px rgba(230,169,78,.8)}
   .mini-switch:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 
-  /* ------- slider ------- */
   .gauge-wrap{display:flex;gap:clamp(18px,3vw,30px);align-items:center;flex-wrap:wrap}
   .slider-col{flex:1 1 200px;min-width:180px}
   .slider{
@@ -415,7 +403,6 @@
   .dial .unit{font-family:var(--f-ui);font-size:.58rem;letter-spacing:.24em;color:var(--parch-faint);text-transform:uppercase;margin-top:.35em}
   .zone{font-family:var(--f-body);font-style:italic;color:var(--amber-soft);text-align:center;margin-top:.8rem;font-size:1.02rem}
 
-  /* ------- descent progress ------- */
   .track{height:14px;border-radius:8px;position:relative;overflow:hidden;background:linear-gradient(180deg,#081210,var(--slate-2));box-shadow:inset 0 0 0 1.2px var(--line-soft),inset 0 2px 8px rgba(0,0,0,.6)}
   .track .bar{position:absolute;inset:0 auto 0 0;width:0%;border-radius:8px;
     background:linear-gradient(90deg,var(--glow-deep),var(--glow));
@@ -431,7 +418,6 @@
   .stat b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.35rem;color:var(--parch)}
   .stat span{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--parch-faint)}
 
-  /* ------- tabs ------- */
   .tablist{display:flex;gap:4px;border-bottom:1px solid var(--line-soft);margin-bottom:1.2rem;position:relative}
   .tab{
     font-family:var(--f-ui);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;
@@ -454,7 +440,6 @@
   .ward-line .no{color:var(--amber)}
   .chart{width:100%;height:150px;display:block}
 
-  /* ------- self-drawn dropdown ------- */
   .select{position:relative}
   .select-btn{
     width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
@@ -488,7 +473,6 @@
   .option[aria-selected="true"]::before{content:'\2748';color:var(--glow);margin-right:-.2em;font-size:.8em}
   .option .oeye{width:16px;height:16px;flex:0 0 auto;color:var(--glow-line)}
 
-  /* ------- tooltip ------- */
   .info{
     display:inline-grid;place-items:center;width:1.35em;height:1.35em;border-radius:50%;cursor:help;
     font-family:var(--f-ui);font-size:.72rem;color:var(--glow);vertical-align:middle;position:relative;
@@ -505,7 +489,6 @@
   .tip::before{content:'';position:absolute;inset:0;border:1.3px solid var(--glow-line);border-radius:5px;filter:url(#inkEdge);pointer-events:none}
   .tip.show{opacity:1;transform:translateY(0)}
 
-  /* ------- modal ------- */
   .backdrop{
     position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;
     background:radial-gradient(120% 120% at 50% 0%,rgba(57,227,202,.08),rgba(3,8,9,.86));
@@ -527,7 +510,6 @@
   .modal .btn-row{justify-content:center}
   .modal .warn{font-family:var(--f-ui);letter-spacing:.28em;text-transform:uppercase;font-size:.66rem;color:var(--amber)}
 
-  /* ------- toasts ------- */
   .toasts{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:12px;width:min(390px,calc(100vw - 32px));pointer-events:none}
   .toast{
     position:relative;pointer-events:auto;border-radius:6px;padding:.95em 2.6em .95em 1em;
@@ -546,14 +528,12 @@
   .toast.amber::before{border-color:var(--amber-deep)}
   .toast.amber .ico,.toast.amber .msg b{color:var(--amber)}
 
-  /* ------- footer ------- */
   .colophon{text-align:center;padding:clamp(40px,7vh,80px) 0 clamp(30px,5vh,50px)}
   .colophon .foot-eye{width:56px;height:56px;margin:0 auto 1.2rem;color:var(--glow-line)}
   .colophon p{font-family:var(--f-body);font-style:italic;color:var(--parch-dim);margin:.3rem 0}
   .colophon .mk{font-family:var(--f-ui);letter-spacing:.34em;text-transform:uppercase;font-size:.66rem;color:var(--parch-faint);margin-top:1.4rem}
   .colophon .mk b{color:var(--glow)}
 
-  /* ------- keyframes ------- */
   @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   @keyframes breathe{0%,100%{opacity:.5;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
   @keyframes pulsePupil{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.7)}}
@@ -563,7 +543,6 @@
   .reveal{opacity:0}
   .reveal.seen{animation:reveal .9s var(--ease) forwards}
 
-  /* eye internals */
   #glowHalo{transform-box:fill-box;transform-origin:center;animation:breathe 6.5s ease-in-out infinite}
   #pupil{transform-box:fill-box;transform-origin:center;animation:pulsePupil 6.5s ease-in-out infinite}
   #sigilRing{transform-box:fill-box;transform-origin:center;animation:spinSlow 140s linear infinite}
@@ -580,7 +559,6 @@
   .sigil.sealed #pupil{animation:none}
   .sigil.sealed #irisGroup{transform:none !important}
 
-  /* ------- responsive ------- */
   @media (max-width:760px){
     :root{--frame-inset:8px}
     body{font-size:17px}
@@ -645,13 +623,11 @@
 
 <main class="wrap">
 
-  <!-- ================= HERO ================= -->
   <header class="hero">
     <p class="eyebrow">Eldritch Grimoire · The Long Watch</p>
 
     <div class="sigil" id="sigil">
       <svg viewBox="0 0 400 400" role="img" aria-label="The eye of the abyss, open and watching">
-        <!-- outer incantation seal -->
         <g id="sigilRing" filter="url(#inkSeep)" stroke="var(--glow-line)" fill="none" opacity=".7">
           <circle cx="200" cy="200" r="188" stroke-width="1"/>
           <circle cx="200" cy="200" r="176" stroke-width="1.6"/>
@@ -674,9 +650,7 @@
           </g>
         </g>
 
-        <!-- the eye -->
         <g filter="url(#inkSeep)">
-          <!-- glow + iris live inside the aperture so lids can seal them -->
           <g clip-path="url(#aperture)">
             <rect x="40" y="120" width="320" height="160" fill="#04100e"/>
             <ellipse id="glowHalo" cx="200" cy="200" rx="120" ry="90" fill="url(#haloGrad)"/>
@@ -689,15 +663,12 @@
               <ellipse id="pupil" cx="200" cy="200" rx="11" ry="46" fill="#020a09"/>
               <ellipse cx="188" cy="182" rx="9" ry="14" fill="#eafffb" opacity=".85"/>
             </g>
-            <!-- eyelids -->
             <path id="lidTop" d="M0 0 H400 V182 Q200 214 0 182 Z" fill="#050f0d"/>
             <path id="lidBot" d="M0 400 H400 V218 Q200 186 0 218 Z" fill="#050f0d"/>
           </g>
-          <!-- lash / aperture rim, always crisp -->
           <path d="M60,200 C118,132 282,132 340,200 C282,268 118,268 60,200 Z" fill="none" stroke="var(--glow)" stroke-width="2.4" opacity=".92"/>
           <path d="M60 200 C118 132 282 132 340 200" fill="none" stroke="var(--parch-faint)" stroke-width="1" opacity=".4"/>
           <path id="lash" d="M62 200 C120 224 280 224 338 200" fill="none" stroke="var(--parch)" stroke-width="2.6"/>
-          <!-- brow marks -->
           <path d="M96 150 C140 130 260 130 304 150" fill="none" stroke="var(--glow-line)" stroke-width="1.4" opacity=".6"/>
         </g>
       </svg>
@@ -724,7 +695,6 @@
     <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6c8 6 8 22 0 28-8-6-8-22 0-28Z"/><circle cx="20" cy="20" r="4" fill="currentColor" stroke="none"/></svg>
   </div>
 
-  <!-- ================= CONSOLE ================= -->
   <section class="section" id="console">
     <div class="section-head reveal">
       <p class="eyebrow">The&nbsp;Console</p>
@@ -735,7 +705,6 @@
     <div class="spread">
       <div class="grid">
 
-        <!-- the rite (form) -->
         <article class="panel reveal">
           <span class="panel-num">I</span>
           <h3><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V5a2 2 0 012-2h9l5 5v12M4 20h16M9 8h4M9 12h7M9 16h7"/></svg></span>The Rite</h3>
@@ -769,7 +738,6 @@
           <button class="btn btn--primary" id="signBtn" style="width:100%">Sign the ledger</button>
         </article>
 
-        <!-- the keeper's log -->
         <article class="panel reveal">
           <span class="panel-num">II</span>
           <h3><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h13l3 3v13H4zM4 4v16M8 9h8M8 13h8M8 17h5"/></svg></span>The Keeper's Log</h3>
@@ -805,7 +773,6 @@
           </div>
         </article>
 
-        <!-- P3 soundings -->
         <article class="panel reveal">
           <span class="panel-num">III</span>
           <h3><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M12 2l-3 3M12 2l3 3M12 8c-4 0-7 3-7 8 0 3 3 6 7 6s7-3 7-6c0-5-3-8-7-8z"/></svg></span>Soundings <span class="info" tabindex="0" data-tip="A fathom is six feet of rope — and rather more of regret.">i</span></h3>
@@ -830,7 +797,6 @@
           </div>
         </article>
 
-        <!-- P4 descent -->
         <article class="panel reveal">
           <span class="panel-num">IV</span>
           <h3><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v14M7 12l5 5 5-5M5 21h14"/></svg></span>The Descent</h3>
@@ -851,7 +817,6 @@
           </div>
         </article>
 
-        <!-- invocations -->
         <article class="panel reveal">
           <span class="panel-num">V</span>
           <h3><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M4 8l8-6 8 6M6 14h12"/></svg></span>Invocations</h3>
@@ -868,7 +833,6 @@
           <p class="help">A sealed rite is not a locked door — it is a door that was never yours.</p>
         </article>
 
-        <!-- P6 the open seal -->
         <article class="panel reveal">
           <span class="panel-num">VI</span>
           <h3><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18"/></svg></span>The Open Seal</h3>
@@ -934,7 +898,6 @@
     $$("svg").forEach(function(s){ if (s.pauseAnimations) { try{ s.pauseAnimations(); }catch(e){} } });
   }
 
-  /* ---------- toasts ---------- */
   var toasts = $("#toasts");
   var TOAST = {
     descend:  {t:"Descending", m:"You let out the line. The pressure finds you before the dark does."},
@@ -973,7 +936,6 @@
   }
   $$("[data-toast]").forEach(function(b){ b.addEventListener("click", function(){ toast(b.getAttribute("data-toast")); }); });
 
-  /* ---------- smooth scroll ---------- */
   $$("[data-scroll]").forEach(function(b){
     b.addEventListener("click", function(){
       var t = document.getElementById(b.getAttribute("data-scroll"));
@@ -981,7 +943,6 @@
     });
   });
 
-  /* ---------- the eye : master switch ---------- */
   var sigil = $("#sigil"), eyeSwitch = $("#eyeSwitch"), watchState = $("#watchState"), irisGroup = $("#irisGroup");
   function setEye(open){
     eyeSwitch.setAttribute("aria-checked", open ? "true" : "false");
@@ -991,7 +952,6 @@
   }
   eyeSwitch.addEventListener("click", function(){ setEye(eyeSwitch.getAttribute("aria-checked") !== "true"); });
 
-  /* pointer tracking: the abyss gazes back */
   if (!reduce){
     var rafPend = false, lastX = 0, lastY = 0;
     window.addEventListener("mousemove", function(e){
@@ -1010,7 +970,6 @@
     }, {passive:true});
   }
 
-  /* ---------- lamp switch ---------- */
   var lamp = $("#lampSwitch");
   lamp.addEventListener("click", function(){
     var on = lamp.getAttribute("aria-checked") !== "true";
@@ -1018,9 +977,7 @@
     toast(on ? "lampOn" : "lampOff");
   });
 
-  /* ---------- roving switches via keyboard (space/enter native on button) ---------- */
 
-  /* ---------- sign the ledger : echo the true name safely ---------- */
   $("#signBtn").addEventListener("click", function(){
     var name = $("#trueName").value.trim();
     var order = (document.querySelector('input[name="order"]:checked')||{}).value || "no order";
@@ -1032,7 +989,6 @@
     toast("inscribe", "Signed to " + order + ". The ledger has your name now: " + name + ".");
   });
 
-  /* ---------- soundings slider + dial + zone ---------- */
   var depth = $("#depth"), depthVal = $("#depthVal"), dialArc = $("#dialArc"), zoneName = $("#zoneName");
   var C = 2 * Math.PI * 56;
   function zoneFor(v){
@@ -1052,7 +1008,6 @@
   depth.addEventListener("input", updateDepth);
   updateDepth();
 
-  /* ---------- descent progress ---------- */
   var bar = $("#descBar"), pctEl = $("#descPct"), beginBtn = $("#beginBtn"), haulBtn = $("#haulBtn");
   var sP = $("#statPressure"), sD = $("#statDark"), sB = $("#statBell");
   var descRAF = null, descVal = 0, descDir = 0, lastTs = 0;
@@ -1084,7 +1039,6 @@
   });
   renderDesc();
 
-  /* ---------- tabs ---------- */
   var tabs = $$(".tab");
   function selectTab(tab){
     tabs.forEach(function(t){
@@ -1107,7 +1061,6 @@
     });
   });
 
-  /* ---------- self-drawn dropdown ---------- */
   var OPTIONS = [
     {v:"The Sleeper",      d:"still dreaming"},
     {v:"The Herald",       d:"already knocking"},
@@ -1162,7 +1115,6 @@
     else if (e.key === "End" && open){ e.preventDefault(); setActive(OPTIONS.length-1); }
   });
 
-  /* ---------- tooltip ---------- */
   var tip = $("#tip"), tipTarget = null;
   function showTip(el){
     var txt = el.getAttribute("data-tip"); if (!txt) return;
@@ -1185,7 +1137,6 @@
   });
   $("#sigilBtn").addEventListener("click", function(){ toast("ward"); });
 
-  /* ---------- modal ---------- */
   var backdrop = $("#backdrop"), modal = $("#modal"), lastFocus = null;
   function openModal(){
     lastFocus = document.activeElement;
@@ -1215,7 +1166,6 @@
   $("#confirmBtn").addEventListener("click", function(){ closeModal(); toast("seal"); });
   backdrop.addEventListener("click", function(e){ if (e.target === backdrop) closeModal(); });
 
-  /* ---------- scroll reveal ---------- */
   var revs = $$(".reveal");
   if (reduce || !("IntersectionObserver" in window)){
     revs.forEach(function(el){ el.classList.add("seen"); });
@@ -1227,3 +1177,4 @@
   }
 })();
 </script>
+</html>
