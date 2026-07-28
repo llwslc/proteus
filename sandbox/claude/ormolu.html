@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>特里亚农 TRIANON · ORMOLU 自由稿</title>
+<title>TRIANON · ORMOLU study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Italiana&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Italiana&display=swap" rel="stylesheet">
 <style>
 :root{
   --ivory:#F4EEDD; --ivory-hi:#FBF7EB; --ivory-dim:#ECE4CD; --paper:#FDFAF1;
@@ -21,7 +21,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(180deg,#F7F1E2 0,var(--ivory) 460px);color:var(--ink);font-family:"Cormorant Garamond","Noto Serif SC","Songti SC","STSong",serif;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+body{margin:0;background:linear-gradient(180deg,#F7F1E2 0,var(--ivory) 460px);color:var(--ink);font-family:"Cormorant Garamond",serif;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
 [hidden]{display:none!important}
 img,svg{max-width:100%}
 h1,h2,h3,h4,p,ul,ol,figure,blockquote{margin:0}
@@ -37,7 +37,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1180px;margin:0 auto;padding:16px 32px}
 .brandmark{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
 .brandmark svg{width:34px;height:34px}
-.brandmark b{font-family:"Italiana","Noto Serif SC",serif;font-weight:400;font-size:19px;letter-spacing:.34em;color:var(--gold-dk);transform:translateX(.17em)}
+.brandmark b{font-family:"Italiana",serif;font-weight:400;font-size:19px;letter-spacing:.34em;color:var(--gold-dk);transform:translateX(.17em)}
 .nav-links{display:flex;gap:30px}
 .nav-links a{color:var(--ink-mute);text-decoration:none;font-size:14px;letter-spacing:.3em;padding:4px 2px}
 .nav-links a:hover{color:var(--gold-dk)}
@@ -49,7 +49,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .hero-inner>*{animation:riseIn 1s var(--easeSoft) both}
 .hero-cartouche{width:min(700px,96%);height:auto;margin:0 auto;display:block;animation-delay:.75s}
 .hero-word{animation-delay:.95s}
-.hero-word .latin{font-family:"Italiana","Noto Serif SC",serif;font-size:clamp(30px,4.4vw,46px);letter-spacing:.4em;color:var(--gold-dk);margin-top:4px;transform:translateX(.2em)}
+.hero-word .latin{font-family:"Italiana",serif;font-size:clamp(30px,4.4vw,46px);letter-spacing:.4em;color:var(--gold-dk);margin-top:4px;transform:translateX(.2em)}
 .ribbon{display:inline-block;margin-top:14px;padding:8px 40px;font-size:13px;letter-spacing:.44em;text-indent:.44em;color:#F6EAD8;background:linear-gradient(180deg,#93404F,#7E3140 55%,#6E2836);clip-path:polygon(0 0,100% 0,calc(100% - 15px) 50%,100% 100%,0 100%,15px 50%);position:relative;overflow:hidden}
 .silk-sheen::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 32%,rgba(255,246,228,.34) 46%,rgba(255,246,228,.08) 54%,transparent 68%);transform:translateX(-130%);animation:sheen 5.2s ease-in-out 1.6s infinite}
 .hero-title{font-weight:700;font-size:clamp(27px,3.4vw,40px);line-height:1.45;letter-spacing:.06em;margin-top:34px;animation-delay:1.1s}
@@ -81,7 +81,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .dropcap-hero em{position:relative;font-family:"Great Vibes",cursive;font-style:normal;font-size:104px;line-height:1;color:var(--gold-text)}
 .epigraph blockquote{text-align:left}
 .epigraph .fr{font-style:italic;font-size:25px;line-height:1.4;color:var(--ink)}
-.epigraph .zh{margin-top:8px;color:var(--ink-soft)}
+.epigraph .en{margin-top:8px;color:var(--ink-soft)}
 .epigraph cite{display:block;margin-top:10px;font-style:normal;font-size:13px;letter-spacing:.22em;color:var(--ink-mute)}
 
 .salon{max-width:1180px;margin:0 auto;padding:58px 32px 0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:28px}
@@ -96,7 +96,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .c-bl{bottom:7px;left:7px;transform:scaleY(-1)}
 .c-br{bottom:7px;right:7px;transform:scale(-1,-1)}
 .panel-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:26px}
-.panel-no{font-family:"Italiana","Noto Serif SC",serif;font-size:38px;line-height:1;color:var(--gold-text);min-width:34px;text-align:center}
+.panel-no{font-family:"Italiana",serif;font-size:38px;line-height:1;color:var(--gold-text);min-width:34px;text-align:center}
 .panel-head h3{font-size:24px;font-weight:700;letter-spacing:.08em;line-height:1.2}
 .panel-head .sub{margin-top:5px;font-size:13px;letter-spacing:.18em;color:var(--ink-mute)}
 .panel-fleur{margin-left:auto;width:86px;color:var(--gold);opacity:.45;flex:none}
@@ -176,7 +176,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .fill{position:absolute;inset:0 auto 0 0;width:45%;background:linear-gradient(180deg,#D9BC7A,#B08D3F 55%,#8A6A28),var(--gilt-noise);transition:width .9s var(--easeSoft);overflow:hidden}
 .fill::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,250,235,.45) 47%,rgba(255,250,235,.08) 55%,transparent 70%);transform:translateX(-130%);animation:sheen 3.8s ease-in-out 1s infinite}
 .progress-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.progress-meta output{font-family:"Italiana","Noto Serif SC",serif;font-size:21px;letter-spacing:.14em;color:var(--gold-text)}
+.progress-meta output{font-family:"Italiana",serif;font-size:21px;letter-spacing:.14em;color:var(--gold-text)}
 
 .gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
 .gauge{width:min(320px,100%);height:auto}
@@ -284,7 +284,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .plinth-marble{position:absolute;inset:0;width:100%;height:100%}
 .plinth-in{position:relative;z-index:2;text-align:center;padding:46px 0 58px}
 .plinth .colophon{margin-top:26px;font-size:14px;letter-spacing:.3em;color:var(--ink-mute)}
-.plinth .colophon b{display:block;font-family:"Italiana","Noto Serif SC",serif;font-weight:400;font-size:22px;letter-spacing:.44em;color:var(--gold-dk);margin-bottom:8px;transform:translateX(.22em)}
+.plinth .colophon b{display:block;font-family:"Italiana",serif;font-weight:400;font-size:22px;letter-spacing:.44em;color:var(--gold-dk);margin-bottom:8px;transform:translateX(.22em)}
 .plinth .motto{margin-top:14px;font-style:italic;color:var(--ink-soft);letter-spacing:.06em}
 .plinth .wax-mini{width:52px;margin:26px auto 0;display:block}
 
@@ -390,15 +390,15 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 <header>
   <div class="topbar">
-    <a class="brandmark" href="#top" aria-label="特里亚农 · 回到页首">
+    <a class="brandmark" href="#top" aria-label="Trianon · back to top">
       <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#B08D3F" stroke-width="1.6"/><circle cx="20" cy="20" r="13.5" fill="none" stroke="#B08D3F" stroke-width=".8" stroke-dasharray="2.6 2.4"/><text x="20" y="26.5" text-anchor="middle" font-family="Great Vibes,cursive" font-size="19" fill="#7C5D22">T</text></svg>
       <b>TRIANON</b>
     </a>
-    <nav class="nav-links" aria-label="页内导航">
-      <a href="#sec-edicts">敕令</a>
-      <a href="#sec-ball">舞会</a>
-      <a href="#sec-files">卷宗</a>
-      <a href="#sec-rites">仪典</a>
+    <nav class="nav-links" aria-label="In-page navigation">
+      <a href="#sec-edicts">Edicts</a>
+      <a href="#sec-ball">The Ball</a>
+      <a href="#sec-files">Records</a>
+      <a href="#sec-rites">Rites</a>
     </nav>
   </div>
   <div class="topbar-rule"></div>
@@ -418,7 +418,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   </svg>
 
   <div class="hero-inner">
-    <svg class="hero-cartouche" viewBox="0 0 760 380" role="img" aria-label="特里亚农鎏金卡图什纹章">
+    <svg class="hero-cartouche" viewBox="0 0 760 380" role="img" aria-label="The gilded Trianon cartouche">
       <g id="orm-wing">
         <path d="M148 168 C116 146 96 132 70 122 L86 144 L62 156 C92 162 118 164 152 180 Z" fill="#7E3140" stroke="#5E2430" stroke-width="1"/>
         <path d="M150 196 a8 8 0 0 1 16 0 a16 16 0 0 1 -32 0 a28 28 0 0 1 56 0 C196 222 214 244 246 258 C290 276 336 284 380 284" fill="none" stroke="url(#goldLin)" stroke-width="6" stroke-linecap="round" filter="url(#leafMottle)"/>
@@ -460,23 +460,23 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
     <div class="hero-word">
       <div class="latin">TRIANON</div>
-      <span class="ribbon silk-sheen">特里亚农 · 宫廷事务总台</span>
+      <span class="ribbon silk-sheen">Trianon · Bureau of Court Affairs</span>
     </div>
 
-    <h1 class="hero-title">繁文缛节,自此轻盈如小步舞曲</h1>
-    <p class="hero-lede">特里亚农将请柬、奏帖与御园账目一并收拢于象牙案头,每一道敕令都沿涡纹镜廊徐徐送达。</p>
-    <p class="hero-lede">侍从长只需轻叩金印——乐师调弦,烛台次第点亮,舞会在鎏金的秩序里如期开场。</p>
+    <h1 class="hero-title">Let protocol be as light as a minuet</h1>
+    <p class="hero-lede">Trianon gathers invitations, petitions and the garden accounts onto one ivory desk, and carries every edict at a stately pace down the scrolled mirror gallery.</p>
+    <p class="hero-lede">The chamberlain has only to tap the gold seal: the musicians tune, the candles are lit in sequence, and the ball opens on time inside its gilded order.</p>
 
     <div class="hero-cta">
-      <button class="btn btn-gilt" type="button" data-open-modal>颁布敕令</button>
-      <button class="btn btn-rouge" type="button" data-goto="#sec-edicts">巡视各殿</button>
+      <button class="btn btn-gilt" type="button" data-open-modal>Issue an edict</button>
+      <button class="btn btn-rouge" type="button" data-goto="#sec-edicts">Tour the halls</button>
     </div>
 
     <ul class="hero-stats">
-      <li><b>24</b><span>今日请柬</span></li>
-      <li><b>7</b><span>待批奏帖</span></li>
-      <li><b>1,352</b><span>烛台点亮</span></li>
-      <li><b>63</b><span>香槟 · 桶</span></li>
+      <li><b>24</b><span>Invitations today</span></li>
+      <li><b>7</b><span>Petitions pending</span></li>
+      <li><b>1,352</b><span>Candles lit</span></li>
+      <li><b>63</b><span>Champagne · casks</span></li>
     </ul>
   </div>
 
@@ -492,8 +492,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   </div>
   <blockquote>
     <p class="fr" lang="fr"><span aria-hidden="true">près</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Après</span> nous, le déluge.</p>
-    <p class="zh">在我们之后,哪怕洪水滔天——今夜,且先斟满香槟。</p>
-    <cite>—— 蓬帕杜侯爵夫人 · MDCCLVII</cite>
+    <p class="en">After us, the flood — but tonight, let the champagne be poured first.</p>
+    <cite>— the Marquise de Pompadour · MDCCLVII</cite>
   </blockquote>
 </section>
 
@@ -507,22 +507,22 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <header class="panel-head">
       <span class="panel-no" aria-hidden="true">I</span>
       <div>
-        <h3 id="h-edicts">敕令与印玺</h3>
-        <p class="sub">宫廷指令的四种口吻</p>
+        <h3 id="h-edicts">Edicts and seals</h3>
+        <p class="sub">Four tones of a court instruction</p>
       </div>
       <svg class="panel-fleur" viewBox="-14 -22 122 60" aria-hidden="true"><use href="#orm-volute"/></svg>
     </header>
     <div class="panel-body">
       <div class="btn-row">
-        <button class="btn btn-gilt" type="button" data-toast="gilt|敕令已颁|鎏金火漆未干,信使已翻身上马。">颁布敕令</button>
-        <button class="btn btn-sage" type="button" data-toast="sage|奏帖已呈|已放入御前的鼠尾草绿匣,静候朱批。">呈递奏帖</button>
-        <button class="btn btn-rouge" type="button" data-toast="rouge|批注已留|胭脂笔迹一行:「此事,容后再议。」">胭脂批注</button>
+        <button class="btn btn-gilt" type="button" data-toast="gilt|Edict issued|The gilt wax is still wet and the courier is already in the saddle.">Issue an edict</button>
+        <button class="btn btn-sage" type="button" data-toast="sage|Petition presented|Placed in the sage-green casket before the throne, awaiting the red hand.">Present a petition</button>
+        <button class="btn btn-rouge" type="button" data-toast="rouge|Annotation left|One line in rouge: “this matter will keep until later.”">Annotate in rouge</button>
       </div>
       <div class="btn-row">
-        <button class="btn btn-quiet" type="button" data-toast="sage|已归档|誊抄两份,一份入库,一份呈档房。">誊抄归档</button>
-        <button class="btn btn-gilt" type="button" disabled>已封存 · 不可颁行</button>
+        <button class="btn btn-quiet" type="button" data-toast="sage|Filed|Copied twice: one to the vault, one to the record office.">Copy and file</button>
+        <button class="btn btn-gilt" type="button" disabled>Sealed away · cannot be issued</button>
       </div>
-      <p class="hint">鎏金为敕令,鼠尾草为奏对,胭脂为私批;封存之令,任何人不得再启。</p>
+      <p class="hint">Gilt for edicts, sage for replies, rouge for private notes; an order once sealed away may be reopened by no one.</p>
     </div>
   </section>
 
@@ -534,24 +534,24 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <header class="panel-head">
       <span class="panel-no" aria-hidden="true">II</span>
       <div>
-        <h3 id="h-scribe">请柬誊录</h3>
-        <p class="sub">呈交信使之前</p>
+        <h3 id="h-scribe">Transcribing an invitation</h3>
+        <p class="sub">Before it goes to the courier</p>
       </div>
     </header>
     <div class="panel-body">
       <div class="field">
-        <label for="guest">收件人 · 全名与尊称</label>
+        <label for="guest">Addressee · full name and style</label>
         <div class="input-wrap">
-          <input class="input" id="guest" type="text" placeholder="德·蓬帕杜侯爵夫人" autocomplete="off">
+          <input class="input" id="guest" type="text" placeholder="Madame la Marquise de Pompadour" autocomplete="off">
           <svg class="input-fleur" viewBox="0 0 40 40" aria-hidden="true"><use href="#orm-rosette"/></svg>
         </div>
-        <p class="hint">信使只认全名;昵称与花名,请留在舞会上。</p>
+        <p class="hint">The courier answers to full names only; keep nicknames and flower names for the ball.</p>
       </div>
       <div class="field">
-        <label for="motto">柬上题辞 · 一句即可</label>
+        <label for="motto">Inscription · one line will do</label>
         <div class="input-group">
-          <input class="input" id="motto" type="text" placeholder="今夜镜廊,烛火与您皆不可缺席" autocomplete="off">
-          <button class="seal-btn" type="button" data-tip="滴蜡封缄,题辞自此不可更改" data-toast="gilt|封缄已毕|胭脂蜡上压了旧金印,题辞就此定稿。" aria-label="滴蜡封缄">
+          <input class="input" id="motto" type="text" placeholder="Tonight in the mirror gallery, neither the candles nor you may be absent" autocomplete="off">
+          <button class="seal-btn" type="button" data-tip="Drop the wax; from here the inscription is final" data-toast="gilt|Sealed|The old gold signet is pressed into rouge wax; the inscription stands." aria-label="Seal with wax">
             <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true"><use href="#orm-seal"/></svg>
           </button>
         </div>
@@ -567,34 +567,34 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <header class="panel-head">
       <span class="panel-no" aria-hidden="true">III</span>
       <div>
-        <h3 id="h-ball">舞会拣选</h3>
-        <p class="sub">主题、宴席与殿内布置</p>
+        <h3 id="h-ball">Choosing the ball</h3>
+        <p class="sub">Theme, table and the dressing of the hall</p>
       </div>
     </header>
     <div class="panel-body">
       <fieldset style="border:0;padding:0;margin:0">
-        <legend class="legend" style="margin-bottom:8px">今夜主题</legend>
+        <legend class="legend" style="margin-bottom:8px">Tonight’s theme</legend>
         <div class="choice-group" role="presentation">
-          <label class="choice"><input type="radio" name="ballTheme" value="menuet"><span class="radio-gem" aria-hidden="true"></span><span class="txt">小步舞曲<span class="note">Menuet</span></span></label>
-          <label class="choice"><input type="radio" name="ballTheme" value="pastorale" checked><span class="radio-gem" aria-hidden="true"></span><span class="txt">田园牧歌<span class="note">Pastorale</span></span></label>
-          <label class="choice"><input type="radio" name="ballTheme" value="masque"><span class="radio-gem" aria-hidden="true"></span><span class="txt">假面夜宴<span class="note">Masquerade</span></span></label>
+          <label class="choice"><input type="radio" name="ballTheme" value="menuet"><span class="radio-gem" aria-hidden="true"></span><span class="txt">Minuet<span class="note">Menuet</span></span></label>
+          <label class="choice"><input type="radio" name="ballTheme" value="pastorale" checked><span class="radio-gem" aria-hidden="true"></span><span class="txt">Pastoral<span class="note">Pastorale</span></span></label>
+          <label class="choice"><input type="radio" name="ballTheme" value="masque"><span class="radio-gem" aria-hidden="true"></span><span class="txt">Masked supper<span class="note">Masquerade</span></span></label>
         </div>
       </fieldset>
       <fieldset style="border:0;padding:0;margin:0">
-        <legend class="legend" style="margin-bottom:8px">宴席清单</legend>
+        <legend class="legend" style="margin-bottom:8px">The table</legend>
         <div class="choice-group" role="presentation">
-          <label class="choice"><input type="checkbox" checked><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">香槟塔</span></label>
-          <label class="choice"><input type="checkbox"><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">糖霜蔷薇</span></label>
-          <label class="choice"><input type="checkbox"><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">冰雕天鹅</span></label>
-          <label class="choice is-off"><input type="checkbox" checked disabled><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">御用金匙<span class="note">循例,不可撤</span></span></label>
+          <label class="choice"><input type="checkbox" checked><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Champagne tower</span></label>
+          <label class="choice"><input type="checkbox"><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Sugared roses</span></label>
+          <label class="choice"><input type="checkbox"><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Ice swan</span></label>
+          <label class="choice is-off"><input type="checkbox" checked disabled><span class="check-gem" aria-hidden="true"><svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5 L8.5 15 L16 5.5" fill="none" stroke="#7C5D22" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Royal gold spoons<span class="note">by custom, not to be struck</span></span></label>
         </div>
       </fieldset>
       <fieldset style="border:0;padding:0;margin:0">
-        <legend class="legend" style="margin-bottom:8px">殿内布置</legend>
+        <legend class="legend" style="margin-bottom:8px">Dressing the hall</legend>
         <div class="choice-group" role="presentation">
-          <label class="choice"><input type="checkbox" role="switch" checked><span class="sw" aria-hidden="true"></span><span class="txt">水晶烛台</span></label>
-          <label class="choice"><input type="checkbox" role="switch"><span class="sw" aria-hidden="true"></span><span class="txt">橙花香氛</span></label>
-          <label class="choice is-off"><input type="checkbox" role="switch" disabled><span class="sw" aria-hidden="true"></span><span class="txt">机关夜莺<span class="note">匠师检修中</span></span></label>
+          <label class="choice"><input type="checkbox" role="switch" checked><span class="sw" aria-hidden="true"></span><span class="txt">Crystal candelabra</span></label>
+          <label class="choice"><input type="checkbox" role="switch"><span class="sw" aria-hidden="true"></span><span class="txt">Orange-blossom scent</span></label>
+          <label class="choice is-off"><input type="checkbox" role="switch" disabled><span class="sw" aria-hidden="true"></span><span class="txt">Clockwork nightingale<span class="note">with the artificer for repair</span></span></label>
         </div>
       </fieldset>
     </div>
@@ -608,37 +608,37 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <header class="panel-head">
       <span class="panel-no" aria-hidden="true">IV</span>
       <div>
-        <h3 id="h-music">弦乐与烛光</h3>
-        <p class="sub">火候、音量与酒窖存余</p>
+        <h3 id="h-music">Strings and candlelight</h3>
+        <p class="sub">Pace, volume and what the cellar has left</p>
       </div>
       <svg class="panel-fleur" viewBox="-14 -22 122 60" aria-hidden="true"><use href="#orm-volute"/></svg>
     </header>
     <div class="panel-body">
       <div class="field">
-        <label for="strings">弦乐音量</label>
+        <label for="strings">String volume</label>
         <div class="slider-row">
           <input type="range" id="strings" min="0" max="100" value="62">
           <output class="plaque" for="strings" id="stringsOut">62</output>
         </div>
-        <p class="hint">舞至酣处,以第六十二度为宜;再高,便盖过窃窃私语了。</p>
+        <p class="hint">At the height of the dancing, sixty-two is the proper degree; above that it drowns the whispering.</p>
       </div>
 
       <div class="field">
         <div class="progress-meta">
-          <label id="gildLabel">镜廊镀金工程</label>
+          <label id="gildLabel">Gilding the mirror gallery</label>
           <output id="gildOut" aria-hidden="true">XLV / C</output>
         </div>
         <div class="track" role="progressbar" aria-labelledby="gildLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45" id="gildBar">
           <div class="fill" id="gildFill" style="width:45%"></div>
         </div>
         <div class="btn-row" style="margin-top:6px">
-          <button class="btn btn-sage" type="button" id="gildMore">再拨一笔金箔</button>
-          <button class="btn btn-quiet" type="button" id="gildReset">重新动工</button>
+          <button class="btn btn-sage" type="button" id="gildMore">Grant more gold leaf</button>
+          <button class="btn btn-quiet" type="button" id="gildReset">Begin the work again</button>
         </div>
       </div>
 
       <div class="gauge-wrap field">
-        <label id="cellarLabel">酒窖 · 香槟存量</label>
+        <label id="cellarLabel">Cellar · champagne in stock</label>
         <svg class="gauge" viewBox="0 0 220 132" aria-hidden="true">
           <path d="M24 110 A86 86 0 0 1 59.4 40.4" fill="none" stroke="#C98A94" stroke-width="9"/>
           <path d="M59.4 40.4 A86 86 0 0 1 160.6 40.4" fill="none" stroke="#8FA07C" stroke-width="9"/>
@@ -658,12 +658,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
           <path d="M14 118 H206" stroke="#C7AE79" stroke-width="1"/>
         </svg>
         <div class="gauge-read" aria-labelledby="cellarLabel">
-          <b id="cellarVal">63</b><span class="unit">桶</span>
-          <span class="gauge-zone mid" id="cellarZone">尚可</span>
+          <b id="cellarVal">63</b><span class="unit">casks</span>
+          <span class="gauge-zone mid" id="cellarZone">Adequate</span>
         </div>
         <div class="btn-row">
-          <button class="btn btn-rouge" type="button" id="pourBtn">斟予宾客 −8</button>
-          <button class="btn btn-sage" type="button" id="stockBtn">窖藏进新 +10</button>
+          <button class="btn btn-rouge" type="button" id="pourBtn">Pour for the guests −8</button>
+          <button class="btn btn-sage" type="button" id="stockBtn">Lay down new stock +10</button>
         </div>
       </div>
     </div>
@@ -677,60 +677,60 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <header class="panel-head">
       <span class="panel-no" aria-hidden="true">V</span>
       <div>
-        <h3 id="h-files">殿所与卷宗</h3>
-        <p class="sub">择一处殿宇,翻三册文书</p>
+        <h3 id="h-files">Halls and records</h3>
+        <p class="sub">Choose a hall, turn three volumes</p>
       </div>
       <svg class="panel-fleur" viewBox="-14 -22 122 60" aria-hidden="true"><use href="#orm-volute"/></svg>
     </header>
     <div class="panel-body">
       <div class="field" style="max-width:420px">
-        <label id="hallLabel">舞会殿所</label>
+        <label id="hallLabel">Hall for the ball</label>
         <div class="dd" id="hallDd">
           <button class="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="hallLabel hallVal">
-            <span id="hallVal">镜廊</span>
+            <span id="hallVal">Mirror Gallery</span>
             <svg class="chev" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 5 L7 9.5 L11.5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <ul class="dd-pop" role="listbox" aria-labelledby="hallLabel" hidden>
-            <li role="option" tabindex="-1" aria-selected="true" data-val="镜廊">镜廊<span class="fr-name">Galerie des Glaces</span></li>
-            <li role="option" tabindex="-1" aria-selected="false" data-val="橘园">橘园<span class="fr-name">L'Orangerie</span></li>
-            <li role="option" tabindex="-1" aria-selected="false" data-val="瓷宫">瓷宫<span class="fr-name">Trianon de Porcelaine</span></li>
-            <li role="option" tabindex="-1" aria-selected="false" data-val="林间剧场">林间剧场<span class="fr-name">Théâtre de Verdure</span></li>
-            <li role="option" tabindex="-1" aria-disabled="true">御膳房<span class="fr-name">修缮中,恕不待客</span></li>
+            <li role="option" tabindex="-1" aria-selected="true" data-val="Mirror Gallery">Mirror Gallery<span class="fr-name">Galerie des Glaces</span></li>
+            <li role="option" tabindex="-1" aria-selected="false" data-val="The Orangery">The Orangery<span class="fr-name">L'Orangerie</span></li>
+            <li role="option" tabindex="-1" aria-selected="false" data-val="Porcelain Trianon">Porcelain Trianon<span class="fr-name">Trianon de Porcelaine</span></li>
+            <li role="option" tabindex="-1" aria-selected="false" data-val="Woodland Theatre">Woodland Theatre<span class="fr-name">Théâtre de Verdure</span></li>
+            <li role="option" tabindex="-1" aria-disabled="true">The Royal Kitchens<span class="fr-name">under repair, no guests received</span></li>
           </ul>
         </div>
-        <p class="hint dd-note" id="hallNote">今夜舞会将设于:镜廊。</p>
+        <p class="hint dd-note" id="hallNote">Tonight’s ball will be held in the Mirror Gallery.</p>
       </div>
 
       <div class="tabs">
-        <div class="tablist" role="tablist" aria-label="卷宗">
-          <button class="tab" role="tab" id="tab-sched" aria-controls="tp-sched" aria-selected="true">今日日程</button>
-          <button class="tab" role="tab" id="tab-ledger" aria-controls="tp-ledger" aria-selected="false" tabindex="-1">用度账目</button>
-          <button class="tab" role="tab" id="tab-letter" aria-controls="tp-letter" aria-selected="false" tabindex="-1">来往信笺</button>
+        <div class="tablist" role="tablist" aria-label="Records">
+          <button class="tab" role="tab" id="tab-sched" aria-controls="tp-sched" aria-selected="true">Today’s order</button>
+          <button class="tab" role="tab" id="tab-ledger" aria-controls="tp-ledger" aria-selected="false" tabindex="-1">Expenditure</button>
+          <button class="tab" role="tab" id="tab-letter" aria-controls="tp-letter" aria-selected="false" tabindex="-1">Correspondence</button>
         </div>
         <div class="tabpanel" role="tabpanel" id="tp-sched" aria-labelledby="tab-sched">
           <ul class="sched">
-            <li><span class="when">巳时</span>橘园剪枝,并为夜宴挑选七十二株橙树。</li>
-            <li><span class="when">未时</span>乐队于镜廊试音,弦乐调至第六十二度。</li>
-            <li><span class="when">酉时</span>点烛官巡殿,一千三百五十二盏次第点亮。</li>
-            <li><span class="when">戌时</span>假面夜宴启幕,侍从长于阶前唱名。</li>
+            <li><span class="when">9 a.m.</span>Prune the Orangery and choose seventy-two orange trees for the supper.</li>
+            <li><span class="when">1 p.m.</span>The band rehearses in the Mirror Gallery; strings set to the sixty-second degree.</li>
+            <li><span class="when">5 p.m.</span>The candle-lighter walks the halls; one thousand three hundred and fifty-two flames in sequence.</li>
+            <li><span class="when">7 p.m.</span>The masked supper opens; the chamberlain calls names at the stair.</li>
           </ul>
         </div>
         <div class="tabpanel" role="tabpanel" id="tp-ledger" aria-labelledby="tab-ledger" hidden>
           <div class="ledger-scroll">
             <table class="ledger">
-              <thead><tr><th scope="col">名目</th><th scope="col" class="num">数量</th><th scope="col" class="num">里弗尔</th></tr></thead>
+              <thead><tr><th scope="col">Item</th><th scope="col" class="num">Quantity</th><th scope="col" class="num">Livres</th></tr></thead>
               <tbody>
-                <tr><td>金箔 · 佛罗伦萨薄叶</td><td class="num">200 匣</td><td class="num">12,400</td></tr>
-                <tr><td>香槟 · 兰斯窖藏</td><td class="num">63 桶</td><td class="num">9,450</td></tr>
-                <tr><td>蜂蜡烛 · 御用长烛</td><td class="num">1,352 支</td><td class="num">806</td></tr>
+                <tr><td>Gold leaf · Florentine tissue</td><td class="num">200 cases</td><td class="num">12,400</td></tr>
+                <tr><td>Champagne · cellared at Reims</td><td class="num">63 casks</td><td class="num">9,450</td></tr>
+                <tr><td>Beeswax candles · royal tapers</td><td class="num">1,352 tapers</td><td class="num">806</td></tr>
               </tbody>
-              <tfoot><tr><td>本月合计</td><td class="num"></td><td class="num">22,656</td></tr></tfoot>
+              <tfoot><tr><td>Month’s total</td><td class="num"></td><td class="num">22,656</td></tr></tfoot>
             </table>
           </div>
         </div>
         <div class="tabpanel" role="tabpanel" id="tp-letter" aria-labelledby="tab-letter" hidden>
-          <p class="letter"><span class="dropcap" aria-hidden="true">M</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">M</span><em lang="fr">adame,</em> —— 今夜八时,镜廊。乐声既起,请携面具徐来;烛火与香槟,皆已依您素喜排布。若得允准,第一支小步舞曲,当为您留。</p>
-          <p class="letter sign">—— 特里亚农 谨呈</p>
+          <p class="letter"><span class="dropcap" aria-hidden="true">M</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">M</span><em lang="fr">adame,</em> — eight o’clock tonight, the Mirror Gallery. When the music begins, come unhurried and bring a mask; the candles and the champagne are arranged as you have always preferred them. With your leave, the first minuet is kept for you.</p>
+          <p class="letter sign">— Trianon, respectfully</p>
         </div>
       </div>
     </div>
@@ -744,36 +744,36 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <header class="panel-head">
       <span class="panel-no" aria-hidden="true">VI</span>
       <div>
-        <h3 id="h-rites">通传与仪典</h3>
-        <p class="sub">信使、印玺与御前奏对</p>
+        <h3 id="h-rites">Dispatches and rites</h3>
+        <p class="sub">Couriers, seals and audience before the throne</p>
       </div>
     </header>
     <div class="panel-body">
       <div class="btn-row">
-        <button class="btn btn-gilt" type="button" data-open-modal>召见 · 敕令用印</button>
+        <button class="btn btn-gilt" type="button" data-open-modal>Audience · seal the edict</button>
       </div>
       <div class="btn-row">
-        <button class="btn btn-sage" type="button" data-toast="sage|卷宗已入册|档房回执:第 MMDCXIV 号,妥存。">遣信使 · 存档</button>
-        <button class="btn btn-rouge" type="button" data-toast="rouge|急报|海神喷泉水压不稳,匠师已提灯赶往。">遣信使 · 急报</button>
+        <button class="btn btn-sage" type="button" data-toast="sage|Entered into the register|Record office receipt: no. MMDCXIV, safely stored.">Send a courier · archive</button>
+        <button class="btn btn-rouge" type="button" data-toast="rouge|Urgent dispatch|The Neptune fountain has lost pressure; the artificer has taken a lantern and gone.">Send a courier · urgent</button>
       </div>
       <div class="field">
-        <span class="legend">印玺与礼器 · 悬停可读其铭</span>
+        <span class="legend">Seals and regalia · hover to read the inscription</span>
         <div class="icon-row">
-          <button class="icon-btn" type="button" data-tip="御前金印:一印既落,驷马难追" aria-label="御前金印">
+          <button class="icon-btn" type="button" data-tip="The royal signet: once it falls, four horses cannot recall it" aria-label="The royal signet">
             <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true"><use href="#orm-seal"/></svg>
           </button>
-          <button class="icon-btn" type="button" data-tip="鹅毛笔:写请柬用旧金墨,写情诗用胭脂墨" aria-label="鹅毛笔">
+          <button class="icon-btn" type="button" data-tip="The quill: old-gold ink for invitations, rouge for love poems" aria-label="The quill">
             <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M23 4 C15 6 9.5 12 7.5 21"/><path d="M7.5 21 C9.5 15 13.5 9.5 20 7"/><path d="M23 4 C19.5 8.5 17 12.5 13 17"/><path d="M7.5 21 L6 24.5"/></svg>
           </button>
-          <button class="icon-btn" type="button" data-tip="折扇:扇面一开一合,自成一门外交辞令" aria-label="折扇">
+          <button class="icon-btn" type="button" data-tip="The fan: opened and closed, it is a diplomacy of its own" aria-label="The fan">
             <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M14 22 L5 10 M14 22 L10 7 M14 22 L14 6 M14 22 L18 7 M14 22 L23 10"/><path d="M5 10 A12.5 12.5 0 0 1 23 10"/><circle cx="14" cy="22.5" r="1.4" fill="currentColor" stroke="none"/></svg>
           </button>
-          <button class="icon-btn" type="button" data-tip="香槟盏:传闻盏形取自某位夫人的心形誓言" aria-label="香槟盏">
+          <button class="icon-btn" type="button" data-tip="The coupe: its shape, they say, was taken from a certain lady’s heart-shaped vow" aria-label="The coupe">
             <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 5 H20 C20 10.5 17.5 13.5 14 13.5 S8 10.5 8 5 Z"/><path d="M14 13.5 V21"/><path d="M9 21.5 H19"/></svg>
           </button>
         </div>
       </div>
-      <p class="hint">通传有三色:旧金报喜,鼠尾草报安,胭脂报急。通报自右上角入殿,四息之后自行告退。</p>
+      <p class="hint">Dispatches come in three colours: old gold brings good news, sage brings reassurance, rouge brings urgency. They enter at the top right and withdraw of their own accord after four breaths.</p>
     </div>
   </section>
 
@@ -796,8 +796,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <svg class="rose" viewBox="0 0 40 40"><use href="#orm-rosette"/></svg>
       <svg class="vol" viewBox="-14 -22 122 60"><use href="#orm-volute"/></svg>
     </div>
-    <p class="colophon"><b>TRIANON</b>特里亚农 · 宫廷事务总台 —— 为凡尔赛的每一个清晨而制</p>
-    <p class="motto">鎏金坊监造 · 镜廊东翼 · MDCCLVII</p>
+    <p class="colophon"><b>TRIANON</b>Bureau of Court Affairs — made for every morning at Versailles</p>
+    <p class="motto">Overseen by the gilding workshop · east wing of the Mirror Gallery · MDCCLVII</p>
     <svg class="wax-mini" viewBox="0 0 80 80" aria-hidden="true">
       <circle cx="40" cy="40" r="30" fill="#8E3B4A" stroke="#6E2836" stroke-width="2"/>
       <circle cx="53" cy="61" r="5" fill="#8E3B4A"/>
@@ -818,8 +818,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <div class="modal-frame" aria-hidden="true"></div>
     <header class="modal-head">
       <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><use href="#orm-rosette" color="#B08D3F"/></svg>
-      <h3 id="modalTitle">敕令用印</h3>
-      <button class="modal-x" type="button" data-close-modal aria-label="暂缓,收回敕令">×</button>
+      <h3 id="modalTitle">Sealing the edict</h3>
+      <button class="modal-x" type="button" data-close-modal aria-label="Hold, withdraw the edict">×</button>
     </header>
     <div class="modal-body">
       <svg class="wax" viewBox="0 0 100 100" aria-hidden="true">
@@ -830,11 +830,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <path d="M31 26 A30 30 0 0 1 62 20" fill="none" stroke="#C97F8B" stroke-width="5" stroke-linecap="round" opacity=".5"/>
         <text x="50" y="60" text-anchor="middle" font-family="Great Vibes,cursive" font-size="36" fill="#F2E3CF">T</text>
       </svg>
-      <p id="modalDesc">即将颁行:<b>今夜戌时,镜廊,假面夜宴。</b>此令一经用印,信使立刻启程,沿途驿站不得阻拦——落印之后,不可追回。</p>
+      <p id="modalDesc">About to be issued: <b>tonight at seven, the Mirror Gallery, a masked supper.</b> Once this order is sealed the courier departs at once and no posting house along the road may detain him — after the seal falls, it cannot be recalled.</p>
     </div>
     <footer class="modal-foot">
-      <button class="btn btn-quiet" type="button" data-close-modal>暂缓</button>
-      <button class="btn btn-gilt" type="button" id="sealGo">落印颁行</button>
+      <button class="btn btn-quiet" type="button" data-close-modal>Hold</button>
+      <button class="btn btn-gilt" type="button" id="sealGo">Seal and issue</button>
     </footer>
     <div class="modal-curtain" aria-hidden="true"></div>
   </div>
@@ -859,7 +859,7 @@ function toast(variant,title,msg){
   el.className='toast t-'+variant;
   el.innerHTML='<svg class="toast-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor"><use href="#orm-seal"/></svg>'+
     '<div><b></b><p></p></div>'+
-    '<button class="toast-x" type="button" aria-label="知道了,退下">×</button>'+
+    '<button class="toast-x" type="button" aria-label="Understood, dismiss">×</button>'+
     '<span class="toast-life"></span>';
   $('b',el).textContent=title;
   $('p',el).textContent=msg;
@@ -916,14 +916,14 @@ gildMore.addEventListener('click',function(){
   paintGild();
   if(gild>=100){
     gildMore.disabled=true;
-    gildMore.textContent='工程已竣';
-    toast('sage','镜廊镀金已竣工','匠师们收起脚手架,向您脱帽致意。');
+    gildMore.textContent='The work is done';
+    toast('sage','The mirror gallery is gilded','The artificers have struck the scaffolding and taken off their hats to you.');
   }
 });
 gildReset.addEventListener('click',function(){
   gild=8;
   gildMore.disabled=false;
-  gildMore.textContent='再拨一笔金箔';
+  gildMore.textContent='Grant more gold leaf';
   paintGild();
 });
 paintGild();
@@ -932,13 +932,13 @@ var cellar=63,needle=$('#cellarNeedle'),cellarVal=$('#cellarVal'),cellarZone=$('
 function paintCellar(){
   needle.style.transform='rotate('+(-90+cellar*1.8)+'deg)';
   cellarVal.textContent=cellar;
-  var z=cellar<30?['lo','见底']:cellar<70?['mid','尚可']:['hi','盈溢'];
+  var z=cellar<30?['lo','Running dry']:cellar<70?['mid','Adequate']:['hi','Overflowing'];
   cellarZone.className='gauge-zone '+z[0];
   cellarZone.textContent=z[1];
 }
 $('#pourBtn').addEventListener('click',function(){
   cellar=Math.max(0,cellar-8);paintCellar();
-  if(cellar===0)toast('rouge','酒窖见底','最后一桶已开;若舞会尚长,请速遣人往兰斯。');
+  if(cellar===0)toast('rouge','The cellar is empty','The last cask is open; if the ball runs long, send to Reims at once.');
 });
 $('#stockBtn').addEventListener('click',function(){cellar=Math.min(100,cellar+10);paintCellar()});
 paintCellar();
@@ -981,7 +981,7 @@ ddOpts.forEach(function(opt,i){
 function ddSelect(opt){
   ddOpts.forEach(function(o){o.setAttribute('aria-selected',o===opt?'true':'false')});
   hallVal.textContent=opt.getAttribute('data-val');
-  hallNote.textContent='今夜舞会将设于:'+opt.getAttribute('data-val')+'。';
+  hallNote.textContent='Tonight’s ball will be held in the '+opt.getAttribute('data-val')+'.';
   ddClose(true);
 }
 document.addEventListener('click',function(e){
@@ -1037,7 +1037,7 @@ $$('[data-close-modal]').forEach(function(b){b.addEventListener('click',modalClo
 scrim.addEventListener('mousedown',function(e){if(e.target===scrim)modalClose()});
 $('#sealGo').addEventListener('click',function(){
   modalClose();
-  toast('gilt','敕令已颁','火漆未凉,信使已沿镜廊出发;今夜戌时,假面启幕。');
+  toast('gilt','Edict issued','The wax is still warm and the courier has left by the mirror gallery; the masks go up at seven tonight.');
 });
 
 var tip=$('#tip'),tipTimer=null,tipTarget=null;
