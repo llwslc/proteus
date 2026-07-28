@@ -60,7 +60,7 @@ export function Popover({
                 <BasePopover.Title className="nocturne-h3 nocturne-popover__title">
                   {title}
                 </BasePopover.Title>
-                <span className="nocturne-hairline nocturne-popover__rule" aria-hidden="true" />
+                <span className="nocturne-hairline" aria-hidden="true" />
               </div>
             ) : null}
             <div className="nocturne-popover__body">{children}</div>

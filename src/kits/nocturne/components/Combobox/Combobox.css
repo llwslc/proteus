@@ -35,6 +35,7 @@
 .nocturne-combobox__clear,
 .nocturne-combobox__trigger {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   width: var(--nocturne-button-icon-ghost);

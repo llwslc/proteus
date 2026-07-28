@@ -1,3 +1,9 @@
+@property --nocturne-slider-open {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.5;
+}
+
 .nocturne-slider {
   display: flex;
   flex-direction: column;
@@ -36,7 +42,7 @@
   width: 100%;
   height: 6px;
   background: var(--nocturne-surface-inset);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--nocturne-track-shadow);
 }
 .nocturne-slider__track::before {
   content: "";
@@ -56,15 +62,18 @@
   place-items: center;
   width: var(--nocturne-slider-thumb);
   height: var(--nocturne-slider-thumb);
-  filter: drop-shadow(0 1px 3px rgba(8, 4, 12, 0.7))
-    drop-shadow(0 0 6px var(--nocturne-glow-12));
+  filter: var(--nocturne-drop-mark) drop-shadow(0 0 6px var(--nocturne-glow-12));
   transition: filter var(--nocturne-dur) var(--nocturne-ease);
 }
 .nocturne-slider:where(:not([data-disabled])) .nocturne-slider__control:hover .nocturne-slider__thumb,
 .nocturne-slider [data-dragging].nocturne-slider__thumb,
-.nocturne-slider__thumb:focus-visible {
-  filter: drop-shadow(0 1px 3px rgba(8, 4, 12, 0.7))
-    drop-shadow(0 0 11px var(--nocturne-glow-40));
+.nocturne-slider__thumb:has(:focus-visible) {
+  filter: var(--nocturne-drop-mark) drop-shadow(0 0 11px var(--nocturne-glow-40));
+}
+.nocturne-slider__thumb:has(:focus-visible) {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 3px;
+  border-radius: var(--nocturne-r-full);
 }
 
 .nocturne-slider__thumb svg {

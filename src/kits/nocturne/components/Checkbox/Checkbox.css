@@ -49,7 +49,7 @@
 .nocturne-checkbox__stroke {
   stroke-dasharray: 1 2;
   stroke-dashoffset: 1;
-  transition: stroke-dashoffset 0.42s var(--nocturne-ease-draw);
+  transition: stroke-dashoffset var(--nocturne-dur-slow) var(--nocturne-ease-draw);
 }
 .nocturne-checkbox__box[data-checked] .nocturne-checkbox__stroke {
   stroke-dashoffset: 0;

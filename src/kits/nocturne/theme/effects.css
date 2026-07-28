@@ -189,7 +189,7 @@
 }
 
 .nocturne-modal-desc {
-  margin: 0;
+  margin: 0 0 var(--nocturne-space-6);
   text-align: center;
   font-size: var(--nocturne-fs-14);
   line-height: var(--nocturne-lh-180);

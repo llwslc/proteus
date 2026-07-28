@@ -20,8 +20,8 @@ export function Slider({
   label,
   showValue = true,
   className,
-  min = 0,
-  max = 100,
+  min,
+  max,
   defaultValue,
   value: controlled,
   onValueChange,
@@ -35,7 +35,9 @@ export function Slider({
     firstValue(defaultValue),
   );
   const value = controlled !== undefined ? firstValue(controlled) : tracked;
-  const open = Math.min(1, Math.max(0, ((value ?? min) - min) / (max - min || 1)));
+  const lo = min ?? 0;
+  const hi = max ?? 100;
+  const open = Math.min(1, Math.max(0, ((value ?? lo) - lo) / (hi - lo || 1)));
 
   return (
     <BaseSlider.Root

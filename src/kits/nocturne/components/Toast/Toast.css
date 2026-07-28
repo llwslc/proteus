@@ -23,7 +23,6 @@
   background: var(--nocturne-surface-fill, var(--nocturne-surface));
   border: 1px solid var(--nocturne-gilt-50);
   box-shadow: var(--nocturne-shadow-frame);
-  overflow: hidden;
   transform-origin: center top;
   transform: translateY(calc(var(--toast-index) * 10px))
     scale(calc(1 - var(--toast-index) * 0.05));

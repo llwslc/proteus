@@ -1,3 +1,9 @@
+:root {
+  --nocturne-font-hand: "Ma Shan Zheng", "Noto Serif SC", serif;
+  --nocturne-dur-breathe: 7s;
+  --nocturne-contextmenu-min-h: 132px;
+}
+
 .nocturne-app {
   min-height: 100vh;
 }
@@ -164,32 +170,14 @@
 }
 
 .nocturne-hero {
-  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--nocturne-space-6);
   padding: 30px 28px;
   margin-bottom: 26px;
-  border: 1px solid var(--nocturne-gilt-50);
   box-shadow: var(--nocturne-shadow-frame);
   overflow: hidden;
-  isolation: isolate;
-  background:
-    radial-gradient(130% 80% at 50% 0%, rgba(233, 204, 138, 0.05), transparent 46%),
-    repeating-linear-gradient(
-      112deg,
-      rgba(255, 255, 255, 0.014) 0 3px,
-      rgba(0, 0, 0, 0.028) 3px 6px
-    ),
-    linear-gradient(185deg, var(--nocturne-surface), var(--nocturne-bg) 62%, #1a0f22);
-}
-.nocturne-hero::before {
-  content: "";
-  position: absolute;
-  inset: var(--nocturne-lining-inset);
-  border: 1px solid var(--nocturne-gilt-30);
-  pointer-events: none;
 }
 .nocturne-hero::after {
   content: "";
@@ -241,20 +229,21 @@
   animation: nocturne-leaf 0.9s var(--nocturne-ease-bloom) both;
 }
 
-.nocturne-hero__vine-bloom {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: nocturne-leaf 0.8s var(--nocturne-ease-bloom) both;
-}
 .nocturne-hero__vine-petal {
   fill: var(--nocturne-primary-deep);
   stroke: var(--nocturne-gilt-dim);
   stroke-width: 0.6;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: nocturne-petal 1.7s var(--nocturne-ease-bloom) both;
 }
 .nocturne-hero__vine-core {
   fill: var(--nocturne-gilt-bright);
   stroke: var(--nocturne-gilt-dim);
   stroke-width: 0.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nocturne-leaf 0.9s var(--nocturne-ease-bloom) both;
 }
 
 .nocturne-hero__text {
@@ -478,7 +467,7 @@
 .nocturne-context__zone {
   display: grid;
   place-items: center;
-  min-height: 132px;
+  min-height: var(--nocturne-contextmenu-min-h);
   padding: var(--nocturne-space-4);
   background: var(--nocturne-surface-inset);
   border: 1px dashed var(--nocturne-gilt-30);
@@ -603,7 +592,8 @@
   .nocturne-hero__vine-stem,
   .nocturne-hero__vine-twig,
   .nocturne-hero__vine-leaf,
-  .nocturne-hero__vine-bloom,
+  .nocturne-hero__vine-petal,
+  .nocturne-hero__vine-core,
   .nocturne-modal-vine__branch,
   .nocturne-modal-vine__leaf,
   .nocturne-modal-vine__bud {

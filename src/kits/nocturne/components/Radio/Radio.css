@@ -23,10 +23,10 @@
   height: var(--nocturne-radio-box);
   padding: 0;
   overflow: hidden;
-  background: #0b0610;
+  background: var(--nocturne-bg-deep);
   border: 1px solid var(--nocturne-gilt-30);
   border-radius: var(--nocturne-r-full);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.65);
+  box-shadow: var(--nocturne-track-shadow);
   cursor: pointer;
   transition:
     border-color var(--nocturne-dur) var(--nocturne-ease),
@@ -38,7 +38,7 @@
 .nocturne-radio__control[data-checked] {
   border-color: var(--nocturne-gilt-bright);
   box-shadow:
-    inset 0 1px 4px rgba(0, 0, 0, 0.4),
+    var(--nocturne-track-shadow),
     0 0 15px var(--nocturne-glow-40);
 }
 
@@ -46,18 +46,14 @@
   position: absolute;
   inset: 1.5px;
   border-radius: var(--nocturne-r-full);
-  background:
-    radial-gradient(2.4px 2.4px at 63% 40%, rgba(120, 90, 40, 0.5), transparent 62%),
-    radial-gradient(2.8px 2.8px at 42% 64%, rgba(120, 90, 40, 0.42), transparent 62%),
-    radial-gradient(1.8px 1.8px at 56% 66%, rgba(120, 90, 40, 0.4), transparent 62%),
-    radial-gradient(circle at 37% 31%, #fbefcb, #e9cc8a 52%, #ae8238);
+  background: var(--nocturne-moon-face);
 }
 
 .nocturne-radio__shade {
   position: absolute;
   inset: -1px;
   border-radius: var(--nocturne-r-full);
-  background: radial-gradient(circle at 42% 34%, #241636, #0a0510);
+  background: var(--nocturne-moon-shade);
   transition: transform var(--nocturne-dur-slow) var(--nocturne-ease);
 }
 .nocturne-radio__control:where(:not([data-disabled], [data-checked])):hover

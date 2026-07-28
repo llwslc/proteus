@@ -8,16 +8,16 @@
 
 ## 1. 调色板
 
-- 背景：`bg #1D1126` 深茄紫黑页底，`bg-deep #120A18` 更沉的夜（暗隙、分段箱底）。
-- 表面：`surface #251733` 面板丝绒基色，`surface-pop #2E1D3E` 浮层面，`surface-inset rgba(18,10,24,.6)` 输入凹面与未填充轨道共用的暗底，`scrim rgba(10,5,14,.74)` 模态背板；模态面 = `surface-pop` 走酒红丝绒配方（见 §3）。
-- 黄铜 gilt 家族（描边、题字、焦点、选中指示）：`gilt #C69A4E`、`gilt-bright #E9CC8A`、`gilt-dim #8A6B3A`；alpha 档 `gilt-50 rgba(198,154,78,.5)`（浮层与升档描边）、`gilt-30 rgba(198,154,78,.3)`（静止描边、内衬线）、`gilt-10 rgba(198,154,78,.1)`（ghost 悬停底）；亮铜辉 `glow-12 rgba(233,204,138,.12)`（幽光）、`glow-40 rgba(233,204,138,.4)`（标记辉）。
-- 酒红 primary 家族（主动作填充、激活表面）：`primary #93304F`（亮头）、`primary-deep #7A2440`（填充主体）、`primary-shadow #431222`（暗尾、按压）；alpha 档 `primary-50 rgba(122,36,64,.5)`（行扫亮端）、`primary-25 rgba(122,36,64,.25)`（衬底）、`primary-12 rgba(122,36,64,.12)`（行扫尾）。
-- 其余语义：success 苔绿 `#9DBB7A`、`success-deep #45602F`；warning 琥珀 `#E0873A`、`warning-deep #7A431C`；danger 赤红 `#D66A76`、`danger-deep #8C2735`；危险行扫 `danger-50 rgba(140,39,53,.5)`、`danger-12 rgba(140,39,53,.12)`。
-- 文本：`text #EFE6D8` 骨白、`text-bright #F9F3E7`、`text-dim #CBBBD0` 冷藕灰、`text-mute #AF9DC2` 紫灰；反色前景 `on-fill #F6EFE2`（深填充上）、`on-gilt #431222`（黄铜实填上）。
+- 背景：`bg #1d1126` 深茄紫黑页底，`bg-deep #120a18` 更沉的夜（暗隙、分段箱底）。
+- 表面：`surface #251733` 面板丝绒基色，`surface-pop #2e1d3e` 浮层面，`surface-inset rgba(18,10,24,.6)` 输入凹面与未填充轨道共用的暗底，`scrim rgba(10,5,14,.74)` 模态背板；模态面 = `surface-pop` 走酒红丝绒配方（见 §3）。
+- 黄铜 gilt 家族（描边、题字、焦点、选中指示）：`gilt #c69a4e`、`gilt-bright #e9cc8a`、`gilt-dim #8a6b3a`；alpha 档 `gilt-50 rgba(198,154,78,.5)`（浮层与升档描边）、`gilt-30 rgba(198,154,78,.3)`（静止描边、内衬线）、`gilt-10 rgba(198,154,78,.1)`（ghost 悬停底）；亮铜辉 `glow-12 rgba(233,204,138,.12)`（幽光）、`glow-40 rgba(233,204,138,.4)`（标记辉）。
+- 酒红 primary 家族（主动作填充、激活表面）：`primary #93304f`（亮头）、`primary-bright #c4718a`（tone 强调亮档）、`primary-deep #7a2440`（填充主体）、`primary-shadow #431222`（暗尾、按压）；alpha 档 `primary-50 rgba(122,36,64,.5)`（行扫亮端）、`primary-25 rgba(122,36,64,.25)`（衬底）、`primary-12 rgba(122,36,64,.12)`（行扫尾）。
+- 其余语义：success 苔绿 `#9dbb7a`、`success-deep #45602f`；warning 琥珀 `#e0873a`、`warning-deep #7a431c`；danger 赤红 `#d66a76`、`danger-deep #8c2735`；危险行扫 `danger-50 rgba(140,39,53,.5)`、`danger-12 rgba(140,39,53,.12)`。
+- 文本：`text #efe6d8` 骨白、`text-bright #f9f3e7`、`text-dim #cbbbd0` 冷藕灰、`text-mute #af9dc2` 紫灰；反色前景 `on-fill #f6efe2`（深填充上）。
 - 对比取舍：功能字最低档 `text-mute` 于 `surface-pop` ≥4.5:1；强调正文与焦点走 gilt 家族，wine 只作填充与装饰、不作正文。
 - 强调填充：`accent-surface linear-gradient(180deg, primary-deep, primary-shadow)` 点亮激活表面（悬停换 `primary` 亮头）；`accent-fill radial-gradient(circle at 35% 30%, gilt-bright, gilt)` 满月圆点，作选中与方向指示。
-- 中性与效果：禁用透明度 `disabled-opacity .45`；禁用实填底 `disabled-fill linear-gradient(180deg, surface-pop, surface)`。
-- 投影：`shadow-frame 0 18px 50px rgba(8,4,12,.55)`（图版、面内框件）、`shadow-pop 0 24px 60px rgba(8,4,12,.7)`（锚定浮层）、`shadow-modal 0 30px 90px rgba(0,0,0,.7)`；辉光用 glow 档合成 box-shadow（如 `0 0 22px glow-12`）；随形 drop-shadow 只给 SVG 花记、就近写。
+- 中性与效果：禁用透明度 `disabled-opacity .45`；禁用实填底 `disabled-fill linear-gradient(180deg, surface-pop, surface)`；月相盘面 `moon-face`（金盘 + 陨坑多层 radial）、夜影 `moon-shade`（暗紫 radial）。
+- 投影：`shadow-frame 0 18px 50px rgba(8,4,12,.55)`（图版、面内框件）、`shadow-modal 0 30px 90px rgba(0,0,0,.7)`、`shadow-btn 0 6px 20px rgba(8,4,12,.35)` 与按压收拢档 `shadow-btn-press 0 3px 10px rgba(8,4,12,.4)`、题匾 `shadow-plaque 0 6px 18px rgba(8,4,12,.5)`、轨内影 `track-shadow inset 0 1px 4px rgba(0,0,0,.55)`；随形层：锚定浮层 `drop-pop drop-shadow(0 18px 40px rgba(8,4,12,.7))` + 幽辉 `drop-glow`，SVG 花记 `drop-mark drop-shadow(0 1px 3px rgba(8,4,12,.7))`；辉光用 glow 档合成 box-shadow（如 `0 0 22px glow-12`）。
 
 ## 2. 字体与排版
 

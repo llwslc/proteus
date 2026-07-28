@@ -36,5 +36,5 @@
   );
 }
 .nocturne-alert--warning .nocturne-modal-actions .nocturne-btn--primary {
-  background: linear-gradient(180deg, var(--nocturne-warning-deep), #4a2a10);
+  background: linear-gradient(180deg, var(--nocturne-warning-deep), var(--nocturne-primary-shadow));
 }

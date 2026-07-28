@@ -258,7 +258,7 @@ export const ModalVine = (p: IconProps) => (
 );
 
 export const BloomMark = (p: IconProps) => (
-  <svg viewBox="-14 -14 28 28" fill="none" className="nocturne-bloommark" aria-hidden {...p}>
+  <svg viewBox="-14 -14 28 28" fill="none" aria-hidden {...p}>
     {[0, 72, 144, 216, 288].map((a) => (
       <g key={a} transform={`rotate(${a})`}>
         <path

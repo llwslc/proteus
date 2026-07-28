@@ -67,3 +67,9 @@
 .nocturne-tabs__panel:focus-visible {
   outline: none;
 }
+
+@media (max-width: 768px) {
+  .nocturne-tabs__tab {
+    padding-inline: var(--nocturne-space-4);
+  }
+}

@@ -22,7 +22,7 @@
   align-items: center;
   gap: var(--nocturne-space-1);
   height: var(--nocturne-toolbar-btn-h);
-  padding-inline: var(--nocturne-space-2);
+  padding: 0 var(--nocturne-space-2);
   font-family: var(--nocturne-font);
   font-size: var(--nocturne-fs-14);
   font-weight: var(--nocturne-fw-600);

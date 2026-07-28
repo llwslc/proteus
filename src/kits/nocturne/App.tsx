@@ -275,30 +275,40 @@ function HeroVine() {
       <g className="nocturne-hero__vine-leaf" style={{ animationDelay: "1.4s" }}>
         <path d="M56 118c4-6 13-7 19-2-5 6-14 7-19 2Z" transform="rotate(20 65 116)" />
       </g>
-      <g className="nocturne-hero__vine-bloom" style={{ animationDelay: "1.1s" }}>
+      <g className="nocturne-hero__vine-bloom">
         <g transform="translate(78 248)">
-          {[0, 72, 144, 216, 288].map((a) => (
-            <path
-              key={a}
-              className="nocturne-hero__vine-petal"
-              transform={`rotate(${a})`}
-              d="M0 0C-3.2-3.2-3.4-8 0-10.6 3.4-8 3.2-3.2 0 0Z"
-            />
+          {[0, 72, 144, 216, 288].map((a, i) => (
+            <g key={a} transform={`rotate(${a})`}>
+              <path
+                className="nocturne-hero__vine-petal"
+                style={{ animationDelay: `${1.1 + i * 0.12}s` }}
+                d="M0 0C-3.2-3.2-3.4-8 0-10.6 3.4-8 3.2-3.2 0 0Z"
+              />
+            </g>
           ))}
-          <circle className="nocturne-hero__vine-core" r="2.6" />
+          <circle
+            className="nocturne-hero__vine-core"
+            style={{ animationDelay: "1.7s" }}
+            r="2.6"
+          />
         </g>
       </g>
-      <g className="nocturne-hero__vine-bloom" style={{ animationDelay: "1.6s" }}>
+      <g className="nocturne-hero__vine-bloom">
         <g transform="translate(42 30)">
-          {[0, 72, 144, 216, 288].map((a) => (
-            <path
-              key={a}
-              className="nocturne-hero__vine-petal"
-              transform={`rotate(${a})`}
-              d="M0 0C-2.6-2.6-2.8-6.6 0-8.8 2.8-6.6 2.6-2.6 0 0Z"
-            />
+          {[0, 72, 144, 216, 288].map((a, i) => (
+            <g key={a} transform={`rotate(${a})`}>
+              <path
+                className="nocturne-hero__vine-petal"
+                style={{ animationDelay: `${1.6 + i * 0.12}s` }}
+                d="M0 0C-2.6-2.6-2.8-6.6 0-8.8 2.8-6.6 2.6-2.6 0 0Z"
+              />
+            </g>
           ))}
-          <circle className="nocturne-hero__vine-core" r="2.2" />
+          <circle
+            className="nocturne-hero__vine-core"
+            style={{ animationDelay: "2.2s" }}
+            r="2.2"
+          />
         </g>
       </g>
     </svg>
@@ -480,7 +490,11 @@ function Demo() {
         </aside>
 
         <main className="nocturne-shell__main">
-          <section className="nocturne-hero" id="hero" lang="en">
+          <section
+            className="nocturne-hero nocturne-surface nocturne-surface--strong nocturne-velvet nocturne-lined"
+            id="hero"
+            lang="en"
+          >
             <HeroVine />
             <div className="nocturne-hero__text">
               <span className="nocturne-hero__eyebrow">

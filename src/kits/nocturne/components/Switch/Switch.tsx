@@ -32,7 +32,12 @@ export function Switch({ className, ...props }: SwitchProps) {
         />
       </svg>
       <BaseSwitch.Thumb className="nocturne-switch__thumb">
-        <svg viewBox="-14 -14 28 28" aria-hidden="true" focusable="false">
+        <svg
+          className="nocturne-switch__bloom"
+          viewBox="-14 -14 28 28"
+          aria-hidden="true"
+          focusable="false"
+        >
           <defs>
             <linearGradient id={budId} x1="0" y1="1" x2="0" y2="0">
               <stop offset="0" stopColor="#8a2a48" />
