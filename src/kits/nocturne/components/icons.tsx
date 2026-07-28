@@ -218,6 +218,45 @@ export const QuatrefoilMark = (p: IconProps) => (
   </svg>
 );
 
+export const ModalVine = (p: IconProps) => (
+  <svg
+    viewBox="0 0 400 44"
+    fill="none"
+    className="nocturne-modal-vine"
+    aria-hidden
+    {...p}
+  >
+    <path
+      className="nocturne-modal-vine__branch"
+      pathLength={1}
+      d="M200 22C170 12 140 12 112 22 88 30 60 30 36 22"
+    />
+    <path
+      className="nocturne-modal-vine__branch"
+      pathLength={1}
+      d="M200 22C230 12 260 12 288 22 312 30 340 30 364 22"
+    />
+    <g className="nocturne-modal-vine__leaf">
+      <path
+        d="M152 15c3-4 9-4.6 13-1.4-3.4 3.8-9.4 4.2-13 1.4Z"
+        transform="rotate(-16 158 14)"
+      />
+    </g>
+    <g className="nocturne-modal-vine__leaf">
+      <path
+        d="M235 15c3-4 9-4.6 13-1.4-3.4 3.8-9.4 4.2-13 1.4Z"
+        transform="rotate(196 241 14)"
+      />
+    </g>
+    <g className="nocturne-modal-vine__bud">
+      <circle cx="36" cy="22" r="2.4" />
+    </g>
+    <g className="nocturne-modal-vine__bud">
+      <circle cx="364" cy="22" r="2.4" />
+    </g>
+  </svg>
+);
+
 export const BloomMark = (p: IconProps) => (
   <svg viewBox="-14 -14 28 28" fill="none" className="nocturne-bloommark" aria-hidden {...p}>
     {[0, 72, 144, 216, 288].map((a) => (

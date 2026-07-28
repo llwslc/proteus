@@ -1,0 +1,26 @@
+.nocturne-popover {
+  width: var(--nocturne-popover-w);
+  max-width: calc(100vw - var(--nocturne-space-5) * 2);
+  padding: var(--nocturne-space-5);
+}
+
+.nocturne-popover__close {
+  position: absolute;
+  top: var(--nocturne-space-2);
+  right: var(--nocturne-space-2);
+  z-index: 1;
+}
+
+.nocturne-popover__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-2);
+  margin-bottom: var(--nocturne-space-3);
+  padding-right: var(--nocturne-space-7);
+}
+
+.nocturne-popover__body {
+  font-size: var(--nocturne-fs-14);
+  line-height: var(--nocturne-lh-180);
+  color: var(--nocturne-text-dim);
+}

@@ -1,0 +1,8 @@
+.nocturne-preview {
+  width: var(--nocturne-preview-w);
+  max-width: calc(100vw - var(--nocturne-space-5) * 2);
+  padding: var(--nocturne-space-5);
+  font-size: var(--nocturne-fs-14);
+  line-height: var(--nocturne-lh-180);
+  color: var(--nocturne-text-dim);
+}

@@ -1,0 +1,48 @@
+.nocturne-toolbar {
+  max-width: 100%;
+}
+
+.nocturne-toolbar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nocturne-space-1);
+}
+
+.nocturne-toolbar__sep {
+  flex: 0 0 1px;
+  width: 1px;
+  height: 18px;
+  background: var(--nocturne-gilt-30);
+  margin-inline: var(--nocturne-space-1);
+}
+
+.nocturne-toolbar__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nocturne-space-1);
+  height: var(--nocturne-toolbar-btn-h);
+  padding-inline: var(--nocturne-space-2);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-14);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-2);
+  color: var(--nocturne-gilt-bright);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nocturne-toolbar__link::after {
+  content: "";
+  position: absolute;
+  left: var(--nocturne-space-2);
+  right: var(--nocturne-space-2);
+  bottom: 4px;
+  height: 1px;
+  background: var(--nocturne-gilt);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-toolbar__link:hover::after {
+  transform: scaleX(1);
+}
