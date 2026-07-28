@@ -1,8 +1,0 @@
-.nocturne-tooltip {
-  max-width: var(--nocturne-tooltip-w);
-  padding: var(--nocturne-space-2) var(--nocturne-space-3);
-  font-size: var(--nocturne-fs-12);
-  letter-spacing: var(--nocturne-ls-1);
-  line-height: var(--nocturne-lh-140);
-  color: var(--nocturne-text);
-}

@@ -4,7 +4,7 @@
 
 ## 1. 文案
 
-- **语言分层**：外壳与仪表标签用英文——面板清单、meta 码、数据条、hero 模板、logo、状态徽章、footer；演示内容文案用中文夜园世界观——caption、条目、正文段、菜单项、toast 标题与描述、对话框文案、组副题；植物拉丁学名作 `font-script` 点缀。
+- **语言**：全部演示文案英文（`app.md` 默认，本套无指派）——夜园词汇取自由稿字面量的英文译法；植物拉丁学名作 `font-script` 点缀。下列中文条目是当前自由稿的词表记录，随自由稿改英文后同步重写。
 - logo：`NOCTURNE`，前缀一枚满月圆点；副标题 `DARK BOTANICAL UI KIT`；状态徽章 `NIGHT WATCH`，走 gilt 色。
 - hero：eyebrow `Hortus Nocturnus · 37 Blooms`；标题 `A **night-blooming** interface kit / kept in wine, brass & bone till dawn`；描述关键词 deep-violet velvet、wine-red blooms、brass hairlines；单位词 `Blooms`。
 - 区块组副题（中文）：Inputs 「园中令，一钮一诺。」；Forms 「夜册登记，落笔即存档。」；Feedback 「焰拨高一分，针挪一寸。」；Overlays 「有事请轻声，浮层自会来。」；Display 「勋牌铭签，都上了铜。」；Foundations 「从一根发丝线起造夜。」；Signature 「花在夜里，替灯把光看住。」

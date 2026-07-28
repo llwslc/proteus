@@ -1,86 +1,74 @@
 {
- "abyss": {
-  "desktop": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
+  "abyss": {
+    "desktop": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    },
+    "phone": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    }
   },
-  "phone": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  }
- },
- "nova": {
-  "desktop": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
+  "nova": {
+    "desktop": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    },
+    "phone": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    }
   },
-  "phone": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  }
- },
- "brass": {
-  "desktop": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
+  "brass": {
+    "desktop": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    },
+    "phone": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    }
   },
-  "phone": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  }
- },
- "bauhaus": {
-  "desktop": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
+  "bauhaus": {
+    "desktop": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    },
+    "phone": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    }
   },
-  "phone": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  }
- },
- "riot": {
-  "desktop": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
+  "riot": {
+    "desktop": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    },
+    "phone": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    }
   },
-  "phone": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
+  "hanabi": {
+    "desktop": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    },
+    "phone": {
+      "__header": "040779c4fb2c",
+      "__hero": "040779c4fb2c",
+      "__footer": "040779c4fb2c"
+    }
   }
- },
- "hanabi": {
-  "desktop": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  },
-  "phone": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  }
- },
- "nocturne": {
-  "desktop": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  },
-  "phone": {
-   "__header": "040779c4fb2c",
-   "__hero": "040779c4fb2c",
-   "__footer": "040779c4fb2c"
-  }
- }
 }

@@ -11,7 +11,3 @@ riot|context|riot-tape--tl|riot-panel__title
 riot|combobox|riot-panel__staple|riot-panel__title
 riot|dialog|riot-panel__staple|riot-panel__title
 riot|tabs|riot-tabs__tab|riot-tabs__tab
-# nocturne botanical language: the switch is a bud-to-bloom riding its own branch —
-# thumb bloom and track branch overlap by construction (corner-crop confirmed 2026-07-28).
-nocturne|switch|nocturne-switch__branch|nocturne-switch__bloom
-nocturne|drawer|nocturne-switch__branch|nocturne-switch__bloom
