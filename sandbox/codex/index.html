@@ -1,0 +1,1856 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Codex Theme Atlas</title>
+  <style>
+    :root {
+      --ink: #080a0c;
+      --panel: #111418;
+      --panel-2: #171b20;
+      --line: #30363d;
+      --line-soft: #22282e;
+      --paper: #f3f5ef;
+      --muted: #9aa49e;
+      --acid: #b8f34a;
+      --acid-ink: #142000;
+      --cyan: #72ddd0;
+      --danger: #ff796d;
+      --sidebar: 304px;
+      --radius: 18px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .38);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 0;
+      background: var(--ink);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 0;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 11% 7%, rgba(184, 243, 74, .09), transparent 27rem),
+        radial-gradient(circle at 92% 29%, rgba(114, 221, 208, .06), transparent 29rem),
+        var(--ink);
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: .28;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .018) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, #000, transparent 72%);
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--acid);
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .home-view {
+      min-height: 100vh;
+    }
+
+    .world-bar {
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(8, 10, 12, .78);
+      backdrop-filter: blur(18px);
+    }
+
+    .world-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, 100%);
+      min-height: 44px;
+      padding: 0 24px;
+      margin: 0 auto;
+      color: var(--muted);
+      font: 700 11px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .signal {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .signal::before {
+      width: 7px;
+      height: 7px;
+      content: "";
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 16px rgba(184, 243, 74, .72);
+    }
+
+    .home-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 42px;
+      align-items: end;
+      width: min(1180px, 100%);
+      padding: 86px 24px 54px;
+      margin: 0 auto;
+    }
+
+    .atlas-mark {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      width: max-content;
+      padding: 8px 11px;
+      margin-bottom: 26px;
+      color: var(--acid);
+      border: 1px solid rgba(184, 243, 74, .42);
+      border-radius: 999px;
+      background: rgba(184, 243, 74, .06);
+      font: 800 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .atlas-mark svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .home-header h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(52px, 8vw, 112px);
+      font-weight: 760;
+      line-height: .86;
+      letter-spacing: -.07em;
+    }
+
+    .home-header h1 span {
+      color: var(--acid);
+    }
+
+    .home-deck {
+      max-width: 660px;
+      margin: 28px 0 0;
+      color: #b7c0ba;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.55;
+    }
+
+    .atlas-count {
+      display: grid;
+      flex: 0 0 auto;
+      width: 150px;
+      aspect-ratio: 1;
+      place-content: center;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, transparent 47%, rgba(184, 243, 74, .07) 48%, transparent 51%),
+        var(--panel);
+      box-shadow: inset 0 0 0 10px rgba(255, 255, 255, .015);
+    }
+
+    .atlas-count strong {
+      display: block;
+      color: var(--acid);
+      font: 700 44px/.9 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: -.08em;
+    }
+
+    .atlas-count span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font: 700 10px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .home-main {
+      width: min(1180px, 100%);
+      padding: 0 24px 92px;
+      margin: 0 auto;
+    }
+
+    .grid-heading {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      margin-bottom: 24px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .grid-heading h2 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .grid-heading p {
+      margin: 0;
+      color: var(--muted);
+      font: 600 11px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .theme-card {
+      display: block;
+      min-width: 0;
+      overflow: hidden;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, .025) inset;
+      transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    .theme-card:hover {
+      z-index: 1;
+      border-color: #69736b;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .theme-card:active {
+      transform: translateY(-1px);
+    }
+
+    .thumb-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        linear-gradient(135deg, rgba(184, 243, 74, .06), transparent 45%),
+        #0d1013;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .thumb-viewport::after {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      content: "";
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .025);
+    }
+
+    .thumb-placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      gap: 13px;
+      place-content: center;
+      justify-items: center;
+      color: #768078;
+      background:
+        linear-gradient(110deg, transparent 28%, rgba(255, 255, 255, .035) 42%, transparent 56%) -200% 0 / 200% 100%,
+        #0e1114;
+      transition: opacity .3s ease, visibility .3s ease;
+      animation: placeholder-sweep 1.8s linear infinite;
+    }
+
+    .thumb-placeholder::before {
+      width: 24px;
+      height: 24px;
+      content: "";
+      border: 1px solid #4b554e;
+      border-right-color: var(--acid);
+      border-radius: 50%;
+      animation: spin .9s linear infinite;
+    }
+
+    .thumb-placeholder span {
+      font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .theme-card.is-loaded .thumb-placeholder {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .thumb-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1440px;
+      height: 900px;
+      pointer-events: none;
+      border: 0;
+      opacity: 0;
+      transform: scale(.2);
+      transform-origin: 0 0;
+      transition: opacity .35s ease;
+    }
+
+    .theme-card.is-loaded .thumb-frame {
+      opacity: 1;
+    }
+
+    .card-meta {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      min-height: 94px;
+      padding: 18px;
+    }
+
+    .card-number {
+      color: #717b74;
+      font: 700 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .card-copy {
+      min-width: 0;
+    }
+
+    .card-code {
+      display: block;
+      overflow: hidden;
+      margin-bottom: 7px;
+      color: var(--paper);
+      font-size: 16px;
+      font-weight: 820;
+      letter-spacing: .08em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-name {
+      display: block;
+      overflow: hidden;
+      color: var(--muted);
+      font-size: 13px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-arrow {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      transition: color .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .theme-card:hover .card-arrow {
+      color: var(--acid-ink);
+      border-color: var(--acid);
+      background: var(--acid);
+    }
+
+    .card-arrow svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .home-footer {
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .home-footer-inner {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, 100%);
+      min-height: 82px;
+      padding: 0 24px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .home-footer code {
+      color: #d3d9d4;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .detail-view {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: var(--sidebar) minmax(0, 1fr);
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .sidebar {
+      position: relative;
+      z-index: 4;
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      min-width: 0;
+      min-height: 0;
+      border-right: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 15% 0, rgba(184, 243, 74, .08), transparent 17rem),
+        #0c0f12;
+    }
+
+    .all-themes {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-height: 65px;
+      padding: 0 20px;
+      color: #dfe5df;
+      text-decoration: none;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .all-themes:hover {
+      color: var(--acid);
+    }
+
+    .all-themes svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .sidebar-search-wrap {
+      padding: 18px 16px 14px;
+    }
+
+    .search-label {
+      display: block;
+      margin: 0 0 9px 4px;
+      color: #7f8982;
+      font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box svg {
+      position: absolute;
+      top: 50%;
+      left: 13px;
+      width: 15px;
+      height: 15px;
+      color: #778078;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .theme-search {
+      width: 100%;
+      height: 42px;
+      padding: 0 41px 0 38px;
+      color: var(--paper);
+      caret-color: var(--acid);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      outline: 0;
+      background: #12161a;
+      font-size: 13px;
+    }
+
+    .theme-search::placeholder {
+      color: #6f7871;
+    }
+
+    .theme-search:focus {
+      border-color: var(--acid);
+      box-shadow: 0 0 0 3px rgba(184, 243, 74, .12);
+    }
+
+    .search-shortcut {
+      position: absolute;
+      top: 50%;
+      right: 11px;
+      min-width: 20px;
+      padding: 3px 5px;
+      color: #8a948c;
+      pointer-events: none;
+      border: 1px solid #3b433d;
+      border-radius: 5px;
+      transform: translateY(-50%);
+      font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-align: center;
+    }
+
+    .theme-search:not(:placeholder-shown) + .search-shortcut,
+    .theme-search:focus + .search-shortcut {
+      display: none;
+    }
+
+    .sidebar-list {
+      min-height: 0;
+      padding: 4px 10px 22px;
+      margin: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      list-style: none;
+      scrollbar-color: #343b36 transparent;
+      scrollbar-width: thin;
+    }
+
+    .sidebar-item {
+      margin: 2px 0;
+    }
+
+    .sidebar-link {
+      display: grid;
+      grid-template-columns: 27px minmax(0, 1fr);
+      gap: 9px;
+      align-items: center;
+      min-height: 48px;
+      padding: 8px 10px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 10px;
+    }
+
+    .sidebar-link:hover {
+      background: #15191d;
+    }
+
+    .sidebar-link[aria-current="page"] {
+      border-color: rgba(184, 243, 74, .26);
+      background: rgba(184, 243, 74, .09);
+    }
+
+    .side-number {
+      color: #6e7870;
+      font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .sidebar-link[aria-current="page"] .side-number {
+      color: var(--acid);
+    }
+
+    .side-copy {
+      min-width: 0;
+    }
+
+    .side-code,
+    .side-name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .side-code {
+      color: #e8ece8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .05em;
+    }
+
+    .side-name {
+      margin-top: 3px;
+      color: #849087;
+      font-size: 11px;
+    }
+
+    .sidebar-empty {
+      padding: 21px 13px;
+      color: #7e8980;
+      border: 1px dashed #323a34;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .drawer-overlay {
+      display: none;
+    }
+
+    .detail-main {
+      display: grid;
+      grid-template-rows: 65px minmax(0, 1fr);
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      background: #07090b;
+    }
+
+    .detail-topbar {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      min-width: 0;
+      min-height: 65px;
+      padding: 0 17px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(12, 15, 18, .94);
+      backdrop-filter: blur(18px);
+    }
+
+    .drawer-button {
+      display: none;
+    }
+
+    .current-theme {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      min-width: 0;
+      margin-right: auto;
+    }
+
+    .current-index {
+      display: grid;
+      flex: 0 0 auto;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      color: var(--acid);
+      border: 1px solid rgba(184, 243, 74, .36);
+      border-radius: 50%;
+      font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .current-copy {
+      min-width: 0;
+    }
+
+    .current-code,
+    .current-name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .current-code {
+      font-size: 12px;
+      font-weight: 820;
+      letter-spacing: .08em;
+    }
+
+    .current-name {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .tool-group {
+      display: inline-flex;
+      gap: 4px;
+      flex: 0 0 auto;
+      align-items: center;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #111519;
+    }
+
+    .tool-button {
+      display: inline-grid;
+      min-width: 34px;
+      height: 32px;
+      padding: 0 10px;
+      cursor: pointer;
+      place-items: center;
+      color: #c6cec7;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      font-size: 11px;
+      font-weight: 760;
+    }
+
+    .tool-button:hover {
+      color: #fff;
+      background: #22282d;
+    }
+
+    .tool-button[aria-pressed="true"] {
+      color: var(--acid-ink);
+      background: var(--acid);
+    }
+
+    .tool-button svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .open-button {
+      gap: 7px;
+      text-decoration: none;
+    }
+
+    .preview-stage {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(184, 243, 74, .045), transparent 35rem),
+        linear-gradient(45deg, #0a0d10 25%, transparent 25%) 0 0 / 24px 24px,
+        linear-gradient(45deg, transparent 75%, #0a0d10 75%) 0 0 / 24px 24px,
+        #080a0c;
+    }
+
+    .preview-device {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid #252b30;
+      background: #101317;
+      box-shadow: 0 32px 90px rgba(0, 0, 0, .5);
+      transition: width .25s ease, height .25s ease, border-radius .25s ease, padding .25s ease;
+    }
+
+    .preview-device[data-viewport="pc"] {
+      border-radius: 10px;
+    }
+
+    .preview-device[data-viewport="mobile"] {
+      width: min(390px, 100%);
+      height: min(844px, 100%);
+      padding: 9px;
+      border: 1px solid #414950;
+      border-radius: 34px;
+      background:
+        linear-gradient(145deg, #2e3439, #111417 42%, #050607);
+      box-shadow:
+        0 35px 90px rgba(0, 0, 0, .68),
+        inset 0 1px 1px rgba(255, 255, 255, .18);
+    }
+
+    .preview-device[data-viewport="mobile"]::before {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      z-index: 3;
+      width: 72px;
+      height: 4px;
+      pointer-events: none;
+      content: "";
+      border-radius: 99px;
+      background: #050607;
+      transform: translateX(-50%);
+    }
+
+    .preview-frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+      border: 0;
+      border-radius: inherit;
+      background: #fff;
+    }
+
+    .preview-device[data-viewport="mobile"] .preview-frame {
+      border-radius: 26px;
+    }
+
+    .preview-loading {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: grid;
+      gap: 14px;
+      place-content: center;
+      justify-items: center;
+      color: #a9b2ab;
+      background: #0e1215;
+      transition: opacity .26s ease, visibility .26s ease;
+    }
+
+    .preview-loading::before {
+      width: 30px;
+      height: 30px;
+      content: "";
+      border: 2px solid #3b443d;
+      border-top-color: var(--acid);
+      border-radius: 50%;
+      animation: spin .75s linear infinite;
+    }
+
+    .preview-loading span {
+      font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .preview-device.is-ready .preview-loading {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    body.is-fullscreen .detail-view {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.is-fullscreen .sidebar,
+    body.is-fullscreen .detail-topbar {
+      display: none;
+    }
+
+    body.is-fullscreen .detail-main {
+      grid-template-rows: minmax(0, 1fr);
+    }
+
+    body.is-fullscreen .preview-stage {
+      padding: 0;
+    }
+
+    body.is-fullscreen .preview-device[data-viewport="pc"] {
+      border: 0;
+      border-radius: 0;
+    }
+
+    body.is-fullscreen .preview-device[data-viewport="mobile"] {
+      max-height: 844px;
+      margin: 12px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes placeholder-sweep {
+      to { background-position: 200% 0; }
+    }
+
+    @media (max-width: 980px) {
+      .theme-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .detail-topbar {
+        gap: 9px;
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      .current-name {
+        display: none;
+      }
+
+      .tool-button {
+        padding: 0 8px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --sidebar: min(326px, calc(100vw - 42px));
+      }
+
+      .world-bar-inner {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .world-bar-inner > span:last-child {
+        display: none;
+      }
+
+      .home-header {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 34px;
+        padding: 64px 16px 42px;
+      }
+
+      .home-header h1 {
+        font-size: clamp(54px, 19vw, 82px);
+      }
+
+      .atlas-count {
+        width: 118px;
+      }
+
+      .atlas-count strong {
+        font-size: 36px;
+      }
+
+      .home-main {
+        padding-right: 16px;
+        padding-bottom: 64px;
+        padding-left: 16px;
+      }
+
+      .theme-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .home-footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 16px;
+      }
+
+      .detail-view {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: var(--sidebar);
+        box-shadow: 24px 0 70px rgba(0, 0, 0, .55);
+        transform: translateX(-105%);
+        transition: transform .24s ease;
+      }
+
+      body.drawer-open .sidebar {
+        transform: translateX(0);
+      }
+
+      .drawer-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 3;
+        display: block;
+        visibility: hidden;
+        cursor: pointer;
+        border: 0;
+        opacity: 0;
+        background: rgba(0, 0, 0, .68);
+        transition: opacity .24s ease, visibility .24s ease;
+      }
+
+      body.drawer-open .drawer-overlay {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .detail-main {
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .detail-topbar {
+        flex-wrap: wrap;
+        min-height: 0;
+        padding: 9px 10px;
+      }
+
+      .drawer-button {
+        display: inline-grid;
+      }
+
+      .current-theme {
+        flex: 1 1 160px;
+      }
+
+      .current-name {
+        display: block;
+      }
+
+      .topbar-tools {
+        display: flex;
+        flex: 1 0 100%;
+        gap: 8px;
+        justify-content: space-between;
+        min-width: 0;
+      }
+
+      .tool-group {
+        min-width: 0;
+      }
+
+      .preview-stage {
+        padding: 10px 0;
+      }
+
+      .preview-device[data-viewport="pc"] {
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+      }
+
+      .preview-device[data-viewport="mobile"] {
+        width: min(390px, 100%);
+        border-right-width: 0;
+        border-left-width: 0;
+        border-radius: 26px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .grid-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .card-meta {
+        min-height: 86px;
+        padding: 15px;
+      }
+
+      .detail-topbar {
+        gap: 7px;
+      }
+
+      .current-index {
+        display: none;
+      }
+
+      .current-theme {
+        gap: 7px;
+      }
+
+      .nav-tools .tool-button {
+        min-width: 31px;
+        padding: 0 7px;
+      }
+
+      .viewport-tools .tool-button {
+        min-width: 38px;
+        padding: 0 6px;
+      }
+
+      .action-tools .tool-button {
+        min-width: 32px;
+        padding: 0 7px;
+      }
+
+      .open-label {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="home-view" id="homeView" aria-labelledby="atlasTitle">
+    <div class="world-bar">
+      <div class="world-bar-inner">
+        <span class="signal">Codex visual systems online</span>
+        <span>Local atlas / zero build</span>
+      </div>
+    </div>
+
+    <header class="home-header">
+      <div>
+        <div class="atlas-mark">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2 22 7.5v9L12 22 2 16.5v-9L12 2Z" stroke="currentColor" stroke-width="1.7"/>
+            <path d="m7.5 9 4.5-2.5L16.5 9 12 11.5 7.5 9Zm0 4 4.5 2.5 4.5-2.5" stroke="currentColor" stroke-width="1.7"/>
+          </svg>
+          Codex / Theme Atlas
+        </div>
+        <h1 id="atlasTitle">Choose a <span>world.</span></h1>
+        <p class="home-deck">Twenty-one interface systems, each built as a living single-file artifact. Enter one to test its controls, motion, and point of view.</p>
+      </div>
+      <div class="atlas-count" aria-label="21 themes">
+        <strong id="themeCount">21</strong>
+        <span>live worlds</span>
+      </div>
+    </header>
+
+    <main class="home-main">
+      <div class="grid-heading">
+        <h2>Field index</h2>
+        <p>Scroll to wake previews · Select to inspect</p>
+      </div>
+      <div class="theme-grid" id="themeGrid"></div>
+    </main>
+
+    <footer class="home-footer">
+      <div class="home-footer-inner">
+        <span>Every world is autonomous. Every control is live.</span>
+        <code>sandbox/codex</code>
+      </div>
+    </footer>
+  </section>
+
+  <section class="detail-view" id="detailView" aria-label="Theme inspector" hidden>
+    <aside class="sidebar" id="sidebar" aria-label="Theme directory">
+      <a class="all-themes" id="allThemesLink" href="#">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        All Themes
+      </a>
+
+      <div class="sidebar-search-wrap">
+        <label class="search-label" for="themeSearch">Filter directory</label>
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/>
+            <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <input class="theme-search" id="themeSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Code, name, or id">
+          <span class="search-shortcut">/</span>
+        </div>
+      </div>
+
+      <ol class="sidebar-list" id="sidebarList"></ol>
+    </aside>
+
+    <button class="drawer-overlay" id="drawerOverlay" type="button" aria-label="Close theme directory" tabindex="-1"></button>
+
+    <div class="detail-main">
+      <header class="detail-topbar">
+        <button class="tool-button drawer-button" id="drawerButton" type="button" aria-label="Open theme directory" aria-controls="sidebar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="current-theme" aria-live="polite">
+          <span class="current-index" id="currentIndex">01</span>
+          <span class="current-copy">
+            <span class="current-code" id="currentCode">NOVA</span>
+            <span class="current-name" id="currentName">Sci-fi neon</span>
+          </span>
+        </div>
+
+        <div class="topbar-tools">
+          <div class="tool-group nav-tools" aria-label="Theme navigation">
+            <button class="tool-button" id="previousButton" type="button" aria-label="Previous theme">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m14.5 17-5-5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="tool-button" id="nextButton" type="button" aria-label="Next theme">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m9.5 7 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="tool-group viewport-tools" aria-label="Preview viewport">
+            <button class="tool-button" id="pcButton" type="button" aria-label="Desktop viewport" aria-pressed="true">PC</button>
+            <button class="tool-button" id="mobileButton" type="button" aria-label="Mobile viewport" aria-pressed="false">Mobile</button>
+          </div>
+
+          <div class="tool-group action-tools" aria-label="Preview actions">
+            <button class="tool-button" id="fullscreenButton" type="button" aria-label="Enter page fullscreen" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8.5 4H4v4.5M15.5 4H20v4.5M20 15.5V20h-4.5M8.5 20H4v-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <a class="tool-button open-button" id="openButton" href="nova.html" target="_blank" rel="noopener" aria-label="Open current theme in a new window">
+              <span class="open-label">Open</span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="preview-stage" id="previewStage">
+        <div class="preview-device" id="previewDevice" data-viewport="pc">
+          <iframe class="preview-frame" id="previewFrame" title="Theme preview"></iframe>
+          <div class="preview-loading" id="previewLoading" aria-live="polite">
+            <span>Loading world</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <noscript>
+    <p style="margin:32px;color:#f3f5ef">JavaScript is required to run the theme atlas. Every theme page can still be opened directly.</p>
+  </noscript>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const themes = [
+        { id: "nova", code: "NOVA", name: "Sci-fi neon" },
+        { id: "abyss", code: "ABYSS", name: "Eldritch grimoire" },
+        { id: "brass", code: "BRASS", name: "Steampunk" },
+        { id: "prism", code: "PRISM", name: "Bauhaus" },
+        { id: "riot", code: "RIOT", name: "Punk zine" },
+        { id: "hanabi", code: "HANABI", name: "Anime cel" },
+        { id: "sumi", code: "SUMI", name: "Zen ink" },
+        { id: "ormolu", code: "ORMOLU", name: "Rococo" },
+        { id: "nocturne", code: "NOCTURNE", name: "Dark botanical" },
+        { id: "pulp", code: "PULP", name: "Pulp paperback" },
+        { id: "totem", code: "TOTEM", name: "Folk craft" },
+        { id: "kiln", code: "KILN", name: "Wabi-sabi" },
+        { id: "chrome", code: "CHROME", name: "Y2K aero" },
+        { id: "arcade", code: "ARCADE", name: "Retro arcade" },
+        { id: "bitmap", code: "BITMAP", name: "One-bit dither" },
+        { id: "mochi", code: "MOCHI", name: "Claymorphic squish" },
+        { id: "scribble", code: "SCRIBBLE", name: "Notebook doodle" },
+        { id: "axon", code: "AXON", name: "Isometric blueprint" },
+        { id: "corona", code: "CORONA", name: "Eclipse glass" },
+        { id: "reliquary", code: "RELIQUARY", name: "Future reliquary" },
+        { id: "gazette", code: "GAZETTE", name: "Broadsheet" }
+      ];
+
+      const elements = {
+        homeView: document.getElementById("homeView"),
+        detailView: document.getElementById("detailView"),
+        themeGrid: document.getElementById("themeGrid"),
+        themeCount: document.getElementById("themeCount"),
+        allThemesLink: document.getElementById("allThemesLink"),
+        sidebarList: document.getElementById("sidebarList"),
+        themeSearch: document.getElementById("themeSearch"),
+        drawerButton: document.getElementById("drawerButton"),
+        drawerOverlay: document.getElementById("drawerOverlay"),
+        currentIndex: document.getElementById("currentIndex"),
+        currentCode: document.getElementById("currentCode"),
+        currentName: document.getElementById("currentName"),
+        previousButton: document.getElementById("previousButton"),
+        nextButton: document.getElementById("nextButton"),
+        pcButton: document.getElementById("pcButton"),
+        mobileButton: document.getElementById("mobileButton"),
+        fullscreenButton: document.getElementById("fullscreenButton"),
+        openButton: document.getElementById("openButton"),
+        previewDevice: document.getElementById("previewDevice"),
+        previewFrame: document.getElementById("previewFrame")
+      };
+
+      const iconArrow = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      iconArrow.setAttribute("viewBox", "0 0 24 24");
+      iconArrow.setAttribute("fill", "none");
+      iconArrow.setAttribute("aria-hidden", "true");
+      const iconArrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      iconArrowPath.setAttribute("d", "M8 12h8m-3.5-3.5L16 12l-3.5 3.5");
+      iconArrowPath.setAttribute("stroke", "currentColor");
+      iconArrowPath.setAttribute("stroke-width", "1.7");
+      iconArrowPath.setAttribute("stroke-linecap", "round");
+      iconArrowPath.setAttribute("stroke-linejoin", "round");
+      iconArrow.append(iconArrowPath);
+
+      let currentThemeIndex = 0;
+      let homeScroll = 0;
+      let filteredThemes = themes.slice();
+      let previewRequest = 0;
+      let previewViewport = readViewportPreference();
+      let activeThumbnailLoads = 0;
+      const thumbnailQueue = [];
+      const queuedThumbnails = new Set();
+      const loadedThumbnails = new Set();
+      const thumbnailFrames = new Map();
+
+      function padded(number) {
+        return String(number).padStart(2, "0");
+      }
+
+      function readViewportPreference() {
+        try {
+          return localStorage.getItem("codex-atlas-viewport") === "mobile" ? "mobile" : "pc";
+        } catch {
+          return "pc";
+        }
+      }
+
+      function writeViewportPreference(value) {
+        try {
+          localStorage.setItem("codex-atlas-viewport", value);
+        } catch {
+          // The atlas remains fully usable when storage is unavailable.
+        }
+      }
+
+      function createTextElement(tag, className, value) {
+        const node = document.createElement(tag);
+        node.className = className;
+        node.textContent = value;
+        return node;
+      }
+
+      function renderCards() {
+        const fragment = document.createDocumentFragment();
+
+        themes.forEach((theme, index) => {
+          const card = document.createElement("a");
+          card.className = "theme-card";
+          card.href = `#${theme.id}`;
+          card.dataset.themeId = theme.id;
+          card.setAttribute("aria-label", `Open ${theme.code}: ${theme.name}`);
+
+          const viewport = document.createElement("div");
+          viewport.className = "thumb-viewport";
+
+          const placeholder = document.createElement("div");
+          placeholder.className = "thumb-placeholder";
+          placeholder.append(createTextElement("span", "", "Preview dormant"));
+          viewport.append(placeholder);
+
+          const meta = document.createElement("div");
+          meta.className = "card-meta";
+          meta.append(createTextElement("span", "card-number", padded(index + 1)));
+
+          const copy = document.createElement("span");
+          copy.className = "card-copy";
+          copy.append(
+            createTextElement("span", "card-code", theme.code),
+            createTextElement("span", "card-name", theme.name)
+          );
+          meta.append(copy);
+
+          const arrow = document.createElement("span");
+          arrow.className = "card-arrow";
+          arrow.append(iconArrow.cloneNode(true));
+          meta.append(arrow);
+
+          card.append(viewport, meta);
+          fragment.append(card);
+        });
+
+        elements.themeGrid.replaceChildren(fragment);
+        elements.themeCount.textContent = String(themes.length);
+        observeCards();
+      }
+
+      function observeCards() {
+        const cards = elements.themeGrid.querySelectorAll(".theme-card");
+        if (!("IntersectionObserver" in window)) {
+          cards.forEach(queueThumbnail);
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              queueThumbnail(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "0px", threshold: 0.02 });
+
+        cards.forEach((card) => observer.observe(card));
+      }
+
+      function queueThumbnail(card) {
+        const id = card.dataset.themeId;
+        if (loadedThumbnails.has(id) || queuedThumbnails.has(id)) {
+          return;
+        }
+        queuedThumbnails.add(id);
+        thumbnailQueue.push(card);
+        pumpThumbnailQueue();
+      }
+
+      function pumpThumbnailQueue() {
+        while (activeThumbnailLoads < 5 && thumbnailQueue.length) {
+          const card = thumbnailQueue.shift();
+          loadThumbnail(card);
+        }
+      }
+
+      function loadThumbnail(card) {
+        const id = card.dataset.themeId;
+        const theme = themes.find((item) => item.id === id);
+        if (!theme) {
+          queuedThumbnails.delete(id);
+          return;
+        }
+
+        activeThumbnailLoads += 1;
+        const viewport = card.querySelector(".thumb-viewport");
+        const frame = document.createElement("iframe");
+        frame.className = "thumb-frame";
+        frame.tabIndex = -1;
+        frame.setAttribute("aria-hidden", "true");
+        frame.title = `${theme.code} animated preview`;
+        frame.src = `${theme.id}.html`;
+        viewport.append(frame);
+        thumbnailFrames.set(id, frame);
+        scaleThumbnail(viewport, frame);
+
+        let finished = false;
+        const finish = (loaded) => {
+          if (finished) {
+            return;
+          }
+          finished = true;
+          activeThumbnailLoads = Math.max(0, activeThumbnailLoads - 1);
+          queuedThumbnails.delete(id);
+          if (loaded) {
+            loadedThumbnails.add(id);
+            card.classList.add("is-loaded");
+            const placeholderText = card.querySelector(".thumb-placeholder span");
+            if (placeholderText) {
+              placeholderText.textContent = "Preview ready";
+            }
+          }
+          pumpThumbnailQueue();
+        };
+
+        frame.addEventListener("load", () => {
+          try {
+            frame.contentWindow.scrollTo(0, 0);
+          } catch {
+            // A direct local load remains usable if the browser limits frame access.
+          }
+          finish(true);
+        }, { once: true });
+        frame.addEventListener("error", () => finish(false), { once: true });
+        window.setTimeout(() => finish(frame.contentDocument?.readyState === "complete"), 15000);
+      }
+
+      function scaleThumbnail(viewport, frame) {
+        const scale = Math.max(.01, viewport.clientWidth / 1440);
+        frame.style.transform = `scale(${scale})`;
+      }
+
+      const thumbnailResizeObserver = "ResizeObserver" in window
+        ? new ResizeObserver((entries) => {
+            entries.forEach((entry) => {
+              const card = entry.target.closest(".theme-card");
+              const frame = card ? thumbnailFrames.get(card.dataset.themeId) : null;
+              if (frame) {
+                scaleThumbnail(entry.target, frame);
+              }
+            });
+          })
+        : null;
+
+      function watchThumbnailSizes() {
+        if (!thumbnailResizeObserver) {
+          return;
+        }
+        elements.themeGrid.querySelectorAll(".thumb-viewport").forEach((viewport) => {
+          thumbnailResizeObserver.observe(viewport);
+        });
+      }
+
+      function renderSidebar() {
+        const query = elements.themeSearch.value.trim().toLocaleLowerCase();
+        filteredThemes = themes.filter((theme) => {
+          return `${theme.id} ${theme.code} ${theme.name}`.toLocaleLowerCase().includes(query);
+        });
+
+        if (!filteredThemes.length) {
+          const empty = document.createElement("li");
+          empty.className = "sidebar-empty";
+          empty.textContent = "No worlds match this signal.";
+          elements.sidebarList.replaceChildren(empty);
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        filteredThemes.forEach((theme) => {
+          const index = themes.indexOf(theme);
+          const item = document.createElement("li");
+          item.className = "sidebar-item";
+
+          const link = document.createElement("a");
+          link.className = "sidebar-link";
+          link.href = `#${theme.id}`;
+          if (index === currentThemeIndex) {
+            link.setAttribute("aria-current", "page");
+          }
+
+          link.append(createTextElement("span", "side-number", padded(index + 1)));
+          const copy = document.createElement("span");
+          copy.className = "side-copy";
+          copy.append(
+            createTextElement("span", "side-code", theme.code),
+            createTextElement("span", "side-name", theme.name)
+          );
+          link.append(copy);
+          fragment.append(item);
+          item.append(link);
+        });
+
+        elements.sidebarList.replaceChildren(fragment);
+      }
+
+      function showHome() {
+        document.body.classList.remove("detail-open", "is-fullscreen", "drawer-open");
+        elements.detailView.hidden = true;
+        elements.homeView.hidden = false;
+        elements.fullscreenButton.setAttribute("aria-pressed", "false");
+        elements.drawerButton.setAttribute("aria-expanded", "false");
+        document.title = "Codex Theme Atlas";
+        window.requestAnimationFrame(() => window.scrollTo(0, homeScroll));
+      }
+
+      function showDetail(index) {
+        const entering = elements.detailView.hidden;
+        if (entering) {
+          homeScroll = window.scrollY;
+        }
+
+        currentThemeIndex = index;
+        const theme = themes[index];
+        document.body.classList.add("detail-open");
+        elements.homeView.hidden = true;
+        elements.detailView.hidden = false;
+        document.title = `${theme.code} — Codex Theme Atlas`;
+        elements.currentIndex.textContent = padded(index + 1);
+        elements.currentCode.textContent = theme.code;
+        elements.currentName.textContent = theme.name;
+        elements.previousButton.setAttribute("aria-label", `Previous theme: ${themes[(index - 1 + themes.length) % themes.length].code}`);
+        elements.nextButton.setAttribute("aria-label", `Next theme: ${themes[(index + 1) % themes.length].code}`);
+        elements.openButton.href = `${theme.id}.html`;
+        renderSidebar();
+        setViewport(previewViewport, false);
+        loadPreview(theme);
+
+        window.requestAnimationFrame(() => {
+          const activeLink = elements.sidebarList.querySelector('[aria-current="page"]');
+          activeLink?.scrollIntoView({ block: "nearest" });
+        });
+      }
+
+      function routeFromHash() {
+        const id = decodeURIComponent(location.hash.slice(1)).toLocaleLowerCase();
+        if (!id) {
+          showHome();
+          return;
+        }
+        const index = themes.findIndex((theme) => theme.id === id);
+        if (index === -1) {
+          history.replaceState(null, "", `${location.pathname}${location.search}`);
+          showHome();
+          return;
+        }
+        showDetail(index);
+      }
+
+      function loadPreview(theme) {
+        const expectedSource = new URL(`${theme.id}.html`, location.href).href;
+        if (elements.previewFrame.src === expectedSource && elements.previewDevice.classList.contains("is-ready")) {
+          attachThemeKeyHandling();
+          return;
+        }
+
+        const request = ++previewRequest;
+        elements.previewDevice.classList.remove("is-ready");
+        elements.previewFrame.title = `${theme.code}: ${theme.name} preview`;
+
+        elements.previewFrame.onload = () => {
+          if (request !== previewRequest) {
+            return;
+          }
+          try {
+            elements.previewFrame.contentWindow.scrollTo(0, 0);
+          } catch {
+            // The preview can still render if frame access is restricted.
+          }
+          elements.previewDevice.classList.add("is-ready");
+          attachThemeKeyHandling();
+        };
+
+        elements.previewFrame.src = `${theme.id}.html`;
+      }
+
+      function setViewport(value, persist = true) {
+        previewViewport = value === "mobile" ? "mobile" : "pc";
+        elements.previewDevice.dataset.viewport = previewViewport;
+        elements.pcButton.setAttribute("aria-pressed", String(previewViewport === "pc"));
+        elements.mobileButton.setAttribute("aria-pressed", String(previewViewport === "mobile"));
+        if (persist) {
+          writeViewportPreference(previewViewport);
+        }
+      }
+
+      function selectTheme(index) {
+        const normalized = (index + themes.length) % themes.length;
+        const id = themes[normalized].id;
+        if (location.hash.slice(1) === id) {
+          showDetail(normalized);
+        } else {
+          location.hash = id;
+        }
+      }
+
+      function setDrawer(open) {
+        const shouldOpen = Boolean(open) && window.matchMedia("(max-width: 760px)").matches;
+        document.body.classList.toggle("drawer-open", shouldOpen);
+        elements.drawerButton.setAttribute("aria-expanded", String(shouldOpen));
+        if (shouldOpen) {
+          window.requestAnimationFrame(() => elements.themeSearch.focus());
+        }
+      }
+
+      function setFullscreen(open) {
+        document.body.classList.toggle("is-fullscreen", Boolean(open));
+        elements.fullscreenButton.setAttribute("aria-pressed", String(Boolean(open)));
+        elements.fullscreenButton.setAttribute("aria-label", open ? "Exit page fullscreen" : "Enter page fullscreen");
+        if (open) {
+          setDrawer(false);
+          window.requestAnimationFrame(() => elements.previewFrame.focus());
+        }
+      }
+
+      function isTypingTarget(target) {
+        return Boolean(target?.closest?.("input, textarea, select, [contenteditable='true']"));
+      }
+
+      function handleEscape() {
+        if (document.activeElement === elements.themeSearch) {
+          if (elements.themeSearch.value) {
+            elements.themeSearch.value = "";
+            renderSidebar();
+          } else {
+            elements.themeSearch.blur();
+          }
+          return;
+        }
+        if (document.body.classList.contains("is-fullscreen")) {
+          setFullscreen(false);
+          return;
+        }
+        if (document.body.classList.contains("drawer-open")) {
+          setDrawer(false);
+          return;
+        }
+        if (!elements.detailView.hidden) {
+          location.hash = "";
+        }
+      }
+
+      function visibleThemeLayer(themeDocument) {
+        const selectors = [
+          "dialog[open]",
+          "[aria-modal='true']",
+          "[role='dialog']",
+          "[role='listbox']",
+          "[role='menu']",
+          "[data-open='true']",
+          ".is-open",
+          ".open"
+        ];
+        const candidates = themeDocument.querySelectorAll(selectors.join(","));
+        return Array.from(candidates).some((node) => {
+          if (node.hidden || node.getAttribute("aria-hidden") === "true") {
+            return false;
+          }
+          if (node.getClientRects().length === 0) {
+            return false;
+          }
+          const style = themeDocument.defaultView.getComputedStyle(node);
+          return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity || 1) !== 0;
+        });
+      }
+
+      function themeOwnsArrow(target) {
+        return Boolean(target?.closest?.([
+          "input",
+          "textarea",
+          "select",
+          "[contenteditable='true']",
+          "[role='slider']",
+          "[role='tab']",
+          "[role='tablist']",
+          "[role='menu']",
+          "[role='menuitem']",
+          "[role='listbox']",
+          "[role='option']",
+          "[role='combobox']",
+          "[role='radio']",
+          "[role='checkbox']",
+          "[role='switch']"
+        ].join(",")));
+      }
+
+      function attachThemeKeyHandling() {
+        let themeDocument;
+        try {
+          themeDocument = elements.previewFrame.contentDocument;
+        } catch {
+          return;
+        }
+        if (!themeDocument || themeDocument.documentElement.dataset.atlasKeys === "true") {
+          return;
+        }
+        themeDocument.documentElement.dataset.atlasKeys = "true";
+
+        themeDocument.addEventListener("keydown", (event) => {
+          if (event.defaultPrevented) {
+            return;
+          }
+          if (event.key === "Escape") {
+            if (visibleThemeLayer(themeDocument)) {
+              return;
+            }
+            event.preventDefault();
+            event.stopPropagation();
+            handleEscape();
+            return;
+          }
+          if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && !themeOwnsArrow(event.target)) {
+            event.preventDefault();
+            event.stopPropagation();
+            selectTheme(currentThemeIndex + (event.key === "ArrowRight" ? 1 : -1));
+          }
+        }, true);
+      }
+
+      elements.themeSearch.addEventListener("input", renderSidebar);
+      elements.themeSearch.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && filteredThemes.length) {
+          event.preventDefault();
+          const target = filteredThemes[0];
+          setDrawer(false);
+          location.hash = target.id;
+        }
+      });
+
+      elements.sidebarList.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+          setDrawer(false);
+        }
+      });
+
+      elements.allThemesLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        setDrawer(false);
+        location.hash = "";
+      });
+
+      elements.drawerButton.addEventListener("click", () => {
+        setDrawer(!document.body.classList.contains("drawer-open"));
+      });
+      elements.drawerOverlay.addEventListener("click", () => setDrawer(false));
+      elements.previousButton.addEventListener("click", () => selectTheme(currentThemeIndex - 1));
+      elements.nextButton.addEventListener("click", () => selectTheme(currentThemeIndex + 1));
+      elements.pcButton.addEventListener("click", () => setViewport("pc"));
+      elements.mobileButton.addEventListener("click", () => setViewport("mobile"));
+      elements.fullscreenButton.addEventListener("click", () => {
+        setFullscreen(!document.body.classList.contains("is-fullscreen"));
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (elements.detailView.hidden) {
+          return;
+        }
+        if (event.key === "/" && !isTypingTarget(event.target)) {
+          event.preventDefault();
+          if (window.matchMedia("(max-width: 760px)").matches) {
+            setDrawer(true);
+          } else {
+            elements.themeSearch.focus();
+          }
+          return;
+        }
+        if (event.key === "Escape") {
+          event.preventDefault();
+          handleEscape();
+          return;
+        }
+        if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && !isTypingTarget(event.target)) {
+          const ownArrows = event.target.closest?.("[role='tablist'], [role='tab'], [role='slider'], [role='menu'], [role='listbox']");
+          if (!ownArrows) {
+            event.preventDefault();
+            selectTheme(currentThemeIndex + (event.key === "ArrowRight" ? 1 : -1));
+          }
+        }
+      });
+
+      window.addEventListener("hashchange", routeFromHash);
+      window.addEventListener("resize", () => {
+        if (!window.matchMedia("(max-width: 760px)").matches) {
+          setDrawer(false);
+        }
+        document.querySelectorAll(".thumb-viewport").forEach((viewport) => {
+          const card = viewport.closest(".theme-card");
+          const frame = card ? thumbnailFrames.get(card.dataset.themeId) : null;
+          if (frame) {
+            scaleThumbnail(viewport, frame);
+          }
+        });
+      });
+
+      renderCards();
+      watchThumbnailSizes();
+      renderSidebar();
+      setViewport(previewViewport, false);
+      routeFromHash();
+    })();
+  </script>
+</body>
+</html>

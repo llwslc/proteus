@@ -1,0 +1,2349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>RIOT — The Underground Signal Press</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Special+Elite&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #080808;
+      --paper: #efede4;
+      --paper-bright: #fffdf4;
+      --paper-dim: #c8c5bc;
+      --orange: #ff4b00;
+      --pink: #ff1caf;
+      --white: #ffffff;
+      --muted: #575550;
+      --focus: #55e8ff;
+      --shadow: 10px 10px 0 var(--ink);
+      --cut: polygon(0 3%, 3% 1%, 8% 3%, 14% 0, 20% 2%, 27% 0, 34% 2%, 40% 1%, 48% 3%, 55% 0, 62% 2%, 69% 0, 77% 3%, 84% 1%, 91% 3%, 100% 1%, 98% 10%, 100% 20%, 98% 30%, 100% 42%, 98% 54%, 100% 66%, 98% 78%, 100% 89%, 98% 100%, 89% 98%, 80% 100%, 72% 98%, 63% 100%, 54% 98%, 45% 100%, 37% 98%, 29% 100%, 20% 98%, 11% 100%, 1% 98%, 3% 89%, 0 78%, 2% 67%, 0 55%, 2% 43%, 0 31%, 2% 20%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 49.7%, rgba(8, 8, 8, .12) 50%, transparent 50.3%),
+        linear-gradient(5deg, transparent 38%, rgba(8, 8, 8, .06) 38.2%, transparent 38.5%),
+        var(--paper);
+      font-family: "Special Elite", "Courier New", monospace;
+      line-height: 1.55;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      content: "";
+      opacity: .2;
+      background-image:
+        radial-gradient(circle at 14% 26%, var(--ink) 0 .65px, transparent .75px),
+        radial-gradient(circle at 78% 61%, var(--ink) 0 .55px, transparent .7px),
+        radial-gradient(circle at 44% 88%, var(--ink) 0 .55px, transparent .7px);
+      background-size: 7px 9px, 11px 13px, 5px 8px;
+      mix-blend-mode: multiply;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    [role="option"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 16px;
+      z-index: 100;
+      padding: 10px 14px;
+      color: var(--white);
+      background: var(--ink);
+      transform: translateY(-180%);
+      transition: transform .1s steps(1);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    :focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1180px;
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .status-bar {
+      position: relative;
+      z-index: 5;
+      border-bottom: 5px solid var(--pink);
+      color: var(--white);
+      background: var(--ink);
+      font-family: "Archivo Black", Impact, sans-serif;
+      text-transform: uppercase;
+    }
+
+    .status-inner {
+      display: flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: .74rem;
+      letter-spacing: .12em;
+    }
+
+    .status-signal,
+    .status-channel {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      white-space: nowrap;
+    }
+
+    .signal-dot {
+      width: 11px;
+      height: 11px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255, 75, 0, .25);
+      animation: signal-jolt 1.4s steps(2, end) infinite;
+    }
+
+    .status-channel {
+      padding: 4px 8px;
+      color: var(--ink);
+      background: var(--pink);
+      transform: rotate(1deg);
+    }
+
+    .hero {
+      display: grid;
+      min-height: 760px;
+      grid-template-columns: minmax(0, .92fr) minmax(360px, 1.08fr);
+      align-items: center;
+      gap: clamp(38px, 6vw, 88px);
+      padding-block: 72px 88px;
+    }
+
+    .hero-copy,
+    .hero-stage {
+      min-width: 0;
+    }
+
+    .tape-label {
+      display: inline-block;
+      margin: 0 0 22px;
+      padding: 7px 18px 5px;
+      color: var(--ink);
+      background: var(--orange);
+      box-shadow: 2px 3px 0 rgba(8, 8, 8, .4);
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .78rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+      clip-path: polygon(2% 8%, 98% 0, 100% 86%, 3% 100%, 5% 62%, 0 42%);
+    }
+
+    .ransom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .03em;
+      margin: 0 0 16px;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: clamp(4.9rem, 10vw, 8.8rem);
+      font-weight: 900;
+      line-height: .77;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+    }
+
+    .ransom span {
+      display: inline-flex;
+      min-width: .66em;
+      min-height: 1em;
+      align-items: center;
+      justify-content: center;
+      padding: .03em .08em 0;
+      box-shadow: 4px 5px 0 var(--ink);
+    }
+
+    .ransom span:nth-child(1) {
+      color: var(--paper-bright);
+      background: var(--ink);
+      transform: rotate(-4deg) translateY(2px);
+    }
+
+    .ransom span:nth-child(2) {
+      color: var(--ink);
+      background: var(--pink);
+      font-family: "Special Elite", serif;
+      transform: rotate(3deg) translateY(-3px);
+    }
+
+    .ransom span:nth-child(3) {
+      color: var(--ink);
+      background: var(--orange);
+      transform: rotate(-2deg) scale(1.08);
+    }
+
+    .ransom span:nth-child(4) {
+      color: var(--paper-bright);
+      background: var(--ink);
+      font-family: "Archivo Black", Impact, sans-serif;
+      transform: rotate(4deg) translateY(4px);
+    }
+
+    .hero h1 {
+      margin: 0;
+    }
+
+    .hero-deck {
+      max-width: 600px;
+      margin: 28px 0 0;
+      padding-left: 18px;
+      border-left: 8px solid var(--ink);
+      font-size: clamp(1rem, 1.7vw, 1.2rem);
+      font-weight: 700;
+    }
+
+    .hero-actions,
+    .button-rack,
+    .popup-rack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 3px solid var(--ink);
+      padding: 10px 19px 8px;
+      overflow: hidden;
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: 6px 6px 0 var(--pink);
+      cursor: pointer;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .84rem;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transform: rotate(-1deg);
+      transition: transform .08s steps(1), box-shadow .08s steps(1), color .08s steps(1), background .08s steps(1);
+    }
+
+    .btn:hover {
+      color: var(--ink);
+      background: var(--pink);
+      box-shadow: 8px 8px 0 var(--ink);
+      transform: rotate(1deg) translate(-2px, -2px);
+    }
+
+    .btn:active {
+      box-shadow: 1px 1px 0 var(--ink);
+      transform: translate(5px, 5px);
+    }
+
+    .btn-orange {
+      color: var(--ink);
+      background: var(--orange);
+      box-shadow: 6px 6px 0 var(--ink);
+      transform: rotate(1deg);
+    }
+
+    .btn-orange:hover {
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: 8px 8px 0 var(--orange);
+    }
+
+    .btn-paper {
+      color: var(--ink);
+      background: var(--paper-bright);
+      box-shadow: 6px 6px 0 var(--orange);
+      transform: rotate(-2deg);
+    }
+
+    .btn-paper:hover {
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: 8px 8px 0 var(--paper-dim);
+    }
+
+    .btn-slash {
+      color: var(--ink);
+      background: var(--pink);
+      box-shadow: 7px 7px 0 var(--orange);
+      clip-path: polygon(3% 0, 100% 7%, 96% 100%, 0 90%);
+      transform: rotate(2deg);
+    }
+
+    .btn-slash:hover {
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: 7px 7px 0 var(--orange);
+      transform: rotate(-1deg) translate(-2px, -2px);
+    }
+
+    .btn:disabled {
+      border-color: #77746e;
+      color: #64615c;
+      background:
+        repeating-linear-gradient(-45deg, #bdbab1 0 6px, #d7d4cb 6px 12px);
+      box-shadow: 5px 5px 0 #827f78;
+      cursor: not-allowed;
+      filter: grayscale(1);
+      transform: rotate(-1deg);
+    }
+
+    .btn:disabled:hover,
+    .btn:disabled:active {
+      color: #64615c;
+      background:
+        repeating-linear-gradient(-45deg, #bdbab1 0 6px, #d7d4cb 6px 12px);
+      box-shadow: 5px 5px 0 #827f78;
+      transform: rotate(-1deg);
+    }
+
+    .hero-stage {
+      position: relative;
+      isolation: isolate;
+      padding: 28px;
+      background:
+        radial-gradient(circle, rgba(8, 8, 8, .7) 0 1.4px, transparent 1.6px) 0 0 / 8px 8px,
+        var(--orange);
+      box-shadow: 18px 18px 0 var(--ink);
+      transform: rotate(2deg);
+    }
+
+    .hero-stage::before,
+    .hero-stage::after {
+      position: absolute;
+      z-index: 4;
+      width: 104px;
+      height: 28px;
+      content: "";
+      opacity: .78;
+      background:
+        linear-gradient(rgba(255, 253, 244, .72), rgba(255, 253, 244, .72)),
+        repeating-linear-gradient(90deg, transparent 0 8px, rgba(8, 8, 8, .12) 8px 9px);
+      box-shadow: 0 2px 3px rgba(8, 8, 8, .25);
+    }
+
+    .hero-stage::before {
+      top: 4px;
+      left: -22px;
+      transform: rotate(-16deg);
+    }
+
+    .hero-stage::after {
+      right: -18px;
+      bottom: 14px;
+      transform: rotate(13deg);
+    }
+
+    .poster-button {
+      position: relative;
+      display: block;
+      width: 100%;
+      min-height: 510px;
+      border: 0;
+      padding: clamp(28px, 5vw, 54px) clamp(20px, 4vw, 40px);
+      overflow: hidden;
+      color: var(--paper-bright);
+      background: var(--ink);
+      clip-path: var(--cut);
+      cursor: pointer;
+      text-align: left;
+      transform: rotate(-1.4deg);
+    }
+
+    .poster-button::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: .46;
+      background:
+        radial-gradient(ellipse at center, transparent 0 48%, rgba(255, 255, 255, .18) 49% 50%, transparent 51%) 4px 4px / 14px 9px,
+        linear-gradient(92deg, transparent 0 45%, rgba(255, 255, 255, .2) 46% 46.8%, transparent 47.2%),
+        repeating-linear-gradient(0deg, transparent 0 4px, rgba(255, 255, 255, .05) 4px 5px);
+      mix-blend-mode: screen;
+    }
+
+    .poster-button::after {
+      position: absolute;
+      top: 47%;
+      right: -8%;
+      left: -8%;
+      height: 17px;
+      content: "";
+      background: var(--paper);
+      box-shadow: 0 -3px 0 var(--pink), 0 4px 0 var(--orange);
+      transform: rotate(-5deg) scaleX(0);
+      transform-origin: left;
+    }
+
+    .poster-button:focus-visible {
+      outline-color: var(--focus);
+      outline-offset: 8px;
+    }
+
+    .poster-button:hover .poster-command,
+    .poster-button:focus-visible .poster-command {
+      color: var(--ink);
+      background: var(--pink);
+      transform: rotate(1deg) scale(1.03);
+    }
+
+    .hero-stage.is-ripping {
+      animation: press-jitter .34s steps(2, end);
+    }
+
+    .hero-stage.is-ripping .poster-button::after {
+      animation: rip-across .34s steps(4, end);
+    }
+
+    .poster-small {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin-bottom: 58px;
+      padding: 4px 9px 2px;
+      color: var(--ink);
+      background: var(--paper-bright);
+      font-family: "Special Elite", serif;
+      font-size: .76rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .poster-command {
+      position: relative;
+      z-index: 1;
+      display: block;
+      max-width: 430px;
+      padding: 10px 12px 5px;
+      color: var(--paper-bright);
+      background: var(--orange);
+      box-decoration-break: clone;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: clamp(3rem, 6vw, 5.3rem);
+      line-height: .92;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      transition: transform .1s steps(1), color .1s steps(1), background .1s steps(1);
+    }
+
+    .poster-stamp {
+      position: absolute;
+      right: 34px;
+      bottom: 60px;
+      z-index: 1;
+      width: 132px;
+      border: 6px double var(--pink);
+      padding: 9px 5px 5px;
+      color: var(--pink);
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-align: center;
+      text-transform: uppercase;
+      transform: rotate(-9deg);
+    }
+
+    .poster-prompt {
+      position: absolute;
+      bottom: 20px;
+      left: 34px;
+      z-index: 1;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .crawl {
+      overflow: hidden;
+      border-block: 5px solid var(--ink);
+      color: var(--ink);
+      background: var(--pink);
+    }
+
+    .crawl-track {
+      display: flex;
+      width: max-content;
+      padding: 10px 0 7px;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: clamp(1.25rem, 3vw, 2.2rem);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      animation: crawl-left 22s linear infinite;
+    }
+
+    .crawl-track span {
+      padding-right: 2.4rem;
+      white-space: nowrap;
+    }
+
+    .controls {
+      padding-block: 100px;
+    }
+
+    .section-lead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, .55fr);
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 58px;
+    }
+
+    .eyebrow,
+    .panel-code {
+      margin: 0 0 10px;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .72rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: clamp(3.4rem, 8vw, 7.1rem);
+      font-weight: 400;
+      line-height: .84;
+      text-transform: uppercase;
+    }
+
+    .section-note {
+      margin: 0;
+      padding: 18px;
+      border: 4px solid var(--ink);
+      background: var(--orange);
+      box-shadow: 8px 8px 0 var(--ink);
+      font-weight: 700;
+      transform: rotate(1.5deg);
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 34px;
+    }
+
+    .panel {
+      position: relative;
+      min-width: 0;
+      border: 4px solid var(--ink);
+      padding: clamp(24px, 4vw, 38px);
+      background:
+        linear-gradient(100deg, transparent 0 67%, rgba(8, 8, 8, .06) 67.2%, transparent 67.5%),
+        var(--paper-bright);
+      box-shadow: var(--shadow);
+    }
+
+    .panel:nth-child(3n + 1) {
+      transform: rotate(-.45deg);
+    }
+
+    .panel:nth-child(3n + 2) {
+      transform: translateY(8px) rotate(.35deg);
+    }
+
+    .panel::before {
+      position: absolute;
+      top: -14px;
+      right: 34px;
+      width: 88px;
+      height: 26px;
+      content: "";
+      opacity: .72;
+      background: var(--paper-dim);
+      box-shadow: inset 0 0 0 1px rgba(8, 8, 8, .14);
+      transform: rotate(4deg);
+    }
+
+    .panel.wide {
+      grid-column: 1 / -1;
+    }
+
+    .panel-black {
+      color: var(--paper-bright);
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, .13) 0 1px, transparent 1.2px) 0 0 / 7px 7px,
+        var(--ink);
+      box-shadow: 11px 11px 0 var(--orange);
+    }
+
+    .panel-black::before {
+      background: var(--pink);
+    }
+
+    .panel-title {
+      margin: 0 0 10px;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      font-weight: 400;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .panel-intro {
+      max-width: 670px;
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .panel-black .panel-intro {
+      color: #d8d5cc;
+    }
+
+    .control-status {
+      min-height: 1.6em;
+      margin: 22px 0 0;
+      font-weight: 700;
+    }
+
+    .field-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .field-label,
+    .group-label {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .78rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .input-wrap {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      border: 4px solid var(--ink);
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: 7px 7px 0 var(--orange);
+    }
+
+    .input-mark {
+      padding: 0 14px;
+      color: var(--pink);
+      font-family: "Anton", Impact, sans-serif;
+      font-size: 1.6rem;
+    }
+
+    .text-input {
+      width: 100%;
+      min-width: 0;
+      min-height: 52px;
+      border: 0;
+      border-inline: 3px solid var(--paper-bright);
+      padding: 10px 13px 8px;
+      color: var(--paper-bright);
+      background: transparent;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .text-input::placeholder {
+      color: #aaa79f;
+      opacity: 1;
+    }
+
+    .text-input:focus {
+      outline: 0;
+      background: #1a1a1a;
+    }
+
+    .clear-field {
+      align-self: stretch;
+      border: 0;
+      padding: 0 13px;
+      color: var(--ink);
+      background: var(--pink);
+      cursor: pointer;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .7rem;
+      text-transform: uppercase;
+    }
+
+    .clear-field:hover {
+      background: var(--orange);
+    }
+
+    .field-note {
+      margin: 13px 0 0;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .radio-card {
+      position: relative;
+      display: grid;
+      min-height: 82px;
+      place-content: center;
+      border: 3px solid var(--ink);
+      padding: 10px;
+      background: var(--paper);
+      cursor: pointer;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .72rem;
+      text-align: center;
+      text-transform: uppercase;
+      transition: transform .08s steps(1), box-shadow .08s steps(1), background .08s steps(1);
+    }
+
+    .radio-card:nth-child(2) {
+      transform: rotate(-1deg);
+    }
+
+    .radio-card:nth-child(3) {
+      transform: rotate(1deg);
+    }
+
+    .radio-card:hover {
+      box-shadow: 5px 5px 0 var(--ink);
+      transform: translate(-2px, -2px);
+    }
+
+    .radio-card:has(input:checked) {
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: inset 0 -9px 0 var(--pink), 5px 5px 0 var(--orange);
+      transform: rotate(-1deg) translate(-1px, -1px);
+    }
+
+    .radio-card:has(input:focus-visible) {
+      outline: 4px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .radio-card input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .switchboard {
+      display: grid;
+      gap: 18px;
+    }
+
+    .check-row,
+    .switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 3px dashed var(--ink);
+      padding: 5px 0 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .check-mark {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      border: 4px solid var(--ink);
+      background: var(--paper-bright);
+      box-shadow: 4px 4px 0 var(--orange);
+      transform: rotate(-3deg);
+    }
+
+    .check-row input,
+    .switch-row input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .check-row input:checked + .check-mark {
+      background: var(--pink);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .check-row input:checked + .check-mark::after {
+      position: absolute;
+      top: 2px;
+      left: 10px;
+      width: 12px;
+      height: 23px;
+      border: solid var(--ink);
+      border-width: 0 7px 7px 0;
+      content: "";
+      transform: rotate(42deg);
+    }
+
+    .check-row:has(input:focus-visible),
+    .switch-row:has(input:focus-visible) {
+      outline: 4px solid var(--focus);
+      outline-offset: 5px;
+    }
+
+    .switch-track {
+      position: relative;
+      width: 76px;
+      height: 36px;
+      flex: 0 0 auto;
+      border: 4px solid var(--ink);
+      background: var(--paper-dim);
+      box-shadow: 4px 4px 0 var(--ink);
+      transform: skewX(-8deg);
+    }
+
+    .switch-track::before {
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 22px;
+      height: 22px;
+      content: "";
+      background: var(--ink);
+      transition: left .12s steps(2), transform .12s steps(2), background .12s steps(1);
+    }
+
+    .switch-row input:checked + .switch-track {
+      background: var(--orange);
+    }
+
+    .switch-row input:checked + .switch-track::before {
+      left: 42px;
+      background: var(--pink);
+      transform: rotate(45deg);
+    }
+
+    .range-wrap {
+      padding-top: 5px;
+    }
+
+    .range-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 11px;
+      font-family: "Archivo Black", Impact, sans-serif;
+      text-transform: uppercase;
+    }
+
+    .range-value {
+      padding: 3px 8px 1px;
+      color: var(--paper-bright);
+      background: var(--ink);
+      font-size: 1rem;
+      transform: rotate(2deg);
+    }
+
+    .range {
+      width: 100%;
+      height: 31px;
+      margin: 0;
+      cursor: ew-resize;
+      appearance: none;
+      background: transparent;
+    }
+
+    .range::-webkit-slider-runnable-track {
+      height: 13px;
+      border: 3px solid var(--ink);
+      background:
+        repeating-linear-gradient(90deg, var(--orange) 0 10px, var(--pink) 10px 20px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .range::-webkit-slider-thumb {
+      width: 26px;
+      height: 32px;
+      margin-top: -12px;
+      border: 4px solid var(--ink);
+      border-radius: 0;
+      background: var(--paper-bright);
+      box-shadow: 3px 3px 0 var(--pink);
+      appearance: none;
+      transform: rotate(5deg);
+    }
+
+    .range::-moz-range-track {
+      height: 9px;
+      border: 3px solid var(--ink);
+      background:
+        repeating-linear-gradient(90deg, var(--orange) 0 10px, var(--pink) 10px 20px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .range::-moz-range-thumb {
+      width: 22px;
+      height: 28px;
+      border: 4px solid var(--ink);
+      border-radius: 0;
+      background: var(--paper-bright);
+      box-shadow: 3px 3px 0 var(--pink);
+      transform: rotate(5deg);
+    }
+
+    .dropdown {
+      position: relative;
+      max-width: 520px;
+    }
+
+    .dropdown-trigger {
+      display: grid;
+      width: 100%;
+      min-height: 61px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      border: 4px solid var(--ink);
+      padding: 11px 15px 8px;
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: 8px 8px 0 var(--pink);
+      cursor: pointer;
+      font-family: "Archivo Black", Impact, sans-serif;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .dropdown-trigger:hover,
+    .dropdown-trigger[aria-expanded="true"] {
+      color: var(--ink);
+      background: var(--orange);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .dropdown-arrow {
+      display: inline-block;
+      font-size: 1.25rem;
+      transform: rotate(90deg);
+    }
+
+    .dropdown-trigger[aria-expanded="true"] .dropdown-arrow {
+      transform: rotate(-90deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 13px);
+      right: -7px;
+      left: 7px;
+      z-index: 12;
+      border: 4px solid var(--ink);
+      padding: 8px;
+      background: var(--paper-bright);
+      box-shadow: 10px 10px 0 var(--orange);
+      transform: rotate(-.5deg);
+    }
+
+    .dropdown-option {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 13px 42px 10px 13px;
+      cursor: pointer;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .82rem;
+      text-transform: uppercase;
+    }
+
+    .dropdown-option + .dropdown-option {
+      border-top: 3px dashed var(--ink);
+    }
+
+    .dropdown-option:hover,
+    .dropdown-option:focus {
+      outline: 0;
+      color: var(--paper-bright);
+      background: var(--ink);
+    }
+
+    .dropdown-option[aria-selected="true"] {
+      color: var(--ink);
+      background: var(--pink);
+    }
+
+    .dropdown-option[aria-selected="true"]::after {
+      position: absolute;
+      top: 8px;
+      right: 17px;
+      width: 10px;
+      height: 19px;
+      border: solid var(--ink);
+      border-width: 0 5px 5px 0;
+      content: "";
+      transform: rotate(42deg);
+    }
+
+    .tabs {
+      border: 4px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 4px solid var(--ink);
+    }
+
+    .tab {
+      min-height: 52px;
+      border: 0;
+      padding: 9px 8px 6px;
+      color: var(--ink);
+      background: var(--paper-dim);
+      cursor: pointer;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .74rem;
+      text-transform: uppercase;
+    }
+
+    .tab + .tab {
+      border-left: 4px solid var(--ink);
+    }
+
+    .tab:hover {
+      background: var(--orange);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--paper-bright);
+      background: var(--ink);
+      box-shadow: inset 0 -8px 0 var(--pink);
+    }
+
+    .tab-panel {
+      min-height: 186px;
+      padding: 28px;
+    }
+
+    .tab-panel h3 {
+      margin: 0 0 8px;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .tab-panel p {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .meter-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(210px, .8fr);
+      align-items: center;
+      gap: 34px;
+    }
+
+    .progress-label {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-family: "Archivo Black", Impact, sans-serif;
+      text-transform: uppercase;
+    }
+
+    .progress-value {
+      color: var(--pink);
+      font-size: 1.7rem;
+    }
+
+    .progress-track {
+      position: relative;
+      height: 40px;
+      border: 4px solid var(--paper-bright);
+      padding: 4px;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(-45deg, #343434 0 7px, #1c1c1c 7px 14px);
+      box-shadow: 7px 7px 0 var(--orange);
+    }
+
+    .progress-fill {
+      position: relative;
+      width: 47%;
+      height: 100%;
+      background:
+        radial-gradient(circle, var(--ink) 0 1.2px, transparent 1.4px) 0 0 / 6px 6px,
+        var(--pink);
+      transition: width .15s steps(5);
+    }
+
+    .progress-fill::after {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      width: 20px;
+      height: calc(100% + 10px);
+      content: "";
+      background: var(--orange);
+      transform: skewX(-14deg);
+    }
+
+    .progress-actions {
+      margin-top: 26px;
+    }
+
+    .gauge-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+    }
+
+    .gauge {
+      --level: 64;
+      position: relative;
+      display: grid;
+      width: min(230px, 100%);
+      aspect-ratio: 1;
+      place-items: center;
+      border: 6px solid var(--paper-bright);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, var(--ink) 0 48%, transparent 49%),
+        conic-gradient(from -135deg, var(--orange) 0 calc(var(--level) * 2.7deg), #343434 calc(var(--level) * 2.7deg) 270deg, transparent 270deg);
+      box-shadow: 9px 9px 0 var(--pink);
+      transform: rotate(-2deg);
+    }
+
+    .gauge::before {
+      position: absolute;
+      bottom: 50%;
+      left: calc(50% - 4px);
+      width: 8px;
+      height: 34%;
+      content: "";
+      background: var(--paper-bright);
+      transform: rotate(calc(-135deg + var(--level) * 2.7deg));
+      transform-origin: 50% 100%;
+    }
+
+    .gauge::after {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border: 5px solid var(--orange);
+      border-radius: 50%;
+      content: "";
+      background: var(--ink);
+    }
+
+    .gauge-readout {
+      color: var(--paper-bright);
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .popup-rack {
+      align-items: center;
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .tooltip {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 14px);
+      z-index: 4;
+      width: 220px;
+      border: 3px solid var(--paper-bright);
+      padding: 10px 12px 7px;
+      color: var(--ink);
+      background: var(--pink);
+      box-shadow: 6px 6px 0 var(--orange);
+      font-size: .78rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transform: rotate(-2deg) translateY(7px);
+      transition: opacity .08s steps(1), transform .08s steps(1);
+    }
+
+    .tooltip::after {
+      position: absolute;
+      right: 30px;
+      bottom: -12px;
+      width: 18px;
+      height: 18px;
+      border-right: 3px solid var(--paper-bright);
+      border-bottom: 3px solid var(--paper-bright);
+      content: "";
+      background: var(--pink);
+      transform: rotate(45deg);
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-wrap:focus-within .tooltip {
+      opacity: 1;
+      transform: rotate(-2deg) translateY(0);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      overflow-y: auto;
+      padding: 24px;
+      background:
+        radial-gradient(circle, rgba(255, 28, 175, .26) 0 2px, transparent 2.3px) 0 0 / 12px 12px,
+        rgba(8, 8, 8, .9);
+    }
+
+    .modal {
+      position: relative;
+      width: min(540px, 100%);
+      border: 6px solid var(--ink);
+      padding: clamp(26px, 6vw, 52px);
+      color: var(--ink);
+      background: var(--paper-bright);
+      box-shadow: 15px 15px 0 var(--orange);
+      clip-path: var(--cut);
+      transform: rotate(-1deg);
+      animation: hard-cut .18s steps(3);
+    }
+
+    .modal::before {
+      position: absolute;
+      top: 16px;
+      right: -20px;
+      width: 130px;
+      height: 30px;
+      content: "";
+      opacity: .76;
+      background: var(--pink);
+      transform: rotate(11deg);
+    }
+
+    .modal h2 {
+      margin: 0 0 12px;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: clamp(2.6rem, 8vw, 4.4rem);
+      font-weight: 400;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .modal p {
+      margin: 0 0 28px;
+      font-weight: 700;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 60;
+      display: grid;
+      width: min(390px, calc(100vw - 48px));
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      border: 5px solid var(--ink);
+      padding: 18px;
+      color: var(--ink);
+      background: var(--orange);
+      box-shadow: 10px 10px 0 var(--pink);
+      opacity: 0;
+      transform: translateY(30px) rotate(2deg);
+      transition: opacity .12s steps(2), transform .12s steps(2);
+    }
+
+    .toast.is-on {
+      opacity: 1;
+      transform: translateY(0) rotate(-1deg);
+    }
+
+    .toast strong {
+      display: block;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .77rem;
+      text-transform: uppercase;
+    }
+
+    .toast p {
+      margin: 4px 0 0;
+      font-weight: 700;
+    }
+
+    .toast-close {
+      width: 42px;
+      height: 42px;
+      border: 4px solid var(--ink);
+      background: var(--paper-bright);
+      cursor: pointer;
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: 1rem;
+    }
+
+    .toast-close:hover {
+      color: var(--paper-bright);
+      background: var(--ink);
+    }
+
+    .footer {
+      border-top: 8px solid var(--orange);
+      color: var(--paper-bright);
+      background: var(--ink);
+    }
+
+    .footer-inner {
+      display: flex;
+      min-height: 170px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .footer-line {
+      max-width: 710px;
+      margin: 0;
+      font-family: "Anton", Impact, sans-serif;
+      font-size: clamp(2rem, 5vw, 4.6rem);
+      line-height: .92;
+      text-transform: uppercase;
+    }
+
+    .footer-mark {
+      flex: 0 0 auto;
+      border: 5px double var(--pink);
+      padding: 10px 12px 6px;
+      color: var(--pink);
+      font-family: "Archivo Black", Impact, sans-serif;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transform: rotate(6deg);
+    }
+
+    @keyframes signal-jolt {
+      0%, 48%, 100% { opacity: 1; transform: scale(1); }
+      49%, 67% { opacity: .35; transform: scale(.7); }
+    }
+
+    @keyframes press-jitter {
+      0% { transform: rotate(2deg) translate(0, 0); }
+      25% { transform: rotate(1deg) translate(-5px, 2px); }
+      50% { transform: rotate(3deg) translate(5px, -2px); }
+      75% { transform: rotate(1deg) translate(-3px, -1px); }
+      100% { transform: rotate(2deg) translate(0, 0); }
+    }
+
+    @keyframes rip-across {
+      0% { transform: rotate(-5deg) scaleX(0); }
+      55% { transform: rotate(-5deg) scaleX(1); }
+      100% { transform: rotate(-5deg) translateX(120%) scaleX(.2); }
+    }
+
+    @keyframes crawl-left {
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes hard-cut {
+      0% { opacity: 0; transform: rotate(3deg) scale(.82); }
+      55% { opacity: 1; transform: rotate(-3deg) scale(1.04); }
+      100% { transform: rotate(-1deg) scale(1); }
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        padding-block: 62px 78px;
+      }
+
+      .hero-stage {
+        width: min(610px, 100%);
+        margin-inline: auto;
+      }
+
+      .section-lead {
+        grid-template-columns: 1fr;
+      }
+
+      .control-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel.wide {
+        grid-column: auto;
+      }
+
+      .panel,
+      .panel:nth-child(3n + 1),
+      .panel:nth-child(3n + 2) {
+        transform: none;
+      }
+
+      .meter-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding-block: 42px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        padding-inline: 16px;
+      }
+
+      .status-inner {
+        min-height: 58px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+        font-size: .64rem;
+      }
+
+      .status-channel {
+        padding: 2px 6px;
+      }
+
+      .hero {
+        gap: 48px;
+        padding-block: 52px 66px;
+      }
+
+      .ransom {
+        font-size: clamp(4.5rem, 25vw, 6.5rem);
+      }
+
+      .hero-deck {
+        margin-top: 24px;
+      }
+
+      .hero-actions,
+      .button-rack,
+      .popup-rack {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-stage {
+        padding: 17px;
+        box-shadow: 10px 10px 0 var(--ink);
+        transform: none;
+      }
+
+      .hero-stage::before {
+        left: 3px;
+      }
+
+      .hero-stage::after {
+        right: 3px;
+      }
+
+      .poster-button {
+        min-height: 430px;
+        padding: 32px 22px;
+      }
+
+      .poster-small {
+        margin-bottom: 50px;
+      }
+
+      .poster-stamp {
+        right: 22px;
+        bottom: 59px;
+        width: 112px;
+        font-size: .62rem;
+      }
+
+      .poster-prompt {
+        left: 24px;
+      }
+
+      .controls {
+        padding-block: 76px;
+      }
+
+      .section-lead {
+        margin-bottom: 42px;
+      }
+
+      .section-note {
+        box-shadow: 6px 6px 0 var(--ink);
+        transform: none;
+      }
+
+      .control-grid {
+        gap: 28px;
+      }
+
+      .panel {
+        padding: 25px 20px;
+        box-shadow: 7px 7px 0 var(--ink);
+      }
+
+      .panel-black {
+        box-shadow: 7px 7px 0 var(--orange);
+      }
+
+      .radio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radio-card {
+        min-height: 58px;
+      }
+
+      .input-mark {
+        padding: 0 10px;
+      }
+
+      .clear-field {
+        padding-inline: 10px;
+      }
+
+      .tab {
+        min-height: 58px;
+        font-size: .64rem;
+      }
+
+      .tab-panel {
+        padding: 23px 19px;
+      }
+
+      .modal-backdrop {
+        padding: 16px;
+      }
+
+      .toast {
+        right: 16px;
+        bottom: 16px;
+        width: calc(100vw - 32px);
+      }
+
+      .tooltip {
+        right: auto;
+        left: 0;
+        width: min(230px, calc(100vw - 72px));
+      }
+
+      .tooltip::after {
+        right: auto;
+        left: 34px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .crawl-track {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-inline: 16px;
+      }
+
+      .crawl-track span:nth-child(n + 3) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">Skip to the control room</a>
+
+  <header class="status-bar" aria-label="Broadcast status">
+    <div class="shell status-inner">
+      <div class="status-signal">
+        <span class="signal-dot" aria-hidden="true"></span>
+        <span id="broadcastStatus">Illegal signal live / 99.3 FM</span>
+      </div>
+      <div class="status-channel">Issue 004 · No permission asked</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="shell hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="tape-label">The underground signal press</p>
+        <h1 id="page-title" class="ransom" aria-label="RIOT">
+          <span aria-hidden="true">R</span>
+          <span aria-hidden="true">I</span>
+          <span aria-hidden="true">O</span>
+          <span aria-hidden="true">T</span>
+        </h1>
+        <p class="hero-deck">A hostile little control kit for loud ideas. Cut the feed, paste your message over the official story, and broadcast before the ink dries.</p>
+        <div class="hero-actions">
+          <button class="btn" id="tearButton" type="button">Rip the signal</button>
+          <a class="btn btn-paper" href="#controls">Raid the controls</a>
+        </div>
+      </div>
+
+      <div class="hero-stage" id="heroStage">
+        <button class="poster-button" id="posterTrigger" type="button" aria-label="Tear the poster and reveal a new message">
+          <span class="poster-small">Fresh copy / pull one</span>
+          <span class="poster-command" id="posterCommand">Noise is a public service</span>
+          <span class="poster-stamp">Unlicensed<br>and awake</span>
+          <span class="poster-prompt">Press to tear / clack to reload</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="crawl" aria-label="Manifesto ticker">
+      <div class="crawl-track">
+        <span>Make noise · Break format · Keep the signal dirty · </span>
+        <span aria-hidden="true">Make noise · Break format · Keep the signal dirty · </span>
+        <span aria-hidden="true">Make noise · Break format · Keep the signal dirty · </span>
+        <span aria-hidden="true">Make noise · Break format · Keep the signal dirty · </span>
+      </div>
+    </div>
+
+    <section class="shell controls" id="controls" aria-labelledby="controls-title">
+      <div class="section-lead">
+        <div>
+          <p class="eyebrow">Control room / everything bites</p>
+          <h2 class="section-title" id="controls-title">Build your own disturbance</h2>
+        </div>
+        <p class="section-note">Every switch is live. Every choice leaves a mark. Keyboard operators are welcome in the basement.</p>
+      </div>
+
+      <div class="control-grid">
+        <section class="panel wide" aria-labelledby="button-title">
+          <p class="panel-code">Rack 01 / Impact triggers</p>
+          <h2 class="panel-title" id="button-title">Buttons with bruises</h2>
+          <p class="panel-intro">Five cuts from the same bad photocopy. Hit one and the press reports back.</p>
+          <div class="button-rack">
+            <button class="btn demo-button" type="button" data-report="Main feed kicked open.">Raise hell</button>
+            <button class="btn btn-orange demo-button" type="button" data-report="Fresh layer pasted crooked.">Paste it</button>
+            <button class="btn btn-paper demo-button" type="button" data-report="Negative plate flipped.">Invert story</button>
+            <button class="btn btn-slash demo-button" type="button" data-report="Manifesto stamped and numbered.">Stamp truth</button>
+            <button class="btn" type="button" disabled>Permit denied</button>
+          </div>
+          <p class="control-status" id="buttonStatus" aria-live="polite">Press standing by.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="copy-title">
+          <p class="panel-code">Rack 02 / Copy desk</p>
+          <h2 class="panel-title" id="copy-title">Write over them</h2>
+          <p class="panel-intro">Type a headline, then pick the roof where it gets pasted.</p>
+          <div class="field-stack">
+            <div>
+              <label class="field-label" for="headlineInput">Headline paste-up</label>
+              <div class="input-wrap">
+                <span class="input-mark" aria-hidden="true">#</span>
+                <input class="text-input" id="headlineInput" type="text" maxlength="42" placeholder="TYPE THE NEXT HEADLINE" autocomplete="off">
+                <button class="clear-field" id="clearHeadline" type="button">Clear</button>
+              </div>
+              <p class="field-note"><span id="headlineCount">0</span> / 42 characters armed.</p>
+            </div>
+
+            <fieldset>
+              <legend class="group-label">Transmission point</legend>
+              <div class="radio-grid">
+                <label class="radio-card">
+                  <input type="radio" name="transmission" value="Basement" checked>
+                  <span>Basement</span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="transmission" value="Street">
+                  <span>Street</span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="transmission" value="Rooftop">
+                  <span>Rooftop</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+          <p class="control-status" id="copyStatus" aria-live="polite">Basement transmitter selected.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="switch-title">
+          <p class="panel-code">Rack 03 / Power theft</p>
+          <h2 class="panel-title" id="switch-title">Wire the racket</h2>
+          <p class="panel-intro">Arm the paste crew, steal the airwaves, and push the noise past polite.</p>
+          <div class="switchboard">
+            <label class="check-row">
+              <span>Include midnight paste crew</span>
+              <input id="crewCheck" type="checkbox">
+              <span class="check-mark" aria-hidden="true"></span>
+            </label>
+
+            <label class="switch-row">
+              <span>Pirate transmitter</span>
+              <input id="pirateSwitch" type="checkbox" role="switch">
+              <span class="switch-track" aria-hidden="true"></span>
+            </label>
+
+            <div class="range-wrap">
+              <div class="range-head">
+                <label for="noiseRange">Noise quota</label>
+                <output class="range-value" id="noiseValue" for="noiseRange">64%</output>
+              </div>
+              <input class="range" id="noiseRange" type="range" min="0" max="100" value="64" step="1">
+            </div>
+          </div>
+          <p class="control-status" id="powerStatus" aria-live="polite">Transmitter cold. Crew off duty.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="dropdown-title">
+          <p class="panel-code">Rack 04 / Crew manifest</p>
+          <h2 class="panel-title" id="dropdown-title">Choose your accomplices</h2>
+          <p class="panel-intro">Open the folded roster. Arrow keys move, Enter selects, Escape gets you out.</p>
+          <div class="dropdown" id="crewDropdown">
+            <button class="dropdown-trigger" id="crewTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="crewMenu">
+              <span id="crewSelection">Black Tape Union</span>
+              <span class="dropdown-arrow" aria-hidden="true">➜</span>
+            </button>
+            <div class="dropdown-menu" id="crewMenu" role="listbox" aria-label="Available crews" hidden>
+              <div class="dropdown-option" id="crew-black-tape" role="option" tabindex="-1" aria-selected="true" data-value="Black Tape Union">Black Tape Union</div>
+              <div class="dropdown-option" id="crew-night-copiers" role="option" tabindex="-1" aria-selected="false" data-value="Night Copiers">Night Copiers</div>
+              <div class="dropdown-option" id="crew-rooftop-noise" role="option" tabindex="-1" aria-selected="false" data-value="Rooftop Noise Dept.">Rooftop Noise Dept.</div>
+              <div class="dropdown-option" id="crew-pink-ink" role="option" tabindex="-1" aria-selected="false" data-value="Pink Ink Cell">Pink Ink Cell</div>
+            </div>
+          </div>
+          <p class="control-status" id="crewStatus" aria-live="polite">Black Tape Union is on the job.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="tabs-title">
+          <p class="panel-code">Rack 05 / Three bad plans</p>
+          <h2 class="panel-title" id="tabs-title">Pick the operation</h2>
+          <p class="panel-intro">Move between the paste wall, pirate radio, and midnight print run.</p>
+          <div class="tabs">
+            <div class="tab-list" role="tablist" aria-label="Operation files">
+              <button class="tab" id="tab-paste" type="button" role="tab" aria-selected="true" aria-controls="panel-paste" tabindex="0">Paste wall</button>
+              <button class="tab" id="tab-radio" type="button" role="tab" aria-selected="false" aria-controls="panel-radio" tabindex="-1">Pirate radio</button>
+              <button class="tab" id="tab-print" type="button" role="tab" aria-selected="false" aria-controls="panel-print" tabindex="-1">Night print</button>
+            </div>
+            <div class="tab-panel" id="panel-paste" role="tabpanel" tabindex="0" aria-labelledby="tab-paste">
+              <h3>Paste wall</h3>
+              <p>Meet at 01:10. Wheat paste, bad ladders, and twelve blocks of blank concrete are waiting.</p>
+            </div>
+            <div class="tab-panel" id="panel-radio" role="tabpanel" tabindex="0" aria-labelledby="tab-radio" hidden>
+              <h3>Pirate radio</h3>
+              <p>Hijack 99.3 FM for nine sharp minutes. Keep the mic hot and the transmitter moving.</p>
+            </div>
+            <div class="tab-panel" id="panel-print" role="tabpanel" tabindex="0" aria-labelledby="tab-print" hidden>
+              <h3>Night print</h3>
+              <p>Run the copier until sunrise. Smudges count as evidence that a human hand was here.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel panel-black wide" aria-labelledby="meter-title">
+          <p class="panel-code">Rack 06 / Ink and pressure</p>
+          <h2 class="panel-title" id="meter-title">Watch the machine redline</h2>
+          <p class="panel-intro">The print run fills one clack at a time. The gauge mirrors your noise quota.</p>
+          <div class="meter-layout">
+            <div>
+              <div class="progress-label">
+                <span>Contraband copies</span>
+                <span class="progress-value" id="progressValue">47%</span>
+              </div>
+              <div class="progress-track" id="copyProgress" role="progressbar" aria-label="Contraband copies printed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="47">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="progress-actions">
+                <button class="btn btn-orange" id="progressButton" type="button">Run another stack</button>
+              </div>
+            </div>
+            <div class="gauge-wrap">
+              <div class="gauge" id="noiseGauge" role="img" aria-label="Noise level 64 percent"></div>
+              <div class="gauge-readout" id="gaugeReadout">Pressure / 64</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel wide" aria-labelledby="popup-title">
+          <p class="panel-code">Rack 07 / Interruptions</p>
+          <h2 class="panel-title" id="popup-title">Break into the foreground</h2>
+          <p class="panel-intro">Open a secret briefing, fire a street-level notice, or inspect the tiny warning taped to a trigger.</p>
+          <div class="popup-rack">
+            <button class="btn" id="modalOpen" type="button">Open secret brief</button>
+            <button class="btn btn-orange" id="toastOpen" type="button">Fire dispatch</button>
+            <span class="tooltip-wrap">
+              <button class="btn btn-paper" type="button" aria-describedby="pressTooltip">Hover for warning</button>
+              <span class="tooltip" id="pressTooltip" role="tooltip">Wet ink. Sharp edges. Excellent idea.</span>
+            </span>
+          </div>
+          <p class="control-status" id="popupStatus" aria-live="polite">Foreground is quiet.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <p class="footer-line">If the page looks clean, pull another copy.</p>
+      <div class="footer-mark">RIOT Press<br>Still illegal</div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="briefModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+      <h2 id="modalTitle">The secret is there is no secret.</h2>
+      <p id="modalDescription">Meet behind the all-night copy shop. Bring one honest sentence and enough tape to make it impossible to ignore.</p>
+      <div class="modal-actions">
+        <button class="btn" id="modalJoin" type="button">I am in</button>
+        <button class="btn btn-paper" id="modalClose" type="button">Burn this note</button>
+      </div>
+    </section>
+  </div>
+
+  <aside class="toast" id="dispatchToast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <div>
+      <strong>Dispatch received</strong>
+      <p id="toastMessage">The midnight crew has your coordinates.</p>
+    </div>
+    <button class="toast-close" id="toastClose" type="button" aria-label="Dismiss dispatch">✕</button>
+  </aside>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var stateKey = "riot-control-state-v1";
+      var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var heroStage = document.getElementById("heroStage");
+      var posterCommand = document.getElementById("posterCommand");
+      var tearButton = document.getElementById("tearButton");
+      var posterTrigger = document.getElementById("posterTrigger");
+      var broadcastStatus = document.getElementById("broadcastStatus");
+      var slogans = [
+        "Noise is a public service",
+        "Paste over the official story",
+        "Polite pages change nothing",
+        "Your voice needs no permit"
+      ];
+      var sloganIndex = 0;
+      var ripTimer = 0;
+
+      function readState() {
+        try {
+          var raw = window.localStorage.getItem(stateKey);
+          return raw ? JSON.parse(raw) : {};
+        } catch (error) {
+          return {};
+        }
+      }
+
+      var saved = readState();
+
+      function writeState(patch) {
+        Object.keys(patch).forEach(function (key) {
+          saved[key] = patch[key];
+        });
+        try {
+          window.localStorage.setItem(stateKey, JSON.stringify(saved));
+        } catch (error) {
+          return;
+        }
+      }
+
+      function runRip() {
+        window.clearTimeout(ripTimer);
+        heroStage.classList.remove("is-ripping");
+        void heroStage.offsetWidth;
+        heroStage.classList.add("is-ripping");
+        sloganIndex = (sloganIndex + 1) % slogans.length;
+        var delay = reducedMotion.matches ? 0 : 150;
+        window.setTimeout(function () {
+          posterCommand.textContent = slogans[sloganIndex];
+          broadcastStatus.textContent = "Fresh sheet live / message 0" + (sloganIndex + 1);
+        }, delay);
+        ripTimer = window.setTimeout(function () {
+          heroStage.classList.remove("is-ripping");
+        }, reducedMotion.matches ? 10 : 380);
+      }
+
+      tearButton.addEventListener("click", runRip);
+      posterTrigger.addEventListener("click", runRip);
+
+      var buttonStatus = document.getElementById("buttonStatus");
+      document.querySelectorAll(".demo-button").forEach(function (button) {
+        button.addEventListener("click", function () {
+          buttonStatus.textContent = button.dataset.report;
+        });
+      });
+
+      var headlineInput = document.getElementById("headlineInput");
+      var headlineCount = document.getElementById("headlineCount");
+      var clearHeadline = document.getElementById("clearHeadline");
+      var copyStatus = document.getElementById("copyStatus");
+      var radios = Array.prototype.slice.call(document.querySelectorAll("input[name='transmission']"));
+
+      if (typeof saved.headline === "string") {
+        headlineInput.value = saved.headline.slice(0, 42);
+      }
+      if (typeof saved.transmission === "string") {
+        radios.forEach(function (radio) {
+          radio.checked = radio.value === saved.transmission;
+        });
+      }
+
+      function updateHeadline() {
+        headlineCount.textContent = String(headlineInput.value.length);
+        writeState({ headline: headlineInput.value });
+      }
+
+      headlineInput.addEventListener("input", updateHeadline);
+      clearHeadline.addEventListener("click", function () {
+        headlineInput.value = "";
+        updateHeadline();
+        headlineInput.focus();
+        copyStatus.textContent = "Copy desk wiped clean.";
+      });
+      updateHeadline();
+
+      radios.forEach(function (radio) {
+        radio.addEventListener("change", function () {
+          if (radio.checked) {
+            copyStatus.textContent = radio.value + " transmitter selected.";
+            writeState({ transmission: radio.value });
+          }
+        });
+      });
+
+      var selectedRadio = radios.find(function (radio) {
+        return radio.checked;
+      });
+      if (selectedRadio) {
+        copyStatus.textContent = selectedRadio.value + " transmitter selected.";
+      }
+
+      var crewCheck = document.getElementById("crewCheck");
+      var pirateSwitch = document.getElementById("pirateSwitch");
+      var noiseRange = document.getElementById("noiseRange");
+      var noiseValue = document.getElementById("noiseValue");
+      var powerStatus = document.getElementById("powerStatus");
+      var noiseGauge = document.getElementById("noiseGauge");
+      var gaugeReadout = document.getElementById("gaugeReadout");
+
+      if (typeof saved.crewArmed === "boolean") {
+        crewCheck.checked = saved.crewArmed;
+      }
+      if (typeof saved.pirateOn === "boolean") {
+        pirateSwitch.checked = saved.pirateOn;
+      }
+      if (Number.isFinite(Number(saved.noise))) {
+        noiseRange.value = String(Math.max(0, Math.min(100, Number(saved.noise))));
+      }
+
+      function updatePowerMessage() {
+        var transmitter = pirateSwitch.checked ? "Transmitter hot." : "Transmitter cold.";
+        var crew = crewCheck.checked ? " Crew armed." : " Crew off duty.";
+        powerStatus.textContent = transmitter + crew;
+      }
+
+      function updateNoise() {
+        var value = Number(noiseRange.value);
+        noiseValue.textContent = value + "%";
+        gaugeReadout.textContent = "Pressure / " + value;
+        noiseGauge.style.setProperty("--level", String(value));
+        noiseGauge.setAttribute("aria-label", "Noise level " + value + " percent");
+        noiseRange.setAttribute("aria-valuetext", value + " percent noise quota");
+        writeState({ noise: value });
+      }
+
+      crewCheck.addEventListener("change", function () {
+        updatePowerMessage();
+        writeState({ crewArmed: crewCheck.checked });
+      });
+      pirateSwitch.addEventListener("change", function () {
+        updatePowerMessage();
+        writeState({ pirateOn: pirateSwitch.checked });
+      });
+      noiseRange.addEventListener("input", updateNoise);
+      updatePowerMessage();
+      updateNoise();
+
+      var dropdown = document.getElementById("crewDropdown");
+      var crewTrigger = document.getElementById("crewTrigger");
+      var crewMenu = document.getElementById("crewMenu");
+      var crewSelection = document.getElementById("crewSelection");
+      var crewStatus = document.getElementById("crewStatus");
+      var crewOptions = Array.prototype.slice.call(crewMenu.querySelectorAll("[role='option']"));
+      var crewIndex = 0;
+
+      function selectedCrewIndex() {
+        return crewOptions.findIndex(function (option) {
+          return option.getAttribute("aria-selected") === "true";
+        });
+      }
+
+      function focusCrew(index) {
+        crewIndex = (index + crewOptions.length) % crewOptions.length;
+        crewOptions[crewIndex].focus();
+      }
+
+      function openCrew(focusIndex) {
+        crewMenu.hidden = false;
+        crewTrigger.setAttribute("aria-expanded", "true");
+        if (typeof focusIndex === "number") {
+          window.requestAnimationFrame(function () {
+            focusCrew(focusIndex);
+          });
+        }
+      }
+
+      function closeCrew(returnFocus) {
+        crewMenu.hidden = true;
+        crewTrigger.setAttribute("aria-expanded", "false");
+        if (returnFocus) {
+          crewTrigger.focus();
+        }
+      }
+
+      function chooseCrew(index, returnFocus) {
+        crewOptions.forEach(function (option, optionIndex) {
+          option.setAttribute("aria-selected", optionIndex === index ? "true" : "false");
+        });
+        crewIndex = index;
+        var value = crewOptions[index].dataset.value;
+        crewSelection.textContent = value;
+        crewStatus.textContent = value + " is on the job.";
+        writeState({ crew: value });
+        closeCrew(returnFocus);
+      }
+
+      if (typeof saved.crew === "string") {
+        var savedCrewIndex = crewOptions.findIndex(function (option) {
+          return option.dataset.value === saved.crew;
+        });
+        if (savedCrewIndex >= 0) {
+          chooseCrew(savedCrewIndex, false);
+        }
+      }
+      crewIndex = Math.max(0, selectedCrewIndex());
+
+      crewTrigger.addEventListener("click", function () {
+        if (crewMenu.hidden) {
+          openCrew(selectedCrewIndex());
+        } else {
+          closeCrew(false);
+        }
+      });
+
+      crewTrigger.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Home" || event.key === "End") {
+          event.preventDefault();
+          var nextIndex = selectedCrewIndex();
+          if (event.key === "ArrowDown") {
+            nextIndex = (nextIndex + 1) % crewOptions.length;
+          } else if (event.key === "ArrowUp") {
+            nextIndex = (nextIndex - 1 + crewOptions.length) % crewOptions.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else {
+            nextIndex = crewOptions.length - 1;
+          }
+          openCrew(nextIndex);
+        }
+      });
+
+      crewOptions.forEach(function (option, index) {
+        option.addEventListener("click", function () {
+          chooseCrew(index, true);
+        });
+        option.addEventListener("keydown", function (event) {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            focusCrew(index + 1);
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            focusCrew(index - 1);
+          } else if (event.key === "Home") {
+            event.preventDefault();
+            focusCrew(0);
+          } else if (event.key === "End") {
+            event.preventDefault();
+            focusCrew(crewOptions.length - 1);
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            chooseCrew(index, true);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            closeCrew(true);
+          } else if (event.key === "Tab") {
+            closeCrew(false);
+          }
+        });
+      });
+
+      document.addEventListener("pointerdown", function (event) {
+        if (!crewMenu.hidden && !dropdown.contains(event.target)) {
+          closeCrew(false);
+        }
+      });
+
+      var tabs = Array.prototype.slice.call(document.querySelectorAll("[role='tab']"));
+      var tabPanels = Array.prototype.slice.call(document.querySelectorAll("[role='tabpanel']"));
+
+      function activateTab(index, moveFocus) {
+        tabs.forEach(function (tab, tabIndex) {
+          var active = tabIndex === index;
+          tab.setAttribute("aria-selected", active ? "true" : "false");
+          tab.tabIndex = active ? 0 : -1;
+          tabPanels[tabIndex].hidden = !active;
+        });
+        writeState({ tab: index });
+        if (moveFocus) {
+          tabs[index].focus();
+        }
+      }
+
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener("click", function () {
+          activateTab(index, false);
+        });
+        tab.addEventListener("keydown", function (event) {
+          var target = index;
+          if (event.key === "ArrowRight") {
+            target = (index + 1) % tabs.length;
+          } else if (event.key === "ArrowLeft") {
+            target = (index - 1 + tabs.length) % tabs.length;
+          } else if (event.key === "Home") {
+            target = 0;
+          } else if (event.key === "End") {
+            target = tabs.length - 1;
+          } else {
+            return;
+          }
+          event.preventDefault();
+          activateTab(target, true);
+        });
+      });
+
+      var initialTab = Number.isInteger(Number(saved.tab)) ? Number(saved.tab) : 0;
+      activateTab(Math.max(0, Math.min(tabs.length - 1, initialTab)), false);
+
+      var progress = Number.isFinite(Number(saved.progress)) ? Number(saved.progress) : 47;
+      progress = Math.max(0, Math.min(100, progress));
+      var progressValue = document.getElementById("progressValue");
+      var progressFill = document.getElementById("progressFill");
+      var copyProgress = document.getElementById("copyProgress");
+      var progressButton = document.getElementById("progressButton");
+
+      function updateProgress() {
+        progressValue.textContent = progress + "%";
+        progressFill.style.width = progress + "%";
+        copyProgress.setAttribute("aria-valuenow", String(progress));
+        copyProgress.setAttribute("aria-valuetext", progress + " percent of contraband copies printed");
+        writeState({ progress: progress });
+      }
+
+      progressButton.addEventListener("click", function () {
+        progress = progress >= 100 ? 8 : Math.min(100, progress + 13);
+        updateProgress();
+        progressButton.textContent = progress === 100 ? "Stack complete / restart" : "Run another stack";
+      });
+      updateProgress();
+
+      var briefModal = document.getElementById("briefModal");
+      var modalOpen = document.getElementById("modalOpen");
+      var modalClose = document.getElementById("modalClose");
+      var modalJoin = document.getElementById("modalJoin");
+      var popupStatus = document.getElementById("popupStatus");
+      var lastModalFocus = null;
+
+      function modalFocusables() {
+        return Array.prototype.slice.call(briefModal.querySelectorAll("button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex='-1'])"));
+      }
+
+      function openModal() {
+        lastModalFocus = document.activeElement;
+        briefModal.hidden = false;
+        document.body.classList.add("modal-open");
+        window.requestAnimationFrame(function () {
+          modalJoin.focus();
+        });
+      }
+
+      function closeModal(message) {
+        briefModal.hidden = true;
+        document.body.classList.remove("modal-open");
+        popupStatus.textContent = message || "Secret briefing closed.";
+        if (lastModalFocus && typeof lastModalFocus.focus === "function") {
+          lastModalFocus.focus();
+        }
+      }
+
+      modalOpen.addEventListener("click", openModal);
+      modalClose.addEventListener("click", function () {
+        closeModal("Secret note burned.");
+      });
+      briefModal.addEventListener("pointerdown", function (event) {
+        if (event.target === briefModal) {
+          closeModal("Secret briefing closed.");
+        }
+      });
+      briefModal.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal("Secret briefing closed.");
+          return;
+        }
+        if (event.key !== "Tab") {
+          return;
+        }
+        var focusable = modalFocusables();
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      var dispatchToast = document.getElementById("dispatchToast");
+      var toastOpen = document.getElementById("toastOpen");
+      var toastClose = document.getElementById("toastClose");
+      var toastMessage = document.getElementById("toastMessage");
+      var toastTimer = 0;
+
+      function hideToast() {
+        window.clearTimeout(toastTimer);
+        dispatchToast.classList.remove("is-on");
+        var delay = reducedMotion.matches ? 0 : 130;
+        window.setTimeout(function () {
+          dispatchToast.hidden = true;
+        }, delay);
+        popupStatus.textContent = "Dispatch cleared.";
+      }
+
+      function showToast(message) {
+        window.clearTimeout(toastTimer);
+        toastMessage.textContent = message;
+        dispatchToast.hidden = false;
+        window.requestAnimationFrame(function () {
+          dispatchToast.classList.add("is-on");
+        });
+        popupStatus.textContent = "Street dispatch fired.";
+        toastTimer = window.setTimeout(hideToast, 5000);
+      }
+
+      toastOpen.addEventListener("click", function () {
+        var crew = crewSelection.textContent;
+        showToast(crew + " has your coordinates.");
+      });
+      toastClose.addEventListener("click", hideToast);
+      modalJoin.addEventListener("click", function () {
+        closeModal("You joined the night operation.");
+        showToast("Your name is on the hand-cut roster.");
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key !== "Escape" || !briefModal.hidden) {
+          return;
+        }
+        if (!crewMenu.hidden) {
+          event.preventDefault();
+          closeCrew(true);
+        } else if (!dispatchToast.hidden) {
+          event.preventDefault();
+          hideToast();
+          toastOpen.focus();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

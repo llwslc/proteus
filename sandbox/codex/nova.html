@@ -1,0 +1,2813 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#030914">
+  <title>NOVA // Tactical Signal Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --void: #01040a;
+      --space: #030914;
+      --space-2: #071525;
+      --glass: rgba(7, 25, 43, 0.78);
+      --glass-strong: rgba(7, 30, 50, 0.94);
+      --cyan: #35f4ff;
+      --cyan-soft: #8ff9ff;
+      --cyan-dim: #147b88;
+      --magenta: #ff43d1;
+      --red: #ff4d67;
+      --amber: #ffc857;
+      --ink: #e9fdff;
+      --muted: #9abec8;
+      --line: rgba(53, 244, 255, 0.3);
+      --line-soft: rgba(126, 238, 255, 0.12);
+      --shadow-cyan: 0 0 12px rgba(53, 244, 255, 0.62), 0 0 34px rgba(53, 244, 255, 0.2);
+      --shadow-magenta: 0 0 12px rgba(255, 67, 209, 0.58), 0 0 32px rgba(255, 67, 209, 0.2);
+      --font-display: "Orbitron", "Arial Narrow", system-ui, sans-serif;
+      --font-data: "Space Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      --cut: 18px;
+      --ease-sharp: cubic-bezier(0.16, 0.84, 0.26, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 0;
+      background: var(--void);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 0;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 78% 14%, rgba(255, 67, 209, 0.1), transparent 28rem),
+        radial-gradient(circle at 12% 18%, rgba(53, 244, 255, 0.11), transparent 30rem),
+        linear-gradient(135deg, #01040a 0%, #031020 52%, #01040a 100%);
+      font-family: var(--font-data);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      accent-color: var(--cyan);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(53, 244, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(53, 244, 255, 0.035) 1px, transparent 1px),
+        repeating-linear-gradient(0deg, transparent 0 4px, rgba(255, 255, 255, 0.018) 4px 5px);
+      background-size: 52px 52px, 52px 52px, auto;
+      mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.72));
+    }
+
+    body::after {
+      z-index: -1;
+      background:
+        linear-gradient(90deg, transparent, rgba(53, 244, 255, 0.11), transparent) 0 -20vh / 100% 18vh no-repeat,
+        radial-gradient(ellipse at center, transparent 42%, rgba(0, 0, 0, 0.68) 100%);
+      animation: field-scan 9s linear infinite;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    [role="button"],
+    input,
+    [tabindex] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--magenta);
+      outline-offset: 4px;
+      box-shadow: 0 0 0 2px var(--space), var(--shadow-magenta);
+    }
+
+    ::selection {
+      color: var(--void);
+      background: var(--cyan);
+    }
+
+    .shell {
+      width: min(1180px, 100%);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .status-rail {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      min-height: 44px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(1, 8, 16, 0.82);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(16px);
+    }
+
+    .status-inner {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-chip,
+    .rail-data,
+    .eyebrow,
+    .section-code,
+    .micro,
+    .field-label,
+    .readout-label {
+      font-family: var(--font-data);
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .brand-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      white-space: nowrap;
+      color: var(--cyan-soft);
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 13px;
+      height: 13px;
+      flex: 0 0 auto;
+      border: 1px solid var(--cyan);
+      transform: rotate(45deg);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      background: var(--cyan);
+      animation: core-pulse 2.4s ease-in-out infinite;
+    }
+
+    .rail-cluster {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+      min-width: 0;
+    }
+
+    .rail-data {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .rail-data strong {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: var(--shadow-cyan);
+      animation: core-pulse 1.7s ease-in-out infinite;
+    }
+
+    main {
+      display: block;
+    }
+
+    .hero {
+      min-height: min(760px, calc(100svh - 44px));
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(330px, 0.96fr);
+      align-items: center;
+      gap: clamp(34px, 6vw, 84px);
+      padding-block: clamp(64px, 10vw, 118px) 72px;
+    }
+
+    .hero-copy {
+      min-width: 0;
+      animation: sharp-in 0.7s var(--ease-sharp) both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 17px;
+      color: var(--cyan);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: var(--cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      position: relative;
+      max-width: 760px;
+      margin-bottom: 22px;
+      color: #f2feff;
+      font-size: clamp(2.7rem, 7vw, 6.25rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+      text-shadow: 0 0 28px rgba(53, 244, 255, 0.2);
+    }
+
+    h1 .accent {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--cyan);
+      text-shadow: var(--shadow-cyan);
+    }
+
+    .hero-lede {
+      max-width: 610px;
+      margin-bottom: 30px;
+      color: #b8d9df;
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    }
+
+    .hero-actions,
+    .button-grid,
+    .inline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      --button-ink: var(--cyan);
+      --button-fill: rgba(53, 244, 255, 0.08);
+      position: relative;
+      min-height: 46px;
+      border: 1px solid var(--button-ink);
+      padding: 0 20px;
+      overflow: hidden;
+      cursor: pointer;
+      color: var(--button-ink);
+      background: var(--button-fill);
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease, transform 150ms var(--ease-sharp);
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(105deg, transparent 18%, color-mix(in srgb, var(--button-ink) 32%, transparent), transparent 70%);
+      transform: translateX(-130%);
+      transition: transform 360ms var(--ease-sharp);
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      right: 6px;
+      bottom: 5px;
+      width: 15px;
+      height: 2px;
+      background: var(--button-ink);
+      box-shadow: 0 0 7px var(--button-ink);
+      opacity: 0.75;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--button-ink) 16%, var(--button-fill));
+      box-shadow: 0 0 18px color-mix(in srgb, var(--button-ink) 45%, transparent);
+      transform: translateY(-2px);
+    }
+
+    .btn:hover:not(:disabled)::before {
+      transform: translateX(130%);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(1px) scale(0.985);
+      background: color-mix(in srgb, var(--button-ink) 28%, var(--button-fill));
+    }
+
+    .btn-primary {
+      color: var(--void);
+      background: var(--cyan);
+      box-shadow: 0 0 20px rgba(53, 244, 255, 0.22);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      color: var(--void);
+      background: #a9fbff;
+    }
+
+    .btn-secondary {
+      --button-ink: var(--cyan-soft);
+      --button-fill: rgba(53, 244, 255, 0.03);
+      border-style: double;
+      border-width: 3px;
+    }
+
+    .btn-channel {
+      --button-ink: var(--magenta);
+      --button-fill: rgba(255, 67, 209, 0.08);
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 8px);
+    }
+
+    .btn-danger {
+      --button-ink: var(--red);
+      --button-fill: rgba(255, 77, 103, 0.08);
+      background-image: repeating-linear-gradient(135deg, transparent 0 7px, rgba(255, 77, 103, 0.06) 7px 9px);
+    }
+
+    .btn:disabled {
+      --button-ink: #65777d;
+      --button-fill: rgba(101, 119, 125, 0.06);
+      cursor: not-allowed;
+      filter: saturate(0.2);
+      opacity: 0.58;
+      background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(154, 190, 200, 0.08) 6px 8px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 25px;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-meta span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--cyan-dim);
+      transform: rotate(45deg);
+    }
+
+    .radar-stage {
+      position: relative;
+      width: min(100%, 510px);
+      justify-self: end;
+      aspect-ratio: 1;
+      animation: sharp-in 0.8s 120ms var(--ease-sharp) both;
+    }
+
+    .radar-frame {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      padding: clamp(18px, 3.6vw, 38px);
+      cursor: crosshair;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(53, 244, 255, 0.14), transparent 22%),
+        linear-gradient(315deg, rgba(255, 67, 209, 0.12), transparent 20%),
+        rgba(4, 19, 32, 0.76);
+      clip-path: polygon(0 26px, 26px 0, calc(100% - 64px) 0, calc(100% - 46px) 18px, 100% 18px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px));
+      box-shadow: inset 0 0 80px rgba(53, 244, 255, 0.06), 0 30px 70px rgba(0, 0, 0, 0.42);
+      isolation: isolate;
+    }
+
+    .radar-frame::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      z-index: -1;
+      clip-path: inherit;
+      background:
+        linear-gradient(90deg, var(--cyan), transparent 26%, transparent 74%, var(--magenta)) top / 100% 1px no-repeat,
+        linear-gradient(90deg, var(--cyan), transparent 44%) bottom / 100% 1px no-repeat,
+        linear-gradient(#0a1c2d, #03101c);
+    }
+
+    .radar-frame::after {
+      content: "";
+      position: absolute;
+      top: 8%;
+      left: 12%;
+      width: 40%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      box-shadow: 0 0 12px rgba(53, 244, 255, 0.8);
+    }
+
+    .radar-disc {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(53, 244, 255, 0.54);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, transparent 0 13%, rgba(53, 244, 255, 0.08) 13.4% 14%, transparent 14.4% 31%, rgba(53, 244, 255, 0.09) 31.4% 32%, transparent 32.4% 49%, rgba(53, 244, 255, 0.1) 49.4% 50%, transparent 50.4% 69%, rgba(53, 244, 255, 0.11) 69.4% 70%, transparent 70.4%),
+        linear-gradient(90deg, transparent 49.7%, rgba(53, 244, 255, 0.35) 49.8% 50.2%, transparent 50.3%),
+        linear-gradient(transparent 49.7%, rgba(53, 244, 255, 0.35) 49.8% 50.2%, transparent 50.3%),
+        rgba(0, 8, 17, 0.9);
+      box-shadow: inset 0 0 42px rgba(53, 244, 255, 0.1), 0 0 22px rgba(53, 244, 255, 0.22);
+    }
+
+    .radar-disc::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: conic-gradient(from 0deg, transparent 0 280deg, rgba(53, 244, 255, 0.04) 305deg, rgba(53, 244, 255, 0.72) 359.2deg, transparent 360deg);
+      transform-origin: center;
+      animation: radar-sweep 4.5s linear infinite;
+    }
+
+    .radar-disc::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: repeating-linear-gradient(0deg, transparent 0 4px, rgba(53, 244, 255, 0.035) 4px 5px);
+      pointer-events: none;
+    }
+
+    .target-reticle {
+      --target-x: 64%;
+      --target-y: 35%;
+      position: absolute;
+      left: var(--target-x);
+      top: var(--target-y);
+      z-index: 3;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--magenta);
+      transform: translate(-50%, -50%) rotate(45deg);
+      box-shadow: 0 0 14px rgba(255, 67, 209, 0.72), inset 0 0 12px rgba(255, 67, 209, 0.12);
+      transition: left 220ms var(--ease-sharp), top 220ms var(--ease-sharp), border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .target-reticle::before,
+    .target-reticle::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid currentColor;
+    }
+
+    .target-reticle::after {
+      inset: 16px;
+      background: currentColor;
+      box-shadow: 0 0 9px currentColor;
+    }
+
+    .radar-frame[aria-pressed="true"] .target-reticle {
+      color: var(--red);
+      border-color: var(--red);
+      box-shadow: 0 0 20px rgba(255, 77, 103, 0.85), inset 0 0 16px rgba(255, 77, 103, 0.18);
+      animation: lock-pulse 0.7s steps(2, end) infinite;
+    }
+
+    .blip {
+      position: absolute;
+      z-index: 2;
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--cyan);
+      background: rgba(53, 244, 255, 0.72);
+      box-shadow: var(--shadow-cyan);
+      transform: rotate(45deg);
+    }
+
+    .blip-a {
+      left: 28%;
+      top: 42%;
+    }
+
+    .blip-b {
+      right: 21%;
+      bottom: 27%;
+    }
+
+    .blip-c {
+      left: 46%;
+      bottom: 18%;
+      background: var(--magenta);
+      border-color: var(--magenta);
+      box-shadow: var(--shadow-magenta);
+    }
+
+    .coordinate {
+      position: absolute;
+      z-index: 4;
+      color: var(--cyan-soft);
+      font-size: clamp(0.56rem, 1.3vw, 0.66rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .coord-top {
+      top: 13px;
+      left: 52px;
+    }
+
+    .coord-bottom {
+      right: 45px;
+      bottom: 18px;
+      color: var(--magenta);
+    }
+
+    .radar-caption {
+      position: absolute;
+      left: 0;
+      bottom: -34px;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .radar-caption strong {
+      color: var(--cyan);
+    }
+
+    .section {
+      padding-block: 48px;
+      scroll-margin-top: 30px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .section-code {
+      color: var(--magenta);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .section-title-wrap {
+      min-width: 0;
+    }
+
+    .section-title-wrap::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: 14px;
+      background: linear-gradient(90deg, var(--cyan), rgba(53, 244, 255, 0.08) 70%, transparent);
+    }
+
+    .section h2 {
+      margin-bottom: 7px;
+      font-size: clamp(1.35rem, 3vw, 2.15rem);
+      line-height: 1.1;
+      letter-spacing: 0.035em;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .panel {
+      position: relative;
+      min-width: 0;
+      grid-column: span 6;
+      border: 1px solid var(--line);
+      padding: clamp(20px, 3vw, 30px);
+      overflow: visible;
+      background:
+        linear-gradient(120deg, rgba(53, 244, 255, 0.07), transparent 28%),
+        linear-gradient(315deg, rgba(255, 67, 209, 0.055), transparent 22%),
+        var(--glass);
+      clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+      box-shadow: inset 0 0 35px rgba(53, 244, 255, 0.03), 0 18px 46px rgba(0, 0, 0, 0.23);
+      backdrop-filter: blur(14px);
+      animation: panel-enter 0.58s var(--ease-sharp) both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+
+    .panel-wide {
+      grid-column: 1 / -1;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 32px;
+      width: 68px;
+      height: 2px;
+      background: var(--cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      right: 11px;
+      bottom: 9px;
+      width: 32px;
+      height: 5px;
+      border-top: 1px solid var(--magenta);
+      border-bottom: 1px solid var(--magenta);
+      opacity: 0.7;
+    }
+
+    .panel h3 {
+      margin-bottom: 7px;
+      color: var(--cyan-soft);
+      font-size: 0.92rem;
+      line-height: 1.3;
+      letter-spacing: 0.1em;
+    }
+
+    .panel-note {
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .micro {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--magenta);
+    }
+
+    .button-grid {
+      align-items: stretch;
+    }
+
+    .button-grid .btn {
+      flex: 1 1 145px;
+    }
+
+    .field {
+      display: grid;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .field + .field,
+    .field + fieldset,
+    fieldset + .field,
+    fieldset + fieldset {
+      margin-top: 22px;
+    }
+
+    .field-label {
+      color: var(--cyan-soft);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--cyan);
+      border-radius: 0;
+      padding: 10px 14px;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(53, 244, 255, 0.08), transparent 34%),
+        rgba(0, 7, 15, 0.8);
+      caret-color: var(--magenta);
+      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 0 100%);
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .text-input::placeholder {
+      color: #72929a;
+      opacity: 1;
+    }
+
+    .text-input:hover {
+      border-color: rgba(53, 244, 255, 0.62);
+    }
+
+    .text-input:focus {
+      border-color: var(--cyan);
+      background-color: rgba(4, 19, 31, 0.96);
+      box-shadow: inset 0 0 16px rgba(53, 244, 255, 0.08), var(--shadow-cyan);
+    }
+
+    .input-readout {
+      min-height: 1.3em;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      border: 0;
+      padding: 0;
+    }
+
+    legend {
+      width: 100%;
+      padding: 0;
+    }
+
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .radio-card {
+      position: relative;
+      min-width: 0;
+      cursor: pointer;
+    }
+
+    .radio-card input,
+    .check-control input,
+    .switch-control input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-face {
+      position: relative;
+      min-height: 64px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(53, 244, 255, 0.25);
+      padding: 12px 10px 12px 28px;
+      color: var(--muted);
+      background: rgba(1, 10, 18, 0.66);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: color 150ms ease, border-color 150ms ease, background 150ms ease, transform 150ms var(--ease-sharp);
+    }
+
+    .radio-face::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--cyan-dim);
+      transform: translateY(-50%) rotate(45deg);
+      transition: background 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+    }
+
+    .radio-card:hover .radio-face {
+      color: var(--ink);
+      border-color: rgba(53, 244, 255, 0.64);
+      transform: translateY(-2px);
+    }
+
+    .radio-card input:focus-visible + .radio-face,
+    .check-control input:focus-visible + .check-face,
+    .switch-control input:focus-visible + .switch-track {
+      outline: 2px solid var(--magenta);
+      outline-offset: 4px;
+      box-shadow: 0 0 0 2px var(--space), var(--shadow-magenta);
+    }
+
+    .radio-card input:checked + .radio-face {
+      color: var(--cyan-soft);
+      border-color: var(--cyan);
+      background: rgba(53, 244, 255, 0.11);
+      box-shadow: inset 0 0 18px rgba(53, 244, 255, 0.08);
+    }
+
+    .radio-card input:checked + .radio-face::before {
+      border-color: var(--cyan);
+      background: var(--cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .binary-stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .check-control,
+    .switch-control {
+      position: relative;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .check-face {
+      position: relative;
+      width: 31px;
+      height: 31px;
+      flex: 0 0 auto;
+      border: 1px solid var(--cyan-dim);
+      background:
+        linear-gradient(135deg, transparent 0 66%, rgba(53, 244, 255, 0.14) 67% 100%),
+        rgba(0, 8, 16, 0.76);
+      clip-path: polygon(0 0, 22px 0, 100% 9px, 100% 100%, 9px 100%, 0 22px);
+      transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+    }
+
+    .check-face::before,
+    .check-face::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      background: var(--cyan);
+      opacity: 0;
+      transform-origin: left center;
+      transition: opacity 110ms ease, transform 180ms var(--ease-sharp);
+    }
+
+    .check-face::before {
+      left: 7px;
+      top: 16px;
+      width: 8px;
+      transform: rotate(45deg) scaleX(0);
+    }
+
+    .check-face::after {
+      left: 12px;
+      top: 20px;
+      width: 15px;
+      transform: rotate(-48deg) scaleX(0);
+    }
+
+    .check-control:hover .check-face {
+      border-color: var(--cyan);
+      transform: rotate(-2deg);
+    }
+
+    .check-control input:checked + .check-face {
+      border-color: var(--cyan);
+      background-color: rgba(53, 244, 255, 0.13);
+      box-shadow: inset 0 0 15px rgba(53, 244, 255, 0.11), var(--shadow-cyan);
+    }
+
+    .check-control input:checked + .check-face::before,
+    .check-control input:checked + .check-face::after {
+      opacity: 1;
+    }
+
+    .check-control input:checked + .check-face::before {
+      transform: rotate(45deg) scaleX(1);
+    }
+
+    .check-control input:checked + .check-face::after {
+      transform: rotate(-48deg) scaleX(1);
+    }
+
+    .switch-track {
+      position: relative;
+      width: 58px;
+      height: 29px;
+      flex: 0 0 auto;
+      border: 1px solid #49646b;
+      padding: 3px;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 8px, rgba(154, 190, 200, 0.09) 8px 9px),
+        rgba(0, 7, 14, 0.9);
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .switch-knob {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      width: 17px;
+      height: 17px;
+      border: 1px solid #7c979e;
+      background: #22343a;
+      clip-path: polygon(50% 0, 100% 32%, 82% 100%, 18% 100%, 0 32%);
+      transition: left 220ms var(--ease-sharp), background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .switch-control:hover .switch-knob {
+      transform: scale(1.08);
+    }
+
+    .switch-control input:checked + .switch-track {
+      border-color: var(--magenta);
+      box-shadow: inset 0 0 15px rgba(255, 67, 209, 0.12), var(--shadow-magenta);
+    }
+
+    .switch-control input:checked + .switch-track .switch-knob {
+      left: 34px;
+      border-color: var(--magenta);
+      background: var(--magenta);
+      box-shadow: var(--shadow-magenta);
+    }
+
+    .control-copy {
+      min-width: 0;
+      color: #c6e1e5;
+      font-size: 0.75rem;
+      line-height: 1.35;
+    }
+
+    .range-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .signal-range {
+      --value: 62%;
+      width: 100%;
+      height: 30px;
+      margin: 0;
+      cursor: pointer;
+      appearance: none;
+      background: transparent;
+    }
+
+    .signal-range::-webkit-slider-runnable-track {
+      height: 8px;
+      border: 1px solid rgba(53, 244, 255, 0.36);
+      background:
+        linear-gradient(90deg, var(--cyan) 0 var(--value), transparent var(--value) 100%),
+        repeating-linear-gradient(90deg, rgba(53, 244, 255, 0.08) 0 8px, rgba(53, 244, 255, 0.2) 8px 9px),
+        #020a12;
+      box-shadow: inset 0 0 8px rgba(53, 244, 255, 0.14);
+    }
+
+    .signal-range::-moz-range-track {
+      height: 8px;
+      border: 1px solid rgba(53, 244, 255, 0.36);
+      background:
+        linear-gradient(90deg, var(--cyan) 0 var(--value), transparent var(--value) 100%),
+        repeating-linear-gradient(90deg, rgba(53, 244, 255, 0.08) 0 8px, rgba(53, 244, 255, 0.2) 8px 9px),
+        #020a12;
+      box-shadow: inset 0 0 8px rgba(53, 244, 255, 0.14);
+    }
+
+    .signal-range::-webkit-slider-thumb {
+      width: 22px;
+      height: 22px;
+      margin-top: -8px;
+      border: 1px solid var(--cyan);
+      border-radius: 0;
+      appearance: none;
+      background: var(--space);
+      box-shadow: inset 0 0 0 5px var(--cyan), var(--shadow-cyan);
+      transform: rotate(45deg);
+    }
+
+    .signal-range::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--cyan);
+      border-radius: 0;
+      background: var(--space);
+      box-shadow: inset 0 0 0 5px var(--cyan), var(--shadow-cyan);
+      transform: rotate(45deg);
+    }
+
+    .range-readout {
+      min-width: 66px;
+      border-left: 1px solid var(--magenta);
+      padding-left: 13px;
+      color: var(--cyan-soft);
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .select-shell {
+      position: relative;
+      z-index: 8;
+      max-width: 100%;
+    }
+
+    .select-trigger {
+      width: 100%;
+      min-height: 50px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(53, 244, 255, 0.42);
+      padding: 9px 14px;
+      cursor: pointer;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(53, 244, 255, 0.1), transparent 35%),
+        #020b14;
+      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+      text-align: left;
+      transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+    }
+
+    .select-trigger:hover,
+    .select-trigger[aria-expanded="true"] {
+      border-color: var(--cyan);
+      background-color: rgba(7, 27, 43, 0.95);
+      box-shadow: inset 0 0 18px rgba(53, 244, 255, 0.08), var(--shadow-cyan);
+    }
+
+    .select-index {
+      color: var(--magenta);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .select-value {
+      min-width: 0;
+      overflow: hidden;
+      color: var(--cyan-soft);
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .select-chevron {
+      width: 9px;
+      height: 9px;
+      border-right: 1px solid var(--cyan);
+      border-bottom: 1px solid var(--cyan);
+      transform: translateY(-2px) rotate(45deg);
+      transition: transform 180ms ease;
+    }
+
+    .select-trigger[aria-expanded="true"] .select-chevron {
+      transform: translateY(2px) rotate(225deg);
+    }
+
+    .select-menu {
+      position: absolute;
+      top: calc(100% + 7px);
+      left: 0;
+      z-index: 30;
+      width: 100%;
+      margin: 0;
+      border: 1px solid var(--cyan);
+      padding: 6px;
+      list-style: none;
+      background: rgba(1, 10, 18, 0.98);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.58), var(--shadow-cyan);
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      animation: menu-open 160ms var(--ease-sharp) both;
+    }
+
+    .select-menu[hidden] {
+      display: none;
+    }
+
+    .select-option {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-height: 43px;
+      padding: 8px 10px;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 0.75rem;
+      transition: color 120ms ease, background 120ms ease, padding 120ms ease;
+    }
+
+    .select-option::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--cyan-dim);
+      transform: rotate(45deg);
+    }
+
+    .select-option:hover,
+    .select-option[data-active="true"] {
+      padding-left: 15px;
+      color: var(--ink);
+      background: rgba(53, 244, 255, 0.08);
+    }
+
+    .select-option[aria-selected="true"] {
+      color: var(--cyan-soft);
+      background: linear-gradient(90deg, rgba(53, 244, 255, 0.16), transparent);
+    }
+
+    .select-option[aria-selected="true"]::before {
+      border-color: var(--cyan);
+      background: var(--cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .tabs {
+      min-width: 0;
+    }
+
+    .tab-list {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 0;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cyan-dim) transparent;
+    }
+
+    .tab {
+      min-width: 0;
+      flex: 1 0 auto;
+      min-height: 43px;
+      border: 1px solid rgba(53, 244, 255, 0.22);
+      border-bottom-color: var(--cyan-dim);
+      padding: 0 15px;
+      cursor: pointer;
+      color: var(--muted);
+      background: rgba(0, 8, 15, 0.58);
+      clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 100%, 0 100%);
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
+    }
+
+    .tab:hover {
+      color: var(--ink);
+      background: rgba(53, 244, 255, 0.07);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--cyan-soft);
+      border-color: var(--cyan);
+      background: rgba(53, 244, 255, 0.12);
+      box-shadow: inset 0 -2px 0 var(--cyan);
+    }
+
+    .tab-panel {
+      position: relative;
+      min-height: 166px;
+      border: 1px solid rgba(53, 244, 255, 0.22);
+      border-top-color: var(--cyan);
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(53, 244, 255, 0.08), transparent 42%),
+        rgba(1, 9, 16, 0.64);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .tab-panel::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--magenta);
+      transform: rotate(45deg);
+      box-shadow: var(--shadow-magenta);
+    }
+
+    .tab-kicker {
+      margin-bottom: 8px;
+      color: var(--magenta);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tab-panel h4 {
+      margin: 0 0 8px;
+      color: var(--cyan-soft);
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tab-panel p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.79rem;
+    }
+
+    .telemetry-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.75fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 64px);
+    }
+
+    .progress-stack {
+      display: grid;
+      gap: 17px;
+    }
+
+    .readout-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .readout-label {
+      color: var(--muted);
+    }
+
+    .readout-value {
+      color: var(--cyan-soft);
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .progress-shell {
+      position: relative;
+      height: 17px;
+      border: 1px solid rgba(53, 244, 255, 0.35);
+      padding: 3px;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 24px, rgba(53, 244, 255, 0.15) 24px 25px),
+        rgba(0, 7, 14, 0.9);
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    }
+
+    .progress-fill {
+      width: 64%;
+      height: 100%;
+      background:
+        linear-gradient(90deg, var(--cyan), #74f9ff 74%, #effeff),
+        var(--cyan);
+      box-shadow: var(--shadow-cyan);
+      transition: width 420ms var(--ease-sharp);
+    }
+
+    .progress-fill::after {
+      content: "";
+      display: block;
+      width: 18%;
+      height: 100%;
+      margin-left: auto;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72));
+      animation: fill-glint 1.8s ease-in-out infinite;
+    }
+
+    .gauge-wrap {
+      display: grid;
+      place-items: center;
+    }
+
+    .gauge {
+      --gauge-value: 62%;
+      position: relative;
+      width: min(230px, 72vw);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, var(--space) 0 50%, transparent 51%),
+        conic-gradient(from 225deg, var(--cyan) 0 var(--gauge-value), rgba(53, 244, 255, 0.09) var(--gauge-value) 75%, transparent 75% 100%);
+      box-shadow: inset 0 0 28px rgba(53, 244, 255, 0.08), 0 0 26px rgba(53, 244, 255, 0.13);
+      transform: rotate(0.001deg);
+    }
+
+    .gauge::before {
+      content: "";
+      position: absolute;
+      inset: 9%;
+      border: 1px dashed rgba(53, 244, 255, 0.38);
+      border-radius: 50%;
+    }
+
+    .gauge::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 49%;
+      width: 34%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), rgba(255, 77, 103, 0.2));
+      box-shadow: 0 0 9px var(--red);
+      transform: rotate(var(--needle-angle, 22deg));
+      transform-origin: left center;
+      transition: transform 360ms var(--ease-sharp);
+    }
+
+    .gauge-core {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 46%;
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(1, 9, 17, 0.92);
+      box-shadow: inset 0 0 20px rgba(53, 244, 255, 0.07);
+      text-align: center;
+    }
+
+    .gauge-value {
+      display: block;
+      color: var(--cyan-soft);
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 3vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .gauge-unit {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.56rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .overlay-demo {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(230px, 0.55fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .tooltip-trigger {
+      --button-ink: var(--amber);
+      --button-fill: rgba(255, 200, 87, 0.06);
+    }
+
+    .tooltip {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 13px);
+      z-index: 14;
+      width: min(240px, 72vw);
+      border: 1px solid var(--amber);
+      padding: 10px 12px;
+      visibility: hidden;
+      color: #fff1c8;
+      background: rgba(19, 14, 4, 0.98);
+      box-shadow: 0 0 18px rgba(255, 200, 87, 0.2);
+      clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+      font-size: 0.7rem;
+      line-height: 1.45;
+      opacity: 0;
+      transform: translate(-50%, 7px);
+      transition: opacity 130ms ease, transform 130ms ease, visibility 130ms ease;
+      pointer-events: none;
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-trigger:focus + .tooltip,
+    .tooltip-trigger[aria-expanded="true"] + .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .overlay-readout {
+      border-left: 1px solid var(--magenta);
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.77rem;
+    }
+
+    .overlay-readout strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--magenta);
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 4px, rgba(53, 244, 255, 0.025) 4px 5px),
+        rgba(0, 3, 8, 0.86);
+      backdrop-filter: blur(9px);
+      animation: fade-in 180ms ease both;
+    }
+
+    .modal-backdrop[hidden] {
+      display: none;
+    }
+
+    .modal {
+      position: relative;
+      width: min(520px, 100%);
+      border: 1px solid var(--red);
+      padding: clamp(24px, 6vw, 38px);
+      overflow: hidden;
+      background:
+        linear-gradient(130deg, rgba(255, 77, 103, 0.1), transparent 38%),
+        var(--glass-strong);
+      clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+      box-shadow: 0 0 46px rgba(255, 77, 103, 0.2), 0 24px 80px rgba(0, 0, 0, 0.66);
+      animation: modal-in 220ms var(--ease-sharp) both;
+    }
+
+    .modal::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42%;
+      height: 3px;
+      background: var(--red);
+      box-shadow: 0 0 16px var(--red);
+    }
+
+    .modal-code {
+      margin-bottom: 11px;
+      color: var(--red);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .modal h2 {
+      margin-bottom: 12px;
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      letter-spacing: 0.04em;
+    }
+
+    .modal p {
+      margin-bottom: 26px;
+      color: #b8d6da;
+      font-size: 0.86rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 120;
+      width: min(390px, calc(100vw - 48px));
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 13px;
+      border: 1px solid var(--cyan);
+      padding: 15px 16px;
+      color: var(--ink);
+      background: rgba(2, 17, 28, 0.97);
+      box-shadow: 0 0 24px rgba(53, 244, 255, 0.22), 0 22px 50px rgba(0, 0, 0, 0.58);
+      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+      animation: toast-in 250ms var(--ease-sharp) both;
+    }
+
+    .toast[hidden] {
+      display: none;
+    }
+
+    .toast-icon {
+      width: 12px;
+      height: 12px;
+      margin-top: 5px;
+      border: 1px solid var(--cyan);
+      background: var(--cyan);
+      box-shadow: var(--shadow-cyan);
+      transform: rotate(45deg);
+    }
+
+    .toast-copy {
+      min-width: 0;
+    }
+
+    .toast-title {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--cyan-soft);
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .toast-message {
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.45;
+    }
+
+    .toast-close {
+      width: 30px;
+      height: 30px;
+      border: 1px solid transparent;
+      padding: 0;
+      cursor: pointer;
+      color: var(--cyan);
+      background: transparent;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1;
+      transition: border-color 130ms ease, background 130ms ease;
+    }
+
+    .toast-close:hover {
+      border-color: var(--cyan);
+      background: rgba(53, 244, 255, 0.09);
+    }
+
+    footer {
+      margin-top: 62px;
+      border-top: 1px solid var(--line);
+      background: rgba(1, 7, 13, 0.78);
+    }
+
+    .footer-inner {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.71rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-sigil {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    .footer-sigil::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--magenta);
+      box-shadow: var(--shadow-magenta);
+    }
+
+    .noscript-note {
+      margin: 16px auto 0;
+      border-left: 2px solid var(--amber);
+      padding: 10px 14px;
+      color: #fff1c8;
+      background: rgba(255, 200, 87, 0.08);
+      font-size: 0.76rem;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .lock-scroll {
+      overflow: hidden;
+    }
+
+    @keyframes field-scan {
+      from {
+        background-position: 0 -20vh, center;
+      }
+      to {
+        background-position: 0 120vh, center;
+      }
+    }
+
+    @keyframes radar-sweep {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes core-pulse {
+      0%,
+      100% {
+        opacity: 0.48;
+        transform: scale(0.82);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes lock-pulse {
+      50% {
+        opacity: 0.55;
+      }
+    }
+
+    @keyframes sharp-in {
+      from {
+        opacity: 0;
+        transform: translateX(-32px);
+        clip-path: inset(0 100% 0 0);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+        clip-path: inset(0);
+      }
+    }
+
+    @keyframes panel-enter {
+      from {
+        opacity: 0.25;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes menu-open {
+      from {
+        opacity: 0;
+        transform: translateY(-7px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fill-glint {
+      0%,
+      100% {
+        opacity: 0.25;
+      }
+      50% {
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+    }
+
+    @keyframes modal-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+      }
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateX(36px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        padding-top: 72px;
+      }
+
+      .radar-stage {
+        width: min(100%, 520px);
+        justify-self: center;
+        margin-top: 10px;
+      }
+
+      .panel {
+        grid-column: 1 / -1;
+      }
+
+      .telemetry-layout,
+      .overlay-demo {
+        grid-template-columns: 1fr;
+      }
+
+      .gauge-wrap {
+        margin-top: 8px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .shell {
+        padding-inline: 16px;
+      }
+
+      .status-inner {
+        min-height: 48px;
+      }
+
+      .rail-cluster {
+        gap: 10px;
+      }
+
+      .rail-data:nth-child(2) {
+        display: none;
+      }
+
+      .brand-chip,
+      .rail-data {
+        font-size: 0.58rem;
+        letter-spacing: 0.09em;
+      }
+
+      .hero {
+        gap: 50px;
+        padding-block: 56px 48px;
+      }
+
+      h1 {
+        font-size: clamp(2.45rem, 15.5vw, 3.8rem);
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .radar-stage {
+        width: 100%;
+      }
+
+      .radar-caption {
+        bottom: -40px;
+        font-size: 0.56rem;
+      }
+
+      .section {
+        padding-block: 38px;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .section-code {
+        writing-mode: horizontal-tb;
+        transform: none;
+      }
+
+      .panel-grid {
+        gap: 14px;
+      }
+
+      .panel {
+        padding: 20px 17px 24px;
+      }
+
+      .radio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radio-face {
+        min-height: 50px;
+      }
+
+      .binary-stack {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .button-grid .btn {
+        flex-basis: 100%;
+      }
+
+      .tab {
+        padding-inline: 12px;
+      }
+
+      .tab-panel {
+        padding: 18px 16px;
+      }
+
+      .range-wrap {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .range-readout {
+        justify-self: end;
+      }
+
+      .overlay-readout {
+        border-left: 0;
+        border-top: 1px solid var(--magenta);
+        padding: 16px 0 0;
+      }
+
+      .toast {
+        right: 16px;
+        bottom: 16px;
+        width: calc(100vw - 32px);
+      }
+
+      .footer-inner {
+        min-height: 112px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 7px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .radar-disc::before {
+        transform: rotate(48deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="status-rail">
+    <div class="shell status-inner">
+      <div class="brand-chip">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span data-copy="NOVA / SIGNAL COMMAND">NOVA / SIGNAL COMMAND</span>
+      </div>
+      <div class="rail-cluster">
+        <span class="rail-data">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span data-copy="UPLINK">UPLINK</span>
+          <strong data-copy="STABLE">STABLE</strong>
+        </span>
+        <span class="rail-data">
+          <span data-copy="SECTOR">SECTOR</span>
+          <strong data-copy="07-A">07-A</strong>
+        </span>
+        <span class="rail-data">
+          <span data-copy="UTC">UTC</span>
+          <strong id="utc-clock">00:00:00</strong>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="shell hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow" data-copy="TACTICAL INTERFACE / REV 07">TACTICAL INTERFACE / REV 07</p>
+        <h1 id="hero-title">
+          <span data-copy="COMMAND">COMMAND</span>
+          <span class="accent" data-copy="THE VOID">THE VOID</span>
+        </h1>
+        <p class="hero-lede" data-copy="A precision console for resolving deep-space signals, routing hostile noise, and holding the line when every coordinate turns uncertain.">
+          A precision console for resolving deep-space signals, routing hostile noise, and holding the line when every coordinate turns uncertain.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="hero-lock" type="button" data-copy="INITIATE TARGET LOCK">INITIATE TARGET LOCK</button>
+          <button class="btn btn-secondary" id="hero-scroll" type="button" data-copy="OPEN COMMAND DECK">OPEN COMMAND DECK</button>
+        </div>
+        <div class="hero-meta micro" aria-label="Mission telemetry">
+          <span data-copy="RANGE 8.42 LY">RANGE 8.42 LY</span>
+          <span data-copy="DRIFT +0.008">DRIFT +0.008</span>
+          <span data-copy="BAND XN-4">BAND XN-4</span>
+        </div>
+      </div>
+
+      <div class="radar-stage">
+        <button class="radar-frame" id="radar-control" type="button" aria-pressed="false" aria-label="Interactive tactical radar. Activate to lock the current target.">
+          <span class="coordinate coord-top" id="coord-readout" data-copy="X 064 / Y 035">X 064 / Y 035</span>
+          <span class="radar-disc" aria-hidden="true">
+            <span class="blip blip-a"></span>
+            <span class="blip blip-b"></span>
+            <span class="blip blip-c"></span>
+            <span class="target-reticle"></span>
+          </span>
+          <span class="coordinate coord-bottom" id="lock-readout" data-copy="TRACKING">TRACKING</span>
+        </button>
+        <div class="radar-caption" aria-hidden="true">
+          <span data-copy="AZIMUTH / 273.4">AZIMUTH / 273.4</span>
+          <span><strong data-copy="LIVE">LIVE</strong> <span data-copy="/ VECTOR FEED">/ VECTOR FEED</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section" id="command-deck" aria-labelledby="controls-title">
+      <div class="section-heading">
+        <span class="section-code" data-copy="MODULE 01">MODULE 01</span>
+        <div class="section-title-wrap">
+          <h2 id="controls-title" data-copy="Command Inputs">Command Inputs</h2>
+          <p class="section-intro" data-copy="Assign the crew, set the carrier, and choose how the array should answer. Every signal remains under manual authority.">
+            Assign the crew, set the carrier, and choose how the array should answer. Every signal remains under manual authority.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <article class="panel panel-wide" aria-labelledby="buttons-heading">
+          <span class="micro" data-copy="ACTION ARRAY / 5 STATES">ACTION ARRAY / 5 STATES</span>
+          <h3 id="buttons-heading" data-copy="Vector Commands">Vector Commands</h3>
+          <p class="panel-note" data-copy="Issue a direct command, ping the array, open a carrier channel, or collapse the current vector.">
+            Issue a direct command, ping the array, open a carrier channel, or collapse the current vector.
+          </p>
+          <div class="button-grid">
+            <button class="btn btn-primary" id="lock-button" type="button" data-copy="LOCK VECTOR">LOCK VECTOR</button>
+            <button class="btn btn-secondary" id="ping-button" type="button" data-copy="PING ARRAY">PING ARRAY</button>
+            <button class="btn btn-channel" id="channel-button" type="button" data-copy="OPEN CHANNEL">OPEN CHANNEL</button>
+            <button class="btn btn-danger" id="abort-button" type="button" data-copy="ABORT VECTOR">ABORT VECTOR</button>
+            <button class="btn" type="button" disabled data-copy="SIGNAL LOST">SIGNAL LOST</button>
+          </div>
+        </article>
+
+        <article class="panel" aria-labelledby="identity-heading">
+          <span class="micro" data-copy="CREW ID / AUTH">CREW ID / AUTH</span>
+          <h3 id="identity-heading" data-copy="Operator Identity">Operator Identity</h3>
+          <p class="panel-note" data-copy="Register a live callsign and declare the active wing.">
+            Register a live callsign and declare the active wing.
+          </p>
+
+          <div class="field">
+            <label class="field-label" for="callsign" data-copy="OPERATOR CALLSIGN">OPERATOR CALLSIGN</label>
+            <input class="text-input" id="callsign" name="callsign" type="text" maxlength="24" autocomplete="off" spellcheck="false" placeholder="ENTER DESIGNATION">
+            <span class="input-readout" id="callsign-readout" data-copy="AUTH CHANNEL WAITING">AUTH CHANNEL WAITING</span>
+          </div>
+
+          <fieldset>
+            <legend class="field-label" data-copy="ASSIGN FLIGHT WING">ASSIGN FLIGHT WING</legend>
+            <div class="radio-grid">
+              <label class="radio-card">
+                <input type="radio" name="wing" value="Aegis" checked>
+                <span class="radio-face" data-copy="AEGIS">AEGIS</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="wing" value="Vesper">
+                <span class="radio-face" data-copy="VESPER">VESPER</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="wing" value="Helix">
+                <span class="radio-face" data-copy="HELIX">HELIX</span>
+              </label>
+            </div>
+          </fieldset>
+        </article>
+
+        <article class="panel" aria-labelledby="carrier-heading">
+          <span class="micro" data-copy="CARRIER / MODULATION">CARRIER / MODULATION</span>
+          <h3 id="carrier-heading" data-copy="Signal Envelope">Signal Envelope</h3>
+          <p class="panel-note" data-copy="Mirror the telemetry, arm the silent carrier, and trim emission power.">
+            Mirror the telemetry, arm the silent carrier, and trim emission power.
+          </p>
+
+          <fieldset>
+            <legend class="field-label" data-copy="CHANNEL BEHAVIOR">CHANNEL BEHAVIOR</legend>
+            <div class="binary-stack">
+              <label class="check-control">
+                <input id="mirror-check" type="checkbox">
+                <span class="check-face" aria-hidden="true"></span>
+                <span class="control-copy" data-copy="Mirror telemetry">Mirror telemetry</span>
+              </label>
+              <label class="switch-control">
+                <input id="carrier-switch" type="checkbox" role="switch">
+                <span class="switch-track" aria-hidden="true">
+                  <span class="switch-knob"></span>
+                </span>
+                <span class="control-copy" id="carrier-state" data-copy="Silent carrier: off">Silent carrier: off</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label class="field-label" for="power-range" data-copy="EMISSION POWER">EMISSION POWER</label>
+            <div class="range-wrap">
+              <input class="signal-range" id="power-range" type="range" min="0" max="100" step="1" value="62">
+              <output class="range-readout" id="power-output" for="power-range">62%</output>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" aria-labelledby="routing-title">
+      <div class="section-heading">
+        <span class="section-code" data-copy="MODULE 02">MODULE 02</span>
+        <div class="section-title-wrap">
+          <h2 id="routing-title" data-copy="Route Matrix">Route Matrix</h2>
+          <p class="section-intro" data-copy="Choose a corridor, then inspect its tactical layer. The route menu responds to arrows, Home, End, Enter, and Escape.">
+            Choose a corridor, then inspect its tactical layer. The route menu responds to arrows, Home, End, Enter, and Escape.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <article class="panel" aria-labelledby="route-heading">
+          <span class="micro" data-copy="WAYPOINT / SELECT">WAYPOINT / SELECT</span>
+          <h3 id="route-heading" data-copy="Jump Corridor">Jump Corridor</h3>
+          <p class="panel-note" data-copy="Select the safest vector through the active debris field.">
+            Select the safest vector through the active debris field.
+          </p>
+          <div class="field">
+            <span class="field-label" id="route-label" data-copy="ACTIVE CORRIDOR">ACTIVE CORRIDOR</span>
+            <div class="select-shell">
+              <button class="select-trigger" id="route-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="route-label route-value">
+                <span class="select-index" id="route-index">01</span>
+                <span class="select-value" id="route-value" data-copy="CYGNUS / QUIET ARC">CYGNUS / QUIET ARC</span>
+                <span class="select-chevron" aria-hidden="true"></span>
+              </button>
+              <ul class="select-menu" id="route-menu" role="listbox" aria-labelledby="route-label" tabindex="-1" hidden>
+                <li class="select-option" id="route-cygnus" role="option" aria-selected="true" data-value="Cygnus / Quiet Arc" data-index="01" data-copy="CYGNUS / QUIET ARC">CYGNUS / QUIET ARC</li>
+                <li class="select-option" id="route-lyra" role="option" aria-selected="false" data-value="Lyra / Glass Wake" data-index="02" data-copy="LYRA / GLASS WAKE">LYRA / GLASS WAKE</li>
+                <li class="select-option" id="route-orion" role="option" aria-selected="false" data-value="Orion / Red Gate" data-index="03" data-copy="ORION / RED GATE">ORION / RED GATE</li>
+                <li class="select-option" id="route-draco" role="option" aria-selected="false" data-value="Draco / Null Spine" data-index="04" data-copy="DRACO / NULL SPINE">DRACO / NULL SPINE</li>
+              </ul>
+            </div>
+            <span class="input-readout" id="route-readout" data-copy="RISK INDEX 12 / TRANSIT 08:42">RISK INDEX 12 / TRANSIT 08:42</span>
+          </div>
+        </article>
+
+        <article class="panel" aria-labelledby="layers-heading">
+          <span class="micro" data-copy="TACTICAL LAYERS / 3">TACTICAL LAYERS / 3</span>
+          <h3 id="layers-heading" data-copy="Array Perspective">Array Perspective</h3>
+          <p class="panel-note" data-copy="Cycle through the scan layers to expose a different operational truth.">
+            Cycle through the scan layers to expose a different operational truth.
+          </p>
+          <div class="tabs">
+            <div class="tab-list" role="tablist" aria-label="Tactical scan layers">
+              <button class="tab" id="tab-spectrum" type="button" role="tab" aria-selected="true" aria-controls="panel-spectrum" tabindex="0" data-copy="SPECTRUM">SPECTRUM</button>
+              <button class="tab" id="tab-vector" type="button" role="tab" aria-selected="false" aria-controls="panel-vector" tabindex="-1" data-copy="VECTOR">VECTOR</button>
+              <button class="tab" id="tab-threat" type="button" role="tab" aria-selected="false" aria-controls="panel-threat" tabindex="-1" data-copy="THREAT">THREAT</button>
+            </div>
+            <div class="tab-panel" id="panel-spectrum" role="tabpanel" aria-labelledby="tab-spectrum">
+              <div class="tab-kicker" data-copy="BAND XN-4 / CLEAR">BAND XN-4 / CLEAR</div>
+              <h4 data-copy="Spectral lane resolved">Spectral lane resolved</h4>
+              <p data-copy="Carrier noise is below threshold. Three low-energy echoes remain inside the quiet arc.">
+                Carrier noise is below threshold. Three low-energy echoes remain inside the quiet arc.
+              </p>
+            </div>
+            <div class="tab-panel" id="panel-vector" role="tabpanel" aria-labelledby="tab-vector" hidden>
+              <div class="tab-kicker" data-copy="DRIFT +0.008 / NOMINAL">DRIFT +0.008 / NOMINAL</div>
+              <h4 data-copy="Vector field aligned">Vector field aligned</h4>
+              <p data-copy="Course correction is holding. The selected corridor clears the debris plane by 1.7 degrees.">
+                Course correction is holding. The selected corridor clears the debris plane by 1.7 degrees.
+              </p>
+            </div>
+            <div class="tab-panel" id="panel-threat" role="tabpanel" aria-labelledby="tab-threat" hidden>
+              <div class="tab-kicker" data-copy="CONTACT 03 / UNVERIFIED">CONTACT 03 / UNVERIFIED</div>
+              <h4 data-copy="Threat lattice listening">Threat lattice listening</h4>
+              <p data-copy="No weapons lock detected. One silent object is matching our turn rate beyond the red gate.">
+                No weapons lock detected. One silent object is matching our turn rate beyond the red gate.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell section" aria-labelledby="telemetry-title">
+      <div class="section-heading">
+        <span class="section-code" data-copy="MODULE 03">MODULE 03</span>
+        <div class="section-title-wrap">
+          <h2 id="telemetry-title" data-copy="Telemetry Core">Telemetry Core</h2>
+          <p class="section-intro" data-copy="Watch the handshake resolve and keep emission pressure below the red boundary.">
+            Watch the handshake resolve and keep emission pressure below the red boundary.
+          </p>
+        </div>
+      </div>
+
+      <article class="panel panel-wide telemetry-layout" aria-labelledby="sync-heading">
+        <div>
+          <span class="micro" data-copy="LIVE DIAGNOSTICS / FEED 07">LIVE DIAGNOSTICS / FEED 07</span>
+          <h3 id="sync-heading" data-copy="Quantum Handshake">Quantum Handshake</h3>
+          <p class="panel-note" data-copy="Advance the handshake manually. Completion confirms a clean lock with the remote array.">
+            Advance the handshake manually. Completion confirms a clean lock with the remote array.
+          </p>
+          <div class="progress-stack">
+            <div class="readout-row">
+              <span class="readout-label" data-copy="SYNC COMPLETION">SYNC COMPLETION</span>
+              <span class="readout-value" id="progress-value">64%</span>
+            </div>
+            <div class="progress-shell" id="sync-progress" role="progressbar" aria-label="Quantum handshake completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="inline-actions">
+              <button class="btn btn-secondary" id="advance-progress" type="button" data-copy="ADVANCE SYNC">ADVANCE SYNC</button>
+              <button class="btn btn-channel" id="reset-progress" type="button" data-copy="RESET PHASE">RESET PHASE</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="gauge-wrap">
+          <div class="gauge" id="signal-gauge" role="meter" aria-label="Emission pressure" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62" aria-valuetext="62 percent nominal">
+            <div class="gauge-core">
+              <span>
+                <span class="gauge-value" id="gauge-value">62%</span>
+                <span class="gauge-unit" id="gauge-unit" data-copy="NOMINAL">NOMINAL</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="shell section" aria-labelledby="overlay-title">
+      <div class="section-heading">
+        <span class="section-code" data-copy="MODULE 04">MODULE 04</span>
+        <div class="section-title-wrap">
+          <h2 id="overlay-title" data-copy="Alert Protocols">Alert Protocols</h2>
+          <p class="section-intro" data-copy="Test the interruption layers before the mission leaves simulation. Dialog focus stays locked; alerts remain readable to assistive technology.">
+            Test the interruption layers before the mission leaves simulation. Dialog focus stays locked; alerts remain readable to assistive technology.
+          </p>
+        </div>
+      </div>
+
+      <article class="panel panel-wide overlay-demo" aria-labelledby="overlay-heading">
+        <div>
+          <span class="micro" data-copy="INTERRUPTS / CONTROLLED">INTERRUPTS / CONTROLLED</span>
+          <h3 id="overlay-heading" data-copy="Response Simulator">Response Simulator</h3>
+          <p class="panel-note" data-copy="Open a priority confirmation, transmit a passive toast, or inspect the amber protocol note.">
+            Open a priority confirmation, transmit a passive toast, or inspect the amber protocol note.
+          </p>
+          <div class="inline-actions">
+            <button class="btn btn-danger" id="open-modal" type="button" data-copy="OPEN RED PROTOCOL">OPEN RED PROTOCOL</button>
+            <button class="btn btn-secondary" id="show-toast" type="button" data-copy="TRANSMIT TOAST">TRANSMIT TOAST</button>
+            <span class="tooltip-wrap">
+              <button class="btn tooltip-trigger" id="tooltip-trigger" type="button" aria-describedby="protocol-tooltip" aria-expanded="false" data-copy="AMBER NOTE">AMBER NOTE</button>
+              <span class="tooltip" id="protocol-tooltip" role="tooltip" data-copy="Amber channels reserve power for navigation and medical telemetry.">
+                Amber channels reserve power for navigation and medical telemetry.
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="overlay-readout">
+          <strong data-copy="INTERRUPT PRIORITY">INTERRUPT PRIORITY</strong>
+          <span id="interrupt-readout" data-copy="No active interruptions. Command deck remains available.">No active interruptions. Command deck remains available.</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span data-copy="NOVA COMMAND SYSTEM / KEEP THE SIGNAL HUMAN">NOVA COMMAND SYSTEM / KEEP THE SIGNAL HUMAN</span>
+      <span class="footer-sigil" data-copy="END OF FEED 07">END OF FEED 07</span>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="modal" id="protocol-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description" tabindex="-1">
+      <div class="modal-code" data-copy="RED PROTOCOL / PRIORITY ONE">RED PROTOCOL / PRIORITY ONE</div>
+      <h2 id="modal-title" data-copy="Collapse current vector?">Collapse current vector?</h2>
+      <p id="modal-description" data-copy="This will release the active target and return the array to passive listening. The corridor selection will remain stored.">
+        This will release the active target and return the array to passive listening. The corridor selection will remain stored.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="cancel-modal" type="button" data-copy="HOLD VECTOR">HOLD VECTOR</button>
+        <button class="btn btn-danger" id="confirm-modal" type="button" data-copy="CONFIRM COLLAPSE">CONFIRM COLLAPSE</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="signal-toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <span class="toast-icon" aria-hidden="true"></span>
+    <span class="toast-copy">
+      <strong class="toast-title" id="toast-title" data-copy="ARRAY RESPONSE">ARRAY RESPONSE</strong>
+      <span class="toast-message" id="toast-message" data-copy="Ping returned in 42 milliseconds. Signal integrity is stable.">Ping returned in 42 milliseconds. Signal integrity is stable.</span>
+    </span>
+    <button class="toast-close" id="toast-close" type="button" aria-label="Dismiss notification" data-copy="×">×</button>
+  </div>
+
+  <noscript>
+    <div class="shell noscript-note">Static command feed active. Interactive command routing requires JavaScript.</div>
+  </noscript>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+      const storageKey = "nova-command-state-v1";
+      const defaultState = {
+        callsign: "",
+        wing: "Aegis",
+        mirror: false,
+        carrier: false,
+        power: 62,
+        route: "Cygnus / Quiet Arc",
+        tab: "spectrum",
+        progress: 64,
+        locked: false
+      };
+      let state = { ...defaultState };
+      let toastTimer = 0;
+      let lastModalFocus = null;
+      let activeOption = 0;
+
+      const setText = (target, value) => {
+        if (target) {
+          target.textContent = String(value);
+        }
+      };
+
+      $$("[data-copy]").forEach((node) => {
+        setText(node, node.dataset.copy);
+      });
+      document.title = "NOVA // Tactical Signal Console";
+
+      const loadState = () => {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey));
+          if (saved && typeof saved === "object") {
+            state = { ...defaultState, ...saved };
+          }
+        } catch (error) {
+          state = { ...defaultState };
+        }
+      };
+
+      const saveState = () => {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (error) {
+          return;
+        }
+      };
+
+      const showToast = (message, title = "ARRAY RESPONSE") => {
+        const toast = $("#signal-toast");
+        setText($("#toast-title"), title);
+        setText($("#toast-message"), message);
+        toast.hidden = false;
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => {
+          toast.hidden = true;
+        }, 4600);
+      };
+
+      const hideToast = () => {
+        window.clearTimeout(toastTimer);
+        $("#signal-toast").hidden = true;
+      };
+
+      const setLock = (locked, announce = false) => {
+        state.locked = Boolean(locked);
+        const radar = $("#radar-control");
+        radar.setAttribute("aria-pressed", String(state.locked));
+        radar.setAttribute(
+          "aria-label",
+          state.locked
+            ? "Interactive tactical radar. Target locked. Activate to release."
+            : "Interactive tactical radar. Activate to lock the current target."
+        );
+        setText($("#lock-readout"), state.locked ? "TARGET LOCKED" : "TRACKING");
+        setText($("#hero-lock"), state.locked ? "RELEASE TARGET LOCK" : "INITIATE TARGET LOCK");
+        setText($("#lock-button"), state.locked ? "RELEASE VECTOR" : "LOCK VECTOR");
+        saveState();
+        if (announce) {
+          showToast(
+            state.locked
+              ? "Target NX-742 is locked. Vector telemetry is now pinned."
+              : "Target lock released. The array has returned to passive tracking.",
+            state.locked ? "LOCK CONFIRMED" : "LOCK RELEASED"
+          );
+        }
+      };
+
+      const toggleLock = (announce = true) => {
+        setLock(!state.locked, announce);
+      };
+
+      const updateClock = () => {
+        const value = new Intl.DateTimeFormat("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+          timeZone: "UTC"
+        }).format(new Date());
+        setText($("#utc-clock"), value);
+      };
+
+      const callsignInput = $("#callsign");
+      const updateCallsign = () => {
+        state.callsign = callsignInput.value.trimStart();
+        const normalized = state.callsign.trim();
+        setText(
+          $("#callsign-readout"),
+          normalized ? `AUTH TOKEN ISSUED / ${normalized.toUpperCase()}` : "AUTH CHANNEL WAITING"
+        );
+        saveState();
+      };
+
+      const mirrorCheck = $("#mirror-check");
+      const carrierSwitch = $("#carrier-switch");
+      const updateCarrier = (announce = false) => {
+        state.carrier = carrierSwitch.checked;
+        setText($("#carrier-state"), `Silent carrier: ${state.carrier ? "armed" : "off"}`);
+        saveState();
+        if (announce) {
+          showToast(
+            state.carrier
+              ? "Silent carrier armed. Outbound signature reduced to minimum."
+              : "Silent carrier released. Standard telemetry restored.",
+            "CARRIER UPDATED"
+          );
+        }
+      };
+
+      const powerRange = $("#power-range");
+      const updatePower = () => {
+        const value = Math.max(0, Math.min(100, Number(powerRange.value)));
+        state.power = value;
+        powerRange.style.setProperty("--value", `${value}%`);
+        setText($("#power-output"), `${value}%`);
+        const gauge = $("#signal-gauge");
+        gauge.style.setProperty("--gauge-value", `${value * 0.75}%`);
+        gauge.style.setProperty("--needle-angle", `${-135 + value * 2.7}deg`);
+        gauge.setAttribute("aria-valuenow", String(value));
+        const band = value >= 82 ? "CRITICAL" : value >= 68 ? "ELEVATED" : "NOMINAL";
+        gauge.setAttribute("aria-valuetext", `${value} percent ${band.toLowerCase()}`);
+        setText($("#gauge-value"), `${value}%`);
+        setText($("#gauge-unit"), band);
+        saveState();
+      };
+
+      const routeTrigger = $("#route-trigger");
+      const routeMenu = $("#route-menu");
+      const routeOptions = $$(".select-option", routeMenu);
+      const routeRisk = {
+        "Cygnus / Quiet Arc": "RISK INDEX 12 / TRANSIT 08:42",
+        "Lyra / Glass Wake": "RISK INDEX 28 / TRANSIT 06:19",
+        "Orion / Red Gate": "RISK INDEX 71 / TRANSIT 04:07",
+        "Draco / Null Spine": "RISK INDEX 46 / TRANSIT 07:53"
+      };
+
+      const setActiveOption = (index) => {
+        activeOption = (index + routeOptions.length) % routeOptions.length;
+        routeOptions.forEach((option, optionIndex) => {
+          option.dataset.active = String(optionIndex === activeOption);
+        });
+        routeTrigger.setAttribute("aria-activedescendant", routeOptions[activeOption].id);
+      };
+
+      const openRouteMenu = (focusIndex) => {
+        routeMenu.hidden = false;
+        routeTrigger.setAttribute("aria-expanded", "true");
+        const selectedIndex = routeOptions.findIndex((option) => option.getAttribute("aria-selected") === "true");
+        setActiveOption(Number.isInteger(focusIndex) ? focusIndex : Math.max(0, selectedIndex));
+      };
+
+      const closeRouteMenu = (restoreFocus = true) => {
+        routeMenu.hidden = true;
+        routeTrigger.setAttribute("aria-expanded", "false");
+        routeTrigger.removeAttribute("aria-activedescendant");
+        routeOptions.forEach((option) => {
+          delete option.dataset.active;
+        });
+        if (restoreFocus) {
+          routeTrigger.focus();
+        }
+      };
+
+      const chooseRoute = (option, announce = true) => {
+        state.route = option.dataset.value;
+        routeOptions.forEach((candidate) => {
+          candidate.setAttribute("aria-selected", String(candidate === option));
+        });
+        setText($("#route-value"), state.route.toUpperCase());
+        setText($("#route-index"), option.dataset.index);
+        setText($("#route-readout"), routeRisk[state.route]);
+        saveState();
+        closeRouteMenu();
+        if (announce) {
+          showToast(`${state.route} has been loaded into the navigation core.`, "CORRIDOR LOADED");
+        }
+      };
+
+      const tabs = $$(".tab");
+      const activateTab = (tab, moveFocus = false) => {
+        tabs.forEach((candidate) => {
+          const selected = candidate === tab;
+          candidate.setAttribute("aria-selected", String(selected));
+          candidate.tabIndex = selected ? 0 : -1;
+          const panel = $(`#${candidate.getAttribute("aria-controls")}`);
+          panel.hidden = !selected;
+        });
+        state.tab = tab.id.replace("tab-", "");
+        saveState();
+        if (moveFocus) {
+          tab.focus();
+        }
+      };
+
+      const updateProgress = (value, announce = false) => {
+        state.progress = Math.max(0, Math.min(100, Number(value)));
+        $("#progress-fill").style.width = `${state.progress}%`;
+        $("#sync-progress").setAttribute("aria-valuenow", String(state.progress));
+        setText($("#progress-value"), `${state.progress}%`);
+        saveState();
+        if (announce && state.progress === 100) {
+          showToast("Quantum handshake complete. Remote array identity confirmed.", "SYNC COMPLETE");
+        }
+      };
+
+      const modalBackdrop = $("#modal-backdrop");
+      const modal = $("#protocol-modal");
+      const modalFocusables = () =>
+        $$('button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])', modal);
+
+      const openModal = () => {
+        if (!modalBackdrop.hidden) {
+          return;
+        }
+        lastModalFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.classList.add("lock-scroll");
+        setText($("#interrupt-readout"), "Red protocol active. Background command controls are suspended.");
+        $("#cancel-modal").focus();
+      };
+
+      const closeModal = (restoreFocus = true) => {
+        if (modalBackdrop.hidden) {
+          return;
+        }
+        modalBackdrop.hidden = true;
+        document.body.classList.remove("lock-scroll");
+        setText($("#interrupt-readout"), "No active interruptions. Command deck remains available.");
+        if (restoreFocus && lastModalFocus instanceof HTMLElement) {
+          lastModalFocus.focus();
+        }
+      };
+
+      const collapseVector = () => {
+        closeModal();
+        setLock(false);
+        updateProgress(0);
+        showToast("Current vector collapsed. Passive listening has resumed.", "VECTOR COLLAPSED");
+      };
+
+      const hydrate = () => {
+        loadState();
+
+        callsignInput.value = typeof state.callsign === "string" ? state.callsign : "";
+        updateCallsign();
+
+        const wing = $$('input[name="wing"]').find((input) => input.value === state.wing) || $('input[name="wing"]');
+        wing.checked = true;
+
+        mirrorCheck.checked = Boolean(state.mirror);
+        carrierSwitch.checked = Boolean(state.carrier);
+        updateCarrier();
+
+        powerRange.value = String(Math.max(0, Math.min(100, Number(state.power) || 0)));
+        updatePower();
+
+        const route = routeOptions.find((option) => option.dataset.value === state.route) || routeOptions[0];
+        chooseRoute(route, false);
+
+        const tab = $(`#tab-${state.tab}`) || tabs[0];
+        activateTab(tab);
+
+        updateProgress(Number.isFinite(Number(state.progress)) ? Number(state.progress) : 64);
+        setLock(Boolean(state.locked));
+      };
+
+      $("#hero-scroll").addEventListener("click", () => {
+        $("#command-deck").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      $("#hero-lock").addEventListener("click", () => toggleLock());
+      $("#radar-control").addEventListener("click", () => toggleLock());
+      $("#lock-button").addEventListener("click", () => toggleLock());
+
+      $("#radar-control").addEventListener("pointermove", (event) => {
+        if (event.pointerType === "touch" || state.locked) {
+          return;
+        }
+        const disc = $(".radar-disc", event.currentTarget);
+        const rect = disc.getBoundingClientRect();
+        const x = Math.max(8, Math.min(92, ((event.clientX - rect.left) / rect.width) * 100));
+        const y = Math.max(8, Math.min(92, ((event.clientY - rect.top) / rect.height) * 100));
+        const reticle = $(".target-reticle", disc);
+        reticle.style.setProperty("--target-x", `${x}%`);
+        reticle.style.setProperty("--target-y", `${y}%`);
+        setText($("#coord-readout"), `X ${String(Math.round(x)).padStart(3, "0")} / Y ${String(Math.round(y)).padStart(3, "0")}`);
+      });
+
+      $("#ping-button").addEventListener("click", () => {
+        showToast("Ping returned in 42 milliseconds. Signal integrity is stable.");
+      });
+
+      $("#channel-button").addEventListener("click", () => {
+        carrierSwitch.checked = true;
+        updateCarrier();
+        showToast("Secure carrier XN-4 opened. Listening window: 18 seconds.", "CHANNEL OPEN");
+      });
+
+      $("#abort-button").addEventListener("click", openModal);
+      callsignInput.addEventListener("input", updateCallsign);
+
+      $$('input[name="wing"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.checked) {
+            state.wing = input.value;
+            saveState();
+            showToast(`${input.value.toUpperCase()} wing assigned to the active array.`, "WING ASSIGNED");
+          }
+        });
+      });
+
+      mirrorCheck.addEventListener("change", () => {
+        state.mirror = mirrorCheck.checked;
+        saveState();
+        showToast(
+          state.mirror ? "Telemetry mirror enabled for the auxiliary deck." : "Telemetry mirror disconnected.",
+          "MIRROR UPDATED"
+        );
+      });
+
+      carrierSwitch.addEventListener("change", () => updateCarrier(true));
+      powerRange.addEventListener("input", updatePower);
+
+      routeTrigger.addEventListener("click", () => {
+        if (routeMenu.hidden) {
+          openRouteMenu();
+        } else {
+          closeRouteMenu();
+        }
+      });
+
+      routeTrigger.addEventListener("keydown", (event) => {
+        if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+          event.preventDefault();
+          if (routeMenu.hidden) {
+            openRouteMenu(event.key === "ArrowUp" || event.key === "End" ? routeOptions.length - 1 : 0);
+          } else if (event.key === "ArrowDown") {
+            setActiveOption(activeOption + 1);
+          } else if (event.key === "ArrowUp") {
+            setActiveOption(activeOption - 1);
+          } else if (event.key === "Home") {
+            setActiveOption(0);
+          } else {
+            setActiveOption(routeOptions.length - 1);
+          }
+        } else if (event.key === "Enter" || event.key === " ") {
+          if (!routeMenu.hidden) {
+            event.preventDefault();
+            chooseRoute(routeOptions[activeOption]);
+          }
+        } else if (event.key === "Escape" && !routeMenu.hidden) {
+          event.preventDefault();
+          closeRouteMenu();
+        }
+      });
+
+      routeOptions.forEach((option, index) => {
+        option.addEventListener("pointermove", () => setActiveOption(index));
+        option.addEventListener("click", () => chooseRoute(option));
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!routeMenu.hidden && !event.target.closest(".select-shell")) {
+          closeRouteMenu(false);
+        }
+      });
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+          if (event.key === "ArrowRight") {
+            nextIndex = (index + 1) % tabs.length;
+          } else if (event.key === "ArrowLeft") {
+            nextIndex = (index - 1 + tabs.length) % tabs.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = tabs.length - 1;
+          } else {
+            return;
+          }
+          event.preventDefault();
+          activateTab(tabs[nextIndex], true);
+        });
+      });
+
+      $("#advance-progress").addEventListener("click", () => {
+        const nextValue = state.progress >= 100 ? 12 : Math.min(100, state.progress + 12);
+        updateProgress(nextValue, true);
+      });
+
+      $("#reset-progress").addEventListener("click", () => {
+        updateProgress(0);
+        showToast("Handshake phase reset. Awaiting a new remote challenge.", "PHASE RESET");
+      });
+
+      $("#open-modal").addEventListener("click", openModal);
+      $("#cancel-modal").addEventListener("click", () => closeModal());
+      $("#confirm-modal").addEventListener("click", collapseVector);
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) {
+          closeModal();
+        }
+      });
+
+      modal.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") {
+          return;
+        }
+        const focusables = modalFocusables();
+        if (!focusables.length) {
+          event.preventDefault();
+          modal.focus();
+          return;
+        }
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      $("#show-toast").addEventListener("click", () => {
+        showToast("Telemetry packet delivered to every active command station.", "TRANSMISSION COMPLETE");
+      });
+      $("#toast-close").addEventListener("click", hideToast);
+
+      const tooltipTrigger = $("#tooltip-trigger");
+      tooltipTrigger.addEventListener("click", () => {
+        const expanded = tooltipTrigger.getAttribute("aria-expanded") === "true";
+        tooltipTrigger.setAttribute("aria-expanded", String(!expanded));
+      });
+      tooltipTrigger.addEventListener("blur", () => {
+        tooltipTrigger.setAttribute("aria-expanded", "false");
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") {
+          return;
+        }
+        if (!modalBackdrop.hidden) {
+          event.preventDefault();
+          closeModal();
+        } else if (!routeMenu.hidden) {
+          event.preventDefault();
+          closeRouteMenu();
+        } else if (!$("#signal-toast").hidden) {
+          hideToast();
+        } else if (tooltipTrigger.getAttribute("aria-expanded") === "true") {
+          tooltipTrigger.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      hydrate();
+      updateClock();
+      window.setInterval(updateClock, 1000);
+    })();
+  </script>
+</body>
+</html>

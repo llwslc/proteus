@@ -1,0 +1,2537 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3efe4">
+  <title>SUMI — The Quiet Ink Atelier</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&amp;family=Yuji+Syuku&amp;display=swap">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f3efe4;
+      --paper-deep: #e8e1d2;
+      --paper-light: #fbf8ef;
+      --ink: #171512;
+      --ink-soft: #454038;
+      --ink-faint: #777064;
+      --vermilion: #982f24;
+      --vermilion-dark: #6f211a;
+      --hairline: rgba(23, 21, 18, 0.24);
+      --page-pad: 24px;
+      --max: 1180px;
+      --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+      --brush: "Yuji Syuku", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --ease-ink: cubic-bezier(.22, .78, .24, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 22%, rgba(83, 72, 53, 0.045), transparent 25%),
+        radial-gradient(circle at 87% 38%, rgba(83, 72, 53, 0.035), transparent 24%),
+        linear-gradient(100deg, rgba(255, 255, 255, 0.32), transparent 36%, rgba(106, 89, 61, 0.025) 72%, transparent),
+        var(--paper);
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.75;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      content: "";
+      opacity: var(--fiber-visibility, 0.34);
+      background-image:
+        repeating-linear-gradient(8deg, transparent 0 8px, rgba(69, 58, 42, 0.045) 8.5px 9px, transparent 9.5px 17px),
+        repeating-linear-gradient(91deg, transparent 0 13px, rgba(255, 255, 255, 0.22) 13px 14px, transparent 14px 27px);
+      mix-blend-mode: multiply;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    [tabindex] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--vermilion);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      color: var(--paper-light);
+      background: var(--ink);
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: var(--page-pad);
+      z-index: 100;
+      padding: 10px 16px;
+      color: var(--paper-light);
+      background: var(--ink);
+      transform: translateY(-160%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .wrap {
+      width: min(calc(100% - (var(--page-pad) * 2)), var(--max));
+      margin-inline: auto;
+    }
+
+    .status-bar {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      border-bottom: 1px solid var(--hairline);
+      background: rgba(243, 239, 228, 0.84);
+      backdrop-filter: blur(12px);
+    }
+
+    .status-inner {
+      display: flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 0.72rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .status-brand,
+    .status-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-note {
+      color: var(--ink-soft);
+    }
+
+    .mini-enso {
+      width: 25px;
+      height: 25px;
+      flex: none;
+      border: 3px solid var(--ink);
+      border-right-color: transparent;
+      border-radius: 50%;
+      transform: rotate(-22deg);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--vermilion);
+      box-shadow: 0 0 0 4px rgba(152, 47, 36, 0.1);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(390px, 1.18fr);
+      gap: clamp(36px, 7vw, 108px);
+      align-items: center;
+      min-height: min(850px, calc(100vh - 54px));
+      padding-block: clamp(68px, 9vw, 120px);
+    }
+
+    .hero::before {
+      position: absolute;
+      top: 9%;
+      left: 40%;
+      width: 1px;
+      height: 21%;
+      content: "";
+      background: linear-gradient(var(--hairline), transparent);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+    }
+
+    .vertical-kicker {
+      position: absolute;
+      top: 2px;
+      left: -42px;
+      margin: 0;
+      color: var(--vermilion-dark);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      line-height: 1;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .eyebrow,
+    .section-index,
+    .field-note,
+    .micro-label {
+      color: var(--ink-soft);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 24px;
+    }
+
+    .eyebrow::before {
+      width: 42px;
+      height: 1px;
+      content: "";
+      background: var(--ink);
+    }
+
+    h1 {
+      max-width: 7.5ch;
+      margin: 0;
+      font-family: var(--brush);
+      font-size: clamp(4rem, 8.5vw, 8rem);
+      font-weight: 400;
+      letter-spacing: -0.055em;
+      line-height: 0.84;
+    }
+
+    .hero-light {
+      display: block;
+      margin-bottom: 0.18em;
+      color: var(--ink-soft);
+      font-family: var(--serif);
+      font-size: 0.29em;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .hero-strong {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-strong::after {
+      position: absolute;
+      right: -0.14em;
+      bottom: -0.1em;
+      left: 0.03em;
+      height: 0.12em;
+      content: "";
+      opacity: 0.82;
+      background:
+        linear-gradient(92deg, transparent, var(--ink) 4% 88%, transparent),
+        radial-gradient(ellipse, var(--ink), transparent 68%);
+      clip-path: polygon(0 34%, 19% 10%, 47% 37%, 73% 13%, 100% 48%, 97% 74%, 51% 59%, 14% 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: brush-reveal 1.4s 540ms var(--ease-ink) forwards;
+    }
+
+    .hero-copy > p {
+      max-width: 43ch;
+      margin: 34px 0 0;
+      color: var(--ink-soft);
+      font-size: clamp(1rem, 1.3vw, 1.14rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn,
+    .small-btn {
+      position: relative;
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms var(--ease-ink),
+        box-shadow 180ms ease;
+    }
+
+    .btn:active,
+    .small-btn:active {
+      transform: translateY(2px) scale(0.985);
+    }
+
+    .btn-primary {
+      min-width: 172px;
+      padding: 13px 22px;
+      color: var(--paper-light);
+      background: var(--ink);
+      border-radius: 46% 54% 48% 52% / 17% 21% 24% 20%;
+      box-shadow: 0 9px 20px rgba(23, 21, 18, 0.13);
+      clip-path: polygon(1% 10%, 99% 4%, 97% 89%, 74% 94%, 51% 90%, 22% 96%, 2% 87%);
+    }
+
+    .btn-primary:hover {
+      background: #302c26;
+      transform: translateY(-2px);
+      box-shadow: 0 13px 24px rgba(23, 21, 18, 0.17);
+    }
+
+    .btn-outline {
+      min-width: 172px;
+      padding: 12px 21px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      clip-path: polygon(0 4%, 99% 0, 100% 93%, 63% 98%, 1% 94%);
+    }
+
+    .btn-outline:hover {
+      color: var(--paper-light);
+      background: var(--ink);
+    }
+
+    .btn-seal {
+      width: 74px;
+      min-height: 74px;
+      padding: 7px;
+      border: 2px solid var(--vermilion);
+      color: var(--vermilion-dark);
+      background: rgba(152, 47, 36, 0.035);
+      box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px rgba(152, 47, 36, 0.45);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+      text-align: center;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .btn-seal:hover,
+    .btn-seal.is-struck {
+      color: var(--paper-light);
+      background: var(--vermilion);
+      transform: rotate(1deg) scale(1.04);
+    }
+
+    .btn-ghost {
+      min-height: 46px;
+      padding: 10px 6px;
+      background: transparent;
+    }
+
+    .btn-ghost::after {
+      position: absolute;
+      right: 5px;
+      bottom: 7px;
+      left: 5px;
+      height: 2px;
+      content: "";
+      background: var(--ink);
+      transform: scaleX(0.25);
+      transform-origin: left;
+      transition: transform 250ms var(--ease-ink);
+    }
+
+    .btn-ghost:hover::after {
+      transform: scaleX(1);
+    }
+
+    .btn-disabled,
+    .btn:disabled {
+      min-width: 152px;
+      padding: 12px 20px;
+      border: 1px dashed rgba(69, 64, 56, 0.35);
+      color: #777064;
+      background: rgba(232, 225, 210, 0.56);
+      cursor: not-allowed;
+      filter: grayscale(1);
+      opacity: 0.72;
+    }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      min-width: 0;
+      place-items: center;
+    }
+
+    .ink-canvas {
+      position: relative;
+      display: block;
+      width: min(100%, 590px);
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      cursor: crosshair;
+      color: inherit;
+      background:
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.22), rgba(243, 239, 228, 0.02) 67%, transparent 68%);
+      isolation: isolate;
+    }
+
+    .ink-canvas::after {
+      position: absolute;
+      inset: 11%;
+      z-index: -2;
+      border-radius: 50%;
+      content: "";
+      background: radial-gradient(circle, rgba(23, 21, 18, 0.07), transparent 67%);
+      filter: blur(16px);
+    }
+
+    .enso {
+      position: absolute;
+      inset: 8%;
+      width: 84%;
+      height: 84%;
+      overflow: visible;
+      filter: url("#rough-ink");
+      transform: rotate(-9deg);
+    }
+
+    .enso path {
+      fill: none;
+      stroke: var(--ink);
+      stroke-dasharray: 1280;
+      stroke-dashoffset: 1280;
+      stroke-linecap: round;
+      stroke-width: 31;
+      animation: enso-draw 2.4s 160ms var(--ease-ink) forwards;
+    }
+
+    .dry-brush {
+      position: absolute;
+      right: 12%;
+      bottom: 22%;
+      width: 43%;
+      height: 12%;
+      opacity: 0.46;
+      background:
+        repeating-linear-gradient(177deg, var(--ink) 0 2px, transparent 2px 5px),
+        linear-gradient(90deg, transparent, var(--ink) 14% 83%, transparent);
+      clip-path: polygon(0 38%, 18% 14%, 100% 35%, 92% 51%, 100% 64%, 25% 86%, 5% 66%);
+      transform: rotate(-13deg);
+      animation: dry-brush-in 1.2s 1.4s var(--ease-ink) both;
+    }
+
+    .hero-seal {
+      position: absolute;
+      right: 12%;
+      bottom: 14%;
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      border: 3px solid var(--vermilion);
+      color: var(--vermilion);
+      background:
+        linear-gradient(90deg, transparent 46%, currentColor 47% 53%, transparent 54%),
+        linear-gradient(transparent 46%, currentColor 47% 53%, transparent 54%);
+      box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 5px currentColor;
+      opacity: 0.92;
+      transform: rotate(5deg);
+    }
+
+    .hero-seal::before,
+    .hero-seal::after {
+      position: absolute;
+      content: "";
+      background: currentColor;
+    }
+
+    .hero-seal::before {
+      width: 6px;
+      height: 65%;
+    }
+
+    .hero-seal::after {
+      width: 65%;
+      height: 6px;
+    }
+
+    .art-note {
+      position: absolute;
+      top: 17%;
+      right: -5px;
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      line-height: 1.65;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .ink-drop {
+      position: absolute;
+      z-index: -1;
+      width: var(--drop-size, 42px);
+      height: var(--drop-size, 42px);
+      border-radius: 47% 53% 58% 42% / 55% 46% 54% 45%;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 43% 46%, rgba(23, 21, 18, 0.86) 0 13%, rgba(23, 21, 18, 0.5) 29%, rgba(23, 21, 18, 0.16) 52%, transparent 72%);
+      filter: blur(0.4px);
+      transform: translate(-50%, -50%) scale(0.08);
+      animation: ink-bloom 3.2s var(--ease-ink) forwards;
+    }
+
+    .hero-art.has-wash::before {
+      position: absolute;
+      inset: 23% 12% 18% 4%;
+      content: "";
+      pointer-events: none;
+      background: radial-gradient(ellipse, rgba(23, 21, 18, 0.12), transparent 68%);
+      filter: blur(17px);
+      animation: wash-in 700ms ease both;
+    }
+
+    .live-note {
+      min-height: 1.5em;
+      margin: 16px 0 0;
+      color: var(--vermilion-dark);
+      font-size: 0.77rem;
+    }
+
+    .divider {
+      width: min(calc(100% - (var(--page-pad) * 2)), var(--max));
+      height: 1px;
+      margin-inline: auto;
+      background: linear-gradient(90deg, var(--ink), var(--hairline) 28%, transparent 82%);
+    }
+
+    .control-section {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+      gap: clamp(30px, 7vw, 110px);
+      padding-block: clamp(78px, 10vw, 138px);
+    }
+
+    .section-heading {
+      position: relative;
+      align-self: start;
+    }
+
+    .section-index {
+      display: block;
+      margin-bottom: 20px;
+      color: var(--vermilion-dark);
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--brush);
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1.06;
+    }
+
+    .section-heading p {
+      max-width: 27ch;
+      margin: 22px 0 0;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .section-content {
+      min-width: 0;
+    }
+
+    .control-block {
+      position: relative;
+      padding-block: 27px;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .control-block:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .control-block h3,
+    .panel-title {
+      margin: 0 0 6px;
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }
+
+    .control-block > p,
+    .control-block header p {
+      max-width: 62ch;
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.88rem;
+    }
+
+    .button-rack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 18px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-top: 26px;
+    }
+
+    .text-field {
+      width: 100%;
+      border: 0;
+      border-bottom: 2px solid var(--ink);
+      border-radius: 0;
+      padding: 13px 2px 12px;
+      color: var(--ink);
+      background: transparent;
+      appearance: none;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .text-field::placeholder {
+      color: #777064;
+      opacity: 1;
+    }
+
+    .text-field:hover {
+      border-bottom-color: var(--vermilion);
+    }
+
+    .text-field:focus {
+      outline: none;
+      border-bottom-color: var(--vermilion);
+      background: linear-gradient(0deg, rgba(152, 47, 36, 0.04), transparent 56%);
+    }
+
+    .text-field:focus-visible {
+      box-shadow: 0 3px 0 -1px var(--vermilion);
+    }
+
+    .counter {
+      min-width: 60px;
+      padding-bottom: 10px;
+      color: var(--ink-soft);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-align: right;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 52px;
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0 0;
+    }
+
+    .choice {
+      position: relative;
+      display: flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 13px;
+      width: fit-content;
+      cursor: pointer;
+    }
+
+    .choice input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    .radio-mark {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      flex: none;
+      border: 2px solid var(--ink);
+      border-radius: 48% 52% 55% 45% / 51% 44% 56% 49%;
+      transform: rotate(-8deg);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .radio-mark::after {
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      content: "";
+      background: var(--vermilion);
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 180ms ease, transform 220ms var(--ease-ink);
+    }
+
+    .choice:hover .radio-mark {
+      border-color: var(--vermilion);
+      transform: rotate(4deg) scale(1.06);
+    }
+
+    .choice input:checked + .radio-mark::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .choice input:focus-visible + .radio-mark,
+    .check-choice input:focus-visible + .check-mark {
+      outline: 3px solid var(--vermilion);
+      outline-offset: 4px;
+    }
+
+    .check-choice {
+      position: relative;
+      display: flex;
+      min-height: 48px;
+      align-items: center;
+      gap: 13px;
+      width: fit-content;
+      margin-top: 22px;
+      cursor: pointer;
+    }
+
+    .check-choice input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .check-mark {
+      position: relative;
+      width: 26px;
+      height: 26px;
+      flex: none;
+      border: 2px solid var(--ink);
+      background: transparent;
+      transform: rotate(2deg);
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .check-mark::after {
+      position: absolute;
+      top: 4px;
+      left: 7px;
+      width: 7px;
+      height: 12px;
+      border-right: 2px solid var(--paper-light);
+      border-bottom: 2px solid var(--paper-light);
+      content: "";
+      opacity: 0;
+      transform: rotate(38deg) scale(0);
+      transition: opacity 160ms ease, transform 220ms var(--ease-ink);
+    }
+
+    .check-choice:hover .check-mark {
+      transform: rotate(-3deg) scale(1.05);
+    }
+
+    .check-choice input:checked + .check-mark {
+      background: var(--ink);
+    }
+
+    .check-choice input:checked + .check-mark::after {
+      opacity: 1;
+      transform: rotate(38deg) scale(1);
+    }
+
+    .switch-row,
+    .slider-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+
+    .ink-switch {
+      position: relative;
+      width: 82px;
+      height: 38px;
+      flex: none;
+      border: 0;
+      border-radius: 42% 58% 48% 52% / 48% 55% 45% 52%;
+      cursor: pointer;
+      background:
+        repeating-linear-gradient(174deg, rgba(23, 21, 18, 0.12) 0 2px, transparent 2px 5px),
+        rgba(23, 21, 18, 0.13);
+      transition: background 220ms ease;
+    }
+
+    .ink-switch::before {
+      position: absolute;
+      top: 6px;
+      left: 7px;
+      width: 26px;
+      height: 26px;
+      border-radius: 48% 52% 45% 55% / 53% 47% 56% 44%;
+      content: "";
+      background: var(--paper-light);
+      box-shadow: 0 2px 7px rgba(23, 21, 18, 0.24);
+      transition: transform 260ms var(--ease-ink), background 180ms ease;
+    }
+
+    .ink-switch:hover::before {
+      transform: scale(1.08);
+    }
+
+    .ink-switch[aria-checked="true"] {
+      background:
+        repeating-linear-gradient(174deg, rgba(255, 255, 255, 0.1) 0 2px, transparent 2px 5px),
+        var(--ink);
+    }
+
+    .ink-switch[aria-checked="true"]::before {
+      background: var(--vermilion);
+      transform: translateX(42px) rotate(9deg);
+    }
+
+    .ink-switch[aria-checked="true"]:hover::before {
+      transform: translateX(42px) rotate(9deg) scale(1.08);
+    }
+
+    .range-wrap {
+      display: grid;
+      width: 100%;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .ink-range {
+      width: 100%;
+      height: 28px;
+      margin: 0;
+      cursor: pointer;
+      background: transparent;
+      appearance: none;
+    }
+
+    .ink-range::-webkit-slider-runnable-track {
+      height: 5px;
+      border-radius: 0;
+      background: linear-gradient(90deg, var(--ink) 0 var(--fill), rgba(23, 21, 18, 0.18) var(--fill) 100%);
+    }
+
+    .ink-range::-moz-range-track {
+      height: 5px;
+      background: rgba(23, 21, 18, 0.18);
+    }
+
+    .ink-range::-moz-range-progress {
+      height: 5px;
+      background: var(--ink);
+    }
+
+    .ink-range::-webkit-slider-thumb {
+      width: 22px;
+      height: 22px;
+      margin-top: -8px;
+      border: 2px solid var(--paper-light);
+      border-radius: 47% 53% 44% 56%;
+      background: var(--vermilion);
+      box-shadow: 0 0 0 2px var(--vermilion-dark);
+      appearance: none;
+      transition: transform 160ms ease;
+    }
+
+    .ink-range::-moz-range-thumb {
+      width: 19px;
+      height: 19px;
+      border: 2px solid var(--paper-light);
+      border-radius: 47% 53% 44% 56%;
+      background: var(--vermilion);
+      box-shadow: 0 0 0 2px var(--vermilion-dark);
+    }
+
+    .ink-range:hover::-webkit-slider-thumb {
+      transform: scale(1.12) rotate(7deg);
+    }
+
+    .range-output {
+      min-width: 142px;
+      color: var(--ink);
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    .split-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(42px, 7vw, 86px);
+    }
+
+    .dropdown {
+      position: relative;
+      margin-top: 24px;
+    }
+
+    .dropdown-trigger {
+      display: flex;
+      width: 100%;
+      min-height: 55px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 0;
+      border-bottom: 2px solid var(--ink);
+      padding: 11px 2px;
+      cursor: pointer;
+      background: transparent;
+      text-align: left;
+    }
+
+    .dropdown-trigger:hover {
+      border-bottom-color: var(--vermilion);
+    }
+
+    .dropdown-trigger::after {
+      width: 10px;
+      height: 10px;
+      flex: none;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      content: "";
+      transform: rotate(45deg) translateY(-3px);
+      transition: transform 180ms ease;
+    }
+
+    .dropdown-trigger[aria-expanded="true"]::after {
+      transform: rotate(225deg) translate(-2px, -2px);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: -8px;
+      left: -8px;
+      z-index: 20;
+      margin: 0;
+      padding: 8px;
+      border: 1px solid var(--ink);
+      list-style: none;
+      background:
+        repeating-linear-gradient(7deg, transparent 0 7px, rgba(69, 58, 42, 0.035) 8px 8.5px),
+        var(--paper-light);
+      box-shadow: 9px 12px 0 rgba(23, 21, 18, 0.1);
+      transform-origin: top;
+      animation: menu-open 180ms var(--ease-ink) both;
+    }
+
+    .dropdown-menu[hidden] {
+      display: none;
+    }
+
+    .dropdown-option {
+      position: relative;
+      padding: 11px 34px 11px 12px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      outline: none;
+    }
+
+    .dropdown-option:hover,
+    .dropdown-option:focus {
+      color: var(--paper-light);
+      background: var(--ink);
+    }
+
+    .dropdown-option[aria-selected="true"]::after {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      content: "";
+      background: var(--vermilion);
+      transform: translateY(-50%);
+    }
+
+    .tabs {
+      margin-top: 24px;
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .tab {
+      position: relative;
+      min-height: 48px;
+      border: 0;
+      padding: 8px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      background: transparent;
+    }
+
+    .tab::after {
+      position: absolute;
+      right: 12%;
+      bottom: -2px;
+      left: 12%;
+      height: 4px;
+      content: "";
+      background: var(--vermilion);
+      opacity: 0;
+      transform: scaleX(0);
+      transition: opacity 180ms ease, transform 220ms var(--ease-ink);
+    }
+
+    .tab:hover {
+      color: var(--ink);
+      background: rgba(23, 21, 18, 0.035);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .tab[aria-selected="true"]::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .tab-panel {
+      min-height: 170px;
+      padding: 28px 4px 8px;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .tab-panel p {
+      max-width: 43ch;
+      margin: 10px 0 0;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+
+    .tab-brush {
+      width: 72px;
+      height: 8px;
+      margin-bottom: 22px;
+      background:
+        repeating-linear-gradient(178deg, var(--ink) 0 1px, transparent 1px 3px),
+        linear-gradient(90deg, var(--ink), transparent);
+      clip-path: polygon(0 24%, 89% 0, 100% 50%, 82% 85%, 5% 66%);
+    }
+
+    .instrument-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(32px, 5vw, 72px);
+    }
+
+    .inkstone {
+      position: relative;
+      margin-top: 28px;
+      padding: 26px;
+      border: 1px solid var(--ink);
+      border-radius: 48% 52% 49% 51% / 8% 11% 9% 12%;
+      background:
+        radial-gradient(ellipse at 34% 30%, rgba(255,255,255,.14), transparent 45%),
+        #2b2823;
+      box-shadow:
+        inset 0 0 0 5px rgba(243, 239, 228, 0.07),
+        0 18px 30px rgba(23, 21, 18, 0.14);
+    }
+
+    .progress-track {
+      position: relative;
+      height: 17px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 48% 52% 45% 55% / 53% 45% 55% 47%;
+      background: rgba(243, 239, 228, 0.13);
+    }
+
+    .progress-fill {
+      width: 34%;
+      height: 100%;
+      background:
+        repeating-linear-gradient(172deg, rgba(255, 255, 255, 0.12) 0 2px, transparent 2px 5px),
+        var(--paper-light);
+      transition: width 520ms var(--ease-ink);
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 13px;
+      color: var(--paper-light);
+      font-size: 0.74rem;
+    }
+
+    .small-btn {
+      min-height: 42px;
+      padding: 9px 16px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      font-size: 0.82rem;
+    }
+
+    .small-btn:hover {
+      color: var(--paper-light);
+      background: var(--ink);
+    }
+
+    .small-btn:disabled {
+      border-color: rgba(69, 64, 56, 0.28);
+      color: #777064;
+      background: rgba(232, 225, 210, 0.5);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .inkstone .small-btn {
+      margin-top: 20px;
+      border-color: rgba(255, 255, 255, 0.62);
+      color: var(--paper-light);
+    }
+
+    .inkstone .small-btn:hover {
+      color: var(--ink);
+      background: var(--paper-light);
+    }
+
+    .meter-shell {
+      position: relative;
+      display: grid;
+      width: min(100%, 260px);
+      aspect-ratio: 1;
+      place-items: center;
+      margin: 18px auto 0;
+    }
+
+    .meter-shell svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      transform: rotate(-90deg);
+    }
+
+    .meter-base,
+    .meter-value {
+      fill: none;
+      stroke-width: 5;
+    }
+
+    .meter-base {
+      stroke: rgba(23, 21, 18, 0.12);
+    }
+
+    .meter-value {
+      stroke: var(--ink);
+      stroke-dasharray: 327;
+      stroke-dashoffset: 176.6;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 520ms var(--ease-ink);
+    }
+
+    .meter-tick {
+      fill: var(--vermilion);
+    }
+
+    .meter-readout {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .meter-number {
+      font-family: var(--brush);
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .meter-word {
+      margin-top: 7px;
+      color: var(--ink-soft);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .meter-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .layer-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .action-card {
+      position: relative;
+      min-height: 220px;
+      overflow: visible;
+      border: 0;
+      padding: 28px;
+      text-align: left;
+      background: rgba(251, 248, 239, 0.42);
+    }
+
+    .action-card::before {
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--hairline);
+      content: "";
+      clip-path: polygon(1% 2%, 99% 0, 100% 97%, 72% 99%, 2% 96%);
+    }
+
+    .action-card p {
+      max-width: 37ch;
+      margin: 10px 0 24px;
+      color: var(--ink-soft);
+      font-size: 0.87rem;
+    }
+
+    .tooltip-wrap {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .tooltip-trigger {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      cursor: help;
+      background: var(--paper);
+      font-weight: 700;
+    }
+
+    .tooltip-trigger:hover {
+      color: var(--paper-light);
+      background: var(--ink);
+    }
+
+    .tooltip {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 11px);
+      z-index: 15;
+      width: 220px;
+      padding: 11px 13px;
+      color: var(--paper-light);
+      background: var(--ink);
+      box-shadow: 7px 7px 0 rgba(152, 47, 36, 0.18);
+      font-size: 0.72rem;
+      line-height: 1.55;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(5px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .tooltip::after {
+      position: absolute;
+      right: 10px;
+      bottom: -6px;
+      width: 12px;
+      height: 12px;
+      content: "";
+      background: var(--ink);
+      transform: rotate(45deg);
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-trigger:focus + .tooltip,
+    .tooltip-wrap.is-pinned .tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    dialog {
+      width: min(calc(100% - 32px), 620px);
+      max-height: min(760px, calc(100dvh - 32px));
+      overflow: auto;
+      border: 0;
+      padding: 0;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    dialog::backdrop {
+      background: rgba(23, 21, 18, 0.74);
+      backdrop-filter: blur(4px);
+    }
+
+    .scroll-modal {
+      position: relative;
+      padding: clamp(38px, 7vw, 74px);
+      background:
+        repeating-linear-gradient(8deg, transparent 0 7px, rgba(69, 58, 42, 0.04) 8px 8.5px),
+        var(--paper-light);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+    }
+
+    .scroll-modal::before,
+    .scroll-modal::after {
+      position: absolute;
+      right: 16px;
+      left: 16px;
+      height: 8px;
+      border-radius: 50%;
+      content: "";
+      background: rgba(23, 21, 18, 0.24);
+      filter: blur(4px);
+    }
+
+    .scroll-modal::before {
+      top: -4px;
+    }
+
+    .scroll-modal::after {
+      bottom: -4px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 0;
+      cursor: pointer;
+      background: transparent;
+      font-size: 1.5rem;
+    }
+
+    .modal-close:hover {
+      color: var(--paper-light);
+      background: var(--ink);
+    }
+
+    .modal-seal {
+      width: 52px;
+      height: 52px;
+      border: 3px double var(--vermilion);
+      margin-bottom: 28px;
+      background:
+        linear-gradient(45deg, transparent 43%, var(--vermilion) 44% 56%, transparent 57%),
+        linear-gradient(-45deg, transparent 43%, var(--vermilion) 44% 56%, transparent 57%);
+      opacity: 0.9;
+      transform: rotate(-4deg);
+    }
+
+    .scroll-modal h2 {
+      max-width: 9ch;
+    }
+
+    .scroll-modal p {
+      max-width: 48ch;
+      color: var(--ink-soft);
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .toast {
+      position: fixed;
+      right: max(16px, calc((100vw - var(--max)) / 2));
+      bottom: 22px;
+      z-index: 80;
+      display: grid;
+      width: min(360px, calc(100% - 32px));
+      grid-template-columns: 42px 1fr auto;
+      gap: 13px;
+      align-items: center;
+      border-left: 5px solid var(--vermilion);
+      padding: 14px 12px 14px 14px;
+      color: var(--paper-light);
+      background: var(--ink);
+      box-shadow: 10px 12px 0 rgba(23, 21, 18, 0.18);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(22px);
+      transition: opacity 220ms ease, transform 280ms var(--ease-ink);
+    }
+
+    .toast[hidden] {
+      display: none;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .toast-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 2px solid var(--vermilion);
+      color: #ffb4a7;
+      font-family: var(--brush);
+      font-size: 1.1rem;
+    }
+
+    .toast-message {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+
+    .toast-close {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 0;
+      cursor: pointer;
+      color: var(--paper-light);
+      background: transparent;
+      font-size: 1.2rem;
+    }
+
+    .toast-close:hover {
+      color: var(--ink);
+      background: var(--paper-light);
+    }
+
+    .closing {
+      position: relative;
+      min-height: 430px;
+      padding-block: clamp(100px, 14vw, 180px);
+      text-align: center;
+    }
+
+    .closing::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(60vw, 580px);
+      height: min(18vw, 170px);
+      content: "";
+      background: radial-gradient(ellipse, rgba(23, 21, 18, 0.09), transparent 70%);
+      filter: blur(10px);
+      transform: translate(-50%, -50%) rotate(-4deg);
+    }
+
+    .closing p {
+      position: relative;
+      max-width: 24ch;
+      margin: 0 auto;
+      font-family: var(--brush);
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1.18;
+    }
+
+    .closing .red-thread {
+      display: block;
+      width: 46px;
+      height: 4px;
+      margin: 28px auto 0;
+      background: var(--vermilion);
+      transform: rotate(-2deg);
+    }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+    }
+
+    .footer-inner {
+      display: flex;
+      min-height: 88px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--ink-soft);
+      font-size: 0.73rem;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-seal {
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--vermilion);
+      transform: rotate(4deg);
+    }
+
+    .js.reveal-ready .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 900ms var(--ease-ink), transform 900ms var(--ease-ink);
+    }
+
+    .js.reveal-ready .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes enso-draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes brush-reveal {
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes dry-brush-in {
+      from { opacity: 0; transform: translateX(-30px) rotate(-13deg) scaleX(.35); }
+      to { opacity: .46; transform: translateX(0) rotate(-13deg) scaleX(1); }
+    }
+
+    @keyframes ink-bloom {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.06);
+      }
+      14% { opacity: 0.86; }
+      72% { opacity: 0.48; }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(4.7) rotate(18deg);
+        filter: blur(3px);
+      }
+    }
+
+    @keyframes wash-in {
+      from { opacity: 0; transform: scale(.7); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes menu-open {
+      from { opacity: 0; transform: translateY(-6px) scaleY(.94); }
+      to { opacity: 1; transform: translateY(0) scaleY(1); }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 0.9fr) minmax(310px, 1.1fr);
+        gap: 26px;
+      }
+
+      .vertical-kicker {
+        position: static;
+        margin-bottom: 18px;
+        writing-mode: horizontal-tb;
+      }
+
+      .control-section {
+        grid-template-columns: minmax(150px, .34fr) minmax(0, 1fr);
+        gap: 38px;
+      }
+
+      .choice-grid,
+      .split-controls,
+      .instrument-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .choice-grid,
+      .split-controls {
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      :root {
+        --page-pad: 16px;
+      }
+
+      .status-inner {
+        min-height: 50px;
+      }
+
+      .status-note .session-copy,
+      .status-separator {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 32px;
+        padding-block: 64px 72px;
+      }
+
+      .hero::before {
+        display: none;
+      }
+
+      .hero-copy {
+        max-width: none;
+      }
+
+      h1 {
+        max-width: 7ch;
+        font-size: clamp(4rem, 20vw, 6rem);
+      }
+
+      .hero-copy > p {
+        margin-top: 26px;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .hero-art {
+        margin-inline: -4px;
+      }
+
+      .ink-canvas {
+        width: min(100%, 390px);
+      }
+
+      .art-note {
+        right: 2px;
+      }
+
+      .control-section {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding-block: 76px;
+      }
+
+      .section-heading p {
+        max-width: 38ch;
+      }
+
+      .button-rack {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .button-rack .btn {
+        width: 100%;
+      }
+
+      .button-rack .btn-seal {
+        width: 78px;
+      }
+
+      .input-row,
+      .range-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .counter,
+      .range-output {
+        text-align: left;
+      }
+
+      .choice-grid,
+      .split-controls,
+      .instrument-grid,
+      .layer-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .tab {
+        padding-inline: 3px;
+        font-size: 0.78rem;
+      }
+
+      .action-card {
+        min-height: 240px;
+        padding: 26px 22px;
+      }
+
+      .footer-inner {
+        min-height: 100px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .toast {
+        right: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .enso path {
+        stroke-dashoffset: 0;
+      }
+
+      .hero-strong::after {
+        transform: scaleX(1);
+      }
+
+      .js.reveal-ready .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .ink-drop {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#studio"><span data-copy="Skip to the ink studio">Skip to the ink studio</span></a>
+
+  <header class="status-bar" aria-label="Atelier status">
+    <div class="status-inner wrap">
+      <div class="status-brand">
+        <span class="mini-enso" aria-hidden="true"></span>
+        <span data-copy="SUMI / Quiet Instruments">SUMI / Quiet Instruments</span>
+      </div>
+      <div class="status-note">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="session-copy" data-copy="Session 07">Session 07</span>
+        <span class="status-separator" aria-hidden="true">·</span>
+        <span data-copy="Paper is breathing">Paper is breathing</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="studio">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="vertical-kicker" data-copy="One brush · one breath">One brush · one breath</p>
+        <p class="eyebrow" data-copy="A digital ink atelier">A digital ink atelier</p>
+        <h1 id="hero-title">
+          <span class="hero-light" data-copy="Leave only">Leave only</span>
+          <span class="hero-strong" data-copy="essence.">essence.</span>
+        </h1>
+        <p data-copy="Shape a quiet interface from pressure, pause, and empty paper. Every mark remembers the hand that made it.">Shape a quiet interface from pressure, pause, and empty paper. Every mark remembers the hand that made it.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#marks"><span data-copy="Enter the atelier">Enter the atelier</span></a>
+          <button class="btn btn-outline" id="releaseDrop" type="button"><span data-copy="Release an ink drop">Release an ink drop</span></button>
+        </div>
+        <p class="live-note" id="heroNotice" aria-live="polite" data-copy="Touch the open paper and watch the ink breathe.">Touch the open paper and watch the ink breathe.</p>
+      </div>
+
+      <div class="hero-art">
+        <button class="ink-canvas" id="inkCanvas" type="button" aria-label="Release an ink bloom on the rice paper">
+          <svg class="enso" viewBox="0 0 420 420" aria-hidden="true" focusable="false">
+            <defs>
+              <filter id="rough-ink" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.16" numOctaves="2" seed="8" result="noise"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+            </defs>
+            <path d="M313 91C248 46 153 59 100 129C43 205 66 311 146 354C220 394 317 358 353 281C386 211 355 139 302 108"/>
+          </svg>
+          <span class="dry-brush" aria-hidden="true"></span>
+          <span class="hero-seal" aria-hidden="true"></span>
+        </button>
+        <p class="art-note" data-copy="Tap · ink remembers">Tap · ink remembers</p>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section class="control-section wrap reveal" id="marks" aria-labelledby="marks-title">
+      <header class="section-heading">
+        <span class="section-index" data-copy="I · Marks">I · Marks</span>
+        <h2 id="marks-title" data-copy="Make an intention">Make an intention</h2>
+        <p data-copy="Five gestures, each with its own weight. Hover, press, or focus to feel the paper answer.">Five gestures, each with its own weight. Hover, press, or focus to feel the paper answer.</p>
+      </header>
+
+      <div class="section-content">
+        <article class="control-block">
+          <h3 data-copy="Brush gestures">Brush gestures</h3>
+          <p data-copy="Choose the force of the next mark.">Choose the force of the next mark.</p>
+          <div class="button-rack" aria-label="Button variants">
+            <button class="btn btn-primary" type="button" data-mark-action="gather"><span data-copy="Gather ink">Gather ink</span></button>
+            <button class="btn btn-outline" type="button" data-mark-action="wash"><span data-copy="Lay a pale wash">Lay a pale wash</span></button>
+            <button class="btn btn-seal" id="sealButton" type="button" data-mark-action="seal"><span data-copy="Set the seal">Set the seal</span></button>
+            <button class="btn btn-ghost" type="button" data-mark-action="clear"><span data-copy="Return to blank">Return to blank</span></button>
+            <button class="btn btn-disabled" type="button" disabled><span data-copy="Brush resting">Brush resting</span></button>
+          </div>
+          <p class="live-note" id="buttonFeedback" aria-live="polite" data-copy="The inkstone is waiting.">The inkstone is waiting.</p>
+        </article>
+
+        <article class="control-block">
+          <label for="intention">
+            <span class="panel-title" data-copy="Name the silence">Name the silence</span>
+          </label>
+          <p data-copy="A small phrase can anchor the whole composition.">A small phrase can anchor the whole composition.</p>
+          <div class="input-row">
+            <input class="text-field" id="intention" name="intention" type="text" maxlength="42" placeholder="Name the quiet you seek" data-placeholder="Name the quiet you seek" autocomplete="off" aria-describedby="intentionResponse intentionCount">
+            <output class="counter" id="intentionCount" for="intention">0 / 42</output>
+          </div>
+          <p class="live-note" id="intentionResponse" aria-live="polite" data-copy="The paper is listening.">The paper is listening.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section class="control-section wrap reveal" aria-labelledby="temper-title">
+      <header class="section-heading">
+        <span class="section-index" data-copy="II · Temper">II · Temper</span>
+        <h2 id="temper-title" data-copy="Tune the atmosphere">Tune the atmosphere</h2>
+        <p data-copy="Weather, grain, breath, and weight alter the same stroke without adding noise.">Weather, grain, breath, and weight alter the same stroke without adding noise.</p>
+      </header>
+
+      <div class="section-content">
+        <div class="choice-grid">
+          <fieldset class="control-block" style="border:0;margin:0;padding-top:0;min-width:0">
+            <legend class="panel-title" data-copy="Choose the weather">Choose the weather</legend>
+            <p data-copy="Only one sky can sit above the scroll.">Only one sky can sit above the scroll.</p>
+            <div class="choice-list">
+              <label class="choice">
+                <input type="radio" name="weather" value="Mountain mist" checked>
+                <span class="radio-mark" aria-hidden="true"></span>
+                <span data-copy="Mountain mist">Mountain mist</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="weather" value="Winter rain">
+                <span class="radio-mark" aria-hidden="true"></span>
+                <span data-copy="Winter rain">Winter rain</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="weather" value="Clear moon">
+                <span class="radio-mark" aria-hidden="true"></span>
+                <span data-copy="Clear moon">Clear moon</span>
+              </label>
+            </div>
+            <p class="live-note" id="weatherStatus" aria-live="polite" data-copy="Mountain mist settles over the page.">Mountain mist settles over the page.</p>
+          </fieldset>
+
+          <div>
+            <article class="control-block" style="padding-top:0;border-top:0">
+              <h3 data-copy="Keep the grain">Keep the grain</h3>
+              <p data-copy="Let dry fibers interrupt the line.">Let dry fibers interrupt the line.</p>
+              <label class="check-choice">
+                <input id="grainCheck" type="checkbox" checked>
+                <span class="check-mark" aria-hidden="true"></span>
+                <span data-copy="Show rice-paper fibers">Show rice-paper fibers</span>
+              </label>
+              <p class="live-note" id="grainStatus" aria-live="polite" data-copy="Fibers remain visible.">Fibers remain visible.</p>
+            </article>
+
+            <article class="control-block">
+              <h3 data-copy="Let the paper breathe">Let the paper breathe</h3>
+              <p data-copy="Open a pause around every deliberate mark.">Open a pause around every deliberate mark.</p>
+              <div class="switch-row">
+                <span data-copy="Breathing space">Breathing space</span>
+                <button class="ink-switch" id="breathSwitch" type="button" role="switch" aria-checked="true" aria-label="Toggle breathing space"></button>
+              </div>
+              <p class="live-note" id="breathStatus" aria-live="polite" data-copy="The margins are open.">The margins are open.</p>
+            </article>
+          </div>
+        </div>
+
+        <article class="control-block">
+          <h3 data-copy="Ink weight">Ink weight</h3>
+          <p data-copy="Move from a thirsty brush to a saturated pool.">Move from a thirsty brush to a saturated pool.</p>
+          <div class="slider-row">
+            <div class="range-wrap">
+              <input class="ink-range" id="inkWeight" type="range" min="0" max="100" value="38" aria-label="Ink weight">
+              <output class="range-output" id="inkWeightOutput" for="inkWeight">38% · Balanced stroke</output>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section class="control-section wrap reveal" aria-labelledby="vessel-title">
+      <header class="section-heading">
+        <span class="section-index" data-copy="III · Vessel">III · Vessel</span>
+        <h2 id="vessel-title" data-copy="Choose what carries it">Choose what carries it</h2>
+        <p data-copy="The vessel gives a mark its pace; the pause gives it meaning.">The vessel gives a mark its pace; the pause gives it meaning.</p>
+      </header>
+
+      <div class="section-content split-controls">
+        <article class="control-block">
+          <h3 data-copy="Select a vessel">Select a vessel</h3>
+          <p data-copy="Use the arrow keys to move through the cabinet.">Use the arrow keys to move through the cabinet.</p>
+          <div class="dropdown" id="vesselDropdown">
+            <button class="dropdown-trigger" id="vesselTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="vesselMenu">
+              <span id="vesselSelected" data-copy="Bamboo brush">Bamboo brush</span>
+            </button>
+            <ul class="dropdown-menu" id="vesselMenu" role="listbox" aria-labelledby="vesselTrigger" hidden>
+              <li class="dropdown-option" id="vessel-bamboo" role="option" tabindex="-1" aria-selected="true" data-value="Bamboo brush" data-copy="Bamboo brush">Bamboo brush</li>
+              <li class="dropdown-option" id="vessel-stone" role="option" tabindex="-1" aria-selected="false" data-value="River-stone dauber" data-copy="River-stone dauber">River-stone dauber</li>
+              <li class="dropdown-option" id="vessel-reed" role="option" tabindex="-1" aria-selected="false" data-value="Split reed" data-copy="Split reed">Split reed</li>
+              <li class="dropdown-option" id="vessel-palm" role="option" tabindex="-1" aria-selected="false" data-value="Open palm" data-copy="Open palm">Open palm</li>
+            </ul>
+          </div>
+          <p class="live-note" id="vesselStatus" aria-live="polite" data-copy="Bamboo brush rests beside the stone.">Bamboo brush rests beside the stone.</p>
+        </article>
+
+        <article class="control-block">
+          <h3 data-copy="Three pauses">Three pauses</h3>
+          <p data-copy="Each tab reveals a different moment in the stroke.">Each tab reveals a different moment in the stroke.</p>
+          <div class="tabs">
+            <div class="tab-list" role="tablist" aria-label="Three pauses">
+              <button class="tab" id="tab-breath" type="button" role="tab" aria-selected="true" aria-controls="panel-breath" tabindex="0"><span data-copy="Breath">Breath</span></button>
+              <button class="tab" id="tab-gesture" type="button" role="tab" aria-selected="false" aria-controls="panel-gesture" tabindex="-1"><span data-copy="Gesture">Gesture</span></button>
+              <button class="tab" id="tab-after" type="button" role="tab" aria-selected="false" aria-controls="panel-after" tabindex="-1"><span data-copy="Afterimage">Afterimage</span></button>
+            </div>
+            <div class="tab-panel" id="panel-breath" role="tabpanel" aria-labelledby="tab-breath" tabindex="0">
+              <div class="tab-brush" aria-hidden="true"></div>
+              <h4 class="panel-title" data-copy="Before the brush descends">Before the brush descends</h4>
+              <p data-copy="Let the empty field become part of the mark. A quiet beginning makes the first touch legible.">Let the empty field become part of the mark. A quiet beginning makes the first touch legible.</p>
+            </div>
+            <div class="tab-panel" id="panel-gesture" role="tabpanel" aria-labelledby="tab-gesture" tabindex="0" hidden>
+              <div class="tab-brush" aria-hidden="true"></div>
+              <h4 class="panel-title" data-copy="While the fibers resist">While the fibers resist</h4>
+              <p data-copy="Pressure widens the line; speed breaks it open. Neither is corrected after the hand has passed.">Pressure widens the line; speed breaks it open. Neither is corrected after the hand has passed.</p>
+            </div>
+            <div class="tab-panel" id="panel-after" role="tabpanel" aria-labelledby="tab-after" tabindex="0" hidden>
+              <div class="tab-brush" aria-hidden="true"></div>
+              <h4 class="panel-title" data-copy="When the ink has left">When the ink has left</h4>
+              <p data-copy="The pale edge continues the gesture. What remains unsaid gives the darker stroke its shape.">The pale edge continues the gesture. What remains unsaid gives the darker stroke its shape.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section class="control-section wrap reveal" aria-labelledby="measure-title">
+      <header class="section-heading">
+        <span class="section-index" data-copy="IV · Measure">IV · Measure</span>
+        <h2 id="measure-title" data-copy="Measure without haste">Measure without haste</h2>
+        <p data-copy="Progress gathers like ink in a stone. Resonance rises only when the gesture earns it.">Progress gathers like ink in a stone. Resonance rises only when the gesture earns it.</p>
+      </header>
+
+      <div class="section-content instrument-grid">
+        <article class="control-block">
+          <h3 data-copy="Grinding the inkstone">Grinding the inkstone</h3>
+          <p data-copy="One slow turn at a time.">One slow turn at a time.</p>
+          <div class="inkstone">
+            <div class="progress-track" id="inkProgress" role="progressbar" aria-label="Inkstone preparation" aria-valuemin="0" aria-valuemax="100" aria-valuenow="34">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-meta">
+              <span id="progressStatus" data-copy="Pigment waking">Pigment waking</span>
+              <span id="progressNumber">34%</span>
+            </div>
+            <button class="small-btn" id="grindButton" type="button"><span id="grindButtonText" data-copy="Turn the stone">Turn the stone</span></button>
+          </div>
+        </article>
+
+        <article class="control-block">
+          <h3 data-copy="Resonance measure">Resonance measure</h3>
+          <p data-copy="Thin the wash or deepen the mark.">Thin the wash or deepen the mark.</p>
+          <div class="meter-shell" id="resonanceMeter" role="meter" aria-label="Resonance" aria-valuemin="0" aria-valuemax="100" aria-valuenow="46" aria-valuetext="46, centered">
+            <svg viewBox="0 0 140 140" aria-hidden="true">
+              <circle class="meter-base" cx="70" cy="70" r="52"/>
+              <circle class="meter-value" id="meterArc" cx="70" cy="70" r="52"/>
+              <circle class="meter-tick" cx="70" cy="18" r="3"/>
+            </svg>
+            <div class="meter-readout">
+              <span class="meter-number" id="meterNumber">46</span>
+              <span class="meter-word" id="meterWord" data-copy="Centered">Centered</span>
+            </div>
+          </div>
+          <div class="meter-actions">
+            <button class="small-btn" id="meterDown" type="button"><span data-copy="Thin the wash">Thin the wash</span></button>
+            <button class="small-btn" id="meterUp" type="button"><span data-copy="Deepen the mark">Deepen the mark</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section class="control-section wrap reveal" aria-labelledby="release-title">
+      <header class="section-heading">
+        <span class="section-index" data-copy="V · Release">V · Release</span>
+        <h2 id="release-title" data-copy="Let the mark leave">Let the mark leave</h2>
+        <p data-copy="Open the final scroll, or send a small seal into the archive.">Open the final scroll, or send a small seal into the archive.</p>
+      </header>
+
+      <div class="section-content">
+        <div class="layer-actions">
+          <article class="action-card">
+            <h3 class="panel-title" data-copy="The sealed scroll">The sealed scroll</h3>
+            <p data-copy="A modal chamber holds one final instruction and keeps keyboard focus within its paper walls.">A modal chamber holds one final instruction and keeps keyboard focus within its paper walls.</p>
+            <button class="btn btn-primary" id="openScroll" type="button"><span data-copy="Open the scroll">Open the scroll</span></button>
+          </article>
+
+          <article class="action-card">
+            <div class="tooltip-wrap" id="tooltipWrap">
+              <button class="tooltip-trigger" id="tooltipTrigger" type="button" aria-describedby="archiveTip" aria-expanded="false" aria-label="About the archive tooltip"><span aria-hidden="true">?</span></button>
+              <span class="tooltip" id="archiveTip" role="tooltip" data-copy="The archive keeps only the latest seal; earlier marks dissolve like rain.">The archive keeps only the latest seal; earlier marks dissolve like rain.</span>
+            </div>
+            <h3 class="panel-title" data-copy="The quiet archive">The quiet archive</h3>
+            <p data-copy="A brief toast confirms the seal without pulling attention away from the page.">A brief toast confirms the seal without pulling attention away from the page.</p>
+            <button class="btn btn-outline" id="showToast" type="button"><span data-copy="Send the seal">Send the seal</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing wrap reveal" aria-label="Closing thought">
+      <p data-copy="A complete stroke knows when to end.">A complete stroke knows when to end.</p>
+      <span class="red-thread" aria-hidden="true"></span>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <span data-copy="SUMI · Quiet instruments for deliberate work">SUMI · Quiet instruments for deliberate work</span>
+      <span class="footer-seal" aria-hidden="true"></span>
+    </div>
+  </footer>
+
+  <dialog id="scrollDialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogDescription">
+    <div class="scroll-modal">
+      <button class="modal-close" id="closeScroll" type="button" aria-label="Close the scroll"><span aria-hidden="true">×</span></button>
+      <div class="modal-seal" aria-hidden="true"></div>
+      <p class="micro-label" data-copy="Archive fragment 07">Archive fragment 07</p>
+      <h2 id="dialogTitle" data-copy="Do not improve the honest line.">Do not improve the honest line.</h2>
+      <p id="dialogDescription" data-copy="A stroke carries its speed, hesitation, and pressure. Let those traces remain; they are the record of attention.">A stroke carries its speed, hesitation, and pressure. Let those traces remain; they are the record of attention.</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="acceptScroll" type="button"><span data-copy="Keep this teaching">Keep this teaching</span></button>
+        <button class="btn btn-ghost" id="foldScroll" type="button"><span data-copy="Fold the scroll">Fold the scroll</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="archiveToast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <span class="toast-mark" aria-hidden="true"></span>
+    <p class="toast-message" id="toastMessage" data-copy="Seal accepted — the archive remembers this mark.">Seal accepted — the archive remembers this mark.</p>
+    <button class="toast-close" id="closeToast" type="button" aria-label="Dismiss notification"><span aria-hidden="true">×</span></button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const copyNodes = document.querySelectorAll("[data-copy]");
+      copyNodes.forEach((node) => {
+        node.textContent = node.dataset.copy;
+      });
+
+      const intention = document.getElementById("intention");
+      intention.placeholder = intention.dataset.placeholder;
+
+      const inkCanvas = document.getElementById("inkCanvas");
+      const releaseDrop = document.getElementById("releaseDrop");
+      const heroNotice = document.getElementById("heroNotice");
+
+      function bloomInk(event) {
+        const bounds = inkCanvas.getBoundingClientRect();
+        const keyboardClick = event.clientX === 0 && event.clientY === 0;
+        const x = keyboardClick ? bounds.width * 0.54 : event.clientX - bounds.left;
+        const y = keyboardClick ? bounds.height * 0.48 : event.clientY - bounds.top;
+        const drop = document.createElement("span");
+        drop.className = "ink-drop";
+        drop.setAttribute("aria-hidden", "true");
+        drop.style.left = `${x}px`;
+        drop.style.top = `${y}px`;
+        drop.style.setProperty("--drop-size", `${32 + Math.round(Math.random() * 24)}px`);
+        inkCanvas.appendChild(drop);
+        drop.addEventListener("animationend", () => drop.remove(), { once: true });
+        window.setTimeout(() => drop.remove(), 3400);
+        heroNotice.textContent = "The drop opens, then returns to empty paper.";
+      }
+
+      inkCanvas.addEventListener("click", bloomInk);
+      releaseDrop.addEventListener("click", () => inkCanvas.click());
+
+      const buttonFeedback = document.getElementById("buttonFeedback");
+      const sealButton = document.getElementById("sealButton");
+      const heroArt = document.querySelector(".hero-art");
+
+      document.querySelectorAll("[data-mark-action]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const action = button.dataset.markAction;
+          if (action === "gather") {
+            buttonFeedback.textContent = "Ink gathered. The brush is ready.";
+          } else if (action === "wash") {
+            heroArt.classList.toggle("has-wash");
+            buttonFeedback.textContent = heroArt.classList.contains("has-wash")
+              ? "A pale wash moves beneath the circle."
+              : "The pale wash has lifted.";
+          } else if (action === "seal") {
+            sealButton.classList.remove("is-struck");
+            void sealButton.offsetWidth;
+            sealButton.classList.add("is-struck");
+            window.setTimeout(() => sealButton.classList.remove("is-struck"), 650);
+            buttonFeedback.textContent = "The vermilion seal holds the moment.";
+          } else if (action === "clear") {
+            inkCanvas.querySelectorAll(".ink-drop").forEach((drop) => drop.remove());
+            heroArt.classList.remove("has-wash");
+            buttonFeedback.textContent = "The page returns to blank.";
+          }
+        });
+      });
+
+      const intentionCount = document.getElementById("intentionCount");
+      const intentionResponse = document.getElementById("intentionResponse");
+      intentionCount.textContent = "0 / 42";
+
+      intention.addEventListener("input", () => {
+        const value = intention.value.trim();
+        intentionCount.textContent = `${intention.value.length} / 42`;
+        intentionResponse.textContent = value
+          ? `“${value}” settles into the margin.`
+          : "The paper is listening.";
+      });
+
+      const weatherStatus = document.getElementById("weatherStatus");
+      document.querySelectorAll('input[name="weather"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.checked) {
+            weatherStatus.textContent = `${radio.value} settles over the page.`;
+          }
+        });
+      });
+
+      const grainCheck = document.getElementById("grainCheck");
+      const grainStatus = document.getElementById("grainStatus");
+      grainCheck.addEventListener("change", () => {
+        document.body.style.setProperty("--fiber-visibility", grainCheck.checked ? "0.34" : "0.08");
+        grainStatus.textContent = grainCheck.checked
+          ? "Fibers remain visible."
+          : "The sheet becomes nearly smooth.";
+      });
+
+      const breathSwitch = document.getElementById("breathSwitch");
+      const breathStatus = document.getElementById("breathStatus");
+      breathSwitch.addEventListener("click", () => {
+        const nextState = breathSwitch.getAttribute("aria-checked") !== "true";
+        breathSwitch.setAttribute("aria-checked", String(nextState));
+        breathStatus.textContent = nextState
+          ? "The margins are open."
+          : "The composition draws inward.";
+      });
+
+      const inkWeight = document.getElementById("inkWeight");
+      const inkWeightOutput = document.getElementById("inkWeightOutput");
+
+      function updateInkWeight() {
+        const value = Number(inkWeight.value);
+        const quality = value < 34 ? "Dry brush" : value < 68 ? "Balanced stroke" : "Saturated wash";
+        inkWeight.style.setProperty("--fill", `${value}%`);
+        inkWeightOutput.textContent = `${value}% · ${quality}`;
+      }
+
+      inkWeight.addEventListener("input", updateInkWeight);
+      updateInkWeight();
+
+      const vesselDropdown = document.getElementById("vesselDropdown");
+      const vesselTrigger = document.getElementById("vesselTrigger");
+      const vesselMenu = document.getElementById("vesselMenu");
+      const vesselSelected = document.getElementById("vesselSelected");
+      const vesselStatus = document.getElementById("vesselStatus");
+      const vesselOptions = Array.from(vesselMenu.querySelectorAll('[role="option"]'));
+
+      function selectedVesselIndex() {
+        return Math.max(0, vesselOptions.findIndex((option) => option.getAttribute("aria-selected") === "true"));
+      }
+
+      function focusVessel(index) {
+        const wrapped = (index + vesselOptions.length) % vesselOptions.length;
+        vesselOptions[wrapped].focus();
+      }
+
+      function openVesselMenu(preference = "selected") {
+        vesselMenu.hidden = false;
+        vesselTrigger.setAttribute("aria-expanded", "true");
+        const selected = selectedVesselIndex();
+        focusVessel(preference === "last" ? vesselOptions.length - 1 : selected);
+      }
+
+      function closeVesselMenu(restoreFocus = true) {
+        vesselMenu.hidden = true;
+        vesselTrigger.setAttribute("aria-expanded", "false");
+        if (restoreFocus) vesselTrigger.focus();
+      }
+
+      function chooseVessel(option) {
+        vesselOptions.forEach((item) => item.setAttribute("aria-selected", String(item === option)));
+        vesselSelected.textContent = option.dataset.value;
+        vesselStatus.textContent = `${option.dataset.value} rests beside the stone.`;
+        closeVesselMenu();
+      }
+
+      vesselTrigger.addEventListener("click", () => {
+        if (vesselMenu.hidden) openVesselMenu();
+        else closeVesselMenu();
+      });
+
+      vesselTrigger.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault();
+          openVesselMenu(event.key === "ArrowUp" ? "last" : "selected");
+        }
+      });
+
+      vesselOptions.forEach((option, index) => {
+        option.addEventListener("click", () => chooseVessel(option));
+        option.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            focusVessel(index + 1);
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            focusVessel(index - 1);
+          } else if (event.key === "Home") {
+            event.preventDefault();
+            focusVessel(0);
+          } else if (event.key === "End") {
+            event.preventDefault();
+            focusVessel(vesselOptions.length - 1);
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            chooseVessel(option);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            closeVesselMenu();
+          } else if (event.key === "Tab") {
+            closeVesselMenu(false);
+          }
+        });
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!vesselMenu.hidden && !vesselDropdown.contains(event.target)) {
+          closeVesselMenu(false);
+        }
+      });
+
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = tabs.map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
+
+      function activateTab(index, moveFocus = true) {
+        tabs.forEach((tab, tabIndex) => {
+          const active = tabIndex === index;
+          tab.setAttribute("aria-selected", String(active));
+          tab.tabIndex = active ? 0 : -1;
+          tabPanels[tabIndex].hidden = !active;
+        });
+        if (moveFocus) tabs[index].focus();
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(index, false));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+          else if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === "Home") nextIndex = 0;
+          else if (event.key === "End") nextIndex = tabs.length - 1;
+          else return;
+          event.preventDefault();
+          activateTab(nextIndex);
+        });
+      });
+
+      let progressValue = 34;
+      const inkProgress = document.getElementById("inkProgress");
+      const progressFill = document.getElementById("progressFill");
+      const progressStatus = document.getElementById("progressStatus");
+      const progressNumber = document.getElementById("progressNumber");
+      const grindButton = document.getElementById("grindButton");
+      const grindButtonText = document.getElementById("grindButtonText");
+
+      function renderProgress() {
+        progressFill.style.width = `${progressValue}%`;
+        progressNumber.textContent = `${progressValue}%`;
+        inkProgress.setAttribute("aria-valuenow", String(progressValue));
+        if (progressValue >= 100) {
+          progressStatus.textContent = "Ink ready";
+          grindButtonText.textContent = "Begin again";
+        } else if (progressValue >= 70) {
+          progressStatus.textContent = "Surface deepening";
+          grindButtonText.textContent = "Turn the stone";
+        } else {
+          progressStatus.textContent = "Pigment waking";
+          grindButtonText.textContent = "Turn the stone";
+        }
+      }
+
+      renderProgress();
+
+      grindButton.addEventListener("click", () => {
+        progressValue = progressValue >= 100 ? 12 : Math.min(100, progressValue + 13);
+        renderProgress();
+      });
+
+      let resonance = 46;
+      const resonanceMeter = document.getElementById("resonanceMeter");
+      const meterArc = document.getElementById("meterArc");
+      const meterNumber = document.getElementById("meterNumber");
+      const meterWord = document.getElementById("meterWord");
+      const meterDown = document.getElementById("meterDown");
+      const meterUp = document.getElementById("meterUp");
+      const meterCircumference = 2 * Math.PI * 52;
+
+      function renderMeter() {
+        const word = resonance <= 30 ? "Hushed" : resonance <= 60 ? "Centered" : resonance <= 85 ? "Resonant" : "Bell-like";
+        meterArc.style.strokeDashoffset = String(meterCircumference * (1 - resonance / 100));
+        meterNumber.textContent = String(resonance);
+        meterWord.textContent = word;
+        resonanceMeter.setAttribute("aria-valuenow", String(resonance));
+        resonanceMeter.setAttribute("aria-valuetext", `${resonance}, ${word.toLowerCase()}`);
+        meterDown.disabled = resonance === 0;
+        meterUp.disabled = resonance === 100;
+      }
+
+      meterDown.addEventListener("click", () => {
+        resonance = Math.max(0, resonance - 10);
+        renderMeter();
+      });
+
+      meterUp.addEventListener("click", () => {
+        resonance = Math.min(100, resonance + 10);
+        renderMeter();
+      });
+
+      renderMeter();
+
+      const scrollDialog = document.getElementById("scrollDialog");
+      const openScroll = document.getElementById("openScroll");
+      const closeScroll = document.getElementById("closeScroll");
+      const foldScroll = document.getElementById("foldScroll");
+      const acceptScroll = document.getElementById("acceptScroll");
+      let modalReturnFocus = null;
+
+      function openDialog() {
+        modalReturnFocus = document.activeElement;
+        scrollDialog.showModal();
+        document.body.style.overflow = "hidden";
+        closeScroll.focus();
+      }
+
+      function closeDialog() {
+        if (scrollDialog.open) scrollDialog.close();
+      }
+
+      openScroll.addEventListener("click", openDialog);
+      closeScroll.addEventListener("click", closeDialog);
+      foldScroll.addEventListener("click", closeDialog);
+      acceptScroll.addEventListener("click", () => {
+        closeDialog();
+        showArchiveToast("Teaching kept — the line remains honest.");
+      });
+
+      scrollDialog.addEventListener("click", (event) => {
+        if (event.target === scrollDialog) closeDialog();
+      });
+
+      scrollDialog.addEventListener("cancel", (event) => {
+        event.preventDefault();
+        closeDialog();
+      });
+
+      scrollDialog.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") return;
+        const focusable = Array.from(scrollDialog.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      scrollDialog.addEventListener("close", () => {
+        document.body.style.overflow = "";
+        if (modalReturnFocus && typeof modalReturnFocus.focus === "function") {
+          modalReturnFocus.focus();
+        }
+      });
+
+      const archiveToast = document.getElementById("archiveToast");
+      const toastMessage = document.getElementById("toastMessage");
+      const showToastButton = document.getElementById("showToast");
+      const closeToast = document.getElementById("closeToast");
+      let toastTimer = 0;
+
+      function hideArchiveToast() {
+        archiveToast.classList.remove("is-visible");
+        window.clearTimeout(toastTimer);
+        if (archiveToast.contains(document.activeElement)) {
+          showToastButton.focus();
+        }
+        archiveToast.hidden = true;
+      }
+
+      function showArchiveToast(message = "Seal accepted — the archive remembers this mark.") {
+        window.clearTimeout(toastTimer);
+        toastMessage.textContent = message;
+        archiveToast.hidden = false;
+        void archiveToast.offsetWidth;
+        archiveToast.classList.add("is-visible");
+        toastTimer = window.setTimeout(hideArchiveToast, 4800);
+      }
+
+      showToastButton.addEventListener("click", () => showArchiveToast());
+      closeToast.addEventListener("click", hideArchiveToast);
+
+      const tooltipWrap = document.getElementById("tooltipWrap");
+      const tooltipTrigger = document.getElementById("tooltipTrigger");
+      tooltipTrigger.addEventListener("click", () => {
+        const pinned = tooltipWrap.classList.toggle("is-pinned");
+        tooltipTrigger.setAttribute("aria-expanded", String(pinned));
+      });
+
+      tooltipTrigger.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          tooltipWrap.classList.remove("is-pinned");
+          tooltipTrigger.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape" || scrollDialog.open) return;
+        if (!vesselMenu.hidden) {
+          closeVesselMenu();
+          return;
+        }
+        if (tooltipWrap.classList.contains("is-pinned")) {
+          tooltipWrap.classList.remove("is-pinned");
+          tooltipTrigger.setAttribute("aria-expanded", "false");
+          tooltipTrigger.focus();
+          return;
+        }
+        if (archiveToast.classList.contains("is-visible")) {
+          hideArchiveToast();
+        }
+      });
+
+      const revealItems = document.querySelectorAll(".reveal");
+      let observer = null;
+
+      function revealPassedItems() {
+        revealItems.forEach((item) => {
+          if (item.getBoundingClientRect().top < window.innerHeight * 0.94) {
+            item.classList.add("is-visible");
+            if (observer) observer.unobserve(item);
+          }
+        });
+      }
+
+      if ("IntersectionObserver" in window) {
+        observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+        revealItems.forEach((item) => observer.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      document.documentElement.classList.add("reveal-ready");
+      revealPassedItems();
+      window.addEventListener("scroll", revealPassedItems, { passive: true });
+    })();
+  </script>
+</body>
+</html>

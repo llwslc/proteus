@@ -1,0 +1,2186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e3a">
+  <title>The Midnight Ledger — Pulp Control Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Roboto+Slab:wght@700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f1ddb0;
+      --paper-pale: #fff0c9;
+      --paper-deep: #dfc385;
+      --brick: #982f25;
+      --brick-deep: #6f211b;
+      --mustard: #d3a529;
+      --mustard-deep: #9a7111;
+      --ink: #173e3a;
+      --ink-deep: #0d2927;
+      --black: #201913;
+      --muted: #604f3d;
+      --shadow: rgba(32, 25, 19, 0.28);
+      --page-width: 1180px;
+      --edge: max(24px, calc((100vw - var(--page-width)) / 2));
+      --focus: #fff2ae;
+      --font-display: "Roboto Slab", Rockwell, "Courier New", serif;
+      --font-body: "Oswald", "Arial Narrow", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 0;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--black);
+      background-color: var(--paper);
+      background-image:
+        radial-gradient(circle at 9% 7%, rgba(111, 33, 27, 0.14) 0 2px, transparent 3px),
+        radial-gradient(circle at 89% 18%, rgba(154, 113, 17, 0.15) 0 24px, transparent 52px),
+        radial-gradient(circle at 15% 68%, rgba(111, 33, 27, 0.12) 0 36px, transparent 74px),
+        radial-gradient(circle at 84% 83%, rgba(23, 62, 58, 0.11) 0 2px, transparent 3px),
+        linear-gradient(103deg, transparent 0 47%, rgba(67, 42, 21, 0.035) 49%, transparent 51%),
+        linear-gradient(var(--paper), #ead29f);
+      background-size: auto, auto, auto, 9px 9px, 100% 100%, 100% 100%;
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    body::before {
+      position: fixed;
+      z-index: 20;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      opacity: 0.22;
+      mix-blend-mode: multiply;
+      background-image:
+        repeating-linear-gradient(0deg, transparent 0 3px, rgba(32, 25, 19, 0.05) 4px),
+        repeating-linear-gradient(90deg, transparent 0 11px, rgba(32, 25, 19, 0.025) 12px);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    input,
+    [tabindex] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 7px var(--ink-deep);
+    }
+
+    ::selection {
+      color: var(--paper-pale);
+      background: var(--brick);
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .status-strip {
+      position: relative;
+      z-index: 5;
+      border-bottom: 4px solid var(--black);
+      color: var(--paper-pale);
+      background:
+        radial-gradient(circle, rgba(241, 221, 176, 0.19) 0 1px, transparent 1.5px) 0 0 / 6px 6px,
+        var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .status-inner {
+      width: min(100%, var(--page-width));
+      min-height: 46px;
+      margin-inline: auto;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .status-name {
+      white-space: nowrap;
+    }
+
+    .status-bullet {
+      color: var(--mustard);
+    }
+
+    .status-flash {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-align: right;
+    }
+
+    .status-flash::before {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 auto;
+      border: 2px solid var(--paper-pale);
+      border-radius: 50%;
+      content: "";
+      background: var(--brick);
+      animation: flash 1.7s steps(2, end) infinite;
+    }
+
+    .page-shell {
+      width: min(100%, var(--page-width));
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 46px);
+      padding-block: clamp(48px, 7vw, 92px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      align-items: center;
+      gap: clamp(38px, 7vw, 92px);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .card-number {
+      margin: 0 0 12px;
+      color: var(--brick-deep);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 10px;
+      border: 3px solid var(--black);
+      background: var(--mustard);
+      box-shadow: 4px 4px 0 var(--brick);
+      transform: rotate(-1deg);
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 22px 0 20px;
+      color: var(--ink-deep);
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.84;
+      letter-spacing: -0.075em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      text-shadow:
+        4px 3px 0 var(--mustard),
+        -3px -2px 0 rgba(152, 47, 37, 0.88);
+    }
+
+    .hero-deck {
+      max-width: 650px;
+      margin: 0;
+      color: #493a2d;
+      font-size: clamp(1.16rem, 2vw, 1.46rem);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn {
+      position: relative;
+      min-height: 48px;
+      padding: 11px 20px;
+      border: 3px solid var(--black);
+      border-radius: 0;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      text-transform: uppercase;
+      transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translate(-2px, -2px);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translate(3px, 3px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-primary {
+      color: var(--paper-pale);
+      background: var(--brick);
+      box-shadow: 6px 6px 0 var(--black);
+      clip-path: polygon(0 0, 95% 0, 100% 25%, 100% 100%, 5% 100%, 0 75%);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--brick-deep);
+      box-shadow: 8px 8px 0 var(--mustard-deep);
+    }
+
+    .btn-stamp {
+      min-height: 52px;
+      border-radius: 50%;
+      color: var(--paper-pale);
+      background: var(--ink);
+      box-shadow: 3px 4px 0 var(--brick);
+      transform: rotate(-2deg);
+    }
+
+    .btn-stamp:hover:not(:disabled) {
+      color: var(--black);
+      background: var(--mustard);
+      box-shadow: 5px 6px 0 var(--brick);
+      transform: rotate(0deg) translate(-2px, -2px);
+    }
+
+    .hero-note {
+      margin: 18px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-note::before {
+      width: 44px;
+      border-top: 3px double var(--brick);
+      content: "";
+    }
+
+    .cover-stage {
+      position: relative;
+      min-width: 0;
+      perspective: 1500px;
+    }
+
+    .cover-stage::before {
+      position: absolute;
+      z-index: -1;
+      right: -8%;
+      bottom: -8%;
+      width: 82%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      content: "";
+      opacity: 0.55;
+      background: radial-gradient(circle, var(--brick) 0 2px, transparent 2.5px) 0 0 / 9px 9px;
+      transform: rotate(8deg);
+    }
+
+    .pulp-book {
+      position: relative;
+      width: min(100%, 430px);
+      aspect-ratio: 0.76;
+      margin-inline: auto;
+      border: 5px solid var(--black);
+      background: var(--brick);
+      box-shadow:
+        13px 14px 0 var(--ink),
+        19px 20px 0 var(--black);
+      transform: rotate(2.25deg);
+      transform-style: preserve-3d;
+      isolation: isolate;
+    }
+
+    .book-underpage,
+    .book-front {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      backface-visibility: hidden;
+    }
+
+    .book-underpage {
+      padding: 34px;
+      color: var(--ink-deep);
+      background:
+        radial-gradient(circle, rgba(111, 33, 27, 0.16) 0 1px, transparent 1.5px) 0 0 / 7px 7px,
+        var(--paper-pale);
+    }
+
+    .underpage-chapter {
+      display: block;
+      padding-bottom: 8px;
+      border-bottom: 4px solid var(--ink);
+      color: var(--brick);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .underpage-title {
+      margin: 28px 0 18px;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      font-weight: 900;
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .underpage-copy {
+      max-width: 30ch;
+      font-size: 1.08rem;
+      line-height: 1.55;
+    }
+
+    .book-front {
+      z-index: 2;
+      padding: clamp(26px, 6vw, 48px) clamp(24px, 5vw, 40px);
+      color: var(--paper-pale);
+      background:
+        linear-gradient(106deg, transparent 0 41%, rgba(255, 240, 201, 0.09) 42%, transparent 43%),
+        radial-gradient(circle at 20% 22%, rgba(211, 165, 41, 0.8) 0 2px, transparent 2.5px) 0 0 / 9px 9px,
+        var(--brick);
+      transform-origin: left center;
+      transition: transform 720ms cubic-bezier(0.65, 0, 0.22, 1);
+    }
+
+    .pulp-book.is-turned .book-front {
+      transform: rotateY(-152deg);
+    }
+
+    .book-price {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border: 4px double var(--black);
+      border-radius: 50%;
+      color: var(--black);
+      background: var(--mustard);
+      font-family: var(--font-display);
+      font-weight: 900;
+      transform: rotate(8deg);
+    }
+
+    .book-series {
+      display: inline-block;
+      padding: 4px 9px;
+      border: 2px solid var(--paper-pale);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .book-title {
+      max-width: 8ch;
+      margin: clamp(54px, 11vw, 96px) 0 14px;
+      font-family: var(--font-display);
+      font-size: clamp(2.65rem, 7vw, 5.3rem);
+      font-weight: 900;
+      line-height: 0.82;
+      letter-spacing: -0.07em;
+      text-transform: uppercase;
+      text-shadow: 4px 3px 0 var(--ink-deep);
+    }
+
+    .book-tagline {
+      max-width: 23ch;
+      margin: 0;
+      color: var(--paper-pale);
+      font-size: 1.02rem;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .book-stamp {
+      position: absolute;
+      right: 24px;
+      bottom: 30px;
+      width: 120px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      border: 7px double var(--mustard);
+      border-radius: 50%;
+      color: var(--mustard);
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1.05;
+      text-align: center;
+      text-transform: uppercase;
+      transform: rotate(-13deg);
+    }
+
+    .book-stamp.is-slammed {
+      animation: stamp-slam 480ms cubic-bezier(0.2, 1.7, 0.3, 1);
+    }
+
+    .page-turner {
+      position: absolute;
+      z-index: 4;
+      right: -14px;
+      bottom: -18px;
+      min-height: 44px;
+      padding: 9px 15px;
+      border: 3px solid var(--black);
+      color: var(--paper-pale);
+      background: var(--ink);
+      box-shadow: 5px 5px 0 var(--mustard);
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .page-turner:hover {
+      color: var(--black);
+      background: var(--mustard);
+    }
+
+    .controls-area {
+      padding-block: 82px 96px;
+      border-top: 5px solid var(--black);
+    }
+
+    .section-heading {
+      margin-bottom: 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 30px;
+    }
+
+    .section-heading h2 {
+      max-width: 13ch;
+      margin: 0;
+      color: var(--ink-deep);
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 5.8rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+      text-transform: uppercase;
+    }
+
+    .section-deck {
+      max-width: 42ch;
+      margin: 0;
+      padding: 14px 0 8px 20px;
+      border-left: 5px solid var(--brick);
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .control-card {
+      position: relative;
+      min-width: 0;
+      padding: clamp(22px, 3vw, 32px);
+      border: 4px solid var(--black);
+      background-color: var(--paper-pale);
+      background-image:
+        radial-gradient(circle at 8% 13%, rgba(152, 47, 37, 0.12) 0 22px, transparent 50px),
+        radial-gradient(circle, rgba(23, 62, 58, 0.12) 0 1px, transparent 1.4px);
+      background-size: auto, 8px 8px;
+      box-shadow: 8px 8px 0 var(--shadow);
+    }
+
+    .control-card::after {
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(32, 25, 19, 0.65);
+      border-radius: 50%;
+      content: "";
+      background: var(--paper);
+      box-shadow: inset 2px 2px 0 var(--shadow);
+    }
+
+    .span-12 {
+      grid-column: span 12;
+    }
+
+    .span-7 {
+      grid-column: span 7;
+    }
+
+    .span-6 {
+      grid-column: span 6;
+    }
+
+    .span-5 {
+      grid-column: span 5;
+    }
+
+    .card-header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 4px double var(--black);
+    }
+
+    .card-number {
+      margin-bottom: 5px;
+    }
+
+    .card-header h3 {
+      margin: 0;
+      color: var(--ink-deep);
+      font-family: var(--font-display);
+      font-size: clamp(1.55rem, 3vw, 2.2rem);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .card-header p {
+      max-width: 52ch;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .button-rack {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-ticket {
+      color: var(--paper-pale);
+      background:
+        linear-gradient(90deg, transparent 0 8px, rgba(255,255,255,0.16) 9px 11px, transparent 12px),
+        var(--brick);
+      box-shadow: 5px 5px 0 var(--black);
+      clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px);
+    }
+
+    .btn-ticket:hover:not(:disabled) {
+      background-color: var(--brick-deep);
+      box-shadow: 7px 7px 0 var(--mustard);
+    }
+
+    .btn-burst {
+      min-width: 126px;
+      border: 0;
+      color: var(--black);
+      background: var(--mustard);
+      clip-path: polygon(50% 0, 59% 16%, 76% 6%, 78% 24%, 98% 22%, 87% 40%, 100% 51%, 83% 59%, 92% 78%, 72% 77%, 67% 98%, 51% 84%, 38% 100%, 33% 80%, 12% 88%, 17% 67%, 0 59%, 17% 47%, 3% 31%, 24% 29%, 24% 8%, 42% 19%);
+      box-shadow: none;
+      transform: rotate(-2deg);
+    }
+
+    .btn-burst:hover:not(:disabled) {
+      color: var(--paper-pale);
+      background: var(--ink);
+      transform: rotate(1deg) scale(1.04);
+    }
+
+    .btn-night {
+      border-radius: 30px 30px 8px 8px;
+      color: var(--paper-pale);
+      background: var(--ink);
+      box-shadow: inset 0 -7px 0 var(--ink-deep), 5px 5px 0 var(--brick);
+    }
+
+    .btn-night:hover:not(:disabled) {
+      color: var(--black);
+      background: var(--mustard);
+    }
+
+    .btn-proof {
+      border: 4px double var(--brick);
+      color: var(--brick-deep);
+      background: transparent;
+      box-shadow: inset 0 0 0 3px var(--paper-pale);
+      transform: rotate(1deg);
+    }
+
+    .btn-proof:hover:not(:disabled) {
+      color: var(--paper-pale);
+      background: var(--brick);
+      transform: rotate(-1deg) translate(-2px, -2px);
+    }
+
+    .btn-disabled,
+    .btn:disabled {
+      border-style: dashed;
+      color: #6f6253;
+      background:
+        repeating-linear-gradient(135deg, #c9b88f 0 6px, #dfcda3 6px 12px);
+      box-shadow: none;
+      cursor: not-allowed;
+      opacity: 0.72;
+      text-decoration: line-through 3px var(--brick);
+    }
+
+    .field-group + .field-group {
+      margin-top: 24px;
+    }
+
+    .field-label,
+    .choice-legend {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--ink-deep);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .text-field-wrap {
+      position: relative;
+    }
+
+    .text-field {
+      width: 100%;
+      min-height: 52px;
+      padding: 11px 82px 11px 14px;
+      border: 3px solid var(--black);
+      border-radius: 0;
+      color: var(--ink-deep);
+      background:
+        repeating-linear-gradient(0deg, transparent 0 28px, rgba(23, 62, 58, 0.12) 29px 30px),
+        #fff8df;
+      font-weight: 600;
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .text-field::placeholder {
+      color: #76644f;
+      opacity: 1;
+    }
+
+    .text-field:hover {
+      border-color: var(--brick);
+    }
+
+    .text-field:focus {
+      border-color: var(--ink);
+    }
+
+    .char-count {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: 2px 6px;
+      border: 2px solid var(--black);
+      color: var(--paper-pale);
+      background: var(--brick);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .choice {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 42px;
+      cursor: pointer;
+      color: #33271f;
+      font-weight: 600;
+    }
+
+    .choice input {
+      position: relative;
+      width: 26px;
+      height: 26px;
+      flex: 0 0 auto;
+      margin: 0;
+      appearance: none;
+      border: 3px solid var(--black);
+      background: var(--paper-pale);
+      cursor: pointer;
+    }
+
+    .choice input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    .choice input[type="radio"]::after {
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      content: "";
+      background: var(--brick);
+      transform: scale(0);
+      transition: transform 120ms ease;
+    }
+
+    .choice input[type="radio"]:checked {
+      border-color: var(--ink);
+      box-shadow: 3px 3px 0 var(--mustard);
+    }
+
+    .choice input[type="radio"]:checked::after {
+      transform: scale(1);
+    }
+
+    .choice input[type="checkbox"] {
+      transform: rotate(-2deg);
+    }
+
+    .choice input[type="checkbox"]::after {
+      position: absolute;
+      left: 4px;
+      top: -2px;
+      color: var(--brick);
+      content: "✓";
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 900;
+      line-height: 1;
+      opacity: 0;
+      transform: rotate(-10deg) scale(1.5);
+      transition: opacity 120ms ease, transform 120ms ease;
+    }
+
+    .choice input[type="checkbox"]:checked {
+      border-color: var(--brick);
+      background: var(--mustard);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .choice input[type="checkbox"]:checked::after {
+      opacity: 1;
+      transform: rotate(-10deg) scale(1);
+    }
+
+    .switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px;
+      border: 3px solid var(--black);
+      background: rgba(211, 165, 41, 0.26);
+    }
+
+    .switch-copy strong {
+      display: block;
+      color: var(--ink-deep);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .switch-copy span {
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .switch {
+      position: relative;
+      width: 72px;
+      height: 34px;
+      flex: 0 0 auto;
+      display: inline-block;
+    }
+
+    .switch input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .switch-track {
+      position: absolute;
+      inset: 0;
+      border: 3px solid var(--black);
+      border-radius: 3px;
+      cursor: pointer;
+      background:
+        repeating-linear-gradient(90deg, rgba(32,25,19,0.18) 0 3px, transparent 3px 7px),
+        #aa9871;
+      box-shadow: inset 0 4px 0 rgba(32, 25, 19, 0.16);
+      transition: background-color 160ms ease;
+    }
+
+    .switch-track::after {
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 23px;
+      height: 22px;
+      border: 3px solid var(--black);
+      border-radius: 50%;
+      content: "";
+      background: var(--paper-pale);
+      box-shadow: 2px 2px 0 var(--brick);
+      transition: transform 180ms cubic-bezier(0.2, 1.5, 0.4, 1);
+    }
+
+    .switch input:checked + .switch-track {
+      background-color: var(--ink);
+    }
+
+    .switch input:checked + .switch-track::after {
+      background: var(--mustard);
+      transform: translateX(35px);
+    }
+
+    .switch input:focus-visible + .switch-track {
+      outline: 4px solid var(--focus);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 7px var(--ink-deep);
+    }
+
+    .range-head,
+    .gauge-head {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 18px;
+    }
+
+    .range-output,
+    .gauge-output {
+      color: var(--brick-deep);
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .range {
+      width: 100%;
+      height: 40px;
+      margin: 0;
+      appearance: none;
+      cursor: ew-resize;
+      background: transparent;
+    }
+
+    .range::-webkit-slider-runnable-track {
+      height: 12px;
+      border: 3px solid var(--black);
+      background:
+        linear-gradient(90deg, var(--brick) 0 var(--range-value, 62%), var(--paper-deep) var(--range-value, 62%) 100%);
+      box-shadow: 3px 3px 0 var(--mustard);
+    }
+
+    .range::-moz-range-track {
+      height: 8px;
+      border: 3px solid var(--black);
+      background: var(--paper-deep);
+      box-shadow: 3px 3px 0 var(--mustard);
+    }
+
+    .range::-moz-range-progress {
+      height: 8px;
+      background: var(--brick);
+    }
+
+    .range::-webkit-slider-thumb {
+      width: 27px;
+      height: 31px;
+      margin-top: -12px;
+      appearance: none;
+      border: 3px solid var(--black);
+      border-radius: 50% 50% 7px 7px;
+      background: var(--ink);
+      box-shadow: 3px 3px 0 var(--mustard);
+    }
+
+    .range::-moz-range-thumb {
+      width: 24px;
+      height: 27px;
+      border: 3px solid var(--black);
+      border-radius: 50% 50% 7px 7px;
+      background: var(--ink);
+      box-shadow: 3px 3px 0 var(--mustard);
+    }
+
+    .range-note {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-trigger {
+      width: 100%;
+      min-height: 52px;
+      padding: 10px 46px 10px 14px;
+      border: 3px solid var(--black);
+      color: var(--ink-deep);
+      background: var(--paper-pale);
+      cursor: pointer;
+      font-weight: 700;
+      text-align: left;
+      box-shadow: 5px 5px 0 var(--brick);
+    }
+
+    .dropdown-trigger::after {
+      position: absolute;
+      top: 18px;
+      right: 16px;
+      width: 12px;
+      height: 12px;
+      border-right: 4px solid var(--ink);
+      border-bottom: 4px solid var(--ink);
+      content: "";
+      transform: rotate(45deg);
+      transition: transform 160ms ease;
+    }
+
+    .dropdown-trigger[aria-expanded="true"]::after {
+      top: 23px;
+      transform: rotate(225deg);
+    }
+
+    .dropdown-trigger:hover {
+      background: var(--mustard);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      z-index: 12;
+      top: calc(100% + 9px);
+      left: 0;
+      width: 100%;
+      padding: 7px;
+      border: 4px solid var(--black);
+      background:
+        radial-gradient(circle, rgba(23,62,58,0.12) 0 1px, transparent 1.5px) 0 0 / 7px 7px,
+        var(--paper-pale);
+      box-shadow: 9px 9px 0 var(--ink);
+    }
+
+    .dropdown-option {
+      width: 100%;
+      min-height: 43px;
+      padding: 8px 10px;
+      border: 0;
+      border-bottom: 2px dashed rgba(32, 25, 19, 0.45);
+      color: var(--black);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .dropdown-option:last-child {
+      border-bottom: 0;
+    }
+
+    .dropdown-option:hover,
+    .dropdown-option.is-active,
+    .dropdown-option[aria-selected="true"] {
+      color: var(--paper-pale);
+      background: var(--brick);
+    }
+
+    .tab-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 4px solid var(--black);
+    }
+
+    .tab {
+      min-height: 45px;
+      padding: 9px 14px;
+      border: 3px solid var(--black);
+      border-bottom: 0;
+      color: var(--ink-deep);
+      background: var(--paper-deep);
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      transform: translateY(4px);
+    }
+
+    .tab + .tab {
+      margin-left: -3px;
+    }
+
+    .tab:hover {
+      background: var(--mustard);
+    }
+
+    .tab[aria-selected="true"] {
+      z-index: 1;
+      color: var(--paper-pale);
+      background: var(--ink);
+      transform: translateY(0);
+    }
+
+    .tab-panel {
+      min-height: 150px;
+      padding: 24px 18px 10px;
+    }
+
+    .tab-panel h4 {
+      margin: 0 0 8px;
+      color: var(--brick-deep);
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      text-transform: uppercase;
+    }
+
+    .tab-panel p {
+      margin: 0;
+      color: #493a2d;
+    }
+
+    .progress-shell {
+      position: relative;
+      height: 38px;
+      overflow: hidden;
+      border: 4px solid var(--black);
+      background:
+        repeating-linear-gradient(135deg, rgba(32,25,19,0.12) 0 5px, transparent 5px 10px),
+        var(--paper-deep);
+      box-shadow: 5px 5px 0 var(--mustard);
+    }
+
+    .progress-fill {
+      width: 37%;
+      height: 100%;
+      background:
+        radial-gradient(circle, rgba(255,240,201,0.28) 0 1px, transparent 1.5px) 0 0 / 6px 6px,
+        var(--brick);
+      transition: width 360ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-copy {
+      margin: 13px 0 17px;
+      color: var(--muted);
+    }
+
+    .small-action {
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 3px solid var(--black);
+      color: var(--paper-pale);
+      background: var(--ink);
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--brick);
+    }
+
+    .small-action:hover {
+      color: var(--black);
+      background: var(--mustard);
+    }
+
+    .small-action:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--brick);
+    }
+
+    .gauge {
+      position: relative;
+      height: 52px;
+      padding: 8px;
+      border: 4px solid var(--black);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 23px, rgba(32,25,19,0.5) 24px 26px),
+        var(--paper-deep);
+    }
+
+    .gauge-fill {
+      width: 68%;
+      height: 100%;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,240,201,0.24) 0 3px, transparent 3px 8px),
+        var(--mustard);
+      transition: width 220ms ease;
+    }
+
+    .gauge-danger {
+      position: absolute;
+      top: 0;
+      right: 19%;
+      bottom: 0;
+      border-left: 4px solid var(--brick);
+    }
+
+    .gauge-actions {
+      margin-top: 17px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .gauge-actions .small-action {
+      min-width: 48px;
+      padding-inline: 11px;
+    }
+
+    .dispatch-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .dispatch-button {
+      min-height: 112px;
+      padding: 17px;
+      border: 4px solid var(--black);
+      color: var(--ink-deep);
+      background: var(--mustard);
+      cursor: pointer;
+      font-weight: 700;
+      line-height: 1.25;
+      text-transform: uppercase;
+      box-shadow: 6px 6px 0 var(--brick);
+      transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+
+    .dispatch-button:hover {
+      color: var(--paper-pale);
+      background: var(--brick);
+      transform: translate(-2px, -2px) rotate(-1deg);
+      box-shadow: 9px 9px 0 var(--ink);
+    }
+
+    .dispatch-button:active {
+      transform: translate(4px, 4px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: grid;
+    }
+
+    .tooltip {
+      position: absolute;
+      z-index: 10;
+      left: 50%;
+      bottom: calc(100% + 12px);
+      width: min(220px, 82vw);
+      padding: 9px 11px;
+      border: 3px solid var(--black);
+      color: var(--paper-pale);
+      background: var(--ink);
+      font-size: 0.82rem;
+      line-height: 1.3;
+      text-align: center;
+      box-shadow: 4px 4px 0 var(--brick);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 8px) rotate(-1deg);
+      transition: opacity 130ms ease, transform 130ms ease;
+    }
+
+    .tooltip::after {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border-right: 3px solid var(--black);
+      border-bottom: 3px solid var(--black);
+      content: "";
+      background: var(--ink);
+      transform: translate(-50%, -6px) rotate(45deg);
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-wrap:focus-within .tooltip {
+      opacity: 1;
+      transform: translate(-50%, 0) rotate(-1deg);
+    }
+
+    .footer {
+      border-top: 5px solid var(--black);
+      color: var(--paper-pale);
+      background:
+        radial-gradient(circle, rgba(241,221,176,0.14) 0 1px, transparent 1.5px) 0 0 / 7px 7px,
+        var(--ink);
+    }
+
+    .footer-inner {
+      width: min(100%, var(--page-width));
+      min-height: 122px;
+      margin-inline: auto;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-line {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .footer-mark {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border: 4px double var(--mustard);
+      color: var(--mustard);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+    }
+
+    .modal-layer {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      padding: 20px;
+      display: grid;
+      place-items: center;
+      background: rgba(13, 41, 39, 0.84);
+      backdrop-filter: blur(3px);
+    }
+
+    .modal {
+      position: relative;
+      width: min(100%, 560px);
+      max-height: min(88vh, 650px);
+      overflow: auto;
+      padding: clamp(28px, 6vw, 48px);
+      border: 6px solid var(--black);
+      color: var(--black);
+      background:
+        radial-gradient(circle, rgba(152,47,37,0.15) 0 1px, transparent 1.5px) 0 0 / 8px 8px,
+        var(--paper-pale);
+      box-shadow: 14px 14px 0 var(--mustard);
+      animation: modal-arrive 260ms ease-out;
+    }
+
+    .modal::before {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 82px;
+      height: 82px;
+      border: 5px double var(--brick);
+      border-radius: 50%;
+      content: "";
+      opacity: 0.34;
+      transform: rotate(14deg);
+    }
+
+    .modal-kicker {
+      margin: 0 0 8px;
+      color: var(--brick-deep);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .modal h2 {
+      position: relative;
+      max-width: 9ch;
+      margin: 0;
+      color: var(--ink-deep);
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 8vw, 4rem);
+      font-weight: 900;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .modal-copy {
+      position: relative;
+      margin: 20px 0 28px;
+      color: #493a2d;
+      font-size: 1.06rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 130;
+      right: max(20px, calc((100vw - var(--page-width)) / 2 + 24px));
+      bottom: 24px;
+      width: min(390px, calc(100vw - 40px));
+      padding: 17px 48px 17px 18px;
+      border: 4px solid var(--black);
+      color: var(--paper-pale);
+      background:
+        radial-gradient(circle, rgba(241,221,176,0.18) 0 1px, transparent 1.5px) 0 0 / 6px 6px,
+        var(--brick);
+      box-shadow: 8px 8px 0 var(--ink);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      transform: translateY(calc(100% + 50px)) rotate(1deg);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 260ms cubic-bezier(0.2, 1.4, 0.3, 1), opacity 180ms ease;
+    }
+
+    .toast::after {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      color: var(--mustard);
+      content: "★";
+      font-size: 1.4rem;
+      transform: translateY(-50%);
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0) rotate(-1deg);
+    }
+
+    .body-locked {
+      overflow: hidden;
+    }
+
+    @keyframes flash {
+      50% {
+        background: var(--mustard);
+      }
+    }
+
+    @keyframes stamp-slam {
+      0% {
+        opacity: 0;
+        transform: translateY(-140px) scale(1.9) rotate(-2deg);
+      }
+      58% {
+        opacity: 1;
+        transform: translateY(8px) scale(0.88) rotate(-16deg);
+      }
+      100% {
+        transform: translateY(0) scale(1) rotate(-13deg);
+      }
+    }
+
+    @keyframes modal-arrive {
+      from {
+        opacity: 0;
+        transform: translateY(35px) rotate(-2deg) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0) scale(1);
+      }
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .cover-stage {
+        width: min(100%, 530px);
+        margin-inline: auto;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .section-deck {
+        max-width: 60ch;
+      }
+
+      .span-7,
+      .span-6,
+      .span-5 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 620px) {
+      :root {
+        --edge: 16px;
+      }
+
+      body {
+        font-size: 17px;
+      }
+
+      .page-shell,
+      .status-inner,
+      .footer-inner {
+        padding-inline: 16px;
+      }
+
+      .status-inner {
+        min-height: 52px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+      }
+
+      .status-flash {
+        text-align: left;
+      }
+
+      .hero {
+        padding-block: 48px 68px;
+        gap: 54px;
+      }
+
+      .hero h1 {
+        overflow-wrap: break-word;
+        font-size: clamp(2.85rem, 13vw, 4.5rem);
+        text-shadow:
+          3px 2px 0 var(--mustard),
+          -2px -1px 0 rgba(152, 47, 37, 0.88);
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .pulp-book {
+        width: calc(100% - 30px);
+        box-shadow:
+          8px 9px 0 var(--ink),
+          13px 14px 0 var(--black);
+        transform: rotate(1.25deg);
+      }
+
+      .cover-stage::before {
+        right: 12px;
+        transform: none;
+      }
+
+      .book-underpage {
+        padding: 26px;
+      }
+
+      .book-title {
+        margin-top: 48px;
+        font-size: clamp(2.55rem, 15vw, 4.2rem);
+      }
+
+      .book-stamp {
+        width: 94px;
+        right: 17px;
+        bottom: 21px;
+        font-size: 0.68rem;
+      }
+
+      .page-turner {
+        right: 0;
+      }
+
+      .controls-area {
+        padding-block: 62px 72px;
+      }
+
+      .control-grid {
+        gap: 18px;
+      }
+
+      .control-card {
+        padding: 22px 18px;
+        box-shadow: 5px 6px 0 var(--shadow);
+      }
+
+      .button-rack {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button-rack .btn {
+        width: 100%;
+      }
+
+      .dispatch-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .dispatch-button {
+        min-height: 76px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .modal-layer {
+        padding: 16px;
+      }
+
+      .modal {
+        padding: 28px 22px;
+        box-shadow: 8px 8px 0 var(--mustard);
+      }
+
+      .toast {
+        right: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="status-strip" aria-label="Edition status">
+    <div class="status-inner">
+      <span class="status-name">The Midnight Ledger <span class="status-bullet">★</span> Vol. VIII <span class="status-bullet">★</span> Ten Cents</span>
+      <span class="status-flash">After-midnight edition is rolling</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero page-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">A penny-dreadful control room</p>
+        <h1 id="hero-title">Make every click a cliffhanger.</h1>
+        <p class="hero-deck">Run headlines, tune the danger, and dispatch a tale before the presses cool. Every control is cut from the same cheap paper and expensive nerve.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="enter-desk" type="button">Enter the publisher’s desk</button>
+          <button class="btn btn-stamp" id="stamp-issue" type="button">Stamp this issue</button>
+        </div>
+        <p class="hero-note" id="hero-state" aria-live="polite">Issue No. 47 is waiting for a fearless editor.</p>
+      </div>
+
+      <div class="cover-stage" aria-label="Interactive paperback cover">
+        <article class="pulp-book" id="pulp-book">
+          <div class="book-underpage" aria-hidden="true">
+            <span class="underpage-chapter">Chapter II — The Hidden Plate</span>
+            <p class="underpage-title">A fresh lead bleeds through.</p>
+            <p class="underpage-copy">The page turns, the ink shifts, and a second story waits beneath the first.</p>
+          </div>
+          <div class="book-front">
+            <span class="book-price">10¢</span>
+            <span class="book-series">The Midnight Ledger</span>
+            <p class="book-title">Click of Doom!</p>
+            <p class="book-tagline">One editor. Five controls. No safe ending.</p>
+            <span class="book-stamp" id="cover-stamp" aria-hidden="true">Late edition approved</span>
+          </div>
+        </article>
+        <button class="page-turner" id="page-turner" type="button" aria-pressed="false">Turn the page</button>
+      </div>
+    </section>
+
+    <section class="controls-area page-shell" id="publisher-desk" aria-labelledby="desk-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">The complete apparatus</p>
+          <h2 id="desk-title">Publisher’s desk</h2>
+        </div>
+        <p class="section-deck">Set the type, choose the threat, and send the serial into the night. The presses remember every choice until you change it.</p>
+      </div>
+
+      <div class="control-grid">
+        <article class="control-card span-12" aria-labelledby="buttons-title">
+          <div class="card-header">
+            <p class="card-number">Desk I — Command slugs</p>
+            <h3 id="buttons-title">Five ways to make the front page</h3>
+            <p>Each command carries a different editorial weight, from ticket stub to condemned proof.</p>
+          </div>
+          <div class="button-rack">
+            <button class="btn btn-ticket demo-action" type="button" data-message="The lead story is on the composing stone.">Read the lead</button>
+            <button class="btn btn-burst demo-action" type="button" data-message="The presses are racing the sunrise.">Rush to press</button>
+            <button class="btn btn-night demo-action" type="button" data-message="The night edition slipped under the door.">Night edition</button>
+            <button class="btn btn-proof demo-action" type="button" data-message="A ghost proof appeared in red pencil.">Ghost proof</button>
+            <button class="btn btn-disabled" type="button" disabled>Pulled from print</button>
+          </div>
+        </article>
+
+        <article class="control-card span-7" aria-labelledby="copy-title">
+          <div class="card-header">
+            <p class="card-number">Desk II — Copy &amp; pressure</p>
+            <h3 id="copy-title">Compose the scream</h3>
+            <p>Give the cover a line, then roll the ink as loud as the case demands.</p>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="headline-input">Cover headline</label>
+            <div class="text-field-wrap">
+              <input class="text-field" id="headline-input" type="text" maxlength="48" placeholder="e.g. The Switch at Midnight" autocomplete="off">
+              <span class="char-count" id="char-count" aria-live="polite">0 / 48</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="range-head">
+              <label class="field-label" for="ink-range">Ink roller pressure</label>
+              <output class="range-output" id="ink-output" for="ink-range">62%</output>
+            </div>
+            <input class="range" id="ink-range" type="range" min="0" max="100" value="62">
+            <p class="range-note">Low is a whisper. High leaves fingerprints on the moon.</p>
+          </div>
+        </article>
+
+        <article class="control-card span-5" aria-labelledby="choices-title">
+          <div class="card-header">
+            <p class="card-number">Desk III — Moral hazards</p>
+            <h3 id="choices-title">Choose the danger</h3>
+            <p>Mark one villain, approve one risk, and light the late-edition roller.</p>
+          </div>
+          <fieldset class="field-group">
+            <legend class="choice-legend">Lead suspect</legend>
+            <div class="choice-list">
+              <label class="choice">
+                <input type="radio" name="suspect" value="velvet" checked>
+                <span>The Velvet Phantom</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="suspect" value="clockmaker">
+                <span>The Blind Clockmaker</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="suspect" value="heiress">
+                <span>The Vanishing Heiress</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="field-group">
+            <label class="choice">
+              <input id="risk-check" type="checkbox">
+              <span>Print the dangerous photograph</span>
+            </label>
+          </div>
+          <div class="field-group switch-row">
+            <span class="switch-copy">
+              <strong>Late roller</strong>
+              <span id="switch-state">Standing by</span>
+            </span>
+            <label class="switch">
+              <span class="visually-hidden" hidden>Toggle the late roller</span>
+              <input id="late-switch" type="checkbox" role="switch" aria-label="Toggle the late-edition roller">
+              <span class="switch-track" aria-hidden="true"></span>
+            </label>
+          </div>
+        </article>
+
+        <article class="control-card span-5" aria-labelledby="dropdown-title">
+          <div class="card-header">
+            <p class="card-number">Desk IV — Drop file</p>
+            <h3 id="dropdown-title">Select a bureau</h3>
+            <p>Route the assignment by keyboard or pointer. Every city has a fresh disaster.</p>
+          </div>
+          <div class="dropdown" id="bureau-dropdown">
+            <button class="dropdown-trigger" id="bureau-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="bureau-menu">Dockside Bureau</button>
+            <div class="dropdown-menu" id="bureau-menu" role="listbox" aria-label="News bureau" hidden>
+              <button class="dropdown-option" type="button" role="option" aria-selected="true" data-value="Dockside Bureau">Dockside Bureau</button>
+              <button class="dropdown-option" type="button" role="option" aria-selected="false" data-value="Hotel Noir Desk">Hotel Noir Desk</button>
+              <button class="dropdown-option" type="button" role="option" aria-selected="false" data-value="County Morgue Wire">County Morgue Wire</button>
+              <button class="dropdown-option" type="button" role="option" aria-selected="false" data-value="Last Train Office">Last Train Office</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="control-card span-7" aria-labelledby="tabs-title">
+          <div class="card-header">
+            <p class="card-number">Desk V — Serial files</p>
+            <h3 id="tabs-title">Open the case jacket</h3>
+            <p>Move between the evidence tabs with the arrow keys and follow the red thread.</p>
+          </div>
+          <div class="tab-list" role="tablist" aria-label="Case jacket">
+            <button class="tab" id="tab-clue" type="button" role="tab" aria-selected="true" aria-controls="panel-clue" tabindex="0">The clue</button>
+            <button class="tab" id="tab-alibi" type="button" role="tab" aria-selected="false" aria-controls="panel-alibi" tabindex="-1">The alibi</button>
+            <button class="tab" id="tab-twist" type="button" role="tab" aria-selected="false" aria-controls="panel-twist" tabindex="-1">The twist</button>
+          </div>
+          <section class="tab-panel" id="panel-clue" role="tabpanel" aria-labelledby="tab-clue">
+            <h4>One mustard glove</h4>
+            <p>Found beside a warm typesetter at 12:03 a.m. The right index finger is stained brick red.</p>
+          </section>
+          <section class="tab-panel" id="panel-alibi" role="tabpanel" aria-labelledby="tab-alibi" hidden>
+            <h4>Two clocks disagree</h4>
+            <p>The hotel swears it was eleven. The station bell insists it was already tomorrow.</p>
+          </section>
+          <section class="tab-panel" id="panel-twist" role="tabpanel" aria-labelledby="tab-twist" hidden>
+            <h4>The reader did it</h4>
+            <p>The final proof carries your fingerprints—and the last paragraph knows your name.</p>
+          </section>
+        </article>
+
+        <article class="control-card span-6" aria-labelledby="progress-title">
+          <div class="card-header">
+            <p class="card-number">Desk VI — Press run</p>
+            <h3 id="progress-title">Race the sunrise</h3>
+            <p>Advance the serial through four breathless deadlines.</p>
+          </div>
+          <div class="progress-shell" id="press-progress" role="progressbar" aria-label="Press run completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="37">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <p class="progress-copy" id="progress-copy" aria-live="polite">37% — Plates locked; the first reel is turning.</p>
+          <button class="small-action" id="advance-progress" type="button">Advance the story</button>
+        </article>
+
+        <article class="control-card span-6" aria-labelledby="gauge-title">
+          <div class="card-header">
+            <p class="card-number">Desk VII — Suspense meter</p>
+            <h3 id="gauge-title">Measure the peril</h3>
+            <p>Keep the reader leaning forward without tipping the whole city into panic.</p>
+          </div>
+          <div class="gauge-head">
+            <span class="field-label">Reader panic</span>
+            <output class="gauge-output" id="gauge-output">68 / 100</output>
+          </div>
+          <div class="gauge" id="panic-gauge" role="meter" aria-label="Reader panic" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68">
+            <div class="gauge-fill" id="gauge-fill"></div>
+            <span class="gauge-danger" aria-hidden="true"></span>
+          </div>
+          <div class="gauge-actions">
+            <button class="small-action" id="gauge-down" type="button" aria-label="Lower reader panic">−</button>
+            <button class="small-action" id="gauge-up" type="button" aria-label="Raise reader panic">+</button>
+            <button class="small-action" id="gauge-reset" type="button">Reset nerve</button>
+          </div>
+        </article>
+
+        <article class="control-card span-12" aria-labelledby="dispatch-title">
+          <div class="card-header">
+            <p class="card-number">Desk VIII — Final dispatch</p>
+            <h3 id="dispatch-title">Interrupt the presses</h3>
+            <p>Open a confidential cable, throw a toast onto the wire, or reveal an editor’s margin note.</p>
+          </div>
+          <div class="dispatch-actions">
+            <button class="dispatch-button" id="open-modal" type="button">Open the confidential cable</button>
+            <button class="dispatch-button" id="show-toast" type="button">Flash a citywide bulletin</button>
+            <span class="tooltip-wrap">
+              <button class="dispatch-button" type="button" aria-describedby="margin-tooltip">Hover for the margin note</button>
+              <span class="tooltip" id="margin-tooltip" role="tooltip">Never trust a clean proof after midnight.</span>
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-line">Tomorrow’s truth, printed tonight.</p>
+      <span class="footer-mark">Keep it lurid</span>
+    </div>
+  </footer>
+
+  <div class="modal-layer" id="modal-layer" hidden>
+    <section class="modal" id="confidential-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-copy">
+      <p class="modal-kicker">Eyes only — Wire 11-B</p>
+      <h2 id="modal-title">The presses know too much.</h2>
+      <p class="modal-copy" id="modal-copy">At 12:17 a.m., the final plate began setting its own type. Approve the run, or bury the proof before dawn.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ticket" id="approve-cable" type="button">Approve the run</button>
+        <button class="btn btn-proof" id="close-modal" type="button">Bury the proof</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">Bulletin dispatched across the sleeping city.</div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const toast = document.getElementById("toast");
+      let toastTimer = 0;
+
+      const showToast = (message) => {
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(() => {
+          toast.classList.remove("is-visible");
+        }, 3200);
+      };
+
+      document.getElementById("enter-desk").addEventListener("click", () => {
+        document.getElementById("publisher-desk").scrollIntoView({
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          block: "start"
+        });
+      });
+
+      const coverStamp = document.getElementById("cover-stamp");
+      const heroState = document.getElementById("hero-state");
+      document.getElementById("stamp-issue").addEventListener("click", () => {
+        coverStamp.classList.remove("is-slammed");
+        window.requestAnimationFrame(() => {
+          coverStamp.classList.add("is-slammed");
+        });
+        heroState.textContent = "Issue No. 47 is stamped for the late edition.";
+        showToast("Approved! Issue No. 47 is racing toward the newsstands.");
+      });
+      coverStamp.addEventListener("animationend", () => {
+        coverStamp.classList.remove("is-slammed");
+      });
+
+      const book = document.getElementById("pulp-book");
+      const pageTurner = document.getElementById("page-turner");
+      pageTurner.addEventListener("click", () => {
+        const turned = book.classList.toggle("is-turned");
+        pageTurner.setAttribute("aria-pressed", String(turned));
+        pageTurner.textContent = turned ? "Close the cover" : "Turn the page";
+        heroState.textContent = turned
+          ? "Chapter II is exposed beneath the crooked cover."
+          : "Issue No. 47 is back under cover.";
+      });
+
+      document.querySelectorAll(".demo-action").forEach((button) => {
+        button.addEventListener("click", () => {
+          showToast(button.dataset.message || "The editor has spoken.");
+        });
+      });
+
+      const headlineInput = document.getElementById("headline-input");
+      const charCount = document.getElementById("char-count");
+      const updateCharacterCount = () => {
+        charCount.textContent = `${headlineInput.value.length} / 48`;
+      };
+      headlineInput.addEventListener("input", updateCharacterCount);
+
+      const inkRange = document.getElementById("ink-range");
+      const inkOutput = document.getElementById("ink-output");
+      const updateInk = () => {
+        const inkValue = Number(inkRange.value);
+        inkOutput.textContent = `${inkValue}%`;
+        inkRange.style.setProperty("--range-value", `${inkValue}%`);
+      };
+      inkRange.addEventListener("input", updateInk);
+      updateInk();
+
+      const lateSwitch = document.getElementById("late-switch");
+      const switchState = document.getElementById("switch-state");
+      lateSwitch.addEventListener("change", () => {
+        switchState.textContent = lateSwitch.checked ? "Rolling after midnight" : "Standing by";
+      });
+
+      const dropdown = document.getElementById("bureau-dropdown");
+      const dropdownTrigger = document.getElementById("bureau-trigger");
+      const dropdownMenu = document.getElementById("bureau-menu");
+      const dropdownOptions = Array.from(dropdownMenu.querySelectorAll('[role="option"]'));
+      let activeOptionIndex = 0;
+
+      const focusDropdownOption = (index) => {
+        activeOptionIndex = (index + dropdownOptions.length) % dropdownOptions.length;
+        dropdownOptions.forEach((option, optionIndex) => {
+          option.classList.toggle("is-active", optionIndex === activeOptionIndex);
+          option.tabIndex = optionIndex === activeOptionIndex ? 0 : -1;
+        });
+        dropdownOptions[activeOptionIndex].focus();
+      };
+
+      const openDropdown = (focusSelected = true) => {
+        dropdownMenu.hidden = false;
+        dropdownTrigger.setAttribute("aria-expanded", "true");
+        const selectedIndex = dropdownOptions.findIndex((option) => option.getAttribute("aria-selected") === "true");
+        activeOptionIndex = selectedIndex >= 0 ? selectedIndex : 0;
+        dropdownOptions.forEach((option, optionIndex) => {
+          option.classList.toggle("is-active", optionIndex === activeOptionIndex);
+          option.tabIndex = optionIndex === activeOptionIndex ? 0 : -1;
+        });
+        if (focusSelected) {
+          dropdownOptions[activeOptionIndex].focus();
+        }
+      };
+
+      const closeDropdown = (returnFocus = false) => {
+        dropdownMenu.hidden = true;
+        dropdownTrigger.setAttribute("aria-expanded", "false");
+        dropdownOptions.forEach((option) => option.classList.remove("is-active"));
+        if (returnFocus) {
+          dropdownTrigger.focus();
+        }
+      };
+
+      const chooseDropdownOption = (option) => {
+        dropdownOptions.forEach((candidate) => {
+          candidate.setAttribute("aria-selected", String(candidate === option));
+        });
+        dropdownTrigger.textContent = option.dataset.value || option.textContent;
+        closeDropdown(true);
+        showToast(`${dropdownTrigger.textContent} is now on the wire.`);
+      };
+
+      dropdownTrigger.addEventListener("click", () => {
+        if (dropdownMenu.hidden) {
+          openDropdown();
+        } else {
+          closeDropdown();
+        }
+      });
+
+      dropdownTrigger.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault();
+          openDropdown(false);
+          focusDropdownOption(event.key === "ArrowDown" ? activeOptionIndex : activeOptionIndex - 1);
+        }
+      });
+
+      dropdownOptions.forEach((option, optionIndex) => {
+        option.tabIndex = optionIndex === 0 ? 0 : -1;
+        option.addEventListener("click", () => chooseDropdownOption(option));
+        option.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            focusDropdownOption(optionIndex + 1);
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            focusDropdownOption(optionIndex - 1);
+          } else if (event.key === "Home") {
+            event.preventDefault();
+            focusDropdownOption(0);
+          } else if (event.key === "End") {
+            event.preventDefault();
+            focusDropdownOption(dropdownOptions.length - 1);
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            chooseDropdownOption(option);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            closeDropdown(true);
+          } else if (event.key === "Tab") {
+            closeDropdown();
+          }
+        });
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!dropdown.contains(event.target) && !dropdownMenu.hidden) {
+          closeDropdown();
+        }
+      });
+
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const activateTab = (tab, moveFocus = true) => {
+        tabs.forEach((candidate) => {
+          const selected = candidate === tab;
+          candidate.setAttribute("aria-selected", String(selected));
+          candidate.tabIndex = selected ? 0 : -1;
+          const panel = document.getElementById(candidate.getAttribute("aria-controls"));
+          panel.hidden = !selected;
+        });
+        if (moveFocus) {
+          tab.focus();
+        }
+      };
+
+      tabs.forEach((tab, tabIndex) => {
+        tab.addEventListener("click", () => activateTab(tab, false));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex = null;
+          if (event.key === "ArrowRight") {
+            nextIndex = (tabIndex + 1) % tabs.length;
+          } else if (event.key === "ArrowLeft") {
+            nextIndex = (tabIndex - 1 + tabs.length) % tabs.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = tabs.length - 1;
+          }
+          if (nextIndex !== null) {
+            event.preventDefault();
+            activateTab(tabs[nextIndex]);
+          }
+        });
+      });
+
+      const pressProgress = document.getElementById("press-progress");
+      const progressFill = document.getElementById("progress-fill");
+      const progressCopy = document.getElementById("progress-copy");
+      const progressSteps = [
+        { value: 37, copy: "37% — Plates locked; the first reel is turning." },
+        { value: 58, copy: "58% — Bundles tied; the river route is loaded." },
+        { value: 79, copy: "79% — Newsboys briefed; the city starts to stir." },
+        { value: 100, copy: "100% — Extra! The whole dark city has the story." }
+      ];
+      let progressStepIndex = 0;
+      document.getElementById("advance-progress").addEventListener("click", () => {
+        progressStepIndex = (progressStepIndex + 1) % progressSteps.length;
+        const progressStep = progressSteps[progressStepIndex];
+        progressFill.style.width = `${progressStep.value}%`;
+        pressProgress.setAttribute("aria-valuenow", String(progressStep.value));
+        progressCopy.textContent = progressStep.copy;
+        if (progressStep.value === 100) {
+          showToast("Extra! The final bundle has cleared the pressroom.");
+        }
+      });
+
+      const panicGauge = document.getElementById("panic-gauge");
+      const gaugeFill = document.getElementById("gauge-fill");
+      const gaugeOutput = document.getElementById("gauge-output");
+      let gaugeValue = 68;
+      const updateGauge = (nextValue) => {
+        gaugeValue = Math.max(0, Math.min(100, nextValue));
+        gaugeFill.style.width = `${gaugeValue}%`;
+        gaugeOutput.textContent = `${gaugeValue} / 100`;
+        panicGauge.setAttribute("aria-valuenow", String(gaugeValue));
+      };
+      document.getElementById("gauge-down").addEventListener("click", () => updateGauge(gaugeValue - 8));
+      document.getElementById("gauge-up").addEventListener("click", () => updateGauge(gaugeValue + 8));
+      document.getElementById("gauge-reset").addEventListener("click", () => updateGauge(50));
+
+      const modalLayer = document.getElementById("modal-layer");
+      const modal = document.getElementById("confidential-modal");
+      const modalOpenButton = document.getElementById("open-modal");
+      const modalCloseButton = document.getElementById("close-modal");
+      const pageRegions = [
+        document.querySelector(".status-strip"),
+        document.querySelector("main"),
+        document.querySelector(".footer")
+      ];
+      let lastFocusedElement = null;
+
+      const getFocusableModalElements = () => Array.from(
+        modal.querySelectorAll('button:not(:disabled), [href], input:not(:disabled), [tabindex]:not([tabindex="-1"])')
+      );
+
+      const openModal = () => {
+        if (!dropdownMenu.hidden) {
+          closeDropdown();
+        }
+        lastFocusedElement = document.activeElement;
+        modalLayer.hidden = false;
+        document.body.classList.add("body-locked");
+        pageRegions.forEach((region) => region.setAttribute("inert", ""));
+        window.requestAnimationFrame(() => {
+          getFocusableModalElements()[0].focus();
+        });
+      };
+
+      const closeModal = () => {
+        modalLayer.hidden = true;
+        document.body.classList.remove("body-locked");
+        pageRegions.forEach((region) => region.removeAttribute("inert"));
+        if (lastFocusedElement instanceof HTMLElement) {
+          lastFocusedElement.focus();
+        }
+      };
+
+      modalOpenButton.addEventListener("click", openModal);
+      modalCloseButton.addEventListener("click", closeModal);
+      document.getElementById("approve-cable").addEventListener("click", () => {
+        closeModal();
+        showToast("Cable approved. The forbidden plate is rolling.");
+      });
+
+      modalLayer.addEventListener("pointerdown", (event) => {
+        if (event.target === modalLayer) {
+          closeModal();
+        }
+      });
+
+      modalLayer.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal();
+          return;
+        }
+        if (event.key !== "Tab") {
+          return;
+        }
+        const focusableElements = getFocusableModalElements();
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+        if (event.shiftKey && document.activeElement === firstFocusable) {
+          event.preventDefault();
+          lastFocusable.focus();
+        } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+          event.preventDefault();
+          firstFocusable.focus();
+        }
+      });
+
+      document.getElementById("show-toast").addEventListener("click", () => {
+        showToast("Bulletin dispatched across the sleeping city.");
+      });
+    })();
+  </script>
+</body>
+</html>
