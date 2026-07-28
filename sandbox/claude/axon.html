@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DATUM · 轴测制图台 — AXON</title>
-<meta name="description" content="AXON 视觉方向自由稿：轴测蓝图。蓝图青灰底、制图白线、单枚橙强调。">
+<title>DATUM · Isometric Drafting Table — AXON</title>
+<meta name="description" content="AXON visual direction study: isometric blueprint. Blueprint slate ground, drafting white lines, a single orange accent.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -645,23 +645,23 @@ body.no-leader .leader{opacity:0}
 
   <header class="hero">
     <div class="strip" data-rv>
-      <span>图号 <b>DWG-AXON-001</b></span>
-      <span>投影 <b>轴测 30°</b></span>
-      <span>比例 <b>1:1</b></span>
-      <span>图幅 <b id="stripSize">A2</b></span>
-      <span>第 <b>1</b> 张 / 共 <b>1</b> 张</span>
+      <span>DWG NO. <b>DWG-AXON-001</b></span>
+      <span>PROJECTION <b>ISOMETRIC 30°</b></span>
+      <span>SCALE <b>1:1</b></span>
+      <span>SIZE <b id="stripSize">A2</b></span>
+      <span>SHEET <b>1</b> OF <b>1</b></span>
     </div>
 
     <div class="hero-grid">
       <div>
         <div class="wordmark" data-rv style="--d:.05s">Datum</div>
-        <div class="hero-sub" data-rv style="--d:.1s">轴测制图台 · 版本 4.2 · 校验 R3</div>
-        <h1 data-rv style="--d:.16s">凡未标注者，<br><em>不存在</em></h1>
-        <p class="lede" data-rv style="--d:.22s">这里没有「大概」。每一处圆角、每一道留白，先落基准线，再给尺寸，最后才允许上手。</p>
-        <p class="lede" data-rv style="--d:.26s">界面从图纸里长出来：控件是零件，面板是挤出体，注释是它们唯一的说明书。</p>
+        <div class="hero-sub" data-rv style="--d:.1s">Isometric drafting table · version 4.2 · check R3</div>
+        <h1 data-rv style="--d:.16s">What is not dimensioned<br><em>does not exist</em></h1>
+        <p class="lede" data-rv style="--d:.22s">Nothing here is “about right”. Every fillet and every gap gets a datum line first, a dimension second, and only then may a hand touch it.</p>
+        <p class="lede" data-rv style="--d:.26s">The interface grows out of the drawing: controls are parts, panels are extrusions, and the annotations are their only manual.</p>
         <div class="hero-act" data-rv style="--d:.32s">
-          <button class="btn btn--solid" data-toast="已进入制图台。基准面 XY 已锁定。">进入制图台</button>
-          <button class="btn" data-toast="图例已展开。件号对照见右侧引出线。">查看图例</button>
+          <button class="btn btn--solid" data-toast="You are on the drafting table. Datum plane XY is locked.">Enter the drafting table</button>
+          <button class="btn" data-toast="Legend expanded. Part numbers are keyed to the leader lines on the right.">View the legend</button>
         </div>
         <div class="scale" data-rv style="--d:.38s">
           <div class="scale-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -670,7 +670,7 @@ body.no-leader .leader{opacity:0}
       </div>
 
       <figure class="hero-fig" data-rv style="--d:.2s">
-        <svg class="asm" id="asm" role="img" aria-label="四层装配体的 30 度轴测爆炸图：基准面、结构层、控件层、注释层"></svg>
+        <svg class="asm" id="asm" role="img" aria-label="A four-layer assembly in a 30-degree isometric exploded view: datum plane, structure layer, control layer, annotation layer"></svg>
         <svg class="compass" viewBox="0 0 78 78" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1">
           <circle cx="39" cy="39" r="30"/>
           <circle cx="39" cy="39" r="24" stroke-dasharray="1 5"/>
@@ -680,8 +680,8 @@ body.no-leader .leader{opacity:0}
           <text x="39" y="72" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="currentColor" stroke="none" letter-spacing="1">N 30°</text>
         </svg>
         <figcaption class="fig-foot">
-          <button class="btn btn--sm" id="explode" aria-pressed="false">爆炸视图</button>
-          <span class="mono mono--dim">ASSY-01 · 4 件 · 总高 <b id="asmH" class="acc">32.0</b> MM</span>
+          <button class="btn btn--sm" id="explode" aria-pressed="false">Exploded view</button>
+          <span class="mono mono--dim">ASSY-01 · 4 parts · overall height <b id="asmH" class="acc">32.0</b> MM</span>
         </figcaption>
       </figure>
     </div>
@@ -689,33 +689,33 @@ body.no-leader .leader{opacity:0}
 
   <div class="cut" aria-hidden="true">
     <span class="tag">A</span><i class="arw"></i><i class="rail"></i>
-    <span class="note">剖切 A—A · 触发件</span>
+    <span class="note">Section A—A · triggers</span>
     <i class="rail"></i><i class="arw"></i><span class="tag">A</span>
   </div>
 
   <section class="sec" id="triggers">
     <div class="sec-head" data-rv>
-      <span class="zone">区 A-2</span>
-      <h2>触发件</h2>
-      <span class="mono">TRIGGERS · 4 型</span>
+      <span class="zone">Zone A-2</span>
+      <h2>Triggers</h2>
+      <span class="mono">TRIGGERS · 4 types</span>
     </div>
-    <p class="sec-lede" data-rv style="--d:.06s">三种落笔力度：实心件只给最终动作，描边件给可退回的动作，虚件只留一条引出线。已归档的件锁死，不收输入。</p>
+    <p class="sec-lede" data-rv style="--d:.06s">Three weights of stroke: a solid part carries only the final action, an outlined part carries anything reversible, and a ghost part leaves nothing but a leader line. An archived part is locked and takes no input.</p>
 
     <div class="cards">
       <div class="slab c7" data-rv>
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>落笔力度</h3><span class="mono mono--dim">DET-01</span></div>
+          <div class="card-h"><h3>Stroke weight</h3><span class="mono mono--dim">DET-01</span></div>
           <div class="stack">
             <div>
               <div class="row">
-                <button class="btn btn--solid" data-toast="已落笔。线迹写入图层 CONTROL。">落笔</button>
-                <button class="btn" data-toast="基准面已取。后续尺寸从此面起算。">取基准</button>
-                <button class="btn btn--ghost" data-toast="末笔已撤。图面回到上一版。">撤线</button>
-                <button class="btn" disabled>已归档</button>
+                <button class="btn btn--solid" data-toast="Stroke laid down. The trace is written to layer CONTROL.">Lay a stroke</button>
+                <button class="btn" data-toast="Datum taken. Every later dimension counts from this face.">Take a datum</button>
+                <button class="btn btn--ghost" data-toast="Last stroke withdrawn. The sheet is back to its previous state.">Undo a line</button>
+                <button class="btn" disabled>Archived</button>
               </div>
               <div class="dim" style="--dd:.2s;margin-top:14px">
-                <i class="ext"></i><i class="bar"></i><b>件宽 98.0</b><i class="bar"></i><i class="ext"></i>
+                <i class="ext"></i><i class="bar"></i><b>WIDTH 98.0</b><i class="bar"></i><i class="ext"></i>
               </div>
             </div>
             <div class="leader">
@@ -723,13 +723,13 @@ body.no-leader .leader{opacity:0}
               <svg width="42" height="34" viewBox="0 0 42 34" fill="none" stroke="currentColor" aria-hidden="true">
                 <path d="M2 32L18 8h22"/><circle cx="2" cy="32" r="2.5" fill="currentColor"/>
               </svg>
-              <span class="leader-txt">实心件：全图仅此一处橙色。同一张图上出现第二处，即为错图。</span>
+              <span class="leader-txt">Solid part: the only orange on the sheet. A second one anywhere on the same drawing is an error.</span>
             </div>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>BTN-4</dd></div>
-            <div><dt>线宽</dt><dd>0.25 mm</dd></div>
-            <div><dt>状态</dt><dd>已审</dd></div>
+            <div><dt>Part no.</dt><dd>BTN-4</dd></div>
+            <div><dt>Line width</dt><dd>0.25 mm</dd></div>
+            <div><dt>Status</dt><dd>Approved</dd></div>
           </dl>
         </div>
       </div>
@@ -737,21 +737,21 @@ body.no-leader .leader{opacity:0}
       <div class="slab c5" data-rv style="--d:.1s">
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>提示泡</h3><span class="mono mono--dim">DET-02</span></div>
-          <p style="color:var(--line-2);font-size:14px">泡注挂在件上，不占图面。指针停住或键盘落焦，泡注才展开。</p>
+          <div class="card-h"><h3>Balloon note</h3><span class="mono mono--dim">DET-02</span></div>
+          <p style="color:var(--line-2);font-size:14px">A balloon hangs off its part and takes no space on the sheet. It opens only when the pointer rests or the keyboard lands on it.</p>
           <div class="row" style="margin-top:18px">
             <span class="tipwrap">
-              <button class="btn btn--sm" id="tipBtn" aria-describedby="tipBody">悬停查看泡注</button>
-              <span class="tip" id="tipBody" role="tooltip">引出线泡注：圆圈内为件号，横线指向被注释的零件，末端画实心点。</span>
+              <button class="btn btn--sm" id="tipBtn" aria-describedby="tipBody">Hover for the balloon</button>
+              <span class="tip" id="tipBody" role="tooltip">Leader balloon: the circle holds the part number, the line points at the part being annotated, and the end is a filled dot.</span>
             </span>
           </div>
           <div class="dim" style="--dd:.3s;margin-top:22px">
-            <i class="ext"></i><i class="bar"></i><b>泡距 12.0</b><i class="bar"></i><i class="ext"></i>
+            <i class="ext"></i><i class="bar"></i><b>OFFSET 12.0</b><i class="bar"></i><i class="ext"></i>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>TIP-1</dd></div>
-            <div><dt>延时</dt><dd>0.12 S</dd></div>
-            <div><dt>状态</dt><dd>已审</dd></div>
+            <div><dt>Part no.</dt><dd>TIP-1</dd></div>
+            <div><dt>Delay</dt><dd>0.12 S</dd></div>
+            <div><dt>Status</dt><dd>Approved</dd></div>
           </dl>
         </div>
       </div>
@@ -760,32 +760,32 @@ body.no-leader .leader{opacity:0}
 
   <div class="cut" aria-hidden="true">
     <span class="tag">B</span><i class="arw"></i><i class="rail"></i>
-    <span class="note">剖切 B—B · 录入件</span>
+    <span class="note">Section B—B · inputs</span>
     <i class="rail"></i><i class="arw"></i><span class="tag">B</span>
   </div>
 
   <section class="sec" id="inputs">
     <div class="sec-head" data-rv>
-      <span class="zone">区 B-1</span>
-      <h2>录入件</h2>
-      <span class="mono">INPUT · 6 型</span>
+      <span class="zone">Zone B-1</span>
+      <h2>Inputs</h2>
+      <span class="mono">INPUT · 6 types</span>
     </div>
-    <p class="sec-lede" data-rv style="--d:.06s">凡能被填、被选、被拖的，都要给量程与单位。图层开关直接管这张图纸：关掉坐标纸，页面上的坐标纸就真的没了。</p>
+    <p class="sec-lede" data-rv style="--d:.06s">Anything that can be typed into, picked or dragged gets a range and a unit. The layer switches govern this very sheet: turn off the grid paper and the grid paper on this page really is gone.</p>
 
     <div class="cards">
       <div class="slab c6" data-rv>
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>图号与幅面</h3><span class="mono mono--dim">DET-03</span></div>
+          <div class="card-h"><h3>Drawing number and size</h3><span class="mono mono--dim">DET-03</span></div>
           <div class="stack">
             <div class="field" id="dwgField">
-              <label class="lbl" for="dwgNo">图纸编号</label>
+              <label class="lbl" for="dwgNo">Drawing number</label>
               <input class="txt" id="dwgNo" type="text" placeholder="DWG-____-___" value="DWG-AXON-001" autocomplete="off" spellcheck="false">
-              <div class="help"><span class="msg">按 图号-区号-序号 填写</span><span id="dwgCount">12 / 16</span></div>
+              <div class="help"><span class="msg">Write it as DWG-ZONE-SERIAL</span><span id="dwgCount">12 / 16</span></div>
             </div>
 
             <div class="field">
-              <span class="lbl" id="sizeLbl">图幅</span>
+              <span class="lbl" id="sizeLbl">Sheet size</span>
               <div class="sel">
                 <button class="sel-btn" id="sizeBtn" role="combobox" aria-expanded="false" aria-controls="sizePop" aria-haspopup="listbox" aria-labelledby="sizeLbl sizeBtn">
                   <span id="sizeVal">A2 · 594 × 420</span>
@@ -800,9 +800,9 @@ body.no-leader .leader{opacity:0}
             </div>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>FLD-2</dd></div>
-            <div><dt>字体</dt><dd>MONO 14</dd></div>
-            <div><dt>状态</dt><dd>可编辑</dd></div>
+            <div><dt>Part no.</dt><dd>FLD-2</dd></div>
+            <div><dt>Type</dt><dd>MONO 14</dd></div>
+            <div><dt>Status</dt><dd>Editable</dd></div>
           </dl>
         </div>
       </div>
@@ -810,30 +810,30 @@ body.no-leader .leader{opacity:0}
       <div class="slab c6" data-rv style="--d:.1s">
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>线宽与图层</h3><span class="mono mono--dim">DET-04</span></div>
+          <div class="card-h"><h3>Line weight and layers</h3><span class="mono mono--dim">DET-04</span></div>
           <div class="stack">
             <fieldset style="border:0;padding:0;margin:0">
-              <legend class="lbl" style="padding:0 0 10px">线宽等级</legend>
+              <legend class="lbl" style="padding:0 0 10px">Line weight grade</legend>
               <div class="opts">
-                <label class="opt"><input type="radio" name="lw" value="1" checked><span class="mark mark--r"></span><span class="opt-t">细线 0.13</span><span class="opt-n">1 PX</span></label>
-                <label class="opt"><input type="radio" name="lw" value="2"><span class="mark mark--r"></span><span class="opt-t">中线 0.25</span><span class="opt-n">2 PX</span></label>
-                <label class="opt"><input type="radio" name="lw" value="3"><span class="mark mark--r"></span><span class="opt-t">粗线 0.35</span><span class="opt-n">3 PX</span></label>
+                <label class="opt"><input type="radio" name="lw" value="1" checked><span class="mark mark--r"></span><span class="opt-t">Fine 0.13</span><span class="opt-n">1 PX</span></label>
+                <label class="opt"><input type="radio" name="lw" value="2"><span class="mark mark--r"></span><span class="opt-t">Medium 0.25</span><span class="opt-n">2 PX</span></label>
+                <label class="opt"><input type="radio" name="lw" value="3"><span class="mark mark--r"></span><span class="opt-t">Heavy 0.35</span><span class="opt-n">3 PX</span></label>
               </div>
             </fieldset>
 
             <fieldset style="border:0;padding:0;margin:0">
-              <legend class="lbl" style="padding:0 0 10px">图层可见</legend>
+              <legend class="lbl" style="padding:0 0 10px">Layer visibility</legend>
               <div class="opts">
-                <label class="opt"><input type="checkbox" id="lyGrid" checked><span class="mark"></span><span class="opt-t">坐标纸网格</span><span class="opt-n">L-01</span></label>
-                <label class="opt"><input type="checkbox" id="lyDim" checked><span class="mark"></span><span class="opt-t">尺寸标注</span><span class="opt-n">L-02</span></label>
-                <label class="opt"><input type="checkbox" id="lyLead" checked><span class="mark"></span><span class="opt-t">引出线泡注</span><span class="opt-n">L-03</span></label>
+                <label class="opt"><input type="checkbox" id="lyGrid" checked><span class="mark"></span><span class="opt-t">Grid paper</span><span class="opt-n">L-01</span></label>
+                <label class="opt"><input type="checkbox" id="lyDim" checked><span class="mark"></span><span class="opt-t">Dimensions</span><span class="opt-n">L-02</span></label>
+                <label class="opt"><input type="checkbox" id="lyLead" checked><span class="mark"></span><span class="opt-t">Leader balloons</span><span class="opt-n">L-03</span></label>
               </div>
             </fieldset>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>LYR-6</dd></div>
-            <div><dt>当前线宽</dt><dd id="lwOut">0.13 MM</dd></div>
-            <div><dt>可见层</dt><dd id="lyOut">3 / 3</dd></div>
+            <div><dt>Part no.</dt><dd>LYR-6</dd></div>
+            <div><dt>Line width</dt><dd id="lwOut">0.13 MM</dd></div>
+            <div><dt>Layers on</dt><dd id="lyOut">3 / 3</dd></div>
           </dl>
         </div>
       </div>
@@ -841,14 +841,14 @@ body.no-leader .leader{opacity:0}
       <div class="slab c12" data-rv style="--d:.16s">
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>公差带</h3><span class="mono mono--dim">DET-05 · 量程 ±0.50 MM</span></div>
+          <div class="card-h"><h3>Tolerance band</h3><span class="mono mono--dim">DET-05 · range ±0.50 MM</span></div>
           <div class="stack">
             <button class="sw" id="snap" role="switch" aria-checked="false">
               <span class="sw-track" aria-hidden="true"><span class="sw-knob"></span></span>
-              <span class="sw-txt">捕捉到网格（0.05 步进）</span>
+              <span class="sw-txt">Snap to grid (0.05 step)</span>
             </button>
             <div class="field">
-              <label class="lbl" for="tol">公差 ±</label>
+              <label class="lbl" for="tol">Tolerance ±</label>
               <input class="rng" id="tol" type="range" min="-50" max="50" step="1" value="12" aria-describedby="tolOut">
               <div class="rng-scale" aria-hidden="true"><span>-0.50</span><span>-0.25</span><span>0</span><span>+0.25</span><span>+0.50</span></div>
             </div>
@@ -857,9 +857,9 @@ body.no-leader .leader{opacity:0}
             </div>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>TOL-1</dd></div>
-            <div><dt>步进</dt><dd id="snapOut">0.01 MM</dd></div>
-            <div><dt>状态</dt><dd>可编辑</dd></div>
+            <div><dt>Part no.</dt><dd>TOL-1</dd></div>
+            <div><dt>Step</dt><dd id="snapOut">0.01 MM</dd></div>
+            <div><dt>Status</dt><dd>Editable</dd></div>
           </dl>
         </div>
       </div>
@@ -868,30 +868,30 @@ body.no-leader .leader{opacity:0}
 
   <div class="cut" aria-hidden="true">
     <span class="tag">C</span><i class="arw"></i><i class="rail"></i>
-    <span class="note">剖切 C—C · 读数件</span>
+    <span class="note">Section C—C · readouts</span>
     <i class="rail"></i><i class="arw"></i><span class="tag">C</span>
   </div>
 
   <section class="sec" id="readouts">
     <div class="sec-head" data-rv>
-      <span class="zone">区 C-3</span>
-      <h2>读数件</h2>
-      <span class="mono">READOUTS · 3 型</span>
+      <span class="zone">Zone C-3</span>
+      <h2>Readouts</h2>
+      <span class="mono">READOUTS · 3 types</span>
     </div>
-    <p class="sec-lede" data-rv style="--d:.06s">读数件不做装饰：三视图切换看的是同一个零件的三个投影，队列条与量表读的是同一台机器。</p>
+    <p class="sec-lede" data-rv style="--d:.06s">Readouts carry no decoration: the three views show one part from three directions, and the queue bar and the meter read the same machine.</p>
 
     <div class="cards">
       <div class="slab c7" data-rv>
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>三视图</h3><span class="mono mono--dim">DET-06 · 第一角法</span></div>
-          <div class="tabs" role="tablist" aria-label="三视图">
-            <button class="tab" role="tab" id="tb-f" aria-controls="pn-f" aria-selected="true" tabindex="0"><span class="no">01</span>正视</button>
-            <button class="tab" role="tab" id="tb-t" aria-controls="pn-t" aria-selected="false" tabindex="-1"><span class="no">02</span>俯视</button>
-            <button class="tab" role="tab" id="tb-s" aria-controls="pn-s" aria-selected="false" tabindex="-1"><span class="no">03</span>侧视</button>
+          <div class="card-h"><h3>Three views</h3><span class="mono mono--dim">DET-06 · first angle</span></div>
+          <div class="tabs" role="tablist" aria-label="Three views">
+            <button class="tab" role="tab" id="tb-f" aria-controls="pn-f" aria-selected="true" tabindex="0"><span class="no">01</span>Front</button>
+            <button class="tab" role="tab" id="tb-t" aria-controls="pn-t" aria-selected="false" tabindex="-1"><span class="no">02</span>Top</button>
+            <button class="tab" role="tab" id="tb-s" aria-controls="pn-s" aria-selected="false" tabindex="-1"><span class="no">03</span>Side</button>
           </div>
           <div class="panel" id="pn-f" role="tabpanel" aria-labelledby="tb-f" tabindex="0">
-            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="正视图：带缺口的支架轮廓">
+            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="Front view: the outline of a notched bracket">
               <path d="M40 30h180v100H40z" stroke-width="2"/>
               <path d="M100 30v34h60V30" stroke-width="2"/>
               <circle cx="130" cy="98" r="20" stroke-width="2"/>
@@ -901,10 +901,10 @@ body.no-leader .leader{opacity:0}
               <path d="M244 30v100M240 34l4-4 4 4M240 126l4 4 4-4" opacity=".8"/>
               <text x="262" y="84" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">100.0</text>
             </svg>
-            <p>正视：轮廓与孔位在此面定型。点划线为中心线，虚线段代表被遮挡的边。</p>
+            <p>Front: the outline and the hole positions are fixed on this face. Chain lines are centrelines; dashed segments are hidden edges.</p>
           </div>
           <div class="panel" id="pn-t" role="tabpanel" aria-labelledby="tb-t" tabindex="0" hidden>
-            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="俯视图：支架顶面轮廓">
+            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="Top view: the outline of the bracket from above">
               <path d="M40 52h180v56H40z" stroke-width="2"/>
               <path d="M100 52v56M160 52v56" stroke-dasharray="8 5" opacity=".7"/>
               <path d="M130 42v76" stroke-dasharray="10 4 2 4" opacity=".65"/>
@@ -913,10 +913,10 @@ body.no-leader .leader{opacity:0}
               <path d="M244 52v56M240 56l4-4 4 4M240 104l4 4 4-4" opacity=".8"/>
               <text x="262" y="84" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">56.0</text>
             </svg>
-            <p>俯视：缺口在顶面收出两条投影线。图幅内保持与正视图对正，不许错位。</p>
+            <p>Top: the notch throws two projection lines on the upper face. It stays aligned with the front view across the sheet, with no offset allowed.</p>
           </div>
           <div class="panel" id="pn-s" role="tabpanel" aria-labelledby="tb-s" tabindex="0" hidden>
-            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="侧视图：支架厚度方向轮廓">
+            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="Side view: the outline of the bracket through its thickness">
               <path d="M110 30h56v100h-56z" stroke-width="2"/>
               <path d="M110 64h56" stroke-dasharray="8 5" opacity=".7"/>
               <path d="M138 20v120" stroke-dasharray="10 4 2 4" opacity=".65"/>
@@ -925,12 +925,12 @@ body.no-leader .leader{opacity:0}
               <path d="M190 30v100M186 34l4-4 4 4M186 126l4 4 4-4" opacity=".8"/>
               <text x="208" y="84" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">100.0</text>
             </svg>
-            <p>侧视：厚度方向读数。三个投影共用一套尺寸链，改一处要三处同改。</p>
+            <p>Side: read the thickness here. All three projections share one dimension chain, so a change in one is a change in all three.</p>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>VIEW-3</dd></div>
-            <div><dt>投影法</dt><dd>第一角</dd></div>
-            <div><dt>当前</dt><dd id="viewOut">正视</dd></div>
+            <div><dt>Part no.</dt><dd>VIEW-3</dd></div>
+            <div><dt>Projection</dt><dd>First angle</dd></div>
+            <div><dt>Current</dt><dd id="viewOut">Front</dd></div>
           </dl>
         </div>
       </div>
@@ -938,30 +938,30 @@ body.no-leader .leader{opacity:0}
       <div class="slab c5" data-rv style="--d:.1s">
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>出图队列</h3><span class="mono mono--dim">DET-07</span></div>
+          <div class="card-h"><h3>Plot queue</h3><span class="mono mono--dim">DET-07</span></div>
           <div class="stack">
             <div class="field">
-              <div class="help"><span class="lbl">绘图机 PLT-2</span><span id="progTxt">0 %</span></div>
-              <div class="prog" role="progressbar" id="prog" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="出图进度"><i id="progFill"></i></div>
+              <div class="help"><span class="lbl">Plotter PLT-2</span><span id="progTxt">0 %</span></div>
+              <div class="prog" role="progressbar" id="prog" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Plot progress"><i id="progFill"></i></div>
             </div>
             <div class="row">
-              <button class="btn btn--sm" id="progBtn">开始出图</button>
-              <button class="btn btn--sm btn--ghost" id="progReset">归零</button>
+              <button class="btn btn--sm" id="progBtn">Start plotting</button>
+              <button class="btn btn--sm btn--ghost" id="progReset">Reset to zero</button>
             </div>
 
             <div class="field" style="margin-top:6px">
-              <span class="lbl">图面负载</span>
-              <svg class="gauge" id="gauge" viewBox="0 0 260 158" fill="none" aria-label="图面负载量表"></svg>
+              <span class="lbl">Sheet load</span>
+              <svg class="gauge" id="gauge" viewBox="0 0 260 158" fill="none" aria-label="Sheet load meter"></svg>
               <div class="row" style="justify-content:space-between">
                 <span class="read"><span id="gaugeVal">62</span><small>% LOAD</small></span>
-                <button class="btn btn--sm" id="sample">取样</button>
+                <button class="btn btn--sm" id="sample">Take a sample</button>
               </div>
             </div>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>MTR-2</dd></div>
-            <div><dt>量程</dt><dd>0—100</dd></div>
-            <div><dt>采样</dt><dd id="sampleOut">R-00</dd></div>
+            <div><dt>Part no.</dt><dd>MTR-2</dd></div>
+            <div><dt>Range</dt><dd>0—100</dd></div>
+            <div><dt>Sample</dt><dd id="sampleOut">R-00</dd></div>
           </dl>
         </div>
       </div>
@@ -970,35 +970,35 @@ body.no-leader .leader{opacity:0}
 
   <div class="cut" aria-hidden="true">
     <span class="tag">D</span><i class="arw"></i><i class="rail"></i>
-    <span class="note">剖切 D—D · 覆盖层</span>
+    <span class="note">Section D—D · overlays</span>
     <i class="rail"></i><i class="arw"></i><span class="tag">D</span>
   </div>
 
   <section class="sec" id="overlays">
     <div class="sec-head" data-rv>
-      <span class="zone">区 D-2</span>
-      <h2>覆盖层</h2>
-      <span class="mono">OVERLAYS · Z 序 4 层</span>
+      <span class="zone">Zone D-2</span>
+      <h2>Overlays</h2>
+      <span class="mono">OVERLAYS · 4 Z levels</span>
     </div>
-    <p class="sec-lede" data-rv style="--d:.06s">覆盖层按 Z 值叠放，永不互穿。把指针移到爆炸图上，四层会沿 Z 轴分开，读数即层高。</p>
+    <p class="sec-lede" data-rv style="--d:.06s">Overlays stack by Z value and never pass through one another. Move the pointer onto the exploded view and the four levels separate along Z, the reading being the layer height.</p>
 
     <div class="cards">
       <div class="slab c5" data-rv>
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>Z 序爆炸图</h3><span class="mono mono--dim">DET-08</span></div>
-          <div class="stackfig" tabindex="0" aria-label="覆盖层 Z 序爆炸图，聚焦或悬停可展开">
+          <div class="card-h"><h3>Z-order exploded view</h3><span class="mono mono--dim">DET-08</span></div>
+          <div class="stackfig" tabindex="0" aria-label="Overlay Z-order exploded view; focus or hover to expand">
             <div class="stackfig-in">
-              <div class="plate3" style="--pz:0"><b>Z 000 · 图纸底面</b></div>
-              <div class="plate3" style="--pz:26"><b>Z 060 · 挤出面板</b></div>
-              <div class="plate3" style="--pz:52"><b>Z 120 · 自绘弹层</b></div>
-              <div class="plate3 plate3--top" style="--pz:78"><b>Z 300 · 提示条</b></div>
+              <div class="plate3" style="--pz:0"><b>Z 000 · sheet base</b></div>
+              <div class="plate3" style="--pz:26"><b>Z 060 · extruded panel</b></div>
+              <div class="plate3" style="--pz:52"><b>Z 120 · custom popup</b></div>
+              <div class="plate3 plate3--top" style="--pz:78"><b>Z 300 · notice strip</b></div>
             </div>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>ZED-4</dd></div>
-            <div><dt>层间距</dt><dd>26.0 MM</dd></div>
-            <div><dt>状态</dt><dd>已审</dd></div>
+            <div><dt>Part no.</dt><dd>ZED-4</dd></div>
+            <div><dt>Layer pitch</dt><dd>26.0 MM</dd></div>
+            <div><dt>Status</dt><dd>Approved</dd></div>
           </dl>
         </div>
       </div>
@@ -1006,24 +1006,24 @@ body.no-leader .leader{opacity:0}
       <div class="slab c7" data-rv style="--d:.1s">
         <div class="slab-mesh" aria-hidden="true"></div>
         <div class="slab-in">
-          <div class="card-h"><h3>签发与回执</h3><span class="mono mono--dim">DET-09</span></div>
-          <p style="color:var(--line-2);font-size:14px">签发把当前图号锁进归档册，尺寸不再可改。回执从右下角推入，压在所有件之上。</p>
+          <div class="card-h"><h3>Issue and receipts</h3><span class="mono mono--dim">DET-09</span></div>
+          <p style="color:var(--line-2);font-size:14px">Issuing locks the current drawing number into the archive, after which no dimension can change. Receipts slide in from the bottom right and sit above every part.</p>
           <div class="row" style="margin-top:18px">
-            <button class="btn btn--solid" id="openDlg">签发图纸</button>
-            <button class="btn" id="toastBtn">发一条回执</button>
-            <button class="btn btn--ghost" id="toastErr">发一条驳回</button>
+            <button class="btn btn--solid" id="openDlg">Issue the drawing</button>
+            <button class="btn" id="toastBtn">Send a receipt</button>
+            <button class="btn btn--ghost" id="toastErr">Send a rejection</button>
           </div>
           <div class="leader" style="margin-top:24px">
             <span class="balloon">2</span>
             <svg width="42" height="34" viewBox="0 0 42 34" fill="none" stroke="currentColor" aria-hidden="true">
               <path d="M2 32L18 8h22"/><circle cx="2" cy="32" r="2.5" fill="currentColor"/>
             </svg>
-            <span class="leader-txt">回执带件号与时刻；同一秒内的多条按发出顺序自下而上排。</span>
+            <span class="leader-txt">A receipt carries a part number and a time; several within the same second stack upward in the order they were sent.</span>
           </div>
           <dl class="tb">
-            <div><dt>件号</dt><dd>DLG-1</dd></div>
-            <div><dt>回执上限</dt><dd>4 条</dd></div>
-            <div><dt>状态</dt><dd>可签发</dd></div>
+            <div><dt>Part no.</dt><dd>DLG-1</dd></div>
+            <div><dt>Receipt limit</dt><dd>4</dd></div>
+            <div><dt>Status</dt><dd>Ready to issue</dd></div>
           </dl>
         </div>
       </div>
@@ -1032,23 +1032,23 @@ body.no-leader .leader{opacity:0}
 
   <footer class="foot" data-rv>
     <div class="tblock">
-      <div class="cell"><div class="k">项目 / PROJECT</div><div class="v">Proteus · 轴测蓝图 AXON</div></div>
-      <div class="cell"><div class="k">图名 / TITLE</div><div class="v">控件总图</div></div>
-      <div class="cell"><div class="k">图号 / DWG NO.</div><div class="v" id="footNo">DWG-AXON-001</div></div>
-      <div class="cell"><div class="k">制图 / DRAWN</div><div class="v sm">制图室 · 三号台</div></div>
-      <div class="cell"><div class="k">比例 / SCALE</div><div class="v sm">1 : 1</div></div>
-      <div class="cell"><div class="k">图幅 / SIZE</div><div class="v sm" id="footSize">A2</div></div>
-      <div class="cell"><div class="k">投影 / PROJECTION</div><div class="v sm">轴测 30°</div></div>
-      <div class="cell"><div class="k">日期 / DATE</div><div class="v sm">2026-07-22</div></div>
-      <div class="cell"><div class="k">版本 / REV</div><div class="v sm">R3</div></div>
+      <div class="cell"><div class="k">PROJECT</div><div class="v">Proteus · isometric blueprint AXON</div></div>
+      <div class="cell"><div class="k">TITLE</div><div class="v">General control drawing</div></div>
+      <div class="cell"><div class="k">DWG NO.</div><div class="v" id="footNo">DWG-AXON-001</div></div>
+      <div class="cell"><div class="k">DRAWN</div><div class="v sm">Drafting room · table 3</div></div>
+      <div class="cell"><div class="k">SCALE</div><div class="v sm">1 : 1</div></div>
+      <div class="cell"><div class="k">SIZE</div><div class="v sm" id="footSize">A2</div></div>
+      <div class="cell"><div class="k">PROJECTION</div><div class="v sm">Isometric 30°</div></div>
+      <div class="cell"><div class="k">DATE</div><div class="v sm">2026-07-22</div></div>
+      <div class="cell"><div class="k">REV</div><div class="v sm">R3</div></div>
     </div>
     <div class="foot-x">
       <table class="rev">
-        <caption class="sr">版本记录</caption>
-        <tr><th>版本</th><th>日期</th><th>说明</th><th>签</th></tr>
-        <tr><td>R1</td><td>07-19</td><td>立基准面，定 30° 投影</td><td>DZ</td></tr>
-        <tr><td>R2</td><td>07-21</td><td>补挤出体侧面与标题栏</td><td>DZ</td></tr>
-        <tr><td>R3</td><td>07-22</td><td>标注线改为随控件读数</td><td>DZ</td></tr>
+        <caption class="sr">Revision record</caption>
+        <tr><th>Rev</th><th>Date</th><th>Description</th><th>By</th></tr>
+        <tr><td>R1</td><td>07-19</td><td>Datum planes set, 30° projection fixed</td><td>DZ</td></tr>
+        <tr><td>R2</td><td>07-21</td><td>Extrusion sides and title block added</td><td>DZ</td></tr>
+        <tr><td>R3</td><td>07-22</td><td>Dimension lines now read from the controls</td><td>DZ</td></tr>
       </table>
       <div class="scale" style="margin:0">
         <div class="scale-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -1064,20 +1064,20 @@ body.no-leader .leader{opacity:0}
   <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgT" aria-describedby="dlgD" id="dlg" tabindex="-1">
     <div class="dlg-h">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--accent)" stroke-width="1.5" aria-hidden="true"><path d="M10 1l9 5.2v7.6L10 19l-9-5.2V6.2z"/><path d="M10 1v18M1 6.2l9 5.2 9-5.2"/></svg>
-      <h2 id="dlgT">签发图纸</h2>
-      <button class="x" id="dlgX" aria-label="关闭签发窗">✕</button>
+      <h2 id="dlgT">Issue the drawing</h2>
+      <button class="x" id="dlgX" aria-label="Close the issue window">✕</button>
     </div>
     <div class="dlg-b">
-      <p id="dlgD">签发后本张进入归档册，尺寸链与图层可见性一并冻结。要改，只能开新版本。</p>
+      <p id="dlgD">Once issued, this sheet enters the archive and both the dimension chain and the layer visibility freeze with it. Changing anything means opening a new revision.</p>
       <dl class="tb" style="margin-top:20px;border:1px solid var(--hair-2)">
-        <div><dt>图号</dt><dd id="dlgNo">DWG-AXON-001</dd></div>
-        <div><dt>图幅</dt><dd id="dlgSize">A2</dd></div>
-        <div><dt>版本</dt><dd>R3 → R4</dd></div>
+        <div><dt>Drawing no.</dt><dd id="dlgNo">DWG-AXON-001</dd></div>
+        <div><dt>Sheet size</dt><dd id="dlgSize">A2</dd></div>
+        <div><dt>Revision</dt><dd>R3 → R4</dd></div>
       </dl>
     </div>
     <div class="dlg-f">
-      <button class="btn btn--sm" id="dlgNo2">再看看</button>
-      <button class="btn btn--sm btn--solid" id="dlgYes">确认签发</button>
+      <button class="btn btn--sm" id="dlgNo2">Look again</button>
+      <button class="btn btn--sm btn--solid" id="dlgYes">Confirm issue</button>
     </div>
   </div>
 </div>
@@ -1109,10 +1109,10 @@ body.no-leader .leader{opacity:0}
   var COS = Math.cos(Math.PI / 6), SIN = Math.sin(Math.PI / 6);
   var W0 = 230, D0 = 152, GAP = 44;
   var LAYERS = [
-    { cn: "基准面", code: "DATUM", w: 230, d: 152, t: 7 },
-    { cn: "结构层", code: "STRUCT", w: 196, d: 130, t: 11 },
-    { cn: "控件层", code: "CONTROL", w: 158, d: 104, t: 9 },
-    { cn: "注释层", code: "ANNO", w: 120, d: 78, t: 5 }
+    { name: "Datum plane", code: "DATUM", w: 230, d: 152, t: 7 },
+    { name: "Structure layer", code: "STRUCT", w: 196, d: 130, t: 11 },
+    { name: "Control layer", code: "CONTROL", w: 158, d: 104, t: 9 },
+    { name: "Annotation layer", code: "ANNO", w: 120, d: 78, t: 5 }
   ];
   function PX(x, y) { return (x - y) * COS; }
   function PY(x, y, z) { return (x + y) * SIN - z; }
@@ -1195,7 +1195,7 @@ body.no-leader .leader{opacity:0}
     n.textContent = String(4 - g.i);
     lg.appendChild(n);
     var t1 = el("text", { x: LTX, y: e1[1] - 1, "font-family": "Archivo Narrow, sans-serif", "font-size": 14, fill: "var(--line)" });
-    t1.textContent = g.L.cn;
+    t1.textContent = g.L.name;
     var t2 = el("text", { x: LTX, y: e1[1] + 12, "font-family": "IBM Plex Mono, monospace", "font-size": 9, "letter-spacing": "1.4", fill: "var(--line-3)" });
     t2.textContent = g.L.code + " · T" + g.L.t.toFixed(1);
     lg.appendChild(t1); lg.appendChild(t2);
@@ -1266,7 +1266,7 @@ body.no-leader .leader{opacity:0}
     isExp = !isExp;
     asm.classList.toggle("exploded", isExp);
     expBtn.setAttribute("aria-pressed", String(isExp));
-    expBtn.textContent = isExp ? "合拢视图" : "爆炸视图";
+    expBtn.textContent = isExp ? "Collapse view" : "Exploded view";
     var v = isExp ? (32 + 3 * GAP).toFixed(1) : "32.0";
     dimT.textContent = v;
     asmH.textContent = v;
@@ -1294,13 +1294,13 @@ body.no-leader .leader{opacity:0}
     line.textContent = msg;
     var sub = document.createElement("span");
     sub.className = "ts";
-    sub.textContent = (kind === "err" ? "驳回" : "回执") + " · " + stamp() + " · DWG-AXON-001";
+    sub.textContent = (kind === "err" ? "Rejection" : "Receipt") + " · " + stamp() + " · DWG-AXON-001";
     body.appendChild(line);
     body.appendChild(sub);
     var x = document.createElement("button");
     x.className = "tx";
     x.type = "button";
-    x.setAttribute("aria-label", "关闭回执");
+    x.setAttribute("aria-label", "Dismiss the receipt");
     x.textContent = "✕";
     t.appendChild(no); t.appendChild(body); t.appendChild(x);
     if (kind === "err") t.style.borderColor = "var(--line-2)";
@@ -1318,10 +1318,10 @@ body.no-leader .leader{opacity:0}
     b.addEventListener("click", function(){ toast(b.getAttribute("data-toast")); });
   });
   document.getElementById("toastBtn").addEventListener("click", function(){
-    toast("图纸 " + (dwg.value.trim() || "未命名") + " 已收档。");
+    toast("Drawing " + (dwg.value.trim() || "untitled") + " has been filed.");
   });
   document.getElementById("toastErr").addEventListener("click", function(){
-    toast("驳回：标题栏「审核」一栏为空，补齐后再交。", "err");
+    toast("Rejected: the CHECKED field in the title block is empty. Fill it in and resubmit.", "err");
   });
 
   /* ---------- text field ---------- */
@@ -1337,10 +1337,10 @@ body.no-leader .leader{opacity:0}
     dwgCount.textContent = dwg.value.length + " / 16";
     if (!v) {
       dwgField.classList.add("bad");
-      dwgMsg.textContent = "图号不能空。照 DWG-AXON-001 的格式写。";
+      dwgMsg.textContent = "The drawing number cannot be empty. Follow the DWG-AXON-001 format.";
     } else {
       dwgField.classList.remove("bad");
-      dwgMsg.textContent = "按 图号-区号-序号 填写";
+      dwgMsg.textContent = "Write it as DWG-ZONE-SERIAL";
     }
     footNo.textContent = v || "—";
     dlgNo.textContent = v || "—";
@@ -1456,7 +1456,7 @@ body.no-leader .leader{opacity:0}
     var mm = v / 100;
     tolVal.textContent = (mm >= 0 ? "+" : "−") + Math.abs(mm).toFixed(2);
     tol.style.setProperty("--fill", ((v + 50) / 100 * 100).toFixed(1) + "%");
-    tol.setAttribute("aria-valuetext", (mm >= 0 ? "正" : "负") + Math.abs(mm).toFixed(2) + " 毫米");
+    tol.setAttribute("aria-valuetext", (mm >= 0 ? "plus " : "minus ") + Math.abs(mm).toFixed(2) + " millimetres");
   }
   tol.addEventListener("input", paintTol);
   snap.addEventListener("click", function(){
@@ -1510,24 +1510,24 @@ body.no-leader .leader{opacity:0}
     pv = Math.min(100, pv + (ts - last) * 0.022);
     last = ts;
     paintProg();
-    if (pv >= 100) { stopProg(); toast("出图完成。共 1 张，已送归档。"); return; }
+    if (pv >= 100) { stopProg(); toast("Plot complete. One sheet, sent to the archive."); return; }
     raf = requestAnimationFrame(tick);
   }
   function stopProg() {
     run = false; last = 0;
     cancelAnimationFrame(raf);
-    pBtn.textContent = pv >= 100 ? "已完成" : "继续出图";
+    pBtn.textContent = pv >= 100 ? "Complete" : "Resume plotting";
     pBtn.disabled = pv >= 100;
   }
   pBtn.addEventListener("click", function(){
-    if (run) { stopProg(); pBtn.textContent = "继续出图"; return; }
-    run = true; last = 0; pBtn.textContent = "暂停"; pBtn.disabled = false;
+    if (run) { stopProg(); pBtn.textContent = "Resume plotting"; return; }
+    run = true; last = 0; pBtn.textContent = "Pause"; pBtn.disabled = false;
     raf = requestAnimationFrame(tick);
   });
   pRst.addEventListener("click", function(){
     run = false; last = 0; cancelAnimationFrame(raf);
     pv = 0; paintProg();
-    pBtn.textContent = "开始出图"; pBtn.disabled = false;
+    pBtn.textContent = "Start plotting"; pBtn.disabled = false;
   });
   paintProg();
 
@@ -1577,7 +1577,7 @@ body.no-leader .leader{opacity:0}
     var v = 18 + Math.floor(Math.random() * 78);
     setGauge(v);
     sOut.textContent = "R-" + String(sN).padStart(2, "0");
-    if (v >= 80) toast("图面负载 " + v + " %，已进红区。建议拆张。", "err");
+    if (v >= 80) toast("Sheet load " + v + " %, into the red. Consider splitting the sheet.", "err");
   });
   setGauge(62);
 
@@ -1613,7 +1613,7 @@ body.no-leader .leader{opacity:0}
   document.getElementById("dlgNo2").addEventListener("click", closeDlg);
   document.getElementById("dlgYes").addEventListener("click", function(){
     closeDlg();
-    toast("已签发 " + (dwg.value.trim() || "未命名") + "，版本推进到 R4。");
+    toast("Issued " + (dwg.value.trim() || "untitled") + "; the revision advances to R4.");
   });
   scrim.addEventListener("mousedown", function(e){ if (e.target === scrim) closeDlg(); });
   document.addEventListener("keydown", function(e){
