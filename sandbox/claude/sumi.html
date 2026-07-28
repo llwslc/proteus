@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>余白 YOHAKU · SUMI 水墨禪方向稿</title>
+<title>YOHAKU · SUMI zen ink study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yuji+Boku&family=Zen+Old+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
   --line:rgba(25,21,18,.30);
   --shu:#B23A23;
   --f-brush:'Yuji Boku','Zen Old Mincho',serif;
-  --f-body:'Zen Old Mincho','Songti TC','Noto Serif TC',serif;
+  --f-body:'Zen Old Mincho',serif;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{background:var(--paper)}
@@ -473,8 +473,8 @@ footer{
 </svg>
 
 <header>
-  <span class="brand">余白</span>
-  <span class="scroll-name">文房控件譜 · 甲辰卷</span>
+  <span class="brand">YOHAKU</span>
+  <span class="scroll-name">A register of studio controls · scroll one</span>
 </header>
 
 <main>
@@ -485,10 +485,10 @@ footer{
       <path class="hs-tip" d="M894 90 C 903 87, 909 81, 915 71" pathLength="100"/>
     </svg>
     <div class="hero-v">
-      <h1>余白</h1>
-      <p class="hero-line">筆落有聲,紙上無言。</p>
-      <p class="hero-line">墨分五色,白守其一。</p>
-      <div class="seal" aria-label="朱印:余白">
+      <h1>YOHAKU</h1>
+      <p class="hero-line">The brush speaks; the paper does not.</p>
+      <p class="hero-line">Ink holds five shades. White keeps one.</p>
+      <div class="seal" aria-label="Cinnabar seal: Yohaku">
         <svg class="seal-svg" viewBox="0 0 120 120" aria-hidden="true">
           <mask id="sealMottle">
             <rect width="120" height="120" fill="#fff"/>
@@ -497,213 +497,213 @@ footer{
           <g filter="url(#fltSeal)" mask="url(#sealMottle)">
             <rect x="8" y="8" width="104" height="104" rx="7" fill="var(--shu)"/>
             <rect x="15" y="15" width="90" height="90" rx="4" fill="none" stroke="#F1EBDD" stroke-width="2" opacity=".9"/>
-            <text x="60" y="56" text-anchor="middle" fill="#F1EBDD">余</text>
-            <text x="60" y="100" text-anchor="middle" fill="#F1EBDD">白</text>
+            <text x="60" y="52" text-anchor="middle" fill="#F1EBDD">YO</text>
+            <text x="60" y="96" text-anchor="middle" font-size="30" fill="#F1EBDD">HAKU</text>
           </g>
         </svg>
       </div>
     </div>
-    <p class="hero-foot">余白 YOHAKU——書寫與止息的文房。一紙、一墨、一方朱印,其餘皆留白。</p>
+    <p class="hero-foot">YOHAKU — a studio for writing and for stopping. One sheet, one stick of ink, one cinnabar seal; everything else is left blank.</p>
   </section>
 
   <section class="an an--brush rv" aria-labelledby="t1">
-    <div class="an-tag"><span class="tag-no">第一案</span><b class="tag-zi">筆</b></div>
+    <div class="an-tag"><span class="tag-no">Case one</span><b class="tag-zi">B</b></div>
     <div class="an-body">
-      <h2 class="an-title" id="t1">落筆</h2>
-      <p class="an-lead">筆有四德:尖、齊、圓、健。鈕亦如之——一等落墨,二等淡寫,三等惜白,封筆則不應。</p>
+      <h2 class="an-title" id="t1">Setting the brush down</h2>
+      <p class="an-lead">A brush has four virtues: point, evenness, roundness, resilience. So does a button — the first lays down ink, the second writes pale, the third spares the white, and a capped brush answers to nothing.</p>
       <div class="an-grid">
         <div class="btn-row">
-          <button class="btn btn--ink" type="button">落筆</button>
-          <button class="btn btn--wash" type="button">淡墨</button>
-          <button class="btn btn--bai" type="button">飛白</button>
-          <button class="btn btn--ink" type="button" disabled>封筆</button>
+          <button class="btn btn--ink" type="button">Lay ink</button>
+          <button class="btn btn--wash" type="button">Pale ink</button>
+          <button class="btn btn--bai" type="button">Flying white</button>
+          <button class="btn btn--ink" type="button" disabled>Capped</button>
         </div>
       </div>
     </div>
   </section>
 
   <section class="an an--sumi rv" aria-labelledby="t2">
-    <div class="an-tag"><span class="tag-no">第二案</span><b class="tag-zi">墨</b></div>
+    <div class="an-tag"><span class="tag-no">Case two</span><b class="tag-zi">I</b></div>
     <div class="an-body">
-      <h2 class="an-title" id="t2">調墨</h2>
-      <p class="an-lead">墨分五色:焦、濃、重、淡、清。研之愈久,色愈近焦;注水入池,色自還淡。</p>
+      <h2 class="an-title" id="t2">Mixing the ink</h2>
+      <p class="an-lead">Ink holds five shades: charred, thick, heavy, pale, clear. The longer you grind, the closer it comes to charred; pour water into the well and it returns to pale on its own.</p>
       <div class="an-grid">
         <fieldset class="ink-set">
-          <legend class="f-label">墨色</legend>
+          <legend class="f-label">Ink shade</legend>
           <div class="ink-row">
             <label class="ink-opt">
               <input type="radio" name="inkshade" value="jiao">
               <span class="dot-wrap"><span class="dot" style="background:#191512"></span>
                 <svg class="r-ring" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6 C 36 6 46 13 46 25 C 46 37 37 46 25.5 46 C 14 46 6.5 37 6.5 25.5 C 6.5 14.5 15 6.5 23 6.2" pathLength="100"/></svg>
               </span>
-              <span class="ink-name">焦</span>
+              <span class="ink-name">Charred</span>
             </label>
             <label class="ink-opt">
               <input type="radio" name="inkshade" value="nong" checked>
               <span class="dot-wrap"><span class="dot" style="background:#3A342B"></span>
                 <svg class="r-ring" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6 C 36 6 46 13 46 25 C 46 37 37 46 25.5 46 C 14 46 6.5 37 6.5 25.5 C 6.5 14.5 15 6.5 23 6.2" pathLength="100"/></svg>
               </span>
-              <span class="ink-name">濃</span>
+              <span class="ink-name">Thick</span>
             </label>
             <label class="ink-opt">
               <input type="radio" name="inkshade" value="zhong">
               <span class="dot-wrap"><span class="dot" style="background:#635C4D"></span>
                 <svg class="r-ring" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6 C 36 6 46 13 46 25 C 46 37 37 46 25.5 46 C 14 46 6.5 37 6.5 25.5 C 6.5 14.5 15 6.5 23 6.2" pathLength="100"/></svg>
               </span>
-              <span class="ink-name">重</span>
+              <span class="ink-name">Heavy</span>
             </label>
             <label class="ink-opt">
               <input type="radio" name="inkshade" value="dan">
               <span class="dot-wrap"><span class="dot" style="background:#97907E"></span>
                 <svg class="r-ring" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6 C 36 6 46 13 46 25 C 46 37 37 46 25.5 46 C 14 46 6.5 37 6.5 25.5 C 6.5 14.5 15 6.5 23 6.2" pathLength="100"/></svg>
               </span>
-              <span class="ink-name">淡</span>
+              <span class="ink-name">Pale</span>
             </label>
             <label class="ink-opt">
               <input type="radio" name="inkshade" value="qing">
               <span class="dot-wrap"><span class="dot" style="background:#C6BEAB"></span>
                 <svg class="r-ring" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6 C 36 6 46 13 46 25 C 46 37 37 46 25.5 46 C 14 46 6.5 37 6.5 25.5 C 6.5 14.5 15 6.5 23 6.2" pathLength="100"/></svg>
               </span>
-              <span class="ink-name">清</span>
+              <span class="ink-name">Clear</span>
             </label>
             <label class="ink-opt is-off">
               <input type="radio" name="inkshade" value="su" disabled>
               <span class="dot-wrap"><span class="dot" style="background:#D9D3C4"></span></span>
-              <span class="ink-name">宿</span>
+              <span class="ink-name">Stale</span>
             </label>
           </div>
-          <p class="f-help">宿墨已涸,不堪再用。</p>
+          <p class="f-help">The stale ink has dried out and is no longer usable.</p>
         </fieldset>
 
         <div>
-          <label class="f-label" for="water">水分</label>
-          <input type="range" id="water" min="0" max="100" value="64" aria-label="水分">
-          <div class="sl-cap"><span>注水</span><span><output id="waterOut" for="water">64</output>%</span></div>
-          <p class="f-help">水注硯池,池滿則墨淡。</p>
+          <label class="f-label" for="water">Water</label>
+          <input type="range" id="water" min="0" max="100" value="64" aria-label="Water">
+          <div class="sl-cap"><span>Pour</span><span><output id="waterOut" for="water">64</output>%</span></div>
+          <p class="f-help">Water goes into the well, and a full well makes pale ink.</p>
         </div>
 
         <div>
-          <span class="f-label" id="grindLabel">研墨</span>
+          <span class="f-label" id="grindLabel">Grinding</span>
           <label class="sw">
             <input type="checkbox" id="swGrind" aria-labelledby="grindLabel">
             <span class="sw-track"><span class="sw-thumb"></span></span>
-            <span class="sw-word">磨墨</span>
-            <span class="sw-state" id="swState">歇筆</span>
+            <span class="sw-word">Grind</span>
+            <span class="sw-state" id="swState">At rest</span>
           </label>
-          <div class="prog" role="progressbar" aria-label="墨成" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36" id="prog">
+          <div class="prog" role="progressbar" aria-label="Ink ready" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36" id="prog">
             <div class="prog-bar" id="progBar" style="width:36%"></div>
           </div>
-          <div class="prog-cap"><span>墨成</span><span id="progNum">36%</span></div>
+          <div class="prog-cap"><span>Ink ready</span><span id="progNum">36%</span></div>
         </div>
 
         <div class="gauge-wrap">
-          <span class="f-label">硯池</span>
-          <svg class="gauge" viewBox="0 0 220 132" role="img" aria-label="硯池水位 64%" id="gaugeSvg">
+          <span class="f-label">Ink well</span>
+          <svg class="gauge" viewBox="0 0 220 132" role="img" aria-label="Ink well level 64%" id="gaugeSvg">
             <path class="g-base" d="M24 118 A 86 86 0 0 1 196 118" pathLength="100"/>
             <path class="g-val" id="gaugeArc" d="M24 118 A 86 86 0 0 1 196 118" pathLength="100"/>
             <text class="g-num" id="gaugeNum" x="110" y="100" text-anchor="middle">64</text>
-            <text class="g-pct" x="110" y="122" text-anchor="middle">水位</text>
+            <text class="g-pct" x="110" y="122" text-anchor="middle">Level</text>
           </svg>
-          <span class="gauge-cap">池水與「水分」同息。</span>
+          <span class="gauge-cap">The well rises and falls with “Water”.</span>
         </div>
       </div>
     </div>
   </section>
 
   <section class="an an--paper rv" aria-labelledby="t3">
-    <div class="an-tag"><span class="tag-no">第三案</span><b class="tag-zi">紙</b></div>
+    <div class="an-tag"><span class="tag-no">Case three</span><b class="tag-zi">P</b></div>
     <div class="an-body">
-      <h2 class="an-title" id="t3">取紙</h2>
-      <p class="an-lead">紙壽千年,各有其性。厚者受墨,薄者透光,擇其一,落其款,攜其行。</p>
+      <h2 class="an-title" id="t3">Choosing the paper</h2>
+      <p class="an-lead">Paper lasts a thousand years, and every kind has its nature. Thick takes ink, thin lets light through. Choose one, sign it, and carry it with you.</p>
       <div class="an-grid">
         <div>
-          <span class="f-label" id="selLabelTxt">紙品</span>
+          <span class="f-label" id="selLabelTxt">Paper</span>
           <div class="sel" id="selPaper">
             <button class="sel-btn" id="selBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="selLabelTxt selLabel">
-              <span id="selLabel">玉版宣</span>
+              <span id="selLabel">Jade-plate xuan</span>
               <svg class="sel-caret" width="14" height="11" viewBox="0 0 14 11" aria-hidden="true"><path d="M2 2.5 C 4.5 5 6 7 7 8.8 C 8.5 6.2 10.5 4 12 2.5" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
             <ul class="sel-pop" id="selPop" role="listbox" aria-labelledby="selLabelTxt">
-              <li role="option" aria-selected="true" data-note="厚而受墨,宜楷。" tabindex="-1">玉版宣</li>
-              <li role="option" aria-selected="false" data-note="薄如蟬翼,宜小字。" tabindex="-1">蟬翼宣</li>
-              <li role="option" aria-selected="false" data-note="簾紋隱現,宜行草。" tabindex="-1">羅紋宣</li>
-              <li role="option" aria-selected="false" data-note="筋骨強韌,宜大字。" tabindex="-1">麻紙</li>
-              <li role="option" aria-selected="false" data-note="綿韌耐拓,宜金石。" tabindex="-1">楮皮紙</li>
+              <li role="option" aria-selected="true" data-note="Thick and ink-hungry; good for a formal hand." tabindex="-1">Jade-plate xuan</li>
+              <li role="option" aria-selected="false" data-note="As thin as a cicada wing; good for small letters." tabindex="-1">Cicada-wing xuan</li>
+              <li role="option" aria-selected="false" data-note="The mould marks show faintly; good for a running hand." tabindex="-1">Laid xuan</li>
+              <li role="option" aria-selected="false" data-note="Tough in the fibre; good for large letters." tabindex="-1">Hemp paper</li>
+              <li role="option" aria-selected="false" data-note="Soft, tough and good for rubbings; suits inscriptions." tabindex="-1">Mulberry bark paper</li>
             </ul>
           </div>
-          <p class="f-help" id="paperNote">厚而受墨,宜楷。</p>
+          <p class="f-help" id="paperNote">Thick and ink-hungry; good for a formal hand.</p>
         </div>
 
         <div>
-          <label class="f-label" for="tfMark">款識</label>
-          <input class="tf" id="tfMark" type="text" placeholder="在此落款——" autocomplete="off">
-          <p class="f-help">將落於卷末,墨跡既定。</p>
+          <label class="f-label" for="tfMark">Signature</label>
+          <input class="tf" id="tfMark" type="text" placeholder="Sign here —" autocomplete="off">
+          <p class="f-help">It goes at the end of the scroll, and the ink is fixed from then on.</p>
         </div>
 
         <fieldset class="ink-set">
-          <legend class="f-label">隨行</legend>
+          <legend class="f-label">Carried with you</legend>
           <div class="cb-row">
             <label class="cb">
               <input type="checkbox" checked>
               <span class="cb-box"><svg class="cb-check" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 19 C 12 22 14.5 25 16 27.5 C 21 18 26.5 11 31 6.5" pathLength="100"/></svg></span>
-              <span>筆</span>
+              <span>Brush</span>
             </label>
             <label class="cb">
               <input type="checkbox" checked>
               <span class="cb-box"><svg class="cb-check" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 19 C 12 22 14.5 25 16 27.5 C 21 18 26.5 11 31 6.5" pathLength="100"/></svg></span>
-              <span>墨</span>
+              <span>Ink</span>
             </label>
             <label class="cb">
               <input type="checkbox">
               <span class="cb-box"><svg class="cb-check" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 19 C 12 22 14.5 25 16 27.5 C 21 18 26.5 11 31 6.5" pathLength="100"/></svg></span>
-              <span>紙</span>
+              <span>Paper</span>
             </label>
             <label class="cb">
               <input type="checkbox">
               <span class="cb-box"><svg class="cb-check" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 19 C 12 22 14.5 25 16 27.5 C 21 18 26.5 11 31 6.5" pathLength="100"/></svg></span>
-              <span>硯</span>
+              <span>Inkstone</span>
             </label>
           </div>
-          <p class="f-help">四寶隨行,行囊自輕。</p>
+          <p class="f-help">Carry the four treasures and the bag stays light.</p>
         </fieldset>
       </div>
     </div>
   </section>
 
   <section class="an an--suzu rv" aria-labelledby="t4">
-    <div class="an-tag"><span class="tag-no">第四案</span><b class="tag-zi">硯</b></div>
+    <div class="an-tag"><span class="tag-no">Case four</span><b class="tag-zi">S</b></div>
     <div class="an-body">
-      <h2 class="an-title" id="t4">出帖</h2>
-      <p class="an-lead">臨帖之先,拭<span class="note" tabindex="0" aria-describedby="np1">硯<span class="note-pop" role="tooltip" id="np1">石之受墨者,文房第四寶。</span></span>調墨;筆枯而後<span class="note" tabindex="0" aria-describedby="np2">飛白<span class="note-pop" role="tooltip" id="np2">筆枯墨盡,絲絲露白。</span></span>生。四體既備,擇一而習,成則出帖。</p>
+      <h2 class="an-title" id="t4">Releasing the copybook</h2>
+      <p class="an-lead">Before copying, wipe the <span class="note" tabindex="0" aria-describedby="np1">inkstone<span class="note-pop" role="tooltip" id="np1">The stone that takes the ink.</span></span> and mix the ink; only once the brush runs dry does <span class="note" tabindex="0" aria-describedby="np2">flying white<span class="note-pop" role="tooltip" id="np2">Dry brush, white showing through.</span></span> appear. With four hands to choose from, take one and practise it; when it comes good, release the copybook.</p>
       <div class="an-grid">
         <div>
-          <div class="tablist" role="tablist" aria-label="書體">
-            <button class="tab" id="tab-kai" role="tab" aria-selected="true" aria-controls="tp-kai" type="button">楷</button>
-            <button class="tab" id="tab-xing" role="tab" aria-selected="false" aria-controls="tp-xing" tabindex="-1" type="button">行</button>
-            <button class="tab" id="tab-cao" role="tab" aria-selected="false" aria-controls="tp-cao" tabindex="-1" type="button">草</button>
-            <button class="tab" id="tab-li" role="tab" aria-selected="false" aria-controls="tp-li" tabindex="-1" type="button">隷</button>
+          <div class="tablist" role="tablist" aria-label="Hands">
+            <button class="tab" id="tab-kai" role="tab" aria-selected="true" aria-controls="tp-kai" type="button">Roman</button>
+            <button class="tab" id="tab-xing" role="tab" aria-selected="false" aria-controls="tp-xing" tabindex="-1" type="button">Italic</button>
+            <button class="tab" id="tab-cao" role="tab" aria-selected="false" aria-controls="tp-cao" tabindex="-1" type="button">Cursive</button>
+            <button class="tab" id="tab-li" role="tab" aria-selected="false" aria-controls="tp-li" tabindex="-1" type="button">Uncial</button>
           </div>
           <div class="tabpanel" id="tp-kai" role="tabpanel" aria-labelledby="tab-kai">
-            <span class="tp-zi" aria-hidden="true">永</span>
-            <p class="tp-txt">一筆一畫,如坐如立。永字八法,盡在其中,存其敬。</p>
+            <span class="tp-zi" aria-hidden="true">A</span>
+            <p class="tp-txt">One stroke at a time, sitting or standing. Every stroke the hand owns lives inside this one letter. It keeps its reverence.</p>
           </div>
           <div class="tabpanel" id="tp-xing" role="tabpanel" aria-labelledby="tab-xing" hidden>
-            <span class="tp-zi" aria-hidden="true">雲</span>
-            <p class="tp-txt">筆意相連,如行雲流水。不疾不徐,存其暢。</p>
+            <span class="tp-zi" aria-hidden="true">f</span>
+            <p class="tp-txt">The strokes join like drifting cloud and running water. Neither hurried nor slow. It keeps its ease.</p>
           </div>
           <div class="tabpanel" id="tp-cao" role="tabpanel" aria-labelledby="tab-cao" hidden>
-            <span class="tp-zi" aria-hidden="true">風</span>
-            <p class="tp-txt">刪繁就簡,一氣貫之。滿紙雲煙,存其逸。</p>
+            <span class="tp-zi" aria-hidden="true">g</span>
+            <p class="tp-txt">Everything inessential is cut, and one breath carries the rest. Smoke and cloud across the whole sheet. It keeps its freedom.</p>
           </div>
           <div class="tabpanel" id="tp-li" role="tabpanel" aria-labelledby="tab-li" hidden>
-            <span class="tp-zi" aria-hidden="true">古</span>
-            <p class="tp-txt">橫平如列,波磔含蓄。金石之氣,存其樸。</p>
+            <span class="tp-zi" aria-hidden="true">E</span>
+            <p class="tp-txt">Horizontals lie level and in rank, and the flares are held back. It has the air of bronze and stone, and keeps its plainness.</p>
           </div>
         </div>
 
         <div class="btn-row">
-          <button class="btn btn--ink" id="btnOut" type="button">出帖</button>
-          <button class="btn btn--wash" id="btnToast" type="button">寄短箋</button>
+          <button class="btn btn--ink" id="btnOut" type="button">Release the copybook</button>
+          <button class="btn btn--wash" id="btnToast" type="button">Send a short note</button>
         </div>
       </div>
     </div>
@@ -711,8 +711,8 @@ footer{
 </main>
 
 <footer class="rv">
-  <p class="ba-line">跋:紙墨之外,別無他物。</p>
-  <p class="ba-sub">SUMI · Proteus 視覺方向稿 · 甲辰卷</p>
+  <p class="ba-line">Colophon: beyond paper and ink there is nothing else.</p>
+  <p class="ba-sub">SUMI · Proteus visual direction study · scroll one</p>
 </footer>
 
 <div id="toasts" role="status" aria-live="polite"></div>
@@ -720,11 +720,11 @@ footer{
 <dialog id="outModal" aria-labelledby="mTitle">
   <div class="modal-paper">
     <svg class="modal-stroke" viewBox="0 0 132 16" aria-hidden="true"><path d="M6 9 C 40 5.5, 90 5.5, 126 8"/></svg>
-    <h3 id="mTitle">出帖</h3>
-    <p>此卷墨跡既定,付之裝裱,不可復改。用印,則帖成而筆歇。</p>
+    <h3 id="mTitle">Release the copybook</h3>
+    <p>The ink on this scroll is set; it goes to be mounted and cannot be changed again. Press the seal and the copybook is done, the brush at rest.</p>
     <div class="modal-acts">
-      <button class="btn btn--bai" id="btnCancel" type="button">且慢</button>
-      <button class="btn btn--ink" id="btnConfirm" type="button">用印</button>
+      <button class="btn btn--bai" id="btnCancel" type="button">Not yet</button>
+      <button class="btn btn--ink" id="btnConfirm" type="button">Press the seal</button>
     </div>
   </div>
 </dialog>
@@ -765,7 +765,7 @@ footer{
     waterOut.textContent=v;
     arc.style.strokeDasharray=v+' 100';
     gnum.textContent=v;
-    gsvg.setAttribute('aria-label','硯池水位 '+v+'%');
+    gsvg.setAttribute('aria-label','Ink well level '+v+'%');
     water.style.setProperty('background','transparent');
     var track='linear-gradient(to right, var(--ink) '+v+'%, rgba(25,21,18,.22) '+v+'%)';
     water.style.setProperty('--trk',track);
@@ -787,20 +787,20 @@ footer{
   sw.addEventListener('change',function(){
     if(sw.checked){
       if(inkVal>=100)inkVal=0;
-      swState.textContent='研墨中…';
+      swState.textContent='Grinding…';
       grinder=setInterval(function(){
         inkVal=Math.min(100,inkVal+1.4);
         renderProg();
         if(inkVal>=100){
           clearInterval(grinder);grinder=null;
           sw.checked=false;
-          swState.textContent='墨成';
-          toast('墨已成,可落筆');
+          swState.textContent='Ink ready';
+          toast('The ink is ready. You may set the brush down.');
         }
       },220);
     }else{
       if(grinder){clearInterval(grinder);grinder=null}
-      if(swState.textContent!=='墨成')swState.textContent='歇筆';
+      if(swState.textContent!=='Ink ready')swState.textContent='At rest';
     }
   });
 
@@ -867,10 +867,10 @@ footer{
   $('btnCancel').addEventListener('click',function(){modal.close()});
   $('btnConfirm').addEventListener('click',function(){
     modal.close();
-    toast('已用印,此卷出帖');
+    toast('Sealed. This scroll is released.');
   });
 
-  $('btnToast').addEventListener('click',function(){toast('短箋一紙,已入卷中')});
+  $('btnToast').addEventListener('click',function(){toast('One short note, now part of the scroll.')});
 
   var io=new IntersectionObserver(function(es){
     es.forEach(function(x){
