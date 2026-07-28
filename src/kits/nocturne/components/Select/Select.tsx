@@ -95,7 +95,9 @@ export function Select<Value extends string = string>({
                   <BaseSelect.ItemText className="nocturne-list-item__text">
                     {it.label}
                   </BaseSelect.ItemText>
-                  <BaseSelect.ItemIndicator className="nocturne-list-item__check" />
+                  <BaseSelect.ItemIndicator className="nocturne-list-item__check">
+                    {""}
+                  </BaseSelect.ItemIndicator>
                 </BaseSelect.Item>
               ))}
             </ScrollArea>

@@ -77,7 +77,9 @@ export function Combobox({
                     className="nocturne-list-item"
                   >
                     <span className="nocturne-list-item__text">{item}</span>
-                    <BaseCombobox.ItemIndicator className="nocturne-list-item__check" />
+                    <BaseCombobox.ItemIndicator className="nocturne-list-item__check">
+                      {""}
+                    </BaseCombobox.ItemIndicator>
                   </BaseCombobox.Item>
                 )}
               </BaseCombobox.List>
