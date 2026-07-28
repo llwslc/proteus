@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Theme Atlas · 主题图集</title>
+<title>Theme Atlas · Component Worlds</title>
 <style>
   :root{
     --bg:#0c0c0f; --panel:#131318; --panel-2:#17171d;
@@ -141,8 +141,8 @@
   <section class="landing" id="landing">
     <div class="landing-head">
       <div>
-        <h1>Theme Atlas <span>· 主题图集</span></h1>
-        <p>21 套完全独立的组件主题世界 · 点卡片进入,右下实时预览,可切 PC / 手机视口。</p>
+        <h1>Theme Atlas <span>· Component Worlds</span></h1>
+        <p>21 fully independent component theme worlds · open a card to enter, preview it live alongside the index, and switch between PC and mobile viewports.</p>
       </div>
       <span class="count" id="gridCount">21 WORLDS</span>
     </div>
@@ -151,30 +151,30 @@
 
   <div class="detail" id="detail">
     <aside class="side" id="side">
-      <button class="home" id="home" type="button">&larr;&nbsp; <b>ATLAS</b>&nbsp;/ 全部主题</button>
+      <button class="home" id="home" type="button">&larr;&nbsp; <b>ATLAS</b>&nbsp;/ All Themes</button>
       <div class="side-search">
-        <input id="sideSearch" type="search" placeholder="搜索主题　快捷键 /" aria-label="搜索主题" autocomplete="off" spellcheck="false">
+        <input id="sideSearch" type="search" placeholder="Search themes · shortcut /" aria-label="Search themes" autocomplete="off" spellcheck="false">
       </div>
-      <nav class="side-list" id="sideList" aria-label="主题目录"></nav>
-      <p class="side-empty" id="sideEmpty">无匹配主题</p>
+      <nav class="side-list" id="sideList" aria-label="Theme index"></nav>
+      <p class="side-empty" id="sideEmpty">No matching theme</p>
     </aside>
-    <button class="side-backdrop" id="sideBackdrop" type="button" aria-label="关闭目录"></button>
+    <button class="side-backdrop" id="sideBackdrop" type="button" aria-label="Close index"></button>
 
     <main class="stage">
       <header class="bar">
-        <button class="menu" id="menuBtn" type="button" aria-label="主题目录">&#9776;</button>
+        <button class="menu" id="menuBtn" type="button" aria-label="Theme index">&#9776;</button>
         <div class="cur">
           <span class="idx" id="curIdx">01</span>
           <div><span class="code" id="curCode">&mdash;</span><small class="name" id="curName">&mdash;</small></div>
         </div>
         <div class="bar-actions">
-          <button class="nav" id="prevBtn" type="button" aria-label="上一主题">&larr;</button>
-          <button class="nav" id="nextBtn" type="button" aria-label="下一主题">&rarr;</button>
-          <span class="seg" role="group" aria-label="预览视口">
+          <button class="nav" id="prevBtn" type="button" aria-label="Previous theme">&larr;</button>
+          <button class="nav" id="nextBtn" type="button" aria-label="Next theme">&rarr;</button>
+          <span class="seg" role="group" aria-label="Preview viewport">
             <button id="pcBtn" type="button">PC</button>
             <button id="mobileBtn" type="button">Mobile</button>
           </span>
-          <button class="fs-btn" id="fsBtn" type="button" aria-label="铺满全屏预览" title="铺满全屏 · 隐藏侧栏与顶栏">
+          <button class="fs-btn" id="fsBtn" type="button" aria-label="Fullscreen preview" title="Fullscreen · hide the sidebar and top bar">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.2 6V2.2H6M14 6V2.2h-3.8M2.2 10v3.8H6M14 10v3.8h-3.8"/></svg>
           </button>
           <a class="open" id="openBtn" target="_blank" rel="noopener">Open&nbsp;<span>&#8599;</span></a>
@@ -183,7 +183,7 @@
       <div class="viewport" id="viewport" data-vp="pc">
         <div class="frame-wrap loading" id="frameWrap">
           <div class="ploading"><i></i><span>ENTERING WORLD</span></div>
-          <iframe id="stageFrame" title="主题预览" scrolling="yes"></iframe>
+          <iframe id="stageFrame" title="Theme preview" scrolling="yes"></iframe>
         </div>
       </div>
     </main>
@@ -193,27 +193,27 @@
 (function(){
   "use strict";
   var THEMES=[
-    {id:"nova",code:"NOVA",name:"科幻霓虹 HUD / Sci-fi neon"},
-    {id:"abyss",code:"ABYSS",name:"克苏鲁深渊魔典 / Eldritch grimoire"},
-    {id:"brass",code:"BRASS",name:"蒸汽朋克 / Steampunk"},
-    {id:"prism",code:"PRISM",name:"包豪斯构成 / Bauhaus"},
-    {id:"riot",code:"RIOT",name:"朋克剪报 / Punk zine"},
-    {id:"hanabi",code:"HANABI",name:"二次元赛璐璐 / Anime cel"},
-    {id:"sumi",code:"SUMI",name:"水墨禅 / Zen ink"},
-    {id:"ormolu",code:"ORMOLU",name:"洛可可宫廷 / Rococo"},
-    {id:"nocturne",code:"NOCTURNE",name:"暗夜花园 / Dark botanical"},
-    {id:"pulp",code:"PULP",name:"复古廉价小说 / Pulp paperback"},
-    {id:"totem",code:"TOTEM",name:"民艺图腾 / Folk craft"},
-    {id:"kiln",code:"KILN",name:"陶土侘寂 / Wabi-sabi"},
-    {id:"chrome",code:"CHROME",name:"千禧液态铬 / Y2K aero"},
-    {id:"arcade",code:"ARCADE",name:"8-bit 街机 / Retro arcade"},
-    {id:"bitmap",code:"BITMAP",name:"1-bit 位图 / One-bit dither"},
-    {id:"mochi",code:"MOCHI",name:"软陶泡芙 / Claymorphic squish"},
-    {id:"scribble",code:"SCRIBBLE",name:"手账涂鸦 / Notebook doodle"},
-    {id:"axon",code:"AXON",name:"轴测蓝图 / Isometric blueprint"},
-    {id:"corona",code:"CORONA",name:"日蚀玻璃 / Eclipse glass"},
-    {id:"reliquary",code:"RELIQUARY",name:"未来圣骸 / Future reliquary"},
-    {id:"gazette",code:"GAZETTE",name:"报章排印 / Broadsheet"}
+    {id:"nova",code:"NOVA",name:"Sci-fi neon"},
+    {id:"abyss",code:"ABYSS",name:"Eldritch grimoire"},
+    {id:"brass",code:"BRASS",name:"Steampunk"},
+    {id:"prism",code:"PRISM",name:"Bauhaus"},
+    {id:"riot",code:"RIOT",name:"Punk zine"},
+    {id:"hanabi",code:"HANABI",name:"Anime cel"},
+    {id:"sumi",code:"SUMI",name:"Zen ink"},
+    {id:"ormolu",code:"ORMOLU",name:"Rococo"},
+    {id:"nocturne",code:"NOCTURNE",name:"Dark botanical"},
+    {id:"pulp",code:"PULP",name:"Pulp paperback"},
+    {id:"totem",code:"TOTEM",name:"Folk craft"},
+    {id:"kiln",code:"KILN",name:"Wabi-sabi"},
+    {id:"chrome",code:"CHROME",name:"Y2K aero"},
+    {id:"arcade",code:"ARCADE",name:"Retro arcade"},
+    {id:"bitmap",code:"BITMAP",name:"One-bit dither"},
+    {id:"mochi",code:"MOCHI",name:"Claymorphic squish"},
+    {id:"scribble",code:"SCRIBBLE",name:"Notebook doodle"},
+    {id:"axon",code:"AXON",name:"Isometric blueprint"},
+    {id:"corona",code:"CORONA",name:"Eclipse glass"},
+    {id:"reliquary",code:"RELIQUARY",name:"Future reliquary"},
+    {id:"gazette",code:"GAZETTE",name:"Broadsheet"}
   ];
   var $=function(s){return document.querySelector(s)};
   var pad=function(n){return (n<9?"0":"")+(n+1)};
@@ -229,7 +229,7 @@
     var thumb=document.createElement("div"); thumb.className="thumb";
     var f=document.createElement("iframe");
     f.setAttribute("scrolling","no"); f.setAttribute("tabindex","-1"); f.setAttribute("loading","lazy");
-    f.title=t.code+" 预览"; f.setAttribute("data-src",t.id+".html");
+    f.title=t.code+" preview"; f.setAttribute("data-src",t.id+".html");
     var load=document.createElement("span"); load.className="tload"; load.textContent=t.code;
     thumb.appendChild(f); thumb.appendChild(load);
     var meta=document.createElement("div"); meta.className="card-meta";
