@@ -152,6 +152,27 @@ const AUDIT = ({ vw, exempt }) => {
       if (!scrollable) out.push(`HIGH   ${id}  control off-panel (clipped/hidden, no scroll to reveal): ${desc(el)}`);
     }
 
+    // a BUTTON stretched across its whole row (components.md §8 — only field-like controls
+    // go full-row). Nobody types it: a flex column stretches every child by default, so it
+    // emerges from the parent and no source-text gate can see it.
+    for (const el of panel.querySelectorAll('button, [role="button"]')) {
+      if (!vis(el)) continue;
+      const r = R.get(el) || el.getBoundingClientRect();
+      if (!r || r.width < 4 || r.height < 4 || srOnly(el, r)) continue;
+      // by design full-row: Select/Combobox field triggers, and the disclosure family
+      // (Accordion/Collapsible headers — aria-expanded with no popup to open).
+      if (el.getAttribute('role') === 'combobox' || el.getAttribute('aria-haspopup') === 'listbox') continue;
+      if (el.hasAttribute('aria-expanded') && !el.hasAttribute('aria-haspopup')) continue;
+      const p = el.parentElement;
+      if (!p) continue;
+      const pc = cs(p);
+      const column = pc.display === 'block' || (pc.display.includes('flex') && pc.flexDirection.startsWith('column'));
+      if (!column) continue;
+      const inner = p.getBoundingClientRect().width - parseFloat(pc.paddingLeft) - parseFloat(pc.paddingRight);
+      if (inner < 200 || r.width < inner - 1.5) continue;
+      out.push(`HIGH   ${id}  stretched: ${desc(el)} fills its row (${Math.round(r.width)}/${Math.round(inner)}px, label centred) — buttons keep content width; give it align-self: flex-start`);
+    }
+
     const parts = els.filter((el) => {
       if (!vis(el) || overlapExempt(el)) return false;
       const r = R.get(el);
