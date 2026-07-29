@@ -39,11 +39,3 @@
   letter-spacing: var(--riot-ls-2);
   transform: rotate(var(--riot-rot-2-5));
 }
-.riot-panel__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--riot-space-4);
-}
-.riot-panel__body > button {
-  align-self: flex-start;
-}

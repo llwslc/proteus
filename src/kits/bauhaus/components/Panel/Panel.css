@@ -30,11 +30,5 @@
   color: var(--bauhaus-text-mute);
 }
 .bauhaus-panel__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--bauhaus-space-4);
   padding: var(--bauhaus-space-5);
-}
-.bauhaus-panel__body > button {
-  align-self: flex-start;
 }
