@@ -42,11 +42,13 @@ export function Field({
   icon,
   rootClassName,
   className,
+  name,
   ...control
 }: FieldProps) {
   return (
     <BaseField.Root
       className={cx("hanabi-fieldroot", rootClassName)}
+      name={name}
       invalid={error != null}
     >
       {label != null ? (
@@ -68,7 +70,9 @@ export function Field({
         <BaseField.Error className="hanabi-fieldroot__error" match>
           {error}
         </BaseField.Error>
-      ) : null}
+      ) : (
+        <BaseField.Error className="hanabi-fieldroot__error" />
+      )}
     </BaseField.Root>
   );
 }

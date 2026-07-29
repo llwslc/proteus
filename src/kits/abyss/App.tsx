@@ -438,18 +438,25 @@ function ToolbarDemo() {
 
 function FormDemo() {
   const { add } = useToast();
+  const [errors, setErrors] = useState<Record<string, string>>({});
   return (
     <Form
-      onFormSubmit={() =>
+      errors={errors}
+      onFormSubmit={(values) => {
+        if (String(values.code ?? "").length < 6) {
+          setErrors({ code: "The deep refused this key." });
+          return;
+        }
+        setErrors({});
         add({
           title: "Sent Down",
           description: "The words sank to the deep.",
           type: "success",
-        })
-      }
+        });
+      }}
     >
       <Field label="Acolyte Mark" name="op" placeholder="DG-0000" />
-      <Field label="Cipher Key" name="code" placeholder="••••••" />
+      <Field label="Cipher Key" name="code" type="password" placeholder="••••••" />
       <Button type="submit">Send Down</Button>
     </Form>
   );

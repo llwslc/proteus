@@ -400,18 +400,25 @@ function ProgressDemo() {
 
 function FormDemo() {
   const { add } = useToast();
+  const [errors, setErrors] = useState<Record<string, string>>({});
   return (
     <Form
-      onFormSubmit={() =>
+      errors={errors}
+      onFormSubmit={(values) => {
+        if (String(values.code ?? "").length < 6) {
+          setErrors({ code: "Fleet command rejected this code." });
+          return;
+        }
+        setErrors({});
         add({
           title: "Transmitted",
           description: "Credentials relayed to fleet command.",
           type: "success",
-        })
-      }
+        });
+      }}
     >
       <Field label="Operator ID" name="op" placeholder="NX-0000" />
-      <Field label="Access Code" name="code" placeholder="••••••" />
+      <Field label="Access Code" name="code" type="password" placeholder="••••••" />
       <Button type="submit">Transmit</Button>
     </Form>
   );

@@ -34,10 +34,15 @@ export function Field({
   icon,
   rootClassName,
   className,
+  name,
   ...control
 }: FieldProps) {
   return (
-    <BaseField.Root className={cx("riot-field", rootClassName)} invalid={error != null}>
+    <BaseField.Root
+      className={cx("riot-field", rootClassName)}
+      name={name}
+      invalid={error != null}
+    >
       {label != null ? (
         <BaseField.Label className="riot-cap riot-field__label">{label}</BaseField.Label>
       ) : null}
@@ -54,7 +59,9 @@ export function Field({
         <BaseField.Error className="riot-field__error" match>
           {error}
         </BaseField.Error>
-      ) : null}
+      ) : (
+        <BaseField.Error className="riot-field__error" />
+      )}
     </BaseField.Root>
   );
 }

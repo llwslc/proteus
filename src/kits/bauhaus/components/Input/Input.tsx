@@ -34,11 +34,13 @@ export function Field({
   icon,
   rootClassName,
   className,
+  name,
   ...control
 }: FieldProps) {
   return (
     <BaseField.Root
       className={cx("bauhaus-field", rootClassName)}
+      name={name}
       invalid={error != null}
     >
       {label != null ? (
@@ -62,7 +64,9 @@ export function Field({
         <BaseField.Error className="bauhaus-field__error" match>
           {error}
         </BaseField.Error>
-      ) : null}
+      ) : (
+        <BaseField.Error className="bauhaus-field__error" />
+      )}
     </BaseField.Root>
   );
 }

@@ -335,6 +335,34 @@ function TornFilter() {
   );
 }
 
+function FormDemo() {
+  const { add } = useToast();
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  return (
+    <Form
+      errors={errors}
+      onFormSubmit={(values) => {
+        if (String(values.code ?? "").length < 6) {
+          setErrors({ code: "The backroom bounced this key." });
+          return;
+        }
+        setErrors({});
+        add({
+          title: "Filed",
+          description: "Zine filed.",
+          type: "success",
+        });
+      }}
+    >
+      <Field label="Headline" name="op" placeholder="Title…" />
+      <Field label="Key" name="code" type="password" placeholder="Access key…" />
+      <Button type="submit" variant="primary">
+        Submit
+      </Button>
+    </Form>
+  );
+}
+
 function Demo() {
   const toast = useToast();
 
@@ -689,22 +717,7 @@ function Demo() {
               </Fieldset>
             </Panel>
             <Panel id="form" title="Form" meta="FRM" tape="tr">
-              <Form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  toast.add({
-                    title: "Filed",
-                    description: "Zine filed.",
-                    type: "success",
-                  });
-                }}
-              >
-                <Field label="Headline" placeholder="Title…" />
-                <Field label="Key" type="password" placeholder="Access key…" />
-                <Button type="submit" variant="primary">
-                  Submit
-                </Button>
-              </Form>
+              <FormDemo />
             </Panel>
           </div>
 

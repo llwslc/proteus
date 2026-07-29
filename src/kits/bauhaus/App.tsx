@@ -291,6 +291,34 @@ export default function App() {
   );
 }
 
+function FormDemo() {
+  const { add } = useToast();
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  return (
+    <Form
+      errors={errors}
+      onFormSubmit={(values) => {
+        if (String(values.code ?? "").length < 6) {
+          setErrors({ code: "The registry rejected this key." });
+          return;
+        }
+        setErrors({});
+        add({
+          title: "Filed",
+          description: "Composition filed.",
+          type: "success",
+        });
+      }}
+    >
+      <Field label="Composition" name="op" placeholder="Title…" />
+      <Field label="Key" name="code" type="password" placeholder="Access key…" />
+      <Button type="submit" variant="primary">
+        Submit
+      </Button>
+    </Form>
+  );
+}
+
 function Demo() {
   const toast = useToast();
 
@@ -656,22 +684,7 @@ function Demo() {
               </Fieldset>
             </Panel>
             <Panel id="form" title="Form" meta="FRM">
-              <Form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  toast.add({
-                    title: "Filed",
-                    description: "Composition filed.",
-                    type: "success",
-                  });
-                }}
-              >
-                <Field label="Composition" placeholder="Title…" />
-                <Field label="Key" type="password" placeholder="Access key…" />
-                <Button type="submit" variant="primary">
-                  Submit
-                </Button>
-              </Form>
+              <FormDemo />
             </Panel>
           </div>
 

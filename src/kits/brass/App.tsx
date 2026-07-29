@@ -312,6 +312,34 @@ export default function App() {
   );
 }
 
+function FormDemo() {
+  const { add } = useToast();
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  return (
+    <Form
+      errors={errors}
+      onFormSubmit={(values) => {
+        if (String(values.code ?? "").length < 6) {
+          setErrors({ code: "The watch rejected this cipher." });
+          return;
+        }
+        setErrors({});
+        add({
+          title: "Logged",
+          description: "Manifest submitted.",
+          type: "success",
+        });
+      }}
+    >
+      <Field label="Manifest" name="op" placeholder="Cargo…" />
+      <Field label="Cipher" name="code" type="password" placeholder="Watch cipher…" />
+      <Button type="submit" variant="primary">
+        Submit
+      </Button>
+    </Form>
+  );
+}
+
 function Demo() {
   const toast = useToast();
 
@@ -665,22 +693,7 @@ function Demo() {
               </Fieldset>
             </Panel>
             <Panel id="form" title="Form" meta="FRM">
-              <Form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  toast.add({
-                    title: "Logged",
-                    description: "Manifest submitted.",
-                    type: "success",
-                  });
-                }}
-              >
-                <Field label="Manifest" placeholder="Cargo…" />
-                <Field label="Cipher" type="password" placeholder="Watch cipher…" />
-                <Button type="submit" variant="primary">
-                  Submit
-                </Button>
-              </Form>
+              <FormDemo />
             </Panel>
           </div>
 

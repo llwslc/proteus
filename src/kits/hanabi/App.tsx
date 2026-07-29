@@ -329,6 +329,34 @@ export default function App() {
   );
 }
 
+function FormDemo() {
+  const { add } = useToast();
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  return (
+    <Form
+      errors={errors}
+      onFormSubmit={(values) => {
+        if (String(values.code ?? "").length < 6) {
+          setErrors({ code: "司令部にこの合言葉は弾かれました。" });
+          return;
+        }
+        setErrors({});
+        add({
+          title: "受理しました",
+          description: "作戦書類を受け付けました。",
+          type: "success",
+        });
+      }}
+    >
+      <Field label="作戦名" name="op" placeholder="作戦名を入力…" />
+      <Field label="合言葉" name="code" type="password" placeholder="合言葉…" />
+      <Button type="submit" variant="primary">
+        提出
+      </Button>
+    </Form>
+  );
+}
+
 function Demo() {
   const toast = useToast();
 
@@ -685,22 +713,7 @@ function Demo() {
               </Fieldset>
             </Panel>
             <Panel id="form" title="Form" meta="FRM">
-              <Form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  toast.add({
-                    title: "受理しました",
-                    description: "作戦書類を受け付けました。",
-                    type: "success",
-                  });
-                }}
-              >
-                <Field label="作戦名" placeholder="作戦名を入力…" />
-                <Field label="合言葉" type="password" placeholder="合言葉…" />
-                <Button type="submit" variant="primary">
-                  提出
-                </Button>
-              </Form>
+              <FormDemo />
             </Panel>
           </div>
 

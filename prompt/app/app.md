@@ -69,7 +69,7 @@
 **Forms**
 
 - fieldset：Fieldset + legend + 2 个字段，各 label + 默认值。
-- form：Form（提交触发 `success` toast）+ 2 字段（第 2 为密码 placeholder）+ 一行提交 Button（`type="submit"`，右对齐、内容宽）。
+- form：Form + 2 字段（第 2 为密码）+ 提交 Button（`type="submit"`）；密码满 6 字符提交触发 `success` toast，不足 6 字符提交经 Form 的 `errors` 回一条字段错误。
 
 **Feedback**
 
