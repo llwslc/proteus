@@ -19,15 +19,15 @@ export function Collapsible({ title, children, className, ...props }: Collapsibl
       className={cx("abyss-collapsible abyss-frame", className)}
       {...props}
     >
-      <BaseCollapsible.Trigger className="abyss-disclosure__trigger abyss-collapsible__trigger">
+      <BaseCollapsible.Trigger className="abyss-collapse-trigger abyss-collapsible__trigger">
         <span className="abyss-collapsible__rune" aria-hidden>
           <SigilIcon />
         </span>
-        <span className="abyss-disclosure__title">{title}</span>
+        <span className="abyss-collapse-title">{title}</span>
         <ChevronDownIcon className="abyss-collapsible__chevron" />
       </BaseCollapsible.Trigger>
-      <BaseCollapsible.Panel className="abyss-disclosure__panel">
-        <div className="abyss-disclosure__content abyss-text">{children}</div>
+      <BaseCollapsible.Panel className="abyss-collapse-panel">
+        <div className="abyss-collapse-content abyss-text">{children}</div>
       </BaseCollapsible.Panel>
     </BaseCollapsible.Root>
   );

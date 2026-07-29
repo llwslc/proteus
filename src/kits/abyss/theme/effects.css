@@ -32,7 +32,7 @@
   pointer-events: none;
 }
 
-.abyss-disclosure__trigger {
+.abyss-collapse-trigger {
   display: flex;
   align-items: center;
   gap: var(--abyss-space-3);
@@ -49,32 +49,32 @@
   text-align: left;
   transition: color var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-disclosure__trigger:where(:not([data-disabled])):hover {
+.abyss-collapse-trigger:where(:not([data-disabled])):hover {
   color: var(--abyss-text-bright);
 }
-.abyss-disclosure__trigger[data-panel-open] {
+.abyss-collapse-trigger[data-panel-open] {
   color: var(--abyss-glow);
   text-shadow: var(--abyss-text-aura);
 }
-.abyss-disclosure__trigger:focus-visible {
+.abyss-collapse-trigger:focus-visible {
   outline: none;
   color: var(--abyss-glow);
 }
-.abyss-disclosure__title {
+.abyss-collapse-title {
   flex: 1;
 }
-.abyss-disclosure__panel {
+.abyss-collapse-panel {
   position: relative;
   z-index: 1;
   height: var(--accordion-panel-height, var(--collapsible-panel-height));
   overflow: hidden;
   transition: height var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-disclosure__panel[data-starting-style],
-.abyss-disclosure__panel[data-ending-style] {
+.abyss-collapse-panel[data-starting-style],
+.abyss-collapse-panel[data-ending-style] {
   height: 0;
 }
-.abyss-disclosure__content {
+.abyss-collapse-content {
   padding: 0 var(--abyss-space-4) var(--abyss-space-4)
     calc(var(--abyss-space-4) + var(--abyss-fs-19) + var(--abyss-space-3));
 }

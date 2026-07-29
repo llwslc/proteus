@@ -19,13 +19,13 @@ export function Collapsible({ title, children, className, ...props }: Collapsibl
       className={cx("nova-surface nova-collapsible", className)}
       {...props}
     >
-      <BaseCollapsible.Trigger className="nova-disclosure__trigger">
-        <span className="nova-disclosure__marker" />
-        <span className="nova-disclosure__title">{title}</span>
-        <ChevronDownIcon className="nova-disclosure__chevron" />
+      <BaseCollapsible.Trigger className="nova-collapse-trigger">
+        <span className="nova-collapse-marker" />
+        <span className="nova-collapse-title">{title}</span>
+        <ChevronDownIcon className="nova-collapse-chevron" />
       </BaseCollapsible.Trigger>
-      <BaseCollapsible.Panel className="nova-disclosure__panel">
-        <div className="nova-disclosure__content">{children}</div>
+      <BaseCollapsible.Panel className="nova-collapse-panel">
+        <div className="nova-collapse-content">{children}</div>
       </BaseCollapsible.Panel>
     </BaseCollapsible.Root>
   );
