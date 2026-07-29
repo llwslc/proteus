@@ -179,9 +179,7 @@
   --nova-z-backdrop: 1400;
   --nova-z-overlay: 1401;
   --nova-z-toast: 1500;
-}
 
-:root {
   --nova-clip-3: polygon(
     3px 0,
     100% 0,

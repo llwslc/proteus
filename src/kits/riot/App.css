@@ -109,6 +109,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--riot-space-2) var(--riot-space-3);
+  padding-left: calc(var(--riot-space-3) + var(--riot-stroke-bold));
   font-family: var(--riot-font);
   font-size: var(--riot-fs-15);
   color: var(--riot-text-mute);
@@ -116,9 +117,6 @@
   transition:
     color var(--riot-dur) var(--riot-ease),
     background var(--riot-dur) var(--riot-ease);
-}
-.riot-sidebar__link {
-  padding-left: calc(var(--riot-space-3) + var(--riot-stroke-bold));
 }
 .riot-sidebar__link:hover {
   background: #191716;
