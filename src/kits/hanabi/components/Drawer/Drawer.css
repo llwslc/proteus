@@ -98,8 +98,6 @@
 }
 .hanabi-drawer__title .hanabi-modal__sigil {
   font-size: var(--hanabi-fs-16);
-}
-.hanabi-drawer__title .hanabi-modal__sigil {
   color: var(--hanabi-primary);
 }
 
