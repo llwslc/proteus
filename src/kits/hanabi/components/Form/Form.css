@@ -5,6 +5,8 @@
   min-width: 0;
 }
 
-.hanabi-form > button {
-  align-self: flex-end;
+.hanabi-form__row {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--hanabi-space-3);
 }

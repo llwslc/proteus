@@ -677,9 +677,11 @@ function Demo() {
               >
                 <Field label="Manifest" placeholder="Cargo…" />
                 <Field label="Cipher" type="password" placeholder="Watch cipher…" />
-                <Button type="submit" variant="primary">
-                  Submit
-                </Button>
+                <div className="brass-form__row">
+                  <Button type="submit" variant="primary">
+                    Submit
+                  </Button>
+                </div>
               </Form>
             </Panel>
           </div>

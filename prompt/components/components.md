@@ -132,7 +132,7 @@
 - **Combobox**：props `items·placeholder·emptyText·label·side`（默认 bottom）`·align`（默认 center）；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`；过滤走 Base UI 内建；`items` 项收字符串或 `{ label, disabled }`，label 归一成串传 Root，禁用落在 `Item`。
 - **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron；过滤走 Base UI 内建；`items` 项收字符串或 `{ label, disabled }`，label 归一成串传 Root，禁用落在 `Item`。
 - **Fieldset**：props `legend`；竖排，由 Base UI 直接管。
-- **Form**：竖排，由 Base UI 直接管。
+- **Form**：竖排，由 Base UI 直接管；动作放具名槽 `__row`、右对齐。
 
 **反馈**
 

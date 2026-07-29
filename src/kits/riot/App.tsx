@@ -701,9 +701,11 @@ function Demo() {
               >
                 <Field label="Headline" placeholder="Title…" />
                 <Field label="Key" type="password" placeholder="Access key…" />
-                <Button type="submit" variant="primary">
-                  Submit
-                </Button>
+                <div className="riot-form__row">
+                  <Button type="submit" variant="primary">
+                    Submit
+                  </Button>
+                </div>
               </Form>
             </Panel>
           </div>
