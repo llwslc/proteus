@@ -3,8 +3,3 @@
   flex-direction: column;
   gap: var(--bauhaus-space-4);
 }
-.bauhaus-form__row {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--bauhaus-space-3);
-}

@@ -450,9 +450,7 @@ function FormDemo() {
     >
       <Field label="Acolyte Mark" name="op" placeholder="DG-0000" />
       <Field label="Cipher Key" name="code" placeholder="••••••" />
-      <div className="abyss-form__row">
-        <Button type="submit">Send Down</Button>
-      </div>
+      <Button type="submit">Send Down</Button>
     </Form>
   );
 }

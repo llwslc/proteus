@@ -4,9 +4,3 @@
   gap: var(--hanabi-space-4);
   min-width: 0;
 }
-
-.hanabi-form__row {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--hanabi-space-3);
-}

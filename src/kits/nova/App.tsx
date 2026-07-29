@@ -412,9 +412,7 @@ function FormDemo() {
     >
       <Field label="Operator ID" name="op" placeholder="NX-0000" />
       <Field label="Access Code" name="code" placeholder="••••••" />
-      <div className="nova-form__row">
-        <Button type="submit">Transmit</Button>
-      </div>
+      <Button type="submit">Transmit</Button>
     </Form>
   );
 }

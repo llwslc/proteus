@@ -668,11 +668,9 @@ function Demo() {
               >
                 <Field label="Composition" placeholder="Title…" />
                 <Field label="Key" type="password" placeholder="Access key…" />
-                <div className="bauhaus-form__row">
-                  <Button type="submit" variant="primary">
-                    Submit
-                  </Button>
-                </div>
+                <Button type="submit" variant="primary">
+                  Submit
+                </Button>
               </Form>
             </Panel>
           </div>

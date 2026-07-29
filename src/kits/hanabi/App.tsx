@@ -697,11 +697,9 @@ function Demo() {
               >
                 <Field label="作戦名" placeholder="作戦名を入力…" />
                 <Field label="合言葉" type="password" placeholder="合言葉…" />
-                <div className="hanabi-form__row">
-                  <Button type="submit" variant="primary">
-                    提出
-                  </Button>
-                </div>
+                <Button type="submit" variant="primary">
+                  提出
+                </Button>
               </Form>
             </Panel>
           </div>
