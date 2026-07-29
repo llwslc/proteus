@@ -20,6 +20,7 @@
 .abyss-navmenu__triggerwrap {
   display: inline-flex;
   align-items: stretch;
+  height: var(--abyss-navmenu-h, auto);
 }
 .abyss-navmenu__trigger,
 .abyss-navmenu__toplink {
@@ -27,7 +28,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--abyss-space-2);
-  height: var(--abyss-navmenu-trigger-h);
+  height: var(--abyss-navmenu-h, var(--abyss-navmenu-trigger-h));
   padding: 0 var(--abyss-space-4);
   border: 0;
   background: transparent;
@@ -46,9 +47,9 @@
 .abyss-navmenu__toplink::after {
   content: "";
   position: absolute;
-  left: var(--abyss-space-3);
-  right: var(--abyss-space-3);
-  bottom: 4px;
+  left: var(--abyss-navmenu-underline-x, var(--abyss-space-3));
+  right: var(--abyss-navmenu-underline-x, var(--abyss-space-3));
+  bottom: var(--abyss-navmenu-underline-y, 4px);
   height: 1.5px;
   background: var(--abyss-glow);
   box-shadow: 0 0 7px var(--abyss-glow-a70);

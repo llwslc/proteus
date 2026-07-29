@@ -20,6 +20,7 @@
 .nova-navmenu__triggerwrap {
   display: inline-flex;
   align-items: stretch;
+  height: var(--nova-navmenu-h, auto);
 }
 .nova-navmenu__trigger,
 .nova-navmenu__toplink {
@@ -27,7 +28,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--nova-space-2);
-  height: var(--nova-navmenu-trigger-h);
+  height: var(--nova-navmenu-h, var(--nova-navmenu-trigger-h));
   padding: 0 var(--nova-space-4);
   border: 0;
   background: transparent;

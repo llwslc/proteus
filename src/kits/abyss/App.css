@@ -112,17 +112,9 @@
 }
 .abyss-header .abyss-navmenu {
   align-self: stretch;
-}
-.abyss-header .abyss-navmenu__triggerwrap,
-.abyss-header .abyss-navmenu__trigger,
-.abyss-header .abyss-navmenu__toplink {
-  height: 100%;
-}
-.abyss-header .abyss-navmenu__trigger::after,
-.abyss-header .abyss-navmenu__toplink::after {
-  left: 0;
-  right: 0;
-  bottom: 0;
+  --abyss-navmenu-h: 100%;
+  --abyss-navmenu-underline-x: 0;
+  --abyss-navmenu-underline-y: 0;
 }
 
 .abyss-hero__sigil {
