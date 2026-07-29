@@ -85,7 +85,11 @@
 }
 .nova-header .nova-navmenu {
   align-self: stretch;
-  --nova-navmenu-h: 100%;
+}
+.nova-header .nova-navmenu__triggerwrap,
+.nova-header .nova-navmenu__trigger,
+.nova-header .nova-navmenu__toplink {
+  height: 100%;
 }
 
 .nova-shell {
