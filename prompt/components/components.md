@@ -177,7 +177,7 @@
 ## 8. 布局与响应式
 
 - inline-flex 的分段控件 ToggleGroup 加 `width: fit-content`；1px 的细分隔条放在会收缩的 flex 容器里要加 `flex: 0 0 <尺寸>`；grid 子项加 `min-width: 0`、单列断点用 `minmax(0, 1fr)`；`<fieldset>` 也要加 `min-width: 0`；跨列的子项用 `grid-column: 1 / -1`、不用定值 `span N`。
-- 按钮、图标按钮保持内容宽，不撑满整行；整行通栏只给 Input、Select、textarea 这类输入控件与 Accordion、Collapsible 这类折叠头。面板体做成 flex 纵列的，给里面的按钮 `align-self: flex-start`。
+- 按钮、图标按钮保持内容宽，不撑满整行；整行通栏只给 Input、Select、textarea 这类输入控件与 Accordion、Collapsible 这类折叠头。
 - **唯一断点 `768px`**，不另设别的断点；手机改写集中进单个 `@media (max-width: 768px)`，PC 样式一律写在基样式，不另开 `min-width` 块。
 - **装饰层不许把页面撑宽**：扫光用 `background-position` 移动、不定态进度用 `top`/`left` 移动；非用 `transform` 不可时，把它关进一个不带 `clip-path` 的 `overflow:hidden` 祖先里。
 - **滚动容器里，固定装饰挂容器自身的盒子**：要铺满可视区、不能跟着滚走的装饰（底轨、外框），挂在滚动容器**自身的盒子**上（如 `border`），别挂在会随内容滚走的子层（`::after`、内层）上。随动装饰要**覆盖**这条固定装饰的（如选中指示压在底轨上换色），改双盒：滚动容器内放 `width: max-content; min-width: 100%` 的内层盒，线挂内层盒的 `border`，指示条同层压线上。
