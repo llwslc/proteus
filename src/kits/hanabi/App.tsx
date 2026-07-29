@@ -350,9 +350,7 @@ function FormDemo() {
     >
       <Field label="作戦名" name="op" placeholder="作戦名を入力…" />
       <Field label="合言葉" name="code" type="password" placeholder="合言葉…" />
-      <Button type="submit" variant="primary">
-        提出
-      </Button>
+      <Button type="submit">提出</Button>
     </Form>
   );
 }

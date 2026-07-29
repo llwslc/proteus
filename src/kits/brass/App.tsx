@@ -333,9 +333,7 @@ function FormDemo() {
     >
       <Field label="Manifest" name="op" placeholder="Cargo…" />
       <Field label="Cipher" name="code" type="password" placeholder="Watch cipher…" />
-      <Button type="submit" variant="primary">
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 }

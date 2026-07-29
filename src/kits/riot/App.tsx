@@ -356,9 +356,7 @@ function FormDemo() {
     >
       <Field label="Headline" name="op" placeholder="Title…" />
       <Field label="Key" name="code" type="password" placeholder="Access key…" />
-      <Button type="submit" variant="primary">
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 }
