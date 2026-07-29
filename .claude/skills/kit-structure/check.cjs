@@ -111,9 +111,10 @@ const cBefore = fail;
 for (const k of KITS) {
   const defRe = new RegExp('\\.(' + k + '-[a-z0-9]+(?:[-_][a-z0-9]+)*)', 'g');
   const useRe = new RegExp('(' + k + '-[a-z0-9]+(?:[-_][a-z0-9]+)*)', 'g');
+  const themeDir = `src/kits/${k}/theme`;
+  const themeFiles = fs.readdirSync(themeDir).filter((f) => f.endsWith('.css')).map((f) => `${themeDir}/${f}`);
   const themeCls = new Set();
-  for (const f of cp.execSync(`find src/kits/${k}/theme -name '*.css'`).toString().trim().split('\n').filter(Boolean))
-    for (const m of read(f).matchAll(defRe)) themeCls.add(m[1]);
+  for (const f of themeFiles) for (const m of read(f).matchAll(defRe)) themeCls.add(m[1]);
   const exempt = new Set(fs.existsSync(__dirname + '/theme-block-exempt.txt')
     ? read(__dirname + '/theme-block-exempt.txt').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#')) : []);
   const compBlocks = new Set(compSets[k].filter((c) => c !== 'icons').map((c) => c.toLowerCase()));
@@ -125,13 +126,37 @@ for (const k of KITS) {
       fail++;
     }
   }
-  const defByComp = {};
+  // OWNS = has a base rule for the class (a selector whose first compound IS that class).
+  // Merely mentioning a class in a compound selector is a USE, not a definition — counting
+  // mentions let a component that reaches for a sibling's class in its own CSS exempt itself.
+  const cssOf = (c) => {
+    const dir = `src/kits/${k}/components/${c}`;
+    return fs.readdirSync(dir).filter((f) => f.endsWith('.css')).map((f) => read(`${dir}/${f}`)).join('\n');
+  };
+  const selectorsOf = (css) => [...css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{/g)]
+    .map((m) => m[1].trim()).filter((s) => s && !s.startsWith('@'))
+    .flatMap((s) => s.split(',').map((p) => p.trim()));
+  const baseRe = new RegExp('^\\.(' + k + '-[a-z0-9]+(?:[-_][a-z0-9]+)*)');
+  const ownsByComp = {}, cssByComp = {};
   for (const c of compSets[k]) {
     if (c === 'icons') continue;
-    const set = new Set(), dir = `src/kits/${k}/components/${c}`;
-    for (const f of fs.readdirSync(dir)) if (f.endsWith('.css')) for (const m of read(`${dir}/${f}`).matchAll(defRe)) set.add(m[1]);
-    defByComp[c] = set;
+    cssByComp[c] = cssOf(c);
+    const set = new Set();
+    for (const sel of selectorsOf(cssByComp[c])) {
+      const m = sel.match(baseRe);
+      if (m && !/^[.#[a-zA-Z]/.test(sel.slice(m[0].length))) set.add(m[1]);
+    }
+    ownsByComp[c] = set;
   }
+  const ownerOf = (cls, self) =>
+    compSets[k].filter((o) => o !== self && o !== 'icons' && ownsByComp[o] && ownsByComp[o].has(cls));
+  // same rule for the shared layer: a class theme/ merely NAMES is not a theme class
+  const themeOwns = new Set();
+  for (const f of themeFiles) for (const sel of selectorsOf(read(f))) {
+    const m = sel.match(baseRe);
+    if (m && !/^[.#[a-zA-Z]/.test(sel.slice(m[0].length))) themeOwns.add(m[1]);
+  }
+
   for (const c of compSets[k]) {
     if (c === 'icons') continue;
     const dir = `src/kits/${k}/components/${c}`;
@@ -142,9 +167,28 @@ for (const k of KITS) {
       if (f.endsWith('.tsx')) tsx += read(`${dir}/${f}`) + '\n';
     }
     for (const cls of new Set([...tsx.matchAll(useRe)].map((m) => m[1]))) {
-      if (defByComp[c].has(cls) || themeCls.has(cls)) continue;
-      const owners = compSets[k].filter((o) => o !== c && o !== 'icons' && defByComp[o] && defByComp[o].has(cls));
-      if (owners.length) { out(`  FAIL ${k}/${c}: uses ${cls} defined in ${owners.join('/')}'s CSS — move it to theme/ or give ${c} its own`); fail++; }
+      if (ownsByComp[c].has(cls) || themeOwns.has(cls)) continue;
+      const owners = ownerOf(cls, c);
+      if (owners.length) { out(`  FAIL ${k}/${c}: renders ${cls} defined in ${owners.join('/')}'s CSS — move it to theme/ or give ${c} its own`); fail++; }
+    }
+    for (const sel of selectorsOf(cssByComp[c])) {
+      for (const m of sel.matchAll(defRe)) {
+        if (ownsByComp[c].has(m[1]) || themeOwns.has(m[1])) continue;
+        const owners = ownerOf(m[1], c);
+        if (owners.length) { out(`  FAIL ${k}/${c}: styles .${m[1]} defined in ${owners.join('/')}'s CSS ('${sel}') — override the owner's input var instead`); fail++; }
+      }
+    }
+  }
+
+  // the shared layer must not name a component's class either — a compound like
+  // `.<kit>-btn.<kit>-modal-close` makes theme/ depend on the component layer
+  for (const f of themeFiles) {
+    for (const sel of selectorsOf(read(f))) {
+      for (const m of sel.matchAll(defRe)) {
+        if (themeOwns.has(m[1])) continue;
+        const owners = ownerOf(m[1], null);
+        if (owners.length) { out(`  FAIL ${k}: theme/${f.split('/').pop()} names .${m[1]} from ${owners.join('/')} ('${sel}') — override the owner's input var instead`); fail++; }
+      }
     }
   }
 }
