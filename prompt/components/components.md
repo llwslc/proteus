@@ -160,7 +160,7 @@
 - **Toolbar**：分段条家族、roving 焦点；`ToolbarButton` props `active·disabled`，可以用 `render` 把别的控件托管成 toolbar 项（如把 `ToggleGroup` 里的 `ToolbarButton` 写成 `render={<Toggle/>}`）；另有 `ToolbarLink`，**与钮等高**（引按钮同一个高度 token）；手机端换行不横滚。
 - **ScrollArea**：结构 `Root > Viewport + Scrollbar > Thumb`；**高度上限（max-height）挂在 Viewport 上，不挂 Root**。`variant`（`panel·popup`，默认 panel）：「popup」型把整套（Viewport、Scrollbar、Thumb）收成一体来包 children、给弹层用（见上文「锚定弹层的滚动」「滚动条」）。
 - **Separator**：props `orientation`（`horizontal·vertical`，默认 horizontal）`·label`；无标签时就是 BaseSeparator，有标签时结构是 `线 + 文字/标记 + 线`；放在会收缩的 flex 里要加 `flex:0 0`。
-- **Panel**：props `title·meta` + 主题专属的装饰开关；结构 `外框? > section > header[marker 在左? + title + meta 在右] + body + footer?`，header 为空时（`:empty`）隐藏。body 是空白容器，只管自己的内边距与包含，不排布内容、不给内容元素定样式；内容怎么摆由用得着它的那一层自己包。
+- **Panel**：props `title·meta` + 主题专属的装饰开关；结构 `外框? > section > header[marker 在左? + title + meta 在右] + body + footer?`，header 为空时（`:empty`）隐藏。body 不排布内容、不给内容定样式。
 
 ## 7. Base UI 对接
 
