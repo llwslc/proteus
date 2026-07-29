@@ -187,8 +187,8 @@
 .abyss-overlay-viewport > * {
   margin: auto;
 }
-.abyss-btn.abyss-modal-x {
-  position: absolute;
+.abyss-modal-close {
+  --abyss-btn-position: absolute;
   z-index: 2;
 }
 .abyss-modal-title {

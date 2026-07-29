@@ -240,8 +240,8 @@
   margin-top: var(--hanabi-space-6);
 }
 
-.hanabi-btn.hanabi-modal-close {
-  position: absolute;
+.hanabi-modal-close {
+  --hanabi-btn-position: absolute;
   top: var(--hanabi-space-3);
   right: var(--hanabi-space-3);
 }

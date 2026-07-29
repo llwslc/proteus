@@ -46,7 +46,7 @@ export function Dialog({
                   <Button
                     variant="icon-ghost"
                     aria-label="Close"
-                    className="abyss-modal-x abyss-dialog__x"
+                    className="abyss-modal-close abyss-dialog__x"
                   >
                     <XIcon />
                   </Button>

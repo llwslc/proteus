@@ -185,12 +185,12 @@
   margin-top: var(--nova-space-7);
 }
 
-.nova-btn.nova-modal-x {
-  position: absolute;
+.nova-modal-close {
+  --nova-btn-position: absolute;
   z-index: 2;
 }
-.nova-btn.nova-modal-x--danger:hover,
-.nova-btn.nova-modal-x--danger:focus-visible {
+.nova-modal-close--danger:hover,
+.nova-modal-close--danger:focus-visible {
   background: var(--nova-danger-wash);
   border-color: var(--nova-danger);
   color: var(--nova-danger);

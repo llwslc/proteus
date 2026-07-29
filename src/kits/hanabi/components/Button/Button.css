@@ -1,5 +1,10 @@
+@property --hanabi-btn-position {
+  syntax: "*";
+  inherits: false;
+}
+
 .hanabi-btn {
-  position: relative;
+  position: var(--hanabi-btn-position, relative);
   display: inline-flex;
   align-items: center;
   justify-content: center;

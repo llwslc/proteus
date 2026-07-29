@@ -62,7 +62,7 @@ export function Drawer({
                   <Button
                     variant="icon"
                     aria-label="Close"
-                    className="nova-modal-x nova-modal-x--danger nova-drawer__x"
+                    className="nova-modal-close nova-modal-close--danger nova-drawer__x"
                   >
                     <XIcon />
                   </Button>

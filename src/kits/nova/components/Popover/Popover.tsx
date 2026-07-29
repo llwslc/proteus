@@ -53,7 +53,7 @@ export function Popover({
                   <Button
                     variant="icon-ghost"
                     aria-label="Close"
-                    className="nova-modal-x nova-popover__x"
+                    className="nova-modal-close nova-popover__x"
                   >
                     <XIcon />
                   </Button>

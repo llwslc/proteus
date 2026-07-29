@@ -76,7 +76,7 @@
 
 ### 4.3 共享配方 class
 
-重复出现的视觉块抽到 `effects.css`，各 kit 的颜色差异用 `--<kit>-*-color` 就近覆盖。这类共享块包括：头部扫光、标题、图例标记、模态背板、模态文本（title、desc、body、actions、关闭按钮、分隔线），以及折叠类（Accordion、Collapsible）共用的 trigger、marker、title、chevron、panel、content。
+重复出现的视觉块抽到 `effects.css`，各 kit 的颜色差异用 `--<kit>-*-color` 就近覆盖；共享块要改另一个原语的表现，覆盖它的输入变量，别把它的类名写进选择器。这类共享块包括：头部扫光、标题、图例标记、模态背板、模态文本（title、desc、body、actions、关闭按钮、分隔线），以及折叠类（Accordion、Collapsible）共用的 trigger、marker、title、chevron、panel、content。
 
 ### 4.4 排版类
 

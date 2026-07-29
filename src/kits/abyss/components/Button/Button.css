@@ -1,3 +1,8 @@
+@property --abyss-btn-position {
+  syntax: "*";
+  inherits: false;
+}
+
 .abyss-btn {
   --abyss-frame-round: var(--abyss-round-3);
   --abyss-frame-ink: var(--abyss-ink-strong);
@@ -6,7 +11,7 @@
     var(--abyss-stone-raised),
     var(--abyss-stone)
   );
-  position: relative;
+  position: var(--abyss-btn-position, relative);
   display: inline-flex;
   align-items: center;
   justify-content: center;
