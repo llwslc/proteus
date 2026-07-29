@@ -139,9 +139,9 @@
     <div class="landing-head">
       <div>
         <h1>Theme Atlas <span>· Component Worlds</span></h1>
-        <p>21 fully independent component theme worlds · open a card to enter, preview it live alongside the index, and switch between PC and mobile viewports.</p>
+        <p><span id="worldCount"></span> fully independent component theme worlds · open a card to enter, preview it live alongside the index, and switch between PC and mobile viewports.</p>
       </div>
-      <span class="count" id="gridCount">21 WORLDS</span>
+      <span class="count" id="gridCount"></span>
     </div>
     <div class="grid" id="grid"></div>
   </section>
@@ -196,7 +196,6 @@
     {id:"prism",code:"PRISM",name:"Bauhaus"},
     {id:"riot",code:"RIOT",name:"Punk zine"},
     {id:"hanabi",code:"HANABI",name:"Anime cel"},
-    {id:"sumi",code:"SUMI",name:"Zen ink"},
     {id:"ormolu",code:"ORMOLU",name:"Rococo"},
     {id:"nocturne",code:"NOCTURNE",name:"Dark botanical"},
     {id:"pulp",code:"PULP",name:"Pulp paperback"},
@@ -218,6 +217,9 @@
   var stageFrame=$("#stageFrame"), frameWrap=$("#frameWrap"), viewport=$("#viewport");
   var side=$("#side"), active=-1;
   var vp=localStorage.getItem("atlas-vp")||"pc";
+
+  $("#worldCount").textContent=THEMES.length;
+  $("#gridCount").textContent=THEMES.length+" WORLDS";
 
   THEMES.forEach(function(t,i){
     var a=document.createElement("a");
