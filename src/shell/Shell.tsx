@@ -78,6 +78,71 @@ function EmbedApp({ kitId }: { kitId: string }) {
   );
 }
 
+// Each thumbnail is a whole kit app in an iframe, so the grid must never mount
+// them all: only cards near the viewport get a src, at most LOAD_AT_ONCE are
+// loading at any moment, and at most KEEP stay mounted — the ones furthest from
+// the viewport are dropped back to a placeholder as the grid grows.
+const LOAD_AT_ONCE = 3;
+const KEEP = 12;
+
+function useThumbnailBudget(ids: string[]) {
+  const [live, setLive] = useState<string[]>([]);
+  const liveRef = useRef<string[]>([]);
+  const wanted = useRef<string[]>([]);
+  const loading = useRef(new Set<string>());
+  const nodes = useRef(new Map<string, Element>());
+
+  // computed outside the state updater — refs must not be mutated inside one,
+  // or StrictMode's double invocation leaves `loading` holding ids that never
+  // settle and the queue jams at the first batch.
+  const pump = () => {
+    const next = liveRef.current.filter((id) => wanted.current.includes(id));
+    for (const id of wanted.current) {
+      if (next.length >= KEEP || loading.current.size >= LOAD_AT_ONCE) break;
+      if (next.includes(id)) continue;
+      loading.current.add(id);
+      next.push(id);
+    }
+    const same =
+      next.length === liveRef.current.length &&
+      next.every((id, i) => id === liveRef.current[i]);
+    if (same) return;
+    liveRef.current = next;
+    setLive(next);
+  };
+
+  const key = ids.join(",");
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const id = (e.target as HTMLElement).dataset.kitId;
+          if (!id) continue;
+          const at = wanted.current.indexOf(id);
+          if (e.isIntersecting && at < 0) wanted.current.push(id);
+          else if (!e.isIntersecting && at >= 0) wanted.current.splice(at, 1);
+        }
+        pump();
+      },
+      { rootMargin: "600px 0px" },
+    );
+    nodes.current.forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, [key]);
+
+  return {
+    live,
+    register: (id: string) => (n: Element | null) => {
+      if (n) nodes.current.set(id, n);
+      else nodes.current.delete(id);
+    },
+    settled: (id: string) => {
+      loading.current.delete(id);
+      pump();
+    },
+  };
+}
+
 function FullShell() {
   const [entered, setEntered] = useState(() => safeGet("kit") != null);
   const kit = resolveKit(safeGet("kit"));
@@ -92,6 +157,7 @@ function FullShell() {
   );
   const menuRef = useRef<HTMLUListElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const thumbs = useThumbnailBudget(KITS.map((k) => k.id));
 
   useEffect(() => {
     const sync = () => {
@@ -211,20 +277,27 @@ function FullShell() {
           </header>
           <div className="shell-home__grid">
             {KITS.map((k, i) => (
-              <div key={k.id} className="shell-home__card">
+              <div
+                key={k.id}
+                className="shell-home__card"
+                data-kit-id={k.id}
+                ref={thumbs.register(k.id)}
+              >
                 <span className="shell-home__thumb" aria-hidden="true">
-                  <iframe
-                    className="shell-home__frame"
-                    title=""
-                    tabIndex={-1}
-                    loading="lazy"
-                    src={`?embed=1&kit=${k.id}`}
-                    onLoad={(e) =>
-                      e.currentTarget
-                        .closest(".shell-home__thumb")
-                        ?.classList.add("is-loaded")
-                    }
-                  />
+                  {thumbs.live.includes(k.id) ? (
+                    <iframe
+                      className="shell-home__frame"
+                      title=""
+                      tabIndex={-1}
+                      src={`?embed=1&kit=${k.id}`}
+                      onLoad={(e) => {
+                        e.currentTarget
+                          .closest(".shell-home__thumb")
+                          ?.classList.add("is-loaded");
+                        thumbs.settled(k.id);
+                      }}
+                    />
+                  ) : null}
                   <span className="shell-home__tload">{k.label}</span>
                 </span>
                 <span className="shell-home__meta">
