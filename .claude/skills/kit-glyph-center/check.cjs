@@ -55,13 +55,11 @@ const SCAN = (rootSel) => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
   const page = await browser.newPage({ viewport: G.DESKTOP, deviceScaleFactor: 2 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto(URL, { waitUntil: 'networkidle' });
   const kits = await G.kitsOf(page, ONLY);
 
   let total = 0;
   for (const kit of kits) {
-    await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-    await page.reload({ waitUntil: 'networkidle' });
+    await G.setKit(page, URL, kit);
     await page.waitForTimeout(400);
     console.log(`\n=== ${kit} ===`);
     const seen = new Set();

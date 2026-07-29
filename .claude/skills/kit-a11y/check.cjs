@@ -14,7 +14,6 @@ const { pw, CHROME, port, urlOf, DESKTOP, kitsOf, setKit } = require("../lib/gat
   const browser = await chromium.launch({ executablePath: CHROME, args: ["--disable-gpu"] });
   const page = await browser.newPage({ viewport: DESKTOP });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto(url, { waitUntil: "networkidle" });
   const kits = await kitsOf(page, only);
   const fails = [];
   let audited = 0;

@@ -31,18 +31,11 @@ const countPortal = (sel) => [...document.querySelectorAll(sel)].filter((el) => 
   return r.width > 4 && r.height > 4 && c.visibility !== 'hidden' && +c.opacity > 0.01;
 }).length;
 
-const setKit = async (page, kit) => {
-  await page.goto(URL, { waitUntil: 'networkidle' });
-  await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-  await page.reload({ waitUntil: 'networkidle' });
-};
+const setKit = (page, kit) => G.setKit(page, URL, kit);
 
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu'] });
-  const probe = await browser.newPage();
-  await probe.goto(URL, { waitUntil: 'networkidle' });
-  const kits = await G.kitsOf(probe, ONLY);
-  await probe.close();
+  const kits = await G.kitsOf(null, ONLY);
   const out = [];
 
   for (const kit of kits) {

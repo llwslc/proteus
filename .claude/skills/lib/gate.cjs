@@ -7,6 +7,7 @@
 // that a requested kit filter matches, so a renamed switcher class or a typoed
 // kit id exits 2 instead of silently auditing nothing.
 const fs = require('fs');
+const path = require('path');
 const PW = '/tmp/pw/node_modules/playwright-core';
 
 function pw() {
@@ -28,17 +29,22 @@ const urlOf = (p) => `http://127.0.0.1:${p}/`;
 const DESKTOP = { width: 1440, height: 950 };
 const PHONE = { width: 390, height: 844 };
 
-async function kitsOf(page, only) {
-  const kits = await page.$$eval('.shell-switch__btn', (els) =>
-    els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
+// kits come from src/kits/ — the gates guard the kits, so the shell's home page
+// (and its live thumbnail iframes) stays off their path entirely. Still asserts
+// non-empty, so a moved directory exits 2 instead of silently auditing nothing.
+const KITS_DIR = path.join(__dirname, '..', '..', '..', 'src', 'kits');
+async function kitsOf(_page, only) {
+  const kits = fs.existsSync(KITS_DIR)
+    ? fs.readdirSync(KITS_DIR).filter((d) => fs.statSync(path.join(KITS_DIR, d)).isDirectory()).sort()
+    : [];
   if (!kits.length) {
-    console.error('ERR kit discovery matched 0 kits (.shell-switch__btn[data-kit-id]) — the gate would audit NOTHING; fix the switcher selector');
+    console.error(`ERR kit discovery matched 0 kits under ${KITS_DIR} — the gate would audit NOTHING`);
     process.exit(2);
   }
   if (only) {
     const f = kits.filter((k) => k === only);
     if (!f.length) {
-      console.error(`ERR kit '${only}' not in the switcher [${kits.join(' ')}] — nothing would be audited`);
+      console.error(`ERR kit '${only}' not under src/kits [${kits.join(' ')}] — nothing would be audited`);
       process.exit(2);
     }
     return f;
@@ -46,10 +52,17 @@ async function kitsOf(page, only) {
   return kits;
 }
 
+// one kit, no shell chrome, no thumbnail iframes. Waits for the sidebar rather
+// than for `networkidle` — the home page's external font requests never reliably
+// settle, which is what used to hang goto for the full 30s timeout.
+const embedUrl = (url, kit) => `${url}${url.includes('?') ? '&' : '?'}embed=1&kit=${kit}`;
+const READY = '[class*="-sidebar__link"]';
+
 async function setKit(page, url, kit) {
-  await page.goto(url, { waitUntil: 'networkidle' });
-  await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-  await page.reload({ waitUntil: 'networkidle' });
+  await page.goto(embedUrl(url, kit), { waitUntil: 'domcontentloaded' });
+  // attached, not visible — the sidebar is display:none at phone width
+  await page.waitForSelector(READY, { state: 'attached', timeout: 20000 });
+  await page.evaluate(() => document.fonts.ready);
 }
 
-module.exports = { pw, CHROME, port, urlOf, DESKTOP, PHONE, kitsOf, setKit };
+module.exports = { pw, CHROME, port, urlOf, embedUrl, READY, DESKTOP, PHONE, kitsOf, setKit };

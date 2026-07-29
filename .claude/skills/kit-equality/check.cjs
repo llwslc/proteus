@@ -47,13 +47,11 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
 
   const browser = await chromium.launch({ executablePath: CHROME });
   const page = await browser.newPage({ viewport: G.DESKTOP });
-  await page.goto(URL, { waitUntil: 'networkidle' });
   const kits = await G.kitsOf(page);
 
   const data = {}, sigs = {}, rowsByKit = {}, menuZByKit = {};
   for (const kit of kits) {
-    await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-    await page.reload({ waitUntil: 'networkidle' });
+    await G.setKit(page, URL, kit);
     await page.waitForTimeout(250);
 
     await page.evaluate(() => document.getElementById('select').scrollIntoView({ block: 'center' }));

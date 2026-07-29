@@ -7,8 +7,7 @@ const SPREAD_MAX = 4; // kits' submenu gaps must agree within this (px)
 const MIN_GAP = 2; // below this the submenu is touching/occluding its parent
 
 async function gapFor(page, kit) {
-  await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-  await page.reload({ waitUntil: 'networkidle' });
+  await G.setKit(page, URL, kit);
   await page.waitForTimeout(300);
   const panel = await page.$('#menubar');
   if (!panel) return { err: 'no #menubar' };
@@ -76,7 +75,6 @@ async function overlayGaps(page, kit) {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
   const page = await browser.newPage({ viewport: G.DESKTOP });
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto(URL, { waitUntil: 'networkidle' });
   const kits = await G.kitsOf(page);
 
   const gaps = {}, broken = [];
@@ -89,8 +87,7 @@ async function overlayGaps(page, kit) {
   const TYPES = ['tooltip', 'popover', 'preview', 'select', 'combobox', 'autocomplete', 'menubar', 'navmenu'];
   const og = {};
   for (const kit of kits) {
-    await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-    await page.reload({ waitUntil: 'networkidle' });
+    await G.setKit(page, URL, kit);
     await page.waitForTimeout(300);
     og[kit] = await overlayGaps(page, kit);
   }

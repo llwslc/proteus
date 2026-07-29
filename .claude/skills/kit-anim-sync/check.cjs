@@ -16,7 +16,7 @@ const ONLY = process.argv[3] && process.argv[3]!=='break' ? process.argv[3] : nu
 const BREAK = process.argv.includes('break');
 const CONN = [['tooltip','#tooltip button, #tooltip a','hover'],['popover','#popover button','click'],['preview','#preview a, #preview button','hover']];
 const SLIDE = [['drawer','#drawer button','click']];
-const setKit = async (p,k)=>{ await p.goto(URL,{waitUntil:'networkidle'}); await p.evaluate(k=>localStorage.setItem('kit',k),k); await p.reload({waitUntil:'networkidle'}); };
+const setKit = (p,k)=>G.setKit(p,URL,k);
 const RECORDER = (inject) => { // runs in page: start bg rAF recorder, catches overlay from mount
   window.__done=false; window.__rec=[]; window.__names=null; let track=null, captured=0, total=0;
   const find=()=>document.querySelector('body > div [class*="connector"],body > div [class*="popup"],body > div [class*="popover"],body > div [class*="tooltip"],body > div [class*="preview"],body > div [class*="drawer"],body > div [class*="modal"],body > div [role="dialog"],body > div [role="tooltip"]');
@@ -54,7 +54,7 @@ function analyze(r){ const f=[]; const pi=r.names.indexOf('popup'), ci=r.names.i
 }
 (async()=>{
   const browser=await chromium.launch({executablePath:CHROME,args:['--disable-gpu']});
-  const probe=await browser.newPage(); await probe.goto(URL,{waitUntil:'networkidle'}); const kits=await G.kitsOf(probe,ONLY); await probe.close();
+  const kits=await G.kitsOf(null,ONLY);
   let total=0;
   for(const kit of kits){ for(const [id,sel,kind] of [...CONN,...SLIDE]){ const p=await browser.newPage({viewport:G.DESKTOP}); await setKit(p,kit);
     let r; try{ r=await record(p,kind,sel, BREAK ? '@keyframes __gate_break{from{opacity:.2}to{opacity:1}} body > div [class*="popup"],body > div [class*="drawer"],body > div [class*="modal"],body > div [role="dialog"],body > div [role="tooltip"]{transform:translateX(150vw) !important;transition:none !important} body > div [class*="__"]{animation:__gate_break .4s 1 !important}' : null);}catch(e){ r={err:e.message.split('\n')[0].slice(0,40)}; }

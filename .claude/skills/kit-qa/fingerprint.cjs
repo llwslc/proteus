@@ -14,8 +14,6 @@ const UPDATE = process.argv.includes('--update');
   const page = await browser.newPage({ viewport: G.DESKTOP });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const URL = G.urlOf(G.port());
-  await page.goto(URL, { waitUntil: 'networkidle' });
-  await page.waitForTimeout(800);
   const kits = await G.kitsOf(page);
   const out = {};
   for (const kit of kits) {
@@ -29,6 +27,7 @@ const UPDATE = process.argv.includes('--update');
       const panels = await page.evaluate((k) => {
         for (const c of document.querySelectorAll(`[class*="clock"]`)) c.textContent = '00:00:00';
         const ids = [...document.querySelectorAll(`.${k}-sidebar__link[href^="#"]`)].map((a) => a.getAttribute('href').slice(1));
+        if (!ids.length) return { __EMPTY__: 'no sidebar links' };
         const roots = [['__header', document.querySelector(`.${k}-header`)], ['__hero', document.querySelector(`[class*="hero"]`)], ['__footer', document.querySelector(`.${k}-footer`)],
           ...ids.map((id) => [id, document.getElementById(id)])];
         const PROPS = ['color', 'backgroundColor', 'backgroundImage', 'borderTopWidth', 'borderTopColor', 'borderRadius', 'fontFamily', 'fontSize', 'fontWeight', 'boxShadow', 'transform', 'opacity', 'clipPath', 'filter'];
@@ -58,9 +57,27 @@ const UPDATE = process.argv.includes('--update');
   }
   await browser.close();
 
+  // 采集自检。一次采空（侧栏没渲染出来）曾把基线从 42 面板打到 3 条，而回执
+  // 只报 kit 数、看不出来。少于下限就报错退出，残缺基线永远进不了仓。
+  const MIN_PANELS = 8;
+  const thin = [];
+  for (const kit of Object.keys(out)) {
+    for (const w of Object.keys(out[kit])) {
+      const n = Object.keys(out[kit][w]).length;
+      if (out[kit][w].__EMPTY__ || n < MIN_PANELS) thin.push(`${kit}@${w} 只抓到 ${n} 条`);
+    }
+  }
+  if (thin.length) {
+    console.error('ERR 采集不完整，拒绝使用本次结果：');
+    thin.forEach((t) => console.error('  ' + t));
+    console.error('  页面没渲染完就被采样（侧栏链接为 0）。重跑；若持续，查 dev server。');
+    process.exit(2);
+  }
+  const counts = Object.keys(out).map((k) => Object.keys(out[k].desktop).length);
+
   if (UPDATE) {
     fs.writeFileSync(BASE, JSON.stringify(out, null, 1));
-    console.log(`baseline updated: ${Object.keys(out).length} kits × 2 宽`);
+    console.log(`baseline updated: ${Object.keys(out).length} kits × 2 宽 × ${Math.min(...counts)}–${Math.max(...counts)} 面板`);
     process.exit(0);
   }
   if (!fs.existsSync(BASE)) { console.error('ERR 无基线 — 全量 kit-qa 绿后先跑 --update'); process.exit(2); }
