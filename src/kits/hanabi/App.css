@@ -367,8 +367,17 @@
   margin-top: var(--hanabi-space-7);
 }
 
-.hanabi-grid > .hanabi-panel {
+.hanabi-section {
+  display: flex;
+  min-width: 0;
   scroll-margin-top: 80px;
+}
+.hanabi-section--wide {
+  grid-column: 1 / -1;
+}
+.hanabi-section > .hanabi-panel {
+  flex: 1;
+  min-width: 0;
 }
 
 .hanabi-reveal > * {

@@ -5,10 +5,6 @@
   flex-direction: column;
 }
 
-.brass-panel--wide {
-  width: 100%;
-}
-
 .brass-panel__head {
   display: flex;
   align-items: center;

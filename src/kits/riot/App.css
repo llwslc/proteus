@@ -335,8 +335,17 @@
 .riot-grid > *:nth-child(4n) {
   --riot-tilt: 1.3deg;
 }
-.riot-panel {
+.riot-section {
+  display: flex;
+  min-width: 0;
   scroll-margin-top: calc(var(--bar-h) + 20px);
+}
+.riot-section--wide {
+  grid-column: 1 / -1;
+}
+.riot-section > .riot-panel {
+  flex: 1;
+  min-width: 0;
 }
 .riot-grid > :nth-child(3n + 2) .riot-panel__title {
   color: var(--riot-primary);

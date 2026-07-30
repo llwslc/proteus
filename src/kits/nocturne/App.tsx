@@ -687,245 +687,276 @@ function Demo() {
             sub="Garden orders · one touch, one promise."
           />
           <div className="nocturne-grid">
-            <Panel id="button" title="Button" wide>
-              <div className="nocturne-stack">
-                <div className="nocturne-row">
-                  <Button icon={<LampIcon />}>Light the Lamps</Button>
-                  <Button variant="secondary">Browse the Plates</Button>
-                  <Button variant="danger">Uproot</Button>
-                  <Button variant="ghost">Slip Out Quietly</Button>
-                  <Button disabled>Not Dark Yet</Button>
+            <div className="nocturne-section nocturne-section--wide" id="button">
+              <Panel title="Button">
+                <div className="nocturne-stack">
+                  <div className="nocturne-row">
+                    <Button icon={<LampIcon />}>Light the Lamps</Button>
+                    <Button variant="secondary">Browse the Plates</Button>
+                    <Button variant="danger">Uproot</Button>
+                    <Button variant="ghost">Slip Out Quietly</Button>
+                    <Button disabled>Not Dark Yet</Button>
+                  </div>
+                  <Separator />
+                  <div className="nocturne-row">
+                    <Button size="sm">Trim</Button>
+                    <Button size="md">Tend</Button>
+                    <Button size="lg">Bloom</Button>
+                  </div>
+                  <Separator />
+                  <div className="nocturne-row">
+                    <Button variant="icon" aria-label="Press the seal">
+                      <SealIcon />
+                    </Button>
+                    <Button variant="icon" aria-label="Ring the bell">
+                      <BellIcon />
+                    </Button>
+                    <Button variant="icon" disabled aria-label="Sealed">
+                      <XIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Write a note">
+                      <QuillIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Gather dew">
+                      <DropIcon />
+                    </Button>
+                  </div>
                 </div>
-                <Separator />
-                <div className="nocturne-row">
-                  <Button size="sm">Trim</Button>
-                  <Button size="md">Tend</Button>
-                  <Button size="lg">Bloom</Button>
+              </Panel>
+            </div>
+
+            <div className="nocturne-section" id="switch">
+              <Panel title="Switch">
+                <div className="nocturne-stack">
+                  <label className="nocturne-row nocturne-row--between">
+                    <span className="nocturne-cap">Warm lamp</span>
+                    <Switch defaultChecked />
+                  </label>
+                  <label className="nocturne-row nocturne-row--between">
+                    <span className="nocturne-cap">Night mist</span>
+                    <Switch />
+                  </label>
+                  <label className="nocturne-row nocturne-row--between">
+                    <span className="nocturne-cap">Sealed vents</span>
+                    <Switch disabled defaultChecked />
+                  </label>
+                  <label className="nocturne-row nocturne-row--between">
+                    <span className="nocturne-cap">Frost alarm</span>
+                    <Switch disabled />
+                  </label>
                 </div>
-                <Separator />
-                <div className="nocturne-row">
-                  <Button variant="icon" aria-label="Press the seal">
-                    <SealIcon />
-                  </Button>
-                  <Button variant="icon" aria-label="Ring the bell">
-                    <BellIcon />
-                  </Button>
-                  <Button variant="icon" disabled aria-label="Sealed">
-                    <XIcon />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Write a note">
-                    <QuillIcon />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Gather dew">
-                    <DropIcon />
-                  </Button>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="toggle">
+              <Panel title="Toggle Group">
+                <div className="nocturne-stack">
+                  <ToggleGroup defaultValue={["north"]}>
+                    <Toggle value="north">North Wall</Toggle>
+                    <Toggle value="south">South Wall</Toggle>
+                    <Toggle value="arbor" disabled>
+                      Arbor
+                    </Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup multiple defaultValue={["lamps", "mist", "moths"]}>
+                    <Toggle value="lamps">Lamps</Toggle>
+                    <Toggle value="mist">Mist</Toggle>
+                    <Toggle value="bell">Bell</Toggle>
+                    <Toggle value="moths" disabled>
+                      Moths
+                    </Toggle>
+                  </ToggleGroup>
                 </div>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
 
-            <Panel id="switch" title="Switch">
-              <div className="nocturne-stack">
-                <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">Warm lamp</span>
-                  <Switch defaultChecked />
-                </label>
-                <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">Night mist</span>
-                  <Switch />
-                </label>
-                <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">Sealed vents</span>
-                  <Switch disabled defaultChecked />
-                </label>
-                <label className="nocturne-row nocturne-row--between">
-                  <span className="nocturne-cap">Frost alarm</span>
-                  <Switch disabled />
-                </label>
-              </div>
-            </Panel>
-            <Panel id="toggle" title="Toggle Group">
-              <div className="nocturne-stack">
-                <ToggleGroup defaultValue={["north"]}>
-                  <Toggle value="north">North Wall</Toggle>
-                  <Toggle value="south">South Wall</Toggle>
-                  <Toggle value="arbor" disabled>
-                    Arbor
-                  </Toggle>
-                </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["lamps", "mist", "moths"]}>
-                  <Toggle value="lamps">Lamps</Toggle>
-                  <Toggle value="mist">Mist</Toggle>
-                  <Toggle value="bell">Bell</Toggle>
-                  <Toggle value="moths" disabled>
-                    Moths
-                  </Toggle>
-                </ToggleGroup>
-              </div>
-            </Panel>
+            <div className="nocturne-section" id="checkbox">
+              <Panel title="Checkbox">
+                <div className="nocturne-stack">
+                  <Checkbox defaultChecked label="Bloom noted" />
+                  <Checkbox label="Scent noted" />
+                  <Checkbox disabled defaultChecked label="Poison noted" />
+                  <Checkbox disabled label="Frost noted" />
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="checkbox-group">
+              <Panel title="Checkbox Group">
+                <div className="nocturne-stack">
+                  <CheckboxGroup
+                    defaultValue={["lamps"]}
+                    parentLabel="Every duty"
+                    items={[
+                      { label: "Walk the lamps", value: "lamps" },
+                      { label: "Note the dew", value: "dew" },
+                      { label: "Watch the moths", value: "moths" },
+                    ]}
+                  />
+                  <CheckboxGroup
+                    defaultValue={["gate"]}
+                    parentLabel="Locked duties"
+                    disabled
+                    items={[
+                      { label: "Seal the gate", value: "gate" },
+                      { label: "Feed the stove", value: "stove" },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="checkbox" title="Checkbox">
-              <div className="nocturne-stack">
-                <Checkbox defaultChecked label="Bloom noted" />
-                <Checkbox label="Scent noted" />
-                <Checkbox disabled defaultChecked label="Poison noted" />
-                <Checkbox disabled label="Frost noted" />
-              </div>
-            </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group">
-              <div className="nocturne-stack">
-                <CheckboxGroup
-                  defaultValue={["lamps"]}
-                  parentLabel="Every duty"
-                  items={[
-                    { label: "Walk the lamps", value: "lamps" },
-                    { label: "Note the dew", value: "dew" },
-                    { label: "Watch the moths", value: "moths" },
-                  ]}
-                />
-                <CheckboxGroup
-                  defaultValue={["gate"]}
-                  parentLabel="Locked duties"
-                  disabled
-                  items={[
-                    { label: "Seal the gate", value: "gate" },
-                    { label: "Feed the stove", value: "stove" },
-                  ]}
-                />
-              </div>
-            </Panel>
+            <div className="nocturne-section" id="radio">
+              <Panel title="Radio Group">
+                <div className="nocturne-stack">
+                  <span className="nocturne-cap">On duty tonight</span>
+                  <RadioGroup defaultValue="belladonna">
+                    <Radio value="belladonna">Belladonna</Radio>
+                    <Radio value="jasmine">Night Jasmine</Radio>
+                    <Radio value="primrose">Evening Primrose</Radio>
+                    <Radio value="mandrake" disabled>
+                      Mandrake (asleep)
+                    </Radio>
+                  </RadioGroup>
+                  <span className="nocturne-cap">Watch order (sealed)</span>
+                  <RadioGroup disabled defaultValue="second">
+                    <Radio value="first">First watch</Radio>
+                    <Radio value="second">Second watch (fixed)</Radio>
+                  </RadioGroup>
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="select">
+              <Panel title="Select">
+                <div className="nocturne-stack">
+                  <label className="nocturne-cap" htmlFor="sel-1">
+                    Bloom of the hour
+                  </label>
+                  <Select
+                    items={FLORA}
+                    placeholder="Choose a bloom…"
+                    defaultValue="jasmine"
+                    id="sel-1"
+                  />
+                  <label className="nocturne-cap" htmlFor="sel-2">
+                    Second bloom
+                  </label>
+                  <Select items={FLORA_SHORT} placeholder="Not chosen" id="sel-2" />
+                  <label className="nocturne-cap" htmlFor="sel-3">
+                    Sealed choice
+                  </label>
+                  <Select
+                    items={FLORA_SHORT}
+                    defaultValue="jasmine"
+                    disabled
+                    id="sel-3"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="radio" title="Radio Group">
-              <div className="nocturne-stack">
-                <span className="nocturne-cap">On duty tonight</span>
-                <RadioGroup defaultValue="belladonna">
-                  <Radio value="belladonna">Belladonna</Radio>
-                  <Radio value="jasmine">Night Jasmine</Radio>
-                  <Radio value="primrose">Evening Primrose</Radio>
-                  <Radio value="mandrake" disabled>
-                    Mandrake (asleep)
-                  </Radio>
-                </RadioGroup>
-                <span className="nocturne-cap">Watch order (sealed)</span>
-                <RadioGroup disabled defaultValue="second">
-                  <Radio value="first">First watch</Radio>
-                  <Radio value="second">Second watch (fixed)</Radio>
-                </RadioGroup>
-              </div>
-            </Panel>
-            <Panel id="select" title="Select">
-              <div className="nocturne-stack">
-                <label className="nocturne-cap" htmlFor="sel-1">
-                  Bloom of the hour
-                </label>
-                <Select
-                  items={FLORA}
-                  placeholder="Choose a bloom…"
-                  defaultValue="jasmine"
-                  id="sel-1"
-                />
-                <label className="nocturne-cap" htmlFor="sel-2">
-                  Second bloom
-                </label>
-                <Select items={FLORA_SHORT} placeholder="Not chosen" id="sel-2" />
-                <label className="nocturne-cap" htmlFor="sel-3">
-                  Sealed choice
-                </label>
-                <Select items={FLORA_SHORT} defaultValue="jasmine" disabled id="sel-3" />
-              </div>
-            </Panel>
+            <div className="nocturne-section" id="combobox">
+              <Panel title="Combobox">
+                <div className="nocturne-stack">
+                  <span className="nocturne-cap">Find a flower</span>
+                  <Combobox
+                    items={FLORA_NAMES}
+                    placeholder="Petal by petal…"
+                    emptyText="No such flower in the garden"
+                    label="Find a flower"
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="autocomplete">
+              <Panel title="Autocomplete">
+                <div className="nocturne-stack">
+                  <span className="nocturne-cap">Call a round</span>
+                  <Autocomplete
+                    items={ROUNDS}
+                    placeholder="Tonight we…"
+                    emptyText="No such flower in the garden"
+                    label="Call a round"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="combobox" title="Combobox">
-              <div className="nocturne-stack">
-                <span className="nocturne-cap">Find a flower</span>
-                <Combobox
-                  items={FLORA_NAMES}
-                  placeholder="Petal by petal…"
-                  emptyText="No such flower in the garden"
-                  label="Find a flower"
-                />
-              </div>
-            </Panel>
-            <Panel id="autocomplete" title="Autocomplete">
-              <div className="nocturne-stack">
-                <span className="nocturne-cap">Call a round</span>
-                <Autocomplete
-                  items={ROUNDS}
-                  placeholder="Tonight we…"
-                  emptyText="No such flower in the garden"
-                  label="Call a round"
-                />
-              </div>
-            </Panel>
+            <div className="nocturne-section" id="slider">
+              <Panel title="Slider">
+                <div className="nocturne-stack">
+                  <Slider label="Flame height" defaultValue={62} />
+                  <Slider label="Mist reach" defaultValue={40} disabled />
+                  <Slider label="Scent drift" defaultValue={75} showValue={false} />
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="number">
+              <Panel title="Number Field">
+                <div className="nocturne-stack">
+                  <label className="nocturne-cap" htmlFor="num-1">
+                    Lamps lit
+                  </label>
+                  <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                  <label className="nocturne-cap" htmlFor="num-2">
+                    Lamp cap
+                  </label>
+                  <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="slider" title="Slider">
-              <div className="nocturne-stack">
-                <Slider label="Flame height" defaultValue={62} />
-                <Slider label="Mist reach" defaultValue={40} disabled />
-                <Slider label="Scent drift" defaultValue={75} showValue={false} />
-              </div>
-            </Panel>
-            <Panel id="number" title="Number Field">
-              <div className="nocturne-stack">
-                <label className="nocturne-cap" htmlFor="num-1">
-                  Lamps lit
-                </label>
-                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
-                <label className="nocturne-cap" htmlFor="num-2">
-                  Lamp cap
-                </label>
-                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
-              </div>
-            </Panel>
-
-            <Panel id="input" title="Text Field">
-              <div className="nocturne-stack">
-                <Field
-                  label="Specimen name"
-                  placeholder="Belladonna"
-                  defaultValue="Belladonna"
-                  description="Entered under this name in the register."
-                />
-                <Input
-                  icon={<SearchIcon />}
-                  placeholder="Search the album…"
-                  aria-label="Search the album"
-                />
-                <AccessKeyField />
-                <Field label="Locked entry" defaultValue="BELLADONNA-217" disabled />
-                <Field
-                  label="Catalog code"
-                  defaultValue="BELLAD0NNA·2!7"
-                  error="Only brass letters and numerals are archived."
-                />
-              </div>
-            </Panel>
-            <Panel id="otp" title="OTP Field">
-              <div className="nocturne-stack">
-                <span className="nocturne-cap">Specimen code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="217"
-                  label="Specimen code"
-                />
-                <span className="nocturne-cap">Whispered code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="217"
-                  mask
-                  label="Whispered code"
-                />
-                <span className="nocturne-cap">Faded code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="217"
-                  disabled
-                  label="Faded code"
-                />
-              </div>
-            </Panel>
+            <div className="nocturne-section" id="input">
+              <Panel title="Text Field">
+                <div className="nocturne-stack">
+                  <Field
+                    label="Specimen name"
+                    placeholder="Belladonna"
+                    defaultValue="Belladonna"
+                    description="Entered under this name in the register."
+                  />
+                  <Input
+                    icon={<SearchIcon />}
+                    placeholder="Search the album…"
+                    aria-label="Search the album"
+                  />
+                  <AccessKeyField />
+                  <Field label="Locked entry" defaultValue="BELLADONNA-217" disabled />
+                  <Field
+                    label="Catalog code"
+                    defaultValue="BELLAD0NNA·2!7"
+                    error="Only brass letters and numerals are archived."
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="otp">
+              <Panel title="OTP Field">
+                <div className="nocturne-stack">
+                  <span className="nocturne-cap">Specimen code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="217"
+                    label="Specimen code"
+                  />
+                  <span className="nocturne-cap">Whispered code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="217"
+                    mask
+                    label="Whispered code"
+                  />
+                  <span className="nocturne-cap">Faded code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="217"
+                    disabled
+                    label="Faded code"
+                  />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -934,15 +965,19 @@ function Demo() {
             sub="Night-register entries · archived at the stroke of the pen."
           />
           <div className="nocturne-grid">
-            <Panel id="fieldset" title="Fieldset">
-              <Fieldset legend="The Warden">
-                <Field label="Name" defaultValue="Lady Belladonna" />
-                <Field label="Post" defaultValue="South Conservatory" />
-              </Fieldset>
-            </Panel>
-            <Panel id="form" title="Form">
-              <FormDemo />
-            </Panel>
+            <div className="nocturne-section" id="fieldset">
+              <Panel title="Fieldset">
+                <Fieldset legend="The Warden">
+                  <Field label="Name" defaultValue="Lady Belladonna" />
+                  <Field label="Post" defaultValue="South Conservatory" />
+                </Fieldset>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="form">
+              <Panel title="Form">
+                <FormDemo />
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -951,126 +986,136 @@ function Demo() {
             sub="Garden gauges · trim the flame, watch the needle."
           />
           <div className="nocturne-grid">
-            <Panel id="progress" title="Progress">
-              <ProgressBars />
-            </Panel>
-            <Panel id="meter" title="Meter">
-              <div className="nocturne-stack">
-                <Meter label="Hothouse heat" value={88} />
-                <Meter label="Dew yield" value={70} tone="success" />
-                <Meter label="Scent load" value={52} tone="warning" />
-                <Meter label="Wilt risk" value={23} tone="danger" />
-              </div>
-            </Panel>
+            <div className="nocturne-section" id="progress">
+              <Panel title="Progress">
+                <ProgressBars />
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="meter">
+              <Panel title="Meter">
+                <div className="nocturne-stack">
+                  <Meter label="Hothouse heat" value={88} />
+                  <Meter label="Dew yield" value={70} tone="success" />
+                  <Meter label="Scent load" value={52} tone="warning" />
+                  <Meter label="Wilt risk" value={23} tone="danger" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="tabs" title="Tabs" wide>
-              <Tabs
-                defaultValue="belladonna"
-                items={[
-                  {
-                    value: "belladonna",
-                    label: "Belladonna",
-                    content: (
-                      <p className="nocturne-text">
-                        The garden takes its name from her. Violet-black corollas hang
-                        like little bells, and the berries shine with bad intent — beauty
-                        and poison sharing one name.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "jasmine",
-                    label: "Night Jasmine",
-                    content: (
-                      <p className="nocturne-text">
-                        By day it passes for an ordinary shrub; by night its scent floods
-                        half the garden. The warden keeps it for a watch-drum.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "primrose",
-                    label: "Evening Primrose",
-                    content: (
-                      <p className="nocturne-text">
-                        A temperament that blooms only for the moon — the sweetest in the
-                        garden, busiest when the register runs fullest.
-                      </p>
-                    ),
-                    disabled: true,
-                  },
-                ]}
-              />
-            </Panel>
-
-            <Panel id="accordion" title="Accordion">
-              <div className="nocturne-stack">
-                <span className="nocturne-cap">One at a time</span>
-                <Accordion
-                  defaultValue={["rounds"]}
+            <div className="nocturne-section nocturne-section--wide" id="tabs">
+              <Panel title="Tabs">
+                <Tabs
+                  defaultValue="belladonna"
                   items={[
                     {
-                      value: "rounds",
-                      title: "The rounds",
-                      content:
-                        "South Conservatory to Weeping Arbor — miss not one lamp on the way.",
+                      value: "belladonna",
+                      label: "Belladonna",
+                      content: (
+                        <p className="nocturne-text">
+                          The garden takes its name from her. Violet-black corollas hang
+                          like little bells, and the berries shine with bad intent —
+                          beauty and poison sharing one name.
+                        </p>
+                      ),
                     },
                     {
-                      value: "lamps",
-                      title: "The lamps",
-                      content:
-                        "Wicks at one third through the night; brass hoods wiped before dawn.",
+                      value: "jasmine",
+                      label: "Night Jasmine",
+                      content: (
+                        <p className="nocturne-text">
+                          By day it passes for an ordinary shrub; by night its scent
+                          floods half the garden. The warden keeps it for a watch-drum.
+                        </p>
+                      ),
                     },
                     {
-                      value: "poisons",
+                      value: "primrose",
+                      label: "Evening Primrose",
+                      content: (
+                        <p className="nocturne-text">
+                          A temperament that blooms only for the moon — the sweetest in
+                          the garden, busiest when the register runs fullest.
+                        </p>
+                      ),
                       disabled: true,
-                      title: "The poisons",
-                      content: "Sealed shelf. Warden's key only, and only at need.",
                     },
                   ]}
                 />
-                <span className="nocturne-cap">Open together</span>
-                <Accordion
-                  openMultiple
-                  defaultValue={["dew", "rule"]}
-                  items={[
-                    {
-                      value: "dew",
-                      title: "The dew",
-                      content: "Three drams a night, sealed before the fourth hour.",
-                    },
-                    {
-                      value: "rule",
-                      disabled: true,
-                      title: "The rule",
-                      content: "Dawn is near — put out the lamps for the flowers.",
-                    },
-                  ]}
-                />
-              </div>
-            </Panel>
-            <Panel id="collapsible" title="Collapsible">
-              <div className="nocturne-stack">
-                <Collapsible title="Warden's note" defaultOpen>
-                  <p className="nocturne-text">
-                    The belladonna opened three bells early tonight. Watch her.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Maintenance log">
-                  <p className="nocturne-text">
-                    Flame gauge re-brassed; the needle walks true again.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Poison cabinet" disabled>
-                  <p className="nocturne-text">Sealed until the eleventh hour.</p>
-                </Collapsible>
-                <Collapsible title="House rule" defaultOpen disabled>
-                  <p className="nocturne-text">
-                    Every growth of the night is entered here — no exceptions.
-                  </p>
-                </Collapsible>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
+
+            <div className="nocturne-section" id="accordion">
+              <Panel title="Accordion">
+                <div className="nocturne-stack">
+                  <span className="nocturne-cap">One at a time</span>
+                  <Accordion
+                    defaultValue={["rounds"]}
+                    items={[
+                      {
+                        value: "rounds",
+                        title: "The rounds",
+                        content:
+                          "South Conservatory to Weeping Arbor — miss not one lamp on the way.",
+                      },
+                      {
+                        value: "lamps",
+                        title: "The lamps",
+                        content:
+                          "Wicks at one third through the night; brass hoods wiped before dawn.",
+                      },
+                      {
+                        value: "poisons",
+                        disabled: true,
+                        title: "The poisons",
+                        content: "Sealed shelf. Warden's key only, and only at need.",
+                      },
+                    ]}
+                  />
+                  <span className="nocturne-cap">Open together</span>
+                  <Accordion
+                    openMultiple
+                    defaultValue={["dew", "rule"]}
+                    items={[
+                      {
+                        value: "dew",
+                        title: "The dew",
+                        content: "Three drams a night, sealed before the fourth hour.",
+                      },
+                      {
+                        value: "rule",
+                        disabled: true,
+                        title: "The rule",
+                        content: "Dawn is near — put out the lamps for the flowers.",
+                      },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="collapsible">
+              <Panel title="Collapsible">
+                <div className="nocturne-stack">
+                  <Collapsible title="Warden's note" defaultOpen>
+                    <p className="nocturne-text">
+                      The belladonna opened three bells early tonight. Watch her.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Maintenance log">
+                    <p className="nocturne-text">
+                      Flame gauge re-brassed; the needle walks true again.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Poison cabinet" disabled>
+                    <p className="nocturne-text">Sealed until the eleventh hour.</p>
+                  </Collapsible>
+                  <Collapsible title="House rule" defaultOpen disabled>
+                    <p className="nocturne-text">
+                      Every growth of the night is entered here — no exceptions.
+                    </p>
+                  </Collapsible>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1079,304 +1124,326 @@ function Demo() {
             sub="Summons · knock softly, and the layers will come."
           />
           <div className="nocturne-grid">
-            <Panel id="tooltip" title="Tooltip">
-              <div className="nocturne-row">
-                <Tooltip content="Wicks at one third — enough to read by" side="top">
-                  <Button variant="ghost">Lamps</Button>
-                </Tooltip>
-                <Tooltip content="Three drams, sealed in celadon" side="bottom">
-                  <Button variant="ghost">Dew</Button>
-                </Tooltip>
-                <Tooltip content="Pressed by the warden's own hand" side="left">
-                  <Button variant="ghost">Seal</Button>
-                </Tooltip>
-                <Tooltip content="One ring at the stroke of midnight" side="right">
-                  <Button variant="ghost">Bell</Button>
-                </Tooltip>
-              </div>
-            </Panel>
-            <Panel id="popover" title="Popover">
-              <Popover
-                trigger={<Button variant="ghost">Tonight's round</Button>}
-                title="South Conservatory"
-              >
-                Ancestral hall of the nightshades — wine drapes all year, and one copper
-                lamp kept lit for the duty bloom.
-              </Popover>
-            </Panel>
+            <div className="nocturne-section" id="tooltip">
+              <Panel title="Tooltip">
+                <div className="nocturne-row">
+                  <Tooltip content="Wicks at one third — enough to read by" side="top">
+                    <Button variant="ghost">Lamps</Button>
+                  </Tooltip>
+                  <Tooltip content="Three drams, sealed in celadon" side="bottom">
+                    <Button variant="ghost">Dew</Button>
+                  </Tooltip>
+                  <Tooltip content="Pressed by the warden's own hand" side="left">
+                    <Button variant="ghost">Seal</Button>
+                  </Tooltip>
+                  <Tooltip content="One ring at the stroke of midnight" side="right">
+                    <Button variant="ghost">Bell</Button>
+                  </Tooltip>
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="popover">
+              <Panel title="Popover">
+                <Popover
+                  trigger={<Button variant="ghost">Tonight's round</Button>}
+                  title="South Conservatory"
+                >
+                  Ancestral hall of the nightshades — wine drapes all year, and one copper
+                  lamp kept lit for the duty bloom.
+                </Popover>
+              </Panel>
+            </div>
 
-            <Panel id="preview" title="Preview Card" wide>
-              <div className="nocturne-stack">
-                <span className="nocturne-cap">Hover the warden</span>
-                <p className="nocturne-text">
-                  The rounds are drawn each dusk by{" "}
-                  <PreviewCard
+            <div className="nocturne-section nocturne-section--wide" id="preview">
+              <Panel title="Preview Card">
+                <div className="nocturne-stack">
+                  <span className="nocturne-cap">Hover the warden</span>
+                  <p className="nocturne-text">
+                    The rounds are drawn each dusk by{" "}
+                    <PreviewCard
+                      trigger={
+                        <a
+                          href="#preview"
+                          className="nocturne-link"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          @belladonna
+                        </a>
+                      }
+                    >
+                      <div className="nocturne-preview__head">
+                        <Avatar status="online">
+                          <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
+                          <AvatarFallback>B</AvatarFallback>
+                        </Avatar>
+                        <span className="nocturne-preview__ident">
+                          <span className="nocturne-h3 nocturne-preview__title">
+                            Lady Belladonna
+                          </span>
+                          <span className="nocturne-preview__handle">@belladonna</span>
+                        </span>
+                      </div>
+                      <p className="nocturne-text nocturne-preview__desc">
+                        Warden of the night garden. Keeps the light for the lamps, and the
+                        lamps for the flowers.
+                      </p>
+                      <div className="nocturne-preview__footer">
+                        <Badge tone="primary" dot>
+                          Warden
+                        </Badge>
+                        <Badge tone="neutral">Night Garden</Badge>
+                      </div>
+                    </PreviewCard>{" "}
+                    before the lamps go up.
+                  </p>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="nocturne-section" id="menu">
+              <Panel title="Menu">
+                <Menu trigger="Garden actions">
+                  <MenuItem icon={<LampIcon />} shortcut="⌘L">
+                    Light the lamp room
+                  </MenuItem>
+                  <MenuItem icon={<QuillIcon />} shortcut="⌘R">
+                    Register a sprout
+                  </MenuItem>
+                  <MenuItem icon={<DropIcon />} shortcut="⌘G">
+                    Gather dew
+                  </MenuItem>
+                  <MenuItem icon={<SealIcon />} disabled>
+                    Press the seal
+                  </MenuItem>
+                  <MenuItem icon={<BellIcon />}>Ring the watch-bell</MenuItem>
+                  <MenuItem icon={<LeafIcon />}>Turn a new leaf</MenuItem>
+                  <MenuItem icon={<BookIcon />}>Open the album</MenuItem>
+                  <MenuItem icon={<MoonIcon />}>Chart the moon</MenuItem>
+                  <MenuItem icon={<VialIcon />}>Seal a vial</MenuItem>
+                  <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
+                  <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
+                  <MenuSeparator />
+                  <MenuItem icon={<XIcon />} tone="danger">
+                    Uproot
+                  </MenuItem>
+                </Menu>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="menubar">
+              <Panel title="Menubar">
+                <Menubar>
+                  <MenubarMenu label="Register">
+                    <MenuItem>Open tonight's page</MenuItem>
+                    <MenuItem>Sign the page</MenuItem>
+                    <MenuItem disabled>Amend an entry</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">Tear out a leaf</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Lamps">
+                    <MenuItem shortcut="⌘↑">Raise the flames</MenuItem>
+                    <MenuItem shortcut="⌘↓">Lower the flames</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Garden">
+                    <MenuItem>Open the gates</MenuItem>
+                    <MenuItem>Draw the curtains</MenuItem>
+                    <MenuSub label="Rounds">
+                      <MenuItem>South wall</MenuItem>
+                      <MenuItem>Moonlit gallery</MenuItem>
+                      <MenuItem>Weeping arbor</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem>Full round</MenuItem>
+                    </MenuSub>
+                  </MenubarMenu>
+                </Menubar>
+              </Panel>
+            </div>
+
+            <div className="nocturne-section" id="navmenu">
+              <Panel title="Navigation Menu">
+                <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="context">
+              <Panel title="Context Menu">
+                <div className="nocturne-stack">
+                  <ContextMenu
                     trigger={
-                      <a
-                        href="#preview"
-                        className="nocturne-link"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        @belladonna
-                      </a>
+                      <div className="nocturne-context__zone">
+                        <span className="nocturne-context__hint">
+                          Right-click to summon the warden
+                        </span>
+                      </div>
                     }
                   >
-                    <div className="nocturne-preview__head">
-                      <Avatar status="online">
-                        <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
-                        <AvatarFallback>B</AvatarFallback>
-                      </Avatar>
-                      <span className="nocturne-preview__ident">
-                        <span className="nocturne-h3 nocturne-preview__title">
-                          Lady Belladonna
-                        </span>
-                        <span className="nocturne-preview__handle">@belladonna</span>
-                      </span>
-                    </div>
-                    <p className="nocturne-text nocturne-preview__desc">
-                      Warden of the night garden. Keeps the light for the lamps, and the
-                      lamps for the flowers.
-                    </p>
-                    <div className="nocturne-preview__footer">
-                      <Badge tone="primary" dot>
-                        Warden
-                      </Badge>
-                      <Badge tone="neutral">Night Garden</Badge>
-                    </div>
-                  </PreviewCard>{" "}
-                  before the lamps go up.
-                </p>
-              </div>
-            </Panel>
-
-            <Panel id="menu" title="Menu">
-              <Menu trigger="Garden actions">
-                <MenuItem icon={<LampIcon />} shortcut="⌘L">
-                  Light the lamp room
-                </MenuItem>
-                <MenuItem icon={<QuillIcon />} shortcut="⌘R">
-                  Register a sprout
-                </MenuItem>
-                <MenuItem icon={<DropIcon />} shortcut="⌘G">
-                  Gather dew
-                </MenuItem>
-                <MenuItem icon={<SealIcon />} disabled>
-                  Press the seal
-                </MenuItem>
-                <MenuItem icon={<BellIcon />}>Ring the watch-bell</MenuItem>
-                <MenuItem icon={<LeafIcon />}>Turn a new leaf</MenuItem>
-                <MenuItem icon={<BookIcon />}>Open the album</MenuItem>
-                <MenuItem icon={<MoonIcon />}>Chart the moon</MenuItem>
-                <MenuItem icon={<VialIcon />}>Seal a vial</MenuItem>
-                <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
-                <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
-                <MenuSeparator />
-                <MenuItem icon={<XIcon />} tone="danger">
-                  Uproot
-                </MenuItem>
-              </Menu>
-            </Panel>
-            <Panel id="menubar" title="Menubar">
-              <Menubar>
-                <MenubarMenu label="Register">
-                  <MenuItem>Open tonight's page</MenuItem>
-                  <MenuItem>Sign the page</MenuItem>
-                  <MenuItem disabled>Amend an entry</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">Tear out a leaf</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Lamps">
-                  <MenuItem shortcut="⌘↑">Raise the flames</MenuItem>
-                  <MenuItem shortcut="⌘↓">Lower the flames</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Garden">
-                  <MenuItem>Open the gates</MenuItem>
-                  <MenuItem>Draw the curtains</MenuItem>
-                  <MenuSub label="Rounds">
-                    <MenuItem>South wall</MenuItem>
-                    <MenuItem>Moonlit gallery</MenuItem>
-                    <MenuItem>Weeping arbor</MenuItem>
+                    <MenuItem shortcut="⌘I">Inspect the bloom</MenuItem>
+                    <MenuItem shortcut="⌘D">Copy the entry</MenuItem>
+                    <MenuItem disabled>Call for aid</MenuItem>
                     <MenuSeparator />
-                    <MenuItem>Full round</MenuItem>
-                  </MenuSub>
-                </MenubarMenu>
-              </Menubar>
-            </Panel>
+                    <MenuItem tone="danger">Uproot</MenuItem>
+                  </ContextMenu>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="navmenu" title="Navigation Menu">
-              <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
-            </Panel>
-            <Panel id="context" title="Context Menu">
-              <div className="nocturne-stack">
-                <ContextMenu
-                  trigger={
-                    <div className="nocturne-context__zone">
-                      <span className="nocturne-context__hint">
-                        Right-click to summon the warden
-                      </span>
-                    </div>
+            <div className="nocturne-section" id="dialog">
+              <Panel title="Dialog">
+                <Dialog
+                  trigger={<Button variant="secondary">Open the Night Register</Button>}
+                  title="Tonight's Watch List"
+                  description="Before you sign, check tonight's two small tasks."
+                  actions={
+                    <>
+                      <DialogClose>Another Night</DialogClose>
+                      <DialogClose variant="secondary">Sign</DialogClose>
+                    </>
                   }
                 >
-                  <MenuItem shortcut="⌘I">Inspect the bloom</MenuItem>
-                  <MenuItem shortcut="⌘D">Copy the entry</MenuItem>
-                  <MenuItem disabled>Call for aid</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">Uproot</MenuItem>
-                </ContextMenu>
-              </div>
-            </Panel>
+                  <p className="nocturne-text">
+                    Walk the lamps from South Conservatory to Weeping Arbor, and note
+                    three drams of dew before the fourth hour.
+                  </p>
+                </Dialog>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="alert">
+              <Panel title="Alert Dialog">
+                <div className="nocturne-row">
+                  <AlertDialog
+                    tone="danger"
+                    trigger={<Button variant="ghost">Uproot the belladonna</Button>}
+                    title="Uproot the belladonna?"
+                    description="She has held the north wall for forty years. This cannot be undone."
+                    actions={
+                      <>
+                        <AlertDialogClose>Let her stand</AlertDialogClose>
+                        <AlertDialogClose variant="danger">Uproot</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="warning"
+                    trigger={<Button variant="ghost">Snuff every lamp</Button>}
+                    title="Snuff every lamp?"
+                    description="The flowers will be alone until the next round is called."
+                    actions={
+                      <>
+                        <AlertDialogClose>Keep them lit</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Snuff them</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="primary"
+                    trigger={<Button variant="ghost">Apply the planting plan</Button>}
+                    title="Apply this planting plan?"
+                    description="The current beds will be redrawn under the new plan."
+                    actions={
+                      <>
+                        <AlertDialogClose>Not yet</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Apply</AlertDialogClose>
+                      </>
+                    }
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="dialog" title="Dialog">
-              <Dialog
-                trigger={<Button variant="secondary">Open the Night Register</Button>}
-                title="Tonight's Watch List"
-                description="Before you sign, check tonight's two small tasks."
-                actions={
-                  <>
-                    <DialogClose>Another Night</DialogClose>
-                    <DialogClose variant="secondary">Sign</DialogClose>
-                  </>
-                }
-              >
-                <p className="nocturne-text">
-                  Walk the lamps from South Conservatory to Weeping Arbor, and note three
-                  drams of dew before the fourth hour.
-                </p>
-              </Dialog>
-            </Panel>
-            <Panel id="alert" title="Alert Dialog">
-              <div className="nocturne-row">
-                <AlertDialog
-                  tone="danger"
-                  trigger={<Button variant="ghost">Uproot the belladonna</Button>}
-                  title="Uproot the belladonna?"
-                  description="She has held the north wall for forty years. This cannot be undone."
-                  actions={
-                    <>
-                      <AlertDialogClose>Let her stand</AlertDialogClose>
-                      <AlertDialogClose variant="danger">Uproot</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="warning"
-                  trigger={<Button variant="ghost">Snuff every lamp</Button>}
-                  title="Snuff every lamp?"
-                  description="The flowers will be alone until the next round is called."
-                  actions={
-                    <>
-                      <AlertDialogClose>Keep them lit</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Snuff them</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="primary"
-                  trigger={<Button variant="ghost">Apply the planting plan</Button>}
-                  title="Apply this planting plan?"
-                  description="The current beds will be redrawn under the new plan."
-                  actions={
-                    <>
-                      <AlertDialogClose>Not yet</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Apply</AlertDialogClose>
-                    </>
-                  }
-                />
-              </div>
-            </Panel>
-
-            <Panel id="drawer" title="Drawer">
-              <div className="nocturne-row">
-                {(
-                  [
-                    ["top", "Top"],
-                    ["bottom", "Bottom"],
-                    ["left", "Left"],
-                    ["right", "Right"],
-                  ] as const
-                ).map(([side, label]) => (
-                  <Drawer
-                    key={side}
-                    side={side}
-                    trigger={<Button variant="ghost">{label}</Button>}
-                    title="Hothouse controls"
-                    description="Trim this wing of the garden without leaving the page."
-                    actions={<DrawerClose variant="secondary">Close</DrawerClose>}
+            <div className="nocturne-section" id="drawer">
+              <Panel title="Drawer">
+                <div className="nocturne-row">
+                  {(
+                    [
+                      ["top", "Top"],
+                      ["bottom", "Bottom"],
+                      ["left", "Left"],
+                      ["right", "Right"],
+                    ] as const
+                  ).map(([side, label]) => (
+                    <Drawer
+                      key={side}
+                      side={side}
+                      trigger={<Button variant="ghost">{label}</Button>}
+                      title="Hothouse controls"
+                      description="Trim this wing of the garden without leaving the page."
+                      actions={<DrawerClose variant="secondary">Close</DrawerClose>}
+                    >
+                      <div className="nocturne-stack">
+                        <label className="nocturne-row nocturne-row--between">
+                          <span className="nocturne-cap">Warm lamp</span>
+                          <Switch defaultChecked />
+                        </label>
+                        <label className="nocturne-row nocturne-row--between">
+                          <span className="nocturne-cap">Night mist</span>
+                          <Switch />
+                        </label>
+                        <Slider label="Flame height" defaultValue={50} />
+                      </div>
+                    </Drawer>
+                  ))}
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="toast">
+              <Panel title="Toast">
+                <div className="nocturne-row">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Entry noted",
+                        description: "Filed in Volume VII of the register.",
+                      })
+                    }
                   >
-                    <div className="nocturne-stack">
-                      <label className="nocturne-row nocturne-row--between">
-                        <span className="nocturne-cap">Warm lamp</span>
-                        <Switch defaultChecked />
-                      </label>
-                      <label className="nocturne-row nocturne-row--between">
-                        <span className="nocturne-cap">Night mist</span>
-                        <Switch />
-                      </label>
-                      <Slider label="Flame height" defaultValue={50} />
-                    </div>
-                  </Drawer>
-                ))}
-              </div>
-            </Panel>
-            <Panel id="toast" title="Toast">
-              <div className="nocturne-row">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Entry noted",
-                      description: "Filed in Volume VII of the register.",
-                    })
-                  }
-                >
-                  Note
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => {
-                    const id = toast.add({
-                      title: "Dew gathered",
-                      description: "Three drams tonight, ready for sealing.",
-                      type: "success",
-                      actionProps: {
-                        children: "Seal the vial",
-                        onClick: () => toast.close(id),
-                      },
-                    });
-                  }}
-                >
-                  Gather
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Scent thickening",
-                      description: "The jasmine says it is nearly midnight.",
-                      type: "warning",
-                    })
-                  }
-                >
-                  Scent
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Frost at the gate",
-                      description: "Shut the vents of the south wall, quickly.",
-                      type: "danger",
-                    })
-                  }
-                >
-                  Frost
-                </Button>
-              </div>
-            </Panel>
+                    Note
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => {
+                      const id = toast.add({
+                        title: "Dew gathered",
+                        description: "Three drams tonight, ready for sealing.",
+                        type: "success",
+                        actionProps: {
+                          children: "Seal the vial",
+                          onClick: () => toast.close(id),
+                        },
+                      });
+                    }}
+                  >
+                    Gather
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Scent thickening",
+                        description: "The jasmine says it is nearly midnight.",
+                        type: "warning",
+                      })
+                    }
+                  >
+                    Scent
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Frost at the gate",
+                        description: "Shut the vents of the south wall, quickly.",
+                        type: "danger",
+                      })
+                    }
+                  >
+                    Frost
+                  </Button>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1385,104 +1452,113 @@ function Demo() {
             sub="Plates and seals · all taken to brass."
           />
           <div className="nocturne-grid">
-            <Panel id="avatar" title="Avatar">
-              <div className="nocturne-row">
-                <Avatar status="online">
-                  <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
-                  <AvatarFallback>B</AvatarFallback>
-                </Avatar>
-                <Avatar size="sm" status="busy">
-                  <AvatarFallback>J</AvatarFallback>
-                </Avatar>
-                <Avatar status="away">
-                  <AvatarFallback>P</AvatarFallback>
-                </Avatar>
-                <Avatar size="lg" status="offline">
-                  <AvatarFallback>M</AvatarFallback>
-                </Avatar>
-              </div>
-            </Panel>
-            <Panel id="badge" title="Badge">
-              <div className="nocturne-row">
-                <Badge tone="primary" dot>
-                  In bloom
-                </Badge>
-                <Badge tone="success">Dew sealed</Badge>
-                <Badge tone="warning">Scent high</Badge>
-                <Badge tone="danger" dot>
-                  Frost
-                </Badge>
-                <Badge tone="secondary">On watch</Badge>
-                <Badge tone="neutral">Dormant</Badge>
-              </div>
-            </Panel>
+            <div className="nocturne-section" id="avatar">
+              <Panel title="Avatar">
+                <div className="nocturne-row">
+                  <Avatar status="online">
+                    <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
+                    <AvatarFallback>B</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="sm" status="busy">
+                    <AvatarFallback>J</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="away">
+                    <AvatarFallback>P</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="lg" status="offline">
+                    <AvatarFallback>M</AvatarFallback>
+                  </Avatar>
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="badge">
+              <Panel title="Badge">
+                <div className="nocturne-row">
+                  <Badge tone="primary" dot>
+                    In bloom
+                  </Badge>
+                  <Badge tone="success">Dew sealed</Badge>
+                  <Badge tone="warning">Scent high</Badge>
+                  <Badge tone="danger" dot>
+                    Frost
+                  </Badge>
+                  <Badge tone="secondary">On watch</Badge>
+                  <Badge tone="neutral">Dormant</Badge>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="toolbar" title="Toolbar">
-              <Toolbar aria-label="Lamp bench">
-                <BaseToggleGroup
-                  className="nocturne-toolbar__group"
-                  defaultValue={["dim"]}
-                  aria-label="Flame"
-                >
-                  <ToolbarButton render={<BaseToggle />} value="dim">
-                    Dim
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="warm">
-                    Warm
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="bright">
-                    Bright
-                  </ToolbarButton>
-                </BaseToggleGroup>
-                <ToolbarSeparator />
-                <ToolbarGroup aria-label="Tools">
-                  <ToolbarButton aria-label="Write a note">
-                    <QuillIcon />
-                  </ToolbarButton>
-                  <ToolbarButton disabled aria-label="Sealed tool">
-                    <SealIcon />
-                  </ToolbarButton>
-                </ToolbarGroup>
-                <ToolbarSeparator />
-                <ToolbarLink href="#toolbar">
-                  <LampIcon />
-                  Lamps steady
-                </ToolbarLink>
-              </Toolbar>
-            </Panel>
-            <Panel id="scroll" title="Scroll Area">
-              <ScrollArea>
-                <ScrollAreaViewport
-                  style={{ maxHeight: "var(--nocturne-scroll-demo-h)" }}
-                >
-                  <ScrollAreaContent>
-                    <ol className="nocturne-scroll-list">
-                      {[
-                        ["23:00", "Lamps up — the night round begins"],
-                        ["23:12", "South Conservatory wicks trimmed"],
-                        ["23:28", "Belladonna opened three bells early"],
-                        ["23:41", "Moonlit Gallery walked, all quiet"],
-                        ["23:55", "Jasmine scent thickening — midnight near"],
-                        ["00:00", "Watch-bell rung at the stroke"],
-                        ["00:17", "First dram of dew gathered"],
-                        ["00:44", "Poison cabinet checked and sealed"],
-                        ["01:09", "Second dram of dew gathered"],
-                        ["01:36", "Weeping Arbor curtains drawn"],
-                        ["02:04", "Third dram sealed in celadon"],
-                        ["02:30", "Half round done — flames at one third"],
-                      ].map(([time, msg]) => (
-                        <li key={time} className="nocturne-text">
-                          <span className="nocturne-scroll-list__time">{time}</span> {msg}
-                        </li>
-                      ))}
-                    </ol>
-                  </ScrollAreaContent>
-                </ScrollAreaViewport>
-                <ScrollAreaScrollbar>
-                  <ScrollAreaThumb />
-                </ScrollAreaScrollbar>
-              </ScrollArea>
-            </Panel>
+            <div className="nocturne-section" id="toolbar">
+              <Panel title="Toolbar">
+                <Toolbar aria-label="Lamp bench">
+                  <BaseToggleGroup
+                    className="nocturne-toolbar__group"
+                    defaultValue={["dim"]}
+                    aria-label="Flame"
+                  >
+                    <ToolbarButton render={<BaseToggle />} value="dim">
+                      Dim
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="warm">
+                      Warm
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="bright">
+                      Bright
+                    </ToolbarButton>
+                  </BaseToggleGroup>
+                  <ToolbarSeparator />
+                  <ToolbarGroup aria-label="Tools">
+                    <ToolbarButton aria-label="Write a note">
+                      <QuillIcon />
+                    </ToolbarButton>
+                    <ToolbarButton disabled aria-label="Sealed tool">
+                      <SealIcon />
+                    </ToolbarButton>
+                  </ToolbarGroup>
+                  <ToolbarSeparator />
+                  <ToolbarLink href="#toolbar">
+                    <LampIcon />
+                    Lamps steady
+                  </ToolbarLink>
+                </Toolbar>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="scroll">
+              <Panel title="Scroll Area">
+                <ScrollArea>
+                  <ScrollAreaViewport
+                    style={{ maxHeight: "var(--nocturne-scroll-demo-h)" }}
+                  >
+                    <ScrollAreaContent>
+                      <ol className="nocturne-scroll-list">
+                        {[
+                          ["23:00", "Lamps up — the night round begins"],
+                          ["23:12", "South Conservatory wicks trimmed"],
+                          ["23:28", "Belladonna opened three bells early"],
+                          ["23:41", "Moonlit Gallery walked, all quiet"],
+                          ["23:55", "Jasmine scent thickening — midnight near"],
+                          ["00:00", "Watch-bell rung at the stroke"],
+                          ["00:17", "First dram of dew gathered"],
+                          ["00:44", "Poison cabinet checked and sealed"],
+                          ["01:09", "Second dram of dew gathered"],
+                          ["01:36", "Weeping Arbor curtains drawn"],
+                          ["02:04", "Third dram sealed in celadon"],
+                          ["02:30", "Half round done — flames at one third"],
+                        ].map(([time, msg]) => (
+                          <li key={time} className="nocturne-text">
+                            <span className="nocturne-scroll-list__time">{time}</span>{" "}
+                            {msg}
+                          </li>
+                        ))}
+                      </ol>
+                    </ScrollAreaContent>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
+                </ScrollArea>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1491,47 +1567,53 @@ function Demo() {
             sub="The night is built from one brass hairline."
           />
           <div className="nocturne-grid">
-            <Panel id="typography" title="Typography" wide>
-              <div className="nocturne-stack">
-                <h2 className="nocturne-h1">The Garden Wakes at Dusk</h2>
-                <h3 className="nocturne-h2">Bone serif over wine velvet</h3>
-                <span className="nocturne-h3">Section Sub-Label</span>
-                <p className="nocturne-text">
-                  Body copy is Cormorant Garamond — a bookplate hand for a garden that
-                  keeps its records at night. Catalog codes are struck on a brass
-                  typewriter.
-                </p>
-                <span className="nocturne-cap">Field Caption · 217</span>
-              </div>
-            </Panel>
-
-            <Panel id="separator" title="Separator">
-              <div className="nocturne-stack">
-                <span className="nocturne-cap">Bare hairline</span>
-                <Separator />
-                <span className="nocturne-cap">With a label</span>
-                <Separator label="Second wing" align="start" />
-                <Separator label="Second wing" />
-                <Separator label="Second wing" align="end" />
-                <span className="nocturne-cap">Upright</span>
-                <div className="nocturne-row">
-                  <span className="nocturne-text">Wine</span>
-                  <Separator orientation="vertical" />
-                  <span className="nocturne-text">Brass</span>
-                  <Separator orientation="vertical" />
-                  <span className="nocturne-text">Bone</span>
+            <div className="nocturne-section nocturne-section--wide" id="typography">
+              <Panel title="Typography">
+                <div className="nocturne-stack">
+                  <h2 className="nocturne-h1">The Garden Wakes at Dusk</h2>
+                  <h3 className="nocturne-h2">Bone serif over wine velvet</h3>
+                  <span className="nocturne-h3">Section Sub-Label</span>
+                  <p className="nocturne-text">
+                    Body copy is Cormorant Garamond — a bookplate hand for a garden that
+                    keeps its records at night. Catalog codes are struck on a brass
+                    typewriter.
+                  </p>
+                  <span className="nocturne-cap">Field Caption · 217</span>
                 </div>
-              </div>
-            </Panel>
-            <Panel id="panel" title="Panel">
-              <p className="nocturne-text nocturne-panel-note">
-                Every plate in the album sits on one of these — velvet under brass,
-                hairline within hairline, corners grown over with sprigs.
-              </p>
-              <Panel title="Nested plate">
-                <span className="nocturne-cap">A plate within a plate</span>
               </Panel>
-            </Panel>
+            </div>
+
+            <div className="nocturne-section" id="separator">
+              <Panel title="Separator">
+                <div className="nocturne-stack">
+                  <span className="nocturne-cap">Bare hairline</span>
+                  <Separator />
+                  <span className="nocturne-cap">With a label</span>
+                  <Separator label="Second wing" align="start" />
+                  <Separator label="Second wing" />
+                  <Separator label="Second wing" align="end" />
+                  <span className="nocturne-cap">Upright</span>
+                  <div className="nocturne-row">
+                    <span className="nocturne-text">Wine</span>
+                    <Separator orientation="vertical" />
+                    <span className="nocturne-text">Brass</span>
+                    <Separator orientation="vertical" />
+                    <span className="nocturne-text">Bone</span>
+                  </div>
+                </div>
+              </Panel>
+            </div>
+            <div className="nocturne-section" id="panel">
+              <Panel title="Panel">
+                <p className="nocturne-text nocturne-panel-note">
+                  Every plate in the album sits on one of these — velvet under brass,
+                  hairline within hairline, corners grown over with sprigs.
+                </p>
+                <Panel title="Nested plate">
+                  <span className="nocturne-cap">A plate within a plate</span>
+                </Panel>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1540,11 +1622,13 @@ function Demo() {
             sub="The flowers stand watch, and keep the light for the lamps."
           />
           <div className="nocturne-grid">
-            <Panel id="loader" title="Loader" wide>
-              <div className="demo-loader-stage">
-                <Loader />
-              </div>
-            </Panel>
+            <div className="nocturne-section nocturne-section--wide" id="loader">
+              <Panel title="Loader">
+                <div className="demo-loader-stage">
+                  <Loader />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <footer className="nocturne-footer">

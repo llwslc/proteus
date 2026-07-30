@@ -4,19 +4,14 @@ import { SquareFill } from "../icons";
 import "./Panel.css";
 
 export interface PanelProps {
-  id?: string;
   title?: ReactNode;
   marker?: ReactNode;
-  wide?: boolean;
   children?: ReactNode;
 }
 
-export function Panel({ id, title, marker, wide, children }: PanelProps) {
+export function Panel({ title, marker, children }: PanelProps) {
   return (
-    <section
-      id={id}
-      className={cx("bauhaus-surface", "bauhaus-panel", wide && "bauhaus-panel--wide")}
-    >
+    <section className={cx("bauhaus-surface", "bauhaus-panel")}>
       {(title || marker) && (
         <header className="bauhaus-panel__head">
           {marker !== undefined ? (

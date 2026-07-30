@@ -7,22 +7,12 @@ export interface PanelProps {
   children: ReactNode;
   tape?: "tl" | "tr" | "bl" | "br" | "top";
   stapled?: boolean;
-  id?: string;
-  wide?: boolean;
   className?: string;
 }
 
-export function Panel({
-  title,
-  children,
-  tape,
-  stapled,
-  id,
-  wide,
-  className,
-}: PanelProps) {
+export function Panel({ title, children, tape, stapled, className }: PanelProps) {
   return (
-    <div id={id} className={cx("riot-panel", wide ? "riot-panel--wide" : "", className)}>
+    <div className={cx("riot-panel", className)}>
       {tape ? <span className={`riot-tape riot-tape--${tape}`} aria-hidden /> : null}
       {stapled ? (
         <>

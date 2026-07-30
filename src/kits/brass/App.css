@@ -269,11 +269,17 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
-.brass-panel--wide {
+.brass-section {
+  display: flex;
+  min-width: 0;
+  scroll-margin-top: calc(var(--bar-h) + 20px);
+}
+.brass-section--wide {
   grid-column: 1 / -1;
 }
-.brass-panel {
-  scroll-margin-top: calc(var(--bar-h) + 20px);
+.brass-section > .brass-panel {
+  flex: 1;
+  min-width: 0;
 }
 
 .brass-row {

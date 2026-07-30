@@ -438,825 +438,908 @@ function Demo() {
 
           <GroupRule id="inputs" label="Inputs" sub="intake & regulation" />
           <div className="brass-grid">
-            <Panel id="button" title="Button" wide>
-              <div className="brass-stack">
-                <div className="brass-row">
-                  <Button icon={<Lever />}>Engage</Button>
-                  <Button variant="secondary">Standby</Button>
-                  <Button variant="danger">Vent</Button>
-                  <Button variant="ghost">Cancel</Button>
-                  <Button disabled>Locked</Button>
+            <div className="brass-section brass-section--wide" id="button">
+              <Panel title="Button">
+                <div className="brass-stack">
+                  <div className="brass-row">
+                    <Button icon={<Lever />}>Engage</Button>
+                    <Button variant="secondary">Standby</Button>
+                    <Button variant="danger">Vent</Button>
+                    <Button variant="ghost">Cancel</Button>
+                    <Button disabled>Locked</Button>
+                  </div>
+                  <Separator />
+                  <div className="brass-row">
+                    <Button size="sm">Trim</Button>
+                    <Button size="md">Set</Button>
+                    <Button size="lg">Drive</Button>
+                  </div>
+                  <Separator />
+                  <div className="brass-row">
+                    <Button variant="icon" aria-label="Copy reading">
+                      <Copy />
+                    </Button>
+                    <Button variant="icon" aria-label="Adjust gear">
+                      <Gear />
+                    </Button>
+                    <Button variant="icon" disabled aria-label="Riveted shut">
+                      <Rivet />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Read gauge">
+                      <Gauge />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Discharge">
+                      <Bolt />
+                    </Button>
+                  </div>
                 </div>
-                <Separator />
-                <div className="brass-row">
-                  <Button size="sm">Trim</Button>
-                  <Button size="md">Set</Button>
-                  <Button size="lg">Drive</Button>
+              </Panel>
+            </div>
+
+            <div className="brass-section" id="switch">
+              <Panel title="Switch">
+                <div className="brass-stack">
+                  <label className="brass-row brass-row--between">
+                    <span className="brass-cap">Main valve</span>
+                    <Switch defaultChecked />
+                  </label>
+                  <label className="brass-row brass-row--between">
+                    <span className="brass-cap">Bypass</span>
+                    <Switch />
+                  </label>
+                  <label className="brass-row brass-row--between">
+                    <span className="brass-cap">Safety lock</span>
+                    <Switch disabled defaultChecked />
+                  </label>
+                  <label className="brass-row brass-row--between">
+                    <span className="brass-cap">Sealed port</span>
+                    <Switch disabled />
+                  </label>
                 </div>
-                <Separator />
-                <div className="brass-row">
-                  <Button variant="icon" aria-label="Copy reading">
-                    <Copy />
-                  </Button>
-                  <Button variant="icon" aria-label="Adjust gear">
-                    <Gear />
-                  </Button>
-                  <Button variant="icon" disabled aria-label="Riveted shut">
-                    <Rivet />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Read gauge">
-                    <Gauge />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Discharge">
-                    <Bolt />
-                  </Button>
+              </Panel>
+            </div>
+            <div className="brass-section" id="toggle">
+              <Panel title="Toggle Group">
+                <div className="brass-stack">
+                  <ToggleGroup defaultValue={["heat"]}>
+                    <Toggle value="heat">Heat</Toggle>
+                    <Toggle value="steam">Steam</Toggle>
+                    <Toggle value="cool" disabled>
+                      Cool
+                    </Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup multiple defaultValue={["intake", "exhaust", "safety"]}>
+                    <Toggle value="intake">Intake</Toggle>
+                    <Toggle value="exhaust">Exhaust</Toggle>
+                    <Toggle value="purge">Purge</Toggle>
+                    <Toggle value="safety" disabled>
+                      Safety
+                    </Toggle>
+                  </ToggleGroup>
                 </div>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
 
-            <Panel id="switch" title="Switch">
-              <div className="brass-stack">
-                <label className="brass-row brass-row--between">
-                  <span className="brass-cap">Main valve</span>
-                  <Switch defaultChecked />
-                </label>
-                <label className="brass-row brass-row--between">
-                  <span className="brass-cap">Bypass</span>
-                  <Switch />
-                </label>
-                <label className="brass-row brass-row--between">
-                  <span className="brass-cap">Safety lock</span>
-                  <Switch disabled defaultChecked />
-                </label>
-                <label className="brass-row brass-row--between">
-                  <span className="brass-cap">Sealed port</span>
-                  <Switch disabled />
-                </label>
-              </div>
-            </Panel>
-            <Panel id="toggle" title="Toggle Group">
-              <div className="brass-stack">
-                <ToggleGroup defaultValue={["heat"]}>
-                  <Toggle value="heat">Heat</Toggle>
-                  <Toggle value="steam">Steam</Toggle>
-                  <Toggle value="cool" disabled>
-                    Cool
-                  </Toggle>
-                </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["intake", "exhaust", "safety"]}>
-                  <Toggle value="intake">Intake</Toggle>
-                  <Toggle value="exhaust">Exhaust</Toggle>
-                  <Toggle value="purge">Purge</Toggle>
-                  <Toggle value="safety" disabled>
-                    Safety
-                  </Toggle>
-                </ToggleGroup>
-              </div>
-            </Panel>
+            <div className="brass-section" id="checkbox">
+              <Panel title="Checkbox">
+                <div className="brass-stack">
+                  <Checkbox defaultChecked label="Auto-stoke" />
+                  <Checkbox label="Manual feed" />
+                  <Checkbox disabled defaultChecked label="Locked open" />
+                  <Checkbox disabled label="Sealed shut" />
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="checkbox-group">
+              <Panel title="Checkbox Group">
+                <div className="brass-stack">
+                  <CheckboxGroup
+                    defaultValue={["pressure"]}
+                    parentLabel="All gauges"
+                    items={[
+                      { label: "Pressure", value: "pressure" },
+                      { label: "Temperature", value: "temp" },
+                      { label: "Flow rate", value: "flow" },
+                    ]}
+                  />
+                  <CheckboxGroup
+                    defaultValue={["vacuum"]}
+                    parentLabel="Sealed gauges"
+                    disabled
+                    items={[
+                      { label: "Vacuum", value: "vacuum" },
+                      { label: "Draught", value: "draught" },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="checkbox" title="Checkbox">
-              <div className="brass-stack">
-                <Checkbox defaultChecked label="Auto-stoke" />
-                <Checkbox label="Manual feed" />
-                <Checkbox disabled defaultChecked label="Locked open" />
-                <Checkbox disabled label="Sealed shut" />
-              </div>
-            </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group">
-              <div className="brass-stack">
-                <CheckboxGroup
-                  defaultValue={["pressure"]}
-                  parentLabel="All gauges"
-                  items={[
-                    { label: "Pressure", value: "pressure" },
-                    { label: "Temperature", value: "temp" },
-                    { label: "Flow rate", value: "flow" },
-                  ]}
-                />
-                <CheckboxGroup
-                  defaultValue={["vacuum"]}
-                  parentLabel="Sealed gauges"
-                  disabled
-                  items={[
-                    { label: "Vacuum", value: "vacuum" },
-                    { label: "Draught", value: "draught" },
-                  ]}
-                />
-              </div>
-            </Panel>
+            <div className="brass-section" id="radio">
+              <Panel title="Radio Group">
+                <div className="brass-stack">
+                  <span className="brass-cap">Draught</span>
+                  <RadioGroup defaultValue="low">
+                    <Radio value="low">Low draught</Radio>
+                    <Radio value="nominal">Nominal</Radio>
+                    <Radio value="high">Forced</Radio>
+                    <Radio value="sealed" disabled>
+                      Sealed (offline)
+                    </Radio>
+                  </RadioGroup>
+                  <span className="brass-cap">Governor (sealed)</span>
+                  <RadioGroup disabled defaultValue="governor">
+                    <Radio value="hand">Hand brake</Radio>
+                    <Radio value="governor">Governor (locked)</Radio>
+                  </RadioGroup>
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="select">
+              <Panel title="Select">
+                <div className="brass-stack">
+                  <label className="brass-cap" htmlFor="sel-1">
+                    Boiler pressure
+                  </label>
+                  <Select
+                    items={PRESSURE}
+                    placeholder="Pressure band"
+                    defaultValue="nominal"
+                    id="sel-1"
+                  />
+                  <label className="brass-cap" htmlFor="sel-2">
+                    Standby boiler
+                  </label>
+                  <Select
+                    items={PRESSURE_SHORT}
+                    placeholder="Awaiting steam…"
+                    id="sel-2"
+                  />
+                  <label className="brass-cap" htmlFor="sel-3">
+                    Retired boiler
+                  </label>
+                  <Select
+                    items={PRESSURE_SHORT}
+                    defaultValue="nominal"
+                    disabled
+                    id="sel-3"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="radio" title="Radio Group">
-              <div className="brass-stack">
-                <span className="brass-cap">Draught</span>
-                <RadioGroup defaultValue="low">
-                  <Radio value="low">Low draught</Radio>
-                  <Radio value="nominal">Nominal</Radio>
-                  <Radio value="high">Forced</Radio>
-                  <Radio value="sealed" disabled>
-                    Sealed (offline)
-                  </Radio>
-                </RadioGroup>
-                <span className="brass-cap">Governor (sealed)</span>
-                <RadioGroup disabled defaultValue="governor">
-                  <Radio value="hand">Hand brake</Radio>
-                  <Radio value="governor">Governor (locked)</Radio>
-                </RadioGroup>
-              </div>
-            </Panel>
-            <Panel id="select" title="Select">
-              <div className="brass-stack">
-                <label className="brass-cap" htmlFor="sel-1">
-                  Boiler pressure
-                </label>
-                <Select
-                  items={PRESSURE}
-                  placeholder="Pressure band"
-                  defaultValue="nominal"
-                  id="sel-1"
-                />
-                <label className="brass-cap" htmlFor="sel-2">
-                  Standby boiler
-                </label>
-                <Select items={PRESSURE_SHORT} placeholder="Awaiting steam…" id="sel-2" />
-                <label className="brass-cap" htmlFor="sel-3">
-                  Retired boiler
-                </label>
-                <Select
-                  items={PRESSURE_SHORT}
-                  defaultValue="nominal"
-                  disabled
-                  id="sel-3"
-                />
-              </div>
-            </Panel>
+            <div className="brass-section" id="combobox">
+              <Panel title="Combobox">
+                <div className="brass-stack">
+                  <span className="brass-cap">Filter feedstock</span>
+                  <Combobox
+                    items={FUEL_PARTS}
+                    placeholder="Search fuel…"
+                    label="Filter feedstock"
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="autocomplete">
+              <Panel title="Autocomplete">
+                <div className="brass-stack">
+                  <span className="brass-cap">Fuel by name</span>
+                  <Autocomplete
+                    items={FUELS}
+                    placeholder="Fuel type…"
+                    label="Fuel by name"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="combobox" title="Combobox">
-              <div className="brass-stack">
-                <span className="brass-cap">Filter feedstock</span>
-                <Combobox
-                  items={FUEL_PARTS}
-                  placeholder="Search fuel…"
-                  label="Filter feedstock"
-                />
-              </div>
-            </Panel>
-            <Panel id="autocomplete" title="Autocomplete">
-              <div className="brass-stack">
-                <span className="brass-cap">Fuel by name</span>
-                <Autocomplete
-                  items={FUELS}
-                  placeholder="Fuel type…"
-                  label="Fuel by name"
-                />
-              </div>
-            </Panel>
+            <div className="brass-section" id="slider">
+              <Panel title="Slider">
+                <div className="brass-stack">
+                  <Slider label="Throttle" defaultValue={62} />
+                  <Slider label="Damper" defaultValue={40} disabled />
+                  <Slider label="Blower" defaultValue={75} showValue={false} />
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="number">
+              <Panel title="Number Field">
+                <div className="brass-stack">
+                  <label className="brass-cap" htmlFor="num-1">
+                    Boiler PSI
+                  </label>
+                  <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                  <label className="brass-cap" htmlFor="num-2">
+                    Max PSI
+                  </label>
+                  <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="slider" title="Slider">
-              <div className="brass-stack">
-                <Slider label="Throttle" defaultValue={62} />
-                <Slider label="Damper" defaultValue={40} disabled />
-                <Slider label="Blower" defaultValue={75} showValue={false} />
-              </div>
-            </Panel>
-            <Panel id="number" title="Number Field">
-              <div className="brass-stack">
-                <label className="brass-cap" htmlFor="num-1">
-                  Boiler PSI
-                </label>
-                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
-                <label className="brass-cap" htmlFor="num-2">
-                  Max PSI
-                </label>
-                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
-              </div>
-            </Panel>
-
-            <Panel id="input" title="Text Field">
-              <div className="brass-stack">
-                <Field
-                  label="Vessel name"
-                  placeholder="HMS Aurora"
-                  defaultValue="HMS Aurora"
-                  description="As stamped on the maker's plate."
-                />
-                <Input
-                  icon={<Search />}
-                  placeholder="Search registry…"
-                  aria-label="Search registry"
-                />
-                <IgnitionCodeField />
-                <Field label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
-                <Field
-                  label="Plate number"
-                  defaultValue="BR-77½?"
-                  error="Not a valid plate stamping."
-                />
-              </div>
-            </Panel>
-            <Panel id="otp" title="OTP Field">
-              <div className="brass-stack">
-                <span className="brass-cap">Ignition code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="835"
-                  label="Ignition code"
-                />
-                <span className="brass-cap">Sealed cipher</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="835"
-                  mask
-                  label="Sealed cipher"
-                />
-                <span className="brass-cap">Expired code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="835"
-                  disabled
-                  label="Expired code"
-                />
-              </div>
-            </Panel>
+            <div className="brass-section" id="input">
+              <Panel title="Text Field">
+                <div className="brass-stack">
+                  <Field
+                    label="Vessel name"
+                    placeholder="HMS Aurora"
+                    defaultValue="HMS Aurora"
+                    description="As stamped on the maker's plate."
+                  />
+                  <Input
+                    icon={<Search />}
+                    placeholder="Search registry…"
+                    aria-label="Search registry"
+                  />
+                  <IgnitionCodeField />
+                  <Field label="Sealed channel" defaultValue="BR-CLASSIFIED" disabled />
+                  <Field
+                    label="Plate number"
+                    defaultValue="BR-77½?"
+                    error="Not a valid plate stamping."
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="otp">
+              <Panel title="OTP Field">
+                <div className="brass-stack">
+                  <span className="brass-cap">Ignition code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="835"
+                    label="Ignition code"
+                  />
+                  <span className="brass-cap">Sealed cipher</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="835"
+                    mask
+                    label="Sealed cipher"
+                  />
+                  <span className="brass-cap">Expired code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="835"
+                    disabled
+                    label="Expired code"
+                  />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="forms" label="Forms" sub="binding the crew" />
           <div className="brass-grid">
-            <Panel id="fieldset" title="Fieldset">
-              <Fieldset legend="Engineer">
-                <Field label="Name" defaultValue="I. K. Brunel" />
-                <Field label="Watch" defaultValue="Forenoon" />
-              </Fieldset>
-            </Panel>
-            <Panel id="form" title="Form">
-              <FormDemo />
-            </Panel>
+            <div className="brass-section" id="fieldset">
+              <Panel title="Fieldset">
+                <Fieldset legend="Engineer">
+                  <Field label="Name" defaultValue="I. K. Brunel" />
+                  <Field label="Watch" defaultValue="Forenoon" />
+                </Fieldset>
+              </Panel>
+            </div>
+            <div className="brass-section" id="form">
+              <Panel title="Form">
+                <FormDemo />
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="feedback" label="Feedback" sub="what the gauges return" />
           <div className="brass-grid">
-            <Panel id="progress" title="Progress">
-              <ProgressGauges />
-            </Panel>
-            <Panel id="meter" title="Meter">
-              <div className="brass-stack">
-                <Meter label="Boiler pressure" value={88} />
-                <Meter label="Output yield" value={70} tone="success" />
-                <Meter label="Coolant flow" value={52} tone="warning" />
-                <Meter label="Bearing temp" value={23} tone="danger" />
-              </div>
-            </Panel>
+            <div className="brass-section" id="progress">
+              <Panel title="Progress">
+                <ProgressGauges />
+              </Panel>
+            </div>
+            <div className="brass-section" id="meter">
+              <Panel title="Meter">
+                <div className="brass-stack">
+                  <Meter label="Boiler pressure" value={88} />
+                  <Meter label="Output yield" value={70} tone="success" />
+                  <Meter label="Coolant flow" value={52} tone="warning" />
+                  <Meter label="Bearing temp" value={23} tone="danger" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="tabs" title="Tabs" wide>
-              <Tabs
-                defaultValue="steam"
-                items={[
-                  {
-                    value: "steam",
-                    label: "Steam",
-                    content: (
-                      <p className="brass-text">
-                        Saturated at 180 PSI, superheater online.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "water",
-                    label: "Water",
-                    content: (
-                      <p className="brass-text">
-                        Feedwater tank at 74%, injectors primed.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "fire",
-                    label: "Firebox",
-                    content: (
-                      <p className="brass-text">
-                        Grate clean, draught nominal, ash bin clear.
-                      </p>
-                    ),
-                    disabled: true,
-                  },
-                ]}
-              />
-            </Panel>
-
-            <Panel id="accordion" title="Accordion">
-              <div className="brass-stack">
-                <span className="brass-cap">One at a time</span>
-                <Accordion
-                  defaultValue={["valves"]}
+            <div className="brass-section brass-section--wide" id="tabs">
+              <Panel title="Tabs">
+                <Tabs
+                  defaultValue="steam"
                   items={[
                     {
-                      value: "valves",
-                      title: "Valves",
-                      content: "Safety, throttle and bypass valves serviced.",
+                      value: "steam",
+                      label: "Steam",
+                      content: (
+                        <p className="brass-text">
+                          Saturated at 180 PSI, superheater online.
+                        </p>
+                      ),
                     },
                     {
-                      value: "bearings",
-                      title: "Bearings",
-                      content: "White-metal bearings re-poured and shimmed.",
+                      value: "water",
+                      label: "Water",
+                      content: (
+                        <p className="brass-text">
+                          Feedwater tank at 74%, injectors primed.
+                        </p>
+                      ),
                     },
                     {
-                      value: "linkage",
+                      value: "fire",
+                      label: "Firebox",
+                      content: (
+                        <p className="brass-text">
+                          Grate clean, draught nominal, ash bin clear.
+                        </p>
+                      ),
                       disabled: true,
-                      title: "Linkage",
-                      content: "Walschaerts gear adjusted to spec.",
                     },
                   ]}
                 />
-                <span className="brass-cap">Open together</span>
-                <Accordion
-                  openMultiple
-                  defaultValue={["gauges", "lamps"]}
-                  items={[
-                    {
-                      value: "gauges",
-                      title: "Gauges",
-                      content: "Boiler pressure needles swapped and re-zeroed.",
-                    },
-                    {
-                      value: "lamps",
-                      disabled: true,
-                      title: "Lamps",
-                      content: "Oil lamps trimmed, lenses polished for the night run.",
-                    },
-                  ]}
-                />
-              </div>
-            </Panel>
-            <Panel id="collapsible" title="Collapsible">
-              <div className="brass-stack">
-                <Collapsible title="Maintenance log" defaultOpen>
-                  <p className="brass-text">
-                    Last overhaul 14 days ago. Next inspection due at 2,000 running hours.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Spares inventory">
-                  <p className="brass-text">
-                    Two spare injectors, one gauge glass, half a ton of firebricks in the
-                    tender.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Sealed drawings" disabled>
-                  <p className="brass-text">
-                    Patent drawings under wax seal until the office grants release.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Standing orders" defaultOpen disabled>
-                  <p className="brass-text">
-                    Posted by the yard master. Amendments require the seal.
-                  </p>
-                </Collapsible>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
+
+            <div className="brass-section" id="accordion">
+              <Panel title="Accordion">
+                <div className="brass-stack">
+                  <span className="brass-cap">One at a time</span>
+                  <Accordion
+                    defaultValue={["valves"]}
+                    items={[
+                      {
+                        value: "valves",
+                        title: "Valves",
+                        content: "Safety, throttle and bypass valves serviced.",
+                      },
+                      {
+                        value: "bearings",
+                        title: "Bearings",
+                        content: "White-metal bearings re-poured and shimmed.",
+                      },
+                      {
+                        value: "linkage",
+                        disabled: true,
+                        title: "Linkage",
+                        content: "Walschaerts gear adjusted to spec.",
+                      },
+                    ]}
+                  />
+                  <span className="brass-cap">Open together</span>
+                  <Accordion
+                    openMultiple
+                    defaultValue={["gauges", "lamps"]}
+                    items={[
+                      {
+                        value: "gauges",
+                        title: "Gauges",
+                        content: "Boiler pressure needles swapped and re-zeroed.",
+                      },
+                      {
+                        value: "lamps",
+                        disabled: true,
+                        title: "Lamps",
+                        content: "Oil lamps trimmed, lenses polished for the night run.",
+                      },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="collapsible">
+              <Panel title="Collapsible">
+                <div className="brass-stack">
+                  <Collapsible title="Maintenance log" defaultOpen>
+                    <p className="brass-text">
+                      Last overhaul 14 days ago. Next inspection due at 2,000 running
+                      hours.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Spares inventory">
+                    <p className="brass-text">
+                      Two spare injectors, one gauge glass, half a ton of firebricks in
+                      the tender.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Sealed drawings" disabled>
+                    <p className="brass-text">
+                      Patent drawings under wax seal until the office grants release.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Standing orders" defaultOpen disabled>
+                    <p className="brass-text">
+                      Posted by the yard master. Amendments require the seal.
+                    </p>
+                  </Collapsible>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="overlays" label="Overlays" sub="signals & surfacing" />
           <div className="brass-grid">
-            <Panel id="tooltip" title="Tooltip">
-              <div className="brass-row">
-                <Tooltip content="Release pressure" side="top">
-                  <Button variant="ghost">Vent</Button>
-                </Tooltip>
-                <Tooltip content="Open intake" side="bottom">
-                  <Button variant="ghost">Intake</Button>
-                </Tooltip>
-                <Tooltip content="Force draught" side="left">
-                  <Button variant="ghost">Draught</Button>
-                </Tooltip>
-                <Tooltip content="Blow down" side="right">
-                  <Button variant="ghost">Blow down</Button>
-                </Tooltip>
-              </div>
-            </Panel>
-            <Panel id="popover" title="Popover">
-              <Popover
-                trigger={<Button variant="ghost">Readout</Button>}
-                title="Manifold A"
-              >
-                Three cylinders nominal; one flagged for inspection on the next watch.
-              </Popover>
-            </Panel>
+            <div className="brass-section" id="tooltip">
+              <Panel title="Tooltip">
+                <div className="brass-row">
+                  <Tooltip content="Release pressure" side="top">
+                    <Button variant="ghost">Vent</Button>
+                  </Tooltip>
+                  <Tooltip content="Open intake" side="bottom">
+                    <Button variant="ghost">Intake</Button>
+                  </Tooltip>
+                  <Tooltip content="Force draught" side="left">
+                    <Button variant="ghost">Draught</Button>
+                  </Tooltip>
+                  <Tooltip content="Blow down" side="right">
+                    <Button variant="ghost">Blow down</Button>
+                  </Tooltip>
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="popover">
+              <Panel title="Popover">
+                <Popover
+                  trigger={<Button variant="ghost">Readout</Button>}
+                  title="Manifold A"
+                >
+                  Three cylinders nominal; one flagged for inspection on the next watch.
+                </Popover>
+              </Panel>
+            </div>
 
-            <Panel id="preview" title="Preview Card" wide>
-              <div className="brass-stack">
-                <span className="brass-cap">Hover the engineer</span>
-                <p className="brass-text">
-                  Chief engineer{" "}
-                  <PreviewCard
-                    trigger={
-                      <a
-                        href="#preview"
-                        className="brass-link"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        @brunel
-                      </a>
-                    }
-                  >
-                    <div className="brass-preview__head">
-                      <Avatar status="online">
-                        <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
-                        <AvatarFallback>IB</AvatarFallback>
-                      </Avatar>
-                      <span className="brass-preview__ident">
-                        <span className="brass-h3 brass-preview__title">
-                          I. K. Brunel
+            <div className="brass-section brass-section--wide" id="preview">
+              <Panel title="Preview Card">
+                <div className="brass-stack">
+                  <span className="brass-cap">Hover the engineer</span>
+                  <p className="brass-text">
+                    Chief engineer{" "}
+                    <PreviewCard
+                      trigger={
+                        <a
+                          href="#preview"
+                          className="brass-link"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          @brunel
+                        </a>
+                      }
+                    >
+                      <div className="brass-preview__head">
+                        <Avatar status="online">
+                          <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
+                          <AvatarFallback>IB</AvatarFallback>
+                        </Avatar>
+                        <span className="brass-preview__ident">
+                          <span className="brass-h3 brass-preview__title">
+                            I. K. Brunel
+                          </span>
+                          <span className="brass-preview__handle">@brunel</span>
                         </span>
-                        <span className="brass-preview__handle">@brunel</span>
-                      </span>
-                    </div>
-                    <p className="brass-text brass-preview__desc">
-                      Chief engineer, Great Western works. Forty years on the footplate,
-                      last man off the boiler at night.
-                    </p>
-                    <div className="brass-preview__footer">
-                      <Badge tone="primary" dot>
-                        Engineer
-                      </Badge>
-                      <Badge tone="neutral">Off watch</Badge>
-                    </div>
-                  </PreviewCard>{" "}
-                  signed off the last overhaul.
-                </p>
-              </div>
-            </Panel>
+                      </div>
+                      <p className="brass-text brass-preview__desc">
+                        Chief engineer, Great Western works. Forty years on the footplate,
+                        last man off the boiler at night.
+                      </p>
+                      <div className="brass-preview__footer">
+                        <Badge tone="primary" dot>
+                          Engineer
+                        </Badge>
+                        <Badge tone="neutral">Off watch</Badge>
+                      </div>
+                    </PreviewCard>{" "}
+                    signed off the last overhaul.
+                  </p>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="menu" title="Menu">
-              <Menu trigger="Actions">
-                <MenuItem icon={<Bolt />} shortcut="⌘E">
-                  Stoke firebox
-                </MenuItem>
-                <MenuItem icon={<Gauge />} shortcut="⌘R">
-                  Read gauges
-                </MenuItem>
-                <MenuItem icon={<Valve />} shortcut="⌘B">
-                  Blow down
-                </MenuItem>
-                <MenuItem icon={<Gear />} disabled>
-                  Calibrate
-                </MenuItem>
-                <MenuItem icon={<Piston />}>Prime pump</MenuItem>
-                <MenuItem icon={<Wrench />}>Tighten valve</MenuItem>
-                <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
-                <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
-                <MenuItem icon={<Pipe />}>Vent steam</MenuItem>
-                <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
-                <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
-                <MenuSeparator />
-                <MenuItem icon={<Close />} tone="danger">
-                  Shut down
-                </MenuItem>
-              </Menu>
-            </Panel>
-            <Panel id="menubar" title="Menubar">
-              <Menubar>
-                <MenubarMenu label="Engine">
-                  <MenuItem>Start</MenuItem>
-                  <MenuItem>Reverse</MenuItem>
-                  <MenuItem disabled>Cold start</MenuItem>
+            <div className="brass-section" id="menu">
+              <Panel title="Menu">
+                <Menu trigger="Actions">
+                  <MenuItem icon={<Bolt />} shortcut="⌘E">
+                    Stoke firebox
+                  </MenuItem>
+                  <MenuItem icon={<Gauge />} shortcut="⌘R">
+                    Read gauges
+                  </MenuItem>
+                  <MenuItem icon={<Valve />} shortcut="⌘B">
+                    Blow down
+                  </MenuItem>
+                  <MenuItem icon={<Gear />} disabled>
+                    Calibrate
+                  </MenuItem>
+                  <MenuItem icon={<Piston />}>Prime pump</MenuItem>
+                  <MenuItem icon={<Wrench />}>Tighten valve</MenuItem>
+                  <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
+                  <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
+                  <MenuItem icon={<Pipe />}>Vent steam</MenuItem>
+                  <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
+                  <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
                   <MenuSeparator />
-                  <MenuItem tone="danger">Shut down</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Gauges">
-                  <MenuItem shortcut="⌘C">Calibrate</MenuItem>
-                  <MenuItem shortcut="⌘0">Reset</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Telegraph">
-                  <MenuItem>Ahead</MenuItem>
-                  <MenuItem>Astern</MenuItem>
-                  <MenuSub label="More signals">
-                    <MenuItem>Slow</MenuItem>
-                    <MenuItem>Half</MenuItem>
-                    <MenuItem>Full</MenuItem>
+                  <MenuItem icon={<Close />} tone="danger">
+                    Shut down
+                  </MenuItem>
+                </Menu>
+              </Panel>
+            </div>
+            <div className="brass-section" id="menubar">
+              <Panel title="Menubar">
+                <Menubar>
+                  <MenubarMenu label="Engine">
+                    <MenuItem>Start</MenuItem>
+                    <MenuItem>Reverse</MenuItem>
+                    <MenuItem disabled>Cold start</MenuItem>
                     <MenuSeparator />
-                    <MenuItem>Stop</MenuItem>
-                  </MenuSub>
-                </MenubarMenu>
-              </Menubar>
-            </Panel>
+                    <MenuItem tone="danger">Shut down</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Gauges">
+                    <MenuItem shortcut="⌘C">Calibrate</MenuItem>
+                    <MenuItem shortcut="⌘0">Reset</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Telegraph">
+                    <MenuItem>Ahead</MenuItem>
+                    <MenuItem>Astern</MenuItem>
+                    <MenuSub label="More signals">
+                      <MenuItem>Slow</MenuItem>
+                      <MenuItem>Half</MenuItem>
+                      <MenuItem>Full</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem>Stop</MenuItem>
+                    </MenuSub>
+                  </MenubarMenu>
+                </Menubar>
+              </Panel>
+            </div>
 
-            <Panel id="navmenu" title="Navigation Menu">
-              <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
-            </Panel>
-            <Panel id="context" title="Context Menu">
-              <div className="brass-stack">
-                <ContextMenu
-                  trigger={
-                    <div className="brass-plate brass-context__zone">
-                      <span className="brass-cap">
-                        Right-click the plate to open the works
-                      </span>
-                    </div>
-                  }
-                >
-                  <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                  <MenuItem shortcut="⌘L">Lubricate</MenuItem>
-                  <MenuItem disabled>Overhaul</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">Decommission</MenuItem>
-                </ContextMenu>
-              </div>
-            </Panel>
-
-            <Panel id="dialog" title="Dialog">
-              <Dialog
-                trigger={<Button variant="secondary">Open hatch</Button>}
-                title="Inspection hatch"
-                description="Confirm the boiler is depressurized before opening the hatch."
-                actions={
-                  <>
-                    <DialogClose>Stand clear</DialogClose>
-                    <DialogClose variant="secondary">Open hatch</DialogClose>
-                  </>
-                }
-              >
-                <p className="brass-text">Pressure: 0 PSI · Temperature: 38°C</p>
-              </Dialog>
-            </Panel>
-            <Panel id="alert" title="Alert Dialog">
-              <div className="brass-row">
-                <AlertDialog
-                  tone="danger"
-                  trigger={<Button variant="ghost">Emergency stop</Button>}
-                  title="Trigger emergency stop?"
-                  description="This vents all pressure and halts the engine immediately."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold fast</AlertDialogClose>
-                      <AlertDialogClose variant="danger">Stop engine</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="warning"
-                  trigger={<Button variant="ghost">Bleed valve</Button>}
-                  title="Bleed the pressure valve?"
-                  description="Output drops while the line settles. Confirm to bleed."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold fast</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Bleed</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="primary"
-                  trigger={<Button variant="ghost">Engage drive</Button>}
-                  title="Engage the main drive?"
-                  description="The flywheel spins up and the gears take load."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold fast</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Engage</AlertDialogClose>
-                    </>
-                  }
-                />
-              </div>
-            </Panel>
-
-            <Panel id="drawer" title="Drawer">
-              <div className="brass-row">
-                {(["top", "bottom", "left", "right"] as const).map((side) => (
-                  <Drawer
-                    key={side}
-                    side={side}
+            <div className="brass-section" id="navmenu">
+              <Panel title="Navigation Menu">
+                <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
+              </Panel>
+            </div>
+            <div className="brass-section" id="context">
+              <Panel title="Context Menu">
+                <div className="brass-stack">
+                  <ContextMenu
                     trigger={
-                      <Button variant="ghost">
-                        {side[0].toUpperCase() + side.slice(1)}
-                      </Button>
+                      <div className="brass-plate brass-context__zone">
+                        <span className="brass-cap">
+                          Right-click the plate to open the works
+                        </span>
+                      </div>
                     }
-                    title="Watch settings"
-                    description="Adjust the standing orders for this watch."
-                    actions={<DrawerClose variant="secondary">Close log</DrawerClose>}
                   >
-                    <label className="brass-row brass-row--between">
-                      <span className="brass-cap">Auto-stoke</span>
-                      <Switch defaultChecked />
-                    </label>
-                    <label className="brass-row brass-row--between">
-                      <span className="brass-cap">Night firing</span>
-                      <Switch />
-                    </label>
-                    <Slider label="Draught" defaultValue={50} />
-                  </Drawer>
-                ))}
-              </div>
-            </Panel>
-            <Panel id="toast" title="Toast">
-              <div className="brass-row">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({ title: "Valve opened", description: "Bypass engaged." })
+                    <MenuItem shortcut="⌘I">Inspect</MenuItem>
+                    <MenuItem shortcut="⌘L">Lubricate</MenuItem>
+                    <MenuItem disabled>Overhaul</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">Decommission</MenuItem>
+                  </ContextMenu>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="brass-section" id="dialog">
+              <Panel title="Dialog">
+                <Dialog
+                  trigger={<Button variant="secondary">Open hatch</Button>}
+                  title="Inspection hatch"
+                  description="Confirm the boiler is depressurized before opening the hatch."
+                  actions={
+                    <>
+                      <DialogClose>Stand clear</DialogClose>
+                      <DialogClose variant="secondary">Open hatch</DialogClose>
+                    </>
                   }
                 >
-                  Notify
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => {
-                    const id = toast.add({
-                      title: "Pressure nominal",
-                      description: "Boiler holding at 180 PSI.",
-                      type: "success",
-                      actionProps: {
-                        children: "Full ahead",
-                        onClick: () => toast.close(id),
-                      },
-                    });
-                  }}
-                >
-                  Confirm
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Watch gauge",
-                      description: "Coolant flow dropping.",
-                      type: "warning",
-                    })
-                  }
-                >
-                  Warn
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Over-pressure",
-                      description: "Boiler at 240 PSI.",
-                      type: "danger",
-                    })
-                  }
-                >
-                  Alarm
-                </Button>
-              </div>
-            </Panel>
+                  <p className="brass-text">Pressure: 0 PSI · Temperature: 38°C</p>
+                </Dialog>
+              </Panel>
+            </div>
+            <div className="brass-section" id="alert">
+              <Panel title="Alert Dialog">
+                <div className="brass-row">
+                  <AlertDialog
+                    tone="danger"
+                    trigger={<Button variant="ghost">Emergency stop</Button>}
+                    title="Trigger emergency stop?"
+                    description="This vents all pressure and halts the engine immediately."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold fast</AlertDialogClose>
+                        <AlertDialogClose variant="danger">Stop engine</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="warning"
+                    trigger={<Button variant="ghost">Bleed valve</Button>}
+                    title="Bleed the pressure valve?"
+                    description="Output drops while the line settles. Confirm to bleed."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold fast</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Bleed</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="primary"
+                    trigger={<Button variant="ghost">Engage drive</Button>}
+                    title="Engage the main drive?"
+                    description="The flywheel spins up and the gears take load."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold fast</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Engage</AlertDialogClose>
+                      </>
+                    }
+                  />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="brass-section" id="drawer">
+              <Panel title="Drawer">
+                <div className="brass-row">
+                  {(["top", "bottom", "left", "right"] as const).map((side) => (
+                    <Drawer
+                      key={side}
+                      side={side}
+                      trigger={
+                        <Button variant="ghost">
+                          {side[0].toUpperCase() + side.slice(1)}
+                        </Button>
+                      }
+                      title="Watch settings"
+                      description="Adjust the standing orders for this watch."
+                      actions={<DrawerClose variant="secondary">Close log</DrawerClose>}
+                    >
+                      <label className="brass-row brass-row--between">
+                        <span className="brass-cap">Auto-stoke</span>
+                        <Switch defaultChecked />
+                      </label>
+                      <label className="brass-row brass-row--between">
+                        <span className="brass-cap">Night firing</span>
+                        <Switch />
+                      </label>
+                      <Slider label="Draught" defaultValue={50} />
+                    </Drawer>
+                  ))}
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="toast">
+              <Panel title="Toast">
+                <div className="brass-row">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({ title: "Valve opened", description: "Bypass engaged." })
+                    }
+                  >
+                    Notify
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => {
+                      const id = toast.add({
+                        title: "Pressure nominal",
+                        description: "Boiler holding at 180 PSI.",
+                        type: "success",
+                        actionProps: {
+                          children: "Full ahead",
+                          onClick: () => toast.close(id),
+                        },
+                      });
+                    }}
+                  >
+                    Confirm
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Watch gauge",
+                        description: "Coolant flow dropping.",
+                        type: "warning",
+                      })
+                    }
+                  >
+                    Warn
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Over-pressure",
+                        description: "Boiler at 240 PSI.",
+                        type: "danger",
+                      })
+                    }
+                  >
+                    Alarm
+                  </Button>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="display" label="Display" sub="plates & fittings" />
           <div className="brass-grid">
-            <Panel id="avatar" title="Avatar">
-              <div className="brass-row">
-                <Avatar status="online">
-                  <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
-                  <AvatarFallback>IB</AvatarFallback>
-                </Avatar>
-                <Avatar size="sm" status="busy">
-                  <AvatarFallback>GW</AvatarFallback>
-                </Avatar>
-                <Avatar status="away">
-                  <AvatarFallback>RS</AvatarFallback>
-                </Avatar>
-                <Avatar size="lg" status="offline">
-                  <AvatarFallback>TC</AvatarFallback>
-                </Avatar>
-              </div>
-            </Panel>
-            <Panel id="badge" title="Badge">
-              <div className="brass-row">
-                <Badge tone="primary" dot>
-                  Brass
-                </Badge>
-                <Badge tone="success">Online</Badge>
-                <Badge tone="warning">Watch</Badge>
-                <Badge tone="danger" dot>
-                  Fault
-                </Badge>
-                <Badge tone="secondary">Copper</Badge>
-                <Badge tone="neutral">Idle</Badge>
-              </div>
-            </Panel>
+            <div className="brass-section" id="avatar">
+              <Panel title="Avatar">
+                <div className="brass-row">
+                  <Avatar status="online">
+                    <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
+                    <AvatarFallback>IB</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="sm" status="busy">
+                    <AvatarFallback>GW</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="away">
+                    <AvatarFallback>RS</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="lg" status="offline">
+                    <AvatarFallback>TC</AvatarFallback>
+                  </Avatar>
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="badge">
+              <Panel title="Badge">
+                <div className="brass-row">
+                  <Badge tone="primary" dot>
+                    Brass
+                  </Badge>
+                  <Badge tone="success">Online</Badge>
+                  <Badge tone="warning">Watch</Badge>
+                  <Badge tone="danger" dot>
+                    Fault
+                  </Badge>
+                  <Badge tone="secondary">Copper</Badge>
+                  <Badge tone="neutral">Idle</Badge>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="toolbar" title="Toolbar">
-              <Toolbar aria-label="Console">
-                <BaseToggleGroup
-                  className="brass-toolbar__group"
-                  defaultValue={["heat"]}
-                  aria-label="Mode"
-                >
-                  <ToolbarButton render={<BaseToggle />} value="heat">
-                    Heat
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="steam">
-                    Steam
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="cool">
-                    Cool
-                  </ToolbarButton>
-                </BaseToggleGroup>
-                <ToolbarSeparator />
-                <ToolbarGroup aria-label="Controls">
-                  <ToolbarButton aria-label="Adjust gear">
-                    <Gear />
-                  </ToolbarButton>
-                  <ToolbarButton disabled aria-label="Read gauge">
-                    <Gauge />
-                  </ToolbarButton>
-                </ToolbarGroup>
-                <ToolbarSeparator />
-                <ToolbarLink href="#toolbar">
-                  <Bolt />
-                  Live
-                </ToolbarLink>
-              </Toolbar>
-            </Panel>
-            <Panel id="scroll" title="Scroll Area">
-              <ScrollArea>
-                <ScrollAreaViewport>
-                  <ScrollAreaContent>
-                    <ol className="brass-scroll-list">
-                      {[
-                        ["06:00", "Lit fires"],
-                        ["06:20", "Pressure rising"],
-                        ["06:40", "Pressure nominal"],
-                        ["07:10", "Took on water"],
-                        ["07:35", "Injectors primed"],
-                        ["08:00", "Departed depot"],
-                        ["08:45", "Banked the firebox"],
-                        ["09:30", "Lubricators topped"],
-                        ["10:15", "Blew down boiler"],
-                        ["11:00", "Coaled at siding"],
-                        ["11:45", "Stowed for the watch"],
-                        ["12:30", "Relieved the watch"],
-                      ].map(([time, msg]) => (
-                        <li key={time} className="brass-text">
-                          <span className="brass-cap">{time}</span> {msg}
-                        </li>
-                      ))}
-                    </ol>
-                  </ScrollAreaContent>
-                </ScrollAreaViewport>
-                <ScrollAreaScrollbar>
-                  <ScrollAreaThumb />
-                </ScrollAreaScrollbar>
-              </ScrollArea>
-            </Panel>
+            <div className="brass-section" id="toolbar">
+              <Panel title="Toolbar">
+                <Toolbar aria-label="Console">
+                  <BaseToggleGroup
+                    className="brass-toolbar__group"
+                    defaultValue={["heat"]}
+                    aria-label="Mode"
+                  >
+                    <ToolbarButton render={<BaseToggle />} value="heat">
+                      Heat
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="steam">
+                      Steam
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="cool">
+                      Cool
+                    </ToolbarButton>
+                  </BaseToggleGroup>
+                  <ToolbarSeparator />
+                  <ToolbarGroup aria-label="Controls">
+                    <ToolbarButton aria-label="Adjust gear">
+                      <Gear />
+                    </ToolbarButton>
+                    <ToolbarButton disabled aria-label="Read gauge">
+                      <Gauge />
+                    </ToolbarButton>
+                  </ToolbarGroup>
+                  <ToolbarSeparator />
+                  <ToolbarLink href="#toolbar">
+                    <Bolt />
+                    Live
+                  </ToolbarLink>
+                </Toolbar>
+              </Panel>
+            </div>
+            <div className="brass-section" id="scroll">
+              <Panel title="Scroll Area">
+                <ScrollArea>
+                  <ScrollAreaViewport>
+                    <ScrollAreaContent>
+                      <ol className="brass-scroll-list">
+                        {[
+                          ["06:00", "Lit fires"],
+                          ["06:20", "Pressure rising"],
+                          ["06:40", "Pressure nominal"],
+                          ["07:10", "Took on water"],
+                          ["07:35", "Injectors primed"],
+                          ["08:00", "Departed depot"],
+                          ["08:45", "Banked the firebox"],
+                          ["09:30", "Lubricators topped"],
+                          ["10:15", "Blew down boiler"],
+                          ["11:00", "Coaled at siding"],
+                          ["11:45", "Stowed for the watch"],
+                          ["12:30", "Relieved the watch"],
+                        ].map(([time, msg]) => (
+                          <li key={time} className="brass-text">
+                            <span className="brass-cap">{time}</span> {msg}
+                          </li>
+                        ))}
+                      </ol>
+                    </ScrollAreaContent>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
+                </ScrollArea>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="foundations" label="Foundations" sub="type & rule" />
           <div className="brass-grid">
-            <Panel id="typography" title="Typography" wide>
-              <div className="brass-stack">
-                <h2 className="brass-h1">Machined from brass</h2>
-                <h3 className="brass-h2">Pressure console headings</h3>
-                <span className="brass-h3">Instrument sub-label</span>
-                <p className="brass-text">
-                  Body copy is set in a sturdy industrial serif, with mechanical monospace
-                  numerals for every gauge reading and instrument label.
-                </p>
-                <span className="brass-cap">Field caption · 0–250 PSI</span>
-              </div>
-            </Panel>
-
-            <Panel id="separator" title="Separator">
-              <div className="brass-stack">
-                <span className="brass-cap">Plain</span>
-                <Separator />
-                <span className="brass-cap">Stamped</span>
-                <Separator label="Gauge VII" align="start" />
-                <Separator label="Gauge VII" />
-                <Separator label="Gauge VII" align="end" />
-                <span className="brass-cap">Vertical</span>
-                <div className="brass-row">
-                  <span className="brass-text">Boiler A</span>
-                  <Separator orientation="vertical" />
-                  <span className="brass-text">Boiler B</span>
-                  <Separator orientation="vertical" />
-                  <span className="brass-text">Boiler C</span>
+            <div className="brass-section brass-section--wide" id="typography">
+              <Panel title="Typography">
+                <div className="brass-stack">
+                  <h2 className="brass-h1">Machined from brass</h2>
+                  <h3 className="brass-h2">Pressure console headings</h3>
+                  <span className="brass-h3">Instrument sub-label</span>
+                  <p className="brass-text">
+                    Body copy is set in a sturdy industrial serif, with mechanical
+                    monospace numerals for every gauge reading and instrument label.
+                  </p>
+                  <span className="brass-cap">Field caption · 0–250 PSI</span>
                 </div>
-              </div>
-            </Panel>
-            <Panel id="panel" title="Panel">
-              <p className="brass-text" style={{ margin: "0 0 16px" }}>
-                The riveted instrument plate wrapping every section — brushed bezel,
-                machined corner brackets and a steam sheen. Composable to any depth.
-              </p>
-              <Panel title="Nested plate">
-                <span className="brass-cap">A plate within a plate</span>
               </Panel>
-            </Panel>
+            </div>
+
+            <div className="brass-section" id="separator">
+              <Panel title="Separator">
+                <div className="brass-stack">
+                  <span className="brass-cap">Plain</span>
+                  <Separator />
+                  <span className="brass-cap">Stamped</span>
+                  <Separator label="Gauge VII" align="start" />
+                  <Separator label="Gauge VII" />
+                  <Separator label="Gauge VII" align="end" />
+                  <span className="brass-cap">Vertical</span>
+                  <div className="brass-row">
+                    <span className="brass-text">Boiler A</span>
+                    <Separator orientation="vertical" />
+                    <span className="brass-text">Boiler B</span>
+                    <Separator orientation="vertical" />
+                    <span className="brass-text">Boiler C</span>
+                  </div>
+                </div>
+              </Panel>
+            </div>
+            <div className="brass-section" id="panel">
+              <Panel title="Panel">
+                <p className="brass-text" style={{ margin: "0 0 16px" }}>
+                  The riveted instrument plate wrapping every section — brushed bezel,
+                  machined corner brackets and a steam sheen. Composable to any depth.
+                </p>
+                <Panel title="Nested plate">
+                  <span className="brass-cap">A plate within a plate</span>
+                </Panel>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="signature" label="Signature" sub="the warm-up" />
           <div className="brass-grid">
-            <Panel id="loader" title="Loader" wide>
-              <div className="demo-loader-stage">
-                <Loader />
-              </div>
-            </Panel>
+            <div className="brass-section brass-section--wide" id="loader">
+              <Panel title="Loader">
+                <div className="demo-loader-stage">
+                  <Loader />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <footer className="brass-footer">

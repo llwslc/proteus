@@ -3,9 +3,6 @@
   display: flex;
   flex-direction: column;
 }
-.riot-panel--wide {
-  grid-column: 1 / -1;
-}
 .riot-panel__staple--l {
   top: 5px;
   left: 22px;

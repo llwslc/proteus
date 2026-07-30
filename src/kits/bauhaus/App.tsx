@@ -429,243 +429,274 @@ function Demo() {
             marker={<CircleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="button" title="Button" wide>
-              <div className="bauhaus-stack">
-                <div className="bauhaus-row">
-                  <Button icon={<Triangle />}>Compose</Button>
-                  <Button variant="secondary">Preview</Button>
-                  <Button variant="danger">Clear</Button>
-                  <Button variant="ghost">Cancel</Button>
-                  <Button disabled>Locked</Button>
+            <div className="bauhaus-section bauhaus-section--wide" id="button">
+              <Panel title="Button">
+                <div className="bauhaus-stack">
+                  <div className="bauhaus-row">
+                    <Button icon={<Triangle />}>Compose</Button>
+                    <Button variant="secondary">Preview</Button>
+                    <Button variant="danger">Clear</Button>
+                    <Button variant="ghost">Cancel</Button>
+                    <Button disabled>Locked</Button>
+                  </div>
+                  <Separator />
+                  <div className="bauhaus-row">
+                    <Button size="sm">Trim</Button>
+                    <Button size="md">Set</Button>
+                    <Button size="lg">Build</Button>
+                  </div>
+                  <Separator />
+                  <div className="bauhaus-row">
+                    <Button variant="icon" aria-label="Duplicate">
+                      <Copy />
+                    </Button>
+                    <Button variant="icon" aria-label="Snap to grid">
+                      <Grid />
+                    </Button>
+                    <Button variant="icon" disabled aria-label="Locked">
+                      <Square />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Add circle">
+                      <Circle />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Add triangle">
+                      <Triangle />
+                    </Button>
+                  </div>
                 </div>
-                <Separator />
-                <div className="bauhaus-row">
-                  <Button size="sm">Trim</Button>
-                  <Button size="md">Set</Button>
-                  <Button size="lg">Build</Button>
+              </Panel>
+            </div>
+
+            <div className="bauhaus-section" id="switch">
+              <Panel title="Switch">
+                <div className="bauhaus-stack">
+                  <label className="bauhaus-row bauhaus-row--between">
+                    <span className="bauhaus-cap">Snap to grid</span>
+                    <Switch defaultChecked />
+                  </label>
+                  <label className="bauhaus-row bauhaus-row--between">
+                    <span className="bauhaus-cap">Show baseline</span>
+                    <Switch />
+                  </label>
+                  <label className="bauhaus-row bauhaus-row--between">
+                    <span className="bauhaus-cap">Lock composition</span>
+                    <Switch disabled defaultChecked />
+                  </label>
+                  <label className="bauhaus-row bauhaus-row--between">
+                    <span className="bauhaus-cap">Sealed plane</span>
+                    <Switch disabled />
+                  </label>
                 </div>
-                <Separator />
-                <div className="bauhaus-row">
-                  <Button variant="icon" aria-label="Duplicate">
-                    <Copy />
-                  </Button>
-                  <Button variant="icon" aria-label="Snap to grid">
-                    <Grid />
-                  </Button>
-                  <Button variant="icon" disabled aria-label="Locked">
-                    <Square />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Add circle">
-                    <Circle />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Add triangle">
-                    <Triangle />
-                  </Button>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="toggle">
+              <Panel title="Toggle Group">
+                <div className="bauhaus-stack">
+                  <ToggleGroup defaultValue={["left"]}>
+                    <Toggle value="left">Left</Toggle>
+                    <Toggle value="center">Center</Toggle>
+                    <Toggle value="right" disabled>
+                      Right
+                    </Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup multiple defaultValue={["fill", "stroke", "frame"]}>
+                    <Toggle value="fill">Fill</Toggle>
+                    <Toggle value="stroke">Stroke</Toggle>
+                    <Toggle value="grid">Grid</Toggle>
+                    <Toggle value="frame" disabled>
+                      Frame
+                    </Toggle>
+                  </ToggleGroup>
                 </div>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
 
-            <Panel id="switch" title="Switch">
-              <div className="bauhaus-stack">
-                <label className="bauhaus-row bauhaus-row--between">
-                  <span className="bauhaus-cap">Snap to grid</span>
-                  <Switch defaultChecked />
-                </label>
-                <label className="bauhaus-row bauhaus-row--between">
-                  <span className="bauhaus-cap">Show baseline</span>
-                  <Switch />
-                </label>
-                <label className="bauhaus-row bauhaus-row--between">
-                  <span className="bauhaus-cap">Lock composition</span>
-                  <Switch disabled defaultChecked />
-                </label>
-                <label className="bauhaus-row bauhaus-row--between">
-                  <span className="bauhaus-cap">Sealed plane</span>
-                  <Switch disabled />
-                </label>
-              </div>
-            </Panel>
-            <Panel id="toggle" title="Toggle Group">
-              <div className="bauhaus-stack">
-                <ToggleGroup defaultValue={["left"]}>
-                  <Toggle value="left">Left</Toggle>
-                  <Toggle value="center">Center</Toggle>
-                  <Toggle value="right" disabled>
-                    Right
-                  </Toggle>
-                </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["fill", "stroke", "frame"]}>
-                  <Toggle value="fill">Fill</Toggle>
-                  <Toggle value="stroke">Stroke</Toggle>
-                  <Toggle value="grid">Grid</Toggle>
-                  <Toggle value="frame" disabled>
-                    Frame
-                  </Toggle>
-                </ToggleGroup>
-              </div>
-            </Panel>
+            <div className="bauhaus-section" id="checkbox">
+              <Panel title="Checkbox">
+                <div className="bauhaus-stack">
+                  <Checkbox defaultChecked label="Snap to grid" />
+                  <Checkbox label="Show rulers" />
+                  <Checkbox disabled defaultChecked label="Lock layer" />
+                  <Checkbox disabled label="Hide plane" />
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="checkbox-group">
+              <Panel title="Checkbox Group">
+                <div className="bauhaus-stack">
+                  <CheckboxGroup
+                    defaultValue={["grid"]}
+                    parentLabel="All guides"
+                    items={[
+                      { label: "Grid", value: "grid" },
+                      { label: "Baseline", value: "baseline" },
+                      { label: "Margins", value: "margins" },
+                    ]}
+                  />
+                  <CheckboxGroup
+                    defaultValue={["diag"]}
+                    parentLabel="Locked guides"
+                    disabled
+                    items={[
+                      { label: "Diagonals", value: "diag" },
+                      { label: "Curves", value: "curves" },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="checkbox" title="Checkbox">
-              <div className="bauhaus-stack">
-                <Checkbox defaultChecked label="Snap to grid" />
-                <Checkbox label="Show rulers" />
-                <Checkbox disabled defaultChecked label="Lock layer" />
-                <Checkbox disabled label="Hide plane" />
-              </div>
-            </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group">
-              <div className="bauhaus-stack">
-                <CheckboxGroup
-                  defaultValue={["grid"]}
-                  parentLabel="All guides"
-                  items={[
-                    { label: "Grid", value: "grid" },
-                    { label: "Baseline", value: "baseline" },
-                    { label: "Margins", value: "margins" },
-                  ]}
-                />
-                <CheckboxGroup
-                  defaultValue={["diag"]}
-                  parentLabel="Locked guides"
-                  disabled
-                  items={[
-                    { label: "Diagonals", value: "diag" },
-                    { label: "Curves", value: "curves" },
-                  ]}
-                />
-              </div>
-            </Panel>
+            <div className="bauhaus-section" id="radio">
+              <Panel title="Radio Group">
+                <div className="bauhaus-stack">
+                  <span className="bauhaus-cap">Alignment</span>
+                  <RadioGroup defaultValue="left">
+                    <Radio value="left">Left align</Radio>
+                    <Radio value="center">Center</Radio>
+                    <Radio value="justify">Justify</Radio>
+                    <Radio value="optical" disabled>
+                      Optical (offline)
+                    </Radio>
+                  </RadioGroup>
+                  <span className="bauhaus-cap">Kerning (locked)</span>
+                  <RadioGroup disabled defaultValue="metric">
+                    <Radio value="manual">Manual kerning</Radio>
+                    <Radio value="metric">Metric (locked)</Radio>
+                  </RadioGroup>
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="select">
+              <Panel title="Select">
+                <div className="bauhaus-stack">
+                  <label className="bauhaus-cap" htmlFor="sel-1">
+                    Type weight
+                  </label>
+                  <Select
+                    items={WEIGHTS}
+                    placeholder="Weight"
+                    defaultValue="regular"
+                    id="sel-1"
+                  />
+                  <label className="bauhaus-cap" htmlFor="sel-2">
+                    Display weight
+                  </label>
+                  <Select items={WEIGHTS_SHORT} placeholder="Grade" id="sel-2" />
+                  <label className="bauhaus-cap" htmlFor="sel-3">
+                    Archive weight
+                  </label>
+                  <Select
+                    items={WEIGHTS_SHORT}
+                    defaultValue="regular"
+                    disabled
+                    id="sel-3"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="radio" title="Radio Group">
-              <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Alignment</span>
-                <RadioGroup defaultValue="left">
-                  <Radio value="left">Left align</Radio>
-                  <Radio value="center">Center</Radio>
-                  <Radio value="justify">Justify</Radio>
-                  <Radio value="optical" disabled>
-                    Optical (offline)
-                  </Radio>
-                </RadioGroup>
-                <span className="bauhaus-cap">Kerning (locked)</span>
-                <RadioGroup disabled defaultValue="metric">
-                  <Radio value="manual">Manual kerning</Radio>
-                  <Radio value="metric">Metric (locked)</Radio>
-                </RadioGroup>
-              </div>
-            </Panel>
-            <Panel id="select" title="Select">
-              <div className="bauhaus-stack">
-                <label className="bauhaus-cap" htmlFor="sel-1">
-                  Type weight
-                </label>
-                <Select
-                  items={WEIGHTS}
-                  placeholder="Weight"
-                  defaultValue="regular"
-                  id="sel-1"
-                />
-                <label className="bauhaus-cap" htmlFor="sel-2">
-                  Display weight
-                </label>
-                <Select items={WEIGHTS_SHORT} placeholder="Grade" id="sel-2" />
-                <label className="bauhaus-cap" htmlFor="sel-3">
-                  Archive weight
-                </label>
-                <Select
-                  items={WEIGHTS_SHORT}
-                  defaultValue="regular"
-                  disabled
-                  id="sel-3"
-                />
-              </div>
-            </Panel>
+            <div className="bauhaus-section" id="combobox">
+              <Panel title="Combobox">
+                <div className="bauhaus-stack">
+                  <span className="bauhaus-cap">Filter forms</span>
+                  <Combobox
+                    items={FORMS}
+                    placeholder="Search forms…"
+                    label="Filter forms"
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="autocomplete">
+              <Panel title="Autocomplete">
+                <div className="bauhaus-stack">
+                  <span className="bauhaus-cap">Pick a pigment</span>
+                  <Autocomplete
+                    items={PIGMENTS}
+                    placeholder="Pigment…"
+                    label="Pick a pigment"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="combobox" title="Combobox">
-              <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Filter forms</span>
-                <Combobox
-                  items={FORMS}
-                  placeholder="Search forms…"
-                  label="Filter forms"
-                />
-              </div>
-            </Panel>
-            <Panel id="autocomplete" title="Autocomplete">
-              <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Pick a pigment</span>
-                <Autocomplete
-                  items={PIGMENTS}
-                  placeholder="Pigment…"
-                  label="Pick a pigment"
-                />
-              </div>
-            </Panel>
+            <div className="bauhaus-section" id="slider">
+              <Panel title="Slider">
+                <div className="bauhaus-stack">
+                  <Slider label="Column width" defaultValue={62} />
+                  <Slider label="Gutter" defaultValue={40} disabled />
+                  <Slider label="Ink density" defaultValue={75} showValue={false} />
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="number">
+              <Panel title="Number Field">
+                <div className="bauhaus-stack">
+                  <label className="bauhaus-cap" htmlFor="num-1">
+                    Grid columns
+                  </label>
+                  <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                  <label className="bauhaus-cap" htmlFor="num-2">
+                    Max columns
+                  </label>
+                  <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="slider" title="Slider">
-              <div className="bauhaus-stack">
-                <Slider label="Column width" defaultValue={62} />
-                <Slider label="Gutter" defaultValue={40} disabled />
-                <Slider label="Ink density" defaultValue={75} showValue={false} />
-              </div>
-            </Panel>
-            <Panel id="number" title="Number Field">
-              <div className="bauhaus-stack">
-                <label className="bauhaus-cap" htmlFor="num-1">
-                  Grid columns
-                </label>
-                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
-                <label className="bauhaus-cap" htmlFor="num-2">
-                  Max columns
-                </label>
-                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
-              </div>
-            </Panel>
-
-            <Panel id="input" title="Text Field">
-              <div className="bauhaus-stack">
-                <Field
-                  label="Composition name"
-                  placeholder="Red Blue Yellow"
-                  defaultValue="Red Blue Yellow"
-                  description="Printed on the catalogue plate."
-                />
-                <Input
-                  icon={<Search />}
-                  placeholder="Search elements…"
-                  aria-label="Search elements"
-                />
-                <AccessKeyField />
-                <Field label="Locked layer" defaultValue="BAUHAUS-1919" disabled />
-                <Field
-                  label="Plate code"
-                  defaultValue="BH•19??"
-                  error="Code breaks the plate grammar."
-                />
-              </div>
-            </Panel>
-            <Panel id="otp" title="OTP Field">
-              <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Access code</span>
-                <OtpField length={6} splitAt={3} defaultValue="919" label="Access code" />
-                <span className="bauhaus-cap">Sealed code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="919"
-                  mask
-                  label="Sealed code"
-                />
-                <span className="bauhaus-cap">Retired code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="919"
-                  disabled
-                  label="Retired code"
-                />
-              </div>
-            </Panel>
+            <div className="bauhaus-section" id="input">
+              <Panel title="Text Field">
+                <div className="bauhaus-stack">
+                  <Field
+                    label="Composition name"
+                    placeholder="Red Blue Yellow"
+                    defaultValue="Red Blue Yellow"
+                    description="Printed on the catalogue plate."
+                  />
+                  <Input
+                    icon={<Search />}
+                    placeholder="Search elements…"
+                    aria-label="Search elements"
+                  />
+                  <AccessKeyField />
+                  <Field label="Locked layer" defaultValue="BAUHAUS-1919" disabled />
+                  <Field
+                    label="Plate code"
+                    defaultValue="BH•19??"
+                    error="Code breaks the plate grammar."
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="otp">
+              <Panel title="OTP Field">
+                <div className="bauhaus-stack">
+                  <span className="bauhaus-cap">Access code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="919"
+                    label="Access code"
+                  />
+                  <span className="bauhaus-cap">Sealed code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="919"
+                    mask
+                    label="Sealed code"
+                  />
+                  <span className="bauhaus-cap">Retired code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="919"
+                    disabled
+                    label="Retired code"
+                  />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -675,15 +706,19 @@ function Demo() {
             marker={<SquareFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="fieldset" title="Fieldset">
-              <Fieldset legend="Designer">
-                <Field label="Name" defaultValue="László" />
-                <Field label="Studio" defaultValue="Dessau" />
-              </Fieldset>
-            </Panel>
-            <Panel id="form" title="Form">
-              <FormDemo />
-            </Panel>
+            <div className="bauhaus-section" id="fieldset">
+              <Panel title="Fieldset">
+                <Fieldset legend="Designer">
+                  <Field label="Name" defaultValue="László" />
+                  <Field label="Studio" defaultValue="Dessau" />
+                </Fieldset>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="form">
+              <Panel title="Form">
+                <FormDemo />
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -693,129 +728,139 @@ function Demo() {
             marker={<TriangleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="progress" title="Progress">
-              <ProgressBars />
-            </Panel>
-            <Panel id="meter" title="Meter">
-              <div className="bauhaus-stack">
-                <Meter label="Ink coverage" value={88} />
-                <Meter label="Registration" value={70} tone="success" />
-                <Meter label="Margin balance" value={52} tone="warning" />
-                <Meter label="Overflow" value={23} tone="danger" />
-              </div>
-            </Panel>
+            <div className="bauhaus-section" id="progress">
+              <Panel title="Progress">
+                <ProgressBars />
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="meter">
+              <Panel title="Meter">
+                <div className="bauhaus-stack">
+                  <Meter label="Ink coverage" value={88} />
+                  <Meter label="Registration" value={70} tone="success" />
+                  <Meter label="Margin balance" value={52} tone="warning" />
+                  <Meter label="Overflow" value={23} tone="danger" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="tabs" title="Tabs" wide>
-              <Tabs
-                defaultValue="form"
-                items={[
-                  {
-                    value: "form",
-                    label: "Form",
-                    content: (
-                      <p className="bauhaus-text">
-                        Circle, triangle, square — the three basic forms, flat and
-                        unshaded.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "function",
-                    label: "Function",
-                    content: (
-                      <p className="bauhaus-text">
-                        Every element earns its place on the grid; nothing decorative,
-                        nothing wasted.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "archive",
-                    label: "Archive",
-                    content: (
-                      <p className="bauhaus-text">
-                        Dessau, 1925: the workshop catalogue, pressed in red, yellow and
-                        blue.
-                      </p>
-                    ),
-                    disabled: true,
-                  },
-                ]}
-              />
-            </Panel>
-
-            <Panel id="accordion" title="Accordion">
-              <div className="bauhaus-stack">
-                <span className="bauhaus-cap">One at a time</span>
-                <Accordion
-                  defaultValue={["grid"]}
+            <div className="bauhaus-section bauhaus-section--wide" id="tabs">
+              <Panel title="Tabs">
+                <Tabs
+                  defaultValue="form"
                   items={[
                     {
-                      value: "grid",
-                      title: "Grid",
-                      content: "A modular hard grid governs every margin and column.",
+                      value: "form",
+                      label: "Form",
+                      content: (
+                        <p className="bauhaus-text">
+                          Circle, triangle, square — the three basic forms, flat and
+                          unshaded.
+                        </p>
+                      ),
                     },
                     {
-                      value: "color",
-                      title: "Color",
-                      content:
-                        "Three primaries plus black on warm paper — no tints, no gradients.",
+                      value: "function",
+                      label: "Function",
+                      content: (
+                        <p className="bauhaus-text">
+                          Every element earns its place on the grid; nothing decorative,
+                          nothing wasted.
+                        </p>
+                      ),
                     },
                     {
-                      value: "type",
+                      value: "archive",
+                      label: "Archive",
+                      content: (
+                        <p className="bauhaus-text">
+                          Dessau, 1925: the workshop catalogue, pressed in red, yellow and
+                          blue.
+                        </p>
+                      ),
                       disabled: true,
-                      title: "Type",
-                      content:
-                        "Geometric sans throughout, heavy display for the headline.",
                     },
                   ]}
                 />
-                <span className="bauhaus-cap">Open together</span>
-                <Accordion
-                  openMultiple
-                  defaultValue={["paper", "ratio"]}
-                  items={[
-                    {
-                      value: "paper",
-                      title: "Paper",
-                      content: "Warm stock, uncoated — ink sits matte and honest.",
-                    },
-                    {
-                      value: "ratio",
-                      disabled: true,
-                      title: "Ratio",
-                      content: "Golden-section plates anchor the poster diagonals.",
-                    },
-                  ]}
-                />
-              </div>
-            </Panel>
-            <Panel id="collapsible" title="Collapsible">
-              <div className="bauhaus-stack">
-                <Collapsible title="Build notes" defaultOpen>
-                  <p className="bauhaus-text">
-                    Composition locked to the 8-column grid. Last revision aligned the
-                    baseline.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Material list">
-                  <p className="bauhaus-text">
-                    Two stencils, one straightedge, three pots of primary ink and a ream
-                    of paper.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Master plates" disabled>
-                  <p className="bauhaus-text">
-                    Locked for print. Request access from the workshop lead.
-                  </p>
-                </Collapsible>
-                <Collapsible title="House rules" defaultOpen disabled>
-                  <p className="bauhaus-text">
-                    The grid is law. Exceptions go through the workshop lead.
-                  </p>
-                </Collapsible>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
+
+            <div className="bauhaus-section" id="accordion">
+              <Panel title="Accordion">
+                <div className="bauhaus-stack">
+                  <span className="bauhaus-cap">One at a time</span>
+                  <Accordion
+                    defaultValue={["grid"]}
+                    items={[
+                      {
+                        value: "grid",
+                        title: "Grid",
+                        content: "A modular hard grid governs every margin and column.",
+                      },
+                      {
+                        value: "color",
+                        title: "Color",
+                        content:
+                          "Three primaries plus black on warm paper — no tints, no gradients.",
+                      },
+                      {
+                        value: "type",
+                        disabled: true,
+                        title: "Type",
+                        content:
+                          "Geometric sans throughout, heavy display for the headline.",
+                      },
+                    ]}
+                  />
+                  <span className="bauhaus-cap">Open together</span>
+                  <Accordion
+                    openMultiple
+                    defaultValue={["paper", "ratio"]}
+                    items={[
+                      {
+                        value: "paper",
+                        title: "Paper",
+                        content: "Warm stock, uncoated — ink sits matte and honest.",
+                      },
+                      {
+                        value: "ratio",
+                        disabled: true,
+                        title: "Ratio",
+                        content: "Golden-section plates anchor the poster diagonals.",
+                      },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="collapsible">
+              <Panel title="Collapsible">
+                <div className="bauhaus-stack">
+                  <Collapsible title="Build notes" defaultOpen>
+                    <p className="bauhaus-text">
+                      Composition locked to the 8-column grid. Last revision aligned the
+                      baseline.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Material list">
+                    <p className="bauhaus-text">
+                      Two stencils, one straightedge, three pots of primary ink and a ream
+                      of paper.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Master plates" disabled>
+                    <p className="bauhaus-text">
+                      Locked for print. Request access from the workshop lead.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="House rules" defaultOpen disabled>
+                    <p className="bauhaus-text">
+                      The grid is law. Exceptions go through the workshop lead.
+                    </p>
+                  </Collapsible>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -825,289 +870,315 @@ function Demo() {
             marker={<Concentric />}
           />
           <div className="bauhaus-grid">
-            <Panel id="tooltip" title="Tooltip">
-              <div className="bauhaus-row">
-                <Tooltip content="Align left" side="top">
-                  <Button variant="ghost">Align</Button>
-                </Tooltip>
-                <Tooltip content="Distribute evenly" side="bottom">
-                  <Button variant="ghost">Distribute</Button>
-                </Tooltip>
-                <Tooltip content="Group selection" side="left">
-                  <Button variant="ghost">Group</Button>
-                </Tooltip>
-                <Tooltip content="Lock layer" side="right">
-                  <Button variant="ghost">Lock</Button>
-                </Tooltip>
-              </div>
-            </Panel>
-            <Panel id="popover" title="Popover">
-              <Popover
-                trigger={<Button variant="ghost">Details</Button>}
-                title="Module A"
-              >
-                Three planes aligned to the grid; one flagged for review on the next pass.
-              </Popover>
-            </Panel>
+            <div className="bauhaus-section" id="tooltip">
+              <Panel title="Tooltip">
+                <div className="bauhaus-row">
+                  <Tooltip content="Align left" side="top">
+                    <Button variant="ghost">Align</Button>
+                  </Tooltip>
+                  <Tooltip content="Distribute evenly" side="bottom">
+                    <Button variant="ghost">Distribute</Button>
+                  </Tooltip>
+                  <Tooltip content="Group selection" side="left">
+                    <Button variant="ghost">Group</Button>
+                  </Tooltip>
+                  <Tooltip content="Lock layer" side="right">
+                    <Button variant="ghost">Lock</Button>
+                  </Tooltip>
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="popover">
+              <Panel title="Popover">
+                <Popover
+                  trigger={<Button variant="ghost">Details</Button>}
+                  title="Module A"
+                >
+                  Three planes aligned to the grid; one flagged for review on the next
+                  pass.
+                </Popover>
+              </Panel>
+            </div>
 
-            <Panel id="preview" title="Preview Card" wide>
-              <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Hover the designer</span>
-                <p className="bauhaus-text">
-                  Workshop master{" "}
-                  <PreviewCard
-                    trigger={
-                      <a
-                        href="#preview"
-                        className="bauhaus-link"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        @laszlo
-                      </a>
-                    }
-                  >
-                    <div className="bauhaus-preview__head">
-                      <Avatar status="online">
-                        <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="" />
-                        <AvatarFallback>LM</AvatarFallback>
-                      </Avatar>
-                      <span className="bauhaus-preview__ident">
-                        <span className="bauhaus-h3 bauhaus-preview__title">
-                          László Moholy-Nagy
+            <div className="bauhaus-section bauhaus-section--wide" id="preview">
+              <Panel title="Preview Card">
+                <div className="bauhaus-stack">
+                  <span className="bauhaus-cap">Hover the designer</span>
+                  <p className="bauhaus-text">
+                    Workshop master{" "}
+                    <PreviewCard
+                      trigger={
+                        <a
+                          href="#preview"
+                          className="bauhaus-link"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          @laszlo
+                        </a>
+                      }
+                    >
+                      <div className="bauhaus-preview__head">
+                        <Avatar status="online">
+                          <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="" />
+                          <AvatarFallback>LM</AvatarFallback>
+                        </Avatar>
+                        <span className="bauhaus-preview__ident">
+                          <span className="bauhaus-h3 bauhaus-preview__title">
+                            László Moholy-Nagy
+                          </span>
+                          <span className="bauhaus-preview__handle">@laszlo</span>
                         </span>
-                        <span className="bauhaus-preview__handle">@laszlo</span>
-                      </span>
-                    </div>
-                    <p className="bauhaus-text bauhaus-preview__desc">
-                      Master of the metal workshop. Light, photography and the conviction
-                      that form follows the grid.
-                    </p>
-                    <div className="bauhaus-preview__footer">
-                      <Badge tone="primary" dot>
-                        Master
-                      </Badge>
-                      <Badge tone="neutral">Dessau</Badge>
-                    </div>
-                  </PreviewCard>{" "}
-                  set the catalogue.
-                </p>
-              </div>
-            </Panel>
+                      </div>
+                      <p className="bauhaus-text bauhaus-preview__desc">
+                        Master of the metal workshop. Light, photography and the
+                        conviction that form follows the grid.
+                      </p>
+                      <div className="bauhaus-preview__footer">
+                        <Badge tone="primary" dot>
+                          Master
+                        </Badge>
+                        <Badge tone="neutral">Dessau</Badge>
+                      </div>
+                    </PreviewCard>{" "}
+                    set the catalogue.
+                  </p>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="menu" title="Menu">
-              <Menu trigger="Actions">
-                <MenuItem icon={<Copy />} shortcut="⌘D">
-                  Duplicate
-                </MenuItem>
-                <MenuItem icon={<Grid />} shortcut="⌘L">
-                  Align to grid
-                </MenuItem>
-                <MenuItem icon={<Dot />} shortcut="⌘R">
-                  Distribute
-                </MenuItem>
-                <MenuItem icon={<Square />} disabled>
-                  Rasterize
-                </MenuItem>
-                <MenuItem icon={<Grid />}>Group</MenuItem>
-                <MenuItem icon={<Dot />}>Lock layer</MenuItem>
-                <MenuItem icon={<Copy />}>Flip horizontal</MenuItem>
-                <MenuItem icon={<Diamond />}>Rotate 90°</MenuItem>
-                <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
-                <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
-                <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
-                <MenuSeparator />
-                <MenuItem icon={<Close />} tone="danger">
-                  Delete
-                </MenuItem>
-              </Menu>
-            </Panel>
-            <Panel id="menubar" title="Menubar">
-              <Menubar>
-                <MenubarMenu label="Object">
-                  <MenuItem>Group</MenuItem>
-                  <MenuItem>Ungroup</MenuItem>
-                  <MenuItem disabled>Merge</MenuItem>
+            <div className="bauhaus-section" id="menu">
+              <Panel title="Menu">
+                <Menu trigger="Actions">
+                  <MenuItem icon={<Copy />} shortcut="⌘D">
+                    Duplicate
+                  </MenuItem>
+                  <MenuItem icon={<Grid />} shortcut="⌘L">
+                    Align to grid
+                  </MenuItem>
+                  <MenuItem icon={<Dot />} shortcut="⌘R">
+                    Distribute
+                  </MenuItem>
+                  <MenuItem icon={<Square />} disabled>
+                    Rasterize
+                  </MenuItem>
+                  <MenuItem icon={<Grid />}>Group</MenuItem>
+                  <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                  <MenuItem icon={<Copy />}>Flip horizontal</MenuItem>
+                  <MenuItem icon={<Diamond />}>Rotate 90°</MenuItem>
+                  <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
+                  <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
+                  <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
                   <MenuSeparator />
-                  <MenuItem tone="danger">Delete</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Arrange">
-                  <MenuItem shortcut="⌘]">Bring front</MenuItem>
-                  <MenuItem shortcut="⌘[">Send back</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Align">
-                  <MenuItem>Left edge</MenuItem>
-                  <MenuItem>Right edge</MenuItem>
-                  <MenuSub label="Distribute">
-                    <MenuItem>Top</MenuItem>
-                    <MenuItem>Middle</MenuItem>
-                    <MenuItem>Bottom</MenuItem>
+                  <MenuItem icon={<Close />} tone="danger">
+                    Delete
+                  </MenuItem>
+                </Menu>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="menubar">
+              <Panel title="Menubar">
+                <Menubar>
+                  <MenubarMenu label="Object">
+                    <MenuItem>Group</MenuItem>
+                    <MenuItem>Ungroup</MenuItem>
+                    <MenuItem disabled>Merge</MenuItem>
                     <MenuSeparator />
-                    <MenuItem>Reset</MenuItem>
-                  </MenuSub>
-                </MenubarMenu>
-              </Menubar>
-            </Panel>
+                    <MenuItem tone="danger">Delete</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Arrange">
+                    <MenuItem shortcut="⌘]">Bring front</MenuItem>
+                    <MenuItem shortcut="⌘[">Send back</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Align">
+                    <MenuItem>Left edge</MenuItem>
+                    <MenuItem>Right edge</MenuItem>
+                    <MenuSub label="Distribute">
+                      <MenuItem>Top</MenuItem>
+                      <MenuItem>Middle</MenuItem>
+                      <MenuItem>Bottom</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem>Reset</MenuItem>
+                    </MenuSub>
+                  </MenubarMenu>
+                </Menubar>
+              </Panel>
+            </div>
 
-            <Panel id="navmenu" title="Navigation Menu">
-              <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
-            </Panel>
-            <Panel id="context" title="Context Menu">
-              <div className="bauhaus-stack">
-                <ContextMenu
-                  trigger={
-                    <div className="bauhaus-context__zone">
-                      <span className="bauhaus-cap">
-                        Right-click the plane to open actions
-                      </span>
-                    </div>
-                  }
-                >
-                  <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                  <MenuItem shortcut="⌘D">Duplicate</MenuItem>
-                  <MenuItem disabled>Detach</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">Delete</MenuItem>
-                </ContextMenu>
-              </div>
-            </Panel>
-
-            <Panel id="dialog" title="Dialog">
-              <Dialog
-                trigger={<Button variant="secondary">Reset grid</Button>}
-                title="Reset composition"
-                description="This returns every element to the grid origin. Continue?"
-                actions={
-                  <>
-                    <DialogClose>Cancel</DialogClose>
-                    <DialogClose variant="secondary">Reset</DialogClose>
-                  </>
-                }
-              >
-                <p className="bauhaus-text">Elements: 12 · Off-grid: 3</p>
-              </Dialog>
-            </Panel>
-            <Panel id="alert" title="Alert Dialog">
-              <div className="bauhaus-row">
-                <AlertDialog
-                  tone="danger"
-                  trigger={<Button variant="ghost">Clear canvas</Button>}
-                  title="Clear the canvas?"
-                  description="This deletes every element and cannot be undone."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold</AlertDialogClose>
-                      <AlertDialogClose variant="danger">Clear</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="warning"
-                  trigger={<Button variant="ghost">Reset grid</Button>}
-                  title="Reset the grid?"
-                  description="Every element snaps back to the module. Confirm to reset."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Reset</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="primary"
-                  trigger={<Button variant="ghost">Apply layout</Button>}
-                  title="Apply this layout?"
-                  description="The new composition replaces the current one."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Apply</AlertDialogClose>
-                    </>
-                  }
-                />
-              </div>
-            </Panel>
-
-            <Panel id="drawer" title="Drawer">
-              <div className="bauhaus-row">
-                {(["top", "bottom", "left", "right"] as const).map((side) => (
-                  <Drawer
-                    key={side}
-                    side={side}
+            <div className="bauhaus-section" id="navmenu">
+              <Panel title="Navigation Menu">
+                <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="context">
+              <Panel title="Context Menu">
+                <div className="bauhaus-stack">
+                  <ContextMenu
                     trigger={
-                      <Button variant="ghost">
-                        {side[0].toUpperCase() + side.slice(1)}
-                      </Button>
+                      <div className="bauhaus-context__zone">
+                        <span className="bauhaus-cap">
+                          Right-click the plane to open actions
+                        </span>
+                      </div>
                     }
-                    title="Layer settings"
-                    description="Adjust how this layer sits on the grid."
-                    actions={<DrawerClose variant="secondary">Close</DrawerClose>}
                   >
-                    <label className="bauhaus-row bauhaus-row--between">
-                      <span className="bauhaus-cap">Snap to grid</span>
-                      <Switch defaultChecked />
-                    </label>
-                    <label className="bauhaus-row bauhaus-row--between">
-                      <span className="bauhaus-cap">Show outline</span>
-                      <Switch />
-                    </label>
-                    <Slider label="Opacity" defaultValue={50} />
-                  </Drawer>
-                ))}
-              </div>
-            </Panel>
-            <Panel id="toast" title="Toast">
-              <div className="bauhaus-row">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({ title: "Saved", description: "Composition saved." })
+                    <MenuItem shortcut="⌘I">Inspect</MenuItem>
+                    <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                    <MenuItem disabled>Detach</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">Delete</MenuItem>
+                  </ContextMenu>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="bauhaus-section" id="dialog">
+              <Panel title="Dialog">
+                <Dialog
+                  trigger={<Button variant="secondary">Reset grid</Button>}
+                  title="Reset composition"
+                  description="This returns every element to the grid origin. Continue?"
+                  actions={
+                    <>
+                      <DialogClose>Cancel</DialogClose>
+                      <DialogClose variant="secondary">Reset</DialogClose>
+                    </>
                   }
                 >
-                  Notify
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => {
-                    const id = toast.add({
-                      title: "Aligned",
-                      description: "All elements on the grid.",
-                      type: "success",
-                      actionProps: { children: "Revert", onClick: () => toast.close(id) },
-                    });
-                  }}
-                >
-                  Confirm
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Off grid",
-                      description: "Three elements off the baseline.",
-                      type: "warning",
-                    })
-                  }
-                >
-                  Warn
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Overflow",
-                      description: "Composition exceeds the frame.",
-                      type: "danger",
-                    })
-                  }
-                >
-                  Alarm
-                </Button>
-              </div>
-            </Panel>
+                  <p className="bauhaus-text">Elements: 12 · Off-grid: 3</p>
+                </Dialog>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="alert">
+              <Panel title="Alert Dialog">
+                <div className="bauhaus-row">
+                  <AlertDialog
+                    tone="danger"
+                    trigger={<Button variant="ghost">Clear canvas</Button>}
+                    title="Clear the canvas?"
+                    description="This deletes every element and cannot be undone."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold</AlertDialogClose>
+                        <AlertDialogClose variant="danger">Clear</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="warning"
+                    trigger={<Button variant="ghost">Reset grid</Button>}
+                    title="Reset the grid?"
+                    description="Every element snaps back to the module. Confirm to reset."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Reset</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="primary"
+                    trigger={<Button variant="ghost">Apply layout</Button>}
+                    title="Apply this layout?"
+                    description="The new composition replaces the current one."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Apply</AlertDialogClose>
+                      </>
+                    }
+                  />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="bauhaus-section" id="drawer">
+              <Panel title="Drawer">
+                <div className="bauhaus-row">
+                  {(["top", "bottom", "left", "right"] as const).map((side) => (
+                    <Drawer
+                      key={side}
+                      side={side}
+                      trigger={
+                        <Button variant="ghost">
+                          {side[0].toUpperCase() + side.slice(1)}
+                        </Button>
+                      }
+                      title="Layer settings"
+                      description="Adjust how this layer sits on the grid."
+                      actions={<DrawerClose variant="secondary">Close</DrawerClose>}
+                    >
+                      <label className="bauhaus-row bauhaus-row--between">
+                        <span className="bauhaus-cap">Snap to grid</span>
+                        <Switch defaultChecked />
+                      </label>
+                      <label className="bauhaus-row bauhaus-row--between">
+                        <span className="bauhaus-cap">Show outline</span>
+                        <Switch />
+                      </label>
+                      <Slider label="Opacity" defaultValue={50} />
+                    </Drawer>
+                  ))}
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="toast">
+              <Panel title="Toast">
+                <div className="bauhaus-row">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({ title: "Saved", description: "Composition saved." })
+                    }
+                  >
+                    Notify
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => {
+                      const id = toast.add({
+                        title: "Aligned",
+                        description: "All elements on the grid.",
+                        type: "success",
+                        actionProps: {
+                          children: "Revert",
+                          onClick: () => toast.close(id),
+                        },
+                      });
+                    }}
+                  >
+                    Confirm
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Off grid",
+                        description: "Three elements off the baseline.",
+                        type: "warning",
+                      })
+                    }
+                  >
+                    Warn
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Overflow",
+                        description: "Composition exceeds the frame.",
+                        type: "danger",
+                      })
+                    }
+                  >
+                    Alarm
+                  </Button>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1117,102 +1188,110 @@ function Demo() {
             marker={<SquareFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="avatar" title="Avatar">
-              <div className="bauhaus-row">
-                <Avatar status="online">
-                  <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="" />
-                  <AvatarFallback>LM</AvatarFallback>
-                </Avatar>
-                <Avatar size="sm" status="busy">
-                  <AvatarFallback>TV</AvatarFallback>
-                </Avatar>
-                <Avatar status="away">
-                  <AvatarFallback>JA</AvatarFallback>
-                </Avatar>
-                <Avatar size="lg" status="offline">
-                  <AvatarFallback>WK</AvatarFallback>
-                </Avatar>
-              </div>
-            </Panel>
-            <Panel id="badge" title="Badge">
-              <div className="bauhaus-row">
-                <Badge tone="primary" dot>
-                  Primary
-                </Badge>
-                <Badge tone="success">Aligned</Badge>
-                <Badge tone="warning">Off grid</Badge>
-                <Badge tone="danger" dot>
-                  Overflow
-                </Badge>
-                <Badge tone="secondary">Ink</Badge>
-                <Badge tone="neutral">Draft</Badge>
-              </div>
-            </Panel>
+            <div className="bauhaus-section" id="avatar">
+              <Panel title="Avatar">
+                <div className="bauhaus-row">
+                  <Avatar status="online">
+                    <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="" />
+                    <AvatarFallback>LM</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="sm" status="busy">
+                    <AvatarFallback>TV</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="away">
+                    <AvatarFallback>JA</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="lg" status="offline">
+                    <AvatarFallback>WK</AvatarFallback>
+                  </Avatar>
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="badge">
+              <Panel title="Badge">
+                <div className="bauhaus-row">
+                  <Badge tone="primary" dot>
+                    Primary
+                  </Badge>
+                  <Badge tone="success">Aligned</Badge>
+                  <Badge tone="warning">Off grid</Badge>
+                  <Badge tone="danger" dot>
+                    Overflow
+                  </Badge>
+                  <Badge tone="secondary">Ink</Badge>
+                  <Badge tone="neutral">Draft</Badge>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="toolbar" title="Toolbar">
-              <Toolbar aria-label="Tools">
-                <BaseToggleGroup
-                  className="bauhaus-toolbar__group"
-                  defaultValue={["fill"]}
-                  aria-label="Layers"
-                >
-                  <ToolbarButton render={<BaseToggle />} value="fill">
-                    Fill
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="stroke">
-                    Stroke
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="grid">
-                    Grid
-                  </ToolbarButton>
-                </BaseToggleGroup>
-                <ToolbarSeparator />
-                <ToolbarGroup aria-label="Forms">
-                  <ToolbarButton aria-label="Square">
-                    <Square />
-                  </ToolbarButton>
-                  <ToolbarButton disabled aria-label="Circle">
-                    <Circle />
-                  </ToolbarButton>
-                </ToolbarGroup>
-                <ToolbarSeparator />
-                <ToolbarLink href="#toolbar">
-                  <Dot />
-                  Saved
-                </ToolbarLink>
-              </Toolbar>
-            </Panel>
-            <Panel id="scroll" title="Scroll Area">
-              <ScrollArea>
-                <ScrollAreaViewport>
-                  <ScrollAreaContent>
-                    <ol className="bauhaus-scroll-list">
-                      {[
-                        ["09:00", "Ruled the grid"],
-                        ["09:20", "Placed the square"],
-                        ["09:35", "Set the circle"],
-                        ["09:50", "Cut the triangle"],
-                        ["10:10", "Aligned the baseline"],
-                        ["10:30", "Pressed primary blue"],
-                        ["10:55", "Pressed vermilion"],
-                        ["11:20", "Pressed cadmium"],
-                        ["11:45", "Inked the rules"],
-                        ["12:10", "Checked the margins"],
-                        ["12:35", "Pulled a proof"],
-                        ["13:00", "Filed the plate"],
-                      ].map(([time, msg]) => (
-                        <li key={time} className="bauhaus-text">
-                          <span className="bauhaus-cap">{time}</span> {msg}
-                        </li>
-                      ))}
-                    </ol>
-                  </ScrollAreaContent>
-                </ScrollAreaViewport>
-                <ScrollAreaScrollbar>
-                  <ScrollAreaThumb />
-                </ScrollAreaScrollbar>
-              </ScrollArea>
-            </Panel>
+            <div className="bauhaus-section" id="toolbar">
+              <Panel title="Toolbar">
+                <Toolbar aria-label="Tools">
+                  <BaseToggleGroup
+                    className="bauhaus-toolbar__group"
+                    defaultValue={["fill"]}
+                    aria-label="Layers"
+                  >
+                    <ToolbarButton render={<BaseToggle />} value="fill">
+                      Fill
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="stroke">
+                      Stroke
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="grid">
+                      Grid
+                    </ToolbarButton>
+                  </BaseToggleGroup>
+                  <ToolbarSeparator />
+                  <ToolbarGroup aria-label="Forms">
+                    <ToolbarButton aria-label="Square">
+                      <Square />
+                    </ToolbarButton>
+                    <ToolbarButton disabled aria-label="Circle">
+                      <Circle />
+                    </ToolbarButton>
+                  </ToolbarGroup>
+                  <ToolbarSeparator />
+                  <ToolbarLink href="#toolbar">
+                    <Dot />
+                    Saved
+                  </ToolbarLink>
+                </Toolbar>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="scroll">
+              <Panel title="Scroll Area">
+                <ScrollArea>
+                  <ScrollAreaViewport>
+                    <ScrollAreaContent>
+                      <ol className="bauhaus-scroll-list">
+                        {[
+                          ["09:00", "Ruled the grid"],
+                          ["09:20", "Placed the square"],
+                          ["09:35", "Set the circle"],
+                          ["09:50", "Cut the triangle"],
+                          ["10:10", "Aligned the baseline"],
+                          ["10:30", "Pressed primary blue"],
+                          ["10:55", "Pressed vermilion"],
+                          ["11:20", "Pressed cadmium"],
+                          ["11:45", "Inked the rules"],
+                          ["12:10", "Checked the margins"],
+                          ["12:35", "Pulled a proof"],
+                          ["13:00", "Filed the plate"],
+                        ].map(([time, msg]) => (
+                          <li key={time} className="bauhaus-text">
+                            <span className="bauhaus-cap">{time}</span> {msg}
+                          </li>
+                        ))}
+                      </ol>
+                    </ScrollAreaContent>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
+                </ScrollArea>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1222,46 +1301,52 @@ function Demo() {
             marker={<TriangleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="typography" title="Typography" wide>
-              <div className="bauhaus-stack">
-                <h2 className="bauhaus-h1">Built from primary forms</h2>
-                <h3 className="bauhaus-h2">Workshop headings</h3>
-                <span className="bauhaus-h3">Section sub-label</span>
-                <p className="bauhaus-text">
-                  Body copy is set in a geometric sans, with monospace numerals for every
-                  measurement and grid reference across the catalogue.
-                </p>
-                <span className="bauhaus-cap">Field caption · 8-column grid</span>
-              </div>
-            </Panel>
-
-            <Panel id="separator" title="Separator">
-              <div className="bauhaus-stack">
-                <span className="bauhaus-cap">Plain</span>
-                <Separator />
-                <span className="bauhaus-cap">Labelled</span>
-                <Separator label="Module II" align="start" />
-                <Separator label="Module II" />
-                <Separator label="Module II" align="end" />
-                <span className="bauhaus-cap">Vertical</span>
-                <div className="bauhaus-row">
-                  <span className="bauhaus-text">Red</span>
-                  <Separator orientation="vertical" />
-                  <span className="bauhaus-text">Yellow</span>
-                  <Separator orientation="vertical" />
-                  <span className="bauhaus-text">Blue</span>
+            <div className="bauhaus-section bauhaus-section--wide" id="typography">
+              <Panel title="Typography">
+                <div className="bauhaus-stack">
+                  <h2 className="bauhaus-h1">Built from primary forms</h2>
+                  <h3 className="bauhaus-h2">Workshop headings</h3>
+                  <span className="bauhaus-h3">Section sub-label</span>
+                  <p className="bauhaus-text">
+                    Body copy is set in a geometric sans, with monospace numerals for
+                    every measurement and grid reference across the catalogue.
+                  </p>
+                  <span className="bauhaus-cap">Field caption · 8-column grid</span>
                 </div>
-              </div>
-            </Panel>
-            <Panel id="panel" title="Panel">
-              <p className="bauhaus-text bauhaus-panel-note">
-                The bordered plate wrapping every section — a single flat field, a hard
-                black rule and a geometric mark. Composable to any depth.
-              </p>
-              <Panel title="Nested plate">
-                <span className="bauhaus-cap">A plate within a plate</span>
               </Panel>
-            </Panel>
+            </div>
+
+            <div className="bauhaus-section" id="separator">
+              <Panel title="Separator">
+                <div className="bauhaus-stack">
+                  <span className="bauhaus-cap">Plain</span>
+                  <Separator />
+                  <span className="bauhaus-cap">Labelled</span>
+                  <Separator label="Module II" align="start" />
+                  <Separator label="Module II" />
+                  <Separator label="Module II" align="end" />
+                  <span className="bauhaus-cap">Vertical</span>
+                  <div className="bauhaus-row">
+                    <span className="bauhaus-text">Red</span>
+                    <Separator orientation="vertical" />
+                    <span className="bauhaus-text">Yellow</span>
+                    <Separator orientation="vertical" />
+                    <span className="bauhaus-text">Blue</span>
+                  </div>
+                </div>
+              </Panel>
+            </div>
+            <div className="bauhaus-section" id="panel">
+              <Panel title="Panel">
+                <p className="bauhaus-text bauhaus-panel-note">
+                  The bordered plate wrapping every section — a single flat field, a hard
+                  black rule and a geometric mark. Composable to any depth.
+                </p>
+                <Panel title="Nested plate">
+                  <span className="bauhaus-cap">A plate within a plate</span>
+                </Panel>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1271,11 +1356,13 @@ function Demo() {
             marker={<CircleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="loader" title="Loader" wide>
-              <div className="demo-loader-stage">
-                <Loader />
-              </div>
-            </Panel>
+            <div className="bauhaus-section bauhaus-section--wide" id="loader">
+              <Panel title="Loader">
+                <div className="demo-loader-stage">
+                  <Loader />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <footer className="bauhaus-footer">

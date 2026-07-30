@@ -469,254 +469,293 @@ function Demo() {
             marker={<StarFill />}
           />
           <div className="riot-grid">
-            <Panel id="button" title="Button" wide tape="top">
-              <div className="riot-stack">
-                <div className="riot-row">
-                  <Button icon={<BoltIcon />}>Smash</Button>
-                  <Button variant="secondary">Tear</Button>
-                  <Button variant="danger">Burn</Button>
-                  <Button variant="ghost">Cancel</Button>
-                  <Button disabled>Locked</Button>
+            <div className="riot-section riot-section--wide" id="button">
+              <Panel title="Button" tape="top">
+                <div className="riot-stack">
+                  <div className="riot-row">
+                    <Button icon={<BoltIcon />}>Smash</Button>
+                    <Button variant="secondary">Tear</Button>
+                    <Button variant="danger">Burn</Button>
+                    <Button variant="ghost">Cancel</Button>
+                    <Button disabled>Locked</Button>
+                  </div>
+                  <Separator />
+                  <div className="riot-row">
+                    <Button size="sm" upright>
+                      Cut
+                    </Button>
+                    <Button size="md" upright>
+                      Paste
+                    </Button>
+                    <Button size="lg" upright>
+                      Riot
+                    </Button>
+                  </div>
+                  <Separator />
+                  <div className="riot-row">
+                    <Button variant="icon" aria-label="Copy">
+                      <CopyIcon />
+                    </Button>
+                    <Button variant="icon" aria-label="Cut">
+                      <Scissors />
+                    </Button>
+                    <Button variant="icon" disabled aria-label="Locked">
+                      <Pin />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Anarchy">
+                      <Anarchy />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="Mixtape">
+                      <Cassette />
+                    </Button>
+                  </div>
                 </div>
-                <Separator />
-                <div className="riot-row">
-                  <Button size="sm" upright>
-                    Cut
-                  </Button>
-                  <Button size="md" upright>
-                    Paste
-                  </Button>
-                  <Button size="lg" upright>
-                    Riot
-                  </Button>
+              </Panel>
+            </div>
+
+            <div className="riot-section" id="switch">
+              <Panel title="Switch" stapled>
+                <div className="riot-stack">
+                  <label className="riot-row riot-row--between">
+                    <span className="riot-tag">Kill switch</span>
+                    <Switch defaultChecked />
+                  </label>
+                  <label className="riot-row riot-row--between">
+                    <span className="riot-tag">Show grid</span>
+                    <Switch />
+                  </label>
+                  <label className="riot-row riot-row--between">
+                    <span className="riot-tag">Lock the press</span>
+                    <Switch disabled defaultChecked />
+                  </label>
+                  <label className="riot-row riot-row--between">
+                    <span className="riot-tag">Sealed</span>
+                    <Switch disabled />
+                  </label>
                 </div>
-                <Separator />
-                <div className="riot-row">
-                  <Button variant="icon" aria-label="Copy">
-                    <CopyIcon />
-                  </Button>
-                  <Button variant="icon" aria-label="Cut">
-                    <Scissors />
-                  </Button>
-                  <Button variant="icon" disabled aria-label="Locked">
-                    <Pin />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Anarchy">
-                    <Anarchy />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="Mixtape">
-                    <Cassette />
-                  </Button>
+              </Panel>
+            </div>
+            <div className="riot-section" id="toggle">
+              <Panel title="Toggle Group" tape="tr">
+                <div className="riot-stack">
+                  <ToggleGroup defaultValue={["left"]}>
+                    <Toggle value="left">Left</Toggle>
+                    <Toggle value="center">Center</Toggle>
+                    <Toggle value="right" disabled>
+                      Right
+                    </Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup multiple defaultValue={["fill", "ink", "glue"]}>
+                    <Toggle value="fill">Fill</Toggle>
+                    <Toggle value="ink">Ink</Toggle>
+                    <Toggle value="tape">Tape</Toggle>
+                    <Toggle value="glue" disabled>
+                      Glue
+                    </Toggle>
+                  </ToggleGroup>
                 </div>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
 
-            <Panel id="switch" title="Switch" stapled>
-              <div className="riot-stack">
-                <label className="riot-row riot-row--between">
-                  <span className="riot-tag">Kill switch</span>
-                  <Switch defaultChecked />
-                </label>
-                <label className="riot-row riot-row--between">
-                  <span className="riot-tag">Show grid</span>
-                  <Switch />
-                </label>
-                <label className="riot-row riot-row--between">
-                  <span className="riot-tag">Lock the press</span>
-                  <Switch disabled defaultChecked />
-                </label>
-                <label className="riot-row riot-row--between">
-                  <span className="riot-tag">Sealed</span>
-                  <Switch disabled />
-                </label>
-              </div>
-            </Panel>
-            <Panel id="toggle" title="Toggle Group" tape="tr">
-              <div className="riot-stack">
-                <ToggleGroup defaultValue={["left"]}>
-                  <Toggle value="left">Left</Toggle>
-                  <Toggle value="center">Center</Toggle>
-                  <Toggle value="right" disabled>
-                    Right
-                  </Toggle>
-                </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["fill", "ink", "glue"]}>
-                  <Toggle value="fill">Fill</Toggle>
-                  <Toggle value="ink">Ink</Toggle>
-                  <Toggle value="tape">Tape</Toggle>
-                  <Toggle value="glue" disabled>
-                    Glue
-                  </Toggle>
-                </ToggleGroup>
-              </div>
-            </Panel>
+            <div className="riot-section" id="checkbox">
+              <Panel title="Checkbox" tape="bl">
+                <div className="riot-stack">
+                  <Checkbox defaultChecked label="Paste it crooked" />
+                  <Checkbox label="Show rulers" />
+                  <Checkbox disabled defaultChecked label="Lock layer" />
+                  <Checkbox disabled label="Hide plane" />
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="checkbox-group">
+              <Panel title="Checkbox Group" stapled>
+                <div className="riot-stack">
+                  <CheckboxGroup
+                    defaultValue={["grid"]}
+                    parentLabel="All guides"
+                    items={[
+                      { label: "Grid", value: "grid" },
+                      { label: "Baseline", value: "baseline" },
+                      { label: "Margins", value: "margins" },
+                    ]}
+                  />
+                  <CheckboxGroup
+                    defaultValue={["spray"]}
+                    parentLabel="Confiscated"
+                    disabled
+                    items={[
+                      { label: "Spraycan", value: "spray" },
+                      { label: "Wheatpaste", value: "paste" },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="checkbox" title="Checkbox" tape="bl">
-              <div className="riot-stack">
-                <Checkbox defaultChecked label="Paste it crooked" />
-                <Checkbox label="Show rulers" />
-                <Checkbox disabled defaultChecked label="Lock layer" />
-                <Checkbox disabled label="Hide plane" />
-              </div>
-            </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group" stapled>
-              <div className="riot-stack">
-                <CheckboxGroup
-                  defaultValue={["grid"]}
-                  parentLabel="All guides"
-                  items={[
-                    { label: "Grid", value: "grid" },
-                    { label: "Baseline", value: "baseline" },
-                    { label: "Margins", value: "margins" },
-                  ]}
-                />
-                <CheckboxGroup
-                  defaultValue={["spray"]}
-                  parentLabel="Confiscated"
-                  disabled
-                  items={[
-                    { label: "Spraycan", value: "spray" },
-                    { label: "Wheatpaste", value: "paste" },
-                  ]}
-                />
-              </div>
-            </Panel>
+            <div className="riot-section" id="radio">
+              <Panel title="Radio Group" tape="tl">
+                <div className="riot-stack">
+                  <span className="riot-cap">Typesetting</span>
+                  <RadioGroup defaultValue="left">
+                    <Radio value="left">Left align</Radio>
+                    <Radio value="center">Center</Radio>
+                    <Radio value="justify">Justify</Radio>
+                    <Radio value="optical" disabled>
+                      Optical (offline)
+                    </Radio>
+                  </RadioGroup>
+                  <span className="riot-cap">Xerox (locked)</span>
+                  <RadioGroup disabled defaultValue="xerox">
+                    <Radio value="hand">Hand-set</Radio>
+                    <Radio value="xerox">Xerox (jammed on)</Radio>
+                  </RadioGroup>
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="select">
+              <Panel title="Select" tape="br">
+                <div className="riot-stack">
+                  <label className="riot-cap" htmlFor="sel-1">
+                    Type weight
+                  </label>
+                  <Select
+                    items={WEIGHTS}
+                    placeholder="Weight"
+                    defaultValue="regular"
+                    id="sel-1"
+                  />
+                  <label className="riot-cap" htmlFor="sel-2">
+                    Masthead cut
+                  </label>
+                  <Select items={WEIGHTS_SHORT} placeholder="Cut" id="sel-2" />
+                  <label className="riot-cap" htmlFor="sel-3">
+                    Dead press
+                  </label>
+                  <Select
+                    items={WEIGHTS_SHORT}
+                    defaultValue="regular"
+                    disabled
+                    id="sel-3"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="radio" title="Radio Group" tape="tl">
-              <div className="riot-stack">
-                <span className="riot-cap">Typesetting</span>
-                <RadioGroup defaultValue="left">
-                  <Radio value="left">Left align</Radio>
-                  <Radio value="center">Center</Radio>
-                  <Radio value="justify">Justify</Radio>
-                  <Radio value="optical" disabled>
-                    Optical (offline)
-                  </Radio>
-                </RadioGroup>
-                <span className="riot-cap">Xerox (locked)</span>
-                <RadioGroup disabled defaultValue="xerox">
-                  <Radio value="hand">Hand-set</Radio>
-                  <Radio value="xerox">Xerox (jammed on)</Radio>
-                </RadioGroup>
-              </div>
-            </Panel>
-            <Panel id="select" title="Select" tape="br">
-              <div className="riot-stack">
-                <label className="riot-cap" htmlFor="sel-1">
-                  Type weight
-                </label>
-                <Select
-                  items={WEIGHTS}
-                  placeholder="Weight"
-                  defaultValue="regular"
-                  id="sel-1"
-                />
-                <label className="riot-cap" htmlFor="sel-2">
-                  Masthead cut
-                </label>
-                <Select items={WEIGHTS_SHORT} placeholder="Cut" id="sel-2" />
-                <label className="riot-cap" htmlFor="sel-3">
-                  Dead press
-                </label>
-                <Select
-                  items={WEIGHTS_SHORT}
-                  defaultValue="regular"
-                  disabled
-                  id="sel-3"
-                />
-              </div>
-            </Panel>
+            <div className="riot-section" id="combobox">
+              <Panel title="Combobox" stapled>
+                <div className="riot-stack">
+                  <span className="riot-cap">Filter the zine</span>
+                  <Combobox items={FORMS} placeholder="Search…" label="Filter the zine" />
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="autocomplete">
+              <Panel title="Autocomplete" tape="tr">
+                <div className="riot-stack">
+                  <span className="riot-cap">Pick a pigment</span>
+                  <Autocomplete
+                    items={PIGMENTS}
+                    placeholder="Pigment…"
+                    label="Pick a pigment"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="combobox" title="Combobox" stapled>
-              <div className="riot-stack">
-                <span className="riot-cap">Filter the zine</span>
-                <Combobox items={FORMS} placeholder="Search…" label="Filter the zine" />
-              </div>
-            </Panel>
-            <Panel id="autocomplete" title="Autocomplete" tape="tr">
-              <div className="riot-stack">
-                <span className="riot-cap">Pick a pigment</span>
-                <Autocomplete
-                  items={PIGMENTS}
-                  placeholder="Pigment…"
-                  label="Pick a pigment"
-                />
-              </div>
-            </Panel>
+            <div className="riot-section" id="slider">
+              <Panel title="Slider" tape="top">
+                <div className="riot-stack">
+                  <Slider label="Column width" defaultValue={62} />
+                  <Slider label="Gutter" defaultValue={40} disabled />
+                  <Slider label="Ink bleed" defaultValue={75} showValue={false} />
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="number">
+              <Panel title="Number Field" stapled>
+                <div className="riot-stack">
+                  <label className="riot-cap" htmlFor="num-1">
+                    Print run
+                  </label>
+                  <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                  <label className="riot-cap" htmlFor="num-2">
+                    Full run
+                  </label>
+                  <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="slider" title="Slider" tape="top">
-              <div className="riot-stack">
-                <Slider label="Column width" defaultValue={62} />
-                <Slider label="Gutter" defaultValue={40} disabled />
-                <Slider label="Ink bleed" defaultValue={75} showValue={false} />
-              </div>
-            </Panel>
-            <Panel id="number" title="Number Field" stapled>
-              <div className="riot-stack">
-                <label className="riot-cap" htmlFor="num-1">
-                  Print run
-                </label>
-                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
-                <label className="riot-cap" htmlFor="num-2">
-                  Full run
-                </label>
-                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
-              </div>
-            </Panel>
-
-            <Panel id="input" title="Text Field" tape="tl">
-              <div className="riot-stack">
-                <Field
-                  label="Headline"
-                  placeholder="NO FUTURE"
-                  defaultValue="NO FUTURE"
-                  description="Shout it in cut-out caps."
-                />
-                <Input
-                  icon={<SearchIcon />}
-                  placeholder="Search clippings…"
-                  aria-label="Search clippings"
-                />
-                <AccessKeyField />
-                <Field label="Locked layer" defaultValue="RIOT-1977" disabled />
-                <Field label="Serial" defaultValue="R!OT-##" error="Serial won't scan." />
-              </div>
-            </Panel>
-            <Panel id="otp" title="OTP Field" tape="br">
-              <div className="riot-stack">
-                <span className="riot-cap">Access code</span>
-                <OtpField length={6} splitAt={3} defaultValue="977" label="Access code" />
-                <span className="riot-cap">Dead drop</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="977"
-                  mask
-                  label="Dead drop"
-                />
-                <span className="riot-cap">Burned code</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="977"
-                  disabled
-                  label="Burned code"
-                />
-              </div>
-            </Panel>
+            <div className="riot-section" id="input">
+              <Panel title="Text Field" tape="tl">
+                <div className="riot-stack">
+                  <Field
+                    label="Headline"
+                    placeholder="NO FUTURE"
+                    defaultValue="NO FUTURE"
+                    description="Shout it in cut-out caps."
+                  />
+                  <Input
+                    icon={<SearchIcon />}
+                    placeholder="Search clippings…"
+                    aria-label="Search clippings"
+                  />
+                  <AccessKeyField />
+                  <Field label="Locked layer" defaultValue="RIOT-1977" disabled />
+                  <Field
+                    label="Serial"
+                    defaultValue="R!OT-##"
+                    error="Serial won't scan."
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="otp">
+              <Panel title="OTP Field" tape="br">
+                <div className="riot-stack">
+                  <span className="riot-cap">Access code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="977"
+                    label="Access code"
+                  />
+                  <span className="riot-cap">Dead drop</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="977"
+                    mask
+                    label="Dead drop"
+                  />
+                  <span className="riot-cap">Burned code</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="977"
+                    disabled
+                    label="Burned code"
+                  />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="forms" label="Forms" sub="bound fields" marker={<Square />} />
           <div className="riot-grid">
-            <Panel id="fieldset" title="Fieldset" stapled>
-              <Fieldset legend="Author">
-                <Field label="Name" defaultValue="Poly" />
-                <Field label="Cell" defaultValue="X-Ray Spex" />
-              </Fieldset>
-            </Panel>
-            <Panel id="form" title="Form" tape="tr">
-              <FormDemo />
-            </Panel>
+            <div className="riot-section" id="fieldset">
+              <Panel title="Fieldset" stapled>
+                <Fieldset legend="Author">
+                  <Field label="Name" defaultValue="Poly" />
+                  <Field label="Cell" defaultValue="X-Ray Spex" />
+                </Fieldset>
+              </Panel>
+            </div>
+            <div className="riot-section" id="form">
+              <Panel title="Form" tape="tr">
+                <FormDemo />
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -726,118 +765,128 @@ function Demo() {
             marker={<Triangle />}
           />
           <div className="riot-grid">
-            <Panel id="progress" title="Progress" tape="bl">
-              <ProgressBars />
-            </Panel>
-            <Panel id="meter" title="Meter" stapled>
-              <div className="riot-stack">
-                <Meter label="Ink coverage" value={88} />
-                <Meter label="Registration" value={70} tone="success" />
-                <Meter label="Margin balance" value={52} tone="warning" />
-                <Meter label="Overflow" value={23} tone="danger" />
-              </div>
-            </Panel>
+            <div className="riot-section" id="progress">
+              <Panel title="Progress" tape="bl">
+                <ProgressBars />
+              </Panel>
+            </div>
+            <div className="riot-section" id="meter">
+              <Panel title="Meter" stapled>
+                <div className="riot-stack">
+                  <Meter label="Ink coverage" value={88} />
+                  <Meter label="Registration" value={70} tone="success" />
+                  <Meter label="Margin balance" value={52} tone="warning" />
+                  <Meter label="Overflow" value={23} tone="danger" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="tabs" title="Tabs" wide tape="top">
-              <Tabs
-                defaultValue="cut"
-                items={[
-                  {
-                    value: "cut",
-                    label: "Cut",
-                    content: (
-                      <p className="riot-text">
-                        Slice the headlines out of yesterday's papers.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "paste",
-                    label: "Paste",
-                    content: (
-                      <p className="riot-text">
-                        Glue them down crooked; the grid was a cage.
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "print",
-                    label: "Print",
-                    content: (
-                      <p className="riot-text">
-                        Run it through the xerox till the ink bleeds.
-                      </p>
-                    ),
-                    disabled: true,
-                  },
-                ]}
-              />
-            </Panel>
-
-            <Panel id="accordion" title="Accordion" tape="tl">
-              <div className="riot-stack">
-                <span className="riot-cap">One at a time</span>
-                <Accordion
-                  defaultValue={["cut"]}
+            <div className="riot-section riot-section--wide" id="tabs">
+              <Panel title="Tabs" tape="top">
+                <Tabs
+                  defaultValue="cut"
                   items={[
                     {
                       value: "cut",
-                      title: "Cut",
-                      content: "Scissors, a razor, whatever's sharp.",
+                      label: "Cut",
+                      content: (
+                        <p className="riot-text">
+                          Slice the headlines out of yesterday's papers.
+                        </p>
+                      ),
                     },
                     {
                       value: "paste",
-                      title: "Paste",
-                      content: "Glue stick, tape, spit if you must.",
+                      label: "Paste",
+                      content: (
+                        <p className="riot-text">
+                          Glue them down crooked; the grid was a cage.
+                        </p>
+                      ),
                     },
                     {
                       value: "print",
-                      title: "Print",
+                      label: "Print",
+                      content: (
+                        <p className="riot-text">
+                          Run it through the xerox till the ink bleeds.
+                        </p>
+                      ),
                       disabled: true,
-                      content: "One xerox machine, stolen after hours.",
                     },
                   ]}
                 />
-                <span className="riot-cap">Open together</span>
-                <Accordion
-                  openMultiple
-                  defaultValue={["staple", "fold"]}
-                  items={[
-                    {
-                      value: "staple",
-                      title: "Staple",
-                      content: "Two rusty staples straight through the spine.",
-                    },
-                    {
-                      value: "fold",
-                      disabled: true,
-                      title: "Fold",
-                      content: "Fold twice, crease it with a thumbnail.",
-                    },
-                  ]}
-                />
-              </div>
-            </Panel>
-            <Panel id="collapsible" title="Collapsible" stapled>
-              <div className="riot-stack">
-                <Collapsible title="Liner notes" defaultOpen>
-                  <p className="riot-text">
-                    Pressed in a squat with a borrowed machine. Side A only.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Supplies">
-                  <p className="riot-text">
-                    Two markers, a stapler, a stack of newsprint.
-                  </p>
-                </Collapsible>
-                <Collapsible title="Locked box" disabled>
-                  <p className="riot-text">Label masters. Ask the desk for the key.</p>
-                </Collapsible>
-                <Collapsible title="Editor's note" defaultOpen disabled>
-                  <p className="riot-text">Stapled to the wall. Don't touch.</p>
-                </Collapsible>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
+
+            <div className="riot-section" id="accordion">
+              <Panel title="Accordion" tape="tl">
+                <div className="riot-stack">
+                  <span className="riot-cap">One at a time</span>
+                  <Accordion
+                    defaultValue={["cut"]}
+                    items={[
+                      {
+                        value: "cut",
+                        title: "Cut",
+                        content: "Scissors, a razor, whatever's sharp.",
+                      },
+                      {
+                        value: "paste",
+                        title: "Paste",
+                        content: "Glue stick, tape, spit if you must.",
+                      },
+                      {
+                        value: "print",
+                        title: "Print",
+                        disabled: true,
+                        content: "One xerox machine, stolen after hours.",
+                      },
+                    ]}
+                  />
+                  <span className="riot-cap">Open together</span>
+                  <Accordion
+                    openMultiple
+                    defaultValue={["staple", "fold"]}
+                    items={[
+                      {
+                        value: "staple",
+                        title: "Staple",
+                        content: "Two rusty staples straight through the spine.",
+                      },
+                      {
+                        value: "fold",
+                        disabled: true,
+                        title: "Fold",
+                        content: "Fold twice, crease it with a thumbnail.",
+                      },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="collapsible">
+              <Panel title="Collapsible" stapled>
+                <div className="riot-stack">
+                  <Collapsible title="Liner notes" defaultOpen>
+                    <p className="riot-text">
+                      Pressed in a squat with a borrowed machine. Side A only.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Supplies">
+                    <p className="riot-text">
+                      Two markers, a stapler, a stack of newsprint.
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="Locked box" disabled>
+                    <p className="riot-text">Label masters. Ask the desk for the key.</p>
+                  </Collapsible>
+                  <Collapsible title="Editor's note" defaultOpen disabled>
+                    <p className="riot-text">Stapled to the wall. Don't touch.</p>
+                  </Collapsible>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -847,299 +896,326 @@ function Demo() {
             marker={<StarFill />}
           />
           <div className="riot-grid">
-            <Panel id="tooltip" title="Tooltip" tape="br">
-              <div className="riot-row">
-                <Tooltip content="Cut it out" side="top">
-                  <Button variant="ghost" upright>
-                    Cut
-                  </Button>
-                </Tooltip>
-                <Tooltip content="Paste it crooked" side="bottom">
-                  <Button variant="ghost" upright>
-                    Paste
-                  </Button>
-                </Tooltip>
-                <Tooltip content="Staple the wound" side="left">
-                  <Button variant="ghost" upright>
-                    Staple
-                  </Button>
-                </Tooltip>
-                <Tooltip content="Run the press" side="right">
-                  <Button variant="ghost" upright>
-                    Press
-                  </Button>
-                </Tooltip>
-              </div>
-            </Panel>
-            <Panel id="popover" title="Popover" stapled>
-              <Popover
-                trigger={
-                  <Button variant="ghost" upright>
-                    Details
-                  </Button>
-                }
-                title="Issue #1"
-              >
-                Twelve clippings pasted up; three bleeding off the edge on purpose.
-              </Popover>
-            </Panel>
-
-            <Panel id="preview" title="Preview Card" wide tape="top">
-              <div className="riot-stack">
-                <span className="riot-cap">Hover the byline</span>
-                <p className="riot-text">
-                  Cut and pasted by{" "}
-                  <PreviewCard
-                    trigger={
-                      <a
-                        href="#preview"
-                        className="riot-link"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        @poly
-                      </a>
-                    }
-                  >
-                    <div className="riot-preview__head">
-                      <Avatar status="online">
-                        <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="" />
-                        <AvatarFallback>PS</AvatarFallback>
-                      </Avatar>
-                      <span className="riot-preview__ident">
-                        <span className="riot-h3 riot-preview__title">Poly Styrene</span>
-                        <span className="riot-preview__handle">@poly</span>
-                      </span>
-                    </div>
-                    <p className="riot-text riot-preview__desc">
-                      Runs the press after hours. Believes the grid was a cage and the
-                      scissors set you free.
-                    </p>
-                    <div className="riot-preview__footer">
-                      <Badge tone="primary" dot>
-                        Editor
-                      </Badge>
-                      <Badge tone="neutral">Squat</Badge>
-                    </div>
-                  </PreviewCard>{" "}
-                  after hours.
-                </p>
-              </div>
-            </Panel>
-
-            <Panel id="menu" title="Menu" tape="tr">
-              <Menu trigger="Actions">
-                <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                  Duplicate
-                </MenuItem>
-                <MenuItem icon={<Scissors />} shortcut="⌘X">
-                  Cut out
-                </MenuItem>
-                <MenuItem icon={<Dot />} shortcut="⌘R">
-                  Distribute
-                </MenuItem>
-                <MenuItem icon={<Square />} disabled>
-                  Rasterize
-                </MenuItem>
-                <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
-                <MenuItem icon={<Star />}>Star it</MenuItem>
-                <MenuItem icon={<CopyIcon />}>Flip horizontal</MenuItem>
-                <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
-                <MenuItem icon={<SprayCan />}>Deface</MenuItem>
-                <MenuItem icon={<Dot />}>Lock layer</MenuItem>
-                <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
-                <MenuSeparator />
-                <MenuItem icon={<Close />} tone="danger">
-                  Delete
-                </MenuItem>
-              </Menu>
-            </Panel>
-            <Panel id="menubar" title="Menubar" stapled>
-              <Menubar>
-                <MenubarMenu label="Cut">
-                  <MenuItem>Scissors</MenuItem>
-                  <MenuItem>Razor</MenuItem>
-                  <MenuItem disabled>Chainsaw</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">Shred</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Paste">
-                  <MenuItem shortcut="⌘]">Bring front</MenuItem>
-                  <MenuItem shortcut="⌘[">Send back</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="Print">
-                  <MenuItem>One copy</MenuItem>
-                  <MenuItem>A hundred</MenuItem>
-                  <MenuSub label="Run">
-                    <MenuItem>Side A</MenuItem>
-                    <MenuItem>Side B</MenuItem>
-                    <MenuItem>Bootleg</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem>Reset</MenuItem>
-                  </MenuSub>
-                </MenubarMenu>
-              </Menubar>
-            </Panel>
-
-            <Panel id="navmenu" title="Navigation Menu" tape="bl">
-              <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
-            </Panel>
-            <Panel id="context" title="Context Menu" tape="tl">
-              <div className="riot-stack">
-                <ContextMenu
+            <div className="riot-section" id="tooltip">
+              <Panel title="Tooltip" tape="br">
+                <div className="riot-row">
+                  <Tooltip content="Cut it out" side="top">
+                    <Button variant="ghost" upright>
+                      Cut
+                    </Button>
+                  </Tooltip>
+                  <Tooltip content="Paste it crooked" side="bottom">
+                    <Button variant="ghost" upright>
+                      Paste
+                    </Button>
+                  </Tooltip>
+                  <Tooltip content="Staple the wound" side="left">
+                    <Button variant="ghost" upright>
+                      Staple
+                    </Button>
+                  </Tooltip>
+                  <Tooltip content="Run the press" side="right">
+                    <Button variant="ghost" upright>
+                      Press
+                    </Button>
+                  </Tooltip>
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="popover">
+              <Panel title="Popover" stapled>
+                <Popover
                   trigger={
-                    <div className="riot-context__zone">
-                      <span className="riot-cap">
-                        Right-click the wall to open actions
-                      </span>
-                    </div>
+                    <Button variant="ghost" upright>
+                      Details
+                    </Button>
                   }
+                  title="Issue #1"
                 >
-                  <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                  <MenuItem shortcut="⌘D">Duplicate</MenuItem>
-                  <MenuItem disabled>Rip down</MenuItem>
+                  Twelve clippings pasted up; three bleeding off the edge on purpose.
+                </Popover>
+              </Panel>
+            </div>
+
+            <div className="riot-section riot-section--wide" id="preview">
+              <Panel title="Preview Card" tape="top">
+                <div className="riot-stack">
+                  <span className="riot-cap">Hover the byline</span>
+                  <p className="riot-text">
+                    Cut and pasted by{" "}
+                    <PreviewCard
+                      trigger={
+                        <a
+                          href="#preview"
+                          className="riot-link"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          @poly
+                        </a>
+                      }
+                    >
+                      <div className="riot-preview__head">
+                        <Avatar status="online">
+                          <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="" />
+                          <AvatarFallback>PS</AvatarFallback>
+                        </Avatar>
+                        <span className="riot-preview__ident">
+                          <span className="riot-h3 riot-preview__title">
+                            Poly Styrene
+                          </span>
+                          <span className="riot-preview__handle">@poly</span>
+                        </span>
+                      </div>
+                      <p className="riot-text riot-preview__desc">
+                        Runs the press after hours. Believes the grid was a cage and the
+                        scissors set you free.
+                      </p>
+                      <div className="riot-preview__footer">
+                        <Badge tone="primary" dot>
+                          Editor
+                        </Badge>
+                        <Badge tone="neutral">Squat</Badge>
+                      </div>
+                    </PreviewCard>{" "}
+                    after hours.
+                  </p>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="riot-section" id="menu">
+              <Panel title="Menu" tape="tr">
+                <Menu trigger="Actions">
+                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                    Duplicate
+                  </MenuItem>
+                  <MenuItem icon={<Scissors />} shortcut="⌘X">
+                    Cut out
+                  </MenuItem>
+                  <MenuItem icon={<Dot />} shortcut="⌘R">
+                    Distribute
+                  </MenuItem>
+                  <MenuItem icon={<Square />} disabled>
+                    Rasterize
+                  </MenuItem>
+                  <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
+                  <MenuItem icon={<Star />}>Star it</MenuItem>
+                  <MenuItem icon={<CopyIcon />}>Flip horizontal</MenuItem>
+                  <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
+                  <MenuItem icon={<SprayCan />}>Deface</MenuItem>
+                  <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                  <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
                   <MenuSeparator />
-                  <MenuItem tone="danger">Delete</MenuItem>
-                </ContextMenu>
-              </div>
-            </Panel>
+                  <MenuItem icon={<Close />} tone="danger">
+                    Delete
+                  </MenuItem>
+                </Menu>
+              </Panel>
+            </div>
+            <div className="riot-section" id="menubar">
+              <Panel title="Menubar" stapled>
+                <Menubar>
+                  <MenubarMenu label="Cut">
+                    <MenuItem>Scissors</MenuItem>
+                    <MenuItem>Razor</MenuItem>
+                    <MenuItem disabled>Chainsaw</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">Shred</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Paste">
+                    <MenuItem shortcut="⌘]">Bring front</MenuItem>
+                    <MenuItem shortcut="⌘[">Send back</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="Print">
+                    <MenuItem>One copy</MenuItem>
+                    <MenuItem>A hundred</MenuItem>
+                    <MenuSub label="Run">
+                      <MenuItem>Side A</MenuItem>
+                      <MenuItem>Side B</MenuItem>
+                      <MenuItem>Bootleg</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem>Reset</MenuItem>
+                    </MenuSub>
+                  </MenubarMenu>
+                </Menubar>
+              </Panel>
+            </div>
 
-            <Panel id="dialog" title="Dialog" stapled>
-              <Dialog
-                trigger={<Button variant="secondary">Reset the wall</Button>}
-                title="Reset the paste-up"
-                description="This tears every clipping off the wall. Continue?"
-                actions={
-                  <>
-                    <DialogClose>Cancel</DialogClose>
-                    <DialogClose variant="secondary">Reset</DialogClose>
-                  </>
-                }
-              >
-                <p className="riot-text">Clippings: 12 · Off-grid: 3</p>
-              </Dialog>
-            </Panel>
-            <Panel id="alert" title="Alert Dialog" tape="br">
-              <div className="riot-row">
-                <AlertDialog
-                  tone="danger"
-                  trigger={<Button variant="ghost">Burn it</Button>}
-                  title="Burn the whole issue?"
-                  description="This deletes every clipping and cannot be undone."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold</AlertDialogClose>
-                      <AlertDialogClose variant="danger">Burn</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="warning"
-                  trigger={<Button variant="ghost">Reset grid</Button>}
-                  title="Reset the grid?"
-                  description="Every clipping snaps back square. Confirm to reset."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Reset</AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="primary"
-                  trigger={<Button variant="ghost">Apply</Button>}
-                  title="Apply this layout?"
-                  description="The new paste-up replaces the current one."
-                  actions={
-                    <>
-                      <AlertDialogClose>Hold</AlertDialogClose>
-                      <AlertDialogClose variant="primary">Apply</AlertDialogClose>
-                    </>
-                  }
-                />
-              </div>
-            </Panel>
-
-            <Panel id="drawer" title="Drawer" tape="tr">
-              <div className="riot-row">
-                {(["top", "bottom", "left", "right"] as const).map((side) => (
-                  <Drawer
-                    key={side}
-                    side={side}
+            <div className="riot-section" id="navmenu">
+              <Panel title="Navigation Menu" tape="bl">
+                <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
+              </Panel>
+            </div>
+            <div className="riot-section" id="context">
+              <Panel title="Context Menu" tape="tl">
+                <div className="riot-stack">
+                  <ContextMenu
                     trigger={
-                      <Button variant="ghost">
-                        {side[0].toUpperCase() + side.slice(1)}
-                      </Button>
+                      <div className="riot-context__zone">
+                        <span className="riot-cap">
+                          Right-click the wall to open actions
+                        </span>
+                      </div>
                     }
-                    title="Layer settings"
-                    description="Adjust how this clipping sits on the wall."
-                    actions={<DrawerClose variant="secondary">Close</DrawerClose>}
                   >
-                    <label className="riot-row riot-row--between">
-                      <span className="riot-cap">Snap to grid</span>
-                      <Switch defaultChecked />
-                    </label>
-                    <label className="riot-row riot-row--between">
-                      <span className="riot-cap">Show outline</span>
-                      <Switch />
-                    </label>
-                    <Slider label="Opacity" defaultValue={50} />
-                  </Drawer>
-                ))}
-              </div>
-            </Panel>
-            <Panel id="toast" title="Toast" stapled>
-              <div className="riot-row">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({ title: "Saved", description: "Issue saved." })
+                    <MenuItem shortcut="⌘I">Inspect</MenuItem>
+                    <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                    <MenuItem disabled>Rip down</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">Delete</MenuItem>
+                  </ContextMenu>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="riot-section" id="dialog">
+              <Panel title="Dialog" stapled>
+                <Dialog
+                  trigger={<Button variant="secondary">Reset the wall</Button>}
+                  title="Reset the paste-up"
+                  description="This tears every clipping off the wall. Continue?"
+                  actions={
+                    <>
+                      <DialogClose>Cancel</DialogClose>
+                      <DialogClose variant="secondary">Reset</DialogClose>
+                    </>
                   }
                 >
-                  Notify
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => {
-                    const id = toast.add({
-                      title: "Pasted",
-                      description: "All clippings on the wall.",
-                      type: "success",
-                      actionProps: { children: "RIP IT", onClick: () => toast.close(id) },
-                    });
-                  }}
-                >
-                  Confirm
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Off grid",
-                      description: "Three clippings off the baseline.",
-                      type: "warning",
-                    })
-                  }
-                >
-                  Warn
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "Overflow",
-                      description: "Paste-up exceeds the frame.",
-                      type: "danger",
-                    })
-                  }
-                >
-                  Alarm
-                </Button>
-              </div>
-            </Panel>
+                  <p className="riot-text">Clippings: 12 · Off-grid: 3</p>
+                </Dialog>
+              </Panel>
+            </div>
+            <div className="riot-section" id="alert">
+              <Panel title="Alert Dialog" tape="br">
+                <div className="riot-row">
+                  <AlertDialog
+                    tone="danger"
+                    trigger={<Button variant="ghost">Burn it</Button>}
+                    title="Burn the whole issue?"
+                    description="This deletes every clipping and cannot be undone."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold</AlertDialogClose>
+                        <AlertDialogClose variant="danger">Burn</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="warning"
+                    trigger={<Button variant="ghost">Reset grid</Button>}
+                    title="Reset the grid?"
+                    description="Every clipping snaps back square. Confirm to reset."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Reset</AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="primary"
+                    trigger={<Button variant="ghost">Apply</Button>}
+                    title="Apply this layout?"
+                    description="The new paste-up replaces the current one."
+                    actions={
+                      <>
+                        <AlertDialogClose>Hold</AlertDialogClose>
+                        <AlertDialogClose variant="primary">Apply</AlertDialogClose>
+                      </>
+                    }
+                  />
+                </div>
+              </Panel>
+            </div>
+
+            <div className="riot-section" id="drawer">
+              <Panel title="Drawer" tape="tr">
+                <div className="riot-row">
+                  {(["top", "bottom", "left", "right"] as const).map((side) => (
+                    <Drawer
+                      key={side}
+                      side={side}
+                      trigger={
+                        <Button variant="ghost">
+                          {side[0].toUpperCase() + side.slice(1)}
+                        </Button>
+                      }
+                      title="Layer settings"
+                      description="Adjust how this clipping sits on the wall."
+                      actions={<DrawerClose variant="secondary">Close</DrawerClose>}
+                    >
+                      <label className="riot-row riot-row--between">
+                        <span className="riot-cap">Snap to grid</span>
+                        <Switch defaultChecked />
+                      </label>
+                      <label className="riot-row riot-row--between">
+                        <span className="riot-cap">Show outline</span>
+                        <Switch />
+                      </label>
+                      <Slider label="Opacity" defaultValue={50} />
+                    </Drawer>
+                  ))}
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="toast">
+              <Panel title="Toast" stapled>
+                <div className="riot-row">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({ title: "Saved", description: "Issue saved." })
+                    }
+                  >
+                    Notify
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => {
+                      const id = toast.add({
+                        title: "Pasted",
+                        description: "All clippings on the wall.",
+                        type: "success",
+                        actionProps: {
+                          children: "RIP IT",
+                          onClick: () => toast.close(id),
+                        },
+                      });
+                    }}
+                  >
+                    Confirm
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Off grid",
+                        description: "Three clippings off the baseline.",
+                        type: "warning",
+                      })
+                    }
+                  >
+                    Warn
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "Overflow",
+                        description: "Paste-up exceeds the frame.",
+                        type: "danger",
+                      })
+                    }
+                  >
+                    Alarm
+                  </Button>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1149,102 +1225,110 @@ function Demo() {
             marker={<Skull />}
           />
           <div className="riot-grid">
-            <Panel id="avatar" title="Avatar" tape="tl">
-              <div className="riot-row">
-                <Avatar status="online">
-                  <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="" />
-                  <AvatarFallback>PS</AvatarFallback>
-                </Avatar>
-                <Avatar size="sm" status="busy">
-                  <AvatarFallback>JR</AvatarFallback>
-                </Avatar>
-                <Avatar status="away">
-                  <AvatarFallback>SV</AvatarFallback>
-                </Avatar>
-                <Avatar size="lg" status="offline">
-                  <AvatarFallback>MC</AvatarFallback>
-                </Avatar>
-              </div>
-            </Panel>
-            <Panel id="badge" title="Badge" stapled>
-              <div className="riot-row">
-                <Badge tone="primary" dot>
-                  Primary
-                </Badge>
-                <Badge tone="success">Pasted</Badge>
-                <Badge tone="warning">Off grid</Badge>
-                <Badge tone="danger" dot>
-                  Overflow
-                </Badge>
-                <Badge tone="secondary">Ink</Badge>
-                <Badge tone="neutral">Draft</Badge>
-              </div>
-            </Panel>
+            <div className="riot-section" id="avatar">
+              <Panel title="Avatar" tape="tl">
+                <div className="riot-row">
+                  <Avatar status="online">
+                    <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="" />
+                    <AvatarFallback>PS</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="sm" status="busy">
+                    <AvatarFallback>JR</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="away">
+                    <AvatarFallback>SV</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="lg" status="offline">
+                    <AvatarFallback>MC</AvatarFallback>
+                  </Avatar>
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="badge">
+              <Panel title="Badge" stapled>
+                <div className="riot-row">
+                  <Badge tone="primary" dot>
+                    Primary
+                  </Badge>
+                  <Badge tone="success">Pasted</Badge>
+                  <Badge tone="warning">Off grid</Badge>
+                  <Badge tone="danger" dot>
+                    Overflow
+                  </Badge>
+                  <Badge tone="secondary">Ink</Badge>
+                  <Badge tone="neutral">Draft</Badge>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="toolbar" title="Toolbar" tape="br">
-              <Toolbar aria-label="Tools">
-                <BaseToggleGroup
-                  className="riot-toolbar__group"
-                  defaultValue={["fill"]}
-                  aria-label="Layers"
-                >
-                  <ToolbarButton render={<BaseToggle />} value="fill">
-                    Fill
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="ink">
-                    Ink
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="tape">
-                    Tape
-                  </ToolbarButton>
-                </BaseToggleGroup>
-                <ToolbarSeparator />
-                <ToolbarGroup aria-label="Shapes">
-                  <ToolbarButton aria-label="Square">
-                    <Square />
-                  </ToolbarButton>
-                  <ToolbarButton aria-label="Circle" disabled>
-                    <Circle />
-                  </ToolbarButton>
-                </ToolbarGroup>
-                <ToolbarSeparator />
-                <ToolbarLink href="#toolbar">
-                  <Dot />
-                  Saved
-                </ToolbarLink>
-              </Toolbar>
-            </Panel>
-            <Panel id="scroll" title="Scroll Area" tape="top">
-              <ScrollArea>
-                <ScrollAreaViewport>
-                  <ScrollAreaContent>
-                    <ol className="riot-scroll-list">
-                      {[
-                        ["09:00", "Ruled the grid"],
-                        ["09:20", "Cut the headline"],
-                        ["09:35", "Pasted it crooked"],
-                        ["09:50", "Stapled the wound"],
-                        ["10:10", "Aligned nothing"],
-                        ["10:30", "Ran fluoro orange"],
-                        ["10:55", "Ran hot pink"],
-                        ["11:20", "Ran acid green"],
-                        ["11:45", "Inked the rules"],
-                        ["12:10", "Ignored the margins"],
-                        ["12:35", "Pulled a proof"],
-                        ["13:00", "Filed the plate"],
-                      ].map(([time, msg]) => (
-                        <li key={time} className="riot-text">
-                          <span className="riot-cap">{time}</span> {msg}
-                        </li>
-                      ))}
-                    </ol>
-                  </ScrollAreaContent>
-                </ScrollAreaViewport>
-                <ScrollAreaScrollbar>
-                  <ScrollAreaThumb />
-                </ScrollAreaScrollbar>
-              </ScrollArea>
-            </Panel>
+            <div className="riot-section" id="toolbar">
+              <Panel title="Toolbar" tape="br">
+                <Toolbar aria-label="Tools">
+                  <BaseToggleGroup
+                    className="riot-toolbar__group"
+                    defaultValue={["fill"]}
+                    aria-label="Layers"
+                  >
+                    <ToolbarButton render={<BaseToggle />} value="fill">
+                      Fill
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="ink">
+                      Ink
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="tape">
+                      Tape
+                    </ToolbarButton>
+                  </BaseToggleGroup>
+                  <ToolbarSeparator />
+                  <ToolbarGroup aria-label="Shapes">
+                    <ToolbarButton aria-label="Square">
+                      <Square />
+                    </ToolbarButton>
+                    <ToolbarButton aria-label="Circle" disabled>
+                      <Circle />
+                    </ToolbarButton>
+                  </ToolbarGroup>
+                  <ToolbarSeparator />
+                  <ToolbarLink href="#toolbar">
+                    <Dot />
+                    Saved
+                  </ToolbarLink>
+                </Toolbar>
+              </Panel>
+            </div>
+            <div className="riot-section" id="scroll">
+              <Panel title="Scroll Area" tape="top">
+                <ScrollArea>
+                  <ScrollAreaViewport>
+                    <ScrollAreaContent>
+                      <ol className="riot-scroll-list">
+                        {[
+                          ["09:00", "Ruled the grid"],
+                          ["09:20", "Cut the headline"],
+                          ["09:35", "Pasted it crooked"],
+                          ["09:50", "Stapled the wound"],
+                          ["10:10", "Aligned nothing"],
+                          ["10:30", "Ran fluoro orange"],
+                          ["10:55", "Ran hot pink"],
+                          ["11:20", "Ran acid green"],
+                          ["11:45", "Inked the rules"],
+                          ["12:10", "Ignored the margins"],
+                          ["12:35", "Pulled a proof"],
+                          ["13:00", "Filed the plate"],
+                        ].map(([time, msg]) => (
+                          <li key={time} className="riot-text">
+                            <span className="riot-cap">{time}</span> {msg}
+                          </li>
+                        ))}
+                      </ol>
+                    </ScrollAreaContent>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
+                </ScrollArea>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1254,46 +1338,52 @@ function Demo() {
             marker={<Triangle />}
           />
           <div className="riot-grid">
-            <Panel id="typography" title="Typography" wide tape="top">
-              <div className="riot-stack">
-                <h2 className="riot-h1">Cut it up, paste it crooked</h2>
-                <h3 className="riot-h2">Ransom headings</h3>
-                <span className="riot-h3">Section sub-label</span>
-                <p className="riot-text">
-                  Body copy set in a battered typewriter face, with monospace numerals for
-                  every measurement across the zine.
-                </p>
-                <span className="riot-cap">Field caption · pasted crooked</span>
-              </div>
-            </Panel>
-
-            <Panel id="separator" title="Separator" stapled>
-              <div className="riot-stack">
-                <span className="riot-cap">Plain</span>
-                <Separator />
-                <span className="riot-cap">Labelled</span>
-                <Separator label="Issue II" align="start" />
-                <Separator label="Issue II" />
-                <Separator label="Issue II" align="end" />
-                <span className="riot-cap">Vertical</span>
-                <div className="riot-row">
-                  <span className="riot-text">Cut</span>
-                  <Separator orientation="vertical" />
-                  <span className="riot-text">Paste</span>
-                  <Separator orientation="vertical" />
-                  <span className="riot-text">Print</span>
+            <div className="riot-section riot-section--wide" id="typography">
+              <Panel title="Typography" tape="top">
+                <div className="riot-stack">
+                  <h2 className="riot-h1">Cut it up, paste it crooked</h2>
+                  <h3 className="riot-h2">Ransom headings</h3>
+                  <span className="riot-h3">Section sub-label</span>
+                  <p className="riot-text">
+                    Body copy set in a battered typewriter face, with monospace numerals
+                    for every measurement across the zine.
+                  </p>
+                  <span className="riot-cap">Field caption · pasted crooked</span>
                 </div>
-              </div>
-            </Panel>
-            <Panel id="panel" title="Panel" tape="tr">
-              <p className="riot-text riot-panel-note">
-                The torn clipping wrapping every section — paper, a hard offset shadow and
-                a stamped code, pinned up at its own angle. Composable to any depth.
-              </p>
-              <Panel title="Nested clipping" stapled>
-                <span className="riot-cap">A clipping within a clipping</span>
               </Panel>
-            </Panel>
+            </div>
+
+            <div className="riot-section" id="separator">
+              <Panel title="Separator" stapled>
+                <div className="riot-stack">
+                  <span className="riot-cap">Plain</span>
+                  <Separator />
+                  <span className="riot-cap">Labelled</span>
+                  <Separator label="Issue II" align="start" />
+                  <Separator label="Issue II" />
+                  <Separator label="Issue II" align="end" />
+                  <span className="riot-cap">Vertical</span>
+                  <div className="riot-row">
+                    <span className="riot-text">Cut</span>
+                    <Separator orientation="vertical" />
+                    <span className="riot-text">Paste</span>
+                    <Separator orientation="vertical" />
+                    <span className="riot-text">Print</span>
+                  </div>
+                </div>
+              </Panel>
+            </div>
+            <div className="riot-section" id="panel">
+              <Panel title="Panel" tape="tr">
+                <p className="riot-text riot-panel-note">
+                  The torn clipping wrapping every section — paper, a hard offset shadow
+                  and a stamped code, pinned up at its own angle. Composable to any depth.
+                </p>
+                <Panel title="Nested clipping" stapled>
+                  <span className="riot-cap">A clipping within a clipping</span>
+                </Panel>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1303,11 +1393,13 @@ function Demo() {
             marker={<StarFill />}
           />
           <div className="riot-grid">
-            <Panel id="loader" title="Loader" wide tape="top">
-              <div className="demo-loader-stage">
-                <Loader />
-              </div>
-            </Panel>
+            <div className="riot-section riot-section--wide" id="loader">
+              <Panel title="Loader" tape="top">
+                <div className="demo-loader-stage">
+                  <Loader />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <footer className="riot-footer">

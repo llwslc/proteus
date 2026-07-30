@@ -383,12 +383,17 @@
 .nocturne-grid > * {
   min-width: 0;
 }
-.nocturne-panel--wide {
+.nocturne-section {
+  display: flex;
+  min-width: 0;
+  scroll-margin-top: 80px;
+}
+.nocturne-section--wide {
   grid-column: 1 / -1;
 }
-
-.nocturne-grid section {
-  scroll-margin-top: 80px;
+.nocturne-section > .nocturne-panel {
+  flex: 1;
+  min-width: 0;
 }
 
 .nocturne-row {

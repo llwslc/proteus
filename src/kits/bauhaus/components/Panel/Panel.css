@@ -4,9 +4,6 @@
   display: flex;
   flex-direction: column;
 }
-.bauhaus-panel--wide {
-  grid-column: 1 / -1;
-}
 .bauhaus-panel__head {
   display: flex;
   align-items: center;

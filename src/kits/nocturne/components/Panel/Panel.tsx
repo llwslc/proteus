@@ -4,10 +4,8 @@ import { Sprig } from "../bloom";
 import "./Panel.css";
 
 export interface PanelProps {
-  id?: string;
   title?: ReactNode;
   corners?: boolean;
-  wide?: boolean;
   children?: ReactNode;
 }
 
@@ -24,17 +22,9 @@ function PanelCorner({ mod }: { mod: string }) {
   );
 }
 
-export function Panel({ id, title, corners = true, wide, children }: PanelProps) {
+export function Panel({ title, corners = true, children }: PanelProps) {
   return (
-    <section
-      id={id}
-      className={cx(
-        "nocturne-panel",
-        "nocturne-velvet",
-        "nocturne-lined",
-        wide && "nocturne-panel--wide",
-      )}
-    >
+    <section className={cx("nocturne-panel", "nocturne-velvet", "nocturne-lined")}>
       {corners ? (
         <>
           <PanelCorner mod="tl" />

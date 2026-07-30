@@ -3,16 +3,14 @@ import { cx } from "../cx";
 import "./Panel.css";
 
 export interface PanelProps {
-  id?: string;
   title?: ReactNode;
   marker?: ReactNode;
-  wide?: boolean;
   children?: ReactNode;
 }
 
-export function Panel({ id, title, marker, wide, children }: PanelProps) {
+export function Panel({ title, marker, children }: PanelProps) {
   return (
-    <section id={id} className={cx("hanabi-panel", wide && "hanabi-panel--wide")}>
+    <section className={cx("hanabi-panel")}>
       {(title || marker) && (
         <header className="hanabi-panel__head">
           {title && (

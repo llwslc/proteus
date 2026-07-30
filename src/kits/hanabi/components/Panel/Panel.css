@@ -16,10 +16,6 @@
   box-shadow: var(--hanabi-shadow-lg);
 }
 
-.hanabi-panel--wide {
-  grid-column: 1 / -1;
-}
-
 .hanabi-panel__head:empty {
   display: none;
 }

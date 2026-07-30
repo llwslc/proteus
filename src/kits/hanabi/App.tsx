@@ -461,240 +461,276 @@ function Demo() {
             marker="✦"
           />
           <div className="hanabi-grid">
-            <Panel id="button" title="Button" wide>
-              <div className="hanabi-stack">
-                <div className="hanabi-row">
-                  <Button icon={<RocketIcon />}>出撃</Button>
-                  <Button variant="secondary">編成を見る</Button>
-                  <Button variant="danger">撤退</Button>
-                  <Button variant="ghost">あとで</Button>
-                  <Button disabled>封印中</Button>
+            <div className="hanabi-section hanabi-section--wide" id="button">
+              <Panel title="Button">
+                <div className="hanabi-stack">
+                  <div className="hanabi-row">
+                    <Button icon={<RocketIcon />}>出撃</Button>
+                    <Button variant="secondary">編成を見る</Button>
+                    <Button variant="danger">撤退</Button>
+                    <Button variant="ghost">あとで</Button>
+                    <Button disabled>封印中</Button>
+                  </div>
+                  <Separator />
+                  <div className="hanabi-row">
+                    <Button size="sm">短押し</Button>
+                    <Button size="md">標準</Button>
+                    <Button size="lg">必殺</Button>
+                  </div>
+                  <Separator />
+                  <div className="hanabi-row">
+                    <Button variant="icon" aria-label="複製">
+                      <CopyIcon />
+                    </Button>
+                    <Button variant="icon" aria-label="索敵">
+                      <TargetIcon />
+                    </Button>
+                    <Button variant="icon" disabled aria-label="封印">
+                      <XIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="火花">
+                      <SparkIcon />
+                    </Button>
+                    <Button variant="icon-ghost" aria-label="応援">
+                      <HeartIcon />
+                    </Button>
+                  </div>
                 </div>
-                <Separator />
-                <div className="hanabi-row">
-                  <Button size="sm">短押し</Button>
-                  <Button size="md">標準</Button>
-                  <Button size="lg">必殺</Button>
+              </Panel>
+            </div>
+
+            <div className="hanabi-section" id="switch">
+              <Panel title="Switch">
+                <div className="hanabi-stack">
+                  <label className="hanabi-row hanabi-row--between">
+                    <span className="hanabi-cap">オート戦闘</span>
+                    <Switch defaultChecked />
+                  </label>
+                  <label className="hanabi-row hanabi-row--between">
+                    <span className="hanabi-cap">ストーリーボイス</span>
+                    <Switch />
+                  </label>
+                  <label className="hanabi-row hanabi-row--between">
+                    <span className="hanabi-cap">クラウド同期</span>
+                    <Switch disabled defaultChecked />
+                  </label>
+                  <label className="hanabi-row hanabi-row--between">
+                    <span className="hanabi-cap">機密ロック</span>
+                    <Switch disabled />
+                  </label>
                 </div>
-                <Separator />
-                <div className="hanabi-row">
-                  <Button variant="icon" aria-label="複製">
-                    <CopyIcon />
-                  </Button>
-                  <Button variant="icon" aria-label="索敵">
-                    <TargetIcon />
-                  </Button>
-                  <Button variant="icon" disabled aria-label="封印">
-                    <XIcon />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="火花">
-                    <SparkIcon />
-                  </Button>
-                  <Button variant="icon-ghost" aria-label="応援">
-                    <HeartIcon />
-                  </Button>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="toggle">
+              <Panel title="Toggle Group">
+                <div className="hanabi-stack">
+                  <ToggleGroup defaultValue={["van"]}>
+                    <Toggle value="van">前衛</Toggle>
+                    <Toggle value="sup">支援</Toggle>
+                    <Toggle value="rear" disabled>
+                      後衛
+                    </Toggle>
+                  </ToggleGroup>
+                  <ToggleGroup multiple defaultValue={["bgm", "se", "vib"]}>
+                    <Toggle value="bgm">BGM</Toggle>
+                    <Toggle value="se">SE</Toggle>
+                    <Toggle value="voice">ボイス</Toggle>
+                    <Toggle value="vib" disabled>
+                      振動
+                    </Toggle>
+                  </ToggleGroup>
                 </div>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
 
-            <Panel id="switch" title="Switch">
-              <div className="hanabi-stack">
-                <label className="hanabi-row hanabi-row--between">
-                  <span className="hanabi-cap">オート戦闘</span>
-                  <Switch defaultChecked />
-                </label>
-                <label className="hanabi-row hanabi-row--between">
-                  <span className="hanabi-cap">ストーリーボイス</span>
-                  <Switch />
-                </label>
-                <label className="hanabi-row hanabi-row--between">
-                  <span className="hanabi-cap">クラウド同期</span>
-                  <Switch disabled defaultChecked />
-                </label>
-                <label className="hanabi-row hanabi-row--between">
-                  <span className="hanabi-cap">機密ロック</span>
-                  <Switch disabled />
-                </label>
-              </div>
-            </Panel>
-            <Panel id="toggle" title="Toggle Group">
-              <div className="hanabi-stack">
-                <ToggleGroup defaultValue={["van"]}>
-                  <Toggle value="van">前衛</Toggle>
-                  <Toggle value="sup">支援</Toggle>
-                  <Toggle value="rear" disabled>
-                    後衛
-                  </Toggle>
-                </ToggleGroup>
-                <ToggleGroup multiple defaultValue={["bgm", "se", "vib"]}>
-                  <Toggle value="bgm">BGM</Toggle>
-                  <Toggle value="se">SE</Toggle>
-                  <Toggle value="voice">ボイス</Toggle>
-                  <Toggle value="vib" disabled>
-                    振動
-                  </Toggle>
-                </ToggleGroup>
-              </div>
-            </Panel>
+            <div className="hanabi-section" id="checkbox">
+              <Panel title="Checkbox">
+                <div className="hanabi-stack">
+                  <Checkbox defaultChecked label="弾薬装填" />
+                  <Checkbox label="照準補正" />
+                  <Checkbox disabled defaultChecked label="整備済み" />
+                  <Checkbox disabled label="封印" />
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="checkbox-group">
+              <Panel title="Checkbox Group">
+                <div className="hanabi-stack">
+                  <CheckboxGroup
+                    defaultValue={["aim"]}
+                    parentLabel="全ガイド表示"
+                    items={[
+                      { label: "照準線", value: "aim" },
+                      { label: "弾道表示", value: "trajectory" },
+                      { label: "危険域", value: "hazard" },
+                    ]}
+                  />
+                  <CheckboxGroup
+                    defaultValue={["orbit"]}
+                    parentLabel="封印ガイド"
+                    disabled
+                    items={[
+                      { label: "軌道予測", value: "orbit" },
+                      { label: "敵性表示", value: "enemy" },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="checkbox" title="Checkbox">
-              <div className="hanabi-stack">
-                <Checkbox defaultChecked label="弾薬装填" />
-                <Checkbox label="照準補正" />
-                <Checkbox disabled defaultChecked label="整備済み" />
-                <Checkbox disabled label="封印" />
-              </div>
-            </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group">
-              <div className="hanabi-stack">
-                <CheckboxGroup
-                  defaultValue={["aim"]}
-                  parentLabel="全ガイド表示"
-                  items={[
-                    { label: "照準線", value: "aim" },
-                    { label: "弾道表示", value: "trajectory" },
-                    { label: "危険域", value: "hazard" },
-                  ]}
-                />
-                <CheckboxGroup
-                  defaultValue={["orbit"]}
-                  parentLabel="封印ガイド"
-                  disabled
-                  items={[
-                    { label: "軌道予測", value: "orbit" },
-                    { label: "敵性表示", value: "enemy" },
-                  ]}
-                />
-              </div>
-            </Panel>
+            <div className="hanabi-section" id="radio">
+              <Panel title="Radio Group">
+                <div className="hanabi-stack">
+                  <span className="hanabi-cap">出撃難度</span>
+                  <RadioGroup defaultValue="drill">
+                    <Radio value="drill">演習</Radio>
+                    <Radio value="standard">標準</Radio>
+                    <Radio value="nightmare">悪夢</Radio>
+                    <Radio value="abyss" disabled>
+                      深淵（未開放）
+                    </Radio>
+                  </RadioGroup>
+                  <span className="hanabi-cap">照準モード（封印）</span>
+                  <RadioGroup disabled defaultValue="auto">
+                    <Radio value="manual">手動照準</Radio>
+                    <Radio value="auto">自動追尾（固定）</Radio>
+                  </RadioGroup>
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="select">
+              <Panel title="Select">
+                <div className="hanabi-stack">
+                  <label className="hanabi-cap" htmlFor="sel-1">
+                    主装備
+                  </label>
+                  <Select
+                    items={ARMAMENTS}
+                    placeholder="装備…"
+                    defaultValue="ren"
+                    id="sel-1"
+                  />
+                  <label className="hanabi-cap" htmlFor="sel-2">
+                    副装備
+                  </label>
+                  <Select items={ARMAMENTS_SHORT} placeholder="未選択" id="sel-2" />
+                  <label className="hanabi-cap" htmlFor="sel-3">
+                    封印装備
+                  </label>
+                  <Select
+                    items={ARMAMENTS_SHORT}
+                    defaultValue="ren"
+                    disabled
+                    id="sel-3"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="radio" title="Radio Group">
-              <div className="hanabi-stack">
-                <span className="hanabi-cap">出撃難度</span>
-                <RadioGroup defaultValue="drill">
-                  <Radio value="drill">演習</Radio>
-                  <Radio value="standard">標準</Radio>
-                  <Radio value="nightmare">悪夢</Radio>
-                  <Radio value="abyss" disabled>
-                    深淵（未開放）
-                  </Radio>
-                </RadioGroup>
-                <span className="hanabi-cap">照準モード（封印）</span>
-                <RadioGroup disabled defaultValue="auto">
-                  <Radio value="manual">手動照準</Radio>
-                  <Radio value="auto">自動追尾（固定）</Radio>
-                </RadioGroup>
-              </div>
-            </Panel>
-            <Panel id="select" title="Select">
-              <div className="hanabi-stack">
-                <label className="hanabi-cap" htmlFor="sel-1">
-                  主装備
-                </label>
-                <Select
-                  items={ARMAMENTS}
-                  placeholder="装備…"
-                  defaultValue="ren"
-                  id="sel-1"
-                />
-                <label className="hanabi-cap" htmlFor="sel-2">
-                  副装備
-                </label>
-                <Select items={ARMAMENTS_SHORT} placeholder="未選択" id="sel-2" />
-                <label className="hanabi-cap" htmlFor="sel-3">
-                  封印装備
-                </label>
-                <Select items={ARMAMENTS_SHORT} defaultValue="ren" disabled id="sel-3" />
-              </div>
-            </Panel>
+            <div className="hanabi-section" id="combobox">
+              <Panel title="Combobox">
+                <div className="hanabi-stack">
+                  <span className="hanabi-cap">スキル検索</span>
+                  <Combobox
+                    items={SKILLS}
+                    placeholder="スキル…"
+                    emptyText="該当なし"
+                    label="スキル検索"
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="autocomplete">
+              <Panel title="Autocomplete">
+                <div className="hanabi-stack">
+                  <span className="hanabi-cap">隊員を呼ぶ</span>
+                  <Autocomplete
+                    items={MEMBERS}
+                    placeholder="名前…"
+                    emptyText="該当なし"
+                    label="隊員を呼ぶ"
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="combobox" title="Combobox">
-              <div className="hanabi-stack">
-                <span className="hanabi-cap">スキル検索</span>
-                <Combobox
-                  items={SKILLS}
-                  placeholder="スキル…"
-                  emptyText="該当なし"
-                  label="スキル検索"
-                />
-              </div>
-            </Panel>
-            <Panel id="autocomplete" title="Autocomplete">
-              <div className="hanabi-stack">
-                <span className="hanabi-cap">隊員を呼ぶ</span>
-                <Autocomplete
-                  items={MEMBERS}
-                  placeholder="名前…"
-                  emptyText="該当なし"
-                  label="隊員を呼ぶ"
-                />
-              </div>
-            </Panel>
+            <div className="hanabi-section" id="slider">
+              <Panel title="Slider">
+                <div className="hanabi-stack">
+                  <Slider label="BGM 音量" defaultValue={62} />
+                  <Slider label="ガンマ補正" defaultValue={40} disabled />
+                  <Slider label="弾幕密度" defaultValue={75} showValue={false} />
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="number">
+              <Panel title="Number Field">
+                <div className="hanabi-stack">
+                  <label className="hanabi-cap" htmlFor="num-1">
+                    出撃人数
+                  </label>
+                  <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
+                  <label className="hanabi-cap" htmlFor="num-2">
+                    出撃上限
+                  </label>
+                  <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="slider" title="Slider">
-              <div className="hanabi-stack">
-                <Slider label="BGM 音量" defaultValue={62} />
-                <Slider label="ガンマ補正" defaultValue={40} disabled />
-                <Slider label="弾幕密度" defaultValue={75} showValue={false} />
-              </div>
-            </Panel>
-            <Panel id="number" title="Number Field">
-              <div className="hanabi-stack">
-                <label className="hanabi-cap" htmlFor="num-1">
-                  出撃人数
-                </label>
-                <NumberField defaultValue={7} min={0} max={12} step={1} id="num-1" />
-                <label className="hanabi-cap" htmlFor="num-2">
-                  出撃上限
-                </label>
-                <NumberField defaultValue={12} min={0} max={12} step={1} id="num-2" />
-              </div>
-            </Panel>
-
-            <Panel id="input" title="Text Field">
-              <div className="hanabi-stack">
-                <Field
-                  label="部隊名"
-                  placeholder="花火小隊"
-                  defaultValue="花火小隊"
-                  description="作戦簿にこの名前で記載されます。"
-                />
-                <Input
-                  icon={<SearchIcon />}
-                  placeholder="装備を検索…"
-                  aria-label="装備を検索"
-                />
-                <AccessKeyField />
-                <Field label="ロック済み" defaultValue="HANABI-873" disabled />
-                <Field
-                  label="識別コード"
-                  defaultValue="HNB-8７3"
-                  error="使用できない文字が含まれています。"
-                />
-              </div>
-            </Panel>
-            <Panel id="otp" title="OTP Field">
-              <div className="hanabi-stack">
-                <span className="hanabi-cap">認証コード</span>
-                <OtpField length={6} splitAt={3} defaultValue="873" label="認証コード" />
-                <span className="hanabi-cap">秘匿コード</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="873"
-                  mask
-                  label="秘匿コード"
-                />
-                <span className="hanabi-cap">失効コード</span>
-                <OtpField
-                  length={6}
-                  splitAt={3}
-                  defaultValue="873"
-                  disabled
-                  label="失効コード"
-                />
-              </div>
-            </Panel>
+            <div className="hanabi-section" id="input">
+              <Panel title="Text Field">
+                <div className="hanabi-stack">
+                  <Field
+                    label="部隊名"
+                    placeholder="花火小隊"
+                    defaultValue="花火小隊"
+                    description="作戦簿にこの名前で記載されます。"
+                  />
+                  <Input
+                    icon={<SearchIcon />}
+                    placeholder="装備を検索…"
+                    aria-label="装備を検索"
+                  />
+                  <AccessKeyField />
+                  <Field label="ロック済み" defaultValue="HANABI-873" disabled />
+                  <Field
+                    label="識別コード"
+                    defaultValue="HNB-8７3"
+                    error="使用できない文字が含まれています。"
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="otp">
+              <Panel title="OTP Field">
+                <div className="hanabi-stack">
+                  <span className="hanabi-cap">認証コード</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="873"
+                    label="認証コード"
+                  />
+                  <span className="hanabi-cap">秘匿コード</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="873"
+                    mask
+                    label="秘匿コード"
+                  />
+                  <span className="hanabi-cap">失効コード</span>
+                  <OtpField
+                    length={6}
+                    splitAt={3}
+                    defaultValue="873"
+                    disabled
+                    label="失効コード"
+                  />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -704,15 +740,19 @@ function Demo() {
             marker="★"
           />
           <div className="hanabi-grid">
-            <Panel id="fieldset" title="Fieldset">
-              <Fieldset legend="指揮官">
-                <Field label="名前" defaultValue="結衣" />
-                <Field label="所属" defaultValue="花火湾守備隊" />
-              </Fieldset>
-            </Panel>
-            <Panel id="form" title="Form">
-              <FormDemo />
-            </Panel>
+            <div className="hanabi-section" id="fieldset">
+              <Panel title="Fieldset">
+                <Fieldset legend="指揮官">
+                  <Field label="名前" defaultValue="結衣" />
+                  <Field label="所属" defaultValue="花火湾守備隊" />
+                </Fieldset>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="form">
+              <Panel title="Form">
+                <FormDemo />
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -722,120 +762,130 @@ function Demo() {
             marker="✦"
           />
           <div className="hanabi-grid">
-            <Panel id="progress" title="Progress">
-              <ProgressBars />
-            </Panel>
-            <Panel id="meter" title="Meter">
-              <div className="hanabi-stack">
-                <Meter label="士気" value={88} />
-                <Meter label="命中率" value={70} tone="success" />
-                <Meter label="損耗" value={52} tone="warning" />
-                <Meter label="過熱" value={23} tone="danger" />
-              </div>
-            </Panel>
+            <div className="hanabi-section" id="progress">
+              <Panel title="Progress">
+                <ProgressBars />
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="meter">
+              <Panel title="Meter">
+                <div className="hanabi-stack">
+                  <Meter label="士気" value={88} />
+                  <Meter label="命中率" value={70} tone="success" />
+                  <Meter label="損耗" value={52} tone="warning" />
+                  <Meter label="過熱" value={23} tone="danger" />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="tabs" title="Tabs" wide>
-              <Tabs
-                defaultValue="ops"
-                items={[
-                  {
-                    value: "ops",
-                    label: "作戦",
-                    content: (
-                      <p className="hanabi-text">
-                        夜明けと同時に湾内へ進入。目標は〈深海残響〉の核、合図は花火三連。
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "gear",
-                    label: "装備",
-                    content: (
-                      <p className="hanabi-text">
-                        セル画の刃は軽くてよく斬れる。予備の弾倉と甘味は多めに。
-                      </p>
-                    ),
-                  },
-                  {
-                    value: "log",
-                    label: "記録",
-                    content: (
-                      <p className="hanabi-text">
-                        前回の出撃記録は司令部で封印中。開示には第4章クリアが必要。
-                      </p>
-                    ),
-                    disabled: true,
-                  },
-                ]}
-              />
-            </Panel>
-
-            <Panel id="accordion" title="Accordion">
-              <div className="hanabi-stack">
-                <span className="hanabi-cap">一つずつ開く</span>
-                <Accordion
-                  defaultValue={["ops"]}
+            <div className="hanabi-section hanabi-section--wide" id="tabs">
+              <Panel title="Tabs">
+                <Tabs
+                  defaultValue="ops"
                   items={[
                     {
                       value: "ops",
-                      title: "作戦",
-                      content: "夜明けと同時に湾内へ突入。退路は花火で照らす。",
+                      label: "作戦",
+                      content: (
+                        <p className="hanabi-text">
+                          夜明けと同時に湾内へ進入。目標は〈深海残響〉の核、合図は花火三連。
+                        </p>
+                      ),
                     },
-                    {
-                      value: "squad",
-                      title: "編成",
-                      content: "前衛一、支援二。合図は三連の光、見逃さないこと。",
-                    },
-                    {
-                      value: "supply",
-                      disabled: true,
-                      title: "補給",
-                      content: "弾薬は多めに、撤収は素早く。甘味は士気に直結する。",
-                    },
-                  ]}
-                />
-                <span className="hanabi-cap">同時に開く</span>
-                <Accordion
-                  openMultiple
-                  defaultValue={["gear", "promise"]}
-                  items={[
                     {
                       value: "gear",
-                      title: "装備",
-                      content: "描線の刃と平涂の盾。影は冷たい紫でついてくる。",
+                      label: "装備",
+                      content: (
+                        <p className="hanabi-text">
+                          セル画の刃は軽くてよく斬れる。予備の弾倉と甘味は多めに。
+                        </p>
+                      ),
                     },
                     {
-                      value: "promise",
+                      value: "log",
+                      label: "記録",
+                      content: (
+                        <p className="hanabi-text">
+                          前回の出撃記録は司令部で封印中。開示には第4章クリアが必要。
+                        </p>
+                      ),
                       disabled: true,
-                      title: "約束",
-                      content: "全員で帰ること。それが花火小隊の第一条。",
                     },
                   ]}
                 />
-              </div>
-            </Panel>
-            <Panel id="collapsible" title="Collapsible">
-              <div className="hanabi-stack">
-                <Collapsible title="作戦メモ" defaultOpen>
-                  <p className="hanabi-text">
-                    連携出撃は第4章で解放。補給は毎日 05:00 にリセットされる。
-                  </p>
-                </Collapsible>
-                <Collapsible title="整備記録">
-                  <p className="hanabi-text">
-                    準星スライダーの調整済み。刀光の角度は 115 度で固定。
-                  </p>
-                </Collapsible>
-                <Collapsible title="機密資料" disabled>
-                  <p className="hanabi-text">第4章クリアで開示。司令部の封印付き。</p>
-                </Collapsible>
-                <Collapsible title="隊規" defaultOpen disabled>
-                  <p className="hanabi-text">
-                    全員で帰ること。司令部の封印付きで掲示中。
-                  </p>
-                </Collapsible>
-              </div>
-            </Panel>
+              </Panel>
+            </div>
+
+            <div className="hanabi-section" id="accordion">
+              <Panel title="Accordion">
+                <div className="hanabi-stack">
+                  <span className="hanabi-cap">一つずつ開く</span>
+                  <Accordion
+                    defaultValue={["ops"]}
+                    items={[
+                      {
+                        value: "ops",
+                        title: "作戦",
+                        content: "夜明けと同時に湾内へ突入。退路は花火で照らす。",
+                      },
+                      {
+                        value: "squad",
+                        title: "編成",
+                        content: "前衛一、支援二。合図は三連の光、見逃さないこと。",
+                      },
+                      {
+                        value: "supply",
+                        disabled: true,
+                        title: "補給",
+                        content: "弾薬は多めに、撤収は素早く。甘味は士気に直結する。",
+                      },
+                    ]}
+                  />
+                  <span className="hanabi-cap">同時に開く</span>
+                  <Accordion
+                    openMultiple
+                    defaultValue={["gear", "promise"]}
+                    items={[
+                      {
+                        value: "gear",
+                        title: "装備",
+                        content: "描線の刃と平涂の盾。影は冷たい紫でついてくる。",
+                      },
+                      {
+                        value: "promise",
+                        disabled: true,
+                        title: "約束",
+                        content: "全員で帰ること。それが花火小隊の第一条。",
+                      },
+                    ]}
+                  />
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="collapsible">
+              <Panel title="Collapsible">
+                <div className="hanabi-stack">
+                  <Collapsible title="作戦メモ" defaultOpen>
+                    <p className="hanabi-text">
+                      連携出撃は第4章で解放。補給は毎日 05:00 にリセットされる。
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="整備記録">
+                    <p className="hanabi-text">
+                      準星スライダーの調整済み。刀光の角度は 115 度で固定。
+                    </p>
+                  </Collapsible>
+                  <Collapsible title="機密資料" disabled>
+                    <p className="hanabi-text">第4章クリアで開示。司令部の封印付き。</p>
+                  </Collapsible>
+                  <Collapsible title="隊規" defaultOpen disabled>
+                    <p className="hanabi-text">
+                      全員で帰ること。司令部の封印付きで掲示中。
+                    </p>
+                  </Collapsible>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -845,295 +895,317 @@ function Demo() {
             marker="★"
           />
           <div className="hanabi-grid">
-            <Panel id="tooltip" title="Tooltip">
-              <div className="hanabi-row">
-                <Tooltip content="照準を合わせる" side="top">
-                  <Button variant="ghost">照準</Button>
-                </Tooltip>
-                <Tooltip content="散開して回避" side="bottom">
-                  <Button variant="ghost">散開</Button>
-                </Tooltip>
-                <Tooltip content="隊列を組み直す" side="left">
-                  <Button variant="ghost">隊列</Button>
-                </Tooltip>
-                <Tooltip content="目標をロック" side="right">
-                  <Button variant="ghost">ロック</Button>
-                </Tooltip>
-              </div>
-            </Panel>
-            <Panel id="popover" title="Popover">
-              <Popover trigger={<Button variant="ghost">詳細</Button>} title="第一小隊">
-                前衛一、支援二で編成中。次の出撃で必殺ゲージが満タンになる見込み。
-              </Popover>
-            </Panel>
+            <div className="hanabi-section" id="tooltip">
+              <Panel title="Tooltip">
+                <div className="hanabi-row">
+                  <Tooltip content="照準を合わせる" side="top">
+                    <Button variant="ghost">照準</Button>
+                  </Tooltip>
+                  <Tooltip content="散開して回避" side="bottom">
+                    <Button variant="ghost">散開</Button>
+                  </Tooltip>
+                  <Tooltip content="隊列を組み直す" side="left">
+                    <Button variant="ghost">隊列</Button>
+                  </Tooltip>
+                  <Tooltip content="目標をロック" side="right">
+                    <Button variant="ghost">ロック</Button>
+                  </Tooltip>
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="popover">
+              <Panel title="Popover">
+                <Popover trigger={<Button variant="ghost">詳細</Button>} title="第一小隊">
+                  前衛一、支援二で編成中。次の出撃で必殺ゲージが満タンになる見込み。
+                </Popover>
+              </Panel>
+            </div>
 
-            <Panel id="preview" title="Preview Card" wide>
-              <div className="hanabi-stack">
-                <span className="hanabi-cap">隊長にホバー</span>
-                <p className="hanabi-text">
-                  作戦立案は隊長の{" "}
-                  <PreviewCard
+            <div className="hanabi-section hanabi-section--wide" id="preview">
+              <Panel title="Preview Card">
+                <div className="hanabi-stack">
+                  <span className="hanabi-cap">隊長にホバー</span>
+                  <p className="hanabi-text">
+                    作戦立案は隊長の{" "}
+                    <PreviewCard
+                      trigger={
+                        <a
+                          href="#preview"
+                          className="hanabi-link"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          @yui
+                        </a>
+                      }
+                    >
+                      <div className="hanabi-preview__head">
+                        <Avatar status="online">
+                          <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
+                          <AvatarFallback>結</AvatarFallback>
+                        </Avatar>
+                        <span className="hanabi-preview__ident">
+                          <span className="hanabi-h3 hanabi-preview__title">結衣</span>
+                          <span className="hanabi-preview__handle">@yui</span>
+                        </span>
+                      </div>
+                      <p className="hanabi-text hanabi-preview__desc">
+                        支援型のエース。花火のように明るく、影のように速い。口癖は「いつでも行けますよ」。
+                      </p>
+                      <div className="hanabi-preview__footer">
+                        <Badge tone="primary" dot>
+                          ★5
+                        </Badge>
+                        <Badge tone="neutral">花火湾</Badge>
+                      </div>
+                    </PreviewCard>{" "}
+                    が担当。
+                  </p>
+                </div>
+              </Panel>
+            </div>
+
+            <div className="hanabi-section" id="menu">
+              <Panel title="Menu">
+                <Menu trigger="アクション">
+                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                    複製
+                  </MenuItem>
+                  <MenuItem icon={<TargetIcon />} shortcut="⌘L">
+                    索敵
+                  </MenuItem>
+                  <MenuItem icon={<FireworkIcon />} shortcut="⌘R">
+                    散開
+                  </MenuItem>
+                  <MenuItem icon={<XIcon />} disabled>
+                    ラスタライズ
+                  </MenuItem>
+                  <MenuItem icon={<BoltIcon />}>チャージ</MenuItem>
+                  <MenuItem icon={<ShieldIcon />}>隊列を組む</MenuItem>
+                  <MenuItem icon={<CopyIcon />}>左右反転</MenuItem>
+                  <MenuItem icon={<SearchIcon />}>90° 回転</MenuItem>
+                  <MenuItem icon={<SparkIcon />}>ガイドに吸着</MenuItem>
+                  <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
+                  <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
+                  <MenuSeparator />
+                  <MenuItem icon={<TrashIcon />} tone="danger">
+                    削除
+                  </MenuItem>
+                </Menu>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="menubar">
+              <Panel title="Menubar">
+                <Menubar>
+                  <MenubarMenu label="部隊">
+                    <MenuItem>招集</MenuItem>
+                    <MenuItem>解散</MenuItem>
+                    <MenuItem disabled>再編成</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem tone="danger">除名</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="配置">
+                    <MenuItem shortcut="⌘]">前へ出す</MenuItem>
+                    <MenuItem shortcut="⌘[">後ろへ下げる</MenuItem>
+                  </MenubarMenu>
+                  <MenubarMenu label="整列">
+                    <MenuItem>左端に寄せる</MenuItem>
+                    <MenuItem>右端に寄せる</MenuItem>
+                    <MenuSub label="分配">
+                      <MenuItem>上段</MenuItem>
+                      <MenuItem>中段</MenuItem>
+                      <MenuItem>下段</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem>リセット</MenuItem>
+                    </MenuSub>
+                  </MenubarMenu>
+                </Menubar>
+              </Panel>
+            </div>
+
+            <div className="hanabi-section" id="navmenu">
+              <Panel title="Navigation Menu">
+                <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="context">
+              <Panel title="Context Menu">
+                <div className="hanabi-stack">
+                  <ContextMenu
                     trigger={
-                      <a
-                        href="#preview"
-                        className="hanabi-link"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        @yui
-                      </a>
+                      <div className="hanabi-context__zone">
+                        <span className="hanabi-cap">右クリックで作戦メニューを開く</span>
+                      </div>
                     }
                   >
-                    <div className="hanabi-preview__head">
-                      <Avatar status="online">
-                        <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
-                        <AvatarFallback>結</AvatarFallback>
-                      </Avatar>
-                      <span className="hanabi-preview__ident">
-                        <span className="hanabi-h3 hanabi-preview__title">結衣</span>
-                        <span className="hanabi-preview__handle">@yui</span>
-                      </span>
-                    </div>
-                    <p className="hanabi-text hanabi-preview__desc">
-                      支援型のエース。花火のように明るく、影のように速い。口癖は「いつでも行けますよ」。
-                    </p>
-                    <div className="hanabi-preview__footer">
-                      <Badge tone="primary" dot>
-                        ★5
-                      </Badge>
-                      <Badge tone="neutral">花火湾</Badge>
-                    </div>
-                  </PreviewCard>{" "}
-                  が担当。
-                </p>
-              </div>
-            </Panel>
-
-            <Panel id="menu" title="Menu">
-              <Menu trigger="アクション">
-                <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                  複製
-                </MenuItem>
-                <MenuItem icon={<TargetIcon />} shortcut="⌘L">
-                  索敵
-                </MenuItem>
-                <MenuItem icon={<FireworkIcon />} shortcut="⌘R">
-                  散開
-                </MenuItem>
-                <MenuItem icon={<XIcon />} disabled>
-                  ラスタライズ
-                </MenuItem>
-                <MenuItem icon={<BoltIcon />}>チャージ</MenuItem>
-                <MenuItem icon={<ShieldIcon />}>隊列を組む</MenuItem>
-                <MenuItem icon={<CopyIcon />}>左右反転</MenuItem>
-                <MenuItem icon={<SearchIcon />}>90° 回転</MenuItem>
-                <MenuItem icon={<SparkIcon />}>ガイドに吸着</MenuItem>
-                <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
-                <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
-                <MenuSeparator />
-                <MenuItem icon={<TrashIcon />} tone="danger">
-                  削除
-                </MenuItem>
-              </Menu>
-            </Panel>
-            <Panel id="menubar" title="Menubar">
-              <Menubar>
-                <MenubarMenu label="部隊">
-                  <MenuItem>招集</MenuItem>
-                  <MenuItem>解散</MenuItem>
-                  <MenuItem disabled>再編成</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">除名</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="配置">
-                  <MenuItem shortcut="⌘]">前へ出す</MenuItem>
-                  <MenuItem shortcut="⌘[">後ろへ下げる</MenuItem>
-                </MenubarMenu>
-                <MenubarMenu label="整列">
-                  <MenuItem>左端に寄せる</MenuItem>
-                  <MenuItem>右端に寄せる</MenuItem>
-                  <MenuSub label="分配">
-                    <MenuItem>上段</MenuItem>
-                    <MenuItem>中段</MenuItem>
-                    <MenuItem>下段</MenuItem>
+                    <MenuItem shortcut="⌘I">偵察</MenuItem>
+                    <MenuItem shortcut="⌘D">複製</MenuItem>
+                    <MenuItem disabled>増援要請</MenuItem>
                     <MenuSeparator />
-                    <MenuItem>リセット</MenuItem>
-                  </MenuSub>
-                </MenubarMenu>
-              </Menubar>
-            </Panel>
+                    <MenuItem tone="danger">削除</MenuItem>
+                  </ContextMenu>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="navmenu" title="Navigation Menu">
-              <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
-            </Panel>
-            <Panel id="context" title="Context Menu">
-              <div className="hanabi-stack">
-                <ContextMenu
-                  trigger={
-                    <div className="hanabi-context__zone">
-                      <span className="hanabi-cap">右クリックで作戦メニューを開く</span>
-                    </div>
+            <div className="hanabi-section" id="dialog">
+              <Panel title="Dialog">
+                <Dialog
+                  trigger={<Button variant="secondary">出撃確認</Button>}
+                  title="出撃の確認"
+                  description="AP 20 を消費して〈花火湾〉へ出撃します。出撃後のキャンセルはできません。"
+                  actions={
+                    <>
+                      <DialogClose>キャンセル</DialogClose>
+                      <DialogClose variant="secondary" data-combo="confirm">
+                        出撃
+                      </DialogClose>
+                    </>
                   }
                 >
-                  <MenuItem shortcut="⌘I">偵察</MenuItem>
-                  <MenuItem shortcut="⌘D">複製</MenuItem>
-                  <MenuItem disabled>増援要請</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem tone="danger">削除</MenuItem>
-                </ContextMenu>
-              </div>
-            </Panel>
+                  <p className="hanabi-text">編成: 3名 · 消費 AP: 20</p>
+                </Dialog>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="alert">
+              <Panel title="Alert Dialog">
+                <div className="hanabi-row">
+                  <AlertDialog
+                    tone="danger"
+                    trigger={<Button variant="ghost">記録を消去</Button>}
+                    title="記録を消去する？"
+                    description="すべての戦闘記録が消えます。この操作は取り消せません。"
+                    actions={
+                      <>
+                        <AlertDialogClose>中止</AlertDialogClose>
+                        <AlertDialogClose variant="danger" data-combo="confirm">
+                          消去
+                        </AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="warning"
+                    trigger={<Button variant="ghost">配置を初期化</Button>}
+                    title="配置を初期化する？"
+                    description="全員が初期位置へ戻ります。確認して実行してください。"
+                    actions={
+                      <>
+                        <AlertDialogClose>中止</AlertDialogClose>
+                        <AlertDialogClose variant="primary" data-combo="confirm">
+                          初期化
+                        </AlertDialogClose>
+                      </>
+                    }
+                  />
+                  <AlertDialog
+                    tone="primary"
+                    trigger={<Button variant="ghost">作戦を適用</Button>}
+                    title="この作戦を適用する？"
+                    description="現在の作戦は新しい構成に置き換わります。"
+                    actions={
+                      <>
+                        <AlertDialogClose>中止</AlertDialogClose>
+                        <AlertDialogClose variant="primary" data-combo="confirm">
+                          適用
+                        </AlertDialogClose>
+                      </>
+                    }
+                  />
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="dialog" title="Dialog">
-              <Dialog
-                trigger={<Button variant="secondary">出撃確認</Button>}
-                title="出撃の確認"
-                description="AP 20 を消費して〈花火湾〉へ出撃します。出撃後のキャンセルはできません。"
-                actions={
-                  <>
-                    <DialogClose>キャンセル</DialogClose>
-                    <DialogClose variant="secondary" data-combo="confirm">
-                      出撃
-                    </DialogClose>
-                  </>
-                }
-              >
-                <p className="hanabi-text">編成: 3名 · 消費 AP: 20</p>
-              </Dialog>
-            </Panel>
-            <Panel id="alert" title="Alert Dialog">
-              <div className="hanabi-row">
-                <AlertDialog
-                  tone="danger"
-                  trigger={<Button variant="ghost">記録を消去</Button>}
-                  title="記録を消去する？"
-                  description="すべての戦闘記録が消えます。この操作は取り消せません。"
-                  actions={
-                    <>
-                      <AlertDialogClose>中止</AlertDialogClose>
-                      <AlertDialogClose variant="danger" data-combo="confirm">
-                        消去
-                      </AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="warning"
-                  trigger={<Button variant="ghost">配置を初期化</Button>}
-                  title="配置を初期化する？"
-                  description="全員が初期位置へ戻ります。確認して実行してください。"
-                  actions={
-                    <>
-                      <AlertDialogClose>中止</AlertDialogClose>
-                      <AlertDialogClose variant="primary" data-combo="confirm">
-                        初期化
-                      </AlertDialogClose>
-                    </>
-                  }
-                />
-                <AlertDialog
-                  tone="primary"
-                  trigger={<Button variant="ghost">作戦を適用</Button>}
-                  title="この作戦を適用する？"
-                  description="現在の作戦は新しい構成に置き換わります。"
-                  actions={
-                    <>
-                      <AlertDialogClose>中止</AlertDialogClose>
-                      <AlertDialogClose variant="primary" data-combo="confirm">
-                        適用
-                      </AlertDialogClose>
-                    </>
-                  }
-                />
-              </div>
-            </Panel>
-
-            <Panel id="drawer" title="Drawer">
-              <div className="hanabi-row">
-                {(
-                  [
-                    ["top", "上"],
-                    ["bottom", "下"],
-                    ["left", "左"],
-                    ["right", "右"],
-                  ] as const
-                ).map(([side, label]) => (
-                  <Drawer
-                    key={side}
-                    side={side}
-                    trigger={<Button variant="ghost">{label}</Button>}
-                    title="装備調整"
-                    description="このレイヤーの装備と表示を調整します。"
-                    actions={<DrawerClose variant="secondary">閉じる</DrawerClose>}
+            <div className="hanabi-section" id="drawer">
+              <Panel title="Drawer">
+                <div className="hanabi-row">
+                  {(
+                    [
+                      ["top", "上"],
+                      ["bottom", "下"],
+                      ["left", "左"],
+                      ["right", "右"],
+                    ] as const
+                  ).map(([side, label]) => (
+                    <Drawer
+                      key={side}
+                      side={side}
+                      trigger={<Button variant="ghost">{label}</Button>}
+                      title="装備調整"
+                      description="このレイヤーの装備と表示を調整します。"
+                      actions={<DrawerClose variant="secondary">閉じる</DrawerClose>}
+                    >
+                      <label className="hanabi-row hanabi-row--between">
+                        <span className="hanabi-cap">オート戦闘</span>
+                        <Switch defaultChecked />
+                      </label>
+                      <label className="hanabi-row hanabi-row--between">
+                        <span className="hanabi-cap">輪郭表示</span>
+                        <Switch />
+                      </label>
+                      <Slider label="透過度" defaultValue={50} />
+                    </Drawer>
+                  ))}
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="toast">
+              <Panel title="Toast">
+                <div className="hanabi-row">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({ title: "保存しました", description: "作戦を保存。" })
+                    }
                   >
-                    <label className="hanabi-row hanabi-row--between">
-                      <span className="hanabi-cap">オート戦闘</span>
-                      <Switch defaultChecked />
-                    </label>
-                    <label className="hanabi-row hanabi-row--between">
-                      <span className="hanabi-cap">輪郭表示</span>
-                      <Switch />
-                    </label>
-                    <Slider label="透過度" defaultValue={50} />
-                  </Drawer>
-                ))}
-              </div>
-            </Panel>
-            <Panel id="toast" title="Toast">
-              <div className="hanabi-row">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({ title: "保存しました", description: "作戦を保存。" })
-                  }
-                >
-                  通知
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => {
-                    const id = toast.add({
-                      title: "整列完了",
-                      description: "全機、配置に付きました。",
-                      type: "success",
-                      actionProps: {
-                        children: "受け取る",
-                        onClick: () => toast.close(id),
-                      },
-                    });
-                  }}
-                >
-                  確認
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "軌道逸脱",
-                      description: "三機がベースラインを外れています。",
-                      type: "warning",
-                    })
-                  }
-                >
-                  警告
-                </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() =>
-                    toast.add({
-                      title: "過熱警報",
-                      description: "出力が限界を超えています。",
-                      type: "danger",
-                    })
-                  }
-                >
-                  警報
-                </Button>
-              </div>
-            </Panel>
+                    通知
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => {
+                      const id = toast.add({
+                        title: "整列完了",
+                        description: "全機、配置に付きました。",
+                        type: "success",
+                        actionProps: {
+                          children: "受け取る",
+                          onClick: () => toast.close(id),
+                        },
+                      });
+                    }}
+                  >
+                    確認
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "軌道逸脱",
+                        description: "三機がベースラインを外れています。",
+                        type: "warning",
+                      })
+                    }
+                  >
+                    警告
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      toast.add({
+                        title: "過熱警報",
+                        description: "出力が限界を超えています。",
+                        type: "danger",
+                      })
+                    }
+                  >
+                    警報
+                  </Button>
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1143,102 +1215,110 @@ function Demo() {
             marker="✦"
           />
           <div className="hanabi-grid">
-            <Panel id="avatar" title="Avatar">
-              <div className="hanabi-row">
-                <Avatar status="online">
-                  <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
-                  <AvatarFallback>結</AvatarFallback>
-                </Avatar>
-                <Avatar size="sm" status="busy">
-                  <AvatarFallback>凛</AvatarFallback>
-                </Avatar>
-                <Avatar status="away">
-                  <AvatarFallback>花</AvatarFallback>
-                </Avatar>
-                <Avatar size="lg" status="offline">
-                  <AvatarFallback>灯</AvatarFallback>
-                </Avatar>
-              </div>
-            </Panel>
-            <Panel id="badge" title="Badge">
-              <div className="hanabi-row">
-                <Badge tone="primary" dot>
-                  ★5
-                </Badge>
-                <Badge tone="success">整列完了</Badge>
-                <Badge tone="warning">軌道外</Badge>
-                <Badge tone="danger" dot>
-                  過熱
-                </Badge>
-                <Badge tone="secondary">支援</Badge>
-                <Badge tone="neutral">下書き</Badge>
-              </div>
-            </Panel>
+            <div className="hanabi-section" id="avatar">
+              <Panel title="Avatar">
+                <div className="hanabi-row">
+                  <Avatar status="online">
+                    <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
+                    <AvatarFallback>結</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="sm" status="busy">
+                    <AvatarFallback>凛</AvatarFallback>
+                  </Avatar>
+                  <Avatar status="away">
+                    <AvatarFallback>花</AvatarFallback>
+                  </Avatar>
+                  <Avatar size="lg" status="offline">
+                    <AvatarFallback>灯</AvatarFallback>
+                  </Avatar>
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="badge">
+              <Panel title="Badge">
+                <div className="hanabi-row">
+                  <Badge tone="primary" dot>
+                    ★5
+                  </Badge>
+                  <Badge tone="success">整列完了</Badge>
+                  <Badge tone="warning">軌道外</Badge>
+                  <Badge tone="danger" dot>
+                    過熱
+                  </Badge>
+                  <Badge tone="secondary">支援</Badge>
+                  <Badge tone="neutral">下書き</Badge>
+                </div>
+              </Panel>
+            </div>
 
-            <Panel id="toolbar" title="Toolbar">
-              <Toolbar aria-label="射撃モード">
-                <BaseToggleGroup
-                  className="hanabi-toolbar__group"
-                  defaultValue={["single"]}
-                  aria-label="発射"
-                >
-                  <ToolbarButton render={<BaseToggle />} value="single">
-                    単発
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="burst">
-                    連射
-                  </ToolbarButton>
-                  <ToolbarButton render={<BaseToggle />} value="ult">
-                    必殺
-                  </ToolbarButton>
-                </BaseToggleGroup>
-                <ToolbarSeparator />
-                <ToolbarGroup aria-label="効果">
-                  <ToolbarButton aria-label="斬撃">
-                    <BladeIcon />
-                  </ToolbarButton>
-                  <ToolbarButton disabled aria-label="充電">
-                    <BoltIcon />
-                  </ToolbarButton>
-                </ToolbarGroup>
-                <ToolbarSeparator />
-                <ToolbarLink href="#toolbar">
-                  <SignalIcon />
-                  通信良好
-                </ToolbarLink>
-              </Toolbar>
-            </Panel>
-            <Panel id="scroll" title="Scroll Area">
-              <ScrollArea>
-                <ScrollAreaViewport>
-                  <ScrollAreaContent>
-                    <ol className="hanabi-scroll-list">
-                      {[
-                        ["09:00", "作戦開始、湾内へ進入"],
-                        ["09:12", "敵影を確認、距離 800"],
-                        ["09:20", "結衣、支援位置へ"],
-                        ["09:27", "凛、突撃開始"],
-                        ["09:35", "クリティカル！ 撃破 +1"],
-                        ["09:48", "花梨、補給線を確保"],
-                        ["10:02", "靭性ゲージ、破砕"],
-                        ["10:15", "必殺・花火大輪、発動"],
-                        ["10:16", "9999 ダメージを記録"],
-                        ["10:30", "残敵掃討中"],
-                        ["10:44", "戦利品を回収"],
-                        ["11:00", "全機帰投、作戦完了"],
-                      ].map(([time, msg]) => (
-                        <li key={time} className="hanabi-text">
-                          <span className="hanabi-cap">{time}</span> {msg}
-                        </li>
-                      ))}
-                    </ol>
-                  </ScrollAreaContent>
-                </ScrollAreaViewport>
-                <ScrollAreaScrollbar>
-                  <ScrollAreaThumb />
-                </ScrollAreaScrollbar>
-              </ScrollArea>
-            </Panel>
+            <div className="hanabi-section" id="toolbar">
+              <Panel title="Toolbar">
+                <Toolbar aria-label="射撃モード">
+                  <BaseToggleGroup
+                    className="hanabi-toolbar__group"
+                    defaultValue={["single"]}
+                    aria-label="発射"
+                  >
+                    <ToolbarButton render={<BaseToggle />} value="single">
+                      単発
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="burst">
+                      連射
+                    </ToolbarButton>
+                    <ToolbarButton render={<BaseToggle />} value="ult">
+                      必殺
+                    </ToolbarButton>
+                  </BaseToggleGroup>
+                  <ToolbarSeparator />
+                  <ToolbarGroup aria-label="効果">
+                    <ToolbarButton aria-label="斬撃">
+                      <BladeIcon />
+                    </ToolbarButton>
+                    <ToolbarButton disabled aria-label="充電">
+                      <BoltIcon />
+                    </ToolbarButton>
+                  </ToolbarGroup>
+                  <ToolbarSeparator />
+                  <ToolbarLink href="#toolbar">
+                    <SignalIcon />
+                    通信良好
+                  </ToolbarLink>
+                </Toolbar>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="scroll">
+              <Panel title="Scroll Area">
+                <ScrollArea>
+                  <ScrollAreaViewport>
+                    <ScrollAreaContent>
+                      <ol className="hanabi-scroll-list">
+                        {[
+                          ["09:00", "作戦開始、湾内へ進入"],
+                          ["09:12", "敵影を確認、距離 800"],
+                          ["09:20", "結衣、支援位置へ"],
+                          ["09:27", "凛、突撃開始"],
+                          ["09:35", "クリティカル！ 撃破 +1"],
+                          ["09:48", "花梨、補給線を確保"],
+                          ["10:02", "靭性ゲージ、破砕"],
+                          ["10:15", "必殺・花火大輪、発動"],
+                          ["10:16", "9999 ダメージを記録"],
+                          ["10:30", "残敵掃討中"],
+                          ["10:44", "戦利品を回収"],
+                          ["11:00", "全機帰投、作戦完了"],
+                        ].map(([time, msg]) => (
+                          <li key={time} className="hanabi-text">
+                            <span className="hanabi-cap">{time}</span> {msg}
+                          </li>
+                        ))}
+                      </ol>
+                    </ScrollAreaContent>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
+                </ScrollArea>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule
@@ -1248,54 +1328,62 @@ function Demo() {
             marker="★"
           />
           <div className="hanabi-grid">
-            <Panel id="typography" title="Typography" wide>
-              <div className="hanabi-stack">
-                <h2 className="hanabi-h1">セル画でできた戦場</h2>
-                <h3 className="hanabi-h2">見出しは太く、影は冷たく</h3>
-                <span className="hanabi-h3">Section Sub-Label</span>
-                <p className="hanabi-text">
-                  本文は Noto Sans
-                  JP。数値と計器の目盛りはピクセル体で刻む——それが花火流の帳簿。
-                </p>
-                <span className="hanabi-cap">Field Caption · 873</span>
-              </div>
-            </Panel>
-
-            <Panel id="separator" title="Separator">
-              <div className="hanabi-stack">
-                <span className="hanabi-cap">素の線</span>
-                <Separator />
-                <span className="hanabi-cap">ラベル付き</span>
-                <Separator label="第二区画" align="start" />
-                <Separator label="第二区画" />
-                <Separator label="第二区画" align="end" />
-                <span className="hanabi-cap">縦の線</span>
-                <div className="hanabi-row">
-                  <span className="hanabi-text">粉</span>
-                  <Separator orientation="vertical" />
-                  <span className="hanabi-text">水色</span>
-                  <Separator orientation="vertical" />
-                  <span className="hanabi-text">金</span>
+            <div className="hanabi-section hanabi-section--wide" id="typography">
+              <Panel title="Typography">
+                <div className="hanabi-stack">
+                  <h2 className="hanabi-h1">セル画でできた戦場</h2>
+                  <h3 className="hanabi-h2">見出しは太く、影は冷たく</h3>
+                  <span className="hanabi-h3">Section Sub-Label</span>
+                  <p className="hanabi-text">
+                    本文は Noto Sans
+                    JP。数値と計器の目盛りはピクセル体で刻む——それが花火流の帳簿。
+                  </p>
+                  <span className="hanabi-cap">Field Caption · 873</span>
                 </div>
-              </div>
-            </Panel>
-            <Panel id="panel" title="Panel">
-              <p className="hanabi-text hanabi-panel-note">
-                すべてのセクションを包む台座。墨の枠、冷たい影、斜めの銘板——どこまでも入れ子にできる。
-              </p>
-              <Panel title="入れ子の台座">
-                <span className="hanabi-cap">台座の中の台座</span>
               </Panel>
-            </Panel>
+            </div>
+
+            <div className="hanabi-section" id="separator">
+              <Panel title="Separator">
+                <div className="hanabi-stack">
+                  <span className="hanabi-cap">素の線</span>
+                  <Separator />
+                  <span className="hanabi-cap">ラベル付き</span>
+                  <Separator label="第二区画" align="start" />
+                  <Separator label="第二区画" />
+                  <Separator label="第二区画" align="end" />
+                  <span className="hanabi-cap">縦の線</span>
+                  <div className="hanabi-row">
+                    <span className="hanabi-text">粉</span>
+                    <Separator orientation="vertical" />
+                    <span className="hanabi-text">水色</span>
+                    <Separator orientation="vertical" />
+                    <span className="hanabi-text">金</span>
+                  </div>
+                </div>
+              </Panel>
+            </div>
+            <div className="hanabi-section" id="panel">
+              <Panel title="Panel">
+                <p className="hanabi-text hanabi-panel-note">
+                  すべてのセクションを包む台座。墨の枠、冷たい影、斜めの銘板——どこまでも入れ子にできる。
+                </p>
+                <Panel title="入れ子の台座">
+                  <span className="hanabi-cap">台座の中の台座</span>
+                </Panel>
+              </Panel>
+            </div>
           </div>
 
           <GroupRule id="signature" label="Signature" sub="必殺技、装填中。" marker="✦" />
           <div className="hanabi-grid">
-            <Panel id="loader" title="Loader" wide>
-              <div className="demo-loader-stage">
-                <Loader />
-              </div>
-            </Panel>
+            <div className="hanabi-section hanabi-section--wide" id="loader">
+              <Panel title="Loader">
+                <div className="demo-loader-stage">
+                  <Loader />
+                </div>
+              </Panel>
+            </div>
           </div>
 
           <footer className="hanabi-footer">

@@ -4,24 +4,14 @@ import { Gear } from "../icons";
 import "./Panel.css";
 
 export interface PanelProps {
-  id?: string;
   title?: ReactNode;
   marker?: ReactNode;
-  wide?: boolean;
   children?: ReactNode;
 }
 
-export function Panel({ id, title, marker, wide, children }: PanelProps) {
+export function Panel({ title, marker, children }: PanelProps) {
   return (
-    <section
-      id={id}
-      className={cx(
-        "brass-plate",
-        "brass-rivets",
-        "brass-panel",
-        wide && "brass-panel--wide",
-      )}
-    >
+    <section className={cx("brass-plate", "brass-rivets", "brass-panel")}>
       {(title || marker) && (
         <header className="brass-panel__head">
           {marker !== undefined ? (
