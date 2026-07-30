@@ -18,19 +18,10 @@
   gap: var(--bauhaus-space-3);
   color: var(--bauhaus-text-dim);
 }
-.bauhaus-separator-labeled--vertical {
-  flex-direction: column;
-  align-self: stretch;
-}
 .bauhaus-separator-labeled__line {
   flex: 1;
-  background: var(--bauhaus-ink);
-}
-.bauhaus-separator-labeled--horizontal .bauhaus-separator-labeled__line {
   height: var(--bauhaus-stroke-hair);
-}
-.bauhaus-separator-labeled--vertical .bauhaus-separator-labeled__line {
-  width: var(--bauhaus-stroke-hair);
+  background: var(--bauhaus-ink);
 }
 .bauhaus-separator-labeled--start > .bauhaus-separator-labeled__line:first-child,
 .bauhaus-separator-labeled--end > .bauhaus-separator-labeled__line:last-child {
@@ -38,7 +29,4 @@
 }
 .bauhaus-separator-labeled__text {
   flex: 0 0 auto;
-}
-.bauhaus-separator-labeled--vertical .bauhaus-separator-labeled__text {
-  writing-mode: vertical-rl;
 }

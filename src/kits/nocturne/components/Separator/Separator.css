@@ -30,12 +30,3 @@
   flex: none;
 }
 
-.nocturne-separator-labeled--vertical {
-  flex-direction: column;
-  width: auto;
-  align-self: stretch;
-}
-.nocturne-separator-labeled--vertical .nocturne-separator-labeled__line {
-  width: 1px;
-  background: var(--nocturne-gilt-30);
-}

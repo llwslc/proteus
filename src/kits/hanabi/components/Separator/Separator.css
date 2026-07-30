@@ -20,20 +20,9 @@
   gap: var(--hanabi-space-3);
 }
 
-.hanabi-separator-labeled--vertical {
-  flex-direction: column;
-  align-self: stretch;
-  flex: 0 0 auto;
-}
-
 .hanabi-separator-labeled__line {
   flex: 1;
   border-top: var(--hanabi-line-w) dashed var(--hanabi-tone);
-}
-
-.hanabi-separator-labeled--vertical .hanabi-separator-labeled__line {
-  border-top: 0;
-  border-left: var(--hanabi-line-w) solid var(--hanabi-tone);
 }
 
 .hanabi-separator-labeled--start > .hanabi-separator-labeled__line:first-child,

@@ -21,7 +21,7 @@ export function Separator({
   className,
   ...props
 }: SeparatorProps) {
-  if (label != null) {
+  if (label != null && orientation === "horizontal") {
     return (
       <BaseSeparator
         orientation={orientation}
@@ -29,7 +29,6 @@ export function Separator({
         {...props}
         className={cx(
           "nocturne-separator-labeled",
-          `nocturne-separator-labeled--${orientation}`,
           `nocturne-separator-labeled--${align}`,
           className,
         )}

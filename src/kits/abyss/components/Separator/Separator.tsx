@@ -22,7 +22,7 @@ export function Separator({
   className,
   ...props
 }: SeparatorProps) {
-  if (label != null) {
+  if (label != null && orientation === "horizontal") {
     return (
       <BaseSeparator
         orientation={orientation}
