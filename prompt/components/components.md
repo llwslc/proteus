@@ -88,7 +88,7 @@
 
 下面是统一约定的**行为和结构**；**所有配色留给 theme**。
 
-- **选中／激活**：按控件角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；**填充怎么配由 theme 定**。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值这些前景一并转成反色。列表、Tab、NavMenu 用「文字强调选中」——只换文字色、不填充；Tab、NavMenu 另外带一条独立的选中指示，**指示长什么样、或由选中形态自证而不设，由 theme 定**。
+- **选中／激活**：按控件角色分两档——「点亮表面」用于 Button、Switch、Checkbox，「分段选中」用于 ToggleGroup、Toolbar、Menubar；**填充怎么配由 theme 定**。**主色填充上的前景必须可读**：底色加深时，箭头、占位符、数值这些前景一并转成反色。列表、Tab、NavMenu 的选中态与悬停、高亮态必须一眼可分，**各自取什么形式由 theme 定**；Tab、NavMenu 另外带一条独立的选中指示，**指示长什么样、或由选中形态自证而不设，由 theme 定**。
 - 当用「边框色打底 + `::before` 填充」这种画法时，激活态的填充必须是深色、不透明。
 - **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；普通按钮必有可见的悬停反馈，**形式由 theme 定**；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**形变使命中盒移动超过 `1px` 时，`:active` 同时挂透明伪元素光环兜住命中盒——实按在钮上的点不因形变丢 click，**光环尺寸盖过自家位移、由 theme 定**。
@@ -125,11 +125,11 @@
 - **Radio**：RadioGroup 竖排；结构 `<label> = 控件 + .cap 文字`，标记在控件内，状态 +checked。
 - **ToggleGroup**：分段条家族，`width: fit-content`，段的状态 +pressed；手机端横向滚动不换行。
 - **Slider**：props `label·showValue`（默认 true）；结构 `Root（竖排）> head[label .cap + Value 在右] + Control > Track > Indicator + Thumb`，Indicator 从左端起；`label` 为字符串时兼作 thumb 输入的可访问名。
-- **NumberField**：结构 `Group > [减 + Input + 加]`，两个步进钮等宽、夹住输入框；到 min/max 时自己 disable 对应步进钮并置灰。
+- **NumberField**：结构 `Group > [减 + Input + 加]` 三件，两个步进钮等宽；**三件怎么排（夹住输入框，或两钮并置一侧）由 theme 定**；到 min/max 时自己 disable 对应步进钮并置灰。
 - **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error`，图标在左、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`；`name` 落 `Field.Root`，Error 常驻挂载，Form 下发的 `errors` 由它显示。
 - **OtpField**：props `length·splitAt·mask·label`（`length` 默认 6）；root 带 `role="group"`、`label` 作组可访问名；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus；手机端 cell 收缩。
-- **Select**：props `items·placeholder·side`（默认 bottom）`·align`（默认 center）；结构 `field > Trigger[Value flex:1 + Chevron 在右、开态旋转] + Popup > list > Item[ItemText flex:1 + Indicator 在右]`；**勾选在右、弹层向下展开**、开在 `6px` 处；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
-- **Combobox**：props `items·placeholder·emptyText·label·side`（默认 bottom）`·align`（默认 center）；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(勾选在右)]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`；过滤走 Base UI 内建；`items` 项收字符串或 `{ label, disabled }`，label 归一成串传 Root，禁用落在 `Item`。
+- **Select**：props `items·placeholder·side`（默认 bottom）`·align`（默认 center）；结构 `field > Trigger[Value flex:1 + Chevron 在右、开态旋转] + Popup > list > Item[ItemText flex:1 + Indicator]`，**选中指示摆在哪、长什么样由 theme 定**；**弹层向下展开**、开在 `6px` 处；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
+- **Combobox**：props `items·placeholder·emptyText·label·side`（默认 bottom）`·align`（默认 center）；结构 `InputGroup[左图标? + Input flex:1 + Clear + Trigger(chevron)] + Popup[Empty + List > Item(带选中指示)]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`；过滤走 Base UI 内建；`items` 项收字符串或 `{ label, disabled }`，label 归一成串传 Root，禁用落在 `Item`。
 - **Autocomplete**：props 同 Combobox；结构 `InputGroup[左图标? + Input flex:1] + Popup[Empty + List]`，弹层向下、开在 `6px` 处、宽度随 `--anchor-width`，项不带勾选、Trigger 不带 chevron；过滤走 Base UI 内建；`items` 项收字符串或 `{ label, disabled }`，label 归一成串传 Root，禁用落在 `Item`。
 - **Fieldset**：props `legend`；竖排，由 Base UI 直接管。
 - **Form**：竖排，由 Base UI 直接管。
@@ -139,7 +139,7 @@
 - **Progress**：props `label·showValue`；结构 `Root > head[label + Value 在右] + Track > Indicator`，Indicator 从左满宽推进。`value` 为 null 即**不定态**（Base UI 标 `data-indeterminate`、不显数值、不挂推进端记号）：Indicator 缩成一截短条，在轨内**匀速单向扫掠、循环不断**——不停顿、不回弹，与从左推进的定值一眼可分；扫掠一轮 `1.5s`（各 kit 同值），短条宽度与填充皮由 theme 定。
 - **Meter**：同 Progress，加 props `tone`（`primary·success·warning·danger`），按 tone 重染。
 - **Tabs**：props `items·defaultValue`；结构 `Root > List[Tab* + Indicator] + Panel*`。选中指示默认一条、跟随 Base UI 的 `--active-tab-*` 移到当前 tab；**指示长什么样、放哪条边、或由选中舌片形态自证而不设，由 theme 定。** tab 状态 +selected；手机端横向滚动不换行、滚动条隐藏。
-- **Accordion**：props `items·openMultiple`（默认 false）`·defaultValue`；用 §4.3 的折叠配方 `trigger[marker 在左 + title + chevron 在右] + panel > content`；**content 向左缩进，对齐 title 的起点**——缩进**公式直写** `calc(trigger 左内距 + marker 宽 + gap)`、引同一来源的值，marker 定宽（em 派生宽不进对齐链）；状态 +panel-open，指示物旋转；panel 高度过渡动画开合，时长各 kit 取自家时长档、落在 `0.15s`–`0.5s`。
+- **Accordion**：props `items·openMultiple`（默认 false）`·defaultValue`；用 §4.3 的折叠配方 `trigger[marker? 在左 + title + chevron 在右] + panel > content`，**marker 画不画、长什么样由 theme 定**；**content 向左缩进，对齐 title 的起点**——缩进**公式直写**：trigger 左内距加 title 之前各件的宽与 gap，引同一来源的值，进对齐链的件必须定宽（em 派生宽不进）；状态 +panel-open，指示物旋转；panel 高度过渡动画开合，时长各 kit 取自家时长档、落在 `0.15s`–`0.5s`。
 - **Collapsible**：props `title·defaultOpen`；折叠配方、缩进与状态同 Accordion。
 
 **浮层**

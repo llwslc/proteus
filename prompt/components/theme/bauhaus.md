@@ -18,9 +18,12 @@
 - CheckboxGroup：组内条目缩进，左缘一道 `stroke` 宽 `ink` 实纵线。
 - Radio：正圆 + `ink` border；选中 = 实色 `primary` 填充 + 纸白圆心点；取「圆」原形。
 - ToggleGroup：外箱体 `stroke-bold` 粗黑框、`surface-inset` 纸灰底。
+- NumberField：减·输入·加三连，两枚步进钮夹住输入位。
+- Select：选中行右端一枚 `primary` 对勾。
 - Progress：锐角轨道（`track` 浅纸 + `ink` border）+ 实色 `accent-fill` 平涂指示，条填充流动（`bauhaus-progress-slide`）。
 - Meter：轨道与平涂同 Progress，按 `tone` 重染填充。
 - Tabs：Jost 大写；hover 只转 `bright`；一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动。
+- Accordion：折叠配方——marker 是实色方块，开态转 45° 立成菱形。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器 Jost 大写，hover 用 `tint-soft`；打开时转 `primary`、chevron 翻转、底部一条 `stroke-bold` 蓝线从左展开。
 - Dialog：标题配一个三原形图标。

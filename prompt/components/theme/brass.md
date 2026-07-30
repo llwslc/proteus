@@ -18,11 +18,14 @@
 - CheckboxGroup：组内条目缩进，左缘一道 `3px` 圆头纵轨（`line-strong` 到 `line` 渐变）、顶端一枚 `rivet` 铆钉。
 - Radio：凹陷的黄铜孔眼、选中时亮起琥珀芯。
 - ToggleGroup：外箱体是 `surface-inset` 凹槽横条，`line` 边 + `bevel-inset`。
+- NumberField：减·输入·加三连，两枚步进钮夹住输入位。
 - OtpField：输入往复 pulse。
+- Select：选中行右端一枚黄铜对勾。
 - Fieldset：整框成箱——`line` 描边 + `round-md` 圆角 + `surface-zone` 底，内衬 `space-5`；legend 走 `text-bright`。
 - Progress：黄铜灯丝填充 + 刻度记，灯丝流动；不定态的滑块走 `left` 位移。
 - Meter：压力表——横轨分成 success → warning → danger 三个色区，填充走 `accent-fill`，端部带刻度记。
 - Tabs：渐变 hover、黄铜下划线。
+- Accordion：折叠配方——marker 是一枚齿轮。
 - Collapsible：整框成箱——`line` 描边 + `round-md` + `surface-zone` 底。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤；开启态转 primary、chevron 翻转。

@@ -20,9 +20,12 @@
 - Radio：选中是发辉光的 `primary` 圆点弹出。
 - ToggleGroup：外箱体是一条 `surface` 框横条。
 - Slider：thumb 是 `clip-4` 切角晶块——`text-bright` 到 `primary-deep` 斜向渐变面 + `primary` 辉光，hover 放大一步、拖动再放大加辉。
+- NumberField：减·输入·加三连，两枚步进钮夹住输入位。
+- Select：选中行右端一枚 `primary` 对勾。
 - Progress：条纹流动 + 不定态扫掠。
 - Meter：填充 `meter-fill-deep` 到 `meter-fill` 横向渐变 + 辉光，上层罩 `base` 色等距分格；按 tone 经 `meter-fill` 输入变量重染。
 - Tabs：大写 Orbitron、渐变 hover、辉光下划线；切换时内容淡入。
+- Accordion：折叠配方——marker 是 `7px` 转 45° 的方块，静止 `text-mute`、开态转 `primary` 加辉。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤；打开时转 primary、chevron 翻转。
 - AlertDialog：按 `tone` 整体重染，tone 取 danger、warning、primary——扫描光、标题、tick、边框都随 tone 变，表面顶部再加一道 tone 色的径向渐变（约 20%）。

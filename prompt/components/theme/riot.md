@@ -20,13 +20,15 @@
 - Radio：`ink` 圆框；选中 = 荧光 `primary` 实心圆点盖章；行标签同 Checkbox。
 - ToggleGroup：不画外箱体——chip 散钉，各自带 `ink` 框 + 硬偏移影 + 微旋转。
 - Slider：一条撕开的胶带——`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
-- Select：弹层带 `shadow-hard` 盒影；列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、加勾，不变，被高亮时同样盖记号笔。
+- NumberField：减·输入·加三连，两枚步进钮夹住输入位。
+- Select：弹层带 `shadow-hard` 盒影；列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、右端加勾，不变，被高亮时同样盖记号笔。
 - Combobox：列表项皮肤同 Select。
 - Autocomplete：列表项的记号笔同 Select。
 - Fieldset：不画框——legend 走 display 体大写 `text-bright`、前缀一枚 `12px` 见方的 `primary` 实心 tick（`ink` 描边）；组内纵向 `space-4` 分隔。
 - Progress：右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示，条填充流动。
 - Meter：轨与平涂同 Progress，按 `tone` 重染，轨上压每 20% 一道 `stroke-hair` 的 `ink` 刻度。
 - Tabs：tab 是一排订在一起的撕纸标签，激活项砸 `ink` 黑戳 + 荧光字，hover 用 `tint` wash；底轨是过 `#riot-torn` 的 `ink` 手撕条，`stroke-bold` 记号笔横杠随激活项走——同过撕纹、随激活 chip 同角微旋贴其斜底边。
+- Accordion：折叠配方——marker 是荧光 `primary` 加号，开态转 45° 成叉。
 - Tooltip：平贴的纸片小剪条——纸面 + `ink` 框，胶带连接件（`.riot-connector`）钉向触发器，正文打字机体。
 - Popover：皮肤同 Tooltip。
 - PreviewCard：皮肤同 Tooltip。
