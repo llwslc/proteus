@@ -43,6 +43,6 @@ sh .claude/skills/kit-qa/quick.sh [base]   # 默认比对 HEAD 的未提交改�
 
 按 diff 范围选门：prompt/** → prompt-lint+theme-doc-sync；*.ts(x) → tsc+kit-api+kit-structure+kit-naming+kit-deadcode（秒级）；src/kits/**.css → 再加 kit-lint+kit-visual，并提示自点区域动态门（弹层→kit-submenu-gap、动效→kit-anim-sync、状态→kit-states、交互→kit-interact）。
 
-两个代码层都会追加 **render-fingerprint**（约 20 秒）：静息页全体 kit × 2 宽逐面板「几何＋计算样式」哈希对基线比——tsx 改类名/结构这类静态门全瞎的渲染影响就靠它抓（Progress 这类值驱动几何标 dyn 不入哈希；弹层/交互态不在内，仍归动态门）。指纹红＝渲染变了：有意 → 跑对应动态门验收后 `node fingerprint.cjs --update` 刷基线；无意 → 回归。全量 `check.sh` 把指纹比对当一门跑、红即 FAIL；`--update` 永远是动态门验收后的手动一步，不进任何验收命令。改动后立刻跑指纹要给 Vite HMR 一两秒沉降。
+两个代码层都会追加 **render-fingerprint**（约 20 秒）：静息页全体 kit × 2 宽逐面板「几何＋计算样式」哈希对基线比——tsx 改类名/结构这类静态门全瞎的渲染影响就靠它抓（Progress 这类值驱动几何标 dyn 不入哈希；弹层/交互态不在内，仍归动态门）。指纹红＝渲染变了：有意 → 跑对应动态门验收后 `node fingerprint.cjs --update` 刷基线；无意 → 回归。全量 `check.sh` 把指纹比对当一门跑、红即 FAIL；`--update` 永远是动态门验收后的手动一步，不进任何验收命令。采样自带收敛校验（同一宽度连采两次须一致，四次不收敛就报错退出而不是把抖动当漂移），改动后立刻跑仍要给 Vite HMR 沉降几秒。
 
-**全量 `check.sh`（约 15 分钟）仍是硬线**：收官/验收一个改动批次前、动过 theme 原语或共享配方、或 quick 判不准归属时，必须跑全量。quick 绿≠验收绿。
+**全量 `check.sh`（约 14 分钟）仍是硬线**：收官/验收一个改动批次前、动过 theme 原语或共享配方、或 quick 判不准归属时，必须跑全量。quick 绿≠验收绿。
