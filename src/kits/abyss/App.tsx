@@ -731,7 +731,7 @@ function Demo() {
             <GroupRule group="Inputs" sub="rites of intent" />
 
             <div className="abyss-section abyss-section--wide" id="button">
-              <Panel title="Button" meta="BTN" breathe>
+              <Panel title="Button" breathe>
                 <div className="demo-stack">
                   <div className="demo-row">
                     <Button icon={<CandleIcon />}>Invoke</Button>
@@ -769,7 +769,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="switch">
-              <Panel title="Switch" meta="SWT">
+              <Panel title="Switch">
                 <div className="demo-stack">
                   <div className="demo-spread">
                     <span className="abyss-cap">The Watcher</span>
@@ -792,7 +792,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="toggle">
-              <Panel title="Toggle Group" meta="TGL">
+              <Panel title="Toggle Group">
                 <div className="demo-stack">
                   <ToggleGroup defaultValue={["chart"]}>
                     <Toggle value="chart">Chart</Toggle>
@@ -814,7 +814,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="checkbox">
-              <Panel title="Checkbox" meta="CHK">
+              <Panel title="Checkbox">
                 <div className="demo-stack">
                   <Checkbox defaultChecked label="Speak the name" />
                   <Checkbox label="Open the way" />
@@ -825,7 +825,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="checkbox-group">
-              <Panel title="Checkbox Group" meta="CHG">
+              <Panel title="Checkbox Group">
                 <div className="demo-stack">
                   <CheckboxGroup
                     parentLabel="All currents"
@@ -846,7 +846,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="radio">
-              <Panel title="Radio Group" meta="RDO">
+              <Panel title="Radio Group">
                 <div className="demo-stack">
                   <span className="abyss-cap">Passage</span>
                   <RadioGroup defaultValue="tide">
@@ -867,7 +867,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="select">
-              <Panel title="Select" meta="SEL">
+              <Panel title="Select">
                 <div className="demo-stack">
                   <label className="abyss-cap" htmlFor="sel-1">
                     Bearing
@@ -895,7 +895,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="combobox">
-              <Panel title="Combobox" meta="CBX">
+              <Panel title="Combobox">
                 <div className="demo-stack">
                   <span className="abyss-cap">Sound the depths</span>
                   <Combobox
@@ -908,7 +908,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="autocomplete">
-              <Panel title="Autocomplete" meta="ACP">
+              <Panel title="Autocomplete">
                 <div className="demo-stack">
                   <span className="abyss-cap">Speak a rite</span>
                   <Autocomplete
@@ -921,7 +921,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="slider">
-              <Panel title="Slider" meta="SLD">
+              <Panel title="Slider">
                 <div className="demo-stack">
                   <Slider label="Descent" defaultValue={62} />
                   <Slider label="Resonance" defaultValue={40} disabled />
@@ -931,7 +931,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="number">
-              <Panel title="Number Field" meta="NUM">
+              <Panel title="Number Field">
                 <div className="demo-stack">
                   <label className="abyss-cap" htmlFor="num-1">
                     Fathom Mark
@@ -950,7 +950,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="input">
-              <Panel title="Text Field" meta="TXT">
+              <Panel title="Text Field">
                 <div className="demo-stack">
                   <Field
                     label="Sea-name"
@@ -975,7 +975,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="otp">
-              <Panel title="OTP Field" meta="OTP">
+              <Panel title="OTP Field">
                 <div className="demo-stack">
                   <span className="abyss-cap">Litany code</span>
                   <OtpField
@@ -1007,7 +1007,7 @@ function Demo() {
             <GroupRule group="Forms" sub="binding the acolyte" />
 
             <div className="abyss-section" id="fieldset">
-              <Panel title="Fieldset" meta="FLD">
+              <Panel title="Fieldset">
                 <Fieldset legend="Acolyte Rites">
                   <Field label="Sea-name" defaultValue="Drowned Lark" />
                   <Field label="Order" defaultValue="Esoteric-7" />
@@ -1016,7 +1016,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="form">
-              <Panel title="Form" meta="FRM">
+              <Panel title="Form">
                 <FormDemo />
               </Panel>
             </div>
@@ -1024,13 +1024,13 @@ function Demo() {
             <GroupRule group="Feedback" sub="what the deep returns" />
 
             <div className="abyss-section" id="progress">
-              <Panel title="Progress" meta="PRG">
+              <Panel title="Progress">
                 <ProgressDemo />
               </Panel>
             </div>
 
             <div className="abyss-section" id="meter">
-              <Panel title="Meter" meta="MTR">
+              <Panel title="Meter">
                 <div className="demo-stack">
                   <Meter label="Communion" value={88} />
                   <Meter label="Ward" value={70} tone="success" />
@@ -1041,13 +1041,13 @@ function Demo() {
             </div>
 
             <div className="abyss-section abyss-section--wide" id="tabs">
-              <Panel title="Tabs" meta="TAB">
+              <Panel title="Tabs">
                 <Tabs items={TAB_ITEMS} />
               </Panel>
             </div>
 
             <div className="abyss-section" id="accordion">
-              <Panel title="Accordion" meta="ACC">
+              <Panel title="Accordion">
                 <div className="demo-stack">
                   <span className="abyss-cap">One at a time</span>
                   <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
@@ -1062,7 +1062,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="collapsible">
-              <Panel title="Collapsible" meta="CLP">
+              <Panel title="Collapsible">
                 <div className="demo-stack">
                   <Collapsible title="The Tide Log" defaultOpen>
                     All currents reading true. The last omen passed fourteen tides ago and
@@ -1085,7 +1085,7 @@ function Demo() {
             <GroupRule group="Overlays" sub="things that surface" />
 
             <div className="abyss-section" id="tooltip">
-              <Panel title="Tooltip" meta="TIP">
+              <Panel title="Tooltip">
                 <div className="demo-row">
                   <Tooltip content="It watches from above" side="top">
                     <Button variant="ghost">Above</Button>
@@ -1104,7 +1104,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="popover">
-              <Panel title="Popover" meta="POP">
+              <Panel title="Popover">
                 <Popover
                   trigger={<Button variant="ghost">The Conch</Button>}
                   title="Third Key"
@@ -1116,7 +1116,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section abyss-section--wide" id="preview">
-              <Panel title="Preview Card" meta="PVW">
+              <Panel title="Preview Card">
                 <div className="demo-stack">
                   <span className="abyss-cap">Hover the sea-name</span>
                   <div className="abyss-text">
@@ -1165,7 +1165,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="menu">
-              <Panel title="Menu" meta="MNU">
+              <Panel title="Menu">
                 <Menu trigger="Rites">
                   <MenuItem icon={<SearchIcon />} shortcut="⌘S">
                     Sound the Deep
@@ -1195,7 +1195,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="menubar">
-              <Panel title="Menubar" meta="MBR">
+              <Panel title="Menubar">
                 <Menubar>
                   <MenubarMenu label="Tome">
                     <MenuItem icon={<KeyIcon />} shortcut="⌘N">
@@ -1230,7 +1230,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="navmenu">
-              <Panel title="Navigation Menu" meta="NAV">
+              <Panel title="Navigation Menu">
                 <NavigationMenu
                   items={NAVMENU_ITEMS}
                   onLinkClick={(e) => e.preventDefault()}
@@ -1239,7 +1239,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="context">
-              <Panel title="Context Menu" meta="CTX">
+              <Panel title="Context Menu">
                 <div className="demo-stack">
                   <ContextMenu
                     trigger={
@@ -1259,7 +1259,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="dialog">
-              <Panel title="Dialog" meta="DLG">
+              <Panel title="Dialog">
                 <Dialog
                   trigger={<Button variant="secondary">Begin the Rite</Button>}
                   title="Descend?"
@@ -1279,7 +1279,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="alert">
-              <Panel title="Alert Dialog" meta="ALT">
+              <Panel title="Alert Dialog">
                 <div className="demo-row">
                   <AlertDialog
                     tone="danger"
@@ -1322,7 +1322,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="drawer">
-              <Panel title="Drawer" meta="DRW">
+              <Panel title="Drawer">
                 <div className="demo-row">
                   {(["top", "bottom", "left", "right"] as const).map((side) => (
                     <Drawer
@@ -1353,7 +1353,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="toast">
-              <Panel title="Toast" meta="TST">
+              <Panel title="Toast">
                 <ToastDemo />
               </Panel>
             </div>
@@ -1361,7 +1361,7 @@ function Demo() {
             <GroupRule group="Display" sub="what watches back" />
 
             <div className="abyss-section" id="avatar">
-              <Panel title="Avatar" meta="AVT">
+              <Panel title="Avatar">
                 <div className="demo-row">
                   <Avatar status="online">
                     <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="Acolyte" />
@@ -1381,7 +1381,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="badge">
-              <Panel title="Badge" meta="BDG">
+              <Panel title="Badge">
                 <div className="demo-row">
                   <Badge tone="primary" dot>
                     Awake
@@ -1398,13 +1398,13 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="toolbar">
-              <Panel title="Toolbar" meta="TBR">
+              <Panel title="Toolbar">
                 <ToolbarDemo />
               </Panel>
             </div>
 
             <div className="abyss-section" id="scroll">
-              <Panel title="Scroll Area" meta="SCR">
+              <Panel title="Scroll Area">
                 <ScrollArea>
                   <ScrollAreaViewport>
                     <ScrollAreaContent>
@@ -1428,7 +1428,7 @@ function Demo() {
             <GroupRule group="Foundations" sub="stone & ink" />
 
             <div className="abyss-section abyss-section--wide" id="typography">
-              <Panel title="Typography" meta="TYP">
+              <Panel title="Typography">
                 <div className="demo-stack">
                   <p className="abyss-h1">R'lyeh Rises</p>
                   <p className="abyss-h2">The Drowned Choir</p>
@@ -1445,7 +1445,7 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="separator">
-              <Panel title="Separator" meta="SEP">
+              <Panel title="Separator">
                 <div className="demo-stack">
                   <span className="abyss-cap">Plain</span>
                   <Separator />
@@ -1466,19 +1466,19 @@ function Demo() {
             </div>
 
             <div className="abyss-section" id="panel">
-              <Panel title="Panel" meta="PNL" breathe>
+              <Panel title="Panel" breathe>
                 <p className="abyss-text" style={{ margin: "0 0 18px" }}>
                   The wet-stone tablet wrapping every rite: a hand-inked frame that
                   wavers, corner tendrils, and a breathing sigil. Composable to any depth.
                 </p>
-                <Panel title="Nested Tablet" meta="SUB">
+                <Panel title="Nested Tablet">
                   <span className="abyss-cap">A tablet within a tablet</span>
                 </Panel>
               </Panel>
             </div>
             <GroupRule group="Signature" sub="what stirs below" />
             <div className="abyss-section abyss-section--wide" id="loader">
-              <Panel title="Loader" meta="LDR">
+              <Panel title="Loader">
                 <div className="demo-loader-stage">
                   <Loader />
                 </div>

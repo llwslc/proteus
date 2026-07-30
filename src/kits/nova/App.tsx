@@ -599,7 +599,7 @@ function Demo() {
           <div className="nova-grid">
             <GroupRule group="Inputs" sub="operator console inputs" />
             <div className="nova-section nova-section--wide" id="button">
-              <Panel title="Button" meta="BTN" scan>
+              <Panel title="Button" scan>
                 <div className="demo-stack">
                   <div className="demo-row">
                     <Button icon={<AtomIcon />}>Charge</Button>
@@ -637,7 +637,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="switch">
-              <Panel title="Switch" meta="SWT">
+              <Panel title="Switch">
                 <div className="demo-stack">
                   <div className="demo-spread">
                     <span className="nova-cap">Auto-Pilot</span>
@@ -660,7 +660,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="toggle">
-              <Panel title="Toggle Group" meta="TGL">
+              <Panel title="Toggle Group">
                 <div className="demo-stack">
                   <ToggleGroup defaultValue={["map"]}>
                     <Toggle value="map">Map</Toggle>
@@ -682,7 +682,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="checkbox">
-              <Panel title="Checkbox" meta="CHK">
+              <Panel title="Checkbox">
                 <div className="demo-stack">
                   <Checkbox defaultChecked label="Encryption" />
                   <Checkbox label="Stealth mode" />
@@ -693,7 +693,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="checkbox-group">
-              <Panel title="Checkbox Group" meta="CHG">
+              <Panel title="Checkbox Group">
                 <div className="demo-stack">
                   <CheckboxGroup
                     parentLabel="All channels"
@@ -714,7 +714,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="radio">
-              <Panel title="Radio Group" meta="RDO">
+              <Panel title="Radio Group">
                 <div className="demo-stack">
                   <span className="nova-cap">Drive mode</span>
                   <RadioGroup defaultValue="impulse">
@@ -735,7 +735,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="select">
-              <Panel title="Select" meta="SEL">
+              <Panel title="Select">
                 <div className="demo-stack">
                   <label className="nova-cap" htmlFor="sel-1">
                     Destination
@@ -763,7 +763,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="combobox">
-              <Panel title="Combobox" meta="CBX">
+              <Panel title="Combobox">
                 <div className="demo-stack">
                   <span className="nova-cap">Filter star systems</span>
                   <Combobox
@@ -776,7 +776,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="autocomplete">
-              <Panel title="Autocomplete" meta="ACP">
+              <Panel title="Autocomplete">
                 <div className="demo-stack">
                   <span className="nova-cap">Command palette</span>
                   <Autocomplete
@@ -789,7 +789,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="slider">
-              <Panel title="Slider" meta="SLD">
+              <Panel title="Slider">
                 <div className="demo-stack">
                   <Slider label="Thrust" defaultValue={62} />
                   <Slider label="Frequency" defaultValue={40} disabled />
@@ -799,7 +799,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="number">
-              <Panel title="Number Field" meta="NUM">
+              <Panel title="Number Field">
                 <div className="demo-stack">
                   <label className="nova-cap" htmlFor="num-1">
                     Jump Coordinates
@@ -818,7 +818,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="input">
-              <Panel title="Text Field" meta="TXT">
+              <Panel title="Text Field">
                 <div className="demo-stack">
                   <Field
                     label="Callsign"
@@ -843,7 +843,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="otp">
-              <Panel title="OTP Field" meta="OTP">
+              <Panel title="OTP Field">
                 <div className="demo-stack">
                   <span className="nova-cap">Authorization code</span>
                   <OtpField
@@ -874,7 +874,7 @@ function Demo() {
 
             <GroupRule group="Forms" sub="crew credential intake" />
             <div className="nova-section" id="fieldset">
-              <Panel title="Fieldset" meta="FLD">
+              <Panel title="Fieldset">
                 <Fieldset legend="Pilot Credentials">
                   <Field label="Callsign" defaultValue="Nightingale" />
                   <Field label="Squadron" defaultValue="Vanguard-7" />
@@ -883,20 +883,20 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="form">
-              <Panel title="Form" meta="FRM">
+              <Panel title="Form">
                 <FormDemo />
               </Panel>
             </div>
 
             <GroupRule group="Feedback" sub="live telemetry readouts" />
             <div className="nova-section" id="progress">
-              <Panel title="Progress" meta="PRG">
+              <Panel title="Progress">
                 <ProgressDemo />
               </Panel>
             </div>
 
             <div className="nova-section" id="meter">
-              <Panel title="Meter" meta="MTR">
+              <Panel title="Meter">
                 <div className="demo-stack">
                   <Meter label="Power Output" value={88} />
                   <Meter label="Shield Integrity" value={70} tone="success" />
@@ -907,13 +907,13 @@ function Demo() {
             </div>
 
             <div className="nova-section nova-section--wide" id="tabs">
-              <Panel title="Tabs" meta="TAB">
+              <Panel title="Tabs">
                 <Tabs items={TAB_ITEMS} />
               </Panel>
             </div>
 
             <div className="nova-section" id="accordion">
-              <Panel title="Accordion" meta="ACC">
+              <Panel title="Accordion">
                 <div className="demo-stack">
                   <span className="nova-cap">One at a time</span>
                   <Accordion items={ACCORDION_ITEMS} defaultValue={["a1"]} />
@@ -928,7 +928,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="collapsible">
-              <Panel title="Collapsible" meta="CLP">
+              <Panel title="Collapsible">
                 <div className="demo-stack">
                   <Collapsible title="Diagnostics Log" defaultOpen>
                     All subsystems reporting nominal. Last anomaly cleared 14 jump cycles
@@ -949,7 +949,7 @@ function Demo() {
 
             <GroupRule group="Overlays" sub="signals that break through" />
             <div className="nova-section" id="tooltip">
-              <Panel title="Tooltip" meta="TIP">
+              <Panel title="Tooltip">
                 <div className="demo-row">
                   <Tooltip content="Points down" side="top">
                     <Button variant="ghost">Top</Button>
@@ -968,7 +968,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="popover">
-              <Panel title="Popover" meta="POP">
+              <Panel title="Popover">
                 <Popover
                   trigger={<Button variant="ghost">Comms Panel</Button>}
                   title="Channel 7"
@@ -980,7 +980,7 @@ function Demo() {
             </div>
 
             <div className="nova-section nova-section--wide" id="preview">
-              <Panel title="Preview Card" meta="PVW">
+              <Panel title="Preview Card">
                 <div className="demo-stack">
                   <span className="nova-cap">Hover the callsign</span>
                   <div>
@@ -1029,7 +1029,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="menu">
-              <Panel title="Menu" meta="MNU">
+              <Panel title="Menu">
                 <Menu trigger="Actions">
                   <MenuItem icon={<SearchIcon />} shortcut="⌘S">
                     Scan Sector
@@ -1059,7 +1059,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="menubar">
-              <Panel title="Menubar" meta="MBR">
+              <Panel title="Menubar">
                 <Menubar>
                   <MenubarMenu label="File">
                     <MenuItem icon={<BoltIcon />} shortcut="⌘N">
@@ -1094,7 +1094,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="navmenu">
-              <Panel title="Navigation Menu" meta="NAV">
+              <Panel title="Navigation Menu">
                 <NavigationMenu
                   items={NAVMENU_ITEMS}
                   onLinkClick={preventDemoNavigation}
@@ -1103,7 +1103,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="context">
-              <Panel title="Context Menu" meta="CTX">
+              <Panel title="Context Menu">
                 <div className="demo-stack">
                   <ContextMenu
                     trigger={
@@ -1123,7 +1123,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="dialog">
-              <Panel title="Dialog" meta="DLG">
+              <Panel title="Dialog">
                 <Dialog
                   trigger={<Button variant="secondary">Launch Sequence</Button>}
                   title="Confirm Jump"
@@ -1144,7 +1144,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="alert">
-              <Panel title="Alert Dialog" meta="ALT">
+              <Panel title="Alert Dialog">
                 <div className="demo-row">
                   <AlertDialog
                     tone="danger"
@@ -1187,7 +1187,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="drawer">
-              <Panel title="Drawer" meta="DRW">
+              <Panel title="Drawer">
                 <div className="demo-row">
                   {(["top", "bottom", "left", "right"] as const).map((side) => (
                     <Drawer
@@ -1218,14 +1218,14 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="toast">
-              <Panel title="Toast" meta="TST">
+              <Panel title="Toast">
                 <ToastDemo />
               </Panel>
             </div>
 
             <GroupRule group="Display" sub="what the viewport shows" />
             <div className="nova-section" id="avatar">
-              <Panel title="Avatar" meta="AVT">
+              <Panel title="Avatar">
                 <div className="demo-row">
                   <Avatar status="online">
                     <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="Operator" />
@@ -1245,7 +1245,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="badge">
-              <Panel title="Badge" meta="BDG">
+              <Panel title="Badge">
                 <div className="demo-row">
                   <Badge tone="primary" dot>
                     Online
@@ -1262,13 +1262,13 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="toolbar">
-              <Panel title="Toolbar" meta="TBR">
+              <Panel title="Toolbar">
                 <ToolbarDemo />
               </Panel>
             </div>
 
             <div className="nova-section" id="scroll">
-              <Panel title="Scroll Area" meta="SCR">
+              <Panel title="Scroll Area">
                 <ScrollArea>
                   <ScrollAreaViewport>
                     <ScrollAreaContent>
@@ -1291,7 +1291,7 @@ function Demo() {
 
             <GroupRule group="Foundations" sub="the hull beneath the HUD" />
             <div className="nova-section nova-section--wide" id="typography">
-              <Panel title="Typography" meta="TYP">
+              <Panel title="Typography">
                 <div className="demo-col">
                   <p className="nova-h1">Nova Command</p>
                   <p className="nova-h2">Telemetry Feed</p>
@@ -1308,7 +1308,7 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="separator">
-              <Panel title="Separator" meta="SEP">
+              <Panel title="Separator">
                 <div className="demo-stack">
                   <span className="nova-cap">Plain</span>
                   <Separator />
@@ -1329,19 +1329,19 @@ function Demo() {
             </div>
 
             <div className="nova-section" id="panel">
-              <Panel title="Panel" meta="PNL" scan>
+              <Panel title="Panel" scan>
                 <p className="nova-text" style={{ margin: "0 0 16px" }}>
                   The HUD frame wrapping every section: a chamfered border with corner
                   brackets and an optional scan sweep.
                 </p>
-                <Panel title="Nested Frame" meta="SUB">
+                <Panel title="Nested Frame">
                   <span className="nova-cap">Composable to any depth</span>
                 </Panel>
               </Panel>
             </div>
             <GroupRule group="Signature" sub="the boot sequence" />
             <div className="nova-section nova-section--wide" id="loader">
-              <Panel title="Loader" meta="LDR">
+              <Panel title="Loader">
                 <div className="demo-loader-stage">
                   <Loader />
                 </div>

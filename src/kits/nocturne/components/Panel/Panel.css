@@ -51,17 +51,6 @@
   text-overflow: ellipsis;
 }
 
-.nocturne-panel__meta {
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--nocturne-font-mono);
-  font-size: var(--nocturne-fs-12);
-  letter-spacing: var(--nocturne-ls-2);
-  color: var(--nocturne-text-mute);
-}
-
 .nocturne-panel__body {
   flex: 1;
   min-width: 0;
@@ -101,10 +90,6 @@
   text-indent: 0;
   text-transform: uppercase;
   color: var(--nocturne-text-bright);
-}
-.nocturne-panel .nocturne-panel .nocturne-panel__meta {
-  position: static;
-  transform: none;
 }
 
 @media (max-width: 768px) {

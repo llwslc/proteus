@@ -429,7 +429,7 @@ function Demo() {
             marker={<CircleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="button" title="Button" meta="BTN" wide>
+            <Panel id="button" title="Button" wide>
               <div className="bauhaus-stack">
                 <div className="bauhaus-row">
                   <Button icon={<Triangle />}>Compose</Button>
@@ -465,7 +465,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="switch" title="Switch" meta="SWT">
+            <Panel id="switch" title="Switch">
               <div className="bauhaus-stack">
                 <label className="bauhaus-row bauhaus-row--between">
                   <span className="bauhaus-cap">Snap to grid</span>
@@ -485,7 +485,7 @@ function Demo() {
                 </label>
               </div>
             </Panel>
-            <Panel id="toggle" title="Toggle Group" meta="TGL">
+            <Panel id="toggle" title="Toggle Group">
               <div className="bauhaus-stack">
                 <ToggleGroup defaultValue={["left"]}>
                   <Toggle value="left">Left</Toggle>
@@ -505,7 +505,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="checkbox" title="Checkbox" meta="CHK">
+            <Panel id="checkbox" title="Checkbox">
               <div className="bauhaus-stack">
                 <Checkbox defaultChecked label="Snap to grid" />
                 <Checkbox label="Show rulers" />
@@ -513,7 +513,7 @@ function Demo() {
                 <Checkbox disabled label="Hide plane" />
               </div>
             </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
+            <Panel id="checkbox-group" title="Checkbox Group">
               <div className="bauhaus-stack">
                 <CheckboxGroup
                   defaultValue={["grid"]}
@@ -536,7 +536,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="radio" title="Radio Group" meta="RDO">
+            <Panel id="radio" title="Radio Group">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Alignment</span>
                 <RadioGroup defaultValue="left">
@@ -554,7 +554,7 @@ function Demo() {
                 </RadioGroup>
               </div>
             </Panel>
-            <Panel id="select" title="Select" meta="SEL">
+            <Panel id="select" title="Select">
               <div className="bauhaus-stack">
                 <label className="bauhaus-cap" htmlFor="sel-1">
                   Type weight
@@ -581,7 +581,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="combobox" title="Combobox" meta="CBX">
+            <Panel id="combobox" title="Combobox">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Filter forms</span>
                 <Combobox
@@ -591,7 +591,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="autocomplete" title="Autocomplete" meta="ACP">
+            <Panel id="autocomplete" title="Autocomplete">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Pick a pigment</span>
                 <Autocomplete
@@ -602,14 +602,14 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="slider" title="Slider" meta="SLD">
+            <Panel id="slider" title="Slider">
               <div className="bauhaus-stack">
                 <Slider label="Column width" defaultValue={62} />
                 <Slider label="Gutter" defaultValue={40} disabled />
                 <Slider label="Ink density" defaultValue={75} showValue={false} />
               </div>
             </Panel>
-            <Panel id="number" title="Number Field" meta="NUM">
+            <Panel id="number" title="Number Field">
               <div className="bauhaus-stack">
                 <label className="bauhaus-cap" htmlFor="num-1">
                   Grid columns
@@ -622,7 +622,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="input" title="Text Field" meta="TXT">
+            <Panel id="input" title="Text Field">
               <div className="bauhaus-stack">
                 <Field
                   label="Composition name"
@@ -644,7 +644,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="otp" title="OTP Field" meta="OTP">
+            <Panel id="otp" title="OTP Field">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Access code</span>
                 <OtpField length={6} splitAt={3} defaultValue="919" label="Access code" />
@@ -675,13 +675,13 @@ function Demo() {
             marker={<SquareFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="fieldset" title="Fieldset" meta="FLD">
+            <Panel id="fieldset" title="Fieldset">
               <Fieldset legend="Designer">
                 <Field label="Name" defaultValue="László" />
                 <Field label="Studio" defaultValue="Dessau" />
               </Fieldset>
             </Panel>
-            <Panel id="form" title="Form" meta="FRM">
+            <Panel id="form" title="Form">
               <FormDemo />
             </Panel>
           </div>
@@ -693,10 +693,10 @@ function Demo() {
             marker={<TriangleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="progress" title="Progress" meta="PRG">
+            <Panel id="progress" title="Progress">
               <ProgressBars />
             </Panel>
-            <Panel id="meter" title="Meter" meta="MTR">
+            <Panel id="meter" title="Meter">
               <div className="bauhaus-stack">
                 <Meter label="Ink coverage" value={88} />
                 <Meter label="Registration" value={70} tone="success" />
@@ -705,7 +705,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="tabs" title="Tabs" meta="TAB" wide>
+            <Panel id="tabs" title="Tabs" wide>
               <Tabs
                 defaultValue="form"
                 items={[
@@ -744,7 +744,7 @@ function Demo() {
               />
             </Panel>
 
-            <Panel id="accordion" title="Accordion" meta="ACC">
+            <Panel id="accordion" title="Accordion">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">One at a time</span>
                 <Accordion
@@ -790,7 +790,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="collapsible" title="Collapsible" meta="CLP">
+            <Panel id="collapsible" title="Collapsible">
               <div className="bauhaus-stack">
                 <Collapsible title="Build notes" defaultOpen>
                   <p className="bauhaus-text">
@@ -825,7 +825,7 @@ function Demo() {
             marker={<Concentric />}
           />
           <div className="bauhaus-grid">
-            <Panel id="tooltip" title="Tooltip" meta="TIP">
+            <Panel id="tooltip" title="Tooltip">
               <div className="bauhaus-row">
                 <Tooltip content="Align left" side="top">
                   <Button variant="ghost">Align</Button>
@@ -841,7 +841,7 @@ function Demo() {
                 </Tooltip>
               </div>
             </Panel>
-            <Panel id="popover" title="Popover" meta="POP">
+            <Panel id="popover" title="Popover">
               <Popover
                 trigger={<Button variant="ghost">Details</Button>}
                 title="Module A"
@@ -850,7 +850,7 @@ function Demo() {
               </Popover>
             </Panel>
 
-            <Panel id="preview" title="Preview Card" meta="PVW" wide>
+            <Panel id="preview" title="Preview Card" wide>
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Hover the designer</span>
                 <p className="bauhaus-text">
@@ -894,7 +894,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="menu" title="Menu" meta="MNU">
+            <Panel id="menu" title="Menu">
               <Menu trigger="Actions">
                 <MenuItem icon={<Copy />} shortcut="⌘D">
                   Duplicate
@@ -921,7 +921,7 @@ function Demo() {
                 </MenuItem>
               </Menu>
             </Panel>
-            <Panel id="menubar" title="Menubar" meta="MBR">
+            <Panel id="menubar" title="Menubar">
               <Menubar>
                 <MenubarMenu label="Object">
                   <MenuItem>Group</MenuItem>
@@ -948,10 +948,10 @@ function Demo() {
               </Menubar>
             </Panel>
 
-            <Panel id="navmenu" title="Navigation Menu" meta="NAV">
+            <Panel id="navmenu" title="Navigation Menu">
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
-            <Panel id="context" title="Context Menu" meta="CTX">
+            <Panel id="context" title="Context Menu">
               <div className="bauhaus-stack">
                 <ContextMenu
                   trigger={
@@ -971,7 +971,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="dialog" title="Dialog" meta="DLG">
+            <Panel id="dialog" title="Dialog">
               <Dialog
                 trigger={<Button variant="secondary">Reset grid</Button>}
                 title="Reset composition"
@@ -986,7 +986,7 @@ function Demo() {
                 <p className="bauhaus-text">Elements: 12 · Off-grid: 3</p>
               </Dialog>
             </Panel>
-            <Panel id="alert" title="Alert Dialog" meta="ALT">
+            <Panel id="alert" title="Alert Dialog">
               <div className="bauhaus-row">
                 <AlertDialog
                   tone="danger"
@@ -1027,7 +1027,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="drawer" title="Drawer" meta="DRW">
+            <Panel id="drawer" title="Drawer">
               <div className="bauhaus-row">
                 {(["top", "bottom", "left", "right"] as const).map((side) => (
                   <Drawer
@@ -1055,7 +1055,7 @@ function Demo() {
                 ))}
               </div>
             </Panel>
-            <Panel id="toast" title="Toast" meta="TST">
+            <Panel id="toast" title="Toast">
               <div className="bauhaus-row">
                 <Button
                   size="sm"
@@ -1117,7 +1117,7 @@ function Demo() {
             marker={<SquareFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="avatar" title="Avatar" meta="AVT">
+            <Panel id="avatar" title="Avatar">
               <div className="bauhaus-row">
                 <Avatar status="online">
                   <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="" />
@@ -1134,7 +1134,7 @@ function Demo() {
                 </Avatar>
               </div>
             </Panel>
-            <Panel id="badge" title="Badge" meta="BDG">
+            <Panel id="badge" title="Badge">
               <div className="bauhaus-row">
                 <Badge tone="primary" dot>
                   Primary
@@ -1149,7 +1149,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="toolbar" title="Toolbar" meta="TBR">
+            <Panel id="toolbar" title="Toolbar">
               <Toolbar aria-label="Tools">
                 <BaseToggleGroup
                   className="bauhaus-toolbar__group"
@@ -1182,7 +1182,7 @@ function Demo() {
                 </ToolbarLink>
               </Toolbar>
             </Panel>
-            <Panel id="scroll" title="Scroll Area" meta="SCR">
+            <Panel id="scroll" title="Scroll Area">
               <ScrollArea>
                 <ScrollAreaViewport>
                   <ScrollAreaContent>
@@ -1222,7 +1222,7 @@ function Demo() {
             marker={<TriangleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="typography" title="Typography" meta="TYP" wide>
+            <Panel id="typography" title="Typography" wide>
               <div className="bauhaus-stack">
                 <h2 className="bauhaus-h1">Built from primary forms</h2>
                 <h3 className="bauhaus-h2">Workshop headings</h3>
@@ -1235,7 +1235,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="separator" title="Separator" meta="SEP">
+            <Panel id="separator" title="Separator">
               <div className="bauhaus-stack">
                 <span className="bauhaus-cap">Plain</span>
                 <Separator />
@@ -1253,12 +1253,12 @@ function Demo() {
                 </div>
               </div>
             </Panel>
-            <Panel id="panel" title="Panel" meta="PNL">
+            <Panel id="panel" title="Panel">
               <p className="bauhaus-text bauhaus-panel-note">
                 The bordered plate wrapping every section — a single flat field, a hard
                 black rule and a geometric mark. Composable to any depth.
               </p>
-              <Panel title="Nested plate" meta="SUB">
+              <Panel title="Nested plate">
                 <span className="bauhaus-cap">A plate within a plate</span>
               </Panel>
             </Panel>
@@ -1271,7 +1271,7 @@ function Demo() {
             marker={<CircleFill />}
           />
           <div className="bauhaus-grid">
-            <Panel id="loader" title="Loader" meta="LDR" wide>
+            <Panel id="loader" title="Loader" wide>
               <div className="demo-loader-stage">
                 <Loader />
               </div>

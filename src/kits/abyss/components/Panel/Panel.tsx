@@ -5,7 +5,6 @@ import "./Panel.css";
 
 export interface PanelProps {
   title?: ReactNode;
-  meta?: ReactNode;
   children: ReactNode;
   breathe?: boolean;
   className?: string;
@@ -22,12 +21,12 @@ const Tendril = ({ pos }: { pos: "tl" | "br" }) => (
   </svg>
 );
 
-export function Panel({ title, meta, children, breathe, className }: PanelProps) {
+export function Panel({ title, children, breathe, className }: PanelProps) {
   return (
     <section className={cx("abyss-panel abyss-frame abyss-frame--double", className)}>
       <Tendril pos="tl" />
       <Tendril pos="br" />
-      {(title != null || meta != null) && (
+      {title != null && (
         <header className="abyss-panel__head">
           {title != null ? (
             <h3 className="abyss-h3 abyss-panel__title">
@@ -39,7 +38,6 @@ export function Panel({ title, meta, children, breathe, className }: PanelProps)
           ) : (
             <span />
           )}
-          {meta != null ? <span className="abyss-panel__meta">{meta}</span> : null}
         </header>
       )}
       <div className="abyss-panel__body">{children}</div>

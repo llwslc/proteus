@@ -558,7 +558,7 @@ function Demo() {
 
           <GroupRule id="inputs" label="Inputs" sub="Garden orders · one touch, one promise." />
           <div className="nocturne-grid">
-            <Panel id="button" title="Button" meta="BTN" wide>
+            <Panel id="button" title="Button" wide>
               <div className="nocturne-stack">
                 <div className="nocturne-row">
                   <Button icon={<LampIcon />}>Light the Lamps</Button>
@@ -594,7 +594,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="switch" title="Switch" meta="SWT">
+            <Panel id="switch" title="Switch">
               <div className="nocturne-stack">
                 <label className="nocturne-row nocturne-row--between">
                   <span className="nocturne-cap">Warm lamp</span>
@@ -614,7 +614,7 @@ function Demo() {
                 </label>
               </div>
             </Panel>
-            <Panel id="toggle" title="Toggle Group" meta="TGL">
+            <Panel id="toggle" title="Toggle Group">
               <div className="nocturne-stack">
                 <ToggleGroup defaultValue={["north"]}>
                   <Toggle value="north">North Wall</Toggle>
@@ -634,7 +634,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="checkbox" title="Checkbox" meta="CHK">
+            <Panel id="checkbox" title="Checkbox">
               <div className="nocturne-stack">
                 <Checkbox defaultChecked label="Bloom noted" />
                 <Checkbox label="Scent noted" />
@@ -642,7 +642,7 @@ function Demo() {
                 <Checkbox disabled label="Frost noted" />
               </div>
             </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
+            <Panel id="checkbox-group" title="Checkbox Group">
               <div className="nocturne-stack">
                 <CheckboxGroup
                   defaultValue={["lamps"]}
@@ -665,7 +665,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="radio" title="Radio Group" meta="RDO">
+            <Panel id="radio" title="Radio Group">
               <div className="nocturne-stack">
                 <span className="nocturne-cap">On duty tonight</span>
                 <RadioGroup defaultValue="belladonna">
@@ -683,7 +683,7 @@ function Demo() {
                 </RadioGroup>
               </div>
             </Panel>
-            <Panel id="select" title="Select" meta="SEL">
+            <Panel id="select" title="Select">
               <div className="nocturne-stack">
                 <label className="nocturne-cap" htmlFor="sel-1">
                   Bloom of the hour
@@ -705,7 +705,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="combobox" title="Combobox" meta="CBX">
+            <Panel id="combobox" title="Combobox">
               <div className="nocturne-stack">
                 <span className="nocturne-cap">Find a flower</span>
                 <Combobox
@@ -716,7 +716,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="autocomplete" title="Autocomplete" meta="ACP">
+            <Panel id="autocomplete" title="Autocomplete">
               <div className="nocturne-stack">
                 <span className="nocturne-cap">Call a round</span>
                 <Autocomplete
@@ -728,14 +728,14 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="slider" title="Slider" meta="SLD">
+            <Panel id="slider" title="Slider">
               <div className="nocturne-stack">
                 <Slider label="Flame height" defaultValue={62} />
                 <Slider label="Mist reach" defaultValue={40} disabled />
                 <Slider label="Scent drift" defaultValue={75} showValue={false} />
               </div>
             </Panel>
-            <Panel id="number" title="Number Field" meta="NUM">
+            <Panel id="number" title="Number Field">
               <div className="nocturne-stack">
                 <label className="nocturne-cap" htmlFor="num-1">
                   Lamps lit
@@ -748,7 +748,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="input" title="Text Field" meta="TXT">
+            <Panel id="input" title="Text Field">
               <div className="nocturne-stack">
                 <Field
                   label="Specimen name"
@@ -770,7 +770,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="otp" title="OTP Field" meta="OTP">
+            <Panel id="otp" title="OTP Field">
               <div className="nocturne-stack">
                 <span className="nocturne-cap">Specimen code</span>
                 <OtpField length={6} splitAt={3} defaultValue="217" label="Specimen code" />
@@ -800,13 +800,13 @@ function Demo() {
             sub="Night-register entries · archived at the stroke of the pen."
           />
           <div className="nocturne-grid">
-            <Panel id="fieldset" title="Fieldset" meta="FLD">
+            <Panel id="fieldset" title="Fieldset">
               <Fieldset legend="The Warden">
                 <Field label="Name" defaultValue="Lady Belladonna" />
                 <Field label="Post" defaultValue="South Conservatory" />
               </Fieldset>
             </Panel>
-            <Panel id="form" title="Form" meta="FRM">
+            <Panel id="form" title="Form">
               <FormDemo />
             </Panel>
           </div>
@@ -817,10 +817,10 @@ function Demo() {
             sub="Garden gauges · trim the flame, watch the needle."
           />
           <div className="nocturne-grid">
-            <Panel id="progress" title="Progress" meta="PRG">
+            <Panel id="progress" title="Progress">
               <ProgressBars />
             </Panel>
-            <Panel id="meter" title="Meter" meta="MTR">
+            <Panel id="meter" title="Meter">
               <div className="nocturne-stack">
                 <Meter label="Hothouse heat" value={88} />
                 <Meter label="Dew yield" value={70} tone="success" />
@@ -829,7 +829,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="tabs" title="Tabs" meta="TAB" wide>
+            <Panel id="tabs" title="Tabs" wide>
               <Tabs
                 defaultValue="belladonna"
                 items={[
@@ -869,7 +869,7 @@ function Demo() {
               />
             </Panel>
 
-            <Panel id="accordion" title="Accordion" meta="ACC">
+            <Panel id="accordion" title="Accordion">
               <div className="nocturne-stack">
                 <span className="nocturne-cap">One at a time</span>
                 <Accordion
@@ -915,7 +915,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="collapsible" title="Collapsible" meta="CLP">
+            <Panel id="collapsible" title="Collapsible">
               <div className="nocturne-stack">
                 <Collapsible title="Warden's note" defaultOpen>
                   <p className="nocturne-text">
@@ -945,7 +945,7 @@ function Demo() {
             sub="Summons · knock softly, and the layers will come."
           />
           <div className="nocturne-grid">
-            <Panel id="tooltip" title="Tooltip" meta="TIP">
+            <Panel id="tooltip" title="Tooltip">
               <div className="nocturne-row">
                 <Tooltip content="Wicks at one third — enough to read by" side="top">
                   <Button variant="ghost">Lamps</Button>
@@ -961,7 +961,7 @@ function Demo() {
                 </Tooltip>
               </div>
             </Panel>
-            <Panel id="popover" title="Popover" meta="POP">
+            <Panel id="popover" title="Popover">
               <Popover
                 trigger={<Button variant="ghost">Tonight's round</Button>}
                 title="South Conservatory"
@@ -971,7 +971,7 @@ function Demo() {
               </Popover>
             </Panel>
 
-            <Panel id="preview" title="Preview Card" meta="PVW" wide>
+            <Panel id="preview" title="Preview Card" wide>
               <div className="nocturne-stack">
                 <span className="nocturne-cap">Hover the warden</span>
                 <p className="nocturne-text">
@@ -1015,7 +1015,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="menu" title="Menu" meta="MNU">
+            <Panel id="menu" title="Menu">
               <Menu trigger="Garden actions">
                 <MenuItem icon={<LampIcon />} shortcut="⌘L">
                   Light the lamp room
@@ -1042,7 +1042,7 @@ function Demo() {
                 </MenuItem>
               </Menu>
             </Panel>
-            <Panel id="menubar" title="Menubar" meta="MBR">
+            <Panel id="menubar" title="Menubar">
               <Menubar>
                 <MenubarMenu label="Register">
                   <MenuItem>Open tonight's page</MenuItem>
@@ -1069,10 +1069,10 @@ function Demo() {
               </Menubar>
             </Panel>
 
-            <Panel id="navmenu" title="Navigation Menu" meta="NAV">
+            <Panel id="navmenu" title="Navigation Menu">
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
-            <Panel id="context" title="Context Menu" meta="CTX">
+            <Panel id="context" title="Context Menu">
               <div className="nocturne-stack">
                 <ContextMenu
                   trigger={
@@ -1092,7 +1092,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="dialog" title="Dialog" meta="DLG">
+            <Panel id="dialog" title="Dialog">
               <Dialog
                 trigger={<Button variant="secondary">Open the Night Register</Button>}
                 title="Tonight's Watch List"
@@ -1110,7 +1110,7 @@ function Demo() {
                 </p>
               </Dialog>
             </Panel>
-            <Panel id="alert" title="Alert Dialog" meta="ALT">
+            <Panel id="alert" title="Alert Dialog">
               <div className="nocturne-row">
                 <AlertDialog
                   tone="danger"
@@ -1151,7 +1151,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="drawer" title="Drawer" meta="DRW">
+            <Panel id="drawer" title="Drawer">
               <div className="nocturne-row">
                 {(
                   [
@@ -1184,7 +1184,7 @@ function Demo() {
                 ))}
               </div>
             </Panel>
-            <Panel id="toast" title="Toast" meta="TST">
+            <Panel id="toast" title="Toast">
               <div className="nocturne-row">
                 <Button
                   size="sm"
@@ -1247,7 +1247,7 @@ function Demo() {
 
           <GroupRule id="display" label="Display" sub="Plates and seals · all taken to brass." />
           <div className="nocturne-grid">
-            <Panel id="avatar" title="Avatar" meta="AVT">
+            <Panel id="avatar" title="Avatar">
               <div className="nocturne-row">
                 <Avatar status="online">
                   <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
@@ -1264,7 +1264,7 @@ function Demo() {
                 </Avatar>
               </div>
             </Panel>
-            <Panel id="badge" title="Badge" meta="BDG">
+            <Panel id="badge" title="Badge">
               <div className="nocturne-row">
                 <Badge tone="primary" dot>
                   In bloom
@@ -1279,7 +1279,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="toolbar" title="Toolbar" meta="TBR">
+            <Panel id="toolbar" title="Toolbar">
               <Toolbar aria-label="Lamp bench">
                 <BaseToggleGroup
                   className="nocturne-toolbar__group"
@@ -1312,7 +1312,7 @@ function Demo() {
                 </ToolbarLink>
               </Toolbar>
             </Panel>
-            <Panel id="scroll" title="Scroll Area" meta="SCR">
+            <Panel id="scroll" title="Scroll Area">
               <ScrollArea>
                 <ScrollAreaViewport style={{ maxHeight: "var(--nocturne-scroll-demo-h)" }}>
                   <ScrollAreaContent>
@@ -1351,7 +1351,7 @@ function Demo() {
             sub="The night is built from one brass hairline."
           />
           <div className="nocturne-grid">
-            <Panel id="typography" title="Typography" meta="TYP" wide>
+            <Panel id="typography" title="Typography" wide>
               <div className="nocturne-stack">
                 <h2 className="nocturne-h1">The Garden Wakes at Dusk</h2>
                 <h3 className="nocturne-h2">Bone serif over wine velvet</h3>
@@ -1365,7 +1365,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="separator" title="Separator" meta="SEP">
+            <Panel id="separator" title="Separator">
               <div className="nocturne-stack">
                 <span className="nocturne-cap">Bare hairline</span>
                 <Separator />
@@ -1383,12 +1383,12 @@ function Demo() {
                 </div>
               </div>
             </Panel>
-            <Panel id="panel" title="Panel" meta="PNL">
+            <Panel id="panel" title="Panel">
               <p className="nocturne-text nocturne-panel-note">
                 Every plate in the album sits on one of these — velvet under brass,
                 hairline within hairline, corners grown over with sprigs.
               </p>
-              <Panel title="Nested plate" meta="SUB">
+              <Panel title="Nested plate">
                 <span className="nocturne-cap">A plate within a plate</span>
               </Panel>
             </Panel>
@@ -1400,7 +1400,7 @@ function Demo() {
             sub="The flowers stand watch, and keep the light for the lamps."
           />
           <div className="nocturne-grid">
-            <Panel id="loader" title="Loader" meta="LDR" wide>
+            <Panel id="loader" title="Loader" wide>
               <div className="demo-loader-stage">
                 <Loader />
               </div>

@@ -6,7 +6,6 @@ import "./Panel.css";
 export interface PanelProps {
   id?: string;
   title?: ReactNode;
-  meta?: ReactNode;
   corners?: boolean;
   wide?: boolean;
   children?: ReactNode;
@@ -22,7 +21,7 @@ function PanelCorner({ mod }: { mod: string }) {
   );
 }
 
-export function Panel({ id, title, meta, corners = true, wide, children }: PanelProps) {
+export function Panel({ id, title, corners = true, wide, children }: PanelProps) {
   return (
     <section
       id={id}
@@ -41,10 +40,9 @@ export function Panel({ id, title, meta, corners = true, wide, children }: Panel
           <PanelCorner mod="br" />
         </>
       ) : null}
-      {(title || meta) && (
+      {title && (
         <header className="nocturne-panel__head">
           {title && <h3 className="nocturne-plaque nocturne-panel__title">{title}</h3>}
-          {meta && <span className="nocturne-panel__meta">{meta}</span>}
         </header>
       )}
       <div className="nocturne-panel__body">{children}</div>

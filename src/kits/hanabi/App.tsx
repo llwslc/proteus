@@ -461,7 +461,7 @@ function Demo() {
             marker="✦"
           />
           <div className="hanabi-grid">
-            <Panel id="button" title="Button" meta="BTN" wide>
+            <Panel id="button" title="Button" wide>
               <div className="hanabi-stack">
                 <div className="hanabi-row">
                   <Button icon={<RocketIcon />}>出撃</Button>
@@ -497,7 +497,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="switch" title="Switch" meta="SWT">
+            <Panel id="switch" title="Switch">
               <div className="hanabi-stack">
                 <label className="hanabi-row hanabi-row--between">
                   <span className="hanabi-cap">オート戦闘</span>
@@ -517,7 +517,7 @@ function Demo() {
                 </label>
               </div>
             </Panel>
-            <Panel id="toggle" title="Toggle Group" meta="TGL">
+            <Panel id="toggle" title="Toggle Group">
               <div className="hanabi-stack">
                 <ToggleGroup defaultValue={["van"]}>
                   <Toggle value="van">前衛</Toggle>
@@ -537,7 +537,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="checkbox" title="Checkbox" meta="CHK">
+            <Panel id="checkbox" title="Checkbox">
               <div className="hanabi-stack">
                 <Checkbox defaultChecked label="弾薬装填" />
                 <Checkbox label="照準補正" />
@@ -545,7 +545,7 @@ function Demo() {
                 <Checkbox disabled label="封印" />
               </div>
             </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
+            <Panel id="checkbox-group" title="Checkbox Group">
               <div className="hanabi-stack">
                 <CheckboxGroup
                   defaultValue={["aim"]}
@@ -568,7 +568,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="radio" title="Radio Group" meta="RDO">
+            <Panel id="radio" title="Radio Group">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">出撃難度</span>
                 <RadioGroup defaultValue="drill">
@@ -586,7 +586,7 @@ function Demo() {
                 </RadioGroup>
               </div>
             </Panel>
-            <Panel id="select" title="Select" meta="SEL">
+            <Panel id="select" title="Select">
               <div className="hanabi-stack">
                 <label className="hanabi-cap" htmlFor="sel-1">
                   主装備
@@ -608,7 +608,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="combobox" title="Combobox" meta="CBX">
+            <Panel id="combobox" title="Combobox">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">スキル検索</span>
                 <Combobox
@@ -619,7 +619,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="autocomplete" title="Autocomplete" meta="ACP">
+            <Panel id="autocomplete" title="Autocomplete">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">隊員を呼ぶ</span>
                 <Autocomplete
@@ -631,14 +631,14 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="slider" title="Slider" meta="SLD">
+            <Panel id="slider" title="Slider">
               <div className="hanabi-stack">
                 <Slider label="BGM 音量" defaultValue={62} />
                 <Slider label="ガンマ補正" defaultValue={40} disabled />
                 <Slider label="弾幕密度" defaultValue={75} showValue={false} />
               </div>
             </Panel>
-            <Panel id="number" title="Number Field" meta="NUM">
+            <Panel id="number" title="Number Field">
               <div className="hanabi-stack">
                 <label className="hanabi-cap" htmlFor="num-1">
                   出撃人数
@@ -651,7 +651,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="input" title="Text Field" meta="TXT">
+            <Panel id="input" title="Text Field">
               <div className="hanabi-stack">
                 <Field
                   label="部隊名"
@@ -673,7 +673,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="otp" title="OTP Field" meta="OTP">
+            <Panel id="otp" title="OTP Field">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">認証コード</span>
                 <OtpField length={6} splitAt={3} defaultValue="873" label="認証コード" />
@@ -704,13 +704,13 @@ function Demo() {
             marker="★"
           />
           <div className="hanabi-grid">
-            <Panel id="fieldset" title="Fieldset" meta="FLD">
+            <Panel id="fieldset" title="Fieldset">
               <Fieldset legend="指揮官">
                 <Field label="名前" defaultValue="結衣" />
                 <Field label="所属" defaultValue="花火湾守備隊" />
               </Fieldset>
             </Panel>
-            <Panel id="form" title="Form" meta="FRM">
+            <Panel id="form" title="Form">
               <FormDemo />
             </Panel>
           </div>
@@ -722,10 +722,10 @@ function Demo() {
             marker="✦"
           />
           <div className="hanabi-grid">
-            <Panel id="progress" title="Progress" meta="PRG">
+            <Panel id="progress" title="Progress">
               <ProgressBars />
             </Panel>
-            <Panel id="meter" title="Meter" meta="MTR">
+            <Panel id="meter" title="Meter">
               <div className="hanabi-stack">
                 <Meter label="士気" value={88} />
                 <Meter label="命中率" value={70} tone="success" />
@@ -734,7 +734,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="tabs" title="Tabs" meta="TAB" wide>
+            <Panel id="tabs" title="Tabs" wide>
               <Tabs
                 defaultValue="ops"
                 items={[
@@ -770,7 +770,7 @@ function Demo() {
               />
             </Panel>
 
-            <Panel id="accordion" title="Accordion" meta="ACC">
+            <Panel id="accordion" title="Accordion">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">一つずつ開く</span>
                 <Accordion
@@ -814,7 +814,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="collapsible" title="Collapsible" meta="CLP">
+            <Panel id="collapsible" title="Collapsible">
               <div className="hanabi-stack">
                 <Collapsible title="作戦メモ" defaultOpen>
                   <p className="hanabi-text">
@@ -845,7 +845,7 @@ function Demo() {
             marker="★"
           />
           <div className="hanabi-grid">
-            <Panel id="tooltip" title="Tooltip" meta="TIP">
+            <Panel id="tooltip" title="Tooltip">
               <div className="hanabi-row">
                 <Tooltip content="照準を合わせる" side="top">
                   <Button variant="ghost">照準</Button>
@@ -861,13 +861,13 @@ function Demo() {
                 </Tooltip>
               </div>
             </Panel>
-            <Panel id="popover" title="Popover" meta="POP">
+            <Panel id="popover" title="Popover">
               <Popover trigger={<Button variant="ghost">詳細</Button>} title="第一小隊">
                 前衛一、支援二で編成中。次の出撃で必殺ゲージが満タンになる見込み。
               </Popover>
             </Panel>
 
-            <Panel id="preview" title="Preview Card" meta="PVW" wide>
+            <Panel id="preview" title="Preview Card" wide>
               <div className="hanabi-stack">
                 <span className="hanabi-cap">隊長にホバー</span>
                 <p className="hanabi-text">
@@ -908,7 +908,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="menu" title="Menu" meta="MNU">
+            <Panel id="menu" title="Menu">
               <Menu trigger="アクション">
                 <MenuItem icon={<CopyIcon />} shortcut="⌘D">
                   複製
@@ -935,7 +935,7 @@ function Demo() {
                 </MenuItem>
               </Menu>
             </Panel>
-            <Panel id="menubar" title="Menubar" meta="MBR">
+            <Panel id="menubar" title="Menubar">
               <Menubar>
                 <MenubarMenu label="部隊">
                   <MenuItem>招集</MenuItem>
@@ -962,10 +962,10 @@ function Demo() {
               </Menubar>
             </Panel>
 
-            <Panel id="navmenu" title="Navigation Menu" meta="NAV">
+            <Panel id="navmenu" title="Navigation Menu">
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
-            <Panel id="context" title="Context Menu" meta="CTX">
+            <Panel id="context" title="Context Menu">
               <div className="hanabi-stack">
                 <ContextMenu
                   trigger={
@@ -983,7 +983,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="dialog" title="Dialog" meta="DLG">
+            <Panel id="dialog" title="Dialog">
               <Dialog
                 trigger={<Button variant="secondary">出撃確認</Button>}
                 title="出撃の確認"
@@ -1000,7 +1000,7 @@ function Demo() {
                 <p className="hanabi-text">編成: 3名 · 消費 AP: 20</p>
               </Dialog>
             </Panel>
-            <Panel id="alert" title="Alert Dialog" meta="ALT">
+            <Panel id="alert" title="Alert Dialog">
               <div className="hanabi-row">
                 <AlertDialog
                   tone="danger"
@@ -1047,7 +1047,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="drawer" title="Drawer" meta="DRW">
+            <Panel id="drawer" title="Drawer">
               <div className="hanabi-row">
                 {(
                   [
@@ -1078,7 +1078,7 @@ function Demo() {
                 ))}
               </div>
             </Panel>
-            <Panel id="toast" title="Toast" meta="TST">
+            <Panel id="toast" title="Toast">
               <div className="hanabi-row">
                 <Button
                   size="sm"
@@ -1143,7 +1143,7 @@ function Demo() {
             marker="✦"
           />
           <div className="hanabi-grid">
-            <Panel id="avatar" title="Avatar" meta="AVT">
+            <Panel id="avatar" title="Avatar">
               <div className="hanabi-row">
                 <Avatar status="online">
                   <AvatarImage src="https://i.pravatar.cc/96?img=47" alt="" />
@@ -1160,7 +1160,7 @@ function Demo() {
                 </Avatar>
               </div>
             </Panel>
-            <Panel id="badge" title="Badge" meta="BDG">
+            <Panel id="badge" title="Badge">
               <div className="hanabi-row">
                 <Badge tone="primary" dot>
                   ★5
@@ -1175,7 +1175,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="toolbar" title="Toolbar" meta="TBR">
+            <Panel id="toolbar" title="Toolbar">
               <Toolbar aria-label="射撃モード">
                 <BaseToggleGroup
                   className="hanabi-toolbar__group"
@@ -1208,7 +1208,7 @@ function Demo() {
                 </ToolbarLink>
               </Toolbar>
             </Panel>
-            <Panel id="scroll" title="Scroll Area" meta="SCR">
+            <Panel id="scroll" title="Scroll Area">
               <ScrollArea>
                 <ScrollAreaViewport>
                   <ScrollAreaContent>
@@ -1248,7 +1248,7 @@ function Demo() {
             marker="★"
           />
           <div className="hanabi-grid">
-            <Panel id="typography" title="Typography" meta="TYP" wide>
+            <Panel id="typography" title="Typography" wide>
               <div className="hanabi-stack">
                 <h2 className="hanabi-h1">セル画でできた戦場</h2>
                 <h3 className="hanabi-h2">見出しは太く、影は冷たく</h3>
@@ -1261,7 +1261,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="separator" title="Separator" meta="SEP">
+            <Panel id="separator" title="Separator">
               <div className="hanabi-stack">
                 <span className="hanabi-cap">素の線</span>
                 <Separator />
@@ -1279,11 +1279,11 @@ function Demo() {
                 </div>
               </div>
             </Panel>
-            <Panel id="panel" title="Panel" meta="PNL">
+            <Panel id="panel" title="Panel">
               <p className="hanabi-text hanabi-panel-note">
                 すべてのセクションを包む台座。墨の枠、冷たい影、斜めの銘板——どこまでも入れ子にできる。
               </p>
-              <Panel title="入れ子の台座" meta="SUB">
+              <Panel title="入れ子の台座">
                 <span className="hanabi-cap">台座の中の台座</span>
               </Panel>
             </Panel>
@@ -1291,7 +1291,7 @@ function Demo() {
 
           <GroupRule id="signature" label="Signature" sub="必殺技、装填中。" marker="✦" />
           <div className="hanabi-grid">
-            <Panel id="loader" title="Loader" meta="LDR" wide>
+            <Panel id="loader" title="Loader" wide>
               <div className="demo-loader-stage">
                 <Loader />
               </div>

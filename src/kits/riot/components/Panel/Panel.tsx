@@ -4,7 +4,6 @@ import "./Panel.css";
 
 export interface PanelProps {
   title?: ReactNode;
-  meta?: ReactNode;
   children: ReactNode;
   tape?: "tl" | "tr" | "bl" | "br" | "top";
   stapled?: boolean;
@@ -15,7 +14,6 @@ export interface PanelProps {
 
 export function Panel({
   title,
-  meta,
   children,
   tape,
   stapled,
@@ -39,14 +37,13 @@ export function Panel({
         </>
       ) : null}
       <section className="riot-surface riot-surface--torn riot-panel__sheet">
-        {(title != null || meta != null) && (
+        {title != null && (
           <header className="riot-panel__head">
             {title != null ? (
               <h3 className="riot-h3 riot-panel__title">{title}</h3>
             ) : (
               <span />
             )}
-            {meta != null ? <span className="riot-panel__meta">{meta}</span> : null}
           </header>
         )}
         <div className="riot-panel__body">{children}</div>

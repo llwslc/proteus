@@ -12,11 +12,7 @@ const KITS = fs
   .filter((d) => d.isDirectory())
   .map((d) => d.name);
 
-const MENU_HOSTS = [
-  ["MNU", "menu"],
-  ["MBR", "menubar"],
-  ["CTX", "context"],
-];
+const MENU_HOSTS = ["menu", "menubar", "context"];
 
 const fails = [];
 const audited = { comps: 0, hosts: 0 };
@@ -98,10 +94,10 @@ for (const kit of KITS) {
     }
   }
 
-  for (const [meta, label] of MENU_HOSTS) {
-    const m = new RegExp(`<Panel[^>]*meta="${meta}"[^>]*>`).exec(app);
+  for (const label of MENU_HOSTS) {
+    const m = new RegExp(`\\bid="${label}"`).exec(app);
     if (!m) {
-      fails.push(`${kit}  ${label}: panel meta="${meta}" not found`);
+      fails.push(`${kit}  ${label}: panel id="${label}" not found`);
       continue;
     }
     audited.hosts++;

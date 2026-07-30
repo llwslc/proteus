@@ -28,14 +28,3 @@
   gap: var(--riot-space-3);
   margin-bottom: var(--riot-space-5);
 }
-.riot-panel__meta {
-  flex: 0 0 auto;
-  padding: var(--riot-space-1) var(--riot-space-2);
-  border: var(--riot-stroke) solid var(--riot-ink);
-  background: var(--riot-warning);
-  color: var(--riot-on-warning);
-  font-family: var(--riot-font-mono);
-  font-size: var(--riot-fs-11);
-  letter-spacing: var(--riot-ls-2);
-  transform: rotate(var(--riot-rot-2-5));
-}

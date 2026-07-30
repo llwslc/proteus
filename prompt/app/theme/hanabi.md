@@ -4,7 +4,7 @@
 
 ## 1. 文案
 
-- **语言分层**：外壳与仪表标签用英文——面板清单、meta 码、数据条、hero 模板、logo、状态徽章、footer；演示内容文案用日语——面板内的 caption、条目、正文段、菜单项、toast 标题与描述、对话框文案、组副题。数值、单位（AP、SP、LV、fps）保持拉丁。
+- **语言分层**：外壳与仪表标签用英文——面板清单、侧栏缩码、数据条、hero 模板、logo、状态徽章、footer；演示内容文案用日语——面板内的 caption、条目、正文段、菜单项、toast 标题与描述、对话框文案、组副题。数值、单位（AP、SP、LV、fps）保持拉丁。
 - logo：`HANABI`，`//` 前缀走 `warning` 星光金；副标题 `CEL-SHADED UI KIT`；状态徽章 `SORTIE READY`，走 primary 色。
 - hero：eyebrow `Hanabi Command · 37 Cels`；标题 `A **cel-shaded** interface kit / inked, flat-filled, ready to sortie`；描述关键词 navy ink lines、flat fills、cool-violet stepped shadows、gloss streak；单位词 `Cels`。
 - 区块组副题（日语）：Inputs `装填よし、いつでも撃てる。`；Forms `作戦書類はここでまとめて。`；Feedback `戦況は数字より速く伝わる。`；Overlays `呼べばすぐ来る支援部隊。`；Display `勲章も名札も飾って戦う。`；Foundations `一本の線からセル画。`；Signature `必殺技、装填中。`

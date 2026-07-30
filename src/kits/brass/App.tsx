@@ -438,7 +438,7 @@ function Demo() {
 
           <GroupRule id="inputs" label="Inputs" sub="intake & regulation" />
           <div className="brass-grid">
-            <Panel id="button" title="Button" meta="BTN" wide>
+            <Panel id="button" title="Button" wide>
               <div className="brass-stack">
                 <div className="brass-row">
                   <Button icon={<Lever />}>Engage</Button>
@@ -474,7 +474,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="switch" title="Switch" meta="SWT">
+            <Panel id="switch" title="Switch">
               <div className="brass-stack">
                 <label className="brass-row brass-row--between">
                   <span className="brass-cap">Main valve</span>
@@ -494,7 +494,7 @@ function Demo() {
                 </label>
               </div>
             </Panel>
-            <Panel id="toggle" title="Toggle Group" meta="TGL">
+            <Panel id="toggle" title="Toggle Group">
               <div className="brass-stack">
                 <ToggleGroup defaultValue={["heat"]}>
                   <Toggle value="heat">Heat</Toggle>
@@ -514,7 +514,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="checkbox" title="Checkbox" meta="CHK">
+            <Panel id="checkbox" title="Checkbox">
               <div className="brass-stack">
                 <Checkbox defaultChecked label="Auto-stoke" />
                 <Checkbox label="Manual feed" />
@@ -522,7 +522,7 @@ function Demo() {
                 <Checkbox disabled label="Sealed shut" />
               </div>
             </Panel>
-            <Panel id="checkbox-group" title="Checkbox Group" meta="CHG">
+            <Panel id="checkbox-group" title="Checkbox Group">
               <div className="brass-stack">
                 <CheckboxGroup
                   defaultValue={["pressure"]}
@@ -545,7 +545,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="radio" title="Radio Group" meta="RDO">
+            <Panel id="radio" title="Radio Group">
               <div className="brass-stack">
                 <span className="brass-cap">Draught</span>
                 <RadioGroup defaultValue="low">
@@ -563,7 +563,7 @@ function Demo() {
                 </RadioGroup>
               </div>
             </Panel>
-            <Panel id="select" title="Select" meta="SEL">
+            <Panel id="select" title="Select">
               <div className="brass-stack">
                 <label className="brass-cap" htmlFor="sel-1">
                   Boiler pressure
@@ -590,7 +590,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="combobox" title="Combobox" meta="CBX">
+            <Panel id="combobox" title="Combobox">
               <div className="brass-stack">
                 <span className="brass-cap">Filter feedstock</span>
                 <Combobox
@@ -600,7 +600,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="autocomplete" title="Autocomplete" meta="ACP">
+            <Panel id="autocomplete" title="Autocomplete">
               <div className="brass-stack">
                 <span className="brass-cap">Fuel by name</span>
                 <Autocomplete
@@ -611,14 +611,14 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="slider" title="Slider" meta="SLD">
+            <Panel id="slider" title="Slider">
               <div className="brass-stack">
                 <Slider label="Throttle" defaultValue={62} />
                 <Slider label="Damper" defaultValue={40} disabled />
                 <Slider label="Blower" defaultValue={75} showValue={false} />
               </div>
             </Panel>
-            <Panel id="number" title="Number Field" meta="NUM">
+            <Panel id="number" title="Number Field">
               <div className="brass-stack">
                 <label className="brass-cap" htmlFor="num-1">
                   Boiler PSI
@@ -631,7 +631,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="input" title="Text Field" meta="TXT">
+            <Panel id="input" title="Text Field">
               <div className="brass-stack">
                 <Field
                   label="Vessel name"
@@ -653,7 +653,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="otp" title="OTP Field" meta="OTP">
+            <Panel id="otp" title="OTP Field">
               <div className="brass-stack">
                 <span className="brass-cap">Ignition code</span>
                 <OtpField
@@ -684,23 +684,23 @@ function Demo() {
 
           <GroupRule id="forms" label="Forms" sub="binding the crew" />
           <div className="brass-grid">
-            <Panel id="fieldset" title="Fieldset" meta="FLD">
+            <Panel id="fieldset" title="Fieldset">
               <Fieldset legend="Engineer">
                 <Field label="Name" defaultValue="I. K. Brunel" />
                 <Field label="Watch" defaultValue="Forenoon" />
               </Fieldset>
             </Panel>
-            <Panel id="form" title="Form" meta="FRM">
+            <Panel id="form" title="Form">
               <FormDemo />
             </Panel>
           </div>
 
           <GroupRule id="feedback" label="Feedback" sub="what the gauges return" />
           <div className="brass-grid">
-            <Panel id="progress" title="Progress" meta="PRG">
+            <Panel id="progress" title="Progress">
               <ProgressGauges />
             </Panel>
-            <Panel id="meter" title="Meter" meta="MTR">
+            <Panel id="meter" title="Meter">
               <div className="brass-stack">
                 <Meter label="Boiler pressure" value={88} />
                 <Meter label="Output yield" value={70} tone="success" />
@@ -709,7 +709,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="tabs" title="Tabs" meta="TAB" wide>
+            <Panel id="tabs" title="Tabs" wide>
               <Tabs
                 defaultValue="steam"
                 items={[
@@ -745,7 +745,7 @@ function Demo() {
               />
             </Panel>
 
-            <Panel id="accordion" title="Accordion" meta="ACC">
+            <Panel id="accordion" title="Accordion">
               <div className="brass-stack">
                 <span className="brass-cap">One at a time</span>
                 <Accordion
@@ -789,7 +789,7 @@ function Demo() {
                 />
               </div>
             </Panel>
-            <Panel id="collapsible" title="Collapsible" meta="CLP">
+            <Panel id="collapsible" title="Collapsible">
               <div className="brass-stack">
                 <Collapsible title="Maintenance log" defaultOpen>
                   <p className="brass-text">
@@ -818,7 +818,7 @@ function Demo() {
 
           <GroupRule id="overlays" label="Overlays" sub="signals & surfacing" />
           <div className="brass-grid">
-            <Panel id="tooltip" title="Tooltip" meta="TIP">
+            <Panel id="tooltip" title="Tooltip">
               <div className="brass-row">
                 <Tooltip content="Release pressure" side="top">
                   <Button variant="ghost">Vent</Button>
@@ -834,7 +834,7 @@ function Demo() {
                 </Tooltip>
               </div>
             </Panel>
-            <Panel id="popover" title="Popover" meta="POP">
+            <Panel id="popover" title="Popover">
               <Popover
                 trigger={<Button variant="ghost">Readout</Button>}
                 title="Manifold A"
@@ -843,7 +843,7 @@ function Demo() {
               </Popover>
             </Panel>
 
-            <Panel id="preview" title="Preview Card" meta="PVW" wide>
+            <Panel id="preview" title="Preview Card" wide>
               <div className="brass-stack">
                 <span className="brass-cap">Hover the engineer</span>
                 <p className="brass-text">
@@ -887,7 +887,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="menu" title="Menu" meta="MNU">
+            <Panel id="menu" title="Menu">
               <Menu trigger="Actions">
                 <MenuItem icon={<Bolt />} shortcut="⌘E">
                   Stoke firebox
@@ -914,7 +914,7 @@ function Demo() {
                 </MenuItem>
               </Menu>
             </Panel>
-            <Panel id="menubar" title="Menubar" meta="MBR">
+            <Panel id="menubar" title="Menubar">
               <Menubar>
                 <MenubarMenu label="Engine">
                   <MenuItem>Start</MenuItem>
@@ -941,10 +941,10 @@ function Demo() {
               </Menubar>
             </Panel>
 
-            <Panel id="navmenu" title="Navigation Menu" meta="NAV">
+            <Panel id="navmenu" title="Navigation Menu">
               <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
             </Panel>
-            <Panel id="context" title="Context Menu" meta="CTX">
+            <Panel id="context" title="Context Menu">
               <div className="brass-stack">
                 <ContextMenu
                   trigger={
@@ -964,7 +964,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="dialog" title="Dialog" meta="DLG">
+            <Panel id="dialog" title="Dialog">
               <Dialog
                 trigger={<Button variant="secondary">Open hatch</Button>}
                 title="Inspection hatch"
@@ -979,7 +979,7 @@ function Demo() {
                 <p className="brass-text">Pressure: 0 PSI · Temperature: 38°C</p>
               </Dialog>
             </Panel>
-            <Panel id="alert" title="Alert Dialog" meta="ALT">
+            <Panel id="alert" title="Alert Dialog">
               <div className="brass-row">
                 <AlertDialog
                   tone="danger"
@@ -1020,7 +1020,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="drawer" title="Drawer" meta="DRW">
+            <Panel id="drawer" title="Drawer">
               <div className="brass-row">
                 {(["top", "bottom", "left", "right"] as const).map((side) => (
                   <Drawer
@@ -1048,7 +1048,7 @@ function Demo() {
                 ))}
               </div>
             </Panel>
-            <Panel id="toast" title="Toast" meta="TST">
+            <Panel id="toast" title="Toast">
               <div className="brass-row">
                 <Button
                   size="sm"
@@ -1108,7 +1108,7 @@ function Demo() {
 
           <GroupRule id="display" label="Display" sub="plates & fittings" />
           <div className="brass-grid">
-            <Panel id="avatar" title="Avatar" meta="AVT">
+            <Panel id="avatar" title="Avatar">
               <div className="brass-row">
                 <Avatar status="online">
                   <AvatarImage src="https://i.pravatar.cc/96?img=68" alt="" />
@@ -1125,7 +1125,7 @@ function Demo() {
                 </Avatar>
               </div>
             </Panel>
-            <Panel id="badge" title="Badge" meta="BDG">
+            <Panel id="badge" title="Badge">
               <div className="brass-row">
                 <Badge tone="primary" dot>
                   Brass
@@ -1140,7 +1140,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="toolbar" title="Toolbar" meta="TBR">
+            <Panel id="toolbar" title="Toolbar">
               <Toolbar aria-label="Console">
                 <BaseToggleGroup
                   className="brass-toolbar__group"
@@ -1173,7 +1173,7 @@ function Demo() {
                 </ToolbarLink>
               </Toolbar>
             </Panel>
-            <Panel id="scroll" title="Scroll Area" meta="SCR">
+            <Panel id="scroll" title="Scroll Area">
               <ScrollArea>
                 <ScrollAreaViewport>
                   <ScrollAreaContent>
@@ -1208,7 +1208,7 @@ function Demo() {
 
           <GroupRule id="foundations" label="Foundations" sub="type & rule" />
           <div className="brass-grid">
-            <Panel id="typography" title="Typography" meta="TYP" wide>
+            <Panel id="typography" title="Typography" wide>
               <div className="brass-stack">
                 <h2 className="brass-h1">Machined from brass</h2>
                 <h3 className="brass-h2">Pressure console headings</h3>
@@ -1221,7 +1221,7 @@ function Demo() {
               </div>
             </Panel>
 
-            <Panel id="separator" title="Separator" meta="SEP">
+            <Panel id="separator" title="Separator">
               <div className="brass-stack">
                 <span className="brass-cap">Plain</span>
                 <Separator />
@@ -1239,12 +1239,12 @@ function Demo() {
                 </div>
               </div>
             </Panel>
-            <Panel id="panel" title="Panel" meta="PNL">
+            <Panel id="panel" title="Panel">
               <p className="brass-text" style={{ margin: "0 0 16px" }}>
                 The riveted instrument plate wrapping every section — brushed bezel,
                 machined corner brackets and a steam sheen. Composable to any depth.
               </p>
-              <Panel title="Nested plate" meta="SUB">
+              <Panel title="Nested plate">
                 <span className="brass-cap">A plate within a plate</span>
               </Panel>
             </Panel>
@@ -1252,7 +1252,7 @@ function Demo() {
 
           <GroupRule id="signature" label="Signature" sub="the warm-up" />
           <div className="brass-grid">
-            <Panel id="loader" title="Loader" meta="LDR" wide>
+            <Panel id="loader" title="Loader" wide>
               <div className="demo-loader-stage">
                 <Loader />
               </div>

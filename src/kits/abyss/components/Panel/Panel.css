@@ -27,16 +27,6 @@
   color: var(--abyss-glow);
   filter: var(--abyss-aura);
 }
-.abyss-panel__meta {
-  flex: 0 0 auto;
-  font-family: var(--abyss-font-mono);
-  font-size: var(--abyss-fs-12);
-  letter-spacing: var(--abyss-ls-6);
-  color: var(--abyss-gold);
-  padding: 2px var(--abyss-space-2);
-  border: 1px solid var(--abyss-gold-a50);
-  border-radius: var(--abyss-round-2);
-}
 .abyss-panel__body {
   padding: var(--abyss-space-5) var(--abyss-space-4);
 }
