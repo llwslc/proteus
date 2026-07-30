@@ -33,9 +33,15 @@ export function Separator({
           className,
         )}
       >
-        <span className="nocturne-hairline nocturne-separator-labeled__line" aria-hidden />
+        <span
+          className="nocturne-hairline nocturne-separator-labeled__line"
+          aria-hidden
+        />
         <span className="nocturne-cap nocturne-separator-labeled__text">{label}</span>
-        <span className="nocturne-hairline nocturne-separator-labeled__line" aria-hidden />
+        <span
+          className="nocturne-hairline nocturne-separator-labeled__line"
+          aria-hidden
+        />
       </BaseSeparator>
     );
   }
@@ -43,7 +49,11 @@ export function Separator({
     <BaseSeparator
       orientation={orientation}
       {...props}
-      className={cx("nocturne-separator", `nocturne-separator--${orientation}`, className)}
+      className={cx(
+        "nocturne-separator",
+        `nocturne-separator--${orientation}`,
+        className,
+      )}
     />
   );
 }

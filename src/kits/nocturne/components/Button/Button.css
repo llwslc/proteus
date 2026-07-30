@@ -8,7 +8,9 @@
   border: 1px solid var(--nocturne-gilt-50);
   border-radius: var(--nocturne-r);
   background: var(--nocturne-accent-surface);
-  box-shadow: inset 0 1px 0 var(--nocturne-glow-12), var(--nocturne-shadow-btn);
+  box-shadow:
+    inset 0 1px 0 var(--nocturne-glow-12),
+    var(--nocturne-shadow-btn);
   color: var(--nocturne-on-fill);
   font-family: var(--nocturne-font);
   font-size: var(--nocturne-fs-14);
@@ -32,12 +34,17 @@
 
 .nocturne-btn:hover:not(:disabled) {
   background: var(--nocturne-accent-surface-hover);
-  box-shadow: inset 0 1px 0 var(--nocturne-glow-12), var(--nocturne-shadow-btn), var(--nocturne-glow-ring);
+  box-shadow:
+    inset 0 1px 0 var(--nocturne-glow-12),
+    var(--nocturne-shadow-btn),
+    var(--nocturne-glow-ring);
 }
 
 .nocturne-btn:active:not(:disabled) {
   transform: translateY(1px);
-  box-shadow: inset 0 1px 0 var(--nocturne-glow-12), var(--nocturne-shadow-btn-press);
+  box-shadow:
+    inset 0 1px 0 var(--nocturne-glow-12),
+    var(--nocturne-shadow-btn-press);
   transition-duration: 0s;
 }
 
@@ -84,10 +91,18 @@
 }
 
 .nocturne-btn--danger {
-  background: linear-gradient(180deg, var(--nocturne-danger-deep), var(--nocturne-petal-deep));
+  background: linear-gradient(
+    180deg,
+    var(--nocturne-danger-deep),
+    var(--nocturne-petal-deep)
+  );
 }
 .nocturne-btn--danger:hover:not(:disabled) {
-  background: linear-gradient(180deg, var(--nocturne-danger), var(--nocturne-danger-deep));
+  background: linear-gradient(
+    180deg,
+    var(--nocturne-danger),
+    var(--nocturne-danger-deep)
+  );
 }
 
 .nocturne-btn--ghost {

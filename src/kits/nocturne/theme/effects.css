@@ -3,7 +3,11 @@
 .nocturne-velvet {
   background:
     radial-gradient(130% 80% at 50% 0%, rgba(233, 204, 138, 0.05), transparent 46%),
-    repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.014) 0 3px, rgba(0, 0, 0, 0.028) 3px 6px),
+    repeating-linear-gradient(
+      112deg,
+      rgba(255, 255, 255, 0.014) 0 3px,
+      rgba(0, 0, 0, 0.028) 3px 6px
+    ),
     linear-gradient(185deg, var(--nocturne-surface), var(--nocturne-bg) 62%, #1a0f22);
 }
 
@@ -11,7 +15,11 @@
   background:
     radial-gradient(112% 42% at 50% 0%, var(--nocturne-primary-50), transparent 56%),
     radial-gradient(130% 80% at 50% 0%, rgba(233, 204, 138, 0.07), transparent 46%),
-    repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.016) 0 3px, rgba(0, 0, 0, 0.05) 3px 6px),
+    repeating-linear-gradient(
+      112deg,
+      rgba(255, 255, 255, 0.016) 0 3px,
+      rgba(0, 0, 0, 0.05) 3px 6px
+    ),
     linear-gradient(185deg, var(--nocturne-surface-pop), var(--nocturne-bg) 58%, #180e20);
 }
 
@@ -75,7 +83,8 @@
 }
 
 .nocturne-elevation {
-  filter: var(--nocturne-overlay-shadow, var(--nocturne-drop-pop)) var(--nocturne-overlay-glow, var(--nocturne-drop-glow));
+  filter: var(--nocturne-overlay-shadow, var(--nocturne-drop-pop))
+    var(--nocturne-overlay-glow, var(--nocturne-drop-glow));
 }
 
 .nocturne-drift {
@@ -269,7 +278,8 @@
 }
 
 .nocturne-collapse-content {
-  padding: var(--nocturne-space-1) var(--nocturne-space-2) var(--nocturne-space-3) calc(var(--nocturne-space-2) + 16px + var(--nocturne-space-3));
+  padding: var(--nocturne-space-1) var(--nocturne-space-2) var(--nocturne-space-3)
+    calc(var(--nocturne-space-2) + 16px + var(--nocturne-space-3));
   font-size: var(--nocturne-fs-14);
   line-height: var(--nocturne-lh-180);
   color: var(--nocturne-text-dim);
@@ -293,14 +303,18 @@
 .nocturne-fieldframe:focus-within {
   border-color: var(--nocturne-gilt);
   background: var(--nocturne-bg-deep);
-  box-shadow: 0 0 0 1px var(--nocturne-gilt-30), var(--nocturne-glow-ring);
+  box-shadow:
+    0 0 0 1px var(--nocturne-gilt-30),
+    var(--nocturne-glow-ring);
 }
 
 .nocturne-fieldframe:has([data-invalid]) {
   border-color: var(--nocturne-danger);
 }
 .nocturne-fieldframe:has([data-invalid]):focus-within {
-  box-shadow: 0 0 0 1px var(--nocturne-danger-50), 0 0 22px var(--nocturne-danger-12);
+  box-shadow:
+    0 0 0 1px var(--nocturne-danger-50),
+    0 0 22px var(--nocturne-danger-12);
 }
 
 .nocturne-fieldframe:has([data-disabled], :disabled) {

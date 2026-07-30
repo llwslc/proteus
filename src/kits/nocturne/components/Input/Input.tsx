@@ -46,10 +46,7 @@ export function Field({
       ) : null}
       <div className="nocturne-fieldframe nocturne-input">
         {icon ? <span className="nocturne-input__icon">{icon}</span> : null}
-        <BaseField.Control
-          className="nocturne-input__control"
-          {...control}
-        />
+        <BaseField.Control className="nocturne-input__control" {...control} />
       </div>
       {description != null ? (
         <BaseField.Description className="nocturne-field__desc">

@@ -19,18 +19,11 @@ export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
   value?: string;
 }
 
-export function ToolbarButton({
-  className,
-  children,
-  ...props
-}: ToolbarButtonProps) {
+export function ToolbarButton({ className, children, ...props }: ToolbarButtonProps) {
   return (
     <span className="abyss-toolbar__btnwrap">
       <BaseToolbar.Button
-        className={cx(
-          "abyss-seg__btn abyss-toolbar__btn abyss-frame",
-          className,
-        )}
+        className={cx("abyss-seg__btn abyss-toolbar__btn abyss-frame", className)}
         {...props}
       >
         <span className="abyss-toolbar__label">{children}</span>

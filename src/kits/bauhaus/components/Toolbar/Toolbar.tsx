@@ -22,16 +22,9 @@ export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
   value?: string;
 }
 
-export function ToolbarButton({
-  className,
-  children,
-  ...props
-}: ToolbarButtonProps) {
+export function ToolbarButton({ className, children, ...props }: ToolbarButtonProps) {
   return (
-    <BaseToolbar.Button
-      className={cx("bauhaus-seg__btn", className)}
-      {...props}
-    >
+    <BaseToolbar.Button className={cx("bauhaus-seg__btn", className)} {...props}>
       {children}
     </BaseToolbar.Button>
   );

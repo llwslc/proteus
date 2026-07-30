@@ -44,7 +44,9 @@ export function AvatarImage({
   className,
   ...props
 }: React.ComponentProps<typeof BaseAvatar.Image>) {
-  return <BaseAvatar.Image className={cx("nocturne-avatar__img", className)} {...props} />;
+  return (
+    <BaseAvatar.Image className={cx("nocturne-avatar__img", className)} {...props} />
+  );
 }
 
 export function AvatarFallback({

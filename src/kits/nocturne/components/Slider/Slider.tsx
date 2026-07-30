@@ -59,7 +59,12 @@ export function Slider({
             className="nocturne-slider__thumb"
             getAriaLabel={typeof label === "string" ? () => label : undefined}
           >
-            <svg className="nocturne-slider__bloom" viewBox="-17 -17 34 34" aria-hidden="true" focusable="false">
+            <svg
+              className="nocturne-slider__bloom"
+              viewBox="-17 -17 34 34"
+              aria-hidden="true"
+              focusable="false"
+            >
               <MotifDefs id={id} />
               <Bloom
                 defs={id}

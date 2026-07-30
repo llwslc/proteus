@@ -7,7 +7,10 @@ export interface ToolbarProps extends ComponentPropsWithoutRef<typeof BaseToolba
 
 export function Toolbar({ className, children, ...props }: ToolbarProps) {
   return (
-    <BaseToolbar.Root className={cx("nocturne-seg", "nocturne-toolbar", className)} {...props}>
+    <BaseToolbar.Root
+      className={cx("nocturne-seg", "nocturne-toolbar", className)}
+      {...props}
+    >
       {children}
     </BaseToolbar.Root>
   );
@@ -19,16 +22,9 @@ export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
   value?: string;
 }
 
-export function ToolbarButton({
-  className,
-  children,
-  ...props
-}: ToolbarButtonProps) {
+export function ToolbarButton({ className, children, ...props }: ToolbarButtonProps) {
   return (
-    <BaseToolbar.Button
-      className={cx("nocturne-seg__btn", className)}
-      {...props}
-    >
+    <BaseToolbar.Button className={cx("nocturne-seg__btn", className)} {...props}>
       {children}
     </BaseToolbar.Button>
   );

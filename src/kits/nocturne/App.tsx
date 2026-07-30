@@ -84,10 +84,22 @@ const NAV = [
   {
     label: "The Garden",
     links: [
-      { label: "Garden orders", href: "#inputs", description: "Buttons, switches, blooms" },
-      { label: "Gauges & stills", href: "#feedback", description: "Needles and moonlight" },
+      {
+        label: "Garden orders",
+        href: "#inputs",
+        description: "Buttons, switches, blooms",
+      },
+      {
+        label: "Gauges & stills",
+        href: "#feedback",
+        description: "Needles and moonlight",
+      },
       { label: "Summons", href: "#overlays", description: "Layers that answer softly" },
-      { label: "Plates & seals", href: "#display", description: "Everything taken to brass" },
+      {
+        label: "Plates & seals",
+        href: "#display",
+        description: "Everything taken to brass",
+      },
     ],
   },
   {
@@ -103,7 +115,9 @@ const NAV = [
   {
     label: "Poison Cabinet",
     disabled: true,
-    links: [{ label: "Sealed shelf", href: "#display", description: "Warden's key only" }],
+    links: [
+      { label: "Sealed shelf", href: "#display", description: "Warden's key only" },
+    ],
   },
 ];
 
@@ -228,35 +242,113 @@ function VineSide() {
         opacity=".62"
         strokeLinecap="round"
       />
-      <Leaf defs={id} className="nocturne-sprout" style={d("0.51s")} transform="translate(52,469) rotate(-138)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("0.73s")} transform="translate(84,409) rotate(24) scale(.9)" />
-      <Tendril className="nocturne-sprout" style={d("0.88s")} transform="translate(104,377) rotate(30)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("1.14s")} transform="translate(69,301) rotate(171) scale(.95)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("1.35s")} transform="translate(58,219) rotate(14) scale(.8)" />
-      <Tendril className="nocturne-sprout" style={d("1.5s")} transform="translate(69,205) rotate(-140) scale(.85)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("1.72s")} transform="translate(80,130) rotate(-175) scale(.75)" />
-      <Bud defs={id} className="nocturne-sprout" style={d("1.85s")} transform="translate(56,92) rotate(58) scale(.82)" />
-      <Bud defs={id} className="nocturne-sprout" style={d("2.05s")} transform="translate(50,34) rotate(-16)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("1.59s")} transform="translate(134,447) rotate(18) scale(.82)" />
-      <Bud defs={id} className="nocturne-sprout" style={d("1.79s")} transform="translate(134,447) rotate(52) scale(.6)" />
-      <Tendril className="nocturne-sprout" style={d("1.91s")} transform="translate(143,326) rotate(-9) scale(.8)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("2.22s")} transform="translate(31,236) rotate(-152) scale(.72)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("2.55s")} transform="translate(138,142) rotate(12) scale(.7)" />
-      <Leaf defs={id} className="nocturne-sprout" style={d("2.79s")} transform="translate(27,70) rotate(180) scale(.62)" />
-      <Bloom defs={id} r={30} mode="entrance" delay={0.96} transform="translate(106,354)" />
-      <Bloom defs={id} r={24} mode="entrance" delay={1.27} transform="translate(46,262)" />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("0.51s")}
+        transform="translate(52,469) rotate(-138)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("0.73s")}
+        transform="translate(84,409) rotate(24) scale(.9)"
+      />
+      <Tendril
+        className="nocturne-sprout"
+        style={d("0.88s")}
+        transform="translate(104,377) rotate(30)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("1.14s")}
+        transform="translate(69,301) rotate(171) scale(.95)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("1.35s")}
+        transform="translate(58,219) rotate(14) scale(.8)"
+      />
+      <Tendril
+        className="nocturne-sprout"
+        style={d("1.5s")}
+        transform="translate(69,205) rotate(-140) scale(.85)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("1.72s")}
+        transform="translate(80,130) rotate(-175) scale(.75)"
+      />
+      <Bud
+        defs={id}
+        className="nocturne-sprout"
+        style={d("1.85s")}
+        transform="translate(56,92) rotate(58) scale(.82)"
+      />
+      <Bud
+        defs={id}
+        className="nocturne-sprout"
+        style={d("2.05s")}
+        transform="translate(50,34) rotate(-16)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("1.59s")}
+        transform="translate(134,447) rotate(18) scale(.82)"
+      />
+      <Bud
+        defs={id}
+        className="nocturne-sprout"
+        style={d("1.79s")}
+        transform="translate(134,447) rotate(52) scale(.6)"
+      />
+      <Tendril
+        className="nocturne-sprout"
+        style={d("1.91s")}
+        transform="translate(143,326) rotate(-9) scale(.8)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("2.22s")}
+        transform="translate(31,236) rotate(-152) scale(.72)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("2.55s")}
+        transform="translate(138,142) rotate(12) scale(.7)"
+      />
+      <Leaf
+        defs={id}
+        className="nocturne-sprout"
+        style={d("2.79s")}
+        transform="translate(27,70) rotate(180) scale(.62)"
+      />
+      <Bloom
+        defs={id}
+        r={30}
+        mode="entrance"
+        delay={0.96}
+        transform="translate(106,354)"
+      />
+      <Bloom
+        defs={id}
+        r={24}
+        mode="entrance"
+        delay={1.27}
+        transform="translate(46,262)"
+      />
       <Bloom defs={id} r={27} mode="entrance" delay={1.6} transform="translate(92,166)" />
     </svg>
   );
 }
 
-function HeroLantern({
-  lit,
-  onToggle,
-}: {
-  lit: boolean;
-  onToggle: () => void;
-}) {
+function HeroLantern({ lit, onToggle }: { lit: boolean; onToggle: () => void }) {
   return (
     <div className="nocturne-lantern-stage">
       <button
@@ -267,8 +359,18 @@ function HeroLantern({
         onClick={onToggle}
       >
         <svg viewBox="0 0 90 140" aria-hidden="true" focusable="false">
-          <path d="M45 6 V 18" stroke="var(--nocturne-gilt)" strokeWidth="2" strokeLinecap="round" />
-          <path d="M32 6 H 58" stroke="var(--nocturne-gilt)" strokeWidth="2" strokeLinecap="round" />
+          <path
+            d="M45 6 V 18"
+            stroke="var(--nocturne-gilt)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M32 6 H 58"
+            stroke="var(--nocturne-gilt)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
           <path
             d="M33 18 H 57 L 60 30 H 30 Z"
             fill="var(--nocturne-bg-deep)"
@@ -281,7 +383,11 @@ function HeroLantern({
             stroke="var(--nocturne-gilt)"
             strokeWidth="1.5"
           />
-          <path d="M36 30 L 39.5 105 M54 30 L 50.5 105" stroke="var(--nocturne-gilt-30)" strokeWidth="1" />
+          <path
+            d="M36 30 L 39.5 105 M54 30 L 50.5 105"
+            stroke="var(--nocturne-gilt-30)"
+            strokeWidth="1"
+          />
           <path
             className="nocturne-lantern__flame"
             d="M45 56 C 40.5 63, 41 70, 45 74.5 C 49 70, 49.5 63, 45 56 Z"
@@ -294,7 +400,12 @@ function HeroLantern({
             stroke="var(--nocturne-gilt)"
             strokeWidth="1.5"
           />
-          <path d="M45 117 V 128 M38 128 H 52" stroke="var(--nocturne-gilt-dim)" strokeWidth="1.5" strokeLinecap="round" />
+          <path
+            d="M45 117 V 128 M38 128 H 52"
+            stroke="var(--nocturne-gilt-dim)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
         </svg>
       </button>
       <p className="nocturne-lantern-stage__line">
@@ -443,7 +554,12 @@ function FormDemo() {
       }}
     >
       <Field label="Specimen" name="specimen" placeholder="Name the bloom…" />
-      <Field label="Warden's word" name="word" type="password" placeholder="Whispered at the gate…" />
+      <Field
+        label="Warden's word"
+        name="word"
+        type="password"
+        placeholder="Whispered at the gate…"
+      />
       <Button type="submit">Sign the Page</Button>
     </Form>
   );
@@ -499,7 +615,9 @@ function Demo() {
         <aside className="nocturne-sidebar">
           {SECTIONS.map((sec) => (
             <nav className="nocturne-sidebar__group" key={sec.group}>
-              <span className="nocturne-cap nocturne-sidebar__group-title">{sec.group}</span>
+              <span className="nocturne-cap nocturne-sidebar__group-title">
+                {sec.group}
+              </span>
               {sec.items.map(([id, name, code]) => (
                 <a key={id} href={`#${id}`} className="nocturne-sidebar__link">
                   <span>{name}</span>
@@ -512,10 +630,16 @@ function Demo() {
 
         <main className="nocturne-shell__main">
           <section className="nocturne-hero" id="hero">
-            <div className="nocturne-hero__vine nocturne-hero__vine--l" aria-hidden="true">
+            <div
+              className="nocturne-hero__vine nocturne-hero__vine--l"
+              aria-hidden="true"
+            >
               <VineSide />
             </div>
-            <div className="nocturne-hero__vine nocturne-hero__vine--r" aria-hidden="true">
+            <div
+              className="nocturne-hero__vine nocturne-hero__vine--r"
+              aria-hidden="true"
+            >
               <VineSide />
             </div>
             <div className="nocturne-hero__glow" aria-hidden="true" />
@@ -525,7 +649,8 @@ function Demo() {
                 Night Register · 37 Blooms
               </span>
               <h1 className="nocturne-h1 nocturne-hero__title">
-                A <span className="nocturne-h1--accent">night-blooming</span> interface kit
+                A <span className="nocturne-h1--accent">night-blooming</span> interface
+                kit
                 <br />
                 kept in wine, brass &amp; bone till{" "}dawn
               </h1>
@@ -556,7 +681,11 @@ function Demo() {
             </div>
           </section>
 
-          <GroupRule id="inputs" label="Inputs" sub="Garden orders · one touch, one promise." />
+          <GroupRule
+            id="inputs"
+            label="Inputs"
+            sub="Garden orders · one touch, one promise."
+          />
           <div className="nocturne-grid">
             <Panel id="button" title="Button" wide>
               <div className="nocturne-stack">
@@ -773,7 +902,12 @@ function Demo() {
             <Panel id="otp" title="OTP Field">
               <div className="nocturne-stack">
                 <span className="nocturne-cap">Specimen code</span>
-                <OtpField length={6} splitAt={3} defaultValue="217" label="Specimen code" />
+                <OtpField
+                  length={6}
+                  splitAt={3}
+                  defaultValue="217"
+                  label="Specimen code"
+                />
                 <span className="nocturne-cap">Whispered code</span>
                 <OtpField
                   length={6}
@@ -839,8 +973,8 @@ function Demo() {
                     content: (
                       <p className="nocturne-text">
                         The garden takes its name from her. Violet-black corollas hang
-                        like little bells, and the berries shine with bad intent —
-                        beauty and poison sharing one name.
+                        like little bells, and the berries shine with bad intent — beauty
+                        and poison sharing one name.
                       </p>
                     ),
                   },
@@ -849,8 +983,8 @@ function Demo() {
                     label: "Night Jasmine",
                     content: (
                       <p className="nocturne-text">
-                        By day it passes for an ordinary shrub; by night its scent
-                        floods half the garden. The warden keeps it for a watch-drum.
+                        By day it passes for an ordinary shrub; by night its scent floods
+                        half the garden. The warden keeps it for a watch-drum.
                       </p>
                     ),
                   },
@@ -859,8 +993,8 @@ function Demo() {
                     label: "Evening Primrose",
                     content: (
                       <p className="nocturne-text">
-                        A temperament that blooms only for the moon — the sweetest in
-                        the garden, busiest when the register runs fullest.
+                        A temperament that blooms only for the moon — the sweetest in the
+                        garden, busiest when the register runs fullest.
                       </p>
                     ),
                     disabled: true,
@@ -966,8 +1100,8 @@ function Demo() {
                 trigger={<Button variant="ghost">Tonight's round</Button>}
                 title="South Conservatory"
               >
-                Ancestral hall of the nightshades — wine drapes all year, and one
-                copper lamp kept lit for the duty bloom.
+                Ancestral hall of the nightshades — wine drapes all year, and one copper
+                lamp kept lit for the duty bloom.
               </Popover>
             </Panel>
 
@@ -1000,8 +1134,8 @@ function Demo() {
                       </span>
                     </div>
                     <p className="nocturne-text nocturne-preview__desc">
-                      Warden of the night garden. Keeps the light for the lamps, and
-                      the lamps for the flowers.
+                      Warden of the night garden. Keeps the light for the lamps, and the
+                      lamps for the flowers.
                     </p>
                     <div className="nocturne-preview__footer">
                       <Badge tone="primary" dot>
@@ -1105,8 +1239,8 @@ function Demo() {
                 }
               >
                 <p className="nocturne-text">
-                  Walk the lamps from South Conservatory to Weeping Arbor, and note
-                  three drams of dew before the fourth hour.
+                  Walk the lamps from South Conservatory to Weeping Arbor, and note three
+                  drams of dew before the fourth hour.
                 </p>
               </Dialog>
             </Panel>
@@ -1245,7 +1379,11 @@ function Demo() {
             </Panel>
           </div>
 
-          <GroupRule id="display" label="Display" sub="Plates and seals · all taken to brass." />
+          <GroupRule
+            id="display"
+            label="Display"
+            sub="Plates and seals · all taken to brass."
+          />
           <div className="nocturne-grid">
             <Panel id="avatar" title="Avatar">
               <div className="nocturne-row">
@@ -1314,7 +1452,9 @@ function Demo() {
             </Panel>
             <Panel id="scroll" title="Scroll Area">
               <ScrollArea>
-                <ScrollAreaViewport style={{ maxHeight: "var(--nocturne-scroll-demo-h)" }}>
+                <ScrollAreaViewport
+                  style={{ maxHeight: "var(--nocturne-scroll-demo-h)" }}
+                >
                   <ScrollAreaContent>
                     <ol className="nocturne-scroll-list">
                       {[

@@ -15,7 +15,10 @@ export function Fieldset({ legend, className, children, ...props }: FieldsetProp
       {legend != null ? (
         <BaseFieldset.Legend className="nocturne-cap nocturne-fieldset__legend">
           <span className="nocturne-fieldset__text">{legend}</span>
-          <span className="nocturne-hairline nocturne-fieldset__rule" aria-hidden="true" />
+          <span
+            className="nocturne-hairline nocturne-fieldset__rule"
+            aria-hidden="true"
+          />
         </BaseFieldset.Legend>
       ) : null}
       {children}

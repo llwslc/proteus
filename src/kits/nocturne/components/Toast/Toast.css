@@ -38,8 +38,7 @@
 
 .nocturne-toast[data-expanded] {
   transform: translateX(var(--toast-swipe-movement-x, 0px))
-    translateY(calc(var(--toast-swipe-movement-y, 0px) + var(--toast-offset-y)))
-    scale(1);
+    translateY(calc(var(--toast-swipe-movement-y, 0px) + var(--toast-offset-y))) scale(1);
 }
 
 .nocturne-toast[data-starting-style],

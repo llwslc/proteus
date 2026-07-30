@@ -48,10 +48,7 @@ export function Field({
       ) : null}
       <div className="bauhaus-surface bauhaus-input">
         {icon ? <span className="bauhaus-input__icon">{icon}</span> : null}
-        <BaseField.Control
-          className="bauhaus-input__control"
-          {...control}
-        />
+        <BaseField.Control className="bauhaus-input__control" {...control} />
       </div>
       {description != null ? (
         <BaseField.Description className="bauhaus-text bauhaus-field__desc">

@@ -19,17 +19,10 @@ export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
   value?: string;
 }
 
-export function ToolbarButton({
-  className,
-  children,
-  ...props
-}: ToolbarButtonProps) {
+export function ToolbarButton({ className, children, ...props }: ToolbarButtonProps) {
   return (
     <span className="nova-toolbar__btnwrap">
-      <BaseToolbar.Button
-        className={cx("nova-toolbar__btn", className)}
-        {...props}
-      >
+      <BaseToolbar.Button className={cx("nova-toolbar__btn", className)} {...props}>
         {children}
       </BaseToolbar.Button>
     </span>

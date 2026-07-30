@@ -3,26 +3,43 @@
   flex-direction: column;
   gap: var(--nocturne-space-2);
   width: 100%;
-  --nocturne-meter-fill: linear-gradient(90deg, var(--nocturne-primary-shadow), var(--nocturne-primary-deep) 60%, var(--nocturne-primary));
+  --nocturne-meter-fill: linear-gradient(
+    90deg,
+    var(--nocturne-primary-shadow),
+    var(--nocturne-primary-deep) 60%,
+    var(--nocturne-primary)
+  );
   --nocturne-meter-glow: var(--nocturne-primary-50);
 }
 
 .nocturne-meter--success {
-  --nocturne-meter-fill: linear-gradient(90deg, var(--nocturne-success-deep), var(--nocturne-success));
+  --nocturne-meter-fill: linear-gradient(
+    90deg,
+    var(--nocturne-success-deep),
+    var(--nocturne-success)
+  );
   --nocturne-meter-glow: var(--nocturne-glow-12);
   --nocturne-bloom-tone: var(--nocturne-success);
   --nocturne-bloom-tone-deep: var(--nocturne-success-deep);
 }
 
 .nocturne-meter--warning {
-  --nocturne-meter-fill: linear-gradient(90deg, var(--nocturne-warning-deep), var(--nocturne-warning));
+  --nocturne-meter-fill: linear-gradient(
+    90deg,
+    var(--nocturne-warning-deep),
+    var(--nocturne-warning)
+  );
   --nocturne-meter-glow: var(--nocturne-glow-12);
   --nocturne-bloom-tone: var(--nocturne-warning);
   --nocturne-bloom-tone-deep: var(--nocturne-warning-deep);
 }
 
 .nocturne-meter--danger {
-  --nocturne-meter-fill: linear-gradient(90deg, var(--nocturne-danger-deep), var(--nocturne-danger));
+  --nocturne-meter-fill: linear-gradient(
+    90deg,
+    var(--nocturne-danger-deep),
+    var(--nocturne-danger)
+  );
   --nocturne-meter-glow: var(--nocturne-danger-50);
   --nocturne-bloom-tone: var(--nocturne-danger);
   --nocturne-bloom-tone-deep: var(--nocturne-danger-deep);

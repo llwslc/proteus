@@ -14,7 +14,9 @@
 }
 .nocturne-numberfield__group:focus-within {
   border-color: var(--nocturne-gilt);
-  box-shadow: 0 0 0 1px var(--nocturne-gilt-30), var(--nocturne-glow-ring);
+  box-shadow:
+    0 0 0 1px var(--nocturne-gilt-30),
+    var(--nocturne-glow-ring);
 }
 .nocturne-numberfield:has([data-disabled]) .nocturne-numberfield__group {
   opacity: var(--nocturne-disabled-opacity);

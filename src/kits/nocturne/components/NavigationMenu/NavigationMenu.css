@@ -43,7 +43,10 @@
 }
 
 .nocturne-navmenu__content {
-  width: calc(var(--nocturne-navmenu-col-w) * 2 + var(--nocturne-space-2) + var(--nocturne-space-3) * 2);
+  width: calc(
+    var(--nocturne-navmenu-col-w) * 2 + var(--nocturne-space-2) +
+      var(--nocturne-space-3) * 2
+  );
   padding: var(--nocturne-space-3);
   transition: opacity var(--nocturne-dur) var(--nocturne-ease);
 }

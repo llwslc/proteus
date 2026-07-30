@@ -44,6 +44,8 @@
   background: var(--nocturne-gilt);
 }
 
-.nocturne-scrollarea--popup .nocturne-scrollarea__viewport:not([data-has-overflow-y]) ~ .nocturne-scrollarea__bar {
+.nocturne-scrollarea--popup
+  .nocturne-scrollarea__viewport:not([data-has-overflow-y])
+  ~ .nocturne-scrollarea__bar {
   display: none;
 }

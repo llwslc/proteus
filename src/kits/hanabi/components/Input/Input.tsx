@@ -54,10 +54,7 @@ export function Field({
       ) : null}
       <div className="hanabi-fieldframe hanabi-lockon hanabi-lockon--within hanabi-input">
         {icon ? <span className="hanabi-input__icon">{icon}</span> : null}
-        <BaseField.Control
-          className="hanabi-input__control"
-          {...control}
-        />
+        <BaseField.Control className="hanabi-input__control" {...control} />
       </div>
       {description != null ? (
         <BaseField.Description className="hanabi-field__desc">

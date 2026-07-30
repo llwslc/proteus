@@ -31,21 +31,33 @@
 }
 
 .nocturne-badge--success {
-  background: linear-gradient(180deg, var(--nocturne-success-deep), var(--nocturne-leaf-deep));
+  background: linear-gradient(
+    180deg,
+    var(--nocturne-success-deep),
+    var(--nocturne-leaf-deep)
+  );
   border-color: var(--nocturne-success-deep);
   color: var(--nocturne-on-fill);
   --nocturne-badge-dot: var(--nocturne-success);
 }
 
 .nocturne-badge--warning {
-  background: linear-gradient(180deg, var(--nocturne-warning-deep), var(--nocturne-petal-deep));
+  background: linear-gradient(
+    180deg,
+    var(--nocturne-warning-deep),
+    var(--nocturne-petal-deep)
+  );
   border-color: var(--nocturne-warning-deep);
   color: var(--nocturne-on-fill);
   --nocturne-badge-dot: var(--nocturne-warning);
 }
 
 .nocturne-badge--danger {
-  background: linear-gradient(180deg, var(--nocturne-danger-deep), var(--nocturne-petal-deep));
+  background: linear-gradient(
+    180deg,
+    var(--nocturne-danger-deep),
+    var(--nocturne-petal-deep)
+  );
   border-color: var(--nocturne-danger-deep);
   color: var(--nocturne-on-fill);
   --nocturne-badge-dot: var(--nocturne-danger);

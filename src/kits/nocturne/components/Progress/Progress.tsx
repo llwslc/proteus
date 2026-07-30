@@ -45,7 +45,11 @@ export function Progress({
         <BaseProgress.Indicator className="nocturne-progress__indicator">
           {!indeterminate && (
             <span className="nocturne-progress__tip" aria-hidden="true">
-              <svg className="nocturne-progress__bloom" viewBox="-17 -17 34 34" focusable="false">
+              <svg
+                className="nocturne-progress__bloom"
+                viewBox="-17 -17 34 34"
+                focusable="false"
+              >
                 <MotifDefs id={id} />
                 <Bloom
                   defs={id}

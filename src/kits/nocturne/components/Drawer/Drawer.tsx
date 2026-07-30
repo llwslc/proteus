@@ -59,7 +59,10 @@ export function Drawer({
                   </Button>
                 }
               />
-              <p className="nocturne-modal-latin nocturne-drawer__latin" aria-hidden="true">
+              <p
+                className="nocturne-modal-latin nocturne-drawer__latin"
+                aria-hidden="true"
+              >
                 Registrum Noctis
               </p>
               {title != null ? (

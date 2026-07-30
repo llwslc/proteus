@@ -48,10 +48,7 @@ export function Field({
       ) : null}
       <div className="brass-plate brass-input">
         {icon ? <span className="brass-input__icon">{icon}</span> : null}
-        <BaseField.Control
-          className="brass-input__control"
-          {...control}
-        />
+        <BaseField.Control className="brass-input__control" {...control} />
       </div>
       {description != null ? (
         <BaseField.Description className="brass-text brass-field__desc">

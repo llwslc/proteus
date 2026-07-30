@@ -41,7 +41,11 @@ export function Meter({
       <BaseMeter.Track className="nocturne-track nocturne-meter__track">
         <BaseMeter.Indicator className="nocturne-meter__indicator">
           <span className="nocturne-meter__tip" aria-hidden="true">
-            <svg className="nocturne-meter__bloom" viewBox="-17 -17 34 34" focusable="false">
+            <svg
+              className="nocturne-meter__bloom"
+              viewBox="-17 -17 34 34"
+              focusable="false"
+            >
               <MotifDefs id={id} />
               <Bloom
                 defs={id}
