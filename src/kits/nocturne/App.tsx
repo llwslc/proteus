@@ -1169,15 +1169,17 @@ function Demo() {
                     description="Trim this wing of the garden without leaving the page."
                     actions={<DrawerClose variant="secondary">Close</DrawerClose>}
                   >
-                    <label className="nocturne-row nocturne-row--between">
-                      <span className="nocturne-cap">Warm lamp</span>
-                      <Switch defaultChecked />
-                    </label>
-                    <label className="nocturne-row nocturne-row--between">
-                      <span className="nocturne-cap">Night mist</span>
-                      <Switch />
-                    </label>
-                    <Slider label="Flame height" defaultValue={50} />
+                    <div className="nocturne-stack">
+                      <label className="nocturne-row nocturne-row--between">
+                        <span className="nocturne-cap">Warm lamp</span>
+                        <Switch defaultChecked />
+                      </label>
+                      <label className="nocturne-row nocturne-row--between">
+                        <span className="nocturne-cap">Night mist</span>
+                        <Switch />
+                      </label>
+                      <Slider label="Flame height" defaultValue={50} />
+                    </div>
                   </Drawer>
                 ))}
               </div>

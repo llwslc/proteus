@@ -18,7 +18,7 @@
 ## 2. 招牌
 
 - hero：标题上方一行 `font-script` 拉丁引言 `Hortus Nocturnus`；左右两缘各一株缠枝蔓、右株镜像，自根部向上生长——每株构成 = 主枝 1 + 侧枝 5 + 实填叶 9 + 卷须 3 + 苞 3 + 五瓣满花 3，`nocturne-branch` 主枝先行、侧枝错拍接力，叶花按生长高度次第绽放，满花后开；手机端藏蔓。右侧主题装饰件 = **黄铜提灯**——SVG 提灯灯焰呼吸，点击点灯或吹熄：页顶幽金灯晕亮起或隐去，灯下一行斜体灯语随之换句——点灯 `Warm light spills over the flower wall — the night round begins.`，吹熄 `Let the flowers be by themselves a while.`。
-- Loader：`#1d1126` 夜底 + 一条蔓枝分隔自中心向两侧生长——每半支 4 片实填叶 + 1 卷须 + 末端 1 苞，中心一朵五瓣满花后开 + `NOCTURNE` 宽字距铜字，色值硬编码。
+- Loader：`#1d1126` 夜底 + 一条蔓枝分隔自中心向两侧生长——每半支 4 片实填叶 + 1 卷须 + 末端 1 苞，中心一朵五瓣满花错拍绽开 + `NOCTURNE` 宽字距铜字，色值硬编码。
 
 ## 3. 入场
 

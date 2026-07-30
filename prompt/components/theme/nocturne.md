@@ -42,7 +42,7 @@
 - Menubar：触发 chip 同 ToggleGroup；弹层复用 Menu 皮。
 - NavigationMenu：触发 chip 同 Menubar、chevron 开态翻转；下拉两列，link = 衬线 label + `text-mute` `fs-12` 描述，悬停酒红行扫；菱形棱尖随 morph 移动。
 - ContextMenu：复用 Menu 皮。
-- Dialog：夜册——`velvet--wine` 酒红丝绒面 + `gilt-50` 框 + 发丝内衬线 + 四角 sprig 角饰；title 居中 `h2`、上方一行 `font-script` 拉丁引言 `gilt-bright`，title 下一条蔓枝分隔线自中央向两侧生长（每半支 3 片实填叶 + 末端 1 苞，中心一朵满花后开）；close 右上 icon-ghost；backdrop = `scrim` + 模糊。
+- Dialog：夜册——`velvet--wine` 酒红丝绒面 + `gilt-50` 框 + 发丝内衬线 + 四角 sprig 角饰；title 居中 `h2`、上方一行 `font-script` 拉丁引言 `gilt-bright`，title 下一条蔓枝分隔线自中央向两侧生长（每半支 3 片实填叶 + 末端 1 苞，中心一朵满花错拍绽开）；close 右上 icon-ghost；backdrop = `scrim` + 模糊。
 - AlertDialog：Dialog 基底按 `tone` 重染——拉丁引言与确认钮转 tone、题下蔓枝换 tone 色；无 close、无角饰。
 - Drawer：`velvet` 丝绒面板，朝屏内缘 1px `gilt-50` + 发丝内衬线；title 同 Dialog 减配（引言保留、无蔓枝）；body 自滚动。
 - Toast：锚右上；静止层叠收拢（后条下探、微缩），悬停展开整列；条 = `velvet` 面 + `gilt-50` 框 + 左端一朵五瓣满花记按 tone 染（info `gilt`、success、warning、danger 各家）+ 底缘 2px `gilt` 计时线（`nocturne-life` 随 timeout 燃尽、悬停暂停）+ close 右上；动作钮复用 secondary `sm`；手机端横向撑满。
