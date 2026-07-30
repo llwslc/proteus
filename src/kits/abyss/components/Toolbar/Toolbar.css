@@ -26,7 +26,6 @@
   display: inline-flex;
   transition: filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-toolbar__btnwrap:has(.is-active),
 .abyss-toolbar__btnwrap:has([data-pressed]) {
   filter: var(--abyss-aura-strong);
 }

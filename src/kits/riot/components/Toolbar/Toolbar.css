@@ -18,7 +18,3 @@
   background: var(--riot-ink);
   filter: url(#riot-torn);
 }
-.riot-toolbar .riot-seg__btn.is-active {
-  background: var(--riot-ink);
-  color: var(--riot-primary);
-}

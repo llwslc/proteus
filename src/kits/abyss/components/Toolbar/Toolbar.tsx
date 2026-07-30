@@ -16,13 +16,11 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
 export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
   typeof BaseToolbar.Button
 > {
-  active?: boolean;
   value?: string;
 }
 
 export function ToolbarButton({
   className,
-  active,
   children,
   ...props
 }: ToolbarButtonProps) {
@@ -32,7 +30,6 @@ export function ToolbarButton({
         className={cx(
           "abyss-seg__btn abyss-toolbar__btn abyss-frame",
           className,
-          active ? "is-active" : "",
         )}
         {...props}
       >

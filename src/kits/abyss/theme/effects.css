@@ -312,8 +312,7 @@
 .abyss-seg__btn:focus-visible::before,
 .abyss-seg__btn[data-pressed]::before,
 .abyss-seg__btn[data-selected]::before,
-.abyss-seg__btn[data-popup-open]::before,
-.abyss-seg__btn.is-active::before {
+.abyss-seg__btn[data-popup-open]::before {
   display: block;
 }
 .abyss-seg__btn:where(:not(:disabled):not([data-disabled])):hover {
@@ -328,8 +327,7 @@
 }
 .abyss-seg__btn[data-pressed],
 .abyss-seg__btn[data-selected],
-.abyss-seg__btn[data-popup-open],
-.abyss-seg__btn.is-active {
+.abyss-seg__btn[data-popup-open] {
   color: var(--abyss-glow);
   --abyss-frame-ink: var(--abyss-glow-a70);
   --abyss-frame-fill: var(--abyss-glow-soft);
@@ -337,8 +335,7 @@
 }
 .abyss-seg__btn[data-pressed]::after,
 .abyss-seg__btn[data-selected]::after,
-.abyss-seg__btn[data-popup-open]::after,
-.abyss-seg__btn.is-active::after {
+.abyss-seg__btn[data-popup-open]::after {
   content: "";
   position: absolute;
   inset: 3px;

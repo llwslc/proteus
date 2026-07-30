@@ -428,8 +428,7 @@
   outline-offset: -2px;
 }
 .nocturne-seg__btn[data-pressed],
-.nocturne-seg__btn[data-popup-open],
-.nocturne-seg__btn--active {
+.nocturne-seg__btn[data-popup-open] {
   background: var(--nocturne-accent-surface);
   border-color: var(--nocturne-gilt-50);
   color: var(--nocturne-text);

@@ -16,20 +16,18 @@ export function Toolbar({ className, children, ...props }: ToolbarProps) {
 export interface ToolbarButtonProps extends ComponentPropsWithoutRef<
   typeof BaseToolbar.Button
 > {
-  active?: boolean;
   value?: string;
 }
 
 export function ToolbarButton({
   className,
-  active,
   children,
   ...props
 }: ToolbarButtonProps) {
   return (
     <span className="nova-toolbar__btnwrap">
       <BaseToolbar.Button
-        className={cx("nova-toolbar__btn", className, active ? "is-active" : "")}
+        className={cx("nova-toolbar__btn", className)}
         {...props}
       >
         {children}

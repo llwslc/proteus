@@ -346,19 +346,17 @@
     color var(--hanabi-dur) var(--hanabi-ease-out);
 }
 .hanabi-seg__btn:where(
-    :not([data-disabled], :disabled, [data-pressed], .is-active, [data-popup-open])
+    :not([data-disabled], :disabled, [data-pressed], [data-popup-open])
   ):hover {
   border-color: var(--hanabi-primary);
 }
 .hanabi-seg__btn[data-pressed],
-.hanabi-seg__btn.is-active,
 .hanabi-seg__btn[data-popup-open] {
   background: var(--hanabi-accent-surface);
   color: var(--hanabi-on-fill);
   box-shadow: inset 0 -3px 0 var(--hanabi-primary-shade);
 }
-.hanabi-seg__btn[data-pressed]:not([data-popup-open])::before,
-.hanabi-seg__btn.is-active::before {
+.hanabi-seg__btn[data-pressed]:not([data-popup-open])::before {
   content: "✦";
   color: var(--hanabi-warning);
 }
