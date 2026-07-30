@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { CSSProperties } from "react";
 
 const petalPath = (r: number) => {
@@ -186,6 +187,63 @@ export function Tendril({ transform, className, style }: Omit<MotifPieceProps, "
         opacity="0.75"
       />
     </g>
+  );
+}
+
+export function ModalVine() {
+  const id = useId();
+  const accent = "var(--nocturne-modal-accent, var(--nocturne-gilt-bright))";
+  return (
+    <svg className="nocturne-modal-vine" viewBox="0 0 400 60" aria-hidden="true" focusable="false">
+      <MotifDefs id={id} />
+      <path
+        className="nocturne-grow"
+        pathLength={1}
+        d="M200 30 C 170 18, 140 18, 112 30 C 88 40, 60 40, 36 30"
+        fill="none"
+        stroke={accent}
+        strokeWidth="1.4"
+        opacity="0.8"
+        style={{ "--nocturne-d": "0.15s" } as CSSProperties}
+      />
+      <path
+        className="nocturne-grow"
+        pathLength={1}
+        d="M200 30 C 230 18, 260 18, 288 30 C 312 40, 340 40, 364 30"
+        fill="none"
+        stroke={accent}
+        strokeWidth="1.4"
+        opacity="0.8"
+        style={{ "--nocturne-d": "0.15s" } as CSSProperties}
+      />
+      <Leaf defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "0.8s" } as CSSProperties} transform="translate(155,21) rotate(-134) scale(.5)" />
+      <Leaf defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "0.8s" } as CSSProperties} transform="translate(245,21) rotate(134) scale(-.5,.5)" />
+      <Leaf defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "1.05s" } as CSSProperties} transform="translate(112,30) rotate(-166) scale(.44)" />
+      <Leaf defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "1.05s" } as CSSProperties} transform="translate(288,30) rotate(166) scale(-.44,.44)" />
+      <Leaf defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "1.3s" } as CSSProperties} transform="translate(74,37.5) rotate(122) scale(.44)" />
+      <Leaf defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "1.3s" } as CSSProperties} transform="translate(326,37.5) rotate(-122) scale(-.44,.44)" />
+      <Bud defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "1.72s" } as CSSProperties} transform="translate(36,30) rotate(-108) scale(.84)" />
+      <Bud defs={id} className="nocturne-sprout" style={{ "--nocturne-d": "1.72s" } as CSSProperties} transform="translate(364,30) rotate(108) scale(-.84,.84)" />
+      <Bloom defs={id} r={22} mode="entrance" delay={0.2} transform="translate(200,30)" />
+    </svg>
+  );
+}
+
+export function ModalCorners() {
+  const corner = (mod: string) => (
+    <span className={`nocturne-modal__corner nocturne-modal__corner--${mod}`} aria-hidden="true">
+      <svg viewBox="0 0 56 56" focusable="false">
+        <Sprig transform="translate(56,0) scale(-1,1)" />
+      </svg>
+    </span>
+  );
+  return (
+    <>
+      {corner("tl")}
+      {corner("tr")}
+      {corner("bl")}
+      {corner("br")}
+    </>
   );
 }
 

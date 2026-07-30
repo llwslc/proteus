@@ -1,0 +1,59 @@
+.nocturne-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nocturne-space-2);
+  padding: 2px var(--nocturne-space-3);
+  border: 1px solid var(--nocturne-gilt-50);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-12);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-2);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nocturne-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-badge-dot, var(--nocturne-gilt-bright));
+  box-shadow: 0 0 6px var(--nocturne-glow-40);
+}
+
+.nocturne-badge--primary {
+  background: var(--nocturne-accent-surface);
+  color: var(--nocturne-on-fill);
+}
+
+.nocturne-badge--secondary {
+  background: transparent;
+  color: var(--nocturne-gilt-bright);
+}
+
+.nocturne-badge--success {
+  background: linear-gradient(180deg, var(--nocturne-success-deep), var(--nocturne-leaf-deep));
+  border-color: var(--nocturne-success-deep);
+  color: var(--nocturne-on-fill);
+  --nocturne-badge-dot: var(--nocturne-success);
+}
+
+.nocturne-badge--warning {
+  background: linear-gradient(180deg, var(--nocturne-warning-deep), var(--nocturne-petal-deep));
+  border-color: var(--nocturne-warning-deep);
+  color: var(--nocturne-on-fill);
+  --nocturne-badge-dot: var(--nocturne-warning);
+}
+
+.nocturne-badge--danger {
+  background: linear-gradient(180deg, var(--nocturne-danger-deep), var(--nocturne-petal-deep));
+  border-color: var(--nocturne-danger-deep);
+  color: var(--nocturne-on-fill);
+  --nocturne-badge-dot: var(--nocturne-danger);
+}
+
+.nocturne-badge--neutral {
+  background: var(--nocturne-bg-deep);
+  border-color: var(--nocturne-gilt-30);
+  color: var(--nocturne-text-dim);
+  --nocturne-badge-dot: var(--nocturne-text-dim);
+}

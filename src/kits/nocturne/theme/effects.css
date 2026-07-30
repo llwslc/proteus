@@ -144,6 +144,7 @@
 
 .nocturne-modal {
   position: relative;
+  isolation: isolate;
   margin: auto;
   box-shadow: var(--nocturne-shadow-modal);
   padding: var(--nocturne-modal-pad);
@@ -339,6 +340,14 @@
   flex: none;
   display: inline-grid;
   place-items: center;
+}
+
+.nocturne-menu-pane {
+  min-width: 220px;
+}
+
+.nocturne-menu-pos {
+  z-index: var(--nocturne-z-menu);
 }
 
 .nocturne-seg {

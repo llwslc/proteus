@@ -1,0 +1,108 @@
+.nocturne-drawer__viewport {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  z-index: var(--nocturne-z-overlay);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nocturne-drawer {
+  position: absolute;
+  display: flex;
+  pointer-events: auto;
+  transition: translate var(--nocturne-dur-pop) var(--nocturne-ease-pop);
+}
+
+.nocturne-drawer--right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: min(var(--nocturne-drawer-w), var(--nocturne-drawer-w-cap));
+}
+.nocturne-drawer--right[data-starting-style],
+.nocturne-drawer--right[data-ending-style] {
+  translate: 100% 0;
+}
+
+.nocturne-drawer--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: min(var(--nocturne-drawer-w), var(--nocturne-drawer-w-cap));
+}
+.nocturne-drawer--left[data-starting-style],
+.nocturne-drawer--left[data-ending-style] {
+  translate: -100% 0;
+}
+
+.nocturne-drawer--top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(var(--nocturne-drawer-h), var(--nocturne-drawer-h-cap));
+}
+.nocturne-drawer--top[data-starting-style],
+.nocturne-drawer--top[data-ending-style] {
+  translate: 0 -100%;
+}
+
+.nocturne-drawer--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: min(var(--nocturne-drawer-h), var(--nocturne-drawer-h-cap));
+}
+.nocturne-drawer--bottom[data-starting-style],
+.nocturne-drawer--bottom[data-ending-style] {
+  translate: 0 100%;
+}
+
+.nocturne-drawer__sheet {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: var(--nocturne-modal-pad);
+  box-shadow: var(--nocturne-shadow-modal);
+  color: var(--nocturne-text);
+}
+.nocturne-drawer--right .nocturne-drawer__sheet {
+  border-left: 1px solid var(--nocturne-gilt-50);
+}
+.nocturne-drawer--left .nocturne-drawer__sheet {
+  border-right: 1px solid var(--nocturne-gilt-50);
+}
+.nocturne-drawer--top .nocturne-drawer__sheet {
+  border-bottom: 1px solid var(--nocturne-gilt-50);
+}
+.nocturne-drawer--bottom .nocturne-drawer__sheet {
+  border-top: 1px solid var(--nocturne-gilt-50);
+}
+
+.nocturne-drawer__latin {
+  font-size: var(--nocturne-fs-24);
+  text-align: left;
+}
+
+.nocturne-drawer__title {
+  margin: 0;
+  font-size: var(--nocturne-fs-18);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-3);
+  color: var(--nocturne-text);
+}
+
+.nocturne-drawer .nocturne-modal-desc {
+  text-align: left;
+}
+
+.nocturne-drawer__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--nocturne-space-1);
+  margin: 0 calc(-1 * var(--nocturne-space-1));
+}

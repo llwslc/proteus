@@ -1,0 +1,38 @@
+.nocturne-popover__positioner {
+  z-index: var(--nocturne-z-dropdown);
+}
+
+.nocturne-popover {
+  position: relative;
+  width: 300px;
+  max-width: calc(100vw - 2 * var(--nocturne-space-4));
+  padding: var(--nocturne-space-4);
+}
+
+.nocturne-popover__close {
+  position: absolute;
+  top: var(--nocturne-space-2);
+  right: var(--nocturne-space-2);
+}
+
+.nocturne-popover__title {
+  position: relative;
+  padding-bottom: var(--nocturne-space-2);
+  padding-right: var(--nocturne-space-7);
+  margin-bottom: var(--nocturne-space-3);
+}
+.nocturne-popover__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--nocturne-gilt-50), transparent);
+}
+
+.nocturne-popover__body {
+  font-size: var(--nocturne-fs-14);
+  line-height: var(--nocturne-lh-180);
+  color: var(--nocturne-text-dim);
+}

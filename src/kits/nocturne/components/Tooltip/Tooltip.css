@@ -1,0 +1,11 @@
+.nocturne-tooltip__positioner {
+  z-index: var(--nocturne-z-tooltip);
+}
+
+.nocturne-tooltip {
+  max-width: 260px;
+  padding: var(--nocturne-space-2) var(--nocturne-space-3);
+  font-size: var(--nocturne-fs-12);
+  letter-spacing: var(--nocturne-ls-1);
+  line-height: var(--nocturne-lh-140);
+}

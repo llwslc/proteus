@@ -1,0 +1,72 @@
+.nocturne-avatar {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.nocturne-avatar__frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--nocturne-avatar-md);
+  height: var(--nocturne-avatar-md);
+  border: 1px solid var(--nocturne-gilt-50);
+  border-radius: var(--nocturne-r-full);
+  padding: 1px;
+  background: var(--nocturne-bg);
+  overflow: hidden;
+}
+.nocturne-avatar--sm .nocturne-avatar__frame {
+  width: var(--nocturne-avatar-sm);
+  height: var(--nocturne-avatar-sm);
+}
+.nocturne-avatar--lg .nocturne-avatar__frame {
+  width: var(--nocturne-avatar-lg);
+  height: var(--nocturne-avatar-lg);
+}
+
+.nocturne-avatar__img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--nocturne-r-full);
+  object-fit: cover;
+}
+
+.nocturne-avatar__fallback {
+  display: inline-grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-surface-pop);
+  color: var(--nocturne-gilt-bright);
+  font-family: var(--nocturne-font-display);
+  font-size: var(--nocturne-fs-14);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-1);
+}
+.nocturne-avatar--lg .nocturne-avatar__fallback {
+  font-size: var(--nocturne-fs-18);
+}
+
+.nocturne-avatar__status {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 11px;
+  height: 11px;
+  border-radius: var(--nocturne-r-full);
+  border: 2px solid var(--nocturne-bg);
+}
+.nocturne-avatar__status--online {
+  background: var(--nocturne-success);
+}
+.nocturne-avatar__status--busy {
+  background: var(--nocturne-danger);
+}
+.nocturne-avatar__status--away {
+  background: var(--nocturne-warning);
+}
+.nocturne-avatar__status--offline {
+  background: var(--nocturne-text-mute);
+}

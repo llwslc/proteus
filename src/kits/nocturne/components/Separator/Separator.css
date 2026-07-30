@@ -1,0 +1,37 @@
+.nocturne-separator--horizontal {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--nocturne-gilt-50), transparent);
+}
+
+.nocturne-separator--vertical {
+  flex: 0 0 1px;
+  width: 1px;
+  align-self: stretch;
+  background: var(--nocturne-gilt-30);
+}
+
+.nocturne-separator-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  width: 100%;
+}
+
+.nocturne-separator-labeled__line {
+  flex: 1;
+}
+
+.nocturne-separator-labeled__text {
+  flex: none;
+}
+
+.nocturne-separator-labeled--vertical {
+  flex-direction: column;
+  width: auto;
+  align-self: stretch;
+}
+.nocturne-separator-labeled--vertical .nocturne-separator-labeled__line {
+  width: 1px;
+  background: var(--nocturne-gilt-30);
+}

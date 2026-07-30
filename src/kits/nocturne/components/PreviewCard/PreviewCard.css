@@ -1,0 +1,9 @@
+.nocturne-preview__positioner {
+  z-index: var(--nocturne-z-dropdown);
+}
+
+.nocturne-preview {
+  width: 320px;
+  max-width: calc(100vw - 2 * var(--nocturne-space-4));
+  padding: var(--nocturne-space-4);
+}
