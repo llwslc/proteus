@@ -15,6 +15,7 @@
 
 - Switch：一道锐角闸——关态 = 浅纸 `off` 轨 + `ink` border + `ink` 正圆旋钮靠左；选中后轨道转实色 `primary`、旋钮转 `on-fill` 纸白滑到右，用 `ease-out` 滑移；旋钮取「圆」原形。
 - Checkbox：锐角方框 + `ink` border；勾选 = 实色 `primary` 填充 + 纸白几何对勾，indeterminate = 实填 + 纸白横杠；取「方」原形。
+- CheckboxGroup：组内条目缩进，左缘一道 `stroke` 宽 `ink` 实纵线。
 - Radio：正圆 + `ink` border；选中 = 实色 `primary` 填充 + 纸白圆心点；取「圆」原形。
 - ToggleGroup：外箱体 `stroke-bold` 粗黑框、`surface-inset` 纸灰底。
 - Progress：锐角轨道（`track` 浅纸 + `ink` border）+ 实色 `accent-fill` 平涂指示，条填充流动（`bauhaus-progress-slide`）。

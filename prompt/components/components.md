@@ -121,7 +121,7 @@
 - **Button**：变体 `primary·secondary·danger·ghost·icon·icon-ghost`（默认 primary）；尺寸 `sm·md·lg`（默认 md）；props `variant·size·icon·upright`；`upright` 布尔＝去掉主题给按钮的默认姿态（微旋等），其余样式与交互不变，无默认姿态的主题里无效果；`forwardRef`，可当触发器。图标在文字前、和文字在同一个 inline-flex 里居中。icon-ghost 透明、无底无边、静止时不露 frame。
 - **Switch**：状态 +checked；**轨道、指示物的形态与开合表达由 theme 定。**
 - **Checkbox**：props `label`；结构 `<label> = 控件 + .cap 文字`，控件在前，勾选标记在控件内，状态 +checked、+indeterminate。
-- **CheckboxGroup**：props `items·parentLabel`（allValues 默认取 items）；结构 `Root（竖排）> [父 Checkbox?] + items 容器`，items 靠左缩进、带一条左引导线。
+- **CheckboxGroup**：props `items·parentLabel`（allValues 默认取 items）；结构 `Root（竖排）> [父 Checkbox?] + items 容器`，items 靠左缩进，**左缘引导线画不画、怎么画由 theme 定**。
 - **Radio**：RadioGroup 竖排；结构 `<label> = 控件 + .cap 文字`，标记在控件内，状态 +checked。
 - **ToggleGroup**：分段条家族，`width: fit-content`，段的状态 +pressed；手机端横向滚动不换行。
 - **Slider**：props `label·showValue`（默认 true）；结构 `Root（竖排）> head[label .cap + Value 在右] + Control > Track > Indicator + Thumb`，Indicator 从左端起；`label` 为字符串时兼作 thumb 输入的可访问名。

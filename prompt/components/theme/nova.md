@@ -16,6 +16,7 @@
 - Button：高光斜扫（移动 `background-position`）。
 - Switch：关态的 thumb 用 `thumb-idle` 金属渐变，选中后轨道转 `accent-surface`、thumb 转 `surface-deep`。
 - Checkbox：勾选是几何对勾、indeterminate 是横杠（共享 icons）。
+- CheckboxGroup：组内条目缩进，左缘一道 `1px` `line` 纵线。
 - Radio：选中是发辉光的 `primary` 圆点弹出。
 - ToggleGroup：外箱体是一条 `surface` 框横条。
 - Slider：thumb 是 `clip-4` 切角晶块——`text-bright` 到 `primary-deep` 斜向渐变面 + `primary` 辉光，hover 放大一步、拖动再放大加辉。
