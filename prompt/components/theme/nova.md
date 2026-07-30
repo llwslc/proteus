@@ -35,7 +35,7 @@
 - Badge：点 pulse。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 走 `clip-4` 切角 + `glow-r` 辉光，静止 `line-strong`、悬停／滚动转 `primary`；轨 `tint-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
-- Separator：`line-strong` 渐隐线——整条两端渐隐（横／纵），labeled 档左右线各朝文字端渐隐。
+- Separator：`line-strong` 渐隐线——整条两端渐隐（横／纵），labeled 档左右线各朝文字端渐隐；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
 - Panel：对角两枚 L 形辉光角框（`__corner--tr / --bl`，2px `primary` 边 + 辉光）；`scan` 变体在内沿再叠一道 `tint-soft` 横带、`6s` 匀速自上而下循环扫过。
 - 弹层列表的内衬取 `space-1`。
 - 共享配方的颜色就近覆盖：`--nova-scan-color / -tick-color / -title-color`。

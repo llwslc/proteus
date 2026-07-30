@@ -34,6 +34,7 @@
 - Badge：`ink` 描边 + `r-chip` 小牌，`fw-700` 大写 `ls-2`；底按 tone 实填、字取 `on-fill`；dot 取 `radio-dot` 尺寸的正圆。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 是实色 `primary` 蓝、填满条宽；轨 `track` 浅纸；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
+- Separator：`stroke-hair` 细 `ink` 实线（横／纵）；带 label 版 = 线 + `.bauhaus-cap` 字 + 线；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
 - Panel：角部放三原形角标 + meta。
 - 占位图标是几何线形。
 - 动效：除 Progress 条流动外只有交互过渡（硬切 + 块面滑移），无持续辉光或脉动。

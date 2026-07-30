@@ -123,6 +123,7 @@
   --bauhaus-scrollarea-h: 200px;
   --bauhaus-popup-w: 224px;
   --bauhaus-list-item-h: 38px;
+  --bauhaus-separator-stub-w: 24px;
   --bauhaus-popup-h: calc(var(--bauhaus-list-item-h) * 7);
   --bauhaus-tooltip-w: 240px;
   --bauhaus-popover-w: 288px;

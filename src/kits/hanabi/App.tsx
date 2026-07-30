@@ -1266,7 +1266,9 @@ function Demo() {
                 <span className="hanabi-cap">素の線</span>
                 <Separator />
                 <span className="hanabi-cap">ラベル付き</span>
+                <Separator label="第二区画" align="start" />
                 <Separator label="第二区画" />
+                <Separator label="第二区画" align="end" />
                 <span className="hanabi-cap">縦の線</span>
                 <div className="hanabi-row">
                   <span className="hanabi-text">粉</span>

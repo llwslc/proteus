@@ -1272,7 +1272,9 @@ function Demo() {
                 <span className="riot-cap">Plain</span>
                 <Separator />
                 <span className="riot-cap">Labelled</span>
+                <Separator label="Issue II" align="start" />
                 <Separator label="Issue II" />
+                <Separator label="Issue II" align="end" />
                 <span className="riot-cap">Vertical</span>
                 <div className="riot-row">
                   <span className="riot-text">Cut</span>

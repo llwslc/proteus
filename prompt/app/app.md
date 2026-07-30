@@ -103,7 +103,7 @@
 **Foundations**
 
 - typography：h1、h2、h3、一段正文、一个 caption，共 5 行。
-- separator：裸 Separator；带 label 的 Separator；一行 3 段文本以 2 条竖向 Separator 分隔。
+- separator：裸 Separator；三条带 label 的 Separator，`align` 依次 `start`、`center`、`end`；一行 3 段文本以 2 条竖向 Separator 分隔。
 - panel：一段正文 + 一个嵌套 Panel（`meta` 为 SUB）含一个 caption。
 
 **Signature**

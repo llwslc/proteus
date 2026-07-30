@@ -1226,7 +1226,9 @@ function Demo() {
                 <span className="brass-cap">Plain</span>
                 <Separator />
                 <span className="brass-cap">Stamped</span>
+                <Separator label="Gauge VII" align="start" />
                 <Separator label="Gauge VII" />
+                <Separator label="Gauge VII" align="end" />
                 <span className="brass-cap">Vertical</span>
                 <div className="brass-row">
                   <span className="brass-text">Boiler A</span>

@@ -29,6 +29,10 @@
 .abyss-separator-labeled__line--end {
   background: linear-gradient(90deg, var(--abyss-ink-strong), transparent);
 }
+.abyss-separator-labeled--start > .abyss-separator-labeled__line:first-child,
+.abyss-separator-labeled--end > .abyss-separator-labeled__line:last-child {
+  flex: 0 0 var(--abyss-separator-stub-w);
+}
 
 .abyss-separator-labeled__mark {
   display: inline-flex;

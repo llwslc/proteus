@@ -34,7 +34,7 @@
 - Badge：`round-2` 小牌、display 体大写 `ls-6`；按 tone 三件套换色——文字取该族主色、描边取其 `a55` 档、底取其 `-soft` 档；dot 是发光圆点、以 `breathe` 呼吸。
 - Toolbar：箱体同 ToggleGroup。
 - ScrollArea：thumb 是圆角 glow pill（`::before` 内缩 3px、`glow-deep → glow` 渐变 + `glow-a30` 辉光内描），轨 `ink-faint`；panel 型悬停显、popup 型常显，充当弹层列表的溢出提示。
-- Separator：`ink-strong` 渐隐线——整条两端渐隐（横／纵），labeled 档左右线各朝文字端渐隐，全部过 edge 颤动滤镜。
+- Separator：`ink-strong` 渐隐线——整条两端渐隐（横／纵），labeled 档左右线各朝文字端渐隐，全部过 edge 颤动滤镜；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
 - Panel：角部放触手 tendril。
 - 背板 scrim 额外加 `brightness(.8)` 把背后压暗。
 - 连接线是 1.5px 的 glow + edge 颤动滤镜。

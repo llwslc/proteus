@@ -50,7 +50,7 @@
 - Badge：铭签 chip——1px 框、`fs-12` `ls-2` 字；primary = `accent-surface` 底 `on-fill` 字；success、warning、danger = 各家 `-deep` 底 `on-fill` 字；secondary = 透明底 `gilt-50` 框 `gilt-bright` 字；neutral = `bg-deep` 底 `text-dim` 字；dot = 前缀圆点取本 tone 亮档。
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`gilt-bright` 字 + hover 底线；组间分隔竖发丝线。
 - ScrollArea：panel 型 thumb = `gilt-dim` 细条、hover 转 `gilt`、轨透明；popup 型 thumb `gilt` 3px 常显、离框 `space-1`，充当弹层溢出提示。
-- Separator：`gilt` 两端隐没渐变发丝线；带 label 版 = 线 + `.nocturne-cap` 字 + 线；竖向 1px `gilt-30` 实线。
+- Separator：`gilt` 两端隐没渐变发丝线；带 label 版 = 线 + `.nocturne-cap` 字 + 线；竖向 1px `gilt-30` 实线；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
 - Panel：丝绒图版——`velvet` 面 + 1px `gilt-50` 框 + 发丝内衬线 + `shadow-frame` + 四角 sprig 角饰垫于内容之下（prop `corners` 默认开）；title 落在骑顶缘居中的酒红题匾（母题 plaque，向上只探 1px 咬边、不半出），meta = mono `text-mute` 沉底缘居中；嵌套 Panel 无 sprig 无题匾，header 行内 `h3` + meta。
 - 占位图标是 1.5 描线圆头简笔（`icons.tsx` 统一 `1em`、`currentColor`）。
 - 弹层列表内衬 `space-2`。

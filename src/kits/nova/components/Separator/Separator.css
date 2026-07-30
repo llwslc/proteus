@@ -28,6 +28,10 @@
 .nova-separator-labeled__line:last-child {
   background: linear-gradient(90deg, var(--nova-line), transparent);
 }
+.nova-separator-labeled--start > .nova-separator-labeled__line:first-child,
+.nova-separator-labeled--end > .nova-separator-labeled__line:last-child {
+  flex: 0 0 var(--nova-separator-stub-w);
+}
 .nova-separator-labeled__text {
   font-family: var(--nova-font-mono);
   font-size: var(--nova-fs-12);

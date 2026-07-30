@@ -36,6 +36,11 @@
   border-left: var(--hanabi-line-w) solid var(--hanabi-tone);
 }
 
+.hanabi-separator-labeled--start > .hanabi-separator-labeled__line:first-child,
+.hanabi-separator-labeled--end > .hanabi-separator-labeled__line:last-child {
+  flex: 0 0 var(--hanabi-separator-stub-w);
+}
+
 .hanabi-separator-labeled__text {
   display: inline-flex;
   align-items: center;

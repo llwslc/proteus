@@ -23,6 +23,10 @@
   background: var(--riot-ink);
   filter: url(#riot-torn);
 }
+.riot-separator-labeled--start > .riot-separator-labeled__line:first-child,
+.riot-separator-labeled--end > .riot-separator-labeled__line:last-child {
+  flex: 0 0 var(--riot-separator-stub-w);
+}
 .riot-separator-labeled__text {
   font-family: var(--riot-font-display);
   font-size: var(--riot-fs-11);

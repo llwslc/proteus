@@ -130,6 +130,7 @@
   --hanabi-tooltip-w: 240px;
   --hanabi-toast-w: 360px;
   --hanabi-list-item-h: 36px;
+  --hanabi-separator-stub-w: 24px;
   --hanabi-popup-h: calc(var(--hanabi-list-item-h) * 7);
   --hanabi-scrollarea-h: 200px;
   --hanabi-scrollbar: 8px;

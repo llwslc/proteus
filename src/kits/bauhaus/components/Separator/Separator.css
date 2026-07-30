@@ -32,6 +32,10 @@
 .bauhaus-separator-labeled--vertical .bauhaus-separator-labeled__line {
   width: var(--bauhaus-stroke-hair);
 }
+.bauhaus-separator-labeled--start > .bauhaus-separator-labeled__line:first-child,
+.bauhaus-separator-labeled--end > .bauhaus-separator-labeled__line:last-child {
+  flex: 0 0 var(--bauhaus-separator-stub-w);
+}
 .bauhaus-separator-labeled__text {
   flex: 0 0 auto;
 }

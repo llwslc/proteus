@@ -28,6 +28,10 @@
 .brass-separator-labeled__line--end {
   background: linear-gradient(90deg, var(--brass-line-strong), transparent);
 }
+.brass-separator-labeled--start > .brass-separator-labeled__line:first-child,
+.brass-separator-labeled--end > .brass-separator-labeled__line:last-child {
+  flex: 0 0 var(--brass-separator-stub-w);
+}
 .brass-separator-labeled__text {
   display: inline-flex;
   align-items: center;

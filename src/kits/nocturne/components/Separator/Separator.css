@@ -21,6 +21,10 @@
 .nocturne-separator-labeled__line {
   flex: 1;
 }
+.nocturne-separator-labeled--start > .nocturne-separator-labeled__line:first-child,
+.nocturne-separator-labeled--end > .nocturne-separator-labeled__line:last-child {
+  flex: 0 0 var(--nocturne-separator-stub-w);
+}
 
 .nocturne-separator-labeled__text {
   flex: none;

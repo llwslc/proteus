@@ -131,6 +131,7 @@
   --nova-overlay-gap: 10px;
   --nova-toast-w: 360px;
   --nova-list-item-h: 39px;
+  --nova-separator-stub-w: 24px;
   --nova-popup-h: calc(var(--nova-list-item-h) * 7);
   --nova-scrollarea-h: 200px;
   --nova-avatar-sm: 34px;

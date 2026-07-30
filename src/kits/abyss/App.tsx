@@ -1450,7 +1450,9 @@ function Demo() {
                   <span className="abyss-cap">Plain</span>
                   <Separator />
                   <span className="abyss-cap">Marked</span>
+                  <Separator label="Rite VII" align="start" />
                   <Separator label="Rite VII" />
+                  <Separator label="Rite VII" align="end" />
                   <span className="abyss-cap">Vertical</span>
                   <div className="demo-row">
                     <span className="abyss-text">Reef A</span>

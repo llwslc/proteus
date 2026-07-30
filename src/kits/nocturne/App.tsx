@@ -1370,7 +1370,9 @@ function Demo() {
                 <span className="nocturne-cap">Bare hairline</span>
                 <Separator />
                 <span className="nocturne-cap">With a label</span>
+                <Separator label="Second wing" align="start" />
                 <Separator label="Second wing" />
+                <Separator label="Second wing" align="end" />
                 <span className="nocturne-cap">Upright</span>
                 <div className="nocturne-row">
                   <span className="nocturne-text">Wine</span>

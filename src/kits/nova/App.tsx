@@ -1313,7 +1313,9 @@ function Demo() {
                   <span className="nova-cap">Plain</span>
                   <Separator />
                   <span className="nova-cap">Labelled</span>
+                  <Separator label="Section 7G" align="start" />
                   <Separator label="Section 7G" />
+                  <Separator label="Section 7G" align="end" />
                   <span className="nova-cap">Vertical</span>
                   <div className="demo-row">
                     <span className="nova-text">Sector A</span>

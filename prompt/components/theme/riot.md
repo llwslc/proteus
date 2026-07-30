@@ -43,7 +43,7 @@
 - Badge：`ink` 粗框方牌、display 体大写 `ls-2`；底按 tone 实填、字取 `on-fill`；dot 是 `6px` 见方的 currentColor 实块，不作圆。
 - Toolbar：chip 同 ToggleGroup。
 - ScrollArea：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
-- Separator：`ink` 实条过 `#riot-torn` 撕纹滤镜（横／纵），手撕的黑胶条。
+- Separator：`ink` 实条过 `#riot-torn` 撕纹滤镜（横／纵），手撕的黑胶条；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
 - Panel：一张斜钉的撕纸剪报（`--riot-tilt` 微旋转）——斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉，meta 做成 `warning` 黄底 `on-warning` 墨字的盖章三字码。
 - 占位图标是粗糙的手绘线形。
 - 剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。

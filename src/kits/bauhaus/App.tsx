@@ -1240,7 +1240,9 @@ function Demo() {
                 <span className="bauhaus-cap">Plain</span>
                 <Separator />
                 <span className="bauhaus-cap">Labelled</span>
+                <Separator label="Module II" align="start" />
                 <Separator label="Module II" />
+                <Separator label="Module II" align="end" />
                 <span className="bauhaus-cap">Vertical</span>
                 <div className="bauhaus-row">
                   <span className="bauhaus-text">Red</span>

@@ -134,6 +134,7 @@
   --abyss-overlay-gap: 10px;
   --abyss-toast-w: 360px;
   --abyss-list-item-h: 39px;
+  --abyss-separator-stub-w: 24px;
   --abyss-popup-h: calc(var(--abyss-list-item-h) * 7);
   --abyss-scrollarea-h: 200px;
 
