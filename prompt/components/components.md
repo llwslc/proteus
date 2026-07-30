@@ -67,12 +67,12 @@
 
 - **elevation**——不裁形状的抬升层，挂 drop-shadow + 辉光，通过输入变量 `--<kit>-overlay-shadow / -glow` 调参。锚定型浮层挂在 Positioner 上；没有 positioner 的模态、Toast 挂在 Popup 或 Root 上。
 - **surface**——带框的表面（见 4.1），尺寸、填充、边框色走输入变量，不挂阴影。
-- **anim-pop**（角色名；每套一个共享类，类名由 theme 定、列在 `theme/<kit>.md` §动效个性）——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式（位移、缩放、裁切等）、多大幅度，由 theme 定。**
+- **anim-pop**（角色名；每套一个共享类，类名由 theme 定、列在 `theme/<kit>.md` §动效个性）——锚定型浮层统一的开合动效：用 `[data-starting-style]` / `[data-ending-style]` 定起始态和结束态 = 淡入 + 一点入场变换；**变换用什么形式、多大幅度，由 theme 定。**
 - **connector**——Base UI 的 Arrow，把弹层连到触发器：四个方向都能定位、颜色与弹层边框一致、跨过 `sideOffset` 的缝贴到触发器；**形状由 theme 定。**
 - **浮层与触发器的缝**：由 `sideOffset` 控制——offset 各 kit 自调（框厚不同则值不同），但**渲染出的视觉缝跨 kit 一致**。
 - **模态的承载**：Dialog 和 AlertDialog 共用一个 viewport——`position:fixed; top/left/right:0; height:100dvh`（用 `left/right:0`、不用 `100vw`），`display:grid` + 子项 `margin:auto`（不用 `place-items:center`），`overflow:auto`。Drawer 用全屏 viewport（`fixed; inset:0; height:100dvh; overflow:hidden`），它的 Popup 按 `--<side>` 定位、定尺寸，进出场用 `[data-starting-style]` / `[data-ending-style]` 做离屏位移，`Drawer.Content` 承载皮肤面板。模态 viewport 的 padding 取 `space-5`（`20`）。
 - **锚定弹层的滚动**：Select、Combobox、Autocomplete、Menu、Menubar、ContextMenu 的滚动列表，都用 ScrollArea 的「popup」型（`<ScrollArea variant="popup">`）把列表内容包起来；高度上限取 `min(calc(var(--available-height) − 自身边框与内衬的上下合计), var(--<kit>-popup-h))` 挂在该 viewport 上（`popup-h` 取 `calc(var(--<kit>-list-item-h) * 7)`，滚动前露出 **7 行、各 kit 同值**；行高 `list-item-h` 由 theme 定，同时锁在 `.<kit>-list-item` 的 `min-height` 上），超出就滚，并加 `overscroll-behavior: contain`。框面／底板不自己当滚动器，只有该 viewport 滚。列表 Popup 带内衬、行不贴框，**衬多少由 theme 定**。
-- **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色）。弹层列表藏掉原生条（viewport `scrollbar-width: none`），**溢出提示必须常驻**——有纵向溢出时，不悬停、不滚动也看得出下面还有内容；**提示取什么形，由 theme 定**，且不得盖住行文本——用条的皮，viewport 有纵向溢出（`data-has-overflow-y`）时加 `padding-right` 给条让位。条宽、thumb 皮肤（形状／配色／轨道／离框）由各 theme 定。
+- **滚动条**：页面和一般滚动器走标准条（`scrollbar-width: thin` + `scrollbar-color` 染色）。弹层列表藏掉原生条（viewport `scrollbar-width: none`），**溢出提示必须常驻**——有纵向溢出时，不悬停、不滚动也看得出下面还有内容；**提示取什么形，由 theme 定**，且不得盖住行文本——用条的皮，viewport 有纵向溢出（`data-has-overflow-y`）时加 `padding-right` 给条让位。条宽与 thumb 皮肤由各 theme 定。
 
 ### 4.3 共享配方 class
 
@@ -92,7 +92,7 @@
 - 当用「边框色打底 + `::before` 填充」这种画法时，激活态的填充必须是深色、不透明。
 - **悬停**：分段控件、触发条统一用柔色纯底；图标、动作按钮的文字转主色，菜单触发器、列表项转亮色文字；普通按钮必有可见的悬停反馈，**形式由 theme 定**；选中态、开启态要压过悬停态（悬停的「禁用守卫」用 `:where()` 包住、不抬权重）。
 - **按压**：`:active` 时形变瞬间到位（`transition-duration: 0s`），松手后按 `dur` 回弹；**具体形变由 theme 定。**形变使命中盒移动超过 `1px` 时，`:active` 同时挂透明伪元素光环兜住命中盒——实按在钮上的点不因形变丢 click，**光环尺寸盖过自家位移、由 theme 定**。
-- **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的（如 NumberField 步进钮夹着输入框）落在整组上、不只中间那块；**提示的具体形式和效果由 theme 定**。
+- **键盘焦点**：焦点提示按控件族落位——布尔开关（Checkbox、Switch、Radio）落在整个控件上，分段控件、触发条落在按钮自身，输入框落在整框上，多块拼成的控件落在整组上、不只其中一块；**提示的具体形式和效果由 theme 定**。
 - **禁用**：shell 全局一条 `pointer-events: none`；hover／highlight 态一律 `:not([data-disabled])` 收口；`opacity: var(--<kit>-disabled-opacity)` 挂控件根、一次合成，整行只 dim 一层、不叠两遍。
 
 ## 6. 组件
@@ -125,7 +125,7 @@
 - **Radio**：RadioGroup 竖排；结构 `<label> = 控件 + .cap 文字`，标记在控件内，状态 +checked。
 - **ToggleGroup**：分段条家族，`width: fit-content`，段的状态 +pressed；手机端横向滚动不换行。
 - **Slider**：props `label·showValue`（默认 true）；结构 `Root（竖排）> head[label .cap + Value 在右] + Control > Track > Indicator + Thumb`，Indicator 从左端起；`label` 为字符串时兼作 thumb 输入的可访问名。
-- **NumberField**：结构 `Group > [减 + Input + 加]` 三件，两个步进钮等宽；**三件怎么排（夹住输入框，或两钮并置一侧）由 theme 定**；到 min/max 时自己 disable 对应步进钮并置灰。
+- **NumberField**：结构 `Group > [减 + Input + 加]` 三件，两个步进钮等宽；**三件怎么排由 theme 定**；到 min/max 时自己 disable 对应步进钮并置灰。
 - **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error`，图标在左、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`；`name` 落 `Field.Root`，Error 常驻挂载，Form 下发的 `errors` 由它显示。
 - **OtpField**：props `length·splitAt·mask·label`（`length` 默认 6）；root 带 `role="group"`、`label` 作组可访问名；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus；手机端 cell 收缩。
 - **Select**：props `items·placeholder·side`（默认 bottom）`·align`（默认 center）；结构 `field > Trigger[Value flex:1 + Chevron 在右、开态旋转] + Popup > list > Item[ItemText flex:1 + Indicator]`，**选中指示摆在哪、长什么样由 theme 定**；**弹层向下展开**、开在 `6px` 处；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted。
