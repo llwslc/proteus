@@ -59,7 +59,7 @@ export function Select<Value extends string = string>({
     >
       <BaseSelect.Trigger
         id={id ?? autoId}
-        className={cx("nocturne-field", "nocturne-select__trigger", className)}
+        className={cx("nocturne-fieldframe", "nocturne-select__trigger", className)}
       >
         <BaseSelect.Value className="nocturne-select__value">
           {(val) => {

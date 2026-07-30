@@ -28,7 +28,7 @@ nocturne|combobox|nocturne-panel__sprig|svg
 nocturne|dialog|nocturne-panel__sprig|nocturne-btn
 nocturne|drawer|nocturne-panel__sprig|nocturne-btn
 nocturne|form|nocturne-panel__sprig|nocturne-btn
-nocturne|input|nocturne-panel__sprig|nocturne-fieldroot__error
+nocturne|input|nocturne-panel__sprig|nocturne-field__error
 nocturne|menu|nocturne-panel__sprig|nocturne-menu__trigger-label
 nocturne|menu|nocturne-panel__sprig|nocturne-btn
 nocturne|menubar|nocturne-panel__sprig|nocturne-seg__btn

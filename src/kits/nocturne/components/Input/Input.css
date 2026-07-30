@@ -1,4 +1,4 @@
-.nocturne-fieldroot {
+.nocturne-field {
   display: flex;
   flex-direction: column;
   gap: var(--nocturne-space-2);
@@ -27,17 +27,17 @@
   opacity: 1;
 }
 
-.nocturne-fieldroot__desc {
+.nocturne-field__desc {
   margin: 0;
   font-size: var(--nocturne-fs-14);
   color: var(--nocturne-text-mute);
 }
 
-.nocturne-fieldroot__error {
+.nocturne-field__error {
   margin: 0;
   font-size: var(--nocturne-fs-14);
   color: var(--nocturne-danger);
 }
-.nocturne-fieldroot__error:empty {
+.nocturne-field__error:empty {
   display: none;
 }

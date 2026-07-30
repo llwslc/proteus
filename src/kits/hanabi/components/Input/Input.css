@@ -39,26 +39,26 @@
   color: var(--hanabi-text-dim);
 }
 
-.hanabi-fieldroot {
+.hanabi-field {
   display: flex;
   flex-direction: column;
   gap: var(--hanabi-space-2);
   width: 100%;
 }
 
-.hanabi-fieldroot__desc {
+.hanabi-field__desc {
   margin: 0;
   font-size: var(--hanabi-fs-13);
   line-height: var(--hanabi-lh-160);
   color: var(--hanabi-text-dim);
 }
 
-.hanabi-fieldroot__error {
+.hanabi-field__error {
   margin: 0;
   font-size: var(--hanabi-fs-13);
   font-weight: var(--hanabi-fw-500);
   color: var(--hanabi-danger-deep);
 }
-.hanabi-fieldroot__error::before {
+.hanabi-field__error::before {
   content: "⚠ ";
 }

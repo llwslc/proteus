@@ -39,7 +39,7 @@ export function Autocomplete({
     <BaseAutocomplete.Root items={labels} {...props}>
       <BaseAutocomplete.InputGroup
         className={cx(
-          "hanabi-field hanabi-lockon hanabi-lockon--within hanabi-autocomplete",
+          "hanabi-fieldframe hanabi-lockon hanabi-lockon--within hanabi-autocomplete",
           className,
         )}
       >

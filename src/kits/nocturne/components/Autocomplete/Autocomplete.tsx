@@ -38,7 +38,7 @@ export function Autocomplete({
   return (
     <BaseAutocomplete.Root items={labels} {...props}>
       <BaseAutocomplete.InputGroup
-        className={cx("nocturne-field nocturne-autocomplete", className)}
+        className={cx("nocturne-fieldframe nocturne-autocomplete", className)}
       >
         <span className="nocturne-autocomplete__glyph">
           <SearchIcon />

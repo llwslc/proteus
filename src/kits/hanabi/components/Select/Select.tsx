@@ -60,7 +60,7 @@ export function Select<Value extends string = string>({
       <BaseSelect.Trigger
         id={id ?? autoId}
         className={cx(
-          "hanabi-field",
+          "hanabi-fieldframe",
           "hanabi-lockon",
           "hanabi-select__trigger",
           className,

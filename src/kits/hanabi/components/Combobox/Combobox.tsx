@@ -39,7 +39,7 @@ export function Combobox({
     <BaseCombobox.Root items={labels} {...props}>
       <BaseCombobox.InputGroup
         className={cx(
-          "hanabi-field hanabi-lockon hanabi-lockon--within hanabi-combobox",
+          "hanabi-fieldframe hanabi-lockon hanabi-lockon--within hanabi-combobox",
           className,
         )}
       >

@@ -77,13 +77,36 @@ for (const kit of kits) for (const c of localByKit[kit]) {
   if (dunder.has(`${m[1]}__${m[2]}`)) driftLines.push(`  ${('.' + kit + '-' + c).padEnd(34)} → .${kit}-${m[1]}__${m[2]}   (siblings use \`__\`)`);
 }
 
+const rootSlots = (kit, comp) => {
+  const dir = path.join(ROOT, kit, 'components', comp);
+  const slots = new Set();
+  for (const f of fs.readdirSync(dir)) {
+    if (!f.endsWith('.tsx')) continue;
+    const text = fs.readFileSync(path.join(dir, f), 'utf8');
+    for (const m of text.matchAll(/<Base\w+(?:\.\w+)*\.Root\b[\s\S]{0,300}?className=(\{[\s\S]*?\}|"[^"]*")/g)) {
+      const toks = [...m[1].matchAll(new RegExp(`${kit}-([a-z0-9]+(?:[-_][a-z0-9]+)*)`, 'g'))].map((x) => x[1].split(/__|-/)[0]);
+      const local = toks.find((b) => !SHARED.has(b) && !sharedBlocksByKit[kit].has(b));
+      if (local) slots.add(local);
+    }
+  }
+  return [...slots].sort().join('+') || null;
+};
+const rootLines = [];
+for (const comp of shared.sort()) {
+  const per = kits.map((k) => [k, rootSlots(k, comp)]);
+  if (new Set(per.map(([, v]) => v).filter(Boolean)).size > 1)
+    rootLines.push(`  ROOT-DIVERGENT  ${comp}:  ${per.map(([k, v]) => `${k}=${v ?? '(shared-only)'}`).join('  ')}`);
+}
+
 console.log('## block-name consistency (each shared component uses one <kit>-<block> across kits)');
 console.log(blockLines.length ? blockLines.join('\n') : '  -> clean');
 console.log('\n## sub-part separator consistency (no `block-part` where a sibling writes `block__part`)');
 console.log(driftLines.length ? driftLines.join('\n') : '  -> clean');
+console.log('\n## root-slot consistency (Base*.Root carries the same local block across kits; shared-primitive-only roots abstain)');
+console.log(rootLines.length ? rootLines.join('\n') : '  -> clean');
 
-const fail = blockLines.length + driftLines.length;
+const fail = blockLines.length + driftLines.length + rootLines.length;
 console.log(`\nRESULT: ${fail === 0
-  ? `PASS (${shared.length} shared components: one <kit>-<block> each + consistent sub-part separators)`
-  : `${fail} naming issue(s) — unify block names / sub-part separators across kits`}`);
+  ? `PASS (${shared.length} shared components: one <kit>-<block> each + consistent sub-part separators + consistent root slots)`
+  : `${fail} naming issue(s) — unify block names / sub-part separators / root-slot classes across kits`}`);
 process.exit(fail ? 1 : 0);
