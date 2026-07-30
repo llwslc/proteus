@@ -11,3 +11,49 @@ riot|context|riot-tape--tl|riot-panel__title
 riot|combobox|riot-panel__staple|riot-panel__title
 riot|dialog|riot-panel__staple|riot-panel__title
 riot|tabs|riot-tabs__tab|riot-tabs__tab
+# nocturne botanical language (corner-crop confirmed 2026-07-30): wispy stroke corner
+# sprigs sit under content at plate corners (text stays legible — sandbox composition);
+# the switch bloom rides its own branch scene (本体构造); the checkbox pen-stroke tick
+# overshoots its notched box on purpose (落笔).
+nocturne|accordion|nocturne-panel__sprig|nocturne-collapse-content
+nocturne|alert|nocturne-panel__sprig|nocturne-btn
+nocturne|autocomplete|nocturne-panel__sprig|svg
+nocturne|badge|nocturne-panel__sprig|nocturne-badge
+nocturne|button|nocturne-panel__sprig|svg
+nocturne|checkbox|nocturne-panel__sprig|nocturne-checkbox__box
+nocturne|checkbox|nocturne-checkbox__mark|nocturne-checkbox__box
+nocturne|checkbox-group|nocturne-panel__sprig|nocturne-checkbox__box
+nocturne|checkbox-group|nocturne-checkbox__mark|nocturne-checkbox__box
+nocturne|combobox|nocturne-panel__sprig|svg
+nocturne|dialog|nocturne-panel__sprig|nocturne-btn
+nocturne|drawer|nocturne-panel__sprig|nocturne-btn
+nocturne|form|nocturne-panel__sprig|nocturne-btn
+nocturne|input|nocturne-panel__sprig|nocturne-fieldroot__error
+nocturne|menu|nocturne-panel__sprig|nocturne-menu__trigger-label
+nocturne|menu|nocturne-panel__sprig|nocturne-btn
+nocturne|menubar|nocturne-panel__sprig|nocturne-seg__btn
+nocturne|navmenu|nocturne-panel__sprig|nocturne-seg__btn
+nocturne|popover|nocturne-panel__sprig|nocturne-btn
+nocturne|preview|nocturne-panel__sprig|nocturne-text
+nocturne|scroll|nocturne-panel__sprig|nocturne-scroll-list__time
+nocturne|scroll|nocturne-panel__sprig|nocturne-text
+nocturne|select|nocturne-panel__sprig|nocturne-select__value
+nocturne|select|nocturne-panel__sprig|nocturne-field
+nocturne|separator|nocturne-panel__sprig|nocturne-text
+nocturne|switch|nocturne-panel__sprig|nocturne-cap
+nocturne|switch|nocturne-panel__sprig|nocturne-switch__scene
+nocturne|switch|nocturne-switch__scene|nocturne-switch__bloom
+nocturne|tabs|nocturne-panel__sprig|nocturne-text
+nocturne|toast|nocturne-panel__sprig|nocturne-btn
+nocturne|toggle|nocturne-panel__sprig|nocturne-seg__btn
+nocturne|tooltip|nocturne-panel__sprig|nocturne-btn
+nocturne|typography|nocturne-panel__sprig|nocturne-cap
+nocturne|otp|nocturne-panel__sprig|nocturne-otp__cell
+nocturne|number|nocturne-panel__sprig|nocturne-numberfield__group
+nocturne|slider|nocturne-panel__sprig|nocturne-slider__value
+nocturne|radio|nocturne-panel__sprig|nocturne-cap
+nocturne|fieldset|nocturne-panel__sprig|nocturne-input__control
+nocturne|context|nocturne-panel__sprig|nocturne-context__zone
+nocturne|panel|nocturne-panel__sprig|nocturne-text
+nocturne|progress|nocturne-panel__sprig|nocturne-track
+nocturne|meter|nocturne-panel__sprig|nocturne-track

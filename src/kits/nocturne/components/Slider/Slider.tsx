@@ -17,17 +17,19 @@ export function Slider({
   label,
   showValue = true,
   className,
-  min = 0,
-  max = 100,
+  min,
+  max,
   defaultValue,
   value: controlled,
   onValueChange,
   ...props
 }: SliderProps) {
   const id = useId();
-  const [tracked, setTracked] = useState<number>(first(defaultValue) ?? min);
+  const lo = min ?? 0;
+  const hi = max ?? 100;
+  const [tracked, setTracked] = useState<number>(first(defaultValue) ?? lo);
   const value = first(controlled) ?? tracked;
-  const frac = max > min ? (value - min) / (max - min) : 0;
+  const frac = hi > lo ? (value - lo) / (hi - lo) : 0;
   return (
     <BaseSlider.Root
       className={cx("nocturne-slider", className)}
@@ -59,7 +61,16 @@ export function Slider({
           >
             <svg className="nocturne-slider__bloom" viewBox="-17 -17 34 34" aria-hidden="true" focusable="false">
               <MotifDefs id={id} />
-              <Bloom defs={id} r={13} coreR={3.1} coreDots={3} sepals mode="state" />
+              <Bloom
+                defs={id}
+                r={13}
+                coreR={3.1}
+                coreDots={3}
+                sepals
+                mode="state"
+                openExpr="calc(0.3 + 0.7 * var(--nocturne-slider-frac, 0.5))"
+                sepalExpr="0.7"
+              />
             </svg>
           </BaseSlider.Thumb>
         </BaseSlider.Track>

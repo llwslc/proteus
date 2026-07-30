@@ -1,3 +1,8 @@
+:root {
+  --nocturne-contextmenu-min-h: 132px;
+  --nocturne-scroll-demo-h: 200px;
+}
+
 .nocturne-app {
   min-height: 100vh;
 }
@@ -209,7 +214,7 @@
   background: radial-gradient(closest-side, var(--nocturne-glow-12), transparent 70%);
   pointer-events: none;
   z-index: -1;
-  animation: nocturne-breathe var(--nocturne-dur-breathe) ease-in-out infinite;
+  animation: nocturne-breathe 7s ease-in-out infinite;
 }
 
 .nocturne-hero__text {
@@ -402,7 +407,7 @@
 .nocturne-context__zone {
   display: grid;
   place-items: center;
-  min-height: 132px;
+  min-height: var(--nocturne-contextmenu-min-h);
   border: 1px dashed var(--nocturne-gilt-30);
   background: var(--nocturne-surface-inset);
   transition: background var(--nocturne-dur) var(--nocturne-ease);

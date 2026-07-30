@@ -40,6 +40,7 @@
   margin: 0;
   font-family: var(--nocturne-font);
   font-size: var(--nocturne-fs-16);
+  font-weight: var(--nocturne-fw-400);
   line-height: var(--nocturne-lh-180);
   color: var(--nocturne-text);
 }

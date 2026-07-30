@@ -3,6 +3,8 @@
 }
 
 .nocturne-tabs__list {
+  display: flex;
+  flex-direction: row;
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
@@ -32,7 +34,7 @@
   cursor: pointer;
   transition: color var(--nocturne-dur) var(--nocturne-ease);
 }
-.nocturne-tabs__tab:hover:not([data-disabled]) {
+.nocturne-tabs__tab:where(:hover:not([data-disabled])) {
   color: var(--nocturne-text);
 }
 .nocturne-tabs__tab[data-active] {
@@ -62,4 +64,10 @@
 .nocturne-tabs__panel {
   padding-top: var(--nocturne-space-6);
   outline: none;
+}
+
+@media (max-width: 768px) {
+  .nocturne-tabs__tab {
+    padding: var(--nocturne-space-3) var(--nocturne-space-4);
+  }
 }

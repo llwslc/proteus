@@ -46,7 +46,7 @@
 
 ## 5. 动效个性
 
-- 时长 `dur .3s / -fast .12s / -slow .6s / -pop .35s / -sweep 1.5s / -breathe 7s`；缓动 `ease cubic-bezier(.4,0,.3,1)` 通用、`ease-pop cubic-bezier(.2,.8,.3,1.1)` 浮层落定、`ease-bloom cubic-bezier(.2,1,.3,1.3)` 花瓣过冲绽开、`ease-draw cubic-bezier(.3,.8,.35,1)` 笔势描画。
+- 时长 `dur .3s / -fast .12s / -slow .6s / -pop .35s / -sweep 1.5s / -draw .42s`；缓动 `ease cubic-bezier(.4,0,.3,1)` 通用、`ease-pop cubic-bezier(.2,.8,.3,1.1)` 浮层落定、`ease-bloom cubic-bezier(.2,1,.3,1.3)` 花瓣过冲绽开、`ease-draw cubic-bezier(.3,.8,.35,1)` 笔势描画。
 - 按压：整钮下沉 `translateY(1px)`、投影收拢；`:active` 瞬间到位（`transition-duration: 0s`），松手按 `dur` 回弹；位移 1px 不超命中兜底线、不设光环。
 - 悬停：描边升档转 `gilt` + `glow-12` 幽光外辉；实填件换亮头渐变；ghost 类盖 `gilt-10`。
 - 共享动效（`effects.css`）：浮层开合 `.nocturne-drift` = 淡入 + `translateY(-6px)` 浮落；`nocturne-branch` 蔓枝 stroke 生长（dashoffset）；`nocturne-petal` 花瓣自基点绽开；`nocturne-sweep` 不定态单向扫掠；`nocturne-breathe` 幽光呼吸。辉光只在焦点、悬停、花芯与氛围呼吸，无持续脉动。

@@ -47,7 +47,13 @@ export function Progress({
             <span className="nocturne-progress__tip" aria-hidden="true">
               <svg className="nocturne-progress__bloom" viewBox="-17 -17 34 34" focusable="false">
                 <MotifDefs id={id} />
-                <Bloom defs={id} r={12} coreDots={5} mode="state" />
+                <Bloom
+                  defs={id}
+                  r={12}
+                  coreDots={5}
+                  mode="state"
+                  openExpr="calc(0.15 + 0.85 * var(--nocturne-prog-frac, 0))"
+                />
               </svg>
             </span>
           )}

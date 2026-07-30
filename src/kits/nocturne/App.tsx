@@ -123,9 +123,20 @@ const FLORA = [
 ];
 const FLORA_SHORT = FLORA.slice(0, 3);
 
-const FLORA_NAMES = FLORA.map((f) =>
-  f.disabled ? { label: f.label, disabled: true } : f.label,
-);
+const FLORA_NAMES = [
+  "Belladonna",
+  "Night Jasmine",
+  "Evening Primrose",
+  "Moonflower",
+  "Queen of the Night",
+  "Angel's Trumpet",
+  "Night Phlox",
+  "Four-o'clock",
+  "Datura",
+  "Mandrake",
+  "Wolfsbane",
+  { label: "Foxglove", disabled: true },
+];
 
 const ROUNDS = [
   "Trim the lamps",
@@ -252,6 +263,7 @@ function HeroLantern({
         type="button"
         className="nocturne-lantern"
         aria-pressed={lit}
+        aria-label={lit ? "Snuff the lamps" : "Light the lamps"}
         onClick={onToggle}
       >
         <svg viewBox="0 0 90 140" aria-hidden="true" focusable="false">
@@ -1300,7 +1312,7 @@ function Demo() {
             </Panel>
             <Panel id="scroll" title="Scroll Area" meta="SCR">
               <ScrollArea>
-                <ScrollAreaViewport>
+                <ScrollAreaViewport style={{ maxHeight: "var(--nocturne-scroll-demo-h)" }}>
                   <ScrollAreaContent>
                     <ol className="nocturne-scroll-list">
                       {[

@@ -30,6 +30,10 @@
   min-width: 0;
 }
 
+.nocturne-autocomplete__popup:has(.nocturne-autocomplete__list:empty) {
+  --nocturne-scrollbar-display: none;
+}
+
 .nocturne-autocomplete__empty {
   color: var(--nocturne-text-mute);
   font-size: var(--nocturne-fs-14);

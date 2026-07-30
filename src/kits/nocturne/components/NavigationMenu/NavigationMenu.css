@@ -1,6 +1,7 @@
 .nocturne-navmenu__list {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: var(--nocturne-space-1);
   list-style: none;
   margin: 0;

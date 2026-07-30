@@ -48,6 +48,7 @@
 
 .nocturne-meter__indicator {
   position: relative;
+  height: 100%;
   background: var(--nocturne-meter-fill);
   box-shadow: 0 0 12px var(--nocturne-meter-glow);
 }
@@ -68,5 +69,4 @@
   height: 100%;
   overflow: visible;
   filter: var(--nocturne-drop-mark) drop-shadow(0 0 8px var(--nocturne-glow-12));
-  --nocturne-bloom-open: calc(0.15 + 0.85 * var(--nocturne-prog-frac, 0));
 }

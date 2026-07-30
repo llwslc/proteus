@@ -4,38 +4,6 @@
   gap: var(--nocturne-space-2);
 }
 
-.nocturne-field {
-  display: flex;
-  align-items: center;
-  gap: var(--nocturne-space-2);
-  min-height: var(--nocturne-control-h);
-  padding: 0 var(--nocturne-space-3);
-  border: 1px solid var(--nocturne-gilt-30);
-  border-bottom-color: var(--nocturne-gilt-50);
-  background: var(--nocturne-surface-inset);
-  transition:
-    border-color var(--nocturne-dur) var(--nocturne-ease),
-    box-shadow var(--nocturne-dur) var(--nocturne-ease),
-    background var(--nocturne-dur) var(--nocturne-ease);
-}
-
-.nocturne-field:focus-within {
-  border-color: var(--nocturne-gilt);
-  background: var(--nocturne-bg-deep);
-  box-shadow: 0 0 0 1px var(--nocturne-gilt-30), var(--nocturne-glow-ring);
-}
-
-.nocturne-field:has([data-invalid]) {
-  border-color: var(--nocturne-danger);
-}
-.nocturne-field:has([data-invalid]):focus-within {
-  box-shadow: 0 0 0 1px var(--nocturne-danger-50), 0 0 22px var(--nocturne-danger-12);
-}
-
-.nocturne-field:has([data-disabled], :disabled) {
-  opacity: var(--nocturne-disabled-opacity);
-}
-
 .nocturne-input__icon {
   display: inline-grid;
   place-items: center;

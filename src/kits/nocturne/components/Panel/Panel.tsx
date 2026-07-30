@@ -15,7 +15,7 @@ export interface PanelProps {
 function PanelCorner({ mod }: { mod: string }) {
   return (
     <span className={`nocturne-panel__corner nocturne-panel__corner--${mod}`} aria-hidden="true">
-      <svg viewBox="0 0 56 56" focusable="false">
+      <svg className="nocturne-panel__sprig" viewBox="0 0 56 56" focusable="false">
         <Sprig transform="translate(56,0) scale(-1,1)" />
       </svg>
     </span>

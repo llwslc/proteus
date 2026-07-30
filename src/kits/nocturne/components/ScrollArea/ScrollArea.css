@@ -16,6 +16,10 @@
   top: var(--nocturne-space-1);
   bottom: var(--nocturne-space-1);
   width: 3px;
+  display: var(--nocturne-scrollbar-display, block);
+}
+.nocturne-scrollarea__bar[hidden] {
+  display: none;
 }
 
 .nocturne-scrollarea__thumb {
@@ -38,4 +42,8 @@
 
 .nocturne-scrollarea--popup .nocturne-scrollarea__thumb {
   background: var(--nocturne-gilt);
+}
+
+.nocturne-scrollarea--popup .nocturne-scrollarea__viewport:not([data-has-overflow-y]) ~ .nocturne-scrollarea__bar {
+  display: none;
 }

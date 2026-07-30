@@ -48,6 +48,8 @@ export interface BloomProps {
   bud?: boolean;
   coreDots?: 3 | 5;
   transform?: string;
+  openExpr?: string;
+  sepalExpr?: string;
 }
 
 export function Bloom({
@@ -61,6 +63,8 @@ export function Bloom({
   bud = false,
   coreDots = 5,
   transform,
+  openExpr,
+  sepalExpr,
 }: BloomProps) {
   const fill = `url(#${defs}-${lit ? "petal-lit" : "petal"})`;
   const five = [0, 1, 2, 3, 4];
@@ -74,6 +78,7 @@ export function Bloom({
           <g key={`s${i}`} transform={`rotate(${i * 72 + 36})`}>
             <path
               className={mode === "state" ? "nocturne-bloom__sepal" : undefined}
+              style={mode === "state" && sepalExpr ? ({ "--nocturne-bloom-sepal": sepalExpr } as CSSProperties) : undefined}
               d={sepalPath(r * 0.75)}
               fill={`url(#${defs}-leaf)`}
               stroke="var(--nocturne-gilt-dim)"
@@ -85,7 +90,13 @@ export function Bloom({
         <g key={`p${i}`} transform={`rotate(${i * 72})`}>
           <path
             className={mode === "state" ? "nocturne-bloom__petal" : mode === "entrance" ? "nocturne-bloom-in" : undefined}
-            style={mode === "entrance" ? ({ "--nocturne-d": `${(delay + i * 0.16).toFixed(2)}s` } as CSSProperties) : undefined}
+            style={
+              mode === "entrance"
+                ? ({ "--nocturne-d": `${(delay + i * 0.16).toFixed(2)}s` } as CSSProperties)
+                : mode === "state" && openExpr
+                  ? ({ "--nocturne-bloom-open": openExpr } as CSSProperties)
+                  : undefined
+            }
             d={petalPath(r)}
             fill={fill}
             stroke="var(--nocturne-gilt-dim)"
@@ -232,7 +243,7 @@ export function ModalVine() {
 export function ModalCorners() {
   const corner = (mod: string) => (
     <span className={`nocturne-modal__corner nocturne-modal__corner--${mod}`} aria-hidden="true">
-      <svg viewBox="0 0 56 56" focusable="false">
+      <svg className="nocturne-modal__sprig" viewBox="0 0 56 56" focusable="false">
         <Sprig transform="translate(56,0) scale(-1,1)" />
       </svg>
     </span>

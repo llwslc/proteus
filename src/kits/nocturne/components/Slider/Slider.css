@@ -56,8 +56,6 @@
   overflow: visible;
   filter: var(--nocturne-drop-mark) drop-shadow(0 0 6px var(--nocturne-glow-12));
   transition: filter var(--nocturne-dur) var(--nocturne-ease);
-  --nocturne-bloom-open: calc(0.3 + 0.7 * var(--nocturne-slider-frac, 0.5));
-  --nocturne-bloom-sepal: 0.7;
 }
 
 .nocturne-slider__control:hover .nocturne-slider__bloom,

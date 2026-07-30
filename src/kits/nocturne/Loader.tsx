@@ -47,7 +47,7 @@ function Half({ flip }: { flip?: boolean }) {
 
 export default function Loader() {
   return (
-    <div className="nocturne-loader">
+    <div className="nocturne-loader" role="status" aria-label="The night garden is waking">
       <div className="nocturne-loader__art">
         <svg viewBox="0 0 760 90" fill="none" aria-hidden="true" focusable="false">
           <defs>

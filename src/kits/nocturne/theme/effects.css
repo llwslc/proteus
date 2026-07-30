@@ -94,6 +94,11 @@
   height: 10px;
   background: var(--nocturne-arrow-fill, var(--nocturne-surface-pop));
   transform: rotate(45deg);
+  transition: opacity var(--nocturne-dur-pop) var(--nocturne-ease-pop);
+}
+.nocturne-drift[data-starting-style] ~ .nocturne-arrow,
+.nocturne-drift[data-ending-style] ~ .nocturne-arrow {
+  opacity: 0;
 }
 .nocturne-arrow[data-side="top"] {
   bottom: -5px;
@@ -270,6 +275,38 @@
   color: var(--nocturne-text-dim);
 }
 
+.nocturne-field {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-2);
+  min-height: var(--nocturne-control-h);
+  padding: 0 var(--nocturne-space-3);
+  border: 1px solid var(--nocturne-gilt-30);
+  border-bottom-color: var(--nocturne-gilt-50);
+  background: var(--nocturne-surface-inset);
+  transition:
+    border-color var(--nocturne-dur) var(--nocturne-ease),
+    box-shadow var(--nocturne-dur) var(--nocturne-ease),
+    background var(--nocturne-dur) var(--nocturne-ease);
+}
+
+.nocturne-field:focus-within {
+  border-color: var(--nocturne-gilt);
+  background: var(--nocturne-bg-deep);
+  box-shadow: 0 0 0 1px var(--nocturne-gilt-30), var(--nocturne-glow-ring);
+}
+
+.nocturne-field:has([data-invalid]) {
+  border-color: var(--nocturne-danger);
+}
+.nocturne-field:has([data-invalid]):focus-within {
+  box-shadow: 0 0 0 1px var(--nocturne-danger-50), 0 0 22px var(--nocturne-danger-12);
+}
+
+.nocturne-field:has([data-disabled], :disabled) {
+  opacity: var(--nocturne-disabled-opacity);
+}
+
 .nocturne-track {
   position: relative;
   height: var(--nocturne-track-h);
@@ -382,7 +419,7 @@
     color var(--nocturne-dur) var(--nocturne-ease),
     border-color var(--nocturne-dur) var(--nocturne-ease);
 }
-.nocturne-seg__btn:where(:hover):not([data-disabled]):not(:disabled) {
+.nocturne-seg__btn:where(:hover:not([data-disabled]):not(:disabled)) {
   color: var(--nocturne-text);
   background: var(--nocturne-gilt-10);
 }
@@ -403,38 +440,73 @@
   cursor: default;
 }
 
+@property --nocturne-bloom-open {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+@property --nocturne-bloom-sepal {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+@property --nocturne-bloom-bud {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+@property --nocturne-bloom-core {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
 .nocturne-bloom__petal {
   transform-box: fill-box;
   transform-origin: 50% 100%;
-  transform: scale(var(--nocturne-bloom-open, 1));
+  transform: scale(var(--nocturne-bloom-open));
   transition: transform var(--nocturne-dur-slow) var(--nocturne-ease-bloom);
+}
+[data-unchecked] .nocturne-bloom__petal {
+  --nocturne-bloom-open: 0.12;
 }
 
 .nocturne-bloom__sepal {
   transform-box: fill-box;
   transform-origin: 50% 100%;
-  transform: scale(var(--nocturne-bloom-sepal, 1));
+  transform: scale(var(--nocturne-bloom-sepal));
   transition: transform var(--nocturne-dur-slow) var(--nocturne-ease);
+}
+[data-unchecked] .nocturne-bloom__sepal {
+  --nocturne-bloom-sepal: 0.76;
 }
 
 .nocturne-bloom__bud {
   transform-box: fill-box;
   transform-origin: 50% 90%;
-  transform: scale(var(--nocturne-bloom-bud, 1));
-  opacity: var(--nocturne-bloom-bud-alpha, 1);
+  transform: scale(var(--nocturne-bloom-bud));
+  opacity: 1;
   transition:
     transform var(--nocturne-dur-slow) var(--nocturne-ease),
     opacity var(--nocturne-dur-pop) var(--nocturne-ease);
+}
+[data-checked] .nocturne-bloom__bud {
+  --nocturne-bloom-bud: 0.16;
+  opacity: 0;
 }
 
 .nocturne-bloom__core {
   transform-box: fill-box;
   transform-origin: 50% 50%;
-  transform: scale(var(--nocturne-bloom-core, 1));
-  opacity: var(--nocturne-bloom-core-alpha, 1);
+  transform: scale(var(--nocturne-bloom-core));
+  opacity: 1;
   transition:
     transform var(--nocturne-dur-slow) var(--nocturne-ease-bloom) 0.1s,
     opacity var(--nocturne-dur) var(--nocturne-ease) 0.1s;
+}
+[data-unchecked] .nocturne-bloom__core {
+  --nocturne-bloom-core: 0;
+  opacity: 0;
 }
 
 .nocturne-grow {

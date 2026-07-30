@@ -65,6 +65,7 @@
   flex-direction: column;
   min-width: 0;
   min-height: 0;
+  overflow: hidden;
   padding: var(--nocturne-modal-pad);
   box-shadow: var(--nocturne-shadow-modal);
   color: var(--nocturne-text);
@@ -104,5 +105,5 @@
   min-height: 0;
   overflow-y: auto;
   padding: var(--nocturne-space-1);
-  margin: 0 calc(-1 * var(--nocturne-space-1));
+  margin: var(--nocturne-space-3) calc(-1 * var(--nocturne-space-1)) 0;
 }

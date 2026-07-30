@@ -21,6 +21,7 @@
 }
 
 .nocturne-numberfield__btn {
+  flex: none;
   display: inline-grid;
   place-items: center;
   width: var(--nocturne-control-h);

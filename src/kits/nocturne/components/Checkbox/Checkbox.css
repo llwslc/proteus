@@ -19,16 +19,7 @@
   place-items: center;
   border: 1px solid var(--nocturne-gilt-30);
   background: var(--nocturne-surface-inset);
-  clip-path: polygon(
-    var(--nocturne-notch) 0,
-    calc(100% - var(--nocturne-notch)) 0,
-    100% var(--nocturne-notch),
-    100% calc(100% - var(--nocturne-notch)),
-    calc(100% - var(--nocturne-notch)) 100%,
-    var(--nocturne-notch) 100%,
-    0 calc(100% - var(--nocturne-notch)),
-    0 var(--nocturne-notch)
-  );
+  clip-path: var(--nocturne-clip-notch);
   cursor: inherit;
   transition:
     border-color var(--nocturne-dur) var(--nocturne-ease),
@@ -62,7 +53,12 @@
 
 .nocturne-checkbox__stroke {
   stroke-dasharray: 1;
-  animation: nocturne-branch 0.42s var(--nocturne-ease-draw) both;
+  animation: nocturne-branch var(--nocturne-dur-draw) var(--nocturne-ease-draw) both;
+}
+
+.nocturne-checkbox__box[data-disabled] .nocturne-checkbox__stroke {
+  animation: none;
+  stroke-dashoffset: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

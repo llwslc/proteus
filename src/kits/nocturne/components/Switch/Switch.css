@@ -64,18 +64,4 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-  --nocturne-bloom-open: 0.12;
-  --nocturne-bloom-sepal: 0.76;
-  --nocturne-bloom-bud: 1;
-  --nocturne-bloom-bud-alpha: 1;
-  --nocturne-bloom-core: 0;
-  --nocturne-bloom-core-alpha: 0;
-}
-.nocturne-switch[data-checked] .nocturne-switch__bloom {
-  --nocturne-bloom-open: 1;
-  --nocturne-bloom-sepal: 1;
-  --nocturne-bloom-bud: 0.16;
-  --nocturne-bloom-bud-alpha: 0;
-  --nocturne-bloom-core: 1;
-  --nocturne-bloom-core-alpha: 1;
 }
