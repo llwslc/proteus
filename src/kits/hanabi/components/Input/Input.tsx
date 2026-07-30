@@ -32,7 +32,6 @@ export interface FieldProps extends ComponentPropsWithoutRef<typeof BaseField.Co
   description?: ReactNode;
   error?: ReactNode;
   icon?: ReactNode;
-  rootClassName?: string;
 }
 
 export function Field({
@@ -40,14 +39,13 @@ export function Field({
   description,
   error,
   icon,
-  rootClassName,
   className,
   name,
   ...control
 }: FieldProps) {
   return (
     <BaseField.Root
-      className={cx("hanabi-fieldroot", rootClassName)}
+      className={cx("hanabi-fieldroot", className)}
       name={name}
       invalid={error != null}
     >
@@ -57,7 +55,7 @@ export function Field({
       <div className="hanabi-field hanabi-lockon hanabi-lockon--within hanabi-input">
         {icon ? <span className="hanabi-input__icon">{icon}</span> : null}
         <BaseField.Control
-          className={cx("hanabi-input__control", className)}
+          className="hanabi-input__control"
           {...control}
         />
       </div>

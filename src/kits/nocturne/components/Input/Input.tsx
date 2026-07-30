@@ -24,7 +24,6 @@ export interface FieldProps extends ComponentPropsWithoutRef<typeof BaseField.Co
   description?: ReactNode;
   error?: ReactNode;
   icon?: ReactNode;
-  rootClassName?: string;
 }
 
 export function Field({
@@ -32,14 +31,13 @@ export function Field({
   description,
   error,
   icon,
-  rootClassName,
   className,
   name,
   ...control
 }: FieldProps) {
   return (
     <BaseField.Root
-      className={cx("nocturne-fieldroot", rootClassName)}
+      className={cx("nocturne-fieldroot", className)}
       name={name}
       invalid={error != null}
     >
@@ -49,7 +47,7 @@ export function Field({
       <div className="nocturne-field nocturne-input">
         {icon ? <span className="nocturne-input__icon">{icon}</span> : null}
         <BaseField.Control
-          className={cx("nocturne-input__control", className)}
+          className="nocturne-input__control"
           {...control}
         />
       </div>
