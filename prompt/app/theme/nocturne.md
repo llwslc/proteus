@@ -5,7 +5,7 @@
 ## 1. 文案
 
 - logo：`NOCTURNE`，前缀一枚满月圆点；副标题 `DARK BOTANICAL UI KIT`；状态徽章 `NIGHT WATCH`，走 gilt 色。
-- hero：eyebrow `Hortus Nocturnus · 37 Blooms`；标题 `A **night-blooming** interface kit / kept in wine, brass & bone till dawn`；描述关键词 deep-violet velvet、wine-red blooms、brass hairlines、one dim glow until dawn；单位词 `Blooms`。
+- hero：eyebrow `Night Register · 37 Blooms`；标题 `A **night-blooming** interface kit / kept in wine, brass & bone till dawn`；描述关键词 deep-violet velvet、wine-red blooms、brass hairlines、one dim glow until dawn；单位词 `Blooms`。
 - 区块组副题：Inputs `Garden orders · one touch, one promise.`；Forms `Night-register entries · archived at the stroke of the pen.`；Feedback `Garden gauges · trim the flame, watch the needle.`；Overlays `Summons · knock softly, and the layers will come.`；Display `Plates and seals · all taken to brass.`；Foundations `The night is built from one brass hairline.`；Signature `The flowers stand watch, and keep the light for the lamps.`
 - demo 文案走夜园词汇：warden、night round、watch-bell、dew、hothouse、night register、specimen、sealed vial、moonlight distilling；时刻说法用 `the eleventh hour`、`the fourth hour`、`the stroke of midnight`。
 - 花名单（选择类列表取前几项、12 项全用时按此序）：Belladonna、Night Jasmine、Evening Primrose、Moonflower、Queen of the Night、Angel's Trumpet、Night Phlox、Four-o'clock、Datura、Mandrake、Wolfsbane、Foxglove。

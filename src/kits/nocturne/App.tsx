@@ -243,9 +243,9 @@ function VineSide() {
       <Leaf defs={id} className="nocturne-sprout" style={d("2.22s")} transform="translate(31,236) rotate(-152) scale(.72)" />
       <Leaf defs={id} className="nocturne-sprout" style={d("2.55s")} transform="translate(138,142) rotate(12) scale(.7)" />
       <Leaf defs={id} className="nocturne-sprout" style={d("2.79s")} transform="translate(27,70) rotate(180) scale(.62)" />
-      <Bloom defs={id} r={15} mode="entrance" delay={0.96} transform="translate(106,354)" />
-      <Bloom defs={id} r={12} mode="entrance" delay={1.27} transform="translate(46,262)" />
-      <Bloom defs={id} r={13.5} mode="entrance" delay={1.6} transform="translate(92,166)" />
+      <Bloom defs={id} r={30} mode="entrance" delay={0.96} transform="translate(106,354)" />
+      <Bloom defs={id} r={24} mode="entrance" delay={1.27} transform="translate(46,262)" />
+      <Bloom defs={id} r={27} mode="entrance" delay={1.6} transform="translate(92,166)" />
     </svg>
   );
 }
@@ -522,12 +522,12 @@ function Demo() {
             <div className="nocturne-hero__text">
               <span className="nocturne-hero__script">Hortus Nocturnus</span>
               <span className="nocturne-cap nocturne-hero__eyebrow">
-                Hortus Nocturnus · 37 Blooms
+                Night Register · 37 Blooms
               </span>
               <h1 className="nocturne-h1 nocturne-hero__title">
                 A <span className="nocturne-h1--accent">night-blooming</span> interface kit
                 <br />
-                kept in wine, brass &amp; bone till dawn
+                kept in wine, brass &amp; bone till{" "}dawn
               </h1>
               <p className="nocturne-text nocturne-hero__desc">
                 Deep-violet velvet, wine-red blooms and brass hairlines — every plate

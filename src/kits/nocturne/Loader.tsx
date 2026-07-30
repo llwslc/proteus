@@ -10,9 +10,11 @@ const PETAL = "M0 0 C -7.8 -9.36, -8.32 -19.76, 0 -26 C 8.32 -19.76, 7.8 -9.36, 
 
 function Leaf({ t, d }: { t: string; d: string }) {
   return (
-    <g className="nocturne-loader__sprout" style={{ animationDelay: d }} transform={t}>
-      <path d={LEAF} fill="url(#nlLeaf)" stroke="#8a6b3a" strokeWidth="1" />
-      <path d={LEAF_VEIN} fill="none" stroke="#c69a4e" strokeWidth="0.8" opacity="0.7" />
+    <g className="nocturne-loader__sprout" style={{ animationDelay: d }}>
+      <g transform={t}>
+        <path d={LEAF} fill="url(#nlLeaf)" stroke="#8a6b3a" strokeWidth="1" />
+        <path d={LEAF_VEIN} fill="none" stroke="#c69a4e" strokeWidth="0.8" opacity="0.7" />
+      </g>
     </g>
   );
 }
@@ -31,15 +33,19 @@ function Half({ flip }: { flip?: boolean }) {
       />
       <Leaf t="translate(320,32) rotate(-125) scale(.72)" d="0.62s" />
       <Leaf t="translate(238,53) rotate(110) scale(.68)" d="1.08s" />
-      <g className="nocturne-loader__sprout" style={{ animationDelay: "1.22s" }} transform="translate(208,57) rotate(-126) scale(.8)">
-        <path d={TENDRIL} fill="none" stroke="#c69a4e" strokeWidth="1.2" opacity="0.75" />
+      <g className="nocturne-loader__sprout" style={{ animationDelay: "1.22s" }}>
+        <g transform="translate(208,57) rotate(-126) scale(.8)">
+          <path d={TENDRIL} fill="none" stroke="#c69a4e" strokeWidth="1.2" opacity="0.75" />
+        </g>
       </g>
       <Leaf t="translate(179,55) rotate(-113) scale(.6)" d="1.38s" />
       <Leaf t="translate(112,40) rotate(130) scale(.55)" d="1.78s" />
-      <g className="nocturne-loader__sprout" style={{ animationDelay: "2.1s" }} transform="translate(58,44) rotate(-78) scale(.85)">
-        <path d={BUD} fill="url(#nlPetal)" stroke="#8a6b3a" strokeWidth="1" />
-        <path d={BUD_VEIN} fill="none" stroke="#c69a4e" strokeWidth="0.8" opacity="0.65" />
-        <path d={BUD_CALYX} fill="none" stroke="#8a6b3a" strokeWidth="1.2" />
+      <g className="nocturne-loader__sprout" style={{ animationDelay: "2.1s" }}>
+        <g transform="translate(58,44) rotate(-78) scale(.85)">
+          <path d={BUD} fill="url(#nlPetal)" stroke="#8a6b3a" strokeWidth="1" />
+          <path d={BUD_VEIN} fill="none" stroke="#c69a4e" strokeWidth="0.8" opacity="0.65" />
+          <path d={BUD_CALYX} fill="none" stroke="#8a6b3a" strokeWidth="1.2" />
+        </g>
       </g>
     </g>
   );

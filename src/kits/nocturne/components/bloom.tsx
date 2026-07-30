@@ -154,49 +154,55 @@ export function Bloom({
 
 export function Leaf({ defs, transform, className, style }: MotifPieceProps) {
   return (
-    <g transform={transform} className={className} style={style}>
-      <path
-        d="M0 0 C 10 -9, 26 -11, 38 -2 C 26 8, 10 8, 0 0 Z"
-        fill={`url(#${defs}-leaf)`}
-        stroke="var(--nocturne-gilt-dim)"
-        strokeWidth="1"
-      />
-      <path d="M3 0 C 13 -3, 24 -4, 34 -2" fill="none" stroke="var(--nocturne-gilt)" strokeWidth="0.8" opacity="0.7" />
+    <g className={className} style={style}>
+      <g transform={transform}>
+        <path
+          d="M0 0 C 10 -9, 26 -11, 38 -2 C 26 8, 10 8, 0 0 Z"
+          fill={`url(#${defs}-leaf)`}
+          stroke="var(--nocturne-gilt-dim)"
+          strokeWidth="1"
+        />
+        <path d="M3 0 C 13 -3, 24 -4, 34 -2" fill="none" stroke="var(--nocturne-gilt)" strokeWidth="0.8" opacity="0.7" />
+      </g>
     </g>
   );
 }
 
 export function Bud({ defs, transform, className, style }: MotifPieceProps) {
   return (
-    <g transform={transform} className={className} style={style}>
-      <path
-        d="M0 0 C -6 -8, -6 -18, 0 -24 C 6 -18, 6 -8, 0 0 Z"
-        fill={`url(#${defs}-petal)`}
-        stroke="var(--nocturne-gilt-dim)"
-        strokeWidth="1"
-      />
-      <path
-        d="M-4 -2 C -2 -8, -1 -13, 0 -20 M4 -2 C 2 -8, 1 -13, 0 -20"
-        fill="none"
-        stroke="var(--nocturne-gilt)"
-        strokeWidth="0.8"
-        opacity="0.65"
-      />
-      <path d="M-5 0 C -2 -4, 2 -4, 5 0" fill="none" stroke="var(--nocturne-gilt-dim)" strokeWidth="1.2" />
+    <g className={className} style={style}>
+      <g transform={transform}>
+        <path
+          d="M0 0 C -6 -8, -6 -18, 0 -24 C 6 -18, 6 -8, 0 0 Z"
+          fill={`url(#${defs}-petal)`}
+          stroke="var(--nocturne-gilt-dim)"
+          strokeWidth="1"
+        />
+        <path
+          d="M-4 -2 C -2 -8, -1 -13, 0 -20 M4 -2 C 2 -8, 1 -13, 0 -20"
+          fill="none"
+          stroke="var(--nocturne-gilt)"
+          strokeWidth="0.8"
+          opacity="0.65"
+        />
+        <path d="M-5 0 C -2 -4, 2 -4, 5 0" fill="none" stroke="var(--nocturne-gilt-dim)" strokeWidth="1.2" />
+      </g>
     </g>
   );
 }
 
 export function Tendril({ transform, className, style }: Omit<MotifPieceProps, "defs">) {
   return (
-    <g transform={transform} className={className} style={style}>
-      <path
-        d="M0 0 C 10 -7, 22 -7, 25 2 C 27 9, 19 14, 13 10 C 8 7, 10 1, 15 2"
-        fill="none"
-        stroke="var(--nocturne-gilt)"
-        strokeWidth="1.2"
-        opacity="0.75"
-      />
+    <g className={className} style={style}>
+      <g transform={transform}>
+        <path
+          d="M0 0 C 10 -7, 22 -7, 25 2 C 27 9, 19 14, 13 10 C 8 7, 10 1, 15 2"
+          fill="none"
+          stroke="var(--nocturne-gilt)"
+          strokeWidth="1.2"
+          opacity="0.75"
+        />
+      </g>
     </g>
   );
 }
