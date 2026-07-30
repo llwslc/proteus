@@ -45,17 +45,14 @@
   top: 0;
   width: var(--nocturne-thumb-bloom);
   height: var(--nocturne-thumb-bloom);
-  translate: -3px 11px;
-  transition:
-    translate var(--nocturne-dur-slow) var(--nocturne-ease),
-    filter var(--nocturne-dur) var(--nocturne-ease);
+  translate: 31px 3px;
+  transition: filter var(--nocturne-dur) var(--nocturne-ease);
   filter: var(--nocturne-drop-mark);
 }
 .nocturne-switch:hover:not([data-disabled]) .nocturne-switch__thumb {
   filter: var(--nocturne-drop-mark) drop-shadow(0 0 11px var(--nocturne-glow-40));
 }
 .nocturne-switch[data-checked] .nocturne-switch__thumb {
-  translate: 31px 3px;
   filter: var(--nocturne-drop-mark) drop-shadow(0 0 9px var(--nocturne-glow-40));
 }
 

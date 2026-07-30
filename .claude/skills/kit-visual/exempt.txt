@@ -57,3 +57,4 @@ nocturne|context|nocturne-panel__sprig|nocturne-context__zone
 nocturne|panel|nocturne-panel__sprig|nocturne-text
 nocturne|progress|nocturne-panel__sprig|nocturne-track
 nocturne|meter|nocturne-panel__sprig|nocturne-track
+nocturne|switch|nocturne-panel__sprig|nocturne-switch__bloom

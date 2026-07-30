@@ -13,7 +13,7 @@ export function Switch({ className, ...props }: SwitchProps) {
     <BaseSwitch.Root className={cx("nocturne-switch", className)} {...props}>
       <svg className="nocturne-switch__scene" viewBox="0 0 64 36" aria-hidden="true" focusable="false">
         <MotifDefs id={`${id}s`} />
-        <path className="nocturne-switch__branch" d="M6 28 C 20 28.5, 34 26, 44 22 C 50 20, 54.5 17.5, 58 14.5" />
+        <path className="nocturne-switch__branch" d="M6 28 C 20 28.5, 34 26, 44 22 C 45.8 21.3, 47 20.7, 48 20" />
         <g transform="translate(13,27.6) rotate(-40) scale(.86)">
           <path
             d="M0 0 C 3.4 -3.6, 9 -4.2, 13 -1.2 C 9 2.4, 3.4 2.6, 0 0 Z"

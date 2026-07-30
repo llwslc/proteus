@@ -16,7 +16,7 @@
 ## 2. 组件皮肤决定
 
 - Button：primary = 酒红丝绒渐变实填（见 §1）；secondary = 透明底 + `gilt-50` 框 + `gilt-bright` 字，hover 盖 `gilt-10`；danger = `danger-deep` 渐变实填；ghost = 无框透明 `text-dim` 字，hover 字转 `gilt-bright` + 1px `gilt` 底线自中央展开；icon = secondary 皮方钮等宽高；icon-ghost = 无框图标钮，hover 字转 `gilt-bright`；按压整钮下沉 1px、影收拢。
-- Switch：枝上花开——轨 = 一段黄铜蔓枝（2px 枝线自左向右、梢端上挑）+ 枝上 1 片实填叶（母题「实填叶」，`leaf` 渐变 + `gilt` 中脉，不许描线减配）；thumb = 花，自左端沿枝滑到梢端；关态是垂头花苞（母题「苞」带瓣纹与萼弧）+ 5 枚萼片收拢（`leaf` 渐变实填、缩 76%）；开态苞隐、5 萼张满、5 瓣 `petal-lit` 过冲绽开（`ease-bloom`）、花芯金盘睁眼亮起（含 3 粒 `primary-deep` 芯点，迟 .1s）；花头斜置约 42°、如摘下平放；开态枝转 `gilt`、花辉 `glow-40`，关态枝 `gilt-dim`。
+- Switch：枝上花开——轨 = 一段黄铜蔓枝（2px 枝线自左向右、梢端上挑）+ 枝上 1 片实填叶（`leaf` 渐变实填，不许描线减配）；花头固定在梢端、斜置约 42° 如摘下平放，原地开合：关态是垂头花苞（带双瓣纹）+ 5 枚萼片收拢（`leaf` 渐变实填、缩 76%），开态苞隐、5 萼张满、5 瓣 `petal-lit` 过冲绽开（`ease-bloom`）、花芯金盘睁眼亮起（含 3 粒 `primary-deep` 芯点，迟 .1s）；开态枝转 `gilt`、花辉 `glow-40`，关态枝 `gilt-dim`。
 - Checkbox：`notch` 八角小匣 + `surface-inset` 凹底；勾选 = `primary-25` 衬底 + `gilt` 框 + `gilt-bright` 单笔勾按笔势画出（`pathLength` dashoffset、`ease-draw`）+ 幽辉；indeterminate = `gilt-bright` 粗横杠；hover 框升 `gilt`。
 - CheckboxGroup：父子竖排，items 左缩进，引导线 1px `gilt-30` 垂线。
 - Radio：月相盘——正圆 `gilt-30` 框内一轮满月（`moon-face` 金盘 + 3 粒陨坑暗点），`moon-shade` 夜影盘盖满；hover 夜影平移退一分露月牙；选中夜影退尽露满月 + 框转 `gilt-bright` + 月辉 `glow-40`；组竖排。
