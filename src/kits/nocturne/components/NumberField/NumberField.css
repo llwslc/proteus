@@ -1,0 +1,70 @@
+.nocturne-numberfield {
+  display: inline-flex;
+}
+
+.nocturne-numberfield__group {
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--nocturne-control-h);
+  border: 1px solid var(--nocturne-gilt-30);
+  background: var(--nocturne-surface-inset);
+  transition:
+    border-color var(--nocturne-dur) var(--nocturne-ease),
+    box-shadow var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-numberfield__group:focus-within {
+  border-color: var(--nocturne-gilt);
+  box-shadow: 0 0 0 1px var(--nocturne-gilt-30), var(--nocturne-glow-ring);
+}
+.nocturne-numberfield:has([data-disabled]) .nocturne-numberfield__group {
+  opacity: var(--nocturne-disabled-opacity);
+}
+
+.nocturne-numberfield__btn {
+  display: inline-grid;
+  place-items: center;
+  width: var(--nocturne-control-h);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--nocturne-gilt-bright);
+  cursor: pointer;
+  transition:
+    background var(--nocturne-dur) var(--nocturne-ease),
+    color var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-numberfield__btn + .nocturne-numberfield__input {
+  border-left: 1px solid var(--nocturne-gilt-30);
+}
+.nocturne-numberfield__input + .nocturne-numberfield__btn {
+  border-left: 1px solid var(--nocturne-gilt-30);
+}
+.nocturne-numberfield__btn:hover:not(:disabled):not([data-disabled]) {
+  background: var(--nocturne-gilt-10);
+}
+.nocturne-numberfield__btn:active:not(:disabled):not([data-disabled]) {
+  background: var(--nocturne-gilt-10);
+  translate: 0 1px;
+  transition-duration: 0s;
+}
+.nocturne-numberfield__btn:disabled,
+.nocturne-numberfield__btn[data-disabled] {
+  color: var(--nocturne-text-mute);
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: default;
+}
+.nocturne-numberfield__btn:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: -2px;
+}
+
+.nocturne-numberfield__input {
+  width: 64px;
+  border: 0;
+  background: transparent;
+  color: var(--nocturne-text);
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-16);
+  text-align: center;
+  outline: none;
+}

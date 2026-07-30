@@ -1,0 +1,65 @@
+.nocturne-tabs {
+  width: 100%;
+}
+
+.nocturne-tabs__list {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.nocturne-tabs__strip {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: var(--nocturne-space-2);
+  width: max-content;
+  min-width: 100%;
+  border-bottom: 1px solid var(--nocturne-gilt-30);
+}
+
+.nocturne-tabs__tab {
+  padding: var(--nocturne-space-3) var(--nocturne-space-6);
+  border: 0;
+  background: transparent;
+  color: var(--nocturne-text-dim);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-16);
+  font-weight: var(--nocturne-fw-500);
+  letter-spacing: var(--nocturne-ls-2);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-tabs__tab:hover:not([data-disabled]) {
+  color: var(--nocturne-text);
+}
+.nocturne-tabs__tab[data-active] {
+  color: var(--nocturne-gilt-bright);
+}
+.nocturne-tabs__tab[data-disabled] {
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: default;
+}
+.nocturne-tabs__tab:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: -2px;
+}
+
+.nocturne-tabs__indicator {
+  position: absolute;
+  bottom: -1px;
+  left: var(--active-tab-left);
+  width: var(--active-tab-width);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--nocturne-gilt), transparent);
+  transition:
+    left var(--nocturne-dur) var(--nocturne-ease),
+    width var(--nocturne-dur) var(--nocturne-ease);
+}
+
+.nocturne-tabs__panel {
+  padding-top: var(--nocturne-space-6);
+  outline: none;
+}

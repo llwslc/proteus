@@ -1,0 +1,81 @@
+.nocturne-switch {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  width: var(--nocturne-switch-w);
+  height: var(--nocturne-switch-h);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nocturne-switch:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 3px;
+}
+
+.nocturne-switch[data-disabled] {
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: default;
+}
+
+.nocturne-switch__scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.nocturne-switch__branch {
+  fill: none;
+  stroke: var(--nocturne-gilt-dim);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-switch[data-checked] .nocturne-switch__branch {
+  stroke: var(--nocturne-gilt);
+}
+
+.nocturne-switch__thumb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--nocturne-thumb-bloom);
+  height: var(--nocturne-thumb-bloom);
+  translate: -3px 11px;
+  transition:
+    translate var(--nocturne-dur-slow) var(--nocturne-ease),
+    filter var(--nocturne-dur) var(--nocturne-ease);
+  filter: var(--nocturne-drop-mark);
+}
+.nocturne-switch:hover:not([data-disabled]) .nocturne-switch__thumb {
+  filter: var(--nocturne-drop-mark) drop-shadow(0 0 11px var(--nocturne-glow-40));
+}
+.nocturne-switch[data-checked] .nocturne-switch__thumb {
+  translate: 31px 3px;
+  filter: var(--nocturne-drop-mark) drop-shadow(0 0 9px var(--nocturne-glow-40));
+}
+
+.nocturne-switch__bloom {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  --nocturne-bloom-open: 0.12;
+  --nocturne-bloom-sepal: 0.76;
+  --nocturne-bloom-bud: 1;
+  --nocturne-bloom-bud-alpha: 1;
+  --nocturne-bloom-core: 0;
+  --nocturne-bloom-core-alpha: 0;
+}
+.nocturne-switch[data-checked] .nocturne-switch__bloom {
+  --nocturne-bloom-open: 1;
+  --nocturne-bloom-sepal: 1;
+  --nocturne-bloom-bud: 0.16;
+  --nocturne-bloom-bud-alpha: 0;
+  --nocturne-bloom-core: 1;
+  --nocturne-bloom-core-alpha: 1;
+}

@@ -1,0 +1,74 @@
+.nocturne-combobox__glyph {
+  display: inline-grid;
+  place-items: center;
+  color: var(--nocturne-text-mute);
+}
+
+.nocturne-combobox__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: var(--nocturne-space-2) 0;
+  color: var(--nocturne-text);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-16);
+  letter-spacing: var(--nocturne-ls-1);
+  outline: none;
+}
+.nocturne-combobox__input::placeholder {
+  color: var(--nocturne-text-mute);
+  opacity: 1;
+}
+
+.nocturne-combobox__clear,
+.nocturne-combobox__trigger {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: var(--nocturne-space-6);
+  height: var(--nocturne-space-6);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--nocturne-text-dim);
+  cursor: pointer;
+  transition: color var(--nocturne-dur-fast) var(--nocturne-ease);
+}
+.nocturne-combobox__clear:hover,
+.nocturne-combobox__trigger:hover {
+  color: var(--nocturne-gilt-bright);
+}
+.nocturne-combobox__clear:focus-visible,
+.nocturne-combobox__trigger:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: -2px;
+}
+
+.nocturne-combobox__trigger {
+  color: var(--nocturne-gilt);
+  transition:
+    color var(--nocturne-dur-fast) var(--nocturne-ease),
+    transform var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-combobox__trigger[data-popup-open] {
+  transform: rotate(180deg);
+}
+
+.nocturne-combobox__positioner {
+  z-index: var(--nocturne-z-dropdown);
+}
+
+.nocturne-combobox__popup {
+  width: var(--anchor-width);
+  min-width: 0;
+}
+
+.nocturne-combobox__empty {
+  color: var(--nocturne-text-mute);
+  font-size: var(--nocturne-fs-14);
+  text-align: center;
+}
+.nocturne-combobox__empty:not(:empty) {
+  padding: var(--nocturne-space-3);
+}

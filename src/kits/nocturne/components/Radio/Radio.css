@@ -1,0 +1,71 @@
+.nocturne-radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-3);
+}
+
+.nocturne-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  cursor: pointer;
+}
+
+.nocturne-radio:has(.nocturne-radio__control[data-disabled]) {
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: default;
+}
+
+.nocturne-radio__control {
+  position: relative;
+  flex: none;
+  width: var(--nocturne-radio-box);
+  height: var(--nocturne-radio-box);
+  padding: 0;
+  border: 1px solid var(--nocturne-gilt-30);
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-bg-deep);
+  box-shadow: var(--nocturne-track-shadow);
+  overflow: hidden;
+  cursor: inherit;
+  transition:
+    border-color var(--nocturne-dur) var(--nocturne-ease),
+    box-shadow var(--nocturne-dur) var(--nocturne-ease);
+}
+
+.nocturne-radio:hover .nocturne-radio__control:not([data-disabled]) {
+  border-color: var(--nocturne-gilt);
+}
+
+.nocturne-radio__control:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 3px;
+}
+
+.nocturne-radio__control[data-checked] {
+  border-color: var(--nocturne-gilt-bright);
+  box-shadow: var(--nocturne-track-shadow), var(--nocturne-glow-mark);
+}
+
+.nocturne-radio__moon {
+  position: absolute;
+  inset: 1px;
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-moon-face);
+}
+
+.nocturne-radio__shade {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-moon-shade);
+  transition: translate var(--nocturne-dur-slow) var(--nocturne-ease);
+}
+
+.nocturne-radio:hover .nocturne-radio__control:not([data-disabled]) .nocturne-radio__shade {
+  translate: 14% 0;
+}
+
+.nocturne-radio__control[data-checked] .nocturne-radio__shade {
+  translate: 118% 0;
+}

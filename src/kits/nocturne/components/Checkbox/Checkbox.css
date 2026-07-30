@@ -1,0 +1,72 @@
+.nocturne-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  cursor: pointer;
+}
+
+.nocturne-checkbox:has(.nocturne-checkbox__box[data-disabled]) {
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: default;
+}
+
+.nocturne-checkbox__box {
+  flex: none;
+  width: var(--nocturne-checkbox-box);
+  height: var(--nocturne-checkbox-box);
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--nocturne-gilt-30);
+  background: var(--nocturne-surface-inset);
+  clip-path: polygon(
+    var(--nocturne-notch) 0,
+    calc(100% - var(--nocturne-notch)) 0,
+    100% var(--nocturne-notch),
+    100% calc(100% - var(--nocturne-notch)),
+    calc(100% - var(--nocturne-notch)) 100%,
+    var(--nocturne-notch) 100%,
+    0 calc(100% - var(--nocturne-notch)),
+    0 var(--nocturne-notch)
+  );
+  cursor: inherit;
+  transition:
+    border-color var(--nocturne-dur) var(--nocturne-ease),
+    background var(--nocturne-dur) var(--nocturne-ease),
+    box-shadow var(--nocturne-dur) var(--nocturne-ease);
+}
+
+.nocturne-checkbox:hover .nocturne-checkbox__box:not([data-disabled]) {
+  border-color: var(--nocturne-gilt);
+}
+
+.nocturne-checkbox__box:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 3px;
+}
+
+.nocturne-checkbox__box[data-checked],
+.nocturne-checkbox__box[data-indeterminate] {
+  border-color: var(--nocturne-gilt);
+  background: var(--nocturne-primary-25);
+  box-shadow: 0 0 13px var(--nocturne-glow-12);
+}
+
+.nocturne-checkbox__mark {
+  display: block;
+  width: 19px;
+  height: 19px;
+  color: var(--nocturne-gilt-bright);
+  filter: drop-shadow(0 0 4px var(--nocturne-glow-40));
+}
+
+.nocturne-checkbox__stroke {
+  stroke-dasharray: 1;
+  animation: nocturne-branch 0.42s var(--nocturne-ease-draw) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nocturne-checkbox__stroke {
+    animation-duration: 0.01ms;
+  }
+}

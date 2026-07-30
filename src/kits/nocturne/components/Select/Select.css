@@ -1,0 +1,56 @@
+.nocturne-select__trigger {
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+  color: var(--nocturne-text);
+  font-size: var(--nocturne-fs-16);
+  letter-spacing: var(--nocturne-ls-1);
+}
+.nocturne-select__trigger:hover:not([data-disabled]) {
+  border-color: var(--nocturne-gilt);
+}
+.nocturne-select__trigger:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 3px;
+}
+.nocturne-select__trigger[data-popup-open] {
+  border-color: var(--nocturne-gilt);
+  box-shadow: var(--nocturne-glow-ring);
+}
+.nocturne-select__trigger[data-disabled] {
+  opacity: var(--nocturne-disabled-opacity);
+  cursor: default;
+}
+
+.nocturne-select__value {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nocturne-select__ph {
+  color: var(--nocturne-text-mute);
+}
+
+.nocturne-select__icon {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  color: var(--nocturne-gilt);
+  transition: transform var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-select__trigger[data-popup-open] .nocturne-select__icon {
+  transform: rotate(180deg);
+}
+
+.nocturne-select__positioner {
+  z-index: var(--nocturne-z-dropdown);
+}
+
+.nocturne-select__popup {
+  width: var(--anchor-width);
+  min-width: 0;
+}

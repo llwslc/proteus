@@ -1,0 +1,40 @@
+.nocturne-autocomplete__glyph {
+  display: inline-grid;
+  place-items: center;
+  color: var(--nocturne-text-mute);
+}
+
+.nocturne-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: var(--nocturne-space-2) 0;
+  color: var(--nocturne-text);
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-16);
+  letter-spacing: var(--nocturne-ls-1);
+  outline: none;
+}
+.nocturne-autocomplete__input::placeholder {
+  color: var(--nocturne-text-mute);
+  opacity: 1;
+}
+
+.nocturne-autocomplete__positioner {
+  z-index: var(--nocturne-z-dropdown);
+}
+
+.nocturne-autocomplete__popup {
+  width: var(--anchor-width);
+  min-width: 0;
+}
+
+.nocturne-autocomplete__empty {
+  color: var(--nocturne-text-mute);
+  font-size: var(--nocturne-fs-14);
+  text-align: center;
+}
+.nocturne-autocomplete__empty:not(:empty) {
+  padding: var(--nocturne-space-3);
+}

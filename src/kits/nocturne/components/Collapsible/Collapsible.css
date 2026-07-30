@@ -1,0 +1,8 @@
+.nocturne-collapsible {
+  width: 100%;
+  border: 1px solid var(--nocturne-gilt-30);
+}
+
+.nocturne-collapsible[data-disabled] {
+  opacity: var(--nocturne-disabled-opacity);
+}

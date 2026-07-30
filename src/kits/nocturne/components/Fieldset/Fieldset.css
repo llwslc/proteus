@@ -1,0 +1,26 @@
+.nocturne-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-4);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.nocturne-fieldset__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  width: 100%;
+  padding: 0;
+}
+
+.nocturne-fieldset__text {
+  flex: none;
+}
+
+.nocturne-fieldset__rule {
+  flex: 1;
+  background: linear-gradient(90deg, var(--nocturne-gilt-50), transparent);
+}
