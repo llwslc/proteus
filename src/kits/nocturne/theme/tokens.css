@@ -1,0 +1,151 @@
+/* NOCTURNE — 暗夜花园 design tokens */
+:root {
+  --nocturne-bg: #1d1126;
+  --nocturne-bg-deep: #120a18;
+  --nocturne-surface: #251733;
+  --nocturne-surface-pop: #2e1d3e;
+  --nocturne-surface-inset: rgba(18, 10, 24, 0.6);
+  --nocturne-scrim: rgba(10, 5, 14, 0.74);
+
+  --nocturne-gilt: #c69a4e;
+  --nocturne-gilt-bright: #e9cc8a;
+  --nocturne-gilt-dim: #8a6b3a;
+  --nocturne-gilt-50: rgba(198, 154, 78, 0.5);
+  --nocturne-gilt-30: rgba(198, 154, 78, 0.3);
+  --nocturne-gilt-10: rgba(198, 154, 78, 0.1);
+  --nocturne-glow-12: rgba(233, 204, 138, 0.12);
+  --nocturne-glow-40: rgba(233, 204, 138, 0.4);
+
+  --nocturne-primary: #93304f;
+  --nocturne-primary-bright: #c4718a;
+  --nocturne-primary-deep: #7a2440;
+  --nocturne-primary-shadow: #431222;
+  --nocturne-primary-50: rgba(122, 36, 64, 0.5);
+  --nocturne-primary-25: rgba(122, 36, 64, 0.25);
+  --nocturne-primary-12: rgba(122, 36, 64, 0.12);
+
+  --nocturne-success: #9dbb7a;
+  --nocturne-success-deep: #45602f;
+  --nocturne-warning: #e0873a;
+  --nocturne-warning-deep: #7a431c;
+  --nocturne-danger: #d66a76;
+  --nocturne-danger-deep: #8c2735;
+  --nocturne-danger-50: rgba(140, 39, 53, 0.5);
+  --nocturne-danger-12: rgba(140, 39, 53, 0.12);
+
+  --nocturne-text: #efe6d8;
+  --nocturne-text-bright: #f9f3e7;
+  --nocturne-text-dim: #cbbbd0;
+  --nocturne-text-mute: #af9dc2;
+  --nocturne-on-fill: #f6efe2;
+
+  --nocturne-accent-surface: linear-gradient(180deg, var(--nocturne-primary-deep), var(--nocturne-primary-shadow));
+  --nocturne-accent-surface-hover: linear-gradient(180deg, var(--nocturne-primary), var(--nocturne-primary-deep));
+  --nocturne-accent-fill: radial-gradient(circle at 35% 30%, var(--nocturne-gilt-bright), var(--nocturne-gilt));
+
+  --nocturne-petal: #8a2a48;
+  --nocturne-petal-deep: #55152b;
+  --nocturne-petal-lit: #a63a5c;
+  --nocturne-petal-lit-deep: #6b1e38;
+  --nocturne-leaf: #6e5a2e;
+  --nocturne-leaf-deep: #3e3118;
+
+  --nocturne-disabled-opacity: 0.45;
+  --nocturne-disabled-fill: linear-gradient(180deg, var(--nocturne-surface-pop), var(--nocturne-surface));
+  --nocturne-moon-face:
+    radial-gradient(2.4px 2.4px at 63% 40%, rgba(120, 90, 40, 0.5), transparent 62%),
+    radial-gradient(2.8px 2.8px at 42% 64%, rgba(120, 90, 40, 0.42), transparent 62%),
+    radial-gradient(1.8px 1.8px at 56% 66%, rgba(120, 90, 40, 0.4), transparent 62%),
+    radial-gradient(circle at 37% 31%, #fbefcb, #e9cc8a 52%, #ae8238);
+  --nocturne-moon-shade: radial-gradient(circle at 42% 34%, #241636, #0a0510);
+  --nocturne-item-sweep-primary: linear-gradient(90deg, var(--nocturne-primary-50), var(--nocturne-primary-12));
+  --nocturne-item-sweep-danger: linear-gradient(90deg, var(--nocturne-danger-50), var(--nocturne-danger-12));
+  --nocturne-flame-fill: linear-gradient(90deg, var(--nocturne-warning), var(--nocturne-gilt-bright));
+
+  --nocturne-shadow-frame: 0 18px 50px rgba(8, 4, 12, 0.55);
+  --nocturne-shadow-modal: 0 30px 90px rgba(0, 0, 0, 0.7);
+  --nocturne-shadow-btn: 0 6px 20px rgba(8, 4, 12, 0.35);
+  --nocturne-shadow-btn-press: 0 3px 10px rgba(8, 4, 12, 0.4);
+  --nocturne-shadow-plaque: 0 6px 18px rgba(8, 4, 12, 0.5);
+  --nocturne-track-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.55);
+  --nocturne-drop-pop: drop-shadow(0 18px 40px rgba(8, 4, 12, 0.7));
+  --nocturne-drop-glow: drop-shadow(0 0 18px rgba(233, 204, 138, 0.12));
+  --nocturne-drop-mark: drop-shadow(0 1px 3px rgba(8, 4, 12, 0.7));
+  --nocturne-glow-ring: 0 0 22px var(--nocturne-glow-12);
+  --nocturne-glow-mark: 0 0 15px var(--nocturne-glow-40);
+
+  --nocturne-r: 0px;
+  --nocturne-r-full: 999px;
+  --nocturne-notch: 3px;
+  --nocturne-lining-inset: 7px;
+
+  --nocturne-z-dropdown: 1200;
+  --nocturne-z-menu: 1250;
+  --nocturne-z-tooltip: 1300;
+  --nocturne-z-backdrop: 1400;
+  --nocturne-z-overlay: 1401;
+  --nocturne-z-toast: 1500;
+
+  --nocturne-dur: 0.3s;
+  --nocturne-dur-fast: 0.12s;
+  --nocturne-dur-slow: 0.6s;
+  --nocturne-dur-pop: 0.35s;
+  --nocturne-dur-sweep: 1.5s;
+  --nocturne-dur-breathe: 7s;
+  --nocturne-ease: cubic-bezier(0.4, 0, 0.3, 1);
+  --nocturne-ease-pop: cubic-bezier(0.2, 0.8, 0.3, 1.1);
+  --nocturne-ease-bloom: cubic-bezier(0.2, 1, 0.3, 1.3);
+  --nocturne-ease-draw: cubic-bezier(0.3, 0.8, 0.35, 1);
+
+  --nocturne-space-1: 4px;
+  --nocturne-space-2: 8px;
+  --nocturne-space-3: 12px;
+  --nocturne-space-4: 16px;
+  --nocturne-space-5: 20px;
+  --nocturne-space-6: 24px;
+  --nocturne-space-7: 28px;
+
+  --nocturne-font: "Cormorant Garamond", "Georgia", serif;
+  --nocturne-font-display: "Cormorant Garamond", "Georgia", serif;
+  --nocturne-font-mono: "Courier Prime", "Courier New", monospace;
+  --nocturne-font-script: "Tangerine", cursive;
+  --nocturne-fs-12: 12px;
+  --nocturne-fs-14: 14px;
+  --nocturne-fs-16: 16px;
+  --nocturne-fs-18: 18px;
+  --nocturne-fs-24: 24px;
+  --nocturne-fs-30: 30px;
+  --nocturne-fs-40: 40px;
+  --nocturne-ls-1: 1px;
+  --nocturne-ls-2: 2px;
+  --nocturne-ls-3: 3px;
+  --nocturne-ls-4: 5px;
+  --nocturne-ls-5: 8px;
+  --nocturne-lh-110: 1.1;
+  --nocturne-lh-140: 1.4;
+  --nocturne-lh-180: 1.8;
+  --nocturne-fw-400: 400;
+  --nocturne-fw-500: 500;
+  --nocturne-fw-600: 600;
+  --nocturne-fw-700: 700;
+
+  --nocturne-control-h: 40px;
+  --nocturne-button-h-sm: 32px;
+  --nocturne-button-h-lg: 48px;
+  --nocturne-checkbox-box: 24px;
+  --nocturne-radio-box: 24px;
+  --nocturne-switch-w: 64px;
+  --nocturne-switch-h: 36px;
+  --nocturne-track-h: 6px;
+  --nocturne-thumb-bloom: 34px;
+  --nocturne-list-item-h: 40px;
+  --nocturne-popup-h: calc(var(--nocturne-list-item-h) * 7);
+  --nocturne-navmenu-col-w: 210px;
+  --nocturne-dialog-w: 460px;
+  --nocturne-alert-w: 440px;
+  --nocturne-drawer-w: 420px;
+  --nocturne-drawer-h: 460px;
+  --nocturne-drawer-w-cap: 80%;
+  --nocturne-drawer-h-cap: 60%;
+  --nocturne-modal-pad: 20px;
+}

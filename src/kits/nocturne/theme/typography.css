@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Courier+Prime:wght@400;700&family=Tangerine:wght@700&display=swap");
+
+.nocturne-h1 {
+  margin: 0;
+  font-family: var(--nocturne-font-display);
+  font-size: var(--nocturne-fs-40);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-5);
+  line-height: var(--nocturne-lh-110);
+  color: var(--nocturne-text);
+  text-shadow: 0 0 34px rgba(233, 204, 138, 0.18);
+}
+
+.nocturne-h1--accent {
+  color: var(--nocturne-gilt-bright);
+}
+
+.nocturne-h2 {
+  margin: 0;
+  font-family: var(--nocturne-font-display);
+  font-size: var(--nocturne-fs-24);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-4);
+  line-height: var(--nocturne-lh-140);
+  color: var(--nocturne-text);
+}
+
+.nocturne-h3 {
+  margin: 0;
+  font-family: var(--nocturne-font-display);
+  font-size: var(--nocturne-fs-16);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-3);
+  line-height: var(--nocturne-lh-140);
+  text-transform: uppercase;
+  color: var(--nocturne-text-bright);
+}
+
+.nocturne-text {
+  margin: 0;
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-16);
+  line-height: var(--nocturne-lh-180);
+  color: var(--nocturne-text);
+}
+
+.nocturne-cap {
+  margin: 0;
+  font-family: var(--nocturne-font);
+  font-size: var(--nocturne-fs-12);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-3);
+  text-transform: uppercase;
+  color: var(--nocturne-gilt);
+}

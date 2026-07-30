@@ -1,0 +1,407 @@
+/* NOCTURNE — shared primitives: velvet, frames, plaque, elevation, bloom motion */
+
+.nocturne-velvet {
+  background:
+    radial-gradient(130% 80% at 50% 0%, rgba(233, 204, 138, 0.05), transparent 46%),
+    repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.014) 0 3px, rgba(0, 0, 0, 0.028) 3px 6px),
+    linear-gradient(185deg, var(--nocturne-surface), var(--nocturne-bg) 62%, #1a0f22);
+}
+
+.nocturne-velvet--wine {
+  background:
+    radial-gradient(112% 42% at 50% 0%, var(--nocturne-primary-50), transparent 56%),
+    radial-gradient(130% 80% at 50% 0%, rgba(233, 204, 138, 0.07), transparent 46%),
+    repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.016) 0 3px, rgba(0, 0, 0, 0.05) 3px 6px),
+    linear-gradient(185deg, var(--nocturne-surface-pop), var(--nocturne-bg) 58%, #180e20);
+}
+
+.nocturne-velvet--pop {
+  background:
+    radial-gradient(130% 70% at 50% 0%, rgba(233, 204, 138, 0.05), transparent 50%),
+    linear-gradient(185deg, var(--nocturne-surface-pop), var(--nocturne-surface));
+}
+
+.nocturne-surface {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--nocturne-surface-border, var(--nocturne-gilt-30));
+  border-radius: var(--nocturne-r);
+  background: var(--nocturne-surface-fill, var(--nocturne-surface));
+}
+
+.nocturne-lined {
+  position: relative;
+}
+.nocturne-lined::before {
+  content: "";
+  position: absolute;
+  inset: var(--nocturne-lining-inset);
+  border: 1px solid var(--nocturne-gilt-30);
+  pointer-events: none;
+}
+
+.nocturne-plaque {
+  display: inline-block;
+  padding: var(--nocturne-space-1) var(--nocturne-space-5);
+  border: 1px solid var(--nocturne-gilt-50);
+  background: var(--nocturne-accent-surface);
+  box-shadow: var(--nocturne-shadow-plaque);
+  color: var(--nocturne-gilt-bright);
+  font-size: var(--nocturne-fs-12);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-4);
+  text-indent: var(--nocturne-ls-4);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nocturne-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nocturne-gilt-50), transparent);
+}
+
+.nocturne-moondot {
+  width: var(--nocturne-moondot-size, 8px);
+  height: var(--nocturne-moondot-size, 8px);
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-accent-fill);
+  box-shadow: 0 0 8px var(--nocturne-glow-40);
+}
+
+.nocturne-marker {
+  display: inline-grid;
+  place-items: center;
+  color: var(--nocturne-gilt);
+}
+
+.nocturne-elevation {
+  filter: var(--nocturne-overlay-shadow, var(--nocturne-drop-pop)) var(--nocturne-overlay-glow, var(--nocturne-drop-glow));
+}
+
+.nocturne-drift {
+  transition:
+    opacity var(--nocturne-dur-pop) var(--nocturne-ease-pop),
+    transform var(--nocturne-dur-pop) var(--nocturne-ease-pop);
+}
+.nocturne-drift[data-starting-style],
+.nocturne-drift[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.nocturne-arrow {
+  width: 10px;
+  height: 10px;
+  background: var(--nocturne-arrow-fill, var(--nocturne-surface-pop));
+  transform: rotate(45deg);
+}
+.nocturne-arrow[data-side="top"] {
+  bottom: -5px;
+  border-right: 1px solid var(--nocturne-gilt-50);
+  border-bottom: 1px solid var(--nocturne-gilt-50);
+}
+.nocturne-arrow[data-side="bottom"] {
+  top: -5px;
+  border-left: 1px solid var(--nocturne-gilt-50);
+  border-top: 1px solid var(--nocturne-gilt-50);
+}
+.nocturne-arrow[data-side="left"] {
+  right: -5px;
+  border-right: 1px solid var(--nocturne-gilt-50);
+  border-top: 1px solid var(--nocturne-gilt-50);
+}
+.nocturne-arrow[data-side="right"] {
+  left: -5px;
+  border-left: 1px solid var(--nocturne-gilt-50);
+  border-bottom: 1px solid var(--nocturne-gilt-50);
+}
+
+.nocturne-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--nocturne-z-backdrop);
+  background: var(--nocturne-scrim);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: opacity var(--nocturne-dur-pop) var(--nocturne-ease);
+}
+.nocturne-backdrop[data-starting-style],
+.nocturne-backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.nocturne-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  z-index: var(--nocturne-z-overlay);
+  display: grid;
+  overflow: auto;
+  padding: var(--nocturne-space-5);
+}
+
+.nocturne-modal {
+  position: relative;
+  margin: auto;
+  box-shadow: var(--nocturne-shadow-modal);
+  padding: var(--nocturne-modal-pad);
+  color: var(--nocturne-text);
+  transition:
+    opacity var(--nocturne-dur-pop) var(--nocturne-ease-pop),
+    transform var(--nocturne-dur-pop) var(--nocturne-ease-pop);
+}
+.nocturne-modal[data-starting-style],
+.nocturne-modal[data-ending-style] {
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+}
+
+.nocturne-modal-latin {
+  margin: 0;
+  text-align: center;
+  font-family: var(--nocturne-font-script);
+  font-weight: var(--nocturne-fw-700);
+  font-size: var(--nocturne-fs-30);
+  line-height: var(--nocturne-lh-110);
+  color: var(--nocturne-modal-accent, var(--nocturne-gilt-bright));
+}
+
+.nocturne-modal-title {
+  margin: var(--nocturne-space-1) 0 0;
+  text-align: center;
+  font-size: var(--nocturne-fs-24);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-4);
+  text-indent: var(--nocturne-ls-4);
+  color: var(--nocturne-text);
+}
+
+.nocturne-modal-desc {
+  margin: var(--nocturne-space-2) 0 0;
+  text-align: center;
+  font-size: var(--nocturne-fs-14);
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-modal-body {
+  margin-top: var(--nocturne-space-6);
+  font-size: var(--nocturne-fs-16);
+  line-height: var(--nocturne-lh-180);
+  color: var(--nocturne-text);
+}
+
+.nocturne-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--nocturne-space-4);
+  margin-top: var(--nocturne-space-6);
+  flex-wrap: wrap;
+}
+
+.nocturne-modal-close {
+  position: absolute;
+  top: var(--nocturne-space-3);
+  right: var(--nocturne-space-3);
+  z-index: 1;
+}
+
+.nocturne-collapse-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  width: 100%;
+  padding: var(--nocturne-space-3) var(--nocturne-space-2);
+  background: transparent;
+  border: 0;
+  color: var(--nocturne-text);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-collapse-trigger:hover:not([data-disabled]) {
+  background: var(--nocturne-gilt-10);
+}
+.nocturne-collapse-trigger:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: -2px;
+}
+
+.nocturne-collapse-marker {
+  flex: 0 0 16px;
+  width: 16px;
+  color: var(--nocturne-gilt);
+}
+
+.nocturne-collapse-title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--nocturne-fs-16);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-1);
+}
+
+.nocturne-collapse-chevron {
+  flex: none;
+  color: var(--nocturne-gilt);
+  transition: transform var(--nocturne-dur) var(--nocturne-ease);
+}
+[data-panel-open] .nocturne-collapse-chevron,
+[data-open] .nocturne-collapse-chevron {
+  transform: rotate(180deg);
+}
+
+.nocturne-collapse-panel {
+  height: var(--accordion-panel-height, var(--collapsible-panel-height));
+  overflow: hidden;
+  transition: height var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-collapse-panel[data-starting-style],
+.nocturne-collapse-panel[data-ending-style] {
+  height: 0;
+}
+
+.nocturne-collapse-content {
+  padding: var(--nocturne-space-1) var(--nocturne-space-2) var(--nocturne-space-3) calc(var(--nocturne-space-2) + 16px + var(--nocturne-space-3));
+  font-size: var(--nocturne-fs-14);
+  line-height: var(--nocturne-lh-180);
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-bloom__petal {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scale(var(--nocturne-bloom-open, 1));
+  transition: transform var(--nocturne-dur-slow) var(--nocturne-ease-bloom);
+}
+
+.nocturne-bloom__sepal {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scale(var(--nocturne-bloom-sepal, 1));
+  transition: transform var(--nocturne-dur-slow) var(--nocturne-ease);
+}
+
+.nocturne-bloom__bud {
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  transform: scale(var(--nocturne-bloom-bud, 1));
+  opacity: var(--nocturne-bloom-bud-alpha, 1);
+  transition:
+    transform var(--nocturne-dur-slow) var(--nocturne-ease),
+    opacity var(--nocturne-dur-pop) var(--nocturne-ease);
+}
+
+.nocturne-bloom__core {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transform: scale(var(--nocturne-bloom-core, 1));
+  opacity: var(--nocturne-bloom-core-alpha, 1);
+  transition:
+    transform var(--nocturne-dur-slow) var(--nocturne-ease-bloom) 0.1s,
+    opacity var(--nocturne-dur) var(--nocturne-ease) 0.1s;
+}
+
+.nocturne-grow {
+  stroke-dasharray: 1;
+  animation: nocturne-branch var(--nocturne-grow-dur, 1.5s) var(--nocturne-ease-draw) both;
+  animation-delay: var(--nocturne-d, 0s);
+}
+
+.nocturne-sprout {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: nocturne-leaf-out 0.9s var(--nocturne-ease-bloom) both;
+  animation-delay: var(--nocturne-d, 0s);
+}
+
+.nocturne-bloom-in {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: nocturne-petal 1.7s var(--nocturne-ease-bloom) both;
+  animation-delay: var(--nocturne-d, 0s);
+}
+
+.nocturne-core-in {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: nocturne-core 1s var(--nocturne-ease) both;
+  animation-delay: var(--nocturne-d, 0s);
+}
+
+@keyframes nocturne-branch {
+  from {
+    stroke-dashoffset: 1;
+    visibility: hidden;
+  }
+  2% {
+    visibility: visible;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nocturne-leaf-out {
+  from {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes nocturne-petal {
+  from {
+    transform: scale(0.06);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes nocturne-core {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes nocturne-sweep {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 250% 0;
+  }
+}
+
+@keyframes nocturne-breathe {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nocturne-grow,
+  .nocturne-sprout,
+  .nocturne-bloom-in,
+  .nocturne-core-in {
+    animation-duration: 0.01ms;
+    animation-delay: 0s;
+  }
+}

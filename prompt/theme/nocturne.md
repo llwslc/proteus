@@ -16,7 +16,7 @@
 - 文本：`text #efe6d8` 骨白、`text-bright #f9f3e7`、`text-dim #cbbbd0` 冷藕灰、`text-mute #af9dc2` 紫灰；反色前景 `on-fill #f6efe2`（深填充上）。
 - 对比取舍：功能字最低档 `text-mute` 于 `surface-pop` ≥4.5:1；强调正文与焦点走 gilt 家族，wine 只作填充与装饰、不作正文。
 - 强调填充：`accent-surface linear-gradient(180deg, primary-deep, primary-shadow)` 点亮激活表面（悬停换 `primary` 亮头）；`accent-fill radial-gradient(circle at 35% 30%, gilt-bright, gilt)` 满月圆点，作选中与方向指示。
-- 花体配色（SVG 渐变三支，花叶部件共用）：花瓣暗档 `petal linear-gradient #8a2a48 → #55152b`、花瓣亮档 `petal-lit linear-gradient #a63a5c → #6b1e38`、叶 `leaf linear-gradient #6e5a2e → #3e3118`；叶脉与瓣纹描 `gilt`，花芯盘 `gilt-bright`、蕊点 `gilt`、芯上点 `primary-deep`。
+- 花体配色（花叶部件的渐变端点）：花瓣暗档 `petal #8a2a48` 渐入 `petal-deep #55152b`、花瓣亮档 `petal-lit #a63a5c` 渐入 `petal-lit-deep #6b1e38`、叶 `leaf #6e5a2e` 渐入 `leaf-deep #3e3118`；叶脉与瓣纹描 `gilt`，花芯盘 `gilt-bright`、蕊点 `gilt`、芯上点 `primary-deep`。
 - 中性与效果：禁用透明度 `disabled-opacity .45`；禁用实填底 `disabled-fill linear-gradient(180deg, surface-pop, surface)`；月相盘面 `moon-face`（金盘 + 陨坑多层 radial）、夜影 `moon-shade`（暗紫 radial）。
 - 投影：`shadow-frame 0 18px 50px rgba(8,4,12,.55)`（图版、面内框件）、`shadow-modal 0 30px 90px rgba(0,0,0,.7)`、`shadow-btn 0 6px 20px rgba(8,4,12,.35)` 与按压收拢档 `shadow-btn-press 0 3px 10px rgba(8,4,12,.4)`、题匾 `shadow-plaque 0 6px 18px rgba(8,4,12,.5)`、轨内影 `track-shadow inset 0 1px 4px rgba(0,0,0,.55)`；随形层：锚定浮层 `drop-pop drop-shadow(0 18px 40px rgba(8,4,12,.7))` + 幽辉 `drop-glow`，SVG 花记 `drop-mark drop-shadow(0 1px 3px rgba(8,4,12,.7))`；辉光用 glow 档合成 box-shadow（如 `0 0 22px glow-12`）。
 
