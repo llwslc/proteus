@@ -62,6 +62,14 @@ async function setKit(page, url, kit) {
   await page.goto(embedUrl(url, kit), { waitUntil: 'domcontentloaded' });
   // attached, not visible — the sidebar is display:none at phone width
   await page.waitForSelector(READY, { state: 'attached', timeout: 20000 });
+  // `document.fonts.ready` alone LIES here: each kit pulls its faces through an
+  // @import inside typography.css, so at first paint the font set is still EMPTY
+  // and an empty set reports "loaded" instantly. The 700+ faces register ~500ms
+  // later and take ~1.5s to settle — measuring before that gives unstable text
+  // metrics. Wait for a non-empty set that has finished.
+  await page
+    .waitForFunction(() => document.fonts.size > 0 && document.fonts.status === 'loaded', null, { timeout: 15000 })
+    .catch(() => {});
   await page.evaluate(() => document.fonts.ready);
 }
 

@@ -15,6 +15,7 @@ const UPDATE = process.argv.includes('--update');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const URL = G.urlOf(G.port());
   const kits = await G.kitsOf(page);
+
   const out = {};
   for (const kit of kits) {
     await G.setKit(page, URL, kit);
@@ -24,7 +25,7 @@ const UPDATE = process.argv.includes('--update');
       await page.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}' });
       await page.evaluate(() => document.fonts.ready);
       await page.waitForTimeout(400);
-      const panels = await page.evaluate((k) => {
+      const capture = (k) => page.evaluate((k) => {
         for (const c of document.querySelectorAll(`[class*="clock"]`)) c.textContent = '00:00:00';
         const ids = [...document.querySelectorAll(`.${k}-sidebar__link[href^="#"]`)].map((a) => a.getAttribute('href').slice(1));
         if (!ids.length) return { __EMPTY__: 'no sidebar links' };
@@ -51,7 +52,24 @@ const UPDATE = process.argv.includes('--update');
           res[name] = parts.join('\n');
         }
         return res;
-      }, kit);
+      }, k);
+
+      // 只接受连续两次逐面板相同的采样。字体换上、HMR 余波都会让「刚改完的
+      // 第一次」测出一堆假漂移——那正是这门的红一直没人当真的原因。
+      let panels = await capture(kit);
+      let prev = null;
+      for (let tries = 0; tries < 4; tries++) {
+        prev = panels;
+        await page.waitForTimeout(350);
+        panels = await capture(kit);
+        if (JSON.stringify(prev) === JSON.stringify(panels)) break;
+      }
+      if (JSON.stringify(prev) !== JSON.stringify(panels)) {
+        const moving = Object.keys(panels).filter((id) => panels[id] !== prev[id]);
+        console.error(`ERR ${kit}@${w} 采样不收敛,拒绝比对: ${moving.slice(0, 6).join(' ')}`);
+        console.error('  页面还在动(字体换上／HMR 余波)。等一会儿重跑。');
+        process.exit(2);
+      }
       out[kit][w] = Object.fromEntries(Object.entries(panels).map(([id, body]) => [id, crypto.createHash('sha1').update(body).digest('hex').slice(0, 12)]));
     }
   }
