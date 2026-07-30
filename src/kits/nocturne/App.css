@@ -1,0 +1,573 @@
+.nocturne-app {
+  min-height: 100vh;
+}
+
+.nocturne-halo-lamp {
+  position: fixed;
+  left: 50%;
+  top: -10vh;
+  width: 90vw;
+  height: 60vh;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(233, 204, 138, 0.13), transparent 72%);
+  opacity: 0;
+  transition: opacity 2s var(--nocturne-ease);
+  pointer-events: none;
+  z-index: 0;
+}
+.nocturne-app--lamp-on .nocturne-halo-lamp {
+  opacity: 1;
+}
+
+.nocturne-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nocturne-space-5);
+  height: 60px;
+  padding: 0 22px;
+  background: var(--nocturne-bg);
+  border-bottom: 1px solid var(--nocturne-gilt-30);
+  animation: nocturne-drop 0.7s var(--nocturne-ease) both;
+}
+
+@keyframes nocturne-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nocturne-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  min-width: 0;
+}
+
+.nocturne-logo__mark {
+  --nocturne-moondot-size: 10px;
+}
+
+.nocturne-logo__text {
+  font-family: var(--nocturne-font-display);
+  font-size: var(--nocturne-fs-18);
+  font-weight: var(--nocturne-fw-600);
+  letter-spacing: var(--nocturne-ls-3);
+  color: var(--nocturne-text);
+  white-space: nowrap;
+}
+
+.nocturne-logo__sub {
+  font-size: var(--nocturne-fs-12);
+  letter-spacing: var(--nocturne-ls-2);
+  color: var(--nocturne-text-mute);
+  white-space: nowrap;
+}
+
+.nocturne-header__nav {
+  margin-inline: auto;
+  min-width: 0;
+}
+
+.nocturne-header__status {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+  white-space: nowrap;
+}
+
+.nocturne-header__hora {
+  font-style: italic;
+  font-size: var(--nocturne-fs-14);
+  color: var(--nocturne-gilt);
+}
+
+.nocturne-header__status-icon {
+  color: var(--nocturne-gilt);
+}
+
+.nocturne-clock {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-14);
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-shell {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 26px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 26px 22px 28px;
+}
+
+.nocturne-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-5);
+  position: sticky;
+  top: 86px;
+  align-self: start;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding-right: var(--nocturne-space-1);
+}
+
+.nocturne-sidebar__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.nocturne-sidebar__group-title {
+  padding: var(--nocturne-space-1) var(--nocturne-space-2);
+  color: var(--nocturne-gilt);
+}
+
+.nocturne-sidebar__link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--nocturne-space-3);
+  padding: var(--nocturne-space-1) var(--nocturne-space-2);
+  color: var(--nocturne-text-dim);
+  font-size: var(--nocturne-fs-14);
+  letter-spacing: var(--nocturne-ls-1);
+  text-decoration: none;
+  transition:
+    background var(--nocturne-dur-fast) var(--nocturne-ease),
+    color var(--nocturne-dur-fast) var(--nocturne-ease);
+}
+.nocturne-sidebar__link:hover {
+  background: var(--nocturne-gilt-10);
+  color: var(--nocturne-gilt-bright);
+}
+.nocturne-sidebar__link:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: -2px;
+}
+
+.nocturne-sidebar__meta {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-12);
+  color: var(--nocturne-text-mute);
+}
+
+.nocturne-shell__main {
+  min-width: 0;
+}
+
+.nocturne-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--nocturne-space-5);
+  border: 1px solid var(--nocturne-gilt-50);
+  box-shadow: var(--nocturne-shadow-frame);
+  padding: 30px 28px;
+  margin-bottom: 26px;
+}
+
+.nocturne-hero__vine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.nocturne-hero__vine svg {
+  height: 100%;
+  width: auto;
+  display: block;
+  overflow: visible;
+}
+.nocturne-hero__vine--l {
+  left: -6px;
+}
+.nocturne-hero__vine--r {
+  right: -6px;
+  transform: scaleX(-1);
+}
+
+.nocturne-hero__glow {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 620px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, var(--nocturne-glow-12), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: nocturne-breathe var(--nocturne-dur-breathe) ease-in-out infinite;
+}
+
+.nocturne-hero__text {
+  position: relative;
+  min-width: 0;
+  padding-left: clamp(0px, 6vw, 96px);
+}
+
+.nocturne-hero__script {
+  display: block;
+  font-family: var(--nocturne-font-script);
+  font-weight: var(--nocturne-fw-700);
+  font-size: clamp(30px, 3.4vw, 42px);
+  line-height: var(--nocturne-lh-110);
+  color: var(--nocturne-gilt-bright);
+  animation: nocturne-rise 1s var(--nocturne-ease) both;
+}
+
+.nocturne-hero__eyebrow {
+  display: block;
+  margin-top: var(--nocturne-space-1);
+  animation: nocturne-rise 1s var(--nocturne-ease) 0.1s both;
+}
+
+.nocturne-hero__title {
+  margin-top: var(--nocturne-space-3);
+  font-size: clamp(28px, 4.4vw, 46px);
+  font-weight: var(--nocturne-fw-700);
+  letter-spacing: var(--nocturne-ls-2);
+  animation: nocturne-rise 1s var(--nocturne-ease) 0.2s both;
+}
+
+.nocturne-hero__desc {
+  max-width: 560px;
+  margin-top: var(--nocturne-space-3);
+  color: var(--nocturne-text-dim);
+  animation: nocturne-rise 1s var(--nocturne-ease) 0.34s both;
+}
+.nocturne-hero__desc + .nocturne-hero__desc {
+  margin-top: var(--nocturne-space-2);
+}
+
+.nocturne-hero__code {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-14);
+  color: var(--nocturne-gilt-bright);
+}
+
+.nocturne-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nocturne-space-5);
+  margin-top: var(--nocturne-space-5);
+  animation: nocturne-rise 1s var(--nocturne-ease) 0.48s both;
+}
+
+.nocturne-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: var(--nocturne-space-3);
+  border-left: 1px solid var(--nocturne-gilt-30);
+}
+
+.nocturne-hero__stat-n {
+  font-family: var(--nocturne-font-display);
+  font-size: var(--nocturne-fs-24);
+  font-weight: var(--nocturne-fw-600);
+  color: var(--nocturne-gilt-bright);
+}
+
+.nocturne-hero__visual {
+  position: relative;
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  padding-right: clamp(0px, 4vw, 64px);
+  animation: nocturne-rise 1s var(--nocturne-ease) 0.4s both;
+}
+
+.nocturne-lantern-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--nocturne-space-2);
+  max-width: 250px;
+  text-align: center;
+}
+
+.nocturne-lantern {
+  width: 108px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.nocturne-lantern:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 3px;
+}
+.nocturne-lantern svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.nocturne-lantern__flame {
+  fill: var(--nocturne-primary-shadow);
+  transition: fill var(--nocturne-dur-slow) var(--nocturne-ease);
+}
+.nocturne-app--lamp-on .nocturne-lantern__flame {
+  fill: var(--nocturne-warning);
+  animation: nocturne-breathe 2.6s ease-in-out infinite;
+}
+.nocturne-app--lamp-on .nocturne-lantern svg {
+  filter: drop-shadow(0 0 18px var(--nocturne-glow-40));
+}
+
+.nocturne-lantern-stage__line {
+  margin: 0;
+  font-style: italic;
+  font-size: var(--nocturne-fs-16);
+  color: var(--nocturne-gilt-bright);
+}
+
+.nocturne-grouprule {
+  display: flex;
+  align-items: baseline;
+  gap: var(--nocturne-space-3);
+  margin: var(--nocturne-space-6) 0 var(--nocturne-space-4);
+  scroll-margin-top: 80px;
+}
+
+.nocturne-grouprule__marker {
+  align-self: center;
+}
+
+.nocturne-grouprule__label {
+  white-space: nowrap;
+}
+
+.nocturne-grouprule__sub {
+  color: var(--nocturne-text-mute);
+  text-transform: none;
+  letter-spacing: var(--nocturne-ls-1);
+}
+
+.nocturne-grouprule__line {
+  flex: 1;
+  height: 1px;
+  align-self: center;
+  background: linear-gradient(90deg, var(--nocturne-gilt-30), transparent);
+}
+
+.nocturne-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: var(--nocturne-space-6);
+}
+.nocturne-grid > * {
+  min-width: 0;
+}
+.nocturne-panel--wide {
+  grid-column: 1 / -1;
+}
+
+.nocturne-grid section {
+  scroll-margin-top: 80px;
+}
+
+.nocturne-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--nocturne-space-3);
+}
+.nocturne-row--between {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.nocturne-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-4);
+}
+
+.nocturne-context__zone {
+  display: grid;
+  place-items: center;
+  min-height: 132px;
+  border: 1px dashed var(--nocturne-gilt-30);
+  background: var(--nocturne-surface-inset);
+  transition: background var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-context__zone:hover {
+  background: var(--nocturne-surface-pop);
+}
+
+.nocturne-context__hint {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-14);
+  color: var(--nocturne-text-mute);
+  text-align: center;
+  padding: 0 var(--nocturne-space-4);
+}
+
+.nocturne-scroll-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nocturne-space-2);
+}
+
+.nocturne-scroll-list__time {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-14);
+  color: var(--nocturne-gilt);
+  margin-right: var(--nocturne-space-2);
+}
+
+.nocturne-link {
+  color: var(--nocturne-gilt-bright);
+  text-decoration: underline;
+  text-decoration-color: var(--nocturne-gilt-50);
+  text-underline-offset: 3px;
+}
+.nocturne-link:focus-visible {
+  outline: 2px solid var(--nocturne-gilt);
+  outline-offset: 2px;
+}
+
+.nocturne-preview__head {
+  display: flex;
+  align-items: center;
+  gap: var(--nocturne-space-3);
+}
+
+.nocturne-preview__ident {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nocturne-preview__handle {
+  font-family: var(--nocturne-font-mono);
+  font-size: var(--nocturne-fs-12);
+  color: var(--nocturne-text-mute);
+}
+
+.nocturne-preview__desc {
+  margin-top: var(--nocturne-space-3);
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-preview__footer {
+  display: flex;
+  gap: var(--nocturne-space-2);
+  margin-top: var(--nocturne-space-3);
+}
+
+.nocturne-panel-note {
+  margin-bottom: var(--nocturne-space-4);
+  color: var(--nocturne-text-dim);
+}
+
+.nocturne-footer {
+  text-align: center;
+  padding: var(--nocturne-space-6) 0 var(--nocturne-space-2);
+}
+.nocturne-footer .nocturne-cap {
+  color: var(--nocturne-text-mute);
+  text-transform: none;
+}
+
+.demo-loader-stage {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+@keyframes nocturne-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nocturne-reveal > * {
+  opacity: 0;
+}
+.nocturne-reveal > .is-visible {
+  animation: nocturne-rise 1s var(--nocturne-ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nocturne-header,
+  .nocturne-hero__script,
+  .nocturne-hero__eyebrow,
+  .nocturne-hero__title,
+  .nocturne-hero__desc,
+  .nocturne-hero__stats,
+  .nocturne-hero__visual,
+  .nocturne-reveal > .is-visible {
+    animation: none;
+  }
+  .nocturne-reveal > * {
+    opacity: 1;
+  }
+  .nocturne-hero__glow,
+  .nocturne-app--lamp-on .nocturne-lantern__flame {
+    animation: none;
+  }
+  .nocturne-halo-lamp {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nocturne-header {
+    padding: 0 14px;
+  }
+  .nocturne-logo__sub,
+  .nocturne-header__hora,
+  .nocturne-header__status-icon,
+  .nocturne-clock,
+  .nocturne-header__nav {
+    display: none;
+  }
+  .nocturne-shell {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 16px 13px 20px;
+  }
+  .nocturne-sidebar {
+    display: none;
+  }
+  .nocturne-hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 20px 16px;
+  }
+  .nocturne-hero__vine,
+  .nocturne-hero__glow,
+  .nocturne-hero__visual {
+    display: none;
+  }
+  .nocturne-hero__text {
+    padding-left: 0;
+  }
+  .nocturne-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,128 @@
+.nocturne-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #1d1126;
+}
+
+.nocturne-loader__art {
+  width: min(560px, 82vw);
+  animation: nocturne-loader-breathe 3.4s ease-in-out 3.4s infinite;
+}
+.nocturne-loader__art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.nocturne-loader__word {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  text-indent: 8px;
+  color: #c69a4e;
+  animation: nocturne-loader-word 1.4s ease 0.5s both;
+}
+
+.nocturne-loader__branch {
+  stroke-dasharray: 1;
+  animation: nocturne-loader-grow 1.9s cubic-bezier(0.3, 0.8, 0.35, 1) 0.2s both;
+}
+
+.nocturne-loader__sprout {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: nocturne-loader-sprout 0.9s cubic-bezier(0.2, 1, 0.3, 1.3) both;
+}
+
+.nocturne-loader__petal {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: nocturne-loader-petal 1.7s cubic-bezier(0.2, 1, 0.3, 1.3) both;
+}
+
+.nocturne-loader__core {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: nocturne-loader-sprout 1s ease both;
+}
+
+@keyframes nocturne-loader-grow {
+  from {
+    stroke-dashoffset: 1;
+    visibility: hidden;
+  }
+  2% {
+    visibility: visible;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nocturne-loader-sprout {
+  from {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes nocturne-loader-petal {
+  from {
+    transform: scale(0.06);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes nocturne-loader-word {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nocturne-loader-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nocturne-loader__art,
+  .nocturne-loader__word,
+  .nocturne-loader__branch,
+  .nocturne-loader__sprout,
+  .nocturne-loader__petal,
+  .nocturne-loader__core {
+    animation-duration: 0.01ms;
+    animation-delay: 0s;
+  }
+  .nocturne-loader__art {
+    animation: none;
+  }
+}
