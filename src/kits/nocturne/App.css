@@ -7,23 +7,6 @@
   min-height: 100vh;
 }
 
-.nocturne-halo-lamp {
-  position: fixed;
-  left: 50%;
-  top: -10vh;
-  width: 90vw;
-  height: 60vh;
-  transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(233, 204, 138, 0.13), transparent 72%);
-  opacity: 0;
-  transition: opacity 2s var(--nocturne-ease);
-  pointer-events: none;
-  z-index: 0;
-}
-.nocturne-app--lamp-on .nocturne-halo-lamp {
-  opacity: 1;
-}
-
 .nocturne-header {
   position: sticky;
   top: 0;
@@ -285,64 +268,6 @@
   color: var(--nocturne-gilt-bright);
 }
 
-.nocturne-hero__visual {
-  display: grid;
-  place-items: center;
-  width: 200px;
-  margin: 30px clamp(56px, 6.5vw, 104px) 0 auto;
-  animation: nocturne-rise 1s var(--nocturne-ease) 0.4s both;
-}
-
-.nocturne-lantern-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--nocturne-space-2);
-  max-width: 100%;
-  text-align: center;
-}
-
-.nocturne-lantern {
-  width: 92px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.nocturne-lantern:focus-visible {
-  outline: 2px solid var(--nocturne-gilt);
-  outline-offset: 3px;
-}
-.nocturne-lantern svg {
-  width: 100%;
-  height: auto;
-  display: block;
-  overflow: visible;
-}
-
-.nocturne-lantern__flame {
-  fill: var(--nocturne-primary-shadow);
-  transition: fill var(--nocturne-dur-slow) var(--nocturne-ease);
-}
-.nocturne-app--lamp-on .nocturne-lantern__flame {
-  fill: var(--nocturne-warning);
-  animation: nocturne-breathe 2.6s ease-in-out infinite;
-}
-.nocturne-app--lamp-on .nocturne-lantern svg {
-  filter: drop-shadow(0 0 18px var(--nocturne-glow-40));
-}
-
-.nocturne-lantern-stage__line {
-  margin: 0;
-  font-style: italic;
-  font-size: var(--nocturne-fs-14);
-  color: var(--nocturne-gilt-bright);
-}
-
-.nocturne-lantern-stage__hint {
-  line-height: var(--nocturne-lh-140);
-}
-
 .nocturne-grouprule {
   display: flex;
   align-items: baseline;
@@ -507,6 +432,11 @@
   overflow: hidden;
   transform: translateZ(0);
 }
+@media (max-width: 768px) {
+  .demo-loader-stage {
+    height: 240px;
+  }
+}
 
 @keyframes nocturne-rise {
   from {
@@ -533,19 +463,14 @@
   .nocturne-hero__title,
   .nocturne-hero__desc,
   .nocturne-hero__stats,
-  .nocturne-hero__visual,
   .nocturne-reveal > .is-visible {
     animation: none;
   }
   .nocturne-reveal > * {
     opacity: 1;
   }
-  .nocturne-hero__glow,
-  .nocturne-app--lamp-on .nocturne-lantern__flame {
+  .nocturne-hero__glow {
     animation: none;
-  }
-  .nocturne-halo-lamp {
-    transition: none;
   }
 }
 
@@ -571,8 +496,7 @@
     padding: 20px 16px;
   }
   .nocturne-hero__vine,
-  .nocturne-hero__glow,
-  .nocturne-hero__visual {
+  .nocturne-hero__glow {
     display: none;
   }
   .nocturne-grid {

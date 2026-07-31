@@ -38,16 +38,6 @@
   right: 10px;
   transform: scaleX(-1);
 }
-.nocturne-panel__corner--bl {
-  bottom: 10px;
-  left: 10px;
-  transform: scaleY(-1);
-}
-.nocturne-panel__corner--br {
-  bottom: 10px;
-  right: 10px;
-  transform: scale(-1);
-}
 
 .nocturne-panel__title {
   position: absolute;

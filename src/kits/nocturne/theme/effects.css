@@ -29,14 +29,6 @@
     linear-gradient(185deg, var(--nocturne-surface-pop), var(--nocturne-surface));
 }
 
-.nocturne-surface {
-  position: relative;
-  isolation: isolate;
-  border: 1px solid var(--nocturne-surface-border, var(--nocturne-gilt-30));
-  border-radius: var(--nocturne-r);
-  background: var(--nocturne-surface-fill, var(--nocturne-surface));
-}
-
 .nocturne-lined {
   position: relative;
 }

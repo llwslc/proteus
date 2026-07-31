@@ -348,78 +348,6 @@ function VineSide() {
   );
 }
 
-function HeroLantern({ lit, onToggle }: { lit: boolean; onToggle: () => void }) {
-  return (
-    <div className="nocturne-lantern-stage">
-      <button
-        type="button"
-        className="nocturne-lantern"
-        aria-pressed={lit}
-        aria-label={lit ? "Snuff the lamps" : "Light the lamps"}
-        onClick={onToggle}
-      >
-        <svg viewBox="0 0 90 140" aria-hidden="true" focusable="false">
-          <path
-            d="M45 6 V 18"
-            stroke="var(--nocturne-gilt)"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M32 6 H 58"
-            stroke="var(--nocturne-gilt)"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M33 18 H 57 L 60 30 H 30 Z"
-            fill="var(--nocturne-bg-deep)"
-            stroke="var(--nocturne-gilt)"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M30 30 H 60 L 66 96 A 8 8 0 0 1 58 105 H 32 A 8 8 0 0 1 24 96 Z"
-            fill="var(--nocturne-surface-inset)"
-            stroke="var(--nocturne-gilt)"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M36 30 L 39.5 105 M54 30 L 50.5 105"
-            stroke="var(--nocturne-gilt-30)"
-            strokeWidth="1"
-          />
-          <path
-            className="nocturne-lantern__flame"
-            d="M45 56 C 40.5 63, 41 70, 45 74.5 C 49 70, 49.5 63, 45 56 Z"
-            stroke="var(--nocturne-gilt-dim)"
-            strokeWidth="1"
-          />
-          <path
-            d="M32 105 H 58 L 55 117 H 35 Z"
-            fill="var(--nocturne-bg-deep)"
-            stroke="var(--nocturne-gilt)"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M45 117 V 128 M38 128 H 52"
-            stroke="var(--nocturne-gilt-dim)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      </button>
-      <p className="nocturne-lantern-stage__line">
-        {lit
-          ? "Warm light spills over the flower wall — the night round begins."
-          : "Let the flowers be by themselves a while."}
-      </p>
-      <span className="nocturne-cap nocturne-lantern-stage__hint">
-        {lit ? "Tap to snuff the lamps" : "Tap to light the lamps"}
-      </span>
-    </div>
-  );
-}
-
 function ProgressBars() {
   const [val, setVal] = useState(24);
   useEffect(() => {
@@ -567,7 +495,6 @@ function FormDemo() {
 
 function Demo() {
   const toast = useToast();
-  const [lit, setLit] = useState(false);
 
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
@@ -590,8 +517,7 @@ function Demo() {
   }, []);
 
   return (
-    <div className={`nocturne-app${lit ? " nocturne-app--lamp-on" : ""}`} lang="en">
-      <div className="nocturne-halo-lamp" aria-hidden="true" />
+    <div className={"nocturne-app"} lang="en">
       <header className="nocturne-header">
         <div className="nocturne-logo">
           <span className="nocturne-moondot nocturne-logo__mark" aria-hidden="true" />
@@ -673,9 +599,6 @@ function Demo() {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="nocturne-hero__visual">
-              <HeroLantern lit={lit} onToggle={() => setLit((v) => !v)} />
             </div>
           </section>
 
