@@ -13,7 +13,7 @@
   flex-direction: column;
   border: 1px solid var(--nocturne-gilt-50);
   box-shadow: var(--nocturne-shadow-frame);
-  padding: 52px var(--nocturne-space-7) 34px;
+  padding: 52px var(--nocturne-space-7);
 }
 
 .nocturne-panel__corner {
@@ -37,6 +37,16 @@
   top: 10px;
   right: 10px;
   transform: scaleX(-1);
+}
+.nocturne-panel__corner--bl {
+  bottom: 10px;
+  left: 10px;
+  transform: scaleY(-1);
+}
+.nocturne-panel__corner--br {
+  bottom: 10px;
+  right: 10px;
+  transform: scale(-1);
 }
 
 .nocturne-panel__title {
@@ -96,7 +106,7 @@
 
 @media (max-width: 768px) {
   .nocturne-panel__frame {
-    padding: 40px var(--nocturne-space-4) 30px;
+    padding: 40px var(--nocturne-space-4) 44px;
   }
   .nocturne-panel__corner {
     width: 34px;

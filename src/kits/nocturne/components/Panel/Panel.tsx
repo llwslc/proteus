@@ -32,6 +32,8 @@ export function Panel({ title, corners = true, children }: PanelProps) {
           <>
             <PanelCorner mod="tl" />
             <PanelCorner mod="tr" />
+            <PanelCorner mod="bl" />
+            <PanelCorner mod="br" />
           </>
         ) : null}
         {title && (
