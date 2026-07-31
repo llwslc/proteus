@@ -42,18 +42,16 @@ export function NavigationMenu({
         {items.map((item) =>
           item.links ? (
             <BaseNav.Item key={item.label}>
-              <span className="abyss-navmenu__triggerwrap">
-                <BaseNav.Trigger
-                  className="abyss-navmenu__trigger"
-                  disabled={item.disabled}
-                  data-disabled={item.disabled || undefined}
-                >
-                  {item.label}
-                  <BaseNav.Icon className="abyss-navmenu__chevron">
-                    <ChevronDownIcon />
-                  </BaseNav.Icon>
-                </BaseNav.Trigger>
-              </span>
+              <BaseNav.Trigger
+                className="abyss-navmenu__trigger"
+                disabled={item.disabled}
+                data-disabled={item.disabled || undefined}
+              >
+                {item.label}
+                <BaseNav.Icon className="abyss-navmenu__chevron">
+                  <ChevronDownIcon />
+                </BaseNav.Icon>
+              </BaseNav.Trigger>
               <BaseNav.Content className="abyss-navmenu__content">
                 <ul className="abyss-navmenu__grid">
                   {item.links.map((link, i) => (

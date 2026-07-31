@@ -38,18 +38,16 @@ export function NavigationMenu({
         {items.map((item) =>
           item.links ? (
             <BaseNav.Item key={item.label}>
-              <span className="nova-navmenu__triggerwrap">
-                <BaseNav.Trigger
-                  className="nova-navmenu__trigger"
-                  disabled={item.disabled}
-                  data-disabled={item.disabled || undefined}
-                >
-                  {item.label}
-                  <BaseNav.Icon className="nova-navmenu__chevron">
-                    <ChevronDownIcon />
-                  </BaseNav.Icon>
-                </BaseNav.Trigger>
-              </span>
+              <BaseNav.Trigger
+                className="nova-navmenu__trigger"
+                disabled={item.disabled}
+                data-disabled={item.disabled || undefined}
+              >
+                {item.label}
+                <BaseNav.Icon className="nova-navmenu__chevron">
+                  <ChevronDownIcon />
+                </BaseNav.Icon>
+              </BaseNav.Trigger>
               <BaseNav.Content className="nova-navmenu__content">
                 <ul className="nova-navmenu__grid">
                   {item.links.map((link, i) => (

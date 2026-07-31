@@ -17,10 +17,6 @@
   scrollbar-width: none;
 }
 
-.nova-navmenu__triggerwrap {
-  display: inline-flex;
-  align-items: stretch;
-}
 .nova-navmenu__trigger,
 .nova-navmenu__toplink {
   position: relative;

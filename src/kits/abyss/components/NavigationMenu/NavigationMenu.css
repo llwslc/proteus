@@ -17,10 +17,6 @@
   scrollbar-width: none;
 }
 
-.abyss-navmenu__triggerwrap {
-  display: inline-flex;
-  align-items: stretch;
-}
 .abyss-navmenu__trigger,
 .abyss-navmenu__toplink {
   position: relative;
