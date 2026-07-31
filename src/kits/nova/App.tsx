@@ -558,7 +558,7 @@ function Demo() {
         <main className="nova-main">
           <section className="nova-hero">
             <div className="nova-hero__eyebrow">
-              <BoltIcon /> Component System · 37 Controls
+              <BoltIcon /> Component System
             </div>
             <h1 className="nova-h1">
               A <b className="nova-h1--accent">sci-fi</b> interface kit
@@ -566,9 +566,9 @@ function Demo() {
               forged in neon
             </h1>
             <p className="nova-text">
-              Thirty-seven accessible controls wrapped in a neon HUD skin — chamfered
-              frames, reactive glow, and scanline motion. Every control lives in its own
-              folder and rides on portable
+              Accessible controls wrapped in a neon HUD skin — chamfered frames, reactive
+              glow, and scanline motion. Every control lives in its own folder and rides
+              on portable
               <code> --nova-* </code> tokens.
             </p>
             <div className="nova-hero__stats">

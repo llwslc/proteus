@@ -645,9 +645,7 @@ function Demo() {
             <div className="nocturne-hero__glow" aria-hidden="true" />
             <div className="nocturne-hero__text">
               <span className="nocturne-hero__script">Hortus Nocturnus</span>
-              <span className="nocturne-cap nocturne-hero__eyebrow">
-                Night Register · 37 Blooms
-              </span>
+              <span className="nocturne-cap nocturne-hero__eyebrow">Night Register</span>
               <h1 className="nocturne-h1 nocturne-hero__title">
                 A <span className="nocturne-h1--accent">night-blooming</span> interface
                 kit

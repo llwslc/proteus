@@ -693,7 +693,7 @@ function Demo() {
         <main className="abyss-main">
           <section className="abyss-hero">
             <p className="abyss-hero__eyebrow">
-              <TentacleIcon /> Grimoire · 37 Rites
+              <TentacleIcon /> Grimoire
             </p>
             <h1 className="abyss-h1">
               An <b className="abyss-h1--accent">eldritch</b> interface kit
@@ -701,9 +701,9 @@ function Demo() {
               dredged from the deep
             </h1>
             <p className="abyss-text">
-              Thirty-seven accessible controls rebound as wet-stone tablets, watching
-              eyes, and inscribed sigils — hand-inked frames that waver, light that
-              breathes. Every control lives in its own folder and rides on portable
+              Accessible controls rebound as wet-stone tablets, watching eyes, and
+              inscribed sigils — hand-inked frames that waver, light that breathes. Every
+              control lives in its own folder and rides on portable
               <code> --abyss-* </code> tokens.
             </p>
             <div className="abyss-hero__stats">

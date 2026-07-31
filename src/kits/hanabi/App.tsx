@@ -419,9 +419,7 @@ function Demo() {
           <section className="hanabi-hero" id="hero" lang="en">
             <span className="hanabi-hero__burst" aria-hidden="true" />
             <div className="hanabi-hero__text">
-              <span className="hanabi-cap hanabi-hero__eyebrow">
-                Hanabi Command · 37 Cels
-              </span>
+              <span className="hanabi-cap hanabi-hero__eyebrow">Hanabi Command</span>
               <h1 className="hanabi-h1 hanabi-hero__title">
                 A <span className="hanabi-h1--accent">cel-shaded</span> interface kit
                 <br />

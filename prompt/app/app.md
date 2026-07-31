@@ -116,8 +116,8 @@
 
 - **语言**：演示页用户可见文案默认英文；指派点名了别的语言，该 kit 文案改用那门语言、页面 `lang` 随之，分层与词表写进 `app/theme/<kit>.md`。
 
-- logo 副标：`<主题形容词> UI Kit`。
-- hero eyebrow：`<主题系统名> · 37 <主题单位>`。
+- logo 副标：`<流派词或主题形容词> UI Kit`。
+- hero eyebrow：`<主题系统名>`。
 - hero 大标题：两行 `A(n) <主题形容词> interface kit / <主题动词短语>`，排版类 `h1` + `h1--accent` 强调主题形容词；hero 专属字号 `clamp(28px, 4.4vw, 46px)`，最重字重就近覆盖。
 - hero 描述：一句主题化视觉描述，再一句「每个控件独立文件夹、可移植 `--<kit>-*` token」。
 - 数据条 4 位：`37 / <主题单位>`、`1 / <主题 token 文件名>`、`0 / Extra Deps`（Base UI 之外零额外运行时依赖）、`A11y / Built In`。

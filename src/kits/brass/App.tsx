@@ -401,9 +401,7 @@ function Demo() {
         <main className="brass-shell__main">
           <section className="brass-hero" id="hero">
             <div className="brass-hero__text">
-              <span className="brass-cap brass-hero__eyebrow">
-                Pressure Console · 37 Instruments
-              </span>
+              <span className="brass-cap brass-hero__eyebrow">Pressure Console</span>
               <h1 className="brass-h1 brass-hero__title">
                 A <span className="brass-h1--accent">clockwork</span> interface kit
                 <br />

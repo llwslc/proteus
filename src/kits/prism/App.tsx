@@ -384,9 +384,7 @@ function Demo() {
         <main className="prism-shell__main">
           <section className="prism-hero" id="hero">
             <div className="prism-hero__text">
-              <span className="prism-cap prism-hero__eyebrow">
-                Form &amp; Function · 37 Elements
-              </span>
+              <span className="prism-cap prism-hero__eyebrow">Form &amp; Function</span>
               <h1 className="prism-h1 prism-hero__title">
                 A <span className="prism-h1--accent">constructed</span> interface kit
                 <br />

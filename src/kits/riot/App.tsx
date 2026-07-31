@@ -427,9 +427,7 @@ function Demo() {
         <main className="riot-shell__main">
           <section className="riot-hero" id="hero">
             <div className="riot-hero__text">
-              <span className="riot-cap riot-hero__eyebrow">
-                Cut-Up System · 37 Clippings
-              </span>
+              <span className="riot-cap riot-hero__eyebrow">Cut-Up System</span>
               <h1 className="riot-h1 riot-hero__title">
                 A <span className="riot-h1--accent">bootleg</span> interface kit
                 <br />

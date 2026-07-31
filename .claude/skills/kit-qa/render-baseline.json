@@ -2,7 +2,7 @@
  "abyss": {
   "desktop": {
    "__header": "b3bddd39b043",
-   "__hero": "bf2e8775d0b6",
+   "__hero": "b596f3cd2836",
    "__footer": "66c27a9b777f",
    "button": "9fa734e418ec",
    "switch": "f02fad2dd063",
@@ -46,7 +46,7 @@
   },
   "phone": {
    "__header": "315437a70256",
-   "__hero": "e20a7621dbd3",
+   "__hero": "335a3dd08181",
    "__footer": "2c28989d53e4",
    "button": "ecf9c0675c6f",
    "switch": "517a21f61827",
@@ -362,7 +362,7 @@
  "nova": {
   "desktop": {
    "__header": "2a2793cbe251",
-   "__hero": "42e43bd989ff",
+   "__hero": "ab26d910a862",
    "__footer": "7d0b8800b514",
    "button": "626b43a04b37",
    "switch": "b82a9dd50424",
@@ -406,7 +406,7 @@
   },
   "phone": {
    "__header": "2d407592c5dd",
-   "__hero": "66e8466d15d6",
+   "__hero": "b757bf71d013",
    "__footer": "e9eec7d66bfb",
    "button": "4b51f50fd9ed",
    "switch": "234cce47c2b4",
