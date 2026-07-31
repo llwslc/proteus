@@ -173,13 +173,9 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--nocturne-space-5);
   border: 1px solid var(--nocturne-gilt-50);
   box-shadow: var(--nocturne-shadow-frame);
-  padding: 30px 28px;
+  padding: 48px 28px 40px;
   margin-bottom: 26px;
 }
 
@@ -220,7 +216,9 @@
 .nocturne-hero__text {
   position: relative;
   min-width: 0;
-  padding-left: clamp(0px, 3vw, 52px);
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .nocturne-hero__script {
@@ -266,6 +264,7 @@
 .nocturne-hero__stats {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--nocturne-space-5);
   margin-top: var(--nocturne-space-5);
   animation: nocturne-rise 1s var(--nocturne-ease) 0.48s both;
@@ -287,11 +286,10 @@
 }
 
 .nocturne-hero__visual {
-  position: relative;
-  align-self: stretch;
   display: grid;
   place-items: center;
-  padding-right: clamp(0px, 2vw, 28px);
+  width: 200px;
+  margin: 30px clamp(56px, 6.5vw, 104px) 0 auto;
   animation: nocturne-rise 1s var(--nocturne-ease) 0.4s both;
 }
 
@@ -300,7 +298,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--nocturne-space-2);
-  max-width: 220px;
+  max-width: 100%;
   text-align: center;
 }
 
@@ -342,7 +340,7 @@
 }
 
 .nocturne-lantern-stage__hint {
-  white-space: nowrap;
+  line-height: var(--nocturne-lh-140);
 }
 
 .nocturne-grouprule {
@@ -570,16 +568,12 @@
     display: none;
   }
   .nocturne-hero {
-    grid-template-columns: minmax(0, 1fr);
     padding: 20px 16px;
   }
   .nocturne-hero__vine,
   .nocturne-hero__glow,
   .nocturne-hero__visual {
     display: none;
-  }
-  .nocturne-hero__text {
-    padding-left: 0;
   }
   .nocturne-grid {
     grid-template-columns: minmax(0, 1fr);
