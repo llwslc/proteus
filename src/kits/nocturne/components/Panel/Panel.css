@@ -51,7 +51,7 @@
 
 .nocturne-panel__title {
   position: absolute;
-  top: 0;
+  top: calc(var(--nocturne-lining-inset) / 2);
   left: 50%;
   margin: 0;
   transform: translate(-50%, -50%);

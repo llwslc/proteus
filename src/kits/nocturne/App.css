@@ -377,7 +377,8 @@
 .nocturne-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 56px 36px;
+  padding-top: 16px;
   margin-bottom: var(--nocturne-space-6);
 }
 .nocturne-grid > * {
@@ -584,5 +585,6 @@
   }
   .nocturne-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 52px;
   }
 }
