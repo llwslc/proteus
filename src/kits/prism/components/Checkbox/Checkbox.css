@@ -1,0 +1,35 @@
+.prism-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--prism-space-2);
+  cursor: pointer;
+}
+.prism-checkbox:has(.prism-checkbox__box[data-disabled]) {
+  opacity: var(--prism-disabled-opacity);
+  pointer-events: none;
+}
+.prism-checkbox__box {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--prism-checkbox-box);
+  height: var(--prism-checkbox-box);
+  padding: 0;
+  cursor: inherit;
+  transition: background var(--prism-dur) var(--prism-ease);
+}
+.prism-checkbox__box:focus-visible {
+  outline: none;
+  box-shadow: var(--prism-ring);
+}
+.prism-checkbox__box[data-checked],
+.prism-checkbox__box[data-indeterminate] {
+  --prism-surface-fill: var(--prism-primary);
+}
+.prism-checkbox__mark {
+  display: inline-flex;
+  width: var(--prism-fs-15);
+  height: var(--prism-fs-15);
+  color: var(--prism-on-fill);
+}

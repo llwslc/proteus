@@ -1,0 +1,9 @@
+.prism-preview {
+  box-sizing: border-box;
+  width: var(--prism-preview-w);
+  padding: var(--prism-space-4);
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-3);
+}

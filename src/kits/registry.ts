@@ -33,11 +33,11 @@ export const KITS: KitDef[] = [
     loader: () => import("./brass/Loader"),
   },
   {
-    id: "bauhaus",
+    id: "prism",
     label: "PRISM",
     tag: "Bauhaus · Constructivist",
-    app: () => import("./bauhaus"),
-    loader: () => import("./bauhaus/Loader"),
+    app: () => import("./prism"),
+    loader: () => import("./prism/Loader"),
   },
   {
     id: "riot",
@@ -64,6 +64,9 @@ export const KITS: KitDef[] = [
 
 export const DEFAULT_KIT = KITS[0].id;
 
+const LEGACY_IDS: Record<string, string> = { bauhaus: "prism" };
+
 export function resolveKit(id: string | null): string {
-  return KITS.some((k) => k.id === id) ? (id as string) : DEFAULT_KIT;
+  const mapped = (id && LEGACY_IDS[id]) || id;
+  return KITS.some((k) => k.id === mapped) ? (mapped as string) : DEFAULT_KIT;
 }

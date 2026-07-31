@@ -1,0 +1,99 @@
+.prism-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--prism-space-1);
+  height: var(--prism-control-h);
+  padding: 0 var(--prism-space-4);
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-13);
+  font-weight: var(--prism-fw-700);
+  letter-spacing: var(--prism-ls-2);
+  text-transform: uppercase;
+  color: var(--prism-on-fill);
+  cursor: pointer;
+  --prism-surface-fill: var(--prism-accent-surface);
+  transition:
+    box-shadow var(--prism-dur) var(--prism-ease),
+    background var(--prism-dur) var(--prism-ease),
+    color var(--prism-dur) var(--prism-ease),
+    transform var(--prism-dur) var(--prism-ease);
+}
+.prism-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--prism-fs-18);
+}
+.prism-btn:not(:disabled):not([data-disabled]):hover {
+  box-shadow: var(--prism-shadow-hard);
+}
+.prism-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  transition-duration: 0s;
+}
+.prism-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--prism-ring);
+}
+.prism-btn:disabled {
+  opacity: var(--prism-disabled-opacity);
+  box-shadow: none;
+}
+
+.prism-btn--secondary {
+  --prism-surface-fill: var(--prism-secondary);
+}
+.prism-btn--danger {
+  --prism-surface-fill: var(--prism-danger);
+}
+
+.prism-btn--ghost {
+  --prism-surface-fill: transparent;
+  color: var(--prism-text);
+}
+.prism-btn--ghost:not(:disabled):not([data-disabled]):hover {
+  --prism-surface-fill: var(--prism-ink-faint);
+  color: var(--prism-text-bright);
+  box-shadow: none;
+}
+
+.prism-btn--icon {
+  --prism-surface-fill: var(--prism-surface);
+  width: var(--prism-button-icon);
+  height: var(--prism-button-icon);
+  padding: 0;
+  color: var(--prism-text);
+}
+.prism-btn--icon .prism-btn__icon,
+.prism-btn--icon-ghost .prism-btn__icon {
+  font-size: var(--prism-fs-22);
+}
+.prism-btn--icon:not(:disabled):not([data-disabled]):hover {
+  --prism-surface-fill: var(--prism-tint-soft);
+  color: var(--prism-primary);
+  box-shadow: none;
+}
+
+.prism-btn--icon-ghost {
+  width: var(--prism-button-icon-ghost);
+  height: var(--prism-button-icon-ghost);
+  padding: 0;
+  background: none;
+  color: var(--prism-text-dim);
+}
+.prism-btn--icon-ghost:not(:disabled):not([data-disabled]):hover {
+  color: var(--prism-primary);
+  box-shadow: none;
+}
+
+.prism-btn--sm {
+  height: var(--prism-button-h-sm);
+  padding: 0 var(--prism-space-3);
+  font-size: var(--prism-fs-11);
+}
+.prism-btn--lg {
+  height: var(--prism-button-h-lg);
+  padding: 0 var(--prism-space-5);
+  font-size: var(--prism-fs-15);
+}

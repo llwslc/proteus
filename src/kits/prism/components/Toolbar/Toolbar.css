@@ -1,0 +1,40 @@
+.prism-toolbar {
+  flex-wrap: wrap;
+  row-gap: var(--prism-space-2);
+  width: fit-content;
+  max-width: 100%;
+}
+.prism-seg__btn[aria-pressed="true"] {
+  background: var(--prism-primary);
+  color: var(--prism-on-fill);
+}
+.prism-toolbar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--prism-space-1);
+}
+.prism-toolbar__sep {
+  flex: 0 0 var(--prism-stroke);
+  align-self: stretch;
+  margin: 0 var(--prism-space-1);
+  background: var(--prism-ink);
+}
+.prism-toolbar__link {
+  display: inline-flex;
+  align-items: center;
+  height: var(--prism-seg-h);
+  gap: var(--prism-space-2);
+  padding: 0 var(--prism-space-3);
+  color: var(--prism-text-dim);
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-13);
+  letter-spacing: var(--prism-ls-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--prism-dur) var(--prism-ease);
+}
+.prism-toolbar__link:hover,
+.prism-toolbar__link:focus-visible {
+  outline: none;
+  color: var(--prism-primary);
+}

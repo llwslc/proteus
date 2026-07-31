@@ -1,0 +1,62 @@
+import { Tabs as BaseTabs } from "@base-ui/react/tabs";
+import type { ReactNode } from "react";
+import { cx } from "../cx";
+import "./Tabs.css";
+
+export interface TabItem {
+  label: ReactNode;
+  value: string;
+  content: ReactNode;
+  disabled?: boolean;
+}
+
+export interface TabsProps extends Omit<
+  React.ComponentProps<typeof BaseTabs.Root>,
+  "children" | "className" | "value" | "defaultValue" | "onValueChange"
+> {
+  items: TabItem[];
+  defaultValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  className?: string;
+}
+
+export function Tabs({
+  items,
+  defaultValue,
+  value,
+  onValueChange,
+  className,
+  ...props
+}: TabsProps) {
+  return (
+    <BaseTabs.Root
+      className={cx("prism-tabs", className)}
+      defaultValue={defaultValue ?? items[0]?.value}
+      value={value}
+      onValueChange={onValueChange}
+      {...props}
+    >
+      <div className="prism-tabs__rail">
+        <BaseTabs.List className="prism-tabs__list">
+          {items.map((it) => (
+            <BaseTabs.Tab
+              key={it.value}
+              value={it.value}
+              disabled={it.disabled}
+              className="prism-tabs__tab"
+            >
+              {it.label}
+            </BaseTabs.Tab>
+          ))}
+          <BaseTabs.Indicator className="prism-tabs__indicator" />
+        </BaseTabs.List>
+      </div>
+      {items.map((it) => (
+        <BaseTabs.Panel key={it.value} value={it.value} className="prism-tabs__panel">
+          {it.content}
+        </BaseTabs.Panel>
+      ))}
+    </BaseTabs.Root>
+  );
+}

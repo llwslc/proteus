@@ -1,0 +1,43 @@
+.prism-autocomplete {
+  display: flex;
+  align-items: center;
+  gap: var(--prism-space-2);
+  height: var(--prism-control-h);
+  padding: 0 var(--prism-space-3);
+}
+.prism-autocomplete:focus-within {
+  --prism-surface-border: var(--prism-primary);
+  box-shadow: var(--prism-ring);
+}
+.prism-autocomplete:has(.prism-autocomplete__input:disabled) {
+  opacity: var(--prism-disabled-opacity);
+}
+.prism-autocomplete__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-15);
+  color: var(--prism-text);
+}
+.prism-autocomplete__input::placeholder {
+  color: var(--prism-text-mute);
+}
+
+.prism-autocomplete__popup {
+  min-width: var(--anchor-width);
+}
+.prism-autocomplete__list:empty {
+  display: none;
+}
+.prism-autocomplete__empty {
+  padding: var(--prism-space-2) var(--prism-space-3);
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-13);
+  color: var(--prism-text-mute);
+}
+.prism-autocomplete__empty:empty {
+  padding: 0;
+}

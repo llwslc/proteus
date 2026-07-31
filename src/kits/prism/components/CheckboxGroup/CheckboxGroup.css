@@ -1,0 +1,13 @@
+.prism-checkboxgroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-3);
+}
+.prism-checkboxgroup__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-3);
+  margin-left: var(--prism-space-3);
+  padding-left: var(--prism-space-4);
+  border-left: var(--prism-stroke) solid var(--prism-ink);
+}

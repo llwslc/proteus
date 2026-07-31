@@ -1,0 +1,37 @@
+.prism-scrollarea {
+  position: relative;
+}
+.prism-scrollarea__viewport {
+  max-height: var(--prism-scrollarea-h);
+  overscroll-behavior: contain;
+  outline: none;
+}
+.prism-scrollarea__bar {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: var(--prism-scrollbar);
+  padding: 0;
+  background: var(--prism-track);
+  opacity: 0;
+  transition: opacity var(--prism-dur) var(--prism-ease);
+}
+.prism-scrollarea__bar[data-hovering],
+.prism-scrollarea__bar[data-scrolling] {
+  opacity: 1;
+}
+.prism-scrollarea__thumb {
+  width: 100%;
+  background: var(--prism-primary);
+  border-radius: var(--prism-r-control);
+}
+
+.prism-scrollarea--popup .prism-scrollarea__viewport {
+  max-height: min(calc(var(--available-height) - 12px), var(--prism-popup-h));
+}
+.prism-scrollarea--popup .prism-scrollarea__viewport[data-has-overflow-y] {
+  padding-right: var(--prism-space-4);
+}
+.prism-scrollarea--popup .prism-scrollarea__bar {
+  opacity: 1;
+}

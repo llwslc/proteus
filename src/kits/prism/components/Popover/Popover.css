@@ -1,0 +1,17 @@
+.prism-popover {
+  box-sizing: border-box;
+  position: relative;
+  width: var(--prism-popover-w);
+  padding: var(--prism-space-4);
+  outline: none;
+}
+
+.prism-popover__title {
+  margin: 0 var(--prism-space-8) var(--prism-space-2) 0;
+}
+
+.prism-popover__close {
+  position: absolute;
+  top: var(--prism-space-2);
+  right: var(--prism-space-2);
+}

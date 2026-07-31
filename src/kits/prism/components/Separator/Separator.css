@@ -1,0 +1,32 @@
+.prism-separator {
+  background: var(--prism-ink);
+  border: 0;
+}
+.prism-separator--horizontal {
+  width: 100%;
+  height: var(--prism-stroke-hair);
+}
+.prism-separator--vertical {
+  flex: 0 0 var(--prism-stroke-hair);
+  align-self: stretch;
+  width: var(--prism-stroke-hair);
+}
+
+.prism-separator-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--prism-space-3);
+  color: var(--prism-text-dim);
+}
+.prism-separator-labeled__line {
+  flex: 1;
+  height: var(--prism-stroke-hair);
+  background: var(--prism-ink);
+}
+.prism-separator-labeled--start > .prism-separator-labeled__line:first-child,
+.prism-separator-labeled--end > .prism-separator-labeled__line:last-child {
+  flex: 0 0 var(--prism-separator-stub-w);
+}
+.prism-separator-labeled__text {
+  flex: 0 0 auto;
+}

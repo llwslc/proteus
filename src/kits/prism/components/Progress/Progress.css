@@ -1,0 +1,54 @@
+.prism-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-2);
+}
+.prism-progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--prism-space-2);
+}
+.prism-progress__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.prism-progress__value {
+  flex: 0 0 auto;
+  font-family: var(--prism-font-mono);
+  font-size: var(--prism-fs-13);
+  color: var(--prism-text);
+}
+.prism-progress__track {
+  --prism-surface-fill: var(--prism-track);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--prism-progress-h);
+}
+.prism-progress__indicator {
+  height: 100%;
+  background: var(--prism-accent-fill);
+}
+.prism-progress[data-indeterminate] .prism-progress__indicator {
+  position: absolute;
+  left: 0;
+  width: 40%;
+  animation: prism-progress-slide var(--prism-dur-sweep) linear infinite;
+}
+@keyframes prism-progress-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prism-progress[data-indeterminate] .prism-progress__indicator {
+    animation: none;
+    left: 0;
+  }
+}

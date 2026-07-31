@@ -1,0 +1,63 @@
+.prism-numberfield {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-2);
+}
+.prism-numberfield__group {
+  display: flex;
+  align-items: stretch;
+  width: fit-content;
+  max-width: 100%;
+}
+.prism-numberfield__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--prism-numberfield-btn);
+  height: var(--prism-control-h);
+  padding: 0;
+  color: var(--prism-text);
+  font-size: var(--prism-fs-18);
+  cursor: pointer;
+  transition:
+    background var(--prism-dur) var(--prism-ease),
+    color var(--prism-dur) var(--prism-ease);
+}
+.prism-numberfield__btn:not(:disabled):not([data-disabled]):hover {
+  background: var(--prism-tint-soft);
+  color: var(--prism-primary);
+}
+.prism-numberfield__btn:focus-visible {
+  outline: none;
+  z-index: 1;
+}
+.prism-numberfield__btn:active {
+  background: var(--prism-primary);
+  color: var(--prism-on-fill);
+}
+.prism-numberfield__btn:disabled {
+  opacity: var(--prism-disabled-opacity);
+}
+.prism-numberfield__input {
+  box-sizing: border-box;
+  width: var(--prism-numberfield-w);
+  height: var(--prism-control-h);
+  margin: 0 calc(-1 * var(--prism-stroke));
+  padding: 0 var(--prism-space-2);
+  text-align: center;
+  font-family: var(--prism-font-mono);
+  font-size: var(--prism-fs-15);
+  color: var(--prism-text);
+}
+.prism-numberfield__input:focus-visible {
+  outline: none;
+  z-index: 1;
+}
+.prism-numberfield__group:focus-within .prism-numberfield__btn,
+.prism-numberfield__group:focus-within .prism-numberfield__input {
+  --prism-surface-border: var(--prism-primary);
+}
+.prism-numberfield[data-disabled] {
+  opacity: var(--prism-disabled-opacity);
+}

@@ -1,0 +1,77 @@
+.prism-combobox {
+  display: flex;
+  align-items: center;
+  gap: var(--prism-space-1);
+  height: var(--prism-control-h);
+  padding: 0 var(--prism-space-2) 0 var(--prism-space-3);
+}
+.prism-combobox:focus-within {
+  --prism-surface-border: var(--prism-primary);
+  box-shadow: var(--prism-ring);
+}
+.prism-combobox:has(.prism-combobox__input:disabled) {
+  opacity: var(--prism-disabled-opacity);
+}
+.prism-combobox__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-15);
+  color: var(--prism-text);
+}
+.prism-combobox__input::placeholder {
+  color: var(--prism-text-mute);
+}
+
+.prism-combobox__clear,
+.prism-combobox__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--prism-button-icon-ghost);
+  height: var(--prism-button-icon-ghost);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--prism-text-dim);
+  cursor: pointer;
+  font-size: var(--prism-fs-18);
+  transition:
+    color var(--prism-dur) var(--prism-ease),
+    background var(--prism-dur) var(--prism-ease),
+    transform var(--prism-dur) var(--prism-ease);
+}
+.prism-combobox__clear:not(:disabled):not([data-disabled]):hover,
+.prism-combobox__trigger:not(:disabled):not([data-disabled]):hover {
+  background: var(--prism-ink-faint);
+  color: var(--prism-primary);
+}
+.prism-combobox__clear:focus-visible,
+.prism-combobox__trigger:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--prism-stroke) var(--prism-primary);
+}
+.prism-combobox__trigger[data-popup-open] {
+  color: var(--prism-primary);
+  transform: rotate(180deg);
+}
+
+.prism-combobox__popup {
+  min-width: var(--anchor-width);
+}
+.prism-combobox__list:empty {
+  display: none;
+}
+.prism-combobox__empty {
+  padding: var(--prism-space-2) var(--prism-space-3);
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-13);
+  color: var(--prism-text-mute);
+}
+.prism-combobox__empty:empty {
+  padding: 0;
+}

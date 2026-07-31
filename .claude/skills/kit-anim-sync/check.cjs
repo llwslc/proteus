@@ -4,7 +4,7 @@
 // node .claude/skills/kit-anim-sync/check.cjs [port] break   (self-test: should FAIL)
 // Catches the recurring "动画不同步" class the eye keeps finding per-side/per-phase:
 //  (A) a connector (Arrow) more opaque than its popup for >=3 frames — it pops in
-//      ahead of the popup instead of fading with it (the bauhaus/nova connector bug);
+//      ahead of the popup instead of fading with it (the prism/nova connector bug);
 //  (B) a one-shot decoration that animates while its overlay is still off-viewport —
 //      its flourish plays off-screen and is done by the time you see it (the abyss
 //      Drawer key bug). A flaky MOUNT is a WARN, never a FAIL (flaky gate < no gate).

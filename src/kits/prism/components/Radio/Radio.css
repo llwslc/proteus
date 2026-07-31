@@ -1,0 +1,40 @@
+.prism-radiogroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-3);
+}
+.prism-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--prism-space-2);
+  cursor: pointer;
+}
+.prism-radio:has(.prism-radio__control[data-disabled]) {
+  opacity: var(--prism-disabled-opacity);
+  pointer-events: none;
+}
+.prism-radio__control {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--prism-radio-box);
+  height: var(--prism-radio-box);
+  padding: 0;
+  cursor: inherit;
+  --prism-surface-r: var(--prism-r-round);
+  transition: background var(--prism-dur) var(--prism-ease);
+}
+.prism-radio__control:focus-visible {
+  outline: none;
+  box-shadow: var(--prism-ring);
+}
+.prism-radio__control[data-checked] {
+  --prism-surface-fill: var(--prism-primary);
+}
+.prism-radio__dot {
+  width: var(--prism-radio-dot);
+  height: var(--prism-radio-dot);
+  background: var(--prism-on-fill);
+  border-radius: var(--prism-r-round);
+}

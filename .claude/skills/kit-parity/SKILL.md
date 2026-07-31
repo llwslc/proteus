@@ -24,7 +24,7 @@ Kits are discovered from `src/kits/*/components` — never hardcoded, so new kit
 
 ## What it deliberately does NOT check
 
-- **Rendered interaction states** (`:hover`, `:focus-visible`, `[data-highlighted]`, `[data-selected]`, `:disabled`, open/pressed). A state may be styled per-component OR via a shared theme recipe — nova/abyss inline it on each component, brass/bauhaus hoist `.<kit>-list-item[data-highlighted]` into `theme/effects.css` — so a per-component token grep flags the architecture, not a bug. kit-states and kit-interact RENDER and assert these states; that's the real guarantee.
+- **Rendered interaction states** (`:hover`, `:focus-visible`, `[data-highlighted]`, `[data-selected]`, `:disabled`, open/pressed). A state may be styled per-component OR via a shared theme recipe — nova/abyss inline it on each component, brass/prism hoist `.<kit>-list-item[data-highlighted]` into `theme/effects.css` — so a per-component token grep flags the architecture, not a bug. kit-states and kit-interact RENDER and assert these states; that's the real guarantee.
 - **App-level resets** (`box-sizing`, `prefers-reduced-motion`, `scroll-behavior`). These live in `src/shell` and are shared by every kit, so they aren't per-kit concerns — a kit relying on the shell for them is correct, not a gap.
 
 ## Reading the output

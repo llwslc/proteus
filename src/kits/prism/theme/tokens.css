@@ -1,0 +1,143 @@
+:root {
+  --prism-base: #ece5d3;
+  --prism-paper: #f7f3e8;
+  --prism-paper-raised: #efe9d8;
+
+  --prism-primary: #1a4fd6;
+  --prism-secondary: #1b1b1b;
+  --prism-success: #2f9e44;
+  --prism-warning: #f5b612;
+  --prism-danger: #e23121;
+
+  --prism-text: #211d15;
+  --prism-text-bright: #050505;
+  --prism-text-dim: #5c5647;
+  --prism-text-mute: #6c6657;
+  --prism-on-fill: #f7f3e8;
+  --prism-on-warning: #16140f;
+
+  --prism-accent-surface: var(--prism-primary);
+  --prism-accent-fill: var(--prism-primary);
+
+  --prism-tint-soft: rgba(26, 79, 214, 0.1);
+
+  --prism-ink-faint: rgba(20, 20, 20, 0.06);
+  --prism-danger-wash: rgba(226, 49, 33, 0.12);
+  --prism-danger-text: #7c1209;
+
+  --prism-off: #ddd5c0;
+  --prism-track: #e2dbc9;
+
+  --prism-surface: var(--prism-paper);
+  --prism-surface-popup: var(--prism-paper);
+  --prism-surface-modal: #fbf8ef;
+  --prism-surface-inset: #e8e1ce;
+  --prism-scrim: rgba(22, 19, 12, 0.5);
+
+  --prism-ink: #141414;
+  --prism-stroke-hair: 1px;
+  --prism-stroke: 2px;
+  --prism-stroke-bold: 3px;
+  --prism-stroke-heavy: 4px;
+
+  --prism-cast-pop: drop-shadow(5px 5px 0 var(--prism-ink));
+  --prism-cast-sm: drop-shadow(3px 3px 0 var(--prism-ink));
+  --prism-cast-modal: drop-shadow(8px 8px 0 var(--prism-ink));
+  --prism-shadow-hard: 3px 3px 0 var(--prism-ink);
+  --prism-ring: 0 0 0 2px var(--prism-paper), 0 0 0 4px var(--prism-primary);
+  --prism-ring-danger: 0 0 0 2px var(--prism-paper), 0 0 0 4px var(--prism-danger);
+
+  --prism-r-frame: 0;
+  --prism-r-control: 0;
+  --prism-r-chip: 0;
+  --prism-r-round: 999px;
+
+  --prism-z-dropdown: 1200;
+  --prism-z-menu: 1250;
+  --prism-z-tooltip: 1300;
+  --prism-z-backdrop: 1400;
+  --prism-z-overlay: 1401;
+  --prism-z-toast: 1500;
+
+  --prism-dur: 0.16s;
+  --prism-dur-slow: 0.34s;
+  --prism-dur-sweep: 1.5s;
+  --prism-ease: cubic-bezier(0.2, 0, 0, 1);
+  --prism-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --prism-control-h: 40px;
+  --prism-disabled-opacity: 0.4;
+  --prism-modal-pad: 24px;
+
+  --prism-space-1: 4px;
+  --prism-space-2: 8px;
+  --prism-space-3: 12px;
+  --prism-space-4: 16px;
+  --prism-space-5: 20px;
+  --prism-space-6: 24px;
+  --prism-space-7: 28px;
+  --prism-space-8: 32px;
+  --prism-space-9: 36px;
+
+  --prism-font: "Jost", "Century Gothic", "Futura", system-ui, sans-serif;
+  --prism-font-display: "Archivo Black", "Jost", system-ui, sans-serif;
+  --prism-font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+  --prism-fs-11: 11px;
+  --prism-fs-13: 13px;
+  --prism-fs-15: 15px;
+  --prism-fs-18: 18px;
+  --prism-fs-22: 22px;
+  --prism-fs-44: 44px;
+  --prism-ls-1: 0;
+  --prism-ls-2: 0.03em;
+  --prism-ls-4: 0.2em;
+  --prism-lh-100: 1;
+  --prism-lh-130: 1.3;
+  --prism-lh-150: 1.5;
+  --prism-fw-400: 400;
+  --prism-fw-500: 500;
+  --prism-fw-700: 700;
+
+  --prism-button-h-sm: 32px;
+  --prism-button-h-lg: 48px;
+  --prism-button-icon: 40px;
+  --prism-button-icon-ghost: 32px;
+  --prism-switch-w: 54px;
+  --prism-switch-h: 28px;
+  --prism-switch-knob: 20px;
+  --prism-checkbox-box: 22px;
+  --prism-radio-box: 22px;
+  --prism-radio-dot: 8px;
+  --prism-seg-h: 34px;
+  --prism-slider-track: 4px;
+  --prism-slider-thumb: 22px;
+  --prism-numberfield-btn: 38px;
+  --prism-numberfield-w: 64px;
+  --prism-otp-cell-w: 42px;
+  --prism-otp-cell-h: 50px;
+  --prism-otp-cell-w-sm: 36px;
+  --prism-otp-cell-h-sm: 46px;
+  --prism-progress-h: 14px;
+  --prism-meter-h: 16px;
+  --prism-tab-h: 42px;
+  --prism-scrollbar: 12px;
+  --prism-scrollarea-h: 200px;
+  --prism-popup-w: 224px;
+  --prism-list-item-h: 38px;
+  --prism-separator-stub-w: 24px;
+  --prism-popup-h: calc(var(--prism-list-item-h) * 7);
+  --prism-tooltip-w: 240px;
+  --prism-popover-w: 288px;
+  --prism-preview-w: 320px;
+  --prism-dialog-w: 460px;
+  --prism-alert-w: 440px;
+  --prism-drawer-w: 420px;
+  --prism-drawer-h: 460px;
+  --prism-drawer-w-cap: 80%;
+  --prism-drawer-h-cap: 60%;
+  --prism-navmenu-col-w: 210px;
+  --prism-toast-w: 344px;
+  --prism-avatar-sm: 32px;
+  --prism-avatar-md: 44px;
+  --prism-avatar-lg: 64px;
+  --prism-badge-h: 20px;
+}

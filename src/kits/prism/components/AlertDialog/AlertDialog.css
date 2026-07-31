@@ -1,0 +1,26 @@
+.prism-alert {
+  width: min(var(--prism-alert-w), 100%);
+  padding-top: var(--prism-space-7);
+}
+.prism-alert::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--prism-space-2);
+  background: var(--prism-alert-tone, var(--prism-primary));
+}
+.prism-alert .prism-modal__sigil {
+  color: var(--prism-alert-tone, var(--prism-primary));
+}
+
+.prism-alert--primary {
+  --prism-alert-tone: var(--prism-primary);
+}
+.prism-alert--warning {
+  --prism-alert-tone: var(--prism-warning);
+}
+.prism-alert--danger {
+  --prism-alert-tone: var(--prism-danger);
+}

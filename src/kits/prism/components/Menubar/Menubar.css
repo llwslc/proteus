@@ -1,0 +1,6 @@
+.prism-menubar {
+  width: fit-content;
+}
+.prism-menubar__trigger {
+  cursor: pointer;
+}

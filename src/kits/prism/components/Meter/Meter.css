@@ -1,0 +1,42 @@
+.prism-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-2);
+}
+.prism-meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--prism-space-2);
+}
+.prism-meter__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.prism-meter__value {
+  flex: 0 0 auto;
+  font-family: var(--prism-font-mono);
+  font-size: var(--prism-fs-13);
+  color: var(--prism-text);
+}
+.prism-meter__track {
+  --prism-surface-fill: var(--prism-track);
+  width: 100%;
+  height: var(--prism-meter-h);
+  overflow: hidden;
+}
+.prism-meter__indicator {
+  height: 100%;
+  background: var(--prism-meter-fill, var(--prism-accent-fill));
+}
+.prism-meter--success {
+  --prism-meter-fill: var(--prism-success);
+}
+.prism-meter--warning {
+  --prism-meter-fill: var(--prism-warning);
+}
+.prism-meter--danger {
+  --prism-meter-fill: var(--prism-danger);
+}

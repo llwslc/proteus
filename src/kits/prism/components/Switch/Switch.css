@@ -1,0 +1,42 @@
+.prism-switch {
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  width: var(--prism-switch-w);
+  height: var(--prism-switch-h);
+  padding: 0;
+  background: var(--prism-off);
+  border: var(--prism-stroke) solid var(--prism-ink);
+  border-radius: var(--prism-r-control);
+  cursor: pointer;
+  transition: background var(--prism-dur) var(--prism-ease);
+}
+.prism-switch:focus-visible {
+  outline: none;
+  box-shadow: var(--prism-ring);
+}
+.prism-switch[data-checked] {
+  background: var(--prism-primary);
+}
+.prism-switch[data-disabled] {
+  opacity: var(--prism-disabled-opacity);
+}
+.prism-switch__thumb {
+  position: absolute;
+  left: var(--prism-space-1);
+  width: var(--prism-switch-knob);
+  height: var(--prism-switch-knob);
+  background: var(--prism-ink);
+  border-radius: var(--prism-r-round);
+  transition: transform var(--prism-dur) var(--prism-ease-out);
+}
+.prism-switch[data-checked] .prism-switch__thumb {
+  background: var(--prism-on-fill);
+  transform: translateX(
+    calc(
+      var(--prism-switch-w) - var(--prism-switch-knob) - 2 * var(--prism-stroke) - 2 *
+        var(--prism-space-1)
+    )
+  );
+}

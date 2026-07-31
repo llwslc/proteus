@@ -1,0 +1,45 @@
+.prism-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--prism-space-1);
+  height: var(--prism-badge-h);
+  padding: 0 var(--prism-space-2);
+  border: var(--prism-stroke) solid var(--prism-ink);
+  border-radius: var(--prism-r-chip);
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-11);
+  font-weight: var(--prism-fw-700);
+  letter-spacing: var(--prism-ls-2);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.prism-badge__dot {
+  width: var(--prism-radio-dot);
+  height: var(--prism-radio-dot);
+  background: currentColor;
+  border-radius: var(--prism-r-round);
+}
+.prism-badge--primary {
+  background: var(--prism-primary);
+  color: var(--prism-on-fill);
+}
+.prism-badge--secondary {
+  background: var(--prism-secondary);
+  color: var(--prism-on-fill);
+}
+.prism-badge--success {
+  background: var(--prism-success);
+  color: var(--prism-on-fill);
+}
+.prism-badge--warning {
+  background: var(--prism-warning);
+  color: var(--prism-on-warning);
+}
+.prism-badge--danger {
+  background: var(--prism-danger);
+  color: var(--prism-on-fill);
+}
+.prism-badge--neutral {
+  background: var(--prism-surface);
+  color: var(--prism-ink);
+}

@@ -5,7 +5,7 @@ description: Cross-kit class-naming consistency, three checks. (1) For each comp
 
 # kit-naming
 
-The convention is `<kit>-<component>__<part>` — so the same component should carry the same block name in every kit (only the `<kit>-` prefix differs), and a given leaf part is spelled the same way (`__`, never a lone dash) across kits. kit-lint checks token *format* within one kit (everything tokenized, no raw values, no dead tokens, dimension suffixes) but has **no cross-kit name check** — which is how NavigationMenu shipped as `navmenu` (nova/abyss) vs `nav` (brass/bauhaus), with a matching `--<kit>-nav-w` vs nothing, and nothing flagged it.
+The convention is `<kit>-<component>__<part>` — so the same component should carry the same block name in every kit (only the `<kit>-` prefix differs), and a given leaf part is spelled the same way (`__`, never a lone dash) across kits. kit-lint checks token *format* within one kit (everything tokenized, no raw values, no dead tokens, dimension suffixes) but has **no cross-kit name check** — which is how NavigationMenu shipped as `navmenu` (nova/abyss) vs `nav` (brass/prism), with a matching `--<kit>-nav-w` vs nothing, and nothing flagged it.
 
 It runs three checks: **block-name consistency** (the dominant `<kit>-<block>` per shared component must match across kits), **sub-part separator consistency** (no leaf `block-part` where a sibling writes `block__part` — the separator-drift check folded in from the former standalone `kit-part-naming` gate), and **root-slot consistency** (the first component-local block on each `Base*.Root` element's className must match across kits). Any failing exits non-zero.
 

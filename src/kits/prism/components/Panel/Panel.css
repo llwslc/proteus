@@ -1,0 +1,27 @@
+.prism-panel {
+  --prism-surface-fill: var(--prism-paper);
+  border-width: var(--prism-stroke-bold);
+  display: flex;
+  flex-direction: column;
+}
+.prism-panel__head {
+  display: flex;
+  align-items: center;
+  gap: var(--prism-space-3);
+  padding: var(--prism-space-4) var(--prism-space-5);
+  border-bottom: var(--prism-stroke) solid var(--prism-ink);
+}
+.prism-panel__head:empty {
+  display: none;
+}
+.prism-panel__marker {
+  flex: 0 0 auto;
+  font-size: var(--prism-fs-15);
+}
+.prism-panel__title {
+  flex: 1;
+  min-width: 0;
+}
+.prism-panel__body {
+  padding: var(--prism-space-5);
+}

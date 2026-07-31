@@ -1,0 +1,54 @@
+.prism-input {
+  display: flex;
+  align-items: center;
+  gap: var(--prism-space-2);
+  height: var(--prism-control-h);
+  padding: 0 var(--prism-space-3);
+}
+.prism-input:focus-within {
+  --prism-surface-border: var(--prism-primary);
+  box-shadow: var(--prism-ring);
+}
+.prism-input:has(.prism-input__control[data-disabled]) {
+  opacity: var(--prism-disabled-opacity);
+}
+.prism-input:has(.prism-input__control[data-invalid]) {
+  --prism-surface-border: var(--prism-ink);
+  box-shadow: var(--prism-ring-danger);
+}
+.prism-input__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--prism-text-dim);
+  font-size: var(--prism-fs-18);
+}
+.prism-input__control {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-15);
+  color: var(--prism-text);
+}
+.prism-input__control::placeholder {
+  color: var(--prism-text-mute);
+}
+
+.prism-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-2);
+}
+.prism-field__desc {
+  font-size: var(--prism-fs-13);
+  color: var(--prism-text-mute);
+}
+.prism-field__error {
+  margin: 0;
+  font-family: var(--prism-font);
+  font-size: var(--prism-fs-13);
+  font-weight: var(--prism-fw-500);
+  color: var(--prism-danger-text);
+}
