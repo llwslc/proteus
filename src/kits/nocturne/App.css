@@ -158,7 +158,7 @@
   overflow: hidden;
   border: 1px solid var(--nocturne-gilt-50);
   box-shadow: var(--nocturne-shadow-frame);
-  padding: 48px 28px 40px;
+  padding: 30px 28px;
   margin-bottom: 26px;
 }
 
@@ -201,6 +201,7 @@
   min-width: 0;
   max-width: 640px;
   margin: 0 auto;
+  padding: 18px 0 10px;
   text-align: center;
 }
 
