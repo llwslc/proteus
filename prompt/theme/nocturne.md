@@ -23,7 +23,7 @@
 ## 2. 字体与排版
 
 - 字体：display 与正文同族 **Cormorant Garamond**，display 档靠字距与字重区分；mono 槽用打字机体 **Courier Prime**（缩码、数值、时钟）；花体 `font-script` **Tangerine**（拉丁学名、引言）；手记语气用本族斜体，不另立字族。
-- 尺度：字号 `fs-12 / 13 / 14 / 16 / 18 / 24 / 30 / 40`；字距整数 px `ls-1 1px / ls-2 2px / ls-3 3px / ls-4 5px / ls-5 8px`，宽字距居中标题配等值 `text-indent` 回正；行高 `lh-110 / 140 / 180`；字重 `fw-400 / 500 / 600 / 700`。
+- 尺度：字号 `fs-12 / 14 / 16 / 18 / 24 / 30 / 40`；字距整数 px `ls-1 1px / ls-2 2px / ls-3 3px / ls-4 5px / ls-5 8px`，宽字距居中标题配等值 `text-indent` 回正；行高 `lh-110 / 140 / 180`；字重 `fw-400 / 500 / 600 / 700`。
 - 三档标题：`h1` = serif · fs-40 · fw-600 · ls-5 · text + 幽光字影；`h2` = serif · fs-24 · fw-600 · ls-4 · text；`h3` = serif · fs-16 · fw-600 · ls-3 · 大写 · text-bright。正文 `text` = serif · fs-16 · lh-180 · text。修饰类 `h1--accent` = 强调词转 `gilt-bright`。
 - 字段标签 caption 独立类 **`.nocturne-cap`**：serif · fs-12 · 大写 · ls-3 · `gilt`——黄铜刻字的标本标签，组件统一引用。
 
@@ -34,7 +34,7 @@
 - frame 原语 `.nocturne-surface`：1px border + 直角 + 背景填充，输入变量 `--nocturne-surface-fill / -border`；发丝内衬线走 `.nocturne-lined`（`::before` 内缩 `lining-inset`）；丝绒配方 `.nocturne-velvet`（顶缘幽金 radial + 112deg 织纹 + 185deg 落夜渐变）、`.nocturne-velvet--wine`（顶部再罩一层酒红 radial），图版、模态、浮层面共用。
 - 抬升：锚定浮层挂 `drop-pop` + 幽辉，模态挂 `shadow-modal`，面内图版框挂 `shadow-frame`。
 - 浮层连接件（Arrow）是一枚 45° 菱形棱尖，面色随弹层、朝外两边压 `gilt-50` 线。
-- 母题（构成件数按此复刻，不减配）：**蔓枝**——黄铜单线枝干，`stroke-dashoffset` 自根梢生长，叶、苞、花着生枝上错拍展开；**实填叶**——豆荚形对称叶，`leaf` 渐变实填 + 1 条 `gilt` 中脉；**苞**——泪滴形 `petal` 渐变实填 + 2 条折线瓣纹 + 基部萼弧；**卷须**——黄铜螺旋单线；**五瓣满花**——5 枚泪滴瓣 72° 环列（`petal` 暗档或 `petal-lit` 亮档）+ 花芯金盘 + 环列蕊点 5 粒，瓣自基点错拍过冲绽开、芯随后亮起；**角饰 sprig**——1 段枝梗弧线 + 3 片互不重叠描线叶 + 基部 1 粒圆点，全描线不实填；**满月圆点**——`accent-fill` 金珠；**酒红题匾 plaque**——`accent-surface` 底 + `gilt-50` 框 + `gilt-bright` 宽距字；**黄铜发丝线**——两端隐没渐变细线。靠输入变量换色。
+- 母题（构成件数按此复刻，不减配）：**蔓枝**——黄铜单线枝干，`stroke-dashoffset` 自根梢生长，叶、苞、花着生枝上错拍展开；**实填叶**——豆荚形对称叶，`leaf` 渐变实填 + 1 条 `gilt` 中脉；**苞**——泪滴形 `petal` 渐变实填 + 2 条折线瓣纹 + 基部萼弧；**卷须**——黄铜螺旋单线；**五瓣满花**——5 枚泪滴瓣 72° 环列（`petal` 暗档或 `petal-lit` 亮档）+ 花芯金盘 + 环列蕊点 5 粒，瓣自基点错拍过冲绽开、芯随后亮起；**角饰 sprig**——1 段枝梗弧线 + 3 片互不重叠描线叶 + 基部 1 粒圆点，全描线不实填；**满月圆点**——`accent-fill` 金珠；**酒红题匾 plaque**——`accent-surface` 底 + `gilt-50` 框 + `gilt-bright` 宽距字（fs-16，与 cap 拉开层级）；**黄铜发丝线**——两端隐没渐变细线。靠输入变量换色。
 
 ## 4. 氛围层
 
