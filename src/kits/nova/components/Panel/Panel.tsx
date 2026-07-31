@@ -11,7 +11,7 @@ export interface PanelProps {
 
 export function Panel({ title, children, scan, className }: PanelProps) {
   return (
-    <div className="nova-panel-frame">
+    <div className="nova-panel__frame">
       <i className="nova-panel__corner nova-panel__corner--tr" aria-hidden />
       <i className="nova-panel__corner nova-panel__corner--bl" aria-hidden />
       <section

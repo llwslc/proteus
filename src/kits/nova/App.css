@@ -227,7 +227,7 @@
 .nova-section--wide {
   grid-column: 1 / -1;
 }
-.nova-section > .nova-panel-frame {
+.nova-section > .nova-panel__frame {
   flex: 1;
   min-width: 0;
 }

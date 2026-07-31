@@ -1,6 +1,14 @@
 .nocturne-panel {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  min-width: 0;
+}
+
+.nocturne-panel__frame {
   position: relative;
   isolation: isolate;
+  flex: 1;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--nocturne-gilt-50);
@@ -58,11 +66,14 @@
 }
 
 .nocturne-panel .nocturne-panel {
+  padding-top: 0;
+}
+.nocturne-panel .nocturne-panel .nocturne-panel__frame {
   box-shadow: none;
   border-color: var(--nocturne-gilt-30);
   padding: var(--nocturne-space-4);
 }
-.nocturne-panel .nocturne-panel::before {
+.nocturne-panel .nocturne-panel .nocturne-panel__frame::before {
   display: none;
 }
 .nocturne-panel .nocturne-panel .nocturne-panel__corner {
@@ -94,7 +105,7 @@
 }
 
 @media (max-width: 768px) {
-  .nocturne-panel {
+  .nocturne-panel__frame {
     padding: 40px var(--nocturne-space-4) 30px;
   }
   .nocturne-panel__corner {

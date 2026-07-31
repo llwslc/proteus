@@ -24,21 +24,25 @@ function PanelCorner({ mod }: { mod: string }) {
 
 export function Panel({ title, corners = true, children }: PanelProps) {
   return (
-    <section className={cx("nocturne-panel", "nocturne-velvet", "nocturne-lined")}>
-      {corners ? (
-        <>
-          <PanelCorner mod="tl" />
-          <PanelCorner mod="tr" />
-          <PanelCorner mod="bl" />
-          <PanelCorner mod="br" />
-        </>
-      ) : null}
-      {title && (
-        <header className="nocturne-panel__head">
-          {title && <h3 className="nocturne-plaque nocturne-panel__title">{title}</h3>}
-        </header>
-      )}
-      <div className="nocturne-panel__body">{children}</div>
-    </section>
+    <div className="nocturne-panel">
+      <section
+        className={cx("nocturne-panel__frame", "nocturne-velvet", "nocturne-lined")}
+      >
+        {corners ? (
+          <>
+            <PanelCorner mod="tl" />
+            <PanelCorner mod="tr" />
+            <PanelCorner mod="bl" />
+            <PanelCorner mod="br" />
+          </>
+        ) : null}
+        {title && (
+          <header className="nocturne-panel__head">
+            {title && <h3 className="nocturne-plaque nocturne-panel__title">{title}</h3>}
+          </header>
+        )}
+        <div className="nocturne-panel__body">{children}</div>
+      </section>
+    </div>
   );
 }

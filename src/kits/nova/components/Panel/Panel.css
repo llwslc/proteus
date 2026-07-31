@@ -1,8 +1,8 @@
-.nova-panel-frame {
+.nova-panel__frame {
   position: relative;
   display: flex;
 }
-.nova-panel-frame > .nova-panel {
+.nova-panel__frame > .nova-panel {
   flex: 1;
   min-width: 0;
 }
