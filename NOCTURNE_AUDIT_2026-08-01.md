@@ -61,7 +61,11 @@ Progress/Meter 一度报「填充仅 5.7%」，是探针选择器把数值标签
 
 ## 五、门禁基线
 
-全量门复跑：32 项 PASS、0 FAIL（指纹在 hero 修复后按差异面核对为 nocturne 39 面板，已刷基线）。对 nocturne 逐门为（kit-a11y 97 个目标、kit-anim-sync、kit-api、kit-deadcode、kit-demo-states、kit-distinct 51%/36% 远低于阈值、kit-entrance、kit-equality、kit-glyph-center、kit-interact、kit-lint、kit-naming、kit-parity、kit-skeleton、kit-spec-coverage、kit-spec-props、kit-structure、kit-submenu-gap、kit-visual、theme-doc-sync、fingerprint）。唯一 FAIL 即第二节的 hero 钉值，已修。
+审查首轮：22 门对 nocturne 跑出 21 PASS + 1 FAIL，FAIL 即第二节的 hero 钉值。
+
+修复后复跑全部七套：32 项 PASS，唯一红灯是指纹，差异面核对为 nocturne 39 面板（正是 hero 修复的影响面），已刷基线。
+
+覆盖的门：kit-a11y（97 个目标）、kit-anim-sync、kit-api、kit-deadcode、kit-demo-states、kit-distinct（51%/36%，阈值 75%/80%）、kit-entrance、kit-equality、kit-glyph-center、kit-interact、kit-lint、kit-naming、kit-parity、kit-skeleton、kit-spec-coverage、kit-spec-props、kit-structure、kit-submenu-gap、kit-visual、theme-doc-sync、fingerprint。
 
 ## 六、兄弟套顺带发现（已验证，不在本次修复范围）
 
