@@ -52,7 +52,7 @@
   display: inline-block;
   padding: var(--nocturne-space-1) var(--nocturne-space-5);
   border: 1px solid var(--nocturne-gilt-50);
-  background: var(--nocturne-accent-surface);
+  background: var(--nocturne-plaque-surface);
   box-shadow: var(--nocturne-shadow-plaque);
   color: var(--nocturne-gilt-bright);
   font-size: var(--nocturne-fs-16);

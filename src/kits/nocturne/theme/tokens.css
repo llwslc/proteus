@@ -19,6 +19,7 @@
   --nocturne-primary: #93304f;
   --nocturne-primary-bright: #c4718a;
   --nocturne-primary-deep: #7a2440;
+  --nocturne-primary-dusk: #5c1a2e;
   --nocturne-primary-shadow: #431222;
   --nocturne-primary-50: rgba(122, 36, 64, 0.5);
   --nocturne-primary-25: rgba(122, 36, 64, 0.25);
@@ -48,6 +49,11 @@
     180deg,
     var(--nocturne-primary),
     var(--nocturne-primary-deep)
+  );
+  --nocturne-plaque-surface: linear-gradient(
+    180deg,
+    var(--nocturne-primary-dusk),
+    var(--nocturne-primary-shadow)
   );
   --nocturne-accent-fill: radial-gradient(
     circle at 35% 30%,

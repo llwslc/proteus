@@ -11,7 +11,7 @@
 - 背景：`bg #1d1126` 深茄紫黑页底，`bg-deep #120a18` 更沉的夜（暗隙、分段箱底）。
 - 表面：`surface #251733` 面板丝绒基色，`surface-pop #2e1d3e` 浮层面，`surface-inset rgba(18,10,24,.6)` 输入凹面与未填充轨道共用的暗底，`scrim rgba(10,5,14,.74)` 模态背板；模态面 = `surface-pop` 走酒红丝绒配方（见 §3）。
 - 黄铜 gilt 家族（描边、题字、焦点、选中指示）：`gilt #c69a4e`、`gilt-bright #e9cc8a`、`gilt-dim #8a6b3a`；alpha 档 `gilt-50 rgba(198,154,78,.5)`（浮层与升档描边）、`gilt-30 rgba(198,154,78,.3)`（静止描边、内衬线）、`gilt-10 rgba(198,154,78,.1)`（ghost 悬停底）；亮铜辉 `glow-12 rgba(233,204,138,.12)`（幽光）、`glow-40 rgba(233,204,138,.4)`（标记辉）。
-- 酒红 primary 家族（主动作填充、激活表面）：`primary #93304f`（亮头）、`primary-bright #c4718a`（tone 强调亮档）、`primary-deep #7a2440`（填充主体）、`primary-shadow #431222`（暗尾、按压）；alpha 档 `primary-50 rgba(122,36,64,.5)`（行扫亮端）、`primary-25 rgba(122,36,64,.25)`（衬底）、`primary-12 rgba(122,36,64,.12)`（行扫尾）。
+- 酒红 primary 家族（主动作填充、激活表面）：`primary #93304f`（亮头）、`primary-bright #c4718a`（tone 强调亮档）、`primary-deep #7a2440`（填充主体）、`primary-dusk #5c1a2e`（题匾底，暗于按钮一档）、`primary-shadow #431222`（暗尾、按压）；alpha 档 `primary-50 rgba(122,36,64,.5)`（行扫亮端）、`primary-25 rgba(122,36,64,.25)`（衬底）、`primary-12 rgba(122,36,64,.12)`（行扫尾）。
 - 其余语义：success 苔绿 `#9dbb7a`、`success-deep #45602f`；warning 琥珀 `#e0873a`、`warning-deep #7a431c`；danger 赤红 `#d66a76`、`danger-deep #8c2735`；危险行扫 `danger-50 rgba(140,39,53,.5)`、`danger-12 rgba(140,39,53,.12)`。
 - 文本：`text #efe6d8` 骨白、`text-bright #f9f3e7`、`text-dim #cbbbd0` 冷藕灰、`text-mute #af9dc2` 紫灰；反色前景 `on-fill #f6efe2`（深填充上）。
 - 对比取舍：功能字最低档 `text-mute` 于 `surface-pop` ≥4.5:1；强调正文与焦点走 gilt 家族，wine 只作填充与装饰、不作正文。
@@ -34,7 +34,7 @@
 - frame 原语 `.nocturne-surface`：1px border + 直角 + 背景填充，输入变量 `--nocturne-surface-fill / -border`；发丝内衬线走 `.nocturne-lined`（`::before` 内缩 `lining-inset`）；丝绒配方 `.nocturne-velvet`（顶缘幽金 radial + 112deg 织纹 + 185deg 落夜渐变）、`.nocturne-velvet--wine`（顶部再罩一层酒红 radial），图版、模态、浮层面共用。
 - 抬升：锚定浮层挂 `drop-pop` + 幽辉，模态挂 `shadow-modal`，面内图版框挂 `shadow-frame`。
 - 浮层连接件（Arrow）是一枚 45° 菱形棱尖，面色随弹层、朝外两边压 `gilt-50` 线。
-- 母题（构成件数按此复刻，不减配）：**蔓枝**——黄铜单线枝干，`stroke-dashoffset` 自根梢生长，叶、苞、花着生枝上错拍展开；**实填叶**——豆荚形对称叶，`leaf` 渐变实填 + 1 条 `gilt` 中脉；**苞**——泪滴形 `petal` 渐变实填 + 2 条折线瓣纹 + 基部萼弧；**卷须**——黄铜螺旋单线；**五瓣满花**——5 枚泪滴瓣 72° 环列（`petal` 暗档或 `petal-lit` 亮档）+ 花芯金盘 + 环列蕊点 5 粒，瓣自基点错拍过冲绽开、芯随后亮起；**角饰 sprig**——1 段枝梗弧线 + 3 片互不重叠描线叶 + 基部 1 粒圆点，全描线不实填；**满月圆点**——`accent-fill` 金珠；**酒红题匾 plaque**——`accent-surface` 底 + `gilt-50` 框 + `gilt-bright` 宽距字（fs-16，与 cap 拉开层级）；**黄铜发丝线**——两端隐没渐变细线。靠输入变量换色。
+- 母题（构成件数按此复刻，不减配）：**蔓枝**——黄铜单线枝干，`stroke-dashoffset` 自根梢生长，叶、苞、花着生枝上错拍展开；**实填叶**——豆荚形对称叶，`leaf` 渐变实填 + 1 条 `gilt` 中脉；**苞**——泪滴形 `petal` 渐变实填 + 2 条折线瓣纹 + 基部萼弧；**卷须**——黄铜螺旋单线；**五瓣满花**——5 枚泪滴瓣 72° 环列（`petal` 暗档或 `petal-lit` 亮档）+ 花芯金盘 + 环列蕊点 5 粒，瓣自基点错拍过冲绽开、芯随后亮起；**角饰 sprig**——1 段枝梗弧线 + 3 片互不重叠描线叶 + 基部 1 粒圆点，全描线不实填；**满月圆点**——`accent-fill` 金珠；**酒红题匾 plaque**——`plaque-surface` 暗酒渐变底（dusk→shadow，退于按钮亮面之后）+ `gilt-50` 框 + `gilt-bright` 宽距字（fs-16，与 cap 拉开层级）；**黄铜发丝线**——两端隐没渐变细线。靠输入变量换色。
 
 ## 4. 氛围层
 
