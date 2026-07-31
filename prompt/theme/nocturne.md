@@ -23,7 +23,7 @@
 ## 2. 字体与排版
 
 - 字体：display 与正文同族 **Cormorant Garamond**，display 档靠字距与字重区分；mono 槽用打字机体 **Courier Prime**（缩码、数值、时钟）；花体 `font-script` **Tangerine**（拉丁学名、引言）；手记语气用本族斜体，不另立字族。
-- 尺度：字号 `fs-12 / 14 / 16 / 18 / 24 / 30 / 40`；字距整数 px `ls-1 1px / ls-2 2px / ls-3 3px / ls-4 5px / ls-5 8px`，宽字距居中标题配等值 `text-indent` 回正；行高 `lh-110 / 140 / 180`；字重 `fw-400 / 500 / 600 / 700`。
+- 尺度：字号 `fs-12 / 13 / 14 / 16 / 18 / 24 / 30 / 40`；字距整数 px `ls-1 1px / ls-2 2px / ls-3 3px / ls-4 5px / ls-5 8px`，宽字距居中标题配等值 `text-indent` 回正；行高 `lh-110 / 140 / 180`；字重 `fw-400 / 500 / 600 / 700`。
 - 三档标题：`h1` = serif · fs-40 · fw-600 · ls-5 · text + 幽光字影；`h2` = serif · fs-24 · fw-600 · ls-4 · text；`h3` = serif · fs-16 · fw-600 · ls-3 · 大写 · text-bright。正文 `text` = serif · fs-16 · lh-180 · text。修饰类 `h1--accent` = 强调词转 `gilt-bright`。
 - 字段标签 caption 独立类 **`.nocturne-cap`**：serif · fs-12 · 大写 · ls-3 · `gilt`——黄铜刻字的标本标签，组件统一引用。
 
