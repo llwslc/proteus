@@ -130,8 +130,18 @@ const AUDIT = ({ vw, exempt }) => {
         if (!vis(el) || !isContent(el)) continue;
         const r = R.get(el);
         if (r.width === 0 || r.height === 0 || srOnly(el, r) || insideClipper(el, panel)) continue;
-        const over = Math.max(r.right - pr.right, pr.left - r.left, r.bottom - pr.bottom, pr.top - r.top);
-        if (over > 2) out.push(`HIGH   ${id}  clipped: ${desc(el)} spills ${Math.round(over)}px past panel`);
+        // deliberate edge-straddle (nameplate archetype): abspos, bridges the crossed edge, protrudes ≤ half its
+        // own size on that edge — an in-flow element forced out by layout pressure is never abspos, so real spills
+        // still flag; each spilled edge must qualify independently (a legit top straddle can't excuse a right spill)
+        const abs = cs(el).position === 'absolute';
+        const edges = [
+          [pr.top - r.top, r.bottom > pr.top, r.height],
+          [r.bottom - pr.bottom, r.top < pr.bottom, r.height],
+          [pr.left - r.left, r.right > pr.left, r.width],
+          [r.right - pr.right, r.left < pr.right, r.width],
+        ];
+        const bad = edges.filter(([spill, bridges, size]) => spill > 2 && !(abs && bridges && spill <= size / 2 + 2));
+        if (bad.length) out.push(`HIGH   ${id}  clipped: ${desc(el)} spills ${Math.round(Math.max(...bad.map(([s]) => s)))}px past panel`);
       }
     }
 
