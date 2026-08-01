@@ -65,8 +65,8 @@
   --nocturne-bloom-tone-deep: var(--nocturne-gilt-dim);
 }
 .nocturne-toast__marker--success {
-  --nocturne-bloom-tone: var(--nocturne-success);
-  --nocturne-bloom-tone-deep: var(--nocturne-success-deep);
+  --nocturne-bloom-tone: var(--nocturne-petal-moon);
+  --nocturne-bloom-tone-deep: var(--nocturne-petal-moon-deep);
 }
 .nocturne-toast__marker--warning {
   --nocturne-bloom-tone: var(--nocturne-warning);

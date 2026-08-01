@@ -63,7 +63,7 @@
 }
 
 .nocturne-radio:hover
-  .nocturne-radio__control:not([data-disabled])
+  .nocturne-radio__control:not([data-disabled]):not([data-checked])
   .nocturne-radio__shade {
   translate: 14% 0;
 }

@@ -54,12 +54,20 @@
   filter: var(--nocturne-drop-mark) drop-shadow(0 0 8px var(--nocturne-glow-12));
 }
 
+.nocturne-progress[data-indeterminate] .nocturne-progress__track {
+  overflow: hidden;
+}
+
 .nocturne-progress[data-indeterminate] .nocturne-progress__indicator {
   width: 40%;
   animation: nocturne-sweep var(--nocturne-dur-sweep) linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .nocturne-progress[data-indeterminate] .nocturne-progress__track {
+    overflow: hidden;
+  }
+
   .nocturne-progress[data-indeterminate] .nocturne-progress__indicator {
     animation: none;
   }

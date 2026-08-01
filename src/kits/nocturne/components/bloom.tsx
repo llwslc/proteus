@@ -348,27 +348,6 @@ export function ModalVine() {
   );
 }
 
-export function ModalCorners() {
-  const corner = (mod: string) => (
-    <span
-      className={`nocturne-modal__corner nocturne-modal__corner--${mod}`}
-      aria-hidden="true"
-    >
-      <svg className="nocturne-modal__sprig" viewBox="0 0 56 56" focusable="false">
-        <Sprig transform="translate(56,0) scale(-1,1)" />
-      </svg>
-    </span>
-  );
-  return (
-    <>
-      {corner("tl")}
-      {corner("tr")}
-      {corner("bl")}
-      {corner("br")}
-    </>
-  );
-}
-
 export function Sprig({ transform, className, style }: Omit<MotifPieceProps, "defs">) {
   const leaf = (
     <>

@@ -19,8 +19,8 @@
     var(--nocturne-success)
   );
   --nocturne-meter-glow: var(--nocturne-glow-12);
-  --nocturne-bloom-tone: var(--nocturne-success);
-  --nocturne-bloom-tone-deep: var(--nocturne-success-deep);
+  --nocturne-bloom-tone: var(--nocturne-petal-moon);
+  --nocturne-bloom-tone-deep: var(--nocturne-petal-moon-deep);
 }
 
 .nocturne-meter--warning {

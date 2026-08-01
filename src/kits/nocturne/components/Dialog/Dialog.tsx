@@ -5,7 +5,7 @@ import { cx } from "../cx";
 import { Button } from "../Button";
 import type { ButtonSize, ButtonVariant } from "../Button";
 import { XIcon } from "../icons";
-import { ModalCorners, ModalVine } from "../bloom";
+import { ModalVine } from "../bloom";
 import "./Dialog.css";
 
 export interface DialogProps {
@@ -47,7 +47,6 @@ export function Dialog({
               className,
             )}
           >
-            <ModalCorners />
             <BaseDialog.Close
               className="nocturne-modal-close"
               render={
