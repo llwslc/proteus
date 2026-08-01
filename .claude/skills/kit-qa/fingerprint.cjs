@@ -108,6 +108,12 @@ const UPDATE = process.argv.includes('--update');
   if (diffs.length) {
     console.log(`RENDER CHANGED — ${diffs.length} 处静息渲染与基线不同:`);
     for (const d of diffs) console.log('  ' + d);
+    const perKit = {};
+    for (const d of diffs) { const k = d.split(' ')[0]; perKit[k] = (perKit[k] || 0) + 1; }
+    const totalPer = Object.entries(out).map(([k, v]) => [k, Object.values(v).reduce((n, w) => n + Object.keys(w).length, 0)]);
+    const broad = totalPer.filter(([k, n]) => perKit[k] >= n * 0.8).map(([k]) => k);
+    if (broad.length)
+      console.log(`\n注意：${broad.join('、')} 的差异覆盖了该套八成以上面板。改动后立刻跑常因 Vite 尚未重建而整套读到旧构建——先等构建落定再跑一次，两次一致才动基线。`);
     console.log('\n有意的改动 → 跑相应动态门验收后 --update 刷基线;无意的 → 这就是回归。');
     process.exit(1);
   }

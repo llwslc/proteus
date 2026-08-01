@@ -28,6 +28,7 @@
   align-items: center;
   height: var(--nocturne-thumb-bloom);
   width: 100%;
+  padding-inline: calc(var(--nocturne-thumb-bloom) / 2);
   cursor: pointer;
 }
 .nocturne-slider[data-disabled] .nocturne-slider__control {
