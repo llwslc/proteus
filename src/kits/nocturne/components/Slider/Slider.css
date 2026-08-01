@@ -47,9 +47,6 @@
   height: var(--nocturne-thumb-bloom);
   border-radius: var(--nocturne-r-full);
   outline: none;
-  margin-inline-start: calc(
-    (0.5 - var(--nocturne-slider-frac, 0.5)) * var(--nocturne-thumb-bloom)
-  );
 }
 
 .nocturne-slider__bloom {

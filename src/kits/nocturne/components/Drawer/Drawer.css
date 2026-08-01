@@ -104,6 +104,6 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: var(--nocturne-space-1);
-  margin: var(--nocturne-space-3) calc(-1 * var(--nocturne-space-1)) 0;
+  padding: var(--nocturne-space-1) calc(var(--nocturne-thumb-bloom) / 2);
+  margin: var(--nocturne-space-3) calc(-1 * var(--nocturne-thumb-bloom) / 2) 0;
 }
