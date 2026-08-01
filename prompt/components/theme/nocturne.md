@@ -49,7 +49,7 @@
 - Avatar：圆形画框——1px `gilt-50` 外环 + 1px `bg` 内隙 + `surface-pop` 底；图裁圆；fallback = 衬线单字 `gilt-bright`；status 右下小圆（`bg` 描边）：online `success`、busy `danger`、away `warning`、offline `text-mute`。
 - Badge：铭签 chip——1px 框、`fs-12` `ls-2` 字；primary = `accent-surface` 底 `on-fill` 字；success、warning、danger = 各家 `-deep` 底 `on-fill` 字；secondary = 透明底 `gilt-50` 框 `gilt-bright` 字；neutral = `bg-deep` 底 `text-dim` 字；dot = 前缀圆点取本 tone 亮档。
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`gilt-bright` 字 + hover 底线；组间分隔竖发丝线。
-- ScrollArea：panel 型 thumb = `gilt-dim` 细条、hover 转 `gilt`、轨透明；popup 型 thumb `gilt` 3px 常显、离框 `space-1`，充当弹层溢出提示。
+- ScrollArea：thumb 是 `gilt-dim` 细条、填满条宽，悬停转 `gilt`；轨透明；panel 型悬停显、popup 型常显——thumb 换 `gilt`、整条离框 `space-1`，充当弹层列表的溢出提示。
 - Separator：`gilt` 两端隐没渐变发丝线；带 label 版 = 线 + `.nocturne-cap` 字 + 线；竖向 1px `gilt-30` 实线；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
 - Panel：丝绒图版——`velvet` 面 + 1px `gilt-50` 框 + 发丝内衬线 + `shadow-frame` + 四角 sprig 角饰垫于内容之下（prop `corners` 默认开）；title 落在骑双线框组居中半出的酒红题匾（母题 plaque）；嵌套 Panel 无 sprig 无题匾，title 行内 `h3`。
 - 占位图标是 1.5 描线圆头简笔（`icons.tsx` 统一 `1em`、`currentColor`）。

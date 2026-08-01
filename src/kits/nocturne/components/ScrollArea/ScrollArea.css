@@ -17,6 +17,12 @@
   bottom: var(--nocturne-space-1);
   width: 3px;
   display: var(--nocturne-scrollbar-display, block);
+  opacity: 0;
+  transition: opacity var(--nocturne-dur) var(--nocturne-ease);
+}
+.nocturne-scrollarea__bar[data-hovering],
+.nocturne-scrollarea__bar[data-scrolling] {
+  opacity: 1;
 }
 .nocturne-scrollarea__bar[hidden] {
   display: none;
@@ -38,6 +44,10 @@
 
 .nocturne-scrollarea--popup .nocturne-scrollarea__viewport[data-has-overflow-y] {
   padding-right: calc(3px + var(--nocturne-space-2));
+}
+
+.nocturne-scrollarea--popup .nocturne-scrollarea__bar {
+  opacity: 1;
 }
 
 .nocturne-scrollarea--popup .nocturne-scrollarea__thumb {
