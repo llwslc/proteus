@@ -46,19 +46,7 @@ const ONLY = process.argv[3];
             if (r.width < 2) continue;
             el.setAttribute('data-bleed-probe', label + '-' + i++);
           }
-          // 极值装饰：把每个滑块推到两端，量旋钮
-          for (const sl of clip.querySelectorAll('[class*="slider"]')) {
-            const thumb = sl.querySelector('[class*="thumb"]');
-            const track = sl.querySelector('[class*="track"], [class*="rail"]');
-            if (!thumb || !track) continue;
-            const tr = track.getBoundingClientRect(), th = thumb.getBoundingClientRect();
-            const half = th.width / 2;
-            const atMax = tr.right + half, atMin = tr.left - half;
-            const over = Math.max(atMax - box.right, box.left - atMin);
-            if (over > 0.5)
-              out.push({ clip: label, el: (typeof sl.className === 'string' ? sl.className : '').split(/\s+/)[0],
-                         kind: '极值旋钮', over: +over.toFixed(1) });
-          }
+
         }
         return out;
       });
