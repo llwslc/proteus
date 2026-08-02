@@ -39,9 +39,6 @@
   background: var(--prism-primary);
 }
 .prism-slider__thumb {
-  margin-inline-start: calc(
-    (0.5 - var(--prism-slider-frac, 0.5)) * var(--prism-slider-thumb)
-  );
   width: var(--prism-slider-thumb);
   height: var(--prism-slider-thumb);
   background: var(--prism-on-fill);

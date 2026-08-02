@@ -35,9 +35,6 @@
   background: var(--brass-accent-fill);
 }
 .brass-slider__thumb {
-  margin-inline-start: calc(
-    (0.5 - var(--brass-slider-frac, 0.5)) * var(--brass-slider-thumb)
-  );
   width: var(--brass-slider-thumb);
   height: var(--brass-slider-thumb);
   transition: filter var(--brass-dur) var(--brass-ease);

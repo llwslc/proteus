@@ -42,9 +42,6 @@
 }
 
 .nova-slider__thumb {
-  margin-inline-start: calc(
-    (0.5 - var(--nova-slider-frac, 0.5)) * var(--nova-slider-thumb)
-  );
   position: relative;
   width: var(--nova-slider-thumb);
   height: var(--nova-slider-thumb);

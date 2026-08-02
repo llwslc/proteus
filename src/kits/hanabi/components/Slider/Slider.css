@@ -55,9 +55,6 @@
 }
 
 .hanabi-slider__thumb {
-  margin-inline-start: calc(
-    (0.5 - var(--hanabi-slider-frac, 0.5)) * var(--hanabi-slider-thumb)
-  );
   position: absolute;
   width: var(--hanabi-slider-thumb);
   height: var(--hanabi-slider-thumb);

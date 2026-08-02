@@ -45,10 +45,6 @@
   background: var(--riot-accent-fill);
 }
 .riot-slider__thumb {
-  margin-inline-start: calc(
-    (0.5 - var(--riot-slider-frac, 0.5)) *
-      calc(var(--riot-slider-thumb) + var(--riot-space-1))
-  );
   z-index: 1;
   width: var(--riot-slider-thumb);
   height: calc(var(--riot-slider-thumb) + 8px);

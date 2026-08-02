@@ -41,9 +41,6 @@
   box-shadow: 0 0 8px var(--abyss-glow-a55);
 }
 .abyss-slider__thumb {
-  margin-inline-start: calc(
-    (0.5 - var(--abyss-slider-frac, 0.5)) * var(--abyss-slider-thumb)
-  );
   width: var(--abyss-slider-thumb);
   height: var(--abyss-slider-thumb);
   border-radius: 50%;
