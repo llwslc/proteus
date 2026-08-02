@@ -36,6 +36,11 @@
 
 .nocturne-slider__track {
   width: 100%;
+  box-sizing: border-box;
+  border-inline: calc(var(--nocturne-thumb-bloom) / 2) solid transparent;
+}
+.nocturne-slider__track::after {
+  inset-inline: calc(-1 * var(--nocturne-thumb-bloom) / 2);
 }
 
 .nocturne-slider__indicator {

@@ -26,6 +26,8 @@
   touch-action: none;
 }
 .prism-slider__track {
+  box-sizing: border-box;
+  border-inline: calc(var(--prism-slider-thumb) / 2) solid transparent;
   position: relative;
   width: 100%;
   height: var(--prism-slider-track);

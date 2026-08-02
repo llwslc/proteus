@@ -21,6 +21,8 @@
   touch-action: none;
 }
 .brass-slider__track {
+  box-sizing: border-box;
+  border-inline: calc(var(--brass-slider-thumb) / 2) solid transparent;
   position: relative;
   width: 100%;
   height: var(--brass-slider-track);

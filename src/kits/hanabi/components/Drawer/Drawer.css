@@ -108,8 +108,8 @@
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: var(--hanabi-space-2) calc(var(--hanabi-slider-thumb) / 2);
-  margin: calc(-1 * var(--hanabi-space-2)) calc(-1 * var(--hanabi-slider-thumb) / 2);
+  padding: var(--hanabi-space-2);
+  margin: calc(-1 * var(--hanabi-space-2));
   margin-bottom: 0;
 }
 

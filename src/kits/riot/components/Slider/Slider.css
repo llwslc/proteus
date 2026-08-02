@@ -23,6 +23,8 @@
   height: calc(var(--riot-slider-thumb) + 8px);
 }
 .riot-slider__track {
+  box-sizing: border-box;
+  border-inline: var(--riot-space-4) solid transparent;
   position: relative;
   width: 100%;
   height: var(--riot-slider-track);
@@ -35,7 +37,7 @@
 .riot-slider__track::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0 calc(-1 * var(--riot-space-4));
   border: var(--riot-stroke-bold) solid var(--riot-ink);
   pointer-events: none;
 }
