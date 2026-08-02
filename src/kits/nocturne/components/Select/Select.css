@@ -11,7 +11,7 @@
 }
 .nocturne-select__trigger:focus-visible {
   outline: 2px solid var(--nocturne-gilt);
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 .nocturne-select__trigger[data-popup-open] {
   border-color: var(--nocturne-gilt);

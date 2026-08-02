@@ -39,7 +39,7 @@
 
 .nocturne-radio__control:focus-visible {
   outline: 2px solid var(--nocturne-gilt);
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
 .nocturne-radio__control[data-checked] {
