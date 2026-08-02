@@ -75,6 +75,8 @@ const CYCLE_MS = 4600;
 export default function Loader() {
   const [cycle, setCycle] = useState(0);
   useEffect(() => {
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (still.matches) return;
     const t = setInterval(() => setCycle((n) => n + 1), CYCLE_MS);
     return () => clearInterval(t);
   }, []);
