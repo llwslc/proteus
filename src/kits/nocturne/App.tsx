@@ -500,7 +500,13 @@ function Demo() {
 
   useEffect(() => {
     const stage = document.getElementById("loader");
-    if (!stage || typeof IntersectionObserver === "undefined") return;
+    if (!stage) return;
+    const play = () =>
+      stage.querySelector(".demo-loader-stage")?.classList.add("is-playing");
+    if (typeof IntersectionObserver === "undefined") {
+      play();
+      return;
+    }
     let settle: ReturnType<typeof setTimeout> | undefined;
     const io = new IntersectionObserver(
       (entries) => {
@@ -508,7 +514,7 @@ function Demo() {
           if (!entry.isIntersecting) continue;
           clearTimeout(settle);
           settle = setTimeout(() => {
-            stage.querySelector(".demo-loader-stage")?.classList.add("is-playing");
+            play();
             setLoaderRun((n) => n + 1);
           }, REVEAL_SETTLE_MS);
         }
