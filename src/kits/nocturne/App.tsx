@@ -507,7 +507,10 @@ function Demo() {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
           clearTimeout(settle);
-          settle = setTimeout(() => setLoaderRun((n) => n + 1), REVEAL_SETTLE_MS);
+          settle = setTimeout(() => {
+            stage.querySelector(".demo-loader-stage")?.classList.add("is-playing");
+            setLoaderRun((n) => n + 1);
+          }, REVEAL_SETTLE_MS);
         }
       },
       { threshold: 0.3 },

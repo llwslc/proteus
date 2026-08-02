@@ -433,6 +433,11 @@
   overflow: hidden;
   transform: translateZ(0);
 }
+.demo-loader-stage:not(.is-playing) *,
+.demo-loader-stage:not(.is-playing) *::before,
+.demo-loader-stage:not(.is-playing) *::after {
+  animation-play-state: paused;
+}
 @media (max-width: 768px) {
   .demo-loader-stage {
     height: 240px;
