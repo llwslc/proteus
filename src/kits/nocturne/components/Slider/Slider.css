@@ -36,11 +36,6 @@
 
 .nocturne-slider__track {
   width: 100%;
-  box-sizing: border-box;
-  border-inline: calc(var(--nocturne-thumb-bloom) / 2) solid transparent;
-}
-.nocturne-slider__track::after {
-  inset-inline: calc(-1 * var(--nocturne-thumb-bloom) / 2);
 }
 
 .nocturne-slider__indicator {
@@ -48,6 +43,9 @@
 }
 
 .nocturne-slider__thumb {
+  margin-inline-start: calc(
+    (0.5 - var(--nocturne-slider-frac, 0.5)) * var(--nocturne-thumb-bloom)
+  );
   width: var(--nocturne-thumb-bloom);
   height: var(--nocturne-thumb-bloom);
   border-radius: var(--nocturne-r-full);

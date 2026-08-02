@@ -21,8 +21,6 @@
   touch-action: none;
 }
 .brass-slider__track {
-  box-sizing: border-box;
-  border-inline: calc(var(--brass-slider-thumb) / 2) solid transparent;
   position: relative;
   width: 100%;
   height: var(--brass-slider-track);
@@ -37,6 +35,9 @@
   background: var(--brass-accent-fill);
 }
 .brass-slider__thumb {
+  margin-inline-start: calc(
+    (0.5 - var(--brass-slider-frac, 0.5)) * var(--brass-slider-thumb)
+  );
   width: var(--brass-slider-thumb);
   height: var(--brass-slider-thumb);
   transition: filter var(--brass-dur) var(--brass-ease);

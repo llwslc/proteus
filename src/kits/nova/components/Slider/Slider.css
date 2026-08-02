@@ -29,8 +29,6 @@
   position: relative;
   width: 100%;
   height: 6px;
-  box-sizing: border-box;
-  border-inline: calc(var(--nova-slider-thumb) / 2) solid transparent;
   background: var(--nova-track);
   box-shadow: inset 0 0 0 1px var(--nova-tint-soft);
   clip-path: var(--nova-clip-3);
@@ -44,6 +42,9 @@
 }
 
 .nova-slider__thumb {
+  margin-inline-start: calc(
+    (0.5 - var(--nova-slider-frac, 0.5)) * var(--nova-slider-thumb)
+  );
   position: relative;
   width: var(--nova-slider-thumb);
   height: var(--nova-slider-thumb);

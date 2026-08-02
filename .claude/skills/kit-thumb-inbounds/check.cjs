@@ -55,12 +55,15 @@ const ONLY = process.argv[3];
         const s = document.querySelector('#slider [class*="slider"]');
         const th = s.querySelector('[class*="thumb"]').getBoundingClientRect();
         const tr = s.querySelector('[class*="track"], [class*="rail"]').getBoundingClientRect();
-        return { left: +(tr.left - th.left).toFixed(1), right: +(th.right - tr.right).toFixed(1) };
+        const ind = s.querySelector('[class*="indicator"], [class*="__fill"]').getBoundingClientRect();
+        return { left: +(tr.left - th.left).toFixed(1), right: +(th.right - tr.right).toFixed(1),
+                 fillStart: +(ind.left - tr.left).toFixed(1), fillEnd: +(ind.right - tr.right).toFixed(1) };
       });
     };
     const min = await drag(g.l - 160);
     const max = await drag(g.r + 160);
-    rows.push({ kit, full: Math.abs(g.trackW - g.rootW) < 1.5 && g.frameInset <= 0.5, frameInset: g.frameInset, minLeft: min.left, maxRight: max.right });
+    rows.push({ kit, full: Math.abs(g.trackW - g.rootW) < 1.5 && g.frameInset <= 0.5, frameInset: g.frameInset,
+                minLeft: min.left, maxRight: max.right, fillStart: min.fillStart, fillEnd: max.fillEnd });
   }
   await b.close();
 
@@ -68,9 +71,10 @@ const ONLY = process.argv[3];
   const bad = [];
   for (const r of rows) {
     const over = Math.max(r.minLeft, r.maxRight);
-    const ok = over <= 0.5 && r.full;
+    const fillOk = Math.abs(r.fillStart) <= 0.5 && Math.abs(r.fillEnd) <= 0.5;
+    const ok = over <= 0.5 && r.full && fillOk;
     if (!ok) bad.push(r.kit);
-    console.log(`  ${r.kit.padEnd(9)} 底条满宽=${r.full ? '是' : '否'}${r.frameInset > 0.5 ? `(可见框内缩 ${r.frameInset}px)` : ''}  最小值左越出 ${r.minLeft}px  最大值右越出 ${r.maxRight}px ${ok ? '' : '← 违规'}`);
+    console.log(`  ${r.kit.padEnd(9)} 底条满宽=${r.full ? '是' : '否'}${r.frameInset > 0.5 ? `(可见框内缩 ${r.frameInset}px)` : ''}  最小值左越出 ${r.minLeft}px  最大值右越出 ${r.maxRight}px  进度条${fillOk ? '满量程' : `未满量程(首 ${r.fillStart} 尾 ${r.fillEnd})`} ${ok ? '' : '← 违规'}`);
   }
   console.log(`\nRESULT: ${bad.length === 0
     ? `PASS (${rows.length} kits：两端条头皆入界，底条满宽)`
