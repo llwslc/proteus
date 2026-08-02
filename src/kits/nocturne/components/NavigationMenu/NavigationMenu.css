@@ -16,6 +16,9 @@
   color: var(--nocturne-gilt);
   transition: transform var(--nocturne-dur) var(--nocturne-ease);
 }
+.nocturne-navmenu__trigger {
+  text-decoration: none;
+}
 .nocturne-navmenu__trigger[data-popup-open] .nocturne-navmenu__chevron {
   transform: rotate(180deg);
 }

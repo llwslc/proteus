@@ -493,8 +493,31 @@ function FormDemo() {
   );
 }
 
+const REVEAL_SETTLE_MS = 900;
 function Demo() {
   const toast = useToast();
+  const [loaderRun, setLoaderRun] = useState(0);
+
+  useEffect(() => {
+    const stage = document.getElementById("loader");
+    if (!stage || typeof IntersectionObserver === "undefined") return;
+    let settle: ReturnType<typeof setTimeout> | undefined;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          clearTimeout(settle);
+          settle = setTimeout(() => setLoaderRun((n) => n + 1), REVEAL_SETTLE_MS);
+        }
+      },
+      { threshold: 0.3 },
+    );
+    io.observe(stage);
+    return () => {
+      clearTimeout(settle);
+      io.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
@@ -1546,7 +1569,7 @@ function Demo() {
             <div className="nocturne-section nocturne-section--wide" id="loader">
               <Panel title="Loader">
                 <div className="demo-loader-stage">
-                  <Loader />
+                  <Loader key={loaderRun} />
                 </div>
               </Panel>
             </div>

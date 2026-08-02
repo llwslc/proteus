@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./Loader.css";
 
 const LEAF = "M0 0 C 10 -9, 26 -11, 38 -2 C 26 8, 10 8, 0 0 Z";
@@ -70,23 +69,14 @@ function Half({ flip }: { flip?: boolean }) {
   );
 }
 
-const CYCLE_MS = 4600;
-
 export default function Loader() {
-  const [cycle, setCycle] = useState(0);
-  useEffect(() => {
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (still.matches) return;
-    const t = setInterval(() => setCycle((n) => n + 1), CYCLE_MS);
-    return () => clearInterval(t);
-  }, []);
   return (
     <div
       className="nocturne-loader"
       role="status"
       aria-label="The night garden is waking"
     >
-      <div className="nocturne-loader__art" key={cycle}>
+      <div className="nocturne-loader__art">
         <svg viewBox="0 0 760 90" fill="none" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="nlPetal" x1="0" y1="1" x2="0" y2="0">
