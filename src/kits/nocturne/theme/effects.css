@@ -355,6 +355,7 @@
   letter-spacing: var(--nocturne-ls-1);
   text-align: left;
   cursor: pointer;
+  outline: none;
   transition:
     background var(--nocturne-dur-fast) var(--nocturne-ease),
     color var(--nocturne-dur-fast) var(--nocturne-ease);
