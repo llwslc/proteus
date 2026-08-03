@@ -12,7 +12,6 @@
 
 .nocturne-loader__art {
   width: min(560px, 82vw);
-  animation: nocturne-loader-breathe 3.4s ease-in-out 3.4s infinite;
 }
 .nocturne-loader__art svg {
   display: block;
@@ -102,18 +101,7 @@
   }
 }
 
-@keyframes nocturne-loader-breathe {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.72;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .nocturne-loader__art,
   .nocturne-loader__word,
   .nocturne-loader__branch,
   .nocturne-loader__sprout,
@@ -121,8 +109,5 @@
   .nocturne-loader__core {
     animation-duration: 0.01ms;
     animation-delay: 0s;
-  }
-  .nocturne-loader__art {
-    animation: none;
   }
 }
