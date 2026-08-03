@@ -35,10 +35,11 @@
 }
 
 .nocturne-autocomplete__empty {
+  padding: var(--nocturne-space-3);
   color: var(--nocturne-text-mute);
   font-size: var(--nocturne-fs-14);
   text-align: center;
 }
-.nocturne-autocomplete__empty:not(:empty) {
-  padding: var(--nocturne-space-3);
+.nocturne-autocomplete__empty:empty {
+  padding: 0;
 }

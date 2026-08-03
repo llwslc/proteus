@@ -57,7 +57,7 @@
 
 .nocturne-hairline {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--nocturne-gilt-50), transparent);
+  background: linear-gradient(90deg, transparent, var(--nocturne-gilt), transparent);
 }
 
 .nocturne-moondot {
