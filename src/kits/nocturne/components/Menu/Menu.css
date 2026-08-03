@@ -22,9 +22,6 @@
   transition: color var(--nocturne-dur-fast) var(--nocturne-ease);
 }
 .nocturne-list-item[data-highlighted] .nocturne-menu__icon {
-  color: var(--nocturne-gilt-bright);
-}
-.nocturne-list-item--danger[data-highlighted] .nocturne-menu__icon {
   color: inherit;
 }
 

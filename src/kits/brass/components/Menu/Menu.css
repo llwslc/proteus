@@ -23,7 +23,7 @@
   transition: color var(--brass-dur) var(--brass-ease);
 }
 .brass-list-item[data-highlighted]:not([data-disabled]) .brass-menu__icon {
-  color: var(--brass-primary);
+  color: inherit;
 }
 
 .brass-menu__shortcut {
@@ -47,9 +47,6 @@
 }
 .brass-list-item--danger[data-highlighted]:not([data-disabled]) {
   background: var(--brass-danger-wash);
-  color: var(--brass-danger);
-}
-.brass-list-item--danger[data-highlighted]:not([data-disabled]) .brass-menu__icon {
   color: var(--brass-danger);
 }
 .brass-list-item--danger .brass-menu__shortcut {

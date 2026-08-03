@@ -14,6 +14,9 @@
   width: var(--riot-fs-18);
   color: var(--riot-text-dim);
 }
+.riot-menu__item[data-highlighted]:not([data-disabled]) .riot-menu__icon {
+  color: inherit;
+}
 .riot-menu__label {
   flex: 1;
   min-width: 0;
@@ -39,5 +42,5 @@
 }
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__icon,
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__shortcut {
-  color: var(--riot-text-bright);
+  color: inherit;
 }

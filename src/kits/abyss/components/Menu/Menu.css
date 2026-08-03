@@ -74,7 +74,7 @@
 }
 .abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__icon,
 .abyss-menu__item[data-popup-open] .abyss-menu__icon {
-  color: var(--abyss-glow);
+  color: inherit;
 }
 .abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__shortcut,
 .abyss-menu__item[data-popup-open] .abyss-menu__shortcut {
@@ -96,9 +96,6 @@
 .abyss-menu__item--danger[data-highlighted]:not([data-disabled]) {
   background: var(--abyss-blood-soft);
   color: var(--abyss-blood-text);
-}
-.abyss-menu__item--danger[data-highlighted]:not([data-disabled]) .abyss-menu__icon {
-  color: var(--abyss-blood);
 }
 
 .abyss-menu__separator {

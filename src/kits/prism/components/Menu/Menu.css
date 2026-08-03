@@ -33,7 +33,7 @@
   color: var(--prism-text-mute);
 }
 .prism-list-item[data-highlighted]:not([data-disabled]) .prism-menu__icon {
-  color: var(--prism-primary);
+  color: inherit;
 }
 
 .prism-menu__sub[data-popup-open] {

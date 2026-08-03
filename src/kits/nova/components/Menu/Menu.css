@@ -17,7 +17,7 @@
   opacity: 1;
 }
 .nova-menu__item[data-highlighted]:not([data-disabled]) .nova-menu__icon {
-  color: var(--nova-primary);
+  color: inherit;
 }
 .nova-menu__item[data-highlighted]:not([data-disabled]) .nova-menu__shortcut {
   color: var(--nova-text-dim);
@@ -29,9 +29,6 @@
 .nova-menu__item--danger[data-highlighted]:not([data-disabled]) {
   background: var(--nova-danger-wash);
   color: var(--nova-danger-text);
-}
-.nova-menu__item--danger[data-highlighted]:not([data-disabled]) .nova-menu__icon {
-  color: var(--nova-danger);
 }
 .nova-menu__item--danger::after {
   background: var(--nova-danger);

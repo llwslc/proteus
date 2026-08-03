@@ -22,7 +22,7 @@
   font-size: var(--hanabi-fs-14);
 }
 .hanabi-list-item[data-highlighted] .hanabi-menu__icon {
-  color: var(--hanabi-text-bright);
+  color: inherit;
 }
 
 .hanabi-menu__shortcut {
@@ -47,9 +47,6 @@
 }
 .hanabi-list-item--danger .hanabi-menu__icon {
   color: var(--hanabi-danger-shade);
-}
-.hanabi-list-item--danger[data-highlighted] .hanabi-menu__icon {
-  color: var(--hanabi-danger-deep);
 }
 .hanabi-list-item--danger[data-highlighted] {
   color: var(--hanabi-danger-deep);
