@@ -138,6 +138,7 @@
 }
 .hanabi-list-item[data-highlighted] {
   background: var(--hanabi-item-color, var(--hanabi-primary-wash));
+  color: var(--hanabi-text-bright);
 }
 .hanabi-list-item[data-disabled] {
   opacity: var(--hanabi-disabled-opacity);
