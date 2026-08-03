@@ -9,6 +9,7 @@
 - 「文字强调选中」用于列表、Tab、NavMenu，把文字转 `glow` + `text-aura`；其中 Tab、NavMenu 另配一条辉光下划线。
 - 悬停：表面给一层 `glow-soft` 底；图标和动作按钮转 glow + aura。
 - 焦点：把 `frame-ink` 直接点到实色 `glow` + `aura`；Switch 没有框，作为例外改用 `aura-strong`；场形控件（Input、NumberField、Select、Combobox、Autocomplete）安静一档——辉光走 `glow-focus`、描框至多 `glow-a55` 不上实色，OTP 格是同档的 `glow-soft` 变体。
+- 危险态走 blood 家族；危险行高亮：盖 `blood-soft`、字转 `blood-text`、图标持 `blood`。
 - 选中辉光统一用 `aura-mark`：像 Switch 眼、Checkbox 盒、Radio 圈这类选择控件，选中时是整件向外发光，内部的标记不单独再打光；弹层里的勾记、指示条也用同一档；条状物和数值文字用 `text-aura`。
 
 ## 2. 组件皮肤决定

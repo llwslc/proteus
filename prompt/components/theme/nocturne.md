@@ -9,7 +9,7 @@
 - 「文字强调选中」用于列表、Tab、NavMenu，文字转 `gilt-bright`；Select、Combobox 选中行右侧一枚满月圆点（`accent-fill`）；Tab 另带 `gilt` 渐变底线指示（见 §2 Tabs 行）。
 - 悬停：带框控件描边升 `gilt` + `glow-12` 幽光；ghost、quiet 类盖 `gilt-10`；列表项、菜单项盖酒红行扫 `linear-gradient(90deg, primary-50, primary-12)`；菜单触发器文字转 `text-bright`。
 - 焦点：全站 2px `gilt` outline、offset 2px，按控件族落位（components.md §5）；输入类聚焦另将整框 border 转 `gilt` + `glow-12` 幽光圈。
-- 危险态：静止红字红图标 `danger`；填充件 `danger-deep` 渐变 + `on-fill` 前景；危险行扫换 `danger-50 → danger-12`。
+- 危险态：静止红字红图标 `danger`；填充件 `danger-deep` 渐变 + `on-fill` 前景；危险行高亮：行扫换 `danger-50 → danger-12`、前景随行转 `text-bright`。
 - 禁用：`disabled-opacity` 挂控件根一层；实填钮底退 `disabled-fill` 夜面、去影去光。
 - 禁用+选中/数值填充（Switch、Checkbox、Radio、Slider）：保持各自填充，花开、月相、描画动画随禁用静止，整根走 `disabled-opacity`。
 
