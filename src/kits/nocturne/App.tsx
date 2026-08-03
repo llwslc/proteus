@@ -82,7 +82,7 @@ import { Bloom, Bud, Leaf, MotifDefs, Tendril } from "./components/bloom";
 
 const NAV = [
   {
-    label: "The Garden",
+    label: "Garden",
     links: [
       {
         label: "Garden orders",
@@ -103,7 +103,7 @@ const NAV = [
     ],
   },
   {
-    label: "The Register",
+    label: "Register",
     links: [
       { label: "All blooms", href: "#inputs", description: "37 plates in the album" },
       { label: "First hairlines", href: "#foundations", description: "Type and rules" },
@@ -113,7 +113,7 @@ const NAV = [
   },
   { label: "Almanac", href: "#hero" },
   {
-    label: "Poison Cabinet",
+    label: "Vials",
     disabled: true,
     links: [
       { label: "Sealed shelf", href: "#display", description: "Warden's key only" },
