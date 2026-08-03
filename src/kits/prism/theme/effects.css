@@ -105,7 +105,6 @@
 .prism-list-item[data-highlighted]:not([data-disabled]),
 .prism-list-item[data-popup-open] {
   background: var(--prism-tint-soft);
-  color: var(--prism-text-bright);
 }
 .prism-list-item[data-selected] {
   font-weight: var(--prism-fw-700);
