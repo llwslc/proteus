@@ -11,9 +11,6 @@
   cursor: pointer;
   transition: box-shadow var(--prism-dur) var(--prism-ease);
 }
-.prism-select__trigger:not(:disabled):not([data-disabled]):hover {
-  color: var(--prism-text-bright);
-}
 .prism-select__trigger:focus-visible,
 .prism-select__trigger[data-popup-open] {
   outline: none;

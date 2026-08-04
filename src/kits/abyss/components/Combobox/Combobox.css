@@ -89,10 +89,6 @@
   font-size: var(--abyss-fs-19);
   color: var(--abyss-text-dim);
 }
-.abyss-combobox__trigger:hover {
-  color: var(--abyss-glow);
-  filter: var(--abyss-aura);
-}
 .abyss-combobox__trigger[data-popup-open] {
   transform: rotate(180deg);
   color: var(--abyss-glow);

@@ -26,8 +26,7 @@
     color var(--riot-dur) var(--riot-ease),
     transform var(--riot-dur) var(--riot-ease);
 }
-.riot-combobox__clear:hover,
-.riot-combobox__trigger:hover {
+.riot-combobox__clear:hover {
   color: var(--riot-primary);
 }
 .riot-combobox__clear:focus-visible,

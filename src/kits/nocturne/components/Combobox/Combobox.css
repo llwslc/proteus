@@ -35,8 +35,7 @@
   cursor: pointer;
   transition: color var(--nocturne-dur-fast) var(--nocturne-ease);
 }
-.nocturne-combobox__clear:hover,
-.nocturne-combobox__trigger:hover {
+.nocturne-combobox__clear:hover {
   color: var(--nocturne-gilt-bright);
 }
 .nocturne-combobox__clear:focus-visible,
