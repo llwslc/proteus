@@ -36,7 +36,7 @@
 - 描线恒为 `2px` 实线 `ink`——赛璐璐线稿等宽，轻重分档用**色**不用宽：静止 chrome 档 = `ink`，hover／focus 升档转 `primary`，语义变体按 tone 换色；细分隔是 `2px dashed tone` 的虚线（缝纫线）。组件不裸写描边色宽。
 - 描边走 frame 原语 `.hanabi-surface`：白面平涂 + `ink` 2px border + `border-radius`，纯圆角矩形直接 border 画、无 clip-path；输入变量 `--hanabi-surface-fill / -border / -r / -shadow`；锚定弹层面统一挂它换色，模态与面内控件就近自绘同一套描线。高光条就近在各控件 `::before` 画一道左上白圆条（`hi` 色）——赛璐璐的受光面，见按钮、开关旋钮、进度填充。
 - 抬升：浮层不投影——`ink` 描线 + 底边阶影带自证浮起，elevation 槽（`--hanabi-overlay-shadow`）置 `none`，无 glow 槽；面内控件影走 `shadow-*` 阶影带挂元素自己。
-- 浮层连接件（Arrow）是一枚 `ink` 描线、`cel` 填的小三角尖，随弹层同步淡入。
+- 浮层连接件（Arrow）是一枚 `ink` 描线、`surface` 填的小三角尖，随弹层同步淡入。
 - 仪表母题：斜切铭牌（`plate`）、✦ 四芒星火花、集中线、半调网点、像素注记、分格刻度，用作标题牌、tone 图记、焦点与招牌，靠输入变量换色。
 - 战斗语汇（控件级）：焦点提示 = **四角锁定框**——`primary` 色的 8 条角标（每角一横一竖）贴控件外缘 `-7px`，带 `lock-snap` 收拢入场；小型布尔件用 2px `primary` 外环不用角标。
 
