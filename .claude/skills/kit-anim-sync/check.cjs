@@ -55,10 +55,14 @@ function analyze(r){ const f=[]; const pi=r.names.indexOf('popup'), ci=r.names.i
 (async()=>{
   const browser=await chromium.launch({executablePath:CHROME,args:['--disable-gpu']});
   const kits=await G.kitsOf(null,ONLY);
-  let total=0;
+  let total=0, mounted=0, warns=0;
   for(const kit of kits){ for(const [id,sel,kind] of [...CONN,...SLIDE]){ const p=await browser.newPage({viewport:G.DESKTOP}); await setKit(p,kit);
     let r; try{ r=await record(p,kind,sel, BREAK ? '@keyframes __gate_break{from{opacity:.2}to{opacity:1}} body > div [class*="popup"],body > div [class*="drawer"],body > div [class*="modal"],body > div [role="dialog"],body > div [role="tooltip"]{transform:translateX(150vw) !important;transition:none !important} body > div [class*="__"]{animation:__gate_break .4s 1 !important}' : null);}catch(e){ r={err:e.message.split('\n')[0].slice(0,40)}; }
-    if(r.err){ console.log(`  WARN ${kit} ${id}: ${r.err}`); } else { for(const fl of analyze(r)){ console.log(`  FAIL ${kit} ${id}: ${fl}`); total++; } } await p.close(); } }
-  console.log(total?`\nRESULT: ${total} fault(s)`:`\nRESULT: PASS (overlay animations in sync)`); await browser.close();
+    if(r.err){ console.log(`  WARN ${kit} ${id}: ${r.err}`); warns++; } else { mounted++; for(const fl of analyze(r)){ console.log(`  FAIL ${kit} ${id}: ${fl}`); total++; } } await p.close(); } }
+  await browser.close();
+  const targets=kits.length*(CONN.length+SLIDE.length);
+  if(!mounted){ console.error(`ERR ${targets} 个浮层无一挂载成功 —— 该门什么都没录`); process.exit(2); }
+  if(warns>targets/2){ console.error(`ERR ${warns}/${targets} 个浮层未挂载,过半空转 —— 结论不可信`); process.exit(2); }
+  console.log(total?`\nRESULT: ${total} fault(s)`:`\nRESULT: PASS (${mounted}/${targets} 个浮层录到入场,动画同步)`);
   process.exit(total?1:0);
 })().catch((e)=>{ console.error('ERR',e.message); process.exit(2); });

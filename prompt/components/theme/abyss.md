@@ -25,6 +25,7 @@
 - Progress：头部一行标签配 mono 数值（`glow` 字 + `text-aura` 微辉）；轨 `6px`、`inset` 底 + `ink-faint` 内环、过 edge 颤动滤镜；indicator 走 `glow-deep` 到 `glow` 的横向渐变 + `glow-a55` 外辉；不定态是一段 `40%` 宽的光带以 `creep` 自左向右爬过。
 - Meter：轨同 Slider 凹底；填充 `meter-fill-deep` 到 `meter-fill` 渐变 + `meter-aura` 辉光，按 tone 经 `meter-fill` 三槽输入变量重染。
 - Accordion：折叠配方——marker 是 sigil 符印，静止歪 30°、开态转到 90° 并点亮 `glow` 加 `aura-mark`。
+- Menu：行左缘一道 `2px` 辉光竖标，高亮时淡入；分隔线 `ink-strong` 两端渐隐，与竖标同过 edge 颤动滤镜。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤。
 - Dialog：标题配一个自转的 sigil 图记。

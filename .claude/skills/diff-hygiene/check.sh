@@ -31,10 +31,14 @@ printf '%s\n' "$DIFF" | awk '
     else if (t ~ /^\/\*/) { hit=1; if (t !~ /\*\//) inb=1 }
     else if (t ~ /^\*\/$/ || t ~ /^\* [^ {,.:;]/)  { hit=1 }  # continuation, opener outside hunk
     if (hit && !skill && ln>2) { print "COMMENT  " f ":" ln "  " t; bad++ }
-    if (!skill && (raw ~ /console\.(log|debug|warn|error)/ || raw ~ /debugger/ \
+    # 残留分两档:debugger／待办标记／调试属性在门里同样是残留;
+    # console.* 与 setTimeout 是门自己的输出与等待手段,仅在产品代码里算残留
+    cruft = (raw ~ /debugger/ \
           || raw ~ /(^|[^A-Za-z0-9_])(TODO|FIXME|XXX|HACK)([^A-Za-z0-9_]|$)/ \
-          || raw ~ /setTimeout\([^,]*,[ \t]*[0-9]/ || raw ~ /data-debug/))
-      { print "CRUFT    " f ":" ln "  " t; bad++ }
+          || raw ~ /data-debug/)
+    if (!skill && (raw ~ /console\.(log|debug|warn|error|info|trace|table|dir)/ \
+          || raw ~ /setTimeout\([^,]*,[ \t]*[0-9]/)) cruft = 1
+    if (cruft) { print "CRUFT    " f ":" ln "  " t; bad++ }
     ln++; next
   }
   END { exit (bad>0?1:0) }

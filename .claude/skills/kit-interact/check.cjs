@@ -605,7 +605,12 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
 
   await browser.close();
   const fails = out.filter((l) => l.startsWith('HIGH'));
+  const warns = out.filter((l) => l.startsWith('WARN'));
   if (out.length) out.forEach((l) => console.log('  ' + l));
-  console.log(`\nRESULT: ${fails.length === 0 ? 'PASS (interactions OK)' : fails.length + ' interaction fault(s)'}`);
+  if (warns.length > kits.length) {
+    console.error(`ERR ${warns.length} 处判据未能驱动(平均每套 >1) —— 大面积空转,绿也不能当证据`);
+    process.exit(2);
+  }
+  console.log(`\nRESULT: ${fails.length === 0 ? `PASS (${kits.length} kits 驱动完毕${warns.length ? `,${warns.length} 处未驱动` : ''})` : fails.length + ' interaction fault(s)'}`);
   process.exit(fails.length ? 1 : 0);
 })().catch((e) => { console.error('ERR', e.message); process.exit(2); });

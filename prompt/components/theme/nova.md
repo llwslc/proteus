@@ -26,6 +26,7 @@
 - Meter：填充 `meter-fill-deep` 到 `meter-fill` 横向渐变 + 辉光，上层罩 `base` 色等距分格；按 tone 经 `meter-fill` 输入变量重染。
 - Tabs：大写 Orbitron、渐变 hover、辉光下划线；切换时内容淡入。
 - Accordion：折叠配方——marker 是 `7px` 转 45° 的方块，静止 `text-mute`、开态转 `primary` 加辉。
+- Menu：分隔线 `line-strong` 两端渐隐。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器栏复用 Tabs 的皮肤；打开时转 primary、chevron 翻转。
 - AlertDialog：按 `tone` 整体重染，tone 取 danger、warning、primary——扫描光、标题、tick、边框都随 tone 变，表面顶部再加一道 tone 色的径向渐变（约 20%）。

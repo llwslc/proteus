@@ -7,7 +7,10 @@ const kits = cp.execSync("ls -d src/kits/*/components").toString().trim().split(
   .filter((k) => /^[a-z0-9-]+$/.test(k))
   .filter((k) => !ONLY || k === ONLY);
 
+if (!kits.length) { console.log(`ERR kit 发现命中 0 套${ONLY ? ` (参数 ${ONLY} 不存在)` : ''} —— 该门什么都没查`); process.exit(2); }
+
 let total = 0;
+let audited = 0;
 for (const kit of kits) {
   const files = cp.execSync(`find src/kits/${kit} -name '*.css' -o -name '*.tsx'`).toString().trim().split('\n').filter(Boolean);
   const cssAll = files.filter((f) => f.endsWith('.css')).map((f) => fs.readFileSync(f, 'utf8')).join('\n');
@@ -17,6 +20,7 @@ for (const kit of kits) {
   const defs = new Set();
   const re = new RegExp(`\\.(${kit}-[a-z0-9]+(?:-[a-z0-9]+)*(?:__[a-z0-9-]+)?(?:--[a-z0-9-]+)?)`, 'g');
   let m; while ((m = re.exec(cssAll))) defs.add(m[1]);
+  audited += defs.size;
   for (const c of [...defs].sort()) {
     if (tsxAll.includes(c)) continue;
     const base = c.split('--')[0];
@@ -122,5 +126,6 @@ for (const kit of kits) {
   if (noise) total += noise; else console.log('  noise-class: clean');
 }
 
-console.log(`\nRESULT: ${total === 0 ? 'PASS (no dead code)' : total + ' finding(s)'}`);
+if (!audited) { console.log('ERR 审计了 0 个类名 —— 该门什么都没查'); process.exit(2); }
+console.log(`\nRESULT: ${total === 0 ? `PASS (${kits.length} kits · ${audited} 个类名已查,无死代码)` : total + ' finding(s)'}`);
 process.exit(total === 0 ? 0 : 1);

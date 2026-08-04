@@ -15,7 +15,7 @@ let fails = 0;
 let warns = 0;
 for (const kit of kits) {
   const specP = path.join(DOCS, kit + '.md');
-  if (!fs.existsSync(specP)) { console.log(`WARN ${kit}: 皮肤文档缺失`); warns++; continue; }
+  if (!fs.existsSync(specP)) { console.log(`  FAIL ${kit}: 皮肤文档缺失 ${specP}`); fails++; continue; }
   const spec = fs.readFileSync(specP, 'utf8');
   const cd = path.join(KITS_DIR, kit, 'components');
   const comps = fs.readdirSync(cd).filter((d) => { try { return fs.statSync(path.join(cd, d)).isDirectory(); } catch { return false; } });
@@ -38,7 +38,7 @@ for (const kit of kits) {
     }
     if (!signals.length) continue;
     hit++;
-    if (spec.includes(c)) continue;
+    if (new RegExp(`(^|[^A-Za-z])${c}([^A-Za-z]|$)`, 'm').test(spec)) continue;
     const line = `${kit}:${c} 信号[${[...new Set(signals)].join(',')}] 而皮肤文档无条目`;
     if ((pending[kit] || []).includes(c)) { console.log(`  WARN ${line} — pending 挂账待拍板`); warns++; }
     else { console.log(`  FAIL ${line}`); fails++; }

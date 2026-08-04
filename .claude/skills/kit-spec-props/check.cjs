@@ -35,6 +35,7 @@ specProps['ContextMenu'] = new Set(['trigger']);
 const IFACE = { Toast: ['ToastProviderProps'], Menubar: ['MenubarMenuProps'], 'Input/Field': ['InputProps', 'FieldProps'] };
 const ALLOW = new Set(['children', 'className', 'rootClassName', 'value', 'defaultValue', 'onValueChange', 'open', 'onOpenChange', 'name', 'id', 'disabled', 'readOnly', 'required']);
 let bad = 0;
+let audited = 0;
 const kits = fs.readdirSync('src/kits').filter((d) => fs.statSync(`src/kits/${d}`).isDirectory());
 for (const [comp, props] of Object.entries(specProps)) {
   const dirName = comp === 'Input/Field' ? 'Input' : comp;
@@ -50,8 +51,11 @@ for (const [comp, props] of Object.entries(specProps)) {
       for (const fm of im[1].matchAll(/^\s*(\w+)\??:/gm)) fields.add(fm[1]);
     }
     if (!fields.size && !anyExtends) continue;
+    audited++;
     for (const p of props) if (!fields.has(p) && !ALLOW.has(p) && !anyExtends) { console.log(`  SPEC>CODE ${comp}.${p} 缺于 ${kit}`); bad++; }
     for (const f of fields) if (!props.has(f) && !ALLOW.has(f) && !props.open) { console.log(`  CODE>SPEC ${comp}.${f} 未入 spec (${kit})`); bad++; }
   }
 }
-console.log(bad ? `RESULT: ${bad} 处 spec↔props 分歧` : 'RESULT: clean (spec §6.1 props ↔ interfaces 对齐)');
+if (!audited) { console.log('ERR 审计了 0 对 (组件×kit) —— 该门什么都没查'); process.exit(2); }
+console.log(bad ? `RESULT: ${bad} 处 spec↔props 分歧` : `RESULT: clean (${Object.keys(specProps).length} 条 spec 条目 × ${audited} 对已对拍)`);
+process.exit(bad ? 1 : 0);

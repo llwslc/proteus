@@ -58,6 +58,7 @@ const SCAN = (rootSel) => {
   const kits = await G.kitsOf(page, ONLY);
 
   let total = 0;
+  let audited = 0;
   for (const kit of kits) {
     await G.setKit(page, URL, kit);
     await page.waitForTimeout(400);
@@ -77,9 +78,11 @@ const SCAN = (rootSel) => {
     const bad = found.filter((f) => Math.abs(f.delta) > TOL);
     for (const f of found) console.log(`  ${Math.abs(f.delta) > TOL ? 'OFF ' : 'ok  '} ${String(f.delta).padStart(5)}px  ${f.label}  "${f.text}"`);
     if (!found.length) console.log('  (no leading-glyph titles found)');
+    audited += found.length;
     total += bad.length;
   }
   await browser.close();
-  console.log(`\nRESULT: ${total === 0 ? 'PASS (every title glyph centered on its text within ' + TOL + 'px)' : total + ' off-center title glyph(s) — center the glyph ink on the text, measured at rest'}`);
+  if (!audited) { console.error('ERR 审计了 0 个前导字形 —— 该门什么都没量'); process.exit(2); }
+  console.log(`\nRESULT: ${total === 0 ? `PASS (${audited} 个前导字形均在 ${TOL}px 内居中)` : total + ' off-center title glyph(s) — center the glyph ink on the text, measured at rest'}`);
   process.exit(total === 0 ? 0 : 1);
 })().catch((e) => { console.error('ERR', e.message); process.exit(2); });

@@ -77,12 +77,14 @@ const UPDATE = process.argv.includes('--update');
 
   // 采集自检。一次采空（侧栏没渲染出来）曾把基线从 42 面板打到 3 条，而回执
   // 只报 kit 数、看不出来。少于下限就报错退出，残缺基线永远进不了仓。
-  const MIN_PANELS = 8;
+  // 下限按现有基线派生:基线里某套某宽有 N 条,这次就必须还是 N 条。无基线时回落到 8。
+  const prior = fs.existsSync(BASE) ? JSON.parse(fs.readFileSync(BASE, 'utf8')) : null;
   const thin = [];
   for (const kit of Object.keys(out)) {
     for (const w of Object.keys(out[kit])) {
       const n = Object.keys(out[kit][w]).length;
-      if (out[kit][w].__EMPTY__ || n < MIN_PANELS) thin.push(`${kit}@${w} 只抓到 ${n} 条`);
+      const want = prior && prior[kit] && prior[kit][w] ? Object.keys(prior[kit][w]).length : 8;
+      if (out[kit][w].__EMPTY__ || n < want) thin.push(`${kit}@${w} 只抓到 ${n} 条,基线是 ${want} 条`);
     }
   }
   if (thin.length) {
@@ -104,6 +106,10 @@ const UPDATE = process.argv.includes('--update');
   for (const kit of Object.keys(out)) for (const w of Object.keys(out[kit])) for (const [id, h] of Object.entries(out[kit][w])) {
     const b = base[kit] && base[kit][w] && base[kit][w][id];
     if (b !== h) diffs.push(`${kit} @${w} #${id} ${b === undefined ? '(基线无此面板)' : ''}`);
+  }
+  // 反向:基线里有、这次没采到 = 面板被删或渲染失败,正向遍历永远看不到
+  for (const kit of Object.keys(base)) for (const w of Object.keys(base[kit])) for (const id of Object.keys(base[kit][w])) {
+    if (!(out[kit] && out[kit][w] && id in out[kit][w])) diffs.push(`${kit} @${w} #${id} (本次未采到,面板被删或没渲染)`);
   }
   if (diffs.length) {
     console.log(`RENDER CHANGED — ${diffs.length} 处静息渲染与基线不同:`);

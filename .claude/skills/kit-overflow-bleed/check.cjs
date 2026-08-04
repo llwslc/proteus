@@ -1,5 +1,5 @@
-// 滚动容器出血带门：任何 overflow 非 visible 的容器，都不得裁掉它承载内容的盒外绘制
-// （焦点环 = outline 宽 + 偏移；装饰悬出 = 旋钮/花记这类骑在边界上的构件）。
+// 滚动容器出血带门：任何 overflow 非 visible 的容器，都不得裁掉它承载内容的焦点环
+// （outline 宽 + 偏移）。旋钮悬出那一轴随滑块方案回退一并撤除，当前无门覆盖。
 const G = require('../lib/gate.cjs');
 const { chromium } = G.pw();
 const PORT = G.port(process.argv[2]);
@@ -13,6 +13,7 @@ const ONLY = process.argv[3];
   await cdp.send('CSS.enable');
   const KITS = ONLY ? [ONLY] : await G.kitsOf(page);
   const findings = [];
+  let audited = 0;
 
   for (const kit of KITS) {
     await page.goto(`http://localhost:${PORT}/?embed=1&kit=${kit}`, { waitUntil: 'load' });
@@ -26,31 +27,27 @@ const ONLY = process.argv[3];
       await btns[host === 'drawer' ? 2 : 0].click();
       await page.waitForTimeout(800);
 
-      const hits = await page.evaluate(() => {
-        const out = [];
+      const marked = await page.evaluate(() => {
         const dlg = document.querySelector('[role="dialog"]');
-        if (!dlg) return out;
+        if (!dlg) return 0;
         const clippers = [dlg, ...dlg.querySelectorAll('*')].filter((el) => {
           const c = getComputedStyle(el);
           return /(auto|scroll|hidden|clip)/.test(c.overflowX + c.overflowY);
         });
+        let n = 0;
         for (const clip of clippers) {
-          const cr = clip.getBoundingClientRect();
-          const cs = getComputedStyle(clip);
-          const bw = { l: parseFloat(cs.borderLeftWidth) || 0, r: parseFloat(cs.borderRightWidth) || 0 };
-          const box = { left: cr.left + bw.l, right: cr.right - bw.r };
           const label = (typeof clip.className === 'string' ? clip.className : '').split(/\s+/)[0] || clip.tagName;
           let i = 0;
           for (const el of clip.querySelectorAll('button, [role="switch"], [role="slider"], [role="checkbox"], [role="radio"], input, a[href]')) {
-            const r = el.getBoundingClientRect();
-            if (r.width < 2) continue;
+            if (el.getBoundingClientRect().width < 2) continue;
             el.setAttribute('data-bleed-probe', label + '-' + i++);
+            n++;
           }
-
         }
-        return out;
+        return n;
       });
-      for (const h of hits) findings.push({ kit, host, ...h });
+      if (!marked) console.log(`  WARN ${kit} ${host}: 弹层没打开或无可聚焦控件,零标记`);
+      audited += marked;
 
       // 焦点环：必须强制 :focus-visible，程序化 focus() 下 outline-style 是 none，量出来是假环
       const doc = await cdp.send('DOM.getDocument');
@@ -65,9 +62,10 @@ const ONLY = process.argv[3];
           if (c.outlineStyle === 'none') return null;
           const ring = (parseFloat(c.outlineWidth) || 0) + (parseFloat(c.outlineOffset) || 0);
           if (ring <= 0) return null;
-          const clip = el.closest('[class*="__body"], [class*="modal-body"], [role="dialog"]');
+          let clip = el.parentElement;
+          while (clip && !/(auto|scroll|hidden|clip)/.test(getComputedStyle(clip).overflowX + getComputedStyle(clip).overflowY)) clip = clip.parentElement;
+          if (!clip) return null;
           const cs = getComputedStyle(clip);
-          if (!/(auto|scroll|hidden|clip)/.test(cs.overflowX + cs.overflowY)) return null;
           const cr = clip.getBoundingClientRect();
           const box = { left: cr.left + (parseFloat(cs.borderLeftWidth) || 0), right: cr.right - (parseFloat(cs.borderRightWidth) || 0) };
           const r = el.getBoundingClientRect();
@@ -102,8 +100,9 @@ const ONLY = process.argv[3];
         console.log(`  ${k.padEnd(9)} ${f.host} 的 .${f.clip} 裁掉 ${f.el} 的${f.kind} ${f.over}px`);
     }
   }
+  if (!audited) { console.error('ERR 标记了 0 个可聚焦控件 —— 该门什么都没量'); process.exit(2); }
   console.log(`\nRESULT: ${findings.length === 0
-    ? `PASS (${KITS.length} kits：滚动容器出血带足够)`
+    ? `PASS (${KITS.length} kits · ${audited} 个可聚焦控件的焦点环未被裁)`
     : `${Object.keys(findings.reduce((a, f) => ((a[f.kit] = 1), a), {})).length} kit(s) 的滚动容器裁掉盒外绘制 —— 给容器补出血带（padding + 等量负边距，布局不变）`}`);
   process.exit(findings.length ? 1 : 0);
 })().catch((e) => { console.error(e.message); process.exit(1); });
