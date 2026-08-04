@@ -511,7 +511,7 @@
   text-underline-offset: 3px;
 }
 .hanabi-link:hover {
-  color: var(--hanabi-primary-shade);
+  color: var(--hanabi-primary);
 }
 
 .hanabi-preview__head {

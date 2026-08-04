@@ -29,6 +29,9 @@
 .nova-combobox__clear:hover {
   color: var(--nova-danger);
 }
+.nova-combobox__trigger:hover {
+  color: var(--nova-text-bright);
+}
 .nova-combobox__trigger {
   font-size: var(--nova-fs-18);
   color: var(--nova-primary);

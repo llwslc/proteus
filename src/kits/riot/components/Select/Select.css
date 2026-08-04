@@ -2,6 +2,9 @@
   display: inline-flex;
   width: 100%;
 }
+.riot-select__trigger:where(:not([data-disabled])):hover {
+  background: var(--riot-tint);
+}
 .riot-select__trigger {
   display: inline-flex;
   align-items: center;
