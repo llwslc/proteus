@@ -61,8 +61,7 @@
 .brass-combobox__trigger {
   font-size: var(--brass-fs-17);
 }
-.brass-combobox__clear:hover,
-.brass-combobox__trigger:hover {
+.brass-combobox__clear:hover {
   background: var(--brass-tint-soft);
   color: var(--brass-text-bright);
 }

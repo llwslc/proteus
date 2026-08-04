@@ -8,6 +8,7 @@
 }
 .nocturne-select__trigger:hover:not([data-disabled]) {
   border-color: var(--nocturne-gilt);
+  box-shadow: var(--nocturne-glow-ring);
 }
 .nocturne-select__trigger:focus-visible {
   outline: 2px solid var(--nocturne-gilt);

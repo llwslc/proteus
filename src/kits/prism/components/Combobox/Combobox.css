@@ -45,8 +45,7 @@
     background var(--prism-dur) var(--prism-ease),
     transform var(--prism-dur) var(--prism-ease);
 }
-.prism-combobox__clear:not(:disabled):not([data-disabled]):hover,
-.prism-combobox__trigger:not(:disabled):not([data-disabled]):hover {
+.prism-combobox__clear:not(:disabled):not([data-disabled]):hover {
   background: var(--prism-ink-faint);
   color: var(--prism-primary);
 }

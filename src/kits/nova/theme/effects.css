@@ -365,6 +365,9 @@
   position: relative;
   z-index: 1;
 }
+.nova-field__control:where(:not(:has([data-disabled], :disabled))):hover {
+  background: var(--nova-line-strong);
+}
 .nova-field__control:focus-within {
   background: var(--nova-primary);
 }

@@ -45,8 +45,7 @@
     background var(--hanabi-dur) var(--hanabi-ease-out),
     color var(--hanabi-dur) var(--hanabi-ease-out);
 }
-.hanabi-combobox__clear:hover,
-.hanabi-combobox__trigger:hover {
+.hanabi-combobox__clear:hover {
   background: var(--hanabi-primary-wash);
   color: var(--hanabi-primary-shade);
 }

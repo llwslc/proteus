@@ -292,6 +292,10 @@
     background var(--nocturne-dur) var(--nocturne-ease);
 }
 
+.nocturne-fieldframe:where(:not(:has([data-disabled], :disabled))):hover {
+  border-color: var(--nocturne-gilt);
+  box-shadow: var(--nocturne-glow-ring);
+}
 .nocturne-fieldframe:focus-within {
   border-color: var(--nocturne-gilt);
   background: var(--nocturne-bg-deep);

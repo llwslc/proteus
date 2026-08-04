@@ -58,9 +58,6 @@
     color var(--abyss-dur) var(--abyss-ease),
     filter var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-select__trigger:hover .abyss-select__chevron {
-  color: var(--abyss-text);
-}
 .abyss-select__trigger[data-popup-open] .abyss-select__chevron {
   transform: rotate(180deg);
   color: var(--abyss-glow);
