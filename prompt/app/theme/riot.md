@@ -6,17 +6,19 @@
 
 - logo：`RIOT`，`OT` 走 primary 荧光橙；副标题 `XEROXED UI KIT`；状态徽章 `Live`，走 primary 色。
 - hero：eyebrow `Cut-Up System`；标题 `A **bootleg** interface kit / cut up, pasted crooked`；描述关键词 photocopied clippings、torn edges、fluorescent marker、ransom-note type；单位词 `Clippings`。
-- 区块组名：Inputs、Forms、Feedback、Overlays、Display、Foundations；demo 文案走地下 zine 的词汇，如 Riot、Demand、Manifesto、Deface、Staple、Bootleg、Xerox。
+- 区块组名带 display 体副题：Inputs · controls & demands，Forms · bound fields，Feedback · bars & readouts，Overlays · menus & dialogs，Display · marks & fittings，Foundations · type & rule，Signature · the print run；组标记按序 StarFill、Square、Triangle、StarFill、Skull、Triangle、StarFill；demo 文案走地下 zine 的词汇，如 Riot、Demand、Manifesto、Deface、Staple、Bootleg、Xerox。
 - otp 预填：`977`，取朋克元年 1977，与 input 面板锁定值 `RIOT-1977` 同源。
+- toast：success 条的动作按钮文案 `RIP IT`。
 
 ## 2. 招牌
 
-- hero：右侧勒索信拼贴主视觉 + 撕纸、胶带、条码、订书钉的剪报碎屑，就近挂 `.riot-jitter` 微抖。
-- Loader：勒索字母逐枚复印闪白，逐字换字体与荧光底；台高 `180`，循环播放。
+- hero：右侧勒索信拼贴主视觉 + 胶带、条码、订书钉的剪报碎屑 + `XEROX` 涂划与 `NO GODS NO MASTERS` 标语戳，就近挂 `.riot-jitter` 微抖。
+- Loader：勒索字母逐枚明灭，逐字换字体与荧光底，下配 `Printing` 字行；台高 `180`，循环播放。
 
 ## 3. 入场
 
-- 顶栏砸下；hero 文案 `riot-slam` 硬切砸入、带一下抖；面板进视口时按各自 `--riot-tilt` 硬切贴上、错开一拍；`steps` 咔哒落定、不缓入——糙、快、狠。
+- 顶栏砸下；hero 文案 `riot-slam` 快落砸入（`ease-out`）错拍；面板进视口时贴上、错开一拍、落定呈各自 `--riot-tilt` 倾角。
+- 页面根 `overflow-x: clip` 兜住 hero 碎屑出血。
 
 ## 4. 面板特例
 

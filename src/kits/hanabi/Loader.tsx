@@ -16,7 +16,7 @@ export default function Loader() {
         <span className="hanabi-loader__spark-sm hanabi-loader__spark-sm--a">✦</span>
         <span className="hanabi-loader__spark-sm hanabi-loader__spark-sm--b">✦</span>
       </div>
-      <div className="hanabi-loader__label">NOW LOADING…</div>
+      <div className="hanabi-loader__label">NOW LOADING</div>
     </div>
   );
 }

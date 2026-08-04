@@ -4,15 +4,15 @@
 
 ## 1. 文案
 
-- logo：`NOVA`，结尾 `VA` 走强调色；副标题 `SCI-FI UI KIT`；状态徽章 `Online`，走 success 色。
+- logo：`NOVA`，结尾 `VA` 走强调色，前缀一枚渐变切角砖徽记（BoltIcon）；副标题 `SCI-FI UI KIT`；状态徽章 `Online`，走 success 色。
 - hero：eyebrow `Component System`；标题 `A **sci-fi** interface kit / forged in neon`；描述关键词 neon HUD skin、chamfered frames、reactive glow、scanline motion；单位词 `Controls`、`Token File`。
 - 区块组名：Inputs、Forms、Feedback、Overlays、Display、Foundations；demo 文案走舰桥与遥测的词汇，如 Command、Telemetry、Sensor。
 - otp 预填：`427`，固定码。
 
 ## 2. 招牌
 
-- hero：右侧准星 reticle（中心点 + 十字线）+ 三层虚实同心环异速旋转。
-- Loader：HUD 角框 + 十字准星 + 一道扫描线；台高 `180`，循环播放。
+- hero：右侧准星 reticle（中心点 + 十字线）+ 三层虚实同心环异速旋转；文案区右让 `215` 给准星，准星随文案末拍升起。
+- Loader：HUD 角框 + 十字准星（带明灭）+ 一道扫描线 + `SCANNING` 字行；台高 `180`，循环播放。
 
 ## 3. 入场
 
@@ -24,4 +24,5 @@
 
 ## 5. 外壳
 
+- 顶栏底缘一条 `primary` 渐隐辉光带。
 - 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）。rest 取 `text-dim`；hover 与键盘焦点提亮到 `text`、盖 `tint-faint` 底；键盘焦点再转 `primary` + `glow-text` 辉光，行面浮出 `tint-soft` 横向扫描线纹理——CRT 目标行，去原生 outline。

@@ -191,6 +191,7 @@
   --nocturne-avatar-md: 36px;
   --nocturne-avatar-lg: 48px;
   --nocturne-list-item-h: 40px;
+  --nocturne-scrollarea-h: 200px;
   --nocturne-separator-stub-w: 24px;
   --nocturne-popup-h: calc(var(--nocturne-list-item-h) * 7);
   --nocturne-navmenu-col-w: 210px;

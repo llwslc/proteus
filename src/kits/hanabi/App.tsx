@@ -166,6 +166,7 @@ function HeroCombo() {
   const [combo, setCombo] = useState(0);
   const [pop, setPop] = useState(0);
   const [fever, setFever] = useState(false);
+  const [broke, setBroke] = useState(false);
 
   useEffect(() => {
     let idleTimer: ReturnType<typeof setTimeout> | undefined;
@@ -181,7 +182,10 @@ function HeroCombo() {
         feverTimer = setTimeout(() => setFever(false), 600);
       }
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => setCombo(0), 5000);
+      idleTimer = setTimeout(() => {
+        setCombo(0);
+        setBroke(true);
+      }, 5000);
     };
     document.addEventListener("pointerdown", onHit);
     return () => {
@@ -204,7 +208,8 @@ function HeroCombo() {
         key={pop}
         className={`hanabi-plate hanabi-combo-stage__counter${
           fever ? " hanabi-combo-stage__counter--fever" : ""
-        }`}
+        }${broke ? " hanabi-combo-stage__counter--broke" : ""}`}
+        onAnimationEnd={() => setBroke(false)}
       >
         COMBO <b>×{combo}</b>
       </span>

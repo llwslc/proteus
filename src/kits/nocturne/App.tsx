@@ -1479,9 +1479,7 @@ function Demo() {
             <div className="nocturne-section" id="scroll">
               <Panel title="Scroll Area">
                 <ScrollArea>
-                  <ScrollAreaViewport
-                    style={{ maxHeight: "var(--nocturne-scroll-demo-h)" }}
-                  >
+                  <ScrollAreaViewport>
                     <ScrollAreaContent>
                       <ol className="nocturne-scroll-list">
                         {[

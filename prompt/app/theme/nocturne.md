@@ -13,16 +13,16 @@
 - otp 预填：`217`（固定，标本号），与 input 面板锁定值 `BELLADONNA-217` 同源。
 - toast：success 条的动作按钮文案 `Seal the vial`。
 - combobox、autocomplete 空态文案 `No such flower in the garden`。
-- preview 人物：`Lady Belladonna` · `@belladonna`，简介一句夜园看守人设定。
+- preview 人物：`Lady Belladonna` · `@belladonna`（mono `text-mute` 注记），简介一句夜园看守人设定。
 
 ## 2. 招牌
 
-- hero：文案列居中于两蔓之间（含数据条，宽 640 上限）；标题上方一行 `font-script` 拉丁引言 `Hortus Nocturnus`；左右两缘各一株缠枝蔓、右株镜像，自根部向上生长——每株构成 = 主枝 1 + 侧枝 5 + 实填叶 9 + 卷须 3 + 苞 3 + 五瓣满花 3，`nocturne-branch` 主枝先行、侧枝错拍接力，叶花按生长高度次第绽放，满花后开；手机端藏蔓。
-- Loader：`#1d1126` 夜底 + 一条蔓枝分隔自中心向两侧生长——每半支 4 片实填叶 + 1 卷须 + 末端 1 苞，中心一朵五瓣满花错拍绽开 + `NOCTURNE` 宽字距铜字，色值硬编码；台高 `360`，一次性播放。
+- hero：整块成带框图版——1px `gilt-50` 框 + `shadow-frame`、裁去蔓枝出血，两蔓间衬一枚 `glow-12` 径向幽光随 `breathe` 呼吸；标题字距收 `ls-1`，描述中 token 名作 mono `gilt-bright` 芯片；文案列居中于两蔓之间（含数据条，宽 640 上限）；标题上方一行 `font-script` 拉丁引言 `Hortus Nocturnus`；左右两缘各一株缠枝蔓、右株镜像，自根部向上生长——每株构成 = 主枝 1 + 侧枝 5 + 实填叶 9 + 卷须 3 + 苞 3 + 五瓣满花 3，`nocturne-branch` 主枝先行、侧枝错拍接力，叶花按生长高度次第绽放，满花后开；手机端藏蔓。
+- Loader：`#1d1126` 夜底 + 一条蔓枝分隔自中心向两侧生长——每半支 4 片实填叶 + 1 卷须 + 末端 1 苞，中心一朵五瓣满花错拍绽开 + `NOCTURNE` 宽字距铜字，色值硬编码；台高 `360`（手机 `240`），一次性播放。
 
 ## 3. 入场
 
-- 顶栏自上淡落；hero 蔓枝生长、文案按 eyebrow → 标题 → 描述次第 `nocturne-rise` 浮现；面板进视口 `nocturne-rise`（22px 上移淡入 1s）；App.css 带 reduced-motion 门。
+- 顶栏自上淡落；hero 蔓枝生长、文案按引言 → eyebrow → 标题 → 描述 → 数据条次第 `nocturne-rise` 浮现；面板进视口 `nocturne-rise`（22px 上移淡入 1s）；App.css 带 reduced-motion 门。
 
 ## 4. 面板特例
 

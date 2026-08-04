@@ -15,8 +15,8 @@
 
 ## 2. 招牌
 
-- hero：集中線放射底（repeating-conic 细线、中心留空）+ 数枚 `warning` 金／`secondary` 水色 ✦ 火花明灭 + 右上一枚 `★★★★★ SSR` 斜贴徽章；右侧主题装饰件 = **COMBO 计数器**——斜切铭牌里 display 体连击数，页面上任何指针按下 +1 并果冻弹跳，5 秒无操作抖动断连归零，模态确认类动作 +10 并金化一拍（FEVER）。
-- Loader：`base` 底 + 集中線 + 一枚大 `primary` ✦ 果冻缩放自旋 + DotGothic16 `NOW LOADING` 像素行，色值硬编码；台高 `240`，循环播放。
+- hero：集中線放射底（repeating-conic 细线、中心留空）+ 数枚 `warning` 金／`secondary` 水色／`primary` 粉 ✦ 火花明灭 + 右上一枚 `★★★★★ SSR` 斜贴徽章；右侧主题装饰件 = **COMBO 计数器**——斜切铭牌里 display 体连击数，页面上任何指针按下 +1 并果冻弹跳，5 秒无操作抖动断连归零，模态确认类动作 +10 并金化一拍（FEVER）；台底一行 cap 提示 `every hit feeds the combo`。
+- Loader：`base` 底 + 集中線缓转 + 一枚大 `primary` ✦ 果冻缩放自旋（带 `tone` 硬影副本）+ 两枚小 ✦ 明灭 + DotGothic16 `NOW LOADING` 像素行，色值硬编码；台高 `240`，循环播放。
 
 ## 3. 入场
 
@@ -26,9 +26,9 @@
 
 - scroll 面板的 12 行列表做成战斗日志：DotGothic16 时间码 + 日语日志行。
 - button 面板第 ① 排 primary 钮演示刀光按压（`slash-flash` 属 primary 常规态，无需额外 prop）。
-- preview 面板的身份行：display 体 + `.hanabi-cap` 注记。
+- preview 面板的身份行：display 体 + mono `text-mute` 注记。
 - context 面板的投放区：`2px dashed tone-deep` 虚线箱 + `#eef5fb` 底（hover 升 `#e4eefa`）+ 右下角一撮 `primary` 半调网点；mono 居中提示。
 
 ## 5. 外壳
 
-- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；圆角行、无左竖轨。rest 取 `text` 墨蓝；hover 盖 `primary-wash` 底 + `primary-deep` 字；键盘焦点在 hover 底上再收拢一圈四角锁定框——复用全站焦点母题，但角标缩到 7px、框上下外扩 3px 适配矮行使四角分明，去原生 outline。
+- 侧栏项 = 控件名 + 三字母缩码（缩码走 mono、`text-mute`、靠右）；圆角行、无左竖轨。rest 取 `text` 墨蓝；hover 盖 `primary-wash` 底 + `primary-shade` 字；键盘焦点在 hover 底上再收拢一圈四角锁定框——复用全站焦点母题，但角标缩到 7px、框上下外扩 3px 适配矮行使四角分明，去原生 outline。

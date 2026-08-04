@@ -109,7 +109,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--riot-space-2) var(--riot-space-3);
-  padding-left: calc(var(--riot-space-3) + var(--riot-stroke-bold));
+  padding-left: var(--riot-space-3);
   font-family: var(--riot-font);
   font-size: var(--riot-fs-15);
   color: var(--riot-text-mute);
@@ -552,7 +552,8 @@
   .riot-hero__title,
   .riot-hero__desc,
   .riot-hero__stats,
-  .riot-hero__ransom--t {
+  .riot-hero__ransom--t,
+  .riot-jitter {
     animation: none;
   }
   .riot-grid.riot-reveal > * {

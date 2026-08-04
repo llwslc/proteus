@@ -54,8 +54,14 @@
   white-space: nowrap;
 }
 .abyss-menu__shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   flex: 0 0 auto;
   margin-left: var(--abyss-space-4);
+  padding: 1px 0.5em;
+  border: 1px solid var(--abyss-ink);
+  border-radius: var(--abyss-round-3);
   font-family: var(--abyss-font-mono);
   font-size: var(--abyss-fs-12);
   letter-spacing: var(--abyss-ls-6);
