@@ -1187,7 +1187,7 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} tone="danger">
+                  <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     Cast Overboard
                   </MenuItem>
                 </Menu>

@@ -1004,7 +1004,7 @@ function Demo() {
                   <MenuItem icon={<Dot />}>Lock layer</MenuItem>
                   <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<Close />} tone="danger">
+                  <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Delete
                   </MenuItem>
                 </Menu>

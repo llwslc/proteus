@@ -959,7 +959,7 @@ function Demo() {
                   <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
                   <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<Close />} tone="danger">
+                  <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Shut down
                   </MenuItem>
                 </Menu>

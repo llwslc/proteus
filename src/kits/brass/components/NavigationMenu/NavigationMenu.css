@@ -42,7 +42,9 @@
   color: var(--brass-text-bright);
 }
 .brass-navmenu__trigger[data-popup-open] {
+  background: linear-gradient(180deg, transparent, var(--brass-tint));
   color: var(--brass-primary);
+  text-shadow: var(--brass-glow-text);
 }
 .brass-navmenu__trigger:focus-visible {
   outline: none;

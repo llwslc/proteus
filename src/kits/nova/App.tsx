@@ -1051,7 +1051,7 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} tone="danger">
+                  <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     Jettison Cargo
                   </MenuItem>
                 </Menu>

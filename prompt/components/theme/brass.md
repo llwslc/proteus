@@ -28,7 +28,7 @@
 - Accordion：折叠配方——marker 是一枚齿轮。
 - Collapsible：整框成箱——`line` 描边 + `round-md` + `surface-zone` 底。
 - Menubar：箱体同 ToggleGroup。
-- NavigationMenu：触发器栏复用 Tabs 的皮肤；开启态转 primary、chevron 翻转。
+- NavigationMenu：触发器栏复用 Tabs 的皮肤；开启态转 primary + `glow-text` 灯丝辉光、底 wash 升 `tint`、chevron 翻转。
 - Dialog：标题配一个齿轮 cartouche 图记，`brass-rotate` 自转。
 - AlertDialog：按 `tone` 重染，tone 取 danger、warning、primary——bezel、标题、图记随 tone 变；表面顶部加一道 tone 的径向光 20%，几何同 Dialog。
 - Drawer：不走 `.brass-plate` 整框，只在朝屏内那一条边收边——一道黄铜光束（`primary` + 灯晕）当内沿、配一个滚花拉手，其余三边贴屏不描；靠 `shadow-modal` + `glow-modal` 浮起。

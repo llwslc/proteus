@@ -1176,7 +1176,7 @@ function Demo() {
                   <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
                   <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<XIcon />} tone="danger">
+                  <MenuItem icon={<XIcon />} shortcut="⌘⌫" tone="danger">
                     Uproot
                   </MenuItem>
                 </Menu>

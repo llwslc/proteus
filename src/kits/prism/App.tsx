@@ -965,7 +965,7 @@ function Demo() {
                   <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
                   <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<Close />} tone="danger">
+                  <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Delete
                   </MenuItem>
                 </Menu>

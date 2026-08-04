@@ -985,7 +985,7 @@ function Demo() {
                   <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
                   <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
                   <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} tone="danger">
+                  <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     削除
                   </MenuItem>
                 </Menu>
