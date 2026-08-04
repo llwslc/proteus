@@ -16,7 +16,7 @@
 ## 2. 招牌
 
 - hero：集中線放射底（repeating-conic 细线、中心留空）+ 数枚 `warning` 金／`secondary` 水色 ✦ 火花明灭 + 右上一枚 `★★★★★ SSR` 斜贴徽章；右侧主题装饰件 = **COMBO 计数器**——斜切铭牌里 display 体连击数，页面上任何指针按下 +1 并果冻弹跳，5 秒无操作抖动断连归零，模态确认类动作 +10 并金化一拍（FEVER）。
-- Loader：`base` 底 + 集中線 + 一枚大 `primary` ✦ 果冻缩放自旋 + DotGothic16 `NOW LOADING` 像素行，色值硬编码。
+- Loader：`base` 底 + 集中線 + 一枚大 `primary` ✦ 果冻缩放自旋 + DotGothic16 `NOW LOADING` 像素行，色值硬编码；台高 `240`，循环播放。
 
 ## 3. 入场
 

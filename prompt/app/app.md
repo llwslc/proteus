@@ -108,7 +108,7 @@
 
 **Signature**
 
-- loader：通栏面板，内嵌展示该 kit 的 Loader（即 Suspense 兜底那枚），用 `demo-loader-stage` 容器收进面板、不占全屏。
+- loader：通栏面板，内嵌展示该 kit 的 Loader（即 Suspense 兜底那枚），用 `demo-loader-stage` 容器收进面板、不占全屏——容器给定台高，Loader 整枚落在台内；Loader 走整屏定位时，容器另兼它的包含块并裁去溢出；**台高由 theme 定**。循环型 Loader 常驻播放；一次性 Loader 在容器进入视口、面板入场落定后起播，离开再进重播，未起播时停在首帧。
 
 ## 文案槽位
 
