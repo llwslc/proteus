@@ -130,6 +130,10 @@
   align-items: flex-start;
   text-decoration: none;
 }
+.brass-navmenu__link:where(:not([data-disabled])):hover {
+  background: var(--brass-tint-soft);
+  color: var(--brass-text-bright);
+}
 .brass-navmenu__link-body {
   display: flex;
   flex: 1;
