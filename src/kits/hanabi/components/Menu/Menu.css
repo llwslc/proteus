@@ -33,6 +33,9 @@
   font-size: var(--hanabi-fs-12);
   color: var(--hanabi-text-mute);
 }
+.hanabi-list-item[data-highlighted] .hanabi-menu__shortcut {
+  color: var(--hanabi-text-dim);
+}
 
 .hanabi-menu__chevron {
   display: inline-flex;

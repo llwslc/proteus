@@ -78,7 +78,7 @@
 }
 .abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__shortcut,
 .abyss-menu__item[data-popup-open] .abyss-menu__shortcut {
-  color: var(--abyss-text-dim);
+  color: var(--abyss-text);
 }
 
 .abyss-menu__item[data-disabled] {
