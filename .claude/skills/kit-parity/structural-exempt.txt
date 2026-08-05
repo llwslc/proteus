@@ -1,0 +1,5 @@
+# 已裁定的合理分歧(2026-08-05 H-09 清账)。加行前必须驱动该零件并写明架构出处。
+combobox__clear|padding|hanabi|定盒 icon-ghost:width/height=button-icon-ghost+flex 居中,无 padding 架构
+drawer__sheet|flex|prism|sheet 直接 width/inset 定位定尺寸,不走 flex 撑满的组合架构
+panel__head|padding|hanabi|题牌骑顶缘:head 为零高锚位,间距在 plate 与 panel 自身
+radio__control|padding|hanabi|定尺寸圆 22×22,无 padding 架构

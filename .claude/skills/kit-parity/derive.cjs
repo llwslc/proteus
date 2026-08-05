@@ -70,11 +70,21 @@ for (const kit of kits) {
       for (const decl of m[2].split(';')) {
         const p = decl.split(':')[0].trim().toLowerCase();
         if (!STRUCTURAL.has(p)) continue;
-        ((table[norm] ??= {})[kit] ??= new Set()).add(p);
+        const set = ((table[norm] ??= {})[kit] ??= new Set());
+        set.add(p);
+        if (p === 'overflow') { set.add('overflow-x'); set.add('overflow-y'); }
       }
     }
   }
 }
+
+// adjudicated legit divergences — structural-exempt.txt lines `part|prop|missing-kit|verdict`.
+// Add a line ONLY after driving the part and citing the architecture, never to silence a red.
+const EX_FILE = path.join(__dirname, 'structural-exempt.txt');
+const EXEMPT = fs.existsSync(EX_FILE)
+  ? new Set(fs.readFileSync(EX_FILE, 'utf8').split('\n').map((l) => l.trim())
+      .filter((l) => l && !l.startsWith('#')).map((l) => l.split('|').slice(0, 3).join('|')))
+  : new Set();
 
 let gaps = 0;
 for (const norm of Object.keys(table).sort()) {
@@ -88,6 +98,7 @@ for (const norm of Object.keys(table).sort()) {
     const no = have.filter((k) => !byKit[k].has(prop));
     if (no.length !== 1 || yes.length < 3) continue;
     if (ONLY && no[0] !== ONLY) continue;
+    if (EXEMPT.has(`${norm}|${prop}|${no[0]}`)) continue;
     console.log(`GAP  ${norm}  '${prop}'  present:[${yes.sort().join(',')}]  MISSING:${no[0]}`);
     gaps++;
   }
