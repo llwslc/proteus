@@ -95,7 +95,7 @@
 
 **Display**
 
-- avatar：一行 4 个 Avatar，4 种 status 与 3 种尺寸 —— ① 图片 + online（`md`）；② fallback + busy（`sm`）；③ fallback + away（`md`）；④ fallback + offline（`lg`）。
+- avatar：一行 4 个 Avatar，4 种 status 与 3 种尺寸 —— ① 图片 + online（`md`）；② fallback + busy（`sm`）；③ fallback + away（`md`）；④ fallback + offline（`lg`）；图片位取 `i.pravatar.cc` 外链，每套一枚固定的 `?img=` 编号。
 - badge：一行 6 个 Badge，tone 依次 `primary` 带 dot、`success`、`warning`、`danger` 带 dot、`secondary`、`neutral`。
 - toolbar：ToggleGroup（3 个互斥 toggle、默认第 1）+ 分隔 + ToolbarGroup（2 个图标钮、第 2 枚 `disabled`）+ 分隔 + ToolbarLink（末尾状态链接，图标 + 文字）；2 分隔。
 - scroll：ScrollArea（`maxHeight` 200），内嵌 12 行「时间 + 消息」列表。
@@ -130,6 +130,7 @@
 - 切换：写 `localStorage` + `location.reload()`；启动读 `localStorage` 决定加载哪套，默认第一套。
 - 各套 `global.css` 与演示页 helper 类用裸选择器、无作用域。
 - `index.html` 设暗底；`#root` 仅 `min-height:100vh`，文档自身滚动。
+- 字体走 Google Fonts CDN：各套 `theme/typography.css` 首行 `@import` 引入本套字族，`index.html` 对 `fonts.googleapis.com` 与 `fonts.gstatic.com` preconnect。
 - 切换器：常驻浮层、中性外观；层级压在 `backdrop` 之下，遇模态打开即隐藏、不遮挡其内容。
 
 ## Loader
