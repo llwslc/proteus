@@ -19,16 +19,16 @@ Don't reason about pixels from CSS — render the page and look. Two rules carry
 const { chromium } = require('/tmp/pw/node_modules/playwright-core');
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const URL = 'http://127.0.0.1:<port>/';
+const KITS_DIR = '<repo>/src/kits';
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu', '--force-color-profile=srgb'] });
   const page = await browser.newPage({ viewport: { width: 1440, height: 950 } });
   await page.emulateMedia({ reducedMotion: 'reduce' });           // freeze perpetual animation
-  await page.goto(URL, { waitUntil: 'networkidle' });
-  // kit list from the live switcher (the registry) — never hardcode kit names
-  const kits = await page.$$eval('.shell-switch__btn', (els) => els.map((e) => e.getAttribute('data-kit-id')).filter(Boolean));
+  // kit list = src/kits/ directory scan (the registry on disk) — never hardcode kit names
+  const kits = require('fs').readdirSync(KITS_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
   for (const kit of kits) {
-    await page.evaluate((k) => localStorage.setItem('kit', k), kit);
-    await page.reload({ waitUntil: 'networkidle' });
+    // ?embed=1&kit= per kit — the homepage mounts 6 live thumbnail iframes and networkidle never settles there
+    await page.goto(`${URL}?embed=1&kit=${kit}`, { waitUntil: 'load' });
     await page.locator('#menu').screenshot({ path: `/tmp/${kit}_menu.png` });   // element shot: auto-waits + scrolls
   }
   await browser.close();

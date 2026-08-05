@@ -17,7 +17,7 @@ npm run dev     # dev server must be up on :5273 (the gate drives the live page)
 node .claude/skills/kit-equality/check.cjs [port]
 ```
 
-Kit list is derived from the live switcher (`.shell-switch__btn[data-kit-id]`) — never hardcoded. Exit 1 if either check fails.
+Kit list comes from `lib/gate.cjs kitsOf()` — a `src/kits/` directory scan, never hardcoded. Exit 1 if either check fails.
 
 ## Reading the output
 

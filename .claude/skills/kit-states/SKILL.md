@@ -12,7 +12,7 @@ One principle: **a kit is accepted only when every interaction state renders rig
 ```
 node .claude/skills/kit-states/states.cjs [port]
 ```
-Run it in place — no copy step. It is `.cjs` so it runs despite the repo's `type: module`; the `require('/tmp/pw/...')` path is absolute, so it works from the repo root. Sandbox-disabled; needs the dev server and `/tmp/pw` playwright-core from the screenshot skill. The kit list is read from the app's own kit switcher (the registry), so every registered kit is swept and adding one needs no edit here.
+Run it in place — no copy step. It is `.cjs` so it runs despite the repo's `type: module`; the `require('/tmp/pw/...')` path is absolute, so it works from the repo root. Sandbox-disabled; needs the dev server and `/tmp/pw` playwright-core from the screenshot skill. The kit list comes from a `src/kits/` directory scan (the registry on disk), so every kit is swept and adding one needs no edit here.
 
 Writes `/tmp/states/<kit>_<state>.png` and prints a per-kit line: `✓ <kit>: all N interaction states captured`, or `⚠ <kit>: NOT captured -> …` listing every state it could not drive. **A state that fails to capture is a gap to fix, never a silent pass** — any kit with gaps makes the sweep exit 1.
 
@@ -40,4 +40,4 @@ Read every PNG. Check the dynamic states specifically: pressed depth, hover/focu
 
 ## Extend
 
-When the kit gains an interaction state the sweep doesn't cover, add it to `states.cjs` and to its `EXPECT` list so a miss is reported — the gate is only as good as its state list. (The kit *list* needs no maintenance — it's read from the app's kit switcher.)
+When the kit gains an interaction state the sweep doesn't cover, add it to `states.cjs` and to its `EXPECT` list so a miss is reported — the gate is only as good as its state list. (The kit *list* needs no maintenance — it comes from the `src/kits/` scan.)

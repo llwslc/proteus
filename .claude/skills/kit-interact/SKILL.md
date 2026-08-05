@@ -14,7 +14,7 @@ node .claude/skills/kit-interact/check.cjs            # all kits (needs dev serv
 node .claude/skills/kit-interact/check.cjs 5273 brass # one kit / port
 ```
 
-Run IN PLACE. Kits come from the live switcher (0 kits or a bad kit id → exit 2). It reloads to a clean state before **every** check so no popup leaks into the next one. ~1–2 min per run. Exit 1 on any HIGH fault.
+Run IN PLACE. Kits come from `lib/gate.cjs kitsOf()` — a `src/kits/` scan (0 kits or a bad kit id → exit 2). It reloads to a clean state before **every** check so no popup leaks into the next one. ~1–2 min per run. Exit 1 on any HIGH fault.
 
 ## What it asserts
 

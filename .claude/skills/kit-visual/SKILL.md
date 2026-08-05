@@ -14,7 +14,7 @@ node .claude/skills/kit-visual/check.cjs            # all kits (needs the dev se
 node .claude/skills/kit-visual/check.cjs 5273 brass # one kit / port
 ```
 
-Run it in place. Kits come from the live switcher buttons; panels are matched by their `<kit>-panel` class and the id is resolved from the nearest ancestor — NOT `section[id]`, which silently matched **zero** panels in any kit that puts the demo id on a wrapper `<div>` (the gate was a no-op for those kits). Nothing hardcoded. Exit 1 if any finding.
+Run it in place. Kits come from `lib/gate.cjs kitsOf()` (`src/kits/` scan); panels are matched by their `<kit>-panel` class and the id is resolved from the nearest ancestor — NOT `section[id]`, which silently matched **zero** panels in any kit that puts the demo id on a wrapper `<div>` (the gate was a no-op for those kits). Nothing hardcoded. Exit 1 if any finding.
 
 ## What it asserts
 

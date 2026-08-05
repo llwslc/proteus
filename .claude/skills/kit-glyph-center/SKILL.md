@@ -13,7 +13,7 @@ A title with a leading glyph (○/▸/◆/☀ sigil, key, icon) must have that g
 node .claude/skills/kit-glyph-center/check.cjs [port] [kit]
 ```
 
-Kits derived from the live switcher (`.shell-switch__btn[data-kit-id]`).
+Kits come from `lib/gate.cjs kitsOf()` (`src/kits/` directory scan).
 
 ## What it measures
 

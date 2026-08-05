@@ -13,7 +13,7 @@ A nested submenu sits `sideOffset` px from its parent. That offset is **not** a 
 node .claude/skills/kit-submenu-gap/check.cjs [port]   # port falls back to GATE_PORT, then 5273
 ```
 
-Kits derive from the live switcher (0 kits → exit 2). For each kit it opens the `#menubar` submenu and measures the px gap to its parent menu. FAIL when:
+Kits come from `lib/gate.cjs kitsOf()` — a `src/kits/` scan (0 kits → exit 2). For each kit it opens the `#menubar` submenu and measures the px gap to its parent menu. FAIL when:
 
 - any kit's submenu **fails to open** — worse than a wrong gap, reported first;
 - gaps disagree across kits (`spread ≥ 4px`);
