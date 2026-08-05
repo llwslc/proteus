@@ -10,7 +10,7 @@ echo "改动文件:"; echo "$FILES" | sed 's/^/  /'
 has() { echo "$FILES" | grep -Eq "$1"; }
 RUN=""; SKIP_NOTE=""
 
-has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync kit-spec-coverage kit-entrance kit-spec-props kit-skeleton"
+has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync kit-spec-coverage kit-entrance kit-spec-props kit-skeleton kit-spec-cite"
 has '^\.claude/skills/.*SKILL\.md$' && RUN="$RUN prompt-lint"
 RUN="$RUN eslint format-check diff-hygiene"
 if has '\.tsx?$'; then
@@ -18,7 +18,7 @@ if has '\.tsx?$'; then
 fi
 has 'App\.tsx$|components/.*\.tsx$' && RUN="$RUN kit-a11y kit-equality"
 if has 'src/kits/.*\.css$|^src/shell/.*\.css$'; then
-  RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint kit-spec-coverage kit-parity kit-glyph-center"
+  RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint kit-spec-coverage kit-parity kit-glyph-center kit-spec-cite"
   has 'src/kits/.*App\.css$' && RUN="$RUN kit-entrance"
   has 'Menu|Menubar|ContextMenu|Navigation|Tooltip|Popover|Preview|Dialog|Drawer|Toast|Select|Combobox|Autocomplete' && RUN="$RUN kit-submenu-gap kit-anim-sync kit-overflow-bleed"
   has 'Input|Select|Combobox|Autocomplete|NumberField|theme/effects' && RUN="$RUN kit-hover"

@@ -7,7 +7,7 @@
 - 「点亮表面」用于 Button primary、Switch、Checkbox = 实色 `primary` 蓝平涂，前景（含箭头、占位符、数值）转 `on-fill` 纸白；无渐变、无辉光。
 - 「分段选中」用于 ToggleGroup、Toolbar、Menubar = 实色 `primary` + `on-fill`，呈一块实心色块。
 - 「文字强调选中」用于列表、Tab、NavMenu，只把文字转 `primary`；Tab、NavMenu 另配一条底部的 `stroke-bold` 粗细、实色蓝下划线。
-- 悬停：分段控件和触发条用 `tint-soft` 蓝 wash 纯底；图标钮和动作按钮的文字转 `primary`，菜单触发器转 `bright`；按钮浮出 `shadow-hard` 硬影，ghost 盖 `ink-faint`、文字转 `bright`；字段族悬停不变，整框只在聚焦或打开时点亮。
+- 悬停：分段控件和触发条用 `tint-soft` 蓝 wash 纯底；图标钮和动作按钮的文字转 `primary`，菜单触发器转 `text-bright`；按钮浮出 `shadow-hard` 硬影，ghost 盖 `ink-faint`、文字转 `text-bright`；字段族悬停不变，整框只在聚焦或打开时点亮。
 - 焦点：布尔开关（Checkbox、Switch、Radio）整个控件用 `ring`（纸白间隙 + 蓝外环）；分段控件和触发条用 `inset 0 0 0 2px primary`；输入框聚焦时整框 border 升蓝 + 加 `ring`。
 - 危险态走 danger 家族：实填朱红 + `-wash` + `-text`，border 仍黑、前景反白；危险行前景恒 `danger-text`、高亮盖 `danger-wash`。
 
@@ -22,7 +22,7 @@
 - Select：选中行右端一枚 `primary` 对勾。
 - Progress：锐角轨道（`track` 浅纸 + `ink` border）+ 实色 `accent-fill` 平涂指示，条填充流动（`prism-progress-slide`）。
 - Meter：轨道与平涂同 Progress，按 `tone` 重染填充。
-- Tabs：Jost 大写；hover 只转 `bright`；一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动。
+- Tabs：Jost 大写；hover 只转 `text-bright`；一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动。
 - Accordion：折叠配方——marker 是实色方块，开态转 45° 立成菱形。
 - Menubar：箱体同 ToggleGroup。
 - NavigationMenu：触发器 Jost 大写，hover 用 `tint-soft`；打开时转 `primary`、chevron 翻转、底部一条 `stroke-bold` 蓝线从左展开。
