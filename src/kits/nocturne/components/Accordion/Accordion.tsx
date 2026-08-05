@@ -1,7 +1,7 @@
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion";
 import type { ReactNode } from "react";
 import { cx } from "../cx";
-import { ChevronDownIcon, SealIcon } from "../icons";
+import { ChevronDownIcon } from "../icons";
 import "./Accordion.css";
 
 export interface AccordionItem {
@@ -44,9 +44,7 @@ export function Accordion({
         >
           <BaseAccordion.Header className="nocturne-accordion__header">
             <BaseAccordion.Trigger className="nocturne-collapse-trigger">
-              <span className="nocturne-marker nocturne-collapse-marker">
-                <SealIcon />
-              </span>
+              <span className="nocturne-marker nocturne-collapse-marker" />
               <span className="nocturne-collapse-title">{it.title}</span>
               <span className="nocturne-collapse-chevron">
                 <ChevronDownIcon />

@@ -39,8 +39,11 @@ for g in $RUN; do
     prompt-lint) bash .claude/skills/prompt-lint/check.sh >/tmp/kq-$g.log 2>&1; rc=$?;;
     diff-hygiene) sh .claude/skills/diff-hygiene/check.sh >/tmp/kq-$g.log 2>&1; rc=$?;;
     kit-parity) sh .claude/skills/kit-parity/check.sh >/tmp/kq-$g.log 2>&1; rc=$?;;
-    kit-visual|kit-glyph-center|kit-submenu-gap|kit-anim-sync|kit-overflow-bleed|kit-scroll-rail|kit-equality|kit-a11y)
+    kit-visual|kit-glyph-center|kit-submenu-gap|kit-anim-sync|kit-overflow-bleed|kit-scroll-rail|kit-equality)
       GATE_PORT=${GATE_PORT:-5273} node .claude/skills/$g/check.cjs ${GATE_PORT:-5273} >/tmp/kq-$g.log 2>&1; rc=$?;;
+    kit-a11y)
+      : >/tmp/kq-$g.log; rc=0
+      for k in src/kits/*/; do k=$(basename "$k"); node .claude/skills/kit-a11y/check.cjs "$k" ${GATE_PORT:-5273} >>/tmp/kq-$g.log 2>&1 || rc=1; done;;
     kit-lint) : >/tmp/kq-$g.log; for k in src/kits/*/; do k=$(basename "$k"); bash .claude/skills/kit-lint/check.sh "$k" >>/tmp/kq-$g.log 2>&1 || rc=1; done; rc=${rc:-0};;
     fingerprint) GATE_PORT=${GATE_PORT:-5273} node .claude/skills/kit-qa/fingerprint.cjs >/tmp/kq-$g.log 2>&1; rc=$?; [ $rc != 0 ] && sed -n '1,12p' /tmp/kq-$g.log;;
     *) node .claude/skills/$g/check.cjs >/tmp/kq-$g.log 2>&1; rc=$?;;

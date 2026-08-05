@@ -1,7 +1,7 @@
 import { Collapsible as BaseCollapsible } from "@base-ui/react/collapsible";
 import type { ReactNode } from "react";
 import { cx } from "../cx";
-import { ChevronDownIcon, SealIcon } from "../icons";
+import { ChevronDownIcon } from "../icons";
 import "./Collapsible.css";
 
 export interface CollapsibleProps extends Omit<
@@ -17,9 +17,7 @@ export function Collapsible({ title, children, className, ...props }: Collapsibl
   return (
     <BaseCollapsible.Root className={cx("nocturne-collapsible", className)} {...props}>
       <BaseCollapsible.Trigger className="nocturne-collapse-trigger">
-        <span className="nocturne-marker nocturne-collapse-marker">
-          <SealIcon />
-        </span>
+        <span className="nocturne-marker nocturne-collapse-marker" />
         <span className="nocturne-collapse-title">{title}</span>
         <span className="nocturne-collapse-chevron">
           <ChevronDownIcon />
