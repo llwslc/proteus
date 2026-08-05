@@ -54,7 +54,7 @@
   place-items: center;
   width: 42px;
   height: 42px;
-  font-size: 22px;
+  font-size: var(--abyss-fs-24);
   color: var(--abyss-glow);
   border: 1px solid var(--abyss-glow-a55);
   border-radius: 50%;
@@ -71,14 +71,14 @@
   gap: 7px;
 }
 .abyss-logo__text {
-  font-size: 28px;
+  font-size: var(--abyss-brand-fs);
   line-height: 0.86;
   color: var(--abyss-text-bright);
   text-shadow: 0 0 16px rgba(70, 232, 184, 0.3);
 }
 .abyss-logo__sub {
   font-family: var(--abyss-font-display);
-  font-size: 9.5px;
+  font-size: var(--abyss-micro-fs);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--abyss-text-mute);
@@ -106,7 +106,7 @@
 }
 .abyss-clock {
   font-family: var(--abyss-font-mono);
-  font-size: 12px;
+  font-size: var(--abyss-fs-12);
   letter-spacing: 0.08em;
   color: var(--abyss-glow);
 }
@@ -205,7 +205,7 @@
   margin: 0 0 8px;
   padding-left: 12px;
   font-family: var(--abyss-font-display);
-  font-size: 11px;
+  font-size: var(--abyss-micro-fs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--abyss-text-mute);
@@ -217,7 +217,7 @@
   padding: 6px 12px 6px 14px;
   color: var(--abyss-text-dim);
   font-family: var(--abyss-font);
-  font-size: 14px;
+  font-size: var(--abyss-fs-15);
   text-decoration: none;
   transition:
     color var(--abyss-dur) var(--abyss-ease),
@@ -237,7 +237,7 @@
 }
 .abyss-sidebar__link span {
   font-family: var(--abyss-font-mono);
-  font-size: 10px;
+  font-size: var(--abyss-micro-fs);
   color: var(--abyss-text-mute);
 }
 
@@ -263,7 +263,7 @@
   gap: 8px;
   margin: 0 0 18px;
   font-family: var(--abyss-font-display);
-  font-size: 12px;
+  font-size: var(--abyss-fs-12);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--abyss-gold);
@@ -285,14 +285,14 @@
 .abyss-hero__stat b {
   display: block;
   font-family: var(--abyss-font-display);
-  font-size: 26px;
+  font-size: var(--abyss-fs-24);
   line-height: 1;
   color: var(--abyss-glow);
   text-shadow: var(--abyss-text-aura);
 }
 .abyss-hero__stat span {
   font-family: var(--abyss-font-mono);
-  font-size: 10.5px;
+  font-size: var(--abyss-micro-fs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--abyss-text-mute);
@@ -337,7 +337,7 @@
 }
 .abyss-grid__group-mark {
   align-self: center;
-  font-size: 15px;
+  font-size: var(--abyss-fs-15);
   color: var(--abyss-gold);
   filter: var(--abyss-aura-gold);
 }
@@ -362,6 +362,8 @@
 }
 
 :root {
+  --abyss-micro-fs: 10px;
+  --abyss-brand-fs: 28px;
   --abyss-contextmenu-min-h: 132px;
 }
 .abyss-context__zone {

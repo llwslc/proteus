@@ -40,12 +40,12 @@
   background: linear-gradient(160deg, var(--nova-text-bright), var(--nova-primary));
   clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%);
   box-shadow: 0 0 14px var(--nova-line-strong);
-  font-size: 18px;
+  font-size: var(--nova-fs-18);
 }
 .nova-logo__text {
   font-family: var(--nova-font-display);
   font-weight: 900;
-  font-size: 20px;
+  font-size: var(--nova-fs-22);
   letter-spacing: 0.28em;
   color: var(--nova-text);
 }
@@ -55,7 +55,7 @@
 }
 .nova-logo__sub {
   font-family: var(--nova-font-mono);
-  font-size: 10px;
+  font-size: var(--nova-micro-fs);
   letter-spacing: 0.2em;
   color: var(--nova-text-dim);
 }
@@ -78,7 +78,7 @@
 }
 .nova-clock {
   font-family: var(--nova-font-mono);
-  font-size: 14px;
+  font-size: var(--nova-fs-14);
   letter-spacing: 0.1em;
   color: var(--nova-primary);
   text-shadow: var(--nova-glow-text);
@@ -113,7 +113,7 @@
 }
 .nova-sidebar__group-title {
   font-family: var(--nova-font-mono);
-  font-size: 10px;
+  font-size: var(--nova-micro-fs);
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--nova-text-mute);
@@ -127,7 +127,7 @@
   justify-content: space-between;
   padding: 6px 12px 6px 14px;
   color: var(--nova-text-dim);
-  font-size: 13.5px;
+  font-size: var(--nova-fs-13);
   letter-spacing: 0.04em;
   text-decoration: none;
   cursor: pointer;
@@ -150,7 +150,7 @@
 }
 .nova-sidebar__link span {
   font-family: var(--nova-font-mono);
-  font-size: 10px;
+  font-size: var(--nova-micro-fs);
   color: var(--nova-text-mute);
 }
 
@@ -175,7 +175,7 @@
   align-items: center;
   gap: 8px;
   font-family: var(--nova-font-mono);
-  font-size: 11px;
+  font-size: var(--nova-micro-fs);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--nova-primary);
@@ -190,7 +190,7 @@
 .nova-hero .nova-text {
   max-width: 60ch;
   margin: 0 0 20px;
-  font-size: 16px;
+  font-size: var(--nova-fs-16);
 }
 .nova-hero__stats {
   display: flex;
@@ -201,13 +201,13 @@
 .nova-hero__stat b {
   display: block;
   font-family: var(--nova-font-display);
-  font-size: 26px;
+  font-size: var(--nova-stat-fs);
   color: var(--nova-primary);
   line-height: 1;
 }
 .nova-hero__stat span {
   font-family: var(--nova-font-mono);
-  font-size: 10.5px;
+  font-size: var(--nova-micro-fs);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--nova-text-mute);
@@ -258,7 +258,7 @@
 }
 .nova-grid__group-sub {
   font-family: var(--nova-font-mono);
-  font-size: 12px;
+  font-size: var(--nova-fs-12);
   letter-spacing: 0.06em;
   color: var(--nova-text-mute);
   white-space: nowrap;
@@ -288,6 +288,8 @@
 }
 
 :root {
+  --nova-micro-fs: 10px;
+  --nova-stat-fs: 26px;
   --nova-contextmenu-min-h: 132px;
 }
 .nova-context__zone {
@@ -369,7 +371,7 @@
 }
 .demo-pcard__name {
   font-family: var(--nova-font-display);
-  font-size: 15px;
+  font-size: var(--nova-fs-16);
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--nova-text);
@@ -377,13 +379,13 @@
 .demo-pcard__handle {
   margin-top: 3px;
   font-family: var(--nova-font-mono);
-  font-size: 11px;
+  font-size: var(--nova-micro-fs);
   letter-spacing: 0.06em;
   color: var(--nova-text-mute);
 }
 .demo-pcard__bio {
   margin: 0 0 13px;
-  font-size: 13px;
+  font-size: var(--nova-fs-13);
   line-height: 1.6;
   color: var(--nova-text-dim);
 }
@@ -414,19 +416,19 @@
   flex: 0 0 auto;
   padding-top: 1px;
   font-family: var(--nova-font-mono);
-  font-size: 11px;
+  font-size: var(--nova-micro-fs);
   letter-spacing: 0.04em;
   color: var(--nova-primary);
 }
 .demo-log__m {
-  font-size: 13px;
+  font-size: var(--nova-fs-13);
   line-height: 1.5;
   color: var(--nova-text-dim);
 }
 
 .demo-toolbar__label {
   font-family: var(--nova-font);
-  font-size: 13px;
+  font-size: var(--nova-fs-13);
   font-weight: 600;
   letter-spacing: 0.08em;
 }
@@ -437,7 +439,7 @@
   padding: 52px 22px 16px;
   color: var(--nova-text-mute);
   font-family: var(--nova-font-mono);
-  font-size: 12px;
+  font-size: var(--nova-fs-12);
   letter-spacing: 0.08em;
   text-align: center;
 }
@@ -617,7 +619,7 @@
     margin-bottom: 18px;
   }
   .nova-hero p {
-    font-size: 14.5px;
+    font-size: var(--nova-fs-14);
   }
   .nova-hero__stats {
     gap: 14px 22px;

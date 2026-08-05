@@ -38,7 +38,7 @@
 .riot-logo__mark {
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 24px;
+  font-size: var(--riot-fs-24);
   color: var(--riot-primary);
 }
 .riot-logo__text {
@@ -279,8 +279,8 @@
   left: -6%;
   bottom: -4%;
   font-family: "Rock Salt", cursive;
-  font-size: 24px;
-  letter-spacing: 3px;
+  font-size: var(--riot-fs-24);
+  letter-spacing: var(--riot-ls-4);
   color: rgba(233, 228, 212, 0.15);
   transform: rotate(-12deg);
 }
