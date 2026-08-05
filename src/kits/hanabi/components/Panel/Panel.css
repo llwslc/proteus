@@ -48,4 +48,5 @@
 .hanabi-panel .hanabi-panel .hanabi-panel__title {
   --hanabi-plate-fill: var(--hanabi-secondary);
   --hanabi-plate-shade: var(--hanabi-secondary-shade);
+  color: var(--hanabi-ink);
 }

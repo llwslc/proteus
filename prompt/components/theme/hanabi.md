@@ -51,7 +51,7 @@
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`primary-shade` 字 + 悬停下划线。
 - ScrollArea：thumb 是 `tone-deep` 圆条；panel 型悬停显、坐在 `surface-inset` 药丸轨上（thumb 内缩 1px），popup 型常显——thumb 换 `primary`、宽 4px、轨透明、整条离框 `space-1`，充当弹层列表的溢出提示。
 - Separator：`2px dashed tone` 缝纫虚线；带 label 版 = 线 + `.hanabi-cap` 文字（前缀 ✦）+ 线；竖向为实线 `tone`；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
-- Panel：赛璐璐卡——`surface` 面 + `ink` 框 + `shadow-lg` + `r-modal`；title 做成骑顶缘左侧的 `primary` 斜切铭牌（display 体白字、`shadow-sm`）；嵌套 Panel 降为 `r-control` + `shadow-sm`、题牌换 `secondary` 水色。
+- Panel：赛璐璐卡——`surface` 面 + `ink` 框 + `shadow-lg` + `r-modal`；title 做成骑顶缘左侧的 `primary` 斜切铭牌（display 体白字、`shadow-sm`）；嵌套 Panel 降为 `r-control` + `shadow-sm`、题牌换 `secondary` 水色、`ink` 墨字。
 - 占位图标是 2px 圆头描线的简笔线形（`icons.tsx` 统一 `1em`、`currentColor`）。
 - 弹层列表的内衬取 `space-1`。
 - 共享配方的颜色就近覆盖：`--hanabi-item-color`、`--hanabi-plate-fill`、`--hanabi-hazard-tone`。
