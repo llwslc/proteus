@@ -46,7 +46,7 @@
 - AlertDialog：Dialog 基底按 `tone` 重染——拉丁引言与确认钮转 tone、题下蔓枝换 tone 色；无 close。
 - Drawer：`velvet` 丝绒面板，朝屏内缘 1px `gilt-50` + 发丝内衬线；title 同 Dialog 减配（引言保留、无蔓枝）；body 自滚动。
 - Toast：锚右上；静止层叠收拢（后条下探、微缩），悬停展开整列；条 = `velvet` 面 + `gilt-50` 框 + 左端一朵五瓣满花记取夜园花色（info `gilt`、success `petal-moon` 月光白、warning 琥珀、danger 赤红）+ 底缘 2px `gilt` 计时线（`nocturne-life` 随 timeout 燃尽、悬停暂停）+ close 右上；动作钮复用 secondary `sm`；手机端横向撑满。
-- Avatar：圆形画框——1px `gilt-50` 外环 + 1px `bg` 内隙 + `surface-pop` 底；图裁圆；fallback = 衬线单字 `gilt-bright`；status 右下小圆（`bg` 描边）：online `success`、busy `danger`、away `warning`、offline `text-mute`。
+- Avatar：圆形双线画框——外 1px `gilt-50` + 丝绒隙 + 衬线 1px `gilt-30`，sm 档回单线；图裁圆；fallback = 丝绒面上酒红辉从顶照进（`primary-50` 径向 + `surface-pop`）+ 衬线单字 `gilt-bright`；status 右下月点（`bg` 描边）：online `success`、busy `danger`、away `warning` 各带同色幽光，offline `text-mute` 熄灭无光。
 - Badge：铭签 chip——1px 框、`fs-12` `ls-2` 字；primary = `accent-surface` 底 `on-fill` 字；success、warning、danger = 各家 `-deep` 底 `on-fill` 字；secondary = 透明底 `gilt-50` 框 `gilt-bright` 字；neutral = `bg-deep` 底 `text-dim` 字；dot = 前缀圆点取本 tone 亮档。
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`gilt-bright` 字 + hover 底线；组间分隔竖发丝线。
 - ScrollArea：thumb 是 `gilt-dim` 细条、填满条宽，悬停转 `gilt`；轨透明；panel 型悬停显、popup 型常显——thumb 换 `gilt`、整条离框 `space-1`，充当弹层列表的溢出提示。
