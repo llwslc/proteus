@@ -125,13 +125,24 @@ const AUDIT = ({ vw, exempt }) => {
     }
 
     const ps = cs(panel);
-    if (!/(auto|scroll|hidden|clip)/.test(ps.overflow + ps.overflowX + ps.overflowY)) {
+    const pOv = ps.overflow + ps.overflowX + ps.overflowY;
+    if (!/(auto|scroll|hidden|clip)/.test(pOv)) {
       for (const el of els) {
         if (!vis(el) || !isContent(el)) continue;
         const r = R.get(el);
         if (r.width === 0 || r.height === 0 || srOnly(el, r) || insideClipper(el, panel)) continue;
         const over = Math.max(r.right - pr.right, pr.left - r.left, r.bottom - pr.bottom, pr.top - r.top);
         if (over > 2) out.push(`HIGH   ${id}  clipped: ${desc(el)} spills ${Math.round(over)}px past panel`);
+      }
+    } else if (/(hidden|clip)/.test(pOv) && !/(auto|scroll)/.test(pOv)) {
+      // a clipping panel CUTS what spills — text content past the bounds is content loss
+      // (svg/paint décor may overhang a clipper by design, so only own-text elements count)
+      for (const el of els) {
+        if (!vis(el) || !ownText(el)) continue;
+        const r = R.get(el);
+        if (r.width === 0 || r.height === 0 || srOnly(el, r) || insideClipper(el, panel)) continue;
+        const over = Math.max(r.right - pr.right, pr.left - r.left, r.bottom - pr.bottom, pr.top - r.top);
+        if (over > 2) out.push(`HIGH   ${id}  cut by panel clip: ${desc(el)} extends ${Math.round(over)}px past the clipping panel`);
       }
     }
 
