@@ -21,8 +21,9 @@ if has 'src/kits/.*\.css$|^src/shell/.*\.css$'; then
   RUN="$RUN kit-lint kit-deadcode kit-structure kit-visual fingerprint kit-spec-coverage kit-parity kit-glyph-center"
   has 'src/kits/.*App\.css$' && RUN="$RUN kit-entrance"
   has 'Menu|Menubar|ContextMenu|Navigation|Tooltip|Popover|Preview|Dialog|Drawer|Toast|Select|Combobox|Autocomplete' && RUN="$RUN kit-submenu-gap kit-anim-sync kit-overflow-bleed"
+  has 'Input|Select|Combobox|Autocomplete|NumberField|theme/effects' && RUN="$RUN kit-hover"
   has 'Tabs|Menubar|Toolbar' && RUN="$RUN kit-scroll-rail"
-  SKIP_NOTE="css 改动按文件名挑了动态门;交互态(hover/按压/触屏/Toast 堆叠)仍只有 kit-interact 能验,收官请跑全量 check.sh"
+  SKIP_NOTE="css 改动按文件名挑了动态门;交互态(按压/触屏/Toast 堆叠)仍只有 kit-interact 能验,字段悬停归 kit-hover,收官请跑全量 check.sh"
 fi
 # 门本身被改动 → 至少跑一遍被改的那道,证明它还能跑
 for g in $(echo "$FILES" | sed -n 's|^\.claude/skills/\(kit-[a-z-]*\)/check\..*|\1|p' | sort -u); do RUN="$RUN $g"; done
