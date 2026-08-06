@@ -35,7 +35,7 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
           >
             <svg
               className="nocturne-slider__bloom"
-              viewBox="-17 -17 34 34"
+              viewBox="-13.5 -13.5 27 27"
               aria-hidden="true"
               focusable="false"
             >

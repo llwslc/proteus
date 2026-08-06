@@ -40,7 +40,7 @@ export function Progress({
             <span className="nocturne-progress__tip" aria-hidden="true">
               <svg
                 className="nocturne-progress__bloom"
-                viewBox="-17 -17 34 34"
+                viewBox="-12.5 -12.5 25 25"
                 focusable="false"
               >
                 <MotifDefs id={id} />
