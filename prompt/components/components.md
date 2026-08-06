@@ -14,7 +14,7 @@
 - 用 **Base UI**（`@base-ui/react`）做一套可换肤的 React 组件库：37 个控件，一套能整体换皮的设计 token。结构、token 契约、交互骨架是共用的底盘；皮各自一个视觉世界，不是同一张皮改色。
 - **皮要有招牌**：每套皮拿出成体系的招牌——自绘控件、动效、装饰层次、构成动势，按各自美学取舍；这和结构、token 一样要紧，**招牌取什么形、走哪条路，由 theme 定**。
 - Vite + React 18 + TypeScript；构建命令 `tsc --noEmit && vite build`。
-- `@base-ui/react` 精确钉 `1.7.0`（不带 `^`）；升版是独立裁决，连带重验版本耦合点——Slider 拖拽回算绕修、Base UI 能力面裁决账、全量门。
+- 依赖 `@base-ui/react` 钉死 `1.7.0` 精确版本，不写 `^` 范围。
 - 样式用纯 CSS，和组件放同一目录；不用 Tailwind、CSS-in-JS、或任何运行时样式库。
 - 主题文件有四份，都由 `<kit>/index.tsx` 引入：跨组件复用的视觉配方放 `theme/effects.css`，主题值放 `theme/tokens.css`，氛围层放 `theme/global.css`，排版类放 `theme/typography.css`。
 
