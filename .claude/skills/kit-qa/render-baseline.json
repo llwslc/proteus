@@ -272,7 +272,7 @@
  "nocturne": {
   "desktop": {
    "__header": "78689f48e4cf",
-   "__hero": "c4891cd6482b",
+   "__hero": "c354f52ecf47",
    "__footer": "c9754ded079a",
    "button": "722080a5e9f0",
    "switch": "18a763244ac7",
@@ -292,8 +292,8 @@
    "progress": "8a41c247811e",
    "meter": "e84d6917a43e",
    "tabs": "e34d4c52d3ca",
-   "accordion": "004c868ec19e",
-   "collapsible": "585b6beea992",
+   "accordion": "91f21fc849bb",
+   "collapsible": "50fb38f33881",
    "tooltip": "e14c43a53339",
    "popover": "a4571d205666",
    "preview": "eaddee97e180",
@@ -305,18 +305,18 @@
    "alert": "42a11ff89eb5",
    "drawer": "7d6199fc0524",
    "toast": "2cbc385943c7",
-   "avatar": "99b2ccb062a6",
+   "avatar": "c56a78c1b4bf",
    "badge": "19eff54f19cc",
    "toolbar": "5b687edc5b9a",
    "scroll": "5c50dd611422",
    "typography": "d4284ab09521",
    "separator": "451451a61ab3",
-   "panel": "155561f73d2d",
-   "loader": "958b75c05eb6"
+   "panel": "db212d0d20b6",
+   "loader": "33dd87c87cde"
   },
   "phone": {
    "__header": "39d26c5f8341",
-   "__hero": "e944f9362354",
+   "__hero": "52bb0168f68a",
    "__footer": "a575f58634bc",
    "button": "a106a4f56868",
    "switch": "0fd3d35903f3",
@@ -336,7 +336,7 @@
    "progress": "42c79013d4a4",
    "meter": "7f6715d16694",
    "tabs": "a69e1036b491",
-   "accordion": "40dd041990f4",
+   "accordion": "195915a6a44a",
    "collapsible": "cb17f5e3751e",
    "tooltip": "e1a53acb8e82",
    "popover": "9eaba15e7641",
@@ -349,14 +349,14 @@
    "alert": "545c402acd1b",
    "drawer": "221e11db2a34",
    "toast": "bb4c840be70a",
-   "avatar": "7bd07dbe2412",
+   "avatar": "d1c711b5e034",
    "badge": "ab31dd5eacf7",
    "toolbar": "d17b85ffc2cf",
    "scroll": "6f3c7ae320ed",
    "typography": "1a7a2d2a6aa4",
    "separator": "3f847fdfe89f",
-   "panel": "30465150ac29",
-   "loader": "7deade4a2807"
+   "panel": "760e1537b887",
+   "loader": "4719b731e011"
   }
  },
  "nova": {

@@ -258,6 +258,8 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+.nocturne-hero__stat + .nocturne-hero__stat {
   padding-left: var(--nocturne-space-3);
   border-left: 1px solid var(--nocturne-gilt-30);
 }

@@ -33,7 +33,7 @@
 - Progress：窄轨解剖——6px 轨（1px `gilt-30` 框 + `surface-inset` 底）+ `accent-surface` 转横向的酒红填充，推进端一朵五瓣满花压轨随值绽（0 值收蕾 15%、满值全绽，瓣 `petal-lit`）；数值 mono `text-dim`；不定态 = 酒红短条 `nocturne-sweep` 单向扫掠。
 - Meter：解剖同 Progress，填充按 `tone` 重染（primary 酒红、success 苔绿、warning 琥珀、danger 赤红各家渐变）；端花取夜园花色（`petal-lit` 酒红，success 档换 `petal-moon` 月光白），不吃语义色板。
 - Tabs：页签压黄铜书线——通栏底线 1px `gilt-30`（双盒横滚），tab 衬线 `ls-2` 字，hover 转 `text`，选中 `gilt-bright`；指示 = 2px `gilt` 两端隐没渐变线随 `--active-tab-*` 滑移压住底线。
-- Accordion：折叠配方——marker = 月相（定宽）：合上 1px `gilt` 细环月轮、展开满月实填 + `glow-40` 幽光；title 衬线 `fw-600`、开态升 `gilt-bright`；chevron `gilt` 开态翻转；行 hover 盖 `gilt-10`；展开行底一道 `gilt-50` 渐隐发丝线；panel 高度过渡 `dur`。
+- Accordion：折叠配方——marker = 月相（定宽）：合上 1px `gilt` 细环月轮、展开满月实填 + `glow-40` 幽光；title 衬线 `fw-600`、开态升 `gilt-bright`；chevron `gilt` 开态翻转；行 hover 盖 `gilt-10`；panel 高度过渡 `dur`。
 - Collapsible：复用折叠配方，独立件自带 1px `gilt-30` 行框。
 - Tooltip：小夜牌——`surface-pop` 丝绒面 + `gilt-50` 框 + 菱形棱尖，`fs-12` `text` 字。
 - Popover：`surface-pop` 丝绒面 + `gilt-50` 框 + 棱尖；title = h3 + 底发丝线；close icon-ghost 右上。
@@ -46,7 +46,7 @@
 - AlertDialog：Dialog 基底按 `tone` 重染——拉丁引言与确认钮转 tone、题下蔓枝换 tone 色；无 close。
 - Drawer：`velvet` 丝绒面板，朝屏内缘 1px `gilt-50` + 发丝内衬线；title 同 Dialog 减配（引言保留、无蔓枝）；body 自滚动。
 - Toast：锚右上；静止层叠收拢（后条下探、微缩），悬停展开整列；条 = `velvet` 面 + `gilt-50` 框 + 左端一朵五瓣满花记取夜园花色（info `gilt`、success `petal-moon` 月光白、warning 琥珀、danger 赤红）+ 底缘 2px `gilt` 计时线（`nocturne-life` 随 timeout 燃尽、悬停暂停）+ close 右上；动作钮复用 secondary `sm`；手机端横向撑满。
-- Avatar：圆形双线画框——外 1px `gilt-50` + 丝绒隙 + 衬线 1px `gilt-30`，sm 档回单线；图裁圆；fallback = 丝绒面上酒红辉从顶照进（`primary-50` 径向 + `surface-pop`）+ 衬线单字 `gilt-bright`；status 右下月点（`bg` 描边）：online `success`、busy `danger`、away `warning` 各带同色幽光，offline `text-mute` 熄灭无光。
+- Avatar：圆形画框——1px `gilt-50` 外环 + 1px `bg` 内隙 + `surface-pop` 底；图裁圆；fallback = 衬线单字 `gilt-bright`；status 右下小圆（`bg` 描边）：online `success`、busy `danger`、away `warning`、offline `text-mute`。
 - Badge：铭签 chip——1px 框、`fs-12` `ls-2` 字；primary = `accent-surface` 底 `on-fill` 字；success、warning、danger = 各家 `-deep` 底 `on-fill` 字；secondary = 透明底 `gilt-50` 框 `gilt-bright` 字；neutral = `bg-deep` 底 `text-dim` 字；dot = 前缀圆点取本 tone 亮档。
 - Toolbar：chip 同 ToggleGroup；ToolbarLink 与钮等高、`gilt-bright` 字 + hover 底线；组间分隔竖发丝线。
 - ScrollArea：thumb 是 `gilt-dim` 细条、填满条宽，悬停转 `gilt`；轨透明；panel 型悬停显、popup 型常显——thumb 换 `gilt`、整条离框 `space-1`，充当弹层列表的溢出提示。
