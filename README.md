@@ -21,6 +21,8 @@ Requires Node ^20.19.0 || >=22.12.0 (pinned in `engines`; Vite 8 sets the floor)
 
 React 18 · Vite · TypeScript · plain co-located CSS (no Tailwind, no CSS-in-JS).
 
+`@base-ui/react` is pinned to **exactly 1.7.0** (no `^`). The code carries version-coupled points — the Slider drag-release position workaround covers an upstream bug still present in 1.7.0 (with `thumbAlignment="edge"`, a pointer drag leaves `--position` at the pointer-derived value instead of recomputing it from the committed value), and the capability-decision ledger (`BASEUI_AUDIT_2026-08-06.md`) is surveyed against the pinned version's `.d.ts`. Bumping the version is its own task: re-test the drag workaround, re-extract the capability surface, run the full gate suite — never a drive-by update.
+
 ```
 src/
   main.tsx            entry — renders the shell

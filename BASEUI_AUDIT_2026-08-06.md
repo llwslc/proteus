@@ -1,6 +1,6 @@
 # Base UI 能力面审计 —— 2026-08-06
 
-装机版 `@base-ui/react` **1.5.0** 的 `.d.ts` 能力面（不是网页文档）↔ 我们的三层现状：包装层签名（截获了什么、透不透传）、七套 App demo 的属性用例并集、七套 CSS 里被样式化的 `data-*` 并集。**只查不改。**
+装机版 `@base-ui/react` **1.7.0**（2026-08-07 自 1.5.0 升级，`OTPFieldPreview`→`OTPField` 迁移随行；首版审计基于 1.5.0，1.7.0 增量见文末附录）的 `.d.ts` 能力面（不是网页文档）↔ 我们的三层现状：包装层签名（截获了什么、透不透传）、七套 App demo 的属性用例并集、七套 CSS 里被样式化的 `data-*` 并集。**只查不改。**
 
 起因：`Slider.orientation` 与 `Slider.thumbAlignment` 连续两个能力被用户亲手发现——21 道门全部向内看（七套互拍、代码对规格、驱动 demo 已有的东西），Base UI 的能力面从不在任何对拍的另一端。本文即那次缺席的对拍。
 
@@ -124,3 +124,13 @@
 kit-api 拍七套互相（**七套一起缺 → 零分歧**）；kit-spec-props 拍代码对规格（**规格没写 → 无从红**）；kit-demo-states 只扫 disabled/error；动态门驱动 demo 已有的东西（**demo 没有 → 永不触发**）。包装层 `extends ComponentProps<Root>` 让类型检查也绿。**没有任何仪器以 Base UI 能力面为基准。**
 
 常驻修法（裁决后另行实施）：`kit-baseui-surface` 门——以 `node_modules` 的 `.d.ts` 为基准抽取 Root props 与零件清单，比对：①本文件的裁决账（接/不接均入账，新出现的 prop（版本升级）→ 报新增待裁）；②NO-REST 包装白名单。让「库有我无」从此有人站岗。
+
+---
+
+## 附录：1.7.0 对 1.5.0 的能力面增量（2026-08-07 重抽）
+
+- **autocomplete**：+`form`（表单关联）、+`inline`——新增待裁，归入 🟡。
+- **radio**：state 面新增 `dirty/filled/focused/touched/valid`（数据属性钩子扩容）——🟡 样式增强候选。
+- **scroll-area**：+`overflowEdgeThreshold`（边缘判定阈值）——🟡。
+- **select**：+`items`（与 Combobox 同型的条目模型，`Select.Value` 可按条目映射渲染）——值得看一眼是否简化我们的 Select 包装，新增待裁。
+- Slider `thumbAlignment` 默认仍为 `center`；**拖拽松手不回算 `--position` 的上游 bug 在 1.7.0 原样存在**（绕修保留）。`OTPFieldPreview` 在 1.7.0 定名 `OTPField`（已迁移）。

@@ -1,4 +1,4 @@
-import { OTPFieldPreview as BaseOtp } from "@base-ui/react/otp-field";
+import { OTPField as BaseOtp } from "@base-ui/react/otp-field";
 import { cx } from "../cx";
 import { useId } from "react";
 import "./OtpField.css";
