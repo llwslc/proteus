@@ -10,7 +10,11 @@ export interface SliderProps extends ComponentPropsWithoutRef<typeof BaseSlider.
 
 export function Slider({ label, showValue = true, className, ...props }: SliderProps) {
   return (
-    <BaseSlider.Root className={cx("hanabi-slider", className)} {...props}>
+    <BaseSlider.Root
+      className={cx("hanabi-slider", className)}
+      thumbAlignment="edge"
+      {...props}
+    >
       {(label != null || showValue) && (
         <div className="hanabi-slider__head">
           {label != null ? (

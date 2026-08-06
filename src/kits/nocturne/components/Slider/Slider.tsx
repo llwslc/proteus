@@ -33,6 +33,7 @@ export function Slider({
   return (
     <BaseSlider.Root
       className={cx("nocturne-slider", className)}
+      thumbAlignment="edge"
       style={{ "--nocturne-slider-frac": frac.toFixed(3) } as CSSProperties}
       min={min}
       max={max}

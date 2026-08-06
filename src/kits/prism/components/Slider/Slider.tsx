@@ -10,7 +10,11 @@ export interface SliderProps extends ComponentPropsWithoutRef<typeof BaseSlider.
 
 export function Slider({ label, showValue = true, className, ...props }: SliderProps) {
   return (
-    <BaseSlider.Root className={cx("prism-slider", className)} {...props}>
+    <BaseSlider.Root
+      className={cx("prism-slider", className)}
+      thumbAlignment="edge"
+      {...props}
+    >
       {(label != null || showValue) && (
         <div className="prism-slider__head">
           {label != null ? (

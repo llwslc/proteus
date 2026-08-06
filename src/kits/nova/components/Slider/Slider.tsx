@@ -10,7 +10,11 @@ export interface SliderProps extends ComponentPropsWithoutRef<typeof BaseSlider.
 
 export function Slider({ className, label, showValue = true, ...props }: SliderProps) {
   return (
-    <BaseSlider.Root className={cx("nova-slider", className)} {...props}>
+    <BaseSlider.Root
+      className={cx("nova-slider", className)}
+      thumbAlignment="edge"
+      {...props}
+    >
       {(label != null || showValue) && (
         <div className="nova-slider__head">
           {label != null ? (
