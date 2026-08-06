@@ -133,4 +133,4 @@ kit-api 拍七套互相（**七套一起缺 → 零分歧**）；kit-spec-props 
 - **radio**：state 面新增 `dirty/filled/focused/touched/valid`（数据属性钩子扩容）——🟡 样式增强候选。
 - **scroll-area**：+`overflowEdgeThreshold`（边缘判定阈值）——🟡。
 - **select**：+`items`（与 Combobox 同型的条目模型，`Select.Value` 可按条目映射渲染）——值得看一眼是否简化我们的 Select 包装，新增待裁。
-- Slider `thumbAlignment` 默认仍为 `center`；**拖拽松手不回算 `--position` 的上游 bug 在 1.7.0 原样存在**（绕修保留）。`OTPFieldPreview` 在 1.7.0 定名 `OTPField`（已迁移）。
+- Slider `thumbAlignment` 默认仍为 `center`；**拖拽松手不回算 `--position` 的上游 bug 在 1.7.0 原样存在**——已裁决不绕修（球位差 ~1.6px 接受为上游行为，包装层保持纯透传）。`OTPFieldPreview` 在 1.7.0 定名 `OTPField`（已迁移）。
