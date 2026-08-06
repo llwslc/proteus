@@ -21,7 +21,7 @@
 - CheckboxGroup：父子竖排，items 左缩进，引导线 1px `gilt-30` 垂线。
 - Radio：月相盘——正圆 `gilt-30` 框内一轮满月（`moon-face` 金盘 + 3 粒陨坑暗点），`moon-shade` 夜影盘盖满；hover 夜影平移退一分露月牙；选中夜影退尽露满月 + 框转 `gilt-bright` + 月辉 `glow-40`；组竖排。
 - ToggleGroup：分段条家族——外箱体 1px `gilt-30` 框横条压 `bg-deep` 底、内衬 `space-1`；chip 无框、`ls-2` 衬线字；选中见 §1。
-- Slider：黄铜导轨（6px 高、1px `gilt-30` 框、`surface-inset` 底）+ 灯焰填充 `linear-gradient(90deg, warning, gilt-bright)`；thumb = 一朵随值开合的花——5 枚萼片实填常驻（`leaf` 渐变、缩 70%），5 枚 `petal-lit` 花瓣张角随值连续缩放（0 值收苞 30%、满值全绽）、花芯金盘常明；拖动与悬停花辉升档；数值 mono `gilt-bright` 靠右。
+- Slider：黄铜导轨（6px 高、1px `gilt-30` 框、`surface-inset` 底）+ 灯焰填充 `linear-gradient(90deg, warning, gilt-bright)`；thumb = 一朵常绽的花——5 枚萼片实填（`leaf` 渐变、缩 70%）、5 枚 `petal-lit` 花瓣全开、花芯金盘常明；拖动与悬停花辉升档，焦点环贴花缘；数值 mono `gilt-bright` 靠右。
 - NumberField：减·输入·加三连——步进钮 secondary 皮方钮（衬线 − +），中位 mono 居中；到界步进钮按禁用置灰。
 - Input/Field：`surface-inset` 凹面 + 1px `gilt-30` 框、底边压 `gilt-50`；聚焦见 §1；placeholder `text-mute`；描述行 `text-mute`，错误行 `danger` 且整框转 `danger`。
 - OtpField：cell = `notch` 八角凹格 + mono 居中；filled 字转 `gilt-bright`；focus 格框转 `gilt` + 幽光；`splitAt` 处一枚满月圆点分隔。
