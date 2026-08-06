@@ -49,3 +49,24 @@
 .brass-slider[data-disabled] {
   opacity: var(--brass-disabled-opacity);
 }
+
+.brass-slider[data-orientation="vertical"] {
+  width: auto;
+  align-self: flex-start;
+}
+.brass-slider[data-orientation="vertical"] .brass-slider__head {
+  justify-content: flex-start;
+  gap: var(--brass-space-3);
+}
+.brass-slider[data-orientation="vertical"] .brass-slider__control {
+  width: var(--brass-control-h);
+  height: var(--brass-slider-v-h);
+  justify-content: center;
+}
+.brass-slider[data-orientation="vertical"] .brass-slider__track {
+  width: var(--brass-slider-track);
+  height: 100%;
+}
+.brass-slider[data-orientation="vertical"] .brass-slider__indicator {
+  background: var(--brass-accent-fill-v);
+}

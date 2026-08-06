@@ -61,7 +61,7 @@
 - select：三行「caption + Select」——① 12 项、末项 `disabled`、默认选第 2；② `3` 项（① 的前三）、无默认值、显 `placeholder`；③ 同 ② 清单、默认选第 2、整个 `disabled`（禁用+有值）。
 - combobox：「caption + Combobox」，可过滤列表 12 项、末项 `disabled`，无默认值。
 - autocomplete：「caption + Autocomplete」，建议列表 12 项、末项 `disabled`，无默认值。
-- slider：三个 Slider —— ① label + 默认值 62；② `disabled`、值 40；③ `showValue={false}`、值 75。
+- slider：四个 Slider —— ① label + 默认值 62；② `disabled`、值 40；③ `showValue={false}`、值 75；④ `orientation="vertical"`、label + 值 60。
 - number：两行「caption + NumberField」——① `defaultValue` 7、`min` 0、`max` 12、`step` 1；② `defaultValue` 12（=`max`，到界步进钮呈禁用）。
 - input：五个字段 —— ① label + 默认值 + placeholder + `description` 辅助行；② 带前导图标、无 label；③ 受控校验，输入非空且不足 6 字符时报 `error`；④ label + 默认值 + `disabled`；⑤ label + 非法默认值 + 静态 `error`（静息即呈报错态）。
 - otp：三行「caption + OtpField」——① `length` 6、`splitAt` 3、预填 3 位（值随 theme 换）；② 同构造加 `mask`；③ 同构造加 `disabled`。

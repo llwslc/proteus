@@ -35,6 +35,11 @@
     var(--brass-primary-deep),
     var(--brass-primary) 62%
   );
+  --brass-accent-fill-v: linear-gradient(
+    0deg,
+    var(--brass-primary-deep),
+    var(--brass-primary) 62%
+  );
   --brass-secondary-surface: linear-gradient(
     180deg,
     #7d6531 0%,
@@ -193,6 +198,7 @@
   --brass-radio-dot: 8px;
   --brass-seg-h: 32px;
   --brass-slider-track: 6px;
+  --brass-slider-v-h: 160px;
   --brass-slider-thumb: 18px;
   --brass-numberfield-btn: 36px;
   --brass-numberfield-w: 64px;

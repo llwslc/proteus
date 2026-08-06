@@ -55,3 +55,24 @@
 .prism-slider[data-disabled] {
   opacity: var(--prism-disabled-opacity);
 }
+
+.prism-slider[data-orientation="vertical"] {
+  width: auto;
+  align-self: flex-start;
+}
+.prism-slider[data-orientation="vertical"] .prism-slider__head {
+  justify-content: flex-start;
+}
+.prism-slider[data-orientation="vertical"] .prism-slider__control {
+  width: var(--prism-control-h);
+  height: var(--prism-slider-v-h);
+  justify-content: center;
+}
+.prism-slider[data-orientation="vertical"] .prism-slider__track {
+  width: var(--prism-slider-track);
+  height: 100%;
+}
+.prism-slider[data-orientation="vertical"] .prism-slider__indicator {
+  top: auto;
+  right: 0;
+}

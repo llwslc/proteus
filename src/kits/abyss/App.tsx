@@ -926,6 +926,7 @@ function Demo() {
                   <Slider label="Descent" defaultValue={62} />
                   <Slider label="Resonance" defaultValue={40} disabled />
                   <Slider label="Undertow" defaultValue={75} showValue={false} />
+                  <Slider label="Depth" defaultValue={60} orientation="vertical" />
                 </div>
               </Panel>
             </div>

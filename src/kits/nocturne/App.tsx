@@ -839,6 +839,7 @@ function Demo() {
                   <Slider label="Flame height" defaultValue={62} />
                   <Slider label="Mist reach" defaultValue={40} disabled />
                   <Slider label="Scent drift" defaultValue={75} showValue={false} />
+                  <Slider label="Dew" defaultValue={60} orientation="vertical" />
                 </div>
               </Panel>
             </div>

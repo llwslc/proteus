@@ -74,3 +74,20 @@
 .nova-slider[data-disabled] {
   opacity: var(--nova-disabled-opacity);
 }
+
+.nova-slider[data-orientation="vertical"] {
+  width: auto;
+  align-self: flex-start;
+}
+.nova-slider[data-orientation="vertical"] .nova-slider__head {
+  justify-content: flex-start;
+}
+.nova-slider[data-orientation="vertical"] .nova-slider__control {
+  width: var(--nova-slider-control-h);
+  height: var(--nova-slider-v-h);
+  justify-content: center;
+}
+.nova-slider[data-orientation="vertical"] .nova-slider__track {
+  width: 6px;
+  height: 100%;
+}

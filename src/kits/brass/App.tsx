@@ -637,6 +637,7 @@ function Demo() {
                   <Slider label="Throttle" defaultValue={62} />
                   <Slider label="Damper" defaultValue={40} disabled />
                   <Slider label="Blower" defaultValue={75} showValue={false} />
+                  <Slider label="Reserve" defaultValue={60} orientation="vertical" />
                 </div>
               </Panel>
             </div>

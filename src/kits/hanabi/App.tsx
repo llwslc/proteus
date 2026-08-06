@@ -663,6 +663,7 @@ function Demo() {
                   <Slider label="BGM 音量" defaultValue={62} />
                   <Slider label="ガンマ補正" defaultValue={40} disabled />
                   <Slider label="弾幕密度" defaultValue={75} showValue={false} />
+                  <Slider label="音量" defaultValue={60} orientation="vertical" />
                 </div>
               </Panel>
             </div>

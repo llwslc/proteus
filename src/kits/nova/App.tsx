@@ -794,6 +794,7 @@ function Demo() {
                   <Slider label="Thrust" defaultValue={62} />
                   <Slider label="Frequency" defaultValue={40} disabled />
                   <Slider label="Aux Power" defaultValue={75} showValue={false} />
+                  <Slider label="Trim" defaultValue={60} orientation="vertical" />
                 </div>
               </Panel>
             </div>

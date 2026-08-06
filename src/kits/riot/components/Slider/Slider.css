@@ -60,3 +60,26 @@
 .riot-slider:has([data-disabled]) {
   opacity: var(--riot-disabled-opacity);
 }
+
+.riot-slider[data-orientation="vertical"] {
+  width: auto;
+  align-self: flex-start;
+}
+.riot-slider[data-orientation="vertical"] .riot-slider__head {
+  justify-content: flex-start;
+  gap: var(--riot-space-3);
+}
+.riot-slider[data-orientation="vertical"] .riot-slider__control {
+  width: calc(var(--riot-slider-thumb) + 8px);
+  height: var(--riot-slider-v-h);
+  justify-content: center;
+}
+.riot-slider[data-orientation="vertical"] .riot-slider__track {
+  width: var(--riot-slider-track);
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    var(--riot-ink) 0 6px,
+    transparent 6px 11px
+  );
+}

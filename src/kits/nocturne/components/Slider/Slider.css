@@ -71,3 +71,23 @@
   outline: 2px solid var(--nocturne-gilt);
   outline-offset: 3px;
 }
+
+.nocturne-slider[data-orientation="vertical"] {
+  width: auto;
+  align-self: flex-start;
+}
+.nocturne-slider[data-orientation="vertical"] .nocturne-slider__head {
+  justify-content: flex-start;
+}
+.nocturne-slider[data-orientation="vertical"] .nocturne-slider__control {
+  width: var(--nocturne-thumb-bloom);
+  height: var(--nocturne-slider-v-h);
+  justify-content: center;
+}
+.nocturne-slider[data-orientation="vertical"] .nocturne-slider__track {
+  width: var(--nocturne-track-h);
+  height: 100%;
+}
+.nocturne-slider[data-orientation="vertical"] .nocturne-slider__indicator {
+  background: linear-gradient(0deg, var(--nocturne-warning), var(--nocturne-gilt-bright));
+}

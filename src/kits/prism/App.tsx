@@ -622,6 +622,7 @@ function Demo() {
                   <Slider label="Column width" defaultValue={62} />
                   <Slider label="Gutter" defaultValue={40} disabled />
                   <Slider label="Ink density" defaultValue={75} showValue={false} />
+                  <Slider label="Scale" defaultValue={60} orientation="vertical" />
                 </div>
               </Panel>
             </div>
