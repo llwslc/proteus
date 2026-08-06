@@ -1,7 +1,7 @@
 import { Meter as BaseMeter } from "@base-ui/react/meter";
 import { useId } from "react";
 import { cx } from "../cx";
-import type { CSSProperties, ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Bloom, MotifDefs } from "../bloom";
 import "./Meter.css";
 
@@ -19,13 +19,9 @@ export function Meter({
   ...props
 }: MeterProps) {
   const id = useId();
-  const max = props.max ?? 100;
-  const min = props.min ?? 0;
-  const frac = (Number(props.value ?? 0) - min) / (max - min || 1);
   return (
     <BaseMeter.Root
       className={cx("nocturne-meter", `nocturne-meter--${tone}`, className)}
-      style={{ "--nocturne-prog-frac": frac.toFixed(3) } as CSSProperties}
       {...props}
     >
       {(label != null || showValue) && (
@@ -47,13 +43,7 @@ export function Meter({
               focusable="false"
             >
               <MotifDefs id={id} />
-              <Bloom
-                defs={id}
-                r={12}
-                coreDots={5}
-                mode="state"
-                openExpr="calc(0.15 + 0.85 * var(--nocturne-prog-frac, 0))"
-              />
+              <Bloom defs={id} r={12} coreDots={5} mode="state" openExpr="1" />
             </svg>
           </span>
         </BaseMeter.Indicator>

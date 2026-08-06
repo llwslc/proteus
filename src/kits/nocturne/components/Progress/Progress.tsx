@@ -1,7 +1,7 @@
 import { Progress as BaseProgress } from "@base-ui/react/progress";
 import { useId } from "react";
 import { cx } from "../cx";
-import type { CSSProperties, ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Bloom, MotifDefs } from "../bloom";
 import "./Progress.css";
 
@@ -20,15 +20,8 @@ export function Progress({
 }: ProgressProps) {
   const id = useId();
   const indeterminate = props.value == null;
-  const max = props.max ?? 100;
-  const min = props.min ?? 0;
-  const frac = indeterminate ? 0 : (Number(props.value) - min) / (max - min || 1);
   return (
-    <BaseProgress.Root
-      className={cx("nocturne-progress", className)}
-      style={{ "--nocturne-prog-frac": frac.toFixed(3) } as CSSProperties}
-      {...props}
-    >
+    <BaseProgress.Root className={cx("nocturne-progress", className)} {...props}>
       {(label != null || (showValue && !indeterminate)) && (
         <div className="nocturne-progress__head">
           {label != null ? (
@@ -51,13 +44,7 @@ export function Progress({
                 focusable="false"
               >
                 <MotifDefs id={id} />
-                <Bloom
-                  defs={id}
-                  r={12}
-                  coreDots={5}
-                  mode="state"
-                  openExpr="calc(0.15 + 0.85 * var(--nocturne-prog-frac, 0))"
-                />
+                <Bloom defs={id} r={12} coreDots={5} mode="state" openExpr="1" />
               </svg>
             </span>
           )}

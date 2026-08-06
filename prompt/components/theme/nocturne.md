@@ -30,7 +30,7 @@
 - Autocomplete：列表皮复用 Select、无选中指示。
 - Fieldset：legend 走 `.nocturne-cap`，尾接一条延伸到框尾的 `gilt` 渐变发丝线；体竖排。
 - Form：竖排 `space-4`。
-- Progress：窄轨解剖——6px 轨（1px `gilt-30` 框 + `surface-inset` 底）+ `accent-surface` 转横向的酒红填充，推进端一朵五瓣满花压轨随值绽（0 值收蕾 15%、满值全绽，瓣 `petal-lit`）；数值 mono `text-dim`；不定态 = 酒红短条 `nocturne-sweep` 单向扫掠。
+- Progress：窄轨解剖——6px 轨（1px `gilt-30` 框 + `surface-inset` 底）+ `accent-surface` 转横向的酒红填充，推进端一朵五瓣满花压轨常绽（瓣 `petal-lit`）；数值 mono `text-dim`；不定态 = 酒红短条 `nocturne-sweep` 单向扫掠。
 - Meter：解剖同 Progress，填充按 `tone` 重染（primary 酒红、success 苔绿、warning 琥珀、danger 赤红各家渐变）；端花取夜园花色（`petal-lit` 酒红，success 档换 `petal-moon` 月光白），不吃语义色板。
 - Tabs：页签压黄铜书线——通栏底线 1px `gilt-30`（双盒横滚），tab 衬线 `ls-2` 字，hover 转 `text`，选中 `gilt-bright`；指示 = 2px `gilt` 两端隐没渐变线随 `--active-tab-*` 滑移压住底线。
 - Accordion：折叠配方——marker = 月相（定宽）：合上 1px `gilt` 细环月轮、展开满月实填 + `glow-40` 幽光；title 衬线 `fw-600`、开态升 `gilt-bright`；chevron `gilt` 开态翻转；行 hover 盖 `gilt-10`；panel 高度过渡 `dur`。
