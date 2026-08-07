@@ -125,6 +125,7 @@ const ARMAMENTS = [
   { label: "封印済み装備", value: "fuuin", disabled: true },
 ];
 const ARMAMENTS_SHORT = ARMAMENTS.slice(0, 3);
+const MULTI_DEFAULT = ARMAMENTS_SHORT.slice(0, 2).map((i) => i.value);
 
 const SKILLS = [
   "斬撃",
@@ -628,6 +629,15 @@ function Demo() {
                     defaultValue="ren"
                     disabled
                     id="sel-3"
+                  />
+                  <label className="hanabi-cap" htmlFor="sel-4">
+                    装備
+                  </label>
+                  <Select
+                    items={ARMAMENTS_SHORT}
+                    multiple
+                    defaultValue={MULTI_DEFAULT}
+                    id="sel-4"
                   />
                 </div>
               </Panel>

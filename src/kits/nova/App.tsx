@@ -171,6 +171,7 @@ const SELECT_ITEMS = [
   { label: "Gliese 581g [locked]", value: "gliese", disabled: true },
 ];
 const SELECT_ITEMS_SHORT = SELECT_ITEMS.slice(0, 3);
+const MULTI_DEFAULT = SELECT_ITEMS_SHORT.slice(0, 2).map((i) => i.value);
 
 const COMBOBOX_ITEMS = [
   "Proxima Centauri",
@@ -760,6 +761,15 @@ function Demo() {
                     defaultValue="proxima"
                     disabled
                     id="sel-3"
+                  />
+                  <label className="nova-cap" htmlFor="sel-4">
+                    Waypoints
+                  </label>
+                  <Select
+                    items={SELECT_ITEMS_SHORT}
+                    multiple
+                    defaultValue={MULTI_DEFAULT}
+                    id="sel-4"
                   />
                 </div>
               </Panel>

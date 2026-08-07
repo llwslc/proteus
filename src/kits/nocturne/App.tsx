@@ -139,6 +139,7 @@ const FLORA = [
   { label: "Foxglove", value: "foxglove", disabled: true },
 ];
 const FLORA_SHORT = FLORA.slice(0, 3);
+const MULTI_DEFAULT = FLORA_SHORT.slice(0, 2).map((i) => i.value);
 
 const FLORA_NAMES = [
   "Belladonna",
@@ -804,6 +805,15 @@ function Demo() {
                     defaultValue="jasmine"
                     disabled
                     id="sel-3"
+                  />
+                  <label className="nocturne-cap" htmlFor="sel-4">
+                    Beds
+                  </label>
+                  <Select
+                    items={FLORA_SHORT}
+                    multiple
+                    defaultValue={MULTI_DEFAULT}
+                    id="sel-4"
                   />
                 </div>
               </Panel>

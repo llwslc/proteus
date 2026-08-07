@@ -211,6 +211,7 @@ const SELECT_ITEMS = [
   { label: "Carcosa [sealed]", value: "carcosa", disabled: true },
 ];
 const SELECT_ITEMS_SHORT = SELECT_ITEMS.slice(0, 3);
+const MULTI_DEFAULT = SELECT_ITEMS_SHORT.slice(0, 2).map((i) => i.value);
 
 const COMBOBOX_ITEMS = [
   "Y'ha-nthlei",
@@ -892,6 +893,15 @@ function Demo() {
                     defaultValue="yhanthlei"
                     disabled
                     id="sel-3"
+                  />
+                  <label className="abyss-cap" htmlFor="sel-4">
+                    Sigils
+                  </label>
+                  <Select
+                    items={SELECT_ITEMS_SHORT}
+                    multiple
+                    defaultValue={MULTI_DEFAULT}
+                    id="sel-4"
                   />
                 </div>
               </Panel>

@@ -14,28 +14,23 @@ export interface SelectOption {
 
 export interface SelectProps<Value extends string = string> extends Omit<
   React.ComponentProps<typeof BaseSelect.Root>,
-  | "items"
-  | "value"
-  | "defaultValue"
-  | "onValueChange"
-  | "children"
-  | "id"
-  | "className"
-  | "multiple"
+  "items" | "value" | "defaultValue" | "onValueChange" | "children" | "id" | "className"
 > {
   items: Array<SelectOption & { value: Value }>;
   placeholder?: string;
   side?: "top" | "bottom" | "left" | "right";
   align?: "start" | "center" | "end";
   className?: string;
-  value?: Value | null;
-  defaultValue?: Value | null;
-  onValueChange?: (value: Value | null) => void;
+  multiple?: boolean;
+  value?: Value | Value[] | null;
+  defaultValue?: Value | Value[] | null;
+  onValueChange?: (value: Value | Value[] | null) => void;
   id?: string;
 }
 
 export function Select<Value extends string = string>({
   items,
+  multiple,
   placeholder = "Select…",
   className,
   value,
@@ -49,8 +44,9 @@ export function Select<Value extends string = string>({
 }: SelectProps<Value>) {
   const autoId = useId();
   return (
-    <BaseSelect.Root<Value>
+    <BaseSelect.Root<Value, boolean>
       items={items}
+      multiple={multiple}
       value={value}
       defaultValue={defaultValue}
       onValueChange={onValueChange}
@@ -64,9 +60,18 @@ export function Select<Value extends string = string>({
         >
           <BaseSelect.Value>
             {(val) => {
-              const item = items.find((i) => i.value === val);
-              return item ? (
-                <span className="riot-select__value">{item.label}</span>
+              const picked = (Array.isArray(val) ? val : val == null ? [] : [val])
+                .map((v) => items.find((i) => i.value === v))
+                .filter(Boolean);
+              return picked.length ? (
+                <span className="riot-select__value">
+                  {picked.map((i, n) => (
+                    <span key={i!.value}>
+                      {n ? ", " : ""}
+                      {i!.label}
+                    </span>
+                  ))}
+                </span>
               ) : (
                 <span className="riot-select__placeholder">{placeholder}</span>
               );
