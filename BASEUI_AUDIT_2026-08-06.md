@@ -14,7 +14,11 @@
 
 ---
 
-## 一、结构级缺口（🔴 零件族没建，透传无效）
+## 一、结构级缺口（🔴 已全部落地，2026-08-07）
+
+R1 菜单勾选项／单选组（f725648c）、R3 Select 多选（49a65424）、R2 Combobox 芯片多选（269d5d48）、R4 NumberField 划擦（ebe35150）四条均已七套实现 + demo + 契约 + 真交互复验，全量门 37 绿。下表留作原始记录。
+
+### 原始记录
 
 | # | 组件 | 能力 | 证据 | 建议 |
 |---|---|---|---|---|
@@ -76,18 +80,18 @@
 | Checkbox | checkbox | ✅ 主干（parent 机制在用）· 🟡 readOnly/uncheckedValue |
 | CheckboxGroup | checkbox-group | ✅ |
 | Collapsible | collapsible | ✅ |
-| Combobox | combobox | ✅ 单选主干 · 🔴 multiple+chips(R2) |
-| ContextMenu | context-menu | ✅ 主干 · 🔴 随 R1 |
+| Combobox | combobox | ✅（+multiple 芯片，R2 已接） |
+| ContextMenu | context-menu | ✅（随 R1） |
 | Dialog | dialog | ✅ 主干 · ⛔ W1–W4 |
 | Drawer | drawer | ✅ 主干 · ⛔ W1–W6（snapPoints） |
 | Fieldset | fieldset | ✅ |
 | Form | form | ✅ 主干 · 🟡 validationMode |
 | Input | input+field | ✅ 主干 · 🟡 validate 族 |
-| Menu | menu | ✅ 主干 · 🔴 CheckboxItem/RadioItem(R1) |
+| Menu | menu | ✅（+CheckboxItem/RadioGroup，R1 已接） |
 | Menubar | menubar | ✅ 主干 · 🟠 orientation(P4) |
 | Meter | meter | ✅（format 🟡 可用） |
 | NavigationMenu | navigation-menu | ✅ 主干 · 🟠 orientation(P6) · 🟡 delay/closeDelay |
-| NumberField | number-field | ✅ 主干 · 🔴 ScrubArea(R4) · 🟡 格式化/滚轮族 |
+| NumberField | number-field | ✅（+ScrubArea，R4 已接）· 🟡 格式化/滚轮族 |
 | OtpField | otp-field | ✅ 主干 · 🟡 autoSubmit 族 |
 | Panel | —(纯自制) | ✅ |
 | Popover | popover | ✅ 主干 · 🟡 modal/handle 透传在 |
@@ -95,7 +99,7 @@
 | Progress | progress | ✅（format 🟡 可用） |
 | Radio/RadioGroup | radio(-group) | ✅ · 🟡 readOnly/required |
 | ScrollArea | scroll-area | ✅ 主干 · 🟡 边缘状态属性增强 |
-| Select | select | ✅ 单选主干 · 🔴 multiple(R3) |
+| Select | select | ✅（+multiple，R3 已接） |
 | Separator | separator | ✅（orientation 已接） |
 | Slider | slider | ✅（本周 +orientation/+thumbAlignment）· 🟠 双拇指(P8) · 🟡 format 可用 |
 | Switch | switch | ✅ · 🟡 readOnly/uncheckedValue |
@@ -109,9 +113,11 @@
 
 **建议接**（真实使用场景 + 展示库价值）：
 1. **P1 Tabs 竖向**（80–100k）——最常见的缺口。
-2. **R1 Menu 可勾选项/单选组**（60–80k）——三菜单宿主同吃。
+2. **列表分组**（Select／Combobox／Menu 的 Group＋GroupLabel＋Separator 共 6 个零件，零件消费轴查出、首版审计漏列）。
 3. **P8 Slider 双拇指验证＋demo**（30k）——皮大概率已扛得住，验完即转 ✅。
 4. **W2+W3 模态透传两个小口子**（10k）。
+
+R1–R4 已于 2026-08-07 全部落地，不再列入建议。
 
 **建议不接、契约写死一句**（收窄即定位）：P4 Menubar 竖向、P5 Accordion 横向、P6 NavMenu 竖向、P7 Menu orientation、P9 Tooltip 跟随光标、W1 全模态、W4 handle 族、W6 swipe 推导。
 
