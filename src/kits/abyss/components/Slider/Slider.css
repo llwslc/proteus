@@ -100,7 +100,7 @@
   justify-content: center;
 }
 .abyss-slider[data-orientation="vertical"] .abyss-slider__track {
-  width: 3px;
+  width: var(--abyss-slider-v-w);
   height: 100%;
 }
 .abyss-slider[data-orientation="vertical"] .abyss-slider__indicator {

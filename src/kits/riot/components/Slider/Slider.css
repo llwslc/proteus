@@ -75,7 +75,7 @@
   justify-content: center;
 }
 .riot-slider[data-orientation="vertical"] .riot-slider__track {
-  width: var(--riot-slider-track);
+  width: var(--riot-slider-v-w);
   height: 100%;
   background: repeating-linear-gradient(
     0deg,

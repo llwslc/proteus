@@ -69,7 +69,7 @@
   justify-content: center;
 }
 .prism-slider[data-orientation="vertical"] .prism-slider__track {
-  width: var(--prism-slider-track);
+  width: var(--prism-slider-v-w);
   height: 100%;
 }
 .prism-slider[data-orientation="vertical"] .prism-slider__indicator {

@@ -124,7 +124,7 @@
   justify-content: center;
 }
 .hanabi-slider[data-orientation="vertical"] .hanabi-slider__track {
-  width: 12px;
+  width: var(--hanabi-slider-v-w);
   height: 100%;
 }
 .hanabi-slider[data-orientation="vertical"] .hanabi-slider__indicator {
