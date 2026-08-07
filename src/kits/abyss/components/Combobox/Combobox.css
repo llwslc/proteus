@@ -151,3 +151,49 @@
   color: var(--abyss-glow);
   filter: var(--abyss-aura-mark);
 }
+
+.abyss-combobox__chips {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  padding: var(--abyss-space-2) 0;
+}
+
+.abyss-combobox__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abyss-space-2);
+  height: var(--abyss-badge-h);
+  padding: 0 var(--abyss-space-2);
+  border: 1px solid var(--abyss-glow-a55);
+  border-radius: var(--abyss-round-2);
+  background: var(--abyss-glow-soft);
+  color: var(--abyss-glow);
+  font-size: var(--abyss-fs-12);
+  white-space: nowrap;
+}
+.abyss-combobox__chip[data-highlighted] {
+  filter: var(--abyss-aura);
+}
+
+.abyss-combobox__chip-x {
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: var(--abyss-fs-12);
+  cursor: pointer;
+}
+.abyss-combobox__chip-x:hover {
+  color: var(--abyss-blood);
+}
+
+.abyss-combobox__chip-input {
+  flex: 1;
+  min-width: 60px;
+}

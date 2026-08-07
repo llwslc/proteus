@@ -9,9 +9,10 @@ export type ComboboxItem = string | { label: string; disabled?: boolean };
 
 export interface ComboboxProps extends Omit<
   React.ComponentProps<typeof BaseCombobox.Root>,
-  "items" | "children" | "className"
+  "items" | "children" | "className" | "multiple"
 > {
   items: ComboboxItem[];
+  multiple?: boolean;
   placeholder?: string;
   emptyText?: string;
   label?: string;
@@ -22,6 +23,7 @@ export interface ComboboxProps extends Omit<
 
 export function Combobox({
   items,
+  multiple,
   placeholder = "Search…",
   emptyText = "No matching omen",
   label,
@@ -36,18 +38,44 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} {...props}>
+    <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <div className={cx("abyss-combobox__field", className)}>
         <BaseCombobox.InputGroup className="abyss-frame abyss-combobox__control">
           <span className="abyss-combobox__lead" aria-hidden>
             <SearchIcon />
           </span>
-          <BaseCombobox.Input
-            id={inputId}
-            className="abyss-combobox__input"
-            placeholder={placeholder}
-            aria-label={label ?? placeholder}
-          />
+          {multiple ? (
+            <BaseCombobox.Chips className="abyss-combobox__chips">
+              <BaseCombobox.Value>
+                {(value: string[]) =>
+                  value.map((v) => (
+                    <BaseCombobox.Chip key={v} className="abyss-combobox__chip">
+                      {v}
+                      <BaseCombobox.ChipRemove
+                        className="abyss-combobox__chip-x"
+                        aria-label="Remove"
+                      >
+                        <XIcon />
+                      </BaseCombobox.ChipRemove>
+                    </BaseCombobox.Chip>
+                  ))
+                }
+              </BaseCombobox.Value>
+              <BaseCombobox.Input
+                id={inputId}
+                className="abyss-combobox__input abyss-combobox__chip-input"
+                placeholder={placeholder}
+                aria-label={label ?? placeholder}
+              />
+            </BaseCombobox.Chips>
+          ) : (
+            <BaseCombobox.Input
+              id={inputId}
+              className="abyss-combobox__input"
+              placeholder={placeholder}
+              aria-label={label ?? placeholder}
+            />
+          )}
           <BaseCombobox.Clear className="abyss-combobox__clear" aria-label="Clear">
             <XIcon />
           </BaseCombobox.Clear>

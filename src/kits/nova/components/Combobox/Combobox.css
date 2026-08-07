@@ -78,3 +78,49 @@
   font-size: var(--nova-fs-14);
   color: var(--nova-primary);
 }
+
+.nova-combobox__chips {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nova-space-2);
+  padding: var(--nova-space-2) 0;
+}
+
+.nova-combobox__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nova-space-2);
+  padding: 0 var(--nova-space-2);
+  height: var(--nova-badge-h);
+  background: var(--nova-line);
+  color: var(--nova-text-bright);
+  font-size: var(--nova-fs-12);
+  letter-spacing: var(--nova-ls-4);
+  white-space: nowrap;
+  clip-path: var(--nova-clip-7);
+}
+.nova-combobox__chip[data-highlighted] {
+  background: var(--nova-line-strong);
+}
+
+.nova-combobox__chip-x {
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: var(--nova-fs-12);
+  cursor: pointer;
+}
+.nova-combobox__chip-x:hover {
+  color: var(--nova-danger);
+}
+
+.nova-combobox__chip-input {
+  flex: 1;
+  min-width: 60px;
+}

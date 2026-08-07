@@ -9,9 +9,10 @@ export type ComboboxItem = string | { label: string; disabled?: boolean };
 
 export interface ComboboxProps extends Omit<
   React.ComponentProps<typeof BaseCombobox.Root>,
-  "items" | "children" | "className"
+  "items" | "children" | "className" | "multiple"
 > {
   items: ComboboxItem[];
+  multiple?: boolean;
   placeholder?: string;
   emptyText?: string;
   label?: string;
@@ -22,6 +23,7 @@ export interface ComboboxProps extends Omit<
 
 export function Combobox({
   items,
+  multiple,
   placeholder = "Search…",
   emptyText = "No matches",
   label,
@@ -36,14 +38,40 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} {...props}>
+    <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <BaseCombobox.InputGroup className={cx("prism-surface prism-combobox", className)}>
-        <BaseCombobox.Input
-          id={inputId}
-          aria-label={label ?? placeholder}
-          placeholder={placeholder}
-          className="prism-combobox__input"
-        />
+        {multiple ? (
+          <BaseCombobox.Chips className="prism-combobox__chips">
+            <BaseCombobox.Value>
+              {(value: string[]) =>
+                value.map((v) => (
+                  <BaseCombobox.Chip key={v} className="prism-combobox__chip">
+                    {v}
+                    <BaseCombobox.ChipRemove
+                      className="prism-combobox__chip-x"
+                      aria-label="Remove"
+                    >
+                      <Close />
+                    </BaseCombobox.ChipRemove>
+                  </BaseCombobox.Chip>
+                ))
+              }
+            </BaseCombobox.Value>
+            <BaseCombobox.Input
+              id={inputId}
+              aria-label={label ?? placeholder}
+              placeholder={placeholder}
+              className="prism-combobox__input prism-combobox__chip-input"
+            />
+          </BaseCombobox.Chips>
+        ) : (
+          <BaseCombobox.Input
+            id={inputId}
+            aria-label={label ?? placeholder}
+            placeholder={placeholder}
+            className="prism-combobox__input"
+          />
+        )}
         <BaseCombobox.Clear className="prism-combobox__clear" aria-label="Clear">
           <Close />
         </BaseCombobox.Clear>

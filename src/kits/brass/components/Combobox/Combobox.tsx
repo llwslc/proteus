@@ -9,9 +9,10 @@ export type ComboboxItem = string | { label: string; disabled?: boolean };
 
 export interface ComboboxProps extends Omit<
   React.ComponentProps<typeof BaseCombobox.Root>,
-  "items" | "children" | "className"
+  "items" | "children" | "className" | "multiple"
 > {
   items: ComboboxItem[];
+  multiple?: boolean;
   placeholder?: string;
   emptyText?: string;
   label?: string;
@@ -22,6 +23,7 @@ export interface ComboboxProps extends Omit<
 
 export function Combobox({
   items,
+  multiple,
   placeholder = "Search…",
   emptyText = "No matches",
   label,
@@ -36,17 +38,43 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} {...props}>
+    <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <BaseCombobox.InputGroup className={cx("brass-plate brass-combobox", className)}>
         <span className="brass-combobox__lead" aria-hidden>
           <Search />
         </span>
-        <BaseCombobox.Input
-          id={inputId}
-          placeholder={placeholder}
-          aria-label={label ?? placeholder}
-          className="brass-combobox__control"
-        />
+        {multiple ? (
+          <BaseCombobox.Chips className="brass-combobox__chips">
+            <BaseCombobox.Value>
+              {(value: string[]) =>
+                value.map((v) => (
+                  <BaseCombobox.Chip key={v} className="brass-combobox__chip">
+                    {v}
+                    <BaseCombobox.ChipRemove
+                      className="brass-combobox__chip-x"
+                      aria-label="Remove"
+                    >
+                      <Close />
+                    </BaseCombobox.ChipRemove>
+                  </BaseCombobox.Chip>
+                ))
+              }
+            </BaseCombobox.Value>
+            <BaseCombobox.Input
+              id={inputId}
+              placeholder={placeholder}
+              aria-label={label ?? placeholder}
+              className="brass-combobox__control brass-combobox__chip-input"
+            />
+          </BaseCombobox.Chips>
+        ) : (
+          <BaseCombobox.Input
+            id={inputId}
+            placeholder={placeholder}
+            aria-label={label ?? placeholder}
+            className="brass-combobox__control"
+          />
+        )}
         <span className="brass-combobox__aux">
           <BaseCombobox.Clear className="brass-combobox__clear" aria-label="Clear">
             <Close />

@@ -9,9 +9,10 @@ export type ComboboxItem = string | { label: string; disabled?: boolean };
 
 export interface ComboboxProps extends Omit<
   React.ComponentProps<typeof BaseCombobox.Root>,
-  "items" | "children" | "className"
+  "items" | "children" | "className" | "multiple"
 > {
   items: ComboboxItem[];
+  multiple?: boolean;
   placeholder?: string;
   emptyText?: string;
   label?: string;
@@ -22,6 +23,7 @@ export interface ComboboxProps extends Omit<
 
 export function Combobox({
   items,
+  multiple,
   placeholder = "Search…",
   emptyText = "No such clipping",
   label,
@@ -36,18 +38,44 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} {...props}>
+    <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <div className={cx("riot-field riot-combobox__field", className)}>
         <BaseCombobox.InputGroup className="riot-surface riot-field__control riot-combobox__control">
           <span className="riot-field__lead">
             <SearchIcon />
           </span>
-          <BaseCombobox.Input
-            id={inputId}
-            className="riot-field__input"
-            placeholder={placeholder}
-            aria-label={label ?? placeholder}
-          />
+          {multiple ? (
+            <BaseCombobox.Chips className="riot-combobox__chips">
+              <BaseCombobox.Value>
+                {(value: string[]) =>
+                  value.map((v) => (
+                    <BaseCombobox.Chip key={v} className="riot-combobox__chip">
+                      {v}
+                      <BaseCombobox.ChipRemove
+                        className="riot-combobox__chip-x"
+                        aria-label="Remove"
+                      >
+                        <XIcon />
+                      </BaseCombobox.ChipRemove>
+                    </BaseCombobox.Chip>
+                  ))
+                }
+              </BaseCombobox.Value>
+              <BaseCombobox.Input
+                id={inputId}
+                className="riot-field__input riot-combobox__chip-input"
+                placeholder={placeholder}
+                aria-label={label ?? placeholder}
+              />
+            </BaseCombobox.Chips>
+          ) : (
+            <BaseCombobox.Input
+              id={inputId}
+              className="riot-field__input"
+              placeholder={placeholder}
+              aria-label={label ?? placeholder}
+            />
+          )}
           <BaseCombobox.Clear className="riot-combobox__clear" aria-label="Clear">
             <XIcon />
           </BaseCombobox.Clear>

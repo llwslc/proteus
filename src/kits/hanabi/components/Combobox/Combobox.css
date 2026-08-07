@@ -78,3 +78,51 @@
 .hanabi-combobox__list:empty {
   padding: 0;
 }
+
+.hanabi-combobox__chips {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  padding: var(--hanabi-space-2) 0;
+}
+
+.hanabi-combobox__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hanabi-space-2);
+  height: var(--hanabi-badge-h);
+  padding: 0 var(--hanabi-space-2) 2px;
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+  border-radius: var(--hanabi-r-chip);
+  box-shadow: inset 0 -2px 0 var(--hanabi-tone);
+  background: var(--hanabi-primary-wash);
+  color: var(--hanabi-primary-shade);
+  font-size: var(--hanabi-fs-12);
+  white-space: nowrap;
+}
+.hanabi-combobox__chip[data-highlighted] {
+  background: var(--hanabi-primary);
+  color: var(--hanabi-on-fill);
+}
+
+.hanabi-combobox__chip-x {
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: var(--hanabi-fs-12);
+  cursor: pointer;
+}
+.hanabi-combobox__chip-x:hover {
+  color: var(--hanabi-danger);
+}
+
+.hanabi-combobox__chip-input {
+  flex: 1;
+  min-width: 60px;
+}

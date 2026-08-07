@@ -657,6 +657,13 @@ function Demo() {
                 <div className="riot-stack">
                   <span className="riot-cap">Filter the zine</span>
                   <Combobox items={FORMS} placeholder="Search…" label="Filter the zine" />
+                  <span className="riot-cap">Tagged cuts</span>
+                  <Combobox
+                    items={FORMS}
+                    multiple
+                    label="Tagged cuts"
+                    placeholder="Add a cut…"
+                  />
                 </div>
               </Panel>
             </div>

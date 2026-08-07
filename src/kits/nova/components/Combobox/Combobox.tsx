@@ -9,9 +9,10 @@ export type ComboboxItem = string | { label: string; disabled?: boolean };
 
 export interface ComboboxProps extends Omit<
   React.ComponentProps<typeof BaseCombobox.Root>,
-  "items" | "children" | "className"
+  "items" | "children" | "className" | "multiple"
 > {
   items: ComboboxItem[];
+  multiple?: boolean;
   placeholder?: string;
   emptyText?: string;
   label?: string;
@@ -22,6 +23,7 @@ export interface ComboboxProps extends Omit<
 
 export function Combobox({
   items,
+  multiple,
   placeholder = "Search…",
   emptyText = "No matching signal",
   label,
@@ -36,18 +38,44 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} {...props}>
+    <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <div className={cx("nova-field nova-combobox__field", className)}>
         <BaseCombobox.InputGroup className="nova-field__control nova-combobox__control">
           <span className="nova-field__lead">
             <SearchIcon />
           </span>
-          <BaseCombobox.Input
-            id={inputId}
-            className="nova-field__input"
-            placeholder={placeholder}
-            aria-label={label ?? placeholder}
-          />
+          {multiple ? (
+            <BaseCombobox.Chips className="nova-combobox__chips">
+              <BaseCombobox.Value>
+                {(value: string[]) =>
+                  value.map((v) => (
+                    <BaseCombobox.Chip key={v} className="nova-combobox__chip">
+                      {v}
+                      <BaseCombobox.ChipRemove
+                        className="nova-combobox__chip-x"
+                        aria-label="Remove"
+                      >
+                        <XIcon />
+                      </BaseCombobox.ChipRemove>
+                    </BaseCombobox.Chip>
+                  ))
+                }
+              </BaseCombobox.Value>
+              <BaseCombobox.Input
+                id={inputId}
+                className="nova-field__input nova-combobox__chip-input"
+                placeholder={placeholder}
+                aria-label={label ?? placeholder}
+              />
+            </BaseCombobox.Chips>
+          ) : (
+            <BaseCombobox.Input
+              id={inputId}
+              className="nova-field__input"
+              placeholder={placeholder}
+              aria-label={label ?? placeholder}
+            />
+          )}
           <BaseCombobox.Clear className="nova-combobox__clear" aria-label="Clear">
             <XIcon />
           </BaseCombobox.Clear>

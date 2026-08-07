@@ -613,6 +613,13 @@ function Demo() {
                     placeholder="Search forms…"
                     label="Filter forms"
                   />
+                  <span className="prism-cap">Tagged forms</span>
+                  <Combobox
+                    items={FORMS}
+                    multiple
+                    label="Tagged forms"
+                    placeholder="Add a form…"
+                  />
                 </div>
               </Panel>
             </div>

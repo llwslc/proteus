@@ -76,3 +76,47 @@
 .nocturne-combobox__empty:empty {
   padding: 0;
 }
+
+.nocturne-combobox__chips {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nocturne-space-2);
+  padding: var(--nocturne-space-2) 0;
+}
+
+.nocturne-combobox__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nocturne-space-2);
+  padding: 2px var(--nocturne-space-2);
+  border: 1px solid var(--nocturne-gilt-50);
+  background: var(--nocturne-surface-inset);
+  color: var(--nocturne-gilt-bright);
+  font-size: var(--nocturne-fs-12);
+  white-space: nowrap;
+}
+.nocturne-combobox__chip[data-highlighted] {
+  box-shadow: var(--nocturne-glow-ring);
+}
+
+.nocturne-combobox__chip-x {
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: var(--nocturne-fs-12);
+  cursor: pointer;
+}
+.nocturne-combobox__chip-x:hover {
+  color: var(--nocturne-danger);
+}
+
+.nocturne-combobox__chip-input {
+  flex: 1;
+  min-width: 60px;
+}

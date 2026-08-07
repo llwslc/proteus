@@ -74,3 +74,50 @@
 .prism-combobox__empty:empty {
   padding: 0;
 }
+
+.prism-combobox__chips {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--prism-space-2);
+  padding: var(--prism-space-2) 0;
+}
+
+.prism-combobox__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--prism-space-2);
+  height: var(--prism-badge-h);
+  padding: 0 var(--prism-space-2);
+  border: var(--prism-stroke) solid var(--prism-ink);
+  border-radius: var(--prism-r-chip);
+  background: var(--prism-tint-soft);
+  color: var(--prism-ink);
+  font-size: var(--prism-fs-11);
+  white-space: nowrap;
+}
+.prism-combobox__chip[data-highlighted] {
+  background: var(--prism-primary);
+  color: var(--prism-on-fill);
+}
+
+.prism-combobox__chip-x {
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: var(--prism-fs-11);
+  cursor: pointer;
+}
+.prism-combobox__chip-x:hover {
+  color: var(--prism-danger);
+}
+
+.prism-combobox__chip-input {
+  flex: 1;
+  min-width: 60px;
+}

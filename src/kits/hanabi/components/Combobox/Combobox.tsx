@@ -9,9 +9,10 @@ export type ComboboxItem = string | { label: string; disabled?: boolean };
 
 export interface ComboboxProps extends Omit<
   React.ComponentProps<typeof BaseCombobox.Root>,
-  "items" | "children" | "className"
+  "items" | "children" | "className" | "multiple"
 > {
   items: ComboboxItem[];
+  multiple?: boolean;
   placeholder?: string;
   emptyText?: string;
   label?: string;
@@ -22,6 +23,7 @@ export interface ComboboxProps extends Omit<
 
 export function Combobox({
   items,
+  multiple,
   placeholder = "Search…",
   emptyText = "No matches",
   label,
@@ -36,7 +38,7 @@ export function Combobox({
     items.flatMap((it) => (typeof it !== "string" && it.disabled ? [it.label] : [])),
   );
   return (
-    <BaseCombobox.Root items={labels} {...props}>
+    <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <BaseCombobox.InputGroup
         className={cx(
           "hanabi-fieldframe hanabi-lockon hanabi-lockon--within hanabi-combobox",
@@ -46,12 +48,38 @@ export function Combobox({
         <span className="hanabi-combobox__glyph">
           <SearchIcon />
         </span>
-        <BaseCombobox.Input
-          id={inputId}
-          aria-label={label ?? placeholder}
-          placeholder={placeholder}
-          className="hanabi-combobox__input"
-        />
+        {multiple ? (
+          <BaseCombobox.Chips className="hanabi-combobox__chips">
+            <BaseCombobox.Value>
+              {(value: string[]) =>
+                value.map((v) => (
+                  <BaseCombobox.Chip key={v} className="hanabi-combobox__chip">
+                    {v}
+                    <BaseCombobox.ChipRemove
+                      className="hanabi-combobox__chip-x"
+                      aria-label="Remove"
+                    >
+                      <XIcon />
+                    </BaseCombobox.ChipRemove>
+                  </BaseCombobox.Chip>
+                ))
+              }
+            </BaseCombobox.Value>
+            <BaseCombobox.Input
+              id={inputId}
+              aria-label={label ?? placeholder}
+              placeholder={placeholder}
+              className="hanabi-combobox__input hanabi-combobox__chip-input"
+            />
+          </BaseCombobox.Chips>
+        ) : (
+          <BaseCombobox.Input
+            id={inputId}
+            aria-label={label ?? placeholder}
+            placeholder={placeholder}
+            className="hanabi-combobox__input"
+          />
+        )}
         <BaseCombobox.Clear className="hanabi-combobox__clear" aria-label="Clear">
           <XIcon />
         </BaseCombobox.Clear>

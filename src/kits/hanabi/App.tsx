@@ -653,6 +653,13 @@ function Demo() {
                     emptyText="該当なし"
                     label="スキル検索"
                   />
+                  <span className="hanabi-cap">タグ</span>
+                  <Combobox
+                    items={SKILLS}
+                    multiple
+                    label="タグ"
+                    placeholder="スキルを追加…"
+                  />
                 </div>
               </Panel>
             </div>

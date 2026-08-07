@@ -628,6 +628,13 @@ function Demo() {
                     placeholder="Search fuel…"
                     label="Filter feedstock"
                   />
+                  <span className="brass-cap">Tagged lines</span>
+                  <Combobox
+                    items={FUEL_PARTS}
+                    multiple
+                    label="Tagged lines"
+                    placeholder="Add a line…"
+                  />
                 </div>
               </Panel>
             </div>

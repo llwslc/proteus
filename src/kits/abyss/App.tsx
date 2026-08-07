@@ -916,6 +916,13 @@ function Demo() {
                     placeholder="Type to filter…"
                     label="Sound the depths"
                   />
+                  <span className="abyss-cap">Bound sigils</span>
+                  <Combobox
+                    items={COMBOBOX_ITEMS}
+                    multiple
+                    label="Bound sigils"
+                    placeholder="Add a sigil…"
+                  />
                 </div>
               </Panel>
             </div>

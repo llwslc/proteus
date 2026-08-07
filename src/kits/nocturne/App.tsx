@@ -829,6 +829,13 @@ function Demo() {
                     emptyText="No such flower in the garden"
                     label="Find a flower"
                   />
+                  <span className="nocturne-cap">Tagged beds</span>
+                  <Combobox
+                    items={FLORA_NAMES}
+                    multiple
+                    label="Tagged beds"
+                    placeholder="Add a bed…"
+                  />
                 </div>
               </Panel>
             </div>

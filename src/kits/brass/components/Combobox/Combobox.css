@@ -96,3 +96,49 @@
 .brass-combobox__empty:empty {
   padding: 0;
 }
+
+.brass-combobox__chips {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--brass-space-2);
+  padding: var(--brass-space-2) 0;
+}
+
+.brass-combobox__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brass-space-2);
+  height: var(--brass-badge-h);
+  padding: 0 var(--brass-space-2);
+  border-radius: var(--brass-round-sm);
+  background: var(--brass-tint);
+  box-shadow: var(--brass-bevel);
+  color: var(--brass-text-bright);
+  font-size: var(--brass-fs-11);
+  white-space: nowrap;
+}
+.brass-combobox__chip[data-highlighted] {
+  background: var(--brass-tint-strong);
+}
+
+.brass-combobox__chip-x {
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: var(--brass-fs-11);
+  cursor: pointer;
+}
+.brass-combobox__chip-x:hover {
+  color: var(--brass-danger);
+}
+
+.brass-combobox__chip-input {
+  flex: 1;
+  min-width: 60px;
+}

@@ -784,6 +784,13 @@ function Demo() {
                     placeholder="Type to filter…"
                     label="Filter star systems"
                   />
+                  <span className="nova-cap">Tagged systems</span>
+                  <Combobox
+                    items={COMBOBOX_ITEMS}
+                    multiple
+                    label="Tagged systems"
+                    placeholder="Add a system…"
+                  />
                 </div>
               </Panel>
             </div>
