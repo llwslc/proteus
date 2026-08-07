@@ -1208,17 +1208,21 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
                   <MenuSeparator />
-                  <MenuCheckboxItem defaultChecked>Rune Glow</MenuCheckboxItem>
-                  <MenuCheckboxItem>Tide Marks</MenuCheckboxItem>
-                  <MenuSeparator />
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Whisper</MenuRadioItem>
-                    <MenuRadioItem value="b">Chant</MenuRadioItem>
-                  </MenuRadioGroup>
-
                   <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     Cast Overboard
                   </MenuItem>
+                </Menu>
+                <Menu trigger="Volume">
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Whisper</MenuRadioItem>
+                    <MenuRadioItem value="b">Chant</MenuRadioItem>
+                    <MenuRadioItem value="c">Roar</MenuRadioItem>
+                  </MenuRadioGroup>
+                </Menu>
+                <Menu trigger="Wards">
+                  <MenuCheckboxItem defaultChecked>Rune Glow</MenuCheckboxItem>
+                  <MenuCheckboxItem defaultChecked>Tide Marks</MenuCheckboxItem>
+                  <MenuCheckboxItem>Deep Chant</MenuCheckboxItem>
                 </Menu>
               </Panel>
             </div>
@@ -1247,11 +1251,15 @@ function Demo() {
                     <MenuItem icon={<EyeIcon />}>Chart</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Reef View</MenuItem>
                     <MenuSub icon={<SignalIcon />} label="Soundings">
-                      <MenuItem>Shallows</MenuItem>
-                      <MenuItem>The Deeps</MenuItem>
-                      <MenuItem>Pressure</MenuItem>
+                      <MenuRadioGroup defaultValue="a">
+                        <MenuRadioItem value="a">Shallows</MenuRadioItem>
+                        <MenuRadioItem value="b">The Deeps</MenuRadioItem>
+                        <MenuRadioItem value="c">Pressure</MenuRadioItem>
+                      </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuItem icon={<KeyIcon />}>Attune</MenuItem>
+                      <MenuCheckboxItem defaultChecked>Attune</MenuCheckboxItem>
+                      <MenuCheckboxItem defaultChecked>Echoes</MenuCheckboxItem>
+                      <MenuCheckboxItem>Currents</MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

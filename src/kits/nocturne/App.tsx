@@ -1197,17 +1197,21 @@ function Demo() {
                   <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
                   <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
                   <MenuSeparator />
-                  <MenuCheckboxItem defaultChecked>Lamp Glow</MenuCheckboxItem>
-                  <MenuCheckboxItem>Dew Marks</MenuCheckboxItem>
-                  <MenuSeparator />
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Night</MenuRadioItem>
-                    <MenuRadioItem value="b">Dawn</MenuRadioItem>
-                  </MenuRadioGroup>
-
                   <MenuItem icon={<XIcon />} shortcut="⌘⌫" tone="danger">
                     Uproot
                   </MenuItem>
+                </Menu>
+                <Menu trigger="Hour">
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Night</MenuRadioItem>
+                    <MenuRadioItem value="b">Dawn</MenuRadioItem>
+                    <MenuRadioItem value="c">Dusk</MenuRadioItem>
+                  </MenuRadioGroup>
+                </Menu>
+                <Menu trigger="Lanterns">
+                  <MenuCheckboxItem defaultChecked>Lamp Glow</MenuCheckboxItem>
+                  <MenuCheckboxItem defaultChecked>Dew Marks</MenuCheckboxItem>
+                  <MenuCheckboxItem>Moth Trails</MenuCheckboxItem>
                 </Menu>
               </Panel>
             </div>
@@ -1229,11 +1233,15 @@ function Demo() {
                     <MenuItem>Open the gates</MenuItem>
                     <MenuItem>Draw the curtains</MenuItem>
                     <MenuSub label="Rounds">
-                      <MenuItem>South wall</MenuItem>
-                      <MenuItem>Moonlit gallery</MenuItem>
-                      <MenuItem>Weeping arbor</MenuItem>
+                      <MenuRadioGroup defaultValue="a">
+                        <MenuRadioItem value="a">South wall</MenuRadioItem>
+                        <MenuRadioItem value="b">Moonlit gallery</MenuRadioItem>
+                        <MenuRadioItem value="c">Weeping arbor</MenuRadioItem>
+                      </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuItem>Full round</MenuItem>
+                      <MenuCheckboxItem defaultChecked>Full round</MenuCheckboxItem>
+                      <MenuCheckboxItem defaultChecked>Lantern</MenuCheckboxItem>
+                      <MenuCheckboxItem>Dew</MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

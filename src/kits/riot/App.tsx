@@ -1025,17 +1025,21 @@ function Demo() {
                   <MenuItem icon={<Dot />}>Lock layer</MenuItem>
                   <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
                   <MenuSeparator />
-                  <MenuCheckboxItem defaultChecked>Cut Marks</MenuCheckboxItem>
-                  <MenuCheckboxItem>Bleed Guides</MenuCheckboxItem>
-                  <MenuSeparator />
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Loud</MenuRadioItem>
-                    <MenuRadioItem value="b">Louder</MenuRadioItem>
-                  </MenuRadioGroup>
-
                   <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Delete
                   </MenuItem>
+                </Menu>
+                <Menu trigger="Volume">
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Loud</MenuRadioItem>
+                    <MenuRadioItem value="b">Louder</MenuRadioItem>
+                    <MenuRadioItem value="c">Loudest</MenuRadioItem>
+                  </MenuRadioGroup>
+                </Menu>
+                <Menu trigger="Marks">
+                  <MenuCheckboxItem defaultChecked>Cut Marks</MenuCheckboxItem>
+                  <MenuCheckboxItem defaultChecked>Bleed Guides</MenuCheckboxItem>
+                  <MenuCheckboxItem>Fold Lines</MenuCheckboxItem>
                 </Menu>
               </Panel>
             </div>
@@ -1057,11 +1061,15 @@ function Demo() {
                     <MenuItem>One copy</MenuItem>
                     <MenuItem>A hundred</MenuItem>
                     <MenuSub label="Run">
-                      <MenuItem>Side A</MenuItem>
-                      <MenuItem>Side B</MenuItem>
-                      <MenuItem>Bootleg</MenuItem>
+                      <MenuRadioGroup defaultValue="a">
+                        <MenuRadioItem value="a">Side A</MenuRadioItem>
+                        <MenuRadioItem value="b">Side B</MenuRadioItem>
+                        <MenuRadioItem value="c">Bootleg</MenuRadioItem>
+                      </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuItem>Reset</MenuItem>
+                      <MenuCheckboxItem defaultChecked>Reset</MenuCheckboxItem>
+                      <MenuCheckboxItem defaultChecked>Static</MenuCheckboxItem>
+                      <MenuCheckboxItem>Tape</MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

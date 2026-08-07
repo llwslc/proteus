@@ -1011,17 +1011,21 @@ function Demo() {
                   <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
                   <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
                   <MenuSeparator />
-                  <MenuCheckboxItem defaultChecked>グリッド表示</MenuCheckboxItem>
-                  <MenuCheckboxItem>ラベル表示</MenuCheckboxItem>
-                  <MenuSeparator />
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">コンパクト</MenuRadioItem>
-                    <MenuRadioItem value="b">ゆったり</MenuRadioItem>
-                  </MenuRadioGroup>
-
                   <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     削除
                   </MenuItem>
+                </Menu>
+                <Menu trigger="密度">
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">コンパクト</MenuRadioItem>
+                    <MenuRadioItem value="b">ゆったり</MenuRadioItem>
+                    <MenuRadioItem value="c">ワイド</MenuRadioItem>
+                  </MenuRadioGroup>
+                </Menu>
+                <Menu trigger="表示">
+                  <MenuCheckboxItem defaultChecked>グリッド表示</MenuCheckboxItem>
+                  <MenuCheckboxItem defaultChecked>ラベル表示</MenuCheckboxItem>
+                  <MenuCheckboxItem>エフェクト表示</MenuCheckboxItem>
                 </Menu>
               </Panel>
             </div>
@@ -1043,11 +1047,15 @@ function Demo() {
                     <MenuItem>左端に寄せる</MenuItem>
                     <MenuItem>右端に寄せる</MenuItem>
                     <MenuSub label="分配">
-                      <MenuItem>上段</MenuItem>
-                      <MenuItem>中段</MenuItem>
-                      <MenuItem>下段</MenuItem>
+                      <MenuRadioGroup defaultValue="a">
+                        <MenuRadioItem value="a">上段</MenuRadioItem>
+                        <MenuRadioItem value="b">中段</MenuRadioItem>
+                        <MenuRadioItem value="c">下段</MenuRadioItem>
+                      </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuItem>リセット</MenuItem>
+                      <MenuCheckboxItem defaultChecked>リセット</MenuCheckboxItem>
+                      <MenuCheckboxItem defaultChecked>残像</MenuCheckboxItem>
+                      <MenuCheckboxItem>軌跡</MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

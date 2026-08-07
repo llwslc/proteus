@@ -986,17 +986,21 @@ function Demo() {
                   <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
                   <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
                   <MenuSeparator />
-                  <MenuCheckboxItem defaultChecked>Baseline Grid</MenuCheckboxItem>
-                  <MenuCheckboxItem>Column Guides</MenuCheckboxItem>
-                  <MenuSeparator />
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Points</MenuRadioItem>
-                    <MenuRadioItem value="b">Picas</MenuRadioItem>
-                  </MenuRadioGroup>
-
                   <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Delete
                   </MenuItem>
+                </Menu>
+                <Menu trigger="Scale">
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Points</MenuRadioItem>
+                    <MenuRadioItem value="b">Picas</MenuRadioItem>
+                    <MenuRadioItem value="c">Millimetres</MenuRadioItem>
+                  </MenuRadioGroup>
+                </Menu>
+                <Menu trigger="Guides">
+                  <MenuCheckboxItem defaultChecked>Baseline Grid</MenuCheckboxItem>
+                  <MenuCheckboxItem defaultChecked>Column Guides</MenuCheckboxItem>
+                  <MenuCheckboxItem>Bleed Marks</MenuCheckboxItem>
                 </Menu>
               </Panel>
             </div>
@@ -1018,11 +1022,15 @@ function Demo() {
                     <MenuItem>Left edge</MenuItem>
                     <MenuItem>Right edge</MenuItem>
                     <MenuSub label="Distribute">
-                      <MenuItem>Top</MenuItem>
-                      <MenuItem>Middle</MenuItem>
-                      <MenuItem>Bottom</MenuItem>
+                      <MenuRadioGroup defaultValue="a">
+                        <MenuRadioItem value="a">Top</MenuRadioItem>
+                        <MenuRadioItem value="b">Middle</MenuRadioItem>
+                        <MenuRadioItem value="c">Bottom</MenuRadioItem>
+                      </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuItem>Reset</MenuItem>
+                      <MenuCheckboxItem defaultChecked>Reset</MenuCheckboxItem>
+                      <MenuCheckboxItem defaultChecked>Baseline</MenuCheckboxItem>
+                      <MenuCheckboxItem>Bleed</MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

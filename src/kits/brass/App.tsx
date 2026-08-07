@@ -980,17 +980,21 @@ function Demo() {
                   <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
                   <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
                   <MenuSeparator />
-                  <MenuCheckboxItem defaultChecked>Gauge Grid</MenuCheckboxItem>
-                  <MenuCheckboxItem>Pressure Marks</MenuCheckboxItem>
-                  <MenuSeparator />
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Metric</MenuRadioItem>
-                    <MenuRadioItem value="b">Imperial</MenuRadioItem>
-                  </MenuRadioGroup>
-
                   <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Shut down
                   </MenuItem>
+                </Menu>
+                <Menu trigger="Units">
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Metric</MenuRadioItem>
+                    <MenuRadioItem value="b">Imperial</MenuRadioItem>
+                    <MenuRadioItem value="c">Nautical</MenuRadioItem>
+                  </MenuRadioGroup>
+                </Menu>
+                <Menu trigger="Dials">
+                  <MenuCheckboxItem defaultChecked>Gauge Grid</MenuCheckboxItem>
+                  <MenuCheckboxItem defaultChecked>Pressure Marks</MenuCheckboxItem>
+                  <MenuCheckboxItem>Steam Trace</MenuCheckboxItem>
                 </Menu>
               </Panel>
             </div>
@@ -1012,11 +1016,15 @@ function Demo() {
                     <MenuItem>Ahead</MenuItem>
                     <MenuItem>Astern</MenuItem>
                     <MenuSub label="More signals">
-                      <MenuItem>Slow</MenuItem>
-                      <MenuItem>Half</MenuItem>
-                      <MenuItem>Full</MenuItem>
+                      <MenuRadioGroup defaultValue="a">
+                        <MenuRadioItem value="a">Slow</MenuRadioItem>
+                        <MenuRadioItem value="b">Half</MenuRadioItem>
+                        <MenuRadioItem value="c">Full</MenuRadioItem>
+                      </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuItem>Stop</MenuItem>
+                      <MenuCheckboxItem defaultChecked>Stop</MenuCheckboxItem>
+                      <MenuCheckboxItem defaultChecked>Steam</MenuCheckboxItem>
+                      <MenuCheckboxItem>Soot</MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

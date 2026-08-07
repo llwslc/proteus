@@ -1072,17 +1072,21 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
                   <MenuSeparator />
-                  <MenuCheckboxItem defaultChecked>Grid Overlay</MenuCheckboxItem>
-                  <MenuCheckboxItem>Range Rings</MenuCheckboxItem>
-                  <MenuSeparator />
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Compact</MenuRadioItem>
-                    <MenuRadioItem value="b">Expanded</MenuRadioItem>
-                  </MenuRadioGroup>
-
                   <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     Jettison Cargo
                   </MenuItem>
+                </Menu>
+                <Menu trigger="Density">
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Compact</MenuRadioItem>
+                    <MenuRadioItem value="b">Expanded</MenuRadioItem>
+                    <MenuRadioItem value="c">Wide</MenuRadioItem>
+                  </MenuRadioGroup>
+                </Menu>
+                <Menu trigger="Layers">
+                  <MenuCheckboxItem defaultChecked>Grid Overlay</MenuCheckboxItem>
+                  <MenuCheckboxItem defaultChecked>Range Rings</MenuCheckboxItem>
+                  <MenuCheckboxItem>Debris Field</MenuCheckboxItem>
                 </Menu>
               </Panel>
             </div>
@@ -1111,11 +1115,15 @@ function Demo() {
                     <MenuItem icon={<SearchIcon />}>Map</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Grid View</MenuItem>
                     <MenuSub icon={<SignalIcon />} label="Sensors">
-                      <MenuItem>Short Range</MenuItem>
-                      <MenuItem>Long Range</MenuItem>
-                      <MenuItem>Gravimetric</MenuItem>
+                      <MenuRadioGroup defaultValue="a">
+                        <MenuRadioItem value="a">Short Range</MenuRadioItem>
+                        <MenuRadioItem value="b">Long Range</MenuRadioItem>
+                        <MenuRadioItem value="c">Gravimetric</MenuRadioItem>
+                      </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuItem icon={<BoltIcon />}>Calibrate</MenuItem>
+                      <MenuCheckboxItem defaultChecked>Calibrate</MenuCheckboxItem>
+                      <MenuCheckboxItem defaultChecked>Overlay</MenuCheckboxItem>
+                      <MenuCheckboxItem>Trails</MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>
