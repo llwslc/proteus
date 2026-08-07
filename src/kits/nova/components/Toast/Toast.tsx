@@ -52,7 +52,7 @@ function ToastList({
         >
           <div className="nova-surface nova-toast__surface">
             <span className="nova-toast__beam" />
-            <div className="nova-toast__main">
+            <BaseToast.Content className="nova-toast__main">
               <BaseToast.Title className="nova-toast__title" />
               <BaseToast.Description className="nova-toast__desc" />
               {toast.actionProps && (
@@ -61,7 +61,7 @@ function ToastList({
                   render={<Button variant="ghost" size="sm" />}
                 />
               )}
-            </div>
+            </BaseToast.Content>
             <BaseToast.Close className="nova-toast__close" aria-label="Dismiss">
               <XIcon />
             </BaseToast.Close>

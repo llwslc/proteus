@@ -18,7 +18,9 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       {(label != null || showValue) && (
         <div className="nova-slider__head">
           {label != null ? (
-            <span className="nova-cap nova-slider__label">{label}</span>
+            <BaseSlider.Label className="nova-cap nova-slider__label">
+              {label}
+            </BaseSlider.Label>
           ) : (
             <span />
           )}
@@ -28,10 +30,7 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       <BaseSlider.Control className="nova-slider__control">
         <BaseSlider.Track className="nova-slider__track">
           <BaseSlider.Indicator className="nova-slider__indicator" />
-          <BaseSlider.Thumb
-            className="nova-slider__thumb"
-            getAriaLabel={typeof label === "string" ? () => label : undefined}
-          />
+          <BaseSlider.Thumb className="nova-slider__thumb" />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

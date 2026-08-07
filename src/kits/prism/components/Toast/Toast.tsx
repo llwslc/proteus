@@ -67,7 +67,7 @@ function ToastList({
             <span className="prism-toast__marker" aria-hidden="true">
               <Marker className="prism-toast__glyph" />
             </span>
-            <div className="prism-toast__body">
+            <BaseToast.Content className="prism-toast__body">
               <BaseToast.Title className="prism-toast__title" />
               <BaseToast.Description className="prism-text prism-toast__desc" />
               {toast.actionProps && (
@@ -76,7 +76,7 @@ function ToastList({
                   render={<Button variant="ghost" size="sm" />}
                 />
               )}
-            </div>
+            </BaseToast.Content>
             <BaseToast.Close
               className="prism-toast__close"
               aria-label="Dismiss"

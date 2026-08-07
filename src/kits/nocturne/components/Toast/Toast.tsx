@@ -76,7 +76,7 @@ function ToastList({
           className="nocturne-toast nocturne-velvet"
         >
           <ToastMark tone={toneOf(toast.type)} />
-          <div className="nocturne-toast__body">
+          <BaseToast.Content className="nocturne-toast__body">
             <BaseToast.Title className="nocturne-toast__title" />
             <BaseToast.Description className="nocturne-toast__desc" />
             {toast.actionProps && (
@@ -85,7 +85,7 @@ function ToastList({
                 render={<Button variant="secondary" size="sm" />}
               />
             )}
-          </div>
+          </BaseToast.Content>
           <BaseToast.Close
             className="nocturne-toast__close"
             aria-label="Dismiss"

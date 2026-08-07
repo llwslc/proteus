@@ -64,7 +64,7 @@ function ToastList({
                 <ToneSigil tone={tone} />
               </span>
               <span className="abyss-toast__beam" aria-hidden />
-              <div className="abyss-toast__main">
+              <BaseToast.Content className="abyss-toast__main">
                 <BaseToast.Title className="abyss-toast__title" />
                 <BaseToast.Description className="abyss-toast__desc" />
                 {toast.actionProps && (
@@ -73,7 +73,7 @@ function ToastList({
                     render={<Button variant="ghost" size="sm" />}
                   />
                 )}
-              </div>
+              </BaseToast.Content>
               <BaseToast.Close className="abyss-toast__close" aria-label="Dismiss">
                 <XIcon />
               </BaseToast.Close>

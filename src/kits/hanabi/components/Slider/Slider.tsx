@@ -18,7 +18,9 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       {(label != null || showValue) && (
         <div className="hanabi-slider__head">
           {label != null ? (
-            <span className="hanabi-cap hanabi-slider__label">{label}</span>
+            <BaseSlider.Label className="hanabi-cap hanabi-slider__label">
+              {label}
+            </BaseSlider.Label>
           ) : null}
           {showValue ? <BaseSlider.Value className="hanabi-slider__value" /> : null}
         </div>
@@ -26,10 +28,7 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       <BaseSlider.Control className="hanabi-slider__control">
         <BaseSlider.Track className="hanabi-slider__track">
           <BaseSlider.Indicator className="hanabi-slider__indicator" />
-          <BaseSlider.Thumb
-            className="hanabi-slider__thumb"
-            getAriaLabel={typeof label === "string" ? () => label : undefined}
-          />
+          <BaseSlider.Thumb className="hanabi-slider__thumb" />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

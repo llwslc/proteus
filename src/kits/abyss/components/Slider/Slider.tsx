@@ -18,7 +18,9 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       {(label != null || showValue) && (
         <div className="abyss-slider__head">
           {label != null ? (
-            <span className="abyss-cap abyss-slider__label">{label}</span>
+            <BaseSlider.Label className="abyss-cap abyss-slider__label">
+              {label}
+            </BaseSlider.Label>
           ) : (
             <span />
           )}
@@ -28,10 +30,7 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       <BaseSlider.Control className="abyss-slider__control">
         <BaseSlider.Track className="abyss-slider__track">
           <BaseSlider.Indicator className="abyss-slider__indicator" />
-          <BaseSlider.Thumb
-            className="abyss-slider__thumb"
-            getAriaLabel={typeof label === "string" ? () => label : undefined}
-          />
+          <BaseSlider.Thumb className="abyss-slider__thumb" />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

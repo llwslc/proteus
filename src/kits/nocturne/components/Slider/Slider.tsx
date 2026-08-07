@@ -21,7 +21,9 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       {(label != null || showValue) && (
         <div className="nocturne-slider__head">
           {label != null ? (
-            <span className="nocturne-cap nocturne-slider__label">{label}</span>
+            <BaseSlider.Label className="nocturne-cap nocturne-slider__label">
+              {label}
+            </BaseSlider.Label>
           ) : null}
           {showValue ? <BaseSlider.Value className="nocturne-slider__value" /> : null}
         </div>
@@ -29,10 +31,7 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       <BaseSlider.Control className="nocturne-slider__control">
         <BaseSlider.Track className="nocturne-track nocturne-slider__track">
           <BaseSlider.Indicator className="nocturne-slider__indicator" />
-          <BaseSlider.Thumb
-            className="nocturne-slider__thumb"
-            getAriaLabel={typeof label === "string" ? () => label : undefined}
-          >
+          <BaseSlider.Thumb className="nocturne-slider__thumb">
             <svg
               className="nocturne-slider__bloom"
               viewBox="-13.5 -13.5 27 27"

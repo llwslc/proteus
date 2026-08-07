@@ -18,7 +18,9 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       {(label != null || showValue) && (
         <div className="prism-slider__head">
           {label != null ? (
-            <span className="prism-cap prism-slider__label">{label}</span>
+            <BaseSlider.Label className="prism-cap prism-slider__label">
+              {label}
+            </BaseSlider.Label>
           ) : null}
           {showValue ? <BaseSlider.Value className="prism-slider__value" /> : null}
         </div>
@@ -26,10 +28,7 @@ export function Slider({ label, showValue = true, className, ...props }: SliderP
       <BaseSlider.Control className="prism-slider__control">
         <BaseSlider.Track className="prism-slider__track">
           <BaseSlider.Indicator className="prism-slider__indicator" />
-          <BaseSlider.Thumb
-            className="prism-slider__thumb"
-            getAriaLabel={typeof label === "string" ? () => label : undefined}
-          />
+          <BaseSlider.Thumb className="prism-slider__thumb" />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

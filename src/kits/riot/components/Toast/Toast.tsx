@@ -52,7 +52,7 @@ function ToastList({
         >
           <div className="riot-surface riot-toast__surface">
             <span className="riot-tape riot-tape--tl" aria-hidden />
-            <div className="riot-toast__main">
+            <BaseToast.Content className="riot-toast__main">
               <BaseToast.Title className="riot-toast__title" />
               <BaseToast.Description className="riot-toast__desc" />
               {toast.actionProps && (
@@ -61,7 +61,7 @@ function ToastList({
                   render={<Button variant="ghost" size="sm" />}
                 />
               )}
-            </div>
+            </BaseToast.Content>
             <BaseToast.Close className="riot-toast__close" aria-label="Dismiss">
               <XIcon />
             </BaseToast.Close>

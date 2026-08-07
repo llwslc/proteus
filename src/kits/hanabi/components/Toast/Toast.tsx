@@ -65,7 +65,7 @@ function ToastList({
           <span className="hanabi-toast__marker" aria-hidden="true">
             {GLYPH[toneOf(toast.type)]}
           </span>
-          <div className="hanabi-toast__body">
+          <BaseToast.Content className="hanabi-toast__body">
             <BaseToast.Title className="hanabi-toast__title" />
             <BaseToast.Description className="hanabi-toast__desc" />
             {toast.actionProps && (
@@ -74,7 +74,7 @@ function ToastList({
                 render={<Button variant="ghost" size="sm" />}
               />
             )}
-          </div>
+          </BaseToast.Content>
           <BaseToast.Close
             className="hanabi-toast__close"
             aria-label="Dismiss"

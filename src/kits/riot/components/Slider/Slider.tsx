@@ -18,7 +18,9 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       {(label != null || showValue) && (
         <div className="riot-slider__head">
           {label != null ? (
-            <span className="riot-cap riot-slider__label">{label}</span>
+            <BaseSlider.Label className="riot-cap riot-slider__label">
+              {label}
+            </BaseSlider.Label>
           ) : (
             <span />
           )}
@@ -28,10 +30,7 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       <BaseSlider.Control className="riot-slider__control">
         <BaseSlider.Track className="riot-slider__track">
           <BaseSlider.Indicator className="riot-slider__indicator" />
-          <BaseSlider.Thumb
-            className="riot-slider__thumb"
-            getAriaLabel={typeof label === "string" ? () => label : undefined}
-          />
+          <BaseSlider.Thumb className="riot-slider__thumb" />
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>
