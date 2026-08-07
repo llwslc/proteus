@@ -60,3 +60,18 @@
 .hanabi-numberfield__input:focus {
   border-color: var(--hanabi-primary);
 }
+
+.hanabi-numberfield__scrub {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  cursor: ew-resize;
+}
+
+.hanabi-numberfield__cursor {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--hanabi-r-pill);
+  background: var(--hanabi-primary);
+  border: var(--hanabi-line-w) solid var(--hanabi-ink);
+}

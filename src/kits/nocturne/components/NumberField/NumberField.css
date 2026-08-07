@@ -76,3 +76,18 @@
   text-align: center;
   outline: none;
 }
+
+.nocturne-numberfield__scrub {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  cursor: ew-resize;
+}
+
+.nocturne-numberfield__cursor {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-gilt);
+  box-shadow: var(--nocturne-glow-ring);
+}

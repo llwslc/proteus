@@ -126,7 +126,7 @@
 - **Radio**：RadioGroup 竖排；结构 `<label> = 控件 + .cap 文字`，标记在控件内，状态 +checked。
 - **ToggleGroup**：分段条家族，`width: fit-content`，段的状态 +pressed；手机端横向滚动不换行。
 - **Slider**：props `label·showValue`（默认 true）·`orientation`（默认 horizontal）·`thumbAlignment` 钉 `edge`（min／max 时 thumb 收进 Control 内、不越轨端）；结构 `Root（竖排）> head[label .cap + Value 在右] + Control > Track > Indicator + Thumb`，Indicator 从左端起；竖向时 head 收拢靠左（label 与 Value 相邻）、整件收进内容宽，Control 高取 `--<kit>-slider-v-h`（各 kit 同值 `160`）、Track 立轴居中、轨厚取 `--<kit>-slider-v-w`（推子槽，**厚多少由 theme 定**）、Indicator 自底端起；`label` 为字符串时兼作 thumb 输入的可访问名；旋钮元素自身的渲染盒各状态同尺寸。
-- **NumberField**：结构 `Group > [减 + Input + 加]` 三件，两个步进钮等宽；**三件怎么排由 theme 定**；到 min/max 时自己 disable 对应步进钮并置灰。
+- **NumberField**：结构 `Group > [减 + ScrubArea > (Input + ScrubAreaCursor) + 加]` 三件，两个步进钮等宽；**三件怎么排由 theme 定**；到 min/max 时自己 disable 对应步进钮并置灰；输入位横向拖动改值、指针取 `ew-resize`，拖动中的自绘光标**长什么样由 theme 定**。
 - **Input/Field**：props `label·icon·description·error`；结构 `Field.Root > Label .cap + 包装(左图标? + Control) + Description? + Error`，图标在左、Control `flex:1`，状态 +focus、+error；`error` 经 `Field.Root invalid` 标记 `data-invalid`；`name` 落 `Field.Root`，Error 常驻挂载，Form 下发的 `errors` 由它显示。
 - **OtpField**：props `length·splitAt·mask·label`（`length` 默认 6）；root 带 `role="group"`、`label` 作组可访问名；cells 横排等宽，在 `splitAt` 处插一个分隔，cell 状态 +filled、+focus；手机端 cell 收缩。
 - **Select**：props `items·placeholder·side`（默认 bottom）`·align`（默认 center）·`multiple`；结构 `field > Trigger[Value flex:1 + Chevron 在右、开态旋转] + Popup > list > Item[ItemText flex:1 + Indicator]`，**选中指示摆在哪、长什么样由 theme 定**；**弹层向下展开**、开在 `6px` 处；`alignItemWithTrigger=false`，宽度随 `--anchor-width`；item 状态 +selected、+highlighted；`multiple` 时 Trigger 顺列已选标签、逗号分隔，选中后弹层保持打开。

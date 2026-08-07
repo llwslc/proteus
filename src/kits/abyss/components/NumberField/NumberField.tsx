@@ -46,7 +46,10 @@ export function NumberField({
         >
           <MinusIcon />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input id={id ?? autoId} className="abyss-numberfield__input" />
+        <BaseNumberField.ScrubArea className="abyss-numberfield__scrub">
+          <BaseNumberField.Input id={id ?? autoId} className="abyss-numberfield__input" />
+          <BaseNumberField.ScrubAreaCursor className="abyss-numberfield__cursor" />
+        </BaseNumberField.ScrubArea>
         <BaseNumberField.Increment
           className="abyss-numberfield__btn abyss-frame"
           disabled={atMax}

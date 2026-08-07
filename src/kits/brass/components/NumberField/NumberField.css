@@ -91,3 +91,18 @@
   color: var(--brass-text-mute);
   background: transparent;
 }
+
+.brass-numberfield__scrub {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  cursor: ew-resize;
+}
+
+.brass-numberfield__cursor {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--brass-round-sm);
+  background: var(--brass-accent-fill);
+  box-shadow: var(--brass-bevel);
+}

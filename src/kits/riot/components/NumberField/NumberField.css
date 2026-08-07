@@ -48,3 +48,18 @@
 .riot-numberfield__input:focus-visible {
   box-shadow: inset 0 0 0 var(--riot-stroke) var(--riot-primary);
 }
+
+.riot-numberfield__scrub {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  cursor: ew-resize;
+}
+
+.riot-numberfield__cursor {
+  width: 14px;
+  height: 14px;
+  background: var(--riot-primary);
+  border: var(--riot-stroke) solid var(--riot-ink);
+  box-shadow: var(--riot-shadow-hard);
+}

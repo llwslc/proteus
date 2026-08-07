@@ -44,7 +44,10 @@ export function NumberField({
         <BaseNumberField.Decrement className="nocturne-numberfield__btn" disabled={atMin}>
           <MinusIcon />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input className="nocturne-numberfield__input" />
+        <BaseNumberField.ScrubArea className="nocturne-numberfield__scrub">
+          <BaseNumberField.Input className="nocturne-numberfield__input" />
+          <BaseNumberField.ScrubAreaCursor className="nocturne-numberfield__cursor" />
+        </BaseNumberField.ScrubArea>
         <BaseNumberField.Increment className="nocturne-numberfield__btn" disabled={atMax}>
           <PlusIcon />
         </BaseNumberField.Increment>

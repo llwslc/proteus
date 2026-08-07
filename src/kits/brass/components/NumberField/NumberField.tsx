@@ -43,7 +43,10 @@ export function NumberField({
         <BaseNumberField.Decrement className="brass-numberfield__btn" disabled={atMin}>
           <Minus />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input id={id ?? autoId} className="brass-numberfield__input" />
+        <BaseNumberField.ScrubArea className="brass-numberfield__scrub">
+          <BaseNumberField.Input id={id ?? autoId} className="brass-numberfield__input" />
+          <BaseNumberField.ScrubAreaCursor className="brass-numberfield__cursor" />
+        </BaseNumberField.ScrubArea>
         <BaseNumberField.Increment className="brass-numberfield__btn" disabled={atMax}>
           <Plus />
         </BaseNumberField.Increment>

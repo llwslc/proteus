@@ -43,7 +43,10 @@ export function NumberField({
         <BaseNumberField.Decrement className="riot-numberfield__btn" disabled={atMin}>
           <MinusIcon />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input id={id ?? autoId} className="riot-numberfield__input" />
+        <BaseNumberField.ScrubArea className="riot-numberfield__scrub">
+          <BaseNumberField.Input id={id ?? autoId} className="riot-numberfield__input" />
+          <BaseNumberField.ScrubAreaCursor className="riot-numberfield__cursor" />
+        </BaseNumberField.ScrubArea>
         <BaseNumberField.Increment className="riot-numberfield__btn" disabled={atMax}>
           <PlusIcon />
         </BaseNumberField.Increment>

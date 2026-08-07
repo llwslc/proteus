@@ -78,3 +78,18 @@
   font-size: var(--nova-fs-16);
   letter-spacing: var(--nova-ls-10);
 }
+
+.nova-numberfield__scrub {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  cursor: ew-resize;
+}
+
+.nova-numberfield__cursor {
+  width: 14px;
+  height: 14px;
+  background: var(--nova-primary);
+  clip-path: var(--nova-clip-4);
+  box-shadow: 0 0 10px var(--nova-primary);
+}

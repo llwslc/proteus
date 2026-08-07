@@ -87,3 +87,18 @@
   color: var(--abyss-text-mute);
   --abyss-frame-ink: var(--abyss-ink-faint);
 }
+
+.abyss-numberfield__scrub {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  cursor: ew-resize;
+}
+
+.abyss-numberfield__cursor {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--abyss-round-5);
+  background: var(--abyss-glow);
+  filter: var(--abyss-aura);
+}

@@ -47,7 +47,10 @@ export function NumberField({
         >
           <Minus />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input className="prism-surface prism-numberfield__input" />
+        <BaseNumberField.ScrubArea className="prism-numberfield__scrub">
+          <BaseNumberField.Input className="prism-surface prism-numberfield__input" />
+          <BaseNumberField.ScrubAreaCursor className="prism-numberfield__cursor" />
+        </BaseNumberField.ScrubArea>
         <BaseNumberField.Increment
           className="prism-surface prism-numberfield__btn"
           disabled={atMax}

@@ -43,7 +43,10 @@ export function NumberField({
         <BaseNumberField.Decrement className="nova-numberfield__btn" disabled={atMin}>
           <MinusIcon />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input id={id ?? autoId} className="nova-numberfield__input" />
+        <BaseNumberField.ScrubArea className="nova-numberfield__scrub">
+          <BaseNumberField.Input id={id ?? autoId} className="nova-numberfield__input" />
+          <BaseNumberField.ScrubAreaCursor className="nova-numberfield__cursor" />
+        </BaseNumberField.ScrubArea>
         <BaseNumberField.Increment className="nova-numberfield__btn" disabled={atMax}>
           <PlusIcon />
         </BaseNumberField.Increment>

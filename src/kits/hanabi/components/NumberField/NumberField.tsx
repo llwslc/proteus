@@ -44,7 +44,10 @@ export function NumberField({
         <BaseNumberField.Decrement className="hanabi-numberfield__btn" disabled={atMin}>
           <MinusIcon />
         </BaseNumberField.Decrement>
-        <BaseNumberField.Input className="hanabi-numberfield__input" />
+        <BaseNumberField.ScrubArea className="hanabi-numberfield__scrub">
+          <BaseNumberField.Input className="hanabi-numberfield__input" />
+          <BaseNumberField.ScrubAreaCursor className="hanabi-numberfield__cursor" />
+        </BaseNumberField.ScrubArea>
         <BaseNumberField.Increment className="hanabi-numberfield__btn" disabled={atMax}>
           <PlusIcon />
         </BaseNumberField.Increment>

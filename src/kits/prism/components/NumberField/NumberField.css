@@ -61,3 +61,17 @@
 .prism-numberfield[data-disabled] {
   opacity: var(--prism-disabled-opacity);
 }
+
+.prism-numberfield__scrub {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  cursor: ew-resize;
+}
+
+.prism-numberfield__cursor {
+  width: 14px;
+  height: 14px;
+  background: var(--prism-primary);
+  border: var(--prism-stroke) solid var(--prism-ink);
+}
