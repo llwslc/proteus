@@ -37,6 +37,7 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--disable-gpu'] });
   const kits = await G.kitsOf(null, ONLY);
   const out = [];
+  let knobsChecked = 0;
 
   for (const kit of kits) {
     const m = await browser.newPage({ ...devices['iPhone 13'] });
@@ -406,8 +407,11 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
       });
       if (marked) {
         const sigF = (el) => {
-          const c = getComputedStyle(el);
-          return [c.outlineStyle, c.outlineWidth, c.outlineColor, c.boxShadow, c.filter, c.scale, c.transform, c.backgroundColor, c.borderTopColor].join('|');
+          const one = (t) => {
+            const c = getComputedStyle(el, t);
+            return [c.outlineStyle, c.outlineWidth, c.outlineColor, c.boxShadow, c.filter, c.scale, c.transform, c.backgroundColor, c.borderTopColor].join('|');
+          };
+          return [one(null), one('::before'), one('::after')].join('#');
         };
         const el = await d.$('[data-focchk="1"]');
         const before = await el.evaluate(sigF);
@@ -447,6 +451,30 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
         await d.waitForTimeout(200);
       } catch (e) { out.push(`WARN  ${kit}  ${panel}-chevron: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
     }
+
+    try {
+      // 旋钮盒恒定：库按旋钮的渲染盒（getBoundingClientRect，含 transform／scale）算两端内缩，
+      // 放大写在旋钮元素上会让拖动中量到放大后的盒 —— 松手后停在离端点半个放大量的位置，
+      // 永远拖不到头。放大挂伪元素，旋钮自身的盒在静止／悬停／拖动三态同尺寸。
+      await setKit(d, kit);
+      const sl = d.locator('#slider [class*="slider__thumb"]').first();
+      await sl.scrollIntoViewIfNeeded();
+      await d.waitForTimeout(200);
+      const boxOf = () => sl.evaluate((el) => { const r = el.getBoundingClientRect(); return [r.width, r.height]; });
+      await d.mouse.move(4, 4); await d.waitForTimeout(320);
+      const rest = await boxOf();
+      const tb = await sl.boundingBox();
+      await d.mouse.move(tb.x + tb.width / 2, tb.y + tb.height / 2, { steps: 3 });
+      await d.waitForTimeout(320);
+      const hover = await boxOf();
+      await d.mouse.down(); await d.waitForTimeout(320);
+      const drag = await boxOf();
+      await d.mouse.up(); await d.mouse.move(4, 4); await d.waitForTimeout(200);
+      knobsChecked++;
+      const off = (a) => Math.max(Math.abs(a[0] - rest[0]), Math.abs(a[1] - rest[1]));
+      if (off(hover) > 0.5 || off(drag) > 0.5)
+        out.push(`HIGH  ${kit}  slider: 旋钮的渲染盒随状态变大（静止 ${rest[0].toFixed(1)}×${rest[1].toFixed(1)} · 悬停 ${hover[0].toFixed(1)} · 拖动 ${drag[0].toFixed(1)}）—— 把放大挪到旋钮的伪元素，否则拖到底停不到两端`);
+    } catch (e) { out.push(`WARN  ${kit}  knob-box: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
 
     for (const corner of ['tl', 'tr', 'bl', 'br']) {
       try {
@@ -611,6 +639,7 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
     console.error(`ERR ${warns.length} 处判据未能驱动(平均每套 >1) —— 大面积空转,绿也不能当证据`);
     process.exit(2);
   }
-  console.log(`\nRESULT: ${fails.length === 0 ? `PASS (${kits.length} kits 驱动完毕${warns.length ? `,${warns.length} 处未驱动` : ''})` : fails.length + ' interaction fault(s)'}`);
+  if (!knobsChecked) { console.error('ERR 旋钮盒恒定检查量了 0 个旋钮'); process.exit(2); }
+  console.log(`\nRESULT: ${fails.length === 0 ? `PASS (${kits.length} kits 驱动完毕 · ${knobsChecked} 个旋钮盒恒定${warns.length ? `,${warns.length} 处未驱动` : ''})` : fails.length + ' interaction fault(s)'}`);
   process.exit(fails.length ? 1 : 0);
 })().catch((e) => { console.error('ERR', e.message); process.exit(2); });
