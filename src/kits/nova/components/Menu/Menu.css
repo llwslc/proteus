@@ -82,3 +82,8 @@
   margin: var(--nova-space-2) 0;
   background: linear-gradient(90deg, transparent, var(--nova-line-strong), transparent);
 }
+
+.nova-menu__mark {
+  display: inline-grid;
+  place-items: center;
+}

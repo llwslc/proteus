@@ -28,6 +28,9 @@ import {
   Input,
   Menu,
   MenuItem,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuSub,
   Menubar,
@@ -966,6 +969,14 @@ function Demo() {
                   <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
                   <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
                   <MenuSeparator />
+                  <MenuCheckboxItem defaultChecked>Baseline Grid</MenuCheckboxItem>
+                  <MenuCheckboxItem>Column Guides</MenuCheckboxItem>
+                  <MenuSeparator />
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Points</MenuRadioItem>
+                    <MenuRadioItem value="b">Picas</MenuRadioItem>
+                  </MenuRadioGroup>
+
                   <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Delete
                   </MenuItem>

@@ -56,3 +56,8 @@
 .prism-list-item--danger[data-highlighted]:not([data-disabled]) {
   background: var(--prism-danger-wash);
 }
+
+.prism-menu__mark {
+  display: inline-grid;
+  place-items: center;
+}

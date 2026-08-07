@@ -49,3 +49,8 @@
   background: var(--brass-danger-wash);
   color: var(--brass-danger);
 }
+
+.brass-menu__mark {
+  display: inline-grid;
+  place-items: center;
+}

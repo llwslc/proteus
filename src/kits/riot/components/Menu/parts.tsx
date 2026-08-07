@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Menu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
 import { cx } from "../cx";
-import { ChevronRightIcon } from "../icons";
+import { CheckIcon, ChevronRightIcon } from "../icons";
 
 export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
   icon?: ReactNode;
@@ -71,5 +71,67 @@ export function MenuSub({
         </Menu.Positioner>
       </Menu.Portal>
     </Menu.SubmenuRoot>
+  );
+}
+
+export interface MenuCheckboxItemProps extends React.ComponentProps<
+  typeof Menu.CheckboxItem
+> {
+  shortcut?: ReactNode;
+}
+
+export function MenuCheckboxItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuCheckboxItemProps) {
+  return (
+    <Menu.CheckboxItem
+      className={cx("riot-list-item riot-menu__item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="riot-menu__icon">
+        <Menu.CheckboxItemIndicator className="riot-menu__mark">
+          <CheckIcon />
+        </Menu.CheckboxItemIndicator>
+      </span>
+      <span className="riot-menu__label riot-list-item__text">{children}</span>
+      {shortcut ? <kbd className="riot-menu__shortcut">{shortcut}</kbd> : null}
+    </Menu.CheckboxItem>
+  );
+}
+
+export function MenuRadioGroup(props: React.ComponentProps<typeof Menu.RadioGroup>) {
+  return <Menu.RadioGroup {...props} />;
+}
+
+export interface MenuRadioItemProps extends React.ComponentProps<typeof Menu.RadioItem> {
+  shortcut?: ReactNode;
+}
+
+export function MenuRadioItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuRadioItemProps) {
+  return (
+    <Menu.RadioItem
+      className={cx("riot-list-item riot-menu__item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="riot-menu__icon">
+        <Menu.RadioItemIndicator className="riot-menu__mark">
+          <CheckIcon />
+        </Menu.RadioItemIndicator>
+      </span>
+      <span className="riot-menu__label riot-list-item__text">{children}</span>
+      {shortcut ? <kbd className="riot-menu__shortcut">{shortcut}</kbd> : null}
+    </Menu.RadioItem>
   );
 }

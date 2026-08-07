@@ -28,6 +28,9 @@ import {
   Input,
   Menu,
   MenuItem,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuSub,
   Menubar,
@@ -960,6 +963,14 @@ function Demo() {
                   <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
                   <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
                   <MenuSeparator />
+                  <MenuCheckboxItem defaultChecked>Gauge Grid</MenuCheckboxItem>
+                  <MenuCheckboxItem>Pressure Marks</MenuCheckboxItem>
+                  <MenuSeparator />
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Metric</MenuRadioItem>
+                    <MenuRadioItem value="b">Imperial</MenuRadioItem>
+                  </MenuRadioGroup>
+
                   <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Shut down
                   </MenuItem>

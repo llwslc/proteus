@@ -2,7 +2,7 @@ import { Menu as BaseMenu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
 import type { ComponentProps, ReactNode } from "react";
 import { cx } from "../cx";
-import { ChevronRight } from "../icons";
+import { Check, ChevronRight } from "../icons";
 
 export interface MenuItemProps extends ComponentProps<typeof BaseMenu.Item> {
   icon?: ReactNode;
@@ -69,5 +69,67 @@ export function MenuSub({
         </BaseMenu.Positioner>
       </BaseMenu.Portal>
     </BaseMenu.SubmenuRoot>
+  );
+}
+
+export interface MenuCheckboxItemProps extends ComponentProps<
+  typeof BaseMenu.CheckboxItem
+> {
+  shortcut?: ReactNode;
+}
+
+export function MenuCheckboxItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuCheckboxItemProps) {
+  return (
+    <BaseMenu.CheckboxItem
+      className={cx("prism-list-item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="prism-menu__icon">
+        <BaseMenu.CheckboxItemIndicator className="prism-menu__mark">
+          <Check />
+        </BaseMenu.CheckboxItemIndicator>
+      </span>
+      <span className="prism-list-item__text">{children}</span>
+      {shortcut ? <span className="prism-menu__shortcut">{shortcut}</span> : null}
+    </BaseMenu.CheckboxItem>
+  );
+}
+
+export function MenuRadioGroup(props: ComponentProps<typeof BaseMenu.RadioGroup>) {
+  return <BaseMenu.RadioGroup {...props} />;
+}
+
+export interface MenuRadioItemProps extends ComponentProps<typeof BaseMenu.RadioItem> {
+  shortcut?: ReactNode;
+}
+
+export function MenuRadioItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuRadioItemProps) {
+  return (
+    <BaseMenu.RadioItem
+      className={cx("prism-list-item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="prism-menu__icon">
+        <BaseMenu.RadioItemIndicator className="prism-menu__mark">
+          <Check />
+        </BaseMenu.RadioItemIndicator>
+      </span>
+      <span className="prism-list-item__text">{children}</span>
+      {shortcut ? <span className="prism-menu__shortcut">{shortcut}</span> : null}
+    </BaseMenu.RadioItem>
   );
 }

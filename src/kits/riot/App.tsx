@@ -29,6 +29,9 @@ import {
   Input,
   Menu,
   MenuItem,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuSub,
   Menubar,
@@ -1005,6 +1008,14 @@ function Demo() {
                   <MenuItem icon={<Dot />}>Lock layer</MenuItem>
                   <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
                   <MenuSeparator />
+                  <MenuCheckboxItem defaultChecked>Cut Marks</MenuCheckboxItem>
+                  <MenuCheckboxItem>Bleed Guides</MenuCheckboxItem>
+                  <MenuSeparator />
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Loud</MenuRadioItem>
+                    <MenuRadioItem value="b">Louder</MenuRadioItem>
+                  </MenuRadioGroup>
+
                   <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
                     Delete
                   </MenuItem>

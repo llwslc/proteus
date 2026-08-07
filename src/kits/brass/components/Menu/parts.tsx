@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Menu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
 import { cx } from "../cx";
-import { ChevronRight } from "../icons";
+import { Check, ChevronRight } from "../icons";
 
 export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
   icon?: ReactNode;
@@ -69,5 +69,67 @@ export function MenuSub({
         </Menu.Positioner>
       </Menu.Portal>
     </Menu.SubmenuRoot>
+  );
+}
+
+export interface MenuCheckboxItemProps extends React.ComponentProps<
+  typeof Menu.CheckboxItem
+> {
+  shortcut?: ReactNode;
+}
+
+export function MenuCheckboxItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuCheckboxItemProps) {
+  return (
+    <Menu.CheckboxItem
+      className={cx("brass-list-item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="brass-menu__icon">
+        <Menu.CheckboxItemIndicator className="brass-menu__mark">
+          <Check />
+        </Menu.CheckboxItemIndicator>
+      </span>
+      <span className="brass-list-item__text">{children}</span>
+      {shortcut ? <span className="brass-menu__shortcut">{shortcut}</span> : null}
+    </Menu.CheckboxItem>
+  );
+}
+
+export function MenuRadioGroup(props: React.ComponentProps<typeof Menu.RadioGroup>) {
+  return <Menu.RadioGroup {...props} />;
+}
+
+export interface MenuRadioItemProps extends React.ComponentProps<typeof Menu.RadioItem> {
+  shortcut?: ReactNode;
+}
+
+export function MenuRadioItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuRadioItemProps) {
+  return (
+    <Menu.RadioItem
+      className={cx("brass-list-item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="brass-menu__icon">
+        <Menu.RadioItemIndicator className="brass-menu__mark">
+          <Check />
+        </Menu.RadioItemIndicator>
+      </span>
+      <span className="brass-list-item__text">{children}</span>
+      {shortcut ? <span className="brass-menu__shortcut">{shortcut}</span> : null}
+    </Menu.RadioItem>
   );
 }

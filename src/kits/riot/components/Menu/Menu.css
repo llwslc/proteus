@@ -44,3 +44,8 @@
 .riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__shortcut {
   color: inherit;
 }
+
+.riot-menu__mark {
+  display: inline-grid;
+  place-items: center;
+}

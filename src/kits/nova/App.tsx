@@ -27,6 +27,9 @@ import {
   Input,
   Menu,
   MenuItem,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuSub,
   Menubar,
@@ -1052,6 +1055,14 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
                   <MenuSeparator />
+                  <MenuCheckboxItem defaultChecked>Grid Overlay</MenuCheckboxItem>
+                  <MenuCheckboxItem>Range Rings</MenuCheckboxItem>
+                  <MenuSeparator />
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Compact</MenuRadioItem>
+                    <MenuRadioItem value="b">Expanded</MenuRadioItem>
+                  </MenuRadioGroup>
+
                   <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     Jettison Cargo
                   </MenuItem>

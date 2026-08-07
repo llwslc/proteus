@@ -26,6 +26,9 @@ import {
   Input,
   Menu,
   MenuItem,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuSub,
   Menubar,
@@ -1188,6 +1191,14 @@ function Demo() {
                   <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
                   <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
                   <MenuSeparator />
+                  <MenuCheckboxItem defaultChecked>Rune Glow</MenuCheckboxItem>
+                  <MenuCheckboxItem>Tide Marks</MenuCheckboxItem>
+                  <MenuSeparator />
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Whisper</MenuRadioItem>
+                    <MenuRadioItem value="b">Chant</MenuRadioItem>
+                  </MenuRadioGroup>
+
                   <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     Cast Overboard
                   </MenuItem>

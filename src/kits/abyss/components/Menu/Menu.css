@@ -127,3 +127,8 @@
 .abyss-menu__item[data-popup-open] .abyss-menu__arrow {
   color: var(--abyss-glow);
 }
+
+.abyss-menu__mark {
+  display: inline-grid;
+  place-items: center;
+}

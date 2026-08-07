@@ -28,6 +28,9 @@ import {
   Input,
   Menu,
   MenuItem,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuSub,
   Menubar,
@@ -1177,6 +1180,14 @@ function Demo() {
                   <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
                   <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
                   <MenuSeparator />
+                  <MenuCheckboxItem defaultChecked>Lamp Glow</MenuCheckboxItem>
+                  <MenuCheckboxItem>Dew Marks</MenuCheckboxItem>
+                  <MenuSeparator />
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">Night</MenuRadioItem>
+                    <MenuRadioItem value="b">Dawn</MenuRadioItem>
+                  </MenuRadioGroup>
+
                   <MenuItem icon={<XIcon />} shortcut="⌘⌫" tone="danger">
                     Uproot
                   </MenuItem>

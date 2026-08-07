@@ -71,3 +71,65 @@ export function MenuSub({
     </BaseMenu.SubmenuRoot>
   );
 }
+
+export interface MenuCheckboxItemProps extends ComponentProps<
+  typeof BaseMenu.CheckboxItem
+> {
+  shortcut?: ReactNode;
+}
+
+export function MenuCheckboxItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuCheckboxItemProps) {
+  return (
+    <BaseMenu.CheckboxItem
+      className={cx("nocturne-list-item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="nocturne-menu__icon">
+        <BaseMenu.CheckboxItemIndicator className="nocturne-menu__mark">
+          <span className="nocturne-moondot" />
+        </BaseMenu.CheckboxItemIndicator>
+      </span>
+      <span className="nocturne-list-item__text">{children}</span>
+      {shortcut ? <span className="nocturne-menu__shortcut">{shortcut}</span> : null}
+    </BaseMenu.CheckboxItem>
+  );
+}
+
+export function MenuRadioGroup(props: ComponentProps<typeof BaseMenu.RadioGroup>) {
+  return <BaseMenu.RadioGroup {...props} />;
+}
+
+export interface MenuRadioItemProps extends ComponentProps<typeof BaseMenu.RadioItem> {
+  shortcut?: ReactNode;
+}
+
+export function MenuRadioItem({
+  className,
+  children,
+  shortcut,
+  label,
+  ...props
+}: MenuRadioItemProps) {
+  return (
+    <BaseMenu.RadioItem
+      className={cx("nocturne-list-item", className)}
+      label={label ?? (typeof children === "string" ? children : undefined)}
+      {...props}
+    >
+      <span className="nocturne-menu__icon">
+        <BaseMenu.RadioItemIndicator className="nocturne-menu__mark">
+          <span className="nocturne-moondot" />
+        </BaseMenu.RadioItemIndicator>
+      </span>
+      <span className="nocturne-list-item__text">{children}</span>
+      {shortcut ? <span className="nocturne-menu__shortcut">{shortcut}</span> : null}
+    </BaseMenu.RadioItem>
+  );
+}

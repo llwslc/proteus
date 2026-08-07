@@ -28,6 +28,9 @@ import {
   Input,
   Menu,
   MenuItem,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuSub,
   Menubar,
@@ -991,6 +994,14 @@ function Demo() {
                   <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
                   <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
                   <MenuSeparator />
+                  <MenuCheckboxItem defaultChecked>グリッド表示</MenuCheckboxItem>
+                  <MenuCheckboxItem>ラベル表示</MenuCheckboxItem>
+                  <MenuSeparator />
+                  <MenuRadioGroup defaultValue="a">
+                    <MenuRadioItem value="a">コンパクト</MenuRadioItem>
+                    <MenuRadioItem value="b">ゆったり</MenuRadioItem>
+                  </MenuRadioGroup>
+
                   <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
                     削除
                   </MenuItem>
