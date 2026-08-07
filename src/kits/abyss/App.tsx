@@ -1187,43 +1187,45 @@ function Demo() {
 
             <div className="abyss-section" id="menu">
               <Panel title="Menu">
-                <Menu trigger="Rites">
-                  <MenuItem icon={<SearchIcon />} shortcut="⌘S">
-                    Sound the Deep
-                  </MenuItem>
-                  <MenuItem icon={<KeyIcon />} shortcut="⌘P">
-                    Mark a Bearing
-                  </MenuItem>
-                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                    Echo
-                  </MenuItem>
-                  <MenuItem icon={<SignalIcon />} disabled>
-                    Hail the Dark
-                  </MenuItem>
-                  <MenuItem icon={<KeyIcon />}>Drop Anchor</MenuItem>
-                  <MenuItem icon={<SpiralIcon />}>Trace Current</MenuItem>
-                  <MenuItem icon={<CopyIcon />}>Echo Sounding</MenuItem>
-                  <MenuItem icon={<SearchIcon />}>Chart Trench</MenuItem>
-                  <MenuItem icon={<ClawIcon />}>Seal Hatch</MenuItem>
-                  <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
-                  <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
-                    Cast Overboard
-                  </MenuItem>
-                </Menu>
-                <Menu trigger="Volume">
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Whisper</MenuRadioItem>
-                    <MenuRadioItem value="b">Chant</MenuRadioItem>
-                    <MenuRadioItem value="c">Roar</MenuRadioItem>
-                  </MenuRadioGroup>
-                </Menu>
-                <Menu trigger="Wards">
-                  <MenuCheckboxItem defaultChecked>Rune Glow</MenuCheckboxItem>
-                  <MenuCheckboxItem defaultChecked>Tide Marks</MenuCheckboxItem>
-                  <MenuCheckboxItem>Deep Chant</MenuCheckboxItem>
-                </Menu>
+                <div className="demo-row">
+                  <Menu trigger="Rites">
+                    <MenuItem icon={<SearchIcon />} shortcut="⌘S">
+                      Sound the Deep
+                    </MenuItem>
+                    <MenuItem icon={<KeyIcon />} shortcut="⌘P">
+                      Mark a Bearing
+                    </MenuItem>
+                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                      Echo
+                    </MenuItem>
+                    <MenuItem icon={<SignalIcon />} disabled>
+                      Hail the Dark
+                    </MenuItem>
+                    <MenuItem icon={<KeyIcon />}>Drop Anchor</MenuItem>
+                    <MenuItem icon={<SpiralIcon />}>Trace Current</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Echo Sounding</MenuItem>
+                    <MenuItem icon={<SearchIcon />}>Chart Trench</MenuItem>
+                    <MenuItem icon={<ClawIcon />}>Seal Hatch</MenuItem>
+                    <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
+                      Cast Overboard
+                    </MenuItem>
+                  </Menu>
+                  <Menu trigger="Volume">
+                    <MenuRadioGroup defaultValue="a">
+                      <MenuRadioItem value="a">Whisper</MenuRadioItem>
+                      <MenuRadioItem value="b">Chant</MenuRadioItem>
+                      <MenuRadioItem value="c">Roar</MenuRadioItem>
+                    </MenuRadioGroup>
+                  </Menu>
+                  <Menu trigger="Wards">
+                    <MenuCheckboxItem defaultChecked>Rune Glow</MenuCheckboxItem>
+                    <MenuCheckboxItem defaultChecked>Tide Marks</MenuCheckboxItem>
+                    <MenuCheckboxItem>Deep Chant</MenuCheckboxItem>
+                  </Menu>
+                </div>
               </Panel>
             </div>
 

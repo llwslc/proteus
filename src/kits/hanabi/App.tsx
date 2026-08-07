@@ -990,43 +990,45 @@ function Demo() {
 
             <div className="hanabi-section" id="menu">
               <Panel title="Menu">
-                <Menu trigger="アクション">
-                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                    複製
-                  </MenuItem>
-                  <MenuItem icon={<TargetIcon />} shortcut="⌘L">
-                    索敵
-                  </MenuItem>
-                  <MenuItem icon={<FireworkIcon />} shortcut="⌘R">
-                    散開
-                  </MenuItem>
-                  <MenuItem icon={<XIcon />} disabled>
-                    ラスタライズ
-                  </MenuItem>
-                  <MenuItem icon={<BoltIcon />}>チャージ</MenuItem>
-                  <MenuItem icon={<ShieldIcon />}>隊列を組む</MenuItem>
-                  <MenuItem icon={<CopyIcon />}>左右反転</MenuItem>
-                  <MenuItem icon={<SearchIcon />}>90° 回転</MenuItem>
-                  <MenuItem icon={<SparkIcon />}>ガイドに吸着</MenuItem>
-                  <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
-                  <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
-                    削除
-                  </MenuItem>
-                </Menu>
-                <Menu trigger="密度">
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">コンパクト</MenuRadioItem>
-                    <MenuRadioItem value="b">ゆったり</MenuRadioItem>
-                    <MenuRadioItem value="c">ワイド</MenuRadioItem>
-                  </MenuRadioGroup>
-                </Menu>
-                <Menu trigger="表示">
-                  <MenuCheckboxItem defaultChecked>グリッド表示</MenuCheckboxItem>
-                  <MenuCheckboxItem defaultChecked>ラベル表示</MenuCheckboxItem>
-                  <MenuCheckboxItem>エフェクト表示</MenuCheckboxItem>
-                </Menu>
+                <div className="hanabi-row">
+                  <Menu trigger="アクション">
+                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                      複製
+                    </MenuItem>
+                    <MenuItem icon={<TargetIcon />} shortcut="⌘L">
+                      索敵
+                    </MenuItem>
+                    <MenuItem icon={<FireworkIcon />} shortcut="⌘R">
+                      散開
+                    </MenuItem>
+                    <MenuItem icon={<XIcon />} disabled>
+                      ラスタライズ
+                    </MenuItem>
+                    <MenuItem icon={<BoltIcon />}>チャージ</MenuItem>
+                    <MenuItem icon={<ShieldIcon />}>隊列を組む</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>左右反転</MenuItem>
+                    <MenuItem icon={<SearchIcon />}>90° 回転</MenuItem>
+                    <MenuItem icon={<SparkIcon />}>ガイドに吸着</MenuItem>
+                    <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
+                      削除
+                    </MenuItem>
+                  </Menu>
+                  <Menu trigger="密度">
+                    <MenuRadioGroup defaultValue="a">
+                      <MenuRadioItem value="a">コンパクト</MenuRadioItem>
+                      <MenuRadioItem value="b">ゆったり</MenuRadioItem>
+                      <MenuRadioItem value="c">ワイド</MenuRadioItem>
+                    </MenuRadioGroup>
+                  </Menu>
+                  <Menu trigger="表示">
+                    <MenuCheckboxItem defaultChecked>グリッド表示</MenuCheckboxItem>
+                    <MenuCheckboxItem defaultChecked>ラベル表示</MenuCheckboxItem>
+                    <MenuCheckboxItem>エフェクト表示</MenuCheckboxItem>
+                  </Menu>
+                </div>
               </Panel>
             </div>
             <div className="hanabi-section" id="menubar">

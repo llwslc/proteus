@@ -1176,43 +1176,45 @@ function Demo() {
 
             <div className="nocturne-section" id="menu">
               <Panel title="Menu">
-                <Menu trigger="Garden actions">
-                  <MenuItem icon={<LampIcon />} shortcut="⌘L">
-                    Light the lamp room
-                  </MenuItem>
-                  <MenuItem icon={<QuillIcon />} shortcut="⌘R">
-                    Register a sprout
-                  </MenuItem>
-                  <MenuItem icon={<DropIcon />} shortcut="⌘G">
-                    Gather dew
-                  </MenuItem>
-                  <MenuItem icon={<SealIcon />} disabled>
-                    Press the seal
-                  </MenuItem>
-                  <MenuItem icon={<BellIcon />}>Ring the watch-bell</MenuItem>
-                  <MenuItem icon={<LeafIcon />}>Turn a new leaf</MenuItem>
-                  <MenuItem icon={<BookIcon />}>Open the album</MenuItem>
-                  <MenuItem icon={<MoonIcon />}>Chart the moon</MenuItem>
-                  <MenuItem icon={<VialIcon />}>Seal a vial</MenuItem>
-                  <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
-                  <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem icon={<XIcon />} shortcut="⌘⌫" tone="danger">
-                    Uproot
-                  </MenuItem>
-                </Menu>
-                <Menu trigger="Hour">
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Night</MenuRadioItem>
-                    <MenuRadioItem value="b">Dawn</MenuRadioItem>
-                    <MenuRadioItem value="c">Dusk</MenuRadioItem>
-                  </MenuRadioGroup>
-                </Menu>
-                <Menu trigger="Lanterns">
-                  <MenuCheckboxItem defaultChecked>Lamp Glow</MenuCheckboxItem>
-                  <MenuCheckboxItem defaultChecked>Dew Marks</MenuCheckboxItem>
-                  <MenuCheckboxItem>Moth Trails</MenuCheckboxItem>
-                </Menu>
+                <div className="nocturne-row">
+                  <Menu trigger="Garden">
+                    <MenuItem icon={<LampIcon />} shortcut="⌘L">
+                      Light the lamp room
+                    </MenuItem>
+                    <MenuItem icon={<QuillIcon />} shortcut="⌘R">
+                      Register a sprout
+                    </MenuItem>
+                    <MenuItem icon={<DropIcon />} shortcut="⌘G">
+                      Gather dew
+                    </MenuItem>
+                    <MenuItem icon={<SealIcon />} disabled>
+                      Press the seal
+                    </MenuItem>
+                    <MenuItem icon={<BellIcon />}>Ring the watch-bell</MenuItem>
+                    <MenuItem icon={<LeafIcon />}>Turn a new leaf</MenuItem>
+                    <MenuItem icon={<BookIcon />}>Open the album</MenuItem>
+                    <MenuItem icon={<MoonIcon />}>Chart the moon</MenuItem>
+                    <MenuItem icon={<VialIcon />}>Seal a vial</MenuItem>
+                    <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
+                    <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<XIcon />} shortcut="⌘⌫" tone="danger">
+                      Uproot
+                    </MenuItem>
+                  </Menu>
+                  <Menu trigger="Hour">
+                    <MenuRadioGroup defaultValue="a">
+                      <MenuRadioItem value="a">Night</MenuRadioItem>
+                      <MenuRadioItem value="b">Dawn</MenuRadioItem>
+                      <MenuRadioItem value="c">Dusk</MenuRadioItem>
+                    </MenuRadioGroup>
+                  </Menu>
+                  <Menu trigger="Lanterns">
+                    <MenuCheckboxItem defaultChecked>Lamp Glow</MenuCheckboxItem>
+                    <MenuCheckboxItem defaultChecked>Dew Marks</MenuCheckboxItem>
+                    <MenuCheckboxItem>Moth Trails</MenuCheckboxItem>
+                  </Menu>
+                </div>
               </Panel>
             </div>
             <div className="nocturne-section" id="menubar">

@@ -959,43 +959,45 @@ function Demo() {
 
             <div className="brass-section" id="menu">
               <Panel title="Menu">
-                <Menu trigger="Actions">
-                  <MenuItem icon={<Bolt />} shortcut="⌘E">
-                    Stoke firebox
-                  </MenuItem>
-                  <MenuItem icon={<Gauge />} shortcut="⌘R">
-                    Read gauges
-                  </MenuItem>
-                  <MenuItem icon={<Valve />} shortcut="⌘B">
-                    Blow down
-                  </MenuItem>
-                  <MenuItem icon={<Gear />} disabled>
-                    Calibrate
-                  </MenuItem>
-                  <MenuItem icon={<Piston />}>Prime pump</MenuItem>
-                  <MenuItem icon={<Wrench />}>Tighten valve</MenuItem>
-                  <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
-                  <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
-                  <MenuItem icon={<Pipe />}>Vent steam</MenuItem>
-                  <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
-                  <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
-                    Shut down
-                  </MenuItem>
-                </Menu>
-                <Menu trigger="Units">
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Metric</MenuRadioItem>
-                    <MenuRadioItem value="b">Imperial</MenuRadioItem>
-                    <MenuRadioItem value="c">Nautical</MenuRadioItem>
-                  </MenuRadioGroup>
-                </Menu>
-                <Menu trigger="Dials">
-                  <MenuCheckboxItem defaultChecked>Gauge Grid</MenuCheckboxItem>
-                  <MenuCheckboxItem defaultChecked>Pressure Marks</MenuCheckboxItem>
-                  <MenuCheckboxItem>Steam Trace</MenuCheckboxItem>
-                </Menu>
+                <div className="brass-row">
+                  <Menu trigger="Actions">
+                    <MenuItem icon={<Bolt />} shortcut="⌘E">
+                      Stoke firebox
+                    </MenuItem>
+                    <MenuItem icon={<Gauge />} shortcut="⌘R">
+                      Read gauges
+                    </MenuItem>
+                    <MenuItem icon={<Valve />} shortcut="⌘B">
+                      Blow down
+                    </MenuItem>
+                    <MenuItem icon={<Gear />} disabled>
+                      Calibrate
+                    </MenuItem>
+                    <MenuItem icon={<Piston />}>Prime pump</MenuItem>
+                    <MenuItem icon={<Wrench />}>Tighten valve</MenuItem>
+                    <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
+                    <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
+                    <MenuItem icon={<Pipe />}>Vent steam</MenuItem>
+                    <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
+                    <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
+                      Shut down
+                    </MenuItem>
+                  </Menu>
+                  <Menu trigger="Units">
+                    <MenuRadioGroup defaultValue="a">
+                      <MenuRadioItem value="a">Metric</MenuRadioItem>
+                      <MenuRadioItem value="b">Imperial</MenuRadioItem>
+                      <MenuRadioItem value="c">Nautical</MenuRadioItem>
+                    </MenuRadioGroup>
+                  </Menu>
+                  <Menu trigger="Dials">
+                    <MenuCheckboxItem defaultChecked>Gauge Grid</MenuCheckboxItem>
+                    <MenuCheckboxItem defaultChecked>Pressure Marks</MenuCheckboxItem>
+                    <MenuCheckboxItem>Steam Trace</MenuCheckboxItem>
+                  </Menu>
+                </div>
               </Panel>
             </div>
             <div className="brass-section" id="menubar">

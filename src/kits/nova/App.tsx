@@ -1051,43 +1051,45 @@ function Demo() {
 
             <div className="nova-section" id="menu">
               <Panel title="Menu">
-                <Menu trigger="Actions">
-                  <MenuItem icon={<SearchIcon />} shortcut="⌘S">
-                    Scan Sector
-                  </MenuItem>
-                  <MenuItem icon={<BoltIcon />} shortcut="⌘P">
-                    Plot Course
-                  </MenuItem>
-                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                    Duplicate
-                  </MenuItem>
-                  <MenuItem icon={<SignalIcon />} disabled>
-                    Hail Vessel
-                  </MenuItem>
-                  <MenuItem icon={<ReticleIcon />}>Calibrate Array</MenuItem>
-                  <MenuItem icon={<SignalIcon />}>Sync Beacon</MenuItem>
-                  <MenuItem icon={<CopyIcon />}>Mirror Telemetry</MenuItem>
-                  <MenuItem icon={<SearchIcon />}>Sweep Debris</MenuItem>
-                  <MenuItem icon={<WaveformIcon />}>Boost Signal</MenuItem>
-                  <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
-                  <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
-                    Jettison Cargo
-                  </MenuItem>
-                </Menu>
-                <Menu trigger="Density">
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Compact</MenuRadioItem>
-                    <MenuRadioItem value="b">Expanded</MenuRadioItem>
-                    <MenuRadioItem value="c">Wide</MenuRadioItem>
-                  </MenuRadioGroup>
-                </Menu>
-                <Menu trigger="Layers">
-                  <MenuCheckboxItem defaultChecked>Grid Overlay</MenuCheckboxItem>
-                  <MenuCheckboxItem defaultChecked>Range Rings</MenuCheckboxItem>
-                  <MenuCheckboxItem>Debris Field</MenuCheckboxItem>
-                </Menu>
+                <div className="demo-row">
+                  <Menu trigger="Actions">
+                    <MenuItem icon={<SearchIcon />} shortcut="⌘S">
+                      Scan Sector
+                    </MenuItem>
+                    <MenuItem icon={<BoltIcon />} shortcut="⌘P">
+                      Plot Course
+                    </MenuItem>
+                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                      Duplicate
+                    </MenuItem>
+                    <MenuItem icon={<SignalIcon />} disabled>
+                      Hail Vessel
+                    </MenuItem>
+                    <MenuItem icon={<ReticleIcon />}>Calibrate Array</MenuItem>
+                    <MenuItem icon={<SignalIcon />}>Sync Beacon</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Mirror Telemetry</MenuItem>
+                    <MenuItem icon={<SearchIcon />}>Sweep Debris</MenuItem>
+                    <MenuItem icon={<WaveformIcon />}>Boost Signal</MenuItem>
+                    <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
+                      Jettison Cargo
+                    </MenuItem>
+                  </Menu>
+                  <Menu trigger="Density">
+                    <MenuRadioGroup defaultValue="a">
+                      <MenuRadioItem value="a">Compact</MenuRadioItem>
+                      <MenuRadioItem value="b">Expanded</MenuRadioItem>
+                      <MenuRadioItem value="c">Wide</MenuRadioItem>
+                    </MenuRadioGroup>
+                  </Menu>
+                  <Menu trigger="Layers">
+                    <MenuCheckboxItem defaultChecked>Grid Overlay</MenuCheckboxItem>
+                    <MenuCheckboxItem defaultChecked>Range Rings</MenuCheckboxItem>
+                    <MenuCheckboxItem>Debris Field</MenuCheckboxItem>
+                  </Menu>
+                </div>
               </Panel>
             </div>
 

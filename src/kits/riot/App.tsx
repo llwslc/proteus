@@ -1004,43 +1004,45 @@ function Demo() {
 
             <div className="riot-section" id="menu">
               <Panel title="Menu" tape="tr">
-                <Menu trigger="Actions">
-                  <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                    Duplicate
-                  </MenuItem>
-                  <MenuItem icon={<Scissors />} shortcut="⌘X">
-                    Cut out
-                  </MenuItem>
-                  <MenuItem icon={<Dot />} shortcut="⌘R">
-                    Distribute
-                  </MenuItem>
-                  <MenuItem icon={<Square />} disabled>
-                    Rasterize
-                  </MenuItem>
-                  <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
-                  <MenuItem icon={<Star />}>Star it</MenuItem>
-                  <MenuItem icon={<CopyIcon />}>Flip horizontal</MenuItem>
-                  <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
-                  <MenuItem icon={<SprayCan />}>Deface</MenuItem>
-                  <MenuItem icon={<Dot />}>Lock layer</MenuItem>
-                  <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
-                    Delete
-                  </MenuItem>
-                </Menu>
-                <Menu trigger="Volume">
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Loud</MenuRadioItem>
-                    <MenuRadioItem value="b">Louder</MenuRadioItem>
-                    <MenuRadioItem value="c">Loudest</MenuRadioItem>
-                  </MenuRadioGroup>
-                </Menu>
-                <Menu trigger="Marks">
-                  <MenuCheckboxItem defaultChecked>Cut Marks</MenuCheckboxItem>
-                  <MenuCheckboxItem defaultChecked>Bleed Guides</MenuCheckboxItem>
-                  <MenuCheckboxItem>Fold Lines</MenuCheckboxItem>
-                </Menu>
+                <div className="riot-row">
+                  <Menu trigger="Actions">
+                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
+                      Duplicate
+                    </MenuItem>
+                    <MenuItem icon={<Scissors />} shortcut="⌘X">
+                      Cut out
+                    </MenuItem>
+                    <MenuItem icon={<Dot />} shortcut="⌘R">
+                      Distribute
+                    </MenuItem>
+                    <MenuItem icon={<Square />} disabled>
+                      Rasterize
+                    </MenuItem>
+                    <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
+                    <MenuItem icon={<Star />}>Star it</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Flip horizontal</MenuItem>
+                    <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
+                    <MenuItem icon={<SprayCan />}>Deface</MenuItem>
+                    <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                    <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
+                      Delete
+                    </MenuItem>
+                  </Menu>
+                  <Menu trigger="Volume">
+                    <MenuRadioGroup defaultValue="a">
+                      <MenuRadioItem value="a">Loud</MenuRadioItem>
+                      <MenuRadioItem value="b">Louder</MenuRadioItem>
+                      <MenuRadioItem value="c">Loudest</MenuRadioItem>
+                    </MenuRadioGroup>
+                  </Menu>
+                  <Menu trigger="Marks">
+                    <MenuCheckboxItem defaultChecked>Cut Marks</MenuCheckboxItem>
+                    <MenuCheckboxItem defaultChecked>Bleed Guides</MenuCheckboxItem>
+                    <MenuCheckboxItem>Fold Lines</MenuCheckboxItem>
+                  </Menu>
+                </div>
               </Panel>
             </div>
             <div className="riot-section" id="menubar">

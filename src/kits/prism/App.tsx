@@ -965,43 +965,45 @@ function Demo() {
 
             <div className="prism-section" id="menu">
               <Panel title="Menu">
-                <Menu trigger="Actions">
-                  <MenuItem icon={<Copy />} shortcut="⌘D">
-                    Duplicate
-                  </MenuItem>
-                  <MenuItem icon={<Grid />} shortcut="⌘L">
-                    Align to grid
-                  </MenuItem>
-                  <MenuItem icon={<Dot />} shortcut="⌘R">
-                    Distribute
-                  </MenuItem>
-                  <MenuItem icon={<Square />} disabled>
-                    Rasterize
-                  </MenuItem>
-                  <MenuItem icon={<Grid />}>Group</MenuItem>
-                  <MenuItem icon={<Dot />}>Lock layer</MenuItem>
-                  <MenuItem icon={<Copy />}>Flip horizontal</MenuItem>
-                  <MenuItem icon={<Diamond />}>Rotate 90°</MenuItem>
-                  <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
-                  <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
-                  <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
-                  <MenuSeparator />
-                  <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
-                    Delete
-                  </MenuItem>
-                </Menu>
-                <Menu trigger="Scale">
-                  <MenuRadioGroup defaultValue="a">
-                    <MenuRadioItem value="a">Points</MenuRadioItem>
-                    <MenuRadioItem value="b">Picas</MenuRadioItem>
-                    <MenuRadioItem value="c">Millimetres</MenuRadioItem>
-                  </MenuRadioGroup>
-                </Menu>
-                <Menu trigger="Guides">
-                  <MenuCheckboxItem defaultChecked>Baseline Grid</MenuCheckboxItem>
-                  <MenuCheckboxItem defaultChecked>Column Guides</MenuCheckboxItem>
-                  <MenuCheckboxItem>Bleed Marks</MenuCheckboxItem>
-                </Menu>
+                <div className="prism-row">
+                  <Menu trigger="Actions">
+                    <MenuItem icon={<Copy />} shortcut="⌘D">
+                      Duplicate
+                    </MenuItem>
+                    <MenuItem icon={<Grid />} shortcut="⌘L">
+                      Align to grid
+                    </MenuItem>
+                    <MenuItem icon={<Dot />} shortcut="⌘R">
+                      Distribute
+                    </MenuItem>
+                    <MenuItem icon={<Square />} disabled>
+                      Rasterize
+                    </MenuItem>
+                    <MenuItem icon={<Grid />}>Group</MenuItem>
+                    <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                    <MenuItem icon={<Copy />}>Flip horizontal</MenuItem>
+                    <MenuItem icon={<Diamond />}>Rotate 90°</MenuItem>
+                    <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
+                    <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
+                    <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
+                    <MenuSeparator />
+                    <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
+                      Delete
+                    </MenuItem>
+                  </Menu>
+                  <Menu trigger="Scale">
+                    <MenuRadioGroup defaultValue="a">
+                      <MenuRadioItem value="a">Points</MenuRadioItem>
+                      <MenuRadioItem value="b">Picas</MenuRadioItem>
+                      <MenuRadioItem value="c">Millimetres</MenuRadioItem>
+                    </MenuRadioGroup>
+                  </Menu>
+                  <Menu trigger="Guides">
+                    <MenuCheckboxItem defaultChecked>Baseline Grid</MenuCheckboxItem>
+                    <MenuCheckboxItem defaultChecked>Column Guides</MenuCheckboxItem>
+                    <MenuCheckboxItem>Bleed Marks</MenuCheckboxItem>
+                  </Menu>
+                </div>
               </Panel>
             </div>
             <div className="prism-section" id="menubar">
