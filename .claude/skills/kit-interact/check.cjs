@@ -454,8 +454,7 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
 
     try {
       // 旋钮盒恒定：库按旋钮的渲染盒（getBoundingClientRect，含 transform／scale）算两端内缩，
-      // 放大写在旋钮元素上会让拖动中量到放大后的盒 —— 松手后停在离端点半个放大量的位置，
-      // 永远拖不到头。放大挂伪元素，旋钮自身的盒在静止／悬停／拖动三态同尺寸。
+      // 盒一随状态变尺寸，拖动就停不到两端。形变挂伪元素。
       await setKit(d, kit);
       const sl = d.locator('#slider [class*="slider__thumb"]').first();
       await sl.scrollIntoViewIfNeeded();
@@ -473,7 +472,7 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
       knobsChecked++;
       const off = (a) => Math.max(Math.abs(a[0] - rest[0]), Math.abs(a[1] - rest[1]));
       if (off(hover) > 0.5 || off(drag) > 0.5)
-        out.push(`HIGH  ${kit}  slider: 旋钮的渲染盒随状态变大（静止 ${rest[0].toFixed(1)}×${rest[1].toFixed(1)} · 悬停 ${hover[0].toFixed(1)} · 拖动 ${drag[0].toFixed(1)}）—— 把放大挪到旋钮的伪元素，否则拖到底停不到两端`);
+        out.push(`HIGH  ${kit}  slider: 旋钮的渲染盒随状态变大（静止 ${rest[0].toFixed(1)}×${rest[1].toFixed(1)} · 悬停 ${hover[0].toFixed(1)} · 拖动 ${drag[0].toFixed(1)}）—— 形变挂伪元素，旋钮自身的盒各状态同尺寸`);
     } catch (e) { out.push(`WARN  ${kit}  knob-box: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
 
     for (const corner of ['tl', 'tr', 'bl', 'br']) {
