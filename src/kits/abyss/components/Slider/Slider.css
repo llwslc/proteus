@@ -43,6 +43,15 @@
 .abyss-slider__thumb {
   width: var(--abyss-slider-thumb);
   height: var(--abyss-slider-thumb);
+  cursor: grab;
+}
+.abyss-slider__thumb::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: radial-gradient(
     circle at 38% 32%,
@@ -53,21 +62,22 @@
   box-shadow:
     0 0 0 3px var(--abyss-glow-soft),
     0 0 11px var(--abyss-glow-a55);
-  cursor: grab;
   transition:
     transform var(--abyss-dur) var(--abyss-ease),
     box-shadow var(--abyss-dur) var(--abyss-ease);
 }
-.abyss-slider__thumb:hover {
+.abyss-slider__thumb:hover::before {
   transform: scale(1.12);
 }
-.abyss-slider__thumb:has(:focus-visible) {
+.abyss-slider__thumb:has(:focus-visible)::before {
   box-shadow:
     0 0 0 4px var(--abyss-glow-a30),
     0 0 13px var(--abyss-glow-a70);
 }
 .abyss-slider__thumb[data-dragging] {
   cursor: grabbing;
+}
+.abyss-slider__thumb[data-dragging]::before {
   transform: scale(1.18);
   box-shadow:
     0 0 0 4px var(--abyss-glow-a30),
