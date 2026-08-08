@@ -70,20 +70,19 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--riot-space-2);
-  padding: var(--riot-space-2) 0;
+  padding: var(--riot-space-1) 0;
 }
 
 .riot-combobox__chip {
   display: inline-flex;
   align-items: center;
-  gap: var(--riot-space-2);
-  height: var(--riot-badge-h);
+  gap: var(--riot-space-1);
+  height: var(--riot-chip-h);
   padding: 0 var(--riot-space-2);
-  border: var(--riot-stroke) solid var(--riot-ink);
   background: var(--riot-primary);
   color: var(--riot-on-fill);
   font-family: var(--riot-font-display);
-  font-size: var(--riot-fs-11);
+  font-size: var(--riot-fs-15);
   white-space: nowrap;
 }
 .riot-combobox__chip[data-highlighted] {
@@ -97,16 +96,19 @@
   padding: 0;
   background: none;
   color: inherit;
-  font-size: var(--riot-fs-11);
+  font-size: 0.75em;
+  opacity: 0.72;
   cursor: pointer;
 }
 .riot-combobox__chip-x:hover {
+  opacity: 1;
   color: var(--riot-ink);
 }
 
 .riot-combobox__chip-input {
   flex: 1;
   min-width: 60px;
+  height: var(--riot-chip-h);
 }
 
 .riot-combobox--chips {

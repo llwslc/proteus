@@ -123,6 +123,7 @@
   --riot-ease: steps(3, jump-none);
   --riot-ease-out: cubic-bezier(0.2, 0, 0, 1);
   --riot-control-h: 42px;
+  --riot-chip-h: 26px;
   --riot-disabled-opacity: 0.4;
   --riot-modal-pad: 26px;
 

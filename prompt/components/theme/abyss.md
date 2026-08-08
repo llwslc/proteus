@@ -22,6 +22,7 @@
 - NumberField：减·输入·加三连，两枚步进钮夹住输入位。
 - OtpField：光标闪动。
 - Select：选中行右端一枚会呼吸的对勾封印。
+- Combobox：多选芯片 = `glow-soft` 底 + `glow` 字 + `round-2` 圆角；高亮罩 `aura`。
 - Progress：头部一行标签配 mono 数值（`glow` 字 + `text-aura` 微辉）；轨 `6px`、`inset` 底 + `ink-faint` 内环、过 edge 颤动滤镜；indicator 走 `glow-deep` 到 `glow` 的横向渐变 + `glow-a55` 外辉；不定态是一段 `40%` 宽的光带以 `creep` 自左向右爬过。
 - Meter：轨同 Slider 凹底；填充 `meter-fill-deep` 到 `meter-fill` 渐变 + `meter-aura` 辉光，按 tone 经 `meter-fill` 三槽输入变量重染。
 - Accordion：折叠配方——marker 是 sigil 符印，静止歪 30°、开态转到 90° 并点亮 `glow` 加 `aura-mark`。

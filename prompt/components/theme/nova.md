@@ -22,6 +22,7 @@
 - Slider：thumb 是 `clip-4` 切角晶块——`text-bright` 到 `primary-deep` 斜向渐变面 + `primary` 辉光，hover 放大一步、拖动再放大加辉。
 - NumberField：减·输入·加三连，两枚步进钮夹住输入位。
 - Select：选中行右端一枚 `primary` 对勾。
+- Combobox：多选芯片 = `primary` 14% 洗底 + `text-bright` 字 + `clip-7` 切角；高亮档洗到 26%。
 - Progress：条纹流动 + 不定态扫掠。
 - Meter：填充 `meter-fill-deep` 到 `meter-fill` 横向渐变 + 辉光，上层罩 `base` 色等距分格；按 tone 经 `meter-fill` 输入变量重染。
 - Tabs：大写 Orbitron、渐变 hover、辉光下划线；切换时内容淡入。

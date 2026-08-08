@@ -20,6 +20,7 @@
 - ToggleGroup：外箱体 `stroke-bold` 粗黑框、`surface-inset` 纸灰底。
 - NumberField：减·输入·加三连，两枚步进钮夹住输入位。
 - Select：选中行右端一枚 `primary` 对勾。
+- Combobox：多选芯片 = `primary` 实填 + `on-fill` 字 + `r-chip` 直角；高亮转 `secondary`。
 - Progress：锐角轨道（`track` 浅纸 + `ink` border）+ 实色 `accent-fill` 平涂指示，条填充流动（`prism-progress-slide`）。
 - Meter：轨道与平涂同 Progress，按 `tone` 重染填充。
 - Tabs：Jost 大写；hover 只转 `text-bright`；一条底部的 `stroke-bold` 粗细、实色蓝下划线随激活项滑动。

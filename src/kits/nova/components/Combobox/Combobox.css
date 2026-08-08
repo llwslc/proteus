@@ -86,24 +86,24 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--nova-space-2);
-  padding: var(--nova-space-2) 0;
+  padding: var(--nova-space-1) 0;
 }
 
 .nova-combobox__chip {
   display: inline-flex;
   align-items: center;
-  gap: var(--nova-space-2);
+  gap: var(--nova-space-1);
+  height: var(--nova-chip-h);
   padding: 0 var(--nova-space-2);
-  height: var(--nova-badge-h);
-  background: var(--nova-line);
+  background: color-mix(in srgb, var(--nova-primary) 14%, transparent);
   color: var(--nova-text-bright);
-  font-size: var(--nova-fs-12);
   letter-spacing: var(--nova-ls-4);
-  white-space: nowrap;
   clip-path: var(--nova-clip-7);
+  font-size: var(--nova-fs-14);
+  white-space: nowrap;
 }
 .nova-combobox__chip[data-highlighted] {
-  background: var(--nova-line-strong);
+  background: color-mix(in srgb, var(--nova-primary) 26%, transparent);
 }
 
 .nova-combobox__chip-x {
@@ -113,16 +113,19 @@
   padding: 0;
   background: none;
   color: inherit;
-  font-size: var(--nova-fs-12);
+  font-size: 0.75em;
+  opacity: 0.72;
   cursor: pointer;
 }
 .nova-combobox__chip-x:hover {
+  opacity: 1;
   color: var(--nova-danger);
 }
 
 .nova-combobox__chip-input {
   flex: 1;
   min-width: 60px;
+  height: var(--nova-chip-h);
 }
 
 .nova-combobox--chips {

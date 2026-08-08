@@ -22,7 +22,7 @@
 - Slider：一条撕开的胶带——`track` 是黑／纸交替的锯齿条，`ink` 框压在填充之上，indicator 荧光橙，thumb 是荧光粉小方块、微旋转、带硬偏移影；数值做成微旋转的 `ink` 墨戳章（纸色 mono 字）。
 - NumberField：减·输入·加三连，两枚步进钮夹住输入位。
 - Select：弹层带 `shadow-hard` 盒影；列表项悬停或键盘高亮 = 一道荧光记号笔涂过整行——半透亮荧光黄、SVG 颗粒纹理、笔迹微歪软边、左端更饱和；涂划带高过行框、上下各越出一点（居中略偏上）；可见实色约半、其后提笔渐隐；选中项文字恒荧光 `primary`、右端加勾，不变，被高亮时同样盖记号笔。
-- Combobox：列表项皮肤同 Select。
+- Combobox：列表项皮肤同 Select；多选芯片 = `primary` 实填 + `on-fill` display 体字；高亮转 `secondary`。
 - Autocomplete：列表项的记号笔同 Select。
 - Fieldset：不画框——legend 走 display 体大写 `text-bright`、前缀一枚 `12px` 见方的 `primary` 实心 tick（`ink` 描边）；组内纵向 `space-4` 分隔。
 - Progress：右端撕口的纸条轨（`clip-strip`）+ 荧光 `accent-fill` 平涂指示，条填充流动。

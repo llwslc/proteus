@@ -84,18 +84,18 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--nocturne-space-2);
-  padding: var(--nocturne-space-2) 0;
+  padding: var(--nocturne-space-1) 0;
 }
 
 .nocturne-combobox__chip {
   display: inline-flex;
   align-items: center;
-  gap: var(--nocturne-space-2);
-  padding: 2px var(--nocturne-space-2);
-  border: 1px solid var(--nocturne-gilt-50);
-  background: var(--nocturne-surface-inset);
-  color: var(--nocturne-gilt-bright);
-  font-size: var(--nocturne-fs-12);
+  gap: var(--nocturne-space-1);
+  height: var(--nocturne-chip-h);
+  padding: 0 var(--nocturne-space-2);
+  background: var(--nocturne-gilt-30);
+  color: var(--nocturne-text-bright);
+  font-size: var(--nocturne-fs-16);
   white-space: nowrap;
 }
 .nocturne-combobox__chip[data-highlighted] {
@@ -109,16 +109,19 @@
   padding: 0;
   background: none;
   color: inherit;
-  font-size: var(--nocturne-fs-12);
+  font-size: 0.75em;
+  opacity: 0.72;
   cursor: pointer;
 }
 .nocturne-combobox__chip-x:hover {
+  opacity: 1;
   color: var(--nocturne-danger);
 }
 
 .nocturne-combobox__chip-input {
   flex: 1;
   min-width: 60px;
+  height: var(--nocturne-chip-h);
 }
 
 .nocturne-combobox--chips {

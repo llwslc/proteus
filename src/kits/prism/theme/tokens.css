@@ -65,6 +65,7 @@
   --prism-ease: cubic-bezier(0.2, 0, 0, 1);
   --prism-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --prism-control-h: 40px;
+  --prism-chip-h: 26px;
   --prism-disabled-opacity: 0.4;
   --prism-modal-pad: 24px;
 

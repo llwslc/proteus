@@ -154,6 +154,7 @@
   --brass-ease: cubic-bezier(0.32, 0.72, 0.2, 1);
   --brass-ease-detent: cubic-bezier(0.5, 1.4, 0.5, 1);
   --brass-control-h: 38px;
+  --brass-chip-h: 26px;
   --brass-disabled-opacity: 0.42;
   --brass-modal-pad: 24px;
 

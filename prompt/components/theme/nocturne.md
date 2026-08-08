@@ -26,7 +26,7 @@
 - Input/Field：`surface-inset` 凹面 + 1px `gilt-30` 框、底边压 `gilt-50`；聚焦见 §1；placeholder `text-mute`；描述行 `text-mute`，错误行 `danger` 且整框转 `danger`。
 - OtpField：cell = `notch` 八角凹格 + mono 居中；filled 字转 `gilt-bright`；focus 格框转 `gilt` + 幽光；`splitAt` 处一枚满月圆点分隔。
 - Select：触发器同 Input 皮 + 右侧 `gilt` chevron 开态翻转、开态整框转 `gilt`；弹层 = `surface-pop` 丝绒面 + `gilt-50` 框 + 菱形棱尖；行悬停与高亮盖酒红行扫，选中行 `gilt-bright` 字 + 右侧满月圆点。
-- Combobox：列表皮复用 Select；InputGroup 左图标 `text-mute`，clear 钮 icon-ghost；空态行 `text-mute` 居中。
+- Combobox：列表皮复用 Select；InputGroup 左图标 `text-mute`，clear 钮 icon-ghost；空态行 `text-mute` 居中；多选芯片 = `gilt-30` 底 + `text-bright` 衬线字；高亮加 `glow-ring`。
 - Autocomplete：列表皮复用 Select、无选中指示。
 - Fieldset：legend 走 `.nocturne-cap`，尾接一条延伸到框尾的 `gilt` 渐变发丝线；体竖排。
 - Form：竖排 `space-4`。
