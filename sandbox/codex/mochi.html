@@ -1,0 +1,3014 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#fff8e8">
+  <meta name="description" content="Mochi Atelier is a soft clay-inspired control playground for shaping a tiny batch of joy.">
+  <title>Mochi Atelier — Soft Batch Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fff8e8;
+      --cream-deep: #f5ead4;
+      --paper: #fffdf7;
+      --pink: #ff9fbd;
+      --pink-deep: #d95b87;
+      --blue: #9edfff;
+      --blue-deep: #397fa1;
+      --yellow: #ffd96b;
+      --yellow-deep: #a86d0a;
+      --mint: #b9e9ce;
+      --cocoa: #4a302b;
+      --cocoa-soft: #705049;
+      --outline: #6a4039;
+      --white-shadow: rgba(255, 255, 255, 0.92);
+      --cocoa-shadow: rgba(101, 66, 54, 0.18);
+      --pink-shadow: rgba(217, 91, 135, 0.22);
+      --focus: #1c6689;
+      --radius-xl: 48px;
+      --radius-lg: 34px;
+      --radius-md: 24px;
+      --radius-sm: 16px;
+      --page-pad: 24px;
+      --soft-out:
+        -9px -9px 18px var(--white-shadow),
+        10px 12px 24px var(--cocoa-shadow);
+      --soft-in:
+        inset 6px 7px 13px rgba(113, 72, 58, 0.13),
+        inset -7px -7px 12px rgba(255, 255, 255, 0.9);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--cream);
+    }
+
+    body {
+      min-width: 0;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--cocoa);
+      background:
+        radial-gradient(circle at 8% 7%, rgba(255, 159, 189, 0.23) 0 10%, transparent 23%),
+        radial-gradient(circle at 93% 23%, rgba(158, 223, 255, 0.28) 0 8%, transparent 22%),
+        radial-gradient(circle at 72% 92%, rgba(255, 217, 107, 0.2) 0 10%, transparent 24%),
+        var(--cream);
+      font-family: "Nunito", "Arial Rounded MT Bold", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    button,
+    label,
+    input[type="range"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 12px;
+      left: 16px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: var(--cream);
+      background: var(--cocoa);
+      transform: translateY(-160%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .status-rail {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      border-bottom: 2px solid rgba(74, 48, 43, 0.12);
+      background: rgba(255, 253, 247, 0.86);
+      box-shadow: 0 8px 24px rgba(92, 58, 47, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .status-inner,
+    .page-shell,
+    .footer-inner {
+      width: 100%;
+      max-width: 1180px;
+      margin-inline: auto;
+      padding-inline: var(--page-pad);
+    }
+
+    .status-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-family: "Fredoka", "Arial Rounded MT Bold", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 40px;
+      height: 32px;
+      flex: 0 0 auto;
+      border-radius: 50% 50% 44% 44%;
+      background: var(--pink);
+      box-shadow:
+        inset 3px 4px 6px rgba(255, 255, 255, 0.65),
+        inset -3px -4px 5px rgba(132, 62, 79, 0.16),
+        3px 5px 8px rgba(101, 66, 54, 0.16);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: inherit;
+    }
+
+    .brand-mark::before {
+      left: 4px;
+    }
+
+    .brand-mark::after {
+      right: 4px;
+    }
+
+    .batch-status {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--cocoa-soft);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 34px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--cream);
+      box-shadow:
+        inset 2px 3px 5px rgba(103, 62, 49, 0.09),
+        inset -3px -3px 5px #fff;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3d9b6e;
+      box-shadow: 0 0 0 4px rgba(61, 155, 110, 0.14);
+    }
+
+    .page-shell {
+      padding-top: 34px;
+      padding-bottom: 92px;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(330px, 0.97fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+      min-height: 650px;
+      padding: clamp(28px, 5vw, 68px);
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 18px 18px, rgba(74, 48, 43, 0.1) 0 2px, transparent 2.8px) 0 0 / 38px 38px,
+        linear-gradient(145deg, #fffdf7, #f8eedb);
+      box-shadow: var(--soft-out);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -46px;
+      right: 32%;
+      width: 230px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(255, 217, 107, 0.34);
+      filter: blur(2px);
+      transform: rotate(-8deg);
+    }
+
+    .frosting-edge {
+      position: absolute;
+      z-index: 2;
+      inset: 0 0 auto 0;
+      height: 24px;
+      background: var(--pink);
+      box-shadow:
+        inset 0 -5px 8px rgba(128, 59, 77, 0.13),
+        0 6px 10px rgba(217, 91, 135, 0.13);
+    }
+
+    .frosting-edge span {
+      position: absolute;
+      top: 11px;
+      width: 34px;
+      height: 34px;
+      border-radius: 0 0 50% 50%;
+      background: var(--pink);
+    }
+
+    .frosting-edge span:nth-child(1) { left: 8%; height: 46px; }
+    .frosting-edge span:nth-child(2) { left: 23%; width: 52px; height: 28px; }
+    .frosting-edge span:nth-child(3) { left: 47%; height: 40px; }
+    .frosting-edge span:nth-child(4) { left: 72%; width: 48px; height: 31px; }
+    .frosting-edge span:nth-child(5) { right: 7%; height: 50px; }
+
+    .hero-copy {
+      position: relative;
+      z-index: 4;
+      min-width: 0;
+    }
+
+    .flag-label,
+    .station-tag {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 5px 20px 5px 13px;
+      border-radius: 9px 18px 18px 9px;
+      color: var(--cocoa);
+      background: var(--yellow);
+      box-shadow: 4px 6px 10px rgba(131, 86, 31, 0.16);
+      font-family: "Fredoka", "Arial Rounded MT Bold", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .flag-label::after,
+    .station-tag::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--cream);
+      box-shadow:
+        0 -9px 0 var(--cream),
+        0 9px 0 var(--cream);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Fredoka", "Arial Rounded MT Bold", sans-serif;
+      line-height: 1.02;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin-block: 24px 18px;
+      font-size: clamp(3.1rem, 7vw, 6rem);
+      letter-spacing: -0.055em;
+    }
+
+    .hero-highlight {
+      position: relative;
+      display: inline-block;
+      color: var(--pink-deep);
+      text-shadow: 0 3px 0 #fff, 0 7px 0 rgba(217, 91, 135, 0.12);
+    }
+
+    .hero-highlight::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 2%;
+      bottom: 2px;
+      width: 96%;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0.72;
+      transform: rotate(-2deg);
+    }
+
+    .hero-copy > p {
+      max-width: 580px;
+      margin-bottom: 28px;
+      color: var(--cocoa-soft);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-weight: 700;
+    }
+
+    .hero-actions,
+    .button-rack,
+    .inline-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .clay-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 50px;
+      min-width: 118px;
+      padding: 11px 20px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 900;
+      line-height: 1.15;
+      box-shadow:
+        inset 4px 5px 8px rgba(255, 255, 255, 0.56),
+        inset -5px -6px 8px rgba(85, 48, 40, 0.14),
+        7px 9px 13px rgba(81, 50, 43, 0.18);
+      transition:
+        transform 180ms cubic-bezier(.2, .9, .24, 1.35),
+        box-shadow 180ms ease,
+        filter 180ms ease;
+    }
+
+    .clay-button:hover:not(:disabled) {
+      transform: translateY(-3px) rotate(-0.5deg);
+      filter: saturate(1.06);
+      box-shadow:
+        inset 4px 5px 8px rgba(255, 255, 255, 0.63),
+        inset -5px -6px 8px rgba(85, 48, 40, 0.13),
+        9px 13px 16px rgba(81, 50, 43, 0.19);
+    }
+
+    .clay-button:active:not(:disabled) {
+      transform: translateY(3px) scale(0.94);
+      box-shadow:
+        inset 7px 8px 12px rgba(78, 43, 37, 0.2),
+        inset -4px -4px 7px rgba(255, 255, 255, 0.55),
+        2px 3px 5px rgba(81, 50, 43, 0.12);
+    }
+
+    .clay-button:disabled {
+      cursor: not-allowed;
+      color: #786b67;
+      background: #ddd7ca;
+      box-shadow:
+        inset 4px 4px 7px rgba(255, 255, 255, 0.5),
+        inset -4px -5px 7px rgba(74, 48, 43, 0.12);
+      opacity: 0.68;
+      filter: grayscale(0.65);
+    }
+
+    .button-cocoa {
+      color: #fffdf7;
+      background: var(--cocoa);
+    }
+
+    .button-pink {
+      color: #492b27;
+      background: var(--pink);
+    }
+
+    .button-blue {
+      color: #273f49;
+      background: var(--blue);
+    }
+
+    .button-yellow {
+      color: #513511;
+      background: var(--yellow);
+    }
+
+    .button-cream {
+      color: var(--cocoa);
+      background: var(--paper);
+    }
+
+    .button-small {
+      min-width: 0;
+      min-height: 44px;
+      padding: 9px 16px;
+      font-size: 0.9rem;
+    }
+
+    .button-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50% 55% 48% 52%;
+      background: currentColor;
+      opacity: 0.16;
+      box-shadow: 7px -4px 0 -3px currentColor;
+    }
+
+    .hero-art {
+      --scene: #bce8fb;
+      position: relative;
+      z-index: 3;
+      min-width: 0;
+      min-height: 470px;
+      overflow: hidden;
+      border: 9px solid #fffdf7;
+      border-radius: 45% 55% 43% 57% / 51% 43% 57% 49%;
+      background:
+        radial-gradient(circle at 22px 26px, rgba(74, 48, 43, 0.12) 0 2px, transparent 2.6px) 0 0 / 44px 44px,
+        linear-gradient(148deg, #d6f2ff, var(--scene));
+      box-shadow:
+        inset 11px 13px 20px rgba(79, 123, 142, 0.17),
+        inset -13px -12px 20px rgba(255, 255, 255, 0.72),
+        11px 14px 18px rgba(74, 48, 43, 0.17);
+      transition: background 280ms ease;
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      left: 9%;
+      bottom: 17%;
+      width: 82%;
+      height: 26%;
+      border-radius: 50%;
+      background: rgba(74, 48, 43, 0.15);
+      filter: blur(8px);
+    }
+
+    .hero-art.glazed {
+      --scene: #ffd0de;
+    }
+
+    .hero-art .wall-blob {
+      position: absolute;
+      top: 45px;
+      left: 40px;
+      width: 100px;
+      height: 78px;
+      border-radius: 47% 53% 61% 39%;
+      background: var(--yellow);
+      box-shadow: var(--soft-out);
+      transform: rotate(12deg);
+    }
+
+    .steam {
+      position: absolute;
+      z-index: 5;
+      top: 58px;
+      left: 50%;
+      width: 140px;
+      height: 145px;
+      pointer-events: none;
+      transform: translateX(-50%);
+      transition: opacity 220ms ease;
+    }
+
+    .steam.is-off {
+      opacity: 0.1;
+    }
+
+    .steam-wisp {
+      position: absolute;
+      bottom: 0;
+      width: 28px;
+      height: 110px;
+      border: 8px solid rgba(255, 255, 255, 0.76);
+      border-block-color: transparent;
+      border-radius: 50%;
+      opacity: 0;
+      animation: steam-rise 3.2s ease-in-out infinite;
+    }
+
+    .steam-wisp:nth-child(1) {
+      left: 16px;
+    }
+
+    .steam-wisp:nth-child(2) {
+      left: 58px;
+      height: 134px;
+      animation-delay: 0.85s;
+    }
+
+    .steam-wisp:nth-child(3) {
+      left: 98px;
+      height: 96px;
+      animation-delay: 1.7s;
+    }
+
+    @keyframes steam-rise {
+      0% {
+        opacity: 0;
+        transform: translateY(26px) scale(0.78) rotate(-5deg);
+      }
+      28% { opacity: 0.75; }
+      100% {
+        opacity: 0;
+        transform: translateY(-42px) scale(1.13) rotate(10deg);
+      }
+    }
+
+    .plate {
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      bottom: 48px;
+      width: 88%;
+      height: 126px;
+      border-radius: 50%;
+      background: #fff9e9;
+      box-shadow:
+        inset 8px 10px 15px rgba(92, 60, 48, 0.12),
+        inset -8px -8px 13px #fff,
+        5px 14px 19px rgba(74, 48, 43, 0.22);
+      transform: translateX(-50%);
+    }
+
+    .plate::after {
+      content: "";
+      position: absolute;
+      inset: 23px 13%;
+      border-radius: 50%;
+      background: rgba(158, 223, 255, 0.22);
+      box-shadow: inset 3px 4px 8px rgba(74, 48, 43, 0.1);
+    }
+
+    .hero-mochi {
+      position: absolute;
+      z-index: 7;
+      left: 50%;
+      bottom: 94px;
+      width: 230px;
+      height: 224px;
+      padding: 0;
+      border: 0;
+      border-radius: 48% 52% 42% 45% / 45% 47% 53% 55%;
+      cursor: pointer;
+      background:
+        radial-gradient(circle at 24% 26%, rgba(255, 255, 255, 0.86) 0 6%, transparent 7%),
+        linear-gradient(145deg, #ffb4ca, var(--pink));
+      box-shadow:
+        inset 13px 16px 21px rgba(255, 255, 255, 0.54),
+        inset -14px -16px 18px rgba(145, 58, 83, 0.18),
+        9px 15px 18px rgba(74, 48, 43, 0.24);
+      transform: translateX(-50%);
+      transform-origin: 50% 100%;
+      transition:
+        transform 260ms cubic-bezier(.18, 1.55, .48, 1),
+        border-radius 260ms cubic-bezier(.18, 1.55, .48, 1),
+        background 240ms ease;
+    }
+
+    .hero-mochi:hover {
+      transform: translateX(-50%) translateY(-8px) scale(1.025);
+    }
+
+    .hero-mochi:active,
+    .hero-mochi.is-squished {
+      border-radius: 52% 48% 36% 39% / 38% 39% 61% 62%;
+      transform: translateX(-50%) translateY(28px) scaleX(1.14) scaleY(0.76);
+      box-shadow:
+        inset 16px 18px 24px rgba(120, 49, 69, 0.19),
+        inset -9px -10px 15px rgba(255, 255, 255, 0.48),
+        4px 8px 9px rgba(74, 48, 43, 0.16);
+    }
+
+    .hero-mochi.fill-blueberry {
+      background:
+        radial-gradient(circle at 24% 26%, rgba(255, 255, 255, 0.86) 0 6%, transparent 7%),
+        linear-gradient(145deg, #bceaff, var(--blue));
+    }
+
+    .hero-mochi.fill-custard {
+      background:
+        radial-gradient(circle at 24% 26%, rgba(255, 255, 255, 0.86) 0 6%, transparent 7%),
+        linear-gradient(145deg, #ffe89e, var(--yellow));
+    }
+
+    .face {
+      position: absolute;
+      top: 43%;
+      left: 50%;
+      width: 92px;
+      height: 55px;
+      transform: translate(-50%, -50%);
+      transition: transform 200ms ease;
+    }
+
+    .is-squished .face {
+      transform: translate(-50%, -30%) scaleY(0.75);
+    }
+
+    .eye {
+      position: absolute;
+      top: 5px;
+      width: 13px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--cocoa);
+      box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .eye:first-child { left: 16px; }
+    .eye:nth-child(2) { right: 16px; }
+
+    .mouth {
+      position: absolute;
+      left: 50%;
+      bottom: 2px;
+      width: 29px;
+      height: 15px;
+      border-bottom: 6px solid var(--cocoa);
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .cheek {
+      position: absolute;
+      top: 28px;
+      width: 20px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(217, 91, 135, 0.5);
+    }
+
+    .cheek:nth-of-type(4) { left: 2px; }
+    .cheek:nth-of-type(5) { right: 2px; }
+
+    .bite-marks {
+      position: absolute;
+      top: 30px;
+      right: -5px;
+      width: 42px;
+      height: 58px;
+      pointer-events: none;
+    }
+
+    .bite-marks span {
+      position: absolute;
+      right: 0;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: var(--scene);
+    }
+
+    .bite-marks span:nth-child(1) { top: 0; right: 4px; }
+    .bite-marks span:nth-child(2) { top: 17px; right: -3px; }
+    .bite-marks span:nth-child(3) { top: 35px; right: 5px; }
+
+    .sugar-star {
+      position: absolute;
+      z-index: 8;
+      width: 14px;
+      height: 14px;
+      border-radius: 4px 50% 4px 50%;
+      background: #fff8e8;
+      box-shadow: 0 2px 3px rgba(74, 48, 43, 0.15);
+      opacity: 0;
+      transition: opacity 180ms ease;
+      transform: rotate(45deg);
+    }
+
+    .hero-art.is-starred .sugar-star {
+      opacity: 1;
+    }
+
+    .sugar-star:nth-of-type(1) { top: 42%; left: 25%; }
+    .sugar-star:nth-of-type(2) { top: 32%; right: 24%; }
+    .sugar-star:nth-of-type(3) { top: 58%; right: 18%; }
+
+    .sprinkle {
+      position: absolute;
+      z-index: 8;
+      width: 18px;
+      height: 6px;
+      border-radius: 999px;
+      box-shadow: 0 2px 2px rgba(74, 48, 43, 0.12);
+    }
+
+    .sprinkle.s1 { top: 88px; left: 72px; background: var(--pink-deep); transform: rotate(24deg); }
+    .sprinkle.s2 { top: 145px; right: 50px; background: var(--yellow-deep); transform: rotate(-28deg); }
+    .sprinkle.s3 { bottom: 82px; left: 45px; background: var(--blue-deep); transform: rotate(62deg); }
+    .sprinkle.s4 { bottom: 50px; right: 76px; background: var(--pink-deep); transform: rotate(18deg); }
+    .sprinkle.s5 { top: 48px; right: 102px; background: var(--cocoa); transform: rotate(-12deg); }
+
+    .extra-sprinkles .sprinkle {
+      animation: sprinkle-wiggle 700ms cubic-bezier(.2, .9, .25, 1.4);
+    }
+
+    @keyframes sprinkle-wiggle {
+      35% { transform: translateY(-15px) rotate(90deg); }
+      70% { transform: translateY(4px) rotate(160deg); }
+    }
+
+    .burst-sprinkle {
+      position: absolute;
+      z-index: 20;
+      left: 50%;
+      top: 46%;
+      width: 16px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--burst-color, var(--yellow));
+      pointer-events: none;
+      animation: burst 650ms cubic-bezier(.15, .8, .25, 1) forwards;
+    }
+
+    @keyframes burst {
+      to {
+        opacity: 0;
+        transform: translate(var(--burst-x), var(--burst-y)) rotate(240deg);
+      }
+    }
+
+    .poke-hint {
+      position: absolute;
+      z-index: 9;
+      right: 48px;
+      bottom: 30px;
+      max-width: 154px;
+      margin: 0;
+      padding: 9px 14px;
+      border-radius: 16px 16px 6px 16px;
+      color: var(--cocoa);
+      background: #fffdf7;
+      box-shadow: 4px 6px 10px rgba(74, 48, 43, 0.15);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .section-intro {
+      max-width: 720px;
+      margin: 90px auto 42px;
+      text-align: center;
+    }
+
+    .section-intro .flag-label {
+      margin-bottom: 18px;
+      background: var(--blue);
+    }
+
+    .section-intro h2 {
+      margin-bottom: 13px;
+      font-size: clamp(2.45rem, 5vw, 4.2rem);
+      letter-spacing: -0.045em;
+    }
+
+    .section-intro p {
+      color: var(--cocoa-soft);
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .station {
+      position: relative;
+      min-width: 0;
+      padding: clamp(24px, 4vw, 38px);
+      overflow: visible;
+      border-radius: var(--radius-lg);
+      background: var(--paper);
+      box-shadow: var(--soft-out);
+    }
+
+    .station::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: 18px;
+      bottom: -13px;
+      width: 66%;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(74, 48, 43, 0.12);
+      filter: blur(9px);
+    }
+
+    .station.wide {
+      grid-column: 1 / -1;
+    }
+
+    .station-pink {
+      background:
+        radial-gradient(circle at 20px 22px, rgba(74, 48, 43, 0.08) 0 2px, transparent 2.7px) 0 0 / 42px 42px,
+        #fff0f4;
+    }
+
+    .station-blue {
+      background: #ecf8ff;
+    }
+
+    .station-yellow {
+      background: #fff6d8;
+    }
+
+    .station-mint {
+      background: #ebf8ef;
+    }
+
+    .station-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .station-heading h3 {
+      margin: 14px 0 7px;
+      font-size: clamp(1.65rem, 3vw, 2.2rem);
+      letter-spacing: -0.025em;
+    }
+
+    .station-heading p {
+      max-width: 500px;
+      margin: 0;
+      color: var(--cocoa-soft);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .station-tag {
+      min-height: 28px;
+      padding-block: 4px;
+      background: var(--pink);
+      font-size: 0.68rem;
+    }
+
+    .bite-badge {
+      position: relative;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      color: var(--cocoa);
+      background: var(--yellow);
+      box-shadow:
+        inset 5px 6px 8px rgba(255, 255, 255, 0.5),
+        5px 7px 10px rgba(74, 48, 43, 0.16);
+      font-family: "Fredoka", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .bite-badge::before,
+    .bite-badge::after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--paper);
+    }
+
+    .bite-badge::before { top: 5px; }
+    .bite-badge::after { top: 20px; right: -8px; }
+
+    .station-pink .bite-badge::before,
+    .station-pink .bite-badge::after { background: #fff0f4; }
+    .station-blue .bite-badge::before,
+    .station-blue .bite-badge::after { background: #ecf8ff; }
+    .station-yellow .bite-badge::before,
+    .station-yellow .bite-badge::after { background: #fff6d8; }
+    .station-mint .bite-badge::before,
+    .station-mint .bite-badge::after { background: #ebf8ef; }
+
+    .button-rack {
+      align-items: stretch;
+    }
+
+    .button-rack .clay-button {
+      flex: 1 1 125px;
+    }
+
+    .live-note {
+      min-height: 24px;
+      margin: 18px 0 0;
+      color: var(--cocoa-soft);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field-label,
+    .group-label {
+      display: block;
+      margin: 0 0 10px;
+      font-family: "Fredoka", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .field-hint {
+      display: block;
+      margin-top: 9px;
+      color: var(--cocoa-soft);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .clay-input {
+      width: 100%;
+      min-height: 54px;
+      padding: 12px 18px;
+      border: 3px solid transparent;
+      border-radius: 20px;
+      color: var(--cocoa);
+      background: var(--cream);
+      box-shadow: var(--soft-in);
+      font-weight: 800;
+      transition:
+        border-color 160ms ease,
+        background 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .clay-input::placeholder {
+      color: #816c66;
+      opacity: 1;
+    }
+
+    .clay-input:hover {
+      background: #fffaf0;
+    }
+
+    .clay-input:focus {
+      border-color: var(--pink-deep);
+      background: #fffdf8;
+      box-shadow:
+        inset 7px 8px 13px rgba(113, 72, 58, 0.1),
+        inset -7px -7px 12px rgba(255, 255, 255, 0.95),
+        0 0 0 5px rgba(217, 91, 135, 0.12);
+    }
+
+    .tag-preview {
+      display: flex;
+      align-items: center;
+      min-height: 54px;
+      padding: 11px 18px;
+      overflow-wrap: anywhere;
+      border-radius: 9px 22px 22px 9px;
+      color: var(--cocoa);
+      background: var(--blue);
+      box-shadow:
+        inset 4px 5px 8px rgba(255, 255, 255, 0.46),
+        5px 7px 11px rgba(74, 48, 43, 0.13);
+      font-weight: 900;
+    }
+
+    .radio-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .radio-control,
+    .check-control {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-height: 48px;
+      padding: 7px 9px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .radio-control:hover,
+    .check-control:hover {
+      background: rgba(255, 255, 255, 0.62);
+      transform: translateX(3px);
+    }
+
+    .radio-control input,
+    .check-control input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-control:focus-within,
+    .check-control:focus-within {
+      outline: 4px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .radio-puff {
+      position: relative;
+      flex: 0 0 auto;
+      width: 39px;
+      height: 34px;
+      border-radius: 49% 51% 44% 47%;
+      background: var(--cream);
+      box-shadow:
+        inset 4px 5px 7px rgba(255, 255, 255, 0.8),
+        inset -4px -5px 7px rgba(74, 48, 43, 0.13),
+        4px 5px 7px rgba(74, 48, 43, 0.12);
+      transition: transform 180ms cubic-bezier(.2, 1.4, .3, 1), background 180ms ease;
+    }
+
+    .radio-puff::after {
+      content: "";
+      position: absolute;
+      inset: 10px 12px 9px;
+      border-radius: 50%;
+      background: transparent;
+      transform: scale(0.15);
+      transition: transform 180ms cubic-bezier(.2, 1.5, .3, 1), background 180ms ease;
+    }
+
+    .radio-control input:checked + .radio-puff {
+      background: #fffdf8;
+      transform: scaleX(1.08) scaleY(0.92);
+      box-shadow:
+        inset 5px 6px 9px rgba(74, 48, 43, 0.17),
+        inset -4px -4px 7px rgba(255, 255, 255, 0.9);
+    }
+
+    .radio-control input:checked + .radio-puff::after {
+      background: var(--pink-deep);
+      transform: scale(1);
+    }
+
+    .check-shape {
+      position: relative;
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px 17px 12px 17px;
+      background: var(--cream);
+      box-shadow:
+        inset 4px 5px 7px rgba(74, 48, 43, 0.13),
+        inset -4px -4px 6px #fff;
+      transition: transform 180ms cubic-bezier(.2, 1.5, .3, 1), background 180ms ease;
+    }
+
+    .check-shape::before,
+    .check-shape::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 17px;
+      width: 23px;
+      height: 6px;
+      border-radius: 999px;
+      background: transparent;
+      transition: background 180ms ease;
+    }
+
+    .check-shape::before { transform: rotate(45deg); }
+    .check-shape::after { transform: rotate(-45deg); }
+
+    .check-control input:checked + .check-shape {
+      background: var(--yellow);
+      transform: rotate(8deg) scale(1.06);
+      box-shadow:
+        inset 4px 5px 7px rgba(255, 255, 255, 0.4),
+        inset -4px -5px 7px rgba(122, 76, 15, 0.15),
+        4px 5px 7px rgba(74, 48, 43, 0.13);
+    }
+
+    .check-control input:checked + .check-shape::before,
+    .check-control input:checked + .check-shape::after {
+      background: var(--cocoa);
+    }
+
+    .option-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .steam-switch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      min-height: 64px;
+      padding: 9px 10px 9px 18px;
+      border: 0;
+      border-radius: 24px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: var(--soft-in);
+      font-weight: 900;
+    }
+
+    .steam-switch:hover {
+      background: #fff;
+    }
+
+    .switch-track {
+      position: relative;
+      flex: 0 0 auto;
+      width: 74px;
+      height: 44px;
+      border-radius: 999px;
+      background: #d7cfc0;
+      box-shadow:
+        inset 5px 6px 9px rgba(74, 48, 43, 0.18),
+        inset -4px -4px 7px rgba(255, 255, 255, 0.74);
+      transition: background 180ms ease;
+    }
+
+    .switch-knob {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50% 50% 44% 48%;
+      background: var(--paper);
+      box-shadow:
+        inset 3px 4px 5px rgba(255, 255, 255, 0.8),
+        inset -4px -4px 6px rgba(74, 48, 43, 0.12),
+        4px 5px 7px rgba(74, 48, 43, 0.17);
+      transition: transform 220ms cubic-bezier(.2, 1.35, .32, 1), background 180ms ease;
+    }
+
+    .steam-switch[aria-checked="true"] .switch-track {
+      background: var(--pink);
+    }
+
+    .steam-switch[aria-checked="true"] .switch-knob {
+      background: var(--cream);
+      transform: translateX(30px) scaleX(1.08);
+    }
+
+    .range-wrap {
+      padding: 18px 17px 16px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: var(--soft-in);
+    }
+
+    .range-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .range-output {
+      min-width: 74px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: var(--cocoa);
+      background: var(--yellow);
+      text-align: center;
+      box-shadow:
+        inset 2px 3px 4px rgba(255, 255, 255, 0.52),
+        3px 4px 6px rgba(74, 48, 43, 0.12);
+    }
+
+    .clay-range {
+      --value: 62%;
+      width: 100%;
+      height: 38px;
+      margin: 0;
+      cursor: pointer;
+      appearance: none;
+      background: transparent;
+    }
+
+    .clay-range::-webkit-slider-runnable-track {
+      height: 16px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink) var(--value), #ded4c2 var(--value));
+      box-shadow:
+        inset 4px 5px 7px rgba(74, 48, 43, 0.16),
+        inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+    }
+
+    .clay-range::-webkit-slider-thumb {
+      width: 36px;
+      height: 36px;
+      margin-top: -10px;
+      border: 0;
+      border-radius: 46% 54% 49% 51%;
+      appearance: none;
+      background: var(--yellow);
+      box-shadow:
+        inset 4px 5px 6px rgba(255, 255, 255, 0.5),
+        inset -4px -5px 7px rgba(102, 64, 15, 0.14),
+        5px 7px 9px rgba(74, 48, 43, 0.2);
+      transition: transform 140ms ease;
+    }
+
+    .clay-range:active::-webkit-slider-thumb {
+      transform: scaleX(1.18) scaleY(0.83);
+    }
+
+    .clay-range::-moz-range-track {
+      height: 16px;
+      border-radius: 999px;
+      background: #ded4c2;
+      box-shadow: inset 4px 5px 7px rgba(74, 48, 43, 0.16);
+    }
+
+    .clay-range::-moz-range-progress {
+      height: 16px;
+      border-radius: 999px;
+      background: var(--pink);
+    }
+
+    .clay-range::-moz-range-thumb {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 46% 54% 49% 51%;
+      background: var(--yellow);
+      box-shadow: 5px 7px 9px rgba(74, 48, 43, 0.2);
+    }
+
+    .select-wrap {
+      position: relative;
+      z-index: 12;
+    }
+
+    .select-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      min-height: 56px;
+      padding: 11px 14px 11px 18px;
+      border: 3px solid transparent;
+      border-radius: 21px;
+      cursor: pointer;
+      color: var(--cocoa);
+      background: var(--cream);
+      box-shadow: var(--soft-in);
+      font-weight: 900;
+      text-align: left;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .select-button:hover,
+    .select-button[aria-expanded="true"] {
+      border-color: var(--blue-deep);
+      background: #fff;
+    }
+
+    .select-arrow {
+      position: relative;
+      flex: 0 0 auto;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow:
+        inset 3px 4px 5px rgba(255, 255, 255, 0.45),
+        3px 4px 6px rgba(74, 48, 43, 0.13);
+      transition: transform 180ms ease;
+    }
+
+    .select-arrow::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 9px;
+      width: 10px;
+      height: 10px;
+      border-right: 3px solid var(--cocoa);
+      border-bottom: 3px solid var(--cocoa);
+      border-radius: 2px;
+      transform: rotate(45deg);
+    }
+
+    .select-button[aria-expanded="true"] .select-arrow {
+      transform: rotate(180deg) scaleX(1.08);
+    }
+
+    .select-list {
+      position: absolute;
+      z-index: 30;
+      top: calc(100% + 10px);
+      left: 0;
+      width: 100%;
+      max-height: 245px;
+      margin: 0;
+      padding: 9px;
+      overflow-y: auto;
+      border: 4px solid #fff;
+      border-radius: 24px;
+      list-style: none;
+      background: var(--cream);
+      box-shadow:
+        inset 5px 6px 10px rgba(74, 48, 43, 0.08),
+        9px 13px 20px rgba(74, 48, 43, 0.22);
+    }
+
+    .select-list[hidden] {
+      display: none;
+    }
+
+    .select-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 48px;
+      padding: 9px 13px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .select-option:hover,
+    .select-option.is-active {
+      background: var(--blue);
+    }
+
+    .select-option[aria-selected="true"] {
+      background: var(--pink);
+      box-shadow: inset 3px 4px 6px rgba(255, 255, 255, 0.46);
+    }
+
+    .option-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50% 50% 45% 48%;
+      background: var(--pink-deep);
+      box-shadow:
+        inset 2px 3px 4px rgba(255, 255, 255, 0.35),
+        2px 3px 4px rgba(74, 48, 43, 0.14);
+    }
+
+    .select-option:nth-child(2) .option-dot { background: var(--blue-deep); }
+    .select-option:nth-child(3) .option-dot { background: var(--yellow-deep); }
+    .select-option:nth-child(4) .option-dot { background: #6f9a71; }
+
+    .tabs {
+      min-width: 0;
+      padding: 9px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: var(--soft-in);
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .tab {
+      min-width: 0;
+      min-height: 48px;
+      padding: 8px 10px;
+      border: 0;
+      border-radius: 18px;
+      cursor: pointer;
+      color: var(--cocoa-soft);
+      background: transparent;
+      font-weight: 900;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .tab:hover {
+      color: var(--cocoa);
+      background: rgba(158, 223, 255, 0.38);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--cocoa);
+      background: var(--pink);
+      box-shadow:
+        inset 3px 4px 6px rgba(255, 255, 255, 0.46),
+        inset -3px -4px 5px rgba(108, 45, 64, 0.11),
+        3px 5px 7px rgba(74, 48, 43, 0.13);
+      transform: scale(1.02);
+    }
+
+    .tab-panel {
+      min-height: 142px;
+      margin-top: 10px;
+      padding: 20px;
+      border-radius: 20px;
+      color: var(--cocoa-soft);
+      background: #fffdf8;
+      font-weight: 700;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .tab-panel strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--cocoa);
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.15rem;
+    }
+
+    .proof-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(270px, 0.8fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .proof-card,
+    .meter-card {
+      min-width: 0;
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: var(--soft-in);
+    }
+
+    .proof-card h4,
+    .meter-card h4 {
+      margin: 0 0 8px;
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.18rem;
+    }
+
+    .proof-card > p,
+    .meter-card > p {
+      margin-bottom: 18px;
+      color: var(--cocoa-soft);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .progress-shell {
+      position: relative;
+      height: 54px;
+      margin-bottom: 18px;
+      overflow: hidden;
+      border: 6px solid rgba(255, 255, 255, 0.72);
+      border-radius: 999px;
+      background: #dcd4c6;
+      box-shadow:
+        inset 6px 7px 10px rgba(74, 48, 43, 0.17),
+        inset -4px -4px 7px rgba(255, 255, 255, 0.7);
+    }
+
+    .progress-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 38%;
+      min-width: 38px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 17px 12px, rgba(255, 255, 255, 0.42) 0 3px, transparent 3.8px) 0 0 / 34px 24px,
+        linear-gradient(90deg, var(--pink), #ffb9cc);
+      box-shadow:
+        inset 5px 6px 8px rgba(255, 255, 255, 0.34),
+        inset -6px -5px 8px rgba(119, 51, 71, 0.13),
+        4px 0 7px rgba(74, 48, 43, 0.13);
+      transition: width 480ms cubic-bezier(.2, 1.1, .3, 1);
+    }
+
+    .progress-fill::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: 11px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: -22px 8px 0 -4px rgba(255, 255, 255, 0.42);
+    }
+
+    .progress-copy {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 9px;
+      font-weight: 900;
+    }
+
+    .meter-dial {
+      position: relative;
+      width: min(100%, 230px);
+      aspect-ratio: 1.28;
+      margin: 2px auto 17px;
+      overflow: hidden;
+      border: 8px solid #fffdf7;
+      border-radius: 120px 120px 38px 38px;
+      background:
+        radial-gradient(circle at 50% 100%, var(--cream) 0 20%, transparent 21%),
+        conic-gradient(from 290deg at 50% 100%, var(--blue) 0 28%, var(--mint) 28% 55%, var(--yellow) 55% 78%, var(--pink) 78% 100%);
+      box-shadow:
+        inset 7px 8px 12px rgba(74, 48, 43, 0.15),
+        inset -7px -7px 10px rgba(255, 255, 255, 0.65),
+        6px 8px 12px rgba(74, 48, 43, 0.15);
+    }
+
+    .meter-dial::before {
+      content: "";
+      position: absolute;
+      inset: 20px 22px 0;
+      border-radius: 110px 110px 28px 28px;
+      background: #fffaf0;
+      box-shadow: inset 4px 5px 8px rgba(74, 48, 43, 0.1);
+    }
+
+    .meter-needle {
+      position: absolute;
+      z-index: 3;
+      left: calc(50% - 5px);
+      bottom: 8px;
+      width: 10px;
+      height: 62%;
+      border-radius: 999px 999px 8px 8px;
+      background: var(--cocoa);
+      box-shadow: 3px 4px 5px rgba(74, 48, 43, 0.23);
+      transform: rotate(25deg);
+      transform-origin: 50% calc(100% - 5px);
+      transition: transform 520ms cubic-bezier(.2, 1.25, .3, 1);
+    }
+
+    .meter-hub {
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      bottom: 4px;
+      width: 34px;
+      height: 34px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+      background: var(--pink-deep);
+      box-shadow: 3px 4px 7px rgba(74, 48, 43, 0.21);
+      transform: translateX(-50%);
+    }
+
+    .meter-value {
+      position: absolute;
+      z-index: 4;
+      top: 49%;
+      left: 50%;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      font-weight: 900;
+      transform: translate(-50%, -50%);
+    }
+
+    .meter-legend {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: -8px;
+      color: var(--cocoa-soft);
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
+    .last-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .action-pod {
+      position: relative;
+      min-width: 0;
+      padding: 22px;
+      border-radius: 27px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: var(--soft-in);
+      text-align: center;
+    }
+
+    .action-pod h4 {
+      margin: 0 0 7px;
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.12rem;
+    }
+
+    .action-pod p {
+      min-height: 44px;
+      margin-bottom: 17px;
+      color: var(--cocoa-soft);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .action-pod .clay-button {
+      width: 100%;
+    }
+
+    .tooltip-anchor {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-top: 3px;
+      border: 0;
+      border-radius: 50% 46% 52% 48%;
+      cursor: help;
+      color: var(--cream);
+      background: var(--cocoa);
+      box-shadow:
+        inset 3px 4px 5px rgba(255, 255, 255, 0.17),
+        inset -3px -4px 5px rgba(0, 0, 0, 0.14),
+        5px 7px 9px rgba(74, 48, 43, 0.18);
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .tooltip {
+      position: absolute;
+      z-index: 40;
+      left: 50%;
+      bottom: calc(100% + 13px);
+      width: min(220px, calc(100vw - 48px));
+      padding: 11px 14px;
+      border-radius: 17px 17px 17px 6px;
+      color: #fffdf7;
+      background: var(--cocoa);
+      box-shadow: 7px 9px 14px rgba(74, 48, 43, 0.24);
+      font-size: 0.8rem;
+      font-weight: 800;
+      line-height: 1.35;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 7px) scale(0.96);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      background: var(--cocoa);
+      transform: translate(-50%, -8px) rotate(45deg);
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-wrap:focus-within .tooltip {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    .footer {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-top: 2px solid rgba(74, 48, 43, 0.12);
+      background: var(--cocoa);
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18px 18px, rgba(255, 255, 255, 0.12) 0 2px, transparent 2.7px) 0 0 / 38px 38px;
+    }
+
+    .footer-inner {
+      position: relative;
+      min-height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--cream);
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-family: "Fredoka", sans-serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .footer-puff {
+      width: 70px;
+      height: 45px;
+      flex: 0 0 auto;
+      border-radius: 50% 50% 43% 46%;
+      background: var(--pink);
+      box-shadow:
+        inset 5px 6px 8px rgba(255, 255, 255, 0.38),
+        inset -5px -6px 8px rgba(92, 38, 54, 0.22);
+    }
+
+    .modal-shell {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-shell[hidden] {
+      display: none;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(74, 48, 43, 0.55);
+      backdrop-filter: blur(8px);
+      animation: fade-in 180ms ease both;
+    }
+
+    .recipe-modal {
+      position: relative;
+      z-index: 1;
+      width: min(560px, 100%);
+      max-height: min(720px, calc(100dvh - 40px));
+      padding: clamp(27px, 5vw, 44px);
+      overflow-y: auto;
+      border: 8px solid #fff;
+      border-radius: 44px;
+      background:
+        radial-gradient(circle at 18px 18px, rgba(74, 48, 43, 0.08) 0 2px, transparent 2.7px) 0 0 / 38px 38px,
+        var(--cream);
+      box-shadow:
+        inset 10px 12px 18px rgba(74, 48, 43, 0.09),
+        inset -10px -11px 18px rgba(255, 255, 255, 0.7),
+        18px 25px 44px rgba(46, 28, 24, 0.36);
+      animation: modal-pop 260ms cubic-bezier(.2, 1.4, .35, 1) both;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+    }
+
+    @keyframes modal-pop {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.92);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 17px;
+      right: 17px;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--cocoa);
+      background: var(--pink);
+      box-shadow:
+        inset 3px 4px 5px rgba(255, 255, 255, 0.4),
+        4px 6px 8px rgba(74, 48, 43, 0.17);
+      font-size: 1.6rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .recipe-modal .station-tag {
+      margin-bottom: 18px;
+      background: var(--yellow);
+    }
+
+    .recipe-modal h2 {
+      max-width: calc(100% - 55px);
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 7vw, 3.15rem);
+      letter-spacing: -0.045em;
+    }
+
+    .recipe-modal > p {
+      color: var(--cocoa-soft);
+      font-weight: 700;
+    }
+
+    .recipe-list {
+      display: grid;
+      gap: 12px;
+      margin: 24px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .recipe-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: var(--soft-in);
+      font-weight: 800;
+    }
+
+    .recipe-number {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--blue);
+      font-family: "Fredoka", sans-serif;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .toast-region {
+      position: fixed;
+      z-index: 140;
+      right: 20px;
+      bottom: 20px;
+      width: min(380px, calc(100vw - 40px));
+      pointer-events: none;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      min-height: 68px;
+      padding: 12px 12px 12px 16px;
+      border: 5px solid #fff;
+      border-radius: 24px;
+      color: var(--cocoa);
+      background: var(--yellow);
+      box-shadow:
+        inset 5px 6px 8px rgba(255, 255, 255, 0.4),
+        inset -5px -6px 8px rgba(122, 76, 15, 0.11),
+        10px 14px 23px rgba(74, 48, 43, 0.25);
+      font-weight: 900;
+      opacity: 0;
+      pointer-events: auto;
+      transform: translateY(20px) scale(0.94);
+      transition: opacity 200ms ease, transform 260ms cubic-bezier(.2, 1.4, .3, 1);
+    }
+
+    .toast[hidden] {
+      display: none;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .toast-puff {
+      width: 35px;
+      height: 29px;
+      flex: 0 0 auto;
+      border-radius: 50% 50% 43% 46%;
+      background: var(--pink);
+      box-shadow:
+        inset 3px 4px 5px rgba(255, 255, 255, 0.45),
+        inset -3px -4px 5px rgba(111, 44, 64, 0.14);
+    }
+
+    .toast-text {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .toast-close {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.62);
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+      }
+
+      .hero-copy {
+        padding-top: 30px;
+      }
+
+      .hero-art {
+        min-height: 420px;
+      }
+
+      .field-grid,
+      .proof-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .last-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .action-pod p {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      :root {
+        --page-pad: 16px;
+      }
+
+      .status-inner {
+        min-height: 74px;
+      }
+
+      .status-pill:last-child {
+        display: none;
+      }
+
+      .page-shell {
+        padding-top: 20px;
+        padding-bottom: 70px;
+      }
+
+      .hero {
+        gap: 26px;
+        padding: 34px 18px 20px;
+        border-radius: 36px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 15vw, 4.45rem);
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-actions .clay-button {
+        width: 100%;
+      }
+
+      .hero-art {
+        min-height: 348px;
+        border-width: 7px;
+      }
+
+      .hero-mochi {
+        bottom: 72px;
+        width: 185px;
+        height: 181px;
+      }
+
+      .plate {
+        bottom: 35px;
+        height: 98px;
+      }
+
+      .steam {
+        top: 36px;
+        transform: translateX(-50%) scale(0.82);
+      }
+
+      .poke-hint {
+        right: 44px;
+        bottom: 22px;
+        max-width: 122px;
+      }
+
+      .section-intro {
+        margin-top: 66px;
+      }
+
+      .controls-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+      }
+
+      .station,
+      .station.wide {
+        grid-column: auto;
+        padding: 24px 18px;
+        border-radius: 30px;
+      }
+
+      .station-heading {
+        align-items: center;
+      }
+
+      .bite-badge {
+        width: 50px;
+        height: 50px;
+      }
+
+      .button-rack {
+        flex-direction: column;
+      }
+
+      .button-rack .clay-button {
+        flex-basis: auto;
+        width: 100%;
+      }
+
+      .tab-list {
+        gap: 4px;
+      }
+
+      .tab {
+        padding-inline: 6px;
+        font-size: 0.83rem;
+      }
+
+      .proof-card,
+      .meter-card {
+        padding: 19px 15px;
+      }
+
+      .footer-inner {
+        min-height: 124px;
+      }
+
+      .footer-copy {
+        max-width: 240px;
+      }
+
+      .modal-shell {
+        padding: 12px;
+      }
+
+      .recipe-modal {
+        max-height: calc(100dvh - 24px);
+        border-width: 6px;
+        border-radius: 34px;
+      }
+
+      .toast-region {
+        right: 12px;
+        bottom: 12px;
+        width: calc(100vw - 24px);
+      }
+    }
+
+    @media (max-width: 410px) {
+      .brand-copy {
+        max-width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .status-pill {
+        padding-inline: 10px;
+      }
+
+      .status-pill .status-detail {
+        display: none;
+      }
+
+      .hero {
+        padding-inline: 16px;
+      }
+
+      .hero-art {
+        min-height: 330px;
+      }
+
+      .hero-mochi {
+        width: 170px;
+        height: 168px;
+      }
+
+      .station-heading p {
+        font-size: 0.88rem;
+      }
+
+      .modal-close {
+        top: 12px;
+        right: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+
+      .steam-wisp {
+        opacity: 0.36;
+        animation: none !important;
+        transform: translateY(-18px);
+      }
+
+      .burst-sprinkle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-copy="Skip to the soft batch">Skip to the soft batch</a>
+
+  <header class="status-rail" aria-label="Atelier status">
+    <div class="status-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy" data-copy="Mochi Atelier">Mochi Atelier</span>
+      </div>
+      <div class="batch-status" aria-label="Current batch conditions">
+        <span class="status-pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-copy="Batch 07 is cozy">Batch 07 is cozy</span>
+        </span>
+        <span class="status-pill">
+          <span data-copy="Steam">Steam</span>
+          <span class="status-detail" data-copy="gentle · 68°">gentle · 68°</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="frosting-edge" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="hero-copy">
+        <span class="flag-label" data-copy="Soft batch studio">Soft batch studio</span>
+        <h1 id="hero-title">
+          <span data-copy="Shape a little">Shape a little</span>
+          <span class="hero-highlight" data-copy="joy.">joy.</span>
+        </h1>
+        <p data-copy="Press, glaze, and sprinkle one warm mochi at a time. Nothing sharp lives here—only soft edges and kinder pauses.">Press, glaze, and sprinkle one warm mochi at a time. Nothing sharp lives here—only soft edges and kinder pauses.</p>
+        <div class="hero-actions">
+          <button class="clay-button button-cocoa" type="button" id="startBatch">
+            <span class="button-icon" aria-hidden="true"></span>
+            <span data-copy="Start a batch">Start a batch</span>
+          </button>
+          <button class="clay-button button-cream" type="button" id="openRecipeTop">
+            <span data-copy="Peek at the recipe">Peek at the recipe</span>
+          </button>
+        </div>
+        <p class="live-note" id="pokeStatus" aria-live="polite" data-copy="The pink puff is waiting for a gentle poke.">The pink puff is waiting for a gentle poke.</p>
+      </div>
+
+      <div class="hero-art" id="heroArt" aria-label="A warm, steaming mochi waits on a plate">
+        <span class="wall-blob" aria-hidden="true"></span>
+        <div class="steam" id="heroSteam" aria-hidden="true">
+          <span class="steam-wisp"></span>
+          <span class="steam-wisp"></span>
+          <span class="steam-wisp"></span>
+        </div>
+        <div class="plate" aria-hidden="true"></div>
+        <button class="hero-mochi" id="heroMochi" type="button" aria-label="Gently poke the steaming mochi">
+          <span class="face" aria-hidden="true">
+            <span class="eye"></span>
+            <span class="eye"></span>
+            <span class="mouth"></span>
+            <span class="cheek"></span>
+            <span class="cheek"></span>
+          </span>
+          <span class="bite-marks" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+        <span class="sugar-star" aria-hidden="true"></span>
+        <span class="sugar-star" aria-hidden="true"></span>
+        <span class="sugar-star" aria-hidden="true"></span>
+        <span class="sprinkle s1" aria-hidden="true"></span>
+        <span class="sprinkle s2" aria-hidden="true"></span>
+        <span class="sprinkle s3" aria-hidden="true"></span>
+        <span class="sprinkle s4" aria-hidden="true"></span>
+        <span class="sprinkle s5" aria-hidden="true"></span>
+        <p class="poke-hint" data-copy="Poke me—I bounce back.">Poke me—I bounce back.</p>
+      </div>
+    </section>
+
+    <section class="section-intro" aria-labelledby="bench-title">
+      <span class="flag-label" data-copy="The squish bench">The squish bench</span>
+      <h2 id="bench-title" data-copy="Make the batch yours.">Make the batch yours.</h2>
+      <p data-copy="Every tool is shaped like something you could press, pinch, or pass across a tiny pastry counter.">Every tool is shaped like something you could press, pinch, or pass across a tiny pastry counter.</p>
+    </section>
+
+    <div class="controls-grid">
+      <section class="station station-pink wide" aria-labelledby="press-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Pressing board">Pressing board</span>
+            <h3 id="press-heading" data-copy="Five ways to nudge a puff">Five ways to nudge a puff</h3>
+            <p data-copy="Each pill has its own glaze, weight, and squishy response.">Each pill has its own glaze, weight, and squishy response.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="01">01</span>
+        </div>
+        <div class="button-rack" aria-label="Button styles">
+          <button class="clay-button button-cocoa" id="kneadButton" type="button" data-demo-action="knead">
+            <span class="button-icon" aria-hidden="true"></span>
+            <span data-copy="Knead">Knead</span>
+          </button>
+          <button class="clay-button button-pink" type="button" data-demo-action="glaze">
+            <span data-copy="Berry glaze">Berry glaze</span>
+          </button>
+          <button class="clay-button button-blue" type="button" data-demo-action="dust">
+            <span data-copy="Sugar confetti">Sugar confetti</span>
+          </button>
+          <button class="clay-button button-yellow" type="button" data-demo-action="sample">
+            <span data-copy="Tiny sample">Tiny sample</span>
+          </button>
+          <button class="clay-button" type="button" disabled>
+            <span data-copy="Cooling down">Cooling down</span>
+          </button>
+        </div>
+        <p class="live-note" id="buttonStatus" aria-live="polite" data-copy="The pressing board is clean and ready.">The pressing board is clean and ready.</p>
+      </section>
+
+      <section class="station station-blue" aria-labelledby="note-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Flag table">Flag table</span>
+            <h3 id="note-heading" data-copy="Name the little batch">Name the little batch</h3>
+            <p data-copy="Your note appears on a soft blue counter flag.">Your note appears on a soft blue counter flag.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="02">02</span>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label" for="batchName" data-copy="Batch note">Batch note</label>
+            <input class="clay-input" id="batchName" type="text" maxlength="36" placeholder="Name this little puff" autocomplete="off" aria-describedby="nameHint">
+            <small class="field-hint" id="nameHint" data-copy="Up to 36 soft little characters.">Up to 36 soft little characters.</small>
+          </div>
+          <div class="field">
+            <span class="field-label" data-copy="Counter flag preview">Counter flag preview</span>
+            <div class="tag-preview" id="tagPreview" aria-live="polite" data-copy="Warm cloud no. 7">Warm cloud no. 7</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="station station-yellow" aria-labelledby="filling-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Filling tray">Filling tray</span>
+            <h3 id="filling-heading" data-copy="Pick a soft center">Pick a soft center</h3>
+            <p data-copy="The puff takes on the color of the filling you choose.">The puff takes on the color of the filling you choose.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="03">03</span>
+        </div>
+        <fieldset style="border:0;padding:0;margin:0">
+          <legend class="group-label" data-copy="Filling flavor">Filling flavor</legend>
+          <div class="radio-stack">
+            <label class="radio-control">
+              <input type="radio" name="filling" value="strawberry" checked>
+              <span class="radio-puff" aria-hidden="true"></span>
+              <span data-copy="Strawberry cloud">Strawberry cloud</span>
+            </label>
+            <label class="radio-control">
+              <input type="radio" name="filling" value="blueberry">
+              <span class="radio-puff" aria-hidden="true"></span>
+              <span data-copy="Blueberry moon">Blueberry moon</span>
+            </label>
+            <label class="radio-control">
+              <input type="radio" name="filling" value="custard">
+              <span class="radio-puff" aria-hidden="true"></span>
+              <span data-copy="Custard sun">Custard sun</span>
+            </label>
+          </div>
+        </fieldset>
+        <p class="live-note" id="fillingStatus" aria-live="polite" data-copy="Strawberry cloud is tucked inside.">Strawberry cloud is tucked inside.</p>
+      </section>
+
+      <section class="station station-mint" aria-labelledby="finishing-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Finishing tray">Finishing tray</span>
+            <h3 id="finishing-heading" data-copy="Stars, steam, and squish">Stars, steam, and squish</h3>
+            <p data-copy="Dress the puff, keep it warm, then set its softness.">Dress the puff, keep it warm, then set its softness.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="04">04</span>
+        </div>
+        <div class="option-stack">
+          <label class="check-control">
+            <input id="sugarStars" type="checkbox">
+            <span class="check-shape" aria-hidden="true"></span>
+            <span data-copy="Add sugar stars">Add sugar stars</span>
+          </label>
+          <button class="steam-switch" id="steamSwitch" type="button" role="switch" aria-checked="true">
+            <span id="steamSwitchLabel" data-copy="Steam is cozy">Steam is cozy</span>
+            <span class="switch-track" aria-hidden="true">
+              <span class="switch-knob"></span>
+            </span>
+          </button>
+          <div class="range-wrap">
+            <div class="range-head">
+              <label for="squishRange" data-copy="Squish level">Squish level</label>
+              <output class="range-output" id="squishOutput" for="squishRange" data-copy="62% soft">62% soft</output>
+            </div>
+            <input class="clay-range" id="squishRange" type="range" min="0" max="100" value="62" aria-label="Squish level">
+          </div>
+        </div>
+        <p class="live-note" id="finishStatus" aria-live="polite" data-copy="Steam is warm; the topping tray is still closed.">Steam is warm; the topping tray is still closed.</p>
+      </section>
+
+      <section class="station station-blue" aria-labelledby="jar-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Jam cupboard">Jam cupboard</span>
+            <h3 id="jar-heading" data-copy="Choose a drizzle jar">Choose a drizzle jar</h3>
+            <p data-copy="Open the cupboard and use arrows, Enter, or a gentle click.">Open the cupboard and use arrows, Enter, or a gentle click.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="05">05</span>
+        </div>
+        <div class="field">
+          <span class="field-label" id="drizzleLabel" data-copy="Drizzle jar">Drizzle jar</span>
+          <div class="select-wrap" id="selectWrap">
+            <button class="select-button" id="selectButton" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="drizzleList" aria-labelledby="drizzleLabel selectValue">
+              <span id="selectValue" data-copy="Rose jam ribbon">Rose jam ribbon</span>
+              <span class="select-arrow" aria-hidden="true"></span>
+            </button>
+            <ul class="select-list" id="drizzleList" role="listbox" aria-labelledby="drizzleLabel" tabindex="-1" hidden>
+              <li class="select-option" id="drizzleRose" role="option" aria-selected="true" data-value="rose" data-label="Rose jam ribbon">
+                <span data-copy="Rose jam ribbon">Rose jam ribbon</span>
+                <span class="option-dot" aria-hidden="true"></span>
+              </li>
+              <li class="select-option" id="drizzleBlue" role="option" aria-selected="false" data-value="blue" data-label="Blueberry glaze">
+                <span data-copy="Blueberry glaze">Blueberry glaze</span>
+                <span class="option-dot" aria-hidden="true"></span>
+              </li>
+              <li class="select-option" id="drizzleHoney" role="option" aria-selected="false" data-value="honey" data-label="Honey sun drop">
+                <span data-copy="Honey sun drop">Honey sun drop</span>
+                <span class="option-dot" aria-hidden="true"></span>
+              </li>
+              <li class="select-option" id="drizzleMint" role="option" aria-selected="false" data-value="mint" data-label="Mint milk veil">
+                <span data-copy="Mint milk veil">Mint milk veil</span>
+                <span class="option-dot" aria-hidden="true"></span>
+              </li>
+            </ul>
+          </div>
+          <p class="live-note" id="selectStatus" aria-live="polite" data-copy="Rose jam ribbon is on the spoon.">Rose jam ribbon is on the spoon.</p>
+        </div>
+      </section>
+
+      <section class="station station-pink" aria-labelledby="layer-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Layer cards">Layer cards</span>
+            <h3 id="layer-heading" data-copy="Turn the recipe pages">Turn the recipe pages</h3>
+            <p data-copy="Three soft tabs keep the dough, glaze, and sprinkles apart.">Three soft tabs keep the dough, glaze, and sprinkles apart.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="06">06</span>
+        </div>
+        <div class="tabs">
+          <div class="tab-list" role="tablist" aria-label="Recipe layers">
+            <button class="tab" id="tabDough" type="button" role="tab" aria-selected="true" aria-controls="panelDough" tabindex="0" data-copy="Dough">Dough</button>
+            <button class="tab" id="tabGlaze" type="button" role="tab" aria-selected="false" aria-controls="panelGlaze" tabindex="-1" data-copy="Glaze">Glaze</button>
+            <button class="tab" id="tabSprinkles" type="button" role="tab" aria-selected="false" aria-controls="panelSprinkles" tabindex="-1" data-copy="Sprinkles">Sprinkles</button>
+          </div>
+          <div class="tab-panel" id="panelDough" role="tabpanel" aria-labelledby="tabDough">
+            <strong data-copy="Cloud-soft dough">Cloud-soft dough</strong>
+            <span data-copy="Fold slowly until the edges relax and the center feels like a tiny pillow.">Fold slowly until the edges relax and the center feels like a tiny pillow.</span>
+          </div>
+          <div class="tab-panel" id="panelGlaze" role="tabpanel" aria-labelledby="tabGlaze" hidden>
+            <strong data-copy="Matte berry glaze">Matte berry glaze</strong>
+            <span data-copy="Brush one satin-soft coat; let the little drips choose their own path.">Brush one satin-soft coat; let the little drips choose their own path.</span>
+          </div>
+          <div class="tab-panel" id="panelSprinkles" role="tabpanel" aria-labelledby="tabSprinkles" hidden>
+            <strong data-copy="Confetti finish">Confetti finish</strong>
+            <span data-copy="Toss five sugar needles from high above and keep one yellow star for luck.">Toss five sugar needles from high above and keep one yellow star for luck.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="station station-yellow wide" aria-labelledby="proof-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Warm shelf">Warm shelf</span>
+            <h3 id="proof-heading" data-copy="Proof and taste the batch">Proof and taste the batch</h3>
+            <p data-copy="One pillow grows across the shelf while the tasting dial finds its balance.">One pillow grows across the shelf while the tasting dial finds its balance.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="07">07</span>
+        </div>
+        <div class="proof-layout">
+          <div class="proof-card">
+            <h4 data-copy="Proofing pillow">Proofing pillow</h4>
+            <p data-copy="Give the dough a slow turn and watch it rise.">Give the dough a slow turn and watch it rise.</p>
+            <div class="progress-copy">
+              <span data-copy="Batch rise">Batch rise</span>
+              <span id="proofValue" data-copy="38%">38%</span>
+            </div>
+            <div class="progress-shell" id="proofProgress" role="progressbar" aria-label="Batch proofing progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38">
+              <span class="progress-fill" id="proofFill" aria-hidden="true"></span>
+            </div>
+            <button class="clay-button button-pink button-small" id="proofButton" type="button">
+              <span data-copy="Give it a turn">Give it a turn</span>
+            </button>
+            <p class="live-note" id="proofStatus" aria-live="polite" data-copy="The dough has started its slow rise.">The dough has started its slow rise.</p>
+          </div>
+
+          <div class="meter-card">
+            <h4 data-copy="Sweetness balance">Sweetness balance</h4>
+            <p data-copy="A tasting dial, not a timer.">A tasting dial, not a timer.</p>
+            <div class="meter-dial" id="sweetMeter" role="meter" aria-label="Sweetness balance" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68" aria-valuetext="68 percent, balanced">
+              <span class="meter-needle" id="meterNeedle" aria-hidden="true"></span>
+              <span class="meter-hub" aria-hidden="true"></span>
+              <span class="meter-value" id="meterValue" data-copy="68%">68%</span>
+            </div>
+            <div class="meter-legend" aria-hidden="true">
+              <span data-copy="Tart">Tart</span>
+              <span data-copy="Balanced">Balanced</span>
+              <span data-copy="Sweet">Sweet</span>
+            </div>
+            <button class="clay-button button-blue button-small" id="tasteButton" type="button">
+              <span data-copy="Taste again">Taste again</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="station station-mint wide" aria-labelledby="counter-heading">
+        <div class="station-heading">
+          <div>
+            <span class="station-tag" data-copy="Counter calls">Counter calls</span>
+            <h3 id="counter-heading" data-copy="Open, ring, and ask">Open, ring, and ask</h3>
+            <p data-copy="A recipe tin, an oven bell, and one tiny hint finish the counter.">A recipe tin, an oven bell, and one tiny hint finish the counter.</p>
+          </div>
+          <span class="bite-badge" aria-hidden="true" data-copy="08">08</span>
+        </div>
+        <div class="last-row">
+          <div class="action-pod">
+            <h4 data-copy="Recipe tin">Recipe tin</h4>
+            <p data-copy="Open a focus-locked card with the batch steps.">Open a focus-locked card with the batch steps.</p>
+            <button class="clay-button button-cocoa" id="openRecipe" type="button">
+              <span data-copy="Open the tin">Open the tin</span>
+            </button>
+          </div>
+          <div class="action-pod">
+            <h4 data-copy="Oven bell">Oven bell</h4>
+            <p data-copy="Ring for a warm little counter message.">Ring for a warm little counter message.</p>
+            <button class="clay-button button-yellow" id="ringBell" type="button">
+              <span data-copy="Ring the bell">Ring the bell</span>
+            </button>
+          </div>
+          <div class="action-pod">
+            <h4 data-copy="Pastry whisper">Pastry whisper</h4>
+            <p data-copy="Hover or focus the cocoa puff for a tiny tip.">Hover or focus the cocoa puff for a tiny tip.</p>
+            <div class="tooltip-wrap">
+              <button class="tooltip-anchor" type="button" aria-describedby="pastryTooltip" aria-label="Show pastry tip" data-copy="?">?</button>
+              <span class="tooltip" id="pastryTooltip" role="tooltip" data-copy="Warm hands make friendlier folds. Pause before the final pinch.">Warm hands make friendlier folds. Pause before the final pinch.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy" data-copy="Made gently at the Mochi Atelier—where every edge gets to soften.">Made gently at the Mochi Atelier—where every edge gets to soften.</p>
+      <span class="footer-puff" aria-hidden="true"></span>
+    </div>
+  </footer>
+
+  <div class="modal-shell" id="recipeModal" hidden>
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <section class="recipe-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close recipe tin">
+        <span aria-hidden="true">×</span>
+      </button>
+      <span class="station-tag" data-copy="Batch card 07">Batch card 07</span>
+      <h2 id="modalTitle" data-copy="A recipe for softer moments">A recipe for softer moments</h2>
+      <p id="modalDescription" data-copy="Three tiny moves are enough for this warm batch.">Three tiny moves are enough for this warm batch.</p>
+      <ol class="recipe-list">
+        <li>
+          <span class="recipe-number" aria-hidden="true" data-copy="1">1</span>
+          <span data-copy="Press until the dough sighs.">Press until the dough sighs.</span>
+        </li>
+        <li>
+          <span class="recipe-number" aria-hidden="true" data-copy="2">2</span>
+          <span data-copy="Glaze around every sleepy curve.">Glaze around every sleepy curve.</span>
+        </li>
+        <li>
+          <span class="recipe-number" aria-hidden="true" data-copy="3">3</span>
+          <span data-copy="Share before the steam wanders off.">Share before the steam wanders off.</span>
+        </li>
+      </ol>
+      <div class="inline-actions">
+        <button class="clay-button button-pink" id="saveRecipe" type="button">
+          <span data-copy="Tuck it away">Tuck it away</span>
+        </button>
+        <button class="clay-button button-cream" id="closeRecipeSecondary" type="button">
+          <span data-copy="Back to the bench">Back to the bench</span>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast-region" aria-live="polite" aria-atomic="true">
+    <div class="toast" id="toast" role="status" hidden>
+      <span class="toast-puff" aria-hidden="true"></span>
+      <span class="toast-text" id="toastText" data-copy="Ding! A warm puff is ready.">Ding! A warm puff is ready.</span>
+      <button class="toast-close" id="toastClose" type="button" aria-label="Dismiss message">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const copyNodes = document.querySelectorAll("[data-copy]");
+      copyNodes.forEach((node) => {
+        node.textContent = node.dataset.copy;
+      });
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const heroArt = document.getElementById("heroArt");
+      const heroMochi = document.getElementById("heroMochi");
+      const heroSteam = document.getElementById("heroSteam");
+      const pokeStatus = document.getElementById("pokeStatus");
+      const buttonStatus = document.getElementById("buttonStatus");
+      let pokeCount = 0;
+      let squishTimer = 0;
+
+      const safeText = (node, value) => {
+        node.textContent = value;
+      };
+
+      const puffMessages = [
+        "The puff exhaled a tiny happy sigh.",
+        "Boop. It flattened, then found its courage.",
+        "That poke was exactly soft enough.",
+        "The little bite wiggled with delight."
+      ];
+
+      const burstSprinkles = () => {
+        if (reducedMotion.matches) return;
+        const colors = ["#ff9fbd", "#ffd96b", "#9edfff", "#4a302b", "#b9e9ce"];
+        for (let index = 0; index < 10; index += 1) {
+          const sprinkle = document.createElement("span");
+          sprinkle.className = "burst-sprinkle";
+          sprinkle.setAttribute("aria-hidden", "true");
+          const angle = (Math.PI * 2 * index) / 10;
+          const distance = 80 + (index % 3) * 18;
+          sprinkle.style.setProperty("--burst-x", `${Math.cos(angle) * distance}px`);
+          sprinkle.style.setProperty("--burst-y", `${Math.sin(angle) * distance}px`);
+          sprinkle.style.setProperty("--burst-color", colors[index % colors.length]);
+          heroArt.appendChild(sprinkle);
+          window.setTimeout(() => sprinkle.remove(), 720);
+        }
+      };
+
+      const pokeMochi = () => {
+        pokeCount += 1;
+        window.clearTimeout(squishTimer);
+        heroMochi.classList.remove("is-squished");
+        void heroMochi.offsetWidth;
+        heroMochi.classList.add("is-squished");
+        safeText(pokeStatus, `${puffMessages[(pokeCount - 1) % puffMessages.length]} Pokes: ${pokeCount}.`);
+        burstSprinkles();
+        squishTimer = window.setTimeout(() => {
+          heroMochi.classList.remove("is-squished");
+        }, reducedMotion.matches ? 10 : 420);
+      };
+
+      heroMochi.addEventListener("click", pokeMochi);
+
+      let extraSprinkles = false;
+      document.querySelectorAll("[data-demo-action]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const action = button.dataset.demoAction;
+          if (action === "knead") {
+            pokeMochi();
+            safeText(buttonStatus, "Kneaded once. The puff bounced back.");
+          }
+          if (action === "glaze") {
+            const glazed = heroArt.classList.toggle("glazed");
+            safeText(buttonStatus, glazed ? "Berry glaze is flowing around the curves." : "The berry glaze has been folded away.");
+          }
+          if (action === "dust") {
+            extraSprinkles = !extraSprinkles;
+            heroArt.classList.toggle("extra-sprinkles", extraSprinkles);
+            burstSprinkles();
+            safeText(buttonStatus, extraSprinkles ? "Sugar confetti is dancing over the plate." : "The confetti has settled back in its jar.");
+          }
+          if (action === "sample") {
+            showToast("Tiny sample approved: pillowy, warm, and just sweet enough.");
+            safeText(buttonStatus, "A tiny sample left the board with a smile.");
+          }
+        });
+      });
+
+      document.getElementById("startBatch").addEventListener("click", () => {
+        document.getElementById("press-heading").scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
+        window.setTimeout(() => document.getElementById("kneadButton").focus(), reducedMotion.matches ? 0 : 450);
+      });
+
+      const batchName = document.getElementById("batchName");
+      const tagPreview = document.getElementById("tagPreview");
+      batchName.addEventListener("input", () => {
+        const name = batchName.value.trim();
+        safeText(tagPreview, name || "Warm cloud no. 7");
+      });
+
+      const fillingStatus = document.getElementById("fillingStatus");
+      document.querySelectorAll('input[name="filling"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (!radio.checked) return;
+          heroMochi.classList.remove("fill-blueberry", "fill-custard");
+          if (radio.value === "blueberry") heroMochi.classList.add("fill-blueberry");
+          if (radio.value === "custard") heroMochi.classList.add("fill-custard");
+          const labels = {
+            strawberry: "Strawberry cloud is tucked inside.",
+            blueberry: "Blueberry moon is tucked inside.",
+            custard: "Custard sun is tucked inside."
+          };
+          safeText(fillingStatus, labels[radio.value]);
+        });
+      });
+
+      const sugarStars = document.getElementById("sugarStars");
+      const finishStatus = document.getElementById("finishStatus");
+      sugarStars.addEventListener("change", () => {
+        heroArt.classList.toggle("is-starred", sugarStars.checked);
+        safeText(finishStatus, sugarStars.checked ? "Three sugar stars landed on the warm plate." : "The sugar stars are resting in their tray.");
+      });
+
+      const steamSwitch = document.getElementById("steamSwitch");
+      const steamSwitchLabel = document.getElementById("steamSwitchLabel");
+      steamSwitch.addEventListener("click", () => {
+        const isOn = steamSwitch.getAttribute("aria-checked") !== "true";
+        steamSwitch.setAttribute("aria-checked", String(isOn));
+        heroSteam.classList.toggle("is-off", !isOn);
+        safeText(steamSwitchLabel, isOn ? "Steam is cozy" : "Steam is napping");
+        safeText(finishStatus, isOn ? "The steam curled back around the warm puff." : "The steam is taking a tiny nap.");
+      });
+
+      const squishRange = document.getElementById("squishRange");
+      const squishOutput = document.getElementById("squishOutput");
+      const updateSquish = () => {
+        const value = Number(squishRange.value);
+        squishRange.style.setProperty("--value", `${value}%`);
+        safeText(squishOutput, `${value}% soft`);
+        squishRange.setAttribute("aria-valuetext", `${value} percent soft`);
+        heroMochi.style.setProperty("filter", `saturate(${0.8 + value / 250})`);
+        safeText(finishStatus, value < 34 ? "A neat little chew with a gentle spring." : value < 72 ? "A pillow-soft squish with a slow rebound." : "Extra squishy—the puff nearly sighs when touched.");
+      };
+      squishRange.addEventListener("input", updateSquish);
+      updateSquish();
+
+      const selectWrap = document.getElementById("selectWrap");
+      const selectButton = document.getElementById("selectButton");
+      const selectList = document.getElementById("drizzleList");
+      const selectValue = document.getElementById("selectValue");
+      const selectStatus = document.getElementById("selectStatus");
+      const selectOptions = Array.from(selectList.querySelectorAll('[role="option"]'));
+      let selectedIndex = 0;
+      let activeIndex = 0;
+
+      const setActiveOption = (index) => {
+        activeIndex = (index + selectOptions.length) % selectOptions.length;
+        selectOptions.forEach((option, optionIndex) => {
+          option.classList.toggle("is-active", optionIndex === activeIndex);
+        });
+        selectList.setAttribute("aria-activedescendant", selectOptions[activeIndex].id);
+        selectOptions[activeIndex].scrollIntoView({ block: "nearest" });
+      };
+
+      const openSelect = () => {
+        selectList.hidden = false;
+        selectButton.setAttribute("aria-expanded", "true");
+        setActiveOption(selectedIndex);
+        selectList.focus();
+      };
+
+      const closeSelect = (returnFocus = false) => {
+        selectList.hidden = true;
+        selectButton.setAttribute("aria-expanded", "false");
+        selectList.removeAttribute("aria-activedescendant");
+        selectOptions.forEach((option) => option.classList.remove("is-active"));
+        if (returnFocus) selectButton.focus();
+      };
+
+      const chooseOption = (index) => {
+        selectedIndex = index;
+        const option = selectOptions[index];
+        selectOptions.forEach((item, optionIndex) => {
+          item.setAttribute("aria-selected", String(optionIndex === index));
+        });
+        safeText(selectValue, option.dataset.label);
+        safeText(selectStatus, `${option.dataset.label} is on the spoon.`);
+        closeSelect(true);
+      };
+
+      selectButton.addEventListener("click", () => {
+        if (selectButton.getAttribute("aria-expanded") === "true") {
+          closeSelect(false);
+        } else {
+          openSelect();
+        }
+      });
+
+      selectButton.addEventListener("keydown", (event) => {
+        if (["ArrowDown", "ArrowUp", "Enter", " "].includes(event.key)) {
+          event.preventDefault();
+          openSelect();
+          if (event.key === "ArrowUp") setActiveOption(selectedIndex - 1);
+        }
+      });
+
+      selectList.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          setActiveOption(activeIndex + 1);
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          setActiveOption(activeIndex - 1);
+        } else if (event.key === "Home") {
+          event.preventDefault();
+          setActiveOption(0);
+        } else if (event.key === "End") {
+          event.preventDefault();
+          setActiveOption(selectOptions.length - 1);
+        } else if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          chooseOption(activeIndex);
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          closeSelect(true);
+        } else if (event.key === "Tab") {
+          closeSelect(false);
+        }
+      });
+
+      selectOptions.forEach((option, index) => {
+        option.addEventListener("pointermove", () => setActiveOption(index));
+        option.addEventListener("click", () => chooseOption(index));
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!selectWrap.contains(event.target) && selectButton.getAttribute("aria-expanded") === "true") {
+          closeSelect(false);
+        }
+      });
+
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const selectTab = (tab, focusTab = false) => {
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute("aria-selected", String(selected));
+          item.tabIndex = selected ? 0 : -1;
+          document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+        });
+        if (focusTab) tab.focus();
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => selectTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+          else if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === "Home") nextIndex = 0;
+          else if (event.key === "End") nextIndex = tabs.length - 1;
+          else return;
+          event.preventDefault();
+          selectTab(tabs[nextIndex], true);
+        });
+      });
+
+      const proofProgress = document.getElementById("proofProgress");
+      const proofFill = document.getElementById("proofFill");
+      const proofValue = document.getElementById("proofValue");
+      const proofStatus = document.getElementById("proofStatus");
+      let proofAmount = 38;
+      document.getElementById("proofButton").addEventListener("click", () => {
+        proofAmount = proofAmount >= 96 ? 18 : Math.min(100, proofAmount + 14);
+        proofProgress.setAttribute("aria-valuenow", String(proofAmount));
+        proofFill.style.width = `${proofAmount}%`;
+        safeText(proofValue, `${proofAmount}%`);
+        safeText(proofStatus, proofAmount >= 90 ? "The pillow is ready for its warm shelf." : proofAmount < 30 ? "A fresh proof has begun." : "The dough grew one soft little fold.");
+      });
+
+      const sweetMeter = document.getElementById("sweetMeter");
+      const meterNeedle = document.getElementById("meterNeedle");
+      const meterValue = document.getElementById("meterValue");
+      const meterSamples = [68, 84, 49, 72];
+      let meterIndex = 0;
+      const updateMeter = (value) => {
+        const angle = -62 + value * 1.24;
+        meterNeedle.style.transform = `rotate(${angle}deg)`;
+        safeText(meterValue, `${value}%`);
+        const description = value < 55 ? "bright and tart" : value > 78 ? "extra sweet" : "balanced";
+        sweetMeter.setAttribute("aria-valuenow", String(value));
+        sweetMeter.setAttribute("aria-valuetext", `${value} percent, ${description}`);
+      };
+      updateMeter(meterSamples[meterIndex]);
+      document.getElementById("tasteButton").addEventListener("click", () => {
+        meterIndex = (meterIndex + 1) % meterSamples.length;
+        updateMeter(meterSamples[meterIndex]);
+      });
+
+      const recipeModal = document.getElementById("recipeModal");
+      const modalClose = document.getElementById("modalClose");
+      const modalBackdrop = document.getElementById("modalBackdrop");
+      let previousFocus = null;
+
+      const modalFocusable = () => Array.from(recipeModal.querySelectorAll('button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'))
+        .filter((element) => !element.hidden);
+
+      const openModal = () => {
+        if (!recipeModal.hidden) return;
+        if (selectButton.getAttribute("aria-expanded") === "true") closeSelect(false);
+        previousFocus = document.activeElement;
+        recipeModal.hidden = false;
+        document.body.classList.add("modal-open");
+        modalClose.focus();
+      };
+
+      const closeModal = () => {
+        if (recipeModal.hidden) return;
+        recipeModal.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (previousFocus && typeof previousFocus.focus === "function") previousFocus.focus();
+      };
+
+      document.getElementById("openRecipe").addEventListener("click", openModal);
+      document.getElementById("openRecipeTop").addEventListener("click", openModal);
+      modalClose.addEventListener("click", closeModal);
+      modalBackdrop.addEventListener("click", closeModal);
+      document.getElementById("closeRecipeSecondary").addEventListener("click", closeModal);
+      document.getElementById("saveRecipe").addEventListener("click", () => {
+        closeModal();
+        showToast("Recipe tucked away beside the sugar jar.");
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (!recipeModal.hidden) {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeModal();
+            return;
+          }
+          if (event.key === "Tab") {
+            const focusable = modalFocusable();
+            if (!focusable.length) {
+              event.preventDefault();
+              return;
+            }
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
+          }
+        }
+      });
+
+      const toast = document.getElementById("toast");
+      const toastText = document.getElementById("toastText");
+      let toastTimer = 0;
+      let toastHideTimer = 0;
+
+      function hideToast() {
+        window.clearTimeout(toastTimer);
+        window.clearTimeout(toastHideTimer);
+        toast.classList.remove("is-visible");
+        toastHideTimer = window.setTimeout(() => {
+          toast.hidden = true;
+        }, reducedMotion.matches ? 0 : 220);
+      }
+
+      function showToast(message) {
+        window.clearTimeout(toastTimer);
+        window.clearTimeout(toastHideTimer);
+        safeText(toastText, message);
+        toast.hidden = false;
+        window.requestAnimationFrame(() => {
+          toast.classList.add("is-visible");
+        });
+        toastTimer = window.setTimeout(hideToast, 4200);
+      }
+
+      document.getElementById("ringBell").addEventListener("click", () => {
+        showToast("Ding! A warm puff is ready at the counter.");
+      });
+      document.getElementById("toastClose").addEventListener("click", hideToast);
+    })();
+  </script>
+</body>
+</html>

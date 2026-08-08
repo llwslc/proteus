@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOCHIYA · MOCHI visual study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFF6EA;
+  --milk: #FFFDF8;
+  --cocoa: #4A2C21;
+  --cocoa-2: #6E4B39;
+  --cap: #8A6450;
+  --pink: #FFA7C1;
+  --pink-soft: #FFD9E4;
+  --pink-deep: #E2557B;
+  --berry: #C2416B;
+  --blue: #BEE4F2;
+  --blue-soft: #E2F2FA;
+  --blue-deep: #6FB4D2;
+  --butter: #FFD48A;
+  --butter-soft: #FFEBC4;
+  --well: #F4E7D6;
+  --well-line: #EADAC4;
+  --wood: #DDBA8E;
+  --r-card: 30px;
+  --shadow-out: 0 16px 30px -14px rgba(74,44,33,.24), 0 4px 10px -4px rgba(74,44,33,.10);
+  --shadow-in: inset 0 2px 0 rgba(255,255,255,.9), inset 0 -8px 14px -8px rgba(93,53,37,.26);
+  --well-in: inset 0 3px 6px rgba(93,53,37,.16), inset 0 -2px 0 rgba(255,255,255,.85);
+  --spring: cubic-bezier(.3,1.75,.4,1);
+  --font-display: "Baloo 2",sans-serif;
+  --font-body: "Quicksand",sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: var(--cream); scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--cocoa);
+  background: transparent;
+  min-height: 100vh;
+  overflow-wrap: break-word;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .5;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><g fill-opacity='0.5'><rect x='18' y='30' width='22' height='7' rx='3' fill='%23F2A9C3' transform='rotate(24 29 33)'/><rect x='150' y='20' width='22' height='7' rx='3' fill='%23A9D8EA' transform='rotate(-30 161 23)'/><rect x='80' y='84' width='22' height='7' rx='3' fill='%23F6CE8C' transform='rotate(58 91 87)'/><rect x='196' y='120' width='22' height='7' rx='3' fill='%23F2A9C3' transform='rotate(-52 207 123)'/><rect x='34' y='168' width='22' height='7' rx='3' fill='%23A9D8EA' transform='rotate(40 45 171)'/><rect x='128' y='196' width='22' height='7' rx='3' fill='%23F6CE8C' transform='rotate(-18 139 199)'/><circle cx='120' cy='58' r='4' fill='%23F2A9C3'/><circle cx='60' cy='120' r='4' fill='%23F6CE8C'/><circle cx='188' cy='188' r='4' fill='%23A9D8EA'/><circle cx='222' cy='60' r='4' fill='%23A9D8EA'/></g></svg>");
+}
+::selection { background: var(--pink); color: var(--cocoa); }
+
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; }
+p { color: var(--cocoa-2); }
+strong { color: var(--cocoa); }
+
+:focus-visible {
+  outline: 3px solid var(--pink-deep);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+.puff {
+  background: var(--milk);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-out), var(--shadow-in);
+}
+.pearls {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.pearls rect, .pearls ellipse {
+  fill: none;
+  stroke: rgba(255,255,255,.95);
+  stroke-width: 6px;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 14;
+}
+.pearls rect {
+  x: 6px; y: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  rx: 90px;
+}
+
+.stamp {
+  position: absolute;
+  right: 22px;
+  bottom: 16px;
+  display: flex;
+  gap: 7px;
+}
+.stamp i {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: var(--well-in);
+}
+
+.flag {
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  display: flex;
+  align-items: flex-start;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+.flag .stick {
+  width: 5px;
+  height: 46px;
+  border-radius: 3px;
+  background: var(--wood);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.5), 0 2px 3px rgba(74,44,33,.18);
+  margin-top: 4px;
+}
+.flag .cloth {
+  margin-left: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 4px 24px 4px 13px;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.25);
+  -webkit-mask: radial-gradient(circle 9px at 100% 50%, transparent 8px, #000 9px);
+  mask: radial-gradient(circle 9px at 100% 50%, transparent 8px, #000 9px);
+}
+.flag-pink .cloth { background: var(--pink); }
+.flag-blue .cloth { background: var(--blue); }
+.flag-butter .cloth { background: var(--butter); }
+
+.tag-mini {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  padding: 6px 18px 6px 10px;
+  border-radius: 4px 9px 9px 4px;
+  background: var(--butter);
+  -webkit-mask: radial-gradient(circle 7px at 100% 50%, transparent 6px, #000 7px);
+  mask: radial-gradient(circle 7px at 100% 50%, transparent 6px, #000 7px);
+}
+
+.bite {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  padding: 7px 16px 7px 12px;
+  border-radius: 11px;
+  background: var(--pink);
+  transform: rotate(-3deg);
+  -webkit-mask: radial-gradient(circle 11px at calc(100% - 3px) 1px, transparent 10px, #000 11px);
+  mask: radial-gradient(circle 11px at calc(100% - 3px) 1px, transparent 10px, #000 11px);
+}
+.bite-wrap { position: relative; display: inline-flex; }
+.bite-wrap::after {
+  content: "";
+  position: absolute;
+  top: -6px; right: -7px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--pink-deep);
+  box-shadow: 7px 5px 0 -1px var(--pink-deep), -2px 9px 0 -1px var(--pink);
+}
+
+.squish {
+  transform-origin: 50% 100%;
+  transition: transform .45s var(--spring), box-shadow .45s var(--spring);
+}
+.squish:active:not(:disabled) {
+  transform: scale(1.07, .82) translateY(2px);
+  transition-duration: .07s;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--cocoa);
+  padding: 14px 30px;
+  border-radius: 999px;
+  background: var(--milk);
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+}
+.btn .lbl { position: relative; }
+.btn-primary { background: var(--pink); }
+.btn-butter { background: var(--butter); }
+.btn-ghost {
+  background: transparent;
+  box-shadow: none;
+  border: 3px solid var(--cocoa);
+  padding: 11px 27px;
+}
+.btn:disabled {
+  cursor: not-allowed;
+  background: #EFE4D3;
+  color: #AE9884;
+  box-shadow: inset 0 2px 4px rgba(93,53,37,.12);
+  transform: none;
+}
+.btn-round {
+  padding: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+}
+.btn-sm { font-size: 15px; padding: 10px 22px; }
+.btn-ghost.btn-sm { padding: 7px 19px; }
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--milk);
+  box-shadow: 0 10px 24px -16px rgba(74,44,33,.35);
+}
+.nav::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  height: 30px;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='30'><rect width='260' height='8' fill='%23FFFDF8'/><rect x='20' width='11' height='19' rx='5' fill='%23FFFDF8'/><rect x='66' width='9' height='12' rx='4' fill='%23FFFDF8'/><rect x='118' width='13' height='24' rx='6' fill='%23FFFDF8'/><rect x='178' width='9' height='15' rx='4' fill='%23FFFDF8'/><rect x='226' width='11' height='10' rx='5' fill='%23FFFDF8'/></svg>");
+  background-repeat: repeat-x;
+}
+.nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--cocoa);
+}
+.logo-word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: .5px;
+}
+.logo-word small {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--cap);
+  line-height: 1.1;
+}
+.nav-links {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--cocoa-2);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  transition: background .2s, color .2s;
+}
+.nav-links a:hover { background: var(--pink-soft); color: var(--cocoa); }
+
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+section { scroll-margin-top: 110px; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 44px;
+  align-items: center;
+  padding: 78px 0 64px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  margin-bottom: 20px;
+  transform: rotate(-2deg);
+}
+.hero h1 {
+  font-size: clamp(38px, 5.2vw, 62px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+}
+.hero h1 .dot { color: var(--pink-deep); }
+.hero p { max-width: 34em; margin-bottom: 14px; }
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.stage { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.plate {
+  position: relative;
+  width: min(470px, 100%);
+  height: 220px;
+  border-radius: 50%;
+  background: var(--milk);
+  box-shadow: var(--shadow-out), var(--shadow-in), inset 0 -18px 30px -22px rgba(93,53,37,.30);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 30px;
+  padding-bottom: 52px;
+}
+.plate .pearls ellipse {
+  cx: 50%; cy: 50%;
+  rx: calc(50% - 12px);
+  ry: calc(50% - 12px);
+  stroke: #F8DECD;
+  stroke-width: 7px;
+  stroke-dasharray: 0.1 18;
+}
+.mochi {
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.mochi .bun {
+  display: block;
+  border-radius: 46% 54% 52% 48% / 62% 58% 42% 38%;
+  box-shadow:
+    0 14px 20px -10px rgba(74,44,33,.35),
+    inset 0 6px 8px rgba(255,255,255,.75),
+    inset 0 -10px 16px -8px rgba(93,53,37,.30);
+  transform-origin: 50% 100%;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+.mochi:hover .bun { filter: brightness(1.03); }
+.mochi:focus-visible { outline-offset: 8px; border-radius: 40px; }
+.mochi-pink .bun { width: 118px; height: 92px; background: radial-gradient(90px 70px at 34% 24%, #FFE3EC 0 34%, var(--pink) 78%); }
+.mochi-blue .bun { width: 96px; height: 76px; background: radial-gradient(74px 58px at 34% 24%, #EAF7FD 0 34%, var(--blue) 78%); animation-delay: .7s; }
+.mochi-butter .bun { width: 108px; height: 84px; background: radial-gradient(84px 64px at 34% 24%, #FFF2D6 0 34%, var(--butter) 78%); animation-delay: 1.3s; }
+.mochi::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  bottom: -12px;
+  width: 80%;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(93,53,37,.16);
+  filter: blur(4px);
+}
+.mochi.deflated .bun { animation: deflate 2s var(--spring) forwards; }
+@keyframes breathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.035, .97); }
+}
+@keyframes deflate {
+  0% { transform: scale(1, 1); }
+  9% { transform: scale(1.32, .42) translateY(4px); }
+  30% { transform: scale(1.26, .48) translateY(3px); }
+  62% { transform: scale(.94, 1.1); }
+  80% { transform: scale(1.05, .95); }
+  100% { transform: scale(1, 1); }
+}
+.gasp {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.mochi.deflated .gasp { animation: gasp 1s ease-out; }
+@keyframes gasp {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(.4); box-shadow: -14px -6px 0 rgba(255,255,255,.7), 15px -9px 0 rgba(255,255,255,.6); }
+  25% { opacity: .95; }
+  100% { opacity: 0; transform: translate(-50%, -46px) scale(1.7); box-shadow: -26px -18px 0 rgba(255,255,255,0), 28px -22px 0 rgba(255,255,255,0); }
+}
+
+.steam {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 54px;
+  overflow: visible;
+  pointer-events: none;
+}
+.steam path {
+  fill: none;
+  stroke: #D9EDF7;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: rise 3.2s ease-in-out infinite;
+}
+.steam path + path { animation-delay: 1.6s; }
+.steam-warm path { stroke: #F4D8C2; }
+@keyframes rise {
+  0% { opacity: 0; transform: translateY(14px); }
+  35% { opacity: .9; }
+  100% { opacity: 0; transform: translateY(-16px); }
+}
+.stage-cap { font-size: 14px; color: var(--cap); }
+
+.trays {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 30px;
+}
+.tray {
+  position: relative;
+  background: var(--milk);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  padding: 40px 34px 46px;
+  margin-top: 26px;
+}
+.tray h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.tray .lede { font-size: 15px; margin-bottom: 26px; }
+.t-counter { grid-column: span 12; }
+.t-order { grid-column: span 7; }
+.t-fire { grid-column: span 5; }
+.t-menu { grid-column: span 7; }
+.t-service { grid-column: span 5; }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+
+.field { margin-bottom: 24px; }
+.field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+.field-help { font-size: 13px; color: var(--cap); margin-top: 7px; }
+.input {
+  width: 100%;
+  border: 2px solid var(--well-line);
+  border-radius: 18px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  color: var(--cocoa);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 13px 18px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.input::placeholder { color: var(--cap); font-weight: 500; }
+.input:focus {
+  outline: none;
+  border-color: var(--pink-deep);
+  background: var(--milk);
+  box-shadow: var(--well-in), 0 0 0 4px rgba(226,85,123,.22);
+}
+
+.choices { display: flex; flex-direction: column; gap: 12px; }
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 16px;
+  padding: 4px 6px;
+}
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 30px; height: 30px;
+  cursor: pointer;
+}
+.choice .price { margin-left: auto; font-family: var(--font-display); font-weight: 700; color: var(--berry); font-size: 15px; }
+.dot {
+  flex: none;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  display: grid;
+  place-items: center;
+}
+.dot::after {
+  content: "";
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--pink-deep);
+  transform: scale(0);
+  transition: transform .3s var(--spring);
+}
+.choice input:checked + .dot::after { transform: scale(1); animation: pop .35s var(--spring); }
+.choice input:focus-visible + .dot { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
+@keyframes pop {
+  0% { transform: scale(.2, .1); }
+  60% { transform: scale(1.3, 1.15); }
+  100% { transform: scale(1); }
+}
+.box {
+  flex: none;
+  width: 26px; height: 26px;
+  border-radius: 9px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  display: grid;
+  place-items: center;
+  transition: background .25s;
+}
+.box svg { width: 16px; height: 16px; overflow: visible; }
+.box path {
+  fill: none;
+  stroke: var(--cocoa);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transition: stroke-dashoffset .3s ease .05s;
+}
+.choice input:checked + .box { background: var(--pink); box-shadow: var(--shadow-out), inset 0 2px 0 rgba(255,255,255,.8); }
+.choice input:checked + .box path { stroke-dashoffset: 0; }
+.choice input:focus-visible + .box { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.switch input { position: absolute; opacity: 0; width: 56px; height: 34px; cursor: pointer; }
+.track {
+  flex: none;
+  width: 58px; height: 34px;
+  border-radius: 999px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  padding: 4px;
+  transition: background .3s;
+}
+.thumb {
+  display: block;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--milk);
+  box-shadow: 0 3px 6px -1px rgba(74,44,33,.35), inset 0 2px 0 rgba(255,255,255,.9);
+  transition: transform .4s var(--spring);
+}
+.switch input:checked + .track { background: var(--pink); }
+.switch input:checked + .track .thumb { transform: translateX(24px); }
+.switch:active .thumb { transform: scale(1.2, .85); }
+.switch:active input:checked + .track .thumb { transform: translateX(24px) scale(1.2, .85); }
+.switch input:focus-visible + .track { outline: 3px solid var(--pink-deep); outline-offset: 3px; }
+.warm-steam {
+  width: 24px; height: 30px;
+  opacity: 0;
+  transition: opacity .4s;
+  overflow: visible;
+}
+.warm-steam path {
+  fill: none;
+  stroke: var(--blue-deep);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.switch input:checked ~ .warm-steam { opacity: 1; }
+.switch input:checked ~ .warm-steam path { animation: rise 2.8s ease-in-out infinite; }
+.switch input:checked ~ .warm-steam path + path { animation-delay: 1.4s; }
+
+.dd { position: relative; }
+.dd-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--well-line);
+  border-radius: 18px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+  color: var(--cocoa);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+}
+.dd-btn .chev { margin-left: auto; transition: transform .35s var(--spring); }
+.dd.open .dd-btn { border-color: var(--pink-deep); box-shadow: var(--well-in), 0 0 0 4px rgba(226,85,123,.22); }
+.dd.open .chev { transform: rotate(180deg); }
+.dd-pop {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 12px);
+  left: 0; right: 0;
+  list-style: none;
+  background: var(--milk);
+  border-radius: 22px;
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(.94, .8);
+  transform-origin: 50% 0;
+  transition: opacity .18s ease, transform .35s var(--spring), visibility 0s .35s;
+}
+.dd.open .dd-pop { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.dd-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  color: var(--cocoa);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.dd-item:hover { background: var(--pink-soft); }
+.dd-item .mark { margin-left: auto; opacity: 0; }
+.dd-item[aria-selected="true"] { background: var(--pink); }
+.dd-item[aria-selected="true"] .mark { opacity: 1; }
+.dd-item small { color: var(--cap); font-size: 12px; }
+.dd-item[aria-selected="true"] small { color: var(--cocoa-2); }
+
+.fire-block { margin-bottom: 30px; }
+.fire-block:last-child { margin-bottom: 0; }
+.fire-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.fire-head h3 { font-size: 17px; font-weight: 700; }
+.fire-head output, .fire-head .read {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--cocoa-2);
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--pink) 0 var(--pct, 65%), var(--well) var(--pct, 65%) 100%);
+  box-shadow: var(--well-in);
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track { height: 16px; border-radius: 999px; background: transparent; }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px; height: 30px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: radial-gradient(22px 18px at 34% 26%, #FFFDF8 0 40%, #FBE9EE 90%);
+  box-shadow: 0 4px 8px -2px rgba(74,44,33,.4), inset 0 -3px 5px -2px rgba(93,53,37,.25);
+  transition: transform .3s var(--spring);
+}
+input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.18, .88); }
+input[type="range"]:focus-visible { outline: 3px solid var(--pink-deep); outline-offset: 5px; }
+
+.gauge-wrap { position: relative; width: min(240px, 100%); margin: 4px auto 0; }
+.gauge-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+.gauge-track { fill: none; stroke: var(--well); stroke-width: 15px; stroke-linecap: round; }
+.gauge-val {
+  fill: none;
+  stroke: var(--pink);
+  stroke-width: 15px;
+  stroke-linecap: round;
+  transition: stroke-dasharray .5s var(--spring);
+}
+.gauge-read {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 4px;
+  text-align: center;
+}
+.gauge-read b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.1;
+}
+.gauge-read span { font-size: 13px; color: var(--cocoa-2); font-weight: 600; }
+
+.prog-row { display: flex; align-items: center; gap: 12px; }
+.prog {
+  position: relative;
+  flex: 1;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+}
+.prog-fill {
+  position: absolute;
+  inset: 3px auto 3px 3px;
+  width: 40%;
+  min-width: 14px;
+  border-radius: 999px;
+  background-color: var(--pink);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='22'><g fill-opacity='0.6'><rect x='8' y='6' width='13' height='5' rx='2' fill='%23FFFDF8' transform='rotate(24 14 8)'/><rect x='40' y='10' width='13' height='5' rx='2' fill='%23D14E77' transform='rotate(-28 46 12)'/><rect x='66' y='5' width='13' height='5' rx='2' fill='%23FFFDF8' transform='rotate(50 72 7)'/></g></svg>");
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.55), inset 0 -3px 5px -2px rgba(93,53,37,.3);
+  transition: width .3s ease;
+}
+.prog-steam { flex: none; width: 30px; height: 40px; overflow: visible; }
+.prog-steam path {
+  fill: none;
+  stroke: var(--blue-deep);
+  stroke-width: 5px;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: rise 3s ease-in-out infinite;
+}
+.prog-steam path + path { animation-delay: 1.5s; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.tab {
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cocoa-2);
+  padding: 11px 24px;
+  border-radius: 999px;
+  background: var(--well);
+  box-shadow: var(--well-in);
+}
+.tab[aria-selected="true"] {
+  color: var(--cocoa);
+  background: var(--pink);
+  box-shadow: var(--shadow-out), inset 0 2px 0 rgba(255,255,255,.8), inset 0 -6px 10px -6px rgba(93,53,37,.25);
+}
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--pink-deep);
+  transform: translateX(-50%);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  border-radius: 20px;
+  background: var(--cream);
+  box-shadow: var(--well-in);
+  margin-bottom: 12px;
+}
+.menu-item:last-child { margin-bottom: 0; }
+.menu-item b { font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.menu-item .note { font-size: 13px; color: var(--cap); }
+.menu-item .price {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--berry);
+  white-space: nowrap;
+}
+
+.serve-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.serve-block:last-child { margin-bottom: 0; }
+.serve-block p { font-size: 14px; flex: 1; min-width: 0; }
+
+.tip { position: relative; display: inline-flex; }
+.tipbtn {
+  border: 0;
+  cursor: pointer;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--cocoa);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.3), inset 0 2px 0 rgba(255,255,255,.7);
+}
+.tipbubble {
+  position: absolute;
+  z-index: 35;
+  bottom: calc(100% + 20px);
+  left: 50%;
+  transform: translate(-50%, 6px) scale(.9, .7);
+  transform-origin: 50% 100%;
+  width: max-content;
+  max-width: 230px;
+  background: var(--milk);
+  border-radius: 18px;
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  color: var(--cocoa-2);
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 12px 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .35s var(--spring), visibility 0s .35s;
+  pointer-events: none;
+}
+.tipbubble::before, .tipbubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  background: var(--milk);
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.25);
+}
+.tipbubble::before { bottom: -8px; width: 12px; height: 12px; margin-left: -6px; }
+.tipbubble::after { bottom: -17px; width: 7px; height: 7px; margin-left: -4px; }
+.tip:hover .tipbubble, .tip:focus-within .tipbubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+  transition-delay: 0s;
+}
+.tip.tip-off .tipbubble { opacity: 0; visibility: hidden; transform: translate(-50%, 6px) scale(.9, .7); }
+.term {
+  border: 0;
+  background: transparent;
+  cursor: help;
+  color: var(--cocoa);
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--font-body);
+  padding: 2px 2px 4px;
+  border-bottom: 3px dotted var(--pink-deep);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(74,44,33,.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility 0s .22s;
+}
+.overlay.show { opacity: 1; visibility: visible; transition-delay: 0s; }
+.modal {
+  position: relative;
+  width: min(430px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  background: var(--milk);
+  border-radius: 28px;
+  box-shadow: 0 30px 60px -20px rgba(46,24,15,.5), var(--shadow-in);
+  transform: scale(.8, .6) translateY(24px);
+  transition: transform .45s var(--spring);
+}
+.overlay.show .modal { transform: none; }
+.modal .pearls rect { rx: 24px; x: 7px; y: 7px; width: calc(100% - 14px); height: calc(100% - 14px); stroke-width: 5px; stroke-dasharray: 0.1 13; }
+.modal-head {
+  position: relative;
+  background: var(--pink);
+  border-radius: 24px 24px 0 0;
+  padding: 24px 28px 20px;
+}
+.modal-head::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 10px; right: 10px;
+  height: 30px;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='30'><rect width='260' height='8' fill='%23FFA7C1'/><rect x='20' width='11' height='19' rx='5' fill='%23FFA7C1'/><rect x='66' width='9' height='12' rx='4' fill='%23FFA7C1'/><rect x='118' width='13' height='24' rx='6' fill='%23FFA7C1'/><rect x='178' width='9' height='15' rx='4' fill='%23FFA7C1'/><rect x='226' width='11' height='10' rx='5' fill='%23FFA7C1'/></svg>");
+  background-repeat: repeat-x;
+}
+.modal-head h3 { font-size: 21px; font-weight: 800; }
+.modal-head p { color: var(--cocoa); opacity: .8; font-size: 13px; }
+.modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 36px; height: 36px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--milk);
+  color: var(--cocoa);
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 3px 6px -2px rgba(74,44,33,.35), inset 0 2px 0 rgba(255,255,255,.9);
+  display: grid;
+  place-items: center;
+}
+.modal-body { padding: 40px 28px 24px; }
+.sum { list-style: none; margin-bottom: 18px; }
+.sum li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.sum li:nth-child(odd) { background: var(--cream); box-shadow: var(--well-in); }
+.sum .k { flex: none; color: var(--cap); font-size: 13px; }
+.sum .v { color: var(--cocoa); }
+.modal-note { font-size: 13px; color: var(--cap); }
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 6px 28px 26px;
+}
+
+.toasts {
+  position: fixed;
+  z-index: 120;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: min(360px, calc(100vw - 36px));
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--milk);
+  border-radius: 999px;
+  box-shadow: var(--shadow-out), var(--shadow-in);
+  padding: 11px 12px 11px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  animation: toast-in .5s var(--spring);
+}
+.toast.bye { animation: toast-out .24s ease forwards; }
+.toast .puffdot {
+  flex: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.7), 0 2px 4px -1px rgba(74,44,33,.3);
+}
+.toast .puffdot svg { width: 16px; height: 16px; overflow: visible; }
+.toast .puffdot path { fill: none; stroke: var(--cocoa); stroke-width: 3px; stroke-linecap: round; }
+.toast-pink .puffdot { background: var(--pink); }
+.toast-blue .puffdot { background: var(--blue); }
+.toast-butter .puffdot { background: var(--butter); }
+.toast-x {
+  flex: none;
+  margin-left: 4px;
+  border: 0;
+  cursor: pointer;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: var(--well-in);
+  color: var(--cocoa-2);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+@keyframes toast-in {
+  0% { opacity: 0; transform: translateY(-16px) scale(.8, .5); }
+  60% { opacity: 1; transform: translateY(2px) scale(1.03, 1.08); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes toast-out {
+  to { opacity: 0; transform: translateY(-8px) scale(.9, .7); }
+}
+
+footer {
+  position: relative;
+  max-width: 1180px;
+  margin: 26px auto 0;
+  padding: 30px 24px 46px;
+  text-align: center;
+}
+footer .close-line { font-weight: 600; color: var(--cocoa-2); }
+footer .fine { font-size: 13px; color: var(--cap); margin-top: 8px; }
+footer .stamp { position: static; justify-content: center; margin-bottom: 14px; }
+
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; gap: 34px; padding: 56px 0 48px; }
+  .t-order, .t-fire, .t-menu, .t-service { grid-column: span 12; }
+}
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  main { padding: 0 16px 32px; }
+  .tray { padding: 34px 22px 44px; }
+  .trays { gap: 26px; }
+  .plate { gap: 16px; height: 190px; padding-bottom: 44px; }
+  .mochi-pink .bun { width: 96px; height: 76px; }
+  .mochi-blue .bun { width: 78px; height: 62px; }
+  .mochi-butter .bun { width: 88px; height: 70px; }
+  .toasts { right: 12px; left: 12px; max-width: none; align-items: stretch; }
+  .serve-block { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top" aria-label="MOCHIYA, back to top">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <ellipse cx="20" cy="24" rx="16" ry="12" fill="#FFA7C1"/>
+        <ellipse cx="20" cy="21" rx="16" ry="11" fill="#FFD9E4"/>
+        <ellipse cx="14" cy="18" rx="6" ry="4" fill="#FFFDF8" opacity=".9"/>
+        <circle cx="27" cy="12" r="3" fill="#BEE4F2"/>
+        <circle cx="32" cy="7" r="2" fill="#BEE4F2"/>
+      </svg>
+      <span class="logo-word">Mochiya<small>SWEET SHOP</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Counter navigation">
+      <a href="#counter">Button case</a>
+      <a href="#order">Order counter</a>
+      <a href="#fire">Steam room</a>
+      <a href="#menu">Tea menu</a>
+    </nav>
+    <button class="btn btn-sm squish" data-open-modal type="button" style="margin-left:auto"><span class="lbl">Box it to go</span></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="hero-eyebrow tag-mini">Steamed today · sold straight off the tray</span>
+      <h1>Soft is how you<br>know we meant it<span class="dot">.</span></h1>
+      <p><strong>Mochiya</strong> makes interfaces the way it makes sweets: every button is piped fresh, gives up a breath when you press it, and puffs itself back out when you let go.</p>
+      <p>A cream-white counter, macaron sugar colours, cocoa-brown lettering. Sweet, but measured — this is a confectioner, not a nursery.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary squish" data-goto="#counter" type="button">
+          <svg class="pearls" aria-hidden="true"><rect/></svg>
+          <span class="lbl">Come in and taste</span>
+        </button>
+        <button class="btn btn-ghost squish" data-goto="#menu" type="button"><span class="lbl">Read the tea menu</span></button>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="plate">
+        <svg class="pearls" aria-hidden="true"><ellipse/></svg>
+        <button class="mochi mochi-pink squish" type="button" aria-label="Poke the strawberry mochi">
+          <svg class="steam" viewBox="0 0 34 54" aria-hidden="true">
+            <path d="M12 50 C 4 40, 20 32, 12 20 C 6 11, 15 6, 12 0"/>
+            <path d="M24 52 C 18 44, 30 36, 23 26 C 18 18, 26 12, 23 6"/>
+          </svg>
+          <span class="bun"></span><span class="gasp"></span>
+        </button>
+        <button class="mochi mochi-blue squish" type="button" aria-label="Poke the sea-salt soda mochi">
+          <svg class="steam" viewBox="0 0 34 54" aria-hidden="true">
+            <path d="M14 50 C 6 40, 22 32, 14 20 C 8 11, 17 6, 14 0"/>
+          </svg>
+          <span class="bun"></span><span class="gasp"></span>
+        </button>
+        <button class="mochi mochi-butter squish" type="button" aria-label="Poke the honey butter mochi">
+          <svg class="steam steam-warm" viewBox="0 0 34 54" aria-hidden="true">
+            <path d="M10 52 C 3 43, 18 35, 10 24 C 5 15, 13 9, 10 3"/>
+            <path d="M23 50 C 17 42, 29 34, 22 24 C 17 16, 25 10, 22 4"/>
+          </svg>
+          <span class="bun"></span><span class="gasp"></span>
+        </button>
+      </div>
+      <p class="stage-cap">Three straight off the tray. Poke one and it lets out a breath.</p>
+    </div>
+  </section>
+
+  <div class="trays">
+    <section class="tray t-counter" id="counter" aria-labelledby="h-counter">
+      <span class="flag flag-pink" aria-hidden="true"><i class="stick"></i><span class="cloth">Button case</span></span>
+      <h2 id="h-counter">Plump little pills, piped to order</h2>
+      <p class="lede">Hold any one of them down: the breath it gives up is real, and it comes back on its own when you release. The piped-outline one is the house special.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary squish" data-toast="One order noted — made and steamed to order.|pink" type="button">
+          <svg class="pearls" aria-hidden="true"><rect/></svg>
+          <span class="lbl">One please</span>
+        </button>
+        <button class="btn btn-butter squish" data-toast="Saved for later — come by whenever.|butter" type="button"><span class="lbl">Save it</span></button>
+        <button class="btn squish" data-toast="Ingredients: glutinous rice, fresh cream, fruit in season.|blue" type="button"><span class="lbl">Ingredients</span></button>
+        <button class="btn btn-ghost squish" data-toast="The owner is on the way — one moment.|butter" type="button"><span class="lbl">Ask the owner</span></button>
+        <button class="btn" type="button" disabled><span class="lbl">Gone cold</span></button>
+        <button class="btn btn-round squish" data-toast="The bell rang — the owner is coming.|blue" type="button" aria-label="Ring for the owner">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+            <path d="M11 2 C 6 2, 4 6, 4 10 C 4 13, 3 14, 2.5 15 C 2 16, 3 17, 4 17 L 18 17 C 19 17, 20 16, 19.5 15 C 19 14, 18 13, 18 10 C 18 6, 16 2, 11 2 Z" fill="none" stroke="#4A2C21" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="11" cy="20" r="2" fill="#4A2C21"/>
+          </svg>
+        </button>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-order" id="order" aria-labelledby="h-order">
+      <span class="flag flag-blue" aria-hidden="true"><i class="stick"></i><span class="cloth">Order counter</span></span>
+      <h2 id="h-order">Order counter</h2>
+      <p class="lede">Fill this in and “Box it to go” in the top right packs exactly what you asked for.</p>
+
+      <div class="field">
+        <label class="field-label" for="buyer">What shall we call you</label>
+        <input class="input" id="buyer" type="text" placeholder="For example: Jo, who likes soy milk" autocomplete="off">
+        <p class="field-help">Written on the box label and read out when your order is up.</p>
+      </div>
+
+      <div class="field" role="radiogroup" aria-labelledby="lb-flavor">
+        <span class="field-label" id="lb-flavor">Today’s flavour (pick one)</span>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="flavor" value="strawberry-daifuku" checked><span class="dot"></span>Strawberry daifuku<span class="price">¥16</span></label>
+          <label class="choice"><input type="radio" name="flavor" value="sea-salt-cocoa-dango"><span class="dot"></span>Sea-salt cocoa dango<span class="price">¥14</span></label>
+          <label class="choice"><input type="radio" name="flavor" value="yuzu-honey-mochi"><span class="dot"></span>Yuzu honey mochi<span class="price">¥15</span></label>
+        </div>
+      </div>
+
+      <div class="field" aria-labelledby="lb-extra">
+        <span class="field-label" id="lb-extra">Add-ons (tick as you like)</span>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="extra" value="Sugar strands" checked><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11 L9 16 L18 6"/></svg></span>Sugar strands<span class="price">+¥1</span></label>
+          <label class="choice"><input type="checkbox" name="extra" value="Extra roasted flour"><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11 L9 16 L18 6"/></svg></span>Extra roasted flour<span class="price">free</span></label>
+          <label class="choice"><input type="checkbox" name="extra" value="Soy-milk dipping sauce"><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11 L9 16 L18 6"/></svg></span>Soy-milk dipping sauce<span class="price">+¥3</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label" id="lb-tea">Tea with it</span>
+        <div class="dd" id="dd-tea">
+          <button class="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lb-tea dd-tea-val">
+            <span id="dd-tea-val">Hojicha (warm)</span>
+            <svg class="chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="dd-pop" role="listbox" aria-labelledby="lb-tea">
+            <li><button class="dd-item" type="button" role="option" aria-selected="true">Hojicha (warm)<small>cuts the sweetness, right for daifuku</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+            <li><button class="dd-item" type="button" role="option" aria-selected="false">Osmanthus oolong<small>fragrant without taking over</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+            <li><button class="dd-item" type="button" role="option" aria-selected="false">Fresh soy milk<small>same family as the mochi</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+            <li><button class="dd-item" type="button" role="option" aria-selected="false">Sparkling yuzu<small>iced, hot days only</small><svg class="mark" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7 L6 11 L12 3" fill="none" stroke="#4A2C21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+          </ul>
+        </div>
+        <p class="field-help">The tea list is piped fresh too. Esc puts it away.</p>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label class="switch">
+          <input type="checkbox" role="switch" id="warm" checked>
+          <span class="track"><span class="thumb"></span></span>
+          Keep warm over a low flame until pickup
+          <svg class="warm-steam" viewBox="0 0 24 30" aria-hidden="true">
+            <path d="M8 28 C 3 22, 13 17, 8 11 C 4 6, 10 3, 8 0"/>
+            <path d="M17 29 C 13 24, 21 19, 16 13 C 12 8, 18 5, 16 2"/>
+          </svg>
+        </label>
+        <p class="field-help">On, and the steam keeps curling; off, and we save the flame.</p>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-fire" id="fire" aria-labelledby="h-fire">
+      <span class="flag flag-butter" aria-hidden="true"><i class="stick"></i><span class="cloth">Steam room</span></span>
+      <h2 id="h-fire">Steam room</h2>
+      <p class="lede">You set the sweetness. We watch the flame.</p>
+
+      <div class="fire-block">
+        <div class="fire-head">
+          <h3><label for="sweet">Sweetness</label></h3>
+          <output id="sweet-out" for="sweet">6.5g · mostly sweet</output>
+        </div>
+        <input type="range" id="sweet" min="0" max="10" step="0.5" value="6.5" aria-label="Sweetness, grams of sugar per hundred millilitres">
+      </div>
+
+      <div class="fire-block">
+        <div class="fire-head">
+          <h3 id="lb-gauge">Sugar dial</h3>
+          <span class="tip">
+            <button class="tipbtn" type="button" aria-describedby="tip-sugar" aria-label="How to read the sugar dial">?</button>
+            <span class="tipbubble" role="tooltip" id="tip-sugar">Read as sugar content: full sweet = 10g per 100ml. Below half, the owner stands you an extra cup of hojicha.</span>
+          </span>
+        </div>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 240 140" role="img" aria-labelledby="lb-gauge">
+            <path class="gauge-track" d="M 25 125 A 95 95 0 0 1 215 125"/>
+            <path class="gauge-val" id="gauge-arc" d="M 25 125 A 95 95 0 0 1 215 125"/>
+            <circle cx="25" cy="125" r="5" fill="#E2557B"/>
+            <circle cx="215" cy="125" r="5" fill="#EADAC4"/>
+          </svg>
+          <div class="gauge-read"><b id="gauge-num">6.5g</b><span id="gauge-word">mostly sweet, one sip of aftertaste</span></div>
+        </div>
+      </div>
+
+      <div class="fire-block">
+        <div class="fire-head">
+          <h3 id="lb-prog">Steamer</h3>
+          <span class="read" id="prog-read">Basket 3 · steam rising 40%</span>
+        </div>
+        <div class="prog-row">
+          <div class="prog" role="progressbar" id="prog" aria-labelledby="lb-prog" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
+            <span class="prog-fill" id="prog-fill"></span>
+          </div>
+          <svg class="prog-steam" viewBox="0 0 30 40" aria-hidden="true">
+            <path d="M10 38 C 4 31, 16 25, 10 17 C 5 10, 12 6, 10 1"/>
+            <path d="M21 39 C 16 33, 26 27, 20 19 C 15 12, 22 8, 20 3"/>
+          </svg>
+        </div>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-menu" id="menu" aria-labelledby="h-menu">
+      <span class="flag flag-pink" aria-hidden="true"><i class="stick"></i><span class="cloth">Tea menu</span></span>
+      <h2 id="h-menu">Tea menu</h2>
+      <p class="lede">Three trays steam in rotation. Flick the tabs to see each one.</p>
+
+      <div class="tabs" role="tablist" aria-label="Tea menu sections">
+        <button class="tab squish" role="tab" id="tab-dango" aria-controls="panel-dango" aria-selected="true" type="button">Dango</button>
+        <button class="tab squish" role="tab" id="tab-daifuku" aria-controls="panel-daifuku" aria-selected="false" tabindex="-1" type="button">Daifuku</button>
+        <button class="tab squish" role="tab" id="tab-dorayaki" aria-controls="panel-dorayaki" aria-selected="false" tabindex="-1" type="button">Dorayaki</button>
+      </div>
+
+      <div role="tabpanel" id="panel-dango" aria-labelledby="tab-dango" tabindex="0">
+        <div class="menu-item"><div><b>Hanami tricolour dango</b><div class="note">pink, white and matcha; the skewer has a rounded tip</div></div><span class="price">¥12</span></div>
+        <div class="menu-item"><div><b>Sea-salt cocoa dango</b><div class="note">deep cocoa brown — the same colour as the type on this page</div></div><span class="price">¥14</span></div>
+        <div class="menu-item"><div><b>Grilled soy-glaze dango</b><div class="note">savoury, to cut the two before it</div></div><span class="price">¥13</span></div>
+      </div>
+      <div role="tabpanel" id="panel-daifuku" aria-labelledby="tab-daifuku" tabindex="0" hidden>
+        <div class="menu-item"><div><b>Strawberry daifuku <span class="tag-mini">house special</span></b><div class="note">a whole berry, in skin pounded that morning</div></div><span class="price">¥16</span></div>
+        <div class="menu-item"><div><b>Yuzu honey daifuku</b><div class="note">the butter-coloured one, faintly tart</div></div><span class="price">¥15</span></div>
+        <div class="menu-item"><div><b>Coconut milk-pudding daifuku</b><div class="note">from the cold case; it reaches your hand chilled</div></div><span class="price">¥17</span></div>
+      </div>
+      <div role="tabpanel" id="panel-dorayaki" aria-labelledby="tab-dorayaki" tabindex="0" hidden>
+        <div class="menu-item"><div><b>Caramel cream dorayaki <span class="bite-wrap"><span class="bite">new</span></span></b><div class="note">someone took a bite out of the corner tag; find them and it is on you</div></div><span class="price">¥18</span></div>
+        <div class="menu-item"><div><b>Red bean and butter dorayaki</b><div class="note">eat it warm and the butter melts into the bean paste</div></div><span class="price">¥15</span></div>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+
+    <section class="tray t-service" id="service" aria-labelledby="h-service">
+      <span class="flag flag-blue" aria-hidden="true"><i class="stick"></i><span class="cloth">Greeting guests</span></span>
+      <h2 id="h-service">Greeting guests</h2>
+      <p class="lede">A dialog, a receipt, a word in your ear — three ways the shop says hello.</p>
+
+      <div class="serve-block">
+        <button class="btn btn-primary squish" data-open-modal type="button">
+          <svg class="pearls" aria-hidden="true"><rect/></svg>
+          <span class="lbl">Box it to go</span>
+        </button>
+        <p>Packs exactly what the order counter says, then reads it back to you.</p>
+      </div>
+
+      <div class="serve-block">
+        <button class="btn squish" data-toast="Welcome in — today’s first basket has just come up to steam.|blue" type="button"><span class="lbl">Say hello</span></button>
+        <p>The receipt drifts in from the top right and cools faster than the mochi.</p>
+      </div>
+
+      <div class="serve-block">
+        <span class="tip">
+          <button class="term" type="button" aria-describedby="tip-skin">Is the mochi skin pounded fresh daily?</button>
+          <span class="tipbubble" role="tooltip" id="tip-skin">Yes. The rice is steamed and pounded the same day and goes hard overnight — which is why every daifuku is half price for the last hour.</span>
+        </span>
+        <p>Rest on the dotted line and the whisper curls up to meet you.</p>
+      </div>
+      <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span class="stamp" aria-hidden="true"><i></i><i></i><i></i></span>
+  <p class="close-line">The last basket comes off at 21:00. Nothing stays overnight.</p>
+  <p class="fine">MOCHI · Proteus visual direction study — every corner on this page was rounded by hand, and there is not one sharp angle left.</p>
+</footer>
+
+<div class="overlay" id="overlay" role="presentation">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <svg class="pearls" aria-hidden="true"><rect/></svg>
+    <div class="modal-head">
+      <h3 id="modal-title">Box it to go</h3>
+      <p>Packed exactly as the counter says</p>
+      <button class="modal-close squish" id="modal-x" type="button" aria-label="Close the box">✕</button>
+    </div>
+    <div class="modal-body">
+      <ul class="sum">
+        <li><span class="k">Label</span><span class="v" id="sum-name">this guest</span></li>
+        <li><span class="k">Flavour</span><span class="v" id="sum-flavor">Strawberry daifuku</span></li>
+        <li><span class="k">Add-ons</span><span class="v" id="sum-extra">Sugar strands</span></li>
+        <li><span class="k">Tea</span><span class="v" id="sum-tea">Hojicha (warm)</span></li>
+        <li><span class="k">Sweetness</span><span class="v" id="sum-sweet">6.5g · mostly sweet</span></li>
+        <li><span class="k">Warming</span><span class="v" id="sum-warm">low flame, steam curling</span></li>
+      </ul>
+      <p class="modal-note">Best within two hours of leaving the tray. Do not keep it wrapped too long.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn squish" id="modal-back" type="button"><span class="lbl">Think again</span></button>
+      <button class="btn btn-primary squish" id="modal-ok" type="button">
+        <svg class="pearls" aria-hidden="true"><rect/></svg>
+        <span class="lbl">Pack it up</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  $$('.mochi').forEach(function (m) {
+    m.addEventListener('click', function () {
+      if (m.classList.contains('deflated')) return;
+      m.classList.add('deflated');
+      var bun = $('.bun', m);
+      bun.addEventListener('animationend', function h(e) {
+        if (e.animationName !== 'deflate') return;
+        bun.removeEventListener('animationend', h);
+        m.classList.remove('deflated');
+      });
+    });
+  });
+
+  $$('[data-goto]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = $(b.getAttribute('data-goto'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  var toasts = $('#toasts');
+  var icons = {
+    pink: 'M3 8 C 3 4, 13 4, 13 8 M2 11 L14 11',
+    blue: 'M8 2 C 4 6, 12 8, 8 14',
+    butter: 'M3 13 L8 3 L13 13 Z'
+  };
+  function toast(msg, tone) {
+    tone = tone || 'pink';
+    if (toasts.children.length >= 4) dismiss(toasts.firstElementChild);
+    var t = document.createElement('div');
+    t.className = 'toast toast-' + tone;
+    t.setAttribute('role', 'status');
+    t.innerHTML = '<span class="puffdot"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="' + icons[tone] + '"/></svg></span>' +
+      '<span class="msg"></span>' +
+      '<button class="toast-x" type="button" aria-label="Dismiss the receipt">✕</button>';
+    $('.msg', t).textContent = msg;
+    $('.toast-x', t).addEventListener('click', function () { dismiss(t); });
+    toasts.appendChild(t);
+    t._timer = setTimeout(function () { dismiss(t); }, 3800);
+  }
+  function dismiss(t) {
+    if (!t || t.classList.contains('bye')) return;
+    clearTimeout(t._timer);
+    t.classList.add('bye');
+    setTimeout(function () { t.remove(); }, 240);
+  }
+  $$('[data-toast]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var p = b.getAttribute('data-toast').split('|');
+      toast(p[0], p[1]);
+    });
+  });
+
+  var dd = $('#dd-tea');
+  var ddBtn = $('.dd-btn', dd);
+  var ddVal = $('#dd-tea-val');
+  var ddItems = $$('.dd-item', dd);
+  var teaPick = 'Hojicha (warm)';
+  function ddOpen() {
+    dd.classList.add('open');
+    ddBtn.setAttribute('aria-expanded', 'true');
+    var sel = $('.dd-item[aria-selected="true"]', dd) || ddItems[0];
+    sel.focus();
+  }
+  function ddClose(refocus) {
+    if (!dd.classList.contains('open')) return;
+    dd.classList.remove('open');
+    ddBtn.setAttribute('aria-expanded', 'false');
+    if (refocus) ddBtn.focus();
+  }
+  ddBtn.addEventListener('click', function () {
+    dd.classList.contains('open') ? ddClose(true) : ddOpen();
+  });
+  ddItems.forEach(function (it, i) {
+    it.addEventListener('click', function () {
+      ddItems.forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+      it.setAttribute('aria-selected', 'true');
+      teaPick = it.childNodes[0].textContent;
+      ddVal.textContent = teaPick;
+      ddClose(true);
+    });
+    it.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); (ddItems[i + 1] || ddItems[0]).focus(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); (ddItems[i - 1] || ddItems[ddItems.length - 1]).focus(); }
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!dd.contains(e.target)) ddClose(false);
+  });
+
+  var sweet = $('#sweet');
+  var sweetOut = $('#sweet-out');
+  var arc = $('#gauge-arc');
+  var ARC_LEN = Math.PI * 95;
+  function sweetWord(v) {
+    if (v <= 0.5) return 'barely sweet';
+    if (v <= 2.5) return 'lightly sweet';
+    if (v <= 5) return 'half sweet';
+    if (v <= 7.5) return 'mostly sweet';
+    return 'full sweet';
+  }
+  var gaugeGloss = {
+    'barely sweet': 'barely sweet, only the rice comes through', 'lightly sweet': 'lightly sweet, there and not there', 'half sweet': 'half sweet, the owner’s pick',
+    'mostly sweet': 'mostly sweet, one sip of aftertaste', 'full sweet': 'full sweet, perfect with hojicha'
+  };
+  function renderSweet() {
+    var v = parseFloat(sweet.value);
+    var w = sweetWord(v);
+    sweet.style.setProperty('--pct', (v * 10) + '%');
+    sweetOut.textContent = v.toFixed(1) + 'g · ' + w;
+    arc.style.strokeDasharray = (ARC_LEN * v / 10) + ' ' + ARC_LEN;
+    $('#gauge-num').textContent = v.toFixed(1) + 'g';
+    $('#gauge-word').textContent = gaugeGloss[w];
+  }
+  sweet.addEventListener('input', renderSweet);
+  renderSweet();
+
+  var prog = $('#prog');
+  var fill = $('#prog-fill');
+  var read = $('#prog-read');
+  var basket = 3, pct = 40;
+  function progWord(p) {
+    if (p < 25) return 'cold water on the heat';
+    if (p < 60) return 'steam rising';
+    if (p < 100) return 'full steam';
+    return 'off the tray';
+  }
+  setInterval(function () {
+    pct += 0.6;
+    if (pct >= 112) { basket += 1; pct = 0; }
+    var p = Math.min(100, Math.round(pct));
+    fill.style.width = 'calc(' + p + '% - 6px)';
+    prog.setAttribute('aria-valuenow', p);
+    read.textContent = 'Basket ' + basket + ' · ' + progWord(p) + ' ' + p + '%';
+  }, 130);
+
+  var tabs = $$('.tab');
+  function pickTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      $('#' + t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pickTab(t); });
+    t.addEventListener('keydown', function (e) {
+      var j = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (j === null) return;
+      e.preventDefault();
+      var n = tabs[(j + tabs.length) % tabs.length];
+      pickTab(n);
+      n.focus();
+    });
+  });
+
+  var overlay = $('#overlay');
+  var modal = $('.modal', overlay);
+  var lastFocus = null;
+  function openModal() {
+    lastFocus = document.activeElement;
+    var name = $('#buyer').value.trim();
+    $('#sum-name').textContent = name || 'this guest';
+    $('#sum-flavor').textContent = $('input[name="flavor"]:checked').value;
+    var extras = $$('input[name="extra"]:checked').map(function (c) { return c.value; });
+    $('#sum-extra').textContent = extras.length ? extras.join(', ') : 'nothing added';
+    $('#sum-tea').textContent = teaPick;
+    $('#sum-sweet').textContent = parseFloat(sweet.value).toFixed(1) + 'g · ' + sweetWord(parseFloat(sweet.value));
+    $('#sum-warm').textContent = $('#warm').checked ? 'low flame, steam curling' : 'no need, eating right away';
+    overlay.classList.add('show');
+    $('#modal-x').focus();
+  }
+  function closeModal() {
+    overlay.classList.remove('show');
+    if (lastFocus) lastFocus.focus();
+  }
+  $$('[data-open-modal]').forEach(function (b) { b.addEventListener('click', openModal); });
+  $('#modal-x').addEventListener('click', closeModal);
+  $('#modal-back').addEventListener('click', closeModal);
+  $('#modal-ok').addEventListener('click', function () {
+    closeModal();
+    toast('Packed. Hold on to your receipt.', 'pink');
+  });
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+  overlay.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var f = $$('button, input, [href]', modal).filter(function (el) { return !el.disabled; });
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (overlay.classList.contains('show')) { closeModal(); return; }
+    ddClose(true);
+    $$('.tip').forEach(function (tip) {
+      if (tip.matches(':hover, :focus-within')) {
+        tip.classList.add('tip-off');
+        if (document.activeElement && tip.contains(document.activeElement)) document.activeElement.blur();
+      }
+    });
+  });
+  $$('.tip').forEach(function (tip) {
+    tip.addEventListener('mouseleave', function () { tip.classList.remove('tip-off'); });
+    tip.addEventListener('focusin', function () { tip.classList.remove('tip-off'); });
+  });
+})();
+</script>
+</body>
+</html>

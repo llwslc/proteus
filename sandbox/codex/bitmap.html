@@ -1,0 +1,3191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#000000">
+  <title>BITMAP // DITHER DESK 1.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fffdf2;
+      --ink: #000000;
+      --content: 1180px;
+      --step-cut: polygon(
+        2px 0,
+        calc(100% - 2px) 0,
+        calc(100% - 2px) 1px,
+        calc(100% - 1px) 1px,
+        calc(100% - 1px) 2px,
+        100% 2px,
+        100% calc(100% - 2px),
+        calc(100% - 1px) calc(100% - 2px),
+        calc(100% - 1px) calc(100% - 1px),
+        calc(100% - 2px) calc(100% - 1px),
+        calc(100% - 2px) 100%,
+        2px 100%,
+        2px calc(100% - 1px),
+        1px calc(100% - 1px),
+        1px calc(100% - 2px),
+        0 calc(100% - 2px),
+        0 2px,
+        1px 2px,
+        1px 1px,
+        2px 1px
+      );
+      --checker:
+        repeating-conic-gradient(
+          from 0deg,
+          var(--ink) 0 25%,
+          var(--paper) 0 50%
+        ) 0 0 / 4px 4px;
+      --stripes:
+        repeating-linear-gradient(
+          135deg,
+          var(--ink) 0 2px,
+          var(--paper) 2px 4px
+        );
+      --dots:
+        radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 4px 4px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-color: var(--ink) var(--paper);
+      scrollbar-width: auto;
+    }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(var(--ink) 1px, transparent 1px),
+        linear-gradient(90deg, var(--ink) 1px, transparent 1px);
+      background-size: 32px 32px;
+      font-family: "DotGothic16", "Courier New", monospace;
+      font-size: 17px;
+      line-height: 1.55;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: none;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    input,
+    [tabindex] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    ::selection {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    ::-webkit-scrollbar {
+      width: 16px;
+      height: 16px;
+      background: var(--checker);
+    }
+
+    ::-webkit-scrollbar-track {
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      min-height: 28px;
+      border: 3px solid var(--paper);
+      outline: 1px solid var(--ink);
+      background: var(--ink);
+    }
+
+    ::-webkit-scrollbar-button {
+      display: block;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--ink);
+      background: var(--checker);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(100%, var(--content));
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 8px;
+      left: 8px;
+      padding: 8px 12px;
+      color: var(--paper);
+      background: var(--ink);
+      font-family: "Silkscreen", "Courier New", monospace;
+      font-size: 12px;
+      transform: translateY(-150%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--paper);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--ink);
+    }
+
+    .status-strip {
+      position: relative;
+      z-index: 30;
+      width: 100%;
+      border-bottom: 2px solid var(--ink);
+      color: var(--paper);
+      background: var(--ink);
+      font-family: "Silkscreen", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status-inner {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .status-brand,
+    .status-live,
+    .status-memory {
+      display: inline-flex;
+      min-width: 0;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-live {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .status-light {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border: 1px solid var(--paper);
+      background: var(--paper);
+      animation: status-blink 1.3s steps(2, end) infinite;
+    }
+
+    @keyframes status-blink {
+      50% { background: var(--ink); }
+    }
+
+    .pixel-icon {
+      --pixel: 3px;
+      position: relative;
+      display: inline-block;
+      width: calc(var(--pixel) * 8);
+      height: calc(var(--pixel) * 8);
+      flex: 0 0 auto;
+      image-rendering: pixelated;
+    }
+
+    .pixel-icon > span {
+      position: absolute;
+      width: var(--pixel);
+      height: var(--pixel);
+      background: currentColor;
+    }
+
+    .hero {
+      position: relative;
+      padding-block: clamp(44px, 8vw, 94px) clamp(52px, 8vw, 96px);
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      background:
+        radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 8px 8px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(520px, 1.18fr);
+      align-items: center;
+      gap: clamp(36px, 6vw, 72px);
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      border: 1px solid var(--ink);
+      padding: 6px 9px;
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+      clip-path: var(--step-cut);
+      font-family: "Silkscreen", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-mark {
+      width: 10px;
+      height: 10px;
+      background: var(--checker);
+      border: 1px solid var(--ink);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 740px;
+      margin-bottom: 22px;
+      font-family: "Silkscreen", "Courier New", monospace;
+      font-size: clamp(38px, 5.2vw, 74px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0 var(--paper), 6px 6px 0 var(--ink);
+    }
+
+    .hero-lede {
+      max-width: 600px;
+      margin-bottom: 28px;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.55;
+    }
+
+    .hero-actions,
+    .button-rack,
+    .inline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pixel-button,
+    .icon-button,
+    .mini-button {
+      position: relative;
+      min-height: 44px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      padding: 10px 16px;
+      color: var(--ink);
+      background: var(--paper);
+      box-shadow: 4px 4px 0 var(--ink);
+      clip-path: var(--step-cut);
+      cursor: pointer;
+      font-family: "Silkscreen", "Courier New", monospace;
+      font-size: 11px;
+      line-height: 1.25;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: transform 60ms steps(1, end), box-shadow 60ms steps(1, end);
+    }
+
+    .pixel-button:hover,
+    .mini-button:hover,
+    .icon-button:hover {
+      background: var(--stripes);
+    }
+
+    .pixel-button:active,
+    .mini-button:active,
+    .icon-button:active,
+    .pixel-button.is-pressed {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .pixel-button.solid {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .pixel-button.solid:hover {
+      color: var(--ink);
+      background: var(--checker);
+    }
+
+    .pixel-button.dither {
+      background: var(--checker);
+    }
+
+    .pixel-button.dither:hover {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .pixel-button.ghost {
+      border-style: dashed;
+      box-shadow: none;
+    }
+
+    .pixel-button.ghost:hover {
+      border-style: solid;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .pixel-button:disabled {
+      color: var(--ink);
+      background: var(--checker);
+      box-shadow: 2px 2px 0 var(--ink);
+      cursor: not-allowed;
+      text-decoration: line-through;
+      transform: none;
+    }
+
+    .icon-button {
+      width: 46px;
+      min-width: 46px;
+      padding: 8px;
+      display: inline-grid;
+      place-items: center;
+    }
+
+    .mini-button {
+      min-height: 34px;
+      padding: 6px 10px;
+      box-shadow: 2px 2px 0 var(--ink);
+      font-size: 9px;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 22px;
+      font-size: 14px;
+    }
+
+    .hero-note::before {
+      width: 26px;
+      height: 12px;
+      border: 1px solid var(--ink);
+      content: "";
+      background: var(--checker);
+    }
+
+    .window {
+      min-width: 0;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 8px 8px 0 var(--ink);
+      clip-path: var(--step-cut);
+      animation: hard-pop 160ms steps(2, end) both;
+    }
+
+    @keyframes hard-pop {
+      0% {
+        transform: translate(8px, 8px);
+        clip-path: polygon(0 0, 12% 0, 12% 12%, 0 12%);
+      }
+      50% {
+        transform: translate(3px, 3px);
+        clip-path: polygon(0 0, 62% 0, 62% 62%, 0 62%);
+      }
+      100% {
+        transform: translate(0, 0);
+        clip-path: var(--step-cut);
+      }
+    }
+
+    .window-titlebar,
+    .panel-titlebar {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border-bottom: 2px solid var(--ink);
+      padding: 5px 6px 5px 10px;
+      background: var(--stripes);
+      font-family: "Silkscreen", "Courier New", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .window-title,
+    .panel-titlebar h3 {
+      min-width: 0;
+      margin: 0;
+      padding: 3px 7px;
+      overflow: hidden;
+      background: var(--paper);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .window-title {
+      flex: 1;
+    }
+
+    .window-control {
+      position: relative;
+      width: 25px;
+      height: 25px;
+      flex: 0 0 25px;
+      border: 2px solid var(--ink);
+      padding: 0;
+      background: var(--paper);
+      cursor: pointer;
+    }
+
+    .window-control:hover {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .window-control span {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      place-items: center;
+      font-family: "Silkscreen", monospace;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .window-body {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) 126px;
+      min-height: 360px;
+    }
+
+    .tool-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      border-right: 2px solid var(--ink);
+      padding: 7px 5px;
+      background: var(--checker);
+    }
+
+    .tool-key {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      flex: 0 0 30px;
+      border: 2px solid var(--ink);
+      padding: 0;
+      background: var(--paper);
+      cursor: pointer;
+    }
+
+    .tool-key:hover,
+    .tool-key[aria-pressed="true"] {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .tool-key::before,
+    .tool-key::after {
+      position: absolute;
+      content: "";
+      image-rendering: pixelated;
+    }
+
+    .tool-key.pencil::before {
+      width: 14px;
+      height: 4px;
+      top: 11px;
+      left: 6px;
+      background: currentColor;
+      transform: rotate(-45deg);
+    }
+
+    .tool-key.pencil::after {
+      width: 4px;
+      height: 4px;
+      top: 5px;
+      right: 5px;
+      border: 1px solid currentColor;
+    }
+
+    .tool-key.erase::before {
+      width: 14px;
+      height: 10px;
+      top: 8px;
+      left: 6px;
+      border: 2px solid currentColor;
+      transform: skew(-12deg);
+    }
+
+    .tool-key.select::before {
+      inset: 6px;
+      border: 2px dashed currentColor;
+    }
+
+    .canvas-pane {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      background:
+        radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 6px 6px;
+    }
+
+    .pixel-board {
+      position: relative;
+      width: 100%;
+      min-height: 0;
+      aspect-ratio: 5 / 3;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      cursor: none;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    .pixel-cells {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(20, minmax(0, 1fr));
+      grid-template-rows: repeat(12, minmax(0, 1fr));
+      background: var(--paper);
+    }
+
+    .pixel-cell {
+      min-width: 0;
+      min-height: 0;
+      border-right: 1px dotted var(--ink);
+      border-bottom: 1px dotted var(--ink);
+      background: var(--paper);
+    }
+
+    .pixel-cell.is-ink {
+      background: var(--ink);
+    }
+
+    .pixel-board.grid-off .pixel-cell {
+      border-color: transparent;
+    }
+
+    .pixel-board.is-inverted .pixel-cell {
+      background: var(--ink);
+    }
+
+    .pixel-board.is-inverted .pixel-cell.is-ink {
+      background: var(--paper);
+    }
+
+    .pixel-cell.is-current {
+      box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--ink);
+    }
+
+    .pixel-board.is-inverted .pixel-cell.is-current {
+      box-shadow: inset 0 0 0 2px var(--ink), inset 0 0 0 3px var(--paper);
+    }
+
+    .marching-selection {
+      position: absolute;
+      z-index: 4;
+      inset: 9% 11%;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, var(--ink) 50%, transparent 50%) top left / 8px 2px repeat-x,
+        linear-gradient(90deg, var(--ink) 50%, transparent 50%) bottom left / 8px 2px repeat-x,
+        linear-gradient(0deg, var(--ink) 50%, transparent 50%) top left / 2px 8px repeat-y,
+        linear-gradient(0deg, var(--ink) 50%, transparent 50%) top right / 2px 8px repeat-y;
+      filter: drop-shadow(1px 1px 0 var(--paper));
+      animation: march 480ms steps(4, end) infinite;
+    }
+
+    .pixel-board.ants-paused .marching-selection {
+      animation-play-state: paused;
+    }
+
+    @keyframes march {
+      to { background-position: 8px 0, -8px 100%, 0 -8px, 100% 8px; }
+    }
+
+    .pixel-hand {
+      --hand-pixel: 3px;
+      position: absolute;
+      z-index: 9;
+      top: 0;
+      left: 0;
+      width: var(--hand-pixel);
+      height: var(--hand-pixel);
+      pointer-events: none;
+      color: var(--ink);
+      background: currentColor;
+      opacity: 0;
+      transform: translate(-3px, -3px);
+      box-shadow:
+        0 3px 0 currentColor,
+        0 6px 0 currentColor,
+        0 9px 0 currentColor,
+        3px 6px 0 currentColor,
+        6px 6px 0 currentColor,
+        9px 6px 0 currentColor,
+        3px 9px 0 currentColor,
+        6px 9px 0 currentColor,
+        9px 9px 0 currentColor,
+        3px 12px 0 currentColor,
+        6px 12px 0 currentColor,
+        6px 15px 0 currentColor;
+      filter:
+        drop-shadow(1px 0 0 var(--paper))
+        drop-shadow(0 1px 0 var(--paper));
+    }
+
+    .pixel-board:hover .pixel-hand,
+    .pixel-board:focus-visible .pixel-hand {
+      opacity: 1;
+    }
+
+    .pixel-hand.is-down {
+      transform: translate(1px, 2px);
+    }
+
+    .canvas-readout {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+      border: 1px solid var(--ink);
+      padding: 3px 7px;
+      background: var(--paper);
+      font-family: "Silkscreen", monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+    }
+
+    .layer-pane {
+      min-width: 0;
+      border-left: 2px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .pane-label {
+      margin: 0;
+      border-bottom: 1px solid var(--ink);
+      padding: 6px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "Silkscreen", monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+    }
+
+    .layer-list {
+      display: grid;
+      padding: 5px;
+    }
+
+    .layer-row {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px dotted var(--ink);
+      padding: 7px 5px;
+      overflow: hidden;
+      background: var(--paper);
+      text-align: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+      font-family: "Silkscreen", monospace;
+      font-size: 7px;
+      text-transform: uppercase;
+    }
+
+    .layer-row:hover {
+      background: var(--stripes);
+    }
+
+    .layer-row[aria-pressed="true"] {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .gray-ramp {
+      margin: 8px;
+      border: 1px solid var(--ink);
+    }
+
+    .gray-step {
+      height: 18px;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .gray-step:last-child {
+      border-bottom: 0;
+    }
+
+    .gray-step:nth-child(1) { background: var(--paper); }
+    .gray-step:nth-child(2) {
+      background: radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 6px 6px;
+    }
+    .gray-step:nth-child(3) { background: var(--checker); }
+    .gray-step:nth-child(4) {
+      background: radial-gradient(circle at 1px 1px, var(--paper) 0 1px, transparent 1px) 0 0 / 4px 4px, var(--ink);
+    }
+    .gray-step:nth-child(5) { background: var(--ink); }
+
+    .reopen-card {
+      display: grid;
+      min-height: 360px;
+      place-items: center;
+      border: 2px dashed var(--ink);
+      background: var(--checker);
+    }
+
+    .section-band {
+      border-block: 2px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .section-band-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section-band h2 {
+      margin: 0;
+      font-family: "Silkscreen", monospace;
+      font-size: clamp(22px, 4vw, 38px);
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .section-band p {
+      margin: 0;
+      font-family: "Silkscreen", monospace;
+      font-size: 9px;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .controls {
+      padding-block: 58px 80px;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .pixel-panel {
+      min-width: 0;
+      grid-column: span 4;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 5px 5px 0 var(--ink);
+      clip-path: var(--step-cut);
+    }
+
+    .pixel-panel.span-8 {
+      grid-column: span 8;
+    }
+
+    .pixel-panel.span-6 {
+      grid-column: span 6;
+    }
+
+    .pixel-panel.span-12 {
+      grid-column: span 12;
+    }
+
+    .panel-titlebar {
+      min-height: 38px;
+      padding-left: 8px;
+    }
+
+    .panel-titlebar h3 {
+      flex: 1;
+      font-size: 10px;
+    }
+
+    .panel-index {
+      display: grid;
+      min-width: 28px;
+      height: 22px;
+      place-items: center;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "Silkscreen", monospace;
+      font-size: 8px;
+    }
+
+    .panel-body {
+      min-width: 0;
+      padding: 20px;
+    }
+
+    .panel-copy {
+      margin-bottom: 16px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .micro-label,
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Silkscreen", monospace;
+      font-size: 9px;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .field-wrap {
+      position: relative;
+      display: flex;
+      min-width: 0;
+    }
+
+    .pixel-input {
+      width: 100%;
+      min-width: 0;
+      height: 48px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      padding: 9px 46px 9px 12px;
+      color: var(--ink);
+      background: var(--paper);
+      box-shadow: inset 3px 3px 0 var(--checker);
+      outline: 0;
+    }
+
+    .pixel-input:hover {
+      box-shadow: inset 4px 4px 0 var(--checker);
+    }
+
+    .pixel-input:focus {
+      color: var(--paper);
+      background: var(--ink);
+      box-shadow: none;
+    }
+
+    .pixel-input:focus::placeholder {
+      color: var(--paper);
+    }
+
+    .input-clear {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--ink);
+      padding: 0;
+      color: var(--ink);
+      background: var(--paper);
+      cursor: pointer;
+      font-family: "Silkscreen", monospace;
+    }
+
+    .input-clear:hover {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .field-status,
+    .control-status {
+      min-height: 24px;
+      margin: 9px 0 0;
+      font-size: 13px;
+    }
+
+    .choice-stack {
+      display: grid;
+      gap: 9px;
+    }
+
+    .choice {
+      position: relative;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .choice input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-mark,
+    .check-mark {
+      position: relative;
+      display: grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .radio-mark {
+      clip-path: polygon(
+        6px 0, 18px 0, 18px 2px, 22px 2px, 22px 6px,
+        24px 6px, 24px 18px, 22px 18px, 22px 22px,
+        18px 22px, 18px 24px, 6px 24px, 6px 22px,
+        2px 22px, 2px 18px, 0 18px, 0 6px, 2px 6px,
+        2px 2px, 6px 2px
+      );
+    }
+
+    .choice:hover .radio-mark,
+    .choice:hover .check-mark {
+      background: var(--checker);
+    }
+
+    .choice input:checked + .radio-mark::after {
+      width: 10px;
+      height: 10px;
+      background: var(--ink);
+      content: "";
+    }
+
+    .choice input:checked + .check-mark {
+      background: var(--ink);
+    }
+
+    .choice input:checked + .check-mark::before,
+    .choice input:checked + .check-mark::after {
+      position: absolute;
+      width: 3px;
+      background: var(--paper);
+      content: "";
+      transform-origin: bottom;
+    }
+
+    .choice input:checked + .check-mark::before {
+      height: 8px;
+      left: 7px;
+      top: 9px;
+      transform: rotate(-45deg);
+    }
+
+    .choice input:checked + .check-mark::after {
+      height: 14px;
+      left: 13px;
+      top: 4px;
+      transform: rotate(45deg);
+    }
+
+    .choice input:focus-visible + .radio-mark,
+    .choice input:focus-visible + .check-mark,
+    .switch input:focus-visible + .switch-track {
+      outline: 2px solid var(--paper);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--ink);
+    }
+
+    .switch-row {
+      margin-top: 16px;
+      border-top: 1px dashed var(--ink);
+      padding-top: 16px;
+    }
+
+    .switch {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+    }
+
+    .switch input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .switch-track {
+      position: relative;
+      width: 58px;
+      height: 28px;
+      flex: 0 0 58px;
+      border: 2px solid var(--ink);
+      background: var(--checker);
+    }
+
+    .switch-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      transition: left 90ms steps(2, end), background 90ms steps(2, end);
+    }
+
+    .switch input:checked + .switch-track {
+      background: var(--ink);
+    }
+
+    .switch input:checked + .switch-track .switch-thumb {
+      left: 33px;
+      background: var(--paper);
+    }
+
+    .range-head,
+    .meter-head,
+    .progress-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .range-value,
+    .meter-value,
+    .progress-value {
+      border: 1px solid var(--ink);
+      padding: 3px 6px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "Silkscreen", monospace;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    .pixel-range {
+      width: 100%;
+      height: 34px;
+      margin: 0;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .pixel-range::-webkit-slider-runnable-track {
+      height: 14px;
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(
+          to right,
+          var(--ink) 0 var(--range-value, 50%),
+          var(--checker) var(--range-value, 50%) 100%
+        );
+    }
+
+    .pixel-range::-moz-range-track {
+      height: 14px;
+      border: 2px solid var(--ink);
+      background: var(--checker);
+    }
+
+    .pixel-range::-moz-range-progress {
+      height: 10px;
+      background: var(--ink);
+    }
+
+    .pixel-range::-webkit-slider-thumb {
+      width: 20px;
+      height: 26px;
+      margin-top: -8px;
+      appearance: none;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .pixel-range::-moz-range-thumb {
+      width: 20px;
+      height: 26px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .range-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: "Silkscreen", monospace;
+      font-size: 7px;
+    }
+
+    .dither-swatch {
+      height: 54px;
+      margin-top: 16px;
+      border: 2px solid var(--ink);
+      background: var(--checker);
+    }
+
+    .dither-swatch.sparse {
+      background: radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 8px 8px;
+    }
+
+    .dither-swatch.dense {
+      background: radial-gradient(circle at 1px 1px, var(--paper) 0 1px, transparent 1px) 0 0 / 4px 4px, var(--ink);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-trigger {
+      width: 100%;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 2px solid var(--ink);
+      padding: 8px 12px;
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+      cursor: pointer;
+      text-align: left;
+      font-family: "Silkscreen", monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    .dropdown-trigger:hover,
+    .dropdown-trigger[aria-expanded="true"] {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .dropdown-arrow {
+      width: 0;
+      height: 0;
+      border-top: 7px solid currentColor;
+      border-right: 6px solid transparent;
+      border-left: 6px solid transparent;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 7px);
+      left: 0;
+      width: 100%;
+      margin: 0;
+      border: 2px solid var(--ink);
+      padding: 4px;
+      list-style: none;
+      background: var(--paper);
+      box-shadow: 5px 5px 0 var(--ink);
+      animation: hard-pop 100ms steps(1, end) both;
+    }
+
+    .dropdown-option {
+      border-bottom: 1px dotted var(--ink);
+      padding: 8px;
+      cursor: pointer;
+      font-family: "Silkscreen", monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+    }
+
+    .dropdown-option:last-child {
+      border-bottom: 0;
+    }
+
+    .dropdown-option:hover,
+    .dropdown-option:focus,
+    .dropdown-option[aria-selected="true"] {
+      outline: 0;
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .pattern-preview {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      height: 46px;
+      margin-top: 16px;
+      border: 2px solid var(--ink);
+    }
+
+    .pattern-preview span {
+      border-right: 1px solid var(--ink);
+    }
+
+    .pattern-preview span:last-child {
+      border-right: 0;
+    }
+
+    .pattern-preview span:nth-child(1) {
+      background: radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 8px 8px;
+    }
+
+    .pattern-preview span:nth-child(2) {
+      background: radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 5px 5px;
+    }
+
+    .pattern-preview span:nth-child(3) {
+      background: var(--checker);
+    }
+
+    .pattern-preview span:nth-child(4) {
+      background: repeating-linear-gradient(0deg, var(--ink) 0 1px, var(--paper) 1px 3px);
+    }
+
+    .tabs {
+      border: 2px solid var(--ink);
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .tab {
+      min-width: 0;
+      min-height: 42px;
+      border: 0;
+      border-right: 1px solid var(--ink);
+      padding: 7px 5px;
+      overflow: hidden;
+      background: var(--paper);
+      cursor: pointer;
+      font-family: "Silkscreen", monospace;
+      font-size: 8px;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tab:last-child {
+      border-right: 0;
+    }
+
+    .tab:hover {
+      background: var(--stripes);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .tab-panel {
+      min-height: 126px;
+      padding: 17px;
+      background:
+        radial-gradient(circle at 1px 1px, var(--ink) 0 1px, transparent 1px) 0 0 / 10px 10px;
+    }
+
+    .tab-card {
+      min-height: 88px;
+      border: 1px solid var(--ink);
+      padding: 12px;
+      background: var(--paper);
+    }
+
+    .tab-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Silkscreen", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .tab-card p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .progress-track,
+    .meter-track {
+      position: relative;
+      height: 28px;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      background: var(--checker);
+    }
+
+    .progress-fill,
+    .meter-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      background: var(--ink);
+      transition: width 120ms steps(4, end);
+    }
+
+    .progress-fill::after {
+      position: absolute;
+      inset: 4px;
+      content: "";
+      background: repeating-linear-gradient(
+        90deg,
+        var(--paper) 0 4px,
+        transparent 4px 8px
+      );
+    }
+
+    .progress-meta,
+    .meter-scale {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+      font-family: "Silkscreen", monospace;
+      font-size: 7px;
+      text-transform: uppercase;
+    }
+
+    .meter-fill {
+      background: var(--checker);
+      border-right: 2px solid var(--ink);
+    }
+
+    .meter-marker {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      bottom: 0;
+      left: 75%;
+      width: 2px;
+      background: var(--ink);
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .prompt-key {
+      min-height: 96px;
+      display: grid;
+      align-content: center;
+      justify-items: start;
+      gap: 7px;
+      border: 2px solid var(--ink);
+      padding: 14px;
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .prompt-key:hover {
+      background: var(--checker);
+    }
+
+    .prompt-key:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .prompt-key strong {
+      font-family: "Silkscreen", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .prompt-key span {
+      font-size: 13px;
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .tooltip {
+      position: absolute;
+      z-index: 25;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      width: max-content;
+      max-width: 220px;
+      padding: 7px 9px;
+      color: var(--paper);
+      background: var(--ink);
+      box-shadow: 3px 3px 0 var(--paper), 4px 4px 0 var(--ink);
+      font-family: "Silkscreen", monospace;
+      font-size: 8px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      transform: translateX(-50%);
+    }
+
+    .tooltip::after {
+      position: absolute;
+      top: 100%;
+      left: calc(50% - 5px);
+      width: 0;
+      height: 0;
+      border-top: 6px solid var(--ink);
+      border-right: 5px solid transparent;
+      border-left: 5px solid transparent;
+      content: "";
+    }
+
+    .modal-layer {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        repeating-conic-gradient(
+          from 0deg,
+          var(--ink) 0 25%,
+          transparent 0 50%
+        ) 0 0 / 4px 4px;
+    }
+
+    .modal {
+      width: min(100%, 520px);
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 10px 10px 0 var(--ink), 12px 12px 0 var(--paper);
+      animation: hard-pop 120ms steps(2, end) both;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-body h2 {
+      margin-bottom: 15px;
+      font-family: "Silkscreen", monospace;
+      font-size: clamp(20px, 5vw, 30px);
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .modal-body p {
+      margin-bottom: 22px;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 120;
+      right: max(24px, calc((100vw - var(--content)) / 2 + 24px));
+      bottom: 24px;
+      width: min(390px, calc(100vw - 48px));
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 7px 7px 0 var(--ink);
+      animation: toast-in 160ms steps(3, end) both;
+    }
+
+    @keyframes toast-in {
+      from { transform: translateX(calc(100% + 30px)); }
+      to { transform: translateX(0); }
+    }
+
+    .toast-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 2px solid var(--ink);
+      padding: 5px 5px 5px 9px;
+      color: var(--paper);
+      background: var(--ink);
+      font-family: "Silkscreen", monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    .toast-close {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--paper);
+      padding: 0;
+      color: var(--paper);
+      background: var(--ink);
+      cursor: pointer;
+    }
+
+    .toast-close:hover {
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    .toast-message {
+      margin: 0;
+      padding: 14px;
+    }
+
+    .site-footer {
+      border-top: 2px solid var(--ink);
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .footer-inner {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-signoff {
+      margin: 0;
+      font-family: "Silkscreen", monospace;
+      font-size: clamp(12px, 2vw, 18px);
+      text-transform: uppercase;
+    }
+
+    .footer-bits {
+      display: grid;
+      grid-template-columns: repeat(8, 6px);
+      gap: 3px;
+    }
+
+    .footer-bits span {
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--paper);
+    }
+
+    .footer-bits span:nth-child(1),
+    .footer-bits span:nth-child(3),
+    .footer-bits span:nth-child(4),
+    .footer-bits span:nth-child(7) {
+      background: var(--paper);
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .noscript-page {
+      min-height: 100vh;
+      padding-block: 80px;
+    }
+
+    .noscript-card {
+      border: 2px solid var(--ink);
+      padding: clamp(24px, 6vw, 64px);
+      background: var(--paper);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .noscript-card h1 {
+      max-width: 850px;
+    }
+
+    .noscript-art {
+      height: 190px;
+      margin-top: 32px;
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(90deg, transparent 25%, var(--ink) 25% 35%, transparent 35% 65%, var(--ink) 65% 75%, transparent 75%),
+        linear-gradient(transparent 16%, var(--ink) 16% 28%, transparent 28% 70%, var(--ink) 70% 84%, transparent 84%),
+        var(--checker);
+      image-rendering: pixelated;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-copy {
+        max-width: 760px;
+      }
+
+      .pixel-panel,
+      .pixel-panel.span-8 {
+        grid-column: span 6;
+      }
+
+      .pixel-panel.span-12 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        padding-inline: 16px;
+      }
+
+      .status-memory {
+        display: none;
+      }
+
+      .status-live {
+        justify-content: flex-end;
+        text-align: right;
+      }
+
+      .hero {
+        padding-block: 44px 58px;
+      }
+
+      h1 {
+        text-shadow: 2px 2px 0 var(--paper), 4px 4px 0 var(--ink);
+      }
+
+      .window-body {
+        grid-template-columns: 38px minmax(0, 1fr);
+      }
+
+      .tool-rail {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .canvas-pane {
+        grid-column: 2;
+        grid-row: 1;
+        padding: 7px;
+      }
+
+      .layer-pane {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        border-top: 2px solid var(--ink);
+        border-left: 0;
+      }
+
+      .layer-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .gray-ramp {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .gray-step {
+        height: 22px;
+        border-right: 1px solid var(--ink);
+        border-bottom: 0;
+      }
+
+      .gray-step:last-child {
+        border-right: 0;
+      }
+
+      .section-band-inner {
+        min-height: 90px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .section-band p {
+        text-align: left;
+      }
+
+      .pixel-panel,
+      .pixel-panel.span-6,
+      .pixel-panel.span-8,
+      .pixel-panel.span-12 {
+        grid-column: 1 / -1;
+      }
+
+      .prompt-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .footer-inner {
+        min-height: 110px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .modal-layer {
+        padding: 16px;
+      }
+
+      .toast {
+        right: 16px;
+        bottom: 16px;
+        width: calc(100vw - 32px);
+      }
+    }
+
+    @media (max-width: 430px) {
+      body {
+        font-size: 16px;
+      }
+
+      .status-inner {
+        gap: 8px;
+      }
+
+      .status-brand,
+      .status-live {
+        font-size: 8px;
+      }
+
+      .hero-actions > .pixel-button {
+        width: 100%;
+      }
+
+      .window {
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .window-body {
+        min-height: 0;
+      }
+
+      .tool-rail {
+        gap: 4px;
+        padding: 5px 3px;
+      }
+
+      .tool-key {
+        width: 28px;
+        height: 28px;
+      }
+
+      .canvas-readout {
+        font-size: 6px;
+      }
+
+      .layer-row {
+        padding-inline: 3px;
+        font-size: 6px;
+      }
+
+      .controls {
+        padding-block: 44px 60px;
+      }
+
+      .control-grid {
+        gap: 20px;
+      }
+
+      .panel-body {
+        padding: 16px;
+      }
+
+      .button-rack > .pixel-button:not(.icon-button) {
+        flex: 1 1 calc(50% - 12px);
+      }
+
+      .tab {
+        font-size: 7px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .marching-selection {
+        background-position: 0 0, 0 100%, 0 0, 100% 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#control-deck" data-copy="skipLink"></a>
+
+  <div id="app">
+    <header class="status-strip">
+      <div class="shell status-inner">
+        <div class="status-brand">
+          <span class="status-light" aria-hidden="true"></span>
+          <span data-copy="statusBrand"></span>
+        </div>
+        <div class="status-live" role="status" aria-live="polite">
+          <span id="statusIcon" class="pixel-icon" aria-hidden="true"></span>
+          <span id="systemClock"></span>
+        </div>
+        <div class="status-memory">
+          <span data-copy="statusMemory"></span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="eyebrow-mark" aria-hidden="true"></span>
+              <span data-copy="eyebrow"></span>
+            </p>
+            <h1 id="hero-title" data-copy="heroTitle"></h1>
+            <p class="hero-lede" data-copy="heroLede"></p>
+            <div class="hero-actions">
+              <button id="startDrawing" class="pixel-button solid" type="button">
+                <span data-copy="startDrawing"></span>
+              </button>
+              <button id="openControls" class="pixel-button ghost" type="button">
+                <span data-copy="inspectControls"></span>
+              </button>
+            </div>
+            <p class="hero-note" data-copy="heroNote"></p>
+          </div>
+
+          <div>
+            <article id="heroWindow" class="window" aria-labelledby="window-title">
+              <div class="window-titlebar">
+                <span id="window-title" class="window-title" data-copy="windowTitle"></span>
+                <button id="closeWindow" class="window-control" type="button" data-aria="closeWorkbench">
+                  <span aria-hidden="true" data-copy="closeGlyph"></span>
+                </button>
+              </div>
+              <div class="window-body">
+                <div class="tool-rail" role="toolbar" data-aria="toolRail">
+                  <button class="tool-key pencil" type="button" aria-pressed="true" data-tool="ink" data-aria="pencilTool"></button>
+                  <button class="tool-key erase" type="button" aria-pressed="false" data-tool="erase" data-aria="eraserTool"></button>
+                  <button class="tool-key select" type="button" aria-pressed="false" data-tool="select" data-aria="selectTool"></button>
+                </div>
+                <div class="canvas-pane">
+                  <div id="pixelBoard" class="pixel-board" tabindex="0" role="grid" data-aria="pixelBoard">
+                    <div id="pixelCells" class="pixel-cells"></div>
+                    <div class="marching-selection" aria-hidden="true"></div>
+                    <div id="pixelHand" class="pixel-hand" aria-hidden="true"></div>
+                  </div>
+                  <div class="canvas-readout">
+                    <span id="cursorReadout"></span>
+                    <span id="spriteReadout"></span>
+                  </div>
+                  <span id="boardAnnouncement" class="sr-only" aria-live="polite"></span>
+                </div>
+                <aside class="layer-pane" data-aria="layerPane">
+                  <p class="pane-label" data-copy="layersLabel"></p>
+                  <div class="layer-list">
+                    <button class="layer-row" type="button" data-sprite="disk" aria-pressed="true">
+                      <span data-copy="layerDisk"></span>
+                    </button>
+                    <button class="layer-row" type="button" data-sprite="cursor" aria-pressed="false">
+                      <span data-copy="layerCursor"></span>
+                    </button>
+                    <button class="layer-row" type="button" data-sprite="hourglass" aria-pressed="false">
+                      <span data-copy="layerHourglass"></span>
+                    </button>
+                  </div>
+                  <p class="pane-label" data-copy="grayRamp"></p>
+                  <div class="gray-ramp" data-aria="grayRampAria">
+                    <div class="gray-step"></div>
+                    <div class="gray-step"></div>
+                    <div class="gray-step"></div>
+                    <div class="gray-step"></div>
+                    <div class="gray-step"></div>
+                  </div>
+                </aside>
+              </div>
+            </article>
+            <div id="reopenCard" class="reopen-card" hidden>
+              <button id="reopenWindow" class="pixel-button solid" type="button">
+                <span data-copy="reopenWorkbench"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band" aria-labelledby="control-deck">
+        <div class="shell section-band-inner">
+          <h2 id="control-deck" data-copy="controlDeckTitle"></h2>
+          <p data-copy="controlDeckNote"></p>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="shell">
+          <div class="control-grid">
+            <article class="pixel-panel span-8">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index01"></span>
+                <h3 data-copy="panelButtons"></h3>
+              </div>
+              <div class="panel-body">
+                <p class="panel-copy" data-copy="buttonsCopy"></p>
+                <div class="button-rack">
+                  <button id="exportButton" class="pixel-button solid" type="button">
+                    <span data-copy="exportBitmap"></span>
+                  </button>
+                  <button id="previewButton" class="pixel-button" type="button">
+                    <span data-copy="invertPreview"></span>
+                  </button>
+                  <button id="ditherButton" class="pixel-button dither" type="button">
+                    <span data-copy="cycleDither"></span>
+                  </button>
+                  <span class="tooltip-wrap">
+                    <button id="saveIconButton" class="icon-button" type="button" data-aria="saveSprite" aria-describedby="saveTooltip">
+                      <span id="saveIcon" class="pixel-icon" aria-hidden="true"></span>
+                    </button>
+                    <span id="saveTooltip" class="tooltip" role="tooltip" hidden data-copy="saveTooltip"></span>
+                  </span>
+                  <button class="pixel-button" type="button" disabled>
+                    <span data-copy="printerOffline"></span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="pixel-panel">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index02"></span>
+                <h3 data-copy="panelFilename"></h3>
+              </div>
+              <div class="panel-body">
+                <label class="field-label" for="fileName" data-copy="fileNameLabel"></label>
+                <div class="field-wrap">
+                  <input id="fileName" class="pixel-input" type="text" maxlength="24" autocomplete="off" spellcheck="false" data-placeholder="fileNamePlaceholder">
+                  <button id="clearFileName" class="input-clear" type="button" data-aria="clearFilename">
+                    <span aria-hidden="true" data-copy="closeGlyph"></span>
+                  </button>
+                </div>
+                <p id="fileNameStatus" class="field-status" aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="pixel-panel">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index03"></span>
+                <h3 data-copy="panelRadio"></h3>
+              </div>
+              <div class="panel-body">
+                <fieldset style="border:0;margin:0;padding:0">
+                  <legend class="field-label" data-copy="inkModeLegend"></legend>
+                  <div class="choice-stack">
+                    <label class="choice">
+                      <input type="radio" name="ink-mode" value="strict" checked>
+                      <span class="radio-mark" aria-hidden="true"></span>
+                      <span data-copy="modeStrict"></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="ink-mode" value="ordered">
+                      <span class="radio-mark" aria-hidden="true"></span>
+                      <span data-copy="modeOrdered"></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="ink-mode" value="diffusion">
+                      <span class="radio-mark" aria-hidden="true"></span>
+                      <span data-copy="modeDiffusion"></span>
+                    </label>
+                  </div>
+                </fieldset>
+                <p id="radioStatus" class="control-status" aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="pixel-panel">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index04"></span>
+                <h3 data-copy="panelFlags"></h3>
+              </div>
+              <div class="panel-body">
+                <div class="choice-stack">
+                  <label class="choice">
+                    <input id="showGrid" type="checkbox" checked>
+                    <span class="check-mark" aria-hidden="true"></span>
+                    <span data-copy="showGrid"></span>
+                  </label>
+                  <label class="choice">
+                    <input id="invertInk" type="checkbox">
+                    <span class="check-mark" aria-hidden="true"></span>
+                    <span data-copy="invertInk"></span>
+                  </label>
+                </div>
+                <div class="switch-row">
+                  <label class="switch">
+                    <span data-copy="marchingAnts"></span>
+                    <input id="antsSwitch" type="checkbox" role="switch" checked>
+                    <span class="switch-track" aria-hidden="true">
+                      <span class="switch-thumb"></span>
+                    </span>
+                  </label>
+                </div>
+                <p id="flagStatus" class="control-status" aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="pixel-panel">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index05"></span>
+                <h3 data-copy="panelThreshold"></h3>
+              </div>
+              <div class="panel-body">
+                <div class="range-head">
+                  <label class="field-label" for="threshold" data-copy="thresholdLabel"></label>
+                  <output id="thresholdValue" class="range-value" for="threshold"></output>
+                </div>
+                <input id="threshold" class="pixel-range" type="range" min="0" max="100" value="50" step="1">
+                <div class="range-ticks" aria-hidden="true">
+                  <span data-copy="zeroValue"></span>
+                  <span data-copy="halfValue"></span>
+                  <span data-copy="fullValue"></span>
+                </div>
+                <div id="ditherSwatch" class="dither-swatch" data-aria="ditherPreview"></div>
+              </div>
+            </article>
+
+            <article class="pixel-panel">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index06"></span>
+                <h3 data-copy="panelDropdown"></h3>
+              </div>
+              <div class="panel-body">
+                <span id="patternLabel" class="field-label" data-copy="patternLabel"></span>
+                <div id="patternDropdown" class="dropdown">
+                  <button id="dropdownTrigger" class="dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="patternLabel dropdownValue">
+                    <span id="dropdownValue"></span>
+                    <span class="dropdown-arrow" aria-hidden="true"></span>
+                  </button>
+                  <ul id="dropdownMenu" class="dropdown-menu" role="listbox" tabindex="-1" aria-labelledby="patternLabel" hidden>
+                    <li class="dropdown-option" id="pattern-0" role="option" tabindex="-1" data-value="bayer2" aria-selected="true" data-copy="patternBayer2"></li>
+                    <li class="dropdown-option" id="pattern-1" role="option" tabindex="-1" data-value="bayer4" aria-selected="false" data-copy="patternBayer4"></li>
+                    <li class="dropdown-option" id="pattern-2" role="option" tabindex="-1" data-value="checker" aria-selected="false" data-copy="patternChecker"></li>
+                    <li class="dropdown-option" id="pattern-3" role="option" tabindex="-1" data-value="lines" aria-selected="false" data-copy="patternLines"></li>
+                  </ul>
+                </div>
+                <div id="patternPreview" class="pattern-preview" data-aria="patternPreview">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pixel-panel span-6">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index07"></span>
+                <h3 data-copy="panelTabs"></h3>
+              </div>
+              <div class="panel-body">
+                <div class="tabs">
+                  <div class="tab-list" role="tablist" data-aria="bufferTabs">
+                    <button id="tab-source" class="tab" type="button" role="tab" aria-selected="true" aria-controls="panel-source" tabindex="0" data-copy="tabSource"></button>
+                    <button id="tab-dither" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-dither" tabindex="-1" data-copy="tabDither"></button>
+                    <button id="tab-output" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-output" tabindex="-1" data-copy="tabOutput"></button>
+                  </div>
+                  <div id="panel-source" class="tab-panel" role="tabpanel" aria-labelledby="tab-source">
+                    <div class="tab-card">
+                      <strong data-copy="sourceTitle"></strong>
+                      <p data-copy="sourceCopy"></p>
+                    </div>
+                  </div>
+                  <div id="panel-dither" class="tab-panel" role="tabpanel" aria-labelledby="tab-dither" hidden>
+                    <div class="tab-card">
+                      <strong data-copy="ditherTitle"></strong>
+                      <p data-copy="ditherCopy"></p>
+                    </div>
+                  </div>
+                  <div id="panel-output" class="tab-panel" role="tabpanel" aria-labelledby="tab-output" hidden>
+                    <div class="tab-card">
+                      <strong data-copy="outputTitle"></strong>
+                      <p data-copy="outputCopy"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="pixel-panel span-6">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index08"></span>
+                <h3 data-copy="panelProgress"></h3>
+              </div>
+              <div class="panel-body">
+                <div class="progress-head">
+                  <span class="field-label" data-copy="rasterJobLabel"></span>
+                  <span id="progressValue" class="progress-value"></span>
+                </div>
+                <div id="progressTrack" class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="18" data-aria="rasterProgress">
+                  <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div class="progress-meta">
+                  <span id="progressState"></span>
+                  <span data-copy="progressSize"></span>
+                </div>
+                <div class="inline-actions" style="margin-top:18px">
+                  <button id="runRaster" class="pixel-button" type="button">
+                    <span data-copy="runRaster"></span>
+                  </button>
+                  <button id="stepRaster" class="mini-button" type="button">
+                    <span data-copy="stepRaster"></span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="pixel-panel span-6">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index09"></span>
+                <h3 data-copy="panelMeter"></h3>
+              </div>
+              <div class="panel-body">
+                <div class="meter-head">
+                  <span class="field-label" data-copy="inkDensityLabel"></span>
+                  <span id="meterValue" class="meter-value"></span>
+                </div>
+                <div id="inkMeter" class="meter-track" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-aria="inkDensityMeter">
+                  <div id="meterFill" class="meter-fill"></div>
+                  <div class="meter-marker" aria-hidden="true"></div>
+                </div>
+                <div class="meter-scale">
+                  <span data-copy="paperScale"></span>
+                  <span data-copy="warningScale"></span>
+                  <span data-copy="inkScale"></span>
+                </div>
+                <p id="meterStatus" class="control-status"></p>
+              </div>
+            </article>
+
+            <article class="pixel-panel span-6">
+              <div class="panel-titlebar">
+                <span class="panel-index" data-copy="index10"></span>
+                <h3 data-copy="panelPrompts"></h3>
+              </div>
+              <div class="panel-body">
+                <div class="prompt-grid">
+                  <button id="openModal" class="prompt-key" type="button">
+                    <strong data-copy="openModal"></strong>
+                    <span data-copy="openModalHint"></span>
+                  </button>
+                  <button id="showToast" class="prompt-key" type="button">
+                    <strong data-copy="showToast"></strong>
+                    <span data-copy="showToastHint"></span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p class="footer-signoff" data-copy="footerSignoff"></p>
+        <div class="footer-bits" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </footer>
+
+    <div id="modalLayer" class="modal-layer" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-copy">
+        <div class="window-titlebar">
+          <span class="window-title" data-copy="modalTitlebar"></span>
+          <button id="modalClose" class="window-control" type="button" data-aria="closeDialog">
+            <span aria-hidden="true" data-copy="closeGlyph"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2 id="modal-title" data-copy="modalTitle"></h2>
+          <p id="modal-copy" data-copy="modalCopy"></p>
+          <div class="inline-actions">
+            <button id="modalSave" class="pixel-button solid" type="button">
+              <span data-copy="writeDisk"></span>
+            </button>
+            <button id="modalCancel" class="pixel-button ghost" type="button">
+              <span data-copy="cancel"></span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <div class="toast-title">
+        <span data-copy="toastTitle"></span>
+        <button id="toastClose" class="toast-close" type="button" data-aria="dismissToast">
+          <span aria-hidden="true" data-copy="closeGlyph"></span>
+        </button>
+      </div>
+      <p id="toastMessage" class="toast-message"></p>
+    </section>
+  </div>
+
+  <noscript>
+    <style>
+      #app, .skip-link { display: none !important; }
+    </style>
+    <main class="noscript-page">
+      <div class="shell">
+        <article class="noscript-card">
+          <p class="eyebrow">BITMAP // STATIC MODE</p>
+          <h1>DRAW IN BLACK. THINK IN BITS.</h1>
+          <p>Dither Desk still shows the page and its one-bit artwork without scripts. Enable JavaScript to draw pixels and operate the controls.</p>
+          <div class="noscript-art" role="img" aria-label="A one-bit floppy disk built from black and paper-white pixels"></div>
+        </article>
+      </div>
+    </main>
+  </noscript>
+
+  <script>
+    "use strict";
+
+    const COPY = Object.freeze({
+      documentTitle: "BITMAP // DITHER DESK 1.0",
+      skipLink: "Skip to control deck",
+      statusBrand: "BITMAP OS // DITHER DESK 1.0",
+      statusMemory: "MEM 640K // INK 1-BIT",
+      eyebrow: "One-bit image workshop",
+      heroTitle: "Draw in black. Think in bits.",
+      heroLede: "A tiny image desk where every shade is a decision: paper or ink. Plot a sprite, tune the ordered dither, and save it before the hourglass flips.",
+      startDrawing: "Start plotting",
+      inspectControls: "Inspect controls",
+      heroNote: "No blur. No gradients of gray. Every mark snaps to the grid.",
+      windowTitle: "DISK.SPR — DITHER DESK",
+      closeGlyph: "×",
+      reopenWorkbench: "Reopen Dither Desk",
+      controlDeckTitle: "Control Deck",
+      controlDeckNote: "10 panes // every bit responds",
+      layersLabel: "Sprites",
+      layerDisk: "DISK.SPR",
+      layerCursor: "CURSOR.SPR",
+      layerHourglass: "HOURGLS.SPR",
+      grayRamp: "Dither ramp",
+      index01: "01",
+      index02: "02",
+      index03: "03",
+      index04: "04",
+      index05: "05",
+      index06: "06",
+      index07: "07",
+      index08: "08",
+      index09: "09",
+      index10: "10",
+      panelButtons: "Command keys",
+      buttonsCopy: "Five key states cut from the same black-and-paper system.",
+      exportBitmap: "Export bitmap",
+      invertPreview: "Invert preview",
+      cycleDither: "Cycle dither",
+      printerOffline: "Printer offline",
+      saveTooltip: "Write the active sprite to a pretend floppy",
+      panelFilename: "File label",
+      fileNameLabel: "Sprite filename",
+      fileNamePlaceholder: "UNTITLED.SPR",
+      panelRadio: "Ink engine",
+      inkModeLegend: "Rendering mode",
+      modeStrict: "Strict 1-bit",
+      modeOrdered: "Ordered dither",
+      modeDiffusion: "Error diffusion",
+      panelFlags: "Canvas flags",
+      showGrid: "Show pixel grid",
+      invertInk: "Invert paper / ink",
+      marchingAnts: "Marching selection",
+      panelThreshold: "Threshold dial",
+      thresholdLabel: "Ink threshold",
+      zeroValue: "0",
+      halfValue: "50",
+      fullValue: "100",
+      panelDropdown: "Pattern menu",
+      patternLabel: "Ordered matrix",
+      patternBayer2: "Bayer 2 × 2",
+      patternBayer4: "Bayer 4 × 4",
+      patternChecker: "Checker 50%",
+      patternLines: "Line screen 1px",
+      panelTabs: "View buffers",
+      tabSource: "Source",
+      tabDither: "Dither",
+      tabOutput: "Output",
+      sourceTitle: "SOURCE.BUF",
+      sourceCopy: "20 × 12 editable cells. Click a pixel, or move with arrow keys and press Space.",
+      ditherTitle: "DITHER.BUF",
+      ditherCopy: "Ordered dots turn imaginary gray into a strict rhythm of paper and ink.",
+      outputTitle: "OUTPUT.SPR",
+      outputCopy: "The final sprite keeps only two values: 0 for paper, 1 for pure black ink.",
+      panelProgress: "Raster queue",
+      rasterJobLabel: "DISK.SPR raster",
+      progressSize: "20 × 12 px",
+      runRaster: "Run raster",
+      stepRaster: "+ 8 bits",
+      panelMeter: "Ink gauge",
+      inkDensityLabel: "Black pixel density",
+      paperScale: "Paper",
+      warningScale: "75% limit",
+      inkScale: "Ink",
+      panelPrompts: "System prompts",
+      openModal: "Open save dialog",
+      openModalHint: "Focus stays inside until the pane closes.",
+      showToast: "Send system toast",
+      showToastHint: "A hard-popping message from the bitmap desk.",
+      footerSignoff: "End of file // leave no gray behind.",
+      modalTitlebar: "SAVE SPRITE",
+      modalTitle: "Write bitmap to disk?",
+      modalCopy: "The active 20 × 12 sprite will be flattened to one-bit ink. Existing imaginary sectors may be overwritten.",
+      writeDisk: "Write disk",
+      cancel: "Cancel",
+      toastTitle: "BITMAP OS MESSAGE",
+      closeWorkbench: "Close Dither Desk window",
+      toolRail: "Drawing tools",
+      pencilTool: "Pencil tool",
+      eraserTool: "Eraser tool",
+      selectTool: "Selection tool",
+      pixelBoard: "Editable 20 by 12 pixel board. Use arrow keys to move and Space to toggle the current pixel.",
+      layerPane: "Sprite layers and dither ramp",
+      grayRampAria: "Five-step one-bit ordered dither ramp",
+      saveSprite: "Save active sprite",
+      clearFilename: "Clear sprite filename",
+      ditherPreview: "Live ordered dither threshold preview",
+      patternPreview: "Four one-bit dither pattern samples",
+      bufferTabs: "Bitmap view buffers",
+      rasterProgress: "Sprite raster progress",
+      inkDensityMeter: "Black pixel density meter",
+      closeDialog: "Close save dialog",
+      dismissToast: "Dismiss system message",
+      readyState: "READY",
+      drawingState: "DRAWING",
+      selectedState: "SELECT",
+      eraseState: "ERASE",
+      progressIdle: "QUEUE READY",
+      progressRunning: "RASTERIZING",
+      progressDone: "WRITE READY",
+      densityLow: "Paper-heavy image. Fine for labels and open space.",
+      densityMid: "Balanced dither. The sprite remains crisp.",
+      densityHigh: "Ink-heavy image. Watch the 75% print limit.",
+      fileEmpty: "No filename yet // temporary buffer",
+      fileNamedPrefix: "BUFFER: ",
+      radioPrefix: "ENGINE: ",
+      flagGridOn: "GRID ON",
+      flagGridOff: "GRID OFF",
+      flagInvertOn: "INK INVERTED",
+      flagInvertOff: "INK NORMAL",
+      flagAntsOn: "SELECTION MARCHING",
+      flagAntsOff: "SELECTION HELD",
+      toastExport: "Export queued. DISK.SPR is now waiting for the raster pass.",
+      toastPreview: "Preview polarity flipped. Paper and ink traded places.",
+      toastDither: "Ordered matrix advanced by one pattern.",
+      toastSaved: "DISK.SPR written to imaginary sector 01 without gray pixels.",
+      toastHello: "Signal received. Every visible shade still resolves to one bit.",
+      toastRaster: "Raster complete. The output buffer is ready to write.",
+      boardInk: "ink",
+      boardPaper: "paper",
+      boardPixelPrefix: "Pixel",
+      spriteDisk: "DISK.SPR",
+      spriteCursor: "CURSOR.SPR",
+      spriteHourglass: "HOURGLS.SPR",
+      clockPrefix: "SYS",
+      thresholdSuffix: "%",
+      cursorPrefix: "XY",
+      sizeReadout: "20×12 // 1-BIT"
+    });
+
+    document.title = COPY.documentTitle;
+
+    document.querySelectorAll("[data-copy]").forEach((node) => {
+      const key = node.dataset.copy;
+      if (Object.prototype.hasOwnProperty.call(COPY, key)) {
+        node.textContent = COPY[key];
+      }
+    });
+
+    document.querySelectorAll("[data-aria]").forEach((node) => {
+      const key = node.dataset.aria;
+      if (Object.prototype.hasOwnProperty.call(COPY, key)) {
+        node.setAttribute("aria-label", COPY[key]);
+      }
+    });
+
+    document.querySelectorAll("[data-placeholder]").forEach((node) => {
+      const key = node.dataset.placeholder;
+      if (Object.prototype.hasOwnProperty.call(COPY, key)) {
+        node.setAttribute("placeholder", COPY[key]);
+      }
+    });
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const pixelBoard = document.getElementById("pixelBoard");
+    const pixelCells = document.getElementById("pixelCells");
+    const pixelHand = document.getElementById("pixelHand");
+    const cursorReadout = document.getElementById("cursorReadout");
+    const spriteReadout = document.getElementById("spriteReadout");
+    const boardAnnouncement = document.getElementById("boardAnnouncement");
+    const statusIcon = document.getElementById("statusIcon");
+    const saveIcon = document.getElementById("saveIcon");
+    const systemClock = document.getElementById("systemClock");
+    const ROWS = 12;
+    const COLS = 20;
+    let activeRow = 5;
+    let activeCol = 9;
+    let activeTool = "ink";
+    let activeSprite = "disk";
+    let pixelData = [];
+    let toastTimer = 0;
+    let rasterTimer = 0;
+    let previousModalFocus = null;
+    let metersReady = false;
+
+    const SPRITES = Object.freeze({
+      disk: [
+        "00000000000000000000",
+        "00011111111111111000",
+        "00010000000000101000",
+        "00010111111110101000",
+        "00010100000010101000",
+        "00010111111110101000",
+        "00010000000000101000",
+        "00010111111111101000",
+        "00010100000000101000",
+        "00010101111110101000",
+        "00011111111111111000",
+        "00000000000000000000"
+      ],
+      cursor: [
+        "00000010000000000000",
+        "00000011000000000000",
+        "00000011100000000000",
+        "00000011110000000000",
+        "00000011111000000000",
+        "00000011111100000000",
+        "00000011111110000000",
+        "00000011110000000000",
+        "00000110110000000000",
+        "00001100110000000000",
+        "00001000110000000000",
+        "00000000000000000000"
+      ],
+      hourglass: [
+        "00000111111111000000",
+        "00000100000001000000",
+        "00000010000010000000",
+        "00000001000100000000",
+        "00000000101000000000",
+        "00000000010000000000",
+        "00000000101000000000",
+        "00000001000100000000",
+        "00000010000010000000",
+        "00000100000001000000",
+        "00000111111111000000",
+        "00000000000000000000"
+      ]
+    });
+
+    const ICONS = Object.freeze({
+      disk: [
+        "11111110",
+        "10000110",
+        "10110110",
+        "10110110",
+        "10000010",
+        "10111110",
+        "10100110",
+        "11111110"
+      ],
+      hourglass: [
+        "11111111",
+        "01000010",
+        "00100100",
+        "00011000",
+        "00011000",
+        "00100100",
+        "01000010",
+        "11111111"
+      ]
+    });
+
+    function paintIcon(host, matrix) {
+      host.textContent = "";
+      matrix.forEach((row, rowIndex) => {
+        Array.from(row).forEach((bit, columnIndex) => {
+          if (bit === "1") {
+            const pixel = document.createElement("span");
+            pixel.style.left = `calc(var(--pixel) * ${columnIndex})`;
+            pixel.style.top = `calc(var(--pixel) * ${rowIndex})`;
+            host.appendChild(pixel);
+          }
+        });
+      });
+    }
+
+    paintIcon(statusIcon, ICONS.hourglass);
+    paintIcon(saveIcon, ICONS.disk);
+
+    function updateClock() {
+      const now = new Date();
+      const time = new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(now);
+      systemClock.textContent = `${COPY.clockPrefix} ${time}`;
+    }
+
+    updateClock();
+    const clockTimer = window.setInterval(updateClock, 1000);
+    window.addEventListener("pagehide", () => window.clearInterval(clockTimer), { once: true });
+
+    function spriteLabel(sprite) {
+      if (sprite === "cursor") return COPY.spriteCursor;
+      if (sprite === "hourglass") return COPY.spriteHourglass;
+      return COPY.spriteDisk;
+    }
+
+    function createPixelCells() {
+      pixelCells.textContent = "";
+      for (let row = 0; row < ROWS; row += 1) {
+        for (let column = 0; column < COLS; column += 1) {
+          const cell = document.createElement("span");
+          cell.className = "pixel-cell";
+          cell.id = `bitmap-cell-${row}-${column}`;
+          cell.dataset.row = String(row);
+          cell.dataset.column = String(column);
+          cell.setAttribute("role", "gridcell");
+          cell.setAttribute("aria-selected", "false");
+          pixelCells.appendChild(cell);
+        }
+      }
+    }
+
+    function loadSprite(name) {
+      activeSprite = name;
+      pixelData = SPRITES[name].map((row) => Array.from(row, (bit) => bit === "1"));
+      document.querySelectorAll(".layer-row").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.sprite === name));
+      });
+      renderPixels();
+    }
+
+    function renderPixels() {
+      const cells = pixelCells.querySelectorAll(".pixel-cell");
+      cells.forEach((cell) => {
+        const row = Number(cell.dataset.row);
+        const column = Number(cell.dataset.column);
+        const inked = Boolean(pixelData[row] && pixelData[row][column]);
+        cell.classList.toggle("is-ink", inked);
+        cell.classList.toggle("is-current", row === activeRow && column === activeCol);
+        cell.setAttribute("aria-selected", String(inked));
+      });
+      const activeCell = document.getElementById(`bitmap-cell-${activeRow}-${activeCol}`);
+      if (activeCell) {
+        pixelBoard.setAttribute("aria-activedescendant", activeCell.id);
+      }
+      cursorReadout.textContent = `${COPY.cursorPrefix} ${String(activeCol).padStart(2, "0")}:${String(activeRow).padStart(2, "0")}`;
+      spriteReadout.textContent = `${spriteLabel(activeSprite)} // ${COPY.sizeReadout}`;
+      if (metersReady) {
+        updateInkMeterFromPixels();
+      }
+    }
+
+    function announcePixel(row, column) {
+      const state = pixelData[row][column] ? COPY.boardInk : COPY.boardPaper;
+      boardAnnouncement.textContent = `${COPY.boardPixelPrefix} ${column + 1}, ${row + 1}: ${state}`;
+    }
+
+    function setPixel(row, column, mode = activeTool) {
+      if (mode === "erase") {
+        pixelData[row][column] = false;
+      } else if (mode === "select") {
+        pixelData[row][column] = !pixelData[row][column];
+      } else {
+        pixelData[row][column] = true;
+      }
+      activeRow = row;
+      activeCol = column;
+      renderPixels();
+      announcePixel(row, column);
+    }
+
+    createPixelCells();
+    loadSprite("disk");
+
+    pixelCells.addEventListener("pointerdown", (event) => {
+      const cell = event.target.closest(".pixel-cell");
+      if (!cell) return;
+      event.preventDefault();
+      pixelBoard.focus();
+      setPixel(Number(cell.dataset.row), Number(cell.dataset.column));
+      pixelHand.classList.add("is-down");
+    });
+
+    window.addEventListener("pointerup", () => {
+      pixelHand.classList.remove("is-down");
+    });
+
+    pixelBoard.addEventListener("pointermove", (event) => {
+      const bounds = pixelBoard.getBoundingClientRect();
+      pixelHand.style.left = `${event.clientX - bounds.left}px`;
+      pixelHand.style.top = `${event.clientY - bounds.top}px`;
+      const column = Math.max(0, Math.min(COLS - 1, Math.floor(((event.clientX - bounds.left) / bounds.width) * COLS)));
+      const row = Math.max(0, Math.min(ROWS - 1, Math.floor(((event.clientY - bounds.top) / bounds.height) * ROWS)));
+      cursorReadout.textContent = `${COPY.cursorPrefix} ${String(column).padStart(2, "0")}:${String(row).padStart(2, "0")}`;
+    });
+
+    pixelBoard.addEventListener("pointerleave", () => {
+      cursorReadout.textContent = `${COPY.cursorPrefix} ${String(activeCol).padStart(2, "0")}:${String(activeRow).padStart(2, "0")}`;
+    });
+
+    pixelBoard.addEventListener("keydown", (event) => {
+      const keyMoves = {
+        ArrowUp: [-1, 0],
+        ArrowDown: [1, 0],
+        ArrowLeft: [0, -1],
+        ArrowRight: [0, 1]
+      };
+      if (keyMoves[event.key]) {
+        event.preventDefault();
+        activeRow = (activeRow + keyMoves[event.key][0] + ROWS) % ROWS;
+        activeCol = (activeCol + keyMoves[event.key][1] + COLS) % COLS;
+        renderPixels();
+        announcePixel(activeRow, activeCol);
+      } else if (event.key === " " || event.key === "Enter") {
+        event.preventDefault();
+        pixelData[activeRow][activeCol] = !pixelData[activeRow][activeCol];
+        renderPixels();
+        announcePixel(activeRow, activeCol);
+      }
+    });
+
+    document.querySelectorAll(".layer-row").forEach((button) => {
+      button.addEventListener("click", () => {
+        loadSprite(button.dataset.sprite);
+        pixelBoard.focus();
+      });
+    });
+
+    document.querySelectorAll(".tool-key").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeTool = button.dataset.tool;
+        document.querySelectorAll(".tool-key").forEach((item) => {
+          item.setAttribute("aria-pressed", String(item === button));
+        });
+        if (activeTool === "erase") {
+          boardAnnouncement.textContent = COPY.eraseState;
+        } else if (activeTool === "select") {
+          boardAnnouncement.textContent = COPY.selectedState;
+        } else {
+          boardAnnouncement.textContent = COPY.drawingState;
+        }
+      });
+    });
+
+    const heroWindow = document.getElementById("heroWindow");
+    const reopenCard = document.getElementById("reopenCard");
+    const reopenWindow = document.getElementById("reopenWindow");
+
+    function closeWorkbench() {
+      heroWindow.hidden = true;
+      reopenCard.hidden = false;
+      reopenWindow.focus();
+    }
+
+    function openWorkbench(focusBoard = false) {
+      reopenCard.hidden = true;
+      heroWindow.hidden = false;
+      heroWindow.classList.remove("window");
+      void heroWindow.offsetWidth;
+      heroWindow.classList.add("window");
+      if (focusBoard) {
+        pixelBoard.focus();
+      }
+    }
+
+    document.getElementById("closeWindow").addEventListener("click", closeWorkbench);
+    reopenWindow.addEventListener("click", () => openWorkbench(true));
+    document.getElementById("startDrawing").addEventListener("click", () => {
+      if (heroWindow.hidden) {
+        openWorkbench(true);
+      } else {
+        pixelBoard.focus();
+      }
+    });
+    document.getElementById("openControls").addEventListener("click", () => {
+      document.getElementById("control-deck").scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth" });
+    });
+
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    const toastClose = document.getElementById("toastClose");
+
+    function hideToast() {
+      window.clearTimeout(toastTimer);
+      toast.hidden = true;
+    }
+
+    function showToast(message) {
+      window.clearTimeout(toastTimer);
+      toastMessage.textContent = message;
+      toast.hidden = false;
+      toastTimer = window.setTimeout(hideToast, reducedMotion.matches ? 6500 : 4200);
+    }
+
+    toastClose.addEventListener("click", hideToast);
+    document.getElementById("showToast").addEventListener("click", () => showToast(COPY.toastHello));
+    document.getElementById("exportButton").addEventListener("click", () => showToast(COPY.toastExport));
+    document.getElementById("saveIconButton").addEventListener("click", () => showToast(COPY.toastSaved));
+
+    document.getElementById("previewButton").addEventListener("click", () => {
+      const invertControl = document.getElementById("invertInk");
+      invertControl.checked = !invertControl.checked;
+      invertControl.dispatchEvent(new Event("change", { bubbles: true }));
+      showToast(COPY.toastPreview);
+    });
+
+    const fileName = document.getElementById("fileName");
+    const fileNameStatus = document.getElementById("fileNameStatus");
+
+    function updateFileStatus() {
+      const value = fileName.value.trim().toUpperCase();
+      fileNameStatus.textContent = value ? `${COPY.fileNamedPrefix}${value}` : COPY.fileEmpty;
+    }
+
+    fileName.addEventListener("input", updateFileStatus);
+    document.getElementById("clearFileName").addEventListener("click", () => {
+      fileName.value = "";
+      updateFileStatus();
+      fileName.focus();
+    });
+    updateFileStatus();
+
+    const radioStatus = document.getElementById("radioStatus");
+    const radioLabels = {
+      strict: COPY.modeStrict,
+      ordered: COPY.modeOrdered,
+      diffusion: COPY.modeDiffusion
+    };
+
+    document.querySelectorAll('input[name="ink-mode"]').forEach((radio) => {
+      radio.addEventListener("change", () => {
+        if (radio.checked) {
+          radioStatus.textContent = `${COPY.radioPrefix}${radioLabels[radio.value]}`;
+        }
+      });
+    });
+    radioStatus.textContent = `${COPY.radioPrefix}${radioLabels.strict}`;
+
+    const showGrid = document.getElementById("showGrid");
+    const invertInk = document.getElementById("invertInk");
+    const antsSwitch = document.getElementById("antsSwitch");
+    const flagStatus = document.getElementById("flagStatus");
+
+    function updateFlags(changed) {
+      pixelBoard.classList.toggle("grid-off", !showGrid.checked);
+      pixelBoard.classList.toggle("is-inverted", invertInk.checked);
+      pixelBoard.classList.toggle("ants-paused", !antsSwitch.checked);
+      if (changed === "grid") {
+        flagStatus.textContent = showGrid.checked ? COPY.flagGridOn : COPY.flagGridOff;
+      } else if (changed === "invert") {
+        flagStatus.textContent = invertInk.checked ? COPY.flagInvertOn : COPY.flagInvertOff;
+      } else {
+        flagStatus.textContent = antsSwitch.checked ? COPY.flagAntsOn : COPY.flagAntsOff;
+      }
+    }
+
+    showGrid.addEventListener("change", () => updateFlags("grid"));
+    invertInk.addEventListener("change", () => updateFlags("invert"));
+    antsSwitch.addEventListener("change", () => updateFlags("ants"));
+    updateFlags("ants");
+
+    const threshold = document.getElementById("threshold");
+    const thresholdValue = document.getElementById("thresholdValue");
+    const ditherSwatch = document.getElementById("ditherSwatch");
+    const meterFill = document.getElementById("meterFill");
+    const meterValue = document.getElementById("meterValue");
+    const inkMeter = document.getElementById("inkMeter");
+    const meterStatus = document.getElementById("meterStatus");
+
+    function setMeter(value) {
+      const bounded = Math.max(0, Math.min(100, Math.round(value)));
+      meterFill.style.width = `${bounded}%`;
+      meterValue.textContent = `${bounded}${COPY.thresholdSuffix}`;
+      inkMeter.setAttribute("aria-valuenow", String(bounded));
+      if (bounded < 35) {
+        meterStatus.textContent = COPY.densityLow;
+      } else if (bounded <= 75) {
+        meterStatus.textContent = COPY.densityMid;
+      } else {
+        meterStatus.textContent = COPY.densityHigh;
+      }
+    }
+
+    function updateThreshold() {
+      const value = Number(threshold.value);
+      threshold.style.setProperty("--range-value", `${value}%`);
+      thresholdValue.textContent = `${value}${COPY.thresholdSuffix}`;
+      ditherSwatch.classList.toggle("sparse", value < 34);
+      ditherSwatch.classList.toggle("dense", value > 66);
+      setMeter(value);
+    }
+
+    function updateInkMeterFromPixels() {
+      if (!pixelData.length || !meterFill) return;
+      const blackPixels = pixelData.flat().filter(Boolean).length;
+      const density = (blackPixels / (ROWS * COLS)) * 100;
+      if (document.activeElement !== threshold) {
+        setMeter(density);
+      }
+    }
+
+    threshold.addEventListener("input", updateThreshold);
+    threshold.addEventListener("change", updateThreshold);
+    updateThreshold();
+    metersReady = true;
+    updateInkMeterFromPixels();
+
+    const dropdown = document.getElementById("patternDropdown");
+    const dropdownTrigger = document.getElementById("dropdownTrigger");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const dropdownValue = document.getElementById("dropdownValue");
+    const dropdownOptions = Array.from(dropdownMenu.querySelectorAll('[role="option"]'));
+    let selectedPatternIndex = 0;
+    let focusedPatternIndex = 0;
+
+    function selectPattern(index, announce = false) {
+      selectedPatternIndex = (index + dropdownOptions.length) % dropdownOptions.length;
+      focusedPatternIndex = selectedPatternIndex;
+      dropdownOptions.forEach((option, optionIndex) => {
+        option.setAttribute("aria-selected", String(optionIndex === selectedPatternIndex));
+      });
+      dropdownValue.textContent = dropdownOptions[selectedPatternIndex].textContent;
+      dropdownTrigger.setAttribute("aria-activedescendant", dropdownOptions[selectedPatternIndex].id);
+      const value = dropdownOptions[selectedPatternIndex].dataset.value;
+      if (value === "bayer2") {
+        ditherSwatch.style.background = "var(--checker)";
+      } else if (value === "bayer4") {
+        ditherSwatch.style.background = "var(--dots)";
+      } else if (value === "checker") {
+        ditherSwatch.style.background = "var(--checker)";
+      } else {
+        ditherSwatch.style.background = "repeating-linear-gradient(0deg,var(--ink) 0 1px,var(--paper) 1px 3px)";
+      }
+      if (announce) {
+        showToast(COPY.toastDither);
+      }
+    }
+
+    function openDropdown(moveFocus = true) {
+      dropdownMenu.hidden = false;
+      dropdownTrigger.setAttribute("aria-expanded", "true");
+      focusedPatternIndex = selectedPatternIndex;
+      if (moveFocus) {
+        dropdownOptions[focusedPatternIndex].focus();
+      }
+    }
+
+    function closeDropdown(returnFocus = true) {
+      dropdownMenu.hidden = true;
+      dropdownTrigger.setAttribute("aria-expanded", "false");
+      if (returnFocus) dropdownTrigger.focus();
+    }
+
+    function moveDropdownFocus(index) {
+      focusedPatternIndex = (index + dropdownOptions.length) % dropdownOptions.length;
+      dropdownOptions[focusedPatternIndex].focus();
+    }
+
+    dropdownTrigger.addEventListener("click", () => {
+      if (dropdownMenu.hidden) {
+        openDropdown();
+      } else {
+        closeDropdown();
+      }
+    });
+
+    dropdownTrigger.addEventListener("keydown", (event) => {
+      if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+        event.preventDefault();
+        openDropdown(false);
+        if (event.key === "ArrowUp" || event.key === "End") {
+          moveDropdownFocus(dropdownOptions.length - 1);
+        } else {
+          moveDropdownFocus(0);
+        }
+      } else if (event.key === "Escape" && !dropdownMenu.hidden) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeDropdown();
+      }
+    });
+
+    dropdownOptions.forEach((option, index) => {
+      option.addEventListener("click", () => {
+        selectPattern(index);
+        closeDropdown();
+      });
+      option.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          moveDropdownFocus(focusedPatternIndex + 1);
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          moveDropdownFocus(focusedPatternIndex - 1);
+        } else if (event.key === "Home") {
+          event.preventDefault();
+          moveDropdownFocus(0);
+        } else if (event.key === "End") {
+          event.preventDefault();
+          moveDropdownFocus(dropdownOptions.length - 1);
+        } else if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectPattern(index);
+          closeDropdown();
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          event.stopPropagation();
+          closeDropdown();
+        } else if (event.key === "Tab") {
+          closeDropdown(false);
+        }
+      });
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!dropdown.contains(event.target) && !dropdownMenu.hidden) {
+        closeDropdown(false);
+      }
+    });
+
+    document.getElementById("ditherButton").addEventListener("click", () => {
+      selectPattern(selectedPatternIndex + 1, true);
+    });
+    selectPattern(0);
+
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+
+    function activateTab(tab, focus = false) {
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute("aria-selected", String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+      });
+      if (focus) tab.focus();
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => activateTab(tab));
+      tab.addEventListener("keydown", (event) => {
+        let nextIndex = null;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+        if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = tabs.length - 1;
+        if (nextIndex !== null) {
+          event.preventDefault();
+          activateTab(tabs[nextIndex], true);
+        }
+      });
+    });
+
+    const progressTrack = document.getElementById("progressTrack");
+    const progressFill = document.getElementById("progressFill");
+    const progressValue = document.getElementById("progressValue");
+    const progressState = document.getElementById("progressState");
+    let progress = 18;
+
+    function renderProgress() {
+      progressFill.style.width = `${progress}%`;
+      progressTrack.setAttribute("aria-valuenow", String(progress));
+      progressValue.textContent = `${progress}${COPY.thresholdSuffix}`;
+      if (progress >= 100) {
+        progressState.textContent = COPY.progressDone;
+      } else if (rasterTimer) {
+        progressState.textContent = COPY.progressRunning;
+      } else {
+        progressState.textContent = COPY.progressIdle;
+      }
+    }
+
+    function finishRaster() {
+      window.clearInterval(rasterTimer);
+      rasterTimer = 0;
+      progress = 100;
+      renderProgress();
+      showToast(COPY.toastRaster);
+    }
+
+    document.getElementById("runRaster").addEventListener("click", () => {
+      window.clearInterval(rasterTimer);
+      rasterTimer = 0;
+      progress = 0;
+      renderProgress();
+      if (reducedMotion.matches) {
+        finishRaster();
+        return;
+      }
+      rasterTimer = window.setInterval(() => {
+        progress = Math.min(100, progress + 7);
+        renderProgress();
+        if (progress >= 100) finishRaster();
+      }, 130);
+    });
+
+    document.getElementById("stepRaster").addEventListener("click", () => {
+      window.clearInterval(rasterTimer);
+      rasterTimer = 0;
+      progress = Math.min(100, progress + 8);
+      renderProgress();
+      if (progress >= 100) showToast(COPY.toastRaster);
+    });
+    renderProgress();
+
+    const tooltipTrigger = document.getElementById("saveIconButton");
+    const tooltip = document.getElementById("saveTooltip");
+
+    function showTooltip() {
+      tooltip.hidden = false;
+    }
+
+    function hideTooltip() {
+      tooltip.hidden = true;
+    }
+
+    tooltipTrigger.addEventListener("pointerenter", showTooltip);
+    tooltipTrigger.addEventListener("pointerleave", hideTooltip);
+    tooltipTrigger.addEventListener("focus", showTooltip);
+    tooltipTrigger.addEventListener("blur", hideTooltip);
+    tooltipTrigger.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        hideTooltip();
+        event.stopPropagation();
+      }
+    });
+
+    const modalLayer = document.getElementById("modalLayer");
+    const modalClose = document.getElementById("modalClose");
+    const modalCancel = document.getElementById("modalCancel");
+    const modalSave = document.getElementById("modalSave");
+
+    function modalFocusable() {
+      return Array.from(modalLayer.querySelectorAll("button:not(:disabled), [href], input:not(:disabled), [tabindex]:not([tabindex='-1'])"))
+        .filter((element) => !element.hidden);
+    }
+
+    function openModal() {
+      previousModalFocus = document.activeElement;
+      modalLayer.hidden = false;
+      document.body.classList.add("modal-open");
+      modalClose.focus();
+    }
+
+    function closeModal() {
+      modalLayer.hidden = true;
+      document.body.classList.remove("modal-open");
+      if (previousModalFocus && typeof previousModalFocus.focus === "function") {
+        previousModalFocus.focus();
+      }
+    }
+
+    document.getElementById("openModal").addEventListener("click", openModal);
+    modalClose.addEventListener("click", closeModal);
+    modalCancel.addEventListener("click", closeModal);
+    modalSave.addEventListener("click", () => {
+      closeModal();
+      showToast(COPY.toastSaved);
+    });
+
+    modalLayer.addEventListener("pointerdown", (event) => {
+      if (event.target === modalLayer) closeModal();
+    });
+
+    modalLayer.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        closeModal();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = modalFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      if (!modalLayer.hidden) return;
+      if (!dropdownMenu.hidden) {
+        event.preventDefault();
+        closeDropdown();
+      } else if (!toast.hidden) {
+        hideToast();
+      }
+    });
+  </script>
+</body>
+</html>

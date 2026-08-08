@@ -1,0 +1,2410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f8f5e9">
+  <title id="documentTitle">Scribble — A notebook for unruly ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;family=Patrick+Hand&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f8f5e9;
+      --paper-deep: #eee9d8;
+      --ink: #123f86;
+      --ink-dark: #102c59;
+      --ink-soft: #35639d;
+      --pencil: #5d626b;
+      --line: rgba(35, 93, 154, .18);
+      --yellow: #ffe45c;
+      --yellow-deep: #f5c829;
+      --pink: #ff82ad;
+      --pink-soft: #ffc0d5;
+      --mint: #a9e8d1;
+      --white: #fffef8;
+      --coffee: #8f5e37;
+      --shadow: 7px 8px 0 rgba(18, 44, 89, .14);
+      --scribble: "Patrick Hand", "Comic Sans MS", cursive;
+      --body: "Nunito", ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      color: var(--ink-dark);
+      font-family: var(--body);
+      background:
+        radial-gradient(circle at 17% 8%, rgba(255, 255, 255, .85) 0 1px, transparent 1.5px) 0 0 / 13px 17px,
+        radial-gradient(circle at 83% 39%, rgba(30, 40, 50, .05) 0 .7px, transparent 1.3px) 0 0 / 17px 19px,
+        repeating-linear-gradient(to bottom, var(--paper) 0 31px, var(--line) 31px 32px);
+      background-color: var(--paper);
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0 auto 0 max(42px, calc((100vw - 1180px) / 2));
+      width: 2px;
+      content: "";
+      background: rgba(226, 77, 105, .2);
+      pointer-events: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    button,
+    [role="tab"],
+    [role="option"],
+    input {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--pink);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      color: var(--ink-dark);
+      background: var(--yellow);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 8px;
+      left: 16px;
+      padding: 10px 16px;
+      border: 2px solid var(--ink);
+      background: var(--white);
+      color: var(--ink);
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .status-strip {
+      width: 100%;
+      border-bottom: 2px solid var(--ink);
+      background: rgba(255, 228, 92, .93);
+      box-shadow: 0 3px 0 rgba(18, 63, 134, .12);
+    }
+
+    .status-inner {
+      display: flex;
+      width: min(1180px, 100%);
+      min-height: 46px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 auto;
+      padding: 8px 24px;
+      font-family: var(--scribble);
+      font-size: 1.03rem;
+      letter-spacing: .025em;
+    }
+
+    .status-mark,
+    .status-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .status-dot {
+      width: 11px;
+      height: 11px;
+      border: 2px solid var(--ink);
+      border-radius: 48% 52% 58% 42%;
+      background: var(--pink);
+      box-shadow: 2px 1px 0 var(--ink);
+    }
+
+    .status-meta {
+      color: var(--ink-dark);
+      font-size: .92rem;
+    }
+
+    .page-shell {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      display: grid;
+      min-height: min(720px, calc(100vh - 46px));
+      grid-template-columns: minmax(0, .95fr) minmax(410px, 1.05fr);
+      align-items: center;
+      gap: clamp(38px, 6vw, 80px);
+      padding-block: clamp(74px, 9vw, 126px);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 20px;
+      padding: 8px 16px 7px;
+      color: var(--ink-dark);
+      font-family: var(--scribble);
+      font-size: 1.1rem;
+      background: var(--pink-soft);
+      box-shadow: 4px 5px 0 rgba(18, 44, 89, .12);
+      transform: rotate(-2deg);
+      clip-path: polygon(1% 7%, 98% 0, 100% 91%, 3% 100%);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .hero-title {
+      max-width: 670px;
+      margin-bottom: 22px;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: clamp(4.6rem, 9vw, 8.2rem);
+      font-weight: 400;
+      line-height: .78;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+      transform: rotate(-1deg);
+    }
+
+    .hero-title .marker {
+      position: relative;
+      z-index: 0;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .hero-title .marker::before {
+      position: absolute;
+      z-index: -1;
+      right: -.08em;
+      bottom: .08em;
+      left: -.08em;
+      height: .31em;
+      content: "";
+      background: rgba(255, 228, 92, .86);
+      transform: rotate(-1.5deg);
+      clip-path: polygon(0 16%, 100% 0, 98% 86%, 2% 100%);
+    }
+
+    .hero-lede {
+      max-width: 570px;
+      margin-bottom: 30px;
+      color: #203c67;
+      font-size: clamp(1.04rem, 1.7vw, 1.24rem);
+      line-height: 1.72;
+    }
+
+    .wavy-word {
+      position: relative;
+      display: inline-block;
+      font-weight: 800;
+    }
+
+    .wavy-word::after {
+      position: absolute;
+      right: 0;
+      bottom: -.22em;
+      left: 0;
+      height: 6px;
+      content: "";
+      background:
+        radial-gradient(ellipse at 50% 100%, transparent 61%, var(--pink) 63% 72%, transparent 74%) 0 0 / 12px 6px repeat-x;
+      animation: wave-crawl 1s linear infinite;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 2px solid var(--ink);
+      border-radius: 44% 56% 48% 52% / 54% 47% 53% 46%;
+      padding: 11px 20px;
+      color: var(--ink-dark);
+      font-weight: 800;
+      line-height: 1.1;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease;
+    }
+
+    .btn::after {
+      position: absolute;
+      inset: 3px -4px -4px 3px;
+      z-index: -1;
+      border: 1px solid currentColor;
+      border-radius: 52% 48% 56% 44% / 44% 56% 46% 54%;
+      content: "";
+      opacity: .62;
+      pointer-events: none;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translate(-2px, -2px) rotate(-.6deg);
+      box-shadow: 5px 6px 0 rgba(18, 44, 89, .15);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translate(2px, 2px) rotate(.3deg);
+      box-shadow: 1px 1px 0 rgba(18, 44, 89, .12);
+    }
+
+    .btn:disabled {
+      border-color: #858b92;
+      color: #666d75;
+      background:
+        repeating-linear-gradient(-45deg, #ecebe5 0 4px, #d9d7d1 4px 6px);
+      cursor: not-allowed;
+      opacity: .78;
+    }
+
+    .btn-primary {
+      background: var(--yellow);
+      box-shadow: 4px 5px 0 rgba(18, 44, 89, .18);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      box-shadow: 4px 5px 0 rgba(18, 44, 89, .12);
+    }
+
+    .btn-pink {
+      border-color: var(--ink-dark);
+      background: var(--pink-soft);
+      box-shadow: 4px 5px 0 rgba(18, 44, 89, .14);
+    }
+
+    .btn-ink {
+      color: var(--white);
+      background: var(--ink);
+      box-shadow: 4px 5px 0 rgba(255, 130, 173, .38);
+    }
+
+    .button-arrow {
+      display: inline-block;
+      font-family: var(--scribble);
+      font-size: 1.35rem;
+      line-height: .5;
+      transform: rotate(-7deg);
+    }
+
+    .hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 25px;
+      color: var(--pencil);
+      font-family: var(--scribble);
+      font-size: 1.08rem;
+      transform: rotate(-2deg);
+    }
+
+    .hero-note::before {
+      width: 40px;
+      height: 14px;
+      border-top: 2px solid var(--pencil);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-8deg);
+    }
+
+    .hero-stage {
+      position: relative;
+      display: block;
+      width: min(100%, 515px);
+      aspect-ratio: .93;
+      border: 0;
+      padding: 0;
+      color: inherit;
+      background: transparent;
+      cursor: pointer;
+      justify-self: end;
+    }
+
+    .notebook {
+      position: absolute;
+      inset: 3% 1% 1% 8%;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 5px 15px 7px 12px;
+      background:
+        linear-gradient(90deg, transparent 0 53px, rgba(226, 77, 105, .25) 53px 55px, transparent 55px),
+        repeating-linear-gradient(to bottom, var(--white) 0 32px, rgba(31, 92, 153, .17) 32px 34px);
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+    }
+
+    .notebook::after {
+      position: absolute;
+      right: -1px;
+      bottom: -1px;
+      width: 74px;
+      height: 74px;
+      border-top: 2px solid var(--ink);
+      border-left: 2px solid var(--ink);
+      content: "";
+      background:
+        linear-gradient(135deg, var(--paper-deep) 0 48%, var(--ink) 49% 51%, var(--white) 52% 100%);
+      clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    }
+
+    .spiral {
+      position: absolute;
+      z-index: 3;
+      top: 8%;
+      bottom: 8%;
+      left: 2.5%;
+      width: 52px;
+      pointer-events: none;
+    }
+
+    .spiral::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background:
+        radial-gradient(circle at 78% 9px, var(--paper) 0 4px, var(--ink) 4.5px 6px, transparent 6.5px) 0 0 / 48px 34px repeat-y;
+    }
+
+    .spiral::after {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 2px;
+      width: 39px;
+      content: "";
+      background:
+        repeating-linear-gradient(to bottom, transparent 0 6px, var(--pencil) 6px 8px, transparent 8px 32px);
+      transform: skewY(-8deg);
+      opacity: .75;
+    }
+
+    .paperclip {
+      position: absolute;
+      z-index: 4;
+      top: -13px;
+      right: 54px;
+      width: 25px;
+      height: 75px;
+      border: 4px solid var(--pencil);
+      border-bottom: 0;
+      border-radius: 16px 16px 0 0;
+      transform: rotate(11deg);
+    }
+
+    .paperclip::before {
+      position: absolute;
+      top: 9px;
+      right: 4px;
+      width: 9px;
+      height: 52px;
+      border: 3px solid var(--pencil);
+      border-bottom: 0;
+      border-radius: 10px 10px 0 0;
+      content: "";
+    }
+
+    .coffee-ring {
+      position: absolute;
+      right: 10%;
+      bottom: 10%;
+      width: 104px;
+      height: 98px;
+      border: 7px solid rgba(143, 94, 55, .17);
+      border-right-color: rgba(143, 94, 55, .28);
+      border-radius: 48% 52% 45% 55%;
+      transform: rotate(-11deg);
+    }
+
+    .coffee-ring::after {
+      position: absolute;
+      right: -19px;
+      bottom: -8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      content: "";
+      background: rgba(143, 94, 55, .18);
+      box-shadow: -111px -12px 0 -2px rgba(143, 94, 55, .18);
+    }
+
+    .tape {
+      position: absolute;
+      z-index: 3;
+      top: 11%;
+      left: 34%;
+      width: 124px;
+      height: 26px;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,.96) 0 8px, rgba(242,241,232,.96) 8px 10px);
+      box-shadow: 0 1px 2px rgba(18,44,89,.1);
+      transform: rotate(-4deg);
+    }
+
+    .stage-words {
+      position: absolute;
+      z-index: 2;
+      top: 24%;
+      left: 19%;
+      width: 67%;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: clamp(2.9rem, 5vw, 4.5rem);
+      line-height: .85;
+      text-align: left;
+      transform: rotate(-4deg);
+    }
+
+    .stage-words span {
+      display: block;
+    }
+
+    .stage-words span:last-child {
+      position: relative;
+      display: inline-block;
+      margin-left: 17%;
+    }
+
+    .stage-words span:last-child::before {
+      position: absolute;
+      z-index: -1;
+      right: -10px;
+      bottom: 1px;
+      left: -8px;
+      height: 25px;
+      content: "";
+      background: var(--yellow);
+      clip-path: polygon(1% 13%, 99% 0, 96% 85%, 0 100%);
+    }
+
+    .doodle-arrow {
+      position: absolute;
+      z-index: 2;
+      top: 60%;
+      left: 21%;
+      width: 128px;
+      height: 48px;
+      border-bottom: 4px solid var(--ink);
+      border-radius: 50%;
+      transform: rotate(14deg);
+    }
+
+    .doodle-arrow::before,
+    .doodle-arrow::after {
+      position: absolute;
+      right: -1px;
+      bottom: -5px;
+      width: 28px;
+      height: 4px;
+      content: "";
+      background: var(--ink);
+      transform-origin: right center;
+    }
+
+    .doodle-arrow::before {
+      transform: rotate(144deg);
+    }
+
+    .doodle-arrow::after {
+      transform: rotate(214deg);
+    }
+
+    .sticky {
+      position: absolute;
+      z-index: 4;
+      display: grid;
+      width: 126px;
+      min-height: 112px;
+      place-items: center;
+      padding: 18px 13px 20px;
+      color: var(--ink-dark);
+      font-family: var(--scribble);
+      font-size: 1.16rem;
+      line-height: 1.05;
+      text-align: center;
+      background: var(--pink-soft);
+      box-shadow: 5px 7px 0 rgba(18, 44, 89, .14);
+      clip-path: polygon(2% 1%, 100% 4%, 96% 100%, 0 95%);
+    }
+
+    .sticky-main {
+      right: -2%;
+      bottom: 15%;
+      transform: rotate(7deg);
+    }
+
+    .hero-stage.is-stamped .sticky-main {
+      animation: sticker-slap .46s cubic-bezier(.2, .9, .28, 1.28);
+    }
+
+    .draw-line {
+      position: absolute;
+      z-index: 2;
+      top: 19%;
+      left: 16%;
+      width: 60%;
+      height: 62%;
+      border: 4px solid transparent;
+      border-top-color: var(--ink);
+      border-right-color: var(--ink);
+      border-radius: 46% 54% 37% 63%;
+      opacity: .45;
+      transform: rotate(-8deg);
+      clip-path: inset(0 0 0 0);
+      animation: line-reveal 1.4s .2s both ease-out;
+      pointer-events: none;
+    }
+
+    .draw-line::after {
+      position: absolute;
+      right: -7px;
+      bottom: 12%;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      content: "";
+      background: var(--ink);
+    }
+
+    .controls-wrap {
+      padding-block: 28px 112px;
+    }
+
+    .section-heading {
+      position: relative;
+      max-width: 720px;
+      margin-bottom: 48px;
+    }
+
+    .kicker {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--pink);
+      font-family: var(--scribble);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: .05em;
+    }
+
+    .section-title {
+      display: inline;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: clamp(2.7rem, 5.8vw, 5rem);
+      font-weight: 400;
+      line-height: .94;
+      text-wrap: balance;
+    }
+
+    .section-title::after {
+      display: block;
+      width: 62%;
+      height: 9px;
+      margin-top: 8px;
+      content: "";
+      background:
+        radial-gradient(ellipse at 50% 100%, transparent 60%, var(--yellow-deep) 62% 72%, transparent 74%) 0 0 / 18px 9px repeat-x;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      grid-column: span 6;
+      min-width: 0;
+      border: 2px solid var(--ink);
+      border-radius: 6px 16px 9px 13px;
+      padding: 29px;
+      background:
+        linear-gradient(90deg, transparent 0 34px, rgba(226,77,105,.14) 34px 36px, transparent 36px),
+        repeating-linear-gradient(to bottom, rgba(255,254,248,.94) 0 31px, rgba(35,93,154,.14) 31px 32px);
+      box-shadow: var(--shadow);
+    }
+
+    .card:nth-child(3n + 2) {
+      border-radius: 14px 5px 17px 8px;
+      transform: rotate(.25deg);
+    }
+
+    .card:nth-child(3n) {
+      border-radius: 8px 15px 5px 18px;
+      transform: rotate(-.2deg);
+    }
+
+    .card-wide {
+      grid-column: 1 / -1;
+    }
+
+    .card-pin {
+      position: absolute;
+      top: -12px;
+      right: 26px;
+      width: 78px;
+      height: 24px;
+      background: rgba(255, 130, 173, .46);
+      transform: rotate(3deg);
+      clip-path: polygon(2% 13%, 98% 0, 100% 90%, 0 100%);
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin: -7px 0 20px -38px;
+      padding: 7px 19px 7px 37px;
+      color: var(--ink-dark);
+      font-family: var(--scribble);
+      font-size: 1.08rem;
+      background: var(--yellow);
+      transform: rotate(-2deg);
+      clip-path: polygon(0 5%, 98% 0, 100% 91%, 1% 100%);
+    }
+
+    .card-title {
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: 2.05rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .card-copy {
+      max-width: 680px;
+      margin-bottom: 25px;
+      color: #3f526e;
+      font-size: .95rem;
+      line-height: 1.55;
+    }
+
+    .button-shelf {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .field-label,
+    .group-label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--ink-dark);
+      font-weight: 800;
+    }
+
+    .field-wrap {
+      position: relative;
+      margin-top: 14px;
+    }
+
+    .scribble-input {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-bottom: 3px solid var(--ink);
+      border-radius: 5px 8px 3px 4px;
+      padding: 11px 100px 9px 13px;
+      color: var(--ink-dark);
+      background:
+        linear-gradient(178deg, rgba(255,255,255,.76), rgba(255,255,255,.9)),
+        var(--white);
+      box-shadow: 2px 2px 0 rgba(18,44,89,.1);
+    }
+
+    .scribble-input:hover {
+      background: #fff;
+    }
+
+    .scribble-input:focus-visible {
+      outline-offset: 2px;
+    }
+
+    .char-count {
+      position: absolute;
+      right: 10px;
+      bottom: 12px;
+      color: var(--pencil);
+      font-family: var(--scribble);
+      font-size: .94rem;
+    }
+
+    .preview-strip {
+      min-height: 44px;
+      margin-top: 14px;
+      padding: 10px 13px;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: 1.08rem;
+      background:
+        linear-gradient(178deg, transparent 0 20%, rgba(255,228,92,.68) 21% 83%, transparent 84%);
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      border: 0;
+      padding: 0;
+    }
+
+    .choice-stack {
+      display: grid;
+      gap: 13px;
+    }
+
+    .choice {
+      position: relative;
+      display: flex;
+      min-height: 38px;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .choice input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .radio-mark {
+      position: relative;
+      width: 25px;
+      height: 25px;
+      flex: 0 0 auto;
+      border: 2px solid var(--ink);
+      border-radius: 47% 53% 45% 55%;
+      background: var(--white);
+      transform: rotate(-4deg);
+    }
+
+    .choice input:checked + .radio-mark::after {
+      position: absolute;
+      inset: 5px;
+      border-radius: 56% 44% 52% 48%;
+      content: "";
+      background: var(--pink);
+      box-shadow: 1px 1px 0 var(--ink);
+      animation: dot-pop .2s ease-out;
+    }
+
+    .choice input:focus-visible + .radio-mark,
+    .check input:focus-visible + .check-mark {
+      outline: 3px solid var(--pink);
+      outline-offset: 4px;
+    }
+
+    .check {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .check input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .check-mark {
+      position: relative;
+      width: 27px;
+      height: 25px;
+      flex: 0 0 auto;
+      border: 2px solid var(--ink);
+      border-radius: 2px 5px 3px 6px;
+      background: var(--white);
+      transform: rotate(2deg);
+    }
+
+    .check input:checked + .check-mark {
+      background: var(--yellow);
+    }
+
+    .check input:checked + .check-mark::before,
+    .check input:checked + .check-mark::after {
+      position: absolute;
+      height: 3px;
+      border-radius: 3px;
+      content: "";
+      background: var(--ink);
+      transform-origin: left center;
+    }
+
+    .check input:checked + .check-mark::before {
+      top: 12px;
+      left: 4px;
+      width: 9px;
+      transform: rotate(46deg);
+    }
+
+    .check input:checked + .check-mark::after {
+      top: 17px;
+      left: 10px;
+      width: 17px;
+      transform: rotate(-50deg);
+    }
+
+    .switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 2px dashed rgba(18,63,134,.32);
+    }
+
+    .switch-copy {
+      display: grid;
+      gap: 3px;
+    }
+
+    .switch-note {
+      color: var(--pencil);
+      font-size: .83rem;
+    }
+
+    .switch {
+      position: relative;
+      width: 70px;
+      height: 35px;
+      flex: 0 0 auto;
+      border: 2px solid var(--ink);
+      border-radius: 45% 55% 48% 52% / 55% 48% 52% 45%;
+      padding: 0;
+      background: #d6d8d6;
+      cursor: pointer;
+      transition: background-color .18s ease;
+    }
+
+    .switch::after {
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      width: 23px;
+      height: 23px;
+      border: 2px solid var(--ink);
+      border-radius: 50% 44% 53% 47%;
+      content: "";
+      background: var(--white);
+      box-shadow: 2px 1px 0 rgba(18,44,89,.22);
+      transition: transform .2s cubic-bezier(.2,.8,.2,1.2);
+    }
+
+    .switch[aria-checked="true"] {
+      background: var(--mint);
+    }
+
+    .switch[aria-checked="true"]::after {
+      transform: translateX(34px) rotate(12deg);
+    }
+
+    .range-head,
+    .meter-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .range-output,
+    .meter-output {
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: 1.26rem;
+    }
+
+    .range {
+      width: 100%;
+      height: 32px;
+      margin: 2px 0 10px;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .range::-webkit-slider-runnable-track {
+      height: 9px;
+      border: 2px solid var(--ink);
+      border-radius: 43% 57% 49% 51%;
+      background: linear-gradient(90deg, var(--yellow) var(--range-fill, 62%), var(--white) var(--range-fill, 62%));
+    }
+
+    .range::-moz-range-track {
+      height: 7px;
+      border: 2px solid var(--ink);
+      border-radius: 43% 57% 49% 51%;
+      background: var(--white);
+    }
+
+    .range::-moz-range-progress {
+      height: 7px;
+      background: var(--yellow);
+    }
+
+    .range::-webkit-slider-thumb {
+      width: 27px;
+      height: 27px;
+      margin-top: -11px;
+      border: 2px solid var(--ink);
+      border-radius: 55% 45% 48% 52%;
+      appearance: none;
+      background: var(--pink);
+      box-shadow: 2px 2px 0 rgba(18,44,89,.22);
+      transform: rotate(-7deg);
+    }
+
+    .range::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border: 2px solid var(--ink);
+      border-radius: 55% 45% 48% 52%;
+      background: var(--pink);
+      box-shadow: 2px 2px 0 rgba(18,44,89,.22);
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      color: var(--pencil);
+      font-family: var(--scribble);
+    }
+
+    .select-shell {
+      position: relative;
+    }
+
+    .select-button {
+      display: flex;
+      width: 100%;
+      min-height: 52px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 2px solid var(--ink);
+      border-radius: 4px 10px 5px 8px;
+      padding: 10px 14px;
+      background: var(--white);
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 3px 4px 0 rgba(18,44,89,.12);
+    }
+
+    .select-button:hover {
+      background: #fff;
+      transform: rotate(-.25deg);
+    }
+
+    .chevron {
+      width: 13px;
+      height: 13px;
+      border-right: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+      transform: translateY(-3px) rotate(45deg);
+      transition: transform .18s ease;
+    }
+
+    .select-button[aria-expanded="true"] .chevron {
+      transform: translateY(3px) rotate(225deg);
+    }
+
+    .option-list {
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 9px);
+      right: 0;
+      left: 0;
+      margin: 0;
+      border: 2px solid var(--ink);
+      border-radius: 7px 13px 8px 5px;
+      padding: 7px;
+      list-style: none;
+      background: var(--white);
+      box-shadow: 7px 8px 0 rgba(18,44,89,.16);
+      transform: rotate(.25deg);
+    }
+
+    .option-list[hidden] {
+      display: none;
+    }
+
+    .option {
+      display: flex;
+      min-height: 43px;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 3px 7px 4px 6px;
+      padding: 9px 11px;
+      cursor: pointer;
+    }
+
+    .option:hover,
+    .option.is-active {
+      background:
+        linear-gradient(178deg, transparent 0 15%, rgba(255,228,92,.74) 16% 86%, transparent 87%);
+    }
+
+    .option[aria-selected="true"]::after {
+      width: 13px;
+      height: 7px;
+      border-bottom: 3px solid var(--ink);
+      border-left: 3px solid var(--ink);
+      content: "";
+      transform: rotate(-45deg);
+    }
+
+    .tab-list {
+      display: flex;
+      gap: 8px;
+      border-bottom: 3px solid var(--ink);
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .tab {
+      min-width: max-content;
+      border: 2px solid var(--ink);
+      border-bottom: 0;
+      border-radius: 8px 12px 0 0;
+      padding: 10px 15px 8px;
+      background: var(--paper-deep);
+      font-family: var(--scribble);
+      font-size: 1.08rem;
+      cursor: pointer;
+      transform: translateY(3px) rotate(-1deg);
+    }
+
+    .tab:nth-child(2) {
+      transform: translateY(3px) rotate(.7deg);
+    }
+
+    .tab[aria-selected="true"] {
+      position: relative;
+      z-index: 2;
+      background: var(--yellow);
+      transform: translateY(3px);
+    }
+
+    .tab-panel {
+      min-height: 126px;
+      padding: 24px 5px 5px;
+      color: #334d70;
+      line-height: 1.65;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .tab-quote {
+      display: block;
+      margin-top: 9px;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: 1.25rem;
+    }
+
+    .progress-rail {
+      position: relative;
+      height: 25px;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 46% 54% 49% 51% / 58% 43% 57% 42%;
+      background:
+        repeating-linear-gradient(-45deg, #fff 0 7px, #edf0ea 7px 9px);
+    }
+
+    .progress-fill {
+      position: absolute;
+      inset: 3px auto 3px 3px;
+      width: 38%;
+      border-radius: inherit;
+      background:
+        repeating-linear-gradient(175deg, var(--pink) 0 8px, #ff95b8 8px 11px);
+      transition: width .38s cubic-bezier(.2,.8,.3,1);
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      margin-top: 17px;
+    }
+
+    .progress-note {
+      min-width: 48px;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: 1.25rem;
+    }
+
+    .meter-shell {
+      position: relative;
+      display: grid;
+      width: 180px;
+      height: 105px;
+      place-items: end center;
+      margin: 6px auto 19px;
+      overflow: hidden;
+    }
+
+    .meter-arc {
+      position: absolute;
+      top: 3px;
+      width: 170px;
+      height: 170px;
+      border: 16px solid var(--paper-deep);
+      border-radius: 50%;
+      background:
+        conic-gradient(from 270deg, var(--yellow) 0 var(--meter-fill, 62deg), transparent var(--meter-fill, 62deg) 360deg);
+      box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 2px var(--ink);
+    }
+
+    .meter-arc::after {
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      content: "";
+      background: var(--white);
+      box-shadow: 0 0 0 2px var(--ink);
+    }
+
+    .meter-needle {
+      position: absolute;
+      z-index: 3;
+      bottom: 5px;
+      left: 50%;
+      width: 64px;
+      height: 4px;
+      border-radius: 4px;
+      background: var(--ink);
+      transform: rotate(var(--needle, -18deg));
+      transform-origin: left center;
+      transition: transform .35s ease;
+    }
+
+    .meter-needle::before {
+      position: absolute;
+      top: -6px;
+      left: -7px;
+      width: 15px;
+      height: 15px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      content: "";
+      background: var(--pink);
+    }
+
+    .meter-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .round-button {
+      width: 45px;
+      height: 42px;
+      border: 2px solid var(--ink);
+      border-radius: 48% 52% 43% 57%;
+      background: var(--white);
+      font-family: var(--scribble);
+      font-size: 1.45rem;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(18,44,89,.13);
+    }
+
+    .round-button:hover {
+      background: var(--yellow);
+      transform: rotate(-5deg);
+    }
+
+    .round-button:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    .overlay-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .action-note {
+      display: grid;
+      min-height: 150px;
+      place-items: center;
+      align-content: center;
+      gap: 12px;
+      border: 2px dashed var(--ink);
+      border-radius: 7px 14px 6px 11px;
+      padding: 20px;
+      background: rgba(255,255,255,.54);
+      text-align: center;
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .tooltip {
+      position: absolute;
+      z-index: 8;
+      bottom: calc(100% + 13px);
+      left: 50%;
+      width: max-content;
+      max-width: min(250px, 70vw);
+      border: 2px solid var(--ink);
+      border-radius: 5px 9px 4px 7px;
+      padding: 9px 12px;
+      color: var(--white);
+      background: var(--ink);
+      font-family: var(--scribble);
+      font-size: .99rem;
+      line-height: 1.2;
+      box-shadow: 3px 4px 0 rgba(255,130,173,.35);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 5px) rotate(-1deg);
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    .tooltip::after {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 11px;
+      height: 11px;
+      border-right: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      content: "";
+      background: var(--ink);
+      transform: translate(-50%, -6px) rotate(45deg);
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-trigger:focus-visible + .tooltip {
+      opacity: 1;
+      transform: translate(-50%, 0) rotate(-1deg);
+    }
+
+    .site-footer {
+      width: 100%;
+      border-top: 2px solid var(--ink);
+      background: rgba(255, 192, 213, .76);
+    }
+
+    .footer-inner {
+      display: flex;
+      width: min(1180px, 100%);
+      min-height: 92px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      margin: 0 auto;
+      padding: 22px 24px;
+    }
+
+    .footer-line {
+      margin: 0;
+      font-family: var(--scribble);
+      font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+    }
+
+    .footer-mark {
+      flex: 0 0 auto;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: 2rem;
+      transform: rotate(-7deg);
+    }
+
+    .modal-layer[hidden] {
+      display: none;
+    }
+
+    .modal-layer {
+      position: fixed;
+      z-index: 80;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(16, 44, 89, .46);
+      backdrop-filter: blur(3px);
+    }
+
+    .modal {
+      position: relative;
+      width: min(520px, 100%);
+      border: 3px solid var(--ink);
+      border-radius: 8px 16px 10px 13px;
+      padding: clamp(28px, 6vw, 48px);
+      background:
+        linear-gradient(90deg, transparent 0 44px, rgba(226,77,105,.16) 44px 46px, transparent 46px),
+        repeating-linear-gradient(to bottom, var(--white) 0 31px, rgba(35,93,154,.15) 31px 32px);
+      box-shadow: 12px 14px 0 rgba(16, 44, 89, .3);
+      transform: rotate(-.45deg);
+      animation: modal-in .26s ease-out both;
+    }
+
+    .modal::before {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      width: 112px;
+      height: 25px;
+      content: "";
+      background: rgba(255,228,92,.75);
+      transform: translateX(-50%) rotate(2deg);
+      clip-path: polygon(1% 8%, 100% 0, 97% 92%, 0 100%);
+    }
+
+    .modal-title {
+      margin-bottom: 12px;
+      color: var(--ink);
+      font-family: var(--scribble);
+      font-size: clamp(2.35rem, 7vw, 3.5rem);
+      font-weight: 400;
+      line-height: .95;
+    }
+
+    .modal-copy {
+      margin-bottom: 25px;
+      color: #334d70;
+      line-height: 1.65;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .toast-stack {
+      position: fixed;
+      z-index: 90;
+      right: max(16px, calc((100vw - 1180px) / 2 + 24px));
+      bottom: 24px;
+      width: min(360px, calc(100vw - 32px));
+      pointer-events: none;
+    }
+
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      border: 2px solid var(--ink);
+      border-radius: 6px 13px 7px 11px;
+      padding: 15px 16px;
+      color: var(--ink-dark);
+      background: var(--yellow);
+      box-shadow: 7px 8px 0 rgba(16,44,89,.21);
+      opacity: 0;
+      pointer-events: auto;
+      transform: translateY(30px) rotate(2deg);
+      transition: opacity .22s ease, transform .28s cubic-bezier(.2,.9,.3,1.2);
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0) rotate(-1deg);
+    }
+
+    .toast-copy {
+      display: grid;
+      gap: 2px;
+    }
+
+    .toast-title {
+      font-family: var(--scribble);
+      font-size: 1.2rem;
+    }
+
+    .toast-message {
+      font-size: .88rem;
+    }
+
+    .toast-close {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      padding: 0;
+      background: var(--white);
+      font-family: var(--scribble);
+      font-size: 1.15rem;
+      cursor: pointer;
+    }
+
+    .modal-open {
+      overflow: hidden;
+    }
+
+    @keyframes line-reveal {
+      from {
+        clip-path: inset(0 100% 100% 0);
+      }
+      58% {
+        clip-path: inset(0 0 100% 0);
+      }
+      to {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    @keyframes wave-crawl {
+      to {
+        background-position: 12px 0;
+      }
+    }
+
+    @keyframes sticker-slap {
+      0% {
+        opacity: 0;
+        transform: scale(1.7) rotate(19deg);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(.91) rotate(4deg);
+      }
+      100% {
+        transform: scale(1) rotate(7deg);
+      }
+    }
+
+    @keyframes dot-pop {
+      from {
+        transform: scale(.35) rotate(-20deg);
+      }
+      to {
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    @keyframes modal-in {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(.95) rotate(2deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(-.45deg);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 58px;
+        padding-block: 72px 90px;
+      }
+
+      .hero-stage {
+        width: min(100%, 570px);
+        justify-self: center;
+      }
+
+      .card {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body::before {
+        left: 30px;
+      }
+
+      .status-inner,
+      .page-shell,
+      .footer-inner {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .status-meta {
+        display: none;
+      }
+
+      .hero {
+        gap: 44px;
+        padding-block: 56px 72px;
+      }
+
+      .hero-title {
+        font-size: clamp(4.15rem, 22.5vw, 6rem);
+      }
+
+      .hero-lede {
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .hero-stage {
+        width: 100%;
+        min-height: 390px;
+        aspect-ratio: .86;
+      }
+
+      .notebook {
+        inset: 3% 1% 1% 9%;
+      }
+
+      .stage-words {
+        top: 23%;
+        font-size: clamp(2.9rem, 15vw, 4.2rem);
+      }
+
+      .sticky {
+        width: 108px;
+        min-height: 94px;
+        padding: 14px 9px;
+        font-size: 1rem;
+      }
+
+      .sticky-main {
+        right: -1%;
+        bottom: 10%;
+      }
+
+      .control-grid {
+        gap: 20px;
+      }
+
+      .card {
+        padding: 25px 20px;
+        box-shadow: 5px 6px 0 rgba(18,44,89,.12);
+      }
+
+      .card-tag {
+        margin-left: -27px;
+        padding-left: 26px;
+      }
+
+      .button-shelf {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button-shelf .btn {
+        width: 100%;
+      }
+
+      .switch-row {
+        align-items: flex-start;
+      }
+
+      .overlay-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" id="skipLink" href="#main">Skip to the notebook controls</a>
+
+  <header class="status-strip">
+    <div class="status-inner">
+      <div class="status-mark">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusName">SCRIBBLE NOTEBOOK CO.</span>
+      </div>
+      <div class="status-meta">
+        <span id="statusMode">ink is awake</span>
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusEdition">page 07 / field notes</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell" id="main">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow" id="heroEyebrow">A tidy place for untidy thinking</p>
+        <h1 class="hero-title" id="heroTitle">
+          <span id="heroTitleLine">Make a </span>
+          <span class="marker" id="heroTitleMark">mark.</span>
+        </h1>
+        <p class="hero-lede" id="heroLede">Catch the half-formed thought, circle the good bit, and leave the page a little more wonderfully wobbly than you found it.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="beginButton" type="button">
+            <span id="beginButtonText">Open the notebook</span>
+            <span class="button-arrow" id="beginButtonArrow" aria-hidden="true">↘</span>
+          </button>
+          <button class="btn btn-secondary" id="postcardButton" type="button">Read the margin note</button>
+        </div>
+        <p class="hero-note" id="heroNote">psst — tap the page to shuffle the sticky note</p>
+      </div>
+
+      <button class="hero-stage" id="doodlePad" type="button" aria-label="Shuffle the notebook sticky note">
+        <span class="notebook" aria-hidden="true">
+          <span class="coffee-ring"></span>
+          <span class="tape"></span>
+          <span class="stage-words">
+            <span id="stageWordOne">think</span>
+            <span id="stageWordTwo">sideways</span>
+          </span>
+          <span class="doodle-arrow"></span>
+        </span>
+        <span class="spiral" aria-hidden="true"></span>
+        <span class="paperclip" aria-hidden="true"></span>
+        <span class="draw-line" aria-hidden="true"></span>
+        <span class="sticky sticky-main" id="stickyMessage">good ideas rarely sit straight</span>
+      </button>
+    </section>
+
+    <section class="controls-wrap" id="controls" aria-labelledby="controlsTitle">
+      <div class="section-heading">
+        <span class="kicker" id="controlsKicker">Field test no. 07</span>
+        <h2 class="section-title" id="controlsTitle">Everything your pencil case can do</h2>
+      </div>
+
+      <div class="control-grid">
+        <article class="card card-wide" aria-labelledby="buttonCardTitle">
+          <span class="card-pin" aria-hidden="true"></span>
+          <span class="card-tag" id="buttonCardTag">01 / press marks</span>
+          <h3 class="card-title" id="buttonCardTitle">Buttons with a little backbone</h3>
+          <p class="card-copy" id="buttonCardCopy">Five ways to nudge the page: highlighted, outlined, stickered, inked, and deliberately unavailable.</p>
+          <div class="button-shelf">
+            <button class="btn btn-primary demo-toast" type="button" data-toast-key="bright" id="buttonBright">Highlight it</button>
+            <button class="btn btn-secondary demo-toast" type="button" data-toast-key="outline" id="buttonOutline">Pencil it in</button>
+            <button class="btn btn-pink demo-toast" type="button" data-toast-key="sticker" id="buttonSticker">Stick it here</button>
+            <button class="btn btn-ink demo-toast" type="button" data-toast-key="ink" id="buttonInk">Make it official</button>
+            <button class="btn" type="button" disabled id="buttonDisabled">Eraser is napping</button>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="noteCardTitle">
+          <span class="card-tag" id="noteCardTag">02 / quick note</span>
+          <h3 class="card-title" id="noteCardTitle">Catch the thought</h3>
+          <p class="card-copy" id="noteCardCopy">Write before the idea notices you are looking at it.</p>
+          <label class="field-label" id="noteLabel" for="noteInput">Margin note</label>
+          <div class="field-wrap">
+            <input class="scribble-input" id="noteInput" type="text" maxlength="48" autocomplete="off" placeholder="e.g. draw the impossible map…">
+            <span class="char-count" id="charCount" aria-live="polite">0/48</span>
+          </div>
+          <div class="preview-strip" id="notePreview" aria-live="polite">Your thought will glow here.</div>
+        </article>
+
+        <article class="card" aria-labelledby="choiceCardTitle">
+          <span class="card-pin" aria-hidden="true"></span>
+          <span class="card-tag" id="choiceCardTag">03 / tiny decisions</span>
+          <h3 class="card-title" id="choiceCardTitle">Choose your pace</h3>
+          <p class="card-copy" id="choiceCardCopy">There is no wrong route across a blank page—only different kinds of footprints.</p>
+          <fieldset>
+            <legend class="group-label" id="radioLegend">How should today move?</legend>
+            <div class="choice-stack">
+              <label class="choice">
+                <input type="radio" name="pace" value="wander">
+                <span class="radio-mark" aria-hidden="true"></span>
+                <span id="radioWander">Wander and notice</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="pace" value="amble">
+                <span class="radio-mark" aria-hidden="true"></span>
+                <span id="radioAmble">Amble with purpose</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="pace" value="dash">
+                <span class="radio-mark" aria-hidden="true"></span>
+                <span id="radioDash">Dash before lunch</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="switch-row">
+            <label class="check">
+              <input id="marginCheckbox" type="checkbox">
+              <span class="check-mark" aria-hidden="true"></span>
+              <span id="marginLabel">Leave room for arrows</span>
+            </label>
+          </div>
+          <div class="switch-row">
+            <span class="switch-copy">
+              <span class="group-label" id="switchLabel">Idea-catching mode</span>
+              <span class="switch-note" id="switchState" aria-live="polite">Off — pencil behind ear</span>
+            </span>
+            <button class="switch" id="ideaSwitch" type="button" role="switch" aria-checked="false" aria-label="Toggle idea-catching mode"></button>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="rangeCardTitle">
+          <span class="card-tag" id="rangeCardTag">04 / smudge dial</span>
+          <h3 class="card-title" id="rangeCardTitle">How messy is useful?</h3>
+          <p class="card-copy" id="rangeCardCopy">Slide from immaculate margin to glorious brainstorm.</p>
+          <div class="range-head">
+            <label class="field-label" id="rangeLabel" for="messRange">Creative mess</label>
+            <output class="range-output" id="rangeOutput" for="messRange">62%</output>
+          </div>
+          <input class="range" id="messRange" type="range" min="0" max="100" step="1" value="62">
+          <div class="range-scale" aria-hidden="true">
+            <span id="rangeLow">pin-neat</span>
+            <span id="rangeHigh">ink storm</span>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="selectCardTitle">
+          <span class="card-pin" aria-hidden="true"></span>
+          <span class="card-tag" id="selectCardTag">05 / marker tray</span>
+          <h3 class="card-title" id="selectCardTitle">Pick a highlighter</h3>
+          <p class="card-copy" id="selectCardCopy">A custom pop-out palette, ready for arrow keys and indecisive thumbs.</p>
+          <span class="field-label" id="selectLabel">Current marker</span>
+          <div class="select-shell">
+            <button class="select-button" id="paletteButton" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="paletteList">
+              <span id="paletteValue">Sunbeam yellow</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="option-list" id="paletteList" role="listbox" hidden>
+              <li class="option" id="paletteYellow" role="option" tabindex="-1" data-value="yellow" aria-selected="true">Sunbeam yellow</li>
+              <li class="option" id="palettePink" role="option" tabindex="-1" data-value="pink" aria-selected="false">Post-it pink</li>
+              <li class="option" id="paletteBlue" role="option" tabindex="-1" data-value="blue" aria-selected="false">Ballpoint blue</li>
+              <li class="option" id="palettePencil" role="option" tabindex="-1" data-value="pencil" aria-selected="false">Pencil grey</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card card-wide" aria-labelledby="tabsCardTitle">
+          <span class="card-tag" id="tabsCardTag">06 / page tabs</span>
+          <h3 class="card-title" id="tabsCardTitle">Three times to make a note</h3>
+          <p class="card-copy" id="tabsCardCopy">Flip between moments. The useful thought has terrible respect for office hours.</p>
+          <div class="tab-list" role="tablist">
+            <button class="tab" id="tabMorning" type="button" role="tab" aria-selected="true" aria-controls="panelMorning" tabindex="0">Morning margin</button>
+            <button class="tab" id="tabAfternoon" type="button" role="tab" aria-selected="false" aria-controls="panelAfternoon" tabindex="-1">Afternoon fold</button>
+            <button class="tab" id="tabMidnight" type="button" role="tab" aria-selected="false" aria-controls="panelMidnight" tabindex="-1">Midnight scribble</button>
+          </div>
+          <div class="tab-panel" id="panelMorning" role="tabpanel" aria-labelledby="tabMorning" tabindex="0">
+            <span id="panelMorningCopy">Start with a small box, one underlined verb, and plenty of blank paper around it.</span>
+            <span class="tab-quote" id="panelMorningQuote">“Begin lightly. The page can take it.”</span>
+          </div>
+          <div class="tab-panel" id="panelAfternoon" role="tabpanel" aria-labelledby="tabAfternoon" tabindex="0" hidden>
+            <span id="panelAfternoonCopy">Cross out the stale parts. Add a snack-shaped diagram. Draw an arrow to whatever still has energy.</span>
+            <span class="tab-quote" id="panelAfternoonQuote">“Revision is just thinking with visible footprints.”</span>
+          </div>
+          <div class="tab-panel" id="panelMidnight" role="tabpanel" aria-labelledby="tabMidnight" tabindex="0" hidden>
+            <span id="panelMidnightCopy">Keep the strange sentence. Tomorrow can decide whether it is brilliant or merely sleepy.</span>
+            <span class="tab-quote" id="panelMidnightQuote">“Do not tidy the moonlit version.”</span>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="progressCardTitle">
+          <span class="card-pin" aria-hidden="true"></span>
+          <span class="card-tag" id="progressCardTag">07 / page fill</span>
+          <h3 class="card-title" id="progressCardTitle">A thought in progress</h3>
+          <p class="card-copy" id="progressCardCopy">Add another bright scrap. Full pages roll over into fresh ones.</p>
+          <div class="progress-rail" id="progressRail" role="progressbar" aria-label="Thought completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38">
+            <span class="progress-fill" id="progressFill"></span>
+          </div>
+          <div class="progress-row">
+            <button class="btn btn-pink" id="progressButton" type="button">Add a scrap</button>
+            <output class="progress-note" id="progressOutput">38%</output>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="meterCardTitle">
+          <span class="card-tag" id="meterCardTag">08 / wonder gauge</span>
+          <h3 class="card-title" id="meterCardTitle">Curiosity reading</h3>
+          <p class="card-copy" id="meterCardCopy">A hand-drawn meter for the important question: how interested are we now?</p>
+          <div class="meter-head">
+            <span class="field-label" id="meterLabel">Wonder level</span>
+            <output class="meter-output" id="meterOutput">6/10</output>
+          </div>
+          <div class="meter-shell" id="wonderMeter" role="meter" aria-label="Curiosity reading" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6">
+            <span class="meter-arc" aria-hidden="true"></span>
+            <span class="meter-needle" aria-hidden="true"></span>
+          </div>
+          <div class="meter-controls">
+            <button class="round-button" id="meterDown" type="button" aria-label="Lower wonder level">−</button>
+            <button class="round-button" id="meterUp" type="button" aria-label="Raise wonder level">+</button>
+          </div>
+        </article>
+
+        <article class="card card-wide" aria-labelledby="overlayCardTitle">
+          <span class="card-pin" aria-hidden="true"></span>
+          <span class="card-tag" id="overlayCardTag">09 / notes on top</span>
+          <h3 class="card-title" id="overlayCardTitle">Layers, reminders, and whispers</h3>
+          <p class="card-copy" id="overlayCardCopy">Open a focus-locked notebook note, pin a toast to the screen, or hover for a quiet pencil-side hint.</p>
+          <div class="overlay-actions">
+            <div class="action-note">
+              <span class="group-label" id="modalActionLabel">A note that needs the whole desk</span>
+              <button class="btn btn-primary" id="modalButton" type="button">Open field note</button>
+            </div>
+            <div class="action-note">
+              <span class="group-label" id="toastActionLabel">A reminder that lands like a sticker</span>
+              <div class="button-shelf">
+                <button class="btn btn-pink" id="toastButton" type="button">Pin a reminder</button>
+                <div class="tooltip-wrap">
+                  <button class="btn btn-secondary tooltip-trigger" id="tooltipButton" type="button" aria-describedby="tooltipText">Hover for a hint</button>
+                  <span class="tooltip" id="tooltipText" role="tooltip">Tiny clue: the wonky line is intentional.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-line" id="footerLine">Leave the page better marked than you found it.</p>
+      <span class="footer-mark" id="footerMark" aria-hidden="true">↗ ✦</span>
+    </div>
+  </footer>
+
+  <div class="modal-layer" id="modalLayer" hidden>
+    <section class="modal" id="modalDialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalCopy">
+      <h2 class="modal-title" id="modalTitle">Keep the crooked thought.</h2>
+      <p class="modal-copy" id="modalCopy">The idea does not need to be polished yet. Give it one honest sentence, one curious arrow, and enough room to surprise you.</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modalKeep" type="button">Keep this note</button>
+        <button class="btn btn-secondary" id="modalClose" type="button">Close the notebook</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast-stack" aria-live="polite" aria-atomic="true">
+    <div class="toast" id="toast" role="status">
+      <span class="toast-copy">
+        <strong class="toast-title" id="toastTitle">Pinned to the margin!</strong>
+        <span class="toast-message" id="toastMessage">Your reminder will wait right here.</span>
+      </span>
+      <button class="toast-close" id="toastClose" type="button" aria-label="Dismiss reminder">×</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const byId = (id) => document.getElementById(id);
+      const write = (id, value) => {
+        const node = byId(id);
+        if (node) node.textContent = value;
+      };
+
+      const copy = {
+        documentTitle: "Scribble — A notebook for unruly ideas",
+        skipLink: "Skip to the notebook controls",
+        statusName: "SCRIBBLE NOTEBOOK CO.",
+        statusMode: "ink is awake",
+        statusEdition: "page 07 / field notes",
+        heroEyebrow: "A tidy place for untidy thinking",
+        heroTitleLine: "Make a ",
+        heroTitleMark: "mark.",
+        heroLede: "Catch the half-formed thought, circle the good bit, and leave the page a little more wonderfully wobbly than you found it.",
+        beginButtonText: "Open the notebook",
+        beginButtonArrow: "↘",
+        postcardButton: "Read the margin note",
+        heroNote: "psst — tap the page to shuffle the sticky note",
+        stageWordOne: "think",
+        stageWordTwo: "sideways",
+        stickyMessage: "good ideas rarely sit straight",
+        controlsKicker: "Field test no. 07",
+        controlsTitle: "Everything your pencil case can do",
+        buttonCardTag: "01 / press marks",
+        buttonCardTitle: "Buttons with a little backbone",
+        buttonCardCopy: "Five ways to nudge the page: highlighted, outlined, stickered, inked, and deliberately unavailable.",
+        buttonBright: "Highlight it",
+        buttonOutline: "Pencil it in",
+        buttonSticker: "Stick it here",
+        buttonInk: "Make it official",
+        buttonDisabled: "Eraser is napping",
+        noteCardTag: "02 / quick note",
+        noteCardTitle: "Catch the thought",
+        noteCardCopy: "Write before the idea notices you are looking at it.",
+        noteLabel: "Margin note",
+        choiceCardTag: "03 / tiny decisions",
+        choiceCardTitle: "Choose your pace",
+        choiceCardCopy: "There is no wrong route across a blank page—only different kinds of footprints.",
+        radioLegend: "How should today move?",
+        radioWander: "Wander and notice",
+        radioAmble: "Amble with purpose",
+        radioDash: "Dash before lunch",
+        marginLabel: "Leave room for arrows",
+        switchLabel: "Idea-catching mode",
+        rangeCardTag: "04 / smudge dial",
+        rangeCardTitle: "How messy is useful?",
+        rangeCardCopy: "Slide from immaculate margin to glorious brainstorm.",
+        rangeLabel: "Creative mess",
+        rangeLow: "pin-neat",
+        rangeHigh: "ink storm",
+        selectCardTag: "05 / marker tray",
+        selectCardTitle: "Pick a highlighter",
+        selectCardCopy: "A custom pop-out palette, ready for arrow keys and indecisive thumbs.",
+        selectLabel: "Current marker",
+        paletteYellow: "Sunbeam yellow",
+        palettePink: "Post-it pink",
+        paletteBlue: "Ballpoint blue",
+        palettePencil: "Pencil grey",
+        tabsCardTag: "06 / page tabs",
+        tabsCardTitle: "Three times to make a note",
+        tabsCardCopy: "Flip between moments. The useful thought has terrible respect for office hours.",
+        tabMorning: "Morning margin",
+        tabAfternoon: "Afternoon fold",
+        tabMidnight: "Midnight scribble",
+        panelMorningCopy: "Start with a small box, one underlined verb, and plenty of blank paper around it.",
+        panelMorningQuote: "“Begin lightly. The page can take it.”",
+        panelAfternoonCopy: "Cross out the stale parts. Add a snack-shaped diagram. Draw an arrow to whatever still has energy.",
+        panelAfternoonQuote: "“Revision is just thinking with visible footprints.”",
+        panelMidnightCopy: "Keep the strange sentence. Tomorrow can decide whether it is brilliant or merely sleepy.",
+        panelMidnightQuote: "“Do not tidy the moonlit version.”",
+        progressCardTag: "07 / page fill",
+        progressCardTitle: "A thought in progress",
+        progressCardCopy: "Add another bright scrap. Full pages roll over into fresh ones.",
+        progressButton: "Add a scrap",
+        meterCardTag: "08 / wonder gauge",
+        meterCardTitle: "Curiosity reading",
+        meterCardCopy: "A hand-drawn meter for the important question: how interested are we now?",
+        meterLabel: "Wonder level",
+        meterDown: "−",
+        meterUp: "+",
+        overlayCardTag: "09 / notes on top",
+        overlayCardTitle: "Layers, reminders, and whispers",
+        overlayCardCopy: "Open a focus-locked notebook note, pin a toast to the screen, or hover for a quiet pencil-side hint.",
+        modalActionLabel: "A note that needs the whole desk",
+        modalButton: "Open field note",
+        toastActionLabel: "A reminder that lands like a sticker",
+        toastButton: "Pin a reminder",
+        tooltipButton: "Hover for a hint",
+        tooltipText: "Tiny clue: the wonky line is intentional.",
+        footerLine: "Leave the page better marked than you found it.",
+        footerMark: "↗ ✦",
+        modalTitle: "Keep the crooked thought.",
+        modalCopy: "The idea does not need to be polished yet. Give it one honest sentence, one curious arrow, and enough room to surprise you.",
+        modalKeep: "Keep this note",
+        modalClose: "Close the notebook",
+        toastTitle: "Pinned to the margin!",
+        toastMessage: "Your reminder will wait right here.",
+        toastClose: "×"
+      };
+
+      Object.entries(copy).forEach(([id, value]) => write(id, value));
+
+      byId("noteInput").placeholder = "e.g. draw the impossible map…";
+      byId("doodlePad").setAttribute("aria-label", "Shuffle the notebook sticky note");
+      byId("ideaSwitch").setAttribute("aria-label", "Toggle idea-catching mode");
+      byId("paletteButton").setAttribute("aria-labelledby", "selectLabel paletteValue");
+      byId("progressRail").setAttribute("aria-label", "Thought completion");
+      byId("wonderMeter").setAttribute("aria-label", "Curiosity reading");
+      byId("meterDown").setAttribute("aria-label", "Lower wonder level");
+      byId("meterUp").setAttribute("aria-label", "Raise wonder level");
+      byId("toastClose").setAttribute("aria-label", "Dismiss reminder");
+
+      const storage = {
+        get(key, fallback) {
+          try {
+            const value = window.localStorage.getItem(`scribble:${key}`);
+            return value === null ? fallback : value;
+          } catch (_) {
+            return fallback;
+          }
+        },
+        set(key, value) {
+          try {
+            window.localStorage.setItem(`scribble:${key}`, String(value));
+          } catch (_) {
+            /* The notebook still works when storage is unavailable. */
+          }
+        }
+      };
+
+      const toastMessages = {
+        bright: ["Highlighted!", "That thought just became hard to miss."],
+        outline: ["Pencilled in.", "Flexible, visible, and ready to change."],
+        sticker: ["Stuck to the page!", "A small pink vote of confidence."],
+        ink: ["Marked official.", "Blue ink says this one is staying."],
+        reminder: ["Pinned to the margin!", "Your reminder will wait right here."],
+        saved: ["Field note kept.", "The crooked thought is safe for later."]
+      };
+
+      let toastTimer = 0;
+      const showToast = (key = "reminder") => {
+        const message = toastMessages[key] || toastMessages.reminder;
+        write("toastTitle", message[0]);
+        write("toastMessage", message[1]);
+        byId("toast").classList.add("is-visible");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => {
+          byId("toast").classList.remove("is-visible");
+        }, 3600);
+      };
+
+      const hideToast = () => {
+        window.clearTimeout(toastTimer);
+        byId("toast").classList.remove("is-visible");
+      };
+
+      document.querySelectorAll(".demo-toast").forEach((button) => {
+        button.addEventListener("click", () => showToast(button.dataset.toastKey));
+      });
+      byId("toastButton").addEventListener("click", () => showToast("reminder"));
+      byId("toastClose").addEventListener("click", hideToast);
+
+      byId("beginButton").addEventListener("click", () => {
+        byId("controls").scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      });
+
+      const stickyNotes = [
+        "good ideas rarely sit straight",
+        "circle the odd little spark",
+        "leave room for a better arrow"
+      ];
+      let stickyIndex = Number(storage.get("sticky", "0")) % stickyNotes.length;
+      write("stickyMessage", stickyNotes[stickyIndex]);
+      const stampSticky = () => {
+        stickyIndex = (stickyIndex + 1) % stickyNotes.length;
+        write("stickyMessage", stickyNotes[stickyIndex]);
+        storage.set("sticky", stickyIndex);
+        const stage = byId("doodlePad");
+        stage.classList.remove("is-stamped");
+        void stage.offsetWidth;
+        stage.classList.add("is-stamped");
+      };
+      byId("doodlePad").addEventListener("click", stampSticky);
+
+      const noteInput = byId("noteInput");
+      const savedNote = storage.get("note", "");
+      noteInput.value = savedNote;
+      const updateNote = () => {
+        const value = noteInput.value;
+        write("charCount", `${value.length}/48`);
+        write("notePreview", value.trim() ? `“${value.trim()}”` : "Your thought will glow here.");
+        storage.set("note", value);
+      };
+      noteInput.addEventListener("input", updateNote);
+      updateNote();
+
+      const radioValue = storage.get("pace", "amble");
+      const radios = [...document.querySelectorAll('input[name="pace"]')];
+      const chosenRadio = radios.find((radio) => radio.value === radioValue) || radios[1];
+      chosenRadio.checked = true;
+      radios.forEach((radio) => {
+        radio.addEventListener("change", () => storage.set("pace", radio.value));
+      });
+
+      const marginCheckbox = byId("marginCheckbox");
+      marginCheckbox.checked = storage.get("margin", "true") === "true";
+      marginCheckbox.addEventListener("change", () => storage.set("margin", marginCheckbox.checked));
+
+      const ideaSwitch = byId("ideaSwitch");
+      let ideaMode = storage.get("ideaMode", "false") === "true";
+      const renderIdeaMode = () => {
+        ideaSwitch.setAttribute("aria-checked", String(ideaMode));
+        write("switchState", ideaMode ? "On — listening for sparks" : "Off — pencil behind ear");
+      };
+      ideaSwitch.addEventListener("click", () => {
+        ideaMode = !ideaMode;
+        storage.set("ideaMode", ideaMode);
+        renderIdeaMode();
+      });
+      renderIdeaMode();
+
+      const messRange = byId("messRange");
+      messRange.value = storage.get("mess", "62");
+      const updateRange = () => {
+        const value = Number(messRange.value);
+        messRange.style.setProperty("--range-fill", `${value}%`);
+        write("rangeOutput", `${value}%`);
+        storage.set("mess", value);
+      };
+      messRange.addEventListener("input", updateRange);
+      updateRange();
+
+      const paletteNames = {
+        yellow: "Sunbeam yellow",
+        pink: "Post-it pink",
+        blue: "Ballpoint blue",
+        pencil: "Pencil grey"
+      };
+      const paletteButton = byId("paletteButton");
+      const paletteList = byId("paletteList");
+      const paletteOptions = [...paletteList.querySelectorAll('[role="option"]')];
+      let paletteValue = storage.get("palette", "yellow");
+      let activeOptionIndex = Math.max(0, paletteOptions.findIndex((option) => option.dataset.value === paletteValue));
+
+      const renderPalette = () => {
+        write("paletteValue", paletteNames[paletteValue]);
+        paletteOptions.forEach((option, index) => {
+          const selected = option.dataset.value === paletteValue;
+          option.setAttribute("aria-selected", String(selected));
+          option.classList.toggle("is-active", index === activeOptionIndex && !paletteList.hidden);
+        });
+      };
+
+      const openPalette = (index = activeOptionIndex) => {
+        paletteList.hidden = false;
+        paletteButton.setAttribute("aria-expanded", "true");
+        activeOptionIndex = Math.max(0, Math.min(index, paletteOptions.length - 1));
+        renderPalette();
+        paletteOptions[activeOptionIndex].focus();
+      };
+
+      const closePalette = (returnFocus = true) => {
+        paletteList.hidden = true;
+        paletteButton.setAttribute("aria-expanded", "false");
+        paletteOptions.forEach((option) => option.classList.remove("is-active"));
+        if (returnFocus) paletteButton.focus();
+      };
+
+      const choosePalette = (index) => {
+        activeOptionIndex = index;
+        paletteValue = paletteOptions[index].dataset.value;
+        storage.set("palette", paletteValue);
+        renderPalette();
+        closePalette();
+        showToast("bright");
+      };
+
+      paletteButton.addEventListener("click", () => {
+        if (paletteList.hidden) {
+          openPalette(paletteOptions.findIndex((option) => option.dataset.value === paletteValue));
+        } else {
+          closePalette();
+        }
+      });
+
+      paletteButton.addEventListener("keydown", (event) => {
+        if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+          event.preventDefault();
+          const selectedIndex = paletteOptions.findIndex((option) => option.dataset.value === paletteValue);
+          if (event.key === "ArrowDown") openPalette((selectedIndex + 1) % paletteOptions.length);
+          if (event.key === "ArrowUp") openPalette((selectedIndex - 1 + paletteOptions.length) % paletteOptions.length);
+          if (event.key === "Home") openPalette(0);
+          if (event.key === "End") openPalette(paletteOptions.length - 1);
+        }
+      });
+
+      paletteOptions.forEach((option, index) => {
+        option.addEventListener("click", () => choosePalette(index));
+        option.addEventListener("pointermove", () => {
+          activeOptionIndex = index;
+          renderPalette();
+        });
+        option.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+            event.preventDefault();
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            activeOptionIndex = (activeOptionIndex + delta + paletteOptions.length) % paletteOptions.length;
+            renderPalette();
+            paletteOptions[activeOptionIndex].focus();
+          } else if (event.key === "Home" || event.key === "End") {
+            event.preventDefault();
+            activeOptionIndex = event.key === "Home" ? 0 : paletteOptions.length - 1;
+            renderPalette();
+            paletteOptions[activeOptionIndex].focus();
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            choosePalette(activeOptionIndex);
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            closePalette();
+          } else if (event.key === "Tab") {
+            closePalette(false);
+          }
+        });
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!paletteList.hidden && !event.target.closest(".select-shell")) closePalette(false);
+      });
+      renderPalette();
+
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const activateTab = (tab, moveFocus = false) => {
+        tabs.forEach((candidate) => {
+          const selected = candidate === tab;
+          candidate.setAttribute("aria-selected", String(selected));
+          candidate.tabIndex = selected ? 0 : -1;
+          byId(candidate.getAttribute("aria-controls")).hidden = !selected;
+        });
+        storage.set("tab", tab.id);
+        if (moveFocus) tab.focus();
+      };
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          let next = null;
+          if (event.key === "ArrowRight" || event.key === "ArrowDown") next = tabs[(index + 1) % tabs.length];
+          if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = tabs[(index - 1 + tabs.length) % tabs.length];
+          if (event.key === "Home") next = tabs[0];
+          if (event.key === "End") next = tabs[tabs.length - 1];
+          if (next) {
+            event.preventDefault();
+            activateTab(next, true);
+          }
+        });
+      });
+      const savedTab = tabs.find((tab) => tab.id === storage.get("tab", "tabMorning")) || tabs[0];
+      activateTab(savedTab);
+
+      let progress = Math.max(0, Math.min(100, Number(storage.get("progress", "38")) || 38));
+      const renderProgress = () => {
+        byId("progressFill").style.width = `${progress}%`;
+        byId("progressRail").setAttribute("aria-valuenow", String(progress));
+        write("progressOutput", `${progress}%`);
+        storage.set("progress", progress);
+      };
+      byId("progressButton").addEventListener("click", () => {
+        progress = progress >= 100 ? 12 : Math.min(100, progress + 17);
+        renderProgress();
+      });
+      renderProgress();
+
+      const savedWonder = Number(storage.get("wonder", "6"));
+      let wonder = Number.isFinite(savedWonder) ? Math.max(0, Math.min(10, savedWonder)) : 6;
+      const renderWonder = () => {
+        const degrees = wonder * 18;
+        const needle = -90 + degrees;
+        byId("wonderMeter").style.setProperty("--meter-fill", `${degrees}deg`);
+        byId("wonderMeter").style.setProperty("--needle", `${needle}deg`);
+        byId("wonderMeter").setAttribute("aria-valuenow", String(wonder));
+        write("meterOutput", `${wonder}/10`);
+        storage.set("wonder", wonder);
+      };
+      byId("meterDown").addEventListener("click", () => {
+        wonder = Math.max(0, wonder - 1);
+        renderWonder();
+      });
+      byId("meterUp").addEventListener("click", () => {
+        wonder = Math.min(10, wonder + 1);
+        renderWonder();
+      });
+      renderWonder();
+
+      const modalLayer = byId("modalLayer");
+      const modalDialog = byId("modalDialog");
+      let lastFocused = null;
+
+      const modalFocusables = () => [...modalDialog.querySelectorAll('button:not(:disabled), [href], input:not(:disabled), [tabindex]:not([tabindex="-1"])')];
+
+      const openModal = () => {
+        lastFocused = document.activeElement;
+        modalLayer.hidden = false;
+        document.body.classList.add("modal-open");
+        byId("modalKeep").focus();
+      };
+
+      const closeModal = () => {
+        modalLayer.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (lastFocused instanceof HTMLElement) lastFocused.focus();
+      };
+
+      byId("modalButton").addEventListener("click", openModal);
+      byId("postcardButton").addEventListener("click", openModal);
+      byId("modalClose").addEventListener("click", closeModal);
+      byId("modalKeep").addEventListener("click", () => {
+        closeModal();
+        showToast("saved");
+      });
+      modalLayer.addEventListener("pointerdown", (event) => {
+        if (event.target === modalLayer) closeModal();
+      });
+      modalDialog.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") return;
+        const focusables = modalFocusables();
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          if (!modalLayer.hidden) {
+            event.preventDefault();
+            closeModal();
+          } else if (!paletteList.hidden) {
+            event.preventDefault();
+            closePalette();
+          } else if (byId("toast").classList.contains("is-visible")) {
+            hideToast();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
