@@ -85,7 +85,8 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--nova-space-2);
+  row-gap: var(--nova-space-1);
+  column-gap: var(--nova-space-2);
   padding: var(--nova-space-1) 0;
 }
 

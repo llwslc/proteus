@@ -26,7 +26,7 @@
 - Input/Field：`surface` 底 + `ink` 框 + inset `tone` 阶影（纸下垫着的凹感）；聚焦见 §1；描述行 `text-dim`、错误行 `danger` 红字，错误态整框 border 转 `danger`。
 - OtpField：cell 是等宽输入方格、走输入位凹面（`r-field` + 左上 inset `tone-soft` 阶影，不带凸面底带），分隔处一枚 `tone-deep` ✦；filled cell 字转 `primary-shade`，focus cell 框转 `primary`、inset 转 `primary-wash`。
 - Select：触发器同 Input 皮 + 右侧 `primary` ▼ chevron 打开翻转，打开时整框转 `primary`、inset 阶影转 `primary-wash`（同输入框聚焦）；弹层 = `surface` 面 + `ink` 框 + `shadow` 阶影带 + `.hanabi-pop`；列表项 `r-chip` 圆角行，悬停／高亮盖 `primary-wash`，选中项文字 `primary-shade` `fw-700`、右侧指示一枚 `warning` 金 ✦。
-- Combobox：列表项皮肤复用 Select；InputGroup 左图标 `text-dim`，clear 钮 icon-ghost；多选芯片 = `primary-wash` 底 + `primary-shade` 字 + `r-chip` 圆角 + 底缘 `tone` 阶影带；高亮转 `primary` 填白字。
+- Combobox：列表项皮肤复用 Select；InputGroup 左图标 `text-dim`，clear 钮 icon-ghost；多选芯片 = `primary-wash` 底 + `text` 墨字 + `r-chip` 圆角 + 底缘 `tone` 阶影带；高亮转 `primary` 填白字。
 - Autocomplete：列表项皮肤复用 Select（无勾选指示）。
 - Fieldset：legend 走 `.hanabi-cap` + 前缀 `primary` ✦，框是 `2px dashed tone` 虚线圆角箱。
 - Form：竖排间距 `space-4`。

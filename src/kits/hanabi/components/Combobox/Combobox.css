@@ -85,7 +85,8 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--hanabi-space-2);
+  row-gap: var(--hanabi-space-1);
+  column-gap: var(--hanabi-space-2);
   padding: var(--hanabi-space-1) 0;
 }
 
@@ -98,7 +99,7 @@
   border-radius: var(--hanabi-r-chip);
   box-shadow: inset 0 -2px 0 var(--hanabi-tone);
   background: var(--hanabi-primary-wash);
-  color: var(--hanabi-primary-shade);
+  color: var(--hanabi-text);
   font-size: var(--hanabi-fs-14);
   white-space: nowrap;
 }
