@@ -159,9 +159,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--abyss-space-2);
-}
-.abyss-combobox__chips:has(.abyss-combobox__chip) {
-  padding-block: var(--abyss-space-2);
+  padding: var(--abyss-space-2) 0;
 }
 
 .abyss-combobox__chip {

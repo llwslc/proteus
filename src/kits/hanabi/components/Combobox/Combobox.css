@@ -85,10 +85,8 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--hanabi-space-2);
-}
-.hanabi-combobox__chips:has(.hanabi-combobox__chip) {
-  padding-block: var(--hanabi-space-2);
+  gap: var(--hanabi-space-1);
+  padding: var(--hanabi-space-1) 0;
 }
 
 .hanabi-combobox__chip {
@@ -96,7 +94,7 @@
   align-items: center;
   gap: var(--hanabi-space-1);
   height: var(--hanabi-chip-h);
-  padding: 0 var(--hanabi-space-2);
+  padding: 0 var(--hanabi-space-2) 2px;
   border-radius: var(--hanabi-r-chip);
   box-shadow: inset 0 -2px 0 var(--hanabi-tone);
   background: var(--hanabi-primary-wash);

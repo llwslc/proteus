@@ -130,6 +130,11 @@ run "inheritable custom property inside transform (nested double-apply — A8)" 
 f=$(node .claude/skills/kit-lint/dup-selector.cjs "$ROOT" 2>/dev/null)
 run "duplicate selector in one file (merge into the first rule)" "$f"
 
+# 15. 画在底缘的 inset 阶影带占掉盒子最下面 N px,内容按整盒居中就压在带子上,
+#   底衬要同宽把内容顶回带子之上(hanabi 的阶影带族)
+f=$(node .claude/skills/kit-lint/band-padding.cjs "$ROOT" 2>/dev/null)
+run "底缘阶影带缺同宽底衬(居中内容压在带子上)" "$f"
+
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"
 exit $FAIL

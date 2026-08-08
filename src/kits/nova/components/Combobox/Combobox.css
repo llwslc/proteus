@@ -86,9 +86,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--nova-space-2);
-}
-.nova-combobox__chips:has(.nova-combobox__chip) {
-  padding-block: var(--nova-space-2);
+  padding: var(--nova-space-2) 0;
 }
 
 .nova-combobox__chip {

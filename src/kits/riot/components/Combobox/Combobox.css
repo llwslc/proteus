@@ -70,9 +70,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--riot-space-2);
-}
-.riot-combobox__chips:has(.riot-combobox__chip) {
-  padding-block: var(--riot-space-2);
+  padding: var(--riot-space-2) 0;
 }
 
 .riot-combobox__chip {

@@ -84,9 +84,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--nocturne-space-2);
-}
-.nocturne-combobox__chips:has(.nocturne-combobox__chip) {
-  padding-block: var(--nocturne-space-2);
+  padding: var(--nocturne-space-2) 0;
 }
 
 .nocturne-combobox__chip {
