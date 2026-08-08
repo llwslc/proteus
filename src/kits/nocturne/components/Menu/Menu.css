@@ -63,3 +63,6 @@
   width: var(--nocturne-fs-16);
   color: var(--nocturne-text-mute);
 }
+.nocturne-menu__mark[data-unchecked] {
+  visibility: hidden;
+}

@@ -63,3 +63,6 @@
   font-size: var(--hanabi-fs-14);
   color: var(--hanabi-text-dim);
 }
+.hanabi-menu__mark[data-unchecked] {
+  visibility: hidden;
+}

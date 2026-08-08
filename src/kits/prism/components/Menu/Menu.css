@@ -65,3 +65,6 @@
   font-size: var(--prism-fs-18);
   color: var(--prism-text-dim);
 }
+.prism-menu__mark[data-unchecked] {
+  visibility: hidden;
+}

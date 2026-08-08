@@ -91,6 +91,10 @@
   font-size: var(--nova-fs-16);
   color: var(--nova-text-mute);
 }
+.nova-menu__mark[data-unchecked] {
+  visibility: hidden;
+}
+
 .nova-menu__item[data-highlighted]:not([data-disabled]) .nova-menu__mark {
   color: inherit;
 }

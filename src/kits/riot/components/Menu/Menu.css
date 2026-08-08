@@ -52,3 +52,6 @@
   width: var(--riot-fs-18);
   color: var(--riot-text-dim);
 }
+.riot-menu__mark[data-unchecked] {
+  visibility: hidden;
+}

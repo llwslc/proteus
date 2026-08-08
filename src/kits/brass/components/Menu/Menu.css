@@ -57,3 +57,6 @@
   width: var(--brass-fs-15);
   color: var(--brass-text-dim);
 }
+.brass-menu__mark[data-unchecked] {
+  visibility: hidden;
+}
