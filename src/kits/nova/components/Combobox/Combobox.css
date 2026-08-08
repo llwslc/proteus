@@ -124,3 +124,8 @@
   flex: 1;
   min-width: 60px;
 }
+
+.nova-combobox--chips {
+  height: auto;
+  min-height: var(--nova-control-h);
+}

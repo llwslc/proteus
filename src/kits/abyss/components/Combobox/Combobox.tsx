@@ -40,7 +40,12 @@ export function Combobox({
   return (
     <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <div className={cx("abyss-combobox__field", className)}>
-        <BaseCombobox.InputGroup className="abyss-frame abyss-combobox__control">
+        <BaseCombobox.InputGroup
+          className={cx(
+            "abyss-frame abyss-combobox__control",
+            multiple && "abyss-combobox--chips",
+          )}
+        >
           <span className="abyss-combobox__lead" aria-hidden>
             <SearchIcon />
           </span>

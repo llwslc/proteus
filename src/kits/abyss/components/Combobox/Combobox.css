@@ -197,3 +197,8 @@
   flex: 1;
   min-width: 60px;
 }
+
+.abyss-combobox--chips {
+  height: auto;
+  min-height: var(--abyss-control-h);
+}

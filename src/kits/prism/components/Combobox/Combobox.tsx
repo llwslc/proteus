@@ -39,7 +39,13 @@ export function Combobox({
   );
   return (
     <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
-      <BaseCombobox.InputGroup className={cx("prism-surface prism-combobox", className)}>
+      <BaseCombobox.InputGroup
+        className={cx(
+          "prism-surface prism-combobox",
+          multiple && "prism-combobox--chips",
+          className,
+        )}
+      >
         {multiple ? (
           <BaseCombobox.Chips className="prism-combobox__chips">
             <BaseCombobox.Value>

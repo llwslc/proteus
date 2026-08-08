@@ -40,7 +40,12 @@ export function Combobox({
   return (
     <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <div className={cx("riot-field riot-combobox__field", className)}>
-        <BaseCombobox.InputGroup className="riot-surface riot-field__control riot-combobox__control">
+        <BaseCombobox.InputGroup
+          className={cx(
+            "riot-surface riot-field__control riot-combobox__control",
+            multiple && "riot-combobox--chips",
+          )}
+        >
           <span className="riot-field__lead">
             <SearchIcon />
           </span>

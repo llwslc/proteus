@@ -42,6 +42,7 @@ export function Combobox({
       <BaseCombobox.InputGroup
         className={cx(
           "hanabi-fieldframe hanabi-lockon hanabi-lockon--within hanabi-combobox",
+          multiple && "hanabi-combobox--chips",
           className,
         )}
       >

@@ -40,7 +40,12 @@ export function Combobox({
   return (
     <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <div className={cx("nova-field nova-combobox__field", className)}>
-        <BaseCombobox.InputGroup className="nova-field__control nova-combobox__control">
+        <BaseCombobox.InputGroup
+          className={cx(
+            "nova-field__control nova-combobox__control",
+            multiple && "nova-combobox--chips",
+          )}
+        >
           <span className="nova-field__lead">
             <SearchIcon />
           </span>

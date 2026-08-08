@@ -40,7 +40,11 @@ export function Combobox({
   return (
     <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
       <BaseCombobox.InputGroup
-        className={cx("nocturne-fieldframe nocturne-combobox", className)}
+        className={cx(
+          "nocturne-fieldframe nocturne-combobox",
+          multiple && "nocturne-combobox--chips",
+          className,
+        )}
       >
         <span className="nocturne-combobox__glyph">
           <SearchIcon />

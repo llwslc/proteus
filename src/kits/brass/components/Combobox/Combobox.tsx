@@ -39,7 +39,13 @@ export function Combobox({
   );
   return (
     <BaseCombobox.Root items={labels} multiple={multiple} {...props}>
-      <BaseCombobox.InputGroup className={cx("brass-plate brass-combobox", className)}>
+      <BaseCombobox.InputGroup
+        className={cx(
+          "brass-plate brass-combobox",
+          multiple && "brass-combobox--chips",
+          className,
+        )}
+      >
         <span className="brass-combobox__lead" aria-hidden>
           <Search />
         </span>

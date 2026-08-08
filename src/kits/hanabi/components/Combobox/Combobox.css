@@ -126,3 +126,8 @@
   flex: 1;
   min-width: 60px;
 }
+
+.hanabi-combobox--chips {
+  height: auto;
+  min-height: var(--hanabi-control-h);
+}

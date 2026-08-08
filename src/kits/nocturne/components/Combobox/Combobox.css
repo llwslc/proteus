@@ -120,3 +120,8 @@
   flex: 1;
   min-width: 60px;
 }
+
+.nocturne-combobox--chips {
+  height: auto;
+  min-height: var(--nocturne-control-h);
+}

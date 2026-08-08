@@ -108,3 +108,8 @@
   flex: 1;
   min-width: 60px;
 }
+
+.riot-combobox--chips {
+  height: auto;
+  min-height: var(--riot-control-h);
+}
