@@ -342,7 +342,17 @@ function FormDemo() {
   );
 }
 
+function useMenuToggles(initial: string[]) {
+  const [radio, setRadio] = useState("a");
+  const [checks, setChecks] = useState<string[]>(initial);
+  const toggle = (key: string, on: boolean) =>
+    setChecks((v) => (on ? [...v, key] : v.filter((x) => x !== key)));
+  return { radio, setRadio, checks, toggle };
+}
+
 function Demo() {
+  const menuToggles = useMenuToggles(["a", "b"]);
+  const subToggles = useMenuToggles(["a", "b"]);
   const toast = useToast();
 
   useEffect(() => {
@@ -986,16 +996,34 @@ function Demo() {
                     </MenuItem>
                   </Menu>
                   <Menu trigger="Units">
-                    <MenuRadioGroup defaultValue="a">
+                    <MenuRadioGroup
+                      value={menuToggles.radio}
+                      onValueChange={(v) => menuToggles.setRadio(v as string)}
+                    >
                       <MenuRadioItem value="a">Metric</MenuRadioItem>
                       <MenuRadioItem value="b">Imperial</MenuRadioItem>
                       <MenuRadioItem value="c">Nautical</MenuRadioItem>
                     </MenuRadioGroup>
                   </Menu>
                   <Menu trigger="Dials">
-                    <MenuCheckboxItem defaultChecked>Gauge Grid</MenuCheckboxItem>
-                    <MenuCheckboxItem defaultChecked>Pressure Marks</MenuCheckboxItem>
-                    <MenuCheckboxItem>Steam Trace</MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("a")}
+                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                    >
+                      Gauge Grid
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("b")}
+                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                    >
+                      Pressure Marks
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("c")}
+                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                    >
+                      Steam Trace
+                    </MenuCheckboxItem>
                   </Menu>
                 </div>
               </Panel>
@@ -1018,15 +1046,33 @@ function Demo() {
                     <MenuItem>Ahead</MenuItem>
                     <MenuItem>Astern</MenuItem>
                     <MenuSub label="More signals">
-                      <MenuRadioGroup defaultValue="a">
+                      <MenuRadioGroup
+                        value={subToggles.radio}
+                        onValueChange={(v) => subToggles.setRadio(v as string)}
+                      >
                         <MenuRadioItem value="a">Slow</MenuRadioItem>
                         <MenuRadioItem value="b">Half</MenuRadioItem>
                         <MenuRadioItem value="c">Full</MenuRadioItem>
                       </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuCheckboxItem defaultChecked>Stop</MenuCheckboxItem>
-                      <MenuCheckboxItem defaultChecked>Steam</MenuCheckboxItem>
-                      <MenuCheckboxItem>Soot</MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("a")}
+                        onCheckedChange={(on) => subToggles.toggle("a", on)}
+                      >
+                        Stop
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("b")}
+                        onCheckedChange={(on) => subToggles.toggle("b", on)}
+                      >
+                        Steam
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("c")}
+                        onCheckedChange={(on) => subToggles.toggle("c", on)}
+                      >
+                        Soot
+                      </MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

@@ -633,7 +633,17 @@ function HeroSigil() {
   );
 }
 
+function useMenuToggles(initial: string[]) {
+  const [radio, setRadio] = useState("a");
+  const [checks, setChecks] = useState<string[]>(initial);
+  const toggle = (key: string, on: boolean) =>
+    setChecks((v) => (on ? [...v, key] : v.filter((x) => x !== key)));
+  return { radio, setRadio, checks, toggle };
+}
+
 function Demo() {
+  const menuToggles = useMenuToggles(["a", "b"]);
+  const subToggles = useMenuToggles(["a", "b"]);
   useEffect(() => {
     const grid = document.querySelector(".abyss-grid");
     if (!grid || typeof IntersectionObserver === "undefined") return;
@@ -1214,16 +1224,34 @@ function Demo() {
                     </MenuItem>
                   </Menu>
                   <Menu trigger="Volume">
-                    <MenuRadioGroup defaultValue="a">
+                    <MenuRadioGroup
+                      value={menuToggles.radio}
+                      onValueChange={(v) => menuToggles.setRadio(v as string)}
+                    >
                       <MenuRadioItem value="a">Whisper</MenuRadioItem>
                       <MenuRadioItem value="b">Chant</MenuRadioItem>
                       <MenuRadioItem value="c">Roar</MenuRadioItem>
                     </MenuRadioGroup>
                   </Menu>
                   <Menu trigger="Wards">
-                    <MenuCheckboxItem defaultChecked>Rune Glow</MenuCheckboxItem>
-                    <MenuCheckboxItem defaultChecked>Tide Marks</MenuCheckboxItem>
-                    <MenuCheckboxItem>Deep Chant</MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("a")}
+                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                    >
+                      Rune Glow
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("b")}
+                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                    >
+                      Tide Marks
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("c")}
+                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                    >
+                      Deep Chant
+                    </MenuCheckboxItem>
                   </Menu>
                 </div>
               </Panel>
@@ -1253,15 +1281,33 @@ function Demo() {
                     <MenuItem icon={<EyeIcon />}>Chart</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Reef View</MenuItem>
                     <MenuSub icon={<SignalIcon />} label="Soundings">
-                      <MenuRadioGroup defaultValue="a">
+                      <MenuRadioGroup
+                        value={subToggles.radio}
+                        onValueChange={(v) => subToggles.setRadio(v as string)}
+                      >
                         <MenuRadioItem value="a">Shallows</MenuRadioItem>
                         <MenuRadioItem value="b">The Deeps</MenuRadioItem>
                         <MenuRadioItem value="c">Pressure</MenuRadioItem>
                       </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuCheckboxItem defaultChecked>Attune</MenuCheckboxItem>
-                      <MenuCheckboxItem defaultChecked>Echoes</MenuCheckboxItem>
-                      <MenuCheckboxItem>Currents</MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("a")}
+                        onCheckedChange={(on) => subToggles.toggle("a", on)}
+                      >
+                        Attune
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("b")}
+                        onCheckedChange={(on) => subToggles.toggle("b", on)}
+                      >
+                        Echoes
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("c")}
+                        onCheckedChange={(on) => subToggles.toggle("c", on)}
+                      >
+                        Currents
+                      </MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

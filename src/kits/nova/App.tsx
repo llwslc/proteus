@@ -498,7 +498,17 @@ function GroupRule({ group, sub }: { group: string; sub: string }) {
   );
 }
 
+function useMenuToggles(initial: string[]) {
+  const [radio, setRadio] = useState("a");
+  const [checks, setChecks] = useState<string[]>(initial);
+  const toggle = (key: string, on: boolean) =>
+    setChecks((v) => (on ? [...v, key] : v.filter((x) => x !== key)));
+  return { radio, setRadio, checks, toggle };
+}
+
 function Demo() {
+  const menuToggles = useMenuToggles(["a", "b"]);
+  const subToggles = useMenuToggles(["a", "b"]);
   useEffect(() => {
     const grid = document.querySelector(".nova-grid");
     if (!grid || typeof IntersectionObserver === "undefined") return;
@@ -1078,16 +1088,34 @@ function Demo() {
                     </MenuItem>
                   </Menu>
                   <Menu trigger="Density">
-                    <MenuRadioGroup defaultValue="a">
+                    <MenuRadioGroup
+                      value={menuToggles.radio}
+                      onValueChange={(v) => menuToggles.setRadio(v as string)}
+                    >
                       <MenuRadioItem value="a">Compact</MenuRadioItem>
                       <MenuRadioItem value="b">Expanded</MenuRadioItem>
                       <MenuRadioItem value="c">Wide</MenuRadioItem>
                     </MenuRadioGroup>
                   </Menu>
                   <Menu trigger="Layers">
-                    <MenuCheckboxItem defaultChecked>Grid Overlay</MenuCheckboxItem>
-                    <MenuCheckboxItem defaultChecked>Range Rings</MenuCheckboxItem>
-                    <MenuCheckboxItem>Debris Field</MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("a")}
+                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                    >
+                      Grid Overlay
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("b")}
+                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                    >
+                      Range Rings
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("c")}
+                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                    >
+                      Debris Field
+                    </MenuCheckboxItem>
                   </Menu>
                 </div>
               </Panel>
@@ -1117,15 +1145,33 @@ function Demo() {
                     <MenuItem icon={<SearchIcon />}>Map</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Grid View</MenuItem>
                     <MenuSub icon={<SignalIcon />} label="Sensors">
-                      <MenuRadioGroup defaultValue="a">
+                      <MenuRadioGroup
+                        value={subToggles.radio}
+                        onValueChange={(v) => subToggles.setRadio(v as string)}
+                      >
                         <MenuRadioItem value="a">Short Range</MenuRadioItem>
                         <MenuRadioItem value="b">Long Range</MenuRadioItem>
                         <MenuRadioItem value="c">Gravimetric</MenuRadioItem>
                       </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuCheckboxItem defaultChecked>Calibrate</MenuCheckboxItem>
-                      <MenuCheckboxItem defaultChecked>Overlay</MenuCheckboxItem>
-                      <MenuCheckboxItem>Trails</MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("a")}
+                        onCheckedChange={(on) => subToggles.toggle("a", on)}
+                      >
+                        Calibrate
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("b")}
+                        onCheckedChange={(on) => subToggles.toggle("b", on)}
+                      >
+                        Overlay
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("c")}
+                        onCheckedChange={(on) => subToggles.toggle("c", on)}
+                      >
+                        Trails
+                      </MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

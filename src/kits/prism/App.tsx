@@ -321,7 +321,17 @@ function FormDemo() {
   );
 }
 
+function useMenuToggles(initial: string[]) {
+  const [radio, setRadio] = useState("a");
+  const [checks, setChecks] = useState<string[]>(initial);
+  const toggle = (key: string, on: boolean) =>
+    setChecks((v) => (on ? [...v, key] : v.filter((x) => x !== key)));
+  return { radio, setRadio, checks, toggle };
+}
+
 function Demo() {
+  const menuToggles = useMenuToggles(["a", "b"]);
+  const subToggles = useMenuToggles(["a", "b"]);
   const toast = useToast();
 
   useEffect(() => {
@@ -992,16 +1002,34 @@ function Demo() {
                     </MenuItem>
                   </Menu>
                   <Menu trigger="Scale">
-                    <MenuRadioGroup defaultValue="a">
+                    <MenuRadioGroup
+                      value={menuToggles.radio}
+                      onValueChange={(v) => menuToggles.setRadio(v as string)}
+                    >
                       <MenuRadioItem value="a">Points</MenuRadioItem>
                       <MenuRadioItem value="b">Picas</MenuRadioItem>
                       <MenuRadioItem value="c">Millimetres</MenuRadioItem>
                     </MenuRadioGroup>
                   </Menu>
                   <Menu trigger="Guides">
-                    <MenuCheckboxItem defaultChecked>Baseline Grid</MenuCheckboxItem>
-                    <MenuCheckboxItem defaultChecked>Column Guides</MenuCheckboxItem>
-                    <MenuCheckboxItem>Bleed Marks</MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("a")}
+                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                    >
+                      Baseline Grid
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("b")}
+                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                    >
+                      Column Guides
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("c")}
+                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                    >
+                      Bleed Marks
+                    </MenuCheckboxItem>
                   </Menu>
                 </div>
               </Panel>
@@ -1024,15 +1052,33 @@ function Demo() {
                     <MenuItem>Left edge</MenuItem>
                     <MenuItem>Right edge</MenuItem>
                     <MenuSub label="Distribute">
-                      <MenuRadioGroup defaultValue="a">
+                      <MenuRadioGroup
+                        value={subToggles.radio}
+                        onValueChange={(v) => subToggles.setRadio(v as string)}
+                      >
                         <MenuRadioItem value="a">Top</MenuRadioItem>
                         <MenuRadioItem value="b">Middle</MenuRadioItem>
                         <MenuRadioItem value="c">Bottom</MenuRadioItem>
                       </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuCheckboxItem defaultChecked>Reset</MenuCheckboxItem>
-                      <MenuCheckboxItem defaultChecked>Baseline</MenuCheckboxItem>
-                      <MenuCheckboxItem>Bleed</MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("a")}
+                        onCheckedChange={(on) => subToggles.toggle("a", on)}
+                      >
+                        Reset
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("b")}
+                        onCheckedChange={(on) => subToggles.toggle("b", on)}
+                      >
+                        Baseline
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("c")}
+                        onCheckedChange={(on) => subToggles.toggle("c", on)}
+                      >
+                        Bleed
+                      </MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

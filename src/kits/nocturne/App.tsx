@@ -498,7 +498,18 @@ function FormDemo() {
 }
 
 const REVEAL_SETTLE_MS = 900;
+
+function useMenuToggles(initial: string[]) {
+  const [radio, setRadio] = useState("a");
+  const [checks, setChecks] = useState<string[]>(initial);
+  const toggle = (key: string, on: boolean) =>
+    setChecks((v) => (on ? [...v, key] : v.filter((x) => x !== key)));
+  return { radio, setRadio, checks, toggle };
+}
+
 function Demo() {
+  const menuToggles = useMenuToggles(["a", "b"]);
+  const subToggles = useMenuToggles(["a", "b"]);
   const toast = useToast();
   const [loaderRun, setLoaderRun] = useState(0);
 
@@ -1203,16 +1214,34 @@ function Demo() {
                     </MenuItem>
                   </Menu>
                   <Menu trigger="Hour">
-                    <MenuRadioGroup defaultValue="a">
+                    <MenuRadioGroup
+                      value={menuToggles.radio}
+                      onValueChange={(v) => menuToggles.setRadio(v as string)}
+                    >
                       <MenuRadioItem value="a">Night</MenuRadioItem>
                       <MenuRadioItem value="b">Dawn</MenuRadioItem>
                       <MenuRadioItem value="c">Dusk</MenuRadioItem>
                     </MenuRadioGroup>
                   </Menu>
                   <Menu trigger="Lanterns">
-                    <MenuCheckboxItem defaultChecked>Lamp Glow</MenuCheckboxItem>
-                    <MenuCheckboxItem defaultChecked>Dew Marks</MenuCheckboxItem>
-                    <MenuCheckboxItem>Moth Trails</MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("a")}
+                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                    >
+                      Lamp Glow
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("b")}
+                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                    >
+                      Dew Marks
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("c")}
+                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                    >
+                      Moth Trails
+                    </MenuCheckboxItem>
                   </Menu>
                 </div>
               </Panel>
@@ -1235,15 +1264,33 @@ function Demo() {
                     <MenuItem>Open the gates</MenuItem>
                     <MenuItem>Draw the curtains</MenuItem>
                     <MenuSub label="Rounds">
-                      <MenuRadioGroup defaultValue="a">
+                      <MenuRadioGroup
+                        value={subToggles.radio}
+                        onValueChange={(v) => subToggles.setRadio(v as string)}
+                      >
                         <MenuRadioItem value="a">South wall</MenuRadioItem>
                         <MenuRadioItem value="b">Moonlit gallery</MenuRadioItem>
                         <MenuRadioItem value="c">Weeping arbor</MenuRadioItem>
                       </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuCheckboxItem defaultChecked>Full round</MenuCheckboxItem>
-                      <MenuCheckboxItem defaultChecked>Lantern</MenuCheckboxItem>
-                      <MenuCheckboxItem>Dew</MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("a")}
+                        onCheckedChange={(on) => subToggles.toggle("a", on)}
+                      >
+                        Full round
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("b")}
+                        onCheckedChange={(on) => subToggles.toggle("b", on)}
+                      >
+                        Lantern
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("c")}
+                        onCheckedChange={(on) => subToggles.toggle("c", on)}
+                      >
+                        Dew
+                      </MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

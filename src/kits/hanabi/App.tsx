@@ -364,7 +364,17 @@ function FormDemo() {
   );
 }
 
+function useMenuToggles(initial: string[]) {
+  const [radio, setRadio] = useState("a");
+  const [checks, setChecks] = useState<string[]>(initial);
+  const toggle = (key: string, on: boolean) =>
+    setChecks((v) => (on ? [...v, key] : v.filter((x) => x !== key)));
+  return { radio, setRadio, checks, toggle };
+}
+
 function Demo() {
+  const menuToggles = useMenuToggles(["a", "b"]);
+  const subToggles = useMenuToggles(["a", "b"]);
   const toast = useToast();
 
   useEffect(() => {
@@ -1017,16 +1027,34 @@ function Demo() {
                     </MenuItem>
                   </Menu>
                   <Menu trigger="密度">
-                    <MenuRadioGroup defaultValue="a">
+                    <MenuRadioGroup
+                      value={menuToggles.radio}
+                      onValueChange={(v) => menuToggles.setRadio(v as string)}
+                    >
                       <MenuRadioItem value="a">コンパクト</MenuRadioItem>
                       <MenuRadioItem value="b">ゆったり</MenuRadioItem>
                       <MenuRadioItem value="c">ワイド</MenuRadioItem>
                     </MenuRadioGroup>
                   </Menu>
                   <Menu trigger="表示">
-                    <MenuCheckboxItem defaultChecked>グリッド表示</MenuCheckboxItem>
-                    <MenuCheckboxItem defaultChecked>ラベル表示</MenuCheckboxItem>
-                    <MenuCheckboxItem>エフェクト表示</MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("a")}
+                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                    >
+                      グリッド表示
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("b")}
+                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                    >
+                      ラベル表示
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("c")}
+                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                    >
+                      エフェクト表示
+                    </MenuCheckboxItem>
                   </Menu>
                 </div>
               </Panel>
@@ -1049,15 +1077,33 @@ function Demo() {
                     <MenuItem>左端に寄せる</MenuItem>
                     <MenuItem>右端に寄せる</MenuItem>
                     <MenuSub label="分配">
-                      <MenuRadioGroup defaultValue="a">
+                      <MenuRadioGroup
+                        value={subToggles.radio}
+                        onValueChange={(v) => subToggles.setRadio(v as string)}
+                      >
                         <MenuRadioItem value="a">上段</MenuRadioItem>
                         <MenuRadioItem value="b">中段</MenuRadioItem>
                         <MenuRadioItem value="c">下段</MenuRadioItem>
                       </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuCheckboxItem defaultChecked>リセット</MenuCheckboxItem>
-                      <MenuCheckboxItem defaultChecked>残像</MenuCheckboxItem>
-                      <MenuCheckboxItem>軌跡</MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("a")}
+                        onCheckedChange={(on) => subToggles.toggle("a", on)}
+                      >
+                        リセット
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("b")}
+                        onCheckedChange={(on) => subToggles.toggle("b", on)}
+                      >
+                        残像
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("c")}
+                        onCheckedChange={(on) => subToggles.toggle("c", on)}
+                      >
+                        軌跡
+                      </MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>

@@ -365,7 +365,17 @@ function FormDemo() {
   );
 }
 
+function useMenuToggles(initial: string[]) {
+  const [radio, setRadio] = useState("a");
+  const [checks, setChecks] = useState<string[]>(initial);
+  const toggle = (key: string, on: boolean) =>
+    setChecks((v) => (on ? [...v, key] : v.filter((x) => x !== key)));
+  return { radio, setRadio, checks, toggle };
+}
+
 function Demo() {
+  const menuToggles = useMenuToggles(["a", "b"]);
+  const subToggles = useMenuToggles(["a", "b"]);
   const toast = useToast();
 
   useEffect(() => {
@@ -1031,16 +1041,34 @@ function Demo() {
                     </MenuItem>
                   </Menu>
                   <Menu trigger="Volume">
-                    <MenuRadioGroup defaultValue="a">
+                    <MenuRadioGroup
+                      value={menuToggles.radio}
+                      onValueChange={(v) => menuToggles.setRadio(v as string)}
+                    >
                       <MenuRadioItem value="a">Loud</MenuRadioItem>
                       <MenuRadioItem value="b">Louder</MenuRadioItem>
                       <MenuRadioItem value="c">Loudest</MenuRadioItem>
                     </MenuRadioGroup>
                   </Menu>
                   <Menu trigger="Marks">
-                    <MenuCheckboxItem defaultChecked>Cut Marks</MenuCheckboxItem>
-                    <MenuCheckboxItem defaultChecked>Bleed Guides</MenuCheckboxItem>
-                    <MenuCheckboxItem>Fold Lines</MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("a")}
+                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                    >
+                      Cut Marks
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("b")}
+                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                    >
+                      Bleed Guides
+                    </MenuCheckboxItem>
+                    <MenuCheckboxItem
+                      checked={menuToggles.checks.includes("c")}
+                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                    >
+                      Fold Lines
+                    </MenuCheckboxItem>
                   </Menu>
                 </div>
               </Panel>
@@ -1063,15 +1091,33 @@ function Demo() {
                     <MenuItem>One copy</MenuItem>
                     <MenuItem>A hundred</MenuItem>
                     <MenuSub label="Run">
-                      <MenuRadioGroup defaultValue="a">
+                      <MenuRadioGroup
+                        value={subToggles.radio}
+                        onValueChange={(v) => subToggles.setRadio(v as string)}
+                      >
                         <MenuRadioItem value="a">Side A</MenuRadioItem>
                         <MenuRadioItem value="b">Side B</MenuRadioItem>
                         <MenuRadioItem value="c">Bootleg</MenuRadioItem>
                       </MenuRadioGroup>
                       <MenuSeparator />
-                      <MenuCheckboxItem defaultChecked>Reset</MenuCheckboxItem>
-                      <MenuCheckboxItem defaultChecked>Static</MenuCheckboxItem>
-                      <MenuCheckboxItem>Tape</MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("a")}
+                        onCheckedChange={(on) => subToggles.toggle("a", on)}
+                      >
+                        Reset
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("b")}
+                        onCheckedChange={(on) => subToggles.toggle("b", on)}
+                      >
+                        Static
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={subToggles.checks.includes("c")}
+                        onCheckedChange={(on) => subToggles.toggle("c", on)}
+                      >
+                        Tape
+                      </MenuCheckboxItem>
                     </MenuSub>
                   </MenubarMenu>
                 </Menubar>
