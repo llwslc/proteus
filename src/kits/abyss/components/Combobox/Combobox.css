@@ -158,9 +158,10 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: var(--abyss-space-1);
-  column-gap: var(--abyss-space-2);
-  padding: var(--abyss-space-1) 0;
+  gap: var(--abyss-space-2);
+}
+.abyss-combobox__chips:has(.abyss-combobox__chip) {
+  padding-block: var(--abyss-space-2);
 }
 
 .abyss-combobox__chip {

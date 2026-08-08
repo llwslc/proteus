@@ -69,9 +69,10 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: var(--riot-space-1);
-  column-gap: var(--riot-space-2);
-  padding: var(--riot-space-1) 0;
+  gap: var(--riot-space-2);
+}
+.riot-combobox__chips:has(.riot-combobox__chip) {
+  padding-block: var(--riot-space-2);
 }
 
 .riot-combobox__chip {

@@ -85,9 +85,10 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: var(--hanabi-space-1);
-  column-gap: var(--hanabi-space-2);
-  padding: var(--hanabi-space-1) 0;
+  gap: var(--hanabi-space-2);
+}
+.hanabi-combobox__chips:has(.hanabi-combobox__chip) {
+  padding-block: var(--hanabi-space-2);
 }
 
 .hanabi-combobox__chip {

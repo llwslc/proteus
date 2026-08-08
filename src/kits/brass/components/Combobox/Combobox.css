@@ -103,9 +103,10 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: var(--brass-space-1);
-  column-gap: var(--brass-space-2);
-  padding: var(--brass-space-1) 0;
+  gap: var(--brass-space-2);
+}
+.brass-combobox__chips:has(.brass-combobox__chip) {
+  padding-block: var(--brass-space-2);
 }
 
 .brass-combobox__chip {

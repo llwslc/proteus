@@ -81,9 +81,10 @@
   min-width: 0;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: var(--prism-space-1);
-  column-gap: var(--prism-space-2);
-  padding: var(--prism-space-1) 0;
+  gap: var(--prism-space-2);
+}
+.prism-combobox__chips:has(.prism-combobox__chip) {
+  padding-block: var(--prism-space-2);
 }
 
 .prism-combobox__chip {
