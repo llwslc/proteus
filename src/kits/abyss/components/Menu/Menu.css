@@ -131,4 +131,11 @@
 .abyss-menu__mark {
   display: inline-grid;
   place-items: center;
+  flex: 0 0 auto;
+  width: var(--abyss-fs-16);
+  font-size: var(--abyss-fs-16);
+  color: var(--abyss-text-mute);
+}
+.abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__mark {
+  color: inherit;
 }

@@ -91,11 +91,9 @@ export function MenuCheckboxItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="nocturne-menu__icon">
-        <BaseMenu.CheckboxItemIndicator className="nocturne-menu__mark">
-          <span className="nocturne-moondot" />
-        </BaseMenu.CheckboxItemIndicator>
-      </span>
+      <BaseMenu.CheckboxItemIndicator className="nocturne-menu__mark" keepMounted>
+        <span className="nocturne-moondot" />
+      </BaseMenu.CheckboxItemIndicator>
       <span className="nocturne-list-item__text">{children}</span>
       {shortcut ? <span className="nocturne-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.CheckboxItem>
@@ -123,11 +121,9 @@ export function MenuRadioItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="nocturne-menu__icon">
-        <BaseMenu.RadioItemIndicator className="nocturne-menu__mark">
-          <span className="nocturne-moondot" />
-        </BaseMenu.RadioItemIndicator>
-      </span>
+      <BaseMenu.RadioItemIndicator className="nocturne-menu__mark" keepMounted>
+        <span className="nocturne-moondot" />
+      </BaseMenu.RadioItemIndicator>
       <span className="nocturne-list-item__text">{children}</span>
       {shortcut ? <span className="nocturne-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.RadioItem>

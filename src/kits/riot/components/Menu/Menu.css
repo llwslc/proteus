@@ -48,4 +48,7 @@
 .riot-menu__mark {
   display: inline-grid;
   place-items: center;
+  flex: 0 0 auto;
+  width: var(--riot-fs-18);
+  color: var(--riot-text-dim);
 }

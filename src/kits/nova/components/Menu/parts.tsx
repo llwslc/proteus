@@ -93,11 +93,9 @@ export function MenuCheckboxItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="nova-menu__icon">
-        <Menu.CheckboxItemIndicator className="nova-menu__mark">
-          <CheckIcon />
-        </Menu.CheckboxItemIndicator>
-      </span>
+      <Menu.CheckboxItemIndicator className="nova-menu__mark" keepMounted>
+        <CheckIcon />
+      </Menu.CheckboxItemIndicator>
       <span className="nova-menu__label">{children}</span>
       {shortcut ? <kbd className="nova-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.CheckboxItem>
@@ -125,11 +123,9 @@ export function MenuRadioItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="nova-menu__icon">
-        <Menu.RadioItemIndicator className="nova-menu__mark">
-          <CheckIcon />
-        </Menu.RadioItemIndicator>
-      </span>
+      <Menu.RadioItemIndicator className="nova-menu__mark" keepMounted>
+        <CheckIcon />
+      </Menu.RadioItemIndicator>
       <span className="nova-menu__label">{children}</span>
       {shortcut ? <kbd className="nova-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.RadioItem>

@@ -60,4 +60,8 @@
 .prism-menu__mark {
   display: inline-grid;
   place-items: center;
+  flex: 0 0 auto;
+  width: var(--prism-fs-18);
+  font-size: var(--prism-fs-18);
+  color: var(--prism-text-dim);
 }

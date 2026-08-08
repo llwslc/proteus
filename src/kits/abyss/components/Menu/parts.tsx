@@ -93,11 +93,9 @@ export function MenuCheckboxItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="abyss-menu__icon">
-        <Menu.CheckboxItemIndicator className="abyss-menu__mark">
-          <CheckIcon />
-        </Menu.CheckboxItemIndicator>
-      </span>
+      <Menu.CheckboxItemIndicator className="abyss-menu__mark" keepMounted>
+        <CheckIcon />
+      </Menu.CheckboxItemIndicator>
       <span className="abyss-menu__label">{children}</span>
       {shortcut ? <kbd className="abyss-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.CheckboxItem>
@@ -125,11 +123,9 @@ export function MenuRadioItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="abyss-menu__icon">
-        <Menu.RadioItemIndicator className="abyss-menu__mark">
-          <CheckIcon />
-        </Menu.RadioItemIndicator>
-      </span>
+      <Menu.RadioItemIndicator className="abyss-menu__mark" keepMounted>
+        <CheckIcon />
+      </Menu.RadioItemIndicator>
       <span className="abyss-menu__label">{children}</span>
       {shortcut ? <kbd className="abyss-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.RadioItem>

@@ -58,4 +58,8 @@
 .hanabi-menu__mark {
   display: inline-grid;
   place-items: center;
+  flex: 0 0 auto;
+  width: var(--hanabi-fs-14);
+  font-size: var(--hanabi-fs-14);
+  color: var(--hanabi-text-dim);
 }

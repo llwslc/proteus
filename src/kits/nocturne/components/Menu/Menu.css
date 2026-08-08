@@ -59,4 +59,7 @@
 .nocturne-menu__mark {
   display: inline-grid;
   place-items: center;
+  flex: none;
+  width: var(--nocturne-fs-16);
+  color: var(--nocturne-text-mute);
 }

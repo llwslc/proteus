@@ -91,11 +91,9 @@ export function MenuCheckboxItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="brass-menu__icon">
-        <Menu.CheckboxItemIndicator className="brass-menu__mark">
-          <Check />
-        </Menu.CheckboxItemIndicator>
-      </span>
+      <Menu.CheckboxItemIndicator className="brass-menu__mark" keepMounted>
+        <Check />
+      </Menu.CheckboxItemIndicator>
       <span className="brass-list-item__text">{children}</span>
       {shortcut ? <span className="brass-menu__shortcut">{shortcut}</span> : null}
     </Menu.CheckboxItem>
@@ -123,11 +121,9 @@ export function MenuRadioItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="brass-menu__icon">
-        <Menu.RadioItemIndicator className="brass-menu__mark">
-          <Check />
-        </Menu.RadioItemIndicator>
-      </span>
+      <Menu.RadioItemIndicator className="brass-menu__mark" keepMounted>
+        <Check />
+      </Menu.RadioItemIndicator>
       <span className="brass-list-item__text">{children}</span>
       {shortcut ? <span className="brass-menu__shortcut">{shortcut}</span> : null}
     </Menu.RadioItem>

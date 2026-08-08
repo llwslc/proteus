@@ -91,11 +91,9 @@ export function MenuCheckboxItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="prism-menu__icon">
-        <BaseMenu.CheckboxItemIndicator className="prism-menu__mark">
-          <Check />
-        </BaseMenu.CheckboxItemIndicator>
-      </span>
+      <BaseMenu.CheckboxItemIndicator className="prism-menu__mark" keepMounted>
+        <Check />
+      </BaseMenu.CheckboxItemIndicator>
       <span className="prism-list-item__text">{children}</span>
       {shortcut ? <span className="prism-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.CheckboxItem>
@@ -123,11 +121,9 @@ export function MenuRadioItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="prism-menu__icon">
-        <BaseMenu.RadioItemIndicator className="prism-menu__mark">
-          <Check />
-        </BaseMenu.RadioItemIndicator>
-      </span>
+      <BaseMenu.RadioItemIndicator className="prism-menu__mark" keepMounted>
+        <Check />
+      </BaseMenu.RadioItemIndicator>
       <span className="prism-list-item__text">{children}</span>
       {shortcut ? <span className="prism-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.RadioItem>

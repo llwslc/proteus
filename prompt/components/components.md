@@ -109,7 +109,7 @@
 > 组件名对应 Base UI 基元，API、语义、用法都用 Base UI 的；本骨架只记 Base UI 管不到的**结构决定**：
 
 - **Badge、Panel** 是纯样式件，**不是** Base UI 组件。
-- **Menu、ContextMenu、Menubar** 共用同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`、`MenuCheckboxItem`、`MenuRadioGroup`＋`MenuRadioItem`，通过 context 注入底层 primitive；勾选项与单选项选中时在 `MenuItem` 图标的槽位显该套列表的选中记号，未选留空。
+- **Menu、ContextMenu、Menubar** 共用同一套底层复合件 `Menu/parts.tsx`——`MenuItem`、`MenuSeparator`、`MenuSub`、`MenuCheckboxItem`、`MenuRadioGroup`＋`MenuRadioItem`，通过 context 注入底层 primitive；勾选项与单选项照 Base UI 的写法——指示器直接作项的子元素、`keepMounted` 占住记号列，选中时显该套列表的选中记号，未选留空。
 - **分段条家族**（Toolbar、Menubar、ToggleGroup）共用同一套 chip 与文字语言：紧凑的 chip 触发钮、各钮等高，文字用 display 体大写；**外箱体画不画、怎么画由 theme 定**——画箱体的走「一条带框的横条，内衬 `space-1`（嵌套时只外层画箱体）」；悬停、激活态走 §5 的「分段」档。
 - **AlertDialog** 与 Dialog 同一基底，按 `tone` 重染边框、标题、图标；**怎么重染、tone 强调放在哪、长什么样，全由 theme 定。**
 

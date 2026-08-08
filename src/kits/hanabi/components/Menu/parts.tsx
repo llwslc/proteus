@@ -91,11 +91,9 @@ export function MenuCheckboxItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="hanabi-menu__icon">
-        <BaseMenu.CheckboxItemIndicator className="hanabi-menu__mark">
-          ✦
-        </BaseMenu.CheckboxItemIndicator>
-      </span>
+      <BaseMenu.CheckboxItemIndicator className="hanabi-menu__mark" keepMounted>
+        ✦
+      </BaseMenu.CheckboxItemIndicator>
       <span className="hanabi-list-item__text">{children}</span>
       {shortcut ? <span className="hanabi-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.CheckboxItem>
@@ -123,11 +121,9 @@ export function MenuRadioItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="hanabi-menu__icon">
-        <BaseMenu.RadioItemIndicator className="hanabi-menu__mark">
-          ✦
-        </BaseMenu.RadioItemIndicator>
-      </span>
+      <BaseMenu.RadioItemIndicator className="hanabi-menu__mark" keepMounted>
+        ✦
+      </BaseMenu.RadioItemIndicator>
       <span className="hanabi-list-item__text">{children}</span>
       {shortcut ? <span className="hanabi-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.RadioItem>
