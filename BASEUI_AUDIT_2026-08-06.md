@@ -165,12 +165,12 @@ kit-api 拍七套互相（**七套一起缺 → 零分歧**）；kit-spec-props 
 
 **顺带查实的三件「自写行为」，都不是重造**：ContextMenu 的 Shift+F10／Menu 键（库的 `ContextMenuTrigger` 只接管 `contextmenu` 事件）；NumberField 到达 min／max 时禁用步进钮（库只钳值、不禁用）；ScrollArea viewport 的 `tabindex`（是库自己在有溢出时挂的，`ScrollAreaViewport.js:281`）。
 
-### 本轮探针翻出的真缺陷（与零件无关，另记）
+### 本轮探针报的两条「缺陷」，复查是探针假象（2026-08-09 结案）
 
-1. **Select 弹层打开后的初始焦点跨套不一致**：同一份 demo（12 项、选中第 2、列表溢出），nova／abyss／brass／nocturne／prism 焦点落在选中项，**hanabi 与 riot 落在 listbox 本身**（prism 时好时坏＝时序相关）。库的行为是聚焦选中项，怀疑被该套弹层进场动画／transform 打断。违 kit-composition-parity（皮可异、交互须同）。
-2. **弹层内 Tab 会停在 ScrollArea 的 viewport 上**：焦点在 listbox 上时按 Tab 落到可滚区域而非离开弹层。根因是 §4.2 规定弹层列表用 `<ScrollArea variant="popup">`，而库给可滚 viewport 挂 `tabindex=0`。要么接受，要么在 popup 型上关掉可聚焦。
+1. **「Select 弹层初始焦点跨套不一致」「弹层内 Tab 停在 ScrollArea 的 viewport 上」**——同一个根因。抓到调用栈：Base UI 的 `onPointerLeave` 在指针离开列表项时把焦点收回弹层，用来清高亮。探针是**用鼠标点开**的，点完指针停在触发器位置，弹层进场位移一走指针就不在项上，于是焦点被收回弹层；焦点在弹层本身时按 Tab 才会走到第一个可聚焦后代，也就是 ScrollArea 的 viewport。riot／prism 进场位移大，只有它们复现。改用键盘打开、指针停在角落：七套一致——焦点落选中项，Tab 后回触发器，弹层保持打开（`modal: false` + 触发器算在浮层上下文内，Tab 不关是库的设计）。
+2. **「nocturne 的 Combobox Tab 不关弹层」**——采样太早。弹层移除时刻跟各套 `--dur` 走：riot `0.1s` 在 120ms 已移除，nocturne `0.3s` 要到 350ms；探针 Tab 后固定等 350ms，nocturne 正卡在边界。等到 450ms 再看，七套全部关闭。
 
-两条都需裁决后再动手。
+**留给后来人的量法**：驱动弹层用键盘、指针停在角落，否则量到的是库的 pointerleave 行为；判弹层关没关要等过该套自己的 `--dur`，别用固定毫秒。
 
 ## 九、第二轴重查：用了官方零件、却在里面自己写它本来就会做的事（2026-08-09）
 
