@@ -46,7 +46,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.abyss-select__placeholder {
+.abyss-select__value[data-placeholder] {
   color: var(--abyss-text-mute);
 }
 

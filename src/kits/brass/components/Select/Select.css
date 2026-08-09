@@ -23,7 +23,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.brass-select__ph {
+.brass-select__value[data-placeholder] {
   color: var(--brass-text-mute);
 }
 .brass-select__icon {

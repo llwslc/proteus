@@ -58,23 +58,7 @@ export function Select<Value extends string = string>({
           id={id ?? autoId}
           className="abyss-frame abyss-select__trigger"
         >
-          <BaseSelect.Value className="abyss-select__value">
-            {(val) => {
-              const picked = (Array.isArray(val) ? val : val == null ? [] : [val])
-                .map((v) => items.find((i) => i.value === v))
-                .filter(Boolean);
-              return picked.length ? (
-                picked.map((i, n) => (
-                  <span key={i!.value}>
-                    {n ? ", " : ""}
-                    {i!.label}
-                  </span>
-                ))
-              ) : (
-                <span className="abyss-select__placeholder">{placeholder}</span>
-              );
-            }}
-          </BaseSelect.Value>
+          <BaseSelect.Value className="abyss-select__value" placeholder={placeholder} />
           <BaseSelect.Icon className="abyss-select__chevron">
             <ChevronDownIcon />
           </BaseSelect.Icon>

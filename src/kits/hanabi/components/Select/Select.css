@@ -34,7 +34,7 @@
   white-space: nowrap;
 }
 
-.hanabi-select__ph {
+.hanabi-select__value[data-placeholder] {
   color: var(--hanabi-text-mute);
 }
 

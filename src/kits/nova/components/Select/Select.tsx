@@ -55,23 +55,7 @@ export function Select<Value extends string = string>({
     >
       <span className={cx("nova-select__field", className)}>
         <BaseSelect.Trigger id={id ?? autoId} className="nova-select__trigger">
-          <BaseSelect.Value className="nova-select__value">
-            {(val) => {
-              const picked = (Array.isArray(val) ? val : val == null ? [] : [val])
-                .map((v) => items.find((i) => i.value === v))
-                .filter(Boolean);
-              return picked.length ? (
-                picked.map((i, n) => (
-                  <span key={i!.value}>
-                    {n ? ", " : ""}
-                    {i!.label}
-                  </span>
-                ))
-              ) : (
-                <span className="nova-select__placeholder">{placeholder}</span>
-              );
-            }}
-          </BaseSelect.Value>
+          <BaseSelect.Value className="nova-select__value" placeholder={placeholder} />
           <BaseSelect.Icon className="nova-select__chevron">
             <ChevronDownIcon />
           </BaseSelect.Icon>

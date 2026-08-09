@@ -28,7 +28,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.prism-select__ph {
+.prism-select__value[data-placeholder] {
   color: var(--prism-text-mute);
 }
 .prism-select__icon {

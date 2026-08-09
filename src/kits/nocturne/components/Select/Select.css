@@ -32,7 +32,7 @@
   text-overflow: ellipsis;
 }
 
-.nocturne-select__ph {
+.nocturne-select__value[data-placeholder] {
   color: var(--nocturne-text-mute);
 }
 

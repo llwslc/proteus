@@ -21,7 +21,6 @@ export function OtpField({
   const id = useId();
   return (
     <BaseOtp.Root
-      role="group"
       aria-label={label}
       id={id}
       length={length}

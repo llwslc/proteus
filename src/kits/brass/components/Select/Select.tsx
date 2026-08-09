@@ -57,23 +57,7 @@ export function Select<Value extends string = string>({
         id={id ?? autoId}
         className={cx("brass-plate", "brass-select", "brass-select__trigger", className)}
       >
-        <BaseSelect.Value className="brass-select__value">
-          {(val) => {
-            const picked = (Array.isArray(val) ? val : val == null ? [] : [val])
-              .map((v) => items.find((i) => i.value === v))
-              .filter(Boolean);
-            return picked.length ? (
-              picked.map((i, n) => (
-                <span key={i!.value}>
-                  {n ? ", " : ""}
-                  {i!.label}
-                </span>
-              ))
-            ) : (
-              <span className="brass-select__ph">{placeholder}</span>
-            );
-          }}
-        </BaseSelect.Value>
+        <BaseSelect.Value className="brass-select__value" placeholder={placeholder} />
         <BaseSelect.Icon className="brass-select__icon">
           <ChevronDown />
         </BaseSelect.Icon>

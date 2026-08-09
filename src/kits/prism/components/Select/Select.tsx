@@ -62,23 +62,7 @@ export function Select<Value extends string = string>({
           className,
         )}
       >
-        <BaseSelect.Value className="prism-select__value">
-          {(val) => {
-            const picked = (Array.isArray(val) ? val : val == null ? [] : [val])
-              .map((v) => items.find((i) => i.value === v))
-              .filter(Boolean);
-            return picked.length ? (
-              picked.map((i, n) => (
-                <span key={i!.value}>
-                  {n ? ", " : ""}
-                  {i!.label}
-                </span>
-              ))
-            ) : (
-              <span className="prism-select__ph">{placeholder}</span>
-            );
-          }}
-        </BaseSelect.Value>
+        <BaseSelect.Value className="prism-select__value" placeholder={placeholder} />
         <BaseSelect.Icon className="prism-select__icon">
           <ChevronDown />
         </BaseSelect.Icon>

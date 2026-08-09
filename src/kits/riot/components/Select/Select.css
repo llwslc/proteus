@@ -34,7 +34,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.riot-select__placeholder {
+.riot-select__value[data-placeholder] {
   flex: 1;
   text-align: left;
   color: var(--riot-text-mute);

@@ -58,7 +58,7 @@
 .nova-select__trigger:disabled {
   opacity: var(--nova-disabled-opacity);
 }
-.nova-select__placeholder {
+.nova-select__value[data-placeholder] {
   color: var(--nova-text-mute);
 }
 .nova-select__chevron {
