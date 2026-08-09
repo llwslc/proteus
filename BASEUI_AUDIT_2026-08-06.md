@@ -140,3 +140,34 @@ kit-api 拍七套互相（**七套一起缺 → 零分歧**）；kit-spec-props 
 - **scroll-area**：+`overflowEdgeThreshold`（边缘判定阈值）——🟡。
 - **select**：+`items`（与 Combobox 同型的条目模型，`Select.Value` 可按条目映射渲染）——值得看一眼是否简化我们的 Select 包装，新增待裁。
 - Slider `thumbAlignment` 默认仍为 `center`；**拖拽松手不回算 `--position` 的上游 bug 在 1.7.0 原样存在**——已裁决不绕修（球位差 ~1.6px 接受为上游行为，包装层保持纯透传）。`OTPFieldPreview` 在 1.7.0 定名 `OTPField`（已迁移）。
+
+---
+
+## 八、零件面对拍：官方有零件、我们自己糊了吗（2026-08-09）
+
+方法：从 `node_modules/@base-ui/react/*/index.parts.d.ts` 抽出 30 个组件的全部零件名（**环外基准**），比对 nova 的 `.tsx` 实际用到的零件；对每个「官方有、我们没用」的零件读包内 JSDoc 判定用途，再回代码查是否存在自糊的等价物。Portal／Positioner／Backdrop／Viewport／Arrow 这类必用件不计。
+
+**结论：11 个候选里 1 个是真分歧，8 个是设计决定或不适用，2 个是已在册的缺口。用户怀疑的「大面积重复造轮子」在零件层没有得到证据支持。**
+
+| 未用零件 | 官方用途 | 判定 |
+| --- | --- | --- |
+| `Popover.Description` | 渲染 `<p>`，把正文接进 `aria-describedby` | **真分歧**——Dialog 用了 `Description`，Popover 却把 children 塞进自糊的 `.<kit>-popover__body` div，弹层没有描述关联 |
+| `Select.List` | 条目容器 | 不是缺陷——有 List 时 Popup 转 `role="presentation"`、List 当 listbox；没有时 Popup 自己当 listbox（`SelectPopup.js:335`）。我们走后者，官方支持 |
+| `ContextMenu.Item` 等 12 个 | — | 假警报——`context-menu/index.parts.js` 里它们**就是 `Menu.*` 的再导出**，我们用 `Menu/parts` 拼是同一个组件 |
+| `Autocomplete.Clear`／`.Trigger`／`.Icon` | 清除钮、下拉钮、图标 | 设计决定——components.md §6.1 明写「项不带勾选、Trigger 不带 chevron」 |
+| `Combobox.Status`／`Autocomplete.Status` | 异步列表状态的礼貌播报 | 不适用——无异步列表 |
+| `Field.Validity` | 按 validity 自定义消息的 render-prop | 不适用——走 `Field.Error` |
+| `Toolbar.Input` | 接进工具条方向键的原生 input | 不适用——工具条内无输入框 |
+| `ScrollArea.Corner` | 双向滚动条交汇角 | 不适用——无双向滚动器 |
+| `Select.ScrollUp/DownArrow` | `alignItemWithTrigger` 模式的滚动箭头 | 不适用——未用该模式 |
+| `Combobox.Label`／`Select.Label` | 自动关联触发器的可见标签 | 可接受——包装层的 `label` 走 `aria-label`，页面用 `<label for>`；实测七套除 OTP 格子外**无控件缺可访问名** |
+| `Menu.Group`／`GroupLabel` | 列表分组 | 已在册（§二「list grouping」） |
+
+**顺带查实的三件「自写行为」，都不是重造**：ContextMenu 的 Shift+F10／Menu 键（库的 `ContextMenuTrigger` 只接管 `contextmenu` 事件）；NumberField 到达 min／max 时禁用步进钮（库只钳值、不禁用）；ScrollArea viewport 的 `tabindex`（是库自己在有溢出时挂的，`ScrollAreaViewport.js:281`）。
+
+### 本轮探针翻出的真缺陷（与零件无关，另记）
+
+1. **Select 弹层打开后的初始焦点跨套不一致**：同一份 demo（12 项、选中第 2、列表溢出），nova／abyss／brass／nocturne／prism 焦点落在选中项，**hanabi 与 riot 落在 listbox 本身**（prism 时好时坏＝时序相关）。库的行为是聚焦选中项，怀疑被该套弹层进场动画／transform 打断。违 kit-composition-parity（皮可异、交互须同）。
+2. **弹层内 Tab 会停在 ScrollArea 的 viewport 上**：焦点在 listbox 上时按 Tab 落到可滚区域而非离开弹层。根因是 §4.2 规定弹层列表用 `<ScrollArea variant="popup">`，而库给可滚 viewport 挂 `tabindex=0`。要么接受，要么在 popup 型上关掉可聚焦。
+
+两条都需裁决后再动手。
