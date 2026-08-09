@@ -61,8 +61,8 @@
 }
 
 .nocturne-moondot {
-  width: var(--nocturne-moondot-size, 8px);
-  height: var(--nocturne-moondot-size, 8px);
+  width: var(--nocturne-moondot-size);
+  height: var(--nocturne-moondot-size);
   border-radius: var(--nocturne-r-full);
   background: var(--nocturne-accent-fill);
   box-shadow: 0 0 8px var(--nocturne-glow-40);
