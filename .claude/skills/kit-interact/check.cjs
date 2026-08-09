@@ -478,13 +478,23 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
     } catch (e) { out.push(`WARN  ${kit}  knob-box: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
 
     try {
-      // 旋钮自身不带 transform：上面那条只比三态,恒定的歪斜／缩放照样把库量到的盒撑大。
+      // 旋钮自身不做形变：上面那条只比三态,恒定的歪斜／缩放照样把库量到的盒撑大。
       // 库拿这个盒算两端内缩,盒一虚胖内缩就多算——区间两钮同值时会算出负的跨度。
-      const tf = await d.evaluate(() => [...document.querySelectorAll('#slider [class*="slider__thumb"]')]
-        .map((t) => getComputedStyle(t).transform).filter((v) => v && v !== 'none'));
+      // 四个属性都要查:独立的 rotate／scale 同样撑大盒子,而 computed.transform 仍是 none。
+      const tf = await d.evaluate(() => {
+        const bad = [];
+        for (const t of document.querySelectorAll('#slider [class*="slider__thumb"]')) {
+          const c = getComputedStyle(t);
+          // translate 不查:库自己用 `translate: -50% -50%` 把旋钮居中到取值处,
+          // 而且位移只挪盒子、不改盒子尺寸,不进库的 controlSize - thumbSize 运算。
+          for (const prop of ['transform', 'rotate', 'scale'])
+            if (c[prop] && c[prop] !== 'none') bad.push(`${prop}: ${c[prop]}`);
+        }
+        return bad;
+      });
       knobTfChecked++;
       if (tf.length)
-        out.push(`HIGH  ${kit}  slider: 旋钮自身带 transform（${tf[0].slice(0, 30)}）—— 库按渲染盒算内缩,形变搬 ::before`);
+        out.push(`HIGH  ${kit}  slider: 旋钮自身带形变（${tf[0].slice(0, 34)}）—— 库按渲染盒算内缩,形变搬 ::before`);
 
       // 区间两钮推到同值,指示条必须收拢为 0。这是上面那条的可见症状,换个机制照样能红。
       const range = await d.evaluate((k) => {
