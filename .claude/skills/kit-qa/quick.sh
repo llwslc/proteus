@@ -14,7 +14,7 @@ has '^prompt/' && RUN="$RUN prompt-lint theme-doc-sync kit-spec-coverage kit-ent
 has '^\.claude/skills/.*SKILL\.md$' && RUN="$RUN prompt-lint"
 RUN="$RUN eslint format-check diff-hygiene"
 if has '\.tsx?$'; then
-  RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode kit-demo-states kit-spec-props kit-skeleton fingerprint"
+  RUN="$RUN tsc kit-api kit-structure kit-naming kit-deadcode kit-demo-states kit-spec-props kit-skeleton fingerprint kit-baseui-surface"
 fi
 has 'App\.tsx$|components/.*\.tsx$' && RUN="$RUN kit-a11y kit-equality"
 if has 'src/kits/.*\.css$|^src/shell/.*\.css$'; then
@@ -25,6 +25,8 @@ if has 'src/kits/.*\.css$|^src/shell/.*\.css$'; then
   has 'Tabs|Menubar|Toolbar' && RUN="$RUN kit-scroll-rail"
   SKIP_NOTE="css 改动按文件名挑了动态门;交互态(按压/触屏/Toast 堆叠)仍只有 kit-interact 能验,字段悬停归 kit-hover,收官请跑全量 check.sh"
 fi
+# 依赖版本变了 → 库的能力面可能变,必须重裁
+has 'package(-lock)?\.json$' && RUN="$RUN kit-baseui-surface"
 # 门本身被改动 → 至少跑一遍被改的那道,证明它还能跑
 for g in $(echo "$FILES" | sed -n 's|^\.claude/skills/\(kit-[a-z-]*\)/check\..*|\1|p' | sort -u); do RUN="$RUN $g"; done
 RUN=$(echo "$RUN" | tr ' ' '\n' | sort -u | grep -v '^$')

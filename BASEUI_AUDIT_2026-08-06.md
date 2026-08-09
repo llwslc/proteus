@@ -129,7 +129,7 @@ R1–R4 已于 2026-08-07 全部落地，不再列入建议。
 
 kit-api 拍七套互相（**七套一起缺 → 零分歧**）；kit-spec-props 拍代码对规格（**规格没写 → 无从红**）；kit-demo-states 只扫 disabled/error；动态门驱动 demo 已有的东西（**demo 没有 → 永不触发**）。包装层 `extends ComponentProps<Root>` 让类型检查也绿。**没有任何仪器以 Base UI 能力面为基准。**
 
-常驻修法（裁决后另行实施）：`kit-baseui-surface` 门——以 `node_modules` 的 `.d.ts` 为基准抽取 Root props 与零件清单，比对：①本文件的裁决账（接/不接均入账，新出现的 prop（版本升级）→ 报新增待裁）；②NO-REST 包装白名单。让「库有我无」从此有人站岗。
+**已实施（2026-08-09）**：`kit-baseui-surface` 门——逐套逐组件找主接口 `<Component>Props`，判它有没有接库 Root 的 prop 面、`Omit` 里挡掉了哪些；结果对 `.claude/skills/kit-baseui-surface/ledger.md`，账上没有报「新增待裁」，代码已不挡却还留着报「陈账」。当前 9 笔在账：`Accordion.multiple`（改名 `openMultiple`）、`Select.children`（结构自建）已裁；Tooltip／PreviewCard 的受控开合与 Dialog／AlertDialog／Drawer 的整面待裁。升版后库多出的 prop 会自动冒出来要裁决。
 
 ---
 
