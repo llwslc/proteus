@@ -652,7 +652,17 @@ function Demo() {
                   <Slider label="Column width" defaultValue={62} />
                   <Slider label="Gutter" defaultValue={40} disabled />
                   <Slider label="Ink density" defaultValue={75} showValue={false} />
-                  <Slider label="Scale" defaultValue={60} orientation="vertical" />
+                  <Slider label="Weight range" defaultValue={[30, 70]} />
+                  <div className="prism-row">
+                    <Slider label="Scale" defaultValue={60} orientation="vertical" />
+                    <Slider
+                      label="Kerning"
+                      defaultValue={40}
+                      orientation="vertical"
+                      disabled
+                    />
+                    <Slider label="Span" defaultValue={[30, 70]} orientation="vertical" />
+                  </div>
                 </div>
               </Panel>
             </div>

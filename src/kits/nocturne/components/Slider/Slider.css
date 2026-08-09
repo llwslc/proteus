@@ -85,7 +85,7 @@
   justify-content: center;
 }
 .nocturne-slider[data-orientation="vertical"] .nocturne-slider__track {
-  width: var(--nocturne-slider-v-w);
+  width: var(--nocturne-track-h);
   height: 100%;
 }
 .nocturne-slider[data-orientation="vertical"] .nocturne-slider__indicator {

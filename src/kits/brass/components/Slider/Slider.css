@@ -64,7 +64,7 @@
   justify-content: center;
 }
 .brass-slider[data-orientation="vertical"] .brass-slider__track {
-  width: var(--brass-slider-v-w);
+  width: var(--brass-slider-track);
   height: 100%;
 }
 .brass-slider[data-orientation="vertical"] .brass-slider__indicator {

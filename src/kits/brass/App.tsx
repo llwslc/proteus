@@ -667,7 +667,21 @@ function Demo() {
                   <Slider label="Throttle" defaultValue={62} />
                   <Slider label="Damper" defaultValue={40} disabled />
                   <Slider label="Blower" defaultValue={75} showValue={false} />
-                  <Slider label="Reserve" defaultValue={60} orientation="vertical" />
+                  <Slider label="Pressure band" defaultValue={[30, 70]} />
+                  <div className="brass-row">
+                    <Slider label="Reserve" defaultValue={60} orientation="vertical" />
+                    <Slider
+                      label="Bleed"
+                      defaultValue={40}
+                      orientation="vertical"
+                      disabled
+                    />
+                    <Slider
+                      label="Range"
+                      defaultValue={[30, 70]}
+                      orientation="vertical"
+                    />
+                  </div>
                 </div>
               </Panel>
             </div>

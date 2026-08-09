@@ -92,6 +92,6 @@
   justify-content: center;
 }
 .nova-slider[data-orientation="vertical"] .nova-slider__track {
-  width: var(--nova-slider-v-w);
+  width: 6px;
   height: 100%;
 }

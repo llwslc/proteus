@@ -870,7 +870,17 @@ function Demo() {
                   <Slider label="Flame height" defaultValue={62} />
                   <Slider label="Mist reach" defaultValue={40} disabled />
                   <Slider label="Scent drift" defaultValue={75} showValue={false} />
-                  <Slider label="Dew" defaultValue={60} orientation="vertical" />
+                  <Slider label="Bloom window" defaultValue={[30, 70]} />
+                  <div className="nocturne-row">
+                    <Slider label="Dew" defaultValue={60} orientation="vertical" />
+                    <Slider
+                      label="Wick"
+                      defaultValue={40}
+                      orientation="vertical"
+                      disabled
+                    />
+                    <Slider label="Span" defaultValue={[30, 70]} orientation="vertical" />
+                  </div>
                 </div>
               </Panel>
             </div>

@@ -824,7 +824,17 @@ function Demo() {
                   <Slider label="Thrust" defaultValue={62} />
                   <Slider label="Frequency" defaultValue={40} disabled />
                   <Slider label="Aux Power" defaultValue={75} showValue={false} />
-                  <Slider label="Trim" defaultValue={60} orientation="vertical" />
+                  <Slider label="Scan band" defaultValue={[30, 70]} />
+                  <div className="demo-row">
+                    <Slider label="Trim" defaultValue={60} orientation="vertical" />
+                    <Slider
+                      label="Ballast"
+                      defaultValue={40}
+                      orientation="vertical"
+                      disabled
+                    />
+                    <Slider label="Arc" defaultValue={[30, 70]} orientation="vertical" />
+                  </div>
                 </div>
               </Panel>
             </div>

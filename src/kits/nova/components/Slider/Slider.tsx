@@ -9,6 +9,8 @@ export interface SliderProps extends ComponentPropsWithoutRef<typeof BaseSlider.
 }
 
 export function Slider({ className, label, showValue = true, ...props }: SliderProps) {
+  const v = props.value ?? props.defaultValue;
+  const thumbs = Array.isArray(v) ? v.map((_, i) => i) : [0];
   return (
     <BaseSlider.Root
       className={cx("nova-slider", className)}
@@ -30,7 +32,9 @@ export function Slider({ className, label, showValue = true, ...props }: SliderP
       <BaseSlider.Control className="nova-slider__control">
         <BaseSlider.Track className="nova-slider__track">
           <BaseSlider.Indicator className="nova-slider__indicator" />
-          <BaseSlider.Thumb className="nova-slider__thumb" />
+          {thumbs.map((i) => (
+            <BaseSlider.Thumb key={i} className="nova-slider__thumb" />
+          ))}
         </BaseSlider.Track>
       </BaseSlider.Control>
     </BaseSlider.Root>

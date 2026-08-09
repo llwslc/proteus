@@ -915,7 +915,21 @@ function Demo() {
                   <Slider label="Descent" defaultValue={62} />
                   <Slider label="Resonance" defaultValue={40} disabled />
                   <Slider label="Undertow" defaultValue={75} showValue={false} />
-                  <Slider label="Depth" defaultValue={60} orientation="vertical" />
+                  <Slider label="Tidal range" defaultValue={[30, 70]} />
+                  <div className="demo-row">
+                    <Slider label="Depth" defaultValue={60} orientation="vertical" />
+                    <Slider
+                      label="Anchor"
+                      defaultValue={40}
+                      orientation="vertical"
+                      disabled
+                    />
+                    <Slider
+                      label="Fathoms"
+                      defaultValue={[30, 70]}
+                      orientation="vertical"
+                    />
+                  </div>
                 </div>
               </Panel>
             </div>

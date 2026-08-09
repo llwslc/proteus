@@ -693,7 +693,17 @@ function Demo() {
                   <Slider label="BGM 音量" defaultValue={62} />
                   <Slider label="ガンマ補正" defaultValue={40} disabled />
                   <Slider label="弾幕密度" defaultValue={75} showValue={false} />
-                  <Slider label="音量" defaultValue={60} orientation="vertical" />
+                  <Slider label="有効射程" defaultValue={[30, 70]} />
+                  <div className="hanabi-row">
+                    <Slider label="音量" defaultValue={60} orientation="vertical" />
+                    <Slider
+                      label="輝度"
+                      defaultValue={40}
+                      orientation="vertical"
+                      disabled
+                    />
+                    <Slider label="帯域" defaultValue={[30, 70]} orientation="vertical" />
+                  </div>
                 </div>
               </Panel>
             </div>

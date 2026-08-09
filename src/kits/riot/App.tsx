@@ -679,7 +679,17 @@ function Demo() {
                   <Slider label="Column width" defaultValue={62} />
                   <Slider label="Gutter" defaultValue={40} disabled />
                   <Slider label="Ink bleed" defaultValue={75} showValue={false} />
-                  <Slider label="Loud" defaultValue={60} orientation="vertical" />
+                  <Slider label="Cut range" defaultValue={[30, 70]} />
+                  <div className="riot-row">
+                    <Slider label="Loud" defaultValue={60} orientation="vertical" />
+                    <Slider
+                      label="Bleed"
+                      defaultValue={40}
+                      orientation="vertical"
+                      disabled
+                    />
+                    <Slider label="Span" defaultValue={[30, 70]} orientation="vertical" />
+                  </div>
                 </div>
               </Panel>
             </div>
