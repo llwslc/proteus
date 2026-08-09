@@ -44,7 +44,7 @@
 - Toolbar：chip 同 ToggleGroup。
 - ScrollArea：thumb 是 `primary` 荧光橙方块（无圆角、填满条宽）；panel 型悬停显、坐在 `surface-inset` 纸灰轨上，popup 型常显、轨道透明、整条离框 `space-1`，充当弹层列表的溢出提示。
 - Separator：`ink` 实条过 `#riot-torn` 撕纹滤镜（横／纵），手撕的黑胶条；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
-- Panel：一张斜钉的撕纸剪报——纸面取 `tilt-1`…`tilt-4` 四档角之一，`tilt` 参数选档、默认第一档；斜的是纸面本身，胶带与订书钉压在纸上层；一角贴胶带或订书钉。
+- Panel：一张斜钉的撕纸剪报——斜的是纸面本身，胶带与订书钉压在纸上层；纸面取 `tilt-1`…`tilt-4` 四档角之一，`tilt` 选档、默认第一档；`tape` 在四角或顶边贴一条胶带，`stapled` 在顶缘左右各钉一枚订书钉。
 - 占位图标是粗糙的手绘线形。
 - 剪报母题（撕边、胶带、订书钉、条码、网点、记号笔涂划）靠输入变量换色。
 - 标记与招牌就近挂 `.riot-jitter` 微抖。
