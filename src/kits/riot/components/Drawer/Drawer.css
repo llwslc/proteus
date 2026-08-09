@@ -65,7 +65,7 @@
   content: "";
   position: absolute;
   background: var(--riot-ink);
-  filter: url(#riot-torn);
+  filter: var(--riot-torn-filter);
   pointer-events: none;
 }
 .riot-drawer--right .riot-drawer__surface::after {

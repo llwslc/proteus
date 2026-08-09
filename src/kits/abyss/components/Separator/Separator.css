@@ -3,7 +3,7 @@
   height: 1px;
   width: 100%;
   background: linear-gradient(90deg, transparent, var(--abyss-ink-strong), transparent);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
 }
 .abyss-separator--vertical {
   width: 1px;
@@ -24,7 +24,7 @@
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--abyss-ink-strong));
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
 }
 .abyss-separator-labeled__line--end {
   background: linear-gradient(90deg, var(--abyss-ink-strong), transparent);

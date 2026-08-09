@@ -323,22 +323,6 @@ export default function App() {
   );
 }
 
-function TornFilter() {
-  return (
-    <svg className="riot-defs" aria-hidden="true" focusable="false">
-      <filter id="riot-torn">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.03 0.06"
-          numOctaves="2"
-          result="n"
-        />
-        <feDisplacementMap in="SourceGraphic" in2="n" scale="4" />
-      </filter>
-    </svg>
-  );
-}
-
 function FormDemo() {
   const { add } = useToast();
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -400,7 +384,6 @@ function Demo() {
 
   return (
     <div className="riot-app">
-      <TornFilter />
       <header className="riot-header">
         <div className="riot-logo">
           <span className="riot-logo__mark">

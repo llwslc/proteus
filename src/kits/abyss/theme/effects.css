@@ -17,7 +17,7 @@
   border: 1.5px solid var(--abyss-frame-ink, var(--abyss-ink-strong));
   border-radius: var(--abyss-frame-round, var(--abyss-round-3));
   box-shadow: var(--abyss-frame-bevel, none);
-  filter: var(--abyss-frame-etch, url(#abyss-edge));
+  filter: var(--abyss-frame-etch, var(--abyss-edge-filter));
   pointer-events: none;
 }
 
@@ -28,7 +28,7 @@
   z-index: -1;
   border: 1px solid var(--abyss-ink-faint);
   border-radius: var(--abyss-round-2);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
   pointer-events: none;
 }
 
@@ -119,7 +119,7 @@
   width: 1.5px;
   height: 100%;
   background: var(--abyss-glow-a55);
-  filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-glow-a55));
+  filter: var(--abyss-edge-filter) drop-shadow(0 0 5px var(--abyss-glow-a55));
 }
 .abyss-connector[data-side="left"],
 .abyss-connector[data-side="right"] {
@@ -264,7 +264,7 @@
   border-radius: var(--abyss-round-2);
   background: var(--abyss-glow);
   box-shadow: 0 0 7px var(--abyss-glow-a70);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
   opacity: 0;
   transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
@@ -342,7 +342,7 @@
   z-index: 0;
   border: 1px solid var(--abyss-glow-a30);
   border-radius: var(--abyss-round-2);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
   pointer-events: none;
 }
 .abyss-seg__btn[data-disabled],

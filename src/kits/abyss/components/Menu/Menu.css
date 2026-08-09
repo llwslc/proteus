@@ -36,7 +36,7 @@
   background: var(--abyss-glow);
   box-shadow: 0 0 7px var(--abyss-glow-a70);
   opacity: 0;
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
   transition: opacity var(--abyss-dur) var(--abyss-ease);
 }
 
@@ -112,7 +112,7 @@
   z-index: 1;
   margin: var(--abyss-space-2) 0;
   background: linear-gradient(90deg, transparent, var(--abyss-ink-strong), transparent);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
 }
 
 .abyss-menu__arrow {

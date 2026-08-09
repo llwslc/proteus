@@ -146,7 +146,7 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--abyss-ink-strong), transparent);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
 }
 
 .abyss-drawer__x {

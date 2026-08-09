@@ -88,7 +88,7 @@
     transparent
   );
   box-shadow: 0 0 8px var(--abyss-toast-accent);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
   pointer-events: none;
 }
 

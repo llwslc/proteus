@@ -1,7 +1,7 @@
 .riot-separator {
   border: 0;
   background: var(--riot-ink);
-  filter: url(#riot-torn);
+  filter: var(--riot-torn-filter);
 }
 .riot-separator--horizontal {
   width: 100%;
@@ -21,7 +21,7 @@
   flex: 1;
   height: var(--riot-stroke);
   background: var(--riot-ink);
-  filter: url(#riot-torn);
+  filter: var(--riot-torn-filter);
 }
 .riot-separator-labeled--start > .riot-separator-labeled__line:first-child,
 .riot-separator-labeled--end > .riot-separator-labeled__line:last-child {

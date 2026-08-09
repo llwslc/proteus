@@ -73,5 +73,5 @@
   min-height: 1em;
   margin: 4px var(--abyss-space-1);
   background: linear-gradient(180deg, transparent, var(--abyss-ink-strong), transparent);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
 }

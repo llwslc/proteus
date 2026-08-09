@@ -128,7 +128,7 @@
 }
 
 .abyss-btn--sm {
-  --abyss-frame-etch: url(#abyss-edge-soft);
+  --abyss-frame-etch: var(--abyss-edge-soft-filter);
   min-height: var(--abyss-button-h-sm);
   padding: 0 var(--abyss-space-4);
   font-size: var(--abyss-fs-12);

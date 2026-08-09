@@ -25,6 +25,6 @@
     var(--abyss-ink) 70%,
     transparent
   );
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
   pointer-events: none;
 }

@@ -1,4 +1,5 @@
 :root {
+  --riot-torn-filter: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cfilter%20id%3D%27riot-torn%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.03%200.06%27%20numOctaves%3D%272%27%20result%3D%27n%27%2F%3E%3CfeDisplacementMap%20in%3D%27SourceGraphic%27%20in2%3D%27n%27%20scale%3D%274%27%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#riot-torn");
   --riot-base: #111010;
   --riot-paper: #e9e4d4;
   --riot-paper-raised: #d7cfba;

@@ -68,7 +68,7 @@
   width: 1.5px;
   height: var(--abyss-otp-caret-h);
   background: var(--abyss-glow);
-  filter: url(#abyss-edge) drop-shadow(0 0 5px var(--abyss-glow-a70));
+  filter: var(--abyss-edge-filter) drop-shadow(0 0 5px var(--abyss-glow-a70));
   opacity: 0;
   pointer-events: none;
 }
@@ -118,7 +118,7 @@
   width: var(--abyss-otp-divider);
   height: 1.5px;
   background: var(--abyss-ink-strong);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
 }
 
 @media (max-width: 768px) {

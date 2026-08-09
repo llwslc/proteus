@@ -23,7 +23,7 @@
   background: var(--abyss-inset);
   border-radius: var(--abyss-round-5);
   box-shadow: inset 0 0 0 1px var(--abyss-ink-faint);
-  filter: url(#abyss-edge);
+  filter: var(--abyss-edge-filter);
 }
 .abyss-progress__indicator {
   height: 100%;

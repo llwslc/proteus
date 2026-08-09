@@ -16,5 +16,5 @@
   height: 20px;
   margin: 0 var(--riot-space-1);
   background: var(--riot-ink);
-  filter: url(#riot-torn);
+  filter: var(--riot-torn-filter);
 }

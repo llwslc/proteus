@@ -157,45 +157,6 @@ const SECTIONS: { group: string; items: [string, string, string][] }[] = [
   },
 ];
 
-function EdgeFilter() {
-  return (
-    <svg className="abyss-defs" aria-hidden width="0" height="0">
-      <filter id="abyss-edge-soft" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.013 0.018"
-          numOctaves="2"
-          seed="7"
-          result="ns"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="ns"
-          scale="2"
-          xChannelSelector="R"
-          yChannelSelector="G"
-        />
-      </filter>
-      <filter id="abyss-edge" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.013 0.018"
-          numOctaves="2"
-          seed="7"
-          result="n"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="n"
-          scale="3.4"
-          xChannelSelector="R"
-          yChannelSelector="G"
-        />
-      </filter>
-    </svg>
-  );
-}
-
 const SELECT_ITEMS = [
   { label: "R'lyeh — Fathom 001", value: "rlyeh" },
   { label: "Y'ha-nthlei", value: "yhanthlei" },
@@ -665,8 +626,6 @@ function Demo() {
 
   return (
     <div className="abyss-app">
-      <EdgeFilter />
-
       <header className="abyss-header">
         <div className="abyss-logo">
           <span className="abyss-logo__mark">
