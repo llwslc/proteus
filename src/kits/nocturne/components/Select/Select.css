@@ -3,6 +3,7 @@
   justify-content: space-between;
   cursor: pointer;
   color: var(--nocturne-text);
+  font-family: var(--nocturne-font);
   font-size: var(--nocturne-fs-16);
   letter-spacing: var(--nocturne-ls-1);
 }
