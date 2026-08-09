@@ -126,7 +126,7 @@ const PRESSURE = [
   { label: "Sealed", value: "sealed", disabled: true },
 ];
 const PRESSURE_SHORT = PRESSURE.slice(0, 3);
-const MULTI_DEFAULT = PRESSURE_SHORT.slice(0, 2).map((i) => i.value);
+const MULTI_DEFAULT = PRESSURE.slice(0, 2).map((i) => i.value);
 
 const FUEL_PARTS = [
   "Anthracite",
@@ -620,7 +620,7 @@ function Demo() {
                     Valves
                   </label>
                   <Select
-                    items={PRESSURE_SHORT}
+                    items={PRESSURE}
                     multiple
                     defaultValue={MULTI_DEFAULT}
                     id="sel-4"

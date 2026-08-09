@@ -139,7 +139,7 @@ const FLORA = [
   { label: "Foxglove", value: "foxglove", disabled: true },
 ];
 const FLORA_SHORT = FLORA.slice(0, 3);
-const MULTI_DEFAULT = FLORA_SHORT.slice(0, 2).map((i) => i.value);
+const MULTI_DEFAULT = FLORA.slice(0, 2).map((i) => i.value);
 
 const FLORA_NAMES = [
   "Belladonna",
@@ -821,7 +821,7 @@ function Demo() {
                     Beds
                   </label>
                   <Select
-                    items={FLORA_SHORT}
+                    items={FLORA}
                     multiple
                     defaultValue={MULTI_DEFAULT}
                     id="sel-4"

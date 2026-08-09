@@ -130,7 +130,7 @@ const WEIGHTS = [
   { label: "Black", value: "black", disabled: true },
 ];
 const WEIGHTS_SHORT = WEIGHTS.slice(0, 3);
-const MULTI_DEFAULT = WEIGHTS_SHORT.slice(0, 2).map((i) => i.value);
+const MULTI_DEFAULT = WEIGHTS.slice(0, 2).map((i) => i.value);
 
 const FORMS = [
   "Riot",
@@ -653,7 +653,7 @@ function Demo() {
                     Stickers
                   </label>
                   <Select
-                    items={WEIGHTS_SHORT}
+                    items={WEIGHTS}
                     multiple
                     defaultValue={MULTI_DEFAULT}
                     id="sel-4"
