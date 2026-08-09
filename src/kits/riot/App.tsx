@@ -509,7 +509,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="switch">
-              <Panel title="Switch" stapled>
+              <Panel tilt={2} title="Switch" stapled>
                 <div className="riot-stack">
                   <label className="riot-row riot-row--between">
                     <span className="riot-tag">Kill switch</span>
@@ -531,7 +531,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="toggle">
-              <Panel title="Toggle Group" tape="tr">
+              <Panel tilt={3} title="Toggle Group" tape="tr">
                 <div className="riot-stack">
                   <ToggleGroup defaultValue={["left"]}>
                     <Toggle value="left">Left</Toggle>
@@ -553,7 +553,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="checkbox">
-              <Panel title="Checkbox" tape="bl">
+              <Panel tilt={4} title="Checkbox" tape="bl">
                 <div className="riot-stack">
                   <Checkbox defaultChecked label="Paste it crooked" />
                   <Checkbox label="Show rulers" />
@@ -588,7 +588,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="radio">
-              <Panel title="Radio Group" tape="tl">
+              <Panel tilt={2} title="Radio Group" tape="tl">
                 <div className="riot-stack">
                   <span className="riot-cap">Typesetting</span>
                   <RadioGroup defaultValue="left">
@@ -608,7 +608,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="select">
-              <Panel title="Select" tape="br">
+              <Panel tilt={3} title="Select" tape="br">
                 <div className="riot-stack">
                   <label className="riot-cap" htmlFor="sel-1">
                     Type weight
@@ -646,7 +646,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="combobox">
-              <Panel title="Combobox" stapled>
+              <Panel tilt={4} title="Combobox" stapled>
                 <div className="riot-stack">
                   <span className="riot-cap">Filter the zine</span>
                   <Combobox items={FORMS} placeholder="Search…" label="Filter the zine" />
@@ -674,7 +674,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="slider">
-              <Panel title="Slider" tape="top">
+              <Panel tilt={2} title="Slider" tape="top">
                 <div className="riot-stack">
                   <Slider label="Column width" defaultValue={62} />
                   <Slider label="Gutter" defaultValue={40} disabled />
@@ -684,7 +684,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="number">
-              <Panel title="Number Field" stapled>
+              <Panel tilt={3} title="Number Field" stapled>
                 <div className="riot-stack">
                   <label className="riot-cap" htmlFor="num-1">
                     Print run
@@ -699,7 +699,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="input">
-              <Panel title="Text Field" tape="tl">
+              <Panel tilt={4} title="Text Field" tape="tl">
                 <div className="riot-stack">
                   <Field
                     label="Headline"
@@ -764,7 +764,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="form">
-              <Panel title="Form" tape="tr">
+              <Panel tilt={2} title="Form" tape="tr">
                 <FormDemo />
               </Panel>
             </div>
@@ -783,7 +783,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="meter">
-              <Panel title="Meter" stapled>
+              <Panel tilt={2} title="Meter" stapled>
                 <div className="riot-stack">
                   <Meter label="Ink coverage" value={88} />
                   <Meter label="Registration" value={70} tone="success" />
@@ -794,7 +794,7 @@ function Demo() {
             </div>
 
             <div className="riot-section riot-section--wide" id="tabs">
-              <Panel title="Tabs" tape="top">
+              <Panel tilt={3} title="Tabs" tape="top">
                 <Tabs
                   defaultValue="cut"
                   items={[
@@ -832,7 +832,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="accordion">
-              <Panel title="Accordion" tape="tl">
+              <Panel tilt={4} title="Accordion" tape="tl">
                 <div className="riot-stack">
                   <span className="riot-cap">One at a time</span>
                   <Accordion
@@ -935,7 +935,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="popover">
-              <Panel title="Popover" stapled>
+              <Panel tilt={2} title="Popover" stapled>
                 <Popover
                   trigger={
                     <Button variant="ghost" upright>
@@ -950,7 +950,7 @@ function Demo() {
             </div>
 
             <div className="riot-section riot-section--wide" id="preview">
-              <Panel title="Preview Card" tape="top">
+              <Panel tilt={3} title="Preview Card" tape="top">
                 <div className="riot-stack">
                   <span className="riot-cap">Hover the byline</span>
                   <p className="riot-text">
@@ -996,7 +996,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="menu">
-              <Panel title="Menu" tape="tr">
+              <Panel tilt={4} title="Menu" tape="tr">
                 <div className="riot-row">
                   <Menu trigger="Actions">
                     <MenuItem icon={<CopyIcon />} shortcut="⌘D">
@@ -1108,12 +1108,12 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="navmenu">
-              <Panel title="Navigation Menu" tape="bl">
+              <Panel tilt={2} title="Navigation Menu" tape="bl">
                 <NavigationMenu items={NAV} onLinkClick={(e) => e.preventDefault()} />
               </Panel>
             </div>
             <div className="riot-section" id="context">
-              <Panel title="Context Menu" tape="tl">
+              <Panel tilt={3} title="Context Menu" tape="tl">
                 <div className="riot-stack">
                   <ContextMenu
                     trigger={
@@ -1135,7 +1135,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="dialog">
-              <Panel title="Dialog" stapled>
+              <Panel tilt={4} title="Dialog" stapled>
                 <Dialog
                   trigger={<Button variant="secondary">Reset the wall</Button>}
                   title="Reset the paste-up"
@@ -1195,7 +1195,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="drawer">
-              <Panel title="Drawer" tape="tr">
+              <Panel tilt={2} title="Drawer" tape="tr">
                 <div className="riot-row">
                   {(["top", "bottom", "left", "right"] as const).map((side) => (
                     <Drawer
@@ -1225,7 +1225,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="toast">
-              <Panel title="Toast" stapled>
+              <Panel tilt={3} title="Toast" stapled>
                 <div className="riot-row">
                   <Button
                     size="sm"
@@ -1311,7 +1311,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="badge">
-              <Panel title="Badge" stapled>
+              <Panel tilt={2} title="Badge" stapled>
                 <div className="riot-row">
                   <Badge tone="primary" dot>
                     Primary
@@ -1328,7 +1328,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="toolbar">
-              <Panel title="Toolbar" tape="br">
+              <Panel tilt={3} title="Toolbar" tape="br">
                 <Toolbar aria-label="Tools">
                   <BaseToggleGroup
                     className="riot-toolbar__group"
@@ -1363,7 +1363,7 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="scroll">
-              <Panel title="Scroll Area" tape="top">
+              <Panel tilt={4} title="Scroll Area" tape="top">
                 <ScrollArea>
                   <ScrollAreaViewport>
                     <ScrollAreaContent>
@@ -1420,7 +1420,7 @@ function Demo() {
             </div>
 
             <div className="riot-section" id="separator">
-              <Panel title="Separator" stapled>
+              <Panel tilt={2} title="Separator" stapled>
                 <div className="riot-stack">
                   <span className="riot-cap">Plain</span>
                   <Separator />
@@ -1440,12 +1440,12 @@ function Demo() {
               </Panel>
             </div>
             <div className="riot-section" id="panel">
-              <Panel title="Panel" tape="tr">
+              <Panel tilt={3} title="Panel" tape="tr">
                 <p className="riot-text riot-panel-note">
                   The torn clipping wrapping every section — paper, a hard offset shadow
                   and a stamped code, pinned up at its own angle. Composable to any depth.
                 </p>
-                <Panel title="Nested clipping" stapled>
+                <Panel tilt={3} title="Nested clipping" stapled>
                   <span className="riot-cap">A clipping within a clipping</span>
                 </Panel>
               </Panel>

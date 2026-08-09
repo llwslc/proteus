@@ -14,7 +14,7 @@
   transform: rotate(calc(-1 * var(--riot-rot-17)));
 }
 .riot-panel__sheet {
-  --riot-surface-tilt: var(--riot-tilt, 0deg);
+  --riot-surface-tilt: var(--riot-panel-tilt, var(--riot-tilt-1));
   flex: 1;
   padding: var(--riot-space-6) var(--riot-space-6) var(--riot-space-7);
 }
@@ -24,4 +24,14 @@
   justify-content: space-between;
   gap: var(--riot-space-3);
   margin-bottom: var(--riot-space-5);
+}
+
+.riot-panel--tilt-2 {
+  --riot-panel-tilt: var(--riot-tilt-2);
+}
+.riot-panel--tilt-3 {
+  --riot-panel-tilt: var(--riot-tilt-3);
+}
+.riot-panel--tilt-4 {
+  --riot-panel-tilt: var(--riot-tilt-4);
 }

@@ -318,18 +318,6 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
-.riot-grid > *:nth-child(4n + 1) {
-  --riot-tilt: -1.2deg;
-}
-.riot-grid > *:nth-child(4n + 2) {
-  --riot-tilt: 0.9deg;
-}
-.riot-grid > *:nth-child(4n + 3) {
-  --riot-tilt: -0.5deg;
-}
-.riot-grid > *:nth-child(4n) {
-  --riot-tilt: 1.3deg;
-}
 .riot-section {
   display: flex;
   min-width: 0;
