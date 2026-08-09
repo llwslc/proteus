@@ -171,3 +171,26 @@ kit-api 拍七套互相（**七套一起缺 → 零分歧**）；kit-spec-props 
 2. **弹层内 Tab 会停在 ScrollArea 的 viewport 上**：焦点在 listbox 上时按 Tab 落到可滚区域而非离开弹层。根因是 §4.2 规定弹层列表用 `<ScrollArea variant="popup">`，而库给可滚 viewport 挂 `tabindex=0`。要么接受，要么在 popup 型上关掉可聚焦。
 
 两条都需裁决后再动手。
+
+## 九、第二轴重查：用了官方零件、却在里面自己写它本来就会做的事（2026-08-09）
+
+§八 只对了「完全没用的零件」，那是错轴——用户点的三处（Menu 勾选记号、Select 取值、Slider 数值）全都是**用了零件、在里面自糊**。按这条轴重查：把七套组件里所有自算逻辑（函数子、`.map`／`.find`／`.join`、手设 `role`／`aria`、自己 measure 尺寸）逐条对库的实现核。
+
+**已修**
+
+- `Select.Value` 塞函数子，自己做 value→label 映射、多选 `, ` 拼接、空值占位。库无 children 时本来就走 `resolveMultipleLabels` / `resolveSelectedLabel` + `placeholder` prop（`internals/resolveValueLabel.js`），**连分隔符都是同一个 `, `**。七套各删 17 行（9d1b696b）。
+- `OTPField.Root` 上手设 `role="group"`，而 `OTPFieldRoot.js:282` 已经设了。
+- （早前）`Slider.Label`／`Slider.Value`、`Toast.Content`、Menu 的 `CheckboxItemIndicator`——用户发现的三处，6628805a／R1 已修。
+
+**查了是干净的**
+
+- 库给的 CSS 变量全部在用：`--anchor-width`（21 处）、`--available-height`、`--positioner-width`、`--popup-width/height`、`--active-tab-left/width`、`--transform-origin`、`--accordion-panel-height`／`--collapsible-panel-height`。**没有任何一处自己 measure 尺寸再写进 style**。
+- `Progress`／`Meter`／`Slider` 的标签与数值走官方 `Label`／`Value`。
+- `Combobox.Value` 的函数子是官方渲染 chips 的写法（该零件不渲染自己的元素，就是给你 selectedValue）。
+- `CheckboxGroup` 的全选走官方 `allValues`。
+- Combobox／Autocomplete 把 `{label, disabled}` 压成字符串再传：库对条目**只认 `{value,label}` 形状的 label**，per-item 的 disabled 要落在 `Item` 的 prop 上——库没有这个能力，我们那层是必要适配，不是重造。
+- ContextMenu 的 Shift+F10、NumberField 到界禁用步进钮：库都没有，是补空缺。
+
+**已立门**：`kit-lint` 规则 16（`baseui-redundant-attr.cjs`）——在 Base UI 零件上手设 `role`／`aria-*` 时，去读 `node_modules` 里该零件的实现，已设同名属性即报。注坏态自证过（把 OTP 的 `role="group"` 加回即命中）。
+
+**仍无人站岗的**：「零件的默认行为被函数子架空」这一类（`Select.Value` 就是），机械上难与 `Combobox.Value` 渲染 chips 这种正当用法区分。要覆盖得靠 §七 提的 `kit-baseui-surface` 门加一本裁决账：每个传给官方零件的函数子都要在账上写明「库的默认行为为什么不够用」。

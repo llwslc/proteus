@@ -135,6 +135,11 @@ run "duplicate selector in one file (merge into the first rule)" "$f"
 f=$(node .claude/skills/kit-lint/band-padding.cjs "$ROOT" 2>/dev/null)
 run "底缘阶影带缺同宽底衬(居中内容压在带子上)" "$f"
 
+# 16. 在 Base UI 零件上手设 role / aria-*,而该零件自己已经设了同名属性
+#   (读 node_modules 里该零件的实现判定,不靠名单)
+f=$(node .claude/skills/kit-lint/baseui-redundant-attr.cjs "$ROOT" 2>/dev/null)
+run "与 Base UI 零件重复的 role/aria 手设" "$f"
+
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"
 exit $FAIL
