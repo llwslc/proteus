@@ -38,6 +38,8 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
   const kits = await G.kitsOf(null, ONLY);
   const out = [];
   let knobsChecked = 0;
+  let knobTfChecked = 0;
+  let rangeChecked = 0;
 
   for (const kit of kits) {
     const m = await browser.newPage({ ...devices['iPhone 13'] });
@@ -475,6 +477,46 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
         out.push(`HIGH  ${kit}  slider: 旋钮的渲染盒随状态变大（静止 ${rest[0].toFixed(1)}×${rest[1].toFixed(1)} · 悬停 ${hover[0].toFixed(1)} · 拖动 ${drag[0].toFixed(1)}）—— 形变挂伪元素，旋钮自身的盒各状态同尺寸`);
     } catch (e) { out.push(`WARN  ${kit}  knob-box: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
 
+    try {
+      // 旋钮自身不带 transform：上面那条只比三态,恒定的歪斜／缩放照样把库量到的盒撑大。
+      // 库拿这个盒算两端内缩,盒一虚胖内缩就多算——区间两钮同值时会算出负的跨度。
+      const tf = await d.evaluate(() => [...document.querySelectorAll('#slider [class*="slider__thumb"]')]
+        .map((t) => getComputedStyle(t).transform).filter((v) => v && v !== 'none'));
+      knobTfChecked++;
+      if (tf.length)
+        out.push(`HIGH  ${kit}  slider: 旋钮自身带 transform（${tf[0].slice(0, 30)}）—— 库按渲染盒算内缩,形变搬 ::before`);
+
+      // 区间两钮推到同值,指示条必须收拢为 0。这是上面那条的可见症状,换个机制照样能红。
+      const range = await d.evaluate((k) => {
+        const r = [...document.querySelectorAll(`#slider .${k}-slider`)]
+          .find((x) => x.querySelectorAll(`.${k}-slider__thumb`).length === 2
+                    && !x.querySelector('[data-orientation="vertical"]'));
+        if (!r) return null;
+        const inputs = [...r.querySelectorAll('input')];
+        return { from: +inputs[0].value, to: +inputs[1].value };
+      }, kit);
+      if (range) {
+        await d.evaluate((k) => {
+          const r = [...document.querySelectorAll(`#slider .${k}-slider`)]
+            .find((x) => x.querySelectorAll(`.${k}-slider__thumb`).length === 2
+                      && !x.querySelector('[data-orientation="vertical"]'));
+          r.querySelectorAll('input')[0].focus();
+        }, kit);
+        for (let i = 0; i <= range.to - range.from; i++) await d.keyboard.press('ArrowRight');
+        await d.waitForTimeout(250);
+        const w = await d.evaluate((k) => {
+          const r = [...document.querySelectorAll(`#slider .${k}-slider`)]
+            .find((x) => x.querySelectorAll(`.${k}-slider__thumb`).length === 2
+                      && !x.querySelector('[data-orientation="vertical"]'));
+          const ind = r.querySelector(`.${k}-slider__indicator`);
+          return { w: ind.getBoundingClientRect().width, rel: ind.style.getPropertyValue('--relative-size').trim() };
+        }, kit);
+        rangeChecked++;
+        if (w.w > 1)
+          out.push(`HIGH  ${kit}  slider: 区间两钮同值,指示条仍占 ${Math.round(w.w)}px（--relative-size=${w.rel}）—— 跨度算成负数,width 失效`);
+      }
+    } catch (e) { out.push(`WARN  ${kit}  knob-transform/range: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
+
     for (const corner of ['tl', 'tr', 'bl', 'br']) {
       try {
         // press-displacement: a press transform that MOVES the button (un-tilt slam,
@@ -639,6 +681,8 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
     process.exit(2);
   }
   if (!knobsChecked) { console.error('ERR 旋钮盒恒定检查量了 0 个旋钮'); process.exit(2); }
+  if (!knobTfChecked) { console.error('ERR 旋钮 transform 检查量了 0 个旋钮'); process.exit(2); }
+  if (!rangeChecked) { console.error('ERR 区间指示条检查量了 0 个区间 slider'); process.exit(2); }
   console.log(`\nRESULT: ${fails.length === 0 ? `PASS (${kits.length} kits 驱动完毕 · ${knobsChecked} 个旋钮盒恒定${warns.length ? `,${warns.length} 处未驱动` : ''})` : fails.length + ' interaction fault(s)'}`);
   process.exit(fails.length ? 1 : 0);
 })().catch((e) => { console.error('ERR', e.message); process.exit(2); });
