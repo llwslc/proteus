@@ -478,23 +478,34 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
     } catch (e) { out.push(`WARN  ${kit}  knob-box: errored — ${e.message.split('\n')[0].slice(0, 40)}`); }
 
     try {
-      // 旋钮自身不做形变：上面那条只比三态,恒定的歪斜／缩放照样把库量到的盒撑大。
-      // 库拿这个盒算两端内缩,盒一虚胖内缩就多算——区间两钮同值时会算出负的跨度。
-      // 四个属性都要查:独立的 rotate／scale 同样撑大盒子,而 computed.transform 仍是 none。
+      // 旋钮自身的形变不得改变盒子尺寸：库拿 controlSize - thumbSize 算两端内缩,
+      // 盒一虚胖内缩就多算——区间两钮同值时会算出负的跨度。
+      // 判据不是属性名(`transform: translate()` 与独立 `translate` 同样无害,
+      // `rotate:`／`scale:` 又不进 computed.transform),而是把自身四个形变属性
+      // 按规范次序合成后看线性部分:只许纯位移,旋转／缩放／斜切一律不许。
       const tf = await d.evaluate(() => {
         const bad = [];
         for (const t of document.querySelectorAll('#slider [class*="slider__thumb"]')) {
           const c = getComputedStyle(t);
-          // translate 不查:库自己用 `translate: -50% -50%` 把旋钮居中到取值处,
-          // 而且位移只挪盒子、不改盒子尺寸,不进库的 controlSize - thumbSize 运算。
-          for (const prop of ['transform', 'rotate', 'scale'])
-            if (c[prop] && c[prop] !== 'none') bad.push(`${prop}: ${c[prop]}`);
+          let m = new DOMMatrix();
+          if (c.rotate && c.rotate !== 'none') {
+            const deg = parseFloat((c.rotate.match(/(-?[\d.]+)deg/) || [0, 0])[1]);
+            m = m.rotate(deg);
+          }
+          if (c.scale && c.scale !== 'none') {
+            const p = c.scale.trim().split(/\s+/).map(Number);
+            m = m.scale(p[0], p.length > 1 ? p[1] : p[0]);
+          }
+          if (c.transform && c.transform !== 'none') m = m.multiply(new DOMMatrix(c.transform));
+          const off = Math.abs(m.a - 1) + Math.abs(m.b) + Math.abs(m.c) + Math.abs(m.d - 1);
+          if (off > 0.001)
+            bad.push(`transform:${c.transform} rotate:${c.rotate} scale:${c.scale}`.replace(/\s+(rotate|scale):none/g, ''));
         }
         return bad;
       });
       knobTfChecked++;
       if (tf.length)
-        out.push(`HIGH  ${kit}  slider: 旋钮自身带形变（${tf[0].slice(0, 34)}）—— 库按渲染盒算内缩,形变搬 ::before`);
+        out.push(`HIGH  ${kit}  slider: 旋钮自身有改尺寸的形变（${tf[0].slice(0, 46)}）—— 库按渲染盒算内缩,旋转／缩放搬 ::before`);
 
       // 区间两钮推到同值,指示条必须收拢为 0。这是上面那条的可见症状,换个机制照样能红。
       const range = await d.evaluate((k) => {
