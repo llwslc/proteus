@@ -86,6 +86,13 @@
 .nocturne-tabs[data-orientation="vertical"] .nocturne-tabs__strip {
   flex-direction: column;
   align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  border-bottom: 0;
+  border-inline-end: 1px solid var(--nocturne-gilt-30);
+}
+.nocturne-tabs[data-orientation="vertical"] .nocturne-tabs__tab {
+  text-align: start;
 }
 .nocturne-tabs[data-orientation="vertical"] .nocturne-tabs__indicator {
   bottom: auto;

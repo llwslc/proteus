@@ -35,8 +35,26 @@
   flex-direction: row;
   gap: var(--brass-space-4);
 }
+.brass-tabs[data-orientation="vertical"] .brass-tabs__rail {
+  border-bottom: 0;
+  border-inline-end: 1px solid var(--brass-line);
+}
 .brass-tabs[data-orientation="vertical"] .brass-tabs__list {
   flex-direction: column;
+}
+.brass-tabs[data-orientation="vertical"] .brass-tab {
+  text-align: start;
+}
+.brass-tabs[data-orientation="vertical"] .brass-tab-indicator {
+  bottom: auto;
+  left: auto;
+  top: var(--active-tab-top);
+  inset-inline-end: -1px;
+  width: 2px;
+  height: var(--active-tab-height);
+  transition:
+    top var(--brass-dur) var(--brass-ease),
+    height var(--brass-dur) var(--brass-ease);
 }
 .brass-tabs[data-orientation="vertical"] .brass-tabs__panel {
   flex: 1;
