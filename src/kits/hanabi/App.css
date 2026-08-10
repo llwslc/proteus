@@ -607,6 +607,6 @@
   }
 }
 
-.hanabi-stack > .hanabi-tabs + .hanabi-cap {
+.hanabi-stack > .hanabi-tabs + .hanabi-tabs {
   margin-top: var(--hanabi-space-6);
 }

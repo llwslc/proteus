@@ -856,9 +856,7 @@ function Demo() {
             <div className="hanabi-section hanabi-section--wide" id="tabs">
               <Panel title="Tabs">
                 <div className="hanabi-stack">
-                  <span className="hanabi-cap">横組み</span>
                   <Tabs defaultValue="ops" items={TAB_ITEMS} />
-                  <span className="hanabi-cap">縦組み</span>
                   <Tabs defaultValue="ops" items={TAB_ITEMS} orientation="vertical" />
                 </div>
               </Panel>

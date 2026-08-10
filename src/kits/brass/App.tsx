@@ -812,9 +812,7 @@ function Demo() {
             <div className="brass-section brass-section--wide" id="tabs">
               <Panel title="Tabs">
                 <div className="brass-stack">
-                  <span className="brass-cap">Horizontal</span>
                   <Tabs defaultValue="steam" items={TAB_ITEMS} />
-                  <span className="brass-cap">Vertical</span>
                   <Tabs defaultValue="steam" items={TAB_ITEMS} orientation="vertical" />
                 </div>
               </Panel>

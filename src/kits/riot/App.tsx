@@ -825,9 +825,7 @@ function Demo() {
             <div className="riot-section riot-section--wide" id="tabs">
               <Panel tilt={3} title="Tabs" tape="top">
                 <div className="riot-stack">
-                  <span className="riot-cap">Horizontal</span>
                   <Tabs defaultValue="cut" items={TAB_ITEMS} />
-                  <span className="riot-cap">Vertical</span>
                   <Tabs defaultValue="cut" items={TAB_ITEMS} orientation="vertical" />
                 </div>
               </Panel>

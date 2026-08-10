@@ -465,6 +465,6 @@
   margin-bottom: calc(-1 * var(--prism-space-1));
 }
 
-.prism-stack > .prism-tabs + .prism-cap {
+.prism-stack > .prism-tabs + .prism-tabs {
   margin-top: var(--prism-space-6);
 }

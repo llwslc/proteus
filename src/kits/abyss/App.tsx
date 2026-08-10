@@ -1047,9 +1047,7 @@ function Demo() {
             <div className="abyss-section abyss-section--wide" id="tabs">
               <Panel title="Tabs">
                 <div className="demo-stack">
-                  <span className="abyss-cap">Horizontal</span>
                   <Tabs items={TAB_ITEMS} />
-                  <span className="abyss-cap">Vertical</span>
                   <Tabs items={TAB_ITEMS} orientation="vertical" />
                 </div>
               </Panel>

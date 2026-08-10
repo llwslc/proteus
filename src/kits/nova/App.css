@@ -634,6 +634,6 @@
   margin-bottom: calc(-1 * var(--nova-space-1));
 }
 
-.demo-stack > .nova-tabs + .nova-cap {
+.demo-stack > .nova-tabs + .nova-tabs {
   margin-top: var(--nova-space-6);
 }

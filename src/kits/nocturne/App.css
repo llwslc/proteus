@@ -515,6 +515,6 @@
   }
 }
 
-.nocturne-stack > .nocturne-tabs + .nocturne-cap {
+.nocturne-stack > .nocturne-tabs + .nocturne-tabs {
   margin-top: var(--nocturne-space-6);
 }
