@@ -1,6 +1,6 @@
 // kit-standalone —— 控件库必须自立:把 demo 外壳的 reset 从页面上摘掉,控件盒尺寸
 // 一格都不许变。外壳只服务演示页,消费方只装 src/kits/<kit>,拿不到它的任何一行。
-// 历史:box-sizing/禁用态指针/reduced-motion 曾只写在 src/shell/reset.css,七套
+// 历史:box-sizing/禁用态指针/reduced-motion 曾只写在 src/shell/reset.css,各套
 // 全靠它撑着——摘掉后每套 36–120 个控件盒膨胀。
 const G = require('../lib/gate.cjs');
 const { chromium } = G.pw();

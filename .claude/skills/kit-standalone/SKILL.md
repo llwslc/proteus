@@ -11,4 +11,4 @@ description: 验控件库不依赖 demo 外壳——摘掉 src/shell 的样式�
 
 做法：逐套渲染演示页，采一遍控件盒尺寸；把外壳的 `reset.css` 从 DOM 上摘掉（`Shell.css` 是演示页自己的排版，不摘），再采一遍；两次不一致即该套依赖外壳。摘不到样式表直接报错退出，不给「静默通过」的机会。
 
-修法：把那条规则从 `src/shell/reset.css` 复制进七套各自的 `theme/global.css`（外壳那份留着，落地页自己要用）。
+修法：把那条规则从 `src/shell/reset.css` 复制进各套各自的 `theme/global.css`（外壳那份留着，落地页自己要用）。

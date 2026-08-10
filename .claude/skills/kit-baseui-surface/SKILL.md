@@ -5,7 +5,7 @@ description: 以 node_modules 的 .d.ts 为环外基准，盯住包装层挡掉�
 
 # kit-baseui-surface
 
-其余的门都在环内：kit-api 拍七套互相，kit-spec-props 拍代码对规格，两端都是我们自己写的。库在环外，没有仪器看着——`orientation`、`multiple`、`thumbAlignment` 这些能力就是这样躲过全部审计的（复盘见 `BASEUI_AUDIT_2026-08-06.md` §七）。
+其余的门都在环内：kit-api 拍各套互相，kit-spec-props 拍代码对规格，两端都是我们自己写的。库在环外，没有仪器看着——`orientation`、`multiple`、`thumbAlignment` 这些能力就是这样躲过全部审计的（复盘见 `BASEUI_AUDIT_2026-08-06.md` §七）。
 
 跑法：`node .claude/skills/kit-baseui-surface/check.cjs [kit]`
 
