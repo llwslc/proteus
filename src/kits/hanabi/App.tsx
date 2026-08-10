@@ -858,7 +858,6 @@ function Demo() {
                 <div className="hanabi-stack">
                   <span className="hanabi-cap">横組み</span>
                   <Tabs defaultValue="ops" items={TAB_ITEMS} />
-                  <Separator />
                   <span className="hanabi-cap">縦組み</span>
                   <Tabs defaultValue="ops" items={TAB_ITEMS} orientation="vertical" />
                 </div>

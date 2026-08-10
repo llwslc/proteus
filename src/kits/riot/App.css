@@ -549,3 +549,7 @@
 .riot-stack > .riot-cap {
   margin-bottom: calc(-1 * var(--riot-space-1));
 }
+
+.riot-stack > .riot-tabs + .riot-cap {
+  margin-top: var(--riot-space-6);
+}

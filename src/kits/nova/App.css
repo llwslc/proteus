@@ -633,3 +633,7 @@
 .demo-stack > .nova-cap {
   margin-bottom: calc(-1 * var(--nova-space-1));
 }
+
+.demo-stack > .nova-tabs + .nova-cap {
+  margin-top: var(--nova-space-6);
+}

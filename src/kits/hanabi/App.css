@@ -606,3 +606,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.hanabi-stack > .hanabi-tabs + .hanabi-cap {
+  margin-top: var(--hanabi-space-6);
+}

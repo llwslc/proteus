@@ -631,3 +631,7 @@
 .demo-stack > .abyss-cap {
   margin-bottom: calc(-1 * var(--abyss-space-2));
 }
+
+.demo-stack > .abyss-tabs + .abyss-cap {
+  margin-top: var(--abyss-space-6);
+}

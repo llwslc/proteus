@@ -1036,7 +1036,6 @@ function Demo() {
                 <div className="nocturne-stack">
                   <span className="nocturne-cap">Horizontal</span>
                   <Tabs defaultValue="belladonna" items={TAB_ITEMS} />
-                  <Separator />
                   <span className="nocturne-cap">Vertical</span>
                   <Tabs
                     defaultValue="belladonna"

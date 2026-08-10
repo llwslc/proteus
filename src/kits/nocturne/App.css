@@ -514,3 +514,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.nocturne-stack > .nocturne-tabs + .nocturne-cap {
+  margin-top: var(--nocturne-space-6);
+}

@@ -952,7 +952,6 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="nova-cap">Horizontal</span>
                   <Tabs items={TAB_ITEMS} />
-                  <Separator />
                   <span className="nova-cap">Vertical</span>
                   <Tabs items={TAB_ITEMS} orientation="vertical" />
                 </div>
