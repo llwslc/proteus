@@ -96,6 +96,10 @@
   padding: var(--hanabi-space-2) calc(var(--hanabi-space-4) + 1px) var(--hanabi-space-2)
     var(--hanabi-space-4);
 }
+.hanabi-tabs[data-orientation="vertical"]
+  .hanabi-tabs__tab:where(:not([data-disabled], [data-active])):hover {
+  border-color: var(--hanabi-primary);
+}
 .hanabi-tabs[data-orientation="vertical"] .hanabi-tabs__tab[data-active] {
   padding-inline-start: calc(var(--hanabi-space-4) + 4px);
   padding-top: var(--hanabi-space-2);
