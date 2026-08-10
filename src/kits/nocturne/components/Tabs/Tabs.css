@@ -111,3 +111,7 @@
   min-width: 0;
   padding-top: 0;
 }
+
+.nocturne-tabs[data-orientation="vertical"] .nocturne-tabs__tab + .nocturne-tabs__tab {
+  border-top: 1px solid var(--nocturne-gilt-30);
+}

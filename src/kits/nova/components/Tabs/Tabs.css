@@ -116,3 +116,7 @@
   min-width: 0;
   padding: 0;
 }
+
+.nova-tabs[data-orientation="vertical"] .nova-tabs__tab + .nova-tabs__tab {
+  border-top: 1px solid var(--nova-line);
+}

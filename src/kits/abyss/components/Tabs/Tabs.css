@@ -96,3 +96,7 @@
   flex: 1;
   min-width: 0;
 }
+
+.abyss-tabs[data-orientation="vertical"] .abyss-tabs__tab + .abyss-tabs__tab {
+  border-top: 1px solid var(--abyss-ink-faint);
+}

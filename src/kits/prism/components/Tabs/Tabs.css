@@ -100,3 +100,7 @@
   flex: 1;
   min-width: 0;
 }
+
+.prism-tabs[data-orientation="vertical"] .prism-tabs__tab + .prism-tabs__tab {
+  border-top: var(--prism-stroke-hair) solid var(--prism-ink-faint);
+}
