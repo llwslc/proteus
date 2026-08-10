@@ -75,14 +75,14 @@
   display: contents;
 }
 .riot-slider[data-orientation="vertical"] .riot-slider__label {
-  order: 1;
+  order: 3;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .riot-slider[data-orientation="vertical"] .riot-slider__value {
-  order: 3;
+  order: 1;
   white-space: nowrap;
 }
 

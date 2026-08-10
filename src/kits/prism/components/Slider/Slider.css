@@ -65,14 +65,14 @@
   display: contents;
 }
 .prism-slider[data-orientation="vertical"] .prism-slider__label {
-  order: 1;
+  order: 3;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .prism-slider[data-orientation="vertical"] .prism-slider__value {
-  order: 3;
+  order: 1;
   white-space: nowrap;
 }
 

@@ -59,14 +59,14 @@
   display: contents;
 }
 .brass-slider[data-orientation="vertical"] .brass-cap {
-  order: 1;
+  order: 3;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .brass-slider[data-orientation="vertical"] .brass-slider__value {
-  order: 3;
+  order: 1;
   white-space: nowrap;
 }
 
