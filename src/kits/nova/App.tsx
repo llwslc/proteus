@@ -949,7 +949,10 @@ function Demo() {
 
             <div className="nova-section nova-section--wide" id="tabs">
               <Panel title="Tabs">
-                <Tabs items={TAB_ITEMS} />
+                <div className="demo-stack">
+                  <Tabs items={TAB_ITEMS} />
+                  <Tabs items={TAB_ITEMS} orientation="vertical" />
+                </div>
               </Panel>
             </div>
 

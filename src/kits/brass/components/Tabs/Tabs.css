@@ -30,3 +30,16 @@
     flex: 0 0 auto;
   }
 }
+
+.brass-tabs[data-orientation="vertical"] {
+  flex-direction: row;
+  gap: var(--brass-space-4);
+}
+.brass-tabs[data-orientation="vertical"] .brass-tabs__list {
+  flex-direction: column;
+}
+.brass-tabs[data-orientation="vertical"] .brass-tabs__panel {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+}

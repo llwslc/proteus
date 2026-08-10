@@ -157,6 +157,37 @@ const MEMBERS = [
   { label: "銀河", disabled: true },
 ];
 
+const TAB_ITEMS = [
+  {
+    value: "ops",
+    label: "作戦",
+    content: (
+      <p className="hanabi-text">
+        夜明けと同時に湾内へ進入。目標は〈深海残響〉の核、合図は花火三連。
+      </p>
+    ),
+  },
+  {
+    value: "gear",
+    label: "装備",
+    content: (
+      <p className="hanabi-text">
+        セル画の刃は軽くてよく斬れる。予備の弾倉と甘味は多めに。
+      </p>
+    ),
+  },
+  {
+    value: "log",
+    label: "記録",
+    content: (
+      <p className="hanabi-text">
+        前回の出撃記録は司令部で封印中。開示には第4章クリアが必要。
+      </p>
+    ),
+    disabled: true,
+  },
+];
+
 function Clock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -824,39 +855,10 @@ function Demo() {
 
             <div className="hanabi-section hanabi-section--wide" id="tabs">
               <Panel title="Tabs">
-                <Tabs
-                  defaultValue="ops"
-                  items={[
-                    {
-                      value: "ops",
-                      label: "作戦",
-                      content: (
-                        <p className="hanabi-text">
-                          夜明けと同時に湾内へ進入。目標は〈深海残響〉の核、合図は花火三連。
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "gear",
-                      label: "装備",
-                      content: (
-                        <p className="hanabi-text">
-                          セル画の刃は軽くてよく斬れる。予備の弾倉と甘味は多めに。
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "log",
-                      label: "記録",
-                      content: (
-                        <p className="hanabi-text">
-                          前回の出撃記録は司令部で封印中。開示には第4章クリアが必要。
-                        </p>
-                      ),
-                      disabled: true,
-                    },
-                  ]}
-                />
+                <div className="hanabi-stack">
+                  <Tabs defaultValue="ops" items={TAB_ITEMS} />
+                  <Tabs defaultValue="ops" items={TAB_ITEMS} orientation="vertical" />
+                </div>
               </Panel>
             </div>
 

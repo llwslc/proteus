@@ -158,6 +158,25 @@ const FUELS = [
   { label: "Coke breeze", disabled: true },
 ];
 
+const TAB_ITEMS = [
+  {
+    value: "steam",
+    label: "Steam",
+    content: <p className="brass-text">Saturated at 180 PSI, superheater online.</p>,
+  },
+  {
+    value: "water",
+    label: "Water",
+    content: <p className="brass-text">Feedwater tank at 74%, injectors primed.</p>,
+  },
+  {
+    value: "fire",
+    label: "Firebox",
+    content: <p className="brass-text">Grate clean, draught nominal, ash bin clear.</p>,
+    disabled: true,
+  },
+];
+
 function Clock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -792,39 +811,10 @@ function Demo() {
 
             <div className="brass-section brass-section--wide" id="tabs">
               <Panel title="Tabs">
-                <Tabs
-                  defaultValue="steam"
-                  items={[
-                    {
-                      value: "steam",
-                      label: "Steam",
-                      content: (
-                        <p className="brass-text">
-                          Saturated at 180 PSI, superheater online.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "water",
-                      label: "Water",
-                      content: (
-                        <p className="brass-text">
-                          Feedwater tank at 74%, injectors primed.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "fire",
-                      label: "Firebox",
-                      content: (
-                        <p className="brass-text">
-                          Grate clean, draught nominal, ash bin clear.
-                        </p>
-                      ),
-                      disabled: true,
-                    },
-                  ]}
-                />
+                <div className="brass-stack">
+                  <Tabs defaultValue="steam" items={TAB_ITEMS} />
+                  <Tabs defaultValue="steam" items={TAB_ITEMS} orientation="vertical" />
+                </div>
               </Panel>
             </div>
 

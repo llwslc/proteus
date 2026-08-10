@@ -1046,7 +1046,10 @@ function Demo() {
 
             <div className="abyss-section abyss-section--wide" id="tabs">
               <Panel title="Tabs">
-                <Tabs items={TAB_ITEMS} />
+                <div className="demo-stack">
+                  <Tabs items={TAB_ITEMS} />
+                  <Tabs items={TAB_ITEMS} orientation="vertical" />
+                </div>
               </Panel>
             </div>
 

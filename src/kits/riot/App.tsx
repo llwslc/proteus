@@ -162,6 +162,25 @@ const PIGMENTS = [
   { label: "Halftone", disabled: true },
 ];
 
+const TAB_ITEMS = [
+  {
+    value: "cut",
+    label: "Cut",
+    content: <p className="riot-text">Slice the headlines out of yesterday's papers.</p>,
+  },
+  {
+    value: "paste",
+    label: "Paste",
+    content: <p className="riot-text">Glue them down crooked; the grid was a cage.</p>,
+  },
+  {
+    value: "print",
+    label: "Print",
+    content: <p className="riot-text">Run it through the xerox till the ink bleeds.</p>,
+    disabled: true,
+  },
+];
+
 function Clock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -805,39 +824,10 @@ function Demo() {
 
             <div className="riot-section riot-section--wide" id="tabs">
               <Panel tilt={3} title="Tabs" tape="top">
-                <Tabs
-                  defaultValue="cut"
-                  items={[
-                    {
-                      value: "cut",
-                      label: "Cut",
-                      content: (
-                        <p className="riot-text">
-                          Slice the headlines out of yesterday's papers.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "paste",
-                      label: "Paste",
-                      content: (
-                        <p className="riot-text">
-                          Glue them down crooked; the grid was a cage.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "print",
-                      label: "Print",
-                      content: (
-                        <p className="riot-text">
-                          Run it through the xerox till the ink bleeds.
-                        </p>
-                      ),
-                      disabled: true,
-                    },
-                  ]}
-                />
+                <div className="riot-stack">
+                  <Tabs defaultValue="cut" items={TAB_ITEMS} />
+                  <Tabs defaultValue="cut" items={TAB_ITEMS} orientation="vertical" />
+                </div>
               </Panel>
             </div>
 

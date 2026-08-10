@@ -171,6 +171,40 @@ const ROUNDS = [
   { label: "Wake the foxglove", disabled: true },
 ];
 
+const TAB_ITEMS = [
+  {
+    value: "belladonna",
+    label: "Belladonna",
+    content: (
+      <p className="nocturne-text">
+        The garden takes its name from her. Violet-black corollas hang like little bells,
+        and the berries shine with bad intent — beauty and poison sharing one name.
+      </p>
+    ),
+  },
+  {
+    value: "jasmine",
+    label: "Night Jasmine",
+    content: (
+      <p className="nocturne-text">
+        By day it passes for an ordinary shrub; by night its scent floods half the garden.
+        The warden keeps it for a watch-drum.
+      </p>
+    ),
+  },
+  {
+    value: "primrose",
+    label: "Evening Primrose",
+    content: (
+      <p className="nocturne-text">
+        A temperament that blooms only for the moon — the sweetest in the garden, busiest
+        when the register runs fullest.
+      </p>
+    ),
+    disabled: true,
+  },
+];
+
 function HourClock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -999,43 +1033,14 @@ function Demo() {
 
             <div className="nocturne-section nocturne-section--wide" id="tabs">
               <Panel title="Tabs">
-                <Tabs
-                  defaultValue="belladonna"
-                  items={[
-                    {
-                      value: "belladonna",
-                      label: "Belladonna",
-                      content: (
-                        <p className="nocturne-text">
-                          The garden takes its name from her. Violet-black corollas hang
-                          like little bells, and the berries shine with bad intent —
-                          beauty and poison sharing one name.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "jasmine",
-                      label: "Night Jasmine",
-                      content: (
-                        <p className="nocturne-text">
-                          By day it passes for an ordinary shrub; by night its scent
-                          floods half the garden. The warden keeps it for a watch-drum.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "primrose",
-                      label: "Evening Primrose",
-                      content: (
-                        <p className="nocturne-text">
-                          A temperament that blooms only for the moon — the sweetest in
-                          the garden, busiest when the register runs fullest.
-                        </p>
-                      ),
-                      disabled: true,
-                    },
-                  ]}
-                />
+                <div className="nocturne-stack">
+                  <Tabs defaultValue="belladonna" items={TAB_ITEMS} />
+                  <Tabs
+                    defaultValue="belladonna"
+                    items={TAB_ITEMS}
+                    orientation="vertical"
+                  />
+                </div>
               </Panel>
             </div>
 

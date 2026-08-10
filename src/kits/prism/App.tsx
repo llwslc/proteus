@@ -160,6 +160,37 @@ const PIGMENTS = [
   { label: "Sienna", disabled: true },
 ];
 
+const TAB_ITEMS = [
+  {
+    value: "form",
+    label: "Form",
+    content: (
+      <p className="prism-text">
+        Circle, triangle, square — the three basic forms, flat and unshaded.
+      </p>
+    ),
+  },
+  {
+    value: "function",
+    label: "Function",
+    content: (
+      <p className="prism-text">
+        Every element earns its place on the grid; nothing decorative, nothing wasted.
+      </p>
+    ),
+  },
+  {
+    value: "archive",
+    label: "Archive",
+    content: (
+      <p className="prism-text">
+        Dessau, 1925: the workshop catalogue, pressed in red, yellow and blue.
+      </p>
+    ),
+    disabled: true,
+  },
+];
+
 function Clock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -783,42 +814,10 @@ function Demo() {
 
             <div className="prism-section prism-section--wide" id="tabs">
               <Panel title="Tabs">
-                <Tabs
-                  defaultValue="form"
-                  items={[
-                    {
-                      value: "form",
-                      label: "Form",
-                      content: (
-                        <p className="prism-text">
-                          Circle, triangle, square — the three basic forms, flat and
-                          unshaded.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "function",
-                      label: "Function",
-                      content: (
-                        <p className="prism-text">
-                          Every element earns its place on the grid; nothing decorative,
-                          nothing wasted.
-                        </p>
-                      ),
-                    },
-                    {
-                      value: "archive",
-                      label: "Archive",
-                      content: (
-                        <p className="prism-text">
-                          Dessau, 1925: the workshop catalogue, pressed in red, yellow and
-                          blue.
-                        </p>
-                      ),
-                      disabled: true,
-                    },
-                  ]}
-                />
+                <div className="prism-stack">
+                  <Tabs defaultValue="form" items={TAB_ITEMS} />
+                  <Tabs defaultValue="form" items={TAB_ITEMS} orientation="vertical" />
+                </div>
               </Panel>
             </div>
 

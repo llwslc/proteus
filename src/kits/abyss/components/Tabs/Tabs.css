@@ -70,3 +70,29 @@
 .abyss-tabs__panel:focus-visible {
   outline: none;
 }
+
+.abyss-tabs[data-orientation="vertical"] {
+  flex-direction: row;
+}
+.abyss-tabs[data-orientation="vertical"] .abyss-tabs__list {
+  overflow: visible;
+  flex-direction: column;
+  border-bottom: 0;
+  border-inline-end: 1px solid var(--abyss-ink-faint);
+}
+.abyss-tabs[data-orientation="vertical"] .abyss-tabs__tab {
+  text-align: start;
+}
+.abyss-tabs[data-orientation="vertical"] .abyss-tabs__indicator {
+  top: 0;
+  bottom: auto;
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  width: 2px;
+  height: var(--active-tab-height);
+  transform: translateY(var(--active-tab-top));
+}
+.abyss-tabs[data-orientation="vertical"] .abyss-tabs__panel {
+  flex: 1;
+  min-width: 0;
+}
