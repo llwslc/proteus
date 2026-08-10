@@ -56,7 +56,7 @@
   align-self: flex-start;
 }
 .brass-slider[data-orientation="vertical"] .brass-slider__head {
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 2px;
   width: 100%;

@@ -62,7 +62,7 @@
   align-self: flex-start;
 }
 .prism-slider[data-orientation="vertical"] .prism-slider__head {
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 2px;
   width: 100%;

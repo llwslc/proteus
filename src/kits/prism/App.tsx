@@ -815,7 +815,9 @@ function Demo() {
             <div className="prism-section prism-section--wide" id="tabs">
               <Panel title="Tabs">
                 <div className="prism-stack">
+                  <span className="prism-cap">Horizontal</span>
                   <Tabs defaultValue="form" items={TAB_ITEMS} />
+                  <span className="prism-cap">Vertical</span>
                   <Tabs defaultValue="form" items={TAB_ITEMS} orientation="vertical" />
                 </div>
               </Panel>

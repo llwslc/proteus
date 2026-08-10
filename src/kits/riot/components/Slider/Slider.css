@@ -72,7 +72,7 @@
   align-self: flex-start;
 }
 .riot-slider[data-orientation="vertical"] .riot-slider__head {
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 2px;
   width: 100%;

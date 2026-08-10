@@ -117,7 +117,7 @@
   align-self: flex-start;
 }
 .hanabi-slider[data-orientation="vertical"] .hanabi-slider__head {
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 2px;
   width: 100%;

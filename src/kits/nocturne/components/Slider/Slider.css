@@ -78,7 +78,7 @@
   align-self: flex-start;
 }
 .nocturne-slider[data-orientation="vertical"] .nocturne-slider__head {
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 2px;
   width: 100%;
