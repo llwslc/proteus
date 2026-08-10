@@ -98,6 +98,10 @@
 .nova-tabs[data-orientation="vertical"] .nova-tabs__tab {
   text-align: start;
 }
+.nova-tabs[data-orientation="vertical"]
+  .nova-tabs__tab:where(:not(:disabled):not([data-disabled])):hover {
+  background: linear-gradient(90deg, transparent, var(--nova-tint-soft));
+}
 .nova-tabs[data-orientation="vertical"] .nova-tabs__indicator {
   top: 0;
   bottom: auto;
