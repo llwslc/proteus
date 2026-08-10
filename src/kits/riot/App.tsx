@@ -827,6 +827,7 @@ function Demo() {
                 <div className="riot-stack">
                   <span className="riot-cap">Horizontal</span>
                   <Tabs defaultValue="cut" items={TAB_ITEMS} />
+                  <Separator />
                   <span className="riot-cap">Vertical</span>
                   <Tabs defaultValue="cut" items={TAB_ITEMS} orientation="vertical" />
                 </div>

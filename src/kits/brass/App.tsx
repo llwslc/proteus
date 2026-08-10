@@ -814,6 +814,7 @@ function Demo() {
                 <div className="brass-stack">
                   <span className="brass-cap">Horizontal</span>
                   <Tabs defaultValue="steam" items={TAB_ITEMS} />
+                  <Separator />
                   <span className="brass-cap">Vertical</span>
                   <Tabs defaultValue="steam" items={TAB_ITEMS} orientation="vertical" />
                 </div>

@@ -1049,6 +1049,7 @@ function Demo() {
                 <div className="demo-stack">
                   <span className="abyss-cap">Horizontal</span>
                   <Tabs items={TAB_ITEMS} />
+                  <Separator />
                   <span className="abyss-cap">Vertical</span>
                   <Tabs items={TAB_ITEMS} orientation="vertical" />
                 </div>

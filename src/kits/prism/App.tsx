@@ -817,6 +817,7 @@ function Demo() {
                 <div className="prism-stack">
                   <span className="prism-cap">Horizontal</span>
                   <Tabs defaultValue="form" items={TAB_ITEMS} />
+                  <Separator />
                   <span className="prism-cap">Vertical</span>
                   <Tabs defaultValue="form" items={TAB_ITEMS} orientation="vertical" />
                 </div>
