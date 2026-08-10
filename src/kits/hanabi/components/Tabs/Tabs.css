@@ -89,7 +89,7 @@
   margin-inline-end: calc(-1 * var(--hanabi-line-w));
 }
 .hanabi-tabs[data-orientation="vertical"] .hanabi-tabs__tab {
-  transform: skewY(var(--hanabi-skew));
+  transform: none;
   border-bottom: var(--hanabi-line-w) solid var(--hanabi-ink);
   border-inline-end: 0;
   border-radius: var(--hanabi-r-fold) 0 0 var(--hanabi-r-fold);
