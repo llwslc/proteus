@@ -40,7 +40,7 @@
     color var(--nova-dur) var(--nova-ease),
     background var(--nova-dur) var(--nova-ease);
 }
-.nova-tabs__tab:where(:not(:disabled):not([data-disabled])):hover {
+.nova-tabs__tab:where(:not(:disabled):not([data-disabled]):not([data-active])):hover {
   color: var(--nova-text);
   background: linear-gradient(180deg, transparent, var(--nova-tint-soft));
 }
@@ -99,7 +99,7 @@
   text-align: start;
 }
 .nova-tabs[data-orientation="vertical"]
-  .nova-tabs__tab:where(:not(:disabled):not([data-disabled])):hover {
+  .nova-tabs__tab:where(:not(:disabled):not([data-disabled]):not([data-active])):hover {
   background: linear-gradient(90deg, transparent, var(--nova-tint-soft));
 }
 .nova-tabs[data-orientation="vertical"] .nova-tabs__indicator {

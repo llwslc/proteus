@@ -350,7 +350,7 @@
 .brass-tab :where(svg) {
   font-size: var(--brass-fs-17);
 }
-.brass-tab:where(:not(:disabled):not([data-disabled])):hover {
+.brass-tab:where(:not(:disabled):not([data-disabled]):not([data-active])):hover {
   background: linear-gradient(180deg, transparent, var(--brass-tint-soft));
   color: var(--brass-text-bright);
 }

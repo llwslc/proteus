@@ -46,7 +46,7 @@
   text-align: start;
 }
 .brass-tabs[data-orientation="vertical"]
-  .brass-tab:where(:not(:disabled):not([data-disabled])):hover {
+  .brass-tab:where(:not(:disabled):not([data-disabled]):not([data-active])):hover {
   background: linear-gradient(90deg, transparent, var(--brass-tint-soft));
 }
 .brass-tabs[data-orientation="vertical"] .brass-tab-indicator {

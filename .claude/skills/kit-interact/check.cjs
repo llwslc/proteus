@@ -364,8 +364,12 @@ const setKit = (page, kit) => G.setKit(page, URL, kit);
       // so sample the pseudo layers too — never a kit-named token
       const sigH = (el) => {
         const c = getComputedStyle(el), b = getComputedStyle(el, '::before'), a = getComputedStyle(el, '::after');
-        return [c.backgroundColor, c.color, c.boxShadow, c.filter, c.textShadow,
-          b.backgroundColor, b.borderTopColor, b.boxShadow, a.backgroundColor, a.borderTopColor].join('|');
+        // backgroundImage 必须在内:渐变型悬停(nova/brass 的 Tab)只改 background-image,
+        // 只采 backgroundColor 的话这类「选中片被悬停洗掉」永远量不到
+        return [c.backgroundColor, c.backgroundImage, c.color, c.boxShadow, c.filter, c.textShadow,
+          c.borderTopColor, c.opacity,
+          b.backgroundColor, b.backgroundImage, b.borderTopColor, b.boxShadow,
+          a.backgroundColor, a.backgroundImage, a.borderTopColor].join('|');
       };
       const tags = await d.evaluate(() => {
         const segish = (el) => /(-toggle\b|seg__btn|toolbar__btn|menubar__trigger|-tab\b|tabs__tab)/.test(el.getAttribute('class') || '');
