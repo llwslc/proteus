@@ -1,8 +1,6 @@
 import { Progress as BaseProgress } from "@base-ui/react/progress";
-import { useId } from "react";
 import { cx } from "../cx";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { Bloom, MotifDefs } from "../bloom";
 import "./Progress.css";
 
 export interface ProgressProps extends ComponentPropsWithoutRef<
@@ -18,7 +16,6 @@ export function Progress({
   className,
   ...props
 }: ProgressProps) {
-  const id = useId();
   const indeterminate = props.value == null;
   return (
     <BaseProgress.Root className={cx("nocturne-progress", className)} {...props}>
@@ -36,24 +33,6 @@ export function Progress({
       )}
       <BaseProgress.Track className="nocturne-track nocturne-progress__track">
         <BaseProgress.Indicator className="nocturne-progress__indicator" />
-        {!indeterminate && (
-          <span className="nocturne-progress__seal" aria-hidden="true">
-            <svg
-              className="nocturne-progress__bloom"
-              viewBox="-13 -13 26 26"
-              focusable="false"
-            >
-              <MotifDefs id={id} />
-              <Bloom
-                defs={id}
-                r={12}
-                coreDots={5}
-                mode="state"
-                openExpr="var(--nocturne-seal-open)"
-              />
-            </svg>
-          </span>
-        )}
       </BaseProgress.Track>
     </BaseProgress.Root>
   );

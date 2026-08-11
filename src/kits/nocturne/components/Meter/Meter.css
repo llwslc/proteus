@@ -51,7 +51,7 @@
   width: var(--nocturne-meter-dial);
   height: var(--nocturne-meter-dial);
   overflow: hidden;
-  background: var(--nocturne-moon-shade);
+  background: var(--nocturne-moon-face);
   border: 1px solid var(--nocturne-meter-ring);
   border-radius: var(--nocturne-r-full);
   box-shadow:
@@ -62,10 +62,19 @@
 .nocturne-meter__lit {
   position: absolute;
   top: 0;
-  background: var(--nocturne-moon-face);
-  background-repeat: no-repeat;
-  background-size: var(--nocturne-meter-dial) var(--nocturne-meter-dial);
   transition: width var(--nocturne-dur-slow) var(--nocturne-ease);
+}
+
+.nocturne-meter__lit::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  border-radius: var(--nocturne-r-full);
+  background: var(--nocturne-moon-shade);
 }
 
 @media (prefers-reduced-motion: reduce) {
