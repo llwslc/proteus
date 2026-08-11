@@ -90,11 +90,18 @@
 }
 
 .nova-menu__row > * {
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.nova-menu__row .nova-menu__icon {
+  grid-column: 1;
+  justify-self: end;
 }
 
 .nova-menu__row .nova-menu__label {
-  flex: none;
+  grid-column: 2;
 }
 
 .nova-menu__row > * + * {

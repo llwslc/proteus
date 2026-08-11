@@ -62,11 +62,18 @@
 }
 
 .hanabi-menu__row > * {
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.hanabi-menu__row .hanabi-menu__icon {
+  grid-column: 1;
+  justify-self: end;
 }
 
 .hanabi-menu__row .hanabi-list-item__text {
-  flex: none;
+  grid-column: 2;
 }
 
 .hanabi-menu__row > * + * {
