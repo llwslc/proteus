@@ -1,8 +1,6 @@
 import { Meter as BaseMeter } from "@base-ui/react/meter";
-import { useId } from "react";
 import { cx } from "../cx";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { Bloom, MotifDefs } from "../bloom";
 import "./Meter.css";
 
 export interface MeterProps extends ComponentPropsWithoutRef<typeof BaseMeter.Root> {
@@ -18,7 +16,6 @@ export function Meter({
   className,
   ...props
 }: MeterProps) {
-  const id = useId();
   return (
     <BaseMeter.Root
       className={cx("nocturne-meter", `nocturne-meter--${tone}`, className)}
@@ -34,19 +31,8 @@ export function Meter({
           {showValue ? <BaseMeter.Value className="nocturne-meter__value" /> : null}
         </div>
       )}
-      <BaseMeter.Track className="nocturne-track nocturne-meter__track">
-        <BaseMeter.Indicator className="nocturne-meter__indicator">
-          <span className="nocturne-meter__tip" aria-hidden="true">
-            <svg
-              className="nocturne-meter__bloom"
-              viewBox="-12.5 -12.5 25 25"
-              focusable="false"
-            >
-              <MotifDefs id={id} />
-              <Bloom defs={id} r={12} coreDots={5} mode="state" openExpr="1" />
-            </svg>
-          </span>
-        </BaseMeter.Indicator>
+      <BaseMeter.Track className="nocturne-meter__dial">
+        <BaseMeter.Indicator className="nocturne-meter__lit" />
       </BaseMeter.Track>
     </BaseMeter.Root>
   );

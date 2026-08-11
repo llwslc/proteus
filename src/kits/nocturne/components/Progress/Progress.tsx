@@ -35,20 +35,26 @@ export function Progress({
         </div>
       )}
       <BaseProgress.Track className="nocturne-track nocturne-progress__track">
-        <BaseProgress.Indicator className="nocturne-progress__indicator">
-          {!indeterminate && (
-            <span className="nocturne-progress__tip" aria-hidden="true">
-              <svg
-                className="nocturne-progress__bloom"
-                viewBox="-12.5 -12.5 25 25"
-                focusable="false"
-              >
-                <MotifDefs id={id} />
-                <Bloom defs={id} r={12} coreDots={5} mode="state" openExpr="1" />
-              </svg>
-            </span>
-          )}
-        </BaseProgress.Indicator>
+        <BaseProgress.Indicator className="nocturne-progress__indicator" />
+        {!indeterminate && (
+          <span className="nocturne-progress__seal" aria-hidden="true">
+            <svg
+              className="nocturne-progress__bloom"
+              viewBox="-13 -13 26 26"
+              focusable="false"
+            >
+              <MotifDefs id={id} />
+              <Bloom
+                defs={id}
+                r={12}
+                coreDots={5}
+                mode="state"
+                bud
+                openExpr="var(--nocturne-seal-open)"
+              />
+            </svg>
+          </span>
+        )}
       </BaseProgress.Track>
     </BaseProgress.Root>
   );

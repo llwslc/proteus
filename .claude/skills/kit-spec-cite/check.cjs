@@ -6,7 +6,7 @@ const ROOT = path.join(__dirname, '../../..');
 const ONLY = process.argv[3];
 const PROVE = process.argv.includes('--prove');
 
-const CSS_NATIVE = new Set(['steps', 'flex-end', 'background-position', 'stroke-dashoffset', 'currentColor']);
+const CSS_NATIVE = new Set(['steps', 'flex-end', 'background-position', 'background-size', 'stroke-dashoffset', 'currentColor']);
 
 const srcOf = (kit) => {
   let s = '';
@@ -46,7 +46,9 @@ for (const kit of kits) {
       if (CSS_NATIVE.has(c)) continue;
       checked++;
       let ok;
-      if (c.startsWith('--')) ok = src.includes(c.endsWith('-*') ? c.slice(0, -1) : c);
+      // data-*：引用一个状态属性，判据是这套 CSS 真的按它选择过
+      if (/^data-[a-z-]+$/.test(c)) ok = src.includes(`[${c}]`) || src.includes(`${c}=`);
+      else if (c.startsWith('--')) ok = src.includes(c.endsWith('-*') ? c.slice(0, -1) : c);
       else if (c.startsWith('.')) ok = src.includes(c.slice(1));
       else if (c.startsWith('#')) ok = src.includes(c.slice(1));
       else if (c.startsWith(`${kit}-`)) ok = src.includes(c);

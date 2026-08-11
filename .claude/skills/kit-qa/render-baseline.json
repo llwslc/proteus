@@ -289,8 +289,8 @@
    "otp": "27c7d02bf090",
    "fieldset": "869449ff71ba",
    "form": "95c61b8a9ce1",
-   "progress": "8e908dd88d32",
-   "meter": "a44b65aa0515",
+   "progress": "c79eadac92ee",
+   "meter": "12dabc6db014",
    "tabs": "82bc140206bc",
    "accordion": "3ffaa4b6c42a",
    "collapsible": "0526989f69cd",
@@ -311,8 +311,8 @@
    "scroll": "5c50dd611422",
    "typography": "d4284ab09521",
    "separator": "451451a61ab3",
-   "panel": "cf9f3551e3dc",
-   "loader": "910c42264f84"
+   "panel": "c69869dd70d5",
+   "loader": "8d97b4540071"
   },
   "phone": {
    "__header": "39d26c5f8341",
@@ -333,8 +333,8 @@
    "otp": "cead91648b75",
    "fieldset": "1af81fce7d97",
    "form": "c1be4d5fd3f6",
-   "progress": "d76a6e4a2013",
-   "meter": "7632f407b0da",
+   "progress": "9b08a91df66b",
+   "meter": "f1512d40831a",
    "tabs": "ca948f0ac9d7",
    "accordion": "683aa06f5271",
    "collapsible": "c5d804761f10",
@@ -355,8 +355,8 @@
    "scroll": "6f3c7ae320ed",
    "typography": "1a7a2d2a6aa4",
    "separator": "3f847fdfe89f",
-   "panel": "bafdb5360f34",
-   "loader": "7a72ce59d14f"
+   "panel": "e7b675fb786d",
+   "loader": "31d2b9c92260"
   }
  },
  "nova": {

@@ -1,89 +1,75 @@
 .nocturne-meter {
   display: flex;
   flex-direction: column;
-  gap: var(--nocturne-space-2);
+  align-items: flex-start;
+  gap: var(--nocturne-space-3);
   width: 100%;
-  --nocturne-meter-fill: linear-gradient(
-    90deg,
-    var(--nocturne-primary-shadow),
-    var(--nocturne-primary-deep) 60%,
-    var(--nocturne-primary)
-  );
-  --nocturne-meter-glow: var(--nocturne-primary-50);
+  --nocturne-meter-ring: var(--nocturne-gilt-30);
+  --nocturne-meter-glow: var(--nocturne-glow-12);
 }
 
 .nocturne-meter--success {
-  --nocturne-meter-fill: linear-gradient(
-    90deg,
-    var(--nocturne-success-deep),
-    var(--nocturne-success)
-  );
-  --nocturne-meter-glow: var(--nocturne-glow-12);
-  --nocturne-bloom-tone: var(--nocturne-petal-moon);
-  --nocturne-bloom-tone-deep: var(--nocturne-petal-moon-deep);
+  --nocturne-meter-ring: var(--nocturne-success);
+  --nocturne-meter-glow: var(--nocturne-success-30);
 }
 
 .nocturne-meter--warning {
-  --nocturne-meter-fill: linear-gradient(
-    90deg,
-    var(--nocturne-warning-deep),
-    var(--nocturne-warning)
-  );
-  --nocturne-meter-glow: var(--nocturne-glow-12);
-  --nocturne-bloom-tone: var(--nocturne-warning);
-  --nocturne-bloom-tone-deep: var(--nocturne-warning-deep);
+  --nocturne-meter-ring: var(--nocturne-warning);
+  --nocturne-meter-glow: var(--nocturne-warning-30);
 }
 
 .nocturne-meter--danger {
-  --nocturne-meter-fill: linear-gradient(
-    90deg,
-    var(--nocturne-danger-deep),
-    var(--nocturne-danger)
-  );
+  --nocturne-meter-ring: var(--nocturne-danger);
   --nocturne-meter-glow: var(--nocturne-danger-50);
-  --nocturne-bloom-tone: var(--nocturne-danger);
-  --nocturne-bloom-tone-deep: var(--nocturne-danger-deep);
 }
 
 .nocturne-meter__head {
   display: flex;
+  width: 100%;
+  min-width: 0;
   justify-content: space-between;
   align-items: baseline;
   gap: var(--nocturne-space-3);
 }
 
+.nocturne-meter__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .nocturne-meter__value {
+  flex: none;
   font-family: var(--nocturne-font-mono);
   font-size: var(--nocturne-fs-14);
   color: var(--nocturne-text-dim);
 }
 
-.nocturne-meter__track {
-  width: 100%;
-  margin: var(--nocturne-space-3) 0;
-}
-
-.nocturne-meter__indicator {
+.nocturne-meter__dial {
   position: relative;
-  height: 100%;
-  background: var(--nocturne-meter-fill);
-  box-shadow: 0 0 12px var(--nocturne-meter-glow);
+  flex: none;
+  width: var(--nocturne-meter-dial);
+  height: var(--nocturne-meter-dial);
+  overflow: hidden;
+  background: var(--nocturne-moon-shade);
+  border: 1px solid var(--nocturne-meter-ring);
+  border-radius: var(--nocturne-r-full);
+  box-shadow:
+    var(--nocturne-track-shadow),
+    0 0 12px var(--nocturne-meter-glow);
 }
 
-.nocturne-meter__tip {
+.nocturne-meter__lit {
   position: absolute;
-  right: 0;
-  top: 50%;
-  width: var(--nocturne-bloom-tip);
-  height: var(--nocturne-bloom-tip);
-  translate: 50% -50%;
-  pointer-events: none;
+  top: 0;
+  background: var(--nocturne-moon-face);
+  background-repeat: no-repeat;
+  background-size: var(--nocturne-meter-dial) var(--nocturne-meter-dial);
+  transition: width var(--nocturne-dur-slow) var(--nocturne-ease);
 }
 
-.nocturne-meter__bloom {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  filter: var(--nocturne-drop-mark) drop-shadow(0 0 8px var(--nocturne-glow-12));
+@media (prefers-reduced-motion: reduce) {
+  .nocturne-meter__lit {
+    transition: none;
+  }
 }
