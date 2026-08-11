@@ -1227,8 +1227,8 @@ function Demo() {
                   </div>
                   <div className="demo-row">
                     <Menu trigger="Quick Rites" orientation="horizontal">
-                      <MenuItem>Sound</MenuItem>
-                      <MenuItem>Mark</MenuItem>
+                      <MenuItem icon={<SignalIcon />}>Sound</MenuItem>
+                      <MenuItem icon={<SearchIcon />}>Mark</MenuItem>
                       <MenuItem>Echo</MenuItem>
                     </Menu>
                   </div>

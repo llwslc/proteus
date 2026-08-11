@@ -51,3 +51,7 @@
 .brass-menu__row {
   display: flex;
 }
+
+.brass-menu--horizontal {
+  min-width: 0;
+}

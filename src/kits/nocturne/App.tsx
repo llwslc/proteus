@@ -1256,8 +1256,8 @@ function Demo() {
                   </div>
                   <div className="nocturne-row">
                     <Menu trigger="Quick Tend" orientation="horizontal">
-                      <MenuItem>Gather</MenuItem>
-                      <MenuItem>Press</MenuItem>
+                      <MenuItem icon={<DropIcon />}>Gather</MenuItem>
+                      <MenuItem icon={<QuillIcon />}>Press</MenuItem>
                       <MenuItem>Ring</MenuItem>
                     </Menu>
                   </div>

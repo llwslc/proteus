@@ -1027,8 +1027,8 @@ function Demo() {
                   </div>
                   <div className="brass-row">
                     <Menu trigger="Quick Valves" orientation="horizontal">
-                      <MenuItem>Stoke</MenuItem>
-                      <MenuItem>Vent</MenuItem>
+                      <MenuItem icon={<Bolt />}>Stoke</MenuItem>
+                      <MenuItem icon={<Valve />}>Vent</MenuItem>
                       <MenuItem>Prime</MenuItem>
                     </Menu>
                   </div>

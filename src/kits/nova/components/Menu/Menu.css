@@ -86,3 +86,7 @@
 .nova-menu__row {
   display: flex;
 }
+
+.nova-menu--horizontal {
+  min-width: 0;
+}

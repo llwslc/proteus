@@ -1066,8 +1066,8 @@ function Demo() {
                   </div>
                   <div className="hanabi-row">
                     <Menu trigger="クイック" orientation="horizontal">
-                      <MenuItem>複製</MenuItem>
-                      <MenuItem>索敵</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>複製</MenuItem>
+                      <MenuItem icon={<TargetIcon />}>索敵</MenuItem>
                       <MenuItem>散開</MenuItem>
                     </Menu>
                   </div>

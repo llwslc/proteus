@@ -58,3 +58,7 @@
 .hanabi-menu__row {
   display: flex;
 }
+
+.hanabi-menu--horizontal {
+  min-width: 0;
+}

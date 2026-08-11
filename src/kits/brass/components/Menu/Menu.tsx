@@ -3,6 +3,7 @@ import { Menu as BaseMenu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
 import { Button } from "../Button";
 import { ChevronDown } from "../icons";
+import { cx } from "../cx";
 import "./Menu.css";
 
 export interface MenuProps extends Omit<
@@ -39,7 +40,12 @@ export function Menu({
           side={side}
           align={align}
         >
-          <BaseMenu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
+          <BaseMenu.Popup
+            className={cx(
+              "brass-plate brass-pop brass-popup brass-popup-list",
+              props.orientation === "horizontal" && "brass-menu--horizontal",
+            )}
+          >
             {props.orientation === "horizontal" ? (
               <div className="brass-menu__row">{children}</div>
             ) : (

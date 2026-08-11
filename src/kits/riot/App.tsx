@@ -1051,8 +1051,8 @@ function Demo() {
                   </div>
                   <div className="riot-row">
                     <Menu trigger="Fast Cuts" orientation="horizontal">
-                      <MenuItem>Cut</MenuItem>
-                      <MenuItem>Paste</MenuItem>
+                      <MenuItem icon={<Scissors />}>Cut</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Paste</MenuItem>
                       <MenuItem>Print</MenuItem>
                     </Menu>
                   </div>

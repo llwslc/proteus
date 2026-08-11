@@ -63,3 +63,7 @@
 .nocturne-menu__row {
   display: flex;
 }
+
+.nocturne-menu--horizontal {
+  min-width: 0;
+}

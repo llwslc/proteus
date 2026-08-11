@@ -3,6 +3,7 @@ import { Menu as BaseMenu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
 import { Button } from "../Button";
 import { ChevronDownIcon } from "../icons";
+import { cx } from "../cx";
 import "./Menu.css";
 
 export interface MenuProps extends Omit<
@@ -38,7 +39,12 @@ export function Menu({
           side={side}
           align={align}
         >
-          <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu-pane">
+          <BaseMenu.Popup
+            className={cx(
+              "nova-surface nova-anim-pop nova-menu-pane",
+              props.orientation === "horizontal" && "nova-menu--horizontal",
+            )}
+          >
             {props.orientation === "horizontal" ? (
               <div className="nova-menu__row">{children}</div>
             ) : (

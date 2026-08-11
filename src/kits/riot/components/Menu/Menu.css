@@ -52,3 +52,7 @@
 .riot-menu__row {
   display: flex;
 }
+
+.riot-menu--horizontal {
+  min-width: 0;
+}

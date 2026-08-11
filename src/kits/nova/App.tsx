@@ -1128,8 +1128,8 @@ function Demo() {
                   </div>
                   <div className="demo-row">
                     <Menu trigger="Quick Ops" orientation="horizontal">
-                      <MenuItem>Scan</MenuItem>
-                      <MenuItem>Sync</MenuItem>
+                      <MenuItem icon={<SearchIcon />}>Scan</MenuItem>
+                      <MenuItem icon={<SignalIcon />}>Sync</MenuItem>
                       <MenuItem>Mirror</MenuItem>
                     </Menu>
                   </div>

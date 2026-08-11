@@ -1038,8 +1038,8 @@ function Demo() {
                   </div>
                   <div className="prism-row">
                     <Menu trigger="Quick Grid" orientation="horizontal">
-                      <MenuItem>Align</MenuItem>
-                      <MenuItem>Group</MenuItem>
+                      <MenuItem icon={<Grid />}>Align</MenuItem>
+                      <MenuItem icon={<Copy />}>Group</MenuItem>
                       <MenuItem>Lock</MenuItem>
                     </Menu>
                   </div>

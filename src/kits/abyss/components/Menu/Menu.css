@@ -128,3 +128,7 @@
 .abyss-menu__row {
   display: flex;
 }
+
+.abyss-menu--horizontal {
+  min-width: 0;
+}

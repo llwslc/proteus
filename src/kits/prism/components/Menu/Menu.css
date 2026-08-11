@@ -61,3 +61,7 @@
 .prism-menu__row {
   display: flex;
 }
+
+.prism-menu--horizontal {
+  min-width: 0;
+}
