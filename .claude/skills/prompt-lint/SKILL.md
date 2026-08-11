@@ -31,7 +31,7 @@ Exit 0 = the greppable Form rules are clean: punctuation register (ASCII `,:;()`
 - **Emphasis is systematic.** Bold/italic marks one consistent thing applied to every peer — a definition-list lead on all siblings, a uniform set of names, a parallel keyword across variants. Flag emphasis sprinkled on one item while its peers are plain, or applied in one variant but not its sibling.
 - **Prose over parentheses.** Asides belong in the sentence — a colon, a dash, a clause, or a new sentence. A parenthetical is for a bare value/example after its term, not the default container for clauses. Many lines parenthesized, or any line stacking several, reads like footnotes — re-flow it.
 
-Keep (NOT violations): the rule itself, and a short parenthetical that **disambiguates the instruction** (it changes what's built). A parenthetical that **justifies** does not — cut it.
+Keep (NOT violations): the rule itself, and a short parenthetical that **disambiguates the instruction** (it changes what's built). A parenthetical that **justifies** does not — cut it. A patch chain — the base case, then a default, then an exception to the default, welded into one clause with dashes — reads as accreted patches: restate it as independent clauses.
 
 ## Procedure
 

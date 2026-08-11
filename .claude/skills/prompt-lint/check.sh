@@ -168,7 +168,7 @@ echo "## rationale / consequence fluff — spec states HOW, not WHY (strip the �
 # terse HOW-spec (视觉描述词 错位/闪/会 are NOT here — they have real uses; 否定 DIRECTIVES
 # 别/绝不/不得 are NOT here either — they pair with a positive rule, a READ call not a regex).
 # grow this list as new fluff tells surface; it would have caught the §7 [data-*] block.
-why='因为|否则|之所以|原因|导致|命不中|永不匹配|等于没写|白写|两回事|免得|以免|不是为了|并非为了|只维护|唯一一份|只留一处'
+why='因为|否则|之所以|原因|导致|命不中|永不匹配|等于没写|白写|两回事|免得|以免|不是为了|并非为了|只维护|唯一一份|只留一处|保读|保可读|便于|以便|起见|出于'
 hits=$(grep -HnE "$why" $FILES 2>/dev/null || true)
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
 
@@ -185,6 +185,18 @@ echo "## exclusive-conditional — state 「当X，做Y」 directly, not 「仅�
 verb='加|给|显|写|放|动|用|走|留|做|描|挂|贴|填|升|转|亮|染|就近|放进|生效|收口|收边|落位|铺|收'
 hits=$(grep -HnE "仅当|只有当|只当|只有[^。；;、]*才|才($verb)" $FILES 2>/dev/null | grep -vE '刚才|方才' || true)
 if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
+
+echo
+echo "## patch-chain — 「——默认…」is an exception chain; state the default as its own clause"
+hits=$(grep -HnE "——默认" $FILES 2>/dev/null || true)
+if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |'; fail=1; else echo "  -> clean"; fi
+
+echo
+echo "## REVIEW — paren worklist for the semantic read (never fails; paren = bare value/alias gloss ONLY)"
+echo "   example-parens 「（如 …）」 and clause-parens 「（…，…）」 are the two smells; each hit below"
+echo "   is a CANDIDATE — keep only a gloss that disambiguates the instruction, re-flow the rest."
+hits=$(grep -HnoE "（如[^）]*）|（[^）]*，[^）]*）" $FILES 2>/dev/null || true)
+if [ -n "$hits" ]; then printf '%s\n' "$hits" | sed 's|^|  |' | head -20; else echo "  -> none"; fi
 
 echo
 echo "## one control per line — a skin-doc bullet must not introduce a SECOND component mid-line (。X：/；X 是…)"
