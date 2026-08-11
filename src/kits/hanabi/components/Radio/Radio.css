@@ -49,8 +49,8 @@
 }
 
 .hanabi-radio__dot {
-  width: 12px;
-  height: 12px;
+  width: var(--hanabi-radio-dot);
+  height: var(--hanabi-radio-dot);
   border-radius: var(--hanabi-r-pill);
   background: radial-gradient(
     circle at 32% 30%,

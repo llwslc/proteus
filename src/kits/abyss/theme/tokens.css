@@ -194,4 +194,6 @@
   --abyss-z-backdrop: 1400;
   --abyss-z-overlay: 1401;
   --abyss-z-toast: 1500;
+  --abyss-numberfield-cursor: 14px;
+  --abyss-scrollarea-scrollbar-w: 12px;
 }

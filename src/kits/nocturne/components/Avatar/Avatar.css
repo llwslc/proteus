@@ -53,8 +53,8 @@
   position: absolute;
   right: -1px;
   bottom: -1px;
-  width: 11px;
-  height: 11px;
+  width: var(--nocturne-avatar-status);
+  height: var(--nocturne-avatar-status);
   border-radius: var(--nocturne-r-full);
   border: 2px solid var(--nocturne-bg);
 }

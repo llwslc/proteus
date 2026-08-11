@@ -204,4 +204,10 @@
   --riot-avatar-md: 44px;
   --riot-avatar-lg: 64px;
   --riot-badge-h: 20px;
+  --riot-avatar-status: 12px;
+  --riot-tick: 12px;
+  --riot-numberfield-cursor: 14px;
+  --riot-toast-tape-w: 48px;
+  --riot-toast-tape-h: 20px;
+  --riot-toolbar-sep-h: 20px;
 }

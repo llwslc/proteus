@@ -66,7 +66,7 @@
 }
 
 .nova-otp__divider {
-  width: 12px;
+  width: var(--nova-otp-divider-w);
   height: 2px;
   background: var(--nova-text-mute);
 }

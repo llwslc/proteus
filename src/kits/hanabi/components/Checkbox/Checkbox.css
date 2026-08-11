@@ -88,8 +88,8 @@
 .hanabi-checkbox__mark {
   display: grid;
   place-items: center;
-  width: 14px;
-  height: 14px;
+  width: var(--hanabi-checkbox-mark);
+  height: var(--hanabi-checkbox-mark);
   color: var(--hanabi-on-fill);
 }
 .hanabi-checkbox__mark svg {

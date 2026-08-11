@@ -52,19 +52,19 @@
   position: absolute;
   right: -2px;
   bottom: -2px;
-  width: 12px;
-  height: 12px;
+  width: var(--nova-avatar-status);
+  height: var(--nova-avatar-status);
   border: 2px solid var(--nova-base);
   background: var(--nova-text-mute);
   transform: rotate(45deg);
 }
 .nova-avatar--sm .nova-avatar__status {
-  width: 10px;
-  height: 10px;
+  width: var(--nova-avatar-status-sm);
+  height: var(--nova-avatar-status-sm);
 }
 .nova-avatar--lg .nova-avatar__status {
-  width: 16px;
-  height: 16px;
+  width: var(--nova-avatar-status-lg);
+  height: var(--nova-avatar-status-lg);
 }
 .nova-avatar__status--online {
   background: var(--nova-success);

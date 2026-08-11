@@ -18,8 +18,8 @@
 
 .nocturne-panel__corner {
   position: absolute;
-  width: 46px;
-  height: 46px;
+  width: var(--nocturne-panel-corner);
+  height: var(--nocturne-panel-corner);
   color: var(--nocturne-gilt-50);
   pointer-events: none;
   z-index: -1;
@@ -111,7 +111,7 @@
     padding: 52px var(--nocturne-space-4);
   }
   .nocturne-panel__corner {
-    width: 34px;
-    height: 34px;
+    width: var(--nocturne-panel-corner-sm);
+    height: var(--nocturne-panel-corner-sm);
   }
 }

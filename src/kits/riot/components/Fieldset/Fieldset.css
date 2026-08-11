@@ -16,8 +16,8 @@
   color: var(--riot-text-bright);
 }
 .riot-tick {
-  width: 12px;
-  height: 12px;
+  width: var(--riot-tick);
+  height: var(--riot-tick);
   border: var(--riot-stroke) solid var(--riot-ink);
   background: var(--riot-primary);
 }

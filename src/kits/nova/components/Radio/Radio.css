@@ -37,8 +37,8 @@
 }
 .nova-radio__indicator::before {
   content: "";
-  width: 9px;
-  height: 9px;
+  width: var(--nova-radio-indicator);
+  height: var(--nova-radio-indicator);
   border-radius: 50%;
   background: var(--nova-primary);
   box-shadow: 0 0 var(--nova-glow-r) var(--nova-primary);

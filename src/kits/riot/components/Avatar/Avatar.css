@@ -46,8 +46,8 @@
   position: absolute;
   right: -4px;
   bottom: -4px;
-  width: 12px;
-  height: 12px;
+  width: var(--riot-avatar-status);
+  height: var(--riot-avatar-status);
   border: var(--riot-stroke) solid var(--riot-paper);
 }
 .riot-avatar__status--online {

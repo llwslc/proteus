@@ -85,8 +85,8 @@
 }
 
 .nocturne-numberfield__cursor {
-  width: 14px;
-  height: 14px;
+  width: var(--nocturne-numberfield-cursor);
+  height: var(--nocturne-numberfield-cursor);
   border-radius: var(--nocturne-r-full);
   background: var(--nocturne-gilt);
   box-shadow: var(--nocturne-glow-ring);

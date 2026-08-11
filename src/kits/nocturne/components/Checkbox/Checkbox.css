@@ -45,8 +45,8 @@
 
 .nocturne-checkbox__mark {
   display: block;
-  width: 19px;
-  height: 19px;
+  width: var(--nocturne-checkbox-mark);
+  height: var(--nocturne-checkbox-mark);
   color: var(--nocturne-gilt-bright);
   filter: drop-shadow(0 0 4px var(--nocturne-glow-40));
 }

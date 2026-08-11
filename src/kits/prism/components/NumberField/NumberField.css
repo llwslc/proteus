@@ -70,8 +70,8 @@
 }
 
 .prism-numberfield__cursor {
-  width: 14px;
-  height: 14px;
+  width: var(--prism-numberfield-cursor);
+  height: var(--prism-numberfield-cursor);
   background: var(--prism-primary);
   border: var(--prism-stroke) solid var(--prism-ink);
 }

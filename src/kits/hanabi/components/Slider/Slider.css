@@ -30,7 +30,7 @@
 .hanabi-slider__track {
   position: relative;
   width: 100%;
-  height: 12px;
+  height: var(--hanabi-slider-track);
   background: var(--hanabi-track);
   border-radius: var(--hanabi-r-pill);
   box-shadow: inset 2px 2px 0 var(--hanabi-tone-soft);
@@ -138,7 +138,7 @@
   justify-content: center;
 }
 .hanabi-slider[data-orientation="vertical"] .hanabi-slider__track {
-  width: 12px;
+  width: var(--hanabi-slider-track);
   height: 100%;
 }
 .hanabi-slider[data-orientation="vertical"] .hanabi-slider__indicator {

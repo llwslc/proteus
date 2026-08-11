@@ -37,7 +37,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
-  width: 11px;
+  width: var(--nova-scrollarea-scrollbar-w);
   margin: 1px;
   background: var(--nova-tint-faint);
   opacity: 0;

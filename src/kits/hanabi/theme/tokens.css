@@ -180,4 +180,10 @@
   --hanabi-z-backdrop: 1400;
   --hanabi-z-overlay: 1401;
   --hanabi-z-toast: 1500;
+  --hanabi-avatar-status: 13px;
+  --hanabi-checkbox-mark: 14px;
+  --hanabi-numberfield-cursor: 14px;
+  --hanabi-radio-dot: 12px;
+  --hanabi-slider-track: 12px;
+  --hanabi-toast-marker: 34px;
 }

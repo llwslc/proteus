@@ -56,7 +56,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
-  width: 12px;
+  width: var(--abyss-scrollarea-scrollbar-w);
   margin: var(--abyss-space-2) 3px;
   background: var(--abyss-ink-faint);
   border-radius: var(--abyss-round-6);

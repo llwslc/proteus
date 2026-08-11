@@ -87,8 +87,8 @@
 }
 
 .nova-numberfield__cursor {
-  width: 14px;
-  height: 14px;
+  width: var(--nova-numberfield-cursor);
+  height: var(--nova-numberfield-cursor);
   background: var(--nova-primary);
   clip-path: var(--nova-clip-4);
   box-shadow: 0 0 10px var(--nova-primary);

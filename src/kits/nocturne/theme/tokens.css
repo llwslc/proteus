@@ -213,4 +213,11 @@
   --nocturne-drawer-w-cap: 80%;
   --nocturne-drawer-h-cap: 60%;
   --nocturne-modal-pad: 20px;
+  --nocturne-avatar-status: 11px;
+  --nocturne-checkbox-mark: 19px;
+  --nocturne-modal-vine-max-w: 320px;
+  --nocturne-numberfield-cursor: 14px;
+  --nocturne-panel-corner: 46px;
+  --nocturne-panel-corner-sm: 34px;
+  --nocturne-toast-marker: 30px;
 }

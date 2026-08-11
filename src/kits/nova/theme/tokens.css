@@ -226,4 +226,12 @@
     0 12px
   );
   --nova-clip-tick: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  --nova-avatar-status: 12px;
+  --nova-avatar-status-sm: 10px;
+  --nova-avatar-status-lg: 16px;
+  --nova-numberfield-cursor: 14px;
+  --nova-otp-divider-w: 12px;
+  --nova-progress-track-h: 11px;
+  --nova-radio-indicator: 9px;
+  --nova-scrollarea-scrollbar-w: 11px;
 }

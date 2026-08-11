@@ -95,7 +95,7 @@ echo "## alpha spread per rgb family (components + tokens; review for clusters)"
 
 
 # 10b. raw pixel sizes passed as .tsx props / inline styles (components.md: component size footprint must be a --<kit>- token)
-#   .css is covered above; this catches sizes that bypass css via JSX — size={56}, maxHeight={200}, style={{ width: 120 }}, style={{ height: "48px" }}.
+#   CSS 侧见规则 17; this catches sizes that bypass css via JSX — size={56}, maxHeight={200}, style={{ width: 120 }}, style={{ height: "48px" }}.
 #   scope = size-footprint keys only (size/width/height/min-/max-), so semantic data props (value/min/max/step/length) and
 #   Base UI anchor props (sideOffset/alignOffset/collisionPadding) are excluded by construction. tokens/%/dvh/vh/vw/em/clamp/calc/0 pass.
 SZ='size|width|height|minWidth|maxWidth|minHeight|maxHeight|minBlockSize|maxBlockSize|minInlineSize|maxInlineSize|blockSize|inlineSize'
@@ -139,6 +139,12 @@ run "底缘阶影带缺同宽底衬(居中内容压在带子上)" "$f"
 #   (读 node_modules 里该零件的实现判定,不靠名单)
 f=$(node .claude/skills/kit-lint/baseui-redundant-attr.cjs "$ROOT" 2>/dev/null)
 run "与 Base UI 零件重复的 role/aria 手设" "$f"
+
+# 17. 裸写的控件／浮层尺寸（components.md §3 footprint 强制 token 化的 CSS 面）
+#   规则 10b 只管 .tsx props 与内联 style；CSS 侧此前无人查，nocturne 的浮层宽度
+#   与 slider 的 max(38px, 74px) 都是从这个洞漏过去的。
+f=$(node .claude/skills/kit-lint/raw-size.cjs "$ROOT" 2>/dev/null)
+run "裸写的尺寸 footprint(width/height/min-/max-,>8px 且非上下文式)" "$f"
 
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"

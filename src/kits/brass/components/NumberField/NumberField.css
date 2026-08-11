@@ -100,8 +100,8 @@
 }
 
 .brass-numberfield__cursor {
-  width: 14px;
-  height: 14px;
+  width: var(--brass-numberfield-cursor);
+  height: var(--brass-numberfield-cursor);
   border-radius: var(--brass-round-sm);
   background: var(--brass-accent-fill);
   box-shadow: var(--brass-bevel);

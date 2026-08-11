@@ -96,8 +96,8 @@
 }
 
 .abyss-numberfield__cursor {
-  width: 14px;
-  height: 14px;
+  width: var(--abyss-numberfield-cursor);
+  height: var(--abyss-numberfield-cursor);
   border-radius: var(--abyss-round-5);
   background: var(--abyss-glow);
   filter: var(--abyss-aura);

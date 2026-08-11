@@ -54,8 +54,8 @@
 
 .nocturne-toast__marker {
   flex: none;
-  width: 30px;
-  height: 30px;
+  width: var(--nocturne-toast-marker);
+  height: var(--nocturne-toast-marker);
   margin-top: 2px;
   overflow: visible;
   filter: var(--nocturne-drop-mark);

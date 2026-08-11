@@ -72,8 +72,8 @@
 .riot-toast .riot-tape {
   top: -12px;
   left: -24px;
-  width: 48px;
-  height: 20px;
+  width: var(--riot-toast-tape-w);
+  height: var(--riot-toast-tape-h);
 }
 .riot-toast__main {
   flex: 1;
