@@ -1202,56 +1202,65 @@ function Demo() {
 
             <div className="nocturne-section" id="menu">
               <Panel title="Menu">
-                <div className="nocturne-row">
-                  <Menu trigger="Garden">
-                    <MenuItem icon={<LampIcon />}>Light the lamp room</MenuItem>
-                    <MenuItem icon={<QuillIcon />}>Register a sprout</MenuItem>
-                    <MenuItem icon={<DropIcon />}>Gather dew</MenuItem>
-                    <MenuItem icon={<SealIcon />} disabled>
-                      Press the seal
-                    </MenuItem>
-                    <MenuItem icon={<BellIcon />}>Ring the watch-bell</MenuItem>
-                    <MenuItem icon={<LeafIcon />}>Turn a new leaf</MenuItem>
-                    <MenuItem icon={<BookIcon />}>Open the album</MenuItem>
-                    <MenuItem icon={<MoonIcon />}>Chart the moon</MenuItem>
-                    <MenuItem icon={<VialIcon />}>Seal a vial</MenuItem>
-                    <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
-                    <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem icon={<XIcon />} tone="danger">
-                      Uproot
-                    </MenuItem>
-                  </Menu>
-                  <Menu trigger="Hour">
-                    <MenuRadioGroup
-                      value={menuToggles.radio}
-                      onValueChange={(v) => menuToggles.setRadio(v as string)}
-                    >
-                      <MenuRadioItem value="a">Night</MenuRadioItem>
-                      <MenuRadioItem value="b">Dawn</MenuRadioItem>
-                      <MenuRadioItem value="c">Dusk</MenuRadioItem>
-                    </MenuRadioGroup>
-                  </Menu>
-                  <Menu trigger="Lanterns">
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("a")}
-                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
-                    >
-                      Lamp Glow
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("b")}
-                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
-                    >
-                      Dew Marks
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("c")}
-                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
-                    >
-                      Moth Trails
-                    </MenuCheckboxItem>
-                  </Menu>
+                <div className="nocturne-stack">
+                  <div className="nocturne-row">
+                    <Menu trigger="Garden">
+                      <MenuItem icon={<LampIcon />}>Light the lamp room</MenuItem>
+                      <MenuItem icon={<QuillIcon />}>Register a sprout</MenuItem>
+                      <MenuItem icon={<DropIcon />}>Gather dew</MenuItem>
+                      <MenuItem icon={<SealIcon />} disabled>
+                        Press the seal
+                      </MenuItem>
+                      <MenuItem icon={<BellIcon />}>Ring the watch-bell</MenuItem>
+                      <MenuItem icon={<LeafIcon />}>Turn a new leaf</MenuItem>
+                      <MenuItem icon={<BookIcon />}>Open the album</MenuItem>
+                      <MenuItem icon={<MoonIcon />}>Chart the moon</MenuItem>
+                      <MenuItem icon={<VialIcon />}>Seal a vial</MenuItem>
+                      <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
+                      <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<XIcon />} tone="danger">
+                        Uproot
+                      </MenuItem>
+                    </Menu>
+                    <Menu trigger="Hour">
+                      <MenuRadioGroup
+                        value={menuToggles.radio}
+                        onValueChange={(v) => menuToggles.setRadio(v as string)}
+                      >
+                        <MenuRadioItem value="a">Night</MenuRadioItem>
+                        <MenuRadioItem value="b">Dawn</MenuRadioItem>
+                        <MenuRadioItem value="c">Dusk</MenuRadioItem>
+                      </MenuRadioGroup>
+                    </Menu>
+                    <Menu trigger="Lanterns">
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("a")}
+                        onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                      >
+                        Lamp Glow
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("b")}
+                        onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                      >
+                        Dew Marks
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("c")}
+                        onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                      >
+                        Moth Trails
+                      </MenuCheckboxItem>
+                    </Menu>
+                  </div>
+                  <div className="nocturne-row">
+                    <Menu trigger="Quick Tend" orientation="horizontal">
+                      <MenuItem>Gather</MenuItem>
+                      <MenuItem>Press</MenuItem>
+                      <MenuItem>Ring</MenuItem>
+                    </Menu>
+                  </div>
                 </div>
               </Panel>
             </div>

@@ -57,3 +57,7 @@
 .prism-menu__mark[data-unchecked] {
   visibility: hidden;
 }
+
+.prism-menu__row {
+  display: flex;
+}

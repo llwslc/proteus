@@ -1173,56 +1173,65 @@ function Demo() {
 
             <div className="abyss-section" id="menu">
               <Panel title="Menu">
-                <div className="demo-row">
-                  <Menu trigger="Rites">
-                    <MenuItem icon={<SearchIcon />}>Sound the Deep</MenuItem>
-                    <MenuItem icon={<KeyIcon />}>Mark a Bearing</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>Echo</MenuItem>
-                    <MenuItem icon={<SignalIcon />} disabled>
-                      Hail the Dark
-                    </MenuItem>
-                    <MenuItem icon={<KeyIcon />}>Drop Anchor</MenuItem>
-                    <MenuItem icon={<SpiralIcon />}>Trace Current</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>Echo Sounding</MenuItem>
-                    <MenuItem icon={<SearchIcon />}>Chart Trench</MenuItem>
-                    <MenuItem icon={<ClawIcon />}>Seal Hatch</MenuItem>
-                    <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem icon={<TrashIcon />} tone="danger">
-                      Cast Overboard
-                    </MenuItem>
-                  </Menu>
-                  <Menu trigger="Volume">
-                    <MenuRadioGroup
-                      value={menuToggles.radio}
-                      onValueChange={(v) => menuToggles.setRadio(v as string)}
-                    >
-                      <MenuRadioItem value="a">Whisper</MenuRadioItem>
-                      <MenuRadioItem value="b">Chant</MenuRadioItem>
-                      <MenuRadioItem value="c">Roar</MenuRadioItem>
-                    </MenuRadioGroup>
-                  </Menu>
-                  <Menu trigger="Wards">
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("a")}
-                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
-                    >
-                      Rune Glow
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("b")}
-                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
-                    >
-                      Tide Marks
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("c")}
-                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
-                    >
-                      Deep Chant
-                    </MenuCheckboxItem>
-                  </Menu>
+                <div className="demo-stack">
+                  <div className="demo-row">
+                    <Menu trigger="Rites">
+                      <MenuItem icon={<SearchIcon />}>Sound the Deep</MenuItem>
+                      <MenuItem icon={<KeyIcon />}>Mark a Bearing</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Echo</MenuItem>
+                      <MenuItem icon={<SignalIcon />} disabled>
+                        Hail the Dark
+                      </MenuItem>
+                      <MenuItem icon={<KeyIcon />}>Drop Anchor</MenuItem>
+                      <MenuItem icon={<SpiralIcon />}>Trace Current</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Echo Sounding</MenuItem>
+                      <MenuItem icon={<SearchIcon />}>Chart Trench</MenuItem>
+                      <MenuItem icon={<ClawIcon />}>Seal Hatch</MenuItem>
+                      <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<TrashIcon />} tone="danger">
+                        Cast Overboard
+                      </MenuItem>
+                    </Menu>
+                    <Menu trigger="Volume">
+                      <MenuRadioGroup
+                        value={menuToggles.radio}
+                        onValueChange={(v) => menuToggles.setRadio(v as string)}
+                      >
+                        <MenuRadioItem value="a">Whisper</MenuRadioItem>
+                        <MenuRadioItem value="b">Chant</MenuRadioItem>
+                        <MenuRadioItem value="c">Roar</MenuRadioItem>
+                      </MenuRadioGroup>
+                    </Menu>
+                    <Menu trigger="Wards">
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("a")}
+                        onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                      >
+                        Rune Glow
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("b")}
+                        onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                      >
+                        Tide Marks
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("c")}
+                        onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                      >
+                        Deep Chant
+                      </MenuCheckboxItem>
+                    </Menu>
+                  </div>
+                  <div className="demo-row">
+                    <Menu trigger="Quick Rites" orientation="horizontal">
+                      <MenuItem>Sound</MenuItem>
+                      <MenuItem>Mark</MenuItem>
+                      <MenuItem>Echo</MenuItem>
+                    </Menu>
+                  </div>
                 </div>
               </Panel>
             </div>

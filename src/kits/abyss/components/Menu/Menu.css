@@ -124,3 +124,7 @@
 .abyss-menu__item[data-highlighted]:not([data-disabled]) .abyss-menu__mark {
   color: inherit;
 }
+
+.abyss-menu__row {
+  display: flex;
+}

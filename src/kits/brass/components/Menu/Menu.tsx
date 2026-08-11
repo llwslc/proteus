@@ -40,7 +40,11 @@ export function Menu({
           align={align}
         >
           <BaseMenu.Popup className="brass-plate brass-pop brass-popup brass-popup-list">
-            <ScrollArea variant="popup">{children}</ScrollArea>
+            {props.orientation === "horizontal" ? (
+              <div className="brass-menu__row">{children}</div>
+            ) : (
+              <ScrollArea variant="popup">{children}</ScrollArea>
+            )}
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

@@ -1012,56 +1012,65 @@ function Demo() {
 
             <div className="hanabi-section" id="menu">
               <Panel title="Menu">
-                <div className="hanabi-row">
-                  <Menu trigger="アクション">
-                    <MenuItem icon={<CopyIcon />}>複製</MenuItem>
-                    <MenuItem icon={<TargetIcon />}>索敵</MenuItem>
-                    <MenuItem icon={<FireworkIcon />}>散開</MenuItem>
-                    <MenuItem icon={<XIcon />} disabled>
-                      ラスタライズ
-                    </MenuItem>
-                    <MenuItem icon={<BoltIcon />}>チャージ</MenuItem>
-                    <MenuItem icon={<ShieldIcon />}>隊列を組む</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>左右反転</MenuItem>
-                    <MenuItem icon={<SearchIcon />}>90° 回転</MenuItem>
-                    <MenuItem icon={<SparkIcon />}>ガイドに吸着</MenuItem>
-                    <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem icon={<TrashIcon />} tone="danger">
-                      削除
-                    </MenuItem>
-                  </Menu>
-                  <Menu trigger="密度">
-                    <MenuRadioGroup
-                      value={menuToggles.radio}
-                      onValueChange={(v) => menuToggles.setRadio(v as string)}
-                    >
-                      <MenuRadioItem value="a">コンパクト</MenuRadioItem>
-                      <MenuRadioItem value="b">ゆったり</MenuRadioItem>
-                      <MenuRadioItem value="c">ワイド</MenuRadioItem>
-                    </MenuRadioGroup>
-                  </Menu>
-                  <Menu trigger="表示">
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("a")}
-                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
-                    >
-                      グリッド表示
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("b")}
-                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
-                    >
-                      ラベル表示
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("c")}
-                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
-                    >
-                      エフェクト表示
-                    </MenuCheckboxItem>
-                  </Menu>
+                <div className="hanabi-stack">
+                  <div className="hanabi-row">
+                    <Menu trigger="アクション">
+                      <MenuItem icon={<CopyIcon />}>複製</MenuItem>
+                      <MenuItem icon={<TargetIcon />}>索敵</MenuItem>
+                      <MenuItem icon={<FireworkIcon />}>散開</MenuItem>
+                      <MenuItem icon={<XIcon />} disabled>
+                        ラスタライズ
+                      </MenuItem>
+                      <MenuItem icon={<BoltIcon />}>チャージ</MenuItem>
+                      <MenuItem icon={<ShieldIcon />}>隊列を組む</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>左右反転</MenuItem>
+                      <MenuItem icon={<SearchIcon />}>90° 回転</MenuItem>
+                      <MenuItem icon={<SparkIcon />}>ガイドに吸着</MenuItem>
+                      <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<TrashIcon />} tone="danger">
+                        削除
+                      </MenuItem>
+                    </Menu>
+                    <Menu trigger="密度">
+                      <MenuRadioGroup
+                        value={menuToggles.radio}
+                        onValueChange={(v) => menuToggles.setRadio(v as string)}
+                      >
+                        <MenuRadioItem value="a">コンパクト</MenuRadioItem>
+                        <MenuRadioItem value="b">ゆったり</MenuRadioItem>
+                        <MenuRadioItem value="c">ワイド</MenuRadioItem>
+                      </MenuRadioGroup>
+                    </Menu>
+                    <Menu trigger="表示">
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("a")}
+                        onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                      >
+                        グリッド表示
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("b")}
+                        onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                      >
+                        ラベル表示
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("c")}
+                        onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                      >
+                        エフェクト表示
+                      </MenuCheckboxItem>
+                    </Menu>
+                  </div>
+                  <div className="hanabi-row">
+                    <Menu trigger="クイック" orientation="horizontal">
+                      <MenuItem>複製</MenuItem>
+                      <MenuItem>索敵</MenuItem>
+                      <MenuItem>散開</MenuItem>
+                    </Menu>
+                  </div>
                 </div>
               </Panel>
             </div>

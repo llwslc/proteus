@@ -35,9 +35,9 @@ R1 菜单勾选项／单选组（f725648c）、R3 Select 多选（49a65424）、
 | P2 | **ToggleGroup** | `orientation="vertical"` | 分段条全横排（brass 凹槽箱、hanabi 药丸散排…） | 接=竖排箱体变体；或裁「横排定位」写进契约 |
 | P3 | **Toolbar** | `orientation="vertical"` | 同上，箱体横排 | 同 P2 联动裁 |
 | P4 | **Menubar** | `orientation="vertical"` | 同上 | 使用场景弱，倾向裁「不接」 |
-| P5 | **Accordion** | `orientation="horizontal"` | 折叠全竖排；横向手风琴=完全另一套布局 | 使用场景弱，倾向裁「不接」 |
+| P5 | **Accordion** | `orientation="horizontal"` | 折叠全竖排；横向手风琴=完全另一套布局 | 已裁「不接」（2026-08-12）：1.7.0 将 orientation 标 @deprecated（库移除 roving focus），契约钉「条目竖排堆叠」 |
 | P6 | **NavigationMenu** | `orientation="vertical"` | 触发条横排＋下拉 | 场景弱（侧边导航是另一个控件的活），倾向「不接」 |
-| P7 | **Menu** | `orientation` | 只影响 roving focus 方向键轴 | 菜单横排本身怪异，裁「不接」 |
+| P7 | **Menu** | `orientation` | 只影响 roving focus 方向键轴 | ✅ 已接（2026-08-12）：包装层 horizontal 走行容器、七套 demo 各一件横向 Menu |
 | P8 | **Slider** | **双拇指区间** `value={[a,b]}`＋`minStepsBetweenValues`＋`thumbCollisionBehavior` | 库会渲染两只 thumb、indicator 内联定位在两者之间；我们的皮**大概率能扛**（indicator 全内联定位）但 0 验证 0 demo——hanabi 的不对称圆角、nocturne 的花 thumb 成对时观感未知 | 半成品状态最危险：要么验一轮＋加 demo 转 ✅，要么契约写明单拇指定位。验＋demo 估 30k |
 | P9 | **Tooltip** | `trackCursorAxis` | 跟随光标模式下 connector 三角的锚定假设可能破 | 场景弱；裁「不接」或验一轮 |
 

@@ -1074,56 +1074,65 @@ function Demo() {
 
             <div className="nova-section" id="menu">
               <Panel title="Menu">
-                <div className="demo-row">
-                  <Menu trigger="Actions">
-                    <MenuItem icon={<SearchIcon />}>Scan Sector</MenuItem>
-                    <MenuItem icon={<BoltIcon />}>Plot Course</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>Duplicate</MenuItem>
-                    <MenuItem icon={<SignalIcon />} disabled>
-                      Hail Vessel
-                    </MenuItem>
-                    <MenuItem icon={<ReticleIcon />}>Calibrate Array</MenuItem>
-                    <MenuItem icon={<SignalIcon />}>Sync Beacon</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>Mirror Telemetry</MenuItem>
-                    <MenuItem icon={<SearchIcon />}>Sweep Debris</MenuItem>
-                    <MenuItem icon={<WaveformIcon />}>Boost Signal</MenuItem>
-                    <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem icon={<TrashIcon />} tone="danger">
-                      Jettison Cargo
-                    </MenuItem>
-                  </Menu>
-                  <Menu trigger="Density">
-                    <MenuRadioGroup
-                      value={menuToggles.radio}
-                      onValueChange={(v) => menuToggles.setRadio(v as string)}
-                    >
-                      <MenuRadioItem value="a">Compact</MenuRadioItem>
-                      <MenuRadioItem value="b">Expanded</MenuRadioItem>
-                      <MenuRadioItem value="c">Wide</MenuRadioItem>
-                    </MenuRadioGroup>
-                  </Menu>
-                  <Menu trigger="Layers">
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("a")}
-                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
-                    >
-                      Grid Overlay
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("b")}
-                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
-                    >
-                      Range Rings
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("c")}
-                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
-                    >
-                      Debris Field
-                    </MenuCheckboxItem>
-                  </Menu>
+                <div className="demo-stack">
+                  <div className="demo-row">
+                    <Menu trigger="Actions">
+                      <MenuItem icon={<SearchIcon />}>Scan Sector</MenuItem>
+                      <MenuItem icon={<BoltIcon />}>Plot Course</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Duplicate</MenuItem>
+                      <MenuItem icon={<SignalIcon />} disabled>
+                        Hail Vessel
+                      </MenuItem>
+                      <MenuItem icon={<ReticleIcon />}>Calibrate Array</MenuItem>
+                      <MenuItem icon={<SignalIcon />}>Sync Beacon</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Mirror Telemetry</MenuItem>
+                      <MenuItem icon={<SearchIcon />}>Sweep Debris</MenuItem>
+                      <MenuItem icon={<WaveformIcon />}>Boost Signal</MenuItem>
+                      <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<TrashIcon />} tone="danger">
+                        Jettison Cargo
+                      </MenuItem>
+                    </Menu>
+                    <Menu trigger="Density">
+                      <MenuRadioGroup
+                        value={menuToggles.radio}
+                        onValueChange={(v) => menuToggles.setRadio(v as string)}
+                      >
+                        <MenuRadioItem value="a">Compact</MenuRadioItem>
+                        <MenuRadioItem value="b">Expanded</MenuRadioItem>
+                        <MenuRadioItem value="c">Wide</MenuRadioItem>
+                      </MenuRadioGroup>
+                    </Menu>
+                    <Menu trigger="Layers">
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("a")}
+                        onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                      >
+                        Grid Overlay
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("b")}
+                        onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                      >
+                        Range Rings
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("c")}
+                        onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                      >
+                        Debris Field
+                      </MenuCheckboxItem>
+                    </Menu>
+                  </div>
+                  <div className="demo-row">
+                    <Menu trigger="Quick Ops" orientation="horizontal">
+                      <MenuItem>Scan</MenuItem>
+                      <MenuItem>Sync</MenuItem>
+                      <MenuItem>Mirror</MenuItem>
+                    </Menu>
+                  </div>
                 </div>
               </Panel>
             </div>

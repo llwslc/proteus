@@ -39,7 +39,11 @@ export function Menu({
           align={align}
         >
           <BaseMenu.Popup className="riot-surface riot-popup riot-pop riot-menu-pane">
-            <ScrollArea variant="popup">{children}</ScrollArea>
+            {props.orientation === "horizontal" ? (
+              <div className="riot-menu__row">{children}</div>
+            ) : (
+              <ScrollArea variant="popup">{children}</ScrollArea>
+            )}
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

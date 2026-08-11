@@ -39,7 +39,11 @@ export function Menu({
           align={align}
         >
           <BaseMenu.Popup className="nova-surface nova-anim-pop nova-menu-pane">
-            <ScrollArea variant="popup">{children}</ScrollArea>
+            {props.orientation === "horizontal" ? (
+              <div className="nova-menu__row">{children}</div>
+            ) : (
+              <ScrollArea variant="popup">{children}</ScrollArea>
+            )}
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

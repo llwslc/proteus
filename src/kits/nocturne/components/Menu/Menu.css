@@ -59,3 +59,7 @@
 .nocturne-menu__mark[data-unchecked] {
   visibility: hidden;
 }
+
+.nocturne-menu__row {
+  display: flex;
+}

@@ -997,56 +997,65 @@ function Demo() {
 
             <div className="riot-section" id="menu">
               <Panel tilt={4} title="Menu" tape="tr">
-                <div className="riot-row">
-                  <Menu trigger="Actions">
-                    <MenuItem icon={<CopyIcon />}>Duplicate</MenuItem>
-                    <MenuItem icon={<Scissors />}>Cut out</MenuItem>
-                    <MenuItem icon={<Dot />}>Distribute</MenuItem>
-                    <MenuItem icon={<Square />} disabled>
-                      Rasterize
-                    </MenuItem>
-                    <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
-                    <MenuItem icon={<Star />}>Star it</MenuItem>
-                    <MenuItem icon={<CopyIcon />}>Flip horizontal</MenuItem>
-                    <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
-                    <MenuItem icon={<SprayCan />}>Deface</MenuItem>
-                    <MenuItem icon={<Dot />}>Lock layer</MenuItem>
-                    <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem icon={<Close />} tone="danger">
-                      Delete
-                    </MenuItem>
-                  </Menu>
-                  <Menu trigger="Volume">
-                    <MenuRadioGroup
-                      value={menuToggles.radio}
-                      onValueChange={(v) => menuToggles.setRadio(v as string)}
-                    >
-                      <MenuRadioItem value="a">Loud</MenuRadioItem>
-                      <MenuRadioItem value="b">Louder</MenuRadioItem>
-                      <MenuRadioItem value="c">Loudest</MenuRadioItem>
-                    </MenuRadioGroup>
-                  </Menu>
-                  <Menu trigger="Marks">
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("a")}
-                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
-                    >
-                      Cut Marks
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("b")}
-                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
-                    >
-                      Bleed Guides
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("c")}
-                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
-                    >
-                      Fold Lines
-                    </MenuCheckboxItem>
-                  </Menu>
+                <div className="riot-stack">
+                  <div className="riot-row">
+                    <Menu trigger="Actions">
+                      <MenuItem icon={<CopyIcon />}>Duplicate</MenuItem>
+                      <MenuItem icon={<Scissors />}>Cut out</MenuItem>
+                      <MenuItem icon={<Dot />}>Distribute</MenuItem>
+                      <MenuItem icon={<Square />} disabled>
+                        Rasterize
+                      </MenuItem>
+                      <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
+                      <MenuItem icon={<Star />}>Star it</MenuItem>
+                      <MenuItem icon={<CopyIcon />}>Flip horizontal</MenuItem>
+                      <MenuItem icon={<BoltIcon />}>Charge up</MenuItem>
+                      <MenuItem icon={<SprayCan />}>Deface</MenuItem>
+                      <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                      <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<Close />} tone="danger">
+                        Delete
+                      </MenuItem>
+                    </Menu>
+                    <Menu trigger="Volume">
+                      <MenuRadioGroup
+                        value={menuToggles.radio}
+                        onValueChange={(v) => menuToggles.setRadio(v as string)}
+                      >
+                        <MenuRadioItem value="a">Loud</MenuRadioItem>
+                        <MenuRadioItem value="b">Louder</MenuRadioItem>
+                        <MenuRadioItem value="c">Loudest</MenuRadioItem>
+                      </MenuRadioGroup>
+                    </Menu>
+                    <Menu trigger="Marks">
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("a")}
+                        onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                      >
+                        Cut Marks
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("b")}
+                        onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                      >
+                        Bleed Guides
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("c")}
+                        onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                      >
+                        Fold Lines
+                      </MenuCheckboxItem>
+                    </Menu>
+                  </div>
+                  <div className="riot-row">
+                    <Menu trigger="Fast Cuts" orientation="horizontal">
+                      <MenuItem>Cut</MenuItem>
+                      <MenuItem>Paste</MenuItem>
+                      <MenuItem>Print</MenuItem>
+                    </Menu>
+                  </div>
                 </div>
               </Panel>
             </div>

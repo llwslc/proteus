@@ -40,7 +40,11 @@ export function Menu({
           align={align}
         >
           <BaseMenu.Popup className="nocturne-popup nocturne-velvet--pop nocturne-drift nocturne-popup-list nocturne-menu-pane">
-            <ScrollArea variant="popup">{children}</ScrollArea>
+            {props.orientation === "horizontal" ? (
+              <div className="nocturne-menu__row">{children}</div>
+            ) : (
+              <ScrollArea variant="popup">{children}</ScrollArea>
+            )}
           </BaseMenu.Popup>
         </BaseMenu.Positioner>
       </BaseMenu.Portal>

@@ -47,3 +47,7 @@
 .brass-menu__mark[data-unchecked] {
   visibility: hidden;
 }
+
+.brass-menu__row {
+  display: flex;
+}

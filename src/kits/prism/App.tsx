@@ -984,56 +984,65 @@ function Demo() {
 
             <div className="prism-section" id="menu">
               <Panel title="Menu">
-                <div className="prism-row">
-                  <Menu trigger="Actions">
-                    <MenuItem icon={<Copy />}>Duplicate</MenuItem>
-                    <MenuItem icon={<Grid />}>Align to grid</MenuItem>
-                    <MenuItem icon={<Dot />}>Distribute</MenuItem>
-                    <MenuItem icon={<Square />} disabled>
-                      Rasterize
-                    </MenuItem>
-                    <MenuItem icon={<Grid />}>Group</MenuItem>
-                    <MenuItem icon={<Dot />}>Lock layer</MenuItem>
-                    <MenuItem icon={<Copy />}>Flip horizontal</MenuItem>
-                    <MenuItem icon={<Diamond />}>Rotate 90°</MenuItem>
-                    <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
-                    <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
-                    <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem icon={<Close />} tone="danger">
-                      Delete
-                    </MenuItem>
-                  </Menu>
-                  <Menu trigger="Scale">
-                    <MenuRadioGroup
-                      value={menuToggles.radio}
-                      onValueChange={(v) => menuToggles.setRadio(v as string)}
-                    >
-                      <MenuRadioItem value="a">Points</MenuRadioItem>
-                      <MenuRadioItem value="b">Picas</MenuRadioItem>
-                      <MenuRadioItem value="c">Millimetres</MenuRadioItem>
-                    </MenuRadioGroup>
-                  </Menu>
-                  <Menu trigger="Guides">
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("a")}
-                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
-                    >
-                      Baseline Grid
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("b")}
-                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
-                    >
-                      Column Guides
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("c")}
-                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
-                    >
-                      Bleed Marks
-                    </MenuCheckboxItem>
-                  </Menu>
+                <div className="prism-stack">
+                  <div className="prism-row">
+                    <Menu trigger="Actions">
+                      <MenuItem icon={<Copy />}>Duplicate</MenuItem>
+                      <MenuItem icon={<Grid />}>Align to grid</MenuItem>
+                      <MenuItem icon={<Dot />}>Distribute</MenuItem>
+                      <MenuItem icon={<Square />} disabled>
+                        Rasterize
+                      </MenuItem>
+                      <MenuItem icon={<Grid />}>Group</MenuItem>
+                      <MenuItem icon={<Dot />}>Lock layer</MenuItem>
+                      <MenuItem icon={<Copy />}>Flip horizontal</MenuItem>
+                      <MenuItem icon={<Diamond />}>Rotate 90°</MenuItem>
+                      <MenuItem icon={<Grid />}>Snap to guide</MenuItem>
+                      <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
+                      <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<Close />} tone="danger">
+                        Delete
+                      </MenuItem>
+                    </Menu>
+                    <Menu trigger="Scale">
+                      <MenuRadioGroup
+                        value={menuToggles.radio}
+                        onValueChange={(v) => menuToggles.setRadio(v as string)}
+                      >
+                        <MenuRadioItem value="a">Points</MenuRadioItem>
+                        <MenuRadioItem value="b">Picas</MenuRadioItem>
+                        <MenuRadioItem value="c">Millimetres</MenuRadioItem>
+                      </MenuRadioGroup>
+                    </Menu>
+                    <Menu trigger="Guides">
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("a")}
+                        onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                      >
+                        Baseline Grid
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("b")}
+                        onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                      >
+                        Column Guides
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("c")}
+                        onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                      >
+                        Bleed Marks
+                      </MenuCheckboxItem>
+                    </Menu>
+                  </div>
+                  <div className="prism-row">
+                    <Menu trigger="Quick Grid" orientation="horizontal">
+                      <MenuItem>Align</MenuItem>
+                      <MenuItem>Group</MenuItem>
+                      <MenuItem>Lock</MenuItem>
+                    </Menu>
+                  </div>
                 </div>
               </Panel>
             </div>

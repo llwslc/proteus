@@ -973,56 +973,65 @@ function Demo() {
 
             <div className="brass-section" id="menu">
               <Panel title="Menu">
-                <div className="brass-row">
-                  <Menu trigger="Actions">
-                    <MenuItem icon={<Bolt />}>Stoke firebox</MenuItem>
-                    <MenuItem icon={<Gauge />}>Read gauges</MenuItem>
-                    <MenuItem icon={<Valve />}>Blow down</MenuItem>
-                    <MenuItem icon={<Gear />} disabled>
-                      Calibrate
-                    </MenuItem>
-                    <MenuItem icon={<Piston />}>Prime pump</MenuItem>
-                    <MenuItem icon={<Wrench />}>Tighten valve</MenuItem>
-                    <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
-                    <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
-                    <MenuItem icon={<Pipe />}>Vent steam</MenuItem>
-                    <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
-                    <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
-                    <MenuSeparator />
-                    <MenuItem icon={<Close />} tone="danger">
-                      Shut down
-                    </MenuItem>
-                  </Menu>
-                  <Menu trigger="Units">
-                    <MenuRadioGroup
-                      value={menuToggles.radio}
-                      onValueChange={(v) => menuToggles.setRadio(v as string)}
-                    >
-                      <MenuRadioItem value="a">Metric</MenuRadioItem>
-                      <MenuRadioItem value="b">Imperial</MenuRadioItem>
-                      <MenuRadioItem value="c">Nautical</MenuRadioItem>
-                    </MenuRadioGroup>
-                  </Menu>
-                  <Menu trigger="Dials">
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("a")}
-                      onCheckedChange={(on) => menuToggles.toggle("a", on)}
-                    >
-                      Gauge Grid
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("b")}
-                      onCheckedChange={(on) => menuToggles.toggle("b", on)}
-                    >
-                      Pressure Marks
-                    </MenuCheckboxItem>
-                    <MenuCheckboxItem
-                      checked={menuToggles.checks.includes("c")}
-                      onCheckedChange={(on) => menuToggles.toggle("c", on)}
-                    >
-                      Steam Trace
-                    </MenuCheckboxItem>
-                  </Menu>
+                <div className="brass-stack">
+                  <div className="brass-row">
+                    <Menu trigger="Actions">
+                      <MenuItem icon={<Bolt />}>Stoke firebox</MenuItem>
+                      <MenuItem icon={<Gauge />}>Read gauges</MenuItem>
+                      <MenuItem icon={<Valve />}>Blow down</MenuItem>
+                      <MenuItem icon={<Gear />} disabled>
+                        Calibrate
+                      </MenuItem>
+                      <MenuItem icon={<Piston />}>Prime pump</MenuItem>
+                      <MenuItem icon={<Wrench />}>Tighten valve</MenuItem>
+                      <MenuItem icon={<Gauge />}>Bleed line</MenuItem>
+                      <MenuItem icon={<Bolt />}>Oil bearings</MenuItem>
+                      <MenuItem icon={<Pipe />}>Vent steam</MenuItem>
+                      <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
+                      <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
+                      <MenuSeparator />
+                      <MenuItem icon={<Close />} tone="danger">
+                        Shut down
+                      </MenuItem>
+                    </Menu>
+                    <Menu trigger="Units">
+                      <MenuRadioGroup
+                        value={menuToggles.radio}
+                        onValueChange={(v) => menuToggles.setRadio(v as string)}
+                      >
+                        <MenuRadioItem value="a">Metric</MenuRadioItem>
+                        <MenuRadioItem value="b">Imperial</MenuRadioItem>
+                        <MenuRadioItem value="c">Nautical</MenuRadioItem>
+                      </MenuRadioGroup>
+                    </Menu>
+                    <Menu trigger="Dials">
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("a")}
+                        onCheckedChange={(on) => menuToggles.toggle("a", on)}
+                      >
+                        Gauge Grid
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("b")}
+                        onCheckedChange={(on) => menuToggles.toggle("b", on)}
+                      >
+                        Pressure Marks
+                      </MenuCheckboxItem>
+                      <MenuCheckboxItem
+                        checked={menuToggles.checks.includes("c")}
+                        onCheckedChange={(on) => menuToggles.toggle("c", on)}
+                      >
+                        Steam Trace
+                      </MenuCheckboxItem>
+                    </Menu>
+                  </div>
+                  <div className="brass-row">
+                    <Menu trigger="Quick Valves" orientation="horizontal">
+                      <MenuItem>Stoke</MenuItem>
+                      <MenuItem>Vent</MenuItem>
+                      <MenuItem>Prime</MenuItem>
+                    </Menu>
+                  </div>
                 </div>
               </Panel>
             </div>

@@ -82,3 +82,7 @@
 .nova-menu__item[data-highlighted]:not([data-disabled]) .nova-menu__mark {
   color: inherit;
 }
+
+.nova-menu__row {
+  display: flex;
+}

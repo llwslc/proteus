@@ -48,3 +48,7 @@
 .riot-menu__mark[data-unchecked] {
   visibility: hidden;
 }
+
+.riot-menu__row {
+  display: flex;
+}

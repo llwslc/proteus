@@ -54,3 +54,7 @@
 .hanabi-menu__mark[data-unchecked] {
   visibility: hidden;
 }
+
+.hanabi-menu__row {
+  display: flex;
+}
