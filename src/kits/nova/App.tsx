@@ -1143,7 +1143,9 @@ function Demo() {
                   <MenubarMenu label="File">
                     <MenuItem icon={<BoltIcon />}>New Mission</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Open Log</MenuItem>
-                    <MenuItem disabled>Black Box</MenuItem>
+                    <MenuItem icon={<WaveformIcon />} disabled>
+                      Black Box
+                    </MenuItem>
                     <MenuSeparator />
                     <MenuItem icon={<TrashIcon />} tone="danger">
                       Jettison

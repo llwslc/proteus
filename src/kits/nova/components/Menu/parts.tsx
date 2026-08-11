@@ -27,7 +27,7 @@ export function MenuItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="nova-menu__icon">{icon}</span>
+      {icon != null ? <span className="nova-menu__icon">{icon}</span> : null}
       <span className="nova-menu__label">{children}</span>
     </Menu.Item>
   );
@@ -49,7 +49,7 @@ export function MenuSub({
   return (
     <Menu.SubmenuRoot>
       <Menu.SubmenuTrigger className="nova-list-item nova-menu__item">
-        <span className="nova-menu__icon">{icon}</span>
+        {icon != null ? <span className="nova-menu__icon">{icon}</span> : null}
         <span className="nova-menu__label">{label}</span>
         <span className="nova-menu__arrow">
           <ChevronRightIcon />

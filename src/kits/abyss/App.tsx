@@ -1242,7 +1242,9 @@ function Demo() {
                   <MenubarMenu label="Tome">
                     <MenuItem icon={<KeyIcon />}>New Rite</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Open Codex</MenuItem>
-                    <MenuItem disabled>Forbidden Rite</MenuItem>
+                    <MenuItem icon={<SigilIcon />} disabled>
+                      Forbidden Rite
+                    </MenuItem>
                     <MenuSeparator />
                     <MenuItem icon={<TrashIcon />} tone="danger">
                       Cast Out

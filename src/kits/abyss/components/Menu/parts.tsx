@@ -27,7 +27,7 @@ export function MenuItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="abyss-menu__icon">{icon}</span>
+      {icon != null ? <span className="abyss-menu__icon">{icon}</span> : null}
       <span className="abyss-menu__label">{children}</span>
     </Menu.Item>
   );
@@ -49,7 +49,7 @@ export function MenuSub({
   return (
     <Menu.SubmenuRoot>
       <Menu.SubmenuTrigger className="abyss-menu__item">
-        <span className="abyss-menu__icon">{icon}</span>
+        {icon != null ? <span className="abyss-menu__icon">{icon}</span> : null}
         <span className="abyss-menu__label">{label}</span>
         <span className="abyss-menu__arrow">
           <ChevronRightIcon />

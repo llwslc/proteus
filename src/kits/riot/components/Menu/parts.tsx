@@ -27,7 +27,7 @@ export function MenuItem({
       label={label ?? (typeof children === "string" ? children : undefined)}
       {...props}
     >
-      <span className="riot-menu__icon">{icon}</span>
+      {icon != null ? <span className="riot-menu__icon">{icon}</span> : null}
       <span className="riot-menu__label riot-list-item__text">{children}</span>
     </Menu.Item>
   );
@@ -49,7 +49,7 @@ export function MenuSub({
   return (
     <Menu.SubmenuRoot>
       <Menu.SubmenuTrigger className="riot-list-item riot-menu__item">
-        <span className="riot-menu__icon">{icon}</span>
+        {icon != null ? <span className="riot-menu__icon">{icon}</span> : null}
         <span className="riot-menu__label riot-list-item__text">{label}</span>
         <span className="riot-menu__arrow">
           <ChevronRightIcon />
