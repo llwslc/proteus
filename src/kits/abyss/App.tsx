@@ -1175,15 +1175,9 @@ function Demo() {
               <Panel title="Menu">
                 <div className="demo-row">
                   <Menu trigger="Rites">
-                    <MenuItem icon={<SearchIcon />} shortcut="⌘S">
-                      Sound the Deep
-                    </MenuItem>
-                    <MenuItem icon={<KeyIcon />} shortcut="⌘P">
-                      Mark a Bearing
-                    </MenuItem>
-                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                      Echo
-                    </MenuItem>
+                    <MenuItem icon={<SearchIcon />}>Sound the Deep</MenuItem>
+                    <MenuItem icon={<KeyIcon />}>Mark a Bearing</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Echo</MenuItem>
                     <MenuItem icon={<SignalIcon />} disabled>
                       Hail the Dark
                     </MenuItem>
@@ -1195,7 +1189,7 @@ function Demo() {
                     <MenuItem icon={<SignalIcon />}>Ping Sonar</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Log Bearing</MenuItem>
                     <MenuSeparator />
-                    <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
+                    <MenuItem icon={<TrashIcon />} tone="danger">
                       Cast Overboard
                     </MenuItem>
                   </Menu>
@@ -1237,12 +1231,8 @@ function Demo() {
               <Panel title="Menubar">
                 <Menubar>
                   <MenubarMenu label="Tome">
-                    <MenuItem icon={<KeyIcon />} shortcut="⌘N">
-                      New Rite
-                    </MenuItem>
-                    <MenuItem icon={<CopyIcon />} shortcut="⌘O">
-                      Open Codex
-                    </MenuItem>
+                    <MenuItem icon={<KeyIcon />}>New Rite</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Open Codex</MenuItem>
                     <MenuItem disabled>Forbidden Rite</MenuItem>
                     <MenuSeparator />
                     <MenuItem icon={<TrashIcon />} tone="danger">
@@ -1250,8 +1240,8 @@ function Demo() {
                     </MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Rite">
-                    <MenuItem shortcut="⌘Z">Undo</MenuItem>
-                    <MenuItem shortcut="⇧⌘Z">Redo</MenuItem>
+                    <MenuItem>Undo</MenuItem>
+                    <MenuItem>Redo</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Sight">
                     <MenuItem icon={<EyeIcon />}>Chart</MenuItem>
@@ -1309,8 +1299,8 @@ function Demo() {
                       </div>
                     }
                   >
-                    <MenuItem shortcut="⌘C">Mark Bearing</MenuItem>
-                    <MenuItem shortcut="⌘B">Sound Beacon</MenuItem>
+                    <MenuItem>Mark Bearing</MenuItem>
+                    <MenuItem>Sound Beacon</MenuItem>
                     <MenuItem disabled>Raise the Deep</MenuItem>
                     <MenuSeparator />
                     <MenuItem tone="danger">Banish Node</MenuItem>

@@ -21,12 +21,6 @@
   flex: 1;
   min-width: 0;
 }
-.riot-menu__shortcut {
-  flex: 0 0 auto;
-  font-family: var(--riot-font-mono);
-  font-size: var(--riot-fs-11);
-  color: var(--riot-text-dim);
-}
 .riot-menu__arrow {
   display: inline-flex;
   flex: 0 0 auto;
@@ -40,8 +34,7 @@
   --riot-marker-color: var(--riot-danger);
   color: var(--riot-text-bright);
 }
-.riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__icon,
-.riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__shortcut {
+.riot-menu__item--danger[data-highlighted]:not([data-disabled]) .riot-menu__icon {
   color: inherit;
 }
 

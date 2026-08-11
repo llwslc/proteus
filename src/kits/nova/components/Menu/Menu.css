@@ -19,9 +19,6 @@
 .nova-menu__item[data-highlighted]:not([data-disabled]) .nova-menu__icon {
   color: inherit;
 }
-.nova-menu__item[data-highlighted]:not([data-disabled]) .nova-menu__shortcut {
-  color: var(--nova-text-dim);
-}
 .nova-menu__item--danger,
 .nova-menu__item--danger .nova-menu__icon {
   color: var(--nova-danger);
@@ -46,19 +43,6 @@
 .nova-menu__label {
   flex: 1;
   white-space: nowrap;
-}
-.nova-menu__shortcut {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  flex: 0 0 auto;
-  margin-left: var(--nova-space-5);
-  padding: 1px 0.5em;
-  border: 1px solid var(--nova-line);
-  font-family: var(--nova-font-mono);
-  font-size: var(--nova-fs-12);
-  letter-spacing: var(--nova-ls-10);
-  color: var(--nova-text-mute);
 }
 .nova-menu__arrow {
   flex: 0 0 auto;

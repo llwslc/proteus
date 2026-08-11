@@ -6,13 +6,11 @@ import { ChevronRightIcon } from "../icons";
 
 export interface MenuItemProps extends ComponentProps<typeof BaseMenu.Item> {
   icon?: ReactNode;
-  shortcut?: ReactNode;
   tone?: "default" | "danger";
 }
 
 export function MenuItem({
   icon,
-  shortcut,
   tone = "default",
   className,
   children,
@@ -29,7 +27,6 @@ export function MenuItem({
     >
       {icon ? <span className="hanabi-menu__icon">{icon}</span> : null}
       <span className="hanabi-list-item__text">{children}</span>
-      {shortcut ? <span className="hanabi-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.Item>
   );
 }
@@ -74,14 +71,11 @@ export function MenuSub({
 
 export interface MenuCheckboxItemProps extends ComponentProps<
   typeof BaseMenu.CheckboxItem
-> {
-  shortcut?: ReactNode;
-}
+> {}
 
 export function MenuCheckboxItem({
   className,
   children,
-  shortcut,
   label,
   ...props
 }: MenuCheckboxItemProps) {
@@ -95,7 +89,6 @@ export function MenuCheckboxItem({
         ✦
       </BaseMenu.CheckboxItemIndicator>
       <span className="hanabi-list-item__text">{children}</span>
-      {shortcut ? <span className="hanabi-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.CheckboxItem>
   );
 }
@@ -104,14 +97,11 @@ export function MenuRadioGroup(props: ComponentProps<typeof BaseMenu.RadioGroup>
   return <BaseMenu.RadioGroup {...props} />;
 }
 
-export interface MenuRadioItemProps extends ComponentProps<typeof BaseMenu.RadioItem> {
-  shortcut?: ReactNode;
-}
+export interface MenuRadioItemProps extends ComponentProps<typeof BaseMenu.RadioItem> {}
 
 export function MenuRadioItem({
   className,
   children,
-  shortcut,
   label,
   ...props
 }: MenuRadioItemProps) {
@@ -125,7 +115,6 @@ export function MenuRadioItem({
         ✦
       </BaseMenu.RadioItemIndicator>
       <span className="hanabi-list-item__text">{children}</span>
-      {shortcut ? <span className="hanabi-menu__shortcut">{shortcut}</span> : null}
     </BaseMenu.RadioItem>
   );
 }

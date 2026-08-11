@@ -38,7 +38,7 @@
 - Tooltip：反色小牌——`ink` 墨蓝底 + `text-invert` 白字（fs-13）、`r-field` 圆角、无框线，connector 三角同 `ink` 填。
 - Popover：`surface` 面 + `ink` 框 + `shadow` 阶影带；title 做成骑左上角的 `primary` 斜切铭牌（正文 `fw-900` 白字、`shadow-sm`），铭牌压 connector 之上（窄屏三角挪到左上不切牌），close 复用 icon-ghost，body 右退 `space-7` 让开 close。
 - PreviewCard：皮同 Popover（无题牌）。
-- Menu：列表项皮肤复用 Select；图标 `text-dim` 随高亮转同行文字色；快捷键 DotGothic16 `text-mute`、随高亮升 `text-dim`，靠右；子菜单 chevron ▸；danger 项红字红图标、高亮盖 `danger-wash`（换色走 `--hanabi-item-color`）。
+- Menu：列表项皮肤复用 Select；图标 `text-dim` 随高亮转同行文字色；子菜单 chevron ▸；danger 项红字红图标、高亮盖 `danger-wash`（换色走 `--hanabi-item-color`）。
 - Menubar：chip 同 ToggleGroup；菜单弹层复用 Menu 皮。
 - NavigationMenu：触发器 chip 同 ToggleGroup 未选态、chevron 随开合翻转；下拉 = `surface` 面 + `ink` 框 + `shadow`，connector 三角指向激活触发器、随 morph 移动；链接 = `r-chip` 行，label 正文 `fw-700` + 描述 `text-dim` fs-13，悬停盖 wash；morph 接 Base UI 尺寸变量。
 - ContextMenu：菜单皮复用 Menu。

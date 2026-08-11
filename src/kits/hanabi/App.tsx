@@ -1014,15 +1014,9 @@ function Demo() {
               <Panel title="Menu">
                 <div className="hanabi-row">
                   <Menu trigger="アクション">
-                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                      複製
-                    </MenuItem>
-                    <MenuItem icon={<TargetIcon />} shortcut="⌘L">
-                      索敵
-                    </MenuItem>
-                    <MenuItem icon={<FireworkIcon />} shortcut="⌘R">
-                      散開
-                    </MenuItem>
+                    <MenuItem icon={<CopyIcon />}>複製</MenuItem>
+                    <MenuItem icon={<TargetIcon />}>索敵</MenuItem>
+                    <MenuItem icon={<FireworkIcon />}>散開</MenuItem>
                     <MenuItem icon={<XIcon />} disabled>
                       ラスタライズ
                     </MenuItem>
@@ -1034,7 +1028,7 @@ function Demo() {
                     <MenuItem icon={<BoltIcon />}>輪郭を描線化</MenuItem>
                     <MenuItem icon={<CopyIcon />}>セルを結合</MenuItem>
                     <MenuSeparator />
-                    <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
+                    <MenuItem icon={<TrashIcon />} tone="danger">
                       削除
                     </MenuItem>
                   </Menu>
@@ -1082,8 +1076,8 @@ function Demo() {
                     <MenuItem tone="danger">除名</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="配置">
-                    <MenuItem shortcut="⌘]">前へ出す</MenuItem>
-                    <MenuItem shortcut="⌘[">後ろへ下げる</MenuItem>
+                    <MenuItem>前へ出す</MenuItem>
+                    <MenuItem>後ろへ下げる</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="整列">
                     <MenuItem>左端に寄せる</MenuItem>
@@ -1137,8 +1131,8 @@ function Demo() {
                       </div>
                     }
                   >
-                    <MenuItem shortcut="⌘I">偵察</MenuItem>
-                    <MenuItem shortcut="⌘D">複製</MenuItem>
+                    <MenuItem>偵察</MenuItem>
+                    <MenuItem>複製</MenuItem>
                     <MenuItem disabled>増援要請</MenuItem>
                     <MenuSeparator />
                     <MenuItem tone="danger">削除</MenuItem>

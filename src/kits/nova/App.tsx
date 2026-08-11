@@ -1076,15 +1076,9 @@ function Demo() {
               <Panel title="Menu">
                 <div className="demo-row">
                   <Menu trigger="Actions">
-                    <MenuItem icon={<SearchIcon />} shortcut="⌘S">
-                      Scan Sector
-                    </MenuItem>
-                    <MenuItem icon={<BoltIcon />} shortcut="⌘P">
-                      Plot Course
-                    </MenuItem>
-                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                      Duplicate
-                    </MenuItem>
+                    <MenuItem icon={<SearchIcon />}>Scan Sector</MenuItem>
+                    <MenuItem icon={<BoltIcon />}>Plot Course</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Duplicate</MenuItem>
                     <MenuItem icon={<SignalIcon />} disabled>
                       Hail Vessel
                     </MenuItem>
@@ -1096,7 +1090,7 @@ function Demo() {
                     <MenuItem icon={<SignalIcon />}>Map Nebula</MenuItem>
                     <MenuItem icon={<CopyIcon />}>Clone Manifest</MenuItem>
                     <MenuSeparator />
-                    <MenuItem icon={<TrashIcon />} shortcut="⌘⌫" tone="danger">
+                    <MenuItem icon={<TrashIcon />} tone="danger">
                       Jettison Cargo
                     </MenuItem>
                   </Menu>
@@ -1138,12 +1132,8 @@ function Demo() {
               <Panel title="Menubar">
                 <Menubar>
                   <MenubarMenu label="File">
-                    <MenuItem icon={<BoltIcon />} shortcut="⌘N">
-                      New Mission
-                    </MenuItem>
-                    <MenuItem icon={<CopyIcon />} shortcut="⌘O">
-                      Open Log
-                    </MenuItem>
+                    <MenuItem icon={<BoltIcon />}>New Mission</MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Open Log</MenuItem>
                     <MenuItem disabled>Black Box</MenuItem>
                     <MenuSeparator />
                     <MenuItem icon={<TrashIcon />} tone="danger">
@@ -1151,8 +1141,8 @@ function Demo() {
                     </MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Edit">
-                    <MenuItem shortcut="⌘Z">Undo</MenuItem>
-                    <MenuItem shortcut="⇧⌘Z">Redo</MenuItem>
+                    <MenuItem>Undo</MenuItem>
+                    <MenuItem>Redo</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="View">
                     <MenuItem icon={<SearchIcon />}>Map</MenuItem>
@@ -1210,8 +1200,8 @@ function Demo() {
                       </div>
                     }
                   >
-                    <MenuItem shortcut="⌘C">Copy Coordinates</MenuItem>
-                    <MenuItem shortcut="⌘B">Ping Beacon</MenuItem>
+                    <MenuItem>Copy Coordinates</MenuItem>
+                    <MenuItem>Ping Beacon</MenuItem>
                     <MenuItem disabled>Decrypt</MenuItem>
                     <MenuSeparator />
                     <MenuItem tone="danger">Purge Node</MenuItem>

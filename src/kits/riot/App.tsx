@@ -999,15 +999,9 @@ function Demo() {
               <Panel tilt={4} title="Menu" tape="tr">
                 <div className="riot-row">
                   <Menu trigger="Actions">
-                    <MenuItem icon={<CopyIcon />} shortcut="⌘D">
-                      Duplicate
-                    </MenuItem>
-                    <MenuItem icon={<Scissors />} shortcut="⌘X">
-                      Cut out
-                    </MenuItem>
-                    <MenuItem icon={<Dot />} shortcut="⌘R">
-                      Distribute
-                    </MenuItem>
+                    <MenuItem icon={<CopyIcon />}>Duplicate</MenuItem>
+                    <MenuItem icon={<Scissors />}>Cut out</MenuItem>
+                    <MenuItem icon={<Dot />}>Distribute</MenuItem>
                     <MenuItem icon={<Square />} disabled>
                       Rasterize
                     </MenuItem>
@@ -1019,7 +1013,7 @@ function Demo() {
                     <MenuItem icon={<Dot />}>Lock layer</MenuItem>
                     <MenuItem icon={<Triangle />}>Rotate 90°</MenuItem>
                     <MenuSeparator />
-                    <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
+                    <MenuItem icon={<Close />} tone="danger">
                       Delete
                     </MenuItem>
                   </Menu>
@@ -1067,8 +1061,8 @@ function Demo() {
                     <MenuItem tone="danger">Shred</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Paste">
-                    <MenuItem shortcut="⌘]">Bring front</MenuItem>
-                    <MenuItem shortcut="⌘[">Send back</MenuItem>
+                    <MenuItem>Bring front</MenuItem>
+                    <MenuItem>Send back</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Print">
                     <MenuItem>One copy</MenuItem>
@@ -1124,8 +1118,8 @@ function Demo() {
                       </div>
                     }
                   >
-                    <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                    <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                    <MenuItem>Inspect</MenuItem>
+                    <MenuItem>Duplicate</MenuItem>
                     <MenuItem disabled>Rip down</MenuItem>
                     <MenuSeparator />
                     <MenuItem tone="danger">Delete</MenuItem>

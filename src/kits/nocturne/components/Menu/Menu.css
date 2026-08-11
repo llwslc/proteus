@@ -25,13 +25,6 @@
   color: inherit;
 }
 
-.nocturne-menu__shortcut {
-  flex: none;
-  font-family: var(--nocturne-font-mono);
-  font-size: var(--nocturne-fs-12);
-  color: var(--nocturne-text-mute);
-}
-
 .nocturne-menu__chevron {
   flex: none;
   display: inline-grid;

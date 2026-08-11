@@ -1204,15 +1204,9 @@ function Demo() {
               <Panel title="Menu">
                 <div className="nocturne-row">
                   <Menu trigger="Garden">
-                    <MenuItem icon={<LampIcon />} shortcut="⌘L">
-                      Light the lamp room
-                    </MenuItem>
-                    <MenuItem icon={<QuillIcon />} shortcut="⌘R">
-                      Register a sprout
-                    </MenuItem>
-                    <MenuItem icon={<DropIcon />} shortcut="⌘G">
-                      Gather dew
-                    </MenuItem>
+                    <MenuItem icon={<LampIcon />}>Light the lamp room</MenuItem>
+                    <MenuItem icon={<QuillIcon />}>Register a sprout</MenuItem>
+                    <MenuItem icon={<DropIcon />}>Gather dew</MenuItem>
                     <MenuItem icon={<SealIcon />} disabled>
                       Press the seal
                     </MenuItem>
@@ -1224,7 +1218,7 @@ function Demo() {
                     <MenuItem icon={<KeyIcon />}>Check the gate</MenuItem>
                     <MenuItem icon={<ClockIcon />}>Call the hour</MenuItem>
                     <MenuSeparator />
-                    <MenuItem icon={<XIcon />} shortcut="⌘⌫" tone="danger">
+                    <MenuItem icon={<XIcon />} tone="danger">
                       Uproot
                     </MenuItem>
                   </Menu>
@@ -1272,8 +1266,8 @@ function Demo() {
                     <MenuItem tone="danger">Tear out a leaf</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Lamps">
-                    <MenuItem shortcut="⌘↑">Raise the flames</MenuItem>
-                    <MenuItem shortcut="⌘↓">Lower the flames</MenuItem>
+                    <MenuItem>Raise the flames</MenuItem>
+                    <MenuItem>Lower the flames</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Garden">
                     <MenuItem>Open the gates</MenuItem>
@@ -1329,8 +1323,8 @@ function Demo() {
                       </div>
                     }
                   >
-                    <MenuItem shortcut="⌘I">Inspect the bloom</MenuItem>
-                    <MenuItem shortcut="⌘D">Copy the entry</MenuItem>
+                    <MenuItem>Inspect the bloom</MenuItem>
+                    <MenuItem>Copy the entry</MenuItem>
                     <MenuItem disabled>Call for aid</MenuItem>
                     <MenuSeparator />
                     <MenuItem tone="danger">Uproot</MenuItem>

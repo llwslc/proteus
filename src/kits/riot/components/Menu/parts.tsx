@@ -6,7 +6,6 @@ import { CheckIcon, ChevronRightIcon } from "../icons";
 
 export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
   icon?: ReactNode;
-  shortcut?: ReactNode;
   tone?: "default" | "danger";
 }
 
@@ -14,7 +13,6 @@ export function MenuItem({
   className,
   children,
   icon,
-  shortcut,
   tone = "default",
   label,
   ...props
@@ -31,7 +29,6 @@ export function MenuItem({
     >
       <span className="riot-menu__icon">{icon}</span>
       <span className="riot-menu__label riot-list-item__text">{children}</span>
-      {shortcut ? <kbd className="riot-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.Item>
   );
 }
@@ -76,14 +73,11 @@ export function MenuSub({
 
 export interface MenuCheckboxItemProps extends React.ComponentProps<
   typeof Menu.CheckboxItem
-> {
-  shortcut?: ReactNode;
-}
+> {}
 
 export function MenuCheckboxItem({
   className,
   children,
-  shortcut,
   label,
   ...props
 }: MenuCheckboxItemProps) {
@@ -97,7 +91,6 @@ export function MenuCheckboxItem({
         <CheckIcon />
       </Menu.CheckboxItemIndicator>
       <span className="riot-menu__label riot-list-item__text">{children}</span>
-      {shortcut ? <kbd className="riot-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.CheckboxItem>
   );
 }
@@ -106,14 +99,11 @@ export function MenuRadioGroup(props: React.ComponentProps<typeof Menu.RadioGrou
   return <Menu.RadioGroup {...props} />;
 }
 
-export interface MenuRadioItemProps extends React.ComponentProps<typeof Menu.RadioItem> {
-  shortcut?: ReactNode;
-}
+export interface MenuRadioItemProps extends React.ComponentProps<typeof Menu.RadioItem> {}
 
 export function MenuRadioItem({
   className,
   children,
-  shortcut,
   label,
   ...props
 }: MenuRadioItemProps) {
@@ -127,7 +117,6 @@ export function MenuRadioItem({
         <CheckIcon />
       </Menu.RadioItemIndicator>
       <span className="riot-menu__label riot-list-item__text">{children}</span>
-      {shortcut ? <kbd className="riot-menu__shortcut">{shortcut}</kbd> : null}
     </Menu.RadioItem>
   );
 }

@@ -38,7 +38,7 @@
 - Tooltip：小夜牌——`surface-pop` 丝绒面 + `gilt-50` 框 + 菱形棱尖，`fs-12` `text` 字。
 - Popover：`surface-pop` 丝绒面 + `gilt-50` 框 + 棱尖；title = h3 + 底发丝线；close icon-ghost 右上。
 - PreviewCard：皮同 Popover、无题行。
-- Menu：行 = 图标 `text-mute` + label + 快捷键 mono `text-mute` 靠右 + 子菜单 chevron；高亮酒红行扫、图标随行转 `text-bright`；danger 行见 §1 危险态（行扫换色走 `--nocturne-item-sweep`）。
+- Menu：行 = 图标 `text-mute` + label + 子菜单 chevron；高亮酒红行扫、图标随行转 `text-bright`；danger 行见 §1 危险态（行扫换色走 `--nocturne-item-sweep`）。
 - Menubar：触发 chip 同 ToggleGroup；弹层复用 Menu 皮。
 - NavigationMenu：触发 chip 同 Menubar、chevron 开态翻转；下拉两列，link = 衬线 label + `text-mute` `fs-12` 描述，悬停酒红行扫；菱形棱尖随 morph 移动。
 - ContextMenu：复用 Menu 皮。

@@ -6,7 +6,6 @@ import { Check, ChevronRight } from "../icons";
 
 export interface MenuItemProps extends React.ComponentProps<typeof Menu.Item> {
   icon?: ReactNode;
-  shortcut?: ReactNode;
   tone?: "default" | "danger";
 }
 
@@ -14,7 +13,6 @@ export function MenuItem({
   className,
   children,
   icon,
-  shortcut,
   tone = "default",
   label,
   ...props
@@ -31,7 +29,6 @@ export function MenuItem({
     >
       {icon && <span className="brass-menu__icon">{icon}</span>}
       <span className="brass-list-item__text">{children}</span>
-      {shortcut && <span className="brass-menu__shortcut">{shortcut}</span>}
     </Menu.Item>
   );
 }
@@ -74,14 +71,11 @@ export function MenuSub({
 
 export interface MenuCheckboxItemProps extends React.ComponentProps<
   typeof Menu.CheckboxItem
-> {
-  shortcut?: ReactNode;
-}
+> {}
 
 export function MenuCheckboxItem({
   className,
   children,
-  shortcut,
   label,
   ...props
 }: MenuCheckboxItemProps) {
@@ -95,7 +89,6 @@ export function MenuCheckboxItem({
         <Check />
       </Menu.CheckboxItemIndicator>
       <span className="brass-list-item__text">{children}</span>
-      {shortcut ? <span className="brass-menu__shortcut">{shortcut}</span> : null}
     </Menu.CheckboxItem>
   );
 }
@@ -104,14 +97,11 @@ export function MenuRadioGroup(props: React.ComponentProps<typeof Menu.RadioGrou
   return <Menu.RadioGroup {...props} />;
 }
 
-export interface MenuRadioItemProps extends React.ComponentProps<typeof Menu.RadioItem> {
-  shortcut?: ReactNode;
-}
+export interface MenuRadioItemProps extends React.ComponentProps<typeof Menu.RadioItem> {}
 
 export function MenuRadioItem({
   className,
   children,
-  shortcut,
   label,
   ...props
 }: MenuRadioItemProps) {
@@ -125,7 +115,6 @@ export function MenuRadioItem({
         <Check />
       </Menu.RadioItemIndicator>
       <span className="brass-list-item__text">{children}</span>
-      {shortcut ? <span className="brass-menu__shortcut">{shortcut}</span> : null}
     </Menu.RadioItem>
   );
 }

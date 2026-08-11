@@ -24,17 +24,6 @@
   font-size: var(--prism-fs-18);
   color: var(--prism-text-dim);
 }
-.prism-menu__shortcut {
-  flex: 0 0 auto;
-  margin-left: var(--prism-space-4);
-  font-family: var(--prism-font-mono);
-  font-size: var(--prism-fs-11);
-  letter-spacing: var(--prism-ls-2);
-  color: var(--prism-text-mute);
-}
-.prism-list-item[data-highlighted]:not([data-disabled]) .prism-menu__shortcut {
-  color: var(--prism-text-dim);
-}
 .prism-list-item[data-highlighted]:not([data-disabled]) .prism-menu__icon {
   color: inherit;
 }

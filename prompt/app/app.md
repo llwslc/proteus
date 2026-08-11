@@ -84,10 +84,10 @@
 - tooltip：一行 4 个 Tooltip，各裹一个 `ghost` Button，side 依次 top、bottom、left、right。
 - popover：一个 Popover，trigger = `ghost` Button，内容 = 标题 + 一段正文。
 - preview：「caption + 内联文本」内嵌 PreviewCard，trigger 为内联链接；卡片 = Avatar（图片、status online）+ 名 + handle + 一段简介 + 一行 2 个 Badge（`primary` 带 dot、`neutral`）。
-- menu：三个 Menu 并排一行、随宽换行，trigger 均为 `ghost` Button（内联标签 + 翻转 chevron）；菜单里的勾选项与单选组由页面持有状态（受控），关掉重开保持选择——① 12 个 MenuItem + 1 个 MenuSeparator，全部带图标，前 3 项带快捷键，第 4 项 `disabled`，分隔后末项 `tone="danger"` 且带快捷键；② 1 个 MenuRadioGroup，3 个 MenuRadioItem，`defaultValue` 取首个；③ 3 个 MenuCheckboxItem，前两个 `defaultChecked`。
-- menubar：3 个菜单 —— ① 2 项 + 1 个 `disabled` 项 + 分隔 + 1 个 `danger` 项；② 2 项（带快捷键）；③ 2 项 + 1 个子菜单，子菜单 = 1 个 MenuRadioGroup（3 个 MenuRadioItem，`defaultValue` 取首个）+ 分隔 + 3 个 MenuCheckboxItem（前两个 `defaultChecked`）。
+- menu：三个 Menu 并排一行、随宽换行，trigger 均为 `ghost` Button（内联标签 + 翻转 chevron）；菜单里的勾选项与单选组由页面持有状态（受控），关掉重开保持选择——① 12 个 MenuItem + 1 个 MenuSeparator，全部带图标，第 4 项 `disabled`，分隔后末项 `tone="danger"`；② 1 个 MenuRadioGroup，3 个 MenuRadioItem，`defaultValue` 取首个；③ 3 个 MenuCheckboxItem，前两个 `defaultChecked`。
+- menubar：3 个菜单 —— ① 2 项 + 1 个 `disabled` 项 + 分隔 + 1 个 `danger` 项；② 2 项；③ 2 项 + 1 个子菜单，子菜单 = 1 个 MenuRadioGroup（3 个 MenuRadioItem，`defaultValue` 取首个）+ 分隔 + 3 个 MenuCheckboxItem（前两个 `defaultChecked`）。
 - navmenu：与顶栏主导航同数据 —— 4 个条目：2 个下拉组各 4 条链接（label + 描述）、1 个纯链接，加 1 个 `disabled` 下拉组（1 条链接）。
-- context：trigger = 文本投放区（`min-height` `132px`、各 kit 同值）；4 个 MenuItem + 1 分隔，前 2 带快捷键，第 3 项 `disabled`，分隔后末项 `danger`。
+- context：trigger = 文本投放区（`min-height` `132px`、各 kit 同值）；4 个 MenuItem + 1 分隔，第 3 项 `disabled`，分隔后末项 `danger`。
 - dialog：trigger = `secondary` Button；内容 = 标题 + 描述 + 一行正文 + 页脚 2 个 DialogClose（默认、`secondary`）。
 - alert：一行 3 个 `ghost` Button，依次弹 `danger`、`warning`、`primary` 三种 tone 的 AlertDialog；每个 = 标题 + 描述 + actions 2 个 AlertDialogClose（取消 + 确认）。
 - drawer：四个 `ghost` Button 排一行，各弹一个方向的 drawer，side 依次 top、bottom、left、right；每个体内 = 2 行「caption + Switch」（首行默认开）+ 1 个 Slider（值 50）+ 页脚 1 个 DrawerClose（`secondary`）。

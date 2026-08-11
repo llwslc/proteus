@@ -986,15 +986,9 @@ function Demo() {
               <Panel title="Menu">
                 <div className="prism-row">
                   <Menu trigger="Actions">
-                    <MenuItem icon={<Copy />} shortcut="⌘D">
-                      Duplicate
-                    </MenuItem>
-                    <MenuItem icon={<Grid />} shortcut="⌘L">
-                      Align to grid
-                    </MenuItem>
-                    <MenuItem icon={<Dot />} shortcut="⌘R">
-                      Distribute
-                    </MenuItem>
+                    <MenuItem icon={<Copy />}>Duplicate</MenuItem>
+                    <MenuItem icon={<Grid />}>Align to grid</MenuItem>
+                    <MenuItem icon={<Dot />}>Distribute</MenuItem>
                     <MenuItem icon={<Square />} disabled>
                       Rasterize
                     </MenuItem>
@@ -1006,7 +1000,7 @@ function Demo() {
                     <MenuItem icon={<Arc />}>Outline stroke</MenuItem>
                     <MenuItem icon={<Copy />}>Merge shapes</MenuItem>
                     <MenuSeparator />
-                    <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
+                    <MenuItem icon={<Close />} tone="danger">
                       Delete
                     </MenuItem>
                   </Menu>
@@ -1054,8 +1048,8 @@ function Demo() {
                     <MenuItem tone="danger">Delete</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Arrange">
-                    <MenuItem shortcut="⌘]">Bring front</MenuItem>
-                    <MenuItem shortcut="⌘[">Send back</MenuItem>
+                    <MenuItem>Bring front</MenuItem>
+                    <MenuItem>Send back</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Align">
                     <MenuItem>Left edge</MenuItem>
@@ -1111,8 +1105,8 @@ function Demo() {
                       </div>
                     }
                   >
-                    <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                    <MenuItem shortcut="⌘D">Duplicate</MenuItem>
+                    <MenuItem>Inspect</MenuItem>
+                    <MenuItem>Duplicate</MenuItem>
                     <MenuItem disabled>Detach</MenuItem>
                     <MenuSeparator />
                     <MenuItem tone="danger">Delete</MenuItem>

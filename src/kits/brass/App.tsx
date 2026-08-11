@@ -975,15 +975,9 @@ function Demo() {
               <Panel title="Menu">
                 <div className="brass-row">
                   <Menu trigger="Actions">
-                    <MenuItem icon={<Bolt />} shortcut="⌘E">
-                      Stoke firebox
-                    </MenuItem>
-                    <MenuItem icon={<Gauge />} shortcut="⌘R">
-                      Read gauges
-                    </MenuItem>
-                    <MenuItem icon={<Valve />} shortcut="⌘B">
-                      Blow down
-                    </MenuItem>
+                    <MenuItem icon={<Bolt />}>Stoke firebox</MenuItem>
+                    <MenuItem icon={<Gauge />}>Read gauges</MenuItem>
+                    <MenuItem icon={<Valve />}>Blow down</MenuItem>
                     <MenuItem icon={<Gear />} disabled>
                       Calibrate
                     </MenuItem>
@@ -995,7 +989,7 @@ function Demo() {
                     <MenuItem icon={<Gauge />}>Log pressure</MenuItem>
                     <MenuItem icon={<Copy />}>Duplicate run</MenuItem>
                     <MenuSeparator />
-                    <MenuItem icon={<Close />} shortcut="⌘⌫" tone="danger">
+                    <MenuItem icon={<Close />} tone="danger">
                       Shut down
                     </MenuItem>
                   </Menu>
@@ -1043,8 +1037,8 @@ function Demo() {
                     <MenuItem tone="danger">Shut down</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Gauges">
-                    <MenuItem shortcut="⌘C">Calibrate</MenuItem>
-                    <MenuItem shortcut="⌘0">Reset</MenuItem>
+                    <MenuItem>Calibrate</MenuItem>
+                    <MenuItem>Reset</MenuItem>
                   </MenubarMenu>
                   <MenubarMenu label="Telegraph">
                     <MenuItem>Ahead</MenuItem>
@@ -1100,8 +1094,8 @@ function Demo() {
                       </div>
                     }
                   >
-                    <MenuItem shortcut="⌘I">Inspect</MenuItem>
-                    <MenuItem shortcut="⌘L">Lubricate</MenuItem>
+                    <MenuItem>Inspect</MenuItem>
+                    <MenuItem>Lubricate</MenuItem>
                     <MenuItem disabled>Overhaul</MenuItem>
                     <MenuSeparator />
                     <MenuItem tone="danger">Decommission</MenuItem>
