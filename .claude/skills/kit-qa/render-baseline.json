@@ -289,8 +289,8 @@
    "otp": "27c7d02bf090",
    "fieldset": "869449ff71ba",
    "form": "95c61b8a9ce1",
-   "progress": "292bc3702e23",
-   "meter": "24832c37e93d",
+   "progress": "0445f7410895",
+   "meter": "625b27cbafeb",
    "tabs": "82bc140206bc",
    "accordion": "3ffaa4b6c42a",
    "collapsible": "0526989f69cd",
@@ -311,8 +311,8 @@
    "scroll": "5c50dd611422",
    "typography": "d4284ab09521",
    "separator": "451451a61ab3",
-   "panel": "c69869dd70d5",
-   "loader": "8d97b4540071"
+   "panel": "b3c33751dd71",
+   "loader": "5119f9fdb277"
   },
   "phone": {
    "__header": "39d26c5f8341",
@@ -334,7 +334,7 @@
    "fieldset": "1af81fce7d97",
    "form": "c1be4d5fd3f6",
    "progress": "cef252709e27",
-   "meter": "9fa7b5b784d9",
+   "meter": "b0a8801547cc",
    "tabs": "ca948f0ac9d7",
    "accordion": "683aa06f5271",
    "collapsible": "c5d804761f10",
@@ -355,8 +355,8 @@
    "scroll": "6f3c7ae320ed",
    "typography": "1a7a2d2a6aa4",
    "separator": "3f847fdfe89f",
-   "panel": "e7b675fb786d",
-   "loader": "31d2b9c92260"
+   "panel": "86de4dd8650a",
+   "loader": "3d1a86640090"
   }
  },
  "nova": {

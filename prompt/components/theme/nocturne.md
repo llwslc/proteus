@@ -31,7 +31,7 @@
 - Fieldset：legend 走 `.nocturne-cap`，尾接一条延伸到框尾的 `gilt` 渐变发丝线；体竖排。
 - Form：竖排 `space-4`。
 - Progress：酒红注液——6px 暗渠（1px `gilt-30` 框 + `surface-inset` 底）满高注入酒红填充（`primary-shadow`→`primary-deep`→`primary`，`primary-50` 幽辉），不设任何端记号。数值 mono `text-dim`；不定态 = 酒红短条 `nocturne-sweep` 单向扫掠。
-- Meter：月相盈亏——不设轨，Track 是一枚 `meter-dial` 月盘（`moon-face` 满月打底 + 1px 环 + `track-shadow`），Indicator 只作量宽载体，其上一枚与盘同径的 `moon-shade` 夜影圆锚在载体右缘、随值右移出盘——明暗界线是圆弧、同 Radio 的月相画法，值即亮面占比；`tone` 只染盘环与外辉（primary `gilt-30`／`glow-12`，success、warning、danger 各取本家色与 30 档 alpha），不动月面。head 在盘上方，数值 mono `text-dim` 靠右。
+- Meter：黄铜气压计——`meter-gauge-w` 半圆刻度盘居左：底弧 `gilt-30`、值弧染 tone（Indicator 承载，`stroke-dashoffset` 随值，`glow-12` 弧辉），`gilt-bright` 指针自左端扫向值位、`gilt` 中轴钉；右侧铭牌以 1px `gilt-30` 竖线钉在盘边，label 在上、mono `fs-24` 大数字在下随 tone 同染（primary 取 `primary-bright` 亮档保读）。
 - Tabs：页签压黄铜书线——通栏底线 1px `gilt-30`（双盒横滚），tab 衬线 `ls-2` 字，hover 转 `text`，选中 `gilt-bright`；指示 = 2px `gilt` 两端隐没渐变线随 `--active-tab-*` 滑移压住底线。
 - Accordion：折叠配方——marker = 月相（定宽）：合上 1px `gilt` 细环月轮、展开满月实填 + `glow-40` 幽光；title 衬线 `fw-600`、开态升 `gilt-bright`；chevron `gilt` 开态翻转；行 hover 盖 `gilt-10`；panel 高度过渡 `dur`。
 - Collapsible：复用折叠配方，独立件自带 1px `gilt-30` 行框。

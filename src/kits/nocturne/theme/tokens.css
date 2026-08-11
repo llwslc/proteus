@@ -32,8 +32,6 @@
   --nocturne-danger: #d66a76;
   --nocturne-danger-deep: #8c2735;
   --nocturne-danger-50: rgba(140, 39, 53, 0.5);
-  --nocturne-success-30: rgba(157, 187, 122, 0.3);
-  --nocturne-warning-30: rgba(224, 135, 58, 0.3);
   --nocturne-danger-12: rgba(140, 39, 53, 0.12);
 
   --nocturne-text: #efe6d8;
@@ -185,6 +183,7 @@
   --nocturne-chip-input-min-w: 60px;
   --nocturne-slider-v-h: 160px;
   --nocturne-slider-v-w: 74px;
+  --nocturne-meter-gauge-w: 64px;
   --nocturne-button-h-sm: 32px;
   --nocturne-button-h-lg: 48px;
   --nocturne-checkbox-box: 24px;
@@ -193,7 +192,6 @@
   --nocturne-switch-h: 36px;
   --nocturne-track-h: 6px;
   --nocturne-thumb-bloom: 34px;
-  --nocturne-meter-dial: 40px;
   --nocturne-otp-cell-w: 40px;
   --nocturne-otp-cell-w-sm: 34px;
   --nocturne-avatar-sm: 28px;
