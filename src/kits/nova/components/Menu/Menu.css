@@ -84,7 +84,17 @@
 }
 
 .nova-menu__row {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.nova-menu__row > * {
+  justify-content: center;
+}
+
+.nova-menu__row .nova-menu__label {
+  flex: none;
 }
 
 .nova-menu__row > * + * {

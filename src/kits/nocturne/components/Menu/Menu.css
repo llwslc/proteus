@@ -61,7 +61,17 @@
 }
 
 .nocturne-menu__row {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.nocturne-menu__row > * {
+  justify-content: center;
+}
+
+.nocturne-menu__row .nocturne-list-item__text {
+  flex: none;
 }
 
 .nocturne-menu__row > * + * {
