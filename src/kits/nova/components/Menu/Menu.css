@@ -87,6 +87,10 @@
   display: flex;
 }
 
+.nova-menu__row > * + * {
+  border-left: 1px solid var(--nova-line-strong);
+}
+
 .nova-menu--horizontal {
   min-width: 0;
 }

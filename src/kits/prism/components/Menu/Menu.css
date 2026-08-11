@@ -62,6 +62,10 @@
   display: flex;
 }
 
+.prism-menu__row > * + * {
+  border-left: 1px solid var(--prism-ink);
+}
+
 .prism-menu--horizontal {
   min-width: 0;
 }

@@ -59,6 +59,10 @@
   display: flex;
 }
 
+.hanabi-menu__row > * + * {
+  border-left: var(--hanabi-line-w) dashed var(--hanabi-tone);
+}
+
 .hanabi-menu--horizontal {
   min-width: 0;
 }

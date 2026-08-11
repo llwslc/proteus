@@ -129,6 +129,10 @@
   display: flex;
 }
 
+.abyss-menu__row > * + * {
+  border-left: 1px solid var(--abyss-ink-strong);
+}
+
 .abyss-menu--horizontal {
   min-width: 0;
 }

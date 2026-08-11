@@ -53,6 +53,10 @@
   display: flex;
 }
 
+.riot-menu__row > * + * {
+  border-left: 1px solid var(--riot-ink);
+}
+
 .riot-menu--horizontal {
   min-width: 0;
 }
