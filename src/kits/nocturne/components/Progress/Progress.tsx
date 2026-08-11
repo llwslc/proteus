@@ -49,7 +49,6 @@ export function Progress({
                 r={12}
                 coreDots={5}
                 mode="state"
-                bud
                 openExpr="var(--nocturne-seal-open)"
               />
             </svg>

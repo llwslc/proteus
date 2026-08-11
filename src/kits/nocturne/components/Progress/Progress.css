@@ -26,24 +26,14 @@
 .nocturne-progress__indicator {
   position: relative;
   height: 100%;
-  transition: width var(--nocturne-dur-fast) linear;
-}
-
-.nocturne-progress__indicator::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0;
-  left: 0;
-  height: 2px;
-  translate: 0 -50%;
   background: linear-gradient(
     90deg,
-    var(--nocturne-gilt-dim),
-    var(--nocturne-gilt) 55%,
-    var(--nocturne-gilt-bright)
+    var(--nocturne-primary-shadow),
+    var(--nocturne-primary-deep) 60%,
+    var(--nocturne-primary)
   );
-  box-shadow: 0 0 10px var(--nocturne-glow-12);
+  box-shadow: 0 0 12px var(--nocturne-primary-50);
+  transition: width var(--nocturne-dur-fast) linear;
 }
 
 .nocturne-progress__seal {
@@ -54,23 +44,16 @@
   height: var(--nocturne-progress-seal);
   translate: 50% -50%;
   pointer-events: none;
+  opacity: 0;
   --nocturne-seal-open: 0.1;
   --nocturne-bloom-core: 0;
-}
-
-.nocturne-progress__seal .nocturne-bloom__bud {
-  --nocturne-bloom-bud: 1;
-  opacity: 1;
+  transition: opacity var(--nocturne-dur-pop) var(--nocturne-ease);
 }
 
 .nocturne-progress[data-complete] .nocturne-progress__seal {
+  opacity: 1;
   --nocturne-seal-open: 1;
   --nocturne-bloom-core: 1;
-}
-
-.nocturne-progress[data-complete] .nocturne-progress__seal .nocturne-bloom__bud {
-  --nocturne-bloom-bud: 0.16;
-  opacity: 0;
 }
 
 .nocturne-progress__bloom {
@@ -78,10 +61,6 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: var(--nocturne-drop-mark);
-}
-
-.nocturne-progress[data-complete] .nocturne-progress__bloom {
   filter: var(--nocturne-drop-mark) drop-shadow(0 0 9px var(--nocturne-glow-40));
 }
 
