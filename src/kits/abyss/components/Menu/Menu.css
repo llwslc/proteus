@@ -126,24 +126,7 @@
 }
 
 .abyss-menu__row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-}
-
-.abyss-menu__row > * {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-}
-
-.abyss-menu__row .abyss-menu__icon {
-  grid-column: 1;
-  justify-self: end;
-}
-
-.abyss-menu__row .abyss-menu__label {
-  grid-column: 2;
+  display: flex;
 }
 
 .abyss-menu__row > * + * {

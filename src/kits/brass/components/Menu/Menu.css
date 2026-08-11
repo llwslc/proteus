@@ -49,24 +49,7 @@
 }
 
 .brass-menu__row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-}
-
-.brass-menu__row > * {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-}
-
-.brass-menu__row .brass-menu__icon {
-  grid-column: 1;
-  justify-self: end;
-}
-
-.brass-menu__row .brass-list-item__text {
-  grid-column: 2;
+  display: flex;
 }
 
 .brass-menu__row > * + * {

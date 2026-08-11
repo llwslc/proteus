@@ -50,24 +50,7 @@
 }
 
 .riot-menu__row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-}
-
-.riot-menu__row > * {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-}
-
-.riot-menu__row .riot-menu__icon {
-  grid-column: 1;
-  justify-self: end;
-}
-
-.riot-menu__row .riot-menu__label {
-  grid-column: 2;
+  display: flex;
 }
 
 .riot-menu__row > * + * {

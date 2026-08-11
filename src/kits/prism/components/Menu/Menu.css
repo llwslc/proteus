@@ -59,24 +59,7 @@
 }
 
 .prism-menu__row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-}
-
-.prism-menu__row > * {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-}
-
-.prism-menu__row .prism-menu__icon {
-  grid-column: 1;
-  justify-self: end;
-}
-
-.prism-menu__row .prism-list-item__text {
-  grid-column: 2;
+  display: flex;
 }
 
 .prism-menu__row > * + * {
