@@ -120,7 +120,7 @@
 
 .nocturne-combobox__chip-input {
   flex: 1;
-  min-width: 60px;
+  min-width: var(--nocturne-chip-input-min-w);
   height: var(--nocturne-chip-h);
 }
 

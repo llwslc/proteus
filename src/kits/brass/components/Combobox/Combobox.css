@@ -141,7 +141,7 @@
 
 .brass-combobox__chip-input {
   flex: 1;
-  min-width: 60px;
+  min-width: var(--brass-chip-input-min-w);
   height: var(--brass-chip-h);
 }
 

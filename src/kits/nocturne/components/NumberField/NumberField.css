@@ -67,7 +67,7 @@
 }
 
 .nocturne-numberfield__input {
-  width: 64px;
+  width: var(--nocturne-numberfield-w);
   border: 0;
   background: transparent;
   color: var(--nocturne-text);

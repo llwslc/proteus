@@ -108,6 +108,7 @@
 
   --hanabi-control-h: 38px;
   --hanabi-chip-h: 24px;
+  --hanabi-chip-input-min-w: 60px;
   --hanabi-disabled-opacity: 0.45;
   --hanabi-pad-modal: 24px 26px;
 
@@ -162,6 +163,7 @@
   --hanabi-select-min-w: 190px;
   --hanabi-slider-control-h: 26px;
   --hanabi-slider-v-h: 160px;
+  --hanabi-slider-v-w: 74px;
   --hanabi-slider-thumb: 24px;
   --hanabi-switch-w: 50px;
   --hanabi-switch-h: 28px;

@@ -83,7 +83,7 @@
   gap: var(--nova-space-2);
   display: flex;
   flex-direction: column;
-  width: max(var(--nova-slider-control-h), 74px);
+  width: var(--nova-slider-v-w);
   align-items: center;
   align-self: flex-start;
 }

@@ -66,6 +66,7 @@
   --prism-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --prism-control-h: 40px;
   --prism-chip-h: 20px;
+  --prism-chip-input-min-w: 60px;
   --prism-disabled-opacity: 0.4;
   --prism-modal-pad: 24px;
 
@@ -111,6 +112,7 @@
   --prism-seg-h: 34px;
   --prism-slider-track: 4px;
   --prism-slider-v-h: 160px;
+  --prism-slider-v-w: 74px;
   --prism-slider-thumb: 22px;
   --prism-numberfield-btn: 38px;
   --prism-numberfield-w: 64px;

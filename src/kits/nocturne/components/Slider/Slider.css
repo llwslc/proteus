@@ -73,7 +73,7 @@
 }
 
 .nocturne-slider[data-orientation="vertical"] {
-  width: max(34px, 74px);
+  width: var(--nocturne-slider-v-w);
   align-items: center;
   align-self: flex-start;
 }

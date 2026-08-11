@@ -155,6 +155,7 @@
   --brass-ease-detent: cubic-bezier(0.5, 1.4, 0.5, 1);
   --brass-control-h: 38px;
   --brass-chip-h: 22px;
+  --brass-chip-input-min-w: 60px;
   --brass-disabled-opacity: 0.42;
   --brass-modal-pad: 24px;
 
@@ -200,6 +201,7 @@
   --brass-seg-h: 32px;
   --brass-slider-track: 6px;
   --brass-slider-v-h: 160px;
+  --brass-slider-v-w: 74px;
   --brass-slider-thumb: 18px;
   --brass-numberfield-btn: 36px;
   --brass-numberfield-w: 64px;

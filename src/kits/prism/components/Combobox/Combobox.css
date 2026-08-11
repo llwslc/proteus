@@ -119,7 +119,7 @@
 
 .prism-combobox__chip-input {
   flex: 1;
-  min-width: 60px;
+  min-width: var(--prism-chip-input-min-w);
   height: var(--prism-chip-h);
 }
 

@@ -129,6 +129,7 @@
   --riot-ease-out: cubic-bezier(0.2, 0, 0, 1);
   --riot-control-h: 42px;
   --riot-chip-h: 22px;
+  --riot-chip-input-min-w: 60px;
   --riot-disabled-opacity: 0.4;
   --riot-modal-pad: 26px;
 
@@ -172,6 +173,7 @@
   --riot-seg-h: 36px;
   --riot-slider-track: 14px;
   --riot-slider-v-h: 160px;
+  --riot-slider-v-w: 74px;
   --riot-slider-thumb: 26px;
   --riot-numberfield-btn: 40px;
   --riot-numberfield-w: 66px;

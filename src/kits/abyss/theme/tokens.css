@@ -108,6 +108,7 @@
 
   --abyss-control-h: 40px;
   --abyss-chip-h: 24px;
+  --abyss-chip-input-min-w: 60px;
   --abyss-disabled-opacity: 0.55;
 
   --abyss-space-1: 4px;
@@ -178,6 +179,7 @@
   --abyss-select-indicator: 18px;
   --abyss-slider-control-h: 24px;
   --abyss-slider-v-h: 160px;
+  --abyss-slider-v-w: 74px;
   --abyss-slider-thumb: 16px;
   --abyss-switch-w: 48px;
   --abyss-toast-close: 22px;

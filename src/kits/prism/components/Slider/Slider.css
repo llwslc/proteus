@@ -57,7 +57,7 @@
 }
 
 .prism-slider[data-orientation="vertical"] {
-  width: max(40px, 74px);
+  width: var(--prism-slider-v-w);
   align-items: center;
   align-self: flex-start;
 }

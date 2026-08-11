@@ -67,7 +67,7 @@
 }
 
 .riot-slider[data-orientation="vertical"] {
-  width: max(42px, 74px);
+  width: var(--riot-slider-v-w);
   align-items: center;
   align-self: flex-start;
 }

@@ -180,7 +180,9 @@
   --nocturne-control-h: 40px;
   --nocturne-moondot-size: 8px;
   --nocturne-chip-h: 22px;
+  --nocturne-chip-input-min-w: 60px;
   --nocturne-slider-v-h: 160px;
+  --nocturne-slider-v-w: 74px;
   --nocturne-button-h-sm: 32px;
   --nocturne-button-h-lg: 48px;
   --nocturne-checkbox-box: 24px;
@@ -191,6 +193,7 @@
   --nocturne-thumb-bloom: 34px;
   --nocturne-bloom-tip: 25px;
   --nocturne-otp-cell-w: 40px;
+  --nocturne-otp-cell-w-sm: 34px;
   --nocturne-avatar-sm: 28px;
   --nocturne-avatar-md: 36px;
   --nocturne-avatar-lg: 48px;
@@ -198,6 +201,10 @@
   --nocturne-scrollarea-h: 200px;
   --nocturne-separator-stub-w: 24px;
   --nocturne-popup-h: calc(var(--nocturne-list-item-h) * 7);
+  --nocturne-popover-w: 300px;
+  --nocturne-preview-w: 320px;
+  --nocturne-tooltip-w: 260px;
+  --nocturne-numberfield-w: 64px;
   --nocturne-navmenu-col-w: 210px;
   --nocturne-dialog-w: 460px;
   --nocturne-alert-w: 440px;

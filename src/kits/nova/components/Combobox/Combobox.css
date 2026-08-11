@@ -124,7 +124,7 @@
 
 .nova-combobox__chip-input {
   flex: 1;
-  min-width: 60px;
+  min-width: var(--nova-chip-input-min-w);
   height: var(--nova-chip-h);
 }
 

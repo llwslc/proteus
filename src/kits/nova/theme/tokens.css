@@ -97,6 +97,7 @@
 
   --nova-control-h: 38px;
   --nova-chip-h: 22px;
+  --nova-chip-input-min-w: 60px;
   --nova-disabled-opacity: 0.4;
 
   --nova-space-1: 4px;
@@ -166,6 +167,7 @@
   --nova-select-indicator: 18px;
   --nova-slider-control-h: 26px;
   --nova-slider-v-h: 160px;
+  --nova-slider-v-w: 74px;
   --nova-slider-thumb: 16px;
   --nova-switch-w: 54px;
   --nova-switch-h: 26px;

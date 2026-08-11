@@ -106,7 +106,7 @@
 
 .riot-combobox__chip-input {
   flex: 1;
-  min-width: 60px;
+  min-width: var(--riot-chip-input-min-w);
   height: var(--riot-chip-h);
 }
 

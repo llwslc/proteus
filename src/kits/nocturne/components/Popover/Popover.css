@@ -4,7 +4,7 @@
 
 .nocturne-popover {
   position: relative;
-  width: 300px;
+  width: var(--nocturne-popover-w);
   max-width: calc(100vw - 2 * var(--nocturne-space-4));
   padding: var(--nocturne-space-4);
 }

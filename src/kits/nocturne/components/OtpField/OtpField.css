@@ -45,6 +45,6 @@
 
 @media (max-width: 768px) {
   .nocturne-otp__cell {
-    width: 34px;
+    width: var(--nocturne-otp-cell-w-sm);
   }
 }

@@ -112,7 +112,7 @@
 }
 
 .hanabi-slider[data-orientation="vertical"] {
-  width: max(var(--hanabi-slider-control-h), 74px);
+  width: var(--hanabi-slider-v-w);
   align-items: center;
   align-self: flex-start;
 }
