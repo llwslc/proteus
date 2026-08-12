@@ -97,7 +97,3 @@
   min-width: 0;
   padding-inline: 0;
 }
-
-.nova-menu__row > :not(.nova-menu__vsep) {
-  padding-inline: var(--nova-space-3);
-}

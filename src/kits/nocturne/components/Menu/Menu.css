@@ -74,7 +74,3 @@
   min-width: 0;
   padding-inline: 0;
 }
-
-.nocturne-menu__row > :not(.nocturne-menu__vsep) {
-  padding-inline: var(--nocturne-space-3);
-}
