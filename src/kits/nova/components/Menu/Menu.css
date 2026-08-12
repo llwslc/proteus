@@ -90,6 +90,7 @@
 .nova-menu__vsep {
   flex: none;
   width: 1px;
+  margin-block: var(--nova-space-2);
   background: var(--nova-line-strong);
 }
 

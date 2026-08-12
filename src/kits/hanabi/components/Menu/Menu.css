@@ -61,8 +61,14 @@
 
 .hanabi-menu__vsep {
   flex: none;
-  width: 0;
-  border-left: var(--hanabi-line-w) dashed var(--hanabi-tone);
+  align-self: center;
+  width: var(--hanabi-line-w);
+  height: var(--hanabi-menu-vsep-h);
+  background: repeating-linear-gradient(
+    180deg,
+    var(--hanabi-tone) 0 4px,
+    transparent 4px 8px
+  );
 }
 
 .hanabi-menu--horizontal {

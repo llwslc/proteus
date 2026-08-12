@@ -151,6 +151,7 @@
   --hanabi-combobox-min-w: 240px;
   --hanabi-gauge-h: 14px;
   --hanabi-menu-min-w: 210px;
+  --hanabi-menu-vsep-h: 20px;
   --hanabi-menubar-trigger-h: 32px;
   --hanabi-navmenu-trigger-h: 38px;
   --hanabi-number-field-stepper: 34px;
