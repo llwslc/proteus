@@ -87,10 +87,13 @@
   display: flex;
 }
 
-.nova-menu__row > * + * {
-  border-left: 1px solid var(--nova-line-strong);
+.nova-menu__vsep {
+  flex: none;
+  width: 1px;
+  background: var(--nova-line-strong);
 }
 
 .nova-menu--horizontal {
   min-width: 0;
+  padding-inline: 0;
 }

@@ -1,5 +1,6 @@
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
+import { Children } from "react";
 import type { ReactNode } from "react";
 import { Button } from "../Button";
 import { ChevronDownIcon } from "../icons";
@@ -47,7 +48,20 @@ export function Menu({
             )}
           >
             {props.orientation === "horizontal" ? (
-              <div className="nocturne-menu__row">{children}</div>
+              <div className="nocturne-menu__row">
+                {Children.toArray(children).flatMap((c, i) =>
+                  i
+                    ? [
+                        <span
+                          key={`vsep-${i}`}
+                          className="nocturne-menu__vsep"
+                          aria-hidden="true"
+                        />,
+                        c,
+                      ]
+                    : [c],
+                )}
+              </div>
             ) : (
               <ScrollArea variant="popup">{children}</ScrollArea>
             )}

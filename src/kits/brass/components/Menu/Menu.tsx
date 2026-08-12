@@ -1,3 +1,4 @@
+import { Children } from "react";
 import type { ReactNode } from "react";
 import { Menu as BaseMenu } from "@base-ui/react/menu";
 import { ScrollArea } from "../ScrollArea";
@@ -47,7 +48,20 @@ export function Menu({
             )}
           >
             {props.orientation === "horizontal" ? (
-              <div className="brass-menu__row">{children}</div>
+              <div className="brass-menu__row">
+                {Children.toArray(children).flatMap((c, i) =>
+                  i
+                    ? [
+                        <span
+                          key={`vsep-${i}`}
+                          className="brass-menu__vsep"
+                          aria-hidden="true"
+                        />,
+                        c,
+                      ]
+                    : [c],
+                )}
+              </div>
             ) : (
               <ScrollArea variant="popup">{children}</ScrollArea>
             )}

@@ -52,10 +52,13 @@
   display: flex;
 }
 
-.brass-menu__row > * + * {
-  border-left: 1px solid var(--brass-line);
+.brass-menu__vsep {
+  flex: none;
+  width: 1px;
+  background: var(--brass-line);
 }
 
 .brass-menu--horizontal {
   min-width: 0;
+  padding-inline: 0;
 }

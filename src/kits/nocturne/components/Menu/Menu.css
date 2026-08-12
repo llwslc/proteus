@@ -64,10 +64,13 @@
   display: flex;
 }
 
-.nocturne-menu__row > * + * {
-  border-left: 1px solid var(--nocturne-gilt-30);
+.nocturne-menu__vsep {
+  flex: none;
+  width: 1px;
+  background: var(--nocturne-gilt-30);
 }
 
 .nocturne-menu--horizontal {
   min-width: 0;
+  padding-inline: 0;
 }
