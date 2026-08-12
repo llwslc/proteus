@@ -64,6 +64,10 @@
   display: flex;
 }
 
+.nocturne-menu__row > :not(.nocturne-menu__vsep) {
+  margin: var(--nocturne-space-1);
+}
+
 .nocturne-menu__vsep {
   flex: none;
   width: 1px;

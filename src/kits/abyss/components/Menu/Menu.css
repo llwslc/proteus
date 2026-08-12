@@ -128,6 +128,10 @@
   display: flex;
 }
 
+.abyss-menu__row > :not(.abyss-menu__vsep) {
+  margin: var(--abyss-space-1);
+}
+
 .abyss-menu__vsep {
   flex: none;
   width: 1px;

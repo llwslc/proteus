@@ -52,6 +52,10 @@
   display: flex;
 }
 
+.brass-menu__row > :not(.brass-menu__vsep) {
+  margin: var(--brass-space-1);
+}
+
 .brass-menu__vsep {
   flex: none;
   width: 1px;

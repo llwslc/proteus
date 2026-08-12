@@ -59,6 +59,10 @@
   display: flex;
 }
 
+.hanabi-menu__row > :not(.hanabi-menu__vsep) {
+  margin: var(--hanabi-space-1);
+}
+
 .hanabi-menu__vsep {
   flex: none;
   align-self: center;

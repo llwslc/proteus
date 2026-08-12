@@ -62,6 +62,10 @@
   display: flex;
 }
 
+.prism-menu__row > :not(.prism-menu__vsep) {
+  margin: var(--prism-space-1);
+}
+
 .prism-menu__vsep {
   flex: none;
   width: 1px;

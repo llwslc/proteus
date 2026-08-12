@@ -53,6 +53,10 @@
   display: flex;
 }
 
+.riot-menu__row > :not(.riot-menu__vsep) {
+  margin: var(--riot-space-1);
+}
+
 .riot-menu__vsep {
   flex: none;
   width: 1px;

@@ -87,6 +87,10 @@
   display: flex;
 }
 
+.nova-menu__row > :not(.nova-menu__vsep) {
+  margin: var(--nova-space-1);
+}
+
 .nova-menu__vsep {
   flex: none;
   width: 1px;
