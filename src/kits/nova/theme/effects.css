@@ -6,12 +6,13 @@
   position: relative;
   isolation: isolate;
   background: var(--nova-surface-border, var(--nova-line-strong));
+  border: 1px solid transparent;
   clip-path: var(--nova-surface-clip, var(--nova-clip-9));
 }
 .nova-surface::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: 0;
   z-index: -1;
   clip-path: var(--nova-surface-clip, var(--nova-clip-9));
   background: var(--nova-surface-fill, var(--nova-surface-popup));
