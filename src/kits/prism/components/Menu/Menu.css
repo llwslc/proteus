@@ -72,3 +72,7 @@
   min-width: 0;
   padding-inline: 0;
 }
+
+.prism-menu__row > :not(.prism-menu__vsep) {
+  padding-inline: var(--prism-space-3);
+}

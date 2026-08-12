@@ -139,3 +139,7 @@
   min-width: 0;
   padding-inline: 0;
 }
+
+.abyss-menu__row > :not(.abyss-menu__vsep) {
+  padding-inline: var(--abyss-space-3);
+}

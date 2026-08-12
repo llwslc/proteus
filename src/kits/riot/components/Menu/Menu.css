@@ -63,3 +63,7 @@
   min-width: 0;
   padding-inline: 0;
 }
+
+.riot-menu__row > :not(.riot-menu__vsep) {
+  padding-inline: var(--riot-space-3);
+}

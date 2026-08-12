@@ -62,3 +62,7 @@
   min-width: 0;
   padding-inline: 0;
 }
+
+.brass-menu__row > :not(.brass-menu__vsep) {
+  padding-inline: var(--brass-space-3);
+}

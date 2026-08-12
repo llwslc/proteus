@@ -69,3 +69,7 @@
   min-width: 0;
   padding-inline: 0;
 }
+
+.hanabi-menu__row > :not(.hanabi-menu__vsep) {
+  padding-inline: var(--hanabi-space-3);
+}
