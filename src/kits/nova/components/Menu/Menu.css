@@ -89,7 +89,6 @@
 
 .nova-menu__row > :not(.nova-menu__vsep) {
   margin: var(--nova-space-1);
-  clip-path: none;
 }
 
 .nova-menu__vsep {
