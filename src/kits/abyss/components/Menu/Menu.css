@@ -140,5 +140,5 @@
 
 .abyss-menu--horizontal {
   min-width: 0;
-  padding: 1px 0 0 1px;
+  padding: var(--abyss-frame-edge);
 }
