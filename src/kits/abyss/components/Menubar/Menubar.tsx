@@ -16,7 +16,7 @@ export interface MenubarProps extends Omit<
 export function Menubar({ children, className, ...props }: MenubarProps) {
   return (
     <BaseMenubar className={cx("abyss-frame abyss-menubar", className)} {...props}>
-      {children}
+      <div className="abyss-menubar__rail">{children}</div>
     </BaseMenubar>
   );
 }

@@ -8,12 +8,14 @@ export interface ToggleGroupProps extends ComponentPropsWithoutRef<
   typeof BaseToggleGroup
 > {}
 
-export function ToggleGroup({ className, ...props }: ToggleGroupProps) {
+export function ToggleGroup({ className, children, ...props }: ToggleGroupProps) {
   return (
     <BaseToggleGroup
       className={cx("abyss-togglegroup abyss-frame", className)}
       {...props}
-    />
+    >
+      <div className="abyss-togglegroup__rail">{children}</div>
+    </BaseToggleGroup>
   );
 }
 

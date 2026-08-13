@@ -3,15 +3,18 @@
   --abyss-frame-ink: var(--abyss-ink);
   --abyss-frame-round: var(--abyss-round-4);
   display: inline-flex;
-  align-items: center;
-  gap: var(--abyss-space-1);
   width: fit-content;
   max-width: 100%;
-  padding: var(--abyss-space-1);
 }
-.abyss-menubar > * {
+.abyss-menubar__rail {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--abyss-space-1);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--abyss-space-1);
 }
 
 .abyss-menubar__triggerwrap {
@@ -28,8 +31,7 @@
 }
 
 @media (max-width: 768px) {
-  .abyss-menubar {
-    max-width: 100%;
+  .abyss-menubar__rail {
     overflow-x: auto;
     flex-wrap: nowrap;
   }

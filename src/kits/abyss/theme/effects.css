@@ -6,12 +6,13 @@
 .abyss-frame {
   position: relative;
   isolation: isolate;
+  border: var(--abyss-frame-edge) solid transparent;
 }
 
 .abyss-frame::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: calc(-1 * var(--abyss-frame-edge));
   z-index: -1;
   background: var(--abyss-frame-fill, var(--abyss-surface));
   border: var(--abyss-frame-edge) solid var(--abyss-frame-ink, var(--abyss-ink-strong));

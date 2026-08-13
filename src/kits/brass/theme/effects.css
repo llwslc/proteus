@@ -1,14 +1,14 @@
 .brass-plate {
   position: relative;
   isolation: isolate;
-  border: 0;
+  border: var(--brass-plate-edge, 2px) solid transparent;
   border-radius: var(--brass-plate-round, var(--brass-round-md));
   background: var(--brass-plate-bezel, var(--brass-bezel));
 }
 .brass-plate::before {
   content: "";
   position: absolute;
-  inset: var(--brass-plate-edge, 2px);
+  inset: 0;
   z-index: -1;
   border-radius: calc(var(--brass-plate-round, var(--brass-round-md)) - 1px);
   background: var(--brass-plate-fill, var(--brass-surface));
