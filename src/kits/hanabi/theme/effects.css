@@ -117,13 +117,18 @@
 }
 
 .hanabi-popup-list {
-  padding: var(--hanabi-popup-pad, var(--hanabi-space-1));
-  padding-bottom: calc(
-    var(--hanabi-popup-pad, var(--hanabi-space-1)) + var(--hanabi-band-h)
-  );
+  padding: var(--hanabi-space-1);
+}
+.hanabi-popup-list::after {
+  content: "";
+  display: block;
+  height: var(--hanabi-band-h);
 }
 .hanabi-popup-list:empty {
   padding: 0;
+}
+.hanabi-popup-list:empty::after {
+  content: none;
 }
 
 .hanabi-list-item {

@@ -40,7 +40,7 @@
 - PreviewCard：皮同 Popover（无题牌）。
 - Menu：列表项皮肤复用 Select；图标 `text-dim` 随高亮转同行文字色；子菜单 chevron ▸；danger 项红字红图标、高亮盖 `danger-wash`（换色走 `--hanabi-item-color`）。
 - Menubar：chip 同 ToggleGroup；菜单弹层复用 Menu 皮。
-- NavigationMenu：触发器 chip 同 ToggleGroup 未选态、chevron 随开合翻转；下拉 = `surface` 面 + `ink` 框 + `shadow`，内衬 `space-1`、底衬另加 `band-h`，connector 三角指向激活触发器、随 morph 移动；链接 = `r-chip` 行，label 正文 `fw-700` + 描述 `text-dim` fs-13，悬停盖 wash；morph 接 Base UI 尺寸变量。
+- NavigationMenu：触发器 chip 同 ToggleGroup 未选态、chevron 随开合翻转；下拉 = `surface` 面 + `ink` 框 + `shadow`，内衬 `space-1`、底缘阶影带自有 `band-h` 容身，connector 三角指向激活触发器、随 morph 移动；链接 = `r-chip` 行，label 正文 `fw-700` + 描述 `text-dim` fs-13，悬停盖 wash；morph 接 Base UI 尺寸变量。
 - ContextMenu：菜单皮复用 Menu。
 - Dialog：`surface` 面 + `ink` 框 + `shadow-lg` 阶影带 + `r-modal`；标题做成骑左上角的 `primary` 斜切铭牌（正文 `fw-900` 白字）、body 顶部让位到 close 之下；backdrop = `scrim` + `primary` 半调网点。
 - AlertDialog：Dialog 基底按 `tone` 重染——题牌与确认钮同取 tone（danger 红、warning 金、primary 粉），题牌白字（warning 取 `on-warning`）、题牌前缀一枚 tone 图记 ⚠。
@@ -53,7 +53,7 @@
 - Separator：`2px dashed tone` 缝纫虚线；带 label 版 = 线 + `.hanabi-cap` 文字（前缀 ✦）+ 线；竖向为实线 `tone`；`start`／`end` 档文字侧的短线取 `separator-stub-w`。
 - Panel：赛璐璐卡——`surface` 面 + `ink` 框 + `shadow-lg` + `r-modal`；title 做成骑顶缘左侧的 `primary` 斜切铭牌（display 体白字、`shadow-sm`）；嵌套 Panel 降为 `r-control` + `shadow-sm`、题牌换 `secondary` 水色、`ink` 墨字。
 - 占位图标是 2px 圆头描线的简笔线形（`icons.tsx` 统一 `1em`、`currentColor`）。
-- 弹层列表的内衬取 `space-1`，底衬为内衬加 `band-h`；横排菜单把 `popup-pad` 归零，衬走行自带的 `space-1` 边距。
+- 弹层列表的内衬取 `space-1`，底缘阶影带自有 `band-h` 容身、不占内衬；横排菜单 padding 归零，衬走行自带的 `space-1` 边距。
 - 共享配方的颜色就近覆盖：`--hanabi-item-color`、`--hanabi-plate-fill`。
 - 动效：除开态斜纹流动、✦ 明灭外只有交互过渡；无辉光、无持续脉动。
 - 模态体内间距三档（成对/同级/分段）= `8/16/24`。

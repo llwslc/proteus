@@ -53,7 +53,11 @@
 .hanabi-navmenu__content {
   width: calc(var(--hanabi-navmenu-col-w) * 2 + var(--hanabi-space-1) * 3);
   padding: var(--hanabi-space-1);
-  padding-bottom: calc(var(--hanabi-space-1) + var(--hanabi-band-h));
+}
+.hanabi-navmenu__content::after {
+  content: "";
+  display: block;
+  height: var(--hanabi-band-h);
 }
 
 .hanabi-navmenu__grid {
