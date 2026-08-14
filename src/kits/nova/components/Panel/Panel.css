@@ -19,7 +19,7 @@
 .nova-panel--scan::after {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: 0;
   z-index: 0;
   background: linear-gradient(180deg, transparent, var(--nova-tint-soft), transparent);
   background-size: 100% 44%;
