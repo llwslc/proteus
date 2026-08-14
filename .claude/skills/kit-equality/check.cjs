@@ -117,17 +117,29 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
       const root = getComputedStyle(document.documentElement);
       for (const d of TOKEN_DIMS) out[`tok:${d}`] = (root.getPropertyValue(`--${kit}-${d}`).trim()) || '(unset)';
       for (const [el, prop] of GEO) { const n = document.querySelector(`.${kit}-${el}`); out[`geo:${el}.${prop}`] = n ? getComputedStyle(n)[prop] : '(no el)'; }
-      const prim = { hosts: 0, zero: new Map() };
+      const prim = { hosts: 0, audited: 0, out: new Map() };
       const ownMod = new RegExp(`^${kit}-(?:frame|plate|surface)--`);
+      const SIDES = [['top', 'borderTopWidth'], ['right', 'borderRightWidth'], ['bottom', 'borderBottomWidth'], ['left', 'borderLeftWidth']];
       for (const el of document.querySelectorAll(`.${kit}-frame, .${kit}-plate, .${kit}-surface`)) {
         prim.hosts++;
         if ([...el.classList].some((c) => ownMod.test(c))) continue;
-        if (parseFloat(getComputedStyle(el).borderTopWidth) === 0) {
+        const before = getComputedStyle(el, '::before');
+        if (before.content === 'none' || before.position !== 'absolute') continue;
+        const cs = getComputedStyle(el);
+        prim.audited++;
+        const over = [];
+        for (const [side, bw] of SIDES) {
+          const inset = parseFloat(before[side]);
+          if (Number.isNaN(inset)) continue;
+          const overhang = -inset;
+          if (overhang > parseFloat(cs[bw]) + 0.01) over.push(`${side}+${overhang.toFixed(1)}>${cs[bw]}`);
+        }
+        if (over.length) {
           const key = [...el.classList].filter((c) => !c.includes('--') && !/-(frame|plate|surface)$/.test(c)).slice(0, 2).join(' ') || el.tagName.toLowerCase();
-          prim.zero.set(key, (prim.zero.get(key) || 0) + 1);
+          prim.out.set(`${key} ${over.join(' ')}`, (prim.out.get(`${key} ${over.join(' ')}`) || 0) + 1);
         }
       }
-      const primOut = { hosts: prim.hosts, zero: [...prim.zero.entries()].map(([k, n]) => `${n}x ${k}`) };
+      const primOut = { hosts: prim.hosts, audited: prim.audited, bad: [...prim.out.entries()].map(([k, n]) => `${n}x ${k}`) };
       const nm = (s) => (s || '').replace(/\s+/g, ' ').trim();
       const sidebar = [...document.querySelectorAll(`.${kit}-sidebar__group`)].map((g) => ({
         group: nm(g.querySelector(`.${kit}-sidebar__group-title`) && g.querySelector(`.${kit}-sidebar__group-title`).textContent),
@@ -179,14 +191,14 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   }
   console.log(lLines.length ? lLines.join('\n') : `  -> clean (${kits.map((k) => { const l = liningByKit[k]; return `${k}:${l.top}/${l.right}/${l.bottom}/${l.left}`; }).join(' ')})`);
 
-  console.log('\n## 帧原语宿主盒含框环 (components.md §4.1: 双层 frame 的宿主 border 不得被组合方归零)');
+  console.log('\n## 双层 frame 的墨在宿主盒内 (components.md §4.1: ::before 越出 padding 盒多少,宿主 border 就得兜住多少)');
   const pmLines = [];
   for (const kit of kits) {
     const p = primByKit[kit];
     if (!p || !p.hosts) continue;
-    if (p.zero.length) { fail = 1; pmLines.push(`  FAIL ${kit} — 挂帧原语但 computed border=0(框墨画到盒外/被填充盖死): ${p.zero.join(', ')}`); }
+    if (p.bad.length) { fail = 1; pmLines.push(`  FAIL ${kit} — 框墨画到宿主盒外(盒距≠视觉距,相邻间隙与命中盒都按盒算): ${p.bad.join(', ')}`); }
   }
-  console.log(pmLines.length ? pmLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${primByKit[k] ? primByKit[k].hosts : 0}宿主`).join(' ')})`);
+  console.log(pmLines.length ? pmLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${primByKit[k] ? primByKit[k].audited : 0}/${primByKit[k] ? primByKit[k].hosts : 0}宿主`).join(' ')})`);
 
   console.log('\n## 菜单弹层的应用层级 (z-menu 挂在 positioner 上、各 kit 同值)');
   const zLines = [];

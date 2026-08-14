@@ -7,8 +7,7 @@
   align-items: center;
   gap: var(--brass-space-2);
   min-height: var(--brass-control-h);
-  padding: 0 calc(var(--brass-space-2) - var(--brass-plate-edge, 2px)) 0
-    calc(var(--brass-space-3) - var(--brass-plate-edge, 2px));
+  padding: 0 var(--brass-space-2) 0 var(--brass-space-3);
   transition: filter var(--brass-dur) var(--brass-ease);
 }
 .brass-combobox__lead {
@@ -21,7 +20,7 @@
 .brass-combobox__control {
   flex: 1;
   min-width: 0;
-  height: calc(var(--brass-control-h) - 2 * var(--brass-plate-edge, 2px));
+  height: var(--brass-control-h);
   background: none;
   border: 0;
   outline: none;

@@ -31,7 +31,7 @@
   align-items: center;
   gap: var(--brass-space-2);
   height: var(--brass-control-h);
-  padding: 0 calc(var(--brass-space-3) - var(--brass-plate-edge, 2px));
+  padding: 0 var(--brass-space-3);
   transition: filter var(--brass-dur) var(--brass-ease);
 }
 .brass-input__icon {
