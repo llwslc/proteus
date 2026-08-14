@@ -23,7 +23,27 @@ const UPDATE = process.argv.includes('--update');
     for (const [w, vp] of [['desktop', G.DESKTOP], ['phone', G.PHONE]]) {
       await page.setViewportSize(vp);
       await page.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}' });
-      await page.evaluate(() => document.fonts.ready);
+      // 就绪判据是「页面正在用的字族都已加载」。document.fonts.ready 只等已发出的
+      // 请求,首轮布局才触发的那批不在内;回退字体下的文本几何是另一套数字。
+      const fontsUp = await page
+        .waitForFunction(() => {
+          if (document.fonts.status !== 'loaded') return false;
+          const webfonts = new Set([...document.fonts].map((f) => f.family.replace(/^["']|["']$/g, '')));
+          const sample = [document.body, ...document.querySelectorAll('[class*="hero"],[class*="title"],[class*="btn"],h1,h2,h3,code')].slice(0, 20);
+          for (const el of sample) {
+            const c = getComputedStyle(el);
+            const fam = c.fontFamily.split(',')[0].trim().replace(/^["']|["']$/g, '');
+            if (!fam || !webfonts.has(fam)) continue;
+            if (!document.fonts.check(`${c.fontStyle} ${c.fontWeight} ${c.fontSize} "${fam}"`)) return false;
+          }
+          return true;
+        }, null, { timeout: 20000 })
+        .then(() => true)
+        .catch(() => false);
+      if (!fontsUp) {
+        console.error(`ERR ${kit}@${w} 字体 20s 未就绪,拒绝采样——回退字体下的文本几何会把整套面板写歪`);
+        process.exit(2);
+      }
       await page.waitForTimeout(400);
       const capture = (k) => page.evaluate((k) => {
         for (const c of document.querySelectorAll(`[class*="clock"]`)) c.textContent = '00:00:00';
