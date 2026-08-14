@@ -31,7 +31,7 @@
 }
 
 .hanabi-scrollarea--popup .hanabi-scrollarea__viewport {
-  max-height: min(calc(var(--available-height) - 12px), var(--hanabi-popup-h));
+  max-height: min(calc(var(--available-height) - 16px), var(--hanabi-popup-h));
 }
 .hanabi-scrollarea--popup .hanabi-scrollarea__viewport[data-has-overflow-y] {
   padding-right: var(--hanabi-space-4);

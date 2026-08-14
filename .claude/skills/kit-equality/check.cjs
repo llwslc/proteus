@@ -49,7 +49,7 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   const page = await browser.newPage({ viewport: G.DESKTOP });
   const kits = await G.kitsOf(page);
 
-  const data = {}, sigs = {}, rowsByKit = {}, menuZByKit = {};
+  const data = {}, sigs = {}, rowsByKit = {}, liningByKit = {}, menuZByKit = {};
   for (const kit of kits) {
     await G.setKit(page, URL, kit);
     await page.waitForTimeout(250);
@@ -68,6 +68,33 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
       const popupH = probe.getBoundingClientRect().height;
       probe.remove();
       return rowH > 0 ? +(popupH / rowH).toFixed(3) : null;
+    }, kit);
+    liningByKit[kit] = await page.evaluate((k) => {
+      const items = [...document.querySelectorAll(`.${k}-list-item`)].filter((e) => e.offsetHeight > 0);
+      if (!items.length) return null;
+      let el = items[0].parentElement;
+      while (el && !el.hasAttribute('data-open')) el = el.parentElement;
+      if (!el) return null;
+      const cs = getComputedStyle(el);
+      let band = 0;
+      for (const m of cs.boxShadow.matchAll(/(-?[\d.]+)px (-?[\d.]+)px (-?[\d.]+)px (-?[\d.]+)px inset/g))
+        if (parseFloat(m[2]) < 0 && parseFloat(m[3]) === 0) band = Math.max(band, -parseFloat(m[2]));
+      const r = el.getBoundingClientRect();
+      const inner = {
+        top: r.top + parseFloat(cs.borderTopWidth), left: r.left + parseFloat(cs.borderLeftWidth),
+        right: r.right - parseFloat(cs.borderRightWidth), bottom: r.bottom - parseFloat(cs.borderBottomWidth) - band,
+      };
+      let clip = items[0].parentElement;
+      while (clip && clip !== el && !/(auto|scroll|hidden|clip)/.test(getComputedStyle(clip).overflowY)) clip = clip.parentElement;
+      const cr = (clip || el).getBoundingClientRect();
+      const rows = items.map((e) => e.getBoundingClientRect());
+      return {
+        band,
+        top: +(Math.max(Math.min(...rows.map((b) => b.top)), cr.top) - inner.top).toFixed(1),
+        left: +(Math.min(...rows.map((b) => b.left)) - inner.left).toFixed(1),
+        right: +(inner.right - Math.max(...rows.map((b) => b.right))).toFixed(1),
+        bottom: +(inner.bottom - Math.min(Math.max(...rows.map((b) => b.bottom)), cr.bottom)).toFixed(1),
+      };
     }, kit);
     await page.keyboard.press('Escape');
     await page.waitForTimeout(200);
@@ -130,6 +157,16 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   }
   console.log(rLines.length ? rLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${rowsByKit[k]}`).join(' ')})`);
 
+  console.log('\n## 弹层行不贴框 (components.md §4.2: 列表 Popup 带内衬——含画在盒内的底缘阶影带,四侧衬 ≥1px)');
+  const lLines = [];
+  for (const kit of kits) {
+    const l = liningByKit[kit];
+    if (l == null) { fail = 1; lLines.push(`  FAIL ${kit} — could not measure (no visible list item inside a [data-open] popup)`); continue; }
+    const bad = ['top', 'left', 'right', 'bottom'].filter((s) => l[s] < 1);
+    if (bad.length) { fail = 1; lLines.push(`  FAIL ${kit} rows touch the frame: ${bad.map((s) => `${s}=${l[s]}px`).join(' ')} (band ${l.band}px) — 内衬须在边框与阶影带之外另留空气`); }
+  }
+  console.log(lLines.length ? lLines.join('\n') : `  -> clean (${kits.map((k) => { const l = liningByKit[k]; return `${k}:${l.top}/${l.right}/${l.bottom}/${l.left}`; }).join(' ')})`);
+
   console.log('\n## 菜单弹层的应用层级 (z-menu 挂在 positioner 上、各 kit 同值)');
   const zLines = [];
   for (const kit of kits) if (menuZByKit[kit] == null) { fail = 1; zLines.push(`  FAIL ${kit} — menu did not open / no positioned ancestor`); }
@@ -140,7 +177,7 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   console.log(zLines.length ? zLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${menuZByKit[k]}`).join(' ')})`);
 
   console.log(`\nRESULT: ${fail
-    ? 'FAIL — a pinned cross-kit value diverged (各 kit 同值 in components.md/app.md, the 面板清单, or the 7-row popup height). Write the same literal / manifest in every kit.'
-    : 'PASS (cross-kit numbers identical + every sidebar matches the 面板清单 + every popup shows 7 rows + menu z applied uniformly)'}`);
+    ? 'FAIL — a pinned cross-kit value diverged (各 kit 同值 in components.md/app.md, the 面板清单, the 7-row popup height, or 行不贴框). Write the same literal / manifest in every kit.'
+    : 'PASS (cross-kit numbers identical + every sidebar matches the 面板清单 + every popup shows 7 rows + rows clear the frame + menu z applied uniformly)'}`);
   process.exit(fail);
 })();

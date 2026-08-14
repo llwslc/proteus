@@ -117,7 +117,10 @@
 }
 
 .hanabi-popup-list {
-  padding: var(--hanabi-space-1);
+  padding: var(--hanabi-popup-pad, var(--hanabi-space-1));
+  padding-bottom: calc(
+    var(--hanabi-popup-pad, var(--hanabi-space-1)) + var(--hanabi-band-h)
+  );
 }
 .hanabi-popup-list:empty {
   padding: 0;

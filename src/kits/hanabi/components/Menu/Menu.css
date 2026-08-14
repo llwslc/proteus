@@ -77,6 +77,5 @@
 
 .hanabi-menu--horizontal {
   min-width: 0;
-  padding-top: 0;
-  padding-inline: 0;
+  --hanabi-popup-pad: 0px;
 }
