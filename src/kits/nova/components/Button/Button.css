@@ -31,7 +31,7 @@
 .nova-btn::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: var(--nova-line-w);
   z-index: 0;
   clip-path: var(--nova-clip-9);
   background: var(--nova-accent-surface);
@@ -43,7 +43,7 @@
 .nova-btn::after {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: var(--nova-line-w);
   z-index: 1;
   clip-path: var(--nova-clip-9);
   background: linear-gradient(

@@ -30,7 +30,7 @@
   display: grid;
   place-items: center;
   width: var(--nova-number-field-stepper);
-  margin: 1px;
+  margin: var(--nova-line-w);
   padding: 0;
   border: 0;
   cursor: pointer;
@@ -64,7 +64,7 @@
   position: relative;
   z-index: 1;
   width: var(--nova-number-field-w);
-  margin: 1px 0;
+  margin: var(--nova-line-w) 0;
   padding: 0 var(--nova-space-2);
   border: 0;
   outline: none;

@@ -7,7 +7,7 @@
 .nova-scrollarea::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: var(--nova-line-w);
   z-index: 0;
   clip-path: var(--nova-clip-9);
   background: var(--nova-surface-popup);
@@ -38,7 +38,7 @@
   justify-content: center;
   overflow: hidden;
   width: var(--nova-scrollarea-scrollbar-w);
-  margin: 1px;
+  margin: var(--nova-line-w);
   background: var(--nova-tint-faint);
   opacity: 0;
   transition: opacity var(--nova-dur-slow) var(--nova-ease);

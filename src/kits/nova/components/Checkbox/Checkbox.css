@@ -30,7 +30,7 @@
 .nova-checkbox::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: var(--nova-line-w);
   clip-path: var(--nova-clip-9);
   background: var(--nova-surface-popup);
   transition: background var(--nova-dur) var(--nova-ease);

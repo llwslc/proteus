@@ -23,16 +23,16 @@
 
 .nova-avatar__img {
   position: absolute;
-  inset: 1px;
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
+  inset: var(--nova-line-w);
+  width: calc(100% - var(--nova-line-w) * 2);
+  height: calc(100% - var(--nova-line-w) * 2);
   object-fit: cover;
   clip-path: var(--nova-clip-9);
 }
 
 .nova-avatar__fallback {
   position: absolute;
-  inset: 1px;
+  inset: var(--nova-line-w);
   display: grid;
   place-items: center;
   background: linear-gradient(

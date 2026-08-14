@@ -29,7 +29,7 @@
 .nova-select__trigger::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: var(--nova-line-w);
   z-index: 0;
   clip-path: var(--nova-clip-9);
   background: var(--nova-surface-popup);
