@@ -4,6 +4,7 @@
   border: var(--brass-plate-edge, 2px) solid transparent;
   border-radius: var(--brass-plate-round, var(--brass-round-md));
   background: var(--brass-plate-bezel, var(--brass-bezel));
+  background-origin: border-box;
 }
 .brass-plate::before {
   content: "";

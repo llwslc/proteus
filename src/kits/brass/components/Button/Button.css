@@ -9,7 +9,7 @@
   justify-content: center;
   gap: var(--brass-space-1);
   height: var(--brass-control-h);
-  padding: 0 var(--brass-space-4);
+  padding: 0 calc(var(--brass-space-4) - var(--brass-plate-edge, 2px));
   font-family: var(--brass-font-mono);
   font-size: var(--brass-fs-13);
   font-weight: var(--brass-fw-700);
@@ -47,12 +47,12 @@
 
 .brass-btn--sm {
   height: var(--brass-button-h-sm);
-  padding: 0 var(--brass-space-3);
+  padding: 0 calc(var(--brass-space-3) - var(--brass-plate-edge, 2px));
   font-size: var(--brass-fs-11);
 }
 .brass-btn--lg {
   height: var(--brass-button-h-lg);
-  padding: 0 var(--brass-space-6);
+  padding: 0 calc(var(--brass-space-6) - var(--brass-plate-edge, 2px));
   font-size: var(--brass-fs-15);
 }
 .brass-btn--icon {

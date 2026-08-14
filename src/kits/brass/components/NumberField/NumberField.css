@@ -30,7 +30,7 @@
 }
 
 .brass-numberfield__input {
-  width: var(--brass-numberfield-w);
+  width: calc(var(--brass-numberfield-w) - 2 * var(--brass-plate-edge, 2px));
   height: 100%;
   padding: 0 var(--brass-space-2);
   background: none;

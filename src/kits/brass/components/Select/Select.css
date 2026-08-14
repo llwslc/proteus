@@ -8,7 +8,7 @@
   gap: var(--brass-space-2);
   width: 100%;
   height: var(--brass-control-h);
-  padding: 0 var(--brass-space-3);
+  padding: 0 calc(var(--brass-space-3) - var(--brass-plate-edge, 2px));
   font-family: var(--brass-font);
   font-size: var(--brass-fs-15);
   color: var(--brass-text-bright);

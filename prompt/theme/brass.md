@@ -30,7 +30,7 @@
 ## 3. 几何与描边
 
 - 形状用**机加工圆角**，不用 clip-path。半径阶梯 `round-xs 2px · round-sm 3px · round-md 5px · round-lg 8px · round-pill 999px`，按角色挑：细指示条、旋钮床用 xs，嵌套项、chip、菜单项用 sm，默认控件、容器框及其 `::before` 用 md，模态、超大框用 lg，胶囊轨道与其填充、圆标记用 pill；组件不裸写 radius。
-- 描边走双层黄铜 bezel 原语 `.brass-plate`：外层背景是 `bezel` 拉丝黄铜渐变 + radius，内缩 `--brass-plate-edge`（默认 `2px`）的 `::before` 是板的填充 + 内嵌 `bevel`（上沿亮、下沿暗的金属内沿）；输入变量是 `--brass-plate-fill / -bezel / -round / -bevel / -edge`。bezel 分三档：`bezel-dim` 给页内静止态的陈旧铜，`bezel` 是默认，`bezel-strong` 给浮层和升起态的亮铜。
+- 描边走双层黄铜 bezel 原语 `.brass-plate`：宿主挂 `--brass-plate-edge`（默认 `2px`）宽的透明 border 让框环计入盒，`bezel` 拉丝黄铜渐变自 border 盒起算铺满，`::before` 贴 padding 盒是板的填充 + 内嵌 `bevel`（上沿亮、下沿暗的金属内沿）；输入变量是 `--brass-plate-fill / -bezel / -round / -bevel / -edge`。组合它的控件从自身内衬或定宽内件里扣掉一个环宽，footprint 不随框环涨。bezel 分三档：`bezel-dim` 给页内静止态的陈旧铜，`bezel` 是默认，`bezel-strong` 给浮层和升起态的亮铜。
 - 铆钉 `.brass-rivets`：用 `::after` 在四角嵌出铆钉钉头的径向亮点，黄铜带高光；只给超大外框和招牌板用。
 - 滚花 `--brass-knurl`：一道 repeating-linear-gradient 斜纹，用在旋钮、滑块缘、滚动条 thumb 上。
 - 浮层抬升原语 `.brass-lift`，挂在 positioner 和模态 popup 上、且不带形状裁剪：`drop-shadow(硬影) drop-shadow(黄铜灯晕)` 两层叠加，输入变量是 `--brass-overlay-shadow / -glow`；默认取 `shadow-popup + glow-popup`，模态走 `shadow-modal + glow-modal`，另有小档与按 tone 重染档。
