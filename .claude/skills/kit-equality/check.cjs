@@ -49,7 +49,7 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
   const page = await browser.newPage({ viewport: G.DESKTOP });
   const kits = await G.kitsOf(page);
 
-  const data = {}, sigs = {}, rowsByKit = {}, liningByKit = {}, menuZByKit = {};
+  const data = {}, sigs = {}, rowsByKit = {}, liningByKit = {}, menuZByKit = {}, primByKit = {};
   for (const kit of kits) {
     await G.setKit(page, URL, kit);
     await page.waitForTimeout(250);
@@ -117,15 +117,27 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
       const root = getComputedStyle(document.documentElement);
       for (const d of TOKEN_DIMS) out[`tok:${d}`] = (root.getPropertyValue(`--${kit}-${d}`).trim()) || '(unset)';
       for (const [el, prop] of GEO) { const n = document.querySelector(`.${kit}-${el}`); out[`geo:${el}.${prop}`] = n ? getComputedStyle(n)[prop] : '(no el)'; }
+      const prim = { hosts: 0, zero: new Map() };
+      const ownMod = new RegExp(`^${kit}-(?:frame|plate|surface)--`);
+      for (const el of document.querySelectorAll(`.${kit}-frame, .${kit}-plate, .${kit}-surface`)) {
+        prim.hosts++;
+        if ([...el.classList].some((c) => ownMod.test(c))) continue;
+        if (parseFloat(getComputedStyle(el).borderTopWidth) === 0) {
+          const key = [...el.classList].filter((c) => !c.includes('--') && !/-(frame|plate|surface)$/.test(c)).slice(0, 2).join(' ') || el.tagName.toLowerCase();
+          prim.zero.set(key, (prim.zero.get(key) || 0) + 1);
+        }
+      }
+      const primOut = { hosts: prim.hosts, zero: [...prim.zero.entries()].map(([k, n]) => `${n}x ${k}`) };
       const nm = (s) => (s || '').replace(/\s+/g, ' ').trim();
       const sidebar = [...document.querySelectorAll(`.${kit}-sidebar__group`)].map((g) => ({
         group: nm(g.querySelector(`.${kit}-sidebar__group-title`) && g.querySelector(`.${kit}-sidebar__group-title`).textContent),
         links: [...g.querySelectorAll(`.${kit}-sidebar__link`)].map((a) => ({ id: (a.getAttribute('href') || '').replace('#', ''), code: nm(a.lastElementChild && a.lastElementChild.textContent) })),
       }));
-      return { vals: out, sidebar };
+      return { vals: out, sidebar, prim: primOut };
     }, { kit, TOKEN_DIMS, GEO });
     for (const [dim, v] of Object.entries(r.vals)) (data[dim] = data[dim] || {})[kit] = v;
     sigs[kit] = r.sidebar;
+    primByKit[kit] = r.prim;
   }
   await browser.close();
 
@@ -166,6 +178,15 @@ const flat = (g) => g.flatMap((x) => x.links.map((l) => `${x.group.toLowerCase()
     if (bad.length) { fail = 1; lLines.push(`  FAIL ${kit} rows touch the frame: ${bad.map((s) => `${s}=${l[s]}px`).join(' ')} (band ${l.band}px) — 内衬须在边框与阶影带之外另留空气`); }
   }
   console.log(lLines.length ? lLines.join('\n') : `  -> clean (${kits.map((k) => { const l = liningByKit[k]; return `${k}:${l.top}/${l.right}/${l.bottom}/${l.left}`; }).join(' ')})`);
+
+  console.log('\n## 帧原语宿主盒含框环 (components.md §4.1: 双层 frame 的宿主 border 不得被组合方归零)');
+  const pmLines = [];
+  for (const kit of kits) {
+    const p = primByKit[kit];
+    if (!p || !p.hosts) continue;
+    if (p.zero.length) { fail = 1; pmLines.push(`  FAIL ${kit} — 挂帧原语但 computed border=0(框墨画到盒外/被填充盖死): ${p.zero.join(', ')}`); }
+  }
+  console.log(pmLines.length ? pmLines.join('\n') : `  -> clean (${kits.map((k) => `${k}:${primByKit[k] ? primByKit[k].hosts : 0}宿主`).join(' ')})`);
 
   console.log('\n## 菜单弹层的应用层级 (z-menu 挂在 positioner 上、各 kit 同值)');
   const zLines = [];

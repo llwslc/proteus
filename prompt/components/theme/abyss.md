@@ -16,7 +16,7 @@
 
 - Switch：一只眼睛——`.abyss-switch__thumb` 里含 sclera（眼白）、iris（虹膜）、pupil（瞳孔）、lid（眼睑）几个 SVG，选中时 iris 和 pupil 沿 `scaleY(0.06→1)` 从一条缝睁开成圆 + 辉光；没有轨道滑块。
 - Checkbox：勾记按 `stroke-dashoffset` 一笔笔描出（inscribe）。
-- CheckboxGroup：组内条目缩进，左缘一道 `1.5px` 纵轨——`ink-strong` 起、`ink` 收、末端渐隐的渐变，过 edge 颤动滤镜。
+- CheckboxGroup：组内条目缩进，左缘一道 `line-w` 纵轨——`ink-strong` 起、`ink` 收、末端渐隐的渐变，过 edge 颤动滤镜。
 - ToggleGroup：外箱体走 `.abyss-frame` 横条。
 - Slider：轨 `inset` 凹底 + `ink-faint` 内环、过 edge 颤动滤镜；indicator `glow-deep` 到 `glow` 渐变 + 辉光；thumb 是发光潮珠——`thumb-glint` 高光点的径向渐变圆球 + `glow-soft` 外环，hover 放大一步、拖动再放大加辉。
 - NumberField：减·输入·加三连，两枚步进钮夹住输入位。

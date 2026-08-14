@@ -17,7 +17,6 @@
   min-width: var(--abyss-select-min-w);
   height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-3) 0 var(--abyss-space-4);
-  border: 0;
   background: transparent;
   cursor: pointer;
   color: var(--abyss-text-bright);

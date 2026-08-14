@@ -17,7 +17,6 @@
   justify-content: center;
   min-height: var(--abyss-control-h);
   padding: 0 var(--abyss-space-5);
-  border: 0;
   background: transparent;
   color: var(--abyss-text-bright);
   font-family: var(--abyss-font-display);

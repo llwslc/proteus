@@ -146,6 +146,10 @@ run "与 Base UI 零件重复的 role/aria 手设" "$f"
 f=$(node .claude/skills/kit-lint/raw-size.cjs "$ROOT" 2>/dev/null)
 run "裸写的尺寸 footprint(width/height/min-/max-,>8px 且非上下文式)" "$f"
 
+# 18. 小数描边宽:Chrome 布局向下取整,配套 inset/补偿用原值,0.5px 错位涂抹框线
+f=$(node .claude/skills/kit-lint/stroke-integer.cjs "$ROOT" 2>/dev/null)
+run "非整数描边宽(border/outline 含 var 一跳解析)" "$f"
+
 echo
 [ $FAIL -eq 0 ] && echo "RESULT: PASS (mechanical checks clean)" || echo "RESULT: FINDINGS — fix or justify each before accepting the kit"
 exit $FAIL

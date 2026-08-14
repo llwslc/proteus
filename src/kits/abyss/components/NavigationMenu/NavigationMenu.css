@@ -45,7 +45,7 @@
   left: var(--abyss-space-3);
   right: var(--abyss-space-3);
   bottom: 4px;
-  height: 1.5px;
+  height: var(--abyss-line-w);
   background: var(--abyss-glow);
   box-shadow: 0 0 7px var(--abyss-glow-a70);
   filter: var(--abyss-edge-filter);

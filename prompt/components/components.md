@@ -60,7 +60,7 @@
 
 - 每个带框的元素都走**同一个 frame 原语** `.<kit>-surface`、`.<kit>-frame`，通过输入变量取填充、边框色、形状（如 `--<kit>-surface-fill / -border / -clip`）；组件**不裸写形状**，只覆盖输入变量。
 - frame 用 `isolation: isolate`，让任意内容（包括裸文本）自动叠在填充之上。
-- **具体的描边怎么画，由 theme 定**：形状用了 CSS `border` 画不出来的（如 `clip-path`、`polygon`），就用双层 frame——外层背景＝边框色 + 形状、同挂等宽透明 `border` 使盒模型如实表达框环，`::before` 挂 `z-index: -1`、贴 padding-box 填表面色；纯圆角矩形则直接 `border` + `border-radius`，填充就是元素自己的背景。
+- **具体的描边怎么画，由 theme 定**：形状用了 CSS `border` 画不出来的（如 `clip-path`、`polygon`），就用双层 frame——外层背景＝边框色 + 形状、同挂等宽透明 `border` 使盒模型如实表达框环，`::before` 挂 `z-index: -1`、贴 padding-box 填表面色；纯圆角矩形则直接 `border` + `border-radius`，填充就是元素自己的背景。宿主的 `border` 归原语及其修饰符所有，组合原语的控件经原语的宽度 token 或修饰符调边。
 - **边框轻重分档**：页内控件、容器的静止边框一律用安静的 chrome 档；浮层 surface 一律用强档；hover、focus、选中态升档；语义变体按 tone 重染。**每档具体多重，由 theme 定。**
 
 ### 4.2 浮层原语
