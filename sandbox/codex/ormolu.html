@@ -1,0 +1,2352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4c5c48">
+  <title>Maison Ormolu — The Gilded Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ivory: #f7f0e3;
+      --ivory-deep: #e9dfcd;
+      --paper: #fffaf0;
+      --ink: #302824;
+      --muted: #625750;
+      --sage: #4d5f49;
+      --sage-soft: #aebba6;
+      --sage-pale: #dce4d5;
+      --gold: #a67d2f;
+      --gold-dark: #6d4e18;
+      --gold-light: #e3c776;
+      --blush: #98566a;
+      --blush-soft: #e5bdc5;
+      --focus: #71354d;
+      --shadow: rgba(77, 55, 28, 0.18);
+      --serif: "Cormorant Garamond", Didot, "Bodoni MT", "Times New Roman", serif;
+      --script: "Great Vibes", "Snell Roundhand", cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 0;
+      margin: 0;
+      overflow-x: clip;
+      color: var(--ink);
+      background-color: var(--ivory);
+      background-image:
+        radial-gradient(ellipse at 18% 8%, rgba(255, 255, 255, 0.92) 0 8%, transparent 26%),
+        radial-gradient(ellipse at 84% 32%, rgba(212, 194, 170, 0.24) 0 4%, transparent 27%),
+        repeating-linear-gradient(114deg, transparent 0 73px, rgba(117, 103, 87, 0.045) 74px, transparent 76px),
+        linear-gradient(102deg, transparent 0 46%, rgba(129, 111, 94, 0.055) 48%, transparent 51%);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: 0.42;
+      background:
+        repeating-radial-gradient(ellipse at 25% 30%, transparent 0 17px, rgba(85, 68, 50, 0.025) 18px, transparent 20px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.2), transparent 18%, rgba(255, 255, 255, 0.28) 49%, transparent 75%);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    button,
+    input,
+    [tabindex] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    [tabindex]:focus-visible,
+    dialog :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 16px;
+      z-index: 100;
+      padding: 9px 14px;
+      color: var(--paper);
+      background: var(--ink);
+      border: 2px solid var(--gold-light);
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .shell {
+      width: min(100%, 1180px);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 10;
+      color: var(--paper);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 20% 80%, rgba(255, 255, 255, 0.08)),
+        var(--sage);
+      border-bottom: 3px double var(--gold-light);
+      box-shadow: 0 5px 20px rgba(50, 40, 30, 0.2);
+    }
+
+    .topbar::after {
+      position: absolute;
+      right: 0;
+      bottom: -7px;
+      left: 0;
+      height: 5px;
+      content: "";
+      background:
+        radial-gradient(circle at 5px 0, transparent 5px, var(--gold) 5.5px 6.5px, transparent 7px) 0 0 / 18px 9px repeat-x;
+    }
+
+    .topbar-inner {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-block: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .estate-mark,
+    .salon-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .estate-mark::before,
+    .salon-state::before {
+      width: 8px;
+      height: 8px;
+      content: "";
+      border: 1px solid var(--gold-light);
+      background: var(--blush-soft);
+      transform: rotate(45deg);
+    }
+
+    .salon-state::before {
+      border-radius: 50%;
+      background: #f3d98b;
+      box-shadow: 0 0 0 3px rgba(243, 217, 139, 0.14);
+    }
+
+    .hero-wrap {
+      padding-top: 48px;
+      padding-bottom: 36px;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 610px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(310px, 0.95fr);
+      align-items: center;
+      gap: 48px;
+      overflow: hidden;
+      padding: clamp(38px, 6vw, 76px);
+      background:
+        linear-gradient(112deg, rgba(255, 255, 255, 0.93), rgba(244, 227, 225, 0.72) 47%, rgba(216, 228, 211, 0.77)),
+        repeating-linear-gradient(98deg, transparent 0 20px, rgba(255, 255, 255, 0.34) 21px 23px);
+      border: 1px solid var(--gold-dark);
+      border-radius: 44% 44% 28px 28px / 70px 70px 28px 28px;
+      box-shadow:
+        inset 0 0 0 5px var(--ivory),
+        inset 0 0 0 7px var(--gold),
+        inset 0 0 0 13px var(--ivory),
+        0 24px 55px var(--shadow);
+    }
+
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      inset-block: 0;
+      z-index: 8;
+      width: 52%;
+      pointer-events: none;
+      content: "";
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.46), transparent 18% 75%, rgba(89, 42, 57, 0.16)),
+        repeating-linear-gradient(94deg, #bd7789 0 7%, #d89ba8 8% 15%, #b96f83 16% 22%);
+      border-inline: 1px solid rgba(108, 72, 39, 0.5);
+      box-shadow: inset -12px 0 22px rgba(85, 40, 55, 0.16);
+      animation: curtain-left 1.45s cubic-bezier(0.72, 0, 0.22, 1) 0.16s both;
+    }
+
+    .hero::before {
+      left: 0;
+      transform-origin: left center;
+    }
+
+    .hero::after {
+      right: 0;
+      transform-origin: right center;
+      box-shadow: inset 12px 0 22px rgba(85, 40, 55, 0.16);
+      animation-name: curtain-right;
+    }
+
+    @keyframes curtain-left {
+      from { transform: translateX(0); }
+      to { transform: translateX(-102%); }
+    }
+
+    @keyframes curtain-right {
+      from { transform: translateX(0); }
+      to { transform: translateX(102%); }
+    }
+
+    .hero-ornament {
+      position: absolute;
+      inset: 17px;
+      z-index: -1;
+      pointer-events: none;
+      border: 1px solid rgba(111, 78, 24, 0.62);
+      border-radius: 42% 42% 17px 17px / 58px 58px 17px 17px;
+    }
+
+    .hero-ornament::before,
+    .hero-ornament::after {
+      position: absolute;
+      top: 50%;
+      width: 74px;
+      height: 118px;
+      content: "";
+      border: 7px double var(--gold);
+      border-right-color: transparent;
+      border-radius: 70% 20% 70% 20%;
+      opacity: 0.72;
+      transform: translateY(-50%) rotate(-10deg);
+    }
+
+    .hero-ornament::before {
+      left: -42px;
+    }
+
+    .hero-ornament::after {
+      right: -42px;
+      transform: translateY(-50%) scaleX(-1) rotate(-10deg);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .control-kicker {
+      margin: 0 0 10px;
+      color: var(--blush);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(3.7rem, 8vw, 7.4rem);
+      font-weight: 600;
+      line-height: 0.78;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1::first-letter {
+      color: var(--gold-dark);
+      font-family: var(--script);
+      font-size: 1.28em;
+      font-weight: 400;
+    }
+
+    .hero-deck {
+      max-width: 590px;
+      margin: 25px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.12rem, 2vw, 1.42rem);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .hero-actions,
+    .button-gallery,
+    .measure-actions,
+    .audience-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      position: relative;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 20px;
+      overflow: hidden;
+      border: 1px solid var(--gold-dark);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.035em;
+      text-decoration: none;
+      box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.42),
+        0 5px 0 rgba(83, 60, 24, 0.16);
+      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .button::after {
+      position: absolute;
+      inset: 4px;
+      pointer-events: none;
+      content: "";
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: inherit;
+    }
+
+    .button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.5),
+        0 8px 0 rgba(83, 60, 24, 0.15);
+    }
+
+    .button:active:not(:disabled) {
+      transform: translateY(3px);
+      box-shadow:
+        inset 0 2px 4px rgba(53, 35, 15, 0.24),
+        0 1px 0 rgba(83, 60, 24, 0.18);
+    }
+
+    .button-primary {
+      color: var(--paper);
+      background:
+        linear-gradient(105deg, transparent 0 16%, rgba(255, 255, 255, 0.12) 17% 19%, transparent 20% 62%, rgba(227, 199, 118, 0.16) 63% 66%, transparent 67%),
+        var(--sage);
+    }
+
+    .button-secondary {
+      color: var(--paper);
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.18), transparent 40%),
+        var(--blush);
+    }
+
+    .button-gold {
+      color: #32260f;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(255, 248, 197, 0.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 68%, rgba(106, 69, 17, 0.32) 0 2px, transparent 3px),
+        linear-gradient(120deg, #c3983e, #f0d98a 34%, #b18229 66%, #e8c96f);
+    }
+
+    .button-outline {
+      color: var(--sage);
+      background: rgba(255, 250, 240, 0.7);
+      border-style: double;
+      border-width: 3px;
+    }
+
+    .button-icon {
+      width: 52px;
+      min-width: 52px;
+      padding: 0;
+      color: var(--paper);
+      background: var(--blush);
+      border-radius: 46% 54% 47% 53% / 56% 43% 57% 44%;
+      font-size: 1.15rem;
+    }
+
+    .button-small {
+      min-height: 39px;
+      padding: 7px 15px;
+      font-size: 0.9rem;
+    }
+
+    .button:disabled {
+      color: #6d665f;
+      background: #d8d2c8;
+      border-color: #9a9288;
+      cursor: not-allowed;
+      box-shadow: none;
+      opacity: 0.78;
+    }
+
+    .signature-stage {
+      position: relative;
+      z-index: 1;
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 18px 22px rgba(85, 62, 33, 0.2));
+    }
+
+    .cartouche {
+      position: relative;
+      width: min(100%, 330px);
+      aspect-ratio: 0.78;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(ellipse at 46% 22%, rgba(255, 255, 255, 0.9) 0 8%, transparent 27%),
+        linear-gradient(145deg, var(--blush-soft), #f2d6da 48%, #c98a9a);
+      border: 11px ridge var(--gold-light);
+      border-radius: 48% 48% 42% 42% / 34% 34% 55% 55%;
+      box-shadow:
+        inset 0 0 0 4px var(--gold-dark),
+        inset 0 0 30px rgba(105, 52, 69, 0.2),
+        0 0 0 6px var(--ivory),
+        0 0 0 9px var(--gold);
+    }
+
+    .cartouche::before,
+    .cartouche::after {
+      position: absolute;
+      top: 42%;
+      width: 86px;
+      height: 150px;
+      content: "";
+      border: 9px double var(--gold);
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 80% 18% 64% 28%;
+      transform: translateY(-50%) rotate(-20deg);
+    }
+
+    .cartouche::before {
+      left: -70px;
+    }
+
+    .cartouche::after {
+      right: -70px;
+      transform: translateY(-50%) scaleX(-1) rotate(-20deg);
+    }
+
+    .cartouche-crown {
+      position: absolute;
+      top: -46px;
+      width: 95px;
+      height: 62px;
+      border: 9px double var(--gold);
+      border-bottom: 0;
+      border-radius: 60% 60% 0 0;
+    }
+
+    .cartouche-crown::before,
+    .cartouche-crown::after {
+      position: absolute;
+      bottom: -9px;
+      width: 28px;
+      height: 28px;
+      content: "";
+      border: 7px solid var(--gold);
+      border-radius: 50% 0 50% 50%;
+    }
+
+    .cartouche-crown::before {
+      left: -28px;
+      transform: rotate(34deg);
+    }
+
+    .cartouche-crown::after {
+      right: -28px;
+      transform: scaleX(-1) rotate(34deg);
+    }
+
+    .monogram {
+      position: relative;
+      z-index: 3;
+      margin-top: -26px;
+      color: var(--gold-dark);
+      font-family: var(--script);
+      font-size: 8.5rem;
+      line-height: 1;
+      text-shadow: 0 1px var(--paper);
+      transition: transform 900ms cubic-bezier(0.2, 0.72, 0.2, 1);
+    }
+
+    .silk-fan {
+      position: absolute;
+      right: 50%;
+      bottom: 39px;
+      z-index: 2;
+      width: 1px;
+      height: 132px;
+      transform: translateX(50%);
+    }
+
+    .fan-segment {
+      position: absolute;
+      bottom: 0;
+      left: -28px;
+      width: 56px;
+      height: 132px;
+      background:
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.58) 48%, transparent 52%),
+        linear-gradient(var(--ivory) 0 14%, var(--sage-pale) 15% 62%, var(--blush-soft) 63% 100%);
+      border: 1px solid var(--gold);
+      border-radius: 50% 50% 8px 8px;
+      clip-path: polygon(50% 100%, 0 16%, 17% 3%, 50% 0, 83% 3%, 100% 16%);
+      transform-origin: 50% 100%;
+      transition: transform 950ms cubic-bezier(0.2, 0.72, 0.2, 1);
+    }
+
+    .salon-open .fan-segment:nth-child(1) { transform: rotate(-67deg); }
+    .salon-open .fan-segment:nth-child(2) { transform: rotate(-45deg); }
+    .salon-open .fan-segment:nth-child(3) { transform: rotate(-23deg); }
+    .salon-open .fan-segment:nth-child(4) { transform: rotate(0deg); }
+    .salon-open .fan-segment:nth-child(5) { transform: rotate(23deg); }
+    .salon-open .fan-segment:nth-child(6) { transform: rotate(45deg); }
+    .salon-open .fan-segment:nth-child(7) { transform: rotate(67deg); }
+
+    .salon-open .monogram {
+      transform: translateY(-67px) scale(0.72);
+    }
+
+    .fan-rivet {
+      position: absolute;
+      right: 50%;
+      bottom: 27px;
+      z-index: 4;
+      width: 23px;
+      height: 23px;
+      background: radial-gradient(circle at 35% 32%, var(--paper) 0 8%, var(--gold-light) 12% 38%, var(--gold-dark) 70%);
+      border: 2px solid var(--gold-dark);
+      border-radius: 50%;
+      transform: translateX(50%);
+    }
+
+    .controls-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(270px, 1.2fr);
+      align-items: end;
+      gap: 40px;
+      padding-block: 42px 30px;
+    }
+
+    .controls-intro h2 {
+      margin: 0;
+      font-size: clamp(2.7rem, 6vw, 5.2rem);
+      font-weight: 600;
+      line-height: 0.88;
+      letter-spacing: -0.035em;
+    }
+
+    .controls-intro p:last-child {
+      max-width: 610px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 22px;
+      padding-bottom: 70px;
+    }
+
+    .salon-card {
+      position: relative;
+      min-width: 0;
+      padding: clamp(24px, 4vw, 38px);
+      overflow: visible;
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.86), rgba(255, 250, 240, 0.78)),
+        var(--paper);
+      border: 1px solid var(--gold-dark);
+      border-radius: 28px 28px 16px 16px;
+      box-shadow:
+        inset 0 0 0 4px var(--ivory),
+        inset 0 0 0 5px rgba(166, 125, 47, 0.6),
+        0 14px 32px rgba(77, 55, 28, 0.12);
+      animation: unfold 720ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+    }
+
+    .salon-card:nth-child(2) { animation-delay: 80ms; }
+    .salon-card:nth-child(3) { animation-delay: 140ms; }
+    .salon-card:nth-child(4) { animation-delay: 200ms; }
+    .salon-card:nth-child(5) { animation-delay: 260ms; }
+
+    @keyframes unfold {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scaleY(0.96);
+        transform-origin: top;
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+      }
+    }
+
+    .salon-card::before {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      width: 94px;
+      height: 21px;
+      content: "";
+      background:
+        radial-gradient(ellipse at 50% 100%, transparent 0 38%, var(--gold) 40% 47%, transparent 49%),
+        radial-gradient(circle at 12px 12px, var(--ivory) 0 5px, var(--gold) 6px 7px, transparent 8px) 0 0 / 24px 20px repeat-x;
+      transform: translateX(-50%);
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+    .span-8 { grid-column: span 8; }
+    .span-4 { grid-column: span 4; }
+    .span-12 { grid-column: span 12; }
+
+    .salon-card h3 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .card-lede {
+      margin: 9px 0 24px;
+      color: var(--muted);
+    }
+
+    .divider {
+      height: 17px;
+      margin: 22px 0;
+      border: 0;
+      background:
+        radial-gradient(ellipse at center, transparent 0 29%, var(--gold) 31% 38%, transparent 40%) center / 66px 16px no-repeat,
+        linear-gradient(90deg, transparent, var(--gold) 20% 46%, transparent 46% 54%, var(--gold) 54% 80%, transparent) center / 100% 1px no-repeat;
+      opacity: 0.78;
+    }
+
+    .field-label,
+    legend {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .calling-card {
+      position: relative;
+      padding: 17px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(229, 189, 197, 0.18)),
+        var(--paper);
+      border: 1px solid var(--gold);
+      box-shadow: inset 0 0 0 4px var(--ivory), inset 0 0 0 5px rgba(166, 125, 47, 0.55);
+    }
+
+    .calling-card::before,
+    .calling-card::after {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      content: "";
+      border: solid var(--blush);
+      opacity: 0.6;
+    }
+
+    .calling-card::before {
+      top: 7px;
+      left: 7px;
+      border-width: 2px 0 0 2px;
+    }
+
+    .calling-card::after {
+      right: 7px;
+      bottom: 7px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 51px;
+      padding: 11px 14px;
+      color: var(--ink);
+      background: rgba(255, 250, 240, 0.82);
+      border: 0;
+      border-bottom: 2px solid var(--gold);
+      border-radius: 0;
+    }
+
+    .text-input::placeholder {
+      color: #695f57;
+      font-style: italic;
+      opacity: 1;
+    }
+
+    .text-input:hover {
+      background: #fffdf8;
+    }
+
+    .control-note,
+    .live-note {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .choice-stack {
+      display: grid;
+      gap: 11px;
+    }
+
+    .radio-choice {
+      position: relative;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 8px 15px 8px 10px;
+      cursor: pointer;
+      background: linear-gradient(90deg, var(--sage-pale), rgba(255, 250, 240, 0.7));
+      border: 1px solid transparent;
+      border-radius: 999px 16px 16px 999px;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .radio-choice:hover {
+      border-color: var(--gold);
+      transform: translateX(3px);
+    }
+
+    .radio-choice input {
+      width: 34px;
+      height: 34px;
+      margin: 0;
+      appearance: none;
+      background:
+        radial-gradient(circle, var(--paper) 0 24%, var(--blush-soft) 25% 45%, var(--gold) 47% 54%, var(--paper) 56%);
+      border: 1px solid var(--gold-dark);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 3px var(--paper);
+    }
+
+    .radio-choice input:checked {
+      background:
+        radial-gradient(circle, var(--sage) 0 22%, var(--gold-light) 24% 34%, var(--paper) 36% 52%, var(--gold) 54% 61%, var(--blush-soft) 63%);
+    }
+
+    .radio-choice:has(input:checked) {
+      border-color: var(--gold-dark);
+      box-shadow: inset 0 0 0 2px var(--paper);
+    }
+
+    .radio-title {
+      display: block;
+      font-weight: 700;
+    }
+
+    .radio-description {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .check-row,
+    .switch-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .check-input {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 auto;
+      margin: 0;
+      appearance: none;
+      cursor: pointer;
+      background: var(--paper);
+      border: 2px solid var(--gold-dark);
+      border-radius: 48% 52% 45% 55% / 55% 43% 57% 45%;
+      box-shadow: inset 0 0 0 3px var(--ivory), 0 0 0 1px var(--gold-light);
+    }
+
+    .check-input:checked {
+      background:
+        radial-gradient(circle, var(--paper) 0 13%, transparent 15%),
+        conic-gradient(from 22.5deg, var(--gold-light) 0 12.5%, var(--blush) 0 25%, var(--gold-light) 0 37.5%, var(--blush) 0 50%, var(--gold-light) 0 62.5%, var(--blush) 0 75%, var(--gold-light) 0 87.5%, var(--blush) 0);
+    }
+
+    .switch-row {
+      align-items: flex-start;
+    }
+
+    .switch-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .switch-track {
+      position: relative;
+      width: 76px;
+      height: 38px;
+      flex: 0 0 auto;
+      background:
+        repeating-linear-gradient(96deg, rgba(255, 255, 255, 0.2) 0 5px, transparent 6px 11px),
+        var(--blush-soft);
+      border: 2px solid var(--gold-dark);
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 3px var(--ivory);
+      transition: background-color 220ms ease;
+    }
+
+    .switch-thumb {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(circle at 35% 30%, var(--paper) 0 8%, var(--gold-light) 11% 42%, var(--gold) 70%);
+      border: 1px solid var(--gold-dark);
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(65, 45, 20, 0.25);
+      transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .switch-thumb::after {
+      position: absolute;
+      top: 21px;
+      left: 9px;
+      width: 6px;
+      height: 16px;
+      content: "";
+      background: linear-gradient(var(--gold), var(--blush));
+      border-radius: 0 0 50% 50%;
+    }
+
+    .switch-input:checked + .switch-track {
+      background-color: var(--sage-soft);
+    }
+
+    .switch-input:checked + .switch-track .switch-thumb {
+      transform: translateX(37px);
+    }
+
+    .switch-input:focus-visible + .switch-track {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .switch-copy {
+      padding-top: 4px;
+    }
+
+    .range-wrap {
+      padding: 17px 17px 15px;
+      background:
+        radial-gradient(circle at 10% 50%, var(--blush-soft) 0 3px, transparent 4px) 0 0 / 18px 100%,
+        linear-gradient(90deg, rgba(220, 228, 213, 0.6), rgba(255, 250, 240, 0.8));
+      border: 1px solid var(--gold);
+      border-radius: 18px 18px 45px 45px;
+    }
+
+    .range-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .range-output {
+      min-width: 64px;
+      color: var(--blush);
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .range-input {
+      width: 100%;
+      height: 30px;
+      margin: 0;
+      appearance: none;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .range-input::-webkit-slider-runnable-track {
+      height: 8px;
+      background:
+        linear-gradient(90deg, var(--sage) 0 var(--level), var(--ivory-deep) var(--level) 100%);
+      border: 1px solid var(--gold-dark);
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 2px var(--paper);
+    }
+
+    .range-input::-moz-range-track {
+      height: 8px;
+      background:
+        linear-gradient(90deg, var(--sage) 0 var(--level), var(--ivory-deep) var(--level) 100%);
+      border: 1px solid var(--gold-dark);
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 2px var(--paper);
+    }
+
+    .range-input::-webkit-slider-thumb {
+      width: 28px;
+      height: 28px;
+      margin-top: -11px;
+      appearance: none;
+      background: radial-gradient(circle at 35% 32%, white 0 8%, var(--blush-soft) 11% 36%, var(--blush) 39% 58%, var(--gold-light) 60%);
+      border: 2px solid var(--gold-dark);
+      border-radius: 50% 50% 45% 55%;
+      box-shadow: 0 3px 5px rgba(78, 54, 22, 0.24);
+    }
+
+    .range-input::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      background: radial-gradient(circle at 35% 32%, white 0 8%, var(--blush-soft) 11% 36%, var(--blush) 39% 58%, var(--gold-light) 60%);
+      border: 2px solid var(--gold-dark);
+      border-radius: 50% 50% 45% 55%;
+      box-shadow: 0 3px 5px rgba(78, 54, 22, 0.24);
+    }
+
+    .custom-select {
+      position: relative;
+    }
+
+    .select-trigger {
+      width: 100%;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 16px 11px 20px;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.65), transparent 42%),
+        var(--sage-pale);
+      border: 1px solid var(--gold-dark);
+      border-radius: 999px 999px 17px 17px;
+      box-shadow: inset 0 0 0 4px var(--paper);
+    }
+
+    .select-chevron {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      color: var(--paper);
+      background: var(--blush);
+      border: 1px solid var(--gold-dark);
+      border-radius: 50%;
+      transition: transform 220ms ease;
+    }
+
+    .select-trigger[aria-expanded="true"] .select-chevron {
+      transform: rotate(180deg);
+    }
+
+    .select-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      left: 0;
+      z-index: 20;
+      display: grid;
+      gap: 3px;
+      margin: 0;
+      padding: 12px;
+      list-style: none;
+      background: var(--paper);
+      border: 2px solid var(--gold-dark);
+      border-radius: 16px 16px 38px 38px;
+      box-shadow: 0 18px 30px rgba(58, 42, 25, 0.22);
+      transform-origin: top center;
+      animation: fan-menu 210ms ease-out both;
+    }
+
+    .select-menu[hidden] {
+      display: none;
+    }
+
+    @keyframes fan-menu {
+      from {
+        opacity: 0;
+        transform: scaleY(0.74);
+      }
+      to {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    .select-option {
+      padding: 10px 13px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 8px 8px 20px 20px;
+    }
+
+    .select-option:hover,
+    .select-option:focus-visible {
+      background: var(--sage-pale);
+      border-color: var(--gold);
+    }
+
+    .select-option[aria-selected="true"] {
+      color: var(--paper);
+      background: var(--sage);
+      border-color: var(--gold-light);
+    }
+
+    .screen-tabs {
+      position: relative;
+      padding: 10px;
+      background: linear-gradient(90deg, var(--sage-pale), var(--blush-soft), var(--sage-pale));
+      border: 1px solid var(--gold-dark);
+      border-radius: 18px;
+      box-shadow: inset 0 0 0 3px rgba(255, 250, 240, 0.75);
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+
+    .tab {
+      min-height: 44px;
+      padding: 8px 7px;
+      color: var(--ink);
+      cursor: pointer;
+      background: rgba(255, 250, 240, 0.58);
+      border: 1px solid var(--gold);
+      border-radius: 14px 14px 4px 4px;
+      font-weight: 700;
+      transition: transform 180ms ease, background-color 180ms ease;
+    }
+
+    .tab:hover {
+      transform: translateY(-2px);
+      background: var(--paper);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--paper);
+      background: var(--blush);
+      border-color: var(--gold-dark);
+      box-shadow: inset 0 -3px var(--gold-light);
+    }
+
+    .tab-panel {
+      min-height: 126px;
+      padding: 20px 16px 15px;
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.8), transparent 70%),
+        var(--paper);
+      border: 1px solid var(--gold);
+      border-top: 0;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .tab-panel h4 {
+      margin: 0 0 5px;
+      font-size: 1.35rem;
+    }
+
+    .tab-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .progress-frame {
+      padding: 13px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.52), transparent),
+        var(--ivory-deep);
+      border: 1px solid var(--gold-dark);
+      border-radius: 12px 12px 999px 999px;
+      box-shadow: inset 0 0 0 3px var(--paper);
+    }
+
+    .progress-track {
+      position: relative;
+      height: 24px;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--gold-dark);
+      border-radius: 999px;
+    }
+
+    .progress-fill {
+      width: var(--progress);
+      height: 100%;
+      background:
+        repeating-linear-gradient(112deg, rgba(255, 255, 255, 0.24) 0 9px, transparent 10px 18px),
+        linear-gradient(90deg, var(--sage), #71816a);
+      border-right: 3px double var(--gold-light);
+      border-radius: inherit;
+      transition: width 480ms cubic-bezier(0.2, 0.72, 0.2, 1);
+    }
+
+    .progress-fill::after {
+      position: absolute;
+      top: 50%;
+      right: calc(100% - var(--progress) - 8px);
+      width: 16px;
+      height: 16px;
+      content: "";
+      background: var(--gold-light);
+      border: 2px solid var(--gold-dark);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    .measure-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .measure-value {
+      color: var(--blush);
+      font-weight: 700;
+    }
+
+    .applause-shell {
+      position: relative;
+      padding: 22px 20px 15px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(229, 189, 197, 0.6), transparent 58%),
+        var(--paper);
+      border: 1px solid var(--gold-dark);
+      border-radius: 100% 100% 18px 18px / 80px 80px 18px 18px;
+      box-shadow: inset 0 0 0 4px var(--ivory);
+    }
+
+    .applause-meter {
+      width: 100%;
+      height: 24px;
+      display: block;
+      appearance: none;
+      background: transparent;
+      border: 0;
+    }
+
+    .applause-meter::-webkit-meter-bar {
+      background: var(--ivory-deep);
+      border: 1px solid var(--gold-dark);
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 2px var(--paper);
+    }
+
+    .applause-meter::-webkit-meter-optimum-value {
+      background:
+        repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.24) 0 7px, transparent 8px 14px),
+        var(--blush);
+      border-radius: 999px;
+      transition: width 400ms ease;
+    }
+
+    .applause-meter::-moz-meter-bar {
+      background:
+        repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.24) 0 7px, transparent 8px 14px),
+        var(--blush);
+      border-radius: 999px;
+    }
+
+    .private-audience {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 0.7fr);
+      align-items: center;
+      gap: 34px;
+    }
+
+    .wax-tooltip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .wax-button {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      color: var(--paper);
+      cursor: help;
+      background:
+        radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.2) 0 7%, transparent 8%),
+        var(--blush);
+      border: 2px solid #71354d;
+      border-radius: 48% 52% 43% 57% / 54% 46% 56% 44%;
+      box-shadow: inset 0 0 0 3px rgba(255, 250, 240, 0.16), 0 4px 8px rgba(69, 35, 47, 0.2);
+      font-weight: 700;
+    }
+
+    .tooltip {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 12px);
+      z-index: 15;
+      width: min(260px, calc(100vw - 48px));
+      padding: 11px 13px;
+      color: var(--paper);
+      pointer-events: none;
+      background: var(--ink);
+      border: 1px solid var(--gold-light);
+      border-radius: 14px 14px 4px 14px;
+      box-shadow: 0 10px 24px rgba(46, 35, 29, 0.24);
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .wax-tooltip:hover .tooltip,
+    .wax-tooltip:focus-within .tooltip,
+    .wax-tooltip[data-open="true"] .tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .audience-dialog {
+      width: min(560px, calc(100% - 32px));
+      max-height: calc(100dvh - 32px);
+      padding: 0;
+      overflow: auto;
+      color: var(--ink);
+      background:
+        linear-gradient(125deg, rgba(255, 255, 255, 0.94), rgba(229, 189, 197, 0.28)),
+        var(--paper);
+      border: 2px solid var(--gold-dark);
+      border-radius: 36px 36px 18px 18px;
+      box-shadow:
+        inset 0 0 0 6px var(--ivory),
+        inset 0 0 0 8px var(--gold),
+        0 28px 70px rgba(32, 25, 20, 0.35);
+    }
+
+    .audience-dialog::backdrop {
+      background: rgba(48, 40, 36, 0.62);
+      backdrop-filter: blur(3px);
+    }
+
+    .dialog-inner {
+      padding: clamp(28px, 6vw, 48px);
+      text-align: center;
+    }
+
+    .dialog-flourish {
+      width: 90px;
+      height: 54px;
+      margin: 0 auto 13px;
+      background:
+        radial-gradient(ellipse at 50% 100%, transparent 0 34%, var(--gold) 36% 42%, transparent 44%),
+        radial-gradient(circle at 12px 34px, var(--blush) 0 5px, var(--gold-light) 6px 8px, transparent 9px) 0 0 / 22px 48px repeat-x;
+    }
+
+    .audience-dialog h2 {
+      margin: 0;
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      line-height: 0.95;
+    }
+
+    .audience-dialog p {
+      color: var(--muted);
+    }
+
+    .dialog-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .toast {
+      position: fixed;
+      right: max(16px, calc((100vw - 1180px) / 2 + 24px));
+      bottom: 22px;
+      z-index: 90;
+      width: min(390px, calc(100vw - 32px));
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 17px 18px 17px 22px;
+      color: var(--ink);
+      background:
+        linear-gradient(112deg, rgba(255, 255, 255, 0.88), transparent 58%),
+        var(--paper);
+      border: 2px solid var(--gold-dark);
+      border-radius: 4px 22px 4px 22px;
+      box-shadow:
+        inset 0 0 0 4px var(--ivory),
+        0 17px 36px rgba(53, 41, 30, 0.26);
+      opacity: 0;
+      transform: translateY(18px) rotate(1deg);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .toast::before {
+      position: absolute;
+      top: 50%;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      content: "";
+      background: var(--blush);
+      border: 2px solid var(--gold-dark);
+      border-radius: 50% 46% 54% 43%;
+      transform: translateY(-50%);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+    }
+
+    .toast[hidden] {
+      display: none;
+    }
+
+    .toast p {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .toast-close {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      background: var(--sage-pale);
+      border: 1px solid var(--gold-dark);
+      border-radius: 50%;
+    }
+
+    .noscript-note {
+      margin: 0 0 50px;
+      padding: 13px 18px;
+      color: var(--paper);
+      background: var(--sage);
+      border: 2px solid var(--gold-light);
+      text-align: center;
+    }
+
+    .footer {
+      position: relative;
+      color: var(--paper);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 32% 68%, rgba(255, 255, 255, 0.06)),
+        var(--sage);
+      border-top: 3px double var(--gold-light);
+    }
+
+    .footer::before {
+      position: absolute;
+      top: -9px;
+      right: 0;
+      left: 0;
+      height: 7px;
+      content: "";
+      background: radial-gradient(circle at 7px 7px, transparent 0 5px, var(--gold) 6px 7px, transparent 8px) 0 0 / 22px 9px repeat-x;
+    }
+
+    .footer-inner {
+      min-height: 115px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 28px;
+    }
+
+    .footer-signature {
+      margin: 0;
+      color: #fffaf0;
+      font-family: var(--script);
+      font-size: 2rem;
+    }
+
+    .footer-note {
+      margin: 0;
+      color: #fffaf0;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 54px;
+        padding-inline: clamp(27px, 8vw, 64px);
+        text-align: center;
+      }
+
+      .hero-deck {
+        margin-inline: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .signature-stage {
+        min-height: 330px;
+      }
+
+      .cartouche {
+        width: min(76%, 300px);
+      }
+
+      .span-7,
+      .span-5,
+      .span-8,
+      .span-4 {
+        grid-column: span 12;
+      }
+
+      .private-audience {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 17px;
+      }
+
+      .shell {
+        padding-inline: 16px;
+      }
+
+      .topbar-inner {
+        gap: 10px;
+        font-size: 0.64rem;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-wrap {
+        padding-top: 31px;
+        padding-bottom: 24px;
+      }
+
+      .hero {
+        gap: 45px;
+        padding: 44px 26px 37px;
+        border-radius: 90px 90px 22px 22px / 46px 46px 22px 22px;
+        box-shadow:
+          inset 0 0 0 4px var(--ivory),
+          inset 0 0 0 6px var(--gold),
+          inset 0 0 0 10px var(--ivory),
+          0 18px 38px var(--shadow);
+      }
+
+      .hero h1 {
+        font-size: clamp(3.45rem, 19vw, 5rem);
+      }
+
+      .hero-deck {
+        font-size: 1.05rem;
+      }
+
+      .hero-actions,
+      .button-gallery {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-actions .button,
+      .button-gallery .button:not(.button-icon) {
+        width: 100%;
+      }
+
+      .button-gallery .button-icon {
+        align-self: center;
+      }
+
+      .signature-stage {
+        min-height: 280px;
+      }
+
+      .cartouche {
+        width: min(75%, 232px);
+      }
+
+      .cartouche::before,
+      .cartouche::after {
+        width: 56px;
+        height: 104px;
+      }
+
+      .cartouche::before {
+        left: -46px;
+      }
+
+      .cartouche::after {
+        right: -46px;
+      }
+
+      .cartouche-crown {
+        top: -39px;
+        width: 72px;
+        height: 52px;
+      }
+
+      .monogram {
+        font-size: 6.5rem;
+      }
+
+      .silk-fan {
+        bottom: 31px;
+        height: 99px;
+      }
+
+      .fan-segment {
+        left: -22px;
+        width: 44px;
+        height: 99px;
+      }
+
+      .fan-rivet {
+        bottom: 21px;
+      }
+
+      .salon-open .monogram {
+        transform: translateY(-52px) scale(0.72);
+      }
+
+      .controls-intro {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding-top: 32px;
+      }
+
+      .controls-intro h2 {
+        font-size: clamp(2.8rem, 15vw, 4.1rem);
+      }
+
+      .control-grid {
+        gap: 18px;
+        padding-bottom: 52px;
+      }
+
+      .salon-card {
+        padding: 28px 22px;
+        border-radius: 22px 22px 13px 13px;
+      }
+
+      .range-heading,
+      .measure-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .range-output {
+        min-width: 0;
+        text-align: left;
+      }
+
+      .tab-list {
+        grid-template-columns: 1fr;
+      }
+
+      .tab {
+        border-radius: 10px;
+      }
+
+      .private-audience {
+        gap: 22px;
+      }
+
+      .audience-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .audience-actions .button {
+        width: 100%;
+      }
+
+      .wax-tooltip {
+        align-self: center;
+      }
+
+      .tooltip {
+        right: 50%;
+        transform: translate(50%, 5px);
+      }
+
+      .wax-tooltip:hover .tooltip,
+      .wax-tooltip:focus-within .tooltip,
+      .wax-tooltip[data-open="true"] .tooltip {
+        transform: translate(50%, 0);
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .hero::before,
+      .hero::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#controls">Skip to the salon controls</a>
+
+  <header class="topbar" aria-label="Maison status">
+    <div class="shell topbar-inner">
+      <span class="estate-mark">Maison Ormolu · Est. 1764</span>
+      <span class="salon-state" id="salonState">Salon prepared</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell hero-wrap">
+      <section class="hero" id="hero" aria-labelledby="heroTitle">
+        <div class="hero-ornament" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">A private evening in the east salon</p>
+          <h1 id="heroTitle">Maison Ormolu</h1>
+          <p class="hero-deck">An ivory world of gilt conversation, sage-scented rooms, and ceremonies conducted beneath a blush silk canopy.</p>
+          <div class="hero-actions">
+            <button class="button button-primary" id="enterSalon" type="button">Enter the Salon</button>
+            <button class="button button-gold" id="unveilButton" type="button" aria-pressed="false">Unveil the Cartouche</button>
+          </div>
+        </div>
+
+        <div class="signature-stage" aria-hidden="true">
+          <div class="cartouche">
+            <div class="cartouche-crown"></div>
+            <span class="monogram">O</span>
+            <div class="silk-fan">
+              <span class="fan-segment"></span>
+              <span class="fan-segment"></span>
+              <span class="fan-segment"></span>
+              <span class="fan-segment"></span>
+              <span class="fan-segment"></span>
+              <span class="fan-segment"></span>
+              <span class="fan-segment"></span>
+            </div>
+            <span class="fan-rivet"></span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="shell" id="controls" aria-labelledby="controlsTitle">
+      <div class="controls-intro">
+        <div>
+          <p class="section-kicker">The house instruments</p>
+          <h2 id="controlsTitle">Arrange the Evening</h2>
+        </div>
+        <p>Every invitation, curtain, and chandelier answers to your hand. Make the salon your own; the household will preserve each choice while you remain.</p>
+      </div>
+
+      <div class="control-grid">
+        <article class="salon-card span-7" aria-labelledby="invitationsTitle">
+          <p class="control-kicker">I · The Receiving Room</p>
+          <h3 id="invitationsTitle">Gilded Invitations</h3>
+          <p class="card-lede">Choose how the household should announce your arrival.</p>
+
+          <div class="button-gallery" aria-label="Invitation actions">
+            <button class="button button-primary" type="button" data-toast="The carriage has been summoned to the marble court.">Summon the Carriage</button>
+            <button class="button button-secondary" type="button" data-toast="Your calling card is now with the footman.">Send a Calling Card</button>
+            <button class="button button-outline" type="button" data-toast="The music room is reserved in your name.">Reserve the Salon</button>
+            <button class="button button-icon" type="button" aria-label="Ring the silver bell" data-toast="A silver bell sounds beyond the gallery.">✦</button>
+            <button class="button" type="button" disabled>Salon Retired</button>
+          </div>
+
+          <hr class="divider">
+
+          <div class="calling-card">
+            <label class="field-label" for="callingName">Name upon the calling card</label>
+            <input class="text-input" id="callingName" type="text" maxlength="42" autocomplete="name" placeholder="Lady Arabella…">
+            <p class="control-note" id="callingNote" aria-live="polite">The blank card awaits its hand.</p>
+          </div>
+        </article>
+
+        <article class="salon-card span-5" aria-labelledby="arrangementsTitle">
+          <p class="control-kicker">II · The Music Gallery</p>
+          <h3 id="arrangementsTitle">Evening Arrangements</h3>
+          <p class="card-lede">Set the room's temper before the first guest appears.</p>
+
+          <fieldset>
+            <legend>Choose the evening's air</legend>
+            <div class="choice-stack">
+              <label class="radio-choice">
+                <input type="radio" name="evening-air" value="Minuet" checked>
+                <span>
+                  <span class="radio-title">Minuet</span>
+                  <span class="radio-description">Measured, bright, and courtly</span>
+                </span>
+              </label>
+              <label class="radio-choice">
+                <input type="radio" name="evening-air" value="Nocturne">
+                <span>
+                  <span class="radio-title">Nocturne</span>
+                  <span class="radio-description">Low candles and confidences</span>
+                </span>
+              </label>
+              <label class="radio-choice">
+                <input type="radio" name="evening-air" value="Gavotte">
+                <span>
+                  <span class="radio-title">Gavotte</span>
+                  <span class="radio-description">A spirited turn across the parquet</span>
+                </span>
+              </label>
+            </div>
+            <p class="live-note" id="airNote" aria-live="polite">The quartet has prepared a minuet.</p>
+          </fieldset>
+
+          <hr class="divider">
+
+          <label class="check-row">
+            <input class="check-input" id="candelabraCheck" type="checkbox" checked>
+            <span>Light the porcelain candelabra</span>
+          </label>
+          <p class="live-note" id="candelabraNote" aria-live="polite">Twelve candles are alight.</p>
+
+          <hr class="divider">
+
+          <label class="switch-row">
+            <input class="switch-input" id="drapeSwitch" type="checkbox" role="switch" checked>
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+            <span class="switch-copy">Draw the blush silk drapes</span>
+          </label>
+          <p class="live-note" id="drapeNote" aria-live="polite">The silk drapes frame the salon.</p>
+        </article>
+
+        <article class="salon-card span-8" aria-labelledby="ceremonyTitle">
+          <p class="control-kicker">III · Light &amp; Ceremony</p>
+          <h3 id="ceremonyTitle">The Chandelier Office</h3>
+          <p class="card-lede">Temper every gleam, table, and room in the house.</p>
+
+          <div class="range-wrap">
+            <div class="range-heading">
+              <label class="field-label" for="chandelierRange">Set the chandelier glow</label>
+              <output class="range-output" id="chandelierOutput" for="chandelierRange">68%</output>
+            </div>
+            <input class="range-input" id="chandelierRange" type="range" min="0" max="100" value="68" style="--level: 68%;" aria-describedby="chandelierNote">
+            <p class="control-note" id="chandelierNote">A warm brilliance for conversation.</p>
+          </div>
+
+          <hr class="divider">
+
+          <div class="custom-select" id="occasionSelect">
+            <span class="field-label" id="occasionLabel">Choose the supper occasion</span>
+            <button class="select-trigger" id="occasionTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="occasionList" aria-labelledby="occasionLabel occasionValue">
+              <span id="occasionValue">Moonlit supper</span>
+              <span class="select-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <ul class="select-menu" id="occasionList" role="listbox" aria-labelledby="occasionLabel" hidden>
+              <li class="select-option" role="option" aria-selected="true" tabindex="-1" data-value="Moonlit supper">Moonlit supper</li>
+              <li class="select-option" role="option" aria-selected="false" tabindex="-1" data-value="Rose breakfast">Rose breakfast</li>
+              <li class="select-option" role="option" aria-selected="false" tabindex="-1" data-value="Winter masquerade">Winter masquerade</li>
+              <li class="select-option" role="option" aria-selected="false" tabindex="-1" data-value="Ambassador's tea">Ambassador's tea</li>
+            </ul>
+            <p class="control-note" id="occasionNote" aria-live="polite">Moonlit supper selected.</p>
+          </div>
+
+          <hr class="divider">
+
+          <div class="screen-tabs">
+            <div class="tab-list" role="tablist" aria-label="Salon rooms">
+              <button class="tab" id="tabSalon" type="button" role="tab" aria-selected="true" aria-controls="panelSalon" tabindex="0">Salon</button>
+              <button class="tab" id="tabGallery" type="button" role="tab" aria-selected="false" aria-controls="panelGallery" tabindex="-1">Gallery</button>
+              <button class="tab" id="tabGarden" type="button" role="tab" aria-selected="false" aria-controls="panelGarden" tabindex="-1">Orangery</button>
+            </div>
+            <div class="tab-panel" id="panelSalon" role="tabpanel" aria-labelledby="tabSalon" tabindex="0">
+              <h4>The East Salon</h4>
+              <p>Sage boiserie, gilt mirrors, and a quartet poised beside the hearth.</p>
+            </div>
+            <div class="tab-panel" id="panelGallery" role="tabpanel" aria-labelledby="tabGallery" tabindex="0" hidden>
+              <h4>The Portrait Gallery</h4>
+              <p>A measured procession of ancestors, each framed in patient old gold.</p>
+            </div>
+            <div class="tab-panel" id="panelGarden" role="tabpanel" aria-labelledby="tabGarden" tabindex="0" hidden>
+              <h4>The Orangery</h4>
+              <p>Citrus leaves, pale marble, and a blush dawn under the glass roof.</p>
+            </div>
+          </div>
+          <p class="live-note" id="tabNote" aria-live="polite">The East Salon is now presented.</p>
+        </article>
+
+        <article class="salon-card span-4" aria-labelledby="measuresTitle">
+          <p class="control-kicker">IV · The Steward's Ledger</p>
+          <h3 id="measuresTitle">House Measures</h3>
+          <p class="card-lede">Observe the restoration and the room's favor.</p>
+
+          <div class="measure-heading">
+            <span class="field-label">Cartouche restoration</span>
+            <span class="measure-value" id="progressValue">64%</span>
+          </div>
+          <div class="progress-frame">
+            <div class="progress-track" id="restorationProgress" role="progressbar" aria-label="Cartouche restoration" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+              <div class="progress-fill" id="progressFill" style="--progress: 64%;"></div>
+            </div>
+          </div>
+          <div class="measure-actions">
+            <button class="button button-primary button-small" id="advanceRestoration" type="button">Advance the Gilding</button>
+          </div>
+
+          <hr class="divider">
+
+          <div class="measure-heading">
+            <label class="field-label" for="applauseMeter">The room's applause</label>
+            <output class="measure-value" id="applauseValue" for="applauseMeter">72%</output>
+          </div>
+          <div class="applause-shell">
+            <meter class="applause-meter" id="applauseMeter" min="0" max="1" low="0.35" high="0.75" optimum="0.9" value="0.72">72%</meter>
+          </div>
+          <div class="measure-actions">
+            <button class="button button-outline button-small" id="hushApplause" type="button" aria-label="Lower the applause">Hush</button>
+            <button class="button button-secondary button-small" id="raiseApplause" type="button" aria-label="Raise the applause">Encore</button>
+          </div>
+          <p class="live-note" id="applauseNote" aria-live="polite">The guests are warmly pleased.</p>
+        </article>
+
+        <article class="salon-card span-12" aria-labelledby="audienceTitle">
+          <div class="private-audience">
+            <div>
+              <p class="control-kicker">V · Behind the Gilt Doors</p>
+              <h3 id="audienceTitle">A Private Audience</h3>
+              <p class="card-lede">Open a sealed audience, deliver a house notice, or consult the etiquette seal.</p>
+              <div class="audience-actions">
+                <button class="button button-gold" id="openAudience" type="button">Request an Audience</button>
+                <button class="button button-primary" type="button" data-toast="A discreet notice has crossed the servants' hall.">Send a House Notice</button>
+              </div>
+            </div>
+            <div class="wax-tooltip" id="waxTooltip">
+              <button class="wax-button" id="etiquetteButton" type="button" aria-describedby="etiquetteTooltip" aria-label="Read the etiquette note">?</button>
+              <span class="tooltip" id="etiquetteTooltip" role="tooltip">A fan closed in the right hand requests an introduction.</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <noscript>
+        <p class="noscript-note">The salon remains lovely without its attendants, though its instruments await JavaScript to answer your hand.</p>
+      </noscript>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <p class="footer-signature">May every evening unfold beautifully.</p>
+      <p class="footer-note">Maison Ormolu · The gilt doors remain open</p>
+    </div>
+  </footer>
+
+  <dialog class="audience-dialog" id="audienceDialog" aria-labelledby="dialogTitle" aria-describedby="dialogDescription">
+    <div class="dialog-inner">
+      <div class="dialog-flourish" aria-hidden="true"></div>
+      <p class="control-kicker">A note from the marquise</p>
+      <h2 id="dialogTitle">Your Audience Is Granted</h2>
+      <p id="dialogDescription">The west doors will open at the next chime. Shall the household prepare tea in the portrait gallery?</p>
+      <div class="dialog-actions">
+        <button class="button button-primary" id="confirmAudience" type="button">Prepare the Tea</button>
+        <button class="button button-outline" id="closeAudience" type="button">Remain in the Salon</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="houseToast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <p id="toastMessage">The household has received your request.</p>
+    <button class="toast-close" id="toastClose" type="button" aria-label="Dismiss the house notice">×</button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const hero = document.getElementById("hero");
+      const salonState = document.getElementById("salonState");
+      const enterSalon = document.getElementById("enterSalon");
+      const unveilButton = document.getElementById("unveilButton");
+      const controls = document.getElementById("controls");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      const setCartouche = (open) => {
+        hero.classList.toggle("salon-open", open);
+        unveilButton.setAttribute("aria-pressed", String(open));
+        unveilButton.textContent = open ? "Fold the Silk Fan" : "Unveil the Cartouche";
+        salonState.textContent = open ? "Cartouche unveiled" : "Salon prepared";
+      };
+
+      enterSalon.addEventListener("click", () => {
+        controls.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" });
+      });
+
+      unveilButton.addEventListener("click", () => {
+        setCartouche(unveilButton.getAttribute("aria-pressed") !== "true");
+      });
+
+      const callingName = document.getElementById("callingName");
+      const callingNote = document.getElementById("callingNote");
+
+      callingName.addEventListener("input", () => {
+        const name = callingName.value.trim();
+        callingNote.textContent = name
+          ? `The card is inscribed for ${name} · ${callingName.value.length}/42`
+          : "The blank card awaits its hand.";
+      });
+
+      const airNote = document.getElementById("airNote");
+      document.querySelectorAll('input[name="evening-air"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.checked) {
+            airNote.textContent = `The quartet has prepared a ${radio.value.toLowerCase()}.`;
+          }
+        });
+      });
+
+      const candelabraCheck = document.getElementById("candelabraCheck");
+      const candelabraNote = document.getElementById("candelabraNote");
+
+      candelabraCheck.addEventListener("change", () => {
+        candelabraNote.textContent = candelabraCheck.checked
+          ? "Twelve candles are alight."
+          : "The porcelain branches rest in moonlight.";
+      });
+
+      const drapeSwitch = document.getElementById("drapeSwitch");
+      const drapeNote = document.getElementById("drapeNote");
+
+      drapeSwitch.addEventListener("change", () => {
+        hero.classList.toggle("drapes-withdrawn", !drapeSwitch.checked);
+        drapeNote.textContent = drapeSwitch.checked
+          ? "The silk drapes frame the salon."
+          : "The marble court is open to the evening.";
+      });
+
+      const chandelierRange = document.getElementById("chandelierRange");
+      const chandelierOutput = document.getElementById("chandelierOutput");
+      const chandelierNote = document.getElementById("chandelierNote");
+
+      const updateChandelier = () => {
+        const value = Number(chandelierRange.value);
+        chandelierRange.style.setProperty("--level", `${value}%`);
+        chandelierOutput.textContent = `${value}%`;
+        chandelierRange.setAttribute("aria-valuetext", `${value} percent chandelier glow`);
+
+        if (value < 30) {
+          chandelierNote.textContent = "A confidential shimmer for whispered counsel.";
+        } else if (value < 72) {
+          chandelierNote.textContent = "A warm brilliance for conversation.";
+        } else {
+          chandelierNote.textContent = "Every crystal answers like a small sun.";
+        }
+      };
+
+      chandelierRange.addEventListener("input", updateChandelier);
+
+      const occasionSelect = document.getElementById("occasionSelect");
+      const occasionTrigger = document.getElementById("occasionTrigger");
+      const occasionList = document.getElementById("occasionList");
+      const occasionValue = document.getElementById("occasionValue");
+      const occasionNote = document.getElementById("occasionNote");
+      const occasionOptions = Array.from(occasionList.querySelectorAll('[role="option"]'));
+
+      const openOccasion = (preferredIndex) => {
+        occasionList.hidden = false;
+        occasionTrigger.setAttribute("aria-expanded", "true");
+        const selectedIndex = occasionOptions.findIndex((option) => option.getAttribute("aria-selected") === "true");
+        const focusIndex = Number.isInteger(preferredIndex) ? preferredIndex : Math.max(0, selectedIndex);
+        occasionOptions[focusIndex].focus();
+      };
+
+      const closeOccasion = (restoreFocus = true) => {
+        occasionList.hidden = true;
+        occasionTrigger.setAttribute("aria-expanded", "false");
+        if (restoreFocus) {
+          occasionTrigger.focus();
+        }
+      };
+
+      const selectOccasion = (option) => {
+        occasionOptions.forEach((item) => {
+          item.setAttribute("aria-selected", String(item === option));
+        });
+        occasionValue.textContent = option.dataset.value;
+        occasionNote.textContent = `${option.dataset.value} selected.`;
+        closeOccasion();
+      };
+
+      occasionTrigger.addEventListener("click", () => {
+        if (occasionTrigger.getAttribute("aria-expanded") === "true") {
+          closeOccasion();
+        } else {
+          openOccasion();
+        }
+      });
+
+      occasionTrigger.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault();
+          openOccasion(event.key === "ArrowDown" ? 0 : occasionOptions.length - 1);
+        } else if (event.key === "Escape" && occasionTrigger.getAttribute("aria-expanded") === "true") {
+          event.preventDefault();
+          closeOccasion();
+        }
+      });
+
+      occasionOptions.forEach((option) => {
+        option.addEventListener("click", () => selectOccasion(option));
+        option.addEventListener("keydown", (event) => {
+          const currentIndex = occasionOptions.indexOf(option);
+          let nextIndex = currentIndex;
+
+          if (event.key === "ArrowDown") {
+            nextIndex = (currentIndex + 1) % occasionOptions.length;
+          } else if (event.key === "ArrowUp") {
+            nextIndex = (currentIndex - 1 + occasionOptions.length) % occasionOptions.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = occasionOptions.length - 1;
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectOccasion(option);
+            return;
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            closeOccasion();
+            return;
+          } else if (event.key === "Tab") {
+            window.setTimeout(() => closeOccasion(false), 0);
+            return;
+          } else {
+            return;
+          }
+
+          event.preventDefault();
+          occasionOptions[nextIndex].focus();
+        });
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (occasionTrigger.getAttribute("aria-expanded") === "true" && !occasionSelect.contains(event.target)) {
+          closeOccasion(false);
+        }
+      });
+
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabNote = document.getElementById("tabNote");
+
+      const activateTab = (tab, moveFocus = false) => {
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute("aria-selected", String(selected));
+          item.tabIndex = selected ? 0 : -1;
+          document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+        });
+
+        const panel = document.getElementById(tab.getAttribute("aria-controls"));
+        const heading = panel.querySelector("h4");
+        tabNote.textContent = `${heading.textContent} is now presented.`;
+
+        if (moveFocus) {
+          tab.focus();
+        }
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(tab));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+
+          if (event.key === "ArrowRight") {
+            nextIndex = (index + 1) % tabs.length;
+          } else if (event.key === "ArrowLeft") {
+            nextIndex = (index - 1 + tabs.length) % tabs.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = tabs.length - 1;
+          } else {
+            return;
+          }
+
+          event.preventDefault();
+          activateTab(tabs[nextIndex], true);
+        });
+      });
+
+      const restorationProgress = document.getElementById("restorationProgress");
+      const progressFill = document.getElementById("progressFill");
+      const progressValue = document.getElementById("progressValue");
+      const advanceRestoration = document.getElementById("advanceRestoration");
+      let restoration = 64;
+
+      const updateRestoration = () => {
+        progressFill.style.setProperty("--progress", `${restoration}%`);
+        progressValue.textContent = `${restoration}%`;
+        restorationProgress.setAttribute("aria-valuenow", String(restoration));
+        advanceRestoration.textContent = restoration === 100 ? "Begin a New Cartouche" : "Advance the Gilding";
+      };
+
+      advanceRestoration.addEventListener("click", () => {
+        restoration = restoration === 100 ? 8 : Math.min(100, restoration + 12);
+        updateRestoration();
+      });
+
+      const applauseMeter = document.getElementById("applauseMeter");
+      const applauseValue = document.getElementById("applauseValue");
+      const applauseNote = document.getElementById("applauseNote");
+      const hushApplause = document.getElementById("hushApplause");
+      const raiseApplause = document.getElementById("raiseApplause");
+      let applause = 72;
+
+      const updateApplause = () => {
+        applauseMeter.value = applause / 100;
+        applauseMeter.textContent = `${applause}%`;
+        applauseValue.textContent = `${applause}%`;
+
+        if (applause < 35) {
+          applauseNote.textContent = "The room observes a delicate silence.";
+        } else if (applause < 75) {
+          applauseNote.textContent = "The guests are warmly pleased.";
+        } else {
+          applauseNote.textContent = "The gallery rings with delighted acclaim.";
+        }
+      };
+
+      hushApplause.addEventListener("click", () => {
+        applause = Math.max(0, applause - 9);
+        updateApplause();
+      });
+
+      raiseApplause.addEventListener("click", () => {
+        applause = Math.min(100, applause + 9);
+        updateApplause();
+      });
+
+      const audienceDialog = document.getElementById("audienceDialog");
+      const openAudience = document.getElementById("openAudience");
+      const closeAudience = document.getElementById("closeAudience");
+      const confirmAudience = document.getElementById("confirmAudience");
+      let audienceReturnFocus = null;
+
+      const dialogFocusables = () => Array.from(
+        audienceDialog.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      ).filter((element) => !element.hidden);
+
+      const openAudienceDialog = () => {
+        audienceReturnFocus = document.activeElement;
+        if (typeof audienceDialog.showModal === "function") {
+          audienceDialog.showModal();
+        } else {
+          audienceDialog.setAttribute("open", "");
+        }
+        window.setTimeout(() => confirmAudience.focus(), 0);
+      };
+
+      const closeAudienceDialog = () => {
+        if (typeof audienceDialog.close === "function" && audienceDialog.open) {
+          audienceDialog.close();
+        } else {
+          audienceDialog.removeAttribute("open");
+        }
+        if (audienceReturnFocus instanceof HTMLElement) {
+          audienceReturnFocus.focus();
+        }
+      };
+
+      openAudience.addEventListener("click", openAudienceDialog);
+      closeAudience.addEventListener("click", closeAudienceDialog);
+
+      audienceDialog.addEventListener("cancel", (event) => {
+        event.preventDefault();
+        closeAudienceDialog();
+      });
+
+      audienceDialog.addEventListener("click", (event) => {
+        if (event.target === audienceDialog) {
+          closeAudienceDialog();
+        }
+      });
+
+      audienceDialog.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeAudienceDialog();
+          return;
+        }
+
+        if (event.key !== "Tab") {
+          return;
+        }
+
+        const focusable = dialogFocusables();
+        if (focusable.length === 0) {
+          event.preventDefault();
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      const toast = document.getElementById("houseToast");
+      const toastMessage = document.getElementById("toastMessage");
+      const toastClose = document.getElementById("toastClose");
+      let toastTimer = 0;
+      let toastHideTimer = 0;
+
+      const hideToast = () => {
+        window.clearTimeout(toastTimer);
+        toast.classList.remove("show");
+        window.clearTimeout(toastHideTimer);
+        toastHideTimer = window.setTimeout(() => {
+          if (!toast.classList.contains("show")) {
+            toast.hidden = true;
+          }
+        }, reduceMotion.matches ? 0 : 240);
+      };
+
+      const showToast = (message) => {
+        window.clearTimeout(toastTimer);
+        window.clearTimeout(toastHideTimer);
+        toastMessage.textContent = message;
+        toast.hidden = false;
+        window.requestAnimationFrame(() => toast.classList.add("show"));
+        toastTimer = window.setTimeout(hideToast, 4600);
+      };
+
+      document.querySelectorAll("[data-toast]").forEach((button) => {
+        button.addEventListener("click", () => showToast(button.dataset.toast));
+      });
+
+      toastClose.addEventListener("click", hideToast);
+
+      confirmAudience.addEventListener("click", () => {
+        closeAudienceDialog();
+        showToast("Tea will be served beneath the west gallery portraits.");
+      });
+
+      const waxTooltip = document.getElementById("waxTooltip");
+      const etiquetteButton = document.getElementById("etiquetteButton");
+
+      const setTooltip = (open) => {
+        waxTooltip.dataset.open = String(open);
+      };
+
+      etiquetteButton.addEventListener("click", () => {
+        setTooltip(waxTooltip.dataset.open !== "true");
+      });
+
+      etiquetteButton.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          setTooltip(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

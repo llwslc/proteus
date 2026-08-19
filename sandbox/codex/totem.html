@@ -1,0 +1,3172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="TOTEM is an interactive folk-craft signal workshop shaped by carved wood, woven thread, and rhythmic ritual.">
+  <title>TOTEM — Kinwood Signal Workshop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Rye&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ochre: #934527;
+      --ochre-deep: #703019;
+      --indigo: #17364d;
+      --indigo-deep: #0d2638;
+      --bone: #f5ead6;
+      --bone-bright: #fff8e9;
+      --vermilion: #c93628;
+      --vermilion-deep: #9f261d;
+      --thread: #d8c4a2;
+      --ink-muted: #4f5d61;
+      --green: #315d4b;
+      --shadow: 0 18px 0 rgba(23, 54, 77, 0.12);
+      --hard-shadow: 7px 7px 0 var(--indigo);
+      --radius-soft: 18px 10px 20px 12px;
+      --content: 1180px;
+      --pad: clamp(1rem, 3vw, 1.5rem);
+      --display: "Rye", Rockwell, "Roboto Slab", serif;
+      --sans: "Montserrat", "Avenir Next", Avenir, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bone);
+    }
+
+    body {
+      min-width: 0;
+      margin: 0;
+      overflow-x: clip;
+      color: var(--indigo-deep);
+      background:
+        radial-gradient(circle at 12% 6%, rgba(201, 54, 40, 0.12) 0 3%, transparent 12%),
+        radial-gradient(circle at 87% 24%, rgba(23, 54, 77, 0.10) 0 5%, transparent 16%),
+        repeating-linear-gradient(0deg, transparent 0 5px, rgba(147, 69, 39, 0.035) 5px 6px),
+        repeating-linear-gradient(90deg, transparent 0 7px, rgba(23, 54, 77, 0.025) 7px 8px),
+        var(--bone);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      background:
+        repeating-radial-gradient(ellipse at 25% 30%, transparent 0 19px, rgba(112, 48, 25, 0.035) 20px 22px, transparent 23px 38px),
+        repeating-radial-gradient(ellipse at 76% 70%, transparent 0 27px, rgba(13, 38, 56, 0.03) 28px 30px, transparent 31px 50px);
+      content: "";
+      pointer-events: none;
+    }
+
+    body.night-weave {
+      color-scheme: dark;
+      color: var(--bone);
+      background:
+        radial-gradient(circle at 12% 6%, rgba(201, 54, 40, 0.22) 0 3%, transparent 13%),
+        radial-gradient(circle at 87% 24%, rgba(245, 234, 214, 0.07) 0 5%, transparent 17%),
+        repeating-linear-gradient(0deg, transparent 0 5px, rgba(245, 234, 214, 0.035) 5px 6px),
+        repeating-linear-gradient(90deg, transparent 0 7px, rgba(201, 54, 40, 0.035) 7px 8px),
+        var(--indigo-deep);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    [data-copy]:empty::before {
+      content: attr(data-copy);
+      white-space: pre-wrap;
+    }
+
+    :focus-visible {
+      outline: 4px solid var(--vermilion);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      color: var(--bone-bright);
+      background: var(--vermilion);
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 0.75rem;
+      left: 1rem;
+      padding: 0.75rem 1rem;
+      color: var(--bone-bright);
+      background: var(--indigo-deep);
+      border: 3px solid var(--bone-bright);
+      transform: translateY(-180%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .shell {
+      width: min(100%, calc(var(--content) + (var(--pad) * 2)));
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+
+    .status-bar {
+      position: relative;
+      z-index: 20;
+      color: var(--bone-bright);
+      background: var(--indigo-deep);
+      border-block: 5px solid var(--ochre);
+    }
+
+    .status-bar::after {
+      display: block;
+      height: 12px;
+      background:
+        linear-gradient(135deg, var(--vermilion) 25%, transparent 25%) 0 0 / 20px 20px,
+        linear-gradient(225deg, var(--vermilion) 25%, transparent 25%) 0 0 / 20px 20px,
+        linear-gradient(315deg, var(--bone) 25%, transparent 25%) 10px 0 / 20px 20px,
+        linear-gradient(45deg, var(--bone) 25%, var(--ochre) 25%) 10px 0 / 20px 20px;
+      content: "";
+    }
+
+    .status-inner {
+      display: flex;
+      min-height: 58px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-lockup,
+    .status-signals {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-emblem {
+      position: relative;
+      flex: 0 0 auto;
+      width: 29px;
+      height: 29px;
+      background: var(--vermilion);
+      border: 3px solid var(--bone-bright);
+      transform: rotate(45deg);
+    }
+
+    .brand-emblem::before,
+    .brand-emblem::after {
+      position: absolute;
+      inset: 6px;
+      border: 2px solid var(--bone-bright);
+      content: "";
+    }
+
+    .brand-emblem::after {
+      inset: 10px -8px;
+      background: var(--indigo-deep);
+      border-inline: 2px solid var(--bone-bright);
+      border-block: 0;
+    }
+
+    .brand-name {
+      font-family: var(--display);
+      font-size: 1.12rem;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.7rem;
+      border: 2px solid rgba(255, 248, 233, 0.58);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .signal-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--vermilion);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(201, 54, 40, 0.25);
+      animation: signal-beat 1.6s steps(2, end) infinite;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      min-height: min(780px, calc(100svh - 75px));
+      grid-template-columns: minmax(0, 1.03fr) minmax(320px, 0.97fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 5.5rem);
+      padding-block: clamp(3.5rem, 8vw, 7rem);
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      width: clamp(250px, 42vw, 520px);
+      aspect-ratio: 1;
+      right: -4%;
+      top: 11%;
+      background:
+        radial-gradient(circle at center, transparent 0 18%, rgba(201, 54, 40, 0.15) 18.5% 31%, transparent 31.5%),
+        repeating-conic-gradient(from 22.5deg, rgba(23, 54, 77, 0.11) 0 22.5deg, transparent 22.5deg 45deg);
+      border-radius: 50%;
+      content: "";
+      filter: blur(0.2px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin: 0 0 1rem;
+      color: var(--ochre-deep);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .night-weave .eyebrow {
+      color: #ffb09b;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      width: 25px;
+      height: 8px;
+      background: repeating-linear-gradient(90deg, var(--vermilion) 0 5px, transparent 5px 8px);
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 1.25rem;
+      color: var(--indigo);
+      font-family: var(--display);
+      font-size: clamp(3.25rem, 7.6vw, 7.4rem);
+      font-weight: 400;
+      line-height: 0.91;
+      letter-spacing: -0.025em;
+      text-wrap: balance;
+      text-shadow: 4px 4px 0 rgba(147, 69, 39, 0.16);
+    }
+
+    .night-weave h1 {
+      color: var(--bone-bright);
+      text-shadow: 4px 4px 0 rgba(201, 54, 40, 0.42);
+    }
+
+    .title-strike {
+      position: relative;
+      display: inline-block;
+      color: var(--vermilion);
+    }
+
+    .title-strike::after {
+      position: absolute;
+      z-index: -1;
+      right: -0.07em;
+      bottom: 0.02em;
+      left: -0.07em;
+      height: 0.17em;
+      background: var(--ochre);
+      clip-path: polygon(0 29%, 7% 0, 18% 45%, 32% 12%, 49% 59%, 64% 17%, 82% 52%, 100% 21%, 98% 100%, 0 88%);
+      content: "";
+      opacity: 0.25;
+    }
+
+    .hero-lead {
+      max-width: 640px;
+      margin: 0 0 1.75rem;
+      color: #354b55;
+      font-size: clamp(1.03rem, 1.8vw, 1.22rem);
+      font-weight: 600;
+    }
+
+    .night-weave .hero-lead {
+      color: #e8dbc5;
+    }
+
+    .hero-actions,
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      max-width: 500px;
+      margin-top: 1.5rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .hero-note::before {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      background:
+        linear-gradient(45deg, transparent 36%, var(--vermilion) 37% 63%, transparent 64%),
+        linear-gradient(-45deg, transparent 36%, var(--vermilion) 37% 63%, transparent 64%);
+      border: 2px solid var(--indigo);
+      content: "";
+      transform: rotate(45deg);
+    }
+
+    .button,
+    .craft-button,
+    .mini-button,
+    .icon-button,
+    .select-trigger,
+    .tab-button,
+    .tooltip-trigger {
+      position: relative;
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: 0.025em;
+      text-decoration: none;
+      transition: transform 140ms ease, box-shadow 140ms ease, color 140ms ease, background 140ms ease;
+    }
+
+    .button:hover,
+    .craft-button:hover,
+    .mini-button:hover,
+    .icon-button:hover,
+    .select-trigger:hover,
+    .tab-button:hover,
+    .tooltip-trigger:hover {
+      transform: translate(-2px, -2px);
+    }
+
+    .button:active,
+    .craft-button:active,
+    .mini-button:active,
+    .icon-button:active,
+    .select-trigger:active,
+    .tab-button:active,
+    .tooltip-trigger:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 var(--indigo);
+    }
+
+    .button-primary {
+      padding: 0.85rem 1.35rem;
+      color: var(--bone-bright);
+      background:
+        linear-gradient(90deg, transparent 0 7px, rgba(255, 248, 233, 0.18) 7px 9px, transparent 9px 16px),
+        var(--vermilion);
+      border: 3px solid var(--indigo);
+      border-radius: 2px 16px 2px 16px;
+      box-shadow: var(--hard-shadow);
+    }
+
+    .button-primary::before {
+      width: 13px;
+      height: 13px;
+      background: var(--bone-bright);
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      content: "";
+    }
+
+    .button-secondary {
+      padding: 0.8rem 1.25rem;
+      color: var(--indigo);
+      background: var(--bone-bright);
+      border: 3px solid var(--indigo);
+      border-radius: 999px;
+      box-shadow: 5px 5px 0 var(--ochre);
+    }
+
+    .night-weave .button-secondary {
+      color: var(--bone-bright);
+      background: var(--indigo);
+      border-color: var(--bone-bright);
+    }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      min-width: 0;
+      place-items: center;
+    }
+
+    .loom-frame {
+      position: relative;
+      width: min(100%, 470px);
+      min-height: 590px;
+      padding: 44px 40px;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 248, 233, 0.08) 0 2px, transparent 2px 9px),
+        repeating-linear-gradient(0deg, rgba(255, 248, 233, 0.07) 0 2px, transparent 2px 11px),
+        var(--indigo);
+      border: 9px solid var(--ochre);
+      border-radius: 30px 5px 28px 7px;
+      box-shadow: 14px 14px 0 var(--vermilion), 22px 22px 0 rgba(23, 54, 77, 0.18);
+      isolation: isolate;
+    }
+
+    .loom-frame::before,
+    .loom-frame::after {
+      position: absolute;
+      z-index: -1;
+      inset: 13px;
+      border: 3px solid var(--bone);
+      content: "";
+      pointer-events: none;
+    }
+
+    .loom-frame::after {
+      inset: 21px;
+      border-style: dashed;
+      opacity: 0.42;
+    }
+
+    .woven-rail {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      bottom: 0;
+      width: 26px;
+      background:
+        linear-gradient(45deg, transparent 33%, var(--bone) 34% 66%, transparent 67%) 0 0 / 20px 20px,
+        linear-gradient(-45deg, transparent 33%, var(--vermilion) 34% 66%, transparent 67%) 0 10px / 20px 20px,
+        var(--ochre);
+    }
+
+    .woven-rail.left {
+      left: 0;
+    }
+
+    .woven-rail.right {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    .guardian {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 500px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 13px 0 rgba(13, 38, 56, 0.36));
+    }
+
+    .guardian-ring {
+      position: absolute;
+      z-index: -1;
+      width: 300px;
+      aspect-ratio: 1;
+      background:
+        repeating-conic-gradient(from 0deg, var(--vermilion) 0 11.25deg, var(--bone) 11.25deg 22.5deg, var(--ochre) 22.5deg 33.75deg, var(--indigo) 33.75deg 45deg);
+      border: 15px solid var(--bone);
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px var(--vermilion), inset 0 0 0 8px var(--indigo);
+      animation: pattern-turn 18s steps(16, end) infinite;
+    }
+
+    .guardian-ring::after {
+      position: absolute;
+      inset: 40px;
+      background: var(--indigo);
+      border: 5px dashed var(--bone);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .crest {
+      display: flex;
+      width: 225px;
+      height: 69px;
+      align-items: end;
+      justify-content: center;
+      gap: 5px;
+      transform: translateY(4px);
+    }
+
+    .crest i {
+      display: block;
+      width: 40px;
+      height: 61px;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 7px, rgba(255, 248, 233, 0.35) 7px 9px),
+        var(--vermilion);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+
+    .crest i:nth-child(2),
+    .crest i:nth-child(4) {
+      height: 46px;
+      background-color: var(--ochre);
+    }
+
+    .crest i:nth-child(3) {
+      height: 69px;
+    }
+
+    .mask {
+      position: relative;
+      width: 245px;
+      height: 190px;
+      background:
+        radial-gradient(ellipse at 28% 40%, rgba(201, 54, 40, 0.42) 0 10%, transparent 25%),
+        radial-gradient(ellipse at 72% 40%, rgba(201, 54, 40, 0.42) 0 10%, transparent 25%),
+        repeating-linear-gradient(0deg, transparent 0 10px, rgba(112, 48, 25, 0.11) 11px 13px),
+        var(--bone);
+      border: 8px solid var(--ochre);
+      border-radius: 46% 46% 25% 25% / 30% 30% 17% 17%;
+      box-shadow: inset 0 0 0 5px var(--indigo);
+      clip-path: polygon(16% 0, 84% 0, 100% 20%, 91% 80%, 69% 100%, 50% 91%, 31% 100%, 9% 80%, 0 20%);
+    }
+
+    .mask::before,
+    .mask::after {
+      position: absolute;
+      top: 58px;
+      width: 72px;
+      height: 42px;
+      background: var(--indigo);
+      border: 6px solid var(--ochre);
+      content: "";
+      clip-path: polygon(0 26%, 100% 0, 76% 100%, 15% 77%);
+      transition: background 120ms steps(2, end), transform 120ms steps(2, end);
+    }
+
+    .mask::before {
+      left: 20px;
+    }
+
+    .mask::after {
+      right: 20px;
+      transform: scaleX(-1);
+    }
+
+    .guardian.awake .mask::before,
+    .guardian.awake .mask::after {
+      background: var(--vermilion);
+      box-shadow: 0 0 18px rgba(255, 117, 84, 0.7);
+    }
+
+    .guardian.awake .mask::before {
+      transform: translateY(-4px);
+    }
+
+    .guardian.awake .mask::after {
+      transform: scaleX(-1) translateY(-4px);
+    }
+
+    .nose {
+      position: absolute;
+      top: 88px;
+      left: 50%;
+      width: 37px;
+      height: 48px;
+      background: var(--vermilion);
+      border: 4px solid var(--indigo);
+      clip-path: polygon(50% 0, 100% 74%, 50% 100%, 0 74%);
+      transform: translateX(-50%);
+    }
+
+    .mouth {
+      position: absolute;
+      bottom: 27px;
+      left: 50%;
+      display: flex;
+      width: 110px;
+      height: 33px;
+      align-items: center;
+      justify-content: space-evenly;
+      background: var(--indigo);
+      border: 4px solid var(--ochre);
+      transform: translateX(-50%);
+    }
+
+    .mouth i {
+      width: 7px;
+      height: 18px;
+      background: var(--bone-bright);
+      transform: skewX(-12deg);
+    }
+
+    .totem-body {
+      position: relative;
+      width: 188px;
+      height: 198px;
+      margin-top: -2px;
+      background:
+        radial-gradient(circle at 50% 28%, var(--vermilion) 0 8%, transparent 8.5% 15%, var(--bone) 15.5% 19%, transparent 19.5%),
+        linear-gradient(45deg, transparent 42%, var(--bone) 43% 57%, transparent 58%) 0 0 / 54px 54px,
+        linear-gradient(-45deg, transparent 42%, var(--ochre) 43% 57%, transparent 58%) 0 0 / 54px 54px,
+        var(--vermilion);
+      border: 8px solid var(--ochre);
+      clip-path: polygon(12% 0, 88% 0, 100% 17%, 86% 33%, 100% 51%, 86% 68%, 95% 100%, 5% 100%, 14% 68%, 0 51%, 14% 33%, 0 17%);
+      box-shadow: inset 0 0 0 5px var(--bone);
+    }
+
+    .totem-body::before,
+    .totem-body::after {
+      position: absolute;
+      top: 68px;
+      width: 50px;
+      height: 50px;
+      background: var(--indigo);
+      border: 5px solid var(--bone);
+      content: "";
+      transform: rotate(45deg);
+    }
+
+    .totem-body::before {
+      left: 12px;
+    }
+
+    .totem-body::after {
+      right: 12px;
+    }
+
+    .guardian-feet {
+      display: flex;
+      width: 164px;
+      justify-content: space-between;
+      margin-top: -2px;
+    }
+
+    .guardian-feet i {
+      display: block;
+      width: 70px;
+      height: 26px;
+      background: var(--bone);
+      border: 5px solid var(--ochre);
+      clip-path: polygon(10% 0, 90% 0, 100% 100%, 55% 76%, 0 100%);
+    }
+
+    .guardian.awake .guardian-ring {
+      animation-duration: 3.8s;
+    }
+
+    .guardian.awake .totem-body {
+      animation: guardian-step 700ms steps(2, end) infinite;
+    }
+
+    .art-caption {
+      position: absolute;
+      z-index: 4;
+      right: -9px;
+      bottom: 32px;
+      max-width: 180px;
+      padding: 0.55rem 0.8rem;
+      color: var(--bone-bright);
+      background: var(--vermilion);
+      border: 3px solid var(--bone);
+      box-shadow: 5px 5px 0 var(--ochre-deep);
+      font-size: 0.69rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-align: center;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+    }
+
+    .pattern-divider {
+      height: 44px;
+      background:
+        linear-gradient(135deg, transparent 35%, var(--bone) 36% 49%, transparent 50%) 0 0 / 32px 32px,
+        linear-gradient(45deg, transparent 35%, var(--vermilion) 36% 49%, transparent 50%) 16px 0 / 32px 32px,
+        var(--ochre);
+      border-block: 5px solid var(--indigo);
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      padding-block: clamp(2.5rem, 5vw, 4.5rem);
+    }
+
+    .manifesto-card {
+      position: relative;
+      min-width: 0;
+      padding: 1.35rem;
+      color: var(--indigo-deep);
+      background: rgba(255, 248, 233, 0.72);
+      border: 3px solid var(--indigo);
+      border-radius: var(--radius-soft);
+      box-shadow: 6px 6px 0 rgba(147, 69, 39, 0.35);
+    }
+
+    .night-weave .manifesto-card {
+      color: var(--bone);
+      background: rgba(23, 54, 77, 0.72);
+      border-color: var(--thread);
+    }
+
+    .manifesto-mark {
+      display: grid;
+      width: 45px;
+      height: 45px;
+      margin-bottom: 0.9rem;
+      color: var(--bone-bright);
+      background: var(--vermilion);
+      border: 4px solid var(--indigo);
+      place-items: center;
+      transform: rotate(45deg);
+    }
+
+    .manifesto-mark > span {
+      font-family: var(--display);
+      transform: rotate(-45deg);
+    }
+
+    .manifesto-card h2 {
+      margin-bottom: 0.35rem;
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 400;
+    }
+
+    .manifesto-card p {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .night-weave .manifesto-card p {
+      color: #ddd0bb;
+    }
+
+    .workshop {
+      padding-block: clamp(2.75rem, 6vw, 6rem);
+    }
+
+    .section-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(260px, 0.28fr);
+      align-items: end;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      margin: 0 0 0.65rem;
+      color: var(--vermilion-deep);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .night-weave .section-kicker {
+      color: #ff9b85;
+    }
+
+    .section-intro h2 {
+      max-width: 800px;
+      margin-bottom: 0.8rem;
+      color: var(--indigo);
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 4.1rem);
+      font-weight: 400;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    .night-weave .section-intro h2 {
+      color: var(--bone-bright);
+    }
+
+    .section-intro p {
+      max-width: 700px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .section-seal {
+      justify-self: end;
+      width: 138px;
+      aspect-ratio: 1;
+      padding: 1.1rem;
+      color: var(--bone-bright);
+      background:
+        repeating-conic-gradient(from 45deg, rgba(255, 248, 233, 0.15) 0 12deg, transparent 12deg 24deg),
+        var(--vermilion);
+      border: 6px double var(--indigo);
+      border-radius: 50%;
+      box-shadow: 7px 7px 0 var(--ochre);
+      font-family: var(--display);
+      font-size: 0.86rem;
+      line-height: 1.25;
+      text-align: center;
+      text-transform: uppercase;
+      transform: rotate(4deg);
+    }
+
+    .control-section {
+      position: relative;
+      margin-top: 1.5rem;
+      padding: clamp(1.1rem, 3.2vw, 2rem);
+      overflow: visible;
+      color: var(--indigo-deep);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 8px, rgba(147, 69, 39, 0.035) 8px 10px),
+        rgba(255, 248, 233, 0.88);
+      border: 4px solid var(--indigo);
+      border-radius: 5px 28px 8px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .night-weave .control-section {
+      color: var(--bone);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 8px, rgba(245, 234, 214, 0.035) 8px 10px),
+        rgba(23, 54, 77, 0.92);
+      border-color: var(--thread);
+    }
+
+    .control-section::before {
+      position: absolute;
+      top: -4px;
+      left: 24px;
+      width: 160px;
+      height: 15px;
+      background:
+        linear-gradient(135deg, var(--vermilion) 25%, transparent 25%) 0 0 / 16px 16px,
+        linear-gradient(225deg, var(--ochre) 25%, transparent 25%) 0 0 / 16px 16px,
+        var(--bone);
+      border-inline: 4px solid var(--indigo);
+      content: "";
+    }
+
+    .control-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.15rem;
+      border-bottom: 3px dashed rgba(23, 54, 77, 0.35);
+    }
+
+    .night-weave .control-header {
+      border-color: rgba(245, 234, 214, 0.35);
+    }
+
+    .control-index {
+      flex: 0 0 auto;
+      color: var(--vermilion-deep);
+      font-family: var(--display);
+      font-size: 1.25rem;
+    }
+
+    .night-weave .control-index,
+    .night-weave .meter-value {
+      color: #ffb09b;
+    }
+
+    .control-header h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 400;
+    }
+
+    .control-header p {
+      max-width: 560px;
+      margin: 0.4rem 0 0;
+      color: var(--ink-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .night-weave .control-header p {
+      color: #ddd0bb;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .control-card {
+      position: relative;
+      min-width: 0;
+      padding: 1.15rem;
+      background: rgba(245, 234, 214, 0.72);
+      border: 3px solid var(--ochre);
+      border-radius: 14px 4px 16px 6px;
+    }
+
+    .night-weave .control-card {
+      background: rgba(13, 38, 56, 0.72);
+      border-color: #bd7d59;
+    }
+
+    .control-card.span-12 {
+      grid-column: span 12;
+    }
+
+    .control-card.span-8 {
+      grid-column: span 8;
+    }
+
+    .control-card.span-7 {
+      grid-column: span 7;
+    }
+
+    .control-card.span-6 {
+      grid-column: span 6;
+    }
+
+    .control-card.span-5 {
+      grid-column: span 5;
+    }
+
+    .control-card.span-4 {
+      grid-column: span 4;
+    }
+
+    .card-label {
+      display: block;
+      margin-bottom: 0.75rem;
+      color: var(--ochre-deep);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .night-weave .card-label {
+      color: #f1b58f;
+    }
+
+    .button-rack {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .craft-button {
+      padding: 0.72rem 1rem;
+      border: 3px solid var(--indigo);
+    }
+
+    .craft-button.carve {
+      color: var(--bone-bright);
+      background: var(--vermilion);
+      border-radius: 2px 14px 2px 14px;
+      box-shadow: 5px 5px 0 var(--indigo);
+    }
+
+    .craft-button.weave {
+      color: var(--indigo);
+      background:
+        repeating-linear-gradient(45deg, transparent 0 5px, rgba(23, 54, 77, 0.09) 5px 8px),
+        var(--bone-bright);
+      border-radius: 999px;
+      box-shadow: 5px 5px 0 var(--ochre);
+    }
+
+    .craft-button.stamp {
+      width: 92px;
+      min-height: 92px;
+      padding: 0.75rem;
+      color: var(--bone-bright);
+      background: var(--ochre);
+      border: 5px double var(--bone);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px var(--indigo);
+      font-family: var(--display);
+      font-size: 0.77rem;
+      line-height: 1.2;
+      text-align: center;
+      transform: rotate(-4deg);
+    }
+
+    .craft-button.stamp:hover {
+      transform: translate(-2px, -2px) rotate(2deg);
+    }
+
+    .craft-button.knot {
+      padding-inline: 1.3rem;
+      color: var(--bone-bright);
+      background: var(--indigo);
+      clip-path: polygon(9% 0, 91% 0, 100% 50%, 91% 100%, 9% 100%, 0 50%);
+      box-shadow: none;
+    }
+
+    .craft-button:disabled {
+      color: #69645a;
+      background:
+        repeating-linear-gradient(-45deg, #d4c8b2 0 6px, #bfb39d 6px 12px);
+      border-color: #777168;
+      border-style: dashed;
+      border-radius: 4px;
+      box-shadow: none;
+      cursor: not-allowed;
+      filter: grayscale(1);
+      opacity: 0.72;
+      transform: none;
+    }
+
+    .bench-readout {
+      min-height: 34px;
+      margin: 1rem 0 0;
+      padding: 0.45rem 0.7rem;
+      color: var(--bone-bright);
+      background: var(--indigo);
+      border-left: 8px solid var(--vermilion);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .field-label,
+    legend {
+      display: block;
+      margin-bottom: 0.55rem;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    fieldset {
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      border: 0;
+    }
+
+    .text-field {
+      width: 100%;
+      min-height: 52px;
+      padding: 0.8rem 0.95rem;
+      color: var(--indigo-deep);
+      background: var(--bone-bright);
+      border: 3px solid var(--indigo);
+      border-radius: 2px 16px 2px 10px;
+      box-shadow: inset 6px 0 0 rgba(201, 54, 40, 0.18);
+      transition: box-shadow 150ms ease, border-color 150ms ease;
+    }
+
+    .text-field:hover {
+      border-color: var(--ochre);
+    }
+
+    .text-field:focus {
+      border-color: var(--vermilion);
+      box-shadow: inset 9px 0 0 var(--vermilion);
+    }
+
+    .field-hint {
+      margin: 0.5rem 0 0;
+      color: var(--ink-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .night-weave .field-hint {
+      color: #ddd0bb;
+    }
+
+    .phrase-preview {
+      min-height: 76px;
+      margin: 1rem 0 0;
+      padding: 0.8rem 1rem;
+      color: var(--ochre-deep);
+      background:
+        repeating-linear-gradient(0deg, transparent 0 20px, rgba(147, 69, 39, 0.12) 20px 21px),
+        var(--bone);
+      border: 2px dashed var(--ochre);
+      font-family: var(--display);
+      font-size: 1rem;
+    }
+
+    .radio-stack,
+    .check-stack {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .radio-option,
+    .check-option {
+      position: relative;
+      display: grid;
+      min-height: 48px;
+      grid-template-columns: 34px minmax(0, 1fr);
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.5rem 0.6rem;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 700;
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+
+    .radio-option:hover,
+    .check-option:hover {
+      background: rgba(147, 69, 39, 0.09);
+      border-color: var(--ochre);
+    }
+
+    .radio-option input,
+    .check-option input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .radio-mark {
+      position: relative;
+      display: block;
+      width: 30px;
+      height: 30px;
+      background: var(--bone-bright);
+      border: 3px solid var(--indigo);
+      transform: rotate(45deg);
+      transition: background 120ms steps(2, end), box-shadow 120ms ease;
+    }
+
+    .radio-mark::after {
+      position: absolute;
+      inset: 6px;
+      background: var(--vermilion);
+      content: "";
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 120ms ease, transform 120ms steps(2, end);
+    }
+
+    .radio-option input:checked + .radio-mark {
+      background: var(--ochre);
+      box-shadow: 0 0 0 3px var(--bone-bright);
+    }
+
+    .radio-option input:checked + .radio-mark::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .radio-option input:focus-visible + .radio-mark,
+    .check-option input:focus-visible + .check-mark {
+      outline: 4px solid var(--vermilion);
+      outline-offset: 4px;
+    }
+
+    .check-mark {
+      position: relative;
+      display: block;
+      width: 31px;
+      height: 31px;
+      background:
+        repeating-linear-gradient(45deg, transparent 0 5px, rgba(23, 54, 77, 0.12) 5px 7px),
+        var(--bone-bright);
+      border: 3px solid var(--indigo);
+      border-radius: 50% 4px 50% 4px;
+    }
+
+    .check-mark::before,
+    .check-mark::after {
+      position: absolute;
+      top: 12px;
+      left: 4px;
+      width: 21px;
+      height: 5px;
+      background: var(--vermilion);
+      content: "";
+      opacity: 0;
+      transform: rotate(45deg) scaleX(0);
+      transition: opacity 120ms ease, transform 120ms steps(2, end);
+    }
+
+    .check-mark::after {
+      transform: rotate(-45deg) scaleX(0);
+    }
+
+    .check-option input:checked + .check-mark {
+      background: var(--ochre);
+    }
+
+    .check-option input:checked + .check-mark::before {
+      opacity: 1;
+      transform: rotate(45deg) scaleX(1);
+    }
+
+    .check-option input:checked + .check-mark::after {
+      opacity: 1;
+      transform: rotate(-45deg) scaleX(1);
+    }
+
+    .switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .switch-copy {
+      min-width: 0;
+    }
+
+    .switch-copy strong,
+    .switch-copy span {
+      display: block;
+    }
+
+    .switch-copy span {
+      margin-top: 0.2rem;
+      color: var(--ink-muted);
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    .night-weave .switch-copy span {
+      color: #ddd0bb;
+    }
+
+    .ritual-switch {
+      position: relative;
+      flex: 0 0 auto;
+      width: 88px;
+      height: 48px;
+      padding: 0;
+      background: var(--ochre);
+      border: 4px solid var(--indigo);
+      border-radius: 50% 9px 50% 9px;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 3px rgba(245, 234, 214, 0.33);
+    }
+
+    .ritual-switch::before {
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      width: 28px;
+      height: 28px;
+      background: var(--bone-bright);
+      border: 3px solid var(--indigo);
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      content: "";
+      transform: translateY(-50%);
+      transition: left 180ms steps(3, end), background 150ms ease;
+    }
+
+    .ritual-switch[aria-checked="true"] {
+      background: var(--vermilion);
+    }
+
+    .ritual-switch[aria-checked="true"]::before {
+      left: 45px;
+      background: var(--bone);
+    }
+
+    .range-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .ritual-range {
+      width: 100%;
+      height: 38px;
+      margin: 0;
+      background: transparent;
+      cursor: pointer;
+      appearance: none;
+    }
+
+    .ritual-range::-webkit-slider-runnable-track {
+      height: 12px;
+      background:
+        linear-gradient(90deg, var(--vermilion) 0 var(--range-pct, 45%), transparent var(--range-pct, 45%)),
+        repeating-linear-gradient(90deg, var(--thread) 0 10px, var(--bone-bright) 10px 15px);
+      border: 3px solid var(--indigo);
+      border-radius: 0;
+    }
+
+    .ritual-range::-moz-range-track {
+      height: 8px;
+      background: repeating-linear-gradient(90deg, var(--thread) 0 10px, var(--bone-bright) 10px 15px);
+      border: 3px solid var(--indigo);
+      border-radius: 0;
+    }
+
+    .ritual-range::-moz-range-progress {
+      height: 8px;
+      background: var(--vermilion);
+      border: 3px solid var(--indigo);
+    }
+
+    .ritual-range::-webkit-slider-thumb {
+      width: 31px;
+      height: 31px;
+      margin-top: -12px;
+      background: var(--ochre);
+      border: 4px solid var(--indigo);
+      border-radius: 50% 6px 50% 6px;
+      box-shadow: 3px 3px 0 var(--vermilion);
+      appearance: none;
+    }
+
+    .ritual-range::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      background: var(--ochre);
+      border: 4px solid var(--indigo);
+      border-radius: 50% 6px 50% 6px;
+      box-shadow: 3px 3px 0 var(--vermilion);
+    }
+
+    .range-output {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      color: var(--bone-bright);
+      background: var(--indigo);
+      border: 4px double var(--bone);
+      border-radius: 50%;
+      font-family: var(--display);
+      font-size: 0.88rem;
+      place-items: center;
+    }
+
+    .custom-select {
+      position: relative;
+    }
+
+    .select-trigger {
+      width: 100%;
+      min-height: 54px;
+      justify-content: space-between;
+      padding: 0.75rem 0.9rem;
+      color: var(--indigo-deep);
+      background: var(--bone-bright);
+      border: 3px solid var(--indigo);
+      border-radius: 2px 18px 2px 8px;
+      box-shadow: 5px 5px 0 var(--ochre);
+      text-align: left;
+    }
+
+    .select-chevron {
+      position: relative;
+      width: 25px;
+      height: 25px;
+      background: var(--vermilion);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transition: transform 140ms steps(2, end);
+    }
+
+    .select-trigger[aria-expanded="true"] .select-chevron {
+      transform: rotate(180deg);
+    }
+
+    .select-list {
+      position: absolute;
+      z-index: 30;
+      top: calc(100% + 9px);
+      right: 0;
+      left: 0;
+      padding: 0.45rem;
+      background: var(--bone-bright);
+      border: 4px solid var(--indigo);
+      box-shadow: 8px 8px 0 var(--vermilion);
+    }
+
+    .select-option {
+      display: grid;
+      width: 100%;
+      min-height: 48px;
+      grid-template-columns: 28px minmax(0, 1fr);
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 0.7rem;
+      color: var(--indigo-deep);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .select-option::before {
+      width: 23px;
+      height: 23px;
+      background: var(--thread);
+      border: 3px solid var(--indigo);
+      content: "";
+      transform: rotate(45deg);
+    }
+
+    .select-option:hover,
+    .select-option:focus,
+    .select-option[aria-selected="true"] {
+      color: var(--bone-bright);
+      background: var(--indigo);
+      outline-offset: -4px;
+    }
+
+    .select-option[aria-selected="true"]::before {
+      background: var(--vermilion);
+      border-color: var(--bone-bright);
+      box-shadow: inset 0 0 0 4px var(--ochre);
+    }
+
+    .tabs {
+      min-width: 0;
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.35rem;
+      padding: 0.35rem;
+      background: var(--indigo);
+      border: 3px solid var(--ochre);
+    }
+
+    .tab-button {
+      min-width: 0;
+      padding: 0.7rem 0.55rem;
+      color: var(--bone);
+      background: transparent;
+      border: 2px solid transparent;
+      font-size: 0.77rem;
+    }
+
+    .tab-button[aria-selected="true"] {
+      color: var(--indigo-deep);
+      background:
+        repeating-linear-gradient(45deg, transparent 0 7px, rgba(147, 69, 39, 0.11) 7px 9px),
+        var(--bone-bright);
+      border-color: var(--vermilion);
+      transform: translateY(4px);
+    }
+
+    .tab-panel {
+      min-height: 175px;
+      padding: 1.2rem;
+      background: var(--bone-bright);
+      border: 3px solid var(--indigo);
+      border-top: 0;
+    }
+
+    .tab-panel h4 {
+      margin: 0 0 0.45rem;
+      color: var(--ochre-deep);
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+
+    .tab-panel p {
+      margin: 0;
+      color: var(--ink-muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .panel-pattern {
+      height: 35px;
+      margin-top: 1rem;
+      background:
+        linear-gradient(45deg, transparent 35%, var(--vermilion) 36% 64%, transparent 65%) 0 0 / 28px 28px,
+        linear-gradient(-45deg, transparent 35%, var(--ochre) 36% 64%, transparent 65%) 14px 0 / 28px 28px,
+        var(--indigo);
+      border: 3px solid var(--ochre);
+    }
+
+    .progress-shell {
+      padding: 0.75rem;
+      background: var(--indigo);
+      border: 4px solid var(--ochre);
+    }
+
+    .progress-track {
+      position: relative;
+      height: 40px;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(45deg, rgba(245, 234, 214, 0.17) 0 8px, transparent 8px 16px),
+        var(--indigo-deep);
+      border: 3px solid var(--bone);
+    }
+
+    .progress-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 62%;
+      background:
+        repeating-linear-gradient(-45deg, transparent 0 7px, rgba(255, 248, 233, 0.25) 7px 10px),
+        var(--vermilion);
+      border-right: 6px double var(--bone-bright);
+      transition: width 220ms steps(8, end);
+    }
+
+    .progress-label {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      height: 100%;
+      color: var(--bone-bright);
+      font-family: var(--display);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      place-items: center;
+      text-shadow: 2px 2px 0 var(--indigo-deep);
+    }
+
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+    }
+
+    .mini-button {
+      min-width: 48px;
+      min-height: 44px;
+      padding: 0.55rem 0.8rem;
+      color: var(--bone-bright);
+      background: var(--ochre);
+      border: 3px solid var(--indigo);
+      border-radius: 50% 7px 50% 7px;
+      box-shadow: 3px 3px 0 var(--vermilion);
+    }
+
+    .step-caption {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .meter-layout {
+      display: grid;
+      grid-template-columns: minmax(140px, 0.58fr) minmax(120px, 0.42fr);
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .ritual-meter {
+      position: relative;
+      width: min(100%, 190px);
+      aspect-ratio: 1;
+      margin-inline: auto;
+      background:
+        radial-gradient(circle at center, var(--bone-bright) 0 48%, transparent 49%),
+        conic-gradient(from 225deg, var(--vermilion) 0 var(--meter-angle, 175.5deg), var(--thread) var(--meter-angle, 175.5deg) 270deg, transparent 270deg 360deg);
+      border: 5px solid var(--indigo);
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 6px var(--ochre);
+    }
+
+    .ritual-meter::before {
+      position: absolute;
+      inset: 11px;
+      background: repeating-conic-gradient(from 225deg, var(--indigo) 0 2deg, transparent 2deg 13.5deg);
+      border-radius: 50%;
+      content: "";
+      mask: radial-gradient(circle, transparent 0 74%, #000 75%);
+    }
+
+    .meter-needle {
+      position: absolute;
+      top: calc(50% - 4px);
+      left: 50%;
+      width: 39%;
+      height: 8px;
+      background: var(--vermilion);
+      border: 2px solid var(--indigo);
+      transform: rotate(var(--needle-angle, 40.5deg));
+      transform-origin: 0 50%;
+      transition: transform 260ms steps(6, end);
+    }
+
+    .meter-needle::before {
+      position: absolute;
+      top: 50%;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      background: var(--ochre);
+      border: 4px solid var(--indigo);
+      border-radius: 50%;
+      content: "";
+      transform: translateY(-50%);
+    }
+
+    .meter-readout {
+      text-align: center;
+    }
+
+    .meter-value {
+      display: block;
+      color: var(--vermilion-deep);
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1;
+    }
+
+    .meter-unit {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .signal-tile {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      min-height: 190px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 1.1rem;
+      background:
+        radial-gradient(circle at 88% 14%, rgba(201, 54, 40, 0.18) 0 7%, transparent 23%),
+        var(--bone);
+      border: 3px solid var(--indigo);
+      border-radius: 4px 20px 4px 20px;
+    }
+
+    .signal-tile::before {
+      width: 42px;
+      height: 13px;
+      background: repeating-linear-gradient(90deg, var(--vermilion) 0 6px, transparent 6px 10px);
+      content: "";
+    }
+
+    .signal-tile h4 {
+      margin: 0.85rem 0 0.3rem;
+      color: var(--ochre-deep);
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-weight: 400;
+    }
+
+    .signal-tile p {
+      margin: 0 0 1rem;
+      color: var(--ink-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip-trigger {
+      padding: 0.72rem 1rem;
+      color: var(--bone-bright);
+      background: var(--indigo);
+      border: 3px solid var(--ochre);
+      border-radius: 999px 999px 8px 8px;
+      box-shadow: 4px 4px 0 var(--vermilion);
+    }
+
+    .tooltip {
+      position: absolute;
+      z-index: 25;
+      bottom: calc(100% + 13px);
+      left: 50%;
+      width: min(230px, calc(100vw - 40px));
+      padding: 0.75rem;
+      color: var(--bone-bright);
+      background: var(--indigo-deep);
+      border: 3px solid var(--bone);
+      box-shadow: 5px 5px 0 var(--vermilion);
+      font-size: 0.74rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 8px);
+      transition: opacity 140ms ease, transform 140ms steps(2, end);
+    }
+
+    .tooltip::after {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      background: var(--indigo-deep);
+      border-right: 3px solid var(--bone);
+      border-bottom: 3px solid var(--bone);
+      content: "";
+      transform: translate(-50%, -8px) rotate(45deg);
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-trigger:focus + .tooltip,
+    .tooltip-wrap[data-pinned="true"] .tooltip {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .nojs-note {
+      display: none;
+      margin: 1rem 0 0;
+      padding: 0.75rem;
+      color: var(--bone-bright);
+      background: var(--indigo);
+      border-left: 6px solid var(--vermilion);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .footer {
+      color: var(--bone-bright);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 11px, rgba(255, 248, 233, 0.05) 11px 13px),
+        var(--indigo-deep);
+      border-top: 10px solid var(--ochre);
+    }
+
+    .footer::before {
+      display: block;
+      height: 28px;
+      background:
+        linear-gradient(135deg, transparent 35%, var(--bone) 36% 49%, transparent 50%) 0 0 / 28px 28px,
+        linear-gradient(45deg, transparent 35%, var(--vermilion) 36% 49%, transparent 50%) 14px 0 / 28px 28px,
+        var(--ochre);
+      content: "";
+    }
+
+    .footer-inner {
+      display: flex;
+      min-height: 150px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-block: 2rem;
+    }
+
+    .footer-statement {
+      max-width: 650px;
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(1.35rem, 3vw, 2.1rem);
+      line-height: 1.25;
+    }
+
+    .footer-mark {
+      flex: 0 0 auto;
+      width: 82px;
+      aspect-ratio: 1;
+      background:
+        linear-gradient(45deg, transparent 34%, var(--bone) 35% 46%, transparent 47%),
+        linear-gradient(-45deg, transparent 34%, var(--bone) 35% 46%, transparent 47%),
+        var(--vermilion);
+      border: 5px solid var(--bone);
+      transform: rotate(45deg);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: grid;
+      overflow-y: auto;
+      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+      background:
+        repeating-linear-gradient(45deg, rgba(13, 38, 56, 0.91) 0 9px, rgba(23, 54, 77, 0.91) 9px 18px);
+      place-items: center;
+      animation: veil-in 180ms steps(3, end) both;
+    }
+
+    .ritual-dialog {
+      position: relative;
+      width: min(100%, 590px);
+      padding: clamp(1.25rem, 4vw, 2rem);
+      color: var(--indigo-deep);
+      background:
+        radial-gradient(circle at 85% 14%, rgba(201, 54, 40, 0.17) 0 4%, transparent 17%),
+        repeating-linear-gradient(0deg, transparent 0 8px, rgba(147, 69, 39, 0.035) 8px 9px),
+        var(--bone-bright);
+      border: 7px double var(--ochre);
+      box-shadow: 13px 13px 0 var(--vermilion);
+      animation: dialog-step 240ms steps(4, end) both;
+    }
+
+    .ritual-dialog::before {
+      display: block;
+      height: 22px;
+      margin: -0.25rem 3.5rem 1.25rem 0;
+      background:
+        linear-gradient(135deg, transparent 35%, var(--vermilion) 36% 57%, transparent 58%) 0 0 / 24px 24px,
+        var(--indigo);
+      content: "";
+    }
+
+    .dialog-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      color: var(--bone-bright);
+      background: var(--indigo);
+      border: 3px solid var(--ochre);
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: var(--display);
+      place-items: center;
+    }
+
+    .ritual-dialog h2 {
+      margin-bottom: 0.55rem;
+      color: var(--indigo);
+      font-family: var(--display);
+      font-size: clamp(1.65rem, 5vw, 2.65rem);
+      font-weight: 400;
+    }
+
+    .ritual-dialog > p {
+      margin: 0 0 1.15rem;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .dialog-field {
+      margin-block: 1rem;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 120;
+      right: max(1rem, env(safe-area-inset-right));
+      bottom: max(1rem, env(safe-area-inset-bottom));
+      display: grid;
+      width: min(390px, calc(100vw - 2rem));
+      grid-template-columns: 36px minmax(0, 1fr) 42px;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      color: var(--bone-bright);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 9px, rgba(255, 248, 233, 0.08) 9px 11px),
+        var(--indigo-deep);
+      border: 4px solid var(--ochre);
+      box-shadow: 8px 8px 0 var(--vermilion);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 180ms ease, transform 180ms steps(3, end);
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-mark {
+      width: 30px;
+      height: 30px;
+      background: var(--vermilion);
+      border: 3px solid var(--bone);
+      transform: rotate(45deg);
+    }
+
+    .toast-message {
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .toast-close {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      color: var(--bone-bright);
+      background: transparent;
+      border: 2px solid var(--bone);
+      border-radius: 50%;
+      cursor: pointer;
+      place-items: center;
+    }
+
+    .is-struck {
+      animation: struck 340ms steps(4, end);
+    }
+
+    @keyframes pattern-turn {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes guardian-step {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes signal-beat {
+      50% {
+        opacity: 0.42;
+      }
+    }
+
+    @keyframes struck {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-5px) rotate(-1deg);
+      }
+      50% {
+        transform: translateX(5px) rotate(1deg);
+      }
+    }
+
+    @keyframes veil-in {
+      from {
+        opacity: 0;
+      }
+    }
+
+    @keyframes dialog-step {
+      from {
+        opacity: 0;
+        transform: translateY(34px) scale(0.96);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding-top: 4rem;
+      }
+
+      .hero-copy {
+        max-width: 760px;
+      }
+
+      .hero-art {
+        width: 100%;
+      }
+
+      .section-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .section-seal {
+        display: none;
+      }
+
+      .manifesto {
+        grid-template-columns: 1fr;
+      }
+
+      .control-card.span-8,
+      .control-card.span-7,
+      .control-card.span-6,
+      .control-card.span-5,
+      .control-card.span-4 {
+        grid-column: span 12;
+      }
+
+      .signal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .signal-tile {
+        min-height: 165px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .status-signals .status-pill:last-child {
+        display: none;
+      }
+
+      .hero::before {
+        right: 0;
+      }
+
+      .status-pill {
+        padding-inline: 0.55rem;
+        font-size: 0.63rem;
+      }
+
+      .hero {
+        gap: 3rem;
+        padding-block: 3rem 4rem;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 17vw, 4.75rem);
+      }
+
+      .hero-actions > * {
+        width: 100%;
+      }
+
+      .loom-frame {
+        min-height: 495px;
+        padding: 34px 25px;
+        border-width: 7px;
+        box-shadow: 9px 9px 0 var(--vermilion), 15px 15px 0 rgba(23, 54, 77, 0.18);
+      }
+
+      .guardian {
+        height: 420px;
+        transform: scale(0.84);
+      }
+
+      .art-caption {
+        right: 5px;
+        bottom: 18px;
+      }
+
+      .control-section {
+        padding: 1rem;
+        border-width: 3px;
+      }
+
+      .control-header {
+        display: block;
+      }
+
+      .control-index {
+        display: block;
+        margin-bottom: 0.35rem;
+      }
+
+      .button-rack {
+        align-items: stretch;
+      }
+
+      .craft-button:not(.stamp) {
+        flex: 1 1 100%;
+      }
+
+      .tab-list {
+        grid-template-columns: 1fr;
+      }
+
+      .tab-button[aria-selected="true"] {
+        transform: translateX(4px);
+      }
+
+      .meter-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+      }
+
+      .footer-mark {
+        width: 55px;
+      }
+    }
+
+    @media (max-width: 410px) {
+      .brand-name {
+        font-size: 0.96rem;
+      }
+
+      .status-pill {
+        border: 0;
+      }
+
+      .loom-frame {
+        min-height: 440px;
+        padding-inline: 12px;
+      }
+
+      .guardian {
+        width: 115%;
+        height: 390px;
+        margin-inline: -7.5%;
+        transform: scale(0.72);
+      }
+
+      .art-caption {
+        max-width: 145px;
+        font-size: 0.59rem;
+      }
+
+      .range-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .range-output {
+        justify-self: end;
+      }
+
+      .footer-mark {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .guardian-ring,
+      .guardian.awake .totem-body,
+      .signal-dot {
+        animation: none !important;
+      }
+    }
+  </style>
+  <noscript>
+    <style>
+      .nojs-note {
+        display: block;
+      }
+    </style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#workshop"><span data-copy="Skip to the craft controls"></span></a>
+
+  <header class="status-bar">
+    <div class="shell status-inner">
+      <div class="brand-lockup" aria-label="TOTEM Kinwood Workshop">
+        <span class="brand-emblem" aria-hidden="true"></span>
+        <span class="brand-name" data-copy="TOTEM / KINWOOD"></span>
+      </div>
+      <div class="status-signals">
+        <span class="status-pill">
+          <span class="signal-dot" aria-hidden="true"></span>
+          <span data-copy="Loom online"></span>
+        </span>
+        <span class="status-pill" data-copy="Field note 07 / East ridge"></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="shell hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow" data-copy="A folk signal workshop"></p>
+        <h1 id="hero-title">
+          <span data-copy="Carve a "></span><span class="title-strike" data-copy="signal."></span><br>
+          <span data-copy="Weave a story."></span>
+        </h1>
+        <p class="hero-lead" data-copy="Turn raw marks into a shared language. The Kinwood loom binds clay color, indigo thread, and bright ritual into signals your whole circle can feel."></p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#workshop">
+            <span data-copy="Enter the workshop"></span>
+          </a>
+          <button class="button button-secondary" id="guardianToggle" type="button" aria-pressed="false">
+            <span data-copy="Wake the guardian"></span>
+          </button>
+        </div>
+        <p class="hero-note" id="guardianStatus" role="status" aria-live="polite" data-copy="The guardian rests between beats. Your choices are kept on this device."></p>
+      </div>
+
+      <div class="hero-art">
+        <div class="loom-frame" role="img" aria-label="A symmetrical folk totem guardian with a stepped rotating pattern ring">
+          <span class="woven-rail left" aria-hidden="true"></span>
+          <span class="woven-rail right" aria-hidden="true"></span>
+          <div class="guardian" id="guardian" aria-hidden="true">
+            <div class="guardian-ring"></div>
+            <div class="crest">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="mask">
+              <span class="nose"></span>
+              <span class="mouth"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="totem-body"></div>
+            <div class="guardian-feet"><i></i><i></i></div>
+          </div>
+          <span class="art-caption" data-copy="Pattern guardian / rhythm 12"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="pattern-divider" aria-hidden="true"></div>
+
+    <section class="shell manifesto" aria-label="Workshop principles">
+      <article class="manifesto-card">
+        <span class="manifesto-mark" aria-hidden="true"><span data-copy="01"></span></span>
+        <h2 data-copy="Carve the truth"></h2>
+        <p data-copy="Every mark carries the grain of the hand that made it."></p>
+      </article>
+      <article class="manifesto-card">
+        <span class="manifesto-mark" aria-hidden="true"><span data-copy="02"></span></span>
+        <h2 data-copy="Weave the many"></h2>
+        <p data-copy="Separate threads become strong when their differences stay visible."></p>
+      </article>
+      <article class="manifesto-card">
+        <span class="manifesto-mark" aria-hidden="true"><span data-copy="03"></span></span>
+        <h2 data-copy="Move in rhythm"></h2>
+        <p data-copy="A signal becomes a ritual when the circle answers back."></p>
+      </article>
+    </section>
+
+    <section class="shell workshop" id="workshop" aria-labelledby="workshop-title">
+      <div class="section-intro">
+        <div>
+          <p class="section-kicker" data-copy="The maker's field kit"></p>
+          <h2 id="workshop-title" data-copy="Tools for a living pattern"></h2>
+          <p data-copy="Every control is cut from the same folk vocabulary, but each carries its own shape, movement, and purpose. Try them; your marks remain after the page returns."></p>
+        </div>
+        <div class="section-seal" data-copy="Hand / thread / kin / signal"></div>
+      </div>
+
+      <section class="control-section" aria-labelledby="bench-title">
+        <div class="control-header">
+          <div>
+            <span class="control-index" data-copy="I / CUT"></span>
+            <h3 id="bench-title" data-copy="The Carver's Bench"></h3>
+            <p data-copy="Strike five distinct tools, then leave a phrase in the grain."></p>
+          </div>
+        </div>
+        <div class="control-grid">
+          <div class="control-card span-12" id="buttonCard">
+            <span class="card-label" data-copy="Five carved actions"></span>
+            <div class="button-rack">
+              <button class="craft-button carve" type="button" data-bench-action="Signal cut">
+                <span data-copy="Cut signal"></span>
+              </button>
+              <button class="craft-button weave" type="button" data-bench-action="Thread joined">
+                <span data-copy="Join thread"></span>
+              </button>
+              <button class="craft-button stamp" type="button" data-bench-action="Circle marked">
+                <span data-copy="Stamp circle"></span>
+              </button>
+              <button class="craft-button knot" type="button" data-bench-action="Story bound">
+                <span data-copy="Bind story"></span>
+              </button>
+              <button class="craft-button" type="button" disabled>
+                <span data-copy="Grain sealed"></span>
+              </button>
+            </div>
+            <p class="bench-readout" id="benchReadout" role="status" aria-live="polite" data-copy="The bench is listening for a first strike."></p>
+          </div>
+
+          <div class="control-card span-12">
+            <label class="field-label" for="carvedPhrase" data-copy="Carver's phrase"></label>
+            <input class="text-field" id="carvedPhrase" type="text" autocomplete="off" maxlength="72" data-placeholder="Leave a mark for the next maker" aria-describedby="phraseHint">
+            <p class="field-hint" id="phraseHint" data-copy="Up to 72 signs. The grain remembers locally."></p>
+            <blockquote class="phrase-preview" id="phrasePreview" aria-live="polite" data-copy="Your uncut phrase will appear here."></blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="loom-title">
+        <div class="control-header">
+          <div>
+            <span class="control-index" data-copy="II / CHOOSE"></span>
+            <h3 id="loom-title" data-copy="The Choice Loom"></h3>
+            <p data-copy="Set a route, keep a token, turn the watch, pace the beat, and choose the material."></p>
+          </div>
+        </div>
+        <div class="control-grid">
+          <div class="control-card span-4">
+            <fieldset>
+              <legend data-copy="Signal route"></legend>
+              <div class="radio-stack">
+                <label class="radio-option">
+                  <input type="radio" name="route" value="ridge">
+                  <span class="radio-mark" aria-hidden="true"></span>
+                  <span data-copy="Ridge fire"></span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="route" value="river">
+                  <span class="radio-mark" aria-hidden="true"></span>
+                  <span data-copy="River thread"></span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="route" value="grove">
+                  <span class="radio-mark" aria-hidden="true"></span>
+                  <span data-copy="Grove echo"></span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="control-card span-4">
+            <span class="card-label" data-copy="Keepsake"></span>
+            <div class="check-stack">
+              <label class="check-option">
+                <input id="carryToken" type="checkbox">
+                <span class="check-mark" aria-hidden="true"></span>
+                <span data-copy="Carry the maker's token"></span>
+              </label>
+            </div>
+            <p class="field-hint" id="tokenStatus" role="status" aria-live="polite" data-copy="No token is tied to your bundle."></p>
+          </div>
+
+          <div class="control-card span-4">
+            <span class="card-label" data-copy="Hearth watch"></span>
+            <div class="switch-row">
+              <div class="switch-copy">
+                <strong id="watchState" data-copy="Day weave"></strong>
+                <span data-copy="Turn the whole workshop toward indigo night."></span>
+              </div>
+              <button class="ritual-switch" id="watchSwitch" type="button" role="switch" aria-checked="false" aria-label="Toggle indigo night watch">
+                <span class="visually-hidden" data-copy="Toggle night watch"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-card span-6">
+            <label class="field-label" for="rhythmRange" data-copy="Loom rhythm"></label>
+            <div class="range-wrap">
+              <input class="ritual-range" id="rhythmRange" type="range" min="0" max="100" step="5" value="45">
+              <output class="range-output" id="rhythmOutput" for="rhythmRange" data-copy="45%"></output>
+            </div>
+            <p class="field-hint" data-copy="Arrow keys move the shuttle in five-beat steps."></p>
+          </div>
+
+          <div class="control-card span-6">
+            <label class="field-label" id="materialLabel" data-copy="Ground material"></label>
+            <div class="custom-select" id="materialSelect">
+              <button class="select-trigger" id="materialTrigger" type="button" role="combobox" aria-labelledby="materialLabel materialValue" aria-controls="materialList" aria-expanded="false" aria-haspopup="listbox">
+                <span id="materialValue" data-copy="Ochre clay"></span>
+                <span class="select-chevron" aria-hidden="true"></span>
+              </button>
+              <div class="select-list" id="materialList" role="listbox" aria-labelledby="materialLabel" hidden>
+                <button class="select-option" type="button" role="option" data-value="clay" aria-selected="true" tabindex="-1">
+                  <span data-copy="Ochre clay"></span>
+                </button>
+                <button class="select-option" type="button" role="option" data-value="indigo" aria-selected="false" tabindex="-1">
+                  <span data-copy="Indigo cloth"></span>
+                </button>
+                <button class="select-option" type="button" role="option" data-value="bone" aria-selected="false" tabindex="-1">
+                  <span data-copy="Bone paper"></span>
+                </button>
+                <button class="select-option" type="button" role="option" data-value="wood" aria-selected="false" tabindex="-1">
+                  <span data-copy="Cedar grain"></span>
+                </button>
+              </div>
+            </div>
+            <p class="field-hint" id="materialHint" role="status" aria-live="polite" data-copy="Ochre clay holds a warm, grounded mark."></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="map-title">
+        <div class="control-header">
+          <div>
+            <span class="control-index" data-copy="III / READ"></span>
+            <h3 id="map-title" data-copy="The Pattern Map"></h3>
+            <p data-copy="Turn the folio, build the shared band, and keep the hearth inside its ritual range."></p>
+          </div>
+        </div>
+        <div class="control-grid">
+          <div class="control-card span-7">
+            <span class="card-label" data-copy="Three-part field folio"></span>
+            <div class="tabs">
+              <div class="tab-list" role="tablist" aria-label="Pattern field folio">
+                <button class="tab-button" id="tab-stitch" type="button" role="tab" aria-selected="true" aria-controls="panel-stitch" tabindex="0" data-tab="stitch">
+                  <span data-copy="Stitch map"></span>
+                </button>
+                <button class="tab-button" id="tab-pigment" type="button" role="tab" aria-selected="false" aria-controls="panel-pigment" tabindex="-1" data-tab="pigment">
+                  <span data-copy="Pigment lore"></span>
+                </button>
+                <button class="tab-button" id="tab-rhythm" type="button" role="tab" aria-selected="false" aria-controls="panel-rhythm" tabindex="-1" data-tab="rhythm">
+                  <span data-copy="Beat code"></span>
+                </button>
+              </div>
+              <section class="tab-panel" id="panel-stitch" role="tabpanel" aria-labelledby="tab-stitch" tabindex="0">
+                <h4 data-copy="Cross the returning path"></h4>
+                <p data-copy="Run the blue thread outward, turn at the vermilion marker, and return through every second opening."></p>
+                <div class="panel-pattern" aria-hidden="true"></div>
+              </section>
+              <section class="tab-panel" id="panel-pigment" role="tabpanel" aria-labelledby="tab-pigment" tabindex="0" hidden>
+                <h4 data-copy="Let color keep its edge"></h4>
+                <p data-copy="Ochre names the ground. Indigo names the distance. Vermilion is reserved for the living signal."></p>
+                <div class="panel-pattern" aria-hidden="true"></div>
+              </section>
+              <section class="tab-panel" id="panel-rhythm" role="tabpanel" aria-labelledby="tab-rhythm" tabindex="0" hidden>
+                <h4 data-copy="Four steps, one answer"></h4>
+                <p data-copy="Strike, wait, turn, return. Leave enough silence between calls for another hand to enter the pattern."></p>
+                <div class="panel-pattern" aria-hidden="true"></div>
+              </section>
+            </div>
+          </div>
+
+          <div class="control-card span-5">
+            <span class="card-label" data-copy="Shared band progress"></span>
+            <div class="progress-shell">
+              <div class="progress-track" id="bandProgress" role="progressbar" aria-label="Shared band completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62">
+                <div class="progress-fill" id="progressFill"></div>
+                <span class="progress-label" id="progressLabel" data-copy="62% WOVEN"></span>
+              </div>
+            </div>
+            <div class="stepper">
+              <button class="mini-button" id="progressDown" type="button" aria-label="Remove one woven band step">
+                <span aria-hidden="true" data-copy="−"></span>
+              </button>
+              <span class="step-caption" data-copy="Move in eight-thread steps"></span>
+              <button class="mini-button" id="progressUp" type="button" aria-label="Add one woven band step">
+                <span aria-hidden="true" data-copy="+"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-card span-12">
+            <span class="card-label" data-copy="Hearth resonance meter"></span>
+            <div class="meter-layout">
+              <div class="ritual-meter" id="hearthMeter" role="meter" aria-label="Hearth resonance" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65">
+                <span class="meter-needle" aria-hidden="true"></span>
+              </div>
+              <div class="meter-readout">
+                <output class="meter-value" id="meterValue" data-copy="65"></output>
+                <span class="meter-unit" data-copy="Resonance marks"></span>
+                <div class="stepper">
+                  <button class="mini-button" id="meterDown" type="button" aria-label="Lower hearth resonance">
+                    <span aria-hidden="true" data-copy="−"></span>
+                  </button>
+                  <button class="mini-button" id="meterUp" type="button" aria-label="Raise hearth resonance">
+                    <span aria-hidden="true" data-copy="+"></span>
+                  </button>
+                </div>
+                <p class="field-hint" id="meterStatus" role="status" aria-live="polite" data-copy="The hearth carries a steady gathering tone."></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="signals-title">
+        <div class="control-header">
+          <div>
+            <span class="control-index" data-copy="IV / SEND"></span>
+            <h3 id="signals-title" data-copy="Ceremony Signals"></h3>
+            <p data-copy="Open a vow, send a field notice, or ask the guide knot for quiet context."></p>
+          </div>
+        </div>
+        <div class="signal-grid">
+          <article class="signal-tile">
+            <div>
+              <h4 data-copy="Circle vow"></h4>
+              <p data-copy="A focused layer for binding one deliberate promise."></p>
+            </div>
+            <button class="button button-primary" id="openModal" type="button">
+              <span data-copy="Open the vow"></span>
+            </button>
+          </article>
+          <article class="signal-tile">
+            <div>
+              <h4 data-copy="Field notice"></h4>
+              <p data-copy="A brief signal that arrives without breaking the work."></p>
+            </div>
+            <button class="craft-button weave" id="showToast" type="button">
+              <span data-copy="Send notice"></span>
+            </button>
+          </article>
+          <article class="signal-tile">
+            <div>
+              <h4 data-copy="Guide knot"></h4>
+              <p data-copy="Hover, focus, or pin the knot to reveal its teaching."></p>
+            </div>
+            <div class="tooltip-wrap" id="tooltipWrap" data-pinned="false">
+              <button class="tooltip-trigger" id="tooltipTrigger" type="button" aria-describedby="guideTooltip" aria-pressed="false">
+                <span data-copy="Ask the knot"></span>
+              </button>
+              <span class="tooltip" id="guideTooltip" role="tooltip" data-copy="A strong pattern leaves one open thread so the next maker has somewhere to begin."></span>
+            </div>
+          </article>
+        </div>
+        <p class="nojs-note" data-copy="The workshop story and guardian remain visible without scripts; interactive rituals wake when scripts are available."></p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <p class="footer-statement" data-copy="Leave the pattern stronger, stranger, and more open than you found it."></p>
+      <span class="footer-mark" aria-hidden="true"></span>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <div class="ritual-dialog" id="ritualDialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogDescription" tabindex="-1">
+      <button class="dialog-close" id="closeModal" type="button" aria-label="Close the circle vow">
+        <span aria-hidden="true" data-copy="×"></span>
+      </button>
+      <h2 id="dialogTitle" data-copy="Bind a circle vow"></h2>
+      <p id="dialogDescription" data-copy="Name one promise the circle can return to when the path becomes unclear."></p>
+      <div class="dialog-field">
+        <label class="field-label" for="vowInput" data-copy="The vow"></label>
+        <input class="text-field" id="vowInput" type="text" maxlength="84" data-placeholder="We will leave one thread open">
+      </div>
+      <label class="check-option">
+        <input id="witnessVow" type="checkbox">
+        <span class="check-mark" aria-hidden="true"></span>
+        <span data-copy="Mark this vow as witnessed"></span>
+      </label>
+      <div class="action-row">
+        <button class="button button-primary" id="bindVow" type="button">
+          <span data-copy="Bind the vow"></span>
+        </button>
+        <button class="button button-secondary" id="cancelModal" type="button">
+          <span data-copy="Return to the loom"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <aside class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <span class="toast-mark" aria-hidden="true"></span>
+    <span class="toast-message" id="toastMessage" data-copy="Field notice sent: the eastern loom is ready."></span>
+    <button class="toast-close" id="toastClose" type="button" aria-label="Dismiss field notice">
+      <span aria-hidden="true" data-copy="×"></span>
+    </button>
+  </aside>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const storageKey = "totem-kinwood-state-v1";
+      const defaults = {
+        awake: false,
+        phrase: "",
+        route: "ridge",
+        token: false,
+        night: false,
+        rhythm: 45,
+        material: "clay",
+        tab: "stitch",
+        progress: 62,
+        meter: 65
+      };
+
+      const allowedMaterials = ["clay", "indigo", "bone", "wood"];
+      const allowedTabs = ["stitch", "pigment", "rhythm"];
+      const allowedRoutes = ["ridge", "river", "grove"];
+      let state = { ...defaults };
+      let toastTimer = 0;
+      let lastFocused = null;
+
+      const byId = (id) => document.getElementById(id);
+      const setText = (node, value) => {
+        if (node) {
+          node.textContent = String(value);
+        }
+      };
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+      document.querySelectorAll("[data-copy]").forEach((node) => {
+        setText(node, node.dataset.copy);
+      });
+
+      document.querySelectorAll("[data-placeholder]").forEach((node) => {
+        node.placeholder = node.dataset.placeholder;
+      });
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+        if (saved && typeof saved === "object") {
+          state = { ...defaults, ...saved };
+        }
+      } catch (error) {
+        state = { ...defaults };
+      }
+
+      state.awake = Boolean(state.awake);
+      state.phrase = typeof state.phrase === "string" ? state.phrase.slice(0, 72) : "";
+      state.route = allowedRoutes.includes(state.route) ? state.route : defaults.route;
+      state.token = Boolean(state.token);
+      state.night = Boolean(state.night);
+      state.rhythm = clamp(Number.isFinite(Number(state.rhythm)) ? Number(state.rhythm) : defaults.rhythm, 0, 100);
+      state.material = allowedMaterials.includes(state.material) ? state.material : defaults.material;
+      state.tab = allowedTabs.includes(state.tab) ? state.tab : defaults.tab;
+      state.progress = clamp(Number.isFinite(Number(state.progress)) ? Number(state.progress) : defaults.progress, 0, 100);
+      state.meter = clamp(Number.isFinite(Number(state.meter)) ? Number(state.meter) : defaults.meter, 0, 100);
+
+      const persist = () => {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (error) {
+          return;
+        }
+      };
+
+      const guardian = byId("guardian");
+      const guardianToggle = byId("guardianToggle");
+      const guardianToggleLabel = guardianToggle.querySelector("[data-copy]");
+      const guardianStatus = byId("guardianStatus");
+
+      const renderGuardian = () => {
+        guardian.classList.toggle("awake", state.awake);
+        guardianToggle.setAttribute("aria-pressed", String(state.awake));
+        setText(guardianToggleLabel, state.awake ? "Let the guardian rest" : "Wake the guardian");
+        setText(
+          guardianStatus,
+          state.awake
+            ? "The guardian answers in four bright steps. Your choices are kept on this device."
+            : "The guardian rests between beats. Your choices are kept on this device."
+        );
+      };
+
+      guardianToggle.addEventListener("click", () => {
+        state.awake = !state.awake;
+        renderGuardian();
+        persist();
+      });
+
+      renderGuardian();
+
+      const buttonCard = byId("buttonCard");
+      const benchReadout = byId("benchReadout");
+
+      document.querySelectorAll("[data-bench-action]").forEach((button) => {
+        button.addEventListener("click", () => {
+          setText(benchReadout, `${button.dataset.benchAction}. The grain holds the mark.`);
+          buttonCard.classList.remove("is-struck");
+          void buttonCard.offsetWidth;
+          buttonCard.classList.add("is-struck");
+        });
+      });
+
+      buttonCard.addEventListener("animationend", () => {
+        buttonCard.classList.remove("is-struck");
+      });
+
+      const phraseInput = byId("carvedPhrase");
+      const phrasePreview = byId("phrasePreview");
+
+      const renderPhrase = () => {
+        phraseInput.value = state.phrase;
+        setText(
+          phrasePreview,
+          state.phrase.trim()
+            ? `“${state.phrase.trim()}”`
+            : "Your uncut phrase will appear here."
+        );
+      };
+
+      phraseInput.addEventListener("input", () => {
+        state.phrase = phraseInput.value.slice(0, 72);
+        renderPhrase();
+        persist();
+      });
+
+      renderPhrase();
+
+      const routeInputs = Array.from(document.querySelectorAll('input[name="route"]'));
+      routeInputs.forEach((input) => {
+        input.checked = input.value === state.route;
+        input.addEventListener("change", () => {
+          if (input.checked) {
+            state.route = input.value;
+            persist();
+          }
+        });
+      });
+
+      const tokenInput = byId("carryToken");
+      const tokenStatus = byId("tokenStatus");
+
+      const renderToken = () => {
+        tokenInput.checked = state.token;
+        setText(
+          tokenStatus,
+          state.token
+            ? "The maker's token is knotted safely to your bundle."
+            : "No token is tied to your bundle."
+        );
+      };
+
+      tokenInput.addEventListener("change", () => {
+        state.token = tokenInput.checked;
+        renderToken();
+        persist();
+      });
+
+      renderToken();
+
+      const watchSwitch = byId("watchSwitch");
+      const watchState = byId("watchState");
+
+      const renderWatch = () => {
+        document.body.classList.toggle("night-weave", state.night);
+        watchSwitch.setAttribute("aria-checked", String(state.night));
+        setText(watchState, state.night ? "Indigo night" : "Day weave");
+      };
+
+      watchSwitch.addEventListener("click", () => {
+        state.night = !state.night;
+        renderWatch();
+        persist();
+      });
+
+      renderWatch();
+
+      const rhythmRange = byId("rhythmRange");
+      const rhythmOutput = byId("rhythmOutput");
+
+      const renderRhythm = () => {
+        rhythmRange.value = String(state.rhythm);
+        rhythmRange.style.setProperty("--range-pct", `${state.rhythm}%`);
+        setText(rhythmOutput, `${state.rhythm}%`);
+      };
+
+      rhythmRange.addEventListener("input", () => {
+        state.rhythm = Number(rhythmRange.value);
+        renderRhythm();
+        persist();
+      });
+
+      renderRhythm();
+
+      const materialTrigger = byId("materialTrigger");
+      const materialList = byId("materialList");
+      const materialValue = byId("materialValue");
+      const materialHint = byId("materialHint");
+      const materialOptions = Array.from(materialList.querySelectorAll('[role="option"]'));
+      const materialCopy = {
+        clay: {
+          label: "Ochre clay",
+          hint: "Ochre clay holds a warm, grounded mark."
+        },
+        indigo: {
+          label: "Indigo cloth",
+          hint: "Indigo cloth carries a signal across the dark."
+        },
+        bone: {
+          label: "Bone paper",
+          hint: "Bone paper keeps every cut crisp and quiet."
+        },
+        wood: {
+          label: "Cedar grain",
+          hint: "Cedar grain lets each mark follow a living line."
+        }
+      };
+
+      const renderMaterial = () => {
+        const copy = materialCopy[state.material];
+        setText(materialValue, copy.label);
+        setText(materialHint, copy.hint);
+        materialOptions.forEach((option) => {
+          option.setAttribute("aria-selected", String(option.dataset.value === state.material));
+        });
+      };
+
+      const openMaterial = (preferredIndex) => {
+        materialList.hidden = false;
+        materialTrigger.setAttribute("aria-expanded", "true");
+        const currentIndex = materialOptions.findIndex((option) => option.dataset.value === state.material);
+        const index = Number.isInteger(preferredIndex) ? preferredIndex : Math.max(0, currentIndex);
+        materialOptions[clamp(index, 0, materialOptions.length - 1)].focus();
+      };
+
+      const closeMaterial = (returnFocus = false) => {
+        materialList.hidden = true;
+        materialTrigger.setAttribute("aria-expanded", "false");
+        if (returnFocus) {
+          materialTrigger.focus();
+        }
+      };
+
+      const chooseMaterial = (option) => {
+        state.material = option.dataset.value;
+        renderMaterial();
+        persist();
+        closeMaterial(true);
+      };
+
+      materialTrigger.addEventListener("click", () => {
+        if (materialList.hidden) {
+          openMaterial();
+        } else {
+          closeMaterial();
+        }
+      });
+
+      materialTrigger.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault();
+          const selected = materialOptions.findIndex((option) => option.dataset.value === state.material);
+          const direction = event.key === "ArrowDown" ? 1 : -1;
+          openMaterial(clamp(selected + direction, 0, materialOptions.length - 1));
+        } else if (event.key === "Escape" && !materialList.hidden) {
+          event.preventDefault();
+          closeMaterial(true);
+        }
+      });
+
+      materialOptions.forEach((option, index) => {
+        option.addEventListener("click", () => chooseMaterial(option));
+        option.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+          if (event.key === "ArrowDown") {
+            nextIndex = (index + 1) % materialOptions.length;
+          } else if (event.key === "ArrowUp") {
+            nextIndex = (index - 1 + materialOptions.length) % materialOptions.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = materialOptions.length - 1;
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            chooseMaterial(option);
+            return;
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            closeMaterial(true);
+            return;
+          } else if (event.key === "Tab") {
+            closeMaterial();
+            return;
+          } else {
+            return;
+          }
+          event.preventDefault();
+          materialOptions[nextIndex].focus();
+        });
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!byId("materialSelect").contains(event.target) && !materialList.hidden) {
+          closeMaterial();
+        }
+      });
+
+      renderMaterial();
+
+      const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+      const tabPanels = allowedTabs.map((tab) => byId(`panel-${tab}`));
+
+      const activateTab = (tabName, moveFocus = false) => {
+        const nextTab = allowedTabs.includes(tabName) ? tabName : defaults.tab;
+        state.tab = nextTab;
+        tabButtons.forEach((button, index) => {
+          const selected = button.dataset.tab === nextTab;
+          button.setAttribute("aria-selected", String(selected));
+          button.tabIndex = selected ? 0 : -1;
+          tabPanels[index].hidden = !selected;
+          if (selected && moveFocus) {
+            button.focus();
+          }
+        });
+        persist();
+      };
+
+      tabButtons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(button.dataset.tab));
+        button.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+          if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+            nextIndex = (index + 1) % tabButtons.length;
+          } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+            nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = tabButtons.length - 1;
+          } else {
+            return;
+          }
+          event.preventDefault();
+          activateTab(tabButtons[nextIndex].dataset.tab, true);
+        });
+      });
+
+      activateTab(state.tab);
+
+      const bandProgress = byId("bandProgress");
+      const progressFill = byId("progressFill");
+      const progressLabel = byId("progressLabel");
+
+      const renderProgress = () => {
+        progressFill.style.width = `${state.progress}%`;
+        bandProgress.setAttribute("aria-valuenow", String(state.progress));
+        setText(progressLabel, `${state.progress}% WOVEN`);
+      };
+
+      const changeProgress = (amount) => {
+        state.progress = clamp(state.progress + amount, 0, 100);
+        renderProgress();
+        persist();
+      };
+
+      byId("progressDown").addEventListener("click", () => changeProgress(-8));
+      byId("progressUp").addEventListener("click", () => changeProgress(8));
+      renderProgress();
+
+      const hearthMeter = byId("hearthMeter");
+      const meterValue = byId("meterValue");
+      const meterStatus = byId("meterStatus");
+
+      const meterMessage = () => {
+        if (state.meter < 30) {
+          return "The hearth is quiet; add a few careful beats.";
+        }
+        if (state.meter > 80) {
+          return "The hearth runs bright; leave room for the circle to answer.";
+        }
+        return "The hearth carries a steady gathering tone.";
+      };
+
+      const renderMeter = () => {
+        hearthMeter.setAttribute("aria-valuenow", String(state.meter));
+        hearthMeter.style.setProperty("--meter-angle", `${state.meter * 2.7}deg`);
+        hearthMeter.style.setProperty("--needle-angle", `${-135 + state.meter * 2.7}deg`);
+        setText(meterValue, state.meter);
+        setText(meterStatus, meterMessage());
+      };
+
+      const changeMeter = (amount) => {
+        state.meter = clamp(state.meter + amount, 0, 100);
+        renderMeter();
+        persist();
+      };
+
+      byId("meterDown").addEventListener("click", () => changeMeter(-5));
+      byId("meterUp").addEventListener("click", () => changeMeter(5));
+      renderMeter();
+
+      const modalBackdrop = byId("modalBackdrop");
+      const ritualDialog = byId("ritualDialog");
+      const vowInput = byId("vowInput");
+
+      const pageRegions = [document.querySelector(".status-bar"), document.querySelector("main"), document.querySelector(".footer")];
+
+      const setPageInert = (inert) => {
+        pageRegions.forEach((region) => {
+          if (region) {
+            region.inert = inert;
+          }
+        });
+      };
+
+      const openModal = () => {
+        lastFocused = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.style.overflow = "hidden";
+        setPageInert(true);
+        requestAnimationFrame(() => vowInput.focus());
+      };
+
+      const closeModal = () => {
+        modalBackdrop.hidden = true;
+        document.body.style.overflow = "";
+        setPageInert(false);
+        if (lastFocused && typeof lastFocused.focus === "function") {
+          lastFocused.focus();
+        }
+      };
+
+      const focusableInDialog = () => Array.from(
+        ritualDialog.querySelectorAll('button:not(:disabled), input:not(:disabled), [href], [tabindex]:not([tabindex="-1"])')
+      ).filter((node) => !node.hidden && node.getClientRects().length > 0);
+
+      byId("openModal").addEventListener("click", openModal);
+      byId("closeModal").addEventListener("click", closeModal);
+      byId("cancelModal").addEventListener("click", closeModal);
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) {
+          closeModal();
+        }
+      });
+
+      const toast = byId("toast");
+      const toastMessage = byId("toastMessage");
+
+      const hideToast = () => {
+        window.clearTimeout(toastTimer);
+        toast.classList.remove("is-visible");
+        window.setTimeout(() => {
+          toast.hidden = true;
+        }, 190);
+      };
+
+      const showToast = (message) => {
+        window.clearTimeout(toastTimer);
+        setText(toastMessage, message);
+        toast.hidden = false;
+        requestAnimationFrame(() => toast.classList.add("is-visible"));
+        toastTimer = window.setTimeout(hideToast, 4300);
+      };
+
+      byId("showToast").addEventListener("click", () => {
+        showToast("Field notice sent: the eastern loom is ready.");
+      });
+      byId("toastClose").addEventListener("click", hideToast);
+
+      byId("bindVow").addEventListener("click", () => {
+        const vow = vowInput.value.trim();
+        const witnessed = byId("witnessVow").checked;
+        closeModal();
+        showToast(
+          vow
+            ? `Vow bound${witnessed ? " and witnessed" : ""}: “${vow.slice(0, 48)}${vow.length > 48 ? "…" : ""}”`
+            : "The circle stays open until a vow is named."
+        );
+      });
+
+      const tooltipWrap = byId("tooltipWrap");
+      const tooltipTrigger = byId("tooltipTrigger");
+
+      const setTooltipPinned = (pinned) => {
+        tooltipWrap.dataset.pinned = String(pinned);
+        tooltipTrigger.setAttribute("aria-pressed", String(pinned));
+      };
+
+      tooltipTrigger.addEventListener("click", () => {
+        setTooltipPinned(tooltipWrap.dataset.pinned !== "true");
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (!modalBackdrop.hidden) {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeModal();
+            return;
+          }
+          if (event.key === "Tab") {
+            const focusable = focusableInDialog();
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (!first || !last) {
+              event.preventDefault();
+              ritualDialog.focus();
+            } else if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
+          }
+          return;
+        }
+
+        if (event.key === "Escape") {
+          if (!materialList.hidden) {
+            event.preventDefault();
+            closeMaterial(true);
+          } else if (tooltipWrap.dataset.pinned === "true") {
+            event.preventDefault();
+            setTooltipPinned(false);
+            tooltipTrigger.focus();
+          } else if (!toast.hidden) {
+            event.preventDefault();
+            hideToast();
+          }
+        }
+      });
+
+      window.addEventListener("pagehide", persist);
+    })();
+  </script>
+</body>
+</html>

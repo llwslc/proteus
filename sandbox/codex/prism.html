@@ -1,0 +1,2287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3ecdc">
+  <title>PRISM — The Form Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=League+Spartan:wght@700;800;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f3ecdc;
+      --ink: #111111;
+      --red: #e94334;
+      --yellow: #f6c928;
+      --blue: #1747b8;
+      --white: #fffdf7;
+      --muted: #625e55;
+      --line: 3px;
+      --shadow: 7px 7px 0 var(--ink);
+      --scene-turn: 0deg;
+      --scene-shift-x: 0px;
+      --scene-shift-y: 0px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: clip;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Outfit", Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    [role="tab"],
+    [role="option"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 4px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .frame {
+      width: min(1180px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 12px;
+      left: 16px;
+      padding: 10px 16px;
+      color: var(--white);
+      background: var(--blue);
+      border: var(--line) solid var(--ink);
+      font-weight: 800;
+      transform: translateY(-150%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .topbar {
+      color: var(--white);
+      background: var(--ink);
+      border-bottom: var(--line) solid var(--ink);
+    }
+
+    .topbar .frame {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .wordmark,
+    .status-code,
+    .eyebrow,
+    .section-code,
+    .readout,
+    .field-number,
+    .shape-note,
+    .footer-code {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .wordmark {
+      font-size: .82rem;
+    }
+
+    .wordmark::before {
+      content: "";
+      width: 13px;
+      height: 13px;
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: -2px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+
+    .status-code {
+      font-size: .72rem;
+      color: var(--yellow);
+      text-align: right;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(340px, 5fr);
+      gap: clamp(40px, 7vw, 96px);
+      align-items: center;
+      min-height: min(760px, calc(100vh - 46px));
+      padding-block: clamp(56px, 8vw, 110px);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      animation: cut-in .55s steps(4, end) both;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 22px;
+      font-size: .76rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      flex: 0 0 54px;
+      height: var(--line);
+      background: var(--ink);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "League Spartan", Arial, sans-serif;
+      line-height: .88;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 30px;
+      font-size: clamp(4.25rem, 8.6vw, 8.25rem);
+      font-weight: 900;
+      letter-spacing: -.055em;
+    }
+
+    h1 span {
+      position: relative;
+      display: inline-block;
+      color: var(--blue);
+    }
+
+    h1 span::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: -.05em;
+      bottom: -.02em;
+      left: .04em;
+      height: .13em;
+      background: var(--yellow);
+    }
+
+    .hero-lede {
+      max-width: 610px;
+      margin-bottom: 32px;
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+      font-weight: 500;
+    }
+
+    .actions,
+    .button-rack,
+    .progress-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .button,
+    .text-button {
+      min-height: 48px;
+      border: var(--line) solid var(--ink);
+      border-radius: 0;
+      cursor: pointer;
+      font-family: "League Spartan", Arial, sans-serif;
+      font-size: .92rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: transform 120ms steps(2, end), box-shadow 120ms steps(2, end), background-color 120ms steps(2, end);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 13px 20px 11px;
+      text-decoration: none;
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .button:hover:not(:disabled) {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .button:active:not(:disabled) {
+      transform: translate(5px, 5px);
+      box-shadow: 0 0 0 var(--ink);
+    }
+
+    .button-red {
+      background: var(--red);
+    }
+
+    .button-yellow {
+      background: var(--yellow);
+    }
+
+    .button-blue {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .button-outline {
+      background: var(--white);
+    }
+
+    .button-disc {
+      width: 52px;
+      padding: 0;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 50%;
+    }
+
+    .button:disabled {
+      color: #5f5a51;
+      background: #cec6b7;
+      border-color: #5f5a51;
+      box-shadow: 5px 5px 0 #5f5a51;
+      cursor: not-allowed;
+    }
+
+    .button-mark {
+      width: 13px;
+      height: 13px;
+      display: inline-block;
+      background: var(--ink);
+      border-radius: 50%;
+    }
+
+    .button-blue .button-mark {
+      background: var(--yellow);
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 520px;
+      isolation: isolate;
+      animation: cut-in .75s .08s steps(5, end) both;
+    }
+
+    .composition {
+      position: absolute;
+      inset: 20px 0 15px 10px;
+      overflow: hidden;
+      background: var(--white);
+      border: 5px solid var(--ink);
+      box-shadow: 11px 11px 0 var(--ink);
+    }
+
+    .composition::before,
+    .composition::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      background: var(--ink);
+    }
+
+    .composition::before {
+      top: 0;
+      bottom: 0;
+      left: 34%;
+      width: 3px;
+    }
+
+    .composition::after {
+      right: 0;
+      bottom: 30%;
+      left: 0;
+      height: 3px;
+    }
+
+    .shape {
+      position: absolute;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      border: var(--line) solid var(--ink);
+      transition: transform 460ms steps(5, end), inset 460ms steps(5, end);
+      will-change: transform;
+    }
+
+    .shape-red {
+      top: 8%;
+      right: 8%;
+      width: 44%;
+      height: 22%;
+      background: var(--red);
+      transform: translate(var(--scene-shift-x), var(--scene-shift-y)) rotate(var(--scene-turn));
+    }
+
+    .shape-blue {
+      right: 9%;
+      bottom: 9%;
+      width: 46%;
+      aspect-ratio: 1;
+      background: var(--blue);
+      border-radius: 50%;
+      transform: translate(calc(var(--scene-shift-x) * -1), 0) rotate(calc(var(--scene-turn) * -1));
+    }
+
+    .shape-yellow {
+      top: 25%;
+      left: 8%;
+      width: 31%;
+      aspect-ratio: 1;
+      background: var(--yellow);
+      border-radius: 50%;
+      transform: translate(0, calc(var(--scene-shift-y) * -1)) rotate(var(--scene-turn));
+    }
+
+    .shape-black {
+      bottom: 7%;
+      left: 8%;
+      width: 17%;
+      height: 34%;
+      background: var(--ink);
+      transform: rotate(calc(-12deg + var(--scene-turn))) translate(var(--scene-shift-x), 0);
+      transform-origin: bottom center;
+    }
+
+    .shape-label {
+      top: 43%;
+      right: 7%;
+      width: 38%;
+      min-height: 82px;
+      padding: 12px;
+      background: var(--white);
+      box-shadow: 6px 6px 0 var(--ink);
+      transform: rotate(calc(5deg + var(--scene-turn)));
+    }
+
+    .shape-label span {
+      font-family: "League Spartan", Arial, sans-serif;
+      font-size: clamp(1rem, 2.2vw, 1.65rem);
+      font-weight: 900;
+      line-height: .95;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .shape-note {
+      position: absolute;
+      z-index: 3;
+      right: 15px;
+      bottom: 4px;
+      padding: 5px 9px;
+      color: var(--white);
+      background: var(--ink);
+      font-size: .65rem;
+      transform: rotate(-90deg) translateX(100%);
+      transform-origin: right bottom;
+    }
+
+    .composition[data-scene="1"] {
+      --scene-turn: 45deg;
+      --scene-shift-x: -38px;
+      --scene-shift-y: 26px;
+    }
+
+    .composition[data-scene="2"] {
+      --scene-turn: -90deg;
+      --scene-shift-x: 34px;
+      --scene-shift-y: -18px;
+    }
+
+    .composition[data-scene="3"] {
+      --scene-turn: 135deg;
+      --scene-shift-x: -18px;
+      --scene-shift-y: -32px;
+    }
+
+    .composition.motion-paused .shape {
+      transition-duration: .01ms;
+    }
+
+    .ticker {
+      overflow: hidden;
+      color: var(--white);
+      background: var(--blue);
+      border-block: var(--line) solid var(--ink);
+    }
+
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      padding-block: 14px 12px;
+      font-family: "League Spartan", Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      animation: block-slide 18s linear infinite;
+    }
+
+    .ticker-track span {
+      padding-right: 36px;
+      white-space: nowrap;
+    }
+
+    .ticker-dot {
+      color: var(--yellow);
+    }
+
+    .controls {
+      padding-block: clamp(76px, 10vw, 132px);
+    }
+
+    .controls-heading {
+      display: grid;
+      grid-template-columns: 1fr minmax(260px, .7fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 48px;
+      padding-bottom: 26px;
+      border-bottom: 6px solid var(--ink);
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(3.3rem, 7vw, 7rem);
+      font-weight: 900;
+      letter-spacing: -.045em;
+    }
+
+    .controls-heading p {
+      margin-bottom: 5px;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 26px;
+      align-items: start;
+    }
+
+    .control-card {
+      grid-column: span 6;
+      min-width: 0;
+      padding: clamp(22px, 3vw, 34px);
+      background: var(--white);
+      border: var(--line) solid var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .control-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .control-card.red {
+      background: var(--red);
+    }
+
+    .control-card.yellow {
+      background: var(--yellow);
+    }
+
+    .control-card.blue {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .section-code {
+      display: inline-block;
+      padding: 5px 8px 4px;
+      color: var(--white);
+      background: var(--ink);
+      font-size: .68rem;
+      white-space: nowrap;
+    }
+
+    .control-card.blue .section-code {
+      color: var(--ink);
+      background: var(--yellow);
+    }
+
+    h3 {
+      margin-bottom: 0;
+      font-size: clamp(1.7rem, 3vw, 2.65rem);
+      font-weight: 900;
+      letter-spacing: -.025em;
+    }
+
+    .field-label,
+    legend {
+      margin-bottom: 10px;
+      display: block;
+      font-weight: 700;
+    }
+
+    .field-number {
+      margin-right: 8px;
+      color: var(--blue);
+      font-size: .72rem;
+    }
+
+    .text-field-wrap {
+      position: relative;
+    }
+
+    .text-field {
+      width: 100%;
+      min-height: 56px;
+      padding: 13px 96px 13px 15px;
+      color: var(--ink);
+      background: var(--paper);
+      border: var(--line) solid var(--ink);
+      border-radius: 0;
+      box-shadow: 5px 5px 0 var(--ink);
+      font-weight: 600;
+      transition: box-shadow 120ms steps(2, end), background-color 120ms steps(2, end);
+    }
+
+    .text-field:hover {
+      background: var(--white);
+    }
+
+    .text-field:focus {
+      box-shadow: 8px 8px 0 var(--blue);
+    }
+
+    .clear-field {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      min-height: 40px;
+      padding: 7px 10px;
+      background: var(--yellow);
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      cursor: pointer;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .field-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .72rem;
+      font-weight: 600;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .choice-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice {
+      position: relative;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+      background: var(--paper);
+      border: var(--line) solid var(--ink);
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 120ms steps(2, end), box-shadow 120ms steps(2, end);
+    }
+
+    .choice:hover {
+      transform: translateX(4px);
+    }
+
+    .choice input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .radio-mark,
+    .check-mark {
+      position: relative;
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      display: inline-block;
+      background: var(--white);
+      border: var(--line) solid var(--ink);
+    }
+
+    .radio-mark {
+      border-radius: 50%;
+    }
+
+    .choice input[type="radio"]:checked + .radio-mark::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+
+    .choice input[type="checkbox"]:checked + .check-mark::before,
+    .choice input[type="checkbox"]:checked + .check-mark::after {
+      content: "";
+      position: absolute;
+      top: 11px;
+      left: 2px;
+      width: 20px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .choice input[type="checkbox"]:checked + .check-mark::before {
+      transform: rotate(45deg);
+    }
+
+    .choice input[type="checkbox"]:checked + .check-mark::after {
+      transform: rotate(-45deg);
+    }
+
+    .choice:has(input:focus-visible) {
+      outline: 4px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    .choice:has(input:checked) {
+      background: var(--yellow);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .switch-row {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .switch-copy strong,
+    .switch-copy span {
+      display: block;
+    }
+
+    .switch-copy span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .switch-control {
+      position: relative;
+      flex: 0 0 78px;
+      width: 78px;
+      height: 42px;
+      display: block;
+      cursor: pointer;
+    }
+
+    .switch-control input {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .switch-track {
+      position: absolute;
+      inset: 0;
+      display: block;
+      background: var(--paper);
+      border: var(--line) solid var(--ink);
+      transition: background-color 160ms steps(2, end);
+    }
+
+    .switch-track::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      width: 27px;
+      height: 27px;
+      background: var(--ink);
+      border-radius: 50%;
+      transition: transform 180ms steps(3, end), background-color 180ms steps(3, end);
+    }
+
+    .switch-control input:checked + .switch-track {
+      background: var(--blue);
+    }
+
+    .switch-control input:checked + .switch-track::after {
+      background: var(--yellow);
+      transform: translateX(35px);
+    }
+
+    .switch-control:has(input:focus-visible) {
+      outline: 4px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    .range-header,
+    .meter-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .range-value,
+    .meter-value {
+      min-width: 72px;
+      padding: 5px 8px;
+      color: var(--white);
+      background: var(--ink);
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .76rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .range {
+      width: 100%;
+      height: 44px;
+      margin: 0;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .range::-webkit-slider-runnable-track {
+      height: 9px;
+      background: var(--ink);
+      border: 2px solid var(--ink);
+    }
+
+    .range::-webkit-slider-thumb {
+      width: 30px;
+      height: 30px;
+      margin-top: -12px;
+      appearance: none;
+      background: var(--red);
+      border: var(--line) solid var(--ink);
+      border-radius: 50%;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .range::-moz-range-track {
+      height: 7px;
+      background: var(--ink);
+      border: 2px solid var(--ink);
+    }
+
+    .range::-moz-range-thumb {
+      width: 27px;
+      height: 27px;
+      background: var(--red);
+      border: var(--line) solid var(--ink);
+      border-radius: 50%;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .scale {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .68rem;
+      font-weight: 600;
+    }
+
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-button {
+      width: 100%;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 14px;
+      background: var(--paper);
+      border: var(--line) solid var(--ink);
+      border-radius: 0;
+      box-shadow: 5px 5px 0 var(--ink);
+      cursor: pointer;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .select-symbol {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 19px;
+      background: var(--red);
+      border: 2px solid var(--ink);
+      transform: rotate(45deg);
+      transition: transform 180ms steps(3, end);
+    }
+
+    .select-button[aria-expanded="true"] .select-symbol {
+      background: var(--blue);
+      transform: rotate(135deg);
+    }
+
+    .select-list {
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 10px);
+      right: 0;
+      left: 0;
+      margin: 0;
+      padding: 8px;
+      list-style: none;
+      background: var(--white);
+      border: var(--line) solid var(--ink);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .select-list[hidden] {
+      display: none;
+    }
+
+    .select-option {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 9px 11px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .select-option::after {
+      content: "";
+      width: 13px;
+      height: 13px;
+      flex: 0 0 13px;
+      background: var(--ink);
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .select-option:hover,
+    .select-option.active {
+      background: var(--yellow);
+      border-color: var(--ink);
+    }
+
+    .select-option[aria-selected="true"]::after {
+      opacity: 1;
+    }
+
+    .tabs {
+      color: var(--ink);
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: var(--line) solid var(--ink);
+    }
+
+    .tab {
+      min-height: 50px;
+      padding: 10px 8px;
+      background: var(--paper);
+      border: 0;
+      border-right: var(--line) solid var(--ink);
+      cursor: pointer;
+      font-family: "League Spartan", Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .tab:last-child {
+      border-right: 0;
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .tab-panel {
+      min-height: 158px;
+      padding: 25px;
+      background: var(--white);
+      border: var(--line) solid var(--ink);
+      border-top: 0;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .tab-panel p {
+      max-width: 48ch;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .tab-shape-row {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .mini-shape {
+      width: 28px;
+      height: 28px;
+      display: inline-block;
+      background: var(--red);
+      border: 2px solid var(--ink);
+    }
+
+    .mini-shape.circle {
+      background: var(--yellow);
+      border-radius: 50%;
+    }
+
+    .mini-shape.tall {
+      width: 14px;
+      height: 40px;
+      background: var(--blue);
+      transform: rotate(18deg);
+    }
+
+    .progress-track {
+      position: relative;
+      height: 34px;
+      overflow: hidden;
+      background: var(--paper);
+      border: var(--line) solid var(--ink);
+    }
+
+    .progress-fill {
+      width: 64%;
+      height: 100%;
+      background: var(--blue);
+      border-right: var(--line) solid var(--ink);
+      transition: width 300ms steps(5, end);
+    }
+
+    .progress-readout {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+
+    .progress-actions {
+      margin-top: 24px;
+    }
+
+    .text-button {
+      padding: 8px 13px 7px;
+      background: var(--white);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .text-button:hover {
+      background: var(--yellow);
+    }
+
+    .text-button:active {
+      transform: translate(4px, 4px);
+      box-shadow: none;
+    }
+
+    .meter {
+      position: relative;
+      height: 100px;
+      overflow: hidden;
+      background: var(--yellow);
+      border: var(--line) solid var(--ink);
+    }
+
+    .meter::before {
+      content: "";
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      height: 3px;
+      background: var(--ink);
+      box-shadow: 0 -26px 0 var(--ink), 0 -52px 0 var(--ink);
+    }
+
+    .meter-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 58%;
+      height: 100%;
+      background: var(--red);
+      border-right: var(--line) solid var(--ink);
+      transition: width 300ms steps(5, end);
+    }
+
+    .meter-needle {
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      left: calc(58% - 3px);
+      width: 6px;
+      height: 100%;
+      background: var(--ink);
+      transition: left 300ms steps(5, end);
+    }
+
+    .meter-scale {
+      position: absolute;
+      z-index: 3;
+      right: 12px;
+      bottom: 6px;
+      left: 12px;
+      display: flex;
+      justify-content: space-between;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .62rem;
+      font-weight: 600;
+    }
+
+    .launch-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .launch-panel {
+      min-width: 0;
+      padding: 26px;
+      background: var(--paper);
+      border: var(--line) solid var(--ink);
+    }
+
+    .launch-panel p {
+      margin-bottom: 22px;
+      color: var(--muted);
+    }
+
+    .tooltip-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip {
+      position: absolute;
+      z-index: 30;
+      right: 0;
+      bottom: calc(100% + 13px);
+      width: 220px;
+      padding: 11px 13px;
+      color: var(--white);
+      background: var(--ink);
+      border: var(--line) solid var(--ink);
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .72rem;
+      font-weight: 500;
+      line-height: 1.45;
+      text-transform: none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(7px);
+      transition: opacity 120ms steps(2, end), transform 120ms steps(2, end);
+    }
+
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      right: 17px;
+      bottom: -9px;
+      width: 14px;
+      height: 14px;
+      background: var(--ink);
+      transform: rotate(45deg);
+    }
+
+    .tooltip-wrap:hover .tooltip,
+    .tooltip-wrap:focus-within .tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .manifesto {
+      margin-top: clamp(70px, 10vw, 120px);
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .manifesto-number {
+      min-height: 310px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: var(--blue);
+      border: var(--line) solid var(--ink);
+      box-shadow: var(--shadow);
+      font-family: "League Spartan", Arial, sans-serif;
+      font-size: clamp(9rem, 24vw, 18rem);
+      font-weight: 900;
+      line-height: .7;
+      transform: rotate(-3deg);
+    }
+
+    .manifesto-copy {
+      padding: clamp(30px, 5vw, 68px);
+      background: var(--yellow);
+      border: var(--line) solid var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .manifesto-copy blockquote {
+      margin: 0;
+      font-family: "League Spartan", Arial, sans-serif;
+      font-size: clamp(2.7rem, 5vw, 5.8rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .manifesto-copy cite {
+      margin-top: 25px;
+      display: block;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .75rem;
+      font-style: normal;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    footer {
+      margin-top: clamp(80px, 10vw, 130px);
+      color: var(--white);
+      background: var(--ink);
+      border-top: var(--line) solid var(--ink);
+    }
+
+    footer .frame {
+      min-height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    footer p {
+      margin: 0;
+      font-family: "League Spartan", Arial, sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.55rem);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .footer-code {
+      color: var(--yellow);
+      font-size: .7rem;
+      text-align: right;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      z-index: 80;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(17, 17, 17, .78);
+    }
+
+    .modal-backdrop[hidden] {
+      display: none;
+    }
+
+    .modal {
+      position: relative;
+      width: min(560px, 100%);
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      padding: clamp(28px, 5vw, 54px);
+      background: var(--paper);
+      border: 5px solid var(--ink);
+      box-shadow: 13px 13px 0 var(--red);
+      animation: modal-cut 220ms steps(3, end) both;
+    }
+
+    .modal-kicker {
+      margin-bottom: 14px;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .modal h2 {
+      margin-bottom: 22px;
+      font-size: clamp(3.2rem, 9vw, 5.6rem);
+    }
+
+    .modal p {
+      max-width: 42ch;
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+
+    .modal-shapes {
+      position: absolute;
+      top: 19px;
+      right: 22px;
+      display: flex;
+      gap: 7px;
+    }
+
+    .modal-shapes span {
+      width: 18px;
+      height: 18px;
+      display: block;
+      background: var(--red);
+      border: 2px solid var(--ink);
+    }
+
+    .modal-shapes span:nth-child(2) {
+      background: var(--yellow);
+      border-radius: 50%;
+    }
+
+    .modal-shapes span:nth-child(3) {
+      background: var(--blue);
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 90;
+      right: max(24px, calc((100vw - 1180px) / 2));
+      bottom: 24px;
+      width: min(370px, calc(100vw - 48px));
+      display: grid;
+      grid-template-columns: 17px 1fr auto;
+      gap: 13px;
+      align-items: center;
+      padding: 16px;
+      color: var(--ink);
+      background: var(--yellow);
+      border: var(--line) solid var(--ink);
+      box-shadow: 8px 8px 0 var(--ink);
+      transform: translateY(calc(100% + 50px));
+      transition: transform 260ms steps(4, end);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    .toast-dot {
+      width: 17px;
+      height: 17px;
+      background: var(--blue);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    .toast-message {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .toast-close {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      background: var(--white);
+      border: 2px solid var(--ink);
+      cursor: pointer;
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-weight: 600;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @keyframes cut-in {
+      from {
+        opacity: 0;
+        transform: translate(-28px, 22px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+
+    @keyframes block-slide {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes modal-cut {
+      from {
+        opacity: 0;
+        transform: translate(28px, -28px) rotate(2deg);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .hero-copy {
+        max-width: 760px;
+      }
+
+      .hero-art {
+        width: min(560px, 100%);
+        min-height: 520px;
+        margin-inline: auto;
+      }
+
+      .controls-heading,
+      .manifesto {
+        grid-template-columns: 1fr;
+      }
+
+      .controls-heading p {
+        max-width: 620px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .control-card {
+        grid-column: 1 / -1;
+      }
+
+      .launch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .manifesto-number {
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .frame {
+        width: min(100% - 32px, 1180px);
+      }
+
+      .topbar .frame {
+        min-height: 52px;
+      }
+
+      .status-code {
+        max-width: 125px;
+        font-size: .62rem;
+      }
+
+      .hero {
+        gap: 38px;
+        padding-block: 48px 64px;
+      }
+
+      h1 {
+        font-size: clamp(3.75rem, 19.2vw, 5rem);
+      }
+
+      .actions .button {
+        width: 100%;
+      }
+
+      .hero-art {
+        min-height: 390px;
+      }
+
+      .composition {
+        inset: 10px 5px 10px 0;
+        box-shadow: 8px 8px 0 var(--ink);
+      }
+
+      .shape-label {
+        width: 42%;
+      }
+
+      .controls {
+        padding-block: 72px;
+      }
+
+      .controls-heading {
+        margin-bottom: 30px;
+      }
+
+      .control-grid {
+        gap: 22px;
+      }
+
+      .control-card {
+        padding: 21px;
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-code {
+        width: max-content;
+        margin-bottom: 15px;
+      }
+
+      .button-rack .button:not(.button-disc),
+      .progress-actions .text-button {
+        flex: 1 1 140px;
+      }
+
+      .tab {
+        padding-inline: 4px;
+        font-size: .76rem;
+      }
+
+      .tab-panel {
+        padding: 20px;
+      }
+
+      .launch-panel {
+        padding: 20px;
+      }
+
+      .manifesto-number {
+        min-height: 190px;
+      }
+
+      footer .frame {
+        padding-block: 28px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-code {
+        text-align: left;
+      }
+
+      .toast {
+        right: 16px;
+        bottom: 16px;
+        width: calc(100vw - 32px);
+      }
+
+      .modal-backdrop {
+        padding: 16px;
+      }
+
+      .modal {
+        max-height: calc(100vh - 32px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+
+      .ticker-track {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#control-lab">Skip to control lab</a>
+
+  <header class="topbar">
+    <div class="frame">
+      <span class="wordmark">PRISM / Form Lab</span>
+      <span class="status-code">System 03 · Primary Signal Online</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero frame" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Bauhaus interaction study / 2026</p>
+        <h1 id="hero-title">Form<br>follows<br><span>play.</span></h1>
+        <p class="hero-lede">A modular playground where circles speak, rectangles move, and every control earns its shape.</p>
+        <div class="actions">
+          <button class="button button-red" id="recompose" type="button">
+            <span class="button-mark" aria-hidden="true"></span>
+            Recompose field
+          </button>
+          <a class="button button-outline" href="#control-lab">Enter the lab</a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="composition" id="composition" data-scene="0" role="img" aria-label="A kinetic Bauhaus composition of primary-color circles and angular rectangles">
+          <span class="shape shape-red" aria-hidden="true"></span>
+          <span class="shape shape-blue" aria-hidden="true"></span>
+          <span class="shape shape-yellow" aria-hidden="true"></span>
+          <span class="shape shape-black" aria-hidden="true"></span>
+          <span class="shape shape-label" aria-hidden="true"><span>Move the<br>structure</span></span>
+          <span class="shape-note" aria-hidden="true">Module / 08</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Color is a verb <b class="ticker-dot">●</b> Shape is a signal <b class="ticker-dot">●</b> Function can dance <b class="ticker-dot">●</b></span>
+        <span>Color is a verb <b class="ticker-dot">●</b> Shape is a signal <b class="ticker-dot">●</b> Function can dance <b class="ticker-dot">●</b></span>
+      </div>
+    </div>
+
+    <section class="controls frame" id="control-lab" aria-labelledby="controls-title">
+      <div class="controls-heading">
+        <h2 id="controls-title">Control<br>geometry.</h2>
+        <p>Each instrument begins with a different primitive. Tune the system and build your own visual rhythm.</p>
+      </div>
+
+      <div class="control-grid">
+        <section class="control-card wide" aria-labelledby="buttons-title">
+          <div class="section-head">
+            <span class="section-code">Unit 01 / Impulse</span>
+            <h3 id="buttons-title">Buttons</h3>
+          </div>
+          <div class="button-rack">
+            <button class="button button-red feedback-button" type="button" data-message="Red command registered.">Commit red</button>
+            <button class="button button-yellow feedback-button" type="button" data-message="Yellow signal released.">Send signal</button>
+            <button class="button button-blue feedback-button" type="button" data-message="Blue structure locked.">Lock structure</button>
+            <button class="button button-disc feedback-button" type="button" aria-label="Spin the round action" data-message="Round action completed.">↻</button>
+            <button class="button" type="button" disabled>Offline</button>
+          </div>
+        </section>
+
+        <section class="control-card" aria-labelledby="input-title">
+          <div class="section-head">
+            <span class="section-code">Unit 02 / Voice</span>
+            <h3 id="input-title">Name the form</h3>
+          </div>
+          <label class="field-label" for="form-name"><span class="field-number">02.1</span>Composition title</label>
+          <div class="text-field-wrap">
+            <input class="text-field" id="form-name" name="form-name" type="text" maxlength="32" placeholder="e.g. Red circle at noon" autocomplete="off">
+            <button class="clear-field" id="clear-name" type="button">Clear</button>
+          </div>
+          <div class="field-meta">
+            <span id="name-status">Waiting for a title</span>
+            <span id="char-count">00 / 32</span>
+          </div>
+        </section>
+
+        <section class="control-card yellow" aria-labelledby="choice-title">
+          <div class="section-head">
+            <span class="section-code">Unit 03 / Shape</span>
+            <h3 id="choice-title">Choose a base</h3>
+          </div>
+          <fieldset>
+            <legend class="sr-only">Base shape</legend>
+            <div class="choice-stack">
+              <label class="choice">
+                <input type="radio" name="base-shape" value="circle" checked>
+                <span class="radio-mark" aria-hidden="true"></span>
+                Circle / continuous
+              </label>
+              <label class="choice">
+                <input type="radio" name="base-shape" value="square">
+                <span class="radio-mark" aria-hidden="true"></span>
+                Square / stable
+              </label>
+              <label class="choice">
+                <input type="radio" name="base-shape" value="triangle">
+                <span class="radio-mark" aria-hidden="true"></span>
+                Triangle / directional
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="control-card" aria-labelledby="toggle-title">
+          <div class="section-head">
+            <span class="section-code">Unit 04 / Rules</span>
+            <h3 id="toggle-title">Set constraints</h3>
+          </div>
+          <label class="choice">
+            <input id="snap-grid" type="checkbox" checked>
+            <span class="check-mark" aria-hidden="true"></span>
+            Snap every form to the grid
+          </label>
+          <div class="switch-row">
+            <div class="switch-copy">
+              <strong>Diagonal motion</strong>
+              <span id="motion-state">Movement enabled</span>
+            </div>
+            <label class="switch-control">
+              <input id="motion-switch" type="checkbox" role="switch" checked aria-label="Enable diagonal motion">
+              <span class="switch-track" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="control-card red" aria-labelledby="range-title">
+          <div class="section-head">
+            <span class="section-code">Unit 05 / Scale</span>
+            <h3 id="range-title">Set the tension</h3>
+          </div>
+          <div class="range-header">
+            <label class="field-label" for="tension">Angular pressure</label>
+            <output class="range-value" id="tension-value" for="tension">62°</output>
+          </div>
+          <input class="range" id="tension" type="range" min="0" max="100" value="62" aria-valuetext="62 degrees">
+          <div class="scale" aria-hidden="true">
+            <span>00</span>
+            <span>25</span>
+            <span>50</span>
+            <span>75</span>
+            <span>100</span>
+          </div>
+        </section>
+
+        <section class="control-card" aria-labelledby="select-title">
+          <div class="section-head">
+            <span class="section-code">Unit 06 / Color</span>
+            <h3 id="select-title">Select a signal</h3>
+          </div>
+          <div class="select-wrap" id="signal-select">
+            <button class="select-button" id="select-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="signal-list">
+              <span id="select-value">Ultramarine blue</span>
+              <span class="select-symbol" aria-hidden="true"></span>
+            </button>
+            <ul class="select-list" id="signal-list" role="listbox" aria-labelledby="select-title" tabindex="-1" hidden>
+              <li class="select-option" id="signal-blue" role="option" data-value="blue" aria-selected="true">Ultramarine blue</li>
+              <li class="select-option" id="signal-red" role="option" data-value="red" aria-selected="false">Structural red</li>
+              <li class="select-option" id="signal-yellow" role="option" data-value="yellow" aria-selected="false">Workshop yellow</li>
+              <li class="select-option" id="signal-black" role="option" data-value="black" aria-selected="false">Absolute black</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="control-card wide blue" aria-labelledby="tabs-title">
+          <div class="section-head">
+            <span class="section-code">Unit 07 / Method</span>
+            <h3 id="tabs-title">Three studies</h3>
+          </div>
+          <div class="tabs">
+            <div class="tab-list" role="tablist" aria-label="Design studies">
+              <button class="tab" id="tab-form" type="button" role="tab" aria-selected="true" aria-controls="panel-form" tabindex="0">01 Form</button>
+              <button class="tab" id="tab-color" type="button" role="tab" aria-selected="false" aria-controls="panel-color" tabindex="-1">02 Color</button>
+              <button class="tab" id="tab-motion" type="button" role="tab" aria-selected="false" aria-controls="panel-motion" tabindex="-1">03 Motion</button>
+            </div>
+            <div class="tab-panel" id="panel-form" role="tabpanel" aria-labelledby="tab-form">
+              <p>Strip the object to its clearest geometry. Every edge should explain what the object does.</p>
+              <div class="tab-shape-row" aria-hidden="true">
+                <span class="mini-shape circle"></span>
+                <span class="mini-shape"></span>
+                <span class="mini-shape tall"></span>
+              </div>
+            </div>
+            <div class="tab-panel" id="panel-color" role="tabpanel" aria-labelledby="tab-color" hidden>
+              <p>Use one primary color as a command, another as a reply, and black as the grammar between them.</p>
+              <div class="tab-shape-row" aria-hidden="true">
+                <span class="mini-shape"></span>
+                <span class="mini-shape circle"></span>
+                <span class="mini-shape tall"></span>
+              </div>
+            </div>
+            <div class="tab-panel" id="panel-motion" role="tabpanel" aria-labelledby="tab-motion" hidden>
+              <p>Move in decisive cuts. A shape arrives, occupies space, and stops exactly where the grid demands.</p>
+              <div class="tab-shape-row" aria-hidden="true">
+                <span class="mini-shape tall"></span>
+                <span class="mini-shape"></span>
+                <span class="mini-shape circle"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-card" aria-labelledby="progress-title">
+          <div class="section-head">
+            <span class="section-code">Unit 08 / Build</span>
+            <h3 id="progress-title">Composition</h3>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="Composition progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-readout">
+            <span>Assembly status</span>
+            <output id="progress-value">64%</output>
+          </div>
+          <div class="progress-actions">
+            <button class="text-button" id="progress-add" type="button">Add module</button>
+            <button class="text-button" id="progress-reset" type="button">Reset</button>
+          </div>
+        </section>
+
+        <section class="control-card" aria-labelledby="meter-title">
+          <div class="section-head">
+            <span class="section-code">Unit 09 / Measure</span>
+            <h3 id="meter-title">Visual balance</h3>
+          </div>
+          <div class="meter-header">
+            <span class="field-label">Counterweight</span>
+            <output class="meter-value" id="meter-value">58 / 100</output>
+          </div>
+          <div class="meter" id="balance-meter" role="meter" aria-label="Visual balance" aria-valuemin="0" aria-valuemax="100" aria-valuenow="58">
+            <div class="meter-bar" id="meter-bar"></div>
+            <div class="meter-needle" id="meter-needle"></div>
+            <div class="meter-scale" aria-hidden="true">
+              <span>0</span>
+              <span>Balance</span>
+              <span>100</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-card wide" aria-labelledby="layers-title">
+          <div class="section-head">
+            <span class="section-code">Unit 10 / Layers</span>
+            <h3 id="layers-title">Open the system</h3>
+          </div>
+          <div class="launch-grid">
+            <div class="launch-panel">
+              <p>Inspect the construction note without leaving the workshop.</p>
+              <button class="button button-blue" id="open-modal" type="button">Open construction note</button>
+            </div>
+            <div class="launch-panel">
+              <p>Send a temporary signal to the edge of the canvas.</p>
+              <div class="tooltip-wrap">
+                <button class="button button-yellow" id="show-toast" type="button" aria-describedby="signal-tip">Broadcast signal</button>
+                <span class="tooltip" id="signal-tip" role="tooltip">A yellow field confirms the action, then clears itself.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="manifesto" aria-label="Design principle">
+        <div class="manifesto-number" aria-hidden="true">3</div>
+        <div class="manifesto-copy">
+          <blockquote>One circle.<br>One line.<br>Endless order.</blockquote>
+          <cite>Principle 03 · Reduce to reveal</cite>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <div class="frame">
+      <p>Build boldly. Leave only what works.</p>
+      <span class="footer-code">PRISM / End of field</span>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="modal" id="construction-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description" tabindex="-1">
+      <div class="modal-shapes" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="modal-kicker">Construction note / 10.1</p>
+      <h2 id="modal-title">The grid is a stage.</h2>
+      <p id="modal-description">Place one form with intent. Give the next form enough contrast to answer it. Remove everything that stays silent.</p>
+      <button class="button button-red" id="close-modal" type="button">Return to workshop</button>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+    <span class="toast-dot" aria-hidden="true"></span>
+    <p class="toast-message" id="toast-message">Signal received. The field is active.</p>
+    <button class="toast-close" id="toast-close" type="button" aria-label="Dismiss notification">×</button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const storageKey = "prism-form-lab-state-v1";
+      const state = {
+        name: "",
+        shape: "circle",
+        snap: true,
+        motion: true,
+        tension: 62,
+        signal: "blue",
+        tab: "form",
+        progress: 64,
+        scene: 0
+      };
+
+      const byId = (id) => document.getElementById(id);
+      const composition = byId("composition");
+      const recomposeButton = byId("recompose");
+      const nameInput = byId("form-name");
+      const clearNameButton = byId("clear-name");
+      const nameStatus = byId("name-status");
+      const charCount = byId("char-count");
+      const snapGrid = byId("snap-grid");
+      const motionSwitch = byId("motion-switch");
+      const motionState = byId("motion-state");
+      const tension = byId("tension");
+      const tensionValue = byId("tension-value");
+      const selectWrap = byId("signal-select");
+      const selectButton = byId("select-button");
+      const selectValue = byId("select-value");
+      const selectList = byId("signal-list");
+      const options = Array.from(selectList.querySelectorAll('[role="option"]'));
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const progressTrack = document.querySelector('[role="progressbar"]');
+      const progressFill = byId("progress-fill");
+      const progressValue = byId("progress-value");
+      const meter = byId("balance-meter");
+      const meterBar = byId("meter-bar");
+      const meterNeedle = byId("meter-needle");
+      const meterValue = byId("meter-value");
+      const modalBackdrop = byId("modal-backdrop");
+      const modal = byId("construction-modal");
+      const openModalButton = byId("open-modal");
+      const closeModalButton = byId("close-modal");
+      const toast = byId("toast");
+      const toastMessage = byId("toast-message");
+      const toastClose = byId("toast-close");
+      let selectIndex = 0;
+      let toastTimer = 0;
+      let modalReturnFocus = null;
+
+      const signalNames = {
+        blue: "Ultramarine blue",
+        red: "Structural red",
+        yellow: "Workshop yellow",
+        black: "Absolute black"
+      };
+
+      function saveState() {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (error) {
+          return;
+        }
+      }
+
+      function restoreState() {
+        try {
+          const stored = JSON.parse(localStorage.getItem(storageKey));
+          if (!stored || typeof stored !== "object") return;
+          if (typeof stored.name === "string") state.name = stored.name.slice(0, 32);
+          if (["circle", "square", "triangle"].includes(stored.shape)) state.shape = stored.shape;
+          if (typeof stored.snap === "boolean") state.snap = stored.snap;
+          if (typeof stored.motion === "boolean") state.motion = stored.motion;
+          if (Number.isFinite(stored.tension)) state.tension = Math.min(100, Math.max(0, stored.tension));
+          if (Object.prototype.hasOwnProperty.call(signalNames, stored.signal)) state.signal = stored.signal;
+          if (["form", "color", "motion"].includes(stored.tab)) state.tab = stored.tab;
+          if (Number.isFinite(stored.progress)) state.progress = Math.min(100, Math.max(0, stored.progress));
+          if (Number.isFinite(stored.scene)) state.scene = Math.min(3, Math.max(0, stored.scene));
+        } catch (error) {
+          return;
+        }
+      }
+
+      function twoDigits(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function updateName() {
+        const value = nameInput.value.slice(0, 32);
+        state.name = value;
+        nameStatus.textContent = value.trim() ? "Title captured" : "Waiting for a title";
+        charCount.textContent = `${twoDigits(value.length)} / 32`;
+        saveState();
+      }
+
+      function updateMotion() {
+        state.motion = motionSwitch.checked;
+        motionState.textContent = state.motion ? "Movement enabled" : "Movement paused";
+        composition.classList.toggle("motion-paused", !state.motion);
+        saveState();
+      }
+
+      function updateTension(value) {
+        const numericValue = Math.min(100, Math.max(0, Number(value)));
+        state.tension = numericValue;
+        tension.value = String(numericValue);
+        tensionValue.textContent = `${numericValue}°`;
+        tension.setAttribute("aria-valuetext", `${numericValue} degrees`);
+        updateMeter();
+        saveState();
+      }
+
+      function updateMeter() {
+        const shapeWeights = { circle: 4, square: 12, triangle: 19 };
+        const balance = Math.min(100, Math.max(0, Math.round(
+          22 + state.tension * .48 + shapeWeights[state.shape] + (state.snap ? 5 : 0) - (state.motion ? 3 : 0)
+        )));
+        meterBar.style.width = `${balance}%`;
+        meterNeedle.style.left = `calc(${balance}% - 3px)`;
+        meterValue.textContent = `${balance} / 100`;
+        meter.setAttribute("aria-valuenow", String(balance));
+      }
+
+      function selectSignal(value, returnFocus) {
+        if (!Object.prototype.hasOwnProperty.call(signalNames, value)) return;
+        state.signal = value;
+        options.forEach((option, index) => {
+          const selected = option.dataset.value === value;
+          option.setAttribute("aria-selected", String(selected));
+          if (selected) selectIndex = index;
+        });
+        selectValue.textContent = signalNames[value];
+        closeSelect(Boolean(returnFocus));
+        saveState();
+      }
+
+      function openSelect() {
+        selectList.hidden = false;
+        selectButton.setAttribute("aria-expanded", "true");
+        selectIndex = Math.max(0, options.findIndex((option) => option.dataset.value === state.signal));
+        setActiveOption(selectIndex);
+        selectList.focus();
+      }
+
+      function closeSelect(returnFocus) {
+        selectList.hidden = true;
+        selectButton.setAttribute("aria-expanded", "false");
+        selectList.removeAttribute("aria-activedescendant");
+        options.forEach((option) => option.classList.remove("active"));
+        if (returnFocus) selectButton.focus();
+      }
+
+      function setActiveOption(index) {
+        selectIndex = (index + options.length) % options.length;
+        options.forEach((option, optionIndex) => {
+          option.classList.toggle("active", optionIndex === selectIndex);
+        });
+        selectList.setAttribute("aria-activedescendant", options[selectIndex].id);
+      }
+
+      function activateTab(tabName, moveFocus) {
+        state.tab = tabName;
+        tabs.forEach((tab) => {
+          const selected = tab.id === `tab-${tabName}`;
+          tab.setAttribute("aria-selected", String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          const panel = byId(tab.getAttribute("aria-controls"));
+          panel.hidden = !selected;
+          if (selected && moveFocus) tab.focus();
+        });
+        saveState();
+      }
+
+      function updateProgress() {
+        progressFill.style.width = `${state.progress}%`;
+        progressValue.textContent = `${state.progress}%`;
+        progressTrack.setAttribute("aria-valuenow", String(state.progress));
+        saveState();
+      }
+
+      function showToast(message) {
+        window.clearTimeout(toastTimer);
+        toastMessage.textContent = message;
+        toast.classList.add("show");
+        toastTimer = window.setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3600);
+      }
+
+      function hideToast() {
+        window.clearTimeout(toastTimer);
+        toast.classList.remove("show");
+      }
+
+      function openModal() {
+        modalReturnFocus = document.activeElement;
+        modalBackdrop.hidden = false;
+        document.body.style.overflow = "hidden";
+        closeModalButton.focus();
+      }
+
+      function closeModal() {
+        if (modalBackdrop.hidden) return;
+        modalBackdrop.hidden = true;
+        document.body.style.overflow = "";
+        if (modalReturnFocus instanceof HTMLElement) modalReturnFocus.focus();
+      }
+
+      function trapModalFocus(event) {
+        if (event.key !== "Tab") return;
+        const focusable = Array.from(modal.querySelectorAll(
+          'button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ));
+        if (!focusable.length) {
+          event.preventDefault();
+          modal.focus();
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+
+      function applyState() {
+        nameInput.value = state.name;
+        document.querySelectorAll('input[name="base-shape"]').forEach((radio) => {
+          radio.checked = radio.value === state.shape;
+        });
+        snapGrid.checked = state.snap;
+        motionSwitch.checked = state.motion;
+        composition.dataset.scene = String(state.scene);
+        updateName();
+        updateMotion();
+        updateTension(state.tension);
+        selectSignal(state.signal, false);
+        activateTab(state.tab, false);
+        updateProgress();
+        updateMeter();
+      }
+
+      restoreState();
+      applyState();
+
+      recomposeButton.addEventListener("click", () => {
+        state.scene = (state.scene + 1) % 4;
+        composition.dataset.scene = String(state.scene);
+        saveState();
+        showToast(`Field recomposed: arrangement ${twoDigits(state.scene + 1)}.`);
+      });
+
+      nameInput.addEventListener("input", updateName);
+      clearNameButton.addEventListener("click", () => {
+        nameInput.value = "";
+        updateName();
+        nameInput.focus();
+      });
+
+      document.querySelectorAll('input[name="base-shape"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (!radio.checked) return;
+          state.shape = radio.value;
+          updateMeter();
+          saveState();
+        });
+      });
+
+      snapGrid.addEventListener("change", () => {
+        state.snap = snapGrid.checked;
+        updateMeter();
+        saveState();
+      });
+
+      motionSwitch.addEventListener("change", updateMotion);
+      tension.addEventListener("input", () => updateTension(tension.value));
+
+      selectButton.addEventListener("click", () => {
+        if (selectList.hidden) openSelect();
+        else closeSelect(false);
+      });
+
+      selectButton.addEventListener("keydown", (event) => {
+        if (["ArrowDown", "ArrowUp", "Enter", " "].includes(event.key)) {
+          event.preventDefault();
+          openSelect();
+          if (event.key === "ArrowUp") setActiveOption(selectIndex - 1);
+        }
+      });
+
+      selectList.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          setActiveOption(selectIndex + 1);
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          setActiveOption(selectIndex - 1);
+        } else if (event.key === "Home") {
+          event.preventDefault();
+          setActiveOption(0);
+        } else if (event.key === "End") {
+          event.preventDefault();
+          setActiveOption(options.length - 1);
+        } else if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectSignal(options[selectIndex].dataset.value, true);
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          closeSelect(true);
+        } else if (event.key === "Tab") {
+          closeSelect(false);
+        }
+      });
+
+      options.forEach((option, index) => {
+        option.addEventListener("pointermove", () => setActiveOption(index));
+        option.addEventListener("click", () => selectSignal(option.dataset.value, true));
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!selectList.hidden && !selectWrap.contains(event.target)) closeSelect(false);
+      });
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activateTab(tab.id.replace("tab-", ""), false));
+        tab.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+          else if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === "Home") nextIndex = 0;
+          else if (event.key === "End") nextIndex = tabs.length - 1;
+          else return;
+          event.preventDefault();
+          activateTab(tabs[nextIndex].id.replace("tab-", ""), true);
+        });
+      });
+
+      byId("progress-add").addEventListener("click", () => {
+        state.progress = state.progress >= 100 ? 12 : Math.min(100, state.progress + 12);
+        updateProgress();
+        if (state.progress === 100) showToast("Composition complete. Every form is in position.");
+      });
+
+      byId("progress-reset").addEventListener("click", () => {
+        state.progress = 0;
+        updateProgress();
+      });
+
+      document.querySelectorAll(".feedback-button").forEach((button) => {
+        button.addEventListener("click", () => showToast(button.dataset.message));
+      });
+
+      openModalButton.addEventListener("click", openModal);
+      closeModalButton.addEventListener("click", closeModal);
+      modal.addEventListener("keydown", trapModalFocus);
+      modalBackdrop.addEventListener("pointerdown", (event) => {
+        if (event.target === modalBackdrop) closeModal();
+      });
+
+      byId("show-toast").addEventListener("click", () => {
+        showToast("Signal received. The field is active.");
+      });
+      toastClose.addEventListener("click", hideToast);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        if (!modalBackdrop.hidden) {
+          event.preventDefault();
+          closeModal();
+        } else if (!selectList.hidden) {
+          event.preventDefault();
+          closeSelect(true);
+        } else if (toast.classList.contains("show")) {
+          event.preventDefault();
+          hideToast();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

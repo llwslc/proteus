@@ -1,0 +1,1602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DATUM · Isometric Drafting Table — AXON</title>
+<meta name="description" content="AXON visual direction study: isometric blueprint. Blueprint slate ground, drafting white lines, a single orange accent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0B171D;
+  --sheet:#14242C;
+  --sheet-2:#1A2E37;
+  --sheet-3:#203A45;
+  --side-a:#102028;
+  --side-b:#0A1519;
+  --line:#EAF3F4;
+  --line-2:#9DB7BE;
+  --line-3:#7A959D;
+  --accent:#F26A1B;
+  --accent-2:#FF8A3D;
+  --accent-ink:#0B171D;
+  --hair:rgba(157,183,190,.24);
+  --hair-2:rgba(157,183,190,.44);
+  --grid-fine:rgba(157,183,190,.055);
+  --grid-bold:rgba(157,183,190,.10);
+
+  --ext:16px;
+  --ext-y:9px;
+  --lw:1px;
+
+  --f-display:"Archivo Narrow","Archivo Condensed","Helvetica Neue Condensed",Impact,"PingFang SC","Hiragino Sans GB",sans-serif;
+  --f-body:"Archivo","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --f-mono:"IBM Plex Mono","SF Mono",ui-monospace,Menlo,monospace;
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:18px; --s5:28px; --s6:44px; --s7:76px;
+
+  --z-grid:0; --z-body:1; --z-frame:60; --z-pop:120; --z-modal:200; --z-toast:300;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--sheet);
+  color:var(--line);
+  font:400 15px/1.68 var(--f-body);
+  letter-spacing:.005em;
+  min-height:100%;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4,p,figure,table{margin:0}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+
+.fx{position:fixed;inset:0;pointer-events:none}
+.fx-grid{
+  z-index:var(--z-grid);
+  background-image:
+    linear-gradient(var(--grid-fine) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-fine) 1px,transparent 1px),
+    linear-gradient(var(--grid-bold) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-bold) 1px,transparent 1px);
+  background-size:14px 14px,14px 14px,70px 70px,70px 70px;
+  background-position:center;
+  transition:opacity .3s;
+}
+body.no-grid .fx-grid{opacity:0}
+
+.fx-frame{z-index:var(--z-frame)}
+.fx-frame i{position:absolute;background:var(--hair)}
+.fx-frame i:nth-child(1){top:12px;left:12px;right:12px;height:1px}
+.fx-frame i:nth-child(2){bottom:12px;left:12px;right:12px;height:1px}
+.fx-frame i:nth-child(3){top:12px;bottom:12px;left:12px;width:1px}
+.fx-frame i:nth-child(4){top:12px;bottom:12px;right:12px;width:1px}
+.reg{position:absolute;width:22px;height:22px;color:var(--line-3)}
+.reg--tl{top:5px;left:5px}
+.reg--tr{top:5px;right:5px}
+.reg--bl{bottom:5px;left:5px}
+.reg--br{bottom:5px;right:5px}
+
+.fx-rule{z-index:var(--z-frame)}
+.fx-rule i{position:absolute}
+.fx-rule .rule-t{
+  top:13px;left:34px;right:34px;height:7px;
+  background:
+    repeating-linear-gradient(90deg,var(--hair) 0 1px,transparent 1px 14px),
+    repeating-linear-gradient(90deg,var(--hair-2) 0 1px,transparent 1px 70px);
+  background-position:bottom;background-repeat:repeat-x;
+  background-size:auto 4px,auto 7px;
+}
+.fx-rule .rule-l{
+  left:13px;top:34px;bottom:34px;width:7px;
+  background:
+    repeating-linear-gradient(180deg,var(--hair) 0 1px,transparent 1px 14px),
+    repeating-linear-gradient(180deg,var(--hair-2) 0 1px,transparent 1px 70px);
+  background-position:right;background-repeat:repeat-y;
+  background-size:4px auto,7px auto;
+}
+
+.sheet{position:relative;z-index:var(--z-body);max-width:1180px;margin:0 auto;padding:0 40px;overflow-x:clip;overflow-y:visible}
+
+.mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--line-2)}
+.mono--dim{color:var(--line-3)}
+.acc{color:var(--accent)}
+
+.slab{
+  position:relative;
+  background:var(--sheet-2);
+  border:var(--lw) solid var(--hair-2);
+  box-shadow:0 20px 46px -26px rgba(0,0,0,.85);
+}
+.slab::before{
+  content:"";position:absolute;top:0;right:calc(-1 * var(--ext));
+  width:var(--ext);height:100%;
+  background:var(--side-a);
+  border-right:1px solid var(--hair);
+  transform:skewY(30deg);transform-origin:left top;
+}
+.slab::after{
+  content:"";position:absolute;left:0;top:100%;
+  width:100%;height:var(--ext-y);
+  background:var(--side-b);
+  border-bottom:1px solid var(--hair);
+  transform:skewX(60deg);transform-origin:left top;
+}
+.slab-in{position:relative;z-index:2;padding:var(--s5) var(--s5) 0}
+.slab-mesh{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.slab-mesh::before{
+  content:"";position:absolute;inset:-40%;
+  background-image:
+    linear-gradient(var(--grid-fine) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-fine) 1px,transparent 1px);
+  background-size:14px 14px;
+}
+
+.tb{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--hair-2);
+  margin-top:var(--s5);
+}
+.tb div{padding:7px 10px;border-right:1px solid var(--hair);min-width:0}
+.tb div:last-child{border-right:0}
+.tb dt{margin:0;font:500 9px/1.2 var(--f-mono);letter-spacing:.14em;color:var(--line-3);text-transform:uppercase}
+.tb dd{margin:2px 0 0;font:500 12px/1.2 var(--f-mono);color:var(--line-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.dim{display:flex;align-items:center;gap:5px;color:var(--line-3);min-width:0}
+.dim i{background:currentColor;flex:none}
+.dim .ext{width:1px;height:10px}
+.dim .bar{position:relative;flex:1 1 auto;height:1px;min-width:14px;transform:scaleX(0);transform-origin:var(--o,left)}
+.dim .bar::before{content:"";position:absolute;top:-3px;width:0;height:0;border:3px solid transparent}
+.dim .bar:nth-of-type(2)::before{left:0;border-left:0;border-right-color:currentColor}
+.dim .bar:nth-last-of-type(2)::before{right:0;border-right:0;border-left-color:currentColor}
+.dim .bar:nth-of-type(2){--o:left}
+.dim .bar:nth-last-of-type(2){--o:right}
+.dim b{font:500 10px/1 var(--f-mono);letter-spacing:.08em;color:var(--line-2);flex:none;white-space:nowrap}
+.in .dim .bar{transform:scaleX(1);transition:transform .55s cubic-bezier(.2,.7,.2,1) var(--dd,0s)}
+.in .dim b{animation:dimLight .9s ease-out var(--dd,0s) both}
+@keyframes dimLight{0%,40%{color:var(--accent)}100%{color:var(--line-2)}}
+.dim--live b{color:var(--accent)}
+body.no-dim .dim{opacity:0}
+
+.leader{position:relative;display:flex;align-items:flex-start;gap:0;color:var(--line-2)}
+.leader svg{flex:none;color:var(--accent)}
+.leader-txt{font:400 12px/1.45 var(--f-body);color:var(--line-2);padding-top:2px;max-width:30ch}
+.balloon{
+  flex:none;width:22px;height:22px;border-radius:50%;
+  border:1px solid var(--accent);color:var(--accent);
+  display:grid;place-items:center;
+  font:500 11px/1 var(--f-mono);
+  margin-right:8px;
+}
+body.no-leader .leader{opacity:0}
+
+.cut{display:flex;align-items:center;gap:10px;margin:var(--s7) 0 var(--s6);color:var(--line-3)}
+.cut .tag{
+  font:600 13px/1 var(--f-mono);letter-spacing:.16em;color:var(--line-2);
+  border:1px solid var(--hair-2);padding:5px 8px;flex:none;
+}
+.cut .arw{width:0;height:0;border:6px solid transparent;border-top-color:var(--line-2);flex:none;margin-top:6px}
+.cut .rail{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--line-3) 0 20px,transparent 20px 29px)}
+.cut .note{font:500 10px/1 var(--f-mono);letter-spacing:.14em;color:var(--line-3);flex:none;text-transform:uppercase}
+
+.hero{padding:96px 0 0}
+.strip{
+  display:flex;flex-wrap:wrap;gap:0;
+  border:1px solid var(--hair-2);
+  margin-bottom:var(--s6);
+}
+.strip span{
+  padding:7px 14px;border-right:1px solid var(--hair);
+  font:500 10px/1.4 var(--f-mono);letter-spacing:.15em;text-transform:uppercase;color:var(--line-3);
+}
+.strip span:last-child{border-right:0}
+.strip b{color:var(--line-2);font-weight:500}
+
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:var(--s6);align-items:start}
+
+.wordmark{
+  font:700 clamp(64px,9.4vw,124px)/.84 var(--f-display);
+  letter-spacing:-.02em;text-transform:uppercase;
+  color:var(--line);
+  padding:0 30px 18px 0;
+  text-shadow:
+    1px .6px 0 var(--side-a),2px 1.2px 0 var(--side-a),3px 1.7px 0 var(--side-a),
+    4px 2.3px 0 var(--side-a),5px 2.9px 0 var(--side-a),6px 3.5px 0 var(--side-a),
+    7px 4px 0 var(--side-a),8px 4.6px 0 var(--side-a),9px 5.2px 0 var(--side-a),
+    10px 5.8px 0 var(--side-a),11px 6.4px 0 var(--side-a),12px 6.9px 0 var(--side-a),
+    13px 7.5px 0 var(--side-a),14px 8.1px 0 var(--side-a),15px 8.7px 0 var(--side-a),
+    16px 9.2px 0 var(--side-a),17px 9.8px 0 var(--side-a),18px 10.4px 0 var(--side-a),
+    19px 11px 0 var(--side-a),20px 11.5px 0 var(--side-b),21px 12.1px 0 var(--side-b),
+    22px 12.7px 0 var(--side-b);
+}
+.hero-sub{margin-top:var(--s4);font:500 12px/1 var(--f-mono);letter-spacing:.2em;color:var(--line-3);text-transform:uppercase}
+.hero h1{
+  margin-top:var(--s4);
+  font:600 clamp(30px,4.1vw,50px)/1.16 var(--f-display);
+  letter-spacing:.01em;color:var(--line);
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lede{margin-top:var(--s4);max-width:46ch;color:var(--line-2);font-size:15px}
+.hero-act{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5)}
+
+.scale{margin-top:var(--s6);max-width:280px}
+.scale-bar{display:flex;height:9px;border:1px solid var(--line-2)}
+.scale-bar i{flex:1;border-right:1px solid var(--line-2)}
+.scale-bar i:last-child{border-right:0}
+.scale-bar i:nth-child(odd){background:var(--line-2)}
+.scale-tick{display:flex;justify-content:space-between;margin-top:4px}
+.scale-tick span{font:400 9px/1 var(--f-mono);letter-spacing:.1em;color:var(--line-3)}
+
+.hero-fig{position:relative;min-width:0}
+.hero-fig svg.asm{display:block;width:100%;height:auto;overflow:visible}
+.compass{position:absolute;top:-6px;right:0;width:78px;height:78px;color:var(--line-2)}
+.compass .n{fill:var(--accent)}
+.fig-foot{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);margin-top:var(--s4);flex-wrap:wrap}
+
+.sec{padding-bottom:var(--s5)}
+.sec-head{display:flex;align-items:flex-end;gap:var(--s4);flex-wrap:wrap;margin-bottom:var(--s5)}
+.zone{
+  flex:none;font:600 11px/1 var(--f-mono);letter-spacing:.16em;color:var(--accent);
+  border:1px solid var(--accent);padding:6px 9px;
+}
+.sec h2{font:600 clamp(24px,2.7vw,34px)/1.1 var(--f-display);letter-spacing:.01em;color:var(--line)}
+.sec-head .mono{padding-bottom:3px}
+.sec-lede{max-width:60ch;color:var(--line-2);margin:calc(-1 * var(--s3)) 0 var(--s5)}
+
+.cards{
+  display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:var(--s6);
+  padding:0 var(--ext) var(--ext-y) 0;
+}
+.c4{grid-column:span 4}
+.c5{grid-column:span 5}
+.c6{grid-column:span 6}
+.c7{grid-column:span 7}
+.c8{grid-column:span 8}
+.c12{grid-column:1 / -1}
+
+.card-h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4);flex-wrap:wrap}
+.card-h h3{font:600 17px/1.2 var(--f-display);letter-spacing:.04em;text-transform:uppercase;color:var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.stack{display:grid;gap:var(--s4)}
+.spec{display:flex;gap:var(--s2);align-items:baseline;font:400 10px/1.4 var(--f-mono);letter-spacing:.1em;color:var(--line-3);text-transform:uppercase}
+
+.btn{
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:42px;padding:0 20px;
+  font:600 13px/1 var(--f-display);letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;color:var(--line);
+  border:1px solid var(--line-2);border-radius:0;
+  cursor:pointer;
+  transition:background .16s,color .16s,border-color .16s,transform .12s;
+}
+.btn:hover:not(:disabled){background:var(--sheet-3);border-color:var(--line)}
+.btn:active:not(:disabled){transform:translate(2px,1px)}
+.btn::after{content:"";position:absolute;inset:-6px;display:none}
+.btn:active:not(:disabled)::after{display:block}
+
+.btn--solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn--solid:hover:not(:disabled){background:var(--accent-2);border-color:var(--accent-2);color:var(--accent-ink)}
+.btn--ghost{border-color:transparent;color:var(--line-2);padding:0 10px}
+.btn--ghost:hover:not(:disabled){background:transparent;color:var(--line);border-color:transparent}
+.btn--ghost::before{
+  content:"";position:absolute;left:10px;right:10px;bottom:9px;height:1px;
+  background:currentColor;transform:scaleX(.34);transform-origin:left;
+  transition:transform .22s cubic-bezier(.2,.7,.2,1);
+}
+.btn--ghost:hover:not(:disabled)::before{transform:scaleX(1)}
+.btn--sm{min-height:32px;padding:0 12px;font-size:11px}
+.btn:disabled{color:var(--line-3);border-color:var(--hair);cursor:not-allowed;background:transparent}
+.btn--solid:disabled{background:transparent}
+
+.field{display:grid;gap:7px;min-width:0}
+.lbl{font:500 10px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--line-2)}
+.txt{
+  width:100%;min-height:44px;padding:0 14px;
+  background:var(--sheet);color:var(--line);
+  border:1px solid var(--hair-2);border-radius:0;
+  font-family:var(--f-mono);font-size:14px;letter-spacing:.06em;
+  transition:border-color .16s,background .16s;
+}
+.txt::placeholder{color:var(--line-3);letter-spacing:.1em}
+.txt:hover{border-color:var(--line-3)}
+.txt:focus{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent);background:var(--sheet-3)}
+.help{display:flex;justify-content:space-between;gap:var(--s3);font:400 10px/1.4 var(--f-mono);letter-spacing:.08em;color:var(--line-3)}
+.field.bad .txt{border-color:var(--accent)}
+.field.bad .help .msg{color:var(--accent)}
+
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:11px;cursor:pointer;min-height:26px}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.mark{
+  flex:none;width:18px;height:18px;border:1px solid var(--line-2);
+  display:grid;place-items:center;background:var(--sheet);
+  transition:border-color .16s,background .16s;
+}
+.mark--r{border-radius:50%}
+.mark::before{content:"";width:8px;height:8px;background:var(--accent);transform:scale(0);transition:transform .16s cubic-bezier(.2,.8,.2,1)}
+.mark--r::before{border-radius:50%}
+.opt input:checked + .mark{border-color:var(--accent)}
+.opt input:checked + .mark::before{transform:scale(1)}
+.opt input:focus-visible + .mark{outline:2px solid var(--accent);outline-offset:3px}
+.opt:hover .mark{border-color:var(--line)}
+.opt-t{font-size:14px;color:var(--line-2)}
+.opt input:checked ~ .opt-t{color:var(--line)}
+.opt-n{margin-left:auto;font:400 10px/1 var(--f-mono);letter-spacing:.1em;color:var(--line-3)}
+
+.sw{display:flex;align-items:center;gap:12px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.sw-track{
+  flex:none;position:relative;width:56px;height:26px;
+  border:1px solid var(--line-2);background:var(--sheet);
+  transition:border-color .16s,background .16s;
+}
+.sw-track::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(-60deg,var(--hair) 0 1px,transparent 1px 7px);
+}
+.sw-knob{
+  position:absolute;top:2px;left:2px;width:22px;height:20px;
+  background:var(--line-2);
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),background .16s;
+}
+.sw[aria-checked="true"] .sw-track{border-color:var(--accent)}
+.sw[aria-checked="true"] .sw-knob{transform:translateX(28px);background:var(--accent)}
+.sw:hover .sw-track{border-color:var(--line)}
+.sw-txt{font-size:14px;color:var(--line-2)}
+.sw[aria-checked="true"] .sw-txt{color:var(--line)}
+
+.rng{
+  -webkit-appearance:none;appearance:none;width:100%;background:transparent;
+  margin:0;padding:12px 0;cursor:pointer;
+}
+.rng::-webkit-slider-runnable-track{
+  height:2px;
+  background:linear-gradient(90deg,var(--accent) 0 var(--fill,50%),var(--line-3) var(--fill,50%) 100%);
+}
+.rng::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:14px;height:22px;margin-top:-10px;
+  background:var(--accent);border:0;border-radius:0;
+}
+.rng::-moz-range-track{height:2px;background:var(--line-3)}
+.rng::-moz-range-progress{height:2px;background:var(--accent)}
+.rng::-moz-range-thumb{width:14px;height:22px;background:var(--accent);border:0;border-radius:0}
+.rng:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.rng-scale{display:flex;justify-content:space-between;margin-top:-4px}
+.rng-scale span{font:400 9px/1 var(--f-mono);letter-spacing:.08em;color:var(--line-3)}
+
+.sel{position:relative}
+.sel-btn{
+  width:100%;min-height:44px;padding:0 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--sheet);border:1px solid var(--hair-2);
+  font-family:var(--f-mono);font-size:14px;letter-spacing:.06em;color:var(--line);
+  cursor:pointer;transition:border-color .16s;
+}
+.sel-btn:hover{border-color:var(--line-3)}
+.sel-btn[aria-expanded="true"]{border-color:var(--accent)}
+.sel-btn .cv{color:var(--line-3);transition:transform .2s}
+.sel-btn[aria-expanded="true"] .cv{transform:rotate(180deg);color:var(--accent)}
+.sel-pop{
+  position:absolute;z-index:var(--z-pop);top:calc(100% + 6px);left:0;right:0;
+  background:var(--sheet-2);border:1px solid var(--accent);
+  box-shadow:14px 8px 0 -1px var(--side-b),0 18px 40px -18px rgba(0,0,0,.9);
+  padding:4px;max-height:236px;overflow-y:auto;
+  opacity:0;transform:translate(6px,-4px);pointer-events:none;
+  transition:opacity .16s,transform .16s;
+}
+.sel-pop.open{opacity:1;transform:none;pointer-events:auto}
+.sel-opt{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  width:100%;padding:8px 10px;background:none;border:0;cursor:pointer;
+  font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;color:var(--line-2);text-align:left;
+}
+.sel-opt:hover{background:var(--sheet-3);color:var(--line)}
+.sel-opt[aria-selected="true"]{color:var(--accent)}
+.sel-opt.cur{background:var(--sheet-3)}
+.sel-opt .sz{font-size:10px;color:var(--line-3)}
+.sel-pop::-webkit-scrollbar{width:8px}
+.sel-pop::-webkit-scrollbar-thumb{background:var(--line-3)}
+.sel-pop::-webkit-scrollbar-track{background:var(--sheet)}
+
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--hair-2);flex-wrap:wrap}
+.tab{
+  position:relative;background:none;border:0;border-bottom:2px solid transparent;
+  padding:10px 16px;margin-bottom:-1px;cursor:pointer;
+  font:600 12px/1 var(--f-display);letter-spacing:.12em;text-transform:uppercase;color:var(--line-3);
+  transition:color .16s;
+}
+.tab:hover{color:var(--line)}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab .no{font-family:var(--f-mono);font-size:9px;margin-right:6px;opacity:.7}
+.panel{padding-top:var(--s4)}
+.panel[hidden]{display:none}
+.ortho{display:block;width:100%;max-width:340px;height:auto;color:var(--line-2);margin:0 auto}
+.panel p{color:var(--line-2);font-size:13px;margin-top:var(--s3)}
+
+.prog{position:relative;height:16px;border:1px solid var(--hair-2);background:var(--sheet);overflow:hidden}
+.prog i{
+  position:absolute;inset:0 auto 0 0;width:0%;
+  background:var(--accent);
+  transition:width .18s linear;
+}
+.prog::after{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(-60deg,rgba(11,23,29,.4) 0 1px,transparent 1px 8px);
+}
+.gauge{display:block;width:100%;max-width:260px;height:auto;margin:0 auto;color:var(--line-2)}
+.gauge .needle{transform-box:fill-box;transform-origin:50% 100%;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+.read{font:600 30px/1 var(--f-mono);letter-spacing:.02em;color:var(--line)}
+.read small{font-size:12px;color:var(--line-3);letter-spacing:.14em;margin-left:6px}
+
+.stackfig{
+  position:relative;height:250px;
+  perspective:1000px;
+  display:grid;place-items:center;
+}
+.stackfig-in{
+  position:relative;width:190px;height:130px;
+  transform-style:preserve-3d;
+  transform:rotateX(58deg) rotateZ(-30deg);
+}
+.plate3{
+  position:absolute;inset:0;
+  border:1px solid var(--line-2);
+  background:rgba(26,46,55,.82);
+  transform:translateZ(calc(var(--pz) * 1px));
+  transition:transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.plate3::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--grid-fine) 1px,transparent 1px),linear-gradient(90deg,var(--grid-fine) 1px,transparent 1px);
+  background-size:12px 12px;
+}
+.plate3 b{
+  position:absolute;left:calc(100% + 12px);top:50%;
+  transform:translateY(-50%) rotateZ(30deg) rotateX(-58deg);
+  transform-origin:left center;
+  font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--line-2);white-space:nowrap;
+}
+.plate3--top{background:rgba(242,106,27,.16);border-color:var(--accent)}
+.plate3--top b{color:var(--accent)}
+.stackfig:hover .plate3,.stackfig:focus-within .plate3{transform:translateZ(calc(var(--pz) * 2.1px))}
+
+.tipwrap{position:relative;display:inline-flex}
+.tip{
+  position:absolute;bottom:calc(100% + 12px);left:50%;
+  width:max-content;max-width:min(260px,72vw);
+  transform:translate(-50%,6px);
+  background:var(--line);color:var(--void);
+  padding:9px 12px;font:400 12px/1.45 var(--f-body);
+  opacity:0;pointer-events:none;transition:opacity .16s,transform .16s;
+  box-shadow:10px 6px 0 -1px var(--side-b);
+  z-index:var(--z-pop);
+}
+.tip::after{
+  content:"";position:absolute;top:100%;left:50%;margin-left:-6px;
+  border:6px solid transparent;border-top-color:var(--line);
+}
+.tip.on{opacity:1;transform:translate(-50%,0)}
+
+.scrim{
+  position:fixed;inset:0;z-index:var(--z-modal);
+  display:grid;place-items:center;padding:20px;
+  background:rgba(6,14,18,.82);
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.scrim.on{opacity:1;pointer-events:auto}
+.scrim::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--grid-bold) 1px,transparent 1px),linear-gradient(90deg,var(--grid-bold) 1px,transparent 1px);
+  background-size:14px 14px;
+}
+.dlg{
+  position:relative;width:min(560px,100%);max-height:calc(100dvh - 40px);overflow-y:auto;
+  background:var(--sheet-2);border:1px solid var(--line-2);
+  box-shadow:20px 12px 0 -1px var(--side-b),0 40px 90px -30px rgba(0,0,0,.9);
+  transform:translate(10px,-8px) scale(.99);transition:transform .24s cubic-bezier(.2,.8,.2,1);
+}
+.scrim.on .dlg{transform:none}
+.dlg-h{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--hair-2)}
+.dlg-h h2{font:600 20px/1.2 var(--f-display);letter-spacing:.05em;text-transform:uppercase}
+.dlg-b{padding:22px}
+.dlg-b p{color:var(--line-2);font-size:14px}
+.dlg-f{display:flex;gap:10px;justify-content:flex-end;padding:16px 22px;border-top:1px solid var(--hair-2);flex-wrap:wrap}
+.x{margin-left:auto;background:none;border:1px solid var(--hair-2);width:30px;height:30px;display:grid;place-items:center;cursor:pointer;color:var(--line-2)}
+.x:hover{border-color:var(--accent);color:var(--accent)}
+
+.rail{
+  position:fixed;z-index:var(--z-toast);right:22px;bottom:22px;
+  width:min(340px,calc(100vw - 44px));
+  display:grid;gap:10px;justify-items:stretch;
+}
+.toast{
+  position:relative;
+  background:var(--sheet-2);border:1px solid var(--accent);
+  box-shadow:12px 7px 0 -1px var(--side-b);
+  padding:12px 14px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;
+  transform:translate(14px,8px);opacity:0;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .28s;
+}
+.toast.on{transform:none;opacity:1}
+.toast.out{transform:translate(14px,8px);opacity:0}
+.toast .tno{font:500 10px/1.5 var(--f-mono);letter-spacing:.1em;color:var(--accent)}
+.toast .tt{font-size:13px;color:var(--line);word-break:break-word}
+.toast .ts{display:block;font:400 10px/1.6 var(--f-mono);letter-spacing:.1em;color:var(--line-3);margin-top:2px}
+.toast .tx{background:none;border:0;color:var(--line-3);cursor:pointer;font-family:var(--f-mono);font-size:14px;line-height:1;padding:2px 4px}
+.toast .tx:hover{color:var(--accent)}
+
+.foot{margin:var(--s7) 0 var(--s7)}
+.tblock{border:1px solid var(--line-2);display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--sheet-2)}
+.tblock .cell{padding:11px 14px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);min-width:0}
+.tblock .cell:nth-child(3n){border-right:0}
+.tblock .k{font:500 9px/1.2 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--line-3)}
+.tblock .v{font:500 14px/1.3 var(--f-mono);color:var(--line);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tblock .v.sm{font-size:12px;color:var(--line-2)}
+.tblock .wide{grid-column:1 / -1;border-right:0}
+.tblock .cell:last-child,.tblock .cell:nth-last-child(-n+3){border-bottom:0}
+.foot-x{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s5);margin-top:var(--s4);flex-wrap:wrap}
+.rev{border-collapse:collapse;font-family:var(--f-mono);font-size:11px;color:var(--line-2)}
+.rev th,.rev td{border:1px solid var(--hair);padding:5px 10px;text-align:left;font-weight:400}
+.rev th{color:var(--line-3);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+
+[data-rv]{opacity:0;transform:translate(17px,10px)}
+[data-rv].in{opacity:1;transform:none;transition:opacity .6s ease-out var(--d,0s),transform .68s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:var(--s6)}
+  .cards{grid-template-columns:minmax(0,1fr)}
+  .c4,.c5,.c6,.c7,.c8{grid-column:1 / -1}
+}
+@media (max-width:720px){
+  :root{--ext:11px;--ext-y:6px;--s6:34px;--s7:52px}
+  body{font-size:14px}
+  .sheet{padding:0 20px}
+  .hero{padding:62px 0 0}
+  .fx-rule .rule-l,.compass{display:none}
+  .fx-frame i:nth-child(1){top:8px;left:8px;right:8px}
+  .fx-frame i:nth-child(2){bottom:8px;left:8px;right:8px}
+  .fx-frame i:nth-child(3){top:8px;bottom:8px;left:8px}
+  .fx-frame i:nth-child(4){top:8px;bottom:8px;right:8px}
+  .fx-rule .rule-t{top:9px;left:26px;right:26px}
+  .reg{width:16px;height:16px}
+  .reg--tl{top:3px;left:3px}.reg--tr{top:3px;right:3px}
+  .reg--bl{bottom:3px;left:3px}.reg--br{bottom:3px;right:3px}
+  .slab-in{padding:var(--s4) var(--s4) 0}
+  .wordmark{padding-right:22px;text-shadow:
+    1px .6px 0 var(--side-a),2px 1.2px 0 var(--side-a),3px 1.7px 0 var(--side-a),
+    4px 2.3px 0 var(--side-a),5px 2.9px 0 var(--side-a),6px 3.5px 0 var(--side-a),
+    7px 4px 0 var(--side-a),8px 4.6px 0 var(--side-a),9px 5.2px 0 var(--side-a),
+    10px 5.8px 0 var(--side-a),11px 6.4px 0 var(--side-a),12px 6.9px 0 var(--side-b),
+    13px 7.5px 0 var(--side-b);}
+  .tblock{grid-template-columns:1fr 1fr}
+  .tblock .cell:nth-child(3n){border-right:1px solid var(--hair)}
+  .tblock .cell:nth-child(2n){border-right:0}
+  .tblock .cell:nth-last-child(-n+3){border-bottom:1px solid var(--hair)}
+  .tblock .cell:last-child{border-bottom:0}
+  .rail{right:12px;left:12px;bottom:12px;width:auto}
+  .tip{left:-14px;transform:translate(0,6px);max-width:calc(100vw - 62px)}
+  .tip.on{transform:translate(0,0)}
+  .tip::after{left:34px}
+  .iso-anno{display:none}
+  .strip span{padding:6px 10px;font-size:9px}
+  .foot-x{gap:var(--s4)}
+  .rev{font-size:10px}
+  .rev th,.rev td{padding:4px 7px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  [data-rv]{opacity:1;transform:none}
+  .in .dim .bar{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+
+<div class="fx fx-grid" aria-hidden="true"></div>
+<div class="fx fx-rule" aria-hidden="true"><i class="rule-t"></i><i class="rule-l"></i></div>
+<div class="fx fx-frame" aria-hidden="true">
+  <i></i><i></i><i></i><i></i>
+  <svg class="reg reg--tl" viewBox="0 0 22 22" fill="none" stroke="currentColor"><path d="M11 0v22M0 11h22"/><circle cx="11" cy="11" r="6"/></svg>
+  <svg class="reg reg--tr" viewBox="0 0 22 22" fill="none" stroke="currentColor"><path d="M11 0v22M0 11h22"/><circle cx="11" cy="11" r="6"/></svg>
+  <svg class="reg reg--bl" viewBox="0 0 22 22" fill="none" stroke="currentColor"><path d="M11 0v22M0 11h22"/><circle cx="11" cy="11" r="6"/></svg>
+  <svg class="reg reg--br" viewBox="0 0 22 22" fill="none" stroke="currentColor"><path d="M11 0v22M0 11h22"/><circle cx="11" cy="11" r="6"/></svg>
+</div>
+
+<main class="sheet">
+
+  <header class="hero">
+    <div class="strip" data-rv>
+      <span>DWG NO. <b>DWG-AXON-001</b></span>
+      <span>PROJECTION <b>ISOMETRIC 30°</b></span>
+      <span>SCALE <b>1:1</b></span>
+      <span>SIZE <b id="stripSize">A2</b></span>
+      <span>SHEET <b>1</b> OF <b>1</b></span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="wordmark" data-rv style="--d:.05s">Datum</div>
+        <div class="hero-sub" data-rv style="--d:.1s">Isometric drafting table · version 4.2 · check R3</div>
+        <h1 data-rv style="--d:.16s">What is not dimensioned<br><em>does not exist</em></h1>
+        <p class="lede" data-rv style="--d:.22s">Nothing here is “about right”. Every fillet and every gap gets a datum line first, a dimension second, and only then may a hand touch it.</p>
+        <p class="lede" data-rv style="--d:.26s">The interface grows out of the drawing: controls are parts, panels are extrusions, and the annotations are their only manual.</p>
+        <div class="hero-act" data-rv style="--d:.32s">
+          <button class="btn btn--solid" data-toast="You are on the drafting table. Datum plane XY is locked.">Enter the drafting table</button>
+          <button class="btn" data-toast="Legend expanded. Part numbers are keyed to the leader lines on the right.">View the legend</button>
+        </div>
+        <div class="scale" data-rv style="--d:.38s">
+          <div class="scale-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="scale-tick"><span>0</span><span>50</span><span>100</span><span>150 MM</span></div>
+        </div>
+      </div>
+
+      <figure class="hero-fig" data-rv style="--d:.2s">
+        <svg class="asm" id="asm" role="img" aria-label="A four-layer assembly in a 30-degree isometric exploded view: datum plane, structure layer, control layer, annotation layer"></svg>
+        <svg class="compass" viewBox="0 0 78 78" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="39" cy="39" r="30"/>
+          <circle cx="39" cy="39" r="24" stroke-dasharray="1 5"/>
+          <path d="M39 4v8M74 39h-8M39 74v-8M4 39h8"/>
+          <path class="n" d="M39 12l7 24-7-6-7 6z" stroke="none"/>
+          <path d="M39 66l-7-24 7 6 7-6z" fill="currentColor" stroke="none" opacity=".5"/>
+          <text x="39" y="72" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="currentColor" stroke="none" letter-spacing="1">N 30°</text>
+        </svg>
+        <figcaption class="fig-foot">
+          <button class="btn btn--sm" id="explode" aria-pressed="false">Exploded view</button>
+          <span class="mono mono--dim">ASSY-01 · 4 parts · overall height <b id="asmH" class="acc">32.0</b> MM</span>
+        </figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <div class="cut" aria-hidden="true">
+    <span class="tag">A</span><i class="arw"></i><i class="rail"></i>
+    <span class="note">Section A—A · triggers</span>
+    <i class="rail"></i><i class="arw"></i><span class="tag">A</span>
+  </div>
+
+  <section class="sec" id="triggers">
+    <div class="sec-head" data-rv>
+      <span class="zone">Zone A-2</span>
+      <h2>Triggers</h2>
+      <span class="mono">TRIGGERS · 4 types</span>
+    </div>
+    <p class="sec-lede" data-rv style="--d:.06s">Three weights of stroke: a solid part carries only the final action, an outlined part carries anything reversible, and a ghost part leaves nothing but a leader line. An archived part is locked and takes no input.</p>
+
+    <div class="cards">
+      <div class="slab c7" data-rv>
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Stroke weight</h3><span class="mono mono--dim">DET-01</span></div>
+          <div class="stack">
+            <div>
+              <div class="row">
+                <button class="btn btn--solid" data-toast="Stroke laid down. The trace is written to layer CONTROL.">Lay a stroke</button>
+                <button class="btn" data-toast="Datum taken. Every later dimension counts from this face.">Take a datum</button>
+                <button class="btn btn--ghost" data-toast="Last stroke withdrawn. The sheet is back to its previous state.">Undo a line</button>
+                <button class="btn" disabled>Archived</button>
+              </div>
+              <div class="dim" style="--dd:.2s;margin-top:14px">
+                <i class="ext"></i><i class="bar"></i><b>WIDTH 98.0</b><i class="bar"></i><i class="ext"></i>
+              </div>
+            </div>
+            <div class="leader">
+              <span class="balloon">1</span>
+              <svg width="42" height="34" viewBox="0 0 42 34" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M2 32L18 8h22"/><circle cx="2" cy="32" r="2.5" fill="currentColor"/>
+              </svg>
+              <span class="leader-txt">Solid part: the only orange on the sheet. A second one anywhere on the same drawing is an error.</span>
+            </div>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>BTN-4</dd></div>
+            <div><dt>Line width</dt><dd>0.25 mm</dd></div>
+            <div><dt>Status</dt><dd>Approved</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="slab c5" data-rv style="--d:.1s">
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Balloon note</h3><span class="mono mono--dim">DET-02</span></div>
+          <p style="color:var(--line-2);font-size:14px">A balloon hangs off its part and takes no space on the sheet. It opens only when the pointer rests or the keyboard lands on it.</p>
+          <div class="row" style="margin-top:18px">
+            <span class="tipwrap">
+              <button class="btn btn--sm" id="tipBtn" aria-describedby="tipBody">Hover for the balloon</button>
+              <span class="tip" id="tipBody" role="tooltip">Leader balloon: the circle holds the part number, the line points at the part being annotated, and the end is a filled dot.</span>
+            </span>
+          </div>
+          <div class="dim" style="--dd:.3s;margin-top:22px">
+            <i class="ext"></i><i class="bar"></i><b>OFFSET 12.0</b><i class="bar"></i><i class="ext"></i>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>TIP-1</dd></div>
+            <div><dt>Delay</dt><dd>0.12 S</dd></div>
+            <div><dt>Status</dt><dd>Approved</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cut" aria-hidden="true">
+    <span class="tag">B</span><i class="arw"></i><i class="rail"></i>
+    <span class="note">Section B—B · inputs</span>
+    <i class="rail"></i><i class="arw"></i><span class="tag">B</span>
+  </div>
+
+  <section class="sec" id="inputs">
+    <div class="sec-head" data-rv>
+      <span class="zone">Zone B-1</span>
+      <h2>Inputs</h2>
+      <span class="mono">INPUT · 6 types</span>
+    </div>
+    <p class="sec-lede" data-rv style="--d:.06s">Anything that can be typed into, picked or dragged gets a range and a unit. The layer switches govern this very sheet: turn off the grid paper and the grid paper on this page really is gone.</p>
+
+    <div class="cards">
+      <div class="slab c6" data-rv>
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Drawing number and size</h3><span class="mono mono--dim">DET-03</span></div>
+          <div class="stack">
+            <div class="field" id="dwgField">
+              <label class="lbl" for="dwgNo">Drawing number</label>
+              <input class="txt" id="dwgNo" type="text" placeholder="DWG-____-___" value="DWG-AXON-001" autocomplete="off" spellcheck="false">
+              <div class="help"><span class="msg">Write it as DWG-ZONE-SERIAL</span><span id="dwgCount">12 / 16</span></div>
+            </div>
+
+            <div class="field">
+              <span class="lbl" id="sizeLbl">Sheet size</span>
+              <div class="sel">
+                <button class="sel-btn" id="sizeBtn" role="combobox" aria-expanded="false" aria-controls="sizePop" aria-haspopup="listbox" aria-labelledby="sizeLbl sizeBtn">
+                  <span id="sizeVal">A2 · 594 × 420</span>
+                  <svg class="cv" width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5"/></svg>
+                </button>
+                <div class="sel-pop" id="sizePop" role="listbox" aria-labelledby="sizeLbl" tabindex="-1"></div>
+              </div>
+            </div>
+
+            <div class="dim" style="--dd:.25s">
+              <i class="ext"></i><i class="bar"></i><b id="sizeDim">594.0 × 420.0</b><i class="bar"></i><i class="ext"></i>
+            </div>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>FLD-2</dd></div>
+            <div><dt>Type</dt><dd>MONO 14</dd></div>
+            <div><dt>Status</dt><dd>Editable</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="slab c6" data-rv style="--d:.1s">
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Line weight and layers</h3><span class="mono mono--dim">DET-04</span></div>
+          <div class="stack">
+            <fieldset style="border:0;padding:0;margin:0">
+              <legend class="lbl" style="padding:0 0 10px">Line weight grade</legend>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="lw" value="1" checked><span class="mark mark--r"></span><span class="opt-t">Fine 0.13</span><span class="opt-n">1 PX</span></label>
+                <label class="opt"><input type="radio" name="lw" value="2"><span class="mark mark--r"></span><span class="opt-t">Medium 0.25</span><span class="opt-n">2 PX</span></label>
+                <label class="opt"><input type="radio" name="lw" value="3"><span class="mark mark--r"></span><span class="opt-t">Heavy 0.35</span><span class="opt-n">3 PX</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset style="border:0;padding:0;margin:0">
+              <legend class="lbl" style="padding:0 0 10px">Layer visibility</legend>
+              <div class="opts">
+                <label class="opt"><input type="checkbox" id="lyGrid" checked><span class="mark"></span><span class="opt-t">Grid paper</span><span class="opt-n">L-01</span></label>
+                <label class="opt"><input type="checkbox" id="lyDim" checked><span class="mark"></span><span class="opt-t">Dimensions</span><span class="opt-n">L-02</span></label>
+                <label class="opt"><input type="checkbox" id="lyLead" checked><span class="mark"></span><span class="opt-t">Leader balloons</span><span class="opt-n">L-03</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>LYR-6</dd></div>
+            <div><dt>Line width</dt><dd id="lwOut">0.13 MM</dd></div>
+            <div><dt>Layers on</dt><dd id="lyOut">3 / 3</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="slab c12" data-rv style="--d:.16s">
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Tolerance band</h3><span class="mono mono--dim">DET-05 · range ±0.50 MM</span></div>
+          <div class="stack">
+            <button class="sw" id="snap" role="switch" aria-checked="false">
+              <span class="sw-track" aria-hidden="true"><span class="sw-knob"></span></span>
+              <span class="sw-txt">Snap to grid (0.05 step)</span>
+            </button>
+            <div class="field">
+              <label class="lbl" for="tol">Tolerance ±</label>
+              <input class="rng" id="tol" type="range" min="-50" max="50" step="1" value="12" aria-describedby="tolOut">
+              <div class="rng-scale" aria-hidden="true"><span>-0.50</span><span>-0.25</span><span>0</span><span>+0.25</span><span>+0.50</span></div>
+            </div>
+            <div class="dim dim--live" id="tolOut" style="--dd:.2s">
+              <i class="ext"></i><i class="bar"></i><b id="tolVal">+0.12</b><i class="bar"></i><i class="ext"></i>
+            </div>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>TOL-1</dd></div>
+            <div><dt>Step</dt><dd id="snapOut">0.01 MM</dd></div>
+            <div><dt>Status</dt><dd>Editable</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cut" aria-hidden="true">
+    <span class="tag">C</span><i class="arw"></i><i class="rail"></i>
+    <span class="note">Section C—C · readouts</span>
+    <i class="rail"></i><i class="arw"></i><span class="tag">C</span>
+  </div>
+
+  <section class="sec" id="readouts">
+    <div class="sec-head" data-rv>
+      <span class="zone">Zone C-3</span>
+      <h2>Readouts</h2>
+      <span class="mono">READOUTS · 3 types</span>
+    </div>
+    <p class="sec-lede" data-rv style="--d:.06s">Readouts carry no decoration: the three views show one part from three directions, and the queue bar and the meter read the same machine.</p>
+
+    <div class="cards">
+      <div class="slab c7" data-rv>
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Three views</h3><span class="mono mono--dim">DET-06 · first angle</span></div>
+          <div class="tabs" role="tablist" aria-label="Three views">
+            <button class="tab" role="tab" id="tb-f" aria-controls="pn-f" aria-selected="true" tabindex="0"><span class="no">01</span>Front</button>
+            <button class="tab" role="tab" id="tb-t" aria-controls="pn-t" aria-selected="false" tabindex="-1"><span class="no">02</span>Top</button>
+            <button class="tab" role="tab" id="tb-s" aria-controls="pn-s" aria-selected="false" tabindex="-1"><span class="no">03</span>Side</button>
+          </div>
+          <div class="panel" id="pn-f" role="tabpanel" aria-labelledby="tb-f" tabindex="0">
+            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="Front view: the outline of a notched bracket">
+              <path d="M40 30h180v100H40z" stroke-width="2"/>
+              <path d="M100 30v34h60V30" stroke-width="2"/>
+              <circle cx="130" cy="98" r="20" stroke-width="2"/>
+              <path d="M130 60v76M92 98h76" stroke-dasharray="10 4 2 4" opacity=".65"/>
+              <path d="M40 148h180M44 144l-4 4 4 4M216 144l4 4-4 4" opacity=".8"/>
+              <text x="130" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">180.0</text>
+              <path d="M244 30v100M240 34l4-4 4 4M240 126l4 4 4-4" opacity=".8"/>
+              <text x="262" y="84" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">100.0</text>
+            </svg>
+            <p>Front: the outline and the hole positions are fixed on this face. Chain lines are centrelines; dashed segments are hidden edges.</p>
+          </div>
+          <div class="panel" id="pn-t" role="tabpanel" aria-labelledby="tb-t" tabindex="0" hidden>
+            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="Top view: the outline of the bracket from above">
+              <path d="M40 52h180v56H40z" stroke-width="2"/>
+              <path d="M100 52v56M160 52v56" stroke-dasharray="8 5" opacity=".7"/>
+              <path d="M130 42v76" stroke-dasharray="10 4 2 4" opacity=".65"/>
+              <path d="M40 132h180M44 128l-4 4 4 4M216 128l4 4-4 4" opacity=".8"/>
+              <text x="130" y="150" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">180.0</text>
+              <path d="M244 52v56M240 56l4-4 4 4M240 104l4 4 4-4" opacity=".8"/>
+              <text x="262" y="84" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">56.0</text>
+            </svg>
+            <p>Top: the notch throws two projection lines on the upper face. It stays aligned with the front view across the sheet, with no offset allowed.</p>
+          </div>
+          <div class="panel" id="pn-s" role="tabpanel" aria-labelledby="tb-s" tabindex="0" hidden>
+            <svg class="ortho" viewBox="0 0 300 170" fill="none" stroke="currentColor" aria-label="Side view: the outline of the bracket through its thickness">
+              <path d="M110 30h56v100h-56z" stroke-width="2"/>
+              <path d="M110 64h56" stroke-dasharray="8 5" opacity=".7"/>
+              <path d="M138 20v120" stroke-dasharray="10 4 2 4" opacity=".65"/>
+              <path d="M110 148h56M114 144l-4 4 4 4M162 144l4 4-4 4" opacity=".8"/>
+              <text x="138" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">56.0</text>
+              <path d="M190 30v100M186 34l4-4 4 4M186 126l4 4 4-4" opacity=".8"/>
+              <text x="208" y="84" font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" stroke="none">100.0</text>
+            </svg>
+            <p>Side: read the thickness here. All three projections share one dimension chain, so a change in one is a change in all three.</p>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>VIEW-3</dd></div>
+            <div><dt>Projection</dt><dd>First angle</dd></div>
+            <div><dt>Current</dt><dd id="viewOut">Front</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="slab c5" data-rv style="--d:.1s">
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Plot queue</h3><span class="mono mono--dim">DET-07</span></div>
+          <div class="stack">
+            <div class="field">
+              <div class="help"><span class="lbl">Plotter PLT-2</span><span id="progTxt">0 %</span></div>
+              <div class="prog" role="progressbar" id="prog" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Plot progress"><i id="progFill"></i></div>
+            </div>
+            <div class="row">
+              <button class="btn btn--sm" id="progBtn">Start plotting</button>
+              <button class="btn btn--sm btn--ghost" id="progReset">Reset to zero</button>
+            </div>
+
+            <div class="field" style="margin-top:6px">
+              <span class="lbl">Sheet load</span>
+              <svg class="gauge" id="gauge" viewBox="0 0 260 158" fill="none" aria-label="Sheet load meter"></svg>
+              <div class="row" style="justify-content:space-between">
+                <span class="read"><span id="gaugeVal">62</span><small>% LOAD</small></span>
+                <button class="btn btn--sm" id="sample">Take a sample</button>
+              </div>
+            </div>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>MTR-2</dd></div>
+            <div><dt>Range</dt><dd>0—100</dd></div>
+            <div><dt>Sample</dt><dd id="sampleOut">R-00</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cut" aria-hidden="true">
+    <span class="tag">D</span><i class="arw"></i><i class="rail"></i>
+    <span class="note">Section D—D · overlays</span>
+    <i class="rail"></i><i class="arw"></i><span class="tag">D</span>
+  </div>
+
+  <section class="sec" id="overlays">
+    <div class="sec-head" data-rv>
+      <span class="zone">Zone D-2</span>
+      <h2>Overlays</h2>
+      <span class="mono">OVERLAYS · 4 Z levels</span>
+    </div>
+    <p class="sec-lede" data-rv style="--d:.06s">Overlays stack by Z value and never pass through one another. Move the pointer onto the exploded view and the four levels separate along Z, the reading being the layer height.</p>
+
+    <div class="cards">
+      <div class="slab c5" data-rv>
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Z-order exploded view</h3><span class="mono mono--dim">DET-08</span></div>
+          <div class="stackfig" tabindex="0" aria-label="Overlay Z-order exploded view; focus or hover to expand">
+            <div class="stackfig-in">
+              <div class="plate3" style="--pz:0"><b>Z 000 · sheet base</b></div>
+              <div class="plate3" style="--pz:26"><b>Z 060 · extruded panel</b></div>
+              <div class="plate3" style="--pz:52"><b>Z 120 · custom popup</b></div>
+              <div class="plate3 plate3--top" style="--pz:78"><b>Z 300 · notice strip</b></div>
+            </div>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>ZED-4</dd></div>
+            <div><dt>Layer pitch</dt><dd>26.0 MM</dd></div>
+            <div><dt>Status</dt><dd>Approved</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="slab c7" data-rv style="--d:.1s">
+        <div class="slab-mesh" aria-hidden="true"></div>
+        <div class="slab-in">
+          <div class="card-h"><h3>Issue and receipts</h3><span class="mono mono--dim">DET-09</span></div>
+          <p style="color:var(--line-2);font-size:14px">Issuing locks the current drawing number into the archive, after which no dimension can change. Receipts slide in from the bottom right and sit above every part.</p>
+          <div class="row" style="margin-top:18px">
+            <button class="btn btn--solid" id="openDlg">Issue the drawing</button>
+            <button class="btn" id="toastBtn">Send a receipt</button>
+            <button class="btn btn--ghost" id="toastErr">Send a rejection</button>
+          </div>
+          <div class="leader" style="margin-top:24px">
+            <span class="balloon">2</span>
+            <svg width="42" height="34" viewBox="0 0 42 34" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M2 32L18 8h22"/><circle cx="2" cy="32" r="2.5" fill="currentColor"/>
+            </svg>
+            <span class="leader-txt">A receipt carries a part number and a time; several within the same second stack upward in the order they were sent.</span>
+          </div>
+          <dl class="tb">
+            <div><dt>Part no.</dt><dd>DLG-1</dd></div>
+            <div><dt>Receipt limit</dt><dd>4</dd></div>
+            <div><dt>Status</dt><dd>Ready to issue</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot" data-rv>
+    <div class="tblock">
+      <div class="cell"><div class="k">PROJECT</div><div class="v">Proteus · isometric blueprint AXON</div></div>
+      <div class="cell"><div class="k">TITLE</div><div class="v">General control drawing</div></div>
+      <div class="cell"><div class="k">DWG NO.</div><div class="v" id="footNo">DWG-AXON-001</div></div>
+      <div class="cell"><div class="k">DRAWN</div><div class="v sm">Drafting room · table 3</div></div>
+      <div class="cell"><div class="k">SCALE</div><div class="v sm">1 : 1</div></div>
+      <div class="cell"><div class="k">SIZE</div><div class="v sm" id="footSize">A2</div></div>
+      <div class="cell"><div class="k">PROJECTION</div><div class="v sm">Isometric 30°</div></div>
+      <div class="cell"><div class="k">DATE</div><div class="v sm">2026-07-22</div></div>
+      <div class="cell"><div class="k">REV</div><div class="v sm">R3</div></div>
+    </div>
+    <div class="foot-x">
+      <table class="rev">
+        <caption class="sr">Revision record</caption>
+        <tr><th>Rev</th><th>Date</th><th>Description</th><th>By</th></tr>
+        <tr><td>R1</td><td>07-19</td><td>Datum planes set, 30° projection fixed</td><td>DZ</td></tr>
+        <tr><td>R2</td><td>07-21</td><td>Extrusion sides and title block added</td><td>DZ</td></tr>
+        <tr><td>R3</td><td>07-22</td><td>Dimension lines now read from the controls</td><td>DZ</td></tr>
+      </table>
+      <div class="scale" style="margin:0">
+        <div class="scale-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="scale-tick"><span>0</span><span>50</span><span>100</span><span>150 MM</span></div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<div class="rail" id="rail" role="status" aria-live="polite"></div>
+
+<div class="scrim" id="scrim" aria-hidden="true">
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgT" aria-describedby="dlgD" id="dlg" tabindex="-1">
+    <div class="dlg-h">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--accent)" stroke-width="1.5" aria-hidden="true"><path d="M10 1l9 5.2v7.6L10 19l-9-5.2V6.2z"/><path d="M10 1v18M1 6.2l9 5.2 9-5.2"/></svg>
+      <h2 id="dlgT">Issue the drawing</h2>
+      <button class="x" id="dlgX" aria-label="Close the issue window">✕</button>
+    </div>
+    <div class="dlg-b">
+      <p id="dlgD">Once issued, this sheet enters the archive and both the dimension chain and the layer visibility freeze with it. Changing anything means opening a new revision.</p>
+      <dl class="tb" style="margin-top:20px;border:1px solid var(--hair-2)">
+        <div><dt>Drawing no.</dt><dd id="dlgNo">DWG-AXON-001</dd></div>
+        <div><dt>Sheet size</dt><dd id="dlgSize">A2</dd></div>
+        <div><dt>Revision</dt><dd>R3 → R4</dd></div>
+      </dl>
+    </div>
+    <div class="dlg-f">
+      <button class="btn btn--sm" id="dlgNo2">Look again</button>
+      <button class="btn btn--sm btn--solid" id="dlgYes">Confirm issue</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var RM = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  var rv = document.querySelectorAll("[data-rv]");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: .06 });
+    rv.forEach(function(el){ io.observe(el); });
+    var dims = document.querySelectorAll(".dim");
+    var io2 = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io2.unobserve(e.target); } });
+    }, { threshold: .5 });
+    dims.forEach(function(el){ io2.observe(el); });
+  } else {
+    rv.forEach(function(el){ el.classList.add("in"); });
+    document.querySelectorAll(".dim").forEach(function(el){ el.classList.add("in"); });
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+  var COS = Math.cos(Math.PI / 6), SIN = Math.sin(Math.PI / 6);
+  var W0 = 230, D0 = 152, GAP = 44;
+  var LAYERS = [
+    { name: "Datum plane", code: "DATUM", w: 230, d: 152, t: 7 },
+    { name: "Structure layer", code: "STRUCT", w: 196, d: 130, t: 11 },
+    { name: "Control layer", code: "CONTROL", w: 158, d: 104, t: 9 },
+    { name: "Annotation layer", code: "ANNO", w: 120, d: 78, t: 5 }
+  ];
+  function PX(x, y) { return (x - y) * COS; }
+  function PY(x, y, z) { return (x + y) * SIN - z; }
+  function el(n, a) {
+    var e = document.createElementNS(NS, n);
+    for (var k in a) if (a.hasOwnProperty(k)) e.setAttribute(k, a[k]);
+    return e;
+  }
+  function pts(a) { return a.map(function(p){ return p[0].toFixed(2) + "," + p[1].toFixed(2); }).join(" "); }
+
+  var asm = document.getElementById("asm");
+  var bbox = { x0: 1e9, y0: 1e9, x1: -1e9, y1: -1e9 };
+  function fit(p) {
+    if (p[0] < bbox.x0) bbox.x0 = p[0];
+    if (p[0] > bbox.x1) bbox.x1 = p[0];
+    if (p[1] < bbox.y0) bbox.y0 = p[1];
+    if (p[1] > bbox.y1) bbox.y1 = p[1];
+  }
+
+  var defs = el("defs");
+  var hatch = el("pattern", { id: "hatch", width: 8, height: 8, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" });
+  hatch.appendChild(el("line", { x1: 0, y1: 0, x2: 0, y2: 8, stroke: "var(--line-3)", "stroke-width": 1, opacity: .55 }));
+  defs.appendChild(hatch);
+  asm.appendChild(defs);
+
+  var zTop = 0, geo = [];
+  LAYERS.forEach(function(L, i){
+    if (i > 0) zTop += L.t;
+    geo.push({ L: L, z: zTop, i: i });
+  });
+
+  var shadowRoot = el("g", { opacity: ".34" });
+  var base = geo[0];
+  var sp = [[0, 0], [base.L.w, 0], [base.L.w, base.L.d], [0, base.L.d]].map(function(c){
+    return [PX(c[0], c[1]) + 64, PY(c[0], c[1], -base.L.t) + 37];
+  });
+  sp.forEach(fit);
+  shadowRoot.appendChild(el("polygon", { points: pts(sp), fill: "var(--void)" }));
+  asm.appendChild(shadowRoot);
+
+  var plates = el("g");
+  geo.forEach(function(g){
+    var L = g.L, ox = (W0 - L.w) / 2, oy = (D0 - L.d) / 2, zt = g.z, zb = g.z - L.t;
+    var A = [PX(ox, oy), PY(ox, oy, zt)],
+        B = [PX(ox + L.w, oy), PY(ox + L.w, oy, zt)],
+        C = [PX(ox + L.w, oy + L.d), PY(ox + L.w, oy + L.d, zt)],
+        D = [PX(ox, oy + L.d), PY(ox, oy + L.d, zt)],
+        B2 = [B[0], PY(ox + L.w, oy, zb)],
+        C2 = [C[0], PY(ox + L.w, oy + L.d, zb)],
+        D2 = [D[0], PY(ox, oy + L.d, zb)];
+    [A, B, C, D, B2, C2, D2].forEach(fit);
+    var gg = el("g", { class: "plate", style: "--i:" + g.i });
+    gg.appendChild(el("polygon", { points: pts([B, C, C2, B2]), fill: "var(--side-a)", stroke: "var(--hair-2)" }));
+    gg.appendChild(el("polygon", { points: pts([D, C, C2, D2]), fill: "var(--side-b)", stroke: "var(--hair-2)" }));
+    if (g.i === 0) gg.appendChild(el("polygon", { points: pts([D, C, C2, D2]), fill: "url(#hatch)", stroke: "none" }));
+    gg.appendChild(el("polygon", {
+      points: pts([A, B, C, D]),
+      fill: g.i === 3 ? "rgba(242,106,27,.15)" : "var(--sheet-2)",
+      stroke: g.i === 3 ? "var(--accent)" : "var(--line-2)"
+    }));
+    if (g.i === 3) {
+      var cx = (A[0] + C[0]) / 2, cy = (A[1] + C[1]) / 2;
+      gg.appendChild(el("circle", { cx: cx, cy: cy, r: 5, fill: "var(--accent)" }));
+    }
+    plates.appendChild(gg);
+    g.anchor = [B[0], B[1]];
+  });
+  asm.appendChild(plates);
+
+  var anno = el("g", { class: "iso-anno" });
+  var LX = bbox.x1 + 30, LTX = bbox.x1 + 96;
+  geo.slice().reverse().forEach(function(g){
+    var lg = el("g", { class: "plate", style: "--i:" + g.i });
+    var a = g.anchor;
+    var e1 = [a[0] + 22, a[1] - 13];
+    lg.appendChild(el("circle", { cx: a[0], cy: a[1], r: 2.6, fill: "var(--accent)" }));
+    lg.appendChild(el("polyline", { points: pts([a, e1, [LX, e1[1]]]), fill: "none", stroke: "var(--accent)", "stroke-width": 1 }));
+    lg.appendChild(el("circle", { cx: LX + 11, cy: e1[1], r: 10, fill: "none", stroke: "var(--accent)" }));
+    var n = el("text", { x: LX + 11, y: e1[1] + 4, "text-anchor": "middle", "font-family": "IBM Plex Mono, monospace", "font-size": 11, fill: "var(--accent)" });
+    n.textContent = String(4 - g.i);
+    lg.appendChild(n);
+    var t1 = el("text", { x: LTX, y: e1[1] - 1, "font-family": "Archivo Narrow, sans-serif", "font-size": 14, fill: "var(--line)" });
+    t1.textContent = g.L.name;
+    var t2 = el("text", { x: LTX, y: e1[1] + 12, "font-family": "IBM Plex Mono, monospace", "font-size": 9, "letter-spacing": "1.4", fill: "var(--line-3)" });
+    t2.textContent = g.L.code + " · T" + g.L.t.toFixed(1);
+    lg.appendChild(t1); lg.appendChild(t2);
+    anno.appendChild(lg);
+    fit([LTX + 92, e1[1] - 30]);
+  });
+
+  var dimX = bbox.x0 - 34;
+  var cx0 = PX(0, D0), topZ = geo[3].z, botZ = -geo[0].L.t;
+  var yTop = PY(0, D0, topZ), yBot = PY(0, D0, botZ);
+  var dimG = el("g", { class: "dimg" });
+  var lineG = el("g", { class: "dimline", style: "transform-origin:" + dimX.toFixed(2) + "px " + yBot.toFixed(2) + "px" });
+  lineG.appendChild(el("line", { x1: dimX, y1: yBot, x2: dimX, y2: yTop, stroke: "var(--accent)", "stroke-width": 1 }));
+  dimG.appendChild(lineG);
+  dimG.appendChild(el("line", { x1: cx0, y1: yBot, x2: dimX - 8, y2: yBot, stroke: "var(--line-3)", "stroke-width": 1 }));
+  dimG.appendChild(el("polygon", { points: pts([[dimX, yBot], [dimX - 3.4, yBot - 9], [dimX + 3.4, yBot - 9]]), fill: "var(--accent)" }));
+  var topG = el("g", { class: "dimtop" });
+  topG.appendChild(el("line", { x1: cx0, y1: yTop, x2: dimX - 8, y2: yTop, stroke: "var(--line-3)", "stroke-width": 1 }));
+  topG.appendChild(el("polygon", { points: pts([[dimX, yTop], [dimX - 3.4, yTop + 9], [dimX + 3.4, yTop + 9]]), fill: "var(--accent)" }));
+  dimG.appendChild(topG);
+  var midY = (yTop + yBot) / 2;
+  var txtG = el("g", { class: "dimtxt" });
+  var dimT = el("text", {
+    x: dimX - 8, y: midY,
+    transform: "rotate(-90 " + (dimX - 8).toFixed(2) + " " + midY.toFixed(2) + ")",
+    "text-anchor": "middle", "font-family": "IBM Plex Mono, monospace", "font-size": 12, fill: "var(--accent)"
+  });
+  dimT.textContent = "32.0";
+  txtG.appendChild(dimT);
+  dimG.appendChild(txtG);
+  anno.appendChild(dimG);
+  fit([dimX - 26, yTop - 3 * GAP - 12]);
+
+  var triO = [bbox.x0 + 30, bbox.y1 + 46];
+  var tri = el("g", { class: "iso-anno" });
+  [["X", PX(34, 0), PY(34, 0, 0)], ["Y", PX(0, 34), PY(0, 34, 0)], ["Z", 0, -34]].forEach(function(ax){
+    var e2 = [triO[0] + ax[1], triO[1] + ax[2]];
+    tri.appendChild(el("line", { x1: triO[0], y1: triO[1], x2: e2[0], y2: e2[1], stroke: "var(--line-3)", "stroke-width": 1 }));
+    var lt = el("text", { x: e2[0] + (ax[0] === "Y" ? -9 : 5), y: e2[1] + (ax[0] === "Z" ? -3 : 10), "font-family": "IBM Plex Mono, monospace", "font-size": 10, fill: "var(--line-2)" });
+    lt.textContent = ax[0];
+    tri.appendChild(lt);
+    fit([e2[0] + 12, e2[1] + 12]);
+  });
+  anno.appendChild(tri);
+  asm.appendChild(anno);
+
+  var PAD = 16;
+  var vx = bbox.x0 - PAD, vy = bbox.y0 - PAD - 6;
+  asm.setAttribute("viewBox", vx.toFixed(1) + " " + vy.toFixed(1) + " " + (bbox.x1 - bbox.x0 + PAD * 2).toFixed(1) + " " + (bbox.y1 - bbox.y0 + PAD * 2 + 6).toFixed(1));
+
+  var st = document.createElement("style");
+  st.textContent =
+    ".plate{transition:transform .62s cubic-bezier(.2,.7,.2,1)}" +
+    ".exploded .plate{transform:translateY(calc(var(--i) * -" + GAP + "px))}" +
+    ".dimline{transition:transform .62s cubic-bezier(.2,.7,.2,1)}" +
+    ".exploded .dimline{transform:scaleY(" + ((yBot - yTop + 3 * GAP) / (yBot - yTop)).toFixed(4) + ")}" +
+    ".dimtop{transition:transform .62s cubic-bezier(.2,.7,.2,1)}" +
+    ".exploded .dimtop{transform:translateY(-" + (3 * GAP) + "px)}" +
+    ".dimtxt{transition:transform .62s cubic-bezier(.2,.7,.2,1)}" +
+    ".exploded .dimtxt{transform:translateY(-" + (1.5 * GAP) + "px)}" +
+    "@media (prefers-reduced-motion:reduce){.plate,.dimline,.dimtop,.dimtxt{transition-duration:.001ms}}";
+  document.head.appendChild(st);
+
+  var asmH = document.getElementById("asmH");
+  var expBtn = document.getElementById("explode");
+  var isExp = false;
+  expBtn.addEventListener("click", function(){
+    isExp = !isExp;
+    asm.classList.toggle("exploded", isExp);
+    expBtn.setAttribute("aria-pressed", String(isExp));
+    expBtn.textContent = isExp ? "Collapse view" : "Exploded view";
+    var v = isExp ? (32 + 3 * GAP).toFixed(1) : "32.0";
+    dimT.textContent = v;
+    asmH.textContent = v;
+  });
+
+  var rail = document.getElementById("rail");
+  var tSeq = 0;
+  function stamp() {
+    var d = new Date();
+    function p(n) { return String(n).padStart(2, "0"); }
+    return p(d.getHours()) + ":" + p(d.getMinutes()) + ":" + p(d.getSeconds());
+  }
+  function toast(msg, kind) {
+    while (rail.children.length >= 4) rail.removeChild(rail.firstElementChild);
+    tSeq += 1;
+    var t = document.createElement("div");
+    t.className = "toast";
+    var no = document.createElement("span");
+    no.className = "tno";
+    no.textContent = "R" + String(tSeq).padStart(2, "0");
+    var body = document.createElement("div");
+    var line = document.createElement("span");
+    line.className = "tt";
+    line.textContent = msg;
+    var sub = document.createElement("span");
+    sub.className = "ts";
+    sub.textContent = (kind === "err" ? "Rejection" : "Receipt") + " · " + stamp() + " · DWG-AXON-001";
+    body.appendChild(line);
+    body.appendChild(sub);
+    var x = document.createElement("button");
+    x.className = "tx";
+    x.type = "button";
+    x.setAttribute("aria-label", "Dismiss the receipt");
+    x.textContent = "✕";
+    t.appendChild(no); t.appendChild(body); t.appendChild(x);
+    if (kind === "err") t.style.borderColor = "var(--line-2)";
+    rail.appendChild(t);
+    requestAnimationFrame(function(){ t.classList.add("on"); });
+    var timer = setTimeout(kill, 5200);
+    function kill() {
+      clearTimeout(timer);
+      t.classList.add("out");
+      setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 320);
+    }
+    x.addEventListener("click", kill);
+  }
+  document.querySelectorAll("[data-toast]").forEach(function(b){
+    b.addEventListener("click", function(){ toast(b.getAttribute("data-toast")); });
+  });
+  document.getElementById("toastBtn").addEventListener("click", function(){
+    toast("Drawing " + (dwg.value.trim() || "untitled") + " has been filed.");
+  });
+  document.getElementById("toastErr").addEventListener("click", function(){
+    toast("Rejected: the CHECKED field in the title block is empty. Fill it in and resubmit.", "err");
+  });
+
+  var dwg = document.getElementById("dwgNo");
+  var dwgField = document.getElementById("dwgField");
+  var dwgCount = document.getElementById("dwgCount");
+  var dwgMsg = dwgField.querySelector(".msg");
+  var footNo = document.getElementById("footNo");
+  var dlgNo = document.getElementById("dlgNo");
+  dwg.setAttribute("maxlength", "16");
+  function syncDwg() {
+    var v = dwg.value.trim();
+    dwgCount.textContent = dwg.value.length + " / 16";
+    if (!v) {
+      dwgField.classList.add("bad");
+      dwgMsg.textContent = "The drawing number cannot be empty. Follow the DWG-AXON-001 format.";
+    } else {
+      dwgField.classList.remove("bad");
+      dwgMsg.textContent = "Write it as DWG-ZONE-SERIAL";
+    }
+    footNo.textContent = v || "—";
+    dlgNo.textContent = v || "—";
+  }
+  dwg.addEventListener("input", syncDwg);
+  dwg.addEventListener("blur", syncDwg);
+  syncDwg();
+
+  var SIZES = [
+    { k: "A4", w: 297, h: 210 }, { k: "A3", w: 420, h: 297 }, { k: "A2", w: 594, h: 420 },
+    { k: "A1", w: 841, h: 594 }, { k: "A0", w: 1189, h: 841 }
+  ];
+  var sBtn = document.getElementById("sizeBtn"), sPop = document.getElementById("sizePop"),
+      sVal = document.getElementById("sizeVal"), sDim = document.getElementById("sizeDim"),
+      stripSize = document.getElementById("stripSize"), footSize = document.getElementById("footSize"),
+      dlgSize = document.getElementById("dlgSize");
+  var sIdx = 2, sCur = 2, sOpen = false;
+  SIZES.forEach(function(s, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "sel-opt";
+    b.setAttribute("role", "option");
+    b.setAttribute("aria-selected", String(i === sIdx));
+    b.dataset.i = String(i);
+    var a = document.createElement("span");
+    a.textContent = s.k;
+    var c = document.createElement("span");
+    c.className = "sz";
+    c.textContent = s.w + " × " + s.h;
+    b.appendChild(a); b.appendChild(c);
+    b.addEventListener("click", function(){ pick(i); closeSel(true); });
+    sPop.appendChild(b);
+  });
+  function paintSel() {
+    Array.prototype.forEach.call(sPop.children, function(c, i){
+      c.setAttribute("aria-selected", String(i === sIdx));
+      c.classList.toggle("cur", i === sCur);
+    });
+  }
+  function pick(i) {
+    sIdx = i; sCur = i;
+    var s = SIZES[i];
+    sVal.textContent = s.k + " · " + s.w + " × " + s.h;
+    sDim.textContent = s.w.toFixed(1) + " × " + s.h.toFixed(1);
+    stripSize.textContent = s.k;
+    footSize.textContent = s.k;
+    dlgSize.textContent = s.k;
+    paintSel();
+  }
+  function openSel() {
+    sOpen = true; sCur = sIdx;
+    sPop.classList.add("open");
+    sBtn.setAttribute("aria-expanded", "true");
+    paintSel();
+  }
+  function closeSel(focus) {
+    sOpen = false;
+    sPop.classList.remove("open");
+    sBtn.setAttribute("aria-expanded", "false");
+    if (focus) sBtn.focus();
+  }
+  sBtn.addEventListener("click", function(){ sOpen ? closeSel(false) : openSel(); });
+  sBtn.addEventListener("keydown", function(e){
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); if (!sOpen) openSel(); else move(e.key === "ArrowDown" ? 1 : -1); }
+    else if (e.key === "Escape" && sOpen) { e.preventDefault(); closeSel(true); }
+    else if ((e.key === "Enter" || e.key === " ") && sOpen) { e.preventDefault(); pick(sCur); closeSel(true); }
+  });
+  function move(d) {
+    sCur = (sCur + d + SIZES.length) % SIZES.length;
+    paintSel();
+    sPop.children[sCur].scrollIntoView({ block: "nearest" });
+  }
+  document.addEventListener("click", function(e){
+    if (sOpen && !sPop.contains(e.target) && e.target !== sBtn && !sBtn.contains(e.target)) closeSel(false);
+  });
+  pick(2);
+
+  var lyOut = document.getElementById("lyOut");
+  var toggles = [
+    { el: document.getElementById("lyGrid"), cls: "no-grid" },
+    { el: document.getElementById("lyDim"), cls: "no-dim" },
+    { el: document.getElementById("lyLead"), cls: "no-leader" }
+  ];
+  function syncLayers() {
+    var n = 0;
+    toggles.forEach(function(t){
+      document.body.classList.toggle(t.cls, !t.el.checked);
+      if (t.el.checked) n += 1;
+    });
+    lyOut.textContent = n + " / 3";
+  }
+  toggles.forEach(function(t){ t.el.addEventListener("change", syncLayers); });
+  syncLayers();
+
+  var lwOut = document.getElementById("lwOut");
+  var LWS = { "1": "0.13", "2": "0.25", "3": "0.35" };
+  document.querySelectorAll('input[name="lw"]').forEach(function(r){
+    r.addEventListener("change", function(){
+      document.documentElement.style.setProperty("--lw", r.value + "px");
+      lwOut.textContent = LWS[r.value] + " MM";
+    });
+  });
+
+  var snap = document.getElementById("snap"), snapOut = document.getElementById("snapOut");
+  var tol = document.getElementById("tol"), tolVal = document.getElementById("tolVal");
+  var snapOn = false;
+  function paintTol() {
+    var v = parseInt(tol.value, 10);
+    if (snapOn) { v = Math.round(v / 5) * 5; tol.value = String(v); }
+    var mm = v / 100;
+    tolVal.textContent = (mm >= 0 ? "+" : "−") + Math.abs(mm).toFixed(2);
+    tol.style.setProperty("--fill", ((v + 50) / 100 * 100).toFixed(1) + "%");
+    tol.setAttribute("aria-valuetext", (mm >= 0 ? "plus " : "minus ") + Math.abs(mm).toFixed(2) + " millimetres");
+  }
+  tol.addEventListener("input", paintTol);
+  snap.addEventListener("click", function(){
+    snapOn = !snapOn;
+    snap.setAttribute("aria-checked", String(snapOn));
+    tol.step = snapOn ? "5" : "1";
+    snapOut.textContent = snapOn ? "0.05 MM" : "0.01 MM";
+    paintTol();
+  });
+  paintTol();
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var viewOut = document.getElementById("viewOut");
+  function selTab(i, focus) {
+    tabs.forEach(function(t, j){
+      var on = i === j;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    viewOut.textContent = tabs[i].textContent.replace(/^\d+/, "");
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ selTab(i, false); });
+    t.addEventListener("keydown", function(e){
+      var n = null;
+      if (e.key === "ArrowRight") n = (i + 1) % tabs.length;
+      else if (e.key === "ArrowLeft") n = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === "Home") n = 0;
+      else if (e.key === "End") n = tabs.length - 1;
+      if (n !== null) { e.preventDefault(); selTab(n, true); }
+    });
+  });
+  selTab(0, false);
+
+  var prog = document.getElementById("prog"), fill = document.getElementById("progFill"),
+      pTxt = document.getElementById("progTxt"), pBtn = document.getElementById("progBtn"),
+      pRst = document.getElementById("progReset");
+  var pv = 0, run = false, last = 0, raf = 0;
+  function paintProg() {
+    fill.style.width = pv.toFixed(1) + "%";
+    pTxt.textContent = Math.round(pv) + " %";
+    prog.setAttribute("aria-valuenow", String(Math.round(pv)));
+  }
+  function tick(ts) {
+    if (!run) return;
+    if (!last) last = ts;
+    pv = Math.min(100, pv + (ts - last) * 0.022);
+    last = ts;
+    paintProg();
+    if (pv >= 100) { stopProg(); toast("Plot complete. One sheet, sent to the archive."); return; }
+    raf = requestAnimationFrame(tick);
+  }
+  function stopProg() {
+    run = false; last = 0;
+    cancelAnimationFrame(raf);
+    pBtn.textContent = pv >= 100 ? "Complete" : "Resume plotting";
+    pBtn.disabled = pv >= 100;
+  }
+  pBtn.addEventListener("click", function(){
+    if (run) { stopProg(); pBtn.textContent = "Resume plotting"; return; }
+    run = true; last = 0; pBtn.textContent = "Pause"; pBtn.disabled = false;
+    raf = requestAnimationFrame(tick);
+  });
+  pRst.addEventListener("click", function(){
+    run = false; last = 0; cancelAnimationFrame(raf);
+    pv = 0; paintProg();
+    pBtn.textContent = "Start plotting"; pBtn.disabled = false;
+  });
+  paintProg();
+
+  var g = document.getElementById("gauge");
+  var GCX = 130, GCY = 130, GR = 98, A0 = 210, A1 = -30;
+  function pol(a, r) {
+    var t = a * Math.PI / 180;
+    return [GCX + Math.cos(t) * r, GCY - Math.sin(t) * r];
+  }
+  var arcA = pol(A0, GR), arcB = pol(A1, GR);
+  g.appendChild(el("path", {
+    d: "M" + arcA[0].toFixed(1) + " " + arcA[1].toFixed(1) + " A" + GR + " " + GR + " 0 1 1 " + arcB[0].toFixed(1) + " " + arcB[1].toFixed(1),
+    stroke: "var(--line-3)", "stroke-width": 1, fill: "none"
+  }));
+  for (var i = 0; i <= 10; i++) {
+    var a = A0 + (A1 - A0) * (i / 10), big = i % 5 === 0;
+    var p1 = pol(a, GR), p2 = pol(a, GR - (big ? 15 : 8));
+    g.appendChild(el("line", {
+      x1: p1[0].toFixed(1), y1: p1[1].toFixed(1), x2: p2[0].toFixed(1), y2: p2[1].toFixed(1),
+      stroke: big ? "var(--line)" : "var(--line-3)", "stroke-width": big ? 2 : 1
+    }));
+    if (big) {
+      var p3 = pol(a, GR - 30);
+      var tx = el("text", { x: p3[0].toFixed(1), y: (p3[1] + 4).toFixed(1), "text-anchor": "middle", "font-family": "IBM Plex Mono, monospace", "font-size": 11, fill: "var(--line-2)" });
+      tx.textContent = String(i * 10);
+      g.appendChild(tx);
+    }
+  }
+  var redA = pol(A0 + (A1 - A0) * .8, GR), redB = pol(A1, GR);
+  g.appendChild(el("path", {
+    d: "M" + redA[0].toFixed(1) + " " + redA[1].toFixed(1) + " A" + GR + " " + GR + " 0 0 1 " + redB[0].toFixed(1) + " " + redB[1].toFixed(1),
+    stroke: "var(--accent)", "stroke-width": 3, fill: "none"
+  }));
+  var needle = el("polygon", { class: "needle", points: "126,52 134,52 130.5,128 129.5,128", fill: "var(--accent)" });
+  g.appendChild(needle);
+  g.appendChild(el("circle", { cx: GCX, cy: GCY, r: 8, fill: "var(--sheet-2)", stroke: "var(--line-2)" }));
+  var gVal = document.getElementById("gaugeVal"), sOut = document.getElementById("sampleOut");
+  var sN = 0;
+  function setGauge(v) {
+    var deg = (A0 + (A1 - A0) * (v / 100)) - 90;
+    needle.style.transform = "rotate(" + (-deg).toFixed(1) + "deg)";
+    gVal.textContent = String(Math.round(v));
+  }
+  document.getElementById("sample").addEventListener("click", function(){
+    sN += 1;
+    var v = 18 + Math.floor(Math.random() * 78);
+    setGauge(v);
+    sOut.textContent = "R-" + String(sN).padStart(2, "0");
+    if (v >= 80) toast("Sheet load " + v + " %, into the red. Consider splitting the sheet.", "err");
+  });
+  setGauge(62);
+
+  var tipBtn = document.getElementById("tipBtn"), tipBody = document.getElementById("tipBody");
+  var tipT = 0;
+  function showTip() { clearTimeout(tipT); tipT = setTimeout(function(){ tipBody.classList.add("on"); }, 120); }
+  function hideTip() { clearTimeout(tipT); tipBody.classList.remove("on"); }
+  tipBtn.addEventListener("mouseenter", showTip);
+  tipBtn.addEventListener("mouseleave", hideTip);
+  tipBtn.addEventListener("focus", showTip);
+  tipBtn.addEventListener("blur", hideTip);
+  tipBtn.addEventListener("click", function(){ tipBody.classList.toggle("on"); });
+
+  var scrim = document.getElementById("scrim"), dlg = document.getElementById("dlg");
+  var lastFocus = null;
+  function openDlg() {
+    lastFocus = document.activeElement;
+    scrim.classList.add("on");
+    scrim.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    dlg.focus({ preventScroll: true });
+  }
+  function closeDlg() {
+    scrim.classList.remove("on");
+    scrim.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+  document.getElementById("openDlg").addEventListener("click", openDlg);
+  document.getElementById("dlgX").addEventListener("click", closeDlg);
+  document.getElementById("dlgNo2").addEventListener("click", closeDlg);
+  document.getElementById("dlgYes").addEventListener("click", function(){
+    closeDlg();
+    toast("Issued " + (dwg.value.trim() || "untitled") + "; the revision advances to R4.");
+  });
+  scrim.addEventListener("mousedown", function(e){ if (e.target === scrim) closeDlg(); });
+  document.addEventListener("keydown", function(e){
+    if (e.key !== "Escape") return;
+    if (scrim.classList.contains("on")) { closeDlg(); return; }
+    if (sOpen) closeSel(true);
+  });
+  dlg.addEventListener("keydown", function(e){
+    if (e.key !== "Tab") return;
+    var f = dlg.querySelectorAll("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && (document.activeElement === first || document.activeElement === dlg)) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  if (RM.matches) document.querySelectorAll("[data-rv]").forEach(function(el2){ el2.classList.add("in"); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+import{o as e,r as t}from"./index-C5dEWIj2.js";import{Ir as n,Kn as r,Q as i,Y as a}from"./ToolbarLink-CJCkr3YK.js";var o=e(t(),1).forwardRef(function(e,t){let{render:o,className:s,style:c,...l}=e,{value:u}=a(),{open:d,value:f}=i();return n(`span`,e,{state:{open:d&&f===u},ref:t,props:[{"aria-hidden":!0,children:`▼`},l],stateAttributesMapping:r})});export{o as t};
