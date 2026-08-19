@@ -29,7 +29,7 @@ const UPDATE = process.argv.includes('--update');
         .waitForFunction(() => {
           if (document.fonts.status !== 'loaded') return false;
           const webfonts = new Set([...document.fonts].map((f) => f.family.replace(/^["']|["']$/g, '')));
-          const sample = [document.body, ...document.querySelectorAll('[class*="hero"],[class*="title"],[class*="btn"],h1,h2,h3,code')].slice(0, 20);
+          const sample = [document.body, ...document.querySelectorAll('[class*="hero"],[class*="title"],[class*="btn"],[class*="clock"],[class*="logo"],[class*="cap"],h1,h2,h3,code')].slice(0, 40);
           for (const el of sample) {
             const c = getComputedStyle(el);
             const fam = c.fontFamily.split(',')[0].trim().replace(/^["']|["']$/g, '');
