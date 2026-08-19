@@ -11,12 +11,13 @@ const path = require('path');
 const PW = '/tmp/pw/node_modules/playwright-core';
 
 function pw() {
-  if (!fs.existsSync(PW)) {
-    console.error('ERR /tmp/pw playwright-core missing (lost on reboot) — bootstrap it first:');
+  try {
+    return require(PW);
+  } catch {
+    console.error('ERR /tmp/pw playwright-core 加载不了(重启/系统 tmp 清理会掏空它,目录可能还在)——先重装:');
     console.error('    mkdir -p /tmp/pw && cd /tmp/pw && npm i playwright-core');
     process.exit(2);
   }
-  return require(PW);
 }
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
