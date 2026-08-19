@@ -23,22 +23,34 @@ const UPDATE = process.argv.includes('--update');
     for (const [w, vp] of [['desktop', G.DESKTOP], ['phone', G.PHONE]]) {
       await page.setViewportSize(vp);
       await page.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}' });
-      // 就绪判据是「页面正在用的字族都已加载」。document.fonts.ready 只等已发出的
-      // 请求,首轮布局才触发的那批不在内;回退字体下的文本几何是另一套数字。
+      // 就绪判据是「被测树里每个元素用到的字面(族×字重×字体样式)都已加载」。
+      // 两种缺席都要拦:字体二进制没到(声明在、face 是 error/unloaded),和声明
+      // 本身没到(字体样式表异步/被断,首选项族不在 document.fonts 里)。按选择器
+      // 抽样会漏,document.fonts.ready 只等已发出的请求。整树收齐组合、逐个
+      // fonts.load() 强制加载,轮询到 20s 没齐即拒绝采样。
       const fontsUp = await page
-        .waitForFunction(() => {
-          if (document.fonts.status !== 'loaded') return false;
-          const webfonts = new Set([...document.fonts].map((f) => f.family.replace(/^["']|["']$/g, '')));
-          const sample = [document.body, ...document.querySelectorAll('[class*="hero"],[class*="title"],[class*="btn"],[class*="clock"],[class*="logo"],[class*="cap"],h1,h2,h3,code')].slice(0, 40);
-          for (const el of sample) {
-            const c = getComputedStyle(el);
-            const fam = c.fontFamily.split(',')[0].trim().replace(/^["']|["']$/g, '');
-            if (!fam || !webfonts.has(fam)) continue;
-            if (!document.fonts.check(`${c.fontStyle} ${c.fontWeight} ${c.fontSize} "${fam}"`)) return false;
+        .evaluate(async () => {
+          const GEN = new Set(['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-monospace', 'ui-serif', 'ui-sans-serif', 'ui-rounded', 'math', 'emoji', 'fangsong']);
+          const deadline = Date.now() + 20000;
+          for (;;) {
+            const webfonts = new Set([...document.fonts].map((f) => f.family.replace(/^["']|["']$/g, '')));
+            const combos = new Set();
+            let declMissing = false;
+            for (const el of document.querySelectorAll('body, body *')) {
+              const c = getComputedStyle(el);
+              const fam = c.fontFamily.split(',')[0].trim().replace(/^["']|["']$/g, '');
+              if (!fam || GEN.has(fam)) continue;
+              if (webfonts.has(fam)) combos.add(`${c.fontStyle} ${c.fontWeight} 16px "${fam}"`);
+              else declMissing = true;
+            }
+            if (!declMissing) {
+              await Promise.all([...combos].map((f) => document.fonts.load(f).catch(() => {})));
+              if ([...combos].every((f) => document.fonts.check(f))) return true;
+            }
+            if (Date.now() > deadline) return false;
+            await new Promise((r) => setTimeout(r, 300));
           }
-          return true;
-        }, null, { timeout: 20000 })
-        .then(() => true)
+        })
         .catch(() => false);
       if (!fontsUp) {
         console.error(`ERR ${kit}@${w} 字体 20s 未就绪,拒绝采样——回退字体下的文本几何会把整套面板写歪`);
